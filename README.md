@@ -89,6 +89,18 @@ runs it and opens a pull request when something moved.
     python3 tools/mcp.py         which of them run an MCP server
     python3 tools/index.py       the searchable index
 
+## Calling a provider, and its test
+
+`lua/port_http.lua` signs each call the way the provider's pack says (`auth`: a header in the vendor's own format,
+a bearer token, a query parameter, or a user and password) with values it asks the host for by name, and refuses a
+call whose credential is missing before anything is sent. `lua lua/port_http_test.lua` checks every kind; it runs
+on LuaJIT and Lua 5.4 and later.
+
+A buck2 monorepo that attaches this repository as a submodule gets the port as `connectory.lua.port_http` from the
+`BUCK` at its root. [Arock](https://arock.ai) does: its agent finds a service here, reads
+its calls and makes them with the person's own account, asking them for the credential, which it keeps in the Mac's
+keychain, the first time a call needs it.
+
 ## Where the facts come from
 
 The directory of who-exists-and-how-they-authenticate is generated from
