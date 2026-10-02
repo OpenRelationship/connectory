@@ -29,7 +29,10 @@ local function as_catalog(source)
   local providers, operations = {}, {}
   for i = 1, #packs do
     local pack = packs[i]
-    providers[pack.provider] = pack
+    -- a pack keeps how it signs under `auth`; an export's provider has it at the top
+    local signs = setmetatable({}, { __index = pack })
+    for k, v in pairs(pack.auth or {}) do signs[k] = v end
+    providers[pack.provider] = signs
     for name, op in pairs(pack.operations) do
       operations[name] = setmetatable({ provider = pack.provider }, { __index = op })
     end
