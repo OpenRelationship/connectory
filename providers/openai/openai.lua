@@ -2,7 +2,7 @@
 --
 -- GENERATED from https://raw.githubusercontent.com/openai/openai-openapi/main/openapi.json
 -- Published by openai, the vendor's own GitHub organisation.
--- 337 operations · do not edit
+-- 338 operations · do not edit
 --
 -- The credential is never in here. `auth.env` names an environment variable; the value
 -- stays in the environment, which is what makes this file safe to publish.
@@ -48,7 +48,7 @@ return {
     ["openai.beta_list_input_items"] = { method = "GET", url = "https://api.openai.com/v1/responses/{response_id}/input_items?beta=true", path = {"response_id"}, query = {"limit", "order", "after", "include"}, header = {"openai-beta"} },
     ["openai.cancel_batch"] = { method = "POST", url = "https://api.openai.com/v1/batches/{batch_id}/cancel", path = {"batch_id"} },
     ["openai.cancel_chat_session_method"] = { method = "POST", url = "https://api.openai.com/v1/chatkit/sessions/{session_id}/cancel", path = {"session_id"} },
-    ["openai.cancel_eval_run"] = { method = "POST", url = "https://api.openai.com/v1/evals/{eval_id}/runs/{run_id}", path = {"eval_id", "run_id"} },
+    ["openai.cancel_eval_run"] = { method = "POST", url = "https://api.openai.com/v1/evals/{eval_id}/runs/{run_id}/cancel", path = {"eval_id", "run_id"} },
     ["openai.cancel_fine_tuning_job"] = { method = "POST", url = "https://api.openai.com/v1/fine_tuning/jobs/{fine_tuning_job_id}/cancel", path = {"fine_tuning_job_id"} },
     ["openai.cancel_response"] = { method = "POST", url = "https://api.openai.com/v1/responses/{response_id}/cancel", path = {"response_id"} },
     ["openai.cancel_run"] = { method = "POST", url = "https://api.openai.com/v1/threads/{thread_id}/runs/{run_id}/cancel", path = {"thread_id", "run_id"} },
@@ -58,7 +58,7 @@ return {
     ["openai.complete_upload"] = { method = "POST", url = "https://api.openai.com/v1/uploads/{upload_id}/complete", path = {"upload_id"}, body = {"part_ids", "md5"} },
     ["openai.create_agent"] = { method = "POST", url = "https://api.openai.com/v1/agents", body = {"metadata", "name", "model", "reasoning", "text", "service_tier", "instructions", "tools", "multi_agent"} },
     ["openai.create_agent_environment_file"] = { method = "POST", url = "https://api.openai.com/v1/agents/environments/{environment_id}/files", path = {"environment_id"} },
-    ["openai.create_agent_environment_template"] = { method = "POST", url = "https://api.openai.com/v1/agents/environments/templates", body = {"packages", "setup_commands", "network", "env", "capability_directories", "skills", "plugins", "files", "name"} },
+    ["openai.create_agent_environment_template"] = { method = "POST", url = "https://api.openai.com/v1/agents/environments/templates", body = {"packages", "setup_commands", "network", "desktop", "env", "capability_directories", "skills", "plugins", "files", "name"} },
     ["openai.create_agent_session"] = { method = "POST", url = "https://api.openai.com/v1/agents/sessions", body = {"metadata", "agent", "agent_id", "environment", "vault_ids", "input", "stream"} },
     ["openai.create_agent_session_events"] = { method = "POST", url = "https://api.openai.com/v1/agents/sessions/{session_id}/events", path = {"session_id"}, header = {"Idempotency-Key"}, body = {"events"} },
     ["openai.create_batch"] = { method = "POST", url = "https://api.openai.com/v1/batches", body = {"input_file_id", "endpoint", "completion_window", "metadata", "output_expires_after"} },
@@ -78,7 +78,6 @@ return {
     ["openai.create_group"] = { method = "POST", url = "https://api.openai.com/v1/organization/groups", body = {"name"} },
     ["openai.create_image"] = { method = "POST", url = "https://api.openai.com/v1/images/generations", body = {"prompt", "model", "n", "quality", "response_format", "output_format", "output_compression", "stream", "partial_images", "size", "moderation", "background", "style", "user"} },
     ["openai.create_image_edit"] = { method = "POST", url = "https://api.openai.com/v1/images/edits", body = {"model", "images", "mask", "prompt", "n", "quality", "input_fidelity", "size", "user", "output_format", "output_compression", "moderation", "background", "stream", "partial_images"} },
-    ["openai.create_image_variation"] = { method = "POST", url = "https://api.openai.com/v1/images/variations", body = {"image", "model", "n", "response_format", "size", "user"} },
     ["openai.create_live"] = { method = "POST", url = "https://api.openai.com/v1/live/sessions", body = {"session", "transport"} },
     ["openai.create_message"] = { method = "POST", url = "https://api.openai.com/v1/threads/{thread_id}/messages", path = {"thread_id"}, body = {"role", "content", "attachments", "metadata"} },
     ["openai.create_moderation"] = { method = "POST", url = "https://api.openai.com/v1/moderations", body = {"input", "model"} },
@@ -105,11 +104,11 @@ return {
     ["openai.create_translation"] = { method = "POST", url = "https://api.openai.com/v1/audio/translations", body = {"file", "model", "prompt", "response_format", "temperature"} },
     ["openai.create_upload"] = { method = "POST", url = "https://api.openai.com/v1/uploads", body = {"filename", "purpose", "bytes", "mime_type", "expires_after"} },
     ["openai.create_vault"] = { method = "POST", url = "https://api.openai.com/v1/vaults", body = {"name", "metadata"} },
-    ["openai.create_vault_credential"] = { method = "POST", url = "https://api.openai.com/v1/vaults/{vault_id}/credentials", path = {"vault_id"}, body = {"name"} },
+    ["openai.create_vault_credential"] = { method = "POST", url = "https://api.openai.com/v1/vaults/{vault_id}/credentials", path = {"vault_id"}, body = {"name", "metadata"} },
     ["openai.create_vector_store"] = { method = "POST", url = "https://api.openai.com/v1/vector_stores", body = {"file_ids", "name", "description", "expires_after", "chunking_strategy", "metadata"} },
     ["openai.create_vector_store_file"] = { method = "POST", url = "https://api.openai.com/v1/vector_stores/{vector_store_id}/files", path = {"vector_store_id"}, body = {"file_id", "chunking_strategy", "attributes"} },
     ["openai.create_vector_store_file_batch"] = { method = "POST", url = "https://api.openai.com/v1/vector_stores/{vector_store_id}/file_batches", path = {"vector_store_id"}, body = {"file_ids", "files", "chunking_strategy", "attributes"} },
-    ["openai.create_voice"] = { method = "POST", url = "https://api.openai.com/v1/audio/voices", body = {"name", "audio_sample", "consent"} },
+    ["openai.create_voice"] = { method = "POST", url = "https://api.openai.com/v1/audio/voices", body = {"type", "name", "prompt", "script_hint", "model"} },
     ["openai.create_voice_consent"] = { method = "POST", url = "https://api.openai.com/v1/audio/voice_consents", body = {"name", "recording", "language"} },
     ["openai.create_webhook_endpoint"] = { method = "POST", url = "https://api.openai.com/v1/webhook_endpoints", body = {"name", "url", "event_types"} },
     ["openai.createan_apikeyforaserviceaccount"] = { method = "POST", url = "https://api.openai.com/v1/organization/projects/{project_id}/service_accounts/{service_account_id}/api_keys", path = {"project_id", "service_account_id"}, body = {"name", "scopes", "expires_in_seconds"} },
@@ -203,6 +202,8 @@ return {
     ["openai.list_agent_session_subagent_turn_items"] = { method = "GET", url = "https://api.openai.com/v1/agents/sessions/{session_id}/subagents/{subagent_id}/turns/{turn_id}/items", path = {"session_id", "subagent_id", "turn_id"}, query = {"limit", "order", "after"} },
     ["openai.list_agent_session_subagent_turns"] = { method = "GET", url = "https://api.openai.com/v1/agents/sessions/{session_id}/subagents/{subagent_id}/turns", path = {"session_id", "subagent_id"}, query = {"limit", "order", "after"} },
     ["openai.list_agent_session_subagents"] = { method = "GET", url = "https://api.openai.com/v1/agents/sessions/{session_id}/subagents", path = {"session_id"}, query = {"limit", "order", "after"} },
+    ["openai.list_agent_session_traces"] = { method = "GET", url = "https://api.openai.com/v1/agents/sessions/{session_id}/traces", path = {"session_id"}, query = {"limit", "order", "after"} },
+    ["openai.list_agent_session_turn_items"] = { method = "GET", url = "https://api.openai.com/v1/agents/sessions/{session_id}/turns/{turn_id}/items", path = {"session_id", "turn_id"}, query = {"limit", "order", "after"} },
     ["openai.list_agent_session_turns"] = { method = "GET", url = "https://api.openai.com/v1/agents/sessions/{session_id}/turns", path = {"session_id"}, query = {"limit", "order", "after"} },
     ["openai.list_agent_sessions"] = { method = "GET", url = "https://api.openai.com/v1/agents/sessions", query = {"limit", "order", "agent_id", "after"} },
     ["openai.list_agents"] = { method = "GET", url = "https://api.openai.com/v1/agents", query = {"limit", "order", "after"} },
@@ -313,7 +314,7 @@ return {
     ["openai.retrieve_vault_credential"] = { method = "GET", url = "https://api.openai.com/v1/vaults/{vault_id}/credentials/{credential_id}", path = {"vault_id", "credential_id"} },
     ["openai.retrieve_vector_store_file_content"] = { method = "GET", url = "https://api.openai.com/v1/vector_stores/{vector_store_id}/files/{file_id}/content", path = {"vector_store_id", "file_id"} },
     ["openai.retrieve_webhook_endpoint"] = { method = "GET", url = "https://api.openai.com/v1/webhook_endpoints/{webhook_endpoint_id}", path = {"webhook_endpoint_id"} },
-    ["openai.rotate_vault_credential"] = { method = "POST", url = "https://api.openai.com/v1/vaults/{vault_id}/credentials/{credential_id}", path = {"vault_id", "credential_id"} },
+    ["openai.rotate_vault_credential"] = { method = "POST", url = "https://api.openai.com/v1/vaults/{vault_id}/credentials/{credential_id}", path = {"vault_id", "credential_id"}, body = {"metadata"} },
     ["openai.rotate_webhook_endpoint_signing_secret"] = { method = "POST", url = "https://api.openai.com/v1/webhook_endpoints/{webhook_endpoint_id}/rotate_secret", path = {"webhook_endpoint_id"}, body = {"keep_old_secret_active_for_24_hours"} },
     ["openai.run_grader"] = { method = "POST", url = "https://api.openai.com/v1/fine_tuning/alpha/graders/run", body = {"grader", "item", "model_sample"} },
     ["openai.search_vector_store"] = { method = "POST", url = "https://api.openai.com/v1/vector_stores/{vector_store_id}/search", path = {"vector_store_id"}, body = {"query", "rewrite_query", "max_num_results", "filters", "ranking_options"} },
@@ -324,7 +325,7 @@ return {
     ["openai.unassign_project_user_role"] = { method = "DELETE", url = "https://api.openai.com/v1/projects/{project_id}/users/{user_id}/roles/{role_id}", path = {"project_id", "user_id", "role_id"} },
     ["openai.unassign_user_role"] = { method = "DELETE", url = "https://api.openai.com/v1/organization/users/{user_id}/roles/{role_id}", path = {"user_id", "role_id"} },
     ["openai.update_agent"] = { method = "POST", url = "https://api.openai.com/v1/agents/{agent_id}", path = {"agent_id"}, body = {"model", "reasoning", "text", "service_tier", "instructions", "multi_agent", "metadata", "name", "tools"} },
-    ["openai.update_agent_environment_template"] = { method = "POST", url = "https://api.openai.com/v1/agents/environments/templates/{environment_template_id}", path = {"environment_template_id"}, body = {"name", "packages", "setup_commands", "network", "env", "capability_directories", "skills", "plugins", "files"} },
+    ["openai.update_agent_environment_template"] = { method = "POST", url = "https://api.openai.com/v1/agents/environments/templates/{environment_template_id}", path = {"environment_template_id"}, body = {"name", "packages", "setup_commands", "network", "desktop", "env", "capability_directories", "skills", "plugins", "files"} },
     ["openai.update_agent_session"] = { method = "POST", url = "https://api.openai.com/v1/agents/sessions/{session_id}", path = {"session_id"}, body = {"agent", "metadata"} },
     ["openai.update_chat_completion"] = { method = "POST", url = "https://api.openai.com/v1/chat/completions/{completion_id}", path = {"completion_id"}, body = {"metadata"} },
     ["openai.update_conversation"] = { method = "POST", url = "https://api.openai.com/v1/conversations/{conversation_id}", path = {"conversation_id"}, body = {"metadata"} },

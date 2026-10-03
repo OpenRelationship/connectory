@@ -104,6 +104,16 @@ Every linked entry also has a plain-text version, fetchable directly at the URL 
     - [Get Certifications](https://developer.employmenthero.com/api-references/certification/get-certifications/v1.md)
   - Update certification
     - [Update Certification](https://developer.employmenthero.com/api-references/certification/update-certification/v1.md)
+- Compliance Document Tag
+  - [Compliance Document Tag](https://developer.employmenthero.com/api-references/compliance-document-tag.md)
+  - Archive compliance document tag
+    - [Archive Compliance Document Tag](https://developer.employmenthero.com/api-references/compliance-document-tag/archive-compliance-document-tag/v1.md)
+  - Create compliance document tag
+    - [Create Compliance Document Tag](https://developer.employmenthero.com/api-references/compliance-document-tag/create-compliance-document-tag/v1.md)
+  - Get compliance document tags
+    - [List Compliance Document Tags](https://developer.employmenthero.com/api-references/compliance-document-tag/get-compliance-document-tags/v1.md)
+  - Update compliance document tag
+    - [Rename Compliance Document Tag](https://developer.employmenthero.com/api-references/compliance-document-tag/update-compliance-document-tag/v1.md)
 - Contractor Job History
   - [Contractor Job History](https://developer.employmenthero.com/api-references/contractor-job-history.md)
   - Get job histories
@@ -398,10 +408,22 @@ Every linked entry also has a plain-text version, fetchable directly at the URL 
     - [Get Teams](https://developer.employmenthero.com/api-references/team/get-teams/v1.md)
 - Timesheet Entry
   - [Timesheet Entry](https://developer.employmenthero.com/api-references/timesheet-entry.md)
+  - Approve timesheet entry
+    - [Approve Timesheet Entry](https://developer.employmenthero.com/api-references/timesheet-entry/approve-timesheet-entry/v1.md)
+  - Bulk approve timesheet entries
+    - [Bulk Approve Timesheet Entries](https://developer.employmenthero.com/api-references/timesheet-entry/bulk-approve-timesheet-entries/v1.md)
+  - Bulk decline timesheet entries
+    - [Bulk Decline Timesheet Entries](https://developer.employmenthero.com/api-references/timesheet-entry/bulk-decline-timesheet-entries/v1.md)
   - Create timesheet entries
     - [Create Timesheet Entries](https://developer.employmenthero.com/api-references/timesheet-entry/create-timesheet-entries/v1.md)
+  - Decline timesheet entry
+    - [Decline Timesheet Entry](https://developer.employmenthero.com/api-references/timesheet-entry/decline-timesheet-entry/v1.md)
+  - Delete timesheet entry
+    - [Delete Timesheet Entry](https://developer.employmenthero.com/api-references/timesheet-entry/delete-timesheet-entry/v1.md)
   - Get timesheet entries
     - [Get Timesheet Entries](https://developer.employmenthero.com/api-references/timesheet-entry/get-timesheet-entries/v1.md)
+  - Update timesheet entry
+    - [Update Timesheet Entry](https://developer.employmenthero.com/api-references/timesheet-entry/update-timesheet-entry/v1.md)
 - Unavailability
   - [Unavailability](https://developer.employmenthero.com/api-references/unavailability.md)
   - Get unavailabilities

@@ -6,7 +6,7 @@
   {
    "slug": "theirstack.buying_intents_v1",
    "name": "Buying intents",
-   "description": "This endpoint lists the buying intent topics detected for a company. For each topic, it returns the confidence level (`low`, `medium`, `high`), the number of jobs that mention the topic, and the first and last dates it was mentioned. You must specify `company_domain`, `company_name`, `company_linkedin_url`. It consumes **3 API credits** per company lookup, regardless of the number of buying intent",
+   "description": "This endpoint lists the buying intent topics detected for a company. For each topic, it returns the confidence level (`low`, `medium`, `high`), the number of jobs that mention the topic, and the first and last dates it was mentioned. You must specify at least one of `company_domain`, `company_name` or `company_linkedin_url`. It consumes **3 API credits** per company lookup, regardless of the numbe",
    "input": {
     "type": "object",
     "properties": {
@@ -20,7 +20,7 @@
      },
      "company_domain": {
       "type": "string",
-      "description": "Only return companies that match this domain exactly. It accepts full urls (https://www.google.com/) and emails (john.polo@gmail.com)."
+      "description": "Only return companies that match this domain exactly. It accepts full urls (https://www.google.com/) and emails (andrew@stripe.com)."
      },
      "company_linkedin_url": {
       "type": "string",
@@ -52,63 +52,63 @@
      },
      "keyword_slug_or": {
       "type": "array",
-      "description": "Return companies that have mentioned any of these keywords (technologies or buying intent topics) in their jobs. Case sensitive. Pass slugs. Check out all keywords at [GET /v0/catalog/keywords](https://theirstack.com/en/docs/api-reference/catalog/get_catalog_keywords_v0)"
+      "description": "Only return these keywords (technologies or buying intent topics). Case sensitive. Pass slugs. Check out all keywords at [GET /v0/catalog/keywords](https://theirstack.com/en/docs/api-reference/catalog/get_catalog_keywords_v0)"
      },
      "keyword_category_slug_or": {
       "type": "array",
-      "description": "Return companies that have mentioned any keyword from any of these categories in their jobs. Case sensitive. Pass slugs. Check out all keyword categories at [GET /v0/catalog/keywords/categories](https://theirstack.com/en/docs/api-reference/catalog/get_catalog_keywords_categories_v0)"
+      "description": "Only return keywords from any of these categories. Case sensitive. Pass slugs. Check out all keyword categories at [GET /v1/catalog/keywords/categories](https://theirstack.com/en/docs/api-reference/catalog/list_keyword_categories_v1)"
      },
      "keyword_parent_category_slug_or": {
       "type": "array",
-      "description": "Return companies that have mentioned any keyword from any of these parent categories in their jobs. Case sensitive. Pass slugs. Check out all keyword categories at [GET /v0/catalog/keywords/categories](https://theirstack.com/en/docs/api-reference/catalog/get_catalog_keywords_categories_v0)"
+      "description": "Only return keywords from any of these parent categories. Case sensitive. Pass slugs. Check out all keyword categories at [GET /v1/catalog/keywords/categories](https://theirstack.com/en/docs/api-reference/catalog/list_keyword_categories_v1)"
      },
      "technology_slug_or": {
       "type": "array",
-      "description": "Deprecated: use `keyword_slug_or` instead. Will return companies that have mentioned any of these technologies in their jobs. Case sensitive. Pass slugs."
+      "description": "Deprecated: use `keyword_slug_or` instead. Only return these technologies. Case sensitive. Pass slugs."
      },
      "technology_category_slug_or": {
       "type": "array",
-      "description": "Deprecated: use `keyword_category_slug_or` instead. Will return companies that have mentioned any keyword from any of these categories in their jobs. Case sensitive. Pass slugs."
+      "description": "Deprecated: use `keyword_category_slug_or` instead. Only return keywords from any of these categories. Case sensitive. Pass slugs."
      },
      "technology_parent_category_slug_or": {
       "type": "array",
-      "description": "Deprecated: use `keyword_parent_category_slug_or` instead. Will return companies that have mentioned any keyword from any of these parent categories in their jobs. Case sensitive. Pass slugs."
+      "description": "Deprecated: use `keyword_parent_category_slug_or` instead. Only return keywords from any of these parent categories. Case sensitive. Pass slugs."
      },
      "max_rank": {
       "type": "string",
-      "description": "The rank measures how common is a technology within its category. The technology most used among similar ones by a company will have a rank of 1, the second: 2, etc. This is useful to filter results by technology and get only results for the primary technology."
+      "description": "The rank measures how common a keyword (technology or buying intent topic) is within its category for a company. The keyword most mentioned among similar ones by a company has a rank of 1, the second 2, etc. Useful to keep only the primary technology or topic of each category."
      },
      "min_jobs": {
       "type": "string",
-      "description": "Minimum number of jobs found by each company using a technology"
+      "description": "Minimum number of jobs in which each company mentions the keyword (technology or buying intent topic)"
      },
      "max_jobs": {
       "type": "string",
-      "description": "Maximum number of jobs found by each company using a technology"
+      "description": "Maximum number of jobs in which each company mentions the keyword (technology or buying intent topic)"
      },
      "min_relative_occurrence": {
       "type": "string",
-      "description": "Minimum value of relative_occurrence_within_category for each technology. Higher values increase the probability that this technology is actually used by the company, because it means a higher percentage of mentions to technologies among this category are of this technology."
+      "description": "Minimum value of relative_occurrence_within_category for each keyword (technology or buying intent topic). Higher values increase the probability that the company actually uses the technology or cares about the topic, because a higher share of the mentions within that category are of this keyword."
      },
      "first_date_found_gte": {
       "type": "string",
-      "description": "Only return technologies where the first time they were found was after or on this date. Format: \"YYYY-MM-DD\""
+      "description": "Only return keywords (technologies or buying intent topics) where the first time they were found was after or on this date. Format: \"YYYY-MM-DD\""
      },
      "first_date_found_lte": {
       "type": "string",
-      "description": "Only return technologies where the first time they were found was before or on this date. Format: \"YYYY-MM-DD\""
+      "description": "Only return keywords (technologies or buying intent topics) where the first time they were found was before or on this date. Format: \"YYYY-MM-DD\""
      },
      "last_date_found_gte": {
       "type": "string",
-      "description": "Only return technologies where the last time they were found was after or on this date. Format: \"YYYY-MM-DD\""
+      "description": "Only return keywords (technologies or buying intent topics) where the last time they were found was after or on this date. Format: \"YYYY-MM-DD\""
      },
      "last_date_found_lte": {
       "type": "string",
-      "description": "Only return technologies where the last time they were found was before or on this date. Format: \"YYYY-MM-DD\""
+      "description": "Only return keywords (technologies or buying intent topics) where the last time they were found was before or on this date. Format: \"YYYY-MM-DD\""
      },
      "confidence_or": {
       "type": "array",
-      "description": "Returns technologies with any of these confidence values that the companies use them. Available values: \"high\", \"medium\", \"low\""
+      "description": "Only return keywords (technologies or buying intent topics) detected with any of these confidence levels. Available values: \"high\", \"medium\", \"low\""
      }
     },
     "required": []
@@ -2305,7 +2305,7 @@
     "properties": {
      "expand_technology_slugs": {
       "type": "array",
-      "description": "Specify technology slugs to include detailed technology usage information for each company. The response will include a 'technologies_found' field containing metrics like confidence score, ranking, and job count for each specified technology. Note: If a technology is not listed for a company, it means that company does not use that technology. This feature is useful for enriching company data with"
+      "description": "Specify technology slugs to include detailed technology usage information for each company. The response will include a 'technologies_found' field containing metrics like confidence score, ranking, and job count for each specified technology. Note: If a technology is not listed for a company, it means we haven't detected it in that company's jobs. This feature is useful for enriching company data "
      },
      "order_by": {
       "type": "array",
@@ -2329,11 +2329,11 @@
      },
      "company_domain_or": {
       "type": "array",
-      "description": "Only return companies that match these domains exactly. It accepts full urls (https://www.google.com/) and emails (john.polo@gmail.com). This filter acts as an OR filter, so if you pass more than one company domain, it will return companies that match any of the domains."
+      "description": "Only return companies that match these domains exactly. It accepts full urls (https://www.google.com/) and emails (andrew@stripe.com). This filter acts as an OR filter, so if you pass more than one company domain, it will return companies that match any of the domains."
      },
      "company_domain_not": {
       "type": "array",
-      "description": "Only return companies that don't match these domains exactly. It accepts full urls (https://www.google.com/) and emails (john.polo@gmail.com)."
+      "description": "Only return companies that don't match these domains exactly. It accepts full urls (https://www.google.com/) and emails (andrew@stripe.com)."
      },
      "company_name_not": {
       "type": "array",
@@ -2341,11 +2341,11 @@
      },
      "company_name_partial_match_or": {
       "type": "array",
-      "description": "Company names. Will return companies whose name contain any of the the substrings passed here, case-insensitively. For example, if you pass \"google\", it will return \"Google\", \"Google LLC\", \"Google Inc\", etc."
+      "description": "Company names. Will return companies whose name contains any of the substrings passed here, case-insensitively. For example, if you pass \"google\", it will return \"Google\", \"Google LLC\", \"Google Inc\", etc."
      },
      "company_name_partial_match_not": {
       "type": "array",
-      "description": "Company names. Will return companies whose name doesn't contain any of the the substrings passed here, case-insensitively. For example, if you pass 'google', it will exclude 'Google', 'Google LLC', 'Google Inc', etc."
+      "description": "Company names. Will return companies whose name doesn't contain any of the substrings passed here, case-insensitively. For example, if you pass 'google', it will exclude 'Google', 'Google LLC', 'Google Inc', etc."
      },
      "company_linkedin_url_or": {
       "type": "array",
@@ -2385,7 +2385,7 @@
      },
      "company_description_pattern_not": {
       "type": "array",
-      "description": "Case-insensitive patterns to match in the company description. Will return companies that match any of the patterns."
+      "description": "Case-insensitive patterns to match in the company description. Will exclude companies that match any of the patterns."
      },
      "company_description_pattern_accent_insensitive": {
       "type": "string",
@@ -2441,7 +2441,7 @@
      },
      "industry_id_not": {
       "type": "array",
-      "description": "Industry ids to exclude.You can use any of [LinkedIn's Industry Codes V2](https://learn.microsoft.com/en-us/linkedin/shared/references/reference-tables/industry-codes-v2) or [GET /v0/catalog/industries](https://theirstack.com/en/docs/api-reference/catalog/get_catalog_industries_v0)"
+      "description": "Industry ids to exclude. You can use any of [LinkedIn's Industry Codes V2](https://learn.microsoft.com/en-us/linkedin/shared/references/reference-tables/industry-codes-v2) or [GET /v0/catalog/industries](https://theirstack.com/en/docs/api-reference/catalog/get_catalog_industries_v0)"
      },
      "industry_id_not_or_null": {
       "type": "array",
@@ -2465,15 +2465,15 @@
      },
      "company_technology_slug_or": {
       "type": "array",
-      "description": "Will return jobs from companies that that have mentioned any of these technologies in their jobs (not necessarily in the jobs returned). Case sensitive. Pass slugs. Check out all the technologies we track at [GET /v0/catalog/technologies](https://theirstack.com/en/docs/api-reference/catalog/get_catalog_technologies_v0)"
+      "description": "Return results from companies that have mentioned any of these technologies in their jobs (in job searches, not necessarily in the jobs returned). Case sensitive. Pass slugs. Check out all the technologies we track at [GET /v0/catalog/keywords](https://theirstack.com/en/docs/api-reference/catalog/get_catalog_keywords_v0) with `keyword_type=technology`"
      },
      "company_technology_slug_and": {
       "type": "array",
-      "description": "Will return jobs from companies that that have mentioned all of these technologies in their jobs (not necessarily in the jobs returned). Case sensitive. Pass slugs. Check out all the technologies we track at [GET /v0/catalog/technologies](https://theirstack.com/en/docs/api-reference/catalog/get_catalog_technologies_v0)"
+      "description": "Return results from companies that have mentioned all of these technologies in their jobs (in job searches, not necessarily in the jobs returned). Case sensitive. Pass slugs. Check out all the technologies we track at [GET /v0/catalog/keywords](https://theirstack.com/en/docs/api-reference/catalog/get_catalog_keywords_v0) with `keyword_type=technology`"
      },
      "company_technology_slug_not": {
       "type": "array",
-      "description": "Will return jobs from companies that that haven't mentioned any of these technologies in their jobs. Case sensitive. Pass slugs. Check out all the technologies we track at [GET /v0/catalog/technologies](https://theirstack.com/en/docs/api-reference/catalog/get_catalog_technologies_v0)"
+      "description": "Return results from companies that haven't mentioned any of these technologies in their jobs. Case sensitive. Pass slugs. Check out all the technologies we track at [GET /v0/catalog/keywords](https://theirstack.com/en/docs/api-reference/catalog/get_catalog_keywords_v0) with `keyword_type=technology`"
      },
      "company_keyword_slug_or": {
       "type": "array",
@@ -2545,7 +2545,7 @@
      },
      "job_filters": {
       "type": "string",
-      "description": ""
+      "description": "Filter companies by the jobs they have posted. Takes the job filters of the job search endpoint and requires a date filter (`posted_at_max_age_days`, `posted_at_gte` or `posted_at_lte`). Returns companies with at least one matching job, or at least `min_num_jobs_found` if set."
      },
      "min_num_jobs_found": {
       "type": "string",
@@ -2673,7 +2673,7 @@
      },
      "job_title_pattern_or": {
       "type": "array",
-      "description": "Regex patterns to match job titles. Case-insensitive. Jobs whose job title matches of the filters will be returned."
+      "description": "Regex patterns to match job titles. Case-insensitive. Jobs whose job title matches any of the patterns will be returned."
      },
      "job_title_pattern_not": {
       "type": "array",
@@ -2721,7 +2721,7 @@
      },
      "job_description_pattern_not": {
       "type": "array",
-      "description": "Regex patterns to look for in job descriptions. Case-sensitive. Results will include jobs whose description don't match any of these patterns. Use (?i) at the start of a pattern to make it case-insensitive. Can pass more than one."
+      "description": "Regex patterns to look for in job descriptions. Case-sensitive. Results will include jobs whose description doesn't match any of these patterns. Use (?i) at the start of a pattern to make it case-insensitive. Can pass more than one."
      },
      "job_description_pattern_and": {
       "type": "array",
@@ -2801,15 +2801,15 @@
      },
      "job_technology_slug_or": {
       "type": "array",
-      "description": "Will return jobs where any of these technologies appear. Case sensitive. Pass slugs. Check out all the technologies we track with the technologies endpoint. If you pass more than one technology, we will return jobs that mentnion all of the technologies."
+      "description": "Will return jobs where any of these technologies appear. Case sensitive. Pass slugs. Check out all the technologies we track at [GET /v0/catalog/keywords](https://theirstack.com/en/docs/api-reference/catalog/get_catalog_keywords_v0) with `keyword_type=technology`. If you pass more than one technology, we will return jobs that mention at least one of them."
      },
      "job_technology_slug_not": {
       "type": "array",
-      "description": "Will return jobs where none of these technologies appear. Case sensitive. Pass slugs. Check out all the technologies we track with the technologies endpoint."
+      "description": "Will return jobs where none of these technologies appear. Case sensitive. Pass slugs. Check out all the technologies we track at [GET /v0/catalog/keywords](https://theirstack.com/en/docs/api-reference/catalog/get_catalog_keywords_v0) with `keyword_type=technology`."
      },
      "job_technology_slug_and": {
       "type": "array",
-      "description": "Will return jobs where all of these technologies appear. Case sensitive. Pass slugs. Check out all the technologies we track with the technologies endpoint."
+      "description": "Will return jobs where all of these technologies appear. Case sensitive. Pass slugs. Check out all the technologies we track at [GET /v0/catalog/keywords](https://theirstack.com/en/docs/api-reference/catalog/get_catalog_keywords_v0) with `keyword_type=technology`."
      },
      "job_keyword_slug_or": {
       "type": "array",
@@ -2873,11 +2873,11 @@
      },
      "property_exists_or": {
       "type": "array",
-      "description": "Return jobs that have any of these fields not null. For example, if you pass ['final_url'], it will return jobs that have a final_url set. This field also support chaining of fields. For example, if you pass ['company_object.domain', 'company_object.linkedin_url'], it will return jobs that have a company domain or a company linkedin_url set."
+      "description": "Return jobs that have any of these fields not null. For example, if you pass ['final_url'], it will return jobs that have a final_url set. This field also supports chaining of fields. For example, if you pass ['company_object.domain', 'company_object.linkedin_url'], it will return jobs that have a company domain or a company linkedin_url set."
      },
      "property_exists_and": {
       "type": "array",
-      "description": ""
+      "description": "Return jobs that have all of these fields not null. For example, if you pass ['company_object.domain', 'final_url'], it will only return jobs that have both a company domain and a final_url set."
      },
      "company_name_or": {
       "type": "array",
@@ -2897,11 +2897,11 @@
      },
      "company_domain_or": {
       "type": "array",
-      "description": "Only return companies that match these domains exactly. It accepts full urls (https://www.google.com/) and emails (john.polo@gmail.com). This filter acts as an OR filter, so if you pass more than one company domain, it will return companies that match any of the domains."
+      "description": "Only return companies that match these domains exactly. It accepts full urls (https://www.google.com/) and emails (andrew@stripe.com). This filter acts as an OR filter, so if you pass more than one company domain, it will return companies that match any of the domains."
      },
      "company_domain_not": {
       "type": "array",
-      "description": "Only return companies that don't match these domains exactly. It accepts full urls (https://www.google.com/) and emails (john.polo@gmail.com)."
+      "description": "Only return companies that don't match these domains exactly. It accepts full urls (https://www.google.com/) and emails (andrew@stripe.com)."
      },
      "company_name_not": {
       "type": "array",
@@ -2909,11 +2909,11 @@
      },
      "company_name_partial_match_or": {
       "type": "array",
-      "description": "Company names. Will return companies whose name contain any of the the substrings passed here, case-insensitively. For example, if you pass \"google\", it will return \"Google\", \"Google LLC\", \"Google Inc\", etc."
+      "description": "Company names. Will return companies whose name contains any of the substrings passed here, case-insensitively. For example, if you pass \"google\", it will return \"Google\", \"Google LLC\", \"Google Inc\", etc."
      },
      "company_name_partial_match_not": {
       "type": "array",
-      "description": "Company names. Will return companies whose name doesn't contain any of the the substrings passed here, case-insensitively. For example, if you pass 'google', it will exclude 'Google', 'Google LLC', 'Google Inc', etc."
+      "description": "Company names. Will return companies whose name doesn't contain any of the substrings passed here, case-insensitively. For example, if you pass 'google', it will exclude 'Google', 'Google LLC', 'Google Inc', etc."
      },
      "company_linkedin_url_or": {
       "type": "array",
@@ -2929,7 +2929,7 @@
      },
      "company_description_pattern_not": {
       "type": "array",
-      "description": "Case-insensitive patterns to match in the company description. Will return companies that match any of the patterns."
+      "description": "Case-insensitive patterns to match in the company description. Will exclude companies that match any of the patterns."
      },
      "company_description_pattern_accent_insensitive": {
       "type": "string",
@@ -2985,7 +2985,7 @@
      },
      "industry_id_not": {
       "type": "array",
-      "description": "Industry ids to exclude.You can use any of [LinkedIn's Industry Codes V2](https://learn.microsoft.com/en-us/linkedin/shared/references/reference-tables/industry-codes-v2) or [GET /v0/catalog/industries](https://theirstack.com/en/docs/api-reference/catalog/get_catalog_industries_v0)"
+      "description": "Industry ids to exclude. You can use any of [LinkedIn's Industry Codes V2](https://learn.microsoft.com/en-us/linkedin/shared/references/reference-tables/industry-codes-v2) or [GET /v0/catalog/industries](https://theirstack.com/en/docs/api-reference/catalog/get_catalog_industries_v0)"
      },
      "industry_id_not_or_null": {
       "type": "array",
@@ -3009,15 +3009,15 @@
      },
      "company_technology_slug_or": {
       "type": "array",
-      "description": "Will return jobs from companies that that have mentioned any of these technologies in their jobs (not necessarily in the jobs returned). Case sensitive. Pass slugs. Check out all the technologies we track at [GET /v0/catalog/technologies](https://theirstack.com/en/docs/api-reference/catalog/get_catalog_technologies_v0)"
+      "description": "Return results from companies that have mentioned any of these technologies in their jobs (in job searches, not necessarily in the jobs returned). Case sensitive. Pass slugs. Check out all the technologies we track at [GET /v0/catalog/keywords](https://theirstack.com/en/docs/api-reference/catalog/get_catalog_keywords_v0) with `keyword_type=technology`"
      },
      "company_technology_slug_and": {
       "type": "array",
-      "description": "Will return jobs from companies that that have mentioned all of these technologies in their jobs (not necessarily in the jobs returned). Case sensitive. Pass slugs. Check out all the technologies we track at [GET /v0/catalog/technologies](https://theirstack.com/en/docs/api-reference/catalog/get_catalog_technologies_v0)"
+      "description": "Return results from companies that have mentioned all of these technologies in their jobs (in job searches, not necessarily in the jobs returned). Case sensitive. Pass slugs. Check out all the technologies we track at [GET /v0/catalog/keywords](https://theirstack.com/en/docs/api-reference/catalog/get_catalog_keywords_v0) with `keyword_type=technology`"
      },
      "company_technology_slug_not": {
       "type": "array",
-      "description": "Will return jobs from companies that that haven't mentioned any of these technologies in their jobs. Case sensitive. Pass slugs. Check out all the technologies we track at [GET /v0/catalog/technologies](https://theirstack.com/en/docs/api-reference/catalog/get_catalog_technologies_v0)"
+      "description": "Return results from companies that haven't mentioned any of these technologies in their jobs. Case sensitive. Pass slugs. Check out all the technologies we track at [GET /v0/catalog/keywords](https://theirstack.com/en/docs/api-reference/catalog/get_catalog_keywords_v0) with `keyword_type=technology`"
      },
      "company_keyword_slug_or": {
       "type": "array",
@@ -3216,7 +3216,7 @@
   {
    "slug": "theirstack.technographics_v1",
    "name": "Technographics",
-   "description": "This endpoint lists the technologies used by a company. For each technology, it returns the confidence level (`low`, `medium`, `high`), the number of jobs that mention the technology, and the first and last dates it was mentioned. You must specify `company_domain`, `company_name`, `company_linkedin_url`. It consumes **3 API credits** per company lookup, regardless of the number of technologies ret",
+   "description": "This endpoint lists the technologies used by a company. For each technology, it returns the confidence level (`low`, `medium`, `high`), the number of jobs that mention the technology, and the first and last dates it was mentioned. You must specify at least one of `company_domain`, `company_name` or `company_linkedin_url`. It consumes **3 API credits** per company lookup, regardless of the number o",
    "input": {
     "type": "object",
     "properties": {
@@ -3230,7 +3230,7 @@
      },
      "company_domain": {
       "type": "string",
-      "description": "Only return companies that match this domain exactly. It accepts full urls (https://www.google.com/) and emails (john.polo@gmail.com)."
+      "description": "Only return companies that match this domain exactly. It accepts full urls (https://www.google.com/) and emails (andrew@stripe.com)."
      },
      "company_linkedin_url": {
       "type": "string",
@@ -3262,63 +3262,63 @@
      },
      "keyword_slug_or": {
       "type": "array",
-      "description": "Return companies that have mentioned any of these keywords (technologies or buying intent topics) in their jobs. Case sensitive. Pass slugs. Check out all keywords at [GET /v0/catalog/keywords](https://theirstack.com/en/docs/api-reference/catalog/get_catalog_keywords_v0)"
+      "description": "Only return these keywords (technologies or buying intent topics). Case sensitive. Pass slugs. Check out all keywords at [GET /v0/catalog/keywords](https://theirstack.com/en/docs/api-reference/catalog/get_catalog_keywords_v0)"
      },
      "keyword_category_slug_or": {
       "type": "array",
-      "description": "Return companies that have mentioned any keyword from any of these categories in their jobs. Case sensitive. Pass slugs. Check out all keyword categories at [GET /v0/catalog/keywords/categories](https://theirstack.com/en/docs/api-reference/catalog/get_catalog_keywords_categories_v0)"
+      "description": "Only return keywords from any of these categories. Case sensitive. Pass slugs. Check out all keyword categories at [GET /v1/catalog/keywords/categories](https://theirstack.com/en/docs/api-reference/catalog/list_keyword_categories_v1)"
      },
      "keyword_parent_category_slug_or": {
       "type": "array",
-      "description": "Return companies that have mentioned any keyword from any of these parent categories in their jobs. Case sensitive. Pass slugs. Check out all keyword categories at [GET /v0/catalog/keywords/categories](https://theirstack.com/en/docs/api-reference/catalog/get_catalog_keywords_categories_v0)"
+      "description": "Only return keywords from any of these parent categories. Case sensitive. Pass slugs. Check out all keyword categories at [GET /v1/catalog/keywords/categories](https://theirstack.com/en/docs/api-reference/catalog/list_keyword_categories_v1)"
      },
      "technology_slug_or": {
       "type": "array",
-      "description": "Deprecated: use `keyword_slug_or` instead. Will return companies that have mentioned any of these technologies in their jobs. Case sensitive. Pass slugs."
+      "description": "Deprecated: use `keyword_slug_or` instead. Only return these technologies. Case sensitive. Pass slugs."
      },
      "technology_category_slug_or": {
       "type": "array",
-      "description": "Deprecated: use `keyword_category_slug_or` instead. Will return companies that have mentioned any keyword from any of these categories in their jobs. Case sensitive. Pass slugs."
+      "description": "Deprecated: use `keyword_category_slug_or` instead. Only return keywords from any of these categories. Case sensitive. Pass slugs."
      },
      "technology_parent_category_slug_or": {
       "type": "array",
-      "description": "Deprecated: use `keyword_parent_category_slug_or` instead. Will return companies that have mentioned any keyword from any of these parent categories in their jobs. Case sensitive. Pass slugs."
+      "description": "Deprecated: use `keyword_parent_category_slug_or` instead. Only return keywords from any of these parent categories. Case sensitive. Pass slugs."
      },
      "max_rank": {
       "type": "string",
-      "description": "The rank measures how common is a technology within its category. The technology most used among similar ones by a company will have a rank of 1, the second: 2, etc. This is useful to filter results by technology and get only results for the primary technology."
+      "description": "The rank measures how common a keyword (technology or buying intent topic) is within its category for a company. The keyword most mentioned among similar ones by a company has a rank of 1, the second 2, etc. Useful to keep only the primary technology or topic of each category."
      },
      "min_jobs": {
       "type": "string",
-      "description": "Minimum number of jobs found by each company using a technology"
+      "description": "Minimum number of jobs in which each company mentions the keyword (technology or buying intent topic)"
      },
      "max_jobs": {
       "type": "string",
-      "description": "Maximum number of jobs found by each company using a technology"
+      "description": "Maximum number of jobs in which each company mentions the keyword (technology or buying intent topic)"
      },
      "min_relative_occurrence": {
       "type": "string",
-      "description": "Minimum value of relative_occurrence_within_category for each technology. Higher values increase the probability that this technology is actually used by the company, because it means a higher percentage of mentions to technologies among this category are of this technology."
+      "description": "Minimum value of relative_occurrence_within_category for each keyword (technology or buying intent topic). Higher values increase the probability that the company actually uses the technology or cares about the topic, because a higher share of the mentions within that category are of this keyword."
      },
      "first_date_found_gte": {
       "type": "string",
-      "description": "Only return technologies where the first time they were found was after or on this date. Format: \"YYYY-MM-DD\""
+      "description": "Only return keywords (technologies or buying intent topics) where the first time they were found was after or on this date. Format: \"YYYY-MM-DD\""
      },
      "first_date_found_lte": {
       "type": "string",
-      "description": "Only return technologies where the first time they were found was before or on this date. Format: \"YYYY-MM-DD\""
+      "description": "Only return keywords (technologies or buying intent topics) where the first time they were found was before or on this date. Format: \"YYYY-MM-DD\""
      },
      "last_date_found_gte": {
       "type": "string",
-      "description": "Only return technologies where the last time they were found was after or on this date. Format: \"YYYY-MM-DD\""
+      "description": "Only return keywords (technologies or buying intent topics) where the last time they were found was after or on this date. Format: \"YYYY-MM-DD\""
      },
      "last_date_found_lte": {
       "type": "string",
-      "description": "Only return technologies where the last time they were found was before or on this date. Format: \"YYYY-MM-DD\""
+      "description": "Only return keywords (technologies or buying intent topics) where the last time they were found was before or on this date. Format: \"YYYY-MM-DD\""
      },
      "confidence_or": {
       "type": "array",
-      "description": "Returns technologies with any of these confidence values that the companies use them. Available values: \"high\", \"medium\", \"low\""
+      "description": "Only return keywords (technologies or buying intent topics) detected with any of these confidence levels. Available values: \"high\", \"medium\", \"low\""
      }
     },
     "required": []

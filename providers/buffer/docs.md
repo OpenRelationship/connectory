@@ -35,8 +35,12 @@ Authentication: Bearer token via Authorization header
 ## Examples
 
 - [Aggregate Post Metrics](https://developers.buffer.com/examples/aggregate-post-metrics.md): Aggregate normalized post metrics across a window of sent posts, without paginating through individual posts. Available for personal workflows and automations only, using a personal API key.
+Names must be unique within the organization, and `color` is a six-digit hex triplet. Requires the `posts:write` scope.
+The deletion cannot be undone. Requires the `posts:write` scope.
 - [Get Post Metrics](https://developers.buffer.com/examples/get-post-metrics.md): Fetch performance metrics for a single post. Available for personal workflows and automations only, using a personal API key.
 - [Get Posts With Metrics](https://developers.buffer.com/examples/get-posts-with-metrics.md): Fetch a paginated list of sent posts together with their performance metrics. Available for personal workflows and automations only, using a personal API key.
+Pass the previous page's `pageInfo.endCursor` as `after` to fetch the next page.
+Both fields are replaced, so send the current value for the one you are not changing. Requires the `posts:write` scope.
 
 ## API Reference
 

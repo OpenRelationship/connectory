@@ -3051,6 +3051,733 @@
    }
   },
   {
+   "slug": "cloudtalk.public_v1_attach_voice_agent_knowledge_base",
+   "name": "Attach a knowledge base to a voice agent",
+   "description": "Links the knowledge base to the agent. Repeating the call changes nothing.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "voiceAgentId": {
+      "type": "string",
+      "description": "Voice agent identifier"
+     },
+     "knowledgeBaseId": {
+      "type": "string",
+      "description": "Knowledge base identifier"
+     }
+    },
+    "required": [
+     "knowledgeBaseId",
+     "voiceAgentId"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://my.cloudtalk.io/api/voice-agents/{voiceAgentId}/knowledge-bases/{knowledgeBaseId}",
+    "path": [
+     "voiceAgentId",
+     "knowledgeBaseId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "cloudtalk.public_v1_create_knowledge_base",
+   "name": "Create a knowledge base",
+   "description": "Creates a knowledge base from an address or from inline text. A URL source starts SYNCHRONIZING and turns ACTIVE once it has been read. A company may hold at most 100 knowledge bases; at the cap the request answers 409 KNOWLEDGE_BASE_LIMIT_REACHED.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": "string",
+      "description": "Name of the knowledge base"
+     },
+     "sourceType": {
+      "type": "string",
+      "description": "Where the content comes from; upload a file through POST /knowledge-bases/files",
+      "enum": [
+       "URL",
+       "CUSTOM"
+      ]
+     },
+     "text": {
+      "type": "string",
+      "description": "Content of the knowledge base; required when sourceType is CUSTOM, rejected otherwise"
+     },
+     "url": {
+      "type": "string",
+      "description": "Address to read the content from; required when sourceType is URL, rejected otherwise"
+     }
+    },
+    "required": [
+     "name",
+     "sourceType"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://my.cloudtalk.io/api/knowledge-bases",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "sourceType",
+     "text",
+     "url"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "cloudtalk.public_v1_create_voice_agent",
+   "name": "Create a voice agent",
+   "description": "Creates a voice agent from the attributes object.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "agentName": {
+      "type": "string",
+      "description": "Name of the agent"
+     },
+     "createdAt": {
+      "type": "string",
+      "description": "When the agent was created"
+     },
+     "defaultOutboundNumberId": {
+      "type": "integer",
+      "description": "Outbound caller id; null selects Automatic Outbound and then requires failoverOutboundNumberId"
+     },
+     "dialTimeoutSeconds": {
+      "type": "integer",
+      "description": "Ring timeout; null uses the provider default"
+     },
+     "direction": {
+      "type": "string",
+      "description": "Call direction the agent serves",
+      "enum": [
+       "inbound",
+       "outbound"
+      ]
+     },
+     "elevenLabsSettings": {
+      "type": "object",
+      "description": "Provider turn-taking and audio tuning"
+     },
+     "failoverOutboundNumberId": {
+      "type": "integer",
+      "description": "Number used when Automatic Outbound cannot pick one; required with, and only allowed with, Automatic Outbound (defaultOutboundNumberId null)"
+     },
+     "goalPrompt": {
+      "type": "string",
+      "description": "What the agent is supposed to achieve"
+     },
+     "greeting": {
+      "type": "string",
+      "description": "Opening line; required for inbound agents"
+     },
+     "guardrails": {
+      "type": "array",
+      "description": "Topics the agent must avoid"
+     },
+     "isAgentSpeakingFirst": {
+      "type": "boolean",
+      "description": "Whether the agent speaks first; omitted means true for inbound and false for outbound"
+     },
+     "knowledgeBaseIds": {
+      "type": "array",
+      "description": "Knowledge bases the agent answers from"
+     },
+     "language": {
+      "type": "string",
+      "description": "Primary language code; rejected when no provider, or the pinned providerOverride, serves it"
+     },
+     "llmOverride": {
+      "type": "string",
+      "description": "Pin the model by its canonical id; null lets the server choose",
+      "enum": [
+       "openai - gpt-4o-mini",
+       "openai - gpt-4o",
+       "openai - gpt-4.1",
+       "openai - gpt-4.1-mini",
+       "openai - gpt-4.1-nano",
+       "openai - gpt-5",
+       "openai - gpt-5-mini",
+       "openai - gpt-5-nano",
+       "openai - gpt-5.1",
+       "openai - gpt-5.2",
+       "openai - gpt-5.4",
+       "openai - gpt-5.4-mini"
+      ]
+     },
+     "maxCallDurationMinutes": {
+      "type": "integer",
+      "description": "Hard cap on one call"
+     },
+     "optimizeStreamingLatency": {
+      "type": "integer",
+      "description": "Latency optimisation level"
+     },
+     "providerOverride": {
+      "type": "string",
+      "description": "Pin the speech provider; null lets the server choose",
+      "enum": [
+       "elevenlabs",
+       "deepgram",
+       null
+      ]
+     },
+     "resolvedLlm": {
+      "type": "object",
+      "description": "Model the server selected"
+     },
+     "resolvedProvider": {
+      "type": "string",
+      "description": "Speech provider the server selected"
+     },
+     "scenarios": {
+      "type": "array",
+      "description": "Situational instructions"
+     },
+     "secondaryLanguages": {
+      "type": "array",
+      "description": "Additional languages; the write is rejected, never trimmed, when the multilingual provider does not serve a code or providerOverride is deepgram"
+     },
+     "similarity": {
+      "type": "number",
+      "description": "Voice similarity boost"
+     },
+     "skills": {
+      "type": "object",
+      "description": "Capabilities the agent may use"
+     },
+     "stability": {
+      "type": "number",
+      "description": "Voice stability"
+     },
+     "status": {
+      "type": "string",
+      "description": "Whether the agent may run; omitted on write means enabled",
+      "enum": [
+       "enabled",
+       "disabled"
+      ]
+     },
+     "temperature": {
+      "type": "number",
+      "description": "Creativity of the agent's replies"
+     },
+     "tone": {
+      "type": "array",
+      "description": "Tone presets the agent blends"
+     },
+     "updatedAt": {
+      "type": "string",
+      "description": "When the agent was last saved"
+     },
+     "verbosity": {
+      "type": "string",
+      "description": "How much the agent elaborates; omitted means standard",
+      "enum": [
+       "concise",
+       "standard",
+       "thorough"
+      ]
+     },
+     "voiceId": {
+      "type": "string",
+      "description": "Voice the agent speaks with"
+     }
+    },
+    "required": [
+     "agentName",
+     "defaultOutboundNumberId",
+     "direction",
+     "goalPrompt",
+     "language",
+     "maxCallDurationMinutes",
+     "optimizeStreamingLatency",
+     "similarity",
+     "stability",
+     "temperature",
+     "voiceId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://my.cloudtalk.io/api/voice-agents",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "agentName",
+     "createdAt",
+     "defaultOutboundNumberId",
+     "dialTimeoutSeconds",
+     "direction",
+     "elevenLabsSettings",
+     "failoverOutboundNumberId",
+     "goalPrompt",
+     "greeting",
+     "guardrails",
+     "isAgentSpeakingFirst",
+     "knowledgeBaseIds",
+     "language",
+     "llmOverride",
+     "maxCallDurationMinutes",
+     "optimizeStreamingLatency",
+     "providerOverride",
+     "resolvedLlm",
+     "resolvedProvider",
+     "scenarios",
+     "secondaryLanguages",
+     "similarity",
+     "skills",
+     "stability",
+     "status",
+     "temperature",
+     "tone",
+     "updatedAt",
+     "verbosity",
+     "voiceId"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "cloudtalk.public_v1_delete_knowledge_base",
+   "name": "Delete a knowledge base",
+   "description": "Deletes the knowledge base. A knowledge base attached to a voice agent must be detached first.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "knowledgeBaseId": {
+      "type": "string",
+      "description": "Knowledge base identifier"
+     }
+    },
+    "required": [
+     "knowledgeBaseId"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://my.cloudtalk.io/api/knowledge-bases/{knowledgeBaseId}",
+    "path": [
+     "knowledgeBaseId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "cloudtalk.public_v1_delete_voice_agent",
+   "name": "Delete a voice agent",
+   "description": "Deletes the voice agent. Attached knowledge bases and tools are unlinked, not deleted.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "voiceAgentId": {
+      "type": "string",
+      "description": "Voice agent identifier"
+     }
+    },
+    "required": [
+     "voiceAgentId"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://my.cloudtalk.io/api/voice-agents/{voiceAgentId}",
+    "path": [
+     "voiceAgentId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "cloudtalk.public_v1_detach_voice_agent_knowledge_base",
+   "name": "Detach a knowledge base from a voice agent",
+   "description": "Unlinks the knowledge base from the agent; the knowledge base itself is kept.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "voiceAgentId": {
+      "type": "string",
+      "description": "Voice agent identifier"
+     },
+     "knowledgeBaseId": {
+      "type": "string",
+      "description": "Knowledge base identifier"
+     }
+    },
+    "required": [
+     "knowledgeBaseId",
+     "voiceAgentId"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://my.cloudtalk.io/api/voice-agents/{voiceAgentId}/knowledge-bases/{knowledgeBaseId}",
+    "path": [
+     "voiceAgentId",
+     "knowledgeBaseId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "cloudtalk.public_v1_get_voice_agent",
+   "name": "Get a voice agent",
+   "description": "Returns one voice agent of the company.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "voiceAgentId": {
+      "type": "string",
+      "description": "Voice agent identifier"
+     }
+    },
+    "required": [
+     "voiceAgentId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://my.cloudtalk.io/api/voice-agents/{voiceAgentId}",
+    "path": [
+     "voiceAgentId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "cloudtalk.public_v1_list_knowledge_bases",
+   "name": "List knowledge bases",
+   "description": "Returns one page of the company's knowledge bases. Pages are ordered by identifier and walked with limit and cursor.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "limit": {
+      "type": "integer",
+      "description": "Page size, 1-100; out-of-range values are clamped and the effective value echoed in pagination.limit"
+     },
+     "cursor": {
+      "type": "string",
+      "description": "Opaque cursor from a previous page's pagination.next"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://my.cloudtalk.io/api/knowledge-bases",
+    "path": [],
+    "query": [
+     "limit",
+     "cursor"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "cloudtalk.public_v1_list_voice_agents",
+   "name": "List voice agents",
+   "description": "Returns one page of the company's voice agents. Pages are ordered by creation and walked with limit and cursor.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "limit": {
+      "type": "integer",
+      "description": "Page size, 1-100; out-of-range values are clamped and the effective value echoed in pagination.limit"
+     },
+     "cursor": {
+      "type": "string",
+      "description": "Opaque cursor from a previous page's pagination.next"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://my.cloudtalk.io/api/voice-agents",
+    "path": [],
+    "query": [
+     "limit",
+     "cursor"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "cloudtalk.public_v1_replace_voice_agent",
+   "name": "Replace a voice agent",
+   "description": "Replaces the voice agent with the attributes object. An omitted optional attribute is reset to its default, never preserved.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "voiceAgentId": {
+      "type": "string",
+      "description": "Voice agent identifier"
+     },
+     "agentName": {
+      "type": "string",
+      "description": "Name of the agent"
+     },
+     "createdAt": {
+      "type": "string",
+      "description": "When the agent was created"
+     },
+     "defaultOutboundNumberId": {
+      "type": "integer",
+      "description": "Outbound caller id; null selects Automatic Outbound and then requires failoverOutboundNumberId"
+     },
+     "dialTimeoutSeconds": {
+      "type": "integer",
+      "description": "Ring timeout; null uses the provider default"
+     },
+     "direction": {
+      "type": "string",
+      "description": "Call direction the agent serves",
+      "enum": [
+       "inbound",
+       "outbound"
+      ]
+     },
+     "elevenLabsSettings": {
+      "type": "object",
+      "description": "Provider turn-taking and audio tuning"
+     },
+     "failoverOutboundNumberId": {
+      "type": "integer",
+      "description": "Number used when Automatic Outbound cannot pick one; required with, and only allowed with, Automatic Outbound (defaultOutboundNumberId null)"
+     },
+     "goalPrompt": {
+      "type": "string",
+      "description": "What the agent is supposed to achieve"
+     },
+     "greeting": {
+      "type": "string",
+      "description": "Opening line; required for inbound agents"
+     },
+     "guardrails": {
+      "type": "array",
+      "description": "Topics the agent must avoid"
+     },
+     "isAgentSpeakingFirst": {
+      "type": "boolean",
+      "description": "Whether the agent speaks first; omitted means true for inbound and false for outbound"
+     },
+     "knowledgeBaseIds": {
+      "type": "array",
+      "description": "Knowledge bases the agent answers from"
+     },
+     "language": {
+      "type": "string",
+      "description": "Primary language code; rejected when no provider, or the pinned providerOverride, serves it"
+     },
+     "llmOverride": {
+      "type": "string",
+      "description": "Pin the model by its canonical id; null lets the server choose",
+      "enum": [
+       "openai - gpt-4o-mini",
+       "openai - gpt-4o",
+       "openai - gpt-4.1",
+       "openai - gpt-4.1-mini",
+       "openai - gpt-4.1-nano",
+       "openai - gpt-5",
+       "openai - gpt-5-mini",
+       "openai - gpt-5-nano",
+       "openai - gpt-5.1",
+       "openai - gpt-5.2",
+       "openai - gpt-5.4",
+       "openai - gpt-5.4-mini"
+      ]
+     },
+     "maxCallDurationMinutes": {
+      "type": "integer",
+      "description": "Hard cap on one call"
+     },
+     "optimizeStreamingLatency": {
+      "type": "integer",
+      "description": "Latency optimisation level"
+     },
+     "providerOverride": {
+      "type": "string",
+      "description": "Pin the speech provider; null lets the server choose",
+      "enum": [
+       "elevenlabs",
+       "deepgram",
+       null
+      ]
+     },
+     "resolvedLlm": {
+      "type": "object",
+      "description": "Model the server selected"
+     },
+     "resolvedProvider": {
+      "type": "string",
+      "description": "Speech provider the server selected"
+     },
+     "scenarios": {
+      "type": "array",
+      "description": "Situational instructions"
+     },
+     "secondaryLanguages": {
+      "type": "array",
+      "description": "Additional languages; the write is rejected, never trimmed, when the multilingual provider does not serve a code or providerOverride is deepgram"
+     },
+     "similarity": {
+      "type": "number",
+      "description": "Voice similarity boost"
+     },
+     "skills": {
+      "type": "object",
+      "description": "Capabilities the agent may use"
+     },
+     "stability": {
+      "type": "number",
+      "description": "Voice stability"
+     },
+     "status": {
+      "type": "string",
+      "description": "Whether the agent may run; omitted on write means enabled",
+      "enum": [
+       "enabled",
+       "disabled"
+      ]
+     },
+     "temperature": {
+      "type": "number",
+      "description": "Creativity of the agent's replies"
+     },
+     "tone": {
+      "type": "array",
+      "description": "Tone presets the agent blends"
+     },
+     "updatedAt": {
+      "type": "string",
+      "description": "When the agent was last saved"
+     },
+     "verbosity": {
+      "type": "string",
+      "description": "How much the agent elaborates; omitted means standard",
+      "enum": [
+       "concise",
+       "standard",
+       "thorough"
+      ]
+     },
+     "voiceId": {
+      "type": "string",
+      "description": "Voice the agent speaks with"
+     }
+    },
+    "required": [
+     "agentName",
+     "defaultOutboundNumberId",
+     "direction",
+     "goalPrompt",
+     "language",
+     "maxCallDurationMinutes",
+     "optimizeStreamingLatency",
+     "similarity",
+     "stability",
+     "temperature",
+     "voiceAgentId",
+     "voiceId"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://my.cloudtalk.io/api/voice-agents/{voiceAgentId}",
+    "path": [
+     "voiceAgentId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "agentName",
+     "createdAt",
+     "defaultOutboundNumberId",
+     "dialTimeoutSeconds",
+     "direction",
+     "elevenLabsSettings",
+     "failoverOutboundNumberId",
+     "goalPrompt",
+     "greeting",
+     "guardrails",
+     "isAgentSpeakingFirst",
+     "knowledgeBaseIds",
+     "language",
+     "llmOverride",
+     "maxCallDurationMinutes",
+     "optimizeStreamingLatency",
+     "providerOverride",
+     "resolvedLlm",
+     "resolvedProvider",
+     "scenarios",
+     "secondaryLanguages",
+     "similarity",
+     "skills",
+     "stability",
+     "status",
+     "temperature",
+     "tone",
+     "updatedAt",
+     "verbosity",
+     "voiceId"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "cloudtalk.public_v1_upload_knowledge_base_file",
+   "name": "Upload a knowledge base file",
+   "description": "Creates a knowledge base from one uploaded file. The name is derived from the filename. A company may hold at most 100 knowledge bases; at the cap the request answers 409 KNOWLEDGE_BASE_LIMIT_REACHED.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "file": {
+      "type": "string",
+      "description": "The file to ingest as a knowledge base"
+     }
+    },
+    "required": [
+     "file"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://my.cloudtalk.io/api/knowledge-bases/files",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "file"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "cloudtalk.put_activity_add_contactId_json",
    "name": "Add activity",
    "description": "Assign an activity to existing contact.",

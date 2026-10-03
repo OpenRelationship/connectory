@@ -2,7 +2,7 @@
 --
 -- GENERATED from https://clerk.com/openapi.json
 -- Published on the vendor's own documentation site (https://clerk.com).
--- 236 operations · do not edit
+-- 240 operations · do not edit
 --
 -- The credential is never in here. `auth.env` names an environment variable; the value
 -- stays in the environment, which is what makes this file safe to publish.
@@ -71,9 +71,10 @@ return {
     ["clerk.create_session_token"] = { method = "POST", url = "https://api.clerk.com/v1/sessions/{session_id}/tokens", path = {"session_id"}, body = {"expires_in_seconds"} },
     ["clerk.create_session_token_from_template"] = { method = "POST", url = "https://api.clerk.com/v1/sessions/{session_id}/tokens/{template_name}", path = {"session_id", "template_name"}, body = {"expires_in_seconds"} },
     ["clerk.create_sign_in_token"] = { method = "POST", url = "https://api.clerk.com/v1/sign_in_tokens", body = {"user_id", "org_id", "expires_in_seconds"} },
+    ["clerk.create_ssobypass_allowlist_user"] = { method = "POST", url = "https://api.clerk.com/v1/sso_bypass_allowlist_users", body = {"user_id"} },
     ["clerk.create_svix_app"] = { method = "POST", url = "https://api.clerk.com/v1/webhooks/svix" },
     ["clerk.create_testing_token"] = { method = "POST", url = "https://api.clerk.com/v1/testing_tokens" },
-    ["clerk.create_user"] = { method = "POST", url = "https://api.clerk.com/v1/users", body = {"external_id", "first_name", "last_name", "locale", "email_address", "email_address_identification_status", "phone_number", "phone_number_identification_status", "web3_wallet", "username", "password", "password_digest", "password_hasher", "skip_password_checks", "skip_password_requirement", "skip_restriction_checks", "totp_secret", "backup_codes", "public_metadata", "private_metadata", "unsafe_metadata", "delete_self_enabled", "legal_accepted_at", "skip_legal_checks", "skip_user_requirement", "create_organization_enabled", "create_organizations_limit", "created_at", "bypass_client_trust", "banned", "locked"} },
+    ["clerk.create_user"] = { method = "POST", url = "https://api.clerk.com/v1/users", body = {"external_id", "first_name", "last_name", "locale", "timezone", "email_address", "email_address_identification_status", "phone_number", "phone_number_identification_status", "web3_wallet", "username", "password", "password_digest", "password_hasher", "skip_password_checks", "skip_password_requirement", "skip_restriction_checks", "totp_secret", "backup_codes", "public_metadata", "private_metadata", "unsafe_metadata", "delete_self_enabled", "legal_accepted_at", "skip_legal_checks", "skip_user_requirement", "create_organization_enabled", "create_organizations_limit", "created_at", "bypass_client_trust", "banned", "locked"} },
     ["clerk.create_waitlist_entry"] = { method = "POST", url = "https://api.clerk.com/v1/waitlist_entries", body = {"email_address", "notify"} },
     ["clerk.delete_allowlist_identifier"] = { method = "DELETE", url = "https://api.clerk.com/v1/allowlist_identifiers/{identifier_id}", path = {"identifier_id"} },
     ["clerk.delete_api_key"] = { method = "DELETE", url = "https://api.clerk.com/v1/api_keys/{apiKeyID}", path = {"apiKeyID"} },
@@ -85,6 +86,7 @@ return {
     ["clerk.delete_email_address"] = { method = "DELETE", url = "https://api.clerk.com/v1/email_addresses/{email_address_id}", path = {"email_address_id"} },
     ["clerk.delete_enterprise_connection"] = { method = "DELETE", url = "https://api.clerk.com/v1/enterprise_connections/{enterprise_connection_id}", path = {"enterprise_connection_id"} },
     ["clerk.delete_external_account"] = { method = "DELETE", url = "https://api.clerk.com/v1/users/{user_id}/external_accounts/{external_account_id}", path = {"user_id", "external_account_id"} },
+    ["clerk.delete_invitation"] = { method = "DELETE", url = "https://api.clerk.com/v1/invitations/{invitation_id}", path = {"invitation_id"} },
     ["clerk.delete_jwttemplate"] = { method = "DELETE", url = "https://api.clerk.com/v1/jwt_templates/{template_id}", path = {"template_id"} },
     ["clerk.delete_machine"] = { method = "DELETE", url = "https://api.clerk.com/v1/machines/{machine_id}", path = {"machine_id"} },
     ["clerk.delete_machine_scope"] = { method = "DELETE", url = "https://api.clerk.com/v1/machines/{machine_id}/scopes/{other_machine_id}", path = {"machine_id", "other_machine_id"} },
@@ -99,6 +101,7 @@ return {
     ["clerk.delete_redirect_url"] = { method = "DELETE", url = "https://api.clerk.com/v1/redirect_urls/{id}", path = {"id"} },
     ["clerk.delete_scimdirectory"] = { method = "DELETE", url = "https://api.clerk.com/v1/scim_directories/{scim_directory_id}", path = {"scim_directory_id"} },
     ["clerk.delete_scimgroup_role_mapping"] = { method = "DELETE", url = "https://api.clerk.com/v1/scim_directories/{scim_directory_id}/group_role_mappings/{mapping_id}", path = {"scim_directory_id", "mapping_id"} },
+    ["clerk.delete_ssobypass_allowlist_user"] = { method = "DELETE", url = "https://api.clerk.com/v1/sso_bypass_allowlist_users/{userID}", path = {"userID"} },
     ["clerk.delete_svix_app"] = { method = "DELETE", url = "https://api.clerk.com/v1/webhooks/svix" },
     ["clerk.delete_totp"] = { method = "DELETE", url = "https://api.clerk.com/v1/users/{user_id}/totp", path = {"user_id"} },
     ["clerk.delete_user"] = { method = "DELETE", url = "https://api.clerk.com/v1/users/{user_id}", path = {"user_id"} },
@@ -177,6 +180,7 @@ return {
     ["clerk.list_role_sets"] = { method = "GET", url = "https://api.clerk.com/v1/role_sets", query = {"query", "order_by", "limit", "offset"} },
     ["clerk.list_scimdirectories"] = { method = "GET", url = "https://api.clerk.com/v1/scim_directories", query = {"limit", "offset"} },
     ["clerk.list_scimgroup_role_mappings"] = { method = "GET", url = "https://api.clerk.com/v1/scim_directories/{scim_directory_id}/group_role_mappings", path = {"scim_directory_id"} },
+    ["clerk.list_ssobypass_allowlist_users"] = { method = "GET", url = "https://api.clerk.com/v1/sso_bypass_allowlist_users", query = {"enterprise_connection_id"} },
     ["clerk.list_user_biometric_credentials"] = { method = "GET", url = "https://api.clerk.com/v1/users/{user_id}/biometric_credentials", path = {"user_id"} },
     ["clerk.list_waitlist_entries"] = { method = "GET", url = "https://api.clerk.com/v1/waitlist_entries", query = {"limit", "offset", "query", "status", "order_by"} },
     ["clerk.lock_user"] = { method = "POST", url = "https://api.clerk.com/v1/users/{user_id}/lock", path = {"user_id"} },
@@ -231,7 +235,7 @@ return {
     ["clerk.update_jwttemplate"] = { method = "PATCH", url = "https://api.clerk.com/v1/jwt_templates/{template_id}", path = {"template_id"}, body = {"name", "claims", "lifetime", "allowed_clock_skew", "custom_signing_key", "signing_algorithm", "signing_key"} },
     ["clerk.update_machine"] = { method = "PATCH", url = "https://api.clerk.com/v1/machines/{machine_id}", path = {"machine_id"}, body = {"name", "default_token_ttl"} },
     ["clerk.update_oauth_application"] = { method = "PATCH", url = "https://api.clerk.com/v1/oauth_applications/{oauth_application_id}", path = {"oauth_application_id"}, body = {"name", "redirect_uris", "callback_url", "scopes", "consent_screen_enabled", "pkce_required", "device_authorization_grant_enabled", "public"} },
-    ["clerk.update_organization"] = { method = "PATCH", url = "https://api.clerk.com/v1/organizations/{organization_id}", path = {"organization_id"}, body = {"name", "slug", "max_allowed_memberships", "admin_delete_enabled", "self_serve_sso_enabled", "created_at", "role_set_key"} },
+    ["clerk.update_organization"] = { method = "PATCH", url = "https://api.clerk.com/v1/organizations/{organization_id}", path = {"organization_id"}, body = {"name", "slug", "max_allowed_memberships", "admin_delete_enabled", "self_serve_sso_enabled", "created_at", "role_set_key", "reassignment_mappings"} },
     ["clerk.update_organization_domain"] = { method = "PATCH", url = "https://api.clerk.com/v1/organizations/{organization_id}/domains/{domain_id}", path = {"organization_id", "domain_id"}, body = {"enrollment_mode", "verified"} },
     ["clerk.update_organization_membership"] = { method = "PATCH", url = "https://api.clerk.com/v1/organizations/{organization_id}/memberships/{user_id}", path = {"organization_id", "user_id"}, body = {"role"} },
     ["clerk.update_organization_membership_metadata"] = { method = "PATCH", url = "https://api.clerk.com/v1/organizations/{organization_id}/memberships/{user_id}/metadata", path = {"organization_id", "user_id"}, body = {"public_metadata", "private_metadata"} },
@@ -241,7 +245,7 @@ return {
     ["clerk.update_role_set"] = { method = "PATCH", url = "https://api.clerk.com/v1/role_sets/{role_set_key_or_id}", path = {"role_set_key_or_id"}, body = {"name", "description", "type", "default_role_key", "creator_role_key"} },
     ["clerk.update_scimdirectory"] = { method = "PATCH", url = "https://api.clerk.com/v1/scim_directories/{scim_directory_id}", path = {"scim_directory_id"}, body = {"name", "enabled", "provider", "attribute_mapping", "group_role_mapping_enabled"} },
     ["clerk.update_sign_up"] = { method = "PATCH", url = "https://api.clerk.com/v1/sign_ups/{id}", path = {"id"}, body = {"external_id", "custom_action"} },
-    ["clerk.update_user"] = { method = "PATCH", url = "https://api.clerk.com/v1/users/{user_id}", path = {"user_id"}, body = {"external_id", "first_name", "last_name", "locale", "primary_email_address_id", "notify_primary_email_address_changed", "primary_phone_number_id", "primary_web3_wallet_id", "username", "profile_image_id", "password", "password_digest", "password_hasher", "skip_password_checks", "sign_out_of_other_sessions", "totp_secret", "backup_codes", "delete_self_enabled", "create_organization_enabled", "legal_accepted_at", "skip_legal_checks", "create_organizations_limit", "created_at", "bypass_client_trust"} },
+    ["clerk.update_user"] = { method = "PATCH", url = "https://api.clerk.com/v1/users/{user_id}", path = {"user_id"}, body = {"external_id", "first_name", "last_name", "locale", "timezone", "primary_email_address_id", "notify_primary_email_address_changed", "primary_phone_number_id", "primary_web3_wallet_id", "username", "profile_image_id", "password", "password_digest", "password_hasher", "skip_password_checks", "sign_out_of_other_sessions", "totp_secret", "backup_codes", "delete_self_enabled", "create_organization_enabled", "legal_accepted_at", "skip_legal_checks", "create_organizations_limit", "created_at", "bypass_client_trust"} },
     ["clerk.update_user_metadata"] = { method = "PATCH", url = "https://api.clerk.com/v1/users/{user_id}/metadata", path = {"user_id"}, body = {"public_metadata", "private_metadata", "unsafe_metadata"} },
     ["clerk.upload_oauth_application_logo"] = { method = "PUT", url = "https://api.clerk.com/v1/oauth_applications/{oauth_application_id}/logo", path = {"oauth_application_id"}, body = {"uploader_user_id", "file"} },
     ["clerk.upload_organization_logo"] = { method = "PUT", url = "https://api.clerk.com/v1/organizations/{organization_id}/logo", path = {"organization_id"}, body = {"uploader_user_id", "file"} },

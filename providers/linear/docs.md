@@ -26,7 +26,15 @@ Get an overview of Linear's features, integrations, and how to use them.
 
 ### Account
 
+### Administration
+
+- [API and Webhooks](https://linear.app/docs/api-and-webhooks.md)
+
 ### AI
+
+### Code
+
+- [GitHub](https://linear.app/docs/github-integration.md)
 
 ### Your sidebar
 
@@ -54,10 +62,6 @@ Get an overview of Linear's features, integrations, and how to use them.
 - [GitHub](https://linear.app/docs/github-integration.md)
 
 ### Analytics
-
-### Administration
-
-- [API and Webhooks](https://linear.app/docs/api-and-webhooks.md)
 
 ### Importers
 

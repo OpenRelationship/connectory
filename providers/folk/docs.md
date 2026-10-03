@@ -36,6 +36,8 @@ vouches for**: read it, then read their reference.
 - [Errors](https://developer.folk.app/api-reference/errors.md)
 - [Pagination](https://developer.folk.app/api-reference/pagination.md)
 - [Filtering](https://developer.folk.app/api-reference/filtering.md)
+- [Idempotency](https://developer.folk.app/api-reference/idempotency.md)
+- [Batch requests](https://developer.folk.app/api-reference/batch-requests.md)
 - [Rate limits](https://developer.folk.app/api-reference/rate-limits.md)
 - [Request ID](https://developer.folk.app/api-reference/request-id.md)
 - [Versioning](https://developer.folk.app/api-reference/versioning.md)
@@ -44,6 +46,7 @@ vouches for**: read it, then read their reference.
 - [Get a person](https://developer.folk.app/api-reference/people/get-a-person.md): Retrieve an existing person in the workspace.
 - [Update a person](https://developer.folk.app/api-reference/people/update-a-person.md): Update an existing person in the workspace.
 - [Delete a person](https://developer.folk.app/api-reference/people/delete-a-person.md): Delete an existing person in the workspace.
+- [Delete people in batch](https://developer.folk.app/api-reference/people/delete-people-in-batch.md): Delete up to 100 existing people in the workspace. Each record is deleted on its own: one that fails does not prevent the others from being deleted.
 - [List companies](https://developer.folk.app/api-reference/companies/list-companies.md): Retrieve a list of companies in the workspace.
 - [Create a company](https://developer.folk.app/api-reference/companies/create-a-company.md): Create a new company in the workspace.
 - [Get a company](https://developer.folk.app/api-reference/companies/get-a-company.md): Retrieve an existing company in the workspace.
@@ -110,3 +113,5 @@ vouches for**: read it, then read their reference.
 - [Roadmap](https://developer.folk.app/roadmap.md)
 
 ## OpenAPI Specs
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

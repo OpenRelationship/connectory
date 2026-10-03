@@ -42,3 +42,5 @@ vouches for**: read it, then read their reference.
 ## OpenAPI Specs
 
 - [docs-json](https://api.wejam.ai/docs-json)
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

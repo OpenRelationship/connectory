@@ -20,7 +20,7 @@ Circleback is built by a Y Combinator–backed team and used by teams who want a
 
 Circleback supports several capture routes: a meeting bot for Zoom, Google Meet, Microsoft Teams, and Webex; botless desktop recording on macOS and Windows; in-person recording on iOS, Android, and Apple Watch; Slack huddles; and audio or video imports, including recorded phone calls. Every route is processed into the same speaker-labeled transcript, notes, and action items.
 
-Use this file to discover the canonical Circleback resources: support articles for integrating with Circleback, guides that explain how the product works, per-integration setup articles, and security/legal references. For a human user interface, start at https://circleback.ai. For the support center root, see https://support.circleback.ai.
+Use this file to discover the canonical Circleback resources: support articles for integrating with Circleback, guides that explain how the product works, per-integration setup articles, and security/legal references. For a human user interface, start at https://circleback.ai. For the support center root, see https://circleback.ai/docs/support.
 
 ## Accessing data
 

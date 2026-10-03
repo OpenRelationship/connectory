@@ -1,0 +1,4441 @@
+{
+ "_": "GENERATED \u2014 what an authoring tool needs to FIND an operation. The calling table is the .lua beside it.",
+ "provider": "anarlog-mcp",
+ "source": "https://api.anarlog.so/openapi.json",
+ "operations": [
+  {
+   "slug": "anarlog-mcp.can_start_trial",
+   "name": "Can start trial",
+   "description": "Lists can start trial.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anarlog.so/mcp/subscription/can-start-trial",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.cancel_attachment_backup_deletion",
+   "name": "Cancel attachment backup deletion",
+   "description": "Creates a cancel.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "attachmentRef": {
+      "type": "string",
+      "description": ""
+     },
+     "deleteRequestId": {
+      "type": "string",
+      "description": ""
+     },
+     "objectKey": {
+      "type": "string",
+      "description": ""
+     },
+     "versionRef": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "attachmentRef",
+     "deleteRequestId",
+     "objectKey",
+     "versionRef"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anarlog.so/mcp/sync/attachment-backups/delete/cancel",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "attachmentRef",
+     "deleteRequestId",
+     "objectKey",
+     "versionRef"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.claim_e2ee_identity",
+   "name": "Claim e2ee identity",
+   "description": "Updates an identity.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "keyId": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "keyId"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.anarlog.so/mcp/sync/e2ee/identity",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "keyId"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.claim_shared_note_handoff",
+   "name": "Claim shared note handoff",
+   "description": "Creates a claim.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "leaseId": {
+      "type": "string",
+      "description": ""
+     },
+     "requestId": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "leaseId",
+     "requestId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anarlog.so/mcp/shared-notes/handoffs/claim",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "leaseId",
+     "requestId"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.consume_e2ee_device_enrollment",
+   "name": "Consume e2ee device enrollment",
+   "description": "Creates a consume.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "request_id": {
+      "type": "string",
+      "description": "Enrollment request ID"
+     },
+     "x-device-fingerprint": {
+      "type": "string",
+      "description": "Requesting device fingerprint"
+     },
+     "publicKey": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "publicKey",
+     "request_id",
+     "x-device-fingerprint"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anarlog.so/mcp/sync/e2ee/device-enrollments/{request_id}/consume",
+    "path": [
+     "request_id"
+    ],
+    "query": [],
+    "header": [
+     "x-device-fingerprint"
+    ],
+    "body": [
+     "publicKey"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.create_credentials",
+   "name": "Create credentials",
+   "description": "Creates a token.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "x-anarlog-e2ee-key-id": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Local recovery-key identity"
+     },
+     "x-anarlog-e2ee-member-public-key": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Account-level member identity public key"
+     },
+     "x-anarlog-cloudsync-transports": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Comma-separated transports the client accepts; include `replica` to allow witness-only credentials"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anarlog.so/mcp/sync/token",
+    "path": [],
+    "query": [],
+    "header": [
+     "x-anarlog-e2ee-key-id",
+     "x-anarlog-e2ee-member-public-key",
+     "x-anarlog-cloudsync-transports"
+    ],
+    "body": [],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.create_key",
+   "name": "Create key",
+   "description": "Creates a key.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "name"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anarlog.so/mcp/v1/cloud-api/keys",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "name"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.create_link_shared_note_handoff",
+   "name": "Create link shared note handoff",
+   "description": "Creates a handoff.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "share_id": {
+      "type": "string",
+      "description": "Session share ID"
+     }
+    },
+    "required": [
+     "share_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anarlog.so/mcp/shared-notes/link/{share_id}/handoff",
+    "path": [
+     "share_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.create_live_ticket",
+   "name": "Issues a short lived, hmac signed ticket that authorizes one web socket\nconnection to a shared note's live document  browsers cannot attach a bearer\nheader to a web socket upgrade, so the ticket carries the resolved capability\ninstead and the socket route verifies it without touching supabase",
+   "description": "Issues a short-lived, HMAC-signed ticket that authorizes one WebSocket connection to a shared note's live document. Browsers cannot attach a bearer header to a WebSocket upgrade, so the ticket carries the resolved capability instead and the socket route verifies it without touching Supabase.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "share_id": {
+      "type": "string",
+      "description": "Shared note ID"
+     }
+    },
+    "required": [
+     "share_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anarlog.so/mcp/sync/shares/{share_id}/live/ticket",
+    "path": [
+     "share_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anarlog-mcp.create_public_shared_note_handoff",
+   "name": "Create public shared note handoff",
+   "description": "Creates a handoff.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "slug": {
+      "type": "string",
+      "description": "Public share slug"
+     }
+    },
+    "required": [
+     "slug"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anarlog.so/mcp/shared-notes/public/{slug}/handoff",
+    "path": [
+     "slug"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.create_replica_credentials",
+   "name": "Create replica credentials",
+   "description": "Creates a credential.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "x-anarlog-e2ee-key-id": {
+      "type": "string",
+      "description": "Local recovery-key identity"
+     },
+     "x-anarlog-e2ee-member-public-key": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Account-level member identity public key"
+     }
+    },
+    "required": [
+     "x-anarlog-e2ee-key-id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anarlog.so/mcp/sync/replica/credentials",
+    "path": [],
+    "query": [],
+    "header": [
+     "x-anarlog-e2ee-key-id",
+     "x-anarlog-e2ee-member-public-key"
+    ],
+    "body": [],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.create_session",
+   "name": "Create session",
+   "description": "Creates a session.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "connection_id": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": ""
+     },
+     "integration_id": {
+      "type": "string",
+      "description": ""
+     },
+     "mode": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "auto",
+       "connect",
+       "reconnect"
+      ]
+     }
+    },
+    "required": [
+     "integration_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anarlog.so/mcp/nango/session",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "connection_id",
+     "integration_id",
+     "mode"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.create_stable_shared_note_handoff",
+   "name": "Create stable shared note handoff",
+   "description": "Creates a handoff.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "share_id": {
+      "type": "string",
+      "description": "Stable session share ID"
+     }
+    },
+    "required": [
+     "share_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anarlog.so/mcp/shared-notes/share/{share_id}/handoff",
+    "path": [
+     "share_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.crm_search_contacts",
+   "name": "Crm search contacts",
+   "description": "Creates a search contact.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "connection_id": {
+      "type": "string",
+      "description": ""
+     },
+     "email": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": ""
+     },
+     "limit": {
+      "type": [
+       "integer",
+       "null"
+      ],
+      "description": ""
+     },
+     "name": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": ""
+     },
+     "provider": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "connection_id",
+     "provider"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anarlog.so/mcp/crm/search-contacts",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "connection_id",
+     "email",
+     "limit",
+     "name",
+     "provider"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.delete_account",
+   "name": "Delete account",
+   "description": "Deletes a delete account.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.anarlog.so/mcp/subscription/delete-account",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.delete_attachment_backup",
+   "name": "Delete attachment backup",
+   "description": "Creates a delete.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "attachmentRef": {
+      "type": "string",
+      "description": ""
+     },
+     "deleteRequestId": {
+      "type": "string",
+      "description": ""
+     },
+     "objectKey": {
+      "type": "string",
+      "description": ""
+     },
+     "versionRef": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "attachmentRef",
+     "deleteRequestId",
+     "objectKey",
+     "versionRef"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anarlog.so/mcp/sync/attachment-backups/delete",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "attachmentRef",
+     "deleteRequestId",
+     "objectKey",
+     "versionRef"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.delete_connection",
+   "name": "Delete connection",
+   "description": "Deletes a connection.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "connection_id": {
+      "type": "string",
+      "description": ""
+     },
+     "integration_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "connection_id",
+     "integration_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.anarlog.so/mcp/nango/connections",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "connection_id",
+     "integration_id"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.delete_device",
+   "name": "Delete device",
+   "description": "Deletes this device.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "fingerprint": {
+      "type": "string",
+      "description": "Device fingerprint"
+     }
+    },
+    "required": [
+     "fingerprint"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.anarlog.so/mcp/sync/devices/{fingerprint}",
+    "path": [
+     "fingerprint"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.delete_snapshot",
+   "name": "Delete snapshot",
+   "description": "Deletes this sync snapshot.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "session_id": {
+      "type": "string",
+      "description": "Anarlog meeting id"
+     }
+    },
+    "required": [
+     "session_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.anarlog.so/mcp/v1/sync-snapshots/{session_id}",
+    "path": [
+     "session_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.diarize",
+   "name": "Diarize audio",
+   "description": "Diarize audio",
+   "input": {
+    "type": "object",
+    "properties": {
+     "confidence": {
+      "type": "boolean",
+      "description": ""
+     },
+     "exclusive": {
+      "type": "boolean",
+      "description": ""
+     },
+     "maxSpeakers": {
+      "type": [
+       "number",
+       "null"
+      ],
+      "description": ""
+     },
+     "minSpeakers": {
+      "type": [
+       "number",
+       "null"
+      ],
+      "description": ""
+     },
+     "model": {
+      "type": "string",
+      "description": ""
+     },
+     "numSpeakers": {
+      "type": [
+       "number",
+       "null"
+      ],
+      "description": ""
+     },
+     "transcription": {
+      "type": "boolean",
+      "description": ""
+     },
+     "transcriptionConfig": {
+      "type": "string",
+      "description": ""
+     },
+     "turnLevelConfidence": {
+      "type": [
+       "boolean",
+       "null"
+      ],
+      "description": ""
+     },
+     "url": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "url"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anarlog.so/mcp/pyannote/v1/diarize",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "confidence",
+     "exclusive",
+     "maxSpeakers",
+     "minSpeakers",
+     "model",
+     "numSpeakers",
+     "transcription",
+     "transcriptionConfig",
+     "turnLevelConfidence",
+     "url"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anarlog-mcp.download_access_shared_attachment",
+   "name": "Download access shared attachment",
+   "description": "Creates a download.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "share_id": {
+      "type": "string",
+      "description": "Session share ID"
+     },
+     "attachment_id": {
+      "type": "string",
+      "description": "Published attachment ID"
+     }
+    },
+    "required": [
+     "attachment_id",
+     "share_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anarlog.so/mcp/shared-notes/access/{share_id}/attachments/{attachment_id}/download",
+    "path": [
+     "share_id",
+     "attachment_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.download_attachment_backup",
+   "name": "Download attachment backup",
+   "description": "Creates a download.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "objectKey": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "objectKey"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anarlog.so/mcp/sync/attachment-backups/download",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "objectKey"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.download_handoff_shared_attachment",
+   "name": "Download handoff shared attachment",
+   "description": "Creates a download.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "attachment_id": {
+      "type": "string",
+      "description": "Published attachment ID"
+     },
+     "leaseId": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "attachment_id",
+     "leaseId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anarlog.so/mcp/shared-notes/handoffs/attachments/{attachment_id}/download",
+    "path": [
+     "attachment_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "leaseId"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.download_link_shared_attachment",
+   "name": "Download link shared attachment",
+   "description": "Creates a download.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "share_id": {
+      "type": "string",
+      "description": "Session share ID"
+     },
+     "attachment_id": {
+      "type": "string",
+      "description": "Published attachment ID"
+     }
+    },
+    "required": [
+     "attachment_id",
+     "share_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anarlog.so/mcp/shared-notes/link/{share_id}/attachments/{attachment_id}/download",
+    "path": [
+     "share_id",
+     "attachment_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.download_public_shared_attachment",
+   "name": "Download public shared attachment",
+   "description": "Creates a download.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "slug": {
+      "type": "string",
+      "description": "Public share slug"
+     },
+     "attachment_id": {
+      "type": "string",
+      "description": "Published attachment ID"
+     }
+    },
+    "required": [
+     "attachment_id",
+     "slug"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anarlog.so/mcp/shared-notes/public/{slug}/attachments/{attachment_id}/download",
+    "path": [
+     "slug",
+     "attachment_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.download_stable_shared_attachment",
+   "name": "Download stable shared attachment",
+   "description": "Creates a download.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "share_id": {
+      "type": "string",
+      "description": "Stable session share ID"
+     },
+     "attachment_id": {
+      "type": "string",
+      "description": "Published attachment ID"
+     }
+    },
+    "required": [
+     "attachment_id",
+     "share_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anarlog.so/mcp/shared-notes/share/{share_id}/attachments/{attachment_id}/download",
+    "path": [
+     "share_id",
+     "attachment_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.edit_session_share_snapshot",
+   "name": "Edit session share snapshot",
+   "description": "Updates a web edit.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "share_id": {
+      "type": "string",
+      "description": "Session share ID"
+     }
+    },
+    "required": [
+     "share_id"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.anarlog.so/mcp/sync/shares/{share_id}/web-edit",
+    "path": [
+     "share_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.export_meeting",
+   "name": "Export meeting",
+   "description": "Lists export.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "meeting_id": {
+      "type": "string",
+      "description": ""
+     },
+     "format": {
+      "type": "string",
+      "description": "json or markdown"
+     }
+    },
+    "required": [
+     "meeting_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anarlog.so/mcp/v1/meetings/{meeting_id}/export",
+    "path": [
+     "meeting_id"
+    ],
+    "query": [
+     "format"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.fathom_import_meetings",
+   "name": "Fathom import meetings",
+   "description": "Creates an import meeting.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "connection_id": {
+      "type": "string",
+      "description": ""
+     },
+     "known_meeting_ids": {
+      "type": "array",
+      "description": ""
+     }
+    },
+    "required": [
+     "connection_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anarlog.so/mcp/fathom/import-meetings",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "connection_id",
+     "known_meeting_ids"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.finalize_attachment_backup",
+   "name": "Finalize attachment backup",
+   "description": "Creates a finalize.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "objectKey": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "objectKey"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anarlog.so/mcp/sync/attachment-backups/finalize",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "objectKey"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.finalize_shared_attachment",
+   "name": "Finalize shared attachment",
+   "description": "Creates a finalize.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "share_id": {
+      "type": "string",
+      "description": "Session share ID"
+     },
+     "objectKey": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "objectKey",
+     "share_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anarlog.so/mcp/sync/shares/{share_id}/attachments/finalize",
+    "path": [
+     "share_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "objectKey"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.get_devices",
+   "name": "Get devices",
+   "description": "Lists devices.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anarlog.so/mcp/sync/devices",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.get_history",
+   "name": "Get history",
+   "description": "Lists history.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "meeting_id": {
+      "type": "string",
+      "description": ""
+     },
+     "limit": {
+      "type": "integer",
+      "description": ""
+     },
+     "offset": {
+      "type": "integer",
+      "description": ""
+     }
+    },
+    "required": [
+     "meeting_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anarlog.so/mcp/v1/meetings/{meeting_id}/history",
+    "path": [
+     "meeting_id"
+    ],
+    "query": [
+     "limit",
+     "offset"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.get_job_by_id",
+   "name": "Get job by id",
+   "description": "Get job by ID",
+   "input": {
+    "type": "object",
+    "properties": {
+     "jobId": {
+      "type": "string",
+      "description": "Job ID to track the progress"
+     }
+    },
+    "required": [
+     "jobId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anarlog.so/mcp/pyannote/v1/jobs/{jobId}",
+    "path": [
+     "jobId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anarlog-mcp.get_media_upload_url",
+   "name": "Get upload url",
+   "description": "To use the provided temporary storage is a two step process. You start by declaring a media:// url that you can reference in any other API calls. The response will provide a url where you can put your media. This allows you to use the media:// url as a short-cut for a temporary storage location. You'll be returned a pre-signed url you can use to PUT and upload your media file. The temporary storag",
+   "input": {
+    "type": "object",
+    "properties": {
+     "url": {
+      "type": "string",
+      "description": "The url should be in the form media://object-key where the object-key can be any alpha-numeric string. The object-key is unique to your account API token so there is no risk of collision with other users."
+     }
+    },
+    "required": [
+     "url"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anarlog.so/mcp/pyannote/v1/media/input",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "url"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anarlog-mcp.get_meeting",
+   "name": "Get meeting",
+   "description": "Fetches one meeting.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "meeting_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "meeting_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anarlog.so/mcp/v1/meetings/{meeting_id}",
+    "path": [
+     "meeting_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.get_settings",
+   "name": "Get settings",
+   "description": "Lists settings.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anarlog.so/mcp/v1/cloud-api/settings",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.get_transcript",
+   "name": "Get transcript",
+   "description": "Lists transcript.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "meeting_id": {
+      "type": "string",
+      "description": ""
+     },
+     "offset": {
+      "type": "integer",
+      "description": ""
+     },
+     "limit": {
+      "type": "integer",
+      "description": ""
+     }
+    },
+    "required": [
+     "meeting_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anarlog.so/mcp/v1/meetings/{meeting_id}/transcript",
+    "path": [
+     "meeting_id"
+    ],
+    "query": [
+     "offset",
+     "limit"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.get_workspace_e2ee_key_recipients",
+   "name": "Get workspace e2ee key recipients",
+   "description": "Lists recipients.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace_id": {
+      "type": "string",
+      "description": "Shared workspace ID"
+     }
+    },
+    "required": [
+     "workspace_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anarlog.so/mcp/sync/e2ee/workspaces/{workspace_id}/recipients",
+    "path": [
+     "workspace_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.github_list_repos",
+   "name": "Github list repos",
+   "description": "Creates a list repo.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "connection_id": {
+      "type": "string",
+      "description": ""
+     },
+     "cursor": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": ""
+     },
+     "limit": {
+      "type": [
+       "integer",
+       "null"
+      ],
+      "description": ""
+     }
+    },
+    "required": [
+     "connection_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anarlog.so/mcp/ticket/github/list-repos",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "connection_id",
+     "cursor",
+     "limit"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.github_list_tickets",
+   "name": "Github list tickets",
+   "description": "Creates a list ticket.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "connection_id": {
+      "type": "string",
+      "description": ""
+     },
+     "cursor": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": ""
+     },
+     "labels": {
+      "type": [
+       "array",
+       "null"
+      ],
+      "description": ""
+     },
+     "limit": {
+      "type": [
+       "integer",
+       "null"
+      ],
+      "description": ""
+     },
+     "owner": {
+      "type": "string",
+      "description": ""
+     },
+     "repo": {
+      "type": "string",
+      "description": ""
+     },
+     "state": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": ""
+     }
+    },
+    "required": [
+     "connection_id",
+     "owner",
+     "repo"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anarlog.so/mcp/ticket/github/list-tickets",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "connection_id",
+     "cursor",
+     "labels",
+     "limit",
+     "owner",
+     "repo",
+     "state"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.google_drive_export_markdown",
+   "name": "Google drive export markdown",
+   "description": "Creates an export.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "connection_id": {
+      "type": "string",
+      "description": ""
+     },
+     "file_id": {
+      "type": "string",
+      "description": ""
+     },
+     "filename": {
+      "type": "string",
+      "description": ""
+     },
+     "folder_id": {
+      "type": "string",
+      "description": ""
+     },
+     "format": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "markdown",
+       "google_docs"
+      ]
+     },
+     "markdown": {
+      "type": "string",
+      "description": ""
+     },
+     "meeting_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "connection_id",
+     "file_id",
+     "filename",
+     "folder_id",
+     "markdown",
+     "meeting_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anarlog.so/mcp/nango/google-drive/export",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "connection_id",
+     "file_id",
+     "filename",
+     "folder_id",
+     "format",
+     "markdown",
+     "meeting_id"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.google_drive_picker_complete",
+   "name": "Google drive picker complete",
+   "description": "Creates a picker complete.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "code": {
+      "type": "string",
+      "description": ""
+     },
+     "folder_id": {
+      "type": "string",
+      "description": ""
+     },
+     "state": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "code",
+     "folder_id",
+     "state"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anarlog.so/mcp/nango/google-drive/picker-complete",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "code",
+     "folder_id",
+     "state"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.google_drive_picker_start",
+   "name": "Google drive picker start",
+   "description": "Creates a picker start.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "connection_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "connection_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anarlog.so/mcp/nango/google-drive/picker-start",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "connection_id"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.google_drive_prepare_export",
+   "name": "Google drive prepare export",
+   "description": "Creates a prepare export.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "connection_id": {
+      "type": "string",
+      "description": ""
+     },
+     "folder_id": {
+      "type": "string",
+      "description": ""
+     },
+     "format": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "markdown",
+       "google_docs"
+      ]
+     },
+     "meeting_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "connection_id",
+     "folder_id",
+     "meeting_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anarlog.so/mcp/nango/google-drive/prepare-export",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "connection_id",
+     "folder_id",
+     "format",
+     "meeting_id"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.google_drive_validate_folder",
+   "name": "Google drive validate folder",
+   "description": "Creates a folder.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "connection_id": {
+      "type": "string",
+      "description": ""
+     },
+     "folder_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "connection_id",
+     "folder_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anarlog.so/mcp/nango/google-drive/folder",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "connection_id",
+     "folder_id"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.google_get_attachment",
+   "name": "Google get attachment",
+   "description": "Creates a get attachment.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "attachment_id": {
+      "type": "string",
+      "description": ""
+     },
+     "connection_id": {
+      "type": "string",
+      "description": ""
+     },
+     "message_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "attachment_id",
+     "connection_id",
+     "message_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anarlog.so/mcp/mail/google/get-attachment",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "attachment_id",
+     "connection_id",
+     "message_id"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.google_get_message",
+   "name": "Google get message",
+   "description": "Creates a get message.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "connection_id": {
+      "type": "string",
+      "description": ""
+     },
+     "format": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": ""
+     },
+     "id": {
+      "type": "string",
+      "description": ""
+     },
+     "metadata_headers": {
+      "type": [
+       "array",
+       "null"
+      ],
+      "description": ""
+     }
+    },
+    "required": [
+     "connection_id",
+     "id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anarlog.so/mcp/mail/google/get-message",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "connection_id",
+     "format",
+     "id",
+     "metadata_headers"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.google_get_profile",
+   "name": "Google get profile",
+   "description": "Creates a get profile.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "connection_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "connection_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anarlog.so/mcp/mail/google/get-profile",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "connection_id"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.google_get_thread",
+   "name": "Google get thread",
+   "description": "Creates a get thread.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "connection_id": {
+      "type": "string",
+      "description": ""
+     },
+     "format": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": ""
+     },
+     "id": {
+      "type": "string",
+      "description": ""
+     },
+     "metadata_headers": {
+      "type": [
+       "array",
+       "null"
+      ],
+      "description": ""
+     }
+    },
+    "required": [
+     "connection_id",
+     "id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anarlog.so/mcp/mail/google/get-thread",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "connection_id",
+     "format",
+     "id",
+     "metadata_headers"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.google_list_calendars",
+   "name": "Google list calendars",
+   "description": "Creates a list calendar.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "connection_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "connection_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anarlog.so/mcp/calendar/google/list-calendars",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "connection_id"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.google_list_events",
+   "name": "Google list events",
+   "description": "Creates a list event.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "calendar_id": {
+      "type": "string",
+      "description": ""
+     },
+     "connection_id": {
+      "type": "string",
+      "description": ""
+     },
+     "max_results": {
+      "type": [
+       "integer",
+       "null"
+      ],
+      "description": ""
+     },
+     "order_by": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": ""
+     },
+     "page_token": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": ""
+     },
+     "single_events": {
+      "type": [
+       "boolean",
+       "null"
+      ],
+      "description": ""
+     },
+     "time_max": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": ""
+     },
+     "time_min": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": ""
+     }
+    },
+    "required": [
+     "calendar_id",
+     "connection_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anarlog.so/mcp/calendar/google/list-events",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "calendar_id",
+     "connection_id",
+     "max_results",
+     "order_by",
+     "page_token",
+     "single_events",
+     "time_max",
+     "time_min"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.google_list_history",
+   "name": "Google list history",
+   "description": "Creates a list history.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "connection_id": {
+      "type": "string",
+      "description": ""
+     },
+     "history_types": {
+      "type": [
+       "array",
+       "null"
+      ],
+      "description": ""
+     },
+     "label_id": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": ""
+     },
+     "max_results": {
+      "type": [
+       "integer",
+       "null"
+      ],
+      "description": ""
+     },
+     "page_token": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": ""
+     },
+     "start_history_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "connection_id",
+     "start_history_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anarlog.so/mcp/mail/google/list-history",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "connection_id",
+     "history_types",
+     "label_id",
+     "max_results",
+     "page_token",
+     "start_history_id"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.google_list_labels",
+   "name": "Google list labels",
+   "description": "Creates a list label.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "connection_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "connection_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anarlog.so/mcp/mail/google/list-labels",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "connection_id"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.google_list_messages",
+   "name": "Google list messages",
+   "description": "Creates a list message.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "connection_id": {
+      "type": "string",
+      "description": ""
+     },
+     "include_spam_trash": {
+      "type": [
+       "boolean",
+       "null"
+      ],
+      "description": ""
+     },
+     "label_ids": {
+      "type": [
+       "array",
+       "null"
+      ],
+      "description": ""
+     },
+     "max_results": {
+      "type": [
+       "integer",
+       "null"
+      ],
+      "description": ""
+     },
+     "page_token": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": ""
+     },
+     "q": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": ""
+     }
+    },
+    "required": [
+     "connection_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anarlog.so/mcp/mail/google/list-messages",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "connection_id",
+     "include_spam_trash",
+     "label_ids",
+     "max_results",
+     "page_token",
+     "q"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.google_list_threads",
+   "name": "Google list threads",
+   "description": "Creates a list thread.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "connection_id": {
+      "type": "string",
+      "description": ""
+     },
+     "include_spam_trash": {
+      "type": [
+       "boolean",
+       "null"
+      ],
+      "description": ""
+     },
+     "label_ids": {
+      "type": [
+       "array",
+       "null"
+      ],
+      "description": ""
+     },
+     "max_results": {
+      "type": [
+       "integer",
+       "null"
+      ],
+      "description": ""
+     },
+     "page_token": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": ""
+     },
+     "q": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": ""
+     }
+    },
+    "required": [
+     "connection_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anarlog.so/mcp/mail/google/list-threads",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "connection_id",
+     "include_spam_trash",
+     "label_ids",
+     "max_results",
+     "page_token",
+     "q"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.google_meet_import_meetings",
+   "name": "Google meet import meetings",
+   "description": "Creates an import meeting.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "connection_id": {
+      "type": "string",
+      "description": ""
+     },
+     "known_meeting_ids": {
+      "type": "array",
+      "description": ""
+     }
+    },
+    "required": [
+     "connection_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anarlog.so/mcp/google-meet/import-meetings",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "connection_id",
+     "known_meeting_ids"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.grant_attachment_backup_upload",
+   "name": "Grant attachment backup upload",
+   "description": "Creates an upload grant.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "ciphertextSha256": {
+      "type": "string",
+      "description": ""
+     },
+     "objectKey": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "ciphertextSha256",
+     "objectKey"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anarlog.so/mcp/sync/attachment-backups/upload-grant",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "ciphertextSha256",
+     "objectKey"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.grant_shared_attachment_upload",
+   "name": "Grant shared attachment upload",
+   "description": "Creates an upload grant.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "share_id": {
+      "type": "string",
+      "description": "Session share ID"
+     },
+     "objectKey": {
+      "type": "string",
+      "description": ""
+     },
+     "sha256": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "objectKey",
+     "sha256",
+     "share_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anarlog.so/mcp/sync/shares/{share_id}/attachments/upload-grant",
+    "path": [
+     "share_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "objectKey",
+     "sha256"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.heartbeat_meeting_device",
+   "name": "Heartbeat meeting device",
+   "description": "Creates a device.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "meeting_key": {
+      "type": "string",
+      "description": "Opaque key derived from the calendar event"
+     },
+     "x-device-fingerprint": {
+      "type": "string",
+      "description": "Fingerprint of the calling device"
+     },
+     "intent": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "present",
+       "claim",
+       "release"
+      ]
+     }
+    },
+    "required": [
+     "intent",
+     "meeting_key",
+     "x-device-fingerprint"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anarlog.so/mcp/sync/meetings/{meeting_key}/devices",
+    "path": [
+     "meeting_key"
+    ],
+    "query": [],
+    "header": [
+     "x-device-fingerprint"
+    ],
+    "body": [
+     "intent"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.identify",
+   "name": "Identify speaker with diarization",
+   "description": "Identify speaker with diarization",
+   "input": {
+    "type": "object",
+    "properties": {
+     "confidence": {
+      "type": "boolean",
+      "description": ""
+     },
+     "exclusive": {
+      "type": "boolean",
+      "description": ""
+     },
+     "matching": {
+      "type": "string",
+      "description": ""
+     },
+     "maxSpeakers": {
+      "type": [
+       "number",
+       "null"
+      ],
+      "description": ""
+     },
+     "minSpeakers": {
+      "type": [
+       "number",
+       "null"
+      ],
+      "description": ""
+     },
+     "model": {
+      "type": "string",
+      "description": ""
+     },
+     "numSpeakers": {
+      "type": [
+       "number",
+       "null"
+      ],
+      "description": ""
+     },
+     "turnLevelConfidence": {
+      "type": [
+       "boolean",
+       "null"
+      ],
+      "description": ""
+     },
+     "url": {
+      "type": "string",
+      "description": ""
+     },
+     "voiceprints": {
+      "type": "array",
+      "description": ""
+     }
+    },
+    "required": [
+     "url",
+     "voiceprints"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anarlog.so/mcp/pyannote/v1/identify",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "confidence",
+     "exclusive",
+     "matching",
+     "maxSpeakers",
+     "minSpeakers",
+     "model",
+     "numSpeakers",
+     "turnLevelConfidence",
+     "url",
+     "voiceprints"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anarlog-mcp.linear_create_issue",
+   "name": "Linear create issue",
+   "description": "Creates a create issue.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "connection_id": {
+      "type": "string",
+      "description": ""
+     },
+     "description": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": ""
+     },
+     "team_id": {
+      "type": "string",
+      "description": ""
+     },
+     "title": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "connection_id",
+     "team_id",
+     "title"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anarlog.so/mcp/ticket/linear/create-issue",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "connection_id",
+     "description",
+     "team_id",
+     "title"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.linear_list_teams",
+   "name": "Linear list teams",
+   "description": "Creates a list team.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "connection_id": {
+      "type": "string",
+      "description": ""
+     },
+     "cursor": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": ""
+     },
+     "limit": {
+      "type": [
+       "integer",
+       "null"
+      ],
+      "description": ""
+     }
+    },
+    "required": [
+     "connection_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anarlog.so/mcp/ticket/linear/list-teams",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "connection_id",
+     "cursor",
+     "limit"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.linear_list_tickets",
+   "name": "Linear list tickets",
+   "description": "Creates a list ticket.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "connection_id": {
+      "type": "string",
+      "description": ""
+     },
+     "cursor": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": ""
+     },
+     "limit": {
+      "type": [
+       "integer",
+       "null"
+      ],
+      "description": ""
+     },
+     "query": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": ""
+     },
+     "team_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "connection_id",
+     "team_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anarlog.so/mcp/ticket/linear/list-tickets",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "connection_id",
+     "cursor",
+     "limit",
+     "query",
+     "team_id"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.list_connections",
+   "name": "List connections",
+   "description": "Lists connections.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anarlog.so/mcp/nango/connections",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.list_keys",
+   "name": "List keys",
+   "description": "Lists keys.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anarlog.so/mcp/v1/cloud-api/keys",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.list_meetings",
+   "name": "List meetings",
+   "description": "Lists meetings.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "query": {
+      "type": "string",
+      "description": ""
+     },
+     "series_id": {
+      "type": "string",
+      "description": ""
+     },
+     "limit": {
+      "type": "integer",
+      "description": ""
+     },
+     "offset": {
+      "type": "integer",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anarlog.so/mcp/v1/meetings",
+    "path": [],
+    "query": [
+     "query",
+     "series_id",
+     "limit",
+     "offset"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.list_slack_channels",
+   "name": "List slack channels",
+   "description": "Lists channels.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anarlog.so/mcp/messenger/slack/channels",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.llm_chat_completions",
+   "name": "Llm chat completions",
+   "description": "Creates a completion.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "x-char-task": {
+      "type": "string",
+      "description": "Task type for model selection"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anarlog.so/mcp/llm/chat/completions",
+    "path": [],
+    "query": [],
+    "header": [
+     "x-char-task"
+    ],
+    "body": [],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.microsoft_teams_import_meetings",
+   "name": "Microsoft teams import meetings",
+   "description": "Creates an import meeting.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "connection_id": {
+      "type": "string",
+      "description": ""
+     },
+     "known_meeting_ids": {
+      "type": "array",
+      "description": ""
+     }
+    },
+    "required": [
+     "connection_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anarlog.so/mcp/microsoft-teams/import-meetings",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "connection_id",
+     "known_meeting_ids"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.nango_webhook",
+   "name": "Nango webhook",
+   "description": "Creates a webhook.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anarlog.so/mcp/nango/webhook",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.notion_append_update",
+   "name": "Notion append update",
+   "description": "Creates an append update.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "connection_id": {
+      "type": "string",
+      "description": ""
+     },
+     "heading": {
+      "type": "string",
+      "description": ""
+     },
+     "markdown": {
+      "type": "string",
+      "description": ""
+     },
+     "page_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "connection_id",
+     "heading",
+     "markdown",
+     "page_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anarlog.so/mcp/notion/append-update",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "connection_id",
+     "heading",
+     "markdown",
+     "page_id"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.notion_import_meetings",
+   "name": "Notion import meetings",
+   "description": "Creates an import meeting.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "connection_id": {
+      "type": "string",
+      "description": ""
+     },
+     "known_meeting_ids": {
+      "type": "array",
+      "description": ""
+     }
+    },
+    "required": [
+     "connection_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anarlog.so/mcp/notion/import-meetings",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "connection_id",
+     "known_meeting_ids"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.notion_search_pages",
+   "name": "Notion search pages",
+   "description": "Creates a search page.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "connection_id": {
+      "type": "string",
+      "description": ""
+     },
+     "query": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": ""
+     }
+    },
+    "required": [
+     "connection_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anarlog.so/mcp/notion/search-pages",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "connection_id",
+     "query"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.outlook_list_calendars",
+   "name": "Outlook list calendars",
+   "description": "Creates a list calendar.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "connection_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "connection_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anarlog.so/mcp/calendar/outlook/list-calendars",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "connection_id"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.outlook_list_events",
+   "name": "Outlook list events",
+   "description": "Creates a list event.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "calendar_id": {
+      "type": "string",
+      "description": ""
+     },
+     "connection_id": {
+      "type": "string",
+      "description": ""
+     },
+     "max_results": {
+      "type": [
+       "integer",
+       "null"
+      ],
+      "description": ""
+     },
+     "order_by": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": ""
+     },
+     "time_max": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": ""
+     },
+     "time_min": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": ""
+     }
+    },
+    "required": [
+     "calendar_id",
+     "connection_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anarlog.so/mcp/calendar/outlook/list-events",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "calendar_id",
+     "connection_id",
+     "max_results",
+     "order_by",
+     "time_max",
+     "time_min"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.patch_device",
+   "name": "Patch device",
+   "description": "Updates this device.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "fingerprint": {
+      "type": "string",
+      "description": "Device fingerprint"
+     },
+     "deviceName": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "deviceName",
+     "fingerprint"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.anarlog.so/mcp/sync/devices/{fingerprint}",
+    "path": [
+     "fingerprint"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "deviceName"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.promote_attachment_backup",
+   "name": "Promote attachment backup",
+   "description": "Updates a head.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "expectedCurrentObjectKey": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": ""
+     },
+     "objectKey": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "objectKey"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.anarlog.so/mcp/sync/attachment-backups/head",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "expectedCurrentObjectKey",
+     "objectKey"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.publish_e2ee_witness",
+   "name": "Publish e2ee witness",
+   "description": "Creates witnes.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace_id": {
+      "type": "string",
+      "description": "Workspace ID"
+     },
+     "events": {
+      "type": "array",
+      "description": ""
+     },
+     "initialize": {
+      "type": "boolean",
+      "description": ""
+     }
+    },
+    "required": [
+     "events",
+     "initialize",
+     "workspace_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anarlog.so/mcp/sync/e2ee/witness/{workspace_id}",
+    "path": [
+     "workspace_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "events",
+     "initialize"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.publish_session_share_snapshot",
+   "name": "Publish session share snapshot",
+   "description": "Updates a snapshot.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "share_id": {
+      "type": "string",
+      "description": "Session share ID"
+     }
+    },
+    "required": [
+     "share_id"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.anarlog.so/mcp/sync/shares/{share_id}/snapshot",
+    "path": [
+     "share_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.publish_snapshot",
+   "name": "Publish snapshot",
+   "description": "Updates this sync snapshot.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "session_id": {
+      "type": "string",
+      "description": "Anarlog meeting id"
+     },
+     "action_items": {
+      "type": "array",
+      "description": ""
+     },
+     "created_at": {
+      "type": "string",
+      "description": ""
+     },
+     "ended_at": {
+      "type": "string",
+      "description": ""
+     },
+     "folder_path": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Folder path such as `Projects/Launch`; null when the meeting is not in a folder."
+     },
+     "id": {
+      "type": "string",
+      "description": ""
+     },
+     "kind": {
+      "type": "string",
+      "description": ""
+     },
+     "language": {
+      "type": "string",
+      "description": ""
+     },
+     "note": {
+      "type": "string",
+      "description": ""
+     },
+     "participants": {
+      "type": "array",
+      "description": ""
+     },
+     "series_id": {
+      "type": "string",
+      "description": ""
+     },
+     "started_at": {
+      "type": "string",
+      "description": ""
+     },
+     "status": {
+      "type": "string",
+      "description": ""
+     },
+     "summaries": {
+      "type": "array",
+      "description": ""
+     },
+     "timezone": {
+      "type": "string",
+      "description": ""
+     },
+     "title": {
+      "type": "string",
+      "description": ""
+     },
+     "updated_at": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "action_items",
+     "created_at",
+     "ended_at",
+     "id",
+     "kind",
+     "language",
+     "participants",
+     "series_id",
+     "session_id",
+     "started_at",
+     "status",
+     "summaries",
+     "timezone",
+     "title",
+     "updated_at"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.anarlog.so/mcp/v1/sync-snapshots/{session_id}",
+    "path": [
+     "session_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "action_items",
+     "created_at",
+     "ended_at",
+     "folder_path",
+     "id",
+     "kind",
+     "language",
+     "note",
+     "participants",
+     "series_id",
+     "started_at",
+     "status",
+     "summaries",
+     "timezone",
+     "title",
+     "updated_at"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.read_current_attachment_backup",
+   "name": "Read current attachment backup",
+   "description": "Fetches one head.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "attachment_ref": {
+      "type": "string",
+      "description": "Blind attachment reference"
+     }
+    },
+    "required": [
+     "attachment_ref"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anarlog.so/mcp/sync/attachment-backups/head/{attachment_ref}",
+    "path": [
+     "attachment_ref"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.read_e2ee_witness",
+   "name": "Read e2ee witness",
+   "description": "Fetches one witnes.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace_id": {
+      "type": "string",
+      "description": "Workspace ID"
+     },
+     "afterSequence": {
+      "type": "integer",
+      "description": "Last applied witness sequence"
+     },
+     "throughSequence": {
+      "type": "integer",
+      "description": "Stable witness page boundary"
+     }
+    },
+    "required": [
+     "workspace_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anarlog.so/mcp/sync/e2ee/witness/{workspace_id}",
+    "path": [
+     "workspace_id"
+    ],
+    "query": [
+     "afterSequence",
+     "throughSequence"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.read_link_shared_note",
+   "name": "Read link shared note",
+   "description": "Creates link.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "share_id": {
+      "type": "string",
+      "description": "Session share ID"
+     }
+    },
+    "required": [
+     "share_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anarlog.so/mcp/shared-notes/link/{share_id}",
+    "path": [
+     "share_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.read_link_shared_note_preview",
+   "name": "Read link shared note preview",
+   "description": "Creates a preview.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "share_id": {
+      "type": "string",
+      "description": "Session share ID"
+     },
+     "previewToken": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "previewToken",
+     "share_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anarlog.so/mcp/shared-notes/link/{share_id}/preview",
+    "path": [
+     "share_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "previewToken"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.read_public_shared_note",
+   "name": "Read public shared note",
+   "description": "Fetches one public.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "slug": {
+      "type": "string",
+      "description": "Public share slug"
+     }
+    },
+    "required": [
+     "slug"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anarlog.so/mcp/shared-notes/public/{slug}",
+    "path": [
+     "slug"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.read_public_shared_note_preview",
+   "name": "Read public shared note preview",
+   "description": "Lists preview.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "slug": {
+      "type": "string",
+      "description": "Public share slug"
+     }
+    },
+    "required": [
+     "slug"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anarlog.so/mcp/shared-notes/public/{slug}/preview",
+    "path": [
+     "slug"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.read_short_link_shared_note_preview",
+   "name": "Read short link shared note preview",
+   "description": "Lists preview.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "link_id": {
+      "type": "string",
+      "description": "Session share link ID"
+     }
+    },
+    "required": [
+     "link_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anarlog.so/mcp/shared-notes/links/{link_id}/preview",
+    "path": [
+     "link_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.read_stable_shared_note",
+   "name": "Read stable shared note",
+   "description": "Fetches one share.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "share_id": {
+      "type": "string",
+      "description": "Stable session share ID"
+     }
+    },
+    "required": [
+     "share_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anarlog.so/mcp/shared-notes/share/{share_id}",
+    "path": [
+     "share_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.read_stable_shared_note_preview",
+   "name": "Read stable shared note preview",
+   "description": "Lists preview.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "share_id": {
+      "type": "string",
+      "description": "Stable session share ID"
+     }
+    },
+    "required": [
+     "share_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anarlog.so/mcp/shared-notes/share/{share_id}/preview",
+    "path": [
+     "share_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.register_e2ee_device_enrollment",
+   "name": "Register e2ee device enrollment",
+   "description": "Creates a device enrollment.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "x-device-fingerprint": {
+      "type": "string",
+      "description": "Current device fingerprint"
+     },
+     "x-anarlog-device-name": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Current device name"
+     },
+     "publicKey": {
+      "type": "string",
+      "description": ""
+     },
+     "replaceFingerprint": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": ""
+     }
+    },
+    "required": [
+     "publicKey",
+     "x-device-fingerprint"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anarlog.so/mcp/sync/e2ee/device-enrollments",
+    "path": [],
+    "query": [],
+    "header": [
+     "x-device-fingerprint",
+     "x-anarlog-device-name"
+    ],
+    "body": [
+     "publicKey",
+     "replaceFingerprint"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.reserve_attachment_backup",
+   "name": "Reserve attachment backup",
+   "description": "Creates a reserve.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "attachmentRef": {
+      "type": "string",
+      "description": ""
+     },
+     "ciphertextSizeBytes": {
+      "type": "integer",
+      "description": ""
+     },
+     "formatVersion": {
+      "type": "integer",
+      "description": ""
+     },
+     "versionRef": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "attachmentRef",
+     "ciphertextSizeBytes",
+     "formatVersion",
+     "versionRef"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anarlog.so/mcp/sync/attachment-backups/reserve",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "attachmentRef",
+     "ciphertextSizeBytes",
+     "formatVersion",
+     "versionRef"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.reserve_shared_attachment",
+   "name": "Reserve shared attachment",
+   "description": "Creates a reserve.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "share_id": {
+      "type": "string",
+      "description": "Session share ID"
+     },
+     "attachmentRef": {
+      "type": "string",
+      "description": ""
+     },
+     "contentType": {
+      "type": "string",
+      "description": ""
+     },
+     "filename": {
+      "type": "string",
+      "description": ""
+     },
+     "sizeBytes": {
+      "type": "integer",
+      "description": ""
+     },
+     "versionRef": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "attachmentRef",
+     "contentType",
+     "filename",
+     "share_id",
+     "sizeBytes",
+     "versionRef"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anarlog.so/mcp/sync/shares/{share_id}/attachments/reserve",
+    "path": [
+     "share_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "attachmentRef",
+     "contentType",
+     "filename",
+     "sizeBytes",
+     "versionRef"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.revoke_key",
+   "name": "Revoke key",
+   "description": "Deletes this key.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "key_id": {
+      "type": "string",
+      "description": "Cloud API key id"
+     }
+    },
+    "required": [
+     "key_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.anarlog.so/mcp/v1/cloud-api/keys/{key_id}",
+    "path": [
+     "key_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.seal_e2ee_device_enrollment",
+   "name": "Seal e2ee device enrollment",
+   "description": "Creates a seal.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "request_id": {
+      "type": "string",
+      "description": "Enrollment request ID"
+     },
+     "ciphertext": {
+      "type": "string",
+      "description": ""
+     },
+     "ephemeralPublicKey": {
+      "type": "string",
+      "description": ""
+     },
+     "nonce": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "ciphertext",
+     "ephemeralPublicKey",
+     "nonce",
+     "request_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anarlog.so/mcp/sync/e2ee/device-enrollments/{request_id}/seal",
+    "path": [
+     "request_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "ciphertext",
+     "ephemeralPublicKey",
+     "nonce"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.send_shared_note_invitation_email",
+   "name": "Send shared note invitation email",
+   "description": "Creates an email.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "invitation_id": {
+      "type": "string",
+      "description": "Session access invitation ID"
+     },
+     "fromName": {
+      "type": "string",
+      "description": ""
+     },
+     "inviteToken": {
+      "type": "string",
+      "description": ""
+     },
+     "noteTitle": {
+      "type": "string",
+      "description": ""
+     },
+     "shareId": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "invitation_id",
+     "inviteToken",
+     "noteTitle",
+     "shareId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anarlog.so/mcp/shared-notes/invitations/{invitation_id}/email",
+    "path": [
+     "invitation_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "fromName",
+     "inviteToken",
+     "noteTitle",
+     "shareId"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.send_shared_note_recap_email",
+   "name": "Send shared note recap email",
+   "description": "Creates an email.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "share_id": {
+      "type": "string",
+      "description": "Session share ID"
+     },
+     "deliveryId": {
+      "type": "string",
+      "description": ""
+     },
+     "noteBody": {
+      "type": "string",
+      "description": ""
+     },
+     "noteTitle": {
+      "type": "string",
+      "description": ""
+     },
+     "recipients": {
+      "type": "array",
+      "description": ""
+     },
+     "senderName": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "deliveryId",
+     "noteBody",
+     "noteTitle",
+     "recipients",
+     "senderName",
+     "share_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anarlog.so/mcp/shared-notes/{share_id}/recap/email",
+    "path": [
+     "share_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "deliveryId",
+     "noteBody",
+     "noteTitle",
+     "recipients",
+     "senderName"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.send_slack_message",
+   "name": "Send slack message",
+   "description": "Creates a message.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "channel": {
+      "type": "string",
+      "description": ""
+     },
+     "text": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "channel",
+     "text"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anarlog.so/mcp/messenger/slack/messages",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "channel",
+     "text"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.send_workspace_invitation_email",
+   "name": "Send workspace invitation email",
+   "description": "Creates an email.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "invitation_id": {
+      "type": "string",
+      "description": "Workspace invitation ID"
+     },
+     "fromName": {
+      "type": "string",
+      "description": ""
+     },
+     "inviteToken": {
+      "type": "string",
+      "description": ""
+     },
+     "workspaceId": {
+      "type": "string",
+      "description": ""
+     },
+     "workspaceName": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "invitation_id",
+     "inviteToken",
+     "workspaceId",
+     "workspaceName"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anarlog.so/mcp/workspaces/invitations/{invitation_id}/email",
+    "path": [
+     "invitation_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "fromName",
+     "inviteToken",
+     "workspaceId",
+     "workspaceName"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.set_workspace_e2ee_key",
+   "name": "Set workspace e2ee key",
+   "description": "Updates a key.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace_id": {
+      "type": "string",
+      "description": "Shared workspace ID"
+     },
+     "grants": {
+      "type": "array",
+      "description": ""
+     },
+     "keyId": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "grants",
+     "keyId",
+     "workspace_id"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.anarlog.so/mcp/sync/e2ee/workspaces/{workspace_id}/key",
+    "path": [
+     "workspace_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "grants",
+     "keyId"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.start_trial",
+   "name": "Start trial",
+   "description": "Creates a start trial.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "interval": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "monthly",
+       "yearly"
+      ]
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anarlog.so/mcp/subscription/start-trial",
+    "path": [],
+    "query": [
+     "interval"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.stt_listen_batch",
+   "name": "Stt listen batch",
+   "description": "Creates a listen.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "provider": {
+      "type": "string",
+      "description": "STT provider. Use 'anarlog' for automatic routing (default), or specify: deepgram, soniox, assemblyai, gladia, elevenlabs, fireworks, openai, dashscope, mistral"
+     },
+     "model": {
+      "type": "string",
+      "description": "Model to use for transcription (provider-specific, e.g. 'nova-3')"
+     },
+     "language": {
+      "type": "string",
+      "description": "BCP-47 language hint (e.g. 'en', 'ko', 'ja'). Multiple values or comma-separated supported"
+     },
+     "keywords": {
+      "type": "string",
+      "description": "Keyword boosting. Comma-separated or repeated query params"
+     },
+     "num_speakers": {
+      "type": "integer",
+      "description": "Expected exact number of speakers, when supported by the selected provider"
+     },
+     "min_speakers": {
+      "type": "integer",
+      "description": "Minimum expected number of speakers, when supported by the selected provider"
+     },
+     "max_speakers": {
+      "type": "integer",
+      "description": "Maximum expected number of speakers, when supported by the selected provider"
+     },
+     "sample_rate": {
+      "type": "integer",
+      "description": "Audio sample rate in Hz (default: 16000)"
+     },
+     "channels": {
+      "type": "integer",
+      "description": "Number of audio channels (default: 1)"
+     },
+     "callback": {
+      "type": "string",
+      "description": "When set, enables async callback mode. Body should be JSON with a `url` field instead of raw audio"
+     },
+     "url": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "url"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anarlog.so/mcp/stt/listen",
+    "path": [],
+    "query": [
+     "provider",
+     "model",
+     "language",
+     "keywords",
+     "num_speakers",
+     "min_speakers",
+     "max_speakers",
+     "sample_rate",
+     "channels",
+     "callback"
+    ],
+    "header": [],
+    "body": [
+     "url"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.stt_listen_stream",
+   "name": "Stt listen stream",
+   "description": "Lists listen.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "provider": {
+      "type": "string",
+      "description": "STT provider. Use 'anarlog' for automatic routing (default), or specify: deepgram, soniox, assemblyai, gladia, elevenlabs, fireworks, openai, dashscope, mistral"
+     },
+     "model": {
+      "type": "string",
+      "description": "Model to use for transcription (provider-specific, e.g. 'nova-3')"
+     },
+     "language": {
+      "type": "string",
+      "description": "BCP-47 language hint (e.g. 'en', 'ko', 'ja'). Multiple values or comma-separated supported"
+     },
+     "keywords": {
+      "type": "string",
+      "description": "Keyword boosting. Comma-separated or repeated query params"
+     },
+     "num_speakers": {
+      "type": "integer",
+      "description": "Expected exact number of speakers, when supported by the selected provider"
+     },
+     "min_speakers": {
+      "type": "integer",
+      "description": "Minimum expected number of speakers, when supported by the selected provider"
+     },
+     "max_speakers": {
+      "type": "integer",
+      "description": "Maximum expected number of speakers, when supported by the selected provider"
+     },
+     "sample_rate": {
+      "type": "integer",
+      "description": "Audio sample rate in Hz (default: 16000)"
+     },
+     "channels": {
+      "type": "integer",
+      "description": "Number of audio channels (default: 1)"
+     },
+     "encoding": {
+      "type": "string",
+      "description": "Audio encoding: linear16, flac, mulaw, opus, ogg-opus, etc."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anarlog.so/mcp/stt/listen",
+    "path": [],
+    "query": [
+     "provider",
+     "model",
+     "language",
+     "keywords",
+     "num_speakers",
+     "min_speakers",
+     "max_speakers",
+     "sample_rate",
+     "channels",
+     "encoding"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.stt_status",
+   "name": "Stt status",
+   "description": "Fetches one statu.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "pipeline_id": {
+      "type": "string",
+      "description": "Pipeline ID"
+     }
+    },
+    "required": [
+     "pipeline_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anarlog.so/mcp/stt/status/{pipeline_id}",
+    "path": [
+     "pipeline_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.update_settings",
+   "name": "Update settings",
+   "description": "Updates a setting.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "enabled": {
+      "type": "boolean",
+      "description": ""
+     }
+    },
+    "required": [
+     "enabled"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.anarlog.so/mcp/v1/cloud-api/settings",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "enabled"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.voiceprint",
+   "name": "Extract voiceprint",
+   "description": "Extract voiceprint",
+   "input": {
+    "type": "object",
+    "properties": {
+     "model": {
+      "type": "string",
+      "description": ""
+     },
+     "url": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "url"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anarlog.so/mcp/pyannote/v1/voiceprint",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "model",
+     "url"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anarlog-mcp.wait_e2ee_witness",
+   "name": "Wait e2ee witness",
+   "description": "Lists wait.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace_id": {
+      "type": "string",
+      "description": "Workspace ID"
+     },
+     "afterSequence": {
+      "type": "integer",
+      "description": "Last witness sequence known to the caller"
+     }
+    },
+    "required": [
+     "workspace_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anarlog.so/mcp/sync/e2ee/witness/{workspace_id}/wait",
+    "path": [
+     "workspace_id"
+    ],
+    "query": [
+     "afterSequence"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.webex_import_meetings",
+   "name": "Webex import meetings",
+   "description": "Creates an import meeting.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "connection_id": {
+      "type": "string",
+      "description": ""
+     },
+     "known_meeting_ids": {
+      "type": "array",
+      "description": ""
+     }
+    },
+    "required": [
+     "connection_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anarlog.so/mcp/webex/import-meetings",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "connection_id",
+     "known_meeting_ids"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.whoami",
+   "name": "Whoami",
+   "description": "Lists whoami.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anarlog.so/mcp/nango/whoami",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "anarlog-mcp.zoom_import_meetings",
+   "name": "Zoom import meetings",
+   "description": "Creates an import meeting.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "connection_id": {
+      "type": "string",
+      "description": ""
+     },
+     "known_meeting_ids": {
+      "type": "array",
+      "description": ""
+     }
+    },
+    "required": [
+     "connection_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anarlog.so/mcp/zoom/import-meetings",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "connection_id",
+     "known_meeting_ids"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  }
+ ]
+}

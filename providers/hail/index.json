@@ -6,13 +6,27 @@
   {
    "slug": "hail.acquire_number_v1_numbers_post",
    "name": "Acquire number",
-   "description": "Buy a dedicated phone number for the caller's organization. This purchases a real number at the carrier and starts a recurring monthly fee immediately \u2014 it is not a reservation. The number is usable for voice, SMS, or both depending on the requested capabilities and what the carrier offers for the given country_code/number_type.",
+   "description": "Buy a dedicated phone number for the caller's organization. This purchases a real number at the carrier and starts a recurring monthly fee immediately \u2014 it is not a reservation. quote_id is required: request live offers from POST /numbers/quotes first, then buy one. The number is usable for voice, SMS, or both, as the quote lists.",
    "input": {
     "type": "object",
     "properties": {
      "Idempotency-Key": {
       "type": "string",
       "description": ""
+     },
+     "quote_id": {
+      "type": "string",
+      "description": "Unexpired organization-bound quote from POST /numbers/quotes. Required: without it the request is a 422; get a quote first."
+     },
+     "provider": {
+      "type": "string",
+      "description": "Carrier restriction for the quote. Auto accepts the quoted carrier; twilio, telnyx, or didww must match it.",
+      "enum": [
+       "auto",
+       "twilio",
+       "telnyx",
+       "didww"
+      ]
      },
      "country_code": {
       "type": "string",
@@ -30,7 +44,8 @@
      }
     },
     "required": [
-     "country_code"
+     "country_code",
+     "quote_id"
     ]
    },
    "request": {
@@ -42,6 +57,8 @@
      "Idempotency-Key"
     ],
     "body": [
+     "quote_id",
+     "provider",
      "country_code",
      "number_type"
     ],
@@ -80,6 +97,34 @@
     "body": [
      "provider"
     ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hail.cancel_verification",
+   "name": "Cancel verification",
+   "description": "Withdraw a verification that has not been sent for review, or dismiss a rejected one. The draft is discarded either way. One that is under review cannot be cancelled: wait for the result; if it is rejected, dismiss it.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "verification_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "verification_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.hail.so/v1/verifications/{verification_id}",
+    "path": [
+     "verification_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
     "body_format": "json"
    }
   },
@@ -303,7 +348,7 @@
   {
    "slug": "hail.create_email_v1_emails_post",
    "name": "Create email",
-   "description": "Send an outbound email through SES. Sends synchronously \u2014 the response reports the final status (sent or failed), not a queued placeholder; no separate poll is needed for the happy path, though a bounce or complaint can still arrive later as a webhook or GET /v1/emails/{email_id}/events entry. Requires recipient_consent=true on the request body; Hail does not verify lawful basis to contact the rec",
+   "description": "Send an outbound email through SES. Sends synchronously. A 201 means SES accepted the message and the response status is 'sent'; no separate poll is needed for the happy path, though a bounce or complaint can still arrive later as a webhook or GET /v1/emails/{email_id}/events entry. If the send fails, the response is 502 'email send failed' with no email body; the email is kept with status 'failed",
    "input": {
     "type": "object",
     "properties": {
@@ -452,7 +497,7 @@
      },
      "from": {
       "type": "string",
-      "description": "Sender phone number, E.164 format. Must be a number owned by the organization with the SMS capability. Omitted: an active org-owned number is used if one exists, else a number is claimed from the shared pool."
+      "description": "Sender phone number, E.164 format. Must be an active number owned by the organization with the SMS capability. Omitted: UK (+44) and Germany (+49) destinations use the organization's sender ID, or the platform default 'HAIL' when none is set; Australia (+61) always uses 'HAIL'. Every other destination uses the organization's oldest active SMS-capable number; if none exists the request fails with 4"
      },
      "body": {
       "type": "string",
@@ -521,6 +566,25 @@
      "target_url",
      "event_types"
     ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hail.create_verification",
+   "name": "Create verification",
+   "description": "Submit your details and documents (multipart/form-data). Parts: `country_code`, `number_type`, `subject_type`, `provider` (optional), `fields` (JSON object), `address` (JSON object, when required), `documents` (JSON object: slot name to `{\"option\": ..., \"fields\": {...}}`), and one file part per slot named `file.`. Get the slot and field names from `GET /verifications/requirements`. The carrier che",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hail.so/v1/verifications",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
     "body_format": "json"
    }
   },
@@ -691,6 +755,34 @@
     "url": "https://api.hail.so/v1/webhooks/{sub_id}",
     "path": [
      "sub_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hail.dns_check_email_domain_v1_email_domains_domain_id_dns_check_get",
+   "name": "Dns check email domain",
+   "description": "Guided DNS check: detect the tenant's DNS host and confirm published records. Read-only \u2014 runs live lookups against public DNS (no resolver dependency) and never touches verification_status; SES stays the authority for that (see POST /{domain_id}/verify). Org-scoped: returns 404 for a domain belonging to a different organization. kind='hail_mail' rows do no DNS lookups at all \u2014 the shared hail-mai",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domain_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "domain_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hail.so/v1/email-domains/{domain_id}/dns-check",
+    "path": [
+     "domain_id"
     ],
     "query": [],
     "header": [],
@@ -915,7 +1007,7 @@
   {
    "slug": "hail.get_number_v1_numbers_number_id_get",
    "name": "Get number",
-   "description": "Fetch one dedicated number by id, including its capabilities and state. Org-scoped: returns 404 for a number belonging to a different organization.",
+   "description": "Fetch one dedicated number by id, including its capabilities and state. Org-scoped: returns 404 for a number belonging to a different organization. Read-only: a pending order is advanced by the background reconciler, never by this request.",
    "input": {
     "type": "object",
     "properties": {
@@ -1010,6 +1102,82 @@
      "sub_id"
     ],
     "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hail.get_verification",
+   "name": "Get verification",
+   "description": "One verification of your organization. Once submitted, its state is updated from the carrier each time you read it.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "verification_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "verification_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hail.so/v1/verifications/{verification_id}",
+    "path": [
+     "verification_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hail.get_verification_requirements",
+   "name": "Get requirements",
+   "description": "What the carrier needs from you to buy this kind of number: the fields, the documents, and whether an address is needed. Build your form from it.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "country_code": {
+      "type": "string",
+      "description": ""
+     },
+     "number_type": {
+      "type": "string",
+      "description": ""
+     },
+     "subject_type": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "person",
+       "business"
+      ]
+     },
+     "provider": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "country_code",
+     "number_type"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hail.so/v1/verifications/requirements",
+    "path": [],
+    "query": [
+     "country_code",
+     "number_type",
+     "subject_type",
+     "provider"
+    ],
     "header": [],
     "body": [],
     "body_format": "json"
@@ -1324,7 +1492,7 @@
   {
    "slug": "hail.list_numbers_v1_numbers_get",
    "name": "List numbers",
-   "description": "List dedicated numbers owned by the caller's organization. Cursor-paginated, newest first. Only org-owned numbers are listed \u2014 shared pool numbers used for outbound calls never appear here.",
+   "description": "List dedicated numbers owned by the caller's organization. Cursor-paginated, newest first. Only org-owned numbers are listed \u2014 shared pool numbers used for outbound calls never appear here. Failed orders that were dismissed (DELETE) are not listed.",
    "input": {
     "type": "object",
     "properties": {
@@ -1469,6 +1637,25 @@
      "cursor",
      "limit"
     ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hail.list_verifications",
+   "name": "List verifications",
+   "description": "Your organization's verifications, newest first.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hail.so/v1/verifications",
+    "path": [],
+    "query": [],
     "header": [],
     "body": [],
     "body_format": "json"
@@ -1673,6 +1860,56 @@
     "header": [],
     "body": [
      "phone_e164"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hail.quote_numbers_v1_numbers_quotes_post",
+   "name": "Quote numbers",
+   "description": "Compare live, org-specific offers. Prices include setup + monthly rent. Auto recommends a ready offer with the lowest monthly rent, then setup cost. On a tie the first carrier listed wins. Blocked offers sort by verification effort. SMS capability does not waive messaging registration requirements.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "country_code": {
+      "type": "string",
+      "description": "ISO alpha-2 country code to search. Case-insensitive."
+     },
+     "number_type": {
+      "type": "string",
+      "description": "Restrict number type; omit to compare all supported types."
+     },
+     "capabilities": {
+      "type": "array",
+      "description": "Required channels; every returned offer must support all requested capabilities."
+     },
+     "provider": {
+      "type": "string",
+      "description": "Carrier restriction; twilio, telnyx, or didww returns that carrier's offers only. auto compares all by readiness, remaining verification effort, and rental/setup costs; Twilio wins equivalent ties.",
+      "enum": [
+       "auto",
+       "twilio",
+       "telnyx",
+       "didww"
+      ]
+     }
+    },
+    "required": [
+     "capabilities",
+     "country_code"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hail.so/v1/numbers/quotes",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "country_code",
+     "number_type",
+     "capabilities",
+     "provider"
     ],
     "body_format": "json"
    }

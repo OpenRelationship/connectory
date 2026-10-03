@@ -211,7 +211,7 @@
      },
      "effort": {
       "type": "string",
-      "description": "Cost and reasoning effort preference for the run. `auto` lets Exa choose the appropriate effort. `max` is the highest-effort public beta tier for work where completeness and thoroughness matter more than latency or cost, including large list building, deep multi-source research, and criteria that are hard to verify.",
+      "description": "Cost and reasoning effort preference for the run. `auto` lets Exa choose the appropriate effort. `ultra` is the highest-effort tier for work where completeness and thoroughness matter more than latency or cost, including large list building, deep multi-source research, and criteria that are hard to verify.",
       "enum": [
        "minimal",
        "low",
@@ -219,7 +219,7 @@
        "high",
        "xhigh",
        "auto",
-       "max"
+       "ultra"
       ]
      },
      "input": {
@@ -244,7 +244,7 @@
      },
      "budget": {
       "type": "object",
-      "description": "Optional per-run spending limit for the metered `auto` and `max` efforts. Runs that finish early may cost less than the limit."
+      "description": "Optional per-run spending and duration limits for the metered `auto` and `ultra` efforts. Runs that finish early may cost less than the limit."
      }
     },
     "required": [
@@ -640,14 +640,6 @@
       "type": "string",
       "description": ""
      },
-     "context": {
-      "type": "string",
-      "description": ""
-     },
-     "livecrawl": {
-      "type": "string",
-      "description": ""
-     },
      "livecrawlTimeout": {
       "type": "string",
       "description": ""
@@ -667,6 +659,18 @@
      "subpageTarget": {
       "type": "string",
       "description": ""
+     },
+     "context": {
+      "type": "string",
+      "description": ""
+     },
+     "livecrawl": {
+      "type": "string",
+      "description": ""
+     },
+     "crawledBeforeDate": {
+      "type": "string",
+      "description": "Deprecated. Use `snapshotAsOf` instead. Alias of snapshotAsOf with identical behavior."
      }
     },
     "required": []
@@ -685,13 +689,14 @@
      "highlights",
      "summary",
      "extras",
-     "context",
-     "livecrawl",
      "livecrawlTimeout",
      "maxAgeHours",
      "snapshotAsOf",
      "subpages",
-     "subpageTarget"
+     "subpageTarget",
+     "context",
+     "livecrawl",
+     "crawledBeforeDate"
     ],
     "body_format": "json"
    }
@@ -1138,11 +1143,11 @@
      },
      "cadence": {
       "type": "object",
-      "description": "How often the monitor will run"
+      "description": ""
      },
      "behavior": {
       "type": "object",
-      "description": "Behavior to perform when monitor runs"
+      "description": ""
      },
      "metadata": {
       "type": "object",
@@ -1392,14 +1397,6 @@
       "type": "string",
       "description": ""
      },
-     "startCrawlDate": {
-      "type": "string",
-      "description": ""
-     },
-     "endCrawlDate": {
-      "type": "string",
-      "description": ""
-     },
      "startPublishedDate": {
       "type": "string",
       "description": ""
@@ -1409,10 +1406,6 @@
       "description": ""
      },
      "numResults": {
-      "type": "string",
-      "description": ""
-     },
-     "context": {
       "type": "string",
       "description": ""
      },
@@ -1452,11 +1445,35 @@
       "type": "string",
       "description": ""
      },
+     "objective": {
+      "type": "string",
+      "description": "The broader goal this search serves: the task the caller is working on, beyond the query itself. When exposing this field to an agent as a tool parameter, describe it as: \"Goal for this search turn; say which documents should rank first, which should be excluded, and what specific facts or figures to pull from them.\""
+     },
      "systemPrompt": {
       "type": "string",
       "description": ""
      },
      "stream": {
+      "type": "string",
+      "description": ""
+     },
+     "startCrawlDate": {
+      "type": "string",
+      "description": ""
+     },
+     "endCrawlDate": {
+      "type": "string",
+      "description": ""
+     },
+     "includeText": {
+      "type": "string",
+      "description": "Deprecated. List of strings that must be present in the webpage text of results. Matching is approximate (word-level rather than exact phrase), so a multi-word entry can match pages where its words appear separately. Up to 50 strings, each up to 4096 characters."
+     },
+     "excludeText": {
+      "type": "string",
+      "description": "Deprecated. List of strings that must not be present in the webpage text of results. Matching is approximate (word-level rather than exact phrase). Up to 50 strings, each up to 4096 characters."
+     },
+     "context": {
       "type": "string",
       "description": ""
      }
@@ -1474,12 +1491,9 @@
     "body": [
      "includeDomains",
      "excludeDomains",
-     "startCrawlDate",
-     "endCrawlDate",
      "startPublishedDate",
      "endPublishedDate",
      "numResults",
-     "context",
      "moderation",
      "contents",
      "query",
@@ -1489,8 +1503,14 @@
      "userLocation",
      "compliance",
      "outputSchema",
+     "objective",
      "systemPrompt",
-     "stream"
+     "stream",
+     "startCrawlDate",
+     "endCrawlDate",
+     "includeText",
+     "excludeText",
+     "context"
     ],
     "body_format": "json"
    }
@@ -1498,17 +1518,13 @@
   {
    "slug": "exa.stop_agent_run",
    "name": "Stop a run",
-   "description": "Complete a running Agent run early, returning the results gathered so far. You are billed for usage accrued before the stop. Currently supported only for `max` effort runs and requires the `Exa-Beta: agent-max-effort-2026-07-27` header. If the run has already reached a terminal status, the API returns the existing run.",
+   "description": "Complete a running Agent run early, returning the results gathered so far. You are billed for usage accrued before the stop. Currently supported only for `ultra` effort runs. If the run has already reached a terminal status, the API returns the existing run.",
    "input": {
     "type": "object",
     "properties": {
      "id": {
       "type": "string",
       "description": "Agent run ID."
-     },
-     "Exa-Beta": {
-      "type": "string",
-      "description": "Comma-separated beta feature tokens for opting into experimental features."
      }
     },
     "required": [
@@ -1522,9 +1538,7 @@
      "id"
     ],
     "query": [],
-    "header": [
-     "Exa-Beta"
-    ],
+    "header": [],
     "body": [],
     "body_format": "json"
    }
@@ -2040,7 +2054,7 @@
      },
      "format": {
       "type": "string",
-      "description": "Format of the enrichment response. We automatically select the best format based on the description. If you want to explicitly specify the format, you can do so here.",
+      "description": "",
       "enum": [
        "text",
        "date",
@@ -2171,7 +2185,7 @@
      },
      "format": {
       "type": "string",
-      "description": "Format of the enrichment response. We automatically select the best format based on the description. If you want to explicitly specify the format, you can do so here.",
+      "description": "",
       "enum": [
        "text",
        "date",

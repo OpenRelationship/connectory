@@ -46,6 +46,8 @@ vouches for**: read it, then read their reference.
 - [Vanta SDKs](https://developer.vanta.com/docs/sdks.md): Official Vanta SDKs for building against the Vanta API in your language of choice.
 - [API Overview](https://developer.vanta.com/reference/overview.md): The Vanta API is a RESTful JSON API that lets you automate workflows, integrate external data, and access audit information programmatically.
 - [Manage Vanta API](https://developer.vanta.com/reference/manage-vanta/overview.md): Manage Vanta API — automate your Vanta tenant: controls, documents, vendors, personnel, resources, tests, and issues.
+- [List business units](https://developer.vanta.com/api-reference/business-units/list-business-units.md): Lists the business units for your organization. Returns 403 when business unit scoping is disabled for the domain.
+- [Get business unit by ID](https://developer.vanta.com/api-reference/business-units/get-business-unit-by-id.md): Get a business unit by ID. Returns 403 when business unit scoping is disabled for the domain.
 - [List contracts](https://developer.vanta.com/api-reference/contracts/list-contracts.md): List contracts, paginated.
 - [Upload contract](https://developer.vanta.com/api-reference/contracts/upload-contract.md): Upload a contract.
 - [Get contract](https://developer.vanta.com/api-reference/contracts/get-contract.md): Get a contract by ID.
@@ -137,7 +139,7 @@ vouches for**: read it, then read their reference.
 - [Get Answer Library entry](https://developer.vanta.com/api-reference/knowledge-base/get-answer-library-entry.md): Get an Answer Library entry.
 - [Delete Answer Library entry](https://developer.vanta.com/api-reference/knowledge-base/delete-answer-library-entry.md): Delete an Answer Library entry.
 - [Update Answer Library entry](https://developer.vanta.com/api-reference/knowledge-base/update-answer-library-entry.md): Update an Answer Library entry.
-- [Verify Answer Library entry](https://developer.vanta.com/api-reference/knowledge-base/verify-answer-library-entry.md): Mark an Answer Library entry as verified. Stamps `lastVerifiedAt` to the current time; the entry's question, answer, tags, owner, and expiration are left unchanged.
+- [Verify Answer Library entry](https://developer.vanta.com/api-reference/knowledge-base/verify-answer-library-entry.md): Mark an Answer Library entry as verified. Stamps `lastVerifiedAt` to the current time and uses the supplied expiration date or configured review cadence. The entry's question, answer, tags, and owner are left unchanged.
 - [List Knowledge Base resources](https://developer.vanta.com/api-reference/knowledge-base/list-knowledge-base-resources.md): List Knowledge Base resources (documents and webpages) in a single paginated response. Each entry is a discriminated union on `type` — "FILE" entries carry a `fileUrl` (presigned S3 URL, valid for one hour), "URL" entries carry the resource's `url` and `includeSubPages`.
 - [Create document resource](https://developer.vanta.com/api-reference/knowledge-base/create-document-resource.md): Create a document (FILE-type) resource in the Trust Knowledge Base. Accepts the document as a multipart/form-data upload.
 - [Update document resource](https://developer.vanta.com/api-reference/knowledge-base/update-document-resource.md): Apply a partial update to a document (FILE-type) resource. Omitted fields are left untouched. To swap the underlying file, use `POST /v1/knowledge-base/resources/documents/{id}/upload`. Returns 404 for an unknown id or a URL-type resource.
@@ -161,6 +163,8 @@ vouches for**: read it, then read their reference.
 - [Update personnel notification settings](https://developer.vanta.com/api-reference/personnel-notification-settings/update-personnel-notification-settings.md): Partially updates the organization's personnel reminder and employee-digest settings. Omitted fields remain unchanged.
 - [List policies](https://developer.vanta.com/api-reference/policies/list-policies.md): Lists all policies.
 - [Get policy by ID](https://developer.vanta.com/api-reference/policies/get-policy-by-id.md): Gets a policy by ID. Policy IDs can be found in Vanta in URL bar after /policies/.
+- [List program scopes](https://developer.vanta.com/api-reference/program-scopes/list-program-scopes.md): Lists the program scopes for your organization. A program scope pairs a business unit with a framework that business unit is in scope for. When business unit scoping is disabled, businessUnitId is null.
+- [Get program scope by ID](https://developer.vanta.com/api-reference/program-scopes/get-program-scope-by-id.md): Get a program scope by ID. When business unit scoping is disabled, businessUnitId is null.
 - [List risk scenarios](https://developer.vanta.com/api-reference/risk-scenarios/list-risk-scenarios.md): List risk scenarios.
 - [Create risk scenario](https://developer.vanta.com/api-reference/risk-scenarios/create-risk-scenario.md): Create a new risk scenario.
 - [Get risk scenario by ID](https://developer.vanta.com/api-reference/risk-scenarios/get-risk-scenario-by-id.md): Get a risk scenario by ID (can be the Risk ID or the object ID).
@@ -181,7 +185,7 @@ vouches for**: read it, then read their reference.
 - [List Trust Center access requests](https://developer.vanta.com/api-reference/trust-centers/list-trust-center-access-requests.md): Gets a list of access requests for a Trust Center.
 - [Get Trust Center access request](https://developer.vanta.com/api-reference/trust-centers/get-trust-center-access-request.md): Gets a specific access request for a Trust Center.
 - [Approve Trust Center access request](https://developer.vanta.com/api-reference/trust-centers/approve-trust-center-access-request.md): Approves an access request on a Trust Center.
-- [Deny Trust Center access request](https://developer.vanta.com/api-reference/trust-centers/deny-trust-center-access-request.md): Denies an access request on a Trust Center.
+- [Deny Trust Center access request](https://developer.vanta.com/api-reference/trust-centers/deny-trust-center-access-request.md): Denies an access request on a Trust Center. The requester is only notified by email when `sendEmail` is true.
 - [List Trust Center viewer activity events](https://developer.vanta.com/api-reference/trust-centers/list-trust-center-viewer-activity-events.md): Gets a list of viewer activity events on a Trust Center.
 - [List Trust Center chatbot conversations](https://developer.vanta.com/api-reference/trust-centers/list-trust-center-chatbot-conversations.md): Gets a paginated list of chatbot conversations on a Trust Center.
 - [Get Trust Center chatbot conversation messages](https://developer.vanta.com/api-reference/trust-centers/get-trust-center-chatbot-conversation-messages.md): Gets the messages for a specific chatbot conversation on a Trust Center.
@@ -314,8 +318,4 @@ vouches for**: read it, then read their reference.
 - [List all Vulnerable Components](https://developer.vanta.com/api-reference/vulnerable-components/list-all-vulnerable-components.md): List `VulnerableComponent` resources for the given application.
 - [Sync all Vulnerable Components](https://developer.vanta.com/api-reference/vulnerable-components/sync-all-vulnerable-components.md): To send us data related to system components that have vulnerabilities.
 - [List all Windows User Computers](https://developer.vanta.com/api-reference/windows-user-computers/list-all-windows-user-computers.md): List `WindowsUserComputer` resources for the given application.
-- [Sync all Windows User Computers](https://developer.vanta.com/api-reference/windows-user-computers/sync-all-windows-user-computers.md): To send us data related to employee/contractor Windows computers, you send us `WindowsUserComputer` resources. This helps us determine important security properties, like whether devices have encrypted drives, have anti-virus installed or have password managers installed.
-- [Auditor API](https://developer.vanta.com/reference/audits/overview.md): Auditor API — programmatically conduct audits in Vanta: read audit data, manage information requests, and review evidence.
-- [Create an auditor](https://developer.vanta.com/api-reference/auditors/create-an-auditor.md): Create an auditor in Vanta.
-- [List audits](https://developer.vanta.com/api-reference/audits/list-audits.md): Returns a paginated list of audits scoped to the audit firm.
-- [Duplicate an IRL audit](https://developer.vanta.com/api-reference/audits/duplicate-an-irl-audit.md): Duplicates an existing IRL audit into a new audit engagement with the supplied displayName, audit dates, early access date, and auditor roster. Company, audit type, and framework are copied from the source aud
+- [Sync all Windows User Computers](https://developer.vanta.com/api-reference/windows-user-computers/sync-all-windows-user-co

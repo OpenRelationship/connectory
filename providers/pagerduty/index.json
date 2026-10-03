@@ -9004,14 +9004,6 @@
      "event_id": {
       "type": "string",
       "description": "The ID of the event."
-     },
-     "since": {
-      "type": "string",
-      "description": "Start of time range (ISO 8601)"
-     },
-     "until": {
-      "type": "string",
-      "description": "End of time range (ISO 8601)"
      }
     },
     "required": [
@@ -9028,10 +9020,7 @@
      "rotation_id",
      "event_id"
     ],
-    "query": [
-     "since",
-     "until"
-    ],
+    "query": [],
     "header": [],
     "body": [],
     "body_format": "json"
@@ -9518,6 +9507,60 @@
     "query": [],
     "header": [
      "Accept"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "pagerduty.get_incident_scribe_transcripts",
+   "name": "Get scribe transcripts for an incident",
+   "description": "Get download links for the Scribe transcripts of the specified incident. Only Scribes that have completed are returned; a Scribe that is still in progress does not appear in the response. Each entry contains a presigned `download_url` for a single transcript format, selected with the `format` query parameter (`enhanced` by default, or `raw`). The `download_url` is time-limited and expires after on",
+   "input": {
+    "type": "object",
+    "properties": {
+     "Accept": {
+      "type": "string",
+      "description": "The `Accept` header is used as a versioning header."
+     },
+     "Content-Type": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "application/json"
+      ]
+     },
+     "id": {
+      "type": "string",
+      "description": "The ID of the resource."
+     },
+     "format": {
+      "type": "string",
+      "description": "The transcript format to return a download link for.",
+      "enum": [
+       "enhanced",
+       "raw"
+      ]
+     }
+    },
+    "required": [
+     "Accept",
+     "Content-Type",
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.pagerduty.com/incidents/{id}/scribe_transcripts",
+    "path": [
+     "id"
+    ],
+    "query": [
+     "format"
+    ],
+    "header": [
+     "Accept",
+     "Content-Type"
     ],
     "body": [],
     "body_format": "json"
@@ -10758,14 +10801,6 @@
      "rotation_id": {
       "type": "string",
       "description": "The ID of the rotation."
-     },
-     "since": {
-      "type": "string",
-      "description": "Start of time range (ISO 8601)"
-     },
-     "until": {
-      "type": "string",
-      "description": "End of time range (ISO 8601)"
      }
     },
     "required": [
@@ -10780,10 +10815,7 @@
      "id",
      "rotation_id"
     ],
-    "query": [
-     "since",
-     "until"
-    ],
+    "query": [],
     "header": [],
     "body": [],
     "body_format": "json"
@@ -10966,11 +10998,11 @@
      },
      "since": {
       "type": "string",
-      "description": "Start of time range (ISO 8601)"
+      "description": "Start of time range (ISO 8601). Send `since` and `until` together. `since` can be at most 3 years in the future."
      },
      "until": {
       "type": "string",
-      "description": "End of time range (ISO 8601)"
+      "description": "End of time range (ISO 8601). Send `since` and `until` together. `until` must be after `since`, and can be at most 3 years and 2 weeks in the future."
      },
      "time_zone": {
       "type": "string",
@@ -10982,7 +11014,7 @@
      },
      "include[]": {
       "type": "array",
-      "description": "Additional data to include in the schedule response: - `final_schedule`: computed on-call assignments for the time range"
+      "description": "Additional data to include in the schedule response: - `final_schedule`: computed on-call assignments for the time range - `users`: all users referenced in the schedule"
      }
     },
     "required": [
@@ -13578,11 +13610,11 @@
      },
      "since": {
       "type": "string",
-      "description": "Start of time range (ISO 8601)"
+      "description": "Start of time range (ISO 8601). Can be at most 2 years in the future."
      },
      "until": {
       "type": "string",
-      "description": "End of time range (ISO 8601)"
+      "description": "End of time range (ISO 8601). Can be at most 2 years and 2 weeks in the future."
      },
      "time_zone": {
       "type": "string",
@@ -13591,14 +13623,6 @@
      "overflow": {
       "type": "boolean",
       "description": "Include shifts that extend beyond the requested time range boundaries"
-     },
-     "limit": {
-      "type": "integer",
-      "description": ""
-     },
-     "offset": {
-      "type": "integer",
-      "description": ""
      }
     },
     "required": [
@@ -13617,9 +13641,7 @@
      "since",
      "until",
      "time_zone",
-     "overflow",
-     "limit",
-     "offset"
+     "overflow"
     ],
     "header": [],
     "body": [],
@@ -13956,7 +13978,7 @@
   {
    "slug": "pagerduty.list_event_orchestration_feature_enablements",
    "name": "List enablements for an event orchestration",
-   "description": "List all feature enablement settings for an Event Orchestration. Currently, only the `aiops` enablement is supported. For any account with the AIOps product addon, every Event Orchestration will have AIOps features enabled by default. **Warning conditions**: - If the account is not entitled to use AIOps features, a warning will be returned alongside the enablement data. Scoped OAuth requires: `eve",
+   "description": "List all feature enablement settings for an Event Orchestration. Currently, only the `aiops` enablement is supported. For any account with the AIOps product addon, every Event Orchestration will have AIOps features enabled by default. **Warning conditions**: - If the account is not entitled to use AIOps features, a warning will be returned alongside the enablement data. For PDRP customers, this fe",
    "input": {
     "type": "object",
     "properties": {
@@ -14075,7 +14097,7 @@
      },
      "limit": {
       "type": "integer",
-      "description": ""
+      "description": "Maximum number of items to return"
      },
      "offset": {
       "type": "integer",
@@ -15657,11 +15679,11 @@
      },
      "since": {
       "type": "string",
-      "description": "Start of time range (ISO 8601)"
+      "description": "Start of time range (ISO 8601). Can be at most 2 years in the future."
      },
      "until": {
       "type": "string",
-      "description": "End of time range (ISO 8601)"
+      "description": "End of time range (ISO 8601). Can be at most 2 years and 2 weeks in the future."
      },
      "time_zone": {
       "type": "string",
@@ -15670,14 +15692,6 @@
      "overflow": {
       "type": "boolean",
       "description": "Include shifts that extend beyond the requested time range boundaries"
-     },
-     "limit": {
-      "type": "integer",
-      "description": ""
-     },
-     "offset": {
-      "type": "integer",
-      "description": ""
      }
     },
     "required": [
@@ -15696,9 +15710,7 @@
      "since",
      "until",
      "time_zone",
-     "overflow",
-     "limit",
-     "offset"
+     "overflow"
     ],
     "header": [],
     "body": [],
@@ -15928,7 +15940,7 @@
      },
      "limit": {
       "type": "integer",
-      "description": ""
+      "description": "Maximum number of items to return"
      },
      "offset": {
       "type": "integer",
@@ -16438,6 +16450,10 @@
      "team_ids[]": {
       "type": "array",
       "description": "An array of team IDs. Only results related to these teams will be returned. Account must have the `teams` ability to use this parameter."
+     },
+     "user_id": {
+      "type": "string",
+      "description": "Return only schedules that include this user."
      }
     },
     "required": []
@@ -16451,7 +16467,8 @@
      "offset",
      "query",
      "total",
-     "team_ids[]"
+     "team_ids[]",
+     "user_id"
     ],
     "header": [],
     "body": [],
@@ -16764,7 +16781,7 @@
   {
    "slug": "pagerduty.list_service_feature_enablements",
    "name": "Get enablements for a service",
-   "description": "List all feature enablement settings for a service. Currently, only the `aiops` enablement is supported. For any account with the AIOps product addon, every service will have AIOps features enabled by default. **Warning conditions**: - If the account is not entitled to use AIOps features, a warning will be returned alongside the enablement data. Scoped OAuth requires: `services.read`",
+   "description": "List all feature enablement settings for a service. Currently, only the `aiops` enablement is supported. For any account with the AIOps product addon, every service will have AIOps features enabled by default. **Warning conditions**: - If the account is not entitled to use AIOps features, a warning will be returned alongside the enablement data. For PDRP customers, this feature is branded **Signal",
    "input": {
     "type": "object",
     "properties": {
@@ -19472,7 +19489,7 @@
      },
      "custom_shift": {
       "type": "object",
-      "description": "If the shift has already started, only `end_time` can be modified."
+      "description": "The request replaces the full custom shift. Send every required field, even the fields that do not change. If the shift has already started, only `end_time` can be modified."
      }
     },
     "required": [
@@ -19729,7 +19746,7 @@
   {
    "slug": "pagerduty.update_event_orchestration_feature_enablements",
    "name": "Update an enablement for an event orchestration",
-   "description": "Update the feature enablement setting for a specific product addon on an Event Orchestration. This setting controls enabling or disabling the set of features contained within the addon. Currently, only `aiops` is supported as a valid feature enablement. **Warning conditions**: - If the account is not entitled to use AIOps features, the setting will be updated, but a warning will be returned. Scope",
+   "description": "Update the feature enablement setting for a specific product addon on an Event Orchestration. This setting controls enabling or disabling the set of features contained within the addon. Currently, only `aiops` is supported as a valid feature enablement. **Warning conditions**: - If the account is not entitled to use AIOps features, the setting will be updated, but a warning will be returned. For P",
    "input": {
     "type": "object",
     "properties": {
@@ -19750,7 +19767,7 @@
      },
      "feature_name": {
       "type": "string",
-      "description": "The feature enablement identifier, typically the name of the product addon. Currently only `aiops` is supported.",
+      "description": "The feature enablement identifier, typically the name of the product addon. Currently only `aiops` is supported. For PDRP customers, this feature is branded **Signal Intelligence** in the PagerDuty product UI. The API field names and values (e.g. `aiops`) are unchanged.",
       "enum": [
        "aiops"
       ]
@@ -21251,7 +21268,7 @@
      },
      "schedule": {
       "type": "object",
-      "description": ""
+      "description": "`time_zone` is required. `name` and `description` are optional; an omitted field keeps its current value."
      }
     },
     "required": [
@@ -21543,7 +21560,7 @@
   {
    "slug": "pagerduty.update_service_feature_enablement",
    "name": "Update an enablement for a service",
-   "description": "Update the feature enablement setting for a specific product addon on a service. This setting controls enabling or disabling the set of features contained within the addon. Currently, only `aiops` is supported as a valid feature enablement. **Warning conditions**: - If the account is not entitled to use AIOps features, the setting will be updated, but a warning will be returned. Scoped OAuth requi",
+   "description": "Update the feature enablement setting for a specific product addon on a service. This setting controls enabling or disabling the set of features contained within the addon. Currently, only `aiops` is supported as a valid feature enablement. **Warning conditions**: - If the account is not entitled to use AIOps features, the setting will be updated, but a warning will be returned. For PDRP customers",
    "input": {
     "type": "object",
     "properties": {
@@ -21553,7 +21570,7 @@
      },
      "feature_name": {
       "type": "string",
-      "description": "The feature enablement identifier, typically the name of the product addon. Currently only `aiops` is supported.",
+      "description": "The feature enablement identifier, typically the name of the product addon. Currently only `aiops` is supported. For PDRP customers, this feature is branded **Signal Intelligence** in the PagerDuty product UI. The API field names and values (e.g. `aiops`) are unchanged.",
       "enum": [
        "aiops"
       ]

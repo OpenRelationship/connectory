@@ -2,7 +2,7 @@
 --
 -- GENERATED from https://api.hail.so/openapi.json
 -- Published on the vendor's own documentation site (https://api.hail.so).
--- 53 operations · do not edit
+-- 60 operations · do not edit
 --
 -- The credential is never in here. `auth.env` names an environment variable; the value
 -- stays in the environment, which is what makes this file safe to publish.
@@ -23,8 +23,9 @@ return {
   config = {},
   headers = {},
   operations = {
-    ["hail.acquire_number_v1_numbers_post"] = { method = "POST", url = "https://api.hail.so/v1/numbers", header = {"Idempotency-Key"}, body = {"country_code", "number_type"} },
+    ["hail.acquire_number_v1_numbers_post"] = { method = "POST", url = "https://api.hail.so/v1/numbers", header = {"Idempotency-Key"}, body = {"quote_id", "provider", "country_code", "number_type"} },
     ["hail.activate_provider"] = { method = "POST", url = "https://api.hail.so/v1/providers/{layer}/activate", path = {"layer"}, body = {"provider"} },
+    ["hail.cancel_verification"] = { method = "DELETE", url = "https://api.hail.so/v1/verifications/{verification_id}", path = {"verification_id"} },
     ["hail.check_domain_v1_email_domains_check_domain_get"] = { method = "GET", url = "https://api.hail.so/v1/email-domains/check-domain", query = {"domain"} },
     ["hail.create_call_v1_calls_post"] = { method = "POST", url = "https://api.hail.so/v1/calls", header = {"Idempotency-Key"}, body = {"recipient_consent", "consent_source", "consent_obtained_at", "message_type", "to", "from", "system_prompt", "llm", "first_message", "ai_disclosure", "voice_config", "conversation_id", "metadata", "tools"} },
     ["hail.create_contact_v1_contacts_post"] = { method = "POST", url = "https://api.hail.so/v1/contacts", body = {"name", "phone_e164", "email"} },
@@ -32,12 +33,14 @@ return {
     ["hail.create_email_v1_emails_post"] = { method = "POST", url = "https://api.hail.so/v1/emails", header = {"Idempotency-Key"}, body = {"recipient_consent", "consent_source", "consent_obtained_at", "message_type", "from", "from_name", "to", "cc", "bcc", "reply_to", "subject", "body_text", "body_html", "conversation_id", "metadata", "attachment_ids"} },
     ["hail.create_sms_v1_sms_post"] = { method = "POST", url = "https://api.hail.so/v1/sms", header = {"Idempotency-Key"}, body = {"recipient_consent", "consent_source", "consent_obtained_at", "message_type", "to", "from", "body", "metadata"} },
     ["hail.create_subscription_v1_webhooks_post"] = { method = "POST", url = "https://api.hail.so/v1/webhooks", body = {"target_url", "event_types"} },
+    ["hail.create_verification"] = { method = "POST", url = "https://api.hail.so/v1/verifications" },
     ["hail.delete_contact_v1_contacts_contact_id_delete"] = { method = "DELETE", url = "https://api.hail.so/v1/contacts/{contact_id}", path = {"contact_id"} },
     ["hail.delete_email_domain_v1_email_domains_domain_id_delete"] = { method = "DELETE", url = "https://api.hail.so/v1/email-domains/{domain_id}", path = {"domain_id"} },
     ["hail.delete_member_phone_v1_members_user_id_phone_delete"] = { method = "DELETE", url = "https://api.hail.so/v1/members/{user_id}/phone", path = {"user_id"} },
     ["hail.delete_provider"] = { method = "DELETE", url = "https://api.hail.so/v1/providers/{layer}/{provider}", path = {"layer", "provider"} },
     ["hail.delete_sms_suppression_v1_sms_suppressions_number_delete"] = { method = "DELETE", url = "https://api.hail.so/v1/sms/suppressions/{number}", path = {"number"} },
     ["hail.delete_subscription_v1_webhooks_sub_id_delete"] = { method = "DELETE", url = "https://api.hail.so/v1/webhooks/{sub_id}", path = {"sub_id"} },
+    ["hail.dns_check_email_domain_v1_email_domains_domain_id_dns_check_get"] = { method = "GET", url = "https://api.hail.so/v1/email-domains/{domain_id}/dns-check", path = {"domain_id"} },
     ["hail.enable_sms_v1_numbers_number_id_enable_sms_post"] = { method = "POST", url = "https://api.hail.so/v1/numbers/{number_id}/enable-sms", path = {"number_id"} },
     ["hail.get_call_v1_calls_call_id_get"] = { method = "GET", url = "https://api.hail.so/v1/calls/{call_id}", path = {"call_id"} },
     ["hail.get_email_attachment_v1_emails_email_id_attachments_attachment_id_get"] = { method = "GET", url = "https://api.hail.so/v1/emails/{email_id}/attachments/{attachment_id}", path = {"email_id", "attachment_id"} },
@@ -49,6 +52,8 @@ return {
     ["hail.get_sender_id_v1_sms_sender_id_get"] = { method = "GET", url = "https://api.hail.so/v1/sms/sender-id" },
     ["hail.get_sms_v1_sms_sms_id_get"] = { method = "GET", url = "https://api.hail.so/v1/sms/{sms_id}", path = {"sms_id"} },
     ["hail.get_subscription_v1_webhooks_sub_id_get"] = { method = "GET", url = "https://api.hail.so/v1/webhooks/{sub_id}", path = {"sub_id"} },
+    ["hail.get_verification"] = { method = "GET", url = "https://api.hail.so/v1/verifications/{verification_id}", path = {"verification_id"} },
+    ["hail.get_verification_requirements"] = { method = "GET", url = "https://api.hail.so/v1/verifications/requirements", query = {"country_code", "number_type", "subject_type", "provider"} },
     ["hail.get_whoami_v1_whoami_get"] = { method = "GET", url = "https://api.hail.so/v1/whoami" },
     ["hail.healthz_healthz_get"] = { method = "GET", url = "https://api.hail.so/healthz" },
     ["hail.list_calls_v1_calls_get"] = { method = "GET", url = "https://api.hail.so/v1/calls", query = {"cursor", "limit", "status", "to"} },
@@ -63,11 +68,13 @@ return {
     ["hail.list_sms_suppressions_v1_sms_suppressions_get"] = { method = "GET", url = "https://api.hail.so/v1/sms/suppressions", query = {"cursor", "limit"} },
     ["hail.list_sms_v1_sms_get"] = { method = "GET", url = "https://api.hail.so/v1/sms", query = {"cursor", "limit", "status", "to"} },
     ["hail.list_subscriptions_v1_webhooks_get"] = { method = "GET", url = "https://api.hail.so/v1/webhooks", query = {"cursor", "limit"} },
+    ["hail.list_verifications"] = { method = "GET", url = "https://api.hail.so/v1/verifications" },
     ["hail.patch_contact_v1_contacts_contact_id_patch"] = { method = "PATCH", url = "https://api.hail.so/v1/contacts/{contact_id}", path = {"contact_id"}, body = {"name", "phone_e164", "email"} },
     ["hail.patch_email_domain_v1_email_domains_domain_id_patch"] = { method = "PATCH", url = "https://api.hail.so/v1/email-domains/{domain_id}", path = {"domain_id"}, body = {"local_prefix_user", "local_prefix_org", "inbound_enabled", "forward_to", "forward_rate_per_hour"} },
     ["hail.patch_sender_id_v1_sms_sender_id_patch"] = { method = "PATCH", url = "https://api.hail.so/v1/sms/sender-id", body = {"custom_sender_id"} },
     ["hail.patch_subscription_v1_webhooks_sub_id_patch"] = { method = "PATCH", url = "https://api.hail.so/v1/webhooks/{sub_id}", path = {"sub_id"}, body = {"target_url", "event_types", "status"} },
     ["hail.put_member_phone_v1_members_user_id_phone_put"] = { method = "PUT", url = "https://api.hail.so/v1/members/{user_id}/phone", path = {"user_id"}, body = {"phone_e164"} },
+    ["hail.quote_numbers_v1_numbers_quotes_post"] = { method = "POST", url = "https://api.hail.so/v1/numbers/quotes", body = {"country_code", "number_type", "capabilities", "provider"} },
     ["hail.redeliver_v1_webhooks_sub_id_deliveries_delivery_id_redeliver_post"] = { method = "POST", url = "https://api.hail.so/v1/webhooks/{sub_id}/deliveries/{delivery_id}/redeliver", path = {"sub_id", "delivery_id"} },
     ["hail.release_number_v1_numbers_number_id_delete"] = { method = "DELETE", url = "https://api.hail.so/v1/numbers/{number_id}", path = {"number_id"} },
     ["hail.rotate_secret_v1_webhooks_sub_id_rotate_secret_post"] = { method = "POST", url = "https://api.hail.so/v1/webhooks/{sub_id}/rotate-secret", path = {"sub_id"} },

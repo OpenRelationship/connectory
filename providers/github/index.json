@@ -2030,6 +2030,52 @@
    }
   },
   {
+   "slug": "github.actions_download_step_logs_for_workflow_run_job",
+   "name": "Download step logs for a workflow run job",
+   "description": "Gets a redirect URL to download a plain text file of logs for a specific step of a workflow job. This link expires after 1 minute. Look for `Location:` in the response header to find the URL for the download. This endpoint is intended for selective retrieval of one step. To download complete job logs, use the [job logs endpoint](https://docs.github.com/rest/actions/workflow-jobs#download-job-logs-",
+   "input": {
+    "type": "object",
+    "properties": {
+     "owner": {
+      "type": "string",
+      "description": "The account owner of the repository. The name is not case sensitive."
+     },
+     "repo": {
+      "type": "string",
+      "description": "The name of the repository without the `.git` extension. The name is not case sensitive."
+     },
+     "job_id": {
+      "type": "integer",
+      "description": "The unique identifier of the job."
+     },
+     "step_number": {
+      "type": "integer",
+      "description": "The zero-based position number of the step in the job."
+     }
+    },
+    "required": [
+     "job_id",
+     "owner",
+     "repo",
+     "step_number"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.github.com/repos/{owner}/{repo}/actions/jobs/{job_id}/steps/{step_number}/logs",
+    "path": [
+     "owner",
+     "repo",
+     "job_id",
+     "step_number"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "github.actions_download_workflow_run_attempt_logs",
    "name": "Download workflow run attempt logs",
    "description": "Gets a redirect URL to download an archive of log files for a specific workflow run attempt. This link expires after 1 minute. Look for `Location:` in the response header to find the URL for the download. Anyone with read access to the repository can use this endpoint. If the repository is private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.",
@@ -2828,7 +2874,7 @@
   {
    "slug": "github.actions_get_artifact_and_log_retention_settings_organization",
    "name": "Get artifact and log retention settings for an organization",
-   "description": "Gets artifact and log retention settings for an organization. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope or the \"Actions policies\" fine-grained permission to use this endpoint.",
+   "description": "Gets retention settings for checks, workflow runs, commit statuses, artifacts, and logs for an organization. Checks include check suites, check runs, and check annotations. These settings also apply to checks and commit statuses created by third-party integrations, and are not limited to data created by GitHub Actions. OAuth app tokens and personal access tokens (classic) need the `admin:org` scop",
    "input": {
     "type": "object",
     "properties": {
@@ -2856,7 +2902,7 @@
   {
    "slug": "github.actions_get_artifact_and_log_retention_settings_repository",
    "name": "Get artifact and log retention settings for a repository",
-   "description": "Gets artifact and log retention settings for a repository. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.",
+   "description": "Gets retention settings for checks, workflow runs, commit statuses, artifacts, and logs for a repository. Checks include check suites, check runs, and check annotations. These settings also apply to checks and commit statuses created by third-party integrations, and are not limited to data created by GitHub Actions. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use",
    "input": {
     "type": "object",
     "properties": {
@@ -7059,7 +7105,7 @@
   {
    "slug": "github.actions_set_artifact_and_log_retention_settings_organization",
    "name": "Set artifact and log retention settings for an organization",
-   "description": "Sets artifact and log retention settings for an organization. OAuth app tokens and personal access tokens (classic) need the `admin:org` scope or the \"Actions policies\" fine-grained permission to use this endpoint.",
+   "description": "Sets retention settings for checks, workflow runs, commit statuses, artifacts, and logs for an organization. Checks include check suites, check runs, and check annotations. These settings also apply to checks and commit statuses created by third-party integrations, and are not limited to data created by GitHub Actions. OAuth app tokens and personal access tokens (classic) need the `admin:org` scop",
    "input": {
     "type": "object",
     "properties": {
@@ -7069,7 +7115,7 @@
      },
      "days": {
       "type": "integer",
-      "description": "The number of days to retain artifacts and logs"
+      "description": "The number of days to retain checks, workflow runs, commit statuses, artifacts, and logs"
      }
     },
     "required": [
@@ -7094,7 +7140,7 @@
   {
    "slug": "github.actions_set_artifact_and_log_retention_settings_repository",
    "name": "Set artifact and log retention settings for a repository",
-   "description": "Sets artifact and log retention settings for a repository. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint.",
+   "description": "Sets retention settings for checks, workflow runs, commit statuses, artifacts, and logs for a repository. Checks include check suites, check runs, and check annotations. These settings also apply to checks and commit statuses created by third-party integrations, and are not limited to data created by GitHub Actions. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use",
    "input": {
     "type": "object",
     "properties": {
@@ -7108,7 +7154,7 @@
      },
      "days": {
       "type": "integer",
-      "description": "The number of days to retain artifacts and logs"
+      "description": "The number of days to retain checks, workflow runs, commit statuses, artifacts, and logs"
      }
     },
     "required": [
@@ -11820,7 +11866,7 @@
   {
    "slug": "github.apps_add_repo_to_installation_for_authenticated_user",
    "name": "Add a repository to an app installation",
-   "description": "Add a single repository to an installation. The authenticated user must have admin access to the repository. This endpoint only works for PATs (classic) with the `repo` scope.",
+   "description": "Add a single repository to an installation. The authenticated user must have admin access to the repository.",
    "input": {
     "type": "object",
     "properties": {
@@ -12785,7 +12831,7 @@
   {
    "slug": "github.apps_remove_repo_from_installation_for_authenticated_user",
    "name": "Remove a repository from an app installation",
-   "description": "Remove a single repository from an installation. The authenticated user must have admin access to the repository. The installation must have the `repository_selection` of `selected`. This endpoint only works for PATs (classic) with the `repo` scope.",
+   "description": "Remove a single repository from an installation. The authenticated user must have admin access to the repository. The installation must have the `repository_selection` of `selected`. To use a PAT (classic) with this endpoint, the `repo` scope is required",
    "input": {
     "type": "object",
     "properties": {
@@ -13673,37 +13719,9 @@
       "type": "object",
       "description": ""
      },
-     "budget_scope": {
-      "type": "string",
-      "description": "The scope of the budget for this organization. - `organization`: Apply the budget to the organization. - `repository`: Apply the budget to a specific repository in the organization. - `multi_user_customer`: Apply a universal budget to all users in the organization. - `user`: Apply the budget to a single user in the organization.",
-      "enum": [
-       "enterprise",
-       "organization",
-       "repository",
-       "cost_center",
-       "multi_user_customer",
-       "user"
-      ]
-     },
-     "budget_entity_name": {
-      "type": "string",
-      "description": "The name of the entity to apply the budget to"
-     },
-     "budget_type": {
-      "type": "string",
-      "description": "The type of pricing model used by the budget. Determines how `budget_product_sku` is interpreted. - `BundlePricing`: Covers all AI credit SKUs. Set `budget_product_sku` to `ai_credits`. - `ProductPricing`: Covers all SKUs that belong to a product. Set `budget_product_sku` to a product such as `actions` or `packages`. - `SkuPricing`: Covers a single, specific SKU. Set `budget_product_sku` to a SKU "
-     },
-     "budget_product_sku": {
-      "type": "string",
-      "description": "A single product or SKU that will be covered in the budget"
-     },
-     "user": {
-      "type": "string",
-      "description": "The username of the user for `user` scope budgets."
-     },
      "expires_at": {
       "type": "string",
-      "description": "The date the budget will expire in `YYYY-MM-DD` format. Only dates in the future are accepted. If not set, the budget will not expire. Setting to `null` or `0` will remove the expiration date from a budget if set. Only supported for budgets with `budget_scope` of `user`"
+      "description": "The date the budget will expire in `YYYY-MM-DD` format. Only dates in the future are accepted. If not set, the budget will not expire. Setting to `null` or `0` will remove the expiration date from a budget if set. Only supported for existing user-scoped budgets."
      }
     },
     "required": [
@@ -13724,11 +13742,6 @@
      "budget_amount",
      "prevent_further_usage",
      "budget_alerting",
-     "budget_scope",
-     "budget_entity_name",
-     "budget_type",
-     "budget_product_sku",
-     "user",
      "expires_at"
     ],
     "body_format": "json"
@@ -15201,7 +15214,7 @@
   {
    "slug": "github.code_scanning_get_ai_scan_enablement",
    "name": "Get ai scan enablement for a repository",
-   "description": "> [!NOTE] > This endpoint is in public preview and is subject to change. Gets whether AI Scan is enabled for a repository. OAuth app tokens and personal access tokens (classic) need the `security_events` scope to use this endpoint with private or public repositories, or the `public_repo` scope to use this endpoint with only public repositories.",
+   "description": "Gets whether AI Scan is enabled for a repository. OAuth app tokens and personal access tokens (classic) need the `security_events` scope to use this endpoint with private or public repositories, or the `public_repo` scope to use this endpoint with only public repositories.",
    "input": {
     "type": "object",
     "properties": {
@@ -15235,7 +15248,7 @@
   {
    "slug": "github.code_scanning_get_ai_scan_enablement_for_org",
    "name": "Get the ai scan setting for an organization",
-   "description": "> [!NOTE] > This endpoint is in public preview and is subject to change. Gets the AI Scan setting stored on an organization. The response reports the value stored on the organization. Organization respects enterprise policy. The authenticated user must be an owner or security manager for the organization to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `admin:or",
+   "description": "Gets the AI Scan setting stored on an organization. The response reports the value stored on the organization. Organization respects enterprise policy. The authenticated user must be an owner or security manager for the organization to use this endpoint. OAuth app tokens and personal access tokens (classic) need the `admin:org`, `repo`, or `write:org` scope to use this endpoint. Organization owner",
    "input": {
     "type": "object",
     "properties": {
@@ -16001,7 +16014,7 @@
   {
    "slug": "github.code_scanning_update_ai_scan_enablement",
    "name": "Update ai scan enablement for a repository",
-   "description": "> [!NOTE] > This endpoint is in public preview and is subject to change. Updates whether AI Scan is enabled for a repository. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint with private or public repositories, or the `public_repo` scope to use this endpoint with only public repositories.",
+   "description": "Updates whether AI Scan is enabled for a repository. OAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint with private or public repositories, or the `public_repo` scope to use this endpoint with only public repositories.",
    "input": {
     "type": "object",
     "properties": {
@@ -16045,7 +16058,7 @@
   {
    "slug": "github.code_scanning_update_ai_scan_enablement_for_org",
    "name": "Update the ai scan setting for an organization",
-   "description": "> [!NOTE] > This endpoint is in public preview and is subject to change. Updates the AI Scan setting stored on an organization. The organization respects the enterprise policy, so enabling is rejected when the enterprise disallows AI Scan. OAuth app tokens and personal access tokens (classic) need the `admin:org`, `repo`, or `write:org` scope to use this endpoint. Organization owners can use `admi",
+   "description": "Updates the AI Scan setting stored on an organization. The organization respects the enterprise policy, so enabling is rejected when the enterprise disallows AI Scan. OAuth app tokens and personal access tokens (classic) need the `admin:org`, `repo`, or `write:org` scope to use this endpoint. Organization owners can use `admin:org` or `repo`; security managers need `write:org`.",
    "input": {
     "type": "object",
     "properties": {
@@ -23455,7 +23468,7 @@
   {
    "slug": "github.dependabot_update_repository_access_for_org",
    "name": "Updates dependabot's repository access list for an organization",
-   "description": "Updates repositories according to the list of repositories that organization admins have given Dependabot access to when they've updated dependencies. > [!NOTE] > This operation supports both server-to-server and user-to-server access. Unauthorized users will not see the existence of this endpoint. **Example request body:** ```json { \"repository_ids_to_add\": [123, 456], \"repository_ids_to_remove\":",
+   "description": "Updates repositories according to the list of repositories that organization admins have given Dependabot access to when they've updated dependencies. > [!NOTE] > This operation supports both server-to-server and user-to-server access. Unauthorized users will not see the existence of this endpoint. OAuth app tokens and personal access tokens (classic) need the `write:org` scope to use this endpoin",
    "input": {
     "type": "object",
     "properties": {
@@ -23708,803 +23721,6 @@
     "query": [],
     "header": [],
     "body": [],
-    "body_format": "json"
-   }
-  },
-  {
-   "slug": "github.enterprise_team_memberships_add",
-   "name": "Add team member",
-   "description": "Add a team member to an enterprise team.",
-   "input": {
-    "type": "object",
-    "properties": {
-     "enterprise": {
-      "type": "string",
-      "description": "The slug version of the enterprise name."
-     },
-     "enterprise-team": {
-      "type": "string",
-      "description": "The slug version of the enterprise team name. You can also substitute this value with the enterprise team id."
-     },
-     "username": {
-      "type": "string",
-      "description": "The handle for the GitHub user account."
-     }
-    },
-    "required": [
-     "enterprise",
-     "enterprise-team",
-     "username"
-    ]
-   },
-   "request": {
-    "method": "PUT",
-    "url": "https://api.github.com/enterprises/{enterprise}/teams/{enterprise-team}/memberships/{username}",
-    "path": [
-     "enterprise",
-     "enterprise-team",
-     "username"
-    ],
-    "query": [],
-    "header": [],
-    "body": [],
-    "body_format": "json"
-   }
-  },
-  {
-   "slug": "github.enterprise_team_memberships_bulk_add",
-   "name": "Bulk add team members",
-   "description": "Add multiple team members to an enterprise team.",
-   "input": {
-    "type": "object",
-    "properties": {
-     "enterprise": {
-      "type": "string",
-      "description": "The slug version of the enterprise name."
-     },
-     "enterprise-team": {
-      "type": "string",
-      "description": "The slug version of the enterprise team name. You can also substitute this value with the enterprise team id."
-     },
-     "usernames": {
-      "type": "array",
-      "description": "The GitHub user handles to add to the team."
-     }
-    },
-    "required": [
-     "enterprise",
-     "enterprise-team",
-     "usernames"
-    ]
-   },
-   "request": {
-    "method": "POST",
-    "url": "https://api.github.com/enterprises/{enterprise}/teams/{enterprise-team}/memberships/add",
-    "path": [
-     "enterprise",
-     "enterprise-team"
-    ],
-    "query": [],
-    "header": [],
-    "body": [
-     "usernames"
-    ],
-    "body_format": "json"
-   }
-  },
-  {
-   "slug": "github.enterprise_team_memberships_bulk_remove",
-   "name": "Bulk remove team members",
-   "description": "Remove multiple team members from an enterprise team.",
-   "input": {
-    "type": "object",
-    "properties": {
-     "enterprise": {
-      "type": "string",
-      "description": "The slug version of the enterprise name."
-     },
-     "enterprise-team": {
-      "type": "string",
-      "description": "The slug version of the enterprise team name. You can also substitute this value with the enterprise team id."
-     },
-     "usernames": {
-      "type": "array",
-      "description": "The GitHub user handles to be removed from the team."
-     }
-    },
-    "required": [
-     "enterprise",
-     "enterprise-team",
-     "usernames"
-    ]
-   },
-   "request": {
-    "method": "POST",
-    "url": "https://api.github.com/enterprises/{enterprise}/teams/{enterprise-team}/memberships/remove",
-    "path": [
-     "enterprise",
-     "enterprise-team"
-    ],
-    "query": [],
-    "header": [],
-    "body": [
-     "usernames"
-    ],
-    "body_format": "json"
-   }
-  },
-  {
-   "slug": "github.enterprise_team_memberships_get",
-   "name": "Get enterprise team membership",
-   "description": "Returns whether the user is a member of the enterprise team.",
-   "input": {
-    "type": "object",
-    "properties": {
-     "enterprise": {
-      "type": "string",
-      "description": "The slug version of the enterprise name."
-     },
-     "enterprise-team": {
-      "type": "string",
-      "description": "The slug version of the enterprise team name. You can also substitute this value with the enterprise team id."
-     },
-     "username": {
-      "type": "string",
-      "description": "The handle for the GitHub user account."
-     }
-    },
-    "required": [
-     "enterprise",
-     "enterprise-team",
-     "username"
-    ]
-   },
-   "request": {
-    "method": "GET",
-    "url": "https://api.github.com/enterprises/{enterprise}/teams/{enterprise-team}/memberships/{username}",
-    "path": [
-     "enterprise",
-     "enterprise-team",
-     "username"
-    ],
-    "query": [],
-    "header": [],
-    "body": [],
-    "body_format": "json"
-   }
-  },
-  {
-   "slug": "github.enterprise_team_memberships_list",
-   "name": "List members in an enterprise team",
-   "description": "Lists all team members in an enterprise team.",
-   "input": {
-    "type": "object",
-    "properties": {
-     "enterprise": {
-      "type": "string",
-      "description": "The slug version of the enterprise name."
-     },
-     "enterprise-team": {
-      "type": "string",
-      "description": "The slug version of the enterprise team name. You can also substitute this value with the enterprise team id."
-     },
-     "per_page": {
-      "type": "integer",
-      "description": "The number of results per page (max 100). For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
-     },
-     "page": {
-      "type": "integer",
-      "description": "The page number of the results to fetch. For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
-     }
-    },
-    "required": [
-     "enterprise",
-     "enterprise-team"
-    ]
-   },
-   "request": {
-    "method": "GET",
-    "url": "https://api.github.com/enterprises/{enterprise}/teams/{enterprise-team}/memberships",
-    "path": [
-     "enterprise",
-     "enterprise-team"
-    ],
-    "query": [
-     "per_page",
-     "page"
-    ],
-    "header": [],
-    "body": [],
-    "body_format": "json"
-   }
-  },
-  {
-   "slug": "github.enterprise_team_memberships_list_teams_for_user",
-   "name": "List enterprise teams for a user",
-   "description": "Lists all enterprise teams that a user is a member of. This endpoint is available only for enterprises using the new enterprise teams experience. The authenticated user must be an enterprise owner or have the `enterprise_teams:read` permission.",
-   "input": {
-    "type": "object",
-    "properties": {
-     "enterprise": {
-      "type": "string",
-      "description": "The slug version of the enterprise name."
-     },
-     "username": {
-      "type": "string",
-      "description": "The handle for the GitHub user account."
-     },
-     "per_page": {
-      "type": "integer",
-      "description": "The number of results per page (max 100). For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
-     },
-     "page": {
-      "type": "integer",
-      "description": "The page number of the results to fetch. For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
-     }
-    },
-    "required": [
-     "enterprise",
-     "username"
-    ]
-   },
-   "request": {
-    "method": "GET",
-    "url": "https://api.github.com/enterprises/{enterprise}/members/{username}/teams",
-    "path": [
-     "enterprise",
-     "username"
-    ],
-    "query": [
-     "per_page",
-     "page"
-    ],
-    "header": [],
-    "body": [],
-    "body_format": "json"
-   }
-  },
-  {
-   "slug": "github.enterprise_team_memberships_remove",
-   "name": "Remove team membership",
-   "description": "Remove membership of a specific user from a particular team in an enterprise.",
-   "input": {
-    "type": "object",
-    "properties": {
-     "enterprise": {
-      "type": "string",
-      "description": "The slug version of the enterprise name."
-     },
-     "enterprise-team": {
-      "type": "string",
-      "description": "The slug version of the enterprise team name. You can also substitute this value with the enterprise team id."
-     },
-     "username": {
-      "type": "string",
-      "description": "The handle for the GitHub user account."
-     }
-    },
-    "required": [
-     "enterprise",
-     "enterprise-team",
-     "username"
-    ]
-   },
-   "request": {
-    "method": "DELETE",
-    "url": "https://api.github.com/enterprises/{enterprise}/teams/{enterprise-team}/memberships/{username}",
-    "path": [
-     "enterprise",
-     "enterprise-team",
-     "username"
-    ],
-    "query": [],
-    "header": [],
-    "body": [],
-    "body_format": "json"
-   }
-  },
-  {
-   "slug": "github.enterprise_team_organizations_add",
-   "name": "Add an organization assignment",
-   "description": "Assign an enterprise team to an organization.",
-   "input": {
-    "type": "object",
-    "properties": {
-     "enterprise": {
-      "type": "string",
-      "description": "The slug version of the enterprise name."
-     },
-     "enterprise-team": {
-      "type": "string",
-      "description": "The slug version of the enterprise team name. You can also substitute this value with the enterprise team id."
-     },
-     "org": {
-      "type": "string",
-      "description": "The organization name. The name is not case sensitive."
-     }
-    },
-    "required": [
-     "enterprise",
-     "enterprise-team",
-     "org"
-    ]
-   },
-   "request": {
-    "method": "PUT",
-    "url": "https://api.github.com/enterprises/{enterprise}/teams/{enterprise-team}/organizations/{org}",
-    "path": [
-     "enterprise",
-     "enterprise-team",
-     "org"
-    ],
-    "query": [],
-    "header": [],
-    "body": [],
-    "body_format": "json"
-   }
-  },
-  {
-   "slug": "github.enterprise_team_organizations_bulk_add",
-   "name": "Add organization assignments",
-   "description": "Assign an enterprise team to multiple organizations.",
-   "input": {
-    "type": "object",
-    "properties": {
-     "enterprise": {
-      "type": "string",
-      "description": "The slug version of the enterprise name."
-     },
-     "enterprise-team": {
-      "type": "string",
-      "description": "The slug version of the enterprise team name. You can also substitute this value with the enterprise team id."
-     },
-     "organization_slugs": {
-      "type": "array",
-      "description": "Organization slug to assign the team to."
-     }
-    },
-    "required": [
-     "enterprise",
-     "enterprise-team",
-     "organization_slugs"
-    ]
-   },
-   "request": {
-    "method": "POST",
-    "url": "https://api.github.com/enterprises/{enterprise}/teams/{enterprise-team}/organizations/add",
-    "path": [
-     "enterprise",
-     "enterprise-team"
-    ],
-    "query": [],
-    "header": [],
-    "body": [
-     "organization_slugs"
-    ],
-    "body_format": "json"
-   }
-  },
-  {
-   "slug": "github.enterprise_team_organizations_bulk_remove",
-   "name": "Remove organization assignments",
-   "description": "Unassign an enterprise team from multiple organizations.",
-   "input": {
-    "type": "object",
-    "properties": {
-     "enterprise": {
-      "type": "string",
-      "description": "The slug version of the enterprise name."
-     },
-     "enterprise-team": {
-      "type": "string",
-      "description": "The slug version of the enterprise team name. You can also substitute this value with the enterprise team id."
-     },
-     "organization_slugs": {
-      "type": "array",
-      "description": "Organization slug to unassign the team from."
-     }
-    },
-    "required": [
-     "enterprise",
-     "enterprise-team",
-     "organization_slugs"
-    ]
-   },
-   "request": {
-    "method": "POST",
-    "url": "https://api.github.com/enterprises/{enterprise}/teams/{enterprise-team}/organizations/remove",
-    "path": [
-     "enterprise",
-     "enterprise-team"
-    ],
-    "query": [],
-    "header": [],
-    "body": [
-     "organization_slugs"
-    ],
-    "body_format": "json"
-   }
-  },
-  {
-   "slug": "github.enterprise_team_organizations_delete",
-   "name": "Delete an organization assignment",
-   "description": "Unassign an enterprise team from an organization.",
-   "input": {
-    "type": "object",
-    "properties": {
-     "enterprise": {
-      "type": "string",
-      "description": "The slug version of the enterprise name."
-     },
-     "enterprise-team": {
-      "type": "string",
-      "description": "The slug version of the enterprise team name. You can also substitute this value with the enterprise team id."
-     },
-     "org": {
-      "type": "string",
-      "description": "The organization name. The name is not case sensitive."
-     }
-    },
-    "required": [
-     "enterprise",
-     "enterprise-team",
-     "org"
-    ]
-   },
-   "request": {
-    "method": "DELETE",
-    "url": "https://api.github.com/enterprises/{enterprise}/teams/{enterprise-team}/organizations/{org}",
-    "path": [
-     "enterprise",
-     "enterprise-team",
-     "org"
-    ],
-    "query": [],
-    "header": [],
-    "body": [],
-    "body_format": "json"
-   }
-  },
-  {
-   "slug": "github.enterprise_team_organizations_get_assignment",
-   "name": "Get organization assignment",
-   "description": "Check if an enterprise team is assigned to an organization",
-   "input": {
-    "type": "object",
-    "properties": {
-     "enterprise": {
-      "type": "string",
-      "description": "The slug version of the enterprise name."
-     },
-     "enterprise-team": {
-      "type": "string",
-      "description": "The slug version of the enterprise team name. You can also substitute this value with the enterprise team id."
-     },
-     "org": {
-      "type": "string",
-      "description": "The organization name. The name is not case sensitive."
-     }
-    },
-    "required": [
-     "enterprise",
-     "enterprise-team",
-     "org"
-    ]
-   },
-   "request": {
-    "method": "GET",
-    "url": "https://api.github.com/enterprises/{enterprise}/teams/{enterprise-team}/organizations/{org}",
-    "path": [
-     "enterprise",
-     "enterprise-team",
-     "org"
-    ],
-    "query": [],
-    "header": [],
-    "body": [],
-    "body_format": "json"
-   }
-  },
-  {
-   "slug": "github.enterprise_team_organizations_get_assignments",
-   "name": "Get organization assignments",
-   "description": "Get all organizations assigned to an enterprise team",
-   "input": {
-    "type": "object",
-    "properties": {
-     "enterprise": {
-      "type": "string",
-      "description": "The slug version of the enterprise name."
-     },
-     "enterprise-team": {
-      "type": "string",
-      "description": "The slug version of the enterprise team name. You can also substitute this value with the enterprise team id."
-     },
-     "per_page": {
-      "type": "integer",
-      "description": "The number of results per page (max 100). For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
-     },
-     "page": {
-      "type": "integer",
-      "description": "The page number of the results to fetch. For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
-     }
-    },
-    "required": [
-     "enterprise",
-     "enterprise-team"
-    ]
-   },
-   "request": {
-    "method": "GET",
-    "url": "https://api.github.com/enterprises/{enterprise}/teams/{enterprise-team}/organizations",
-    "path": [
-     "enterprise",
-     "enterprise-team"
-    ],
-    "query": [
-     "per_page",
-     "page"
-    ],
-    "header": [],
-    "body": [],
-    "body_format": "json"
-   }
-  },
-  {
-   "slug": "github.enterprise_teams_create",
-   "name": "Create an enterprise team",
-   "description": "To create an enterprise team, the authenticated user must be an owner of the enterprise.",
-   "input": {
-    "type": "object",
-    "properties": {
-     "enterprise": {
-      "type": "string",
-      "description": "The slug version of the enterprise name."
-     },
-     "name": {
-      "type": "string",
-      "description": "The name of the team."
-     },
-     "description": {
-      "type": "string",
-      "description": "A description of the team."
-     },
-     "sync_to_organizations": {
-      "type": "string",
-      "description": "Retired: this field is no longer supported. Whether the enterprise team should be reflected in each organization. This value cannot be set.",
-      "enum": [
-       "all",
-       "disabled"
-      ]
-     },
-     "organization_selection_type": {
-      "type": "string",
-      "description": "Specifies which organizations in the enterprise should have access to this team. Can be one of `disabled`, `selected`, or `all`. `disabled`: The team is not assigned to any organizations. This is the default when you create a new team. `selected`: The team is assigned to specific organizations. You can then use the [add organization assignments API](https://docs.github.com/rest/enterprise-teams/en",
-      "enum": [
-       "disabled",
-       "selected",
-       "all"
-      ]
-     },
-     "group_id": {
-      "type": "string",
-      "description": "The ID of the IdP group to assign team membership with. You can get this value from the [REST API endpoints for SCIM](https://docs.github.com/rest/scim#list-provisioned-scim-groups-for-an-enterprise)."
-     },
-     "notification_setting": {
-      "type": "string",
-      "description": "The notification setting the team is set to. The options are: * `notifications_enabled` - team members receive notifications when the team is @mentioned. * `notifications_disabled` - no one receives notifications. Default: `notifications_enabled`",
-      "enum": [
-       "notifications_enabled",
-       "notifications_disabled"
-      ]
-     }
-    },
-    "required": [
-     "enterprise",
-     "name"
-    ]
-   },
-   "request": {
-    "method": "POST",
-    "url": "https://api.github.com/enterprises/{enterprise}/teams",
-    "path": [
-     "enterprise"
-    ],
-    "query": [],
-    "header": [],
-    "body": [
-     "name",
-     "description",
-     "sync_to_organizations",
-     "organization_selection_type",
-     "group_id",
-     "notification_setting"
-    ],
-    "body_format": "json"
-   }
-  },
-  {
-   "slug": "github.enterprise_teams_delete",
-   "name": "Delete an enterprise team",
-   "description": "To delete an enterprise team, the authenticated user must be an enterprise owner. If you are an enterprise owner, deleting an enterprise team will delete all of its IdP mappings as well.",
-   "input": {
-    "type": "object",
-    "properties": {
-     "enterprise": {
-      "type": "string",
-      "description": "The slug version of the enterprise name."
-     },
-     "team_slug": {
-      "type": "string",
-      "description": "The slug of the team name."
-     }
-    },
-    "required": [
-     "enterprise",
-     "team_slug"
-    ]
-   },
-   "request": {
-    "method": "DELETE",
-    "url": "https://api.github.com/enterprises/{enterprise}/teams/{team_slug}",
-    "path": [
-     "enterprise",
-     "team_slug"
-    ],
-    "query": [],
-    "header": [],
-    "body": [],
-    "body_format": "json"
-   }
-  },
-  {
-   "slug": "github.enterprise_teams_get",
-   "name": "Get an enterprise team",
-   "description": "Gets a team using the team's slug. To create the slug, GitHub replaces special characters in the name string, changes all words to lowercase, and replaces spaces with a `-` separator and adds the \"ent:\" prefix. For example, \"My TEam N\u00e4me\" would become `ent:my-team-name`.",
-   "input": {
-    "type": "object",
-    "properties": {
-     "enterprise": {
-      "type": "string",
-      "description": "The slug version of the enterprise name."
-     },
-     "team_slug": {
-      "type": "string",
-      "description": "The slug of the team name."
-     }
-    },
-    "required": [
-     "enterprise",
-     "team_slug"
-    ]
-   },
-   "request": {
-    "method": "GET",
-    "url": "https://api.github.com/enterprises/{enterprise}/teams/{team_slug}",
-    "path": [
-     "enterprise",
-     "team_slug"
-    ],
-    "query": [],
-    "header": [],
-    "body": [],
-    "body_format": "json"
-   }
-  },
-  {
-   "slug": "github.enterprise_teams_list",
-   "name": "List enterprise teams",
-   "description": "List all teams in the enterprise for the authenticated user",
-   "input": {
-    "type": "object",
-    "properties": {
-     "enterprise": {
-      "type": "string",
-      "description": "The slug version of the enterprise name."
-     },
-     "per_page": {
-      "type": "integer",
-      "description": "The number of results per page (max 100). For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
-     },
-     "page": {
-      "type": "integer",
-      "description": "The page number of the results to fetch. For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
-     }
-    },
-    "required": [
-     "enterprise"
-    ]
-   },
-   "request": {
-    "method": "GET",
-    "url": "https://api.github.com/enterprises/{enterprise}/teams",
-    "path": [
-     "enterprise"
-    ],
-    "query": [
-     "per_page",
-     "page"
-    ],
-    "header": [],
-    "body": [],
-    "body_format": "json"
-   }
-  },
-  {
-   "slug": "github.enterprise_teams_update",
-   "name": "Update an enterprise team",
-   "description": "To edit a team, the authenticated user must be an enterprise owner.",
-   "input": {
-    "type": "object",
-    "properties": {
-     "enterprise": {
-      "type": "string",
-      "description": "The slug version of the enterprise name."
-     },
-     "team_slug": {
-      "type": "string",
-      "description": "The slug of the team name."
-     },
-     "name": {
-      "type": "string",
-      "description": "A new name for the team."
-     },
-     "description": {
-      "type": "string",
-      "description": "A new description for the team."
-     },
-     "sync_to_organizations": {
-      "type": "string",
-      "description": "Retired: this field is no longer supported. Whether the enterprise team should be reflected in each organization. This value cannot be changed.",
-      "enum": [
-       "all",
-       "disabled"
-      ]
-     },
-     "organization_selection_type": {
-      "type": "string",
-      "description": "Specifies which organizations in the enterprise should have access to this team. Can be one of `disabled`, `selected`, or `all`. `disabled`: The team is not assigned to any organizations. This is the default when you create a new team. `selected`: The team is assigned to specific organizations. You can then use the [add organization assignments API](https://docs.github.com/rest/enterprise-teams/en",
-      "enum": [
-       "disabled",
-       "selected",
-       "all"
-      ]
-     },
-     "group_id": {
-      "type": "string",
-      "description": "The ID of the IdP group to assign team membership with. The new IdP group will replace the existing one, or replace existing direct members if the team isn't currently linked to an IdP group."
-     },
-     "notification_setting": {
-      "type": "string",
-      "description": "The notification setting the team is set to. The options are: * `notifications_enabled` - team members receive notifications when the team is @mentioned. * `notifications_disabled` - no one receives notifications.",
-      "enum": [
-       "notifications_enabled",
-       "notifications_disabled"
-      ]
-     }
-    },
-    "required": [
-     "enterprise",
-     "team_slug"
-    ]
-   },
-   "request": {
-    "method": "PATCH",
-    "url": "https://api.github.com/enterprises/{enterprise}/teams/{team_slug}",
-    "path": [
-     "enterprise",
-     "team_slug"
-    ],
-    "query": [],
-    "header": [],
-    "body": [
-     "name",
-     "description",
-     "sync_to_organizations",
-     "organization_selection_type",
-     "group_id",
-     "notification_setting"
-    ],
     "body_format": "json"
    }
   },
@@ -26896,6 +26112,53 @@
    }
   },
   {
+   "slug": "github.issues_add_relates_to",
+   "name": "Add a related issue",
+   "description": "You can use the REST API to mark an issue as related to another issue. Creating content too quickly using this endpoint may result in secondary rate limiting. For more information, see [Rate limits for the API](https://docs.github.com/rest/using-the-rest-api/rate-limits-for-the-rest-api#about-secondary-rate-limits) and [Best practices for using the REST API](https://docs.github.com/rest/guides/bes",
+   "input": {
+    "type": "object",
+    "properties": {
+     "owner": {
+      "type": "string",
+      "description": "The account owner of the repository. The name is not case sensitive."
+     },
+     "repo": {
+      "type": "string",
+      "description": "The name of the repository without the `.git` extension. The name is not case sensitive."
+     },
+     "issue_number": {
+      "type": "integer",
+      "description": "The number that identifies the issue."
+     },
+     "issue_id": {
+      "type": "integer",
+      "description": "The id of the issue to mark as related to the current issue"
+     }
+    },
+    "required": [
+     "issue_id",
+     "issue_number",
+     "owner",
+     "repo"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.github.com/repos/{owner}/{repo}/issues/{issue_number}/relates_to",
+    "path": [
+     "owner",
+     "repo",
+     "issue_number"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "issue_id"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "github.issues_add_sub_issue",
    "name": "Add sub issue",
    "description": "You can use the REST API to add sub-issues to issues. Creating content too quickly using this endpoint may result in secondary rate limiting. For more information, see \"[Rate limits for the API](https://docs.github.com/rest/using-the-rest-api/rate-limits-for-the-rest-api#about-secondary-rate-limits)\" and \"[Best practices for using the REST API](https://docs.github.com/rest/guides/best-practices-fo",
@@ -28861,6 +28124,57 @@
    }
   },
   {
+   "slug": "github.issues_list_relates_to",
+   "name": "List issues related to an issue",
+   "description": "You can use the REST API to list the issues that are related to an issue. This endpoint supports the following custom media types. For more information, see [Media types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types). - **`application/vnd.github.raw+json`**: Returns the raw Markdown body. Response will include `body`. This is the default if you do n",
+   "input": {
+    "type": "object",
+    "properties": {
+     "owner": {
+      "type": "string",
+      "description": "The account owner of the repository. The name is not case sensitive."
+     },
+     "repo": {
+      "type": "string",
+      "description": "The name of the repository without the `.git` extension. The name is not case sensitive."
+     },
+     "issue_number": {
+      "type": "integer",
+      "description": "The number that identifies the issue."
+     },
+     "per_page": {
+      "type": "integer",
+      "description": "The number of results per page (max 100). For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+     },
+     "page": {
+      "type": "integer",
+      "description": "The page number of the results to fetch. For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+     }
+    },
+    "required": [
+     "issue_number",
+     "owner",
+     "repo"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.github.com/repos/{owner}/{repo}/issues/{issue_number}/relates_to",
+    "path": [
+     "owner",
+     "repo",
+     "issue_number"
+    ],
+    "query": [
+     "per_page",
+     "page"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "github.issues_list_sub_issues",
    "name": "List sub issues",
    "description": "You can use the REST API to list the sub-issues on an issue. This endpoint supports the following custom media types. For more information, see [Media types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types). - **`application/vnd.github.raw+json`**: Returns the raw Markdown body. Response will include `body`. This is the default if you do not pass any s",
@@ -29251,6 +28565,52 @@
      "repo",
      "issue_number",
      "name"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "github.issues_remove_relates_to",
+   "name": "Remove a related issue",
+   "description": "You can use the REST API to remove a 'relates to' relationship between two issues. Removing content too quickly using this endpoint may result in secondary rate limiting. For more information, see [Rate limits for the API](https://docs.github.com/rest/using-the-rest-api/rate-limits-for-the-rest-api#about-secondary-rate-limits) and [Best practices for using the REST API](https://docs.github.com/res",
+   "input": {
+    "type": "object",
+    "properties": {
+     "owner": {
+      "type": "string",
+      "description": "The account owner of the repository. The name is not case sensitive."
+     },
+     "repo": {
+      "type": "string",
+      "description": "The name of the repository without the `.git` extension. The name is not case sensitive."
+     },
+     "issue_number": {
+      "type": "integer",
+      "description": "The number that identifies the issue."
+     },
+     "issue_id": {
+      "type": "integer",
+      "description": "The id of the related issue to remove"
+     }
+    },
+    "required": [
+     "issue_id",
+     "issue_number",
+     "owner",
+     "repo"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.github.com/repos/{owner}/{repo}/issues/{issue_number}/relates_to/{issue_id}",
+    "path": [
+     "owner",
+     "repo",
+     "issue_number",
+     "issue_id"
     ],
     "query": [],
     "header": [],
@@ -32259,6 +31619,218 @@
     "query": [],
     "header": [],
     "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "github.orgs_external_properties_for_repos_create_or_update_organization_values",
+   "name": "Create or update external custom property values for organization repositories",
+   "description": "Create new or update existing external custom property values for repositories in a batch that belong to an organization. Each target repository will have its external custom property values updated to match the values provided in the request. A maximum of 30 repositories can be updated in a single request. Using a value of `null` for an external custom property will remove or 'unset' the property",
+   "input": {
+    "type": "object",
+    "properties": {
+     "org": {
+      "type": "string",
+      "description": "The organization name. The name is not case sensitive."
+     },
+     "repository_names": {
+      "type": "array",
+      "description": "The names of repositories that the external custom property values will be applied to."
+     },
+     "properties": {
+      "type": "array",
+      "description": "List of external custom property names and associated values to apply to the repositories."
+     }
+    },
+    "required": [
+     "org",
+     "properties",
+     "repository_names"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.github.com/orgs/{org}/properties/installations/values",
+    "path": [
+     "org"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "repository_names",
+     "properties"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "github.orgs_external_properties_for_repos_create_or_update_values_for_organization_property",
+   "name": "Create or update external custom property values for a property across organization repositories",
+   "description": "Create new or update existing external custom property values for a single named property across repositories that belong to an organization. Up to 100 repository values can be updated in a single request. Repositories not included in the request are left unchanged. Using a value of `null` for a repository will remove or 'unset' the property value for that repository. A request that only contains ",
+   "input": {
+    "type": "object",
+    "properties": {
+     "org": {
+      "type": "string",
+      "description": "The organization name. The name is not case sensitive."
+     },
+     "property_name": {
+      "type": "string",
+      "description": "The name of the external custom property"
+     },
+     "repository_values": {
+      "type": "array",
+      "description": "The names of repositories and the values that the named external custom property will be set to."
+     }
+    },
+    "required": [
+     "org",
+     "property_name",
+     "repository_values"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.github.com/orgs/{org}/properties/installations/values/{property_name}",
+    "path": [
+     "org",
+     "property_name"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "repository_values"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "github.orgs_external_properties_for_repos_delete_organization_values",
+   "name": "Remove all external custom property values for a property across all organization repositories",
+   "description": "Removes all external custom property values for a specified property name across all repositories that belong to an organization. To use this endpoint, the authenticated GitHub App must have the `organization_external_properties_for_repos:write` permission.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "org": {
+      "type": "string",
+      "description": "The organization name. The name is not case sensitive."
+     },
+     "property_name": {
+      "type": "string",
+      "description": "The name of the external custom property"
+     }
+    },
+    "required": [
+     "org",
+     "property_name"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.github.com/orgs/{org}/properties/installations/values/{property_name}",
+    "path": [
+     "org",
+     "property_name"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "github.orgs_external_properties_for_repos_get_organization_app_installations",
+   "name": "Get registered app installations for external custom properties",
+   "description": "Gets the registered GitHub App installations used to read and write external custom properties for an organization. A GitHub App installation token will only be able to see its own registration info, whereas an authenticated user will be able to see all registrations for the organization. To use this endpoint, the authenticated caller must have the `organization_external_properties_for_repos:admin",
+   "input": {
+    "type": "object",
+    "properties": {
+     "org": {
+      "type": "string",
+      "description": "The organization name. The name is not case sensitive."
+     }
+    },
+    "required": [
+     "org"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.github.com/orgs/{org}/properties/installations",
+    "path": [
+     "org"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "github.orgs_external_properties_for_repos_get_organization_definitions",
+   "name": "Get all external custom properties for a git hub app installation in an organization",
+   "description": "Gets all external custom properties defined for the authenticated GitHub App installation on an organization. To use this endpoint, the authenticated GitHub App must have the `organization_external_properties_for_repos:read` permission.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "org": {
+      "type": "string",
+      "description": "The organization name. The name is not case sensitive."
+     }
+    },
+    "required": [
+     "org"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.github.com/orgs/{org}/properties/installations/schema",
+    "path": [
+     "org"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "github.orgs_external_properties_for_repos_register_organization_app_installation",
+   "name": "Register an app installation for external custom properties",
+   "description": "Registers a GitHub App installation so it can read and write external custom properties for an organization, and assigns it a display name. The display name must be 1 to 15 characters and contain only letters and numbers. Capitalization is preserved as entered. An app installation can only be registered once, and its display name can't be changed afterward. Calling with an app installation that ha",
+   "input": {
+    "type": "object",
+    "properties": {
+     "org": {
+      "type": "string",
+      "description": "The organization name. The name is not case sensitive."
+     },
+     "installation_id": {
+      "type": "integer",
+      "description": "The unique identifier of the GitHub App installation to register for managing external custom properties. When authenticating as a GitHub App installation, this defaults to the authenticated installation and can be omitted. It is required for all other callers (users and fine-grained personal access tokens)."
+     },
+     "display_name": {
+      "type": "string",
+      "description": "The display name for this app installation's external custom properties in the organization. Must be 1 to 15 characters and contain only letters and numbers. Capitalization is preserved as entered. This can't be changed after the app installation is registered."
+     }
+    },
+    "required": [
+     "display_name",
+     "org"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.github.com/orgs/{org}/properties/installations",
+    "path": [
+     "org"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "installation_id",
+     "display_name"
+    ],
     "body_format": "json"
    }
   },
@@ -39076,7 +38648,7 @@
   {
    "slug": "github.pulls_get_merge_async_result",
    "name": "Get the result of an asynchronous merge",
-   "description": "Fetches the current result of an asynchronous merge request, identified by the UUID that was returned when the merge was requested. While the merge is still queued, the response includes the UUID, merge method, and expected head SHA of the request. Once the merge has completed, the response reports whether it was merged, including the merge commit OID on success or a message describing why it coul",
+   "description": "Fetches the current result of an asynchronous merge request, identified by the UUID that was returned when the merge was requested. While the request's status is `pending`, the response includes the UUID, merge method, merge action, and expected head SHA of the request. Once the asynchronous request completes, its status is one of: - `merged`: The pull request was merged into the base branch. The ",
    "input": {
     "type": "object",
     "properties": {
@@ -39686,7 +39258,7 @@
   {
    "slug": "github.pulls_merge",
    "name": "Merge a pull request",
-   "description": "Merges a pull request into the base branch. This endpoint triggers [notifications](https://docs.github.com/github/managing-subscriptions-and-notifications-on-github/about-notifications). Creating content too quickly using this endpoint may result in secondary rate limiting. For more information, see \"[Rate limits for the API](https://docs.github.com/rest/using-the-rest-api/rate-limits-for-the-rest",
+   "description": "> [!NOTE] > We recommend using the [asynchronous merge API](https://docs.github.com/rest/pulls/pulls#merge-a-pull-request-asynchronously) instead. This endpoint does not support stacked pull requests or merging with a merge queue. Merges a pull request into the base branch. This endpoint triggers [notifications](https://docs.github.com/github/managing-subscriptions-and-notifications-on-github/abou",
    "input": {
     "type": "object",
     "properties": {
@@ -39752,7 +39324,7 @@
   {
    "slug": "github.pulls_merge_async",
    "name": "Merge a pull request asynchronously",
-   "description": "Merges a pull request into the base branch in the background. Merging in this way allows certain types of errors to be retried, and avoids the risk of timeouts for particularly complex merges. This is the required method for merging stacked PRs, but also supports unstacked PRs. When using this endpoint to merge a stacked pull request, all pull requests in the stack up to and including the requeste",
+   "description": "Merges a pull request into the base branch in the background or adds it to a merge queue. Background processing allows certain types of errors to be retried and reduces the risk of timeouts for complex merges. This is the required API for merging stacked pull requests. For a stacked pull request, the operation includes all open downstack pull requests. A new asynchronous merge request returns a `2",
    "input": {
     "type": "object",
     "properties": {
@@ -39770,11 +39342,11 @@
      },
      "commit_title": {
       "type": "string",
-      "description": "Title for the automatic commit message."
+      "description": "Title for the automatic commit message. Only supported for direct merges."
      },
      "commit_message": {
       "type": "string",
-      "description": "Extra detail to append to automatic commit message."
+      "description": "Extra detail to append to automatic commit message. Only supported for direct merges."
      },
      "sha": {
       "type": "string",
@@ -39782,7 +39354,7 @@
      },
      "merge_method": {
       "type": "string",
-      "description": "The merge method to use.",
+      "description": "The merge method to use for a direct merge. Only supported for direct merges.",
       "enum": [
        "merge",
        "squash",
@@ -39791,12 +39363,16 @@
      },
      "merge_action": {
       "type": "string",
-      "description": "The action that will be taken to merge the pull request. `direct_merge` merges the pull request directly without using a merge queue; `merge_queue` adds the pull request to a merge queue; `default` selects the most appropriate option.",
+      "description": "The action that will be taken to merge the pull request. `direct_merge` merges the pull request directly without using a merge queue; `merge_queue` adds the pull request to a merge queue; `default` uses a merge queue if one is configured for the target branch, or merges directly otherwise. If omitted, defaults to `default`.",
       "enum": [
        "default",
        "direct_merge",
        "merge_queue"
       ]
+     },
+     "bypass_rules": {
+      "type": "boolean",
+      "description": "Whether to bypass repository rules that the authenticated actor is permitted to bypass."
      }
     },
     "required": [
@@ -39820,7 +39396,8 @@
      "commit_message",
      "sha",
      "merge_method",
-     "merge_action"
+     "merge_action",
+     "bypass_rules"
     ],
     "body_format": "json"
    }
@@ -39914,6 +39491,57 @@
    "request": {
     "method": "POST",
     "url": "https://api.github.com/repos/{owner}/{repo}/pulls/{pull_number}/requested_reviewers",
+    "path": [
+     "owner",
+     "repo",
+     "pull_number"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "reviewers",
+     "team_reviewers"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "github.pulls_rerequest_reviewers",
+   "name": "Rerequest reviewers for a pull request",
+   "description": "Rerequests reviews for a pull request from a given set of users and/or teams. This endpoint triggers [notifications](https://docs.github.com/github/managing-subscriptions-and-notifications-on-github/about-notifications). Creating content too quickly using this endpoint may result in secondary rate limiting. For more information, see \"[Rate limits for the API](https://docs.github.com/rest/using-the",
+   "input": {
+    "type": "object",
+    "properties": {
+     "owner": {
+      "type": "string",
+      "description": "The account owner of the repository. The name is not case sensitive."
+     },
+     "repo": {
+      "type": "string",
+      "description": "The name of the repository without the `.git` extension. The name is not case sensitive."
+     },
+     "pull_number": {
+      "type": "integer",
+      "description": "The number that identifies the pull request."
+     },
+     "reviewers": {
+      "type": "array",
+      "description": "An array of user `login`s whose reviews will be rerequested."
+     },
+     "team_reviewers": {
+      "type": "array",
+      "description": "An array of team `slug`s whose reviews will be rerequested."
+     }
+    },
+    "required": [
+     "owner",
+     "pull_number",
+     "repo"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.github.com/repos/{owner}/{repo}/pulls/{pull_number}/requested_reviewers/rerequest",
     "path": [
      "owner",
      "repo",

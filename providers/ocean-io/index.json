@@ -612,6 +612,58 @@
    }
   },
   {
+   "slug": "ocean-io.get_company_posts",
+   "name": "Get company posts",
+   "description": "Get posts from a company's LinkedIn page. Provide either `linkedinNumID` or `linkedinID`. A valid empty result is not charged.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "linkedinNumID": {
+      "type": "string",
+      "description": "LinkedIn numeric company ID (e.g. \"35625249\"). The preferred, faster identifier."
+     },
+     "linkedinID": {
+      "type": "string",
+      "description": "LinkedIn vanity ID (e.g. \"google\"). Slower and less preferred than linkedinNumID."
+     },
+     "page": {
+      "type": "integer",
+      "description": "Page number (1-indexed)"
+     },
+     "perPage": {
+      "type": "integer",
+      "description": "Number of items per page"
+     },
+     "apiToken": {
+      "type": "string",
+      "description": ""
+     },
+     "x-api-token": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.ocean.io/v2/social/company/posts",
+    "path": [],
+    "query": [
+     "linkedinNumID",
+     "linkedinID",
+     "page",
+     "perPage",
+     "apiToken"
+    ],
+    "header": [
+     "x-api-token"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "ocean-io.get_credit_balance",
    "name": "Get credit balance",
    "description": "Get credit balance",
@@ -666,6 +718,239 @@
     "url": "https://api.ocean.io/v2/data-fields",
     "path": [],
     "query": [
+     "apiToken"
+    ],
+    "header": [
+     "x-api-token"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "ocean-io.get_person_posts",
+   "name": "Get person posts",
+   "description": "Get posts from a person's LinkedIn profile. Provide either `linkedinEntityID` or `linkedinID`. A valid empty result is not charged.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "linkedinEntityID": {
+      "type": "string",
+      "description": "LinkedIn entity ID for the person. The preferred, faster identifier."
+     },
+     "linkedinID": {
+      "type": "string",
+      "description": "LinkedIn ID for the person. Slower and less preferred than linkedinEntityID."
+     },
+     "perPage": {
+      "type": "integer",
+      "description": "Number of items per page"
+     },
+     "paginationToken": {
+      "type": "string",
+      "description": "Token for pagination, required to return results beyond the first page."
+     },
+     "apiToken": {
+      "type": "string",
+      "description": ""
+     },
+     "x-api-token": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.ocean.io/v2/social/person/posts",
+    "path": [],
+    "query": [
+     "linkedinEntityID",
+     "linkedinID",
+     "perPage",
+     "paginationToken",
+     "apiToken"
+    ],
+    "header": [
+     "x-api-token"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "ocean-io.get_post_comments",
+   "name": "Get post comments",
+   "description": "Get comments for a LinkedIn post. A valid empty result is not charged.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "postUrn": {
+      "type": "string",
+      "description": "LinkedIn post URN"
+     },
+     "page": {
+      "type": "integer",
+      "description": "Page number (1-indexed). Increment together with paginationToken."
+     },
+     "paginationToken": {
+      "type": "string",
+      "description": "Omit on page 1. For each next page, increment page and pass the returned token with other parameters unchanged."
+     },
+     "perPage": {
+      "type": "integer",
+      "description": "Number of items per page"
+     },
+     "numReplies": {
+      "type": "integer",
+      "description": "Number of replies to include per comment"
+     },
+     "sortOrder": {
+      "type": "string",
+      "description": "`CHRONOLOGICAL` returns the complete top-level comment page; `RELEVANCE` may return only LinkedIn's curated subset.",
+      "enum": [
+       "CHRONOLOGICAL",
+       "RELEVANCE"
+      ]
+     },
+     "apiToken": {
+      "type": "string",
+      "description": ""
+     },
+     "x-api-token": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "postUrn"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.ocean.io/v2/social/post/comments",
+    "path": [],
+    "query": [
+     "postUrn",
+     "page",
+     "paginationToken",
+     "perPage",
+     "numReplies",
+     "sortOrder",
+     "apiToken"
+    ],
+    "header": [
+     "x-api-token"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "ocean-io.get_post_reactions",
+   "name": "Get post reactions",
+   "description": "Get reactions for a LinkedIn post. A valid empty result is not charged.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "postUrn": {
+      "type": "string",
+      "description": "LinkedIn post URN"
+     },
+     "page": {
+      "type": "integer",
+      "description": "Page number (1-indexed). Increment together with paginationToken."
+     },
+     "paginationToken": {
+      "type": "string",
+      "description": "Omit on page 1. For each next page, increment page and pass the returned token with other parameters unchanged."
+     },
+     "perPage": {
+      "type": "integer",
+      "description": "Number of items per page"
+     },
+     "reactionType": {
+      "type": "string",
+      "description": "Type of reaction to filter, if not supplied returns all reactions"
+     },
+     "apiToken": {
+      "type": "string",
+      "description": ""
+     },
+     "x-api-token": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "postUrn"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.ocean.io/v2/social/post/reactions",
+    "path": [],
+    "query": [
+     "postUrn",
+     "page",
+     "paginationToken",
+     "perPage",
+     "reactionType",
+     "apiToken"
+    ],
+    "header": [
+     "x-api-token"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "ocean-io.get_post_reshares",
+   "name": "Get post reshares",
+   "description": "Get reshares for a LinkedIn post. A valid empty result is not charged.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "postUrn": {
+      "type": "string",
+      "description": "LinkedIn post URN"
+     },
+     "page": {
+      "type": "integer",
+      "description": "Page number (1-indexed)"
+     },
+     "perPage": {
+      "type": "integer",
+      "description": "Number of items per page"
+     },
+     "paginationToken": {
+      "type": "string",
+      "description": "Token required for pagination, returned on the first request."
+     },
+     "apiToken": {
+      "type": "string",
+      "description": ""
+     },
+     "x-api-token": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "postUrn"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.ocean.io/v2/social/post/reshares",
+    "path": [],
+    "query": [
+     "postUrn",
+     "page",
+     "perPage",
+     "paginationToken",
      "apiToken"
     ],
     "header": [

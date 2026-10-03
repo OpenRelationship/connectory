@@ -20,8 +20,8 @@ vouches for**: read it, then read their reference.
 - https://cursor.com/docs/get-started/quickstart.md
 - https://cursor.com/docs/models-and-pricing.md
   - https://cursor.com/docs/cursor-router.md
-  - https://cursor.com/docs/models/claude-sonnet-5.md
-  - https://cursor.com/docs/models/claude-opus-5.md
+  - https://cursor.com/docs/models/claude-sonnet-5-5.md
+  - https://cursor.com/docs/models/claude-opus-5-5.md
   - https://cursor.com/docs/models/claude-fable-5-1.md
   - https://cursor.com/docs/models/gemini-3-1-pro.md
   - https://cursor.com/docs/models/gemini-3-8-flash.md
@@ -29,6 +29,7 @@ vouches for**: read it, then read their reference.
   - https://cursor.com/docs/models/gpt-5-6-sol.md
   - https://cursor.com/docs/models/gpt-5-6-terra.md
   - https://cursor.com/docs/models/gpt-5-6-luna.md
+  - https://cursor.com/docs/models/grok-4-7.md
   - https://cursor.com/docs/models/grok-4-6.md
   - https://cursor.com/docs/models/grok-4-5.md
   - https://cursor.com/docs/models/cursor-composer-2-5.md
@@ -60,6 +61,7 @@ vouches for**: read it, then read their reference.
 - https://cursor.com/docs/grok-bot/work.md
 - https://cursor.com/docs/grok-bot/settings.md
 - https://cursor.com/docs/grok-bot/teams.md
+  - https://cursor.com/docs/grok-bot/deployment.md
   - https://cursor.com/docs/grok-bot/identity.md
   - https://cursor.com/docs/grok-bot/private-networks.md
   - https://cursor.com/docs/grok-bot/proxies.md
@@ -90,6 +92,7 @@ vouches for**: read it, then read their reference.
 - https://cursor.com/docs/bugbot.md
 - https://cursor.com/docs/security-agents.md
 - https://cursor.com/docs/approval-agents.md
+- https://cursor.com/docs/rollouts.md
 - https://cursor.com/docs/cloud-agent/mobile.md
 - https://cursor.com/docs/cloud-agent/security.md
   - https://cursor.com/docs/cloud-agent/security-network.md
@@ -249,6 +252,7 @@ vouches for**: read it, then read their reference.
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#list-pending-pool-requests
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#watch-pending-pool-requests
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#claim-a-pending-request
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#create-a-session-token
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#release-a-claim
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#api-key-info
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#list-models
@@ -266,6 +270,7 @@ vouches for**: read it, then read their reference.
 - https://cursor.com/docs/account/organizations/organization-admin-api.md#get-daily-usage-data
 - https://cursor.com/docs/account/organizations/organization-admin-api.md#get-spending-data
 - https://cursor.com/docs/account/organizations/organization-admin-api.md#model-access
+- https://cursor.com/docs/account/organizations/organization-admin-api.md#grok-bot-computers
 - https://cursor.com/docs/account/teams/admin-api.md#get-team-members
 - https://cursor.com/docs/account/teams/admin-api.md#get-audit-logs
 - https://cursor.com/docs/account/teams/admin-api.md#get-daily-usage-data
@@ -329,8 +334,12 @@ vouches for**: read it, then read their reference.
 - https://cursor.com/docs/api/origin/llms-full.txt
 - https://cursor.com/docs/api/origin/llms.txt
 - https://cursor.com/docs/api/origin/openapi.yaml
-- https://cursor.com/docs/api/origin/changelog
-- https://cursor.com/docs/api/origin/grants-api
+- https://cursor.com/docs/api/origin/changelog.md
+- https://cursor.com/docs/api/origin/grants-api.md
+- https://cursor.com/docs/api/origin/acting-as-users.md
+- https://cursor.com/docs/api/origin/migrations.md
+- https://cursor.com/docs/api/origin/mcp.md
+- https://cursor.com/docs/api/origin/mcp/tools.md
 
 # Help Center
 
@@ -384,6 +393,7 @@ vouches for**: read it, then read their reference.
 
 - https://cursor.com/help/models-and-usage/available-models.md
 - https://cursor.com/help/models-and-usage/cursor-router.md
+- https://cursor.com/help/models-and-usage/grok-4-7.md
 - https://cursor.com/help/models-and-usage/grok-4-6.md
 - https://cursor.com/help/models-and-usage/grok-4-5.md
 - https://cursor.com/help/models-and-usage/api-keys.md
@@ -436,6 +446,7 @@ vouches for**: read it, then read their reference.
 
 - https://cursor.com/help/grok-bot/onboarding.md
 - https://cursor.com/help/grok-bot/how-to.md
+- https://cursor.com/help/grok-bot/faqs.md
 - https://cursor.com/help/grok-bot/sign-in.md
 - https://cursor.com/help/grok-bot/mobile.md
 - https://cursor.com/help/grok-bot/plans.md
@@ -444,6 +455,10 @@ vouches for**: read it, then read their reference.
 - https://cursor.com/help/grok-bot/delete-account.md
 - https://cursor.com/help/grok-bot/connect-plugins.md
 - https://cursor.com/help/grok-bot/routines.md
+- https://cursor.com/help/grok-bot/edit-bot.md
+- https://cursor.com/help/grok-bot/group-chats.md
+- https://cursor.com/help/grok-bot/team-bots.md
+- https://cursor.com/help/grok-bot/voice-chat.md
 - https://cursor.com/help/grok-bot/computer-recovery.md
 - https://cursor.com/help/grok-bot/secrets.md
 - https://cursor.com/help/grok-bot/get-help.md
@@ -454,6 +469,7 @@ vouches for**: read it, then read their reference.
 - https://cursor.com/help/troubleshooting/tab-issues.md
 - https://cursor.com/help/troubleshooting/install-issues.md
 - https://cursor.com/help/troubleshooting/network.md
+- https://cursor.com/help/troubleshooting/sign-in-domains.md
 - https://cursor.com/help/troubleshooting/extensions.md
 - https://cursor.com/help/troubleshooting/performance.md
 - https://cursor.com/help/troubleshooting/reporting-bugs.md

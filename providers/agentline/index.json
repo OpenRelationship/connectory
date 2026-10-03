@@ -6,7 +6,7 @@
   {
    "slug": "agentline.buy_phone_number",
    "name": "Provision",
-   "description": "Buy a US phone number for your AI agent. Searches for and purchases a real US phone number from the telephony provider, then attaches it to the specified AI agent. Once attached, the agent can make outbound calls and receive inbound calls on this number. Each AI agent can only have ONE active phone number. Costs $2.00 per number. Request body: - agent_id: str (required) \u2014 the AI agent to assign th",
+   "description": "Buy a US phone number for your AI agent. Searches for and purchases a real US phone number from the telephony provider, then attaches it to the specified AI agent. Once attached, the agent can make outbound calls, receive inbound calls, and receive SMS on this number. Each AI agent can only have ONE active phone number. Costs $2.00/month per number. Request body: - agent_id: str (required) \u2014 the A",
    "input": {
     "type": "object",
     "properties": {
@@ -76,7 +76,7 @@
      },
      "transfer_number": {
       "type": "string",
-      "description": "Phone number in E.164 format to transfer calls to (e.g. a human operator fallback)"
+      "description": "Ignored unless it is the owner phone. Live transfers always dial owner_phone; a different number is rejected."
      },
      "voicemail_message": {
       "type": "string",
@@ -84,7 +84,7 @@
      },
      "owner_phone": {
       "type": "string",
-      "description": "Owner's phone number in E.164 format (e.g. '+12125551234'). Calls from this number enter task mode \u2014 the agent treats speech as executable instructions."
+      "description": "Owner's phone number in E.164 format (e.g. '+12125551234'). Calls from this number enter task mode. This is also the only number a live call can be transferred to."
      }
     },
     "required": [
@@ -168,7 +168,7 @@
   {
    "slug": "agentline.get_account_balance",
    "name": "Get balance",
-   "description": "Get your AI telephony account balance and rate card. Returns the current balance, currency, billing rates for calls, phone numbers, and inbound SMS, plus what the balance can cover. Use this to check affordability before paid telephony operations.",
+   "description": "Get your AI telephony account balance and rate card. Returns the current balance and currency. Calls are 0.10 USD per minute in both directions. A 0-second call is free. A connected call has a one-minute minimum, then the actual duration rounded up to the cent. Phone numbers are 2.00 USD per month. The rate card also includes inbound SMS. Use this to check affordability before paid telephony opera",
    "input": {
     "type": "object",
     "properties": {},
@@ -293,7 +293,7 @@
   {
    "slug": "agentline.get_call_transcript",
    "name": "Get transcript",
-   "description": "Get the full conversation transcript for a call. Returns the complete speech-to-text transcript of the phone call, with each turn labeled by role (\"human\" for the caller, \"assistant\" for the AI agent). Useful for reviewing what was said on the call, extracting information, or auditing AI agent behavior.",
+   "description": "Get the full conversation transcript for a call. Returns the complete speech-to-text transcript of the phone call, with each turn labeled by role (\"human\" for the caller, \"agent\" for the AI agent). The call.utterance conversation field uses user and assistant instead. Useful for reviewing what was said on the call, extracting information, or auditing AI agent behavior.",
    "input": {
     "type": "object",
     "properties": {
@@ -565,7 +565,7 @@
   {
    "slug": "agentline.list_conversations",
    "name": "List conversations",
-   "description": "List all SMS conversations for your AI agents. Returns conversation threads, optionally filtered by AI agent. Each conversation represents an ongoing SMS exchange between an AI agent's phone number and an external contact.",
+   "description": "List SMS conversation threads for your AI agents. Threads can be filtered by AI agent and include messages received on the agent's phone number.",
    "input": {
     "type": "object",
     "properties": {
@@ -591,7 +591,7 @@
   {
    "slug": "agentline.list_messages",
    "name": "List messages",
-   "description": "List SMS messages sent and received by your AI agents. Returns message history with optional filters by AI agent or conversation. Each entry includes direction (inbound/outbound), phone numbers, message body, and delivery status.",
+   "description": "List SMS messages for your AI agents. Returns texts received on the agent's number and stored message history. Optional filters: AI agent or conversation. Each entry includes direction, phone numbers, message body, and delivery status.",
    "input": {
     "type": "object",
     "properties": {
@@ -772,7 +772,7 @@
   {
    "slug": "agentline.push_call_context",
    "name": "Push call context",
-   "description": "Push context into a LIVE relay-mode call (mid-call context injection). This is the required way for backend agents (Hermes, OpenClaw, etc.) to answer a live caller after a ``call.utterance`` event. Do your work, then POST a concise caller-ready response here. It is spoken verbatim and stored as the assistant turn for later conversation context. AUTHENTICATION (one of): 1. **Push token** (preferred",
+   "description": "Push context into a LIVE relay-mode call (mid-call context injection). This is the required way for backend agents (Hermes, OpenClaw, etc.) to answer a live caller after a ``call.utterance`` event. Do your work, then POST short facts, not a script. Include ``disposition``. ``progress`` adds a note and keeps the caller on hold with canned lines; the text is not spoken, and the turn stays open. ``do",
    "input": {
     "type": "object",
     "properties": {
@@ -845,6 +845,34 @@
    }
   },
   {
+   "slug": "agentline.release_phone_number",
+   "name": "Release phone number",
+   "description": "Permanently release a phone number that is not in use. Destructive: unrents the number from the carrier. The number cannot be recovered, and calls and texts to it will stop. Refused while a call is in progress or a lease is still active.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "number_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "number_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.agentline.cloud/v1/numbers/{number_id}/release",
+    "path": [
+     "number_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "agentline.reset_account_voice",
    "name": "Reset account voice",
    "description": "Reset account voice to the system default. Removes the account-level voice override so all AI agents fall back to the system default voice during phone calls (unless they have their own voice_id configured).",
@@ -860,56 +888,6 @@
     "query": [],
     "header": [],
     "body": [],
-    "body_format": "json"
-   }
-  },
-  {
-   "slug": "agentline.send_sms",
-   "name": "Send message",
-   "description": "Send an outbound SMS message from an AI agent's phone number.",
-   "input": {
-    "type": "object",
-    "properties": {
-     "agent_id": {
-      "type": "string",
-      "description": "ID of the AI agent sending the SMS (e.g. 'agt_abc123')"
-     },
-     "to_number": {
-      "type": "string",
-      "description": "Destination phone number in E.164 format (e.g. '+12125551234')"
-     },
-     "body": {
-      "type": "string",
-      "description": "SMS message text content"
-     },
-     "media_url": {
-      "type": "string",
-      "description": "URL of media to attach (MMS)"
-     },
-     "from_number_id": {
-      "type": "string",
-      "description": "Specific phone number ID to send from; defaults to the agent's assigned number"
-     }
-    },
-    "required": [
-     "agent_id",
-     "body",
-     "to_number"
-    ]
-   },
-   "request": {
-    "method": "POST",
-    "url": "https://api.agentline.cloud/v1/messages",
-    "path": [],
-    "query": [],
-    "header": [],
-    "body": [
-     "agent_id",
-     "to_number",
-     "body",
-     "media_url",
-     "from_number_id"
-    ],
     "body_format": "json"
    }
   },
@@ -944,7 +922,7 @@
   {
    "slug": "agentline.set_webhook",
    "name": "Set webhook",
-   "description": "Create or replace an agent's webhook. The configured URL receives ALL of that agent's event types \u2014 call lifecycle (`call.received`, `call.completed`, `call.failed`), SMS (`sms.received`), and future events \u2014 as signed JSON POSTs. Each agent may have at most one webhook; POSTing again replaces it. - `agent_id`: the agent whose events this webhook receives (required). - `secret`: HMAC signing secre",
+   "description": "Create or replace an agent's webhook. The configured URL receives ALL of that agent's event types \u2014 `call.received` (inbound answer), `call.utterance`, `call.completed`, `call.owner_task`, `call.failed`, `call.busy`, `call.no-answer`, `call.canceled`, `sms.received`, and `webhook.test` \u2014 as signed JSON POSTs. Each agent may have at most one webhook; POSTing again replaces it. - `agent_id`: the age",
    "input": {
     "type": "object",
     "properties": {
@@ -1037,7 +1015,7 @@
      },
      "transfer_number": {
       "type": "string",
-      "description": "Updated transfer phone number in E.164 format"
+      "description": "Must match owner_phone. A different number is rejected; setting owner_phone updates this to the same number."
      },
      "voicemail_message": {
       "type": "string",
@@ -1045,7 +1023,7 @@
      },
      "owner_phone": {
       "type": "string",
-      "description": "Updated owner phone number in E.164 format for task mode"
+      "description": "Updated owner phone in E.164. Also becomes the only live-call transfer destination."
      }
     },
     "required": [

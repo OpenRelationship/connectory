@@ -287,6 +287,40 @@
    }
   },
   {
+   "slug": "fiber-ai.basic_work_email_reveal",
+   "name": "Find work email from name and company (no linked in required)",
+   "description": "Finds a work email from a person's name and company information without requiring a LinkedIn profile. Useful when the person is not on LinkedIn. \u26a1 Rate limit: 30 requests per 1 minute \ud83d\udcb0 Cost: 1 credit per lite email reveal&nbsp;\u24d8 \u23f1 Recommended timeout: 4 minutes&nbsp;\u24d8",
+   "input": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": "string",
+      "description": "Person name. Provide a full name, or first and last name separately."
+     },
+     "company": {
+      "type": "string",
+      "description": "Company to search. Provide a domain, or a company identifier."
+     }
+    },
+    "required": [
+     "company",
+     "name"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.fiber.ai/v1/contact-details/basic-work-email",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "company"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "fiber-ai.blue_collar_jobs_search",
    "name": "Search blue collar job listings",
    "description": "Search blue collar and trade job postings. Ideal for finding service, manufacturing, trades, and other non-desk positions. Currently US-only. Supports search by company, job title/keyword, and location. Supports pagination via nextPageToken. \u26a1 Rate limit: 300 requests per 1 minute \ud83d\udcb0 Cost: 2 credits per search&nbsp;\u24d8 \u23f1 Recommended timeout: 1 minute&nbsp;\u24d8",
@@ -1638,6 +1672,75 @@
     "body": [
      "overAllContext",
      "companyInfo"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fiber-ai.download_api_requests",
+   "name": "Download your past api requests",
+   "description": "Download the API requests your organization has made, newest first, with the parameters you sent and how each call turned out. Up to 5000 matching requests are returned in one call; if more exist, `truncated` is true \u2014 narrow `from`/`to` and retry. History is retained for 14 days. Response bodies are not returned. \u26a1 Rate limit: 30 requests per 1 minute \ud83d\udcb0 Cost: FREE! No credits are charged for this",
+   "input": {
+    "type": "object",
+    "properties": {
+     "from": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Only return requests received at or after this ISO 8601 timestamp. Logs are retained for 14 days, so earlier timestamps simply return nothing."
+     },
+     "to": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Only return requests received strictly before this ISO 8601 timestamp."
+     },
+     "routePath": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Only return requests to this exact route template, e.g. \"/v1/person/search\"."
+     },
+     "method": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Only return requests using this HTTP method, e.g. \"POST\"."
+     },
+     "statusCode": {
+      "type": [
+       "integer",
+       "null"
+      ],
+      "description": "Only return requests that returned this exact status code."
+     },
+     "errorCode": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Only return the request carrying this error correlation code."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.fiber.ai/v1/api-requests/download",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "from",
+     "to",
+     "routePath",
+     "method",
+     "statusCode",
+     "errorCode"
     ],
     "body_format": "json"
    }
@@ -4318,6 +4421,10 @@
      "enrichmentType": {
       "type": "object",
       "description": "Which email and phone types to look for."
+     },
+     "company": {
+      "type": "string",
+      "description": "Optional current company of the person. When provided, work emails whose domain does not match this company are returned in unmatchedWorkEmails instead of emails. Set identifier to 'linkedinUrl', 'linkedinSlug', 'linkedinOrgId', or 'domain' and provide the corresponding value."
      }
     },
     "required": [
@@ -4332,7 +4439,8 @@
     "header": [],
     "body": [
      "input",
-     "enrichmentType"
+     "enrichmentType",
+     "company"
     ],
     "body_format": "json"
    }
@@ -4855,7 +4963,7 @@
   {
    "slug": "fiber-ai.list_api_requests",
    "name": "List your past api requests",
-   "description": "List the API requests your organization has made, newest first, with the parameters you sent and how each call turned out. Use it to answer 'what did my agent actually run?' \u2014 debugging a failed run, auditing usage, or quoting an `errorCode` in a support request. Filter by time range, route, method, status code, or error code, and page through results with `cursor`. History is retained for 7 days;",
+   "description": "List the API requests your organization has made, newest first, with the parameters you sent and how each call turned out. Use it to answer 'what did my agent actually run?' \u2014 debugging a failed run, auditing usage, or quoting an `errorCode` in a support request. Filter by time range, route, method, status code, or error code, and page through results with `cursor`. History is retained for 14 days",
    "input": {
     "type": "object",
     "properties": {
@@ -4864,7 +4972,7 @@
        "string",
        "null"
       ],
-      "description": "Only return requests received at or after this ISO 8601 timestamp. Logs are retained for 7 days, so earlier timestamps simply return nothing."
+      "description": "Only return requests received at or after this ISO 8601 timestamp. Logs are retained for 14 days, so earlier timestamps simply return nothing."
      },
      "to": {
       "type": [
@@ -5226,6 +5334,10 @@
       "type": "object",
       "description": "Which email and phone types to look for."
      },
+     "company": {
+      "type": "string",
+      "description": "Optional current company of the person. When provided, work emails whose domain does not match this company are returned in unmatchedWorkEmails instead of emails. Set identifier to 'linkedinUrl', 'linkedinSlug', 'linkedinOrgId', or 'domain' and provide the corresponding value."
+     },
      "patience": {
       "type": [
        "string",
@@ -5256,6 +5368,7 @@
     "body": [
      "input",
      "enrichmentType",
+     "company",
      "patience"
     ],
     "body_format": "json"
@@ -5611,7 +5724,7 @@
   {
    "slug": "fiber-ai.poll_batch_live_enrich",
    "name": "Poll batch live enrichment",
-   "description": "Polls a batch live enrichment task for progress and results. Returns paginated enrichment results as they complete. Call repeatedly until status is 'completed' or 'failed'. \u26a1 Rate limit: 360 requests per 1 minute",
+   "description": "Polls a batch live enrichment task for progress and results. Returns paginated enrichment results as they complete. Call repeatedly until status is 'completed' or 'failed'. For profile batches, pass `getDetailedEducation`/`getDetailedWorkExperience` on a given poll call to include deep education/work-experience details in that page's results; this slows the call down, so only enable it if you need",
    "input": {
     "type": "object",
     "properties": {
@@ -5629,6 +5742,20 @@
      "take": {
       "type": "integer",
       "description": "Number of results per page. Defaults to 100."
+     },
+     "getDetailedEducation": {
+      "type": [
+       "boolean",
+       "null"
+      ],
+      "description": "Whether to include deep details about each educational item, like the school's LinkedIn URL, website, location, etc. That'll be put in the detailedEducation array. This slows down the API call, so only enable this if you need it."
+     },
+     "getDetailedWorkExperience": {
+      "type": [
+       "boolean",
+       "null"
+      ],
+      "description": "Whether to include deep details about each work experience item, like the company's LinkedIn URL, website, location, etc. That'll be put in the detailedWorkExperience array. This slows down the API call, so only enable this if you need it."
      }
     },
     "required": [
@@ -5644,7 +5771,9 @@
     "body": [
      "taskId",
      "cursor",
-     "take"
+     "take",
+     "getDetailedEducation",
+     "getDetailedWorkExperience"
     ],
     "body_format": "json"
    }
@@ -7561,6 +7690,10 @@
        "null"
       ],
       "description": "Deprecated \u2014 use `patience` instead. When false, maps to patience: MINIMUM. Ignored if `patience` is also provided."
+     },
+     "company": {
+      "type": "string",
+      "description": "Optional current company of the person. When provided, work emails whose domain does not match this company are returned in unmatchedWorkEmails instead of emails. Set identifier to 'linkedinUrl', 'linkedinSlug', 'linkedinOrgId', or 'domain' and provide the corresponding value."
      }
     },
     "required": [
@@ -7577,7 +7710,8 @@
      "linkedinUrl",
      "enrichmentType",
      "patience",
-     "validateEmails"
+     "validateEmails",
+     "company"
     ],
     "body_format": "json"
    }
@@ -7612,6 +7746,10 @@
        "MAXIMUM",
        null
       ]
+     },
+     "company": {
+      "type": "string",
+      "description": "Optional current company of the person. When provided, work emails whose domain does not match this company are returned in unmatchedWorkEmails instead of emails. Set identifier to 'linkedinUrl', 'linkedinSlug', 'linkedinOrgId', or 'domain' and provide the corresponding value."
      }
     },
     "required": [
@@ -7627,7 +7765,8 @@
     "body": [
      "linkedinUrl",
      "enrichmentType",
-     "patience"
+     "patience",
+     "company"
     ],
     "body_format": "json"
    }
@@ -8299,7 +8438,7 @@
   {
    "slug": "fiber-ai.twitter_profile",
    "name": "Fetch twitter x user profile",
-   "description": "Fetches the public profile for a Twitter/X user by handle. Returns follower/following counts, bio, verification status, and account metadata. \u26a1 Rate limit: 300 requests per 1 minute \ud83d\udcb0 Cost: 2 credits per request&nbsp;\u24d8",
+   "description": "Fetches the public profile for a Twitter/X user by handle. Returns follower/following counts, bio, verification status, and account metadata. \u26a1 Rate limit: 500 requests per 1 minute \ud83d\udcb0 Cost: 2 credits per request&nbsp;\u24d8",
    "input": {
     "type": "object",
     "properties": {
@@ -8327,7 +8466,7 @@
   {
    "slug": "fiber-ai.twitter_search",
    "name": "Search twitter x tweets",
-   "description": "Searches for tweets matching a query. Supports standard Twitter search operators (e.g. 'TypeScript from:elonmusk lang:en'). Returns a paginated list of matching tweets. Use the `cursor` field from the response to retrieve subsequent pages. \u26a1 Rate limit: 300 requests per 1 minute \ud83d\udcb0 Cost: 2 credits per page of results&nbsp;\u24d8",
+   "description": "Searches for tweets matching a query. Supports standard Twitter search operators (e.g. 'TypeScript from:elonmusk lang:en'). Returns a paginated list of matching tweets. Use the `cursor` field from the response to retrieve subsequent pages. \u26a1 Rate limit: 500 requests per 1 minute \ud83d\udcb0 Cost: 2 credits per page of results&nbsp;\u24d8",
    "input": {
     "type": "object",
     "properties": {
@@ -8363,7 +8502,7 @@
   {
    "slug": "fiber-ai.twitter_tweet_details",
    "name": "Fetch twitter x tweet details",
-   "description": "Fetches details for a single tweet by its numeric ID. Returns full text, engagement metrics (likes, retweets, replies, views), and metadata. \u26a1 Rate limit: 300 requests per 1 minute \ud83d\udcb0 Cost: 2 credits per request&nbsp;\u24d8",
+   "description": "Fetches details for a single tweet by its numeric ID. Returns full text, engagement metrics (likes, retweets, replies, views), and metadata. \u26a1 Rate limit: 500 requests per 1 minute \ud83d\udcb0 Cost: 2 credits per request&nbsp;\u24d8",
    "input": {
     "type": "object",
     "properties": {
@@ -8391,7 +8530,7 @@
   {
    "slug": "fiber-ai.twitter_tweet_quotes",
    "name": "Fetch twitter x tweet quote tweets",
-   "description": "Fetches a page of quote tweets for a tweet. Use the `cursor` field from the response to retrieve subsequent pages. \u26a1 Rate limit: 300 requests per 1 minute \ud83d\udcb0 Cost: 2 credits per page of results&nbsp;\u24d8",
+   "description": "Fetches a page of quote tweets for a tweet. Use the `cursor` field from the response to retrieve subsequent pages. \u26a1 Rate limit: 500 requests per 1 minute \ud83d\udcb0 Cost: 2 credits per page of results&nbsp;\u24d8",
    "input": {
     "type": "object",
     "properties": {
@@ -8427,7 +8566,7 @@
   {
    "slug": "fiber-ai.twitter_tweet_replies",
    "name": "Fetch twitter x tweet replies",
-   "description": "Fetches a page of replies to a tweet. Use the `cursor` field from the response to retrieve subsequent pages. \u26a1 Rate limit: 300 requests per 1 minute \ud83d\udcb0 Cost: 2 credits per page of results&nbsp;\u24d8",
+   "description": "Fetches a page of replies to a tweet. Use the `cursor` field from the response to retrieve subsequent pages. \u26a1 Rate limit: 500 requests per 1 minute \ud83d\udcb0 Cost: 2 credits per page of results&nbsp;\u24d8",
    "input": {
     "type": "object",
     "properties": {
@@ -8463,7 +8602,7 @@
   {
    "slug": "fiber-ai.twitter_tweet_retweeters",
    "name": "Fetch twitter x tweet retweeters",
-   "description": "Fetches a page of users who retweeted a tweet. Use the `cursor` field from the response to retrieve subsequent pages. \u26a1 Rate limit: 300 requests per 1 minute \ud83d\udcb0 Cost: 2 credits per page of results&nbsp;\u24d8",
+   "description": "Fetches a page of users who retweeted a tweet. Use the `cursor` field from the response to retrieve subsequent pages. \u26a1 Rate limit: 500 requests per 1 minute \ud83d\udcb0 Cost: 2 credits per page of results&nbsp;\u24d8",
    "input": {
     "type": "object",
     "properties": {
@@ -8499,7 +8638,7 @@
   {
    "slug": "fiber-ai.twitter_user_followers",
    "name": "Fetch twitter x user followers",
-   "description": "Fetches a page of followers for a Twitter/X user. Use the `cursor` field from the response to retrieve subsequent pages. \u26a1 Rate limit: 300 requests per 1 minute \ud83d\udcb0 Cost: 2 credits per page of results&nbsp;\u24d8",
+   "description": "Fetches a page of followers for a Twitter/X user. Use the `cursor` field from the response to retrieve subsequent pages. \u26a1 Rate limit: 500 requests per 1 minute \ud83d\udcb0 Cost: 2 credits per page of results&nbsp;\u24d8",
    "input": {
     "type": "object",
     "properties": {
@@ -8535,7 +8674,7 @@
   {
    "slug": "fiber-ai.twitter_user_following",
    "name": "Fetch twitter x user following",
-   "description": "Fetches a page of accounts a Twitter/X user follows. Use the `cursor` field from the response to retrieve subsequent pages. \u26a1 Rate limit: 300 requests per 1 minute \ud83d\udcb0 Cost: 2 credits per page of results&nbsp;\u24d8",
+   "description": "Fetches a page of accounts a Twitter/X user follows. Use the `cursor` field from the response to retrieve subsequent pages. \u26a1 Rate limit: 500 requests per 1 minute \ud83d\udcb0 Cost: 2 credits per page of results&nbsp;\u24d8",
    "input": {
     "type": "object",
     "properties": {
@@ -8571,7 +8710,7 @@
   {
    "slug": "fiber-ai.twitter_user_mentions",
    "name": "Fetch twitter x user mentions",
-   "description": "Fetches a page of tweets that mention a Twitter/X user. Use the `cursor` field from the response to retrieve subsequent pages. \u26a1 Rate limit: 300 requests per 1 minute \ud83d\udcb0 Cost: 2 credits per page of results&nbsp;\u24d8",
+   "description": "Fetches a page of tweets that mention a Twitter/X user. Use the `cursor` field from the response to retrieve subsequent pages. \u26a1 Rate limit: 500 requests per 1 minute \ud83d\udcb0 Cost: 2 credits per page of results&nbsp;\u24d8",
    "input": {
     "type": "object",
     "properties": {
@@ -8607,7 +8746,7 @@
   {
    "slug": "fiber-ai.twitter_user_tweets",
    "name": "Fetch twitter x user tweets",
-   "description": "Fetches the latest tweets for a Twitter/X user. Returns a paginated list of tweets with engagement metrics. Use the `cursor` field from the response to retrieve subsequent pages. \u26a1 Rate limit: 300 requests per 1 minute \ud83d\udcb0 Cost: 2 credits per page of results&nbsp;\u24d8",
+   "description": "Fetches the latest tweets for a Twitter/X user. Returns a paginated list of tweets with engagement metrics. Use the `cursor` field from the response to retrieve subsequent pages. \u26a1 Rate limit: 500 requests per 1 minute \ud83d\udcb0 Cost: 2 credits per page of results&nbsp;\u24d8",
    "input": {
     "type": "object",
     "properties": {

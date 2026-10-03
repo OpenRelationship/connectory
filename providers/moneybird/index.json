@@ -6159,7 +6159,7 @@
      },
      "period": {
       "type": "string",
-      "description": "The period, given as a single whole month (start on the 1st, end on the last day of the month) or one of the month presets. **Date range formats:** - `YYYYMM` (e.g., `202501`) - `YYYYMM..YYYYMM` with the same month on both sides (e.g., `202501..202501`) - `YYYYMMDD..YYYYMMDD` spanning exactly one whole month (e.g., `20250101..20250131`) **Preset options:** - `this_month` - Current month (default i"
+      "description": "The period can be a date range or one of the presets. Date ranges must consist of whole months (start on 1st, end on last day of month). **Date range formats:** - `YYYYMMDD..YYYYMMDD` (e.g., `20250101..20250131`) - `YYYYMM..YYYYMM` (e.g., `202501..202501`) - `YYYYMM` (e.g., `202501`) **Preset options:** - `this_month` - Current month (default if not specified) - `prev_month` - Previous month - `ne"
      }
     },
     "required": [
@@ -6245,7 +6245,7 @@
      },
      "period": {
       "type": "string",
-      "description": "The period, given as a single whole month (start on the 1st, end on the last day of the month) or one of the month presets. **Date range formats:** - `YYYYMM` (e.g., `202501`) - `YYYYMM..YYYYMM` with the same month on both sides (e.g., `202501..202501`) - `YYYYMMDD..YYYYMMDD` spanning exactly one whole month (e.g., `20250101..20250131`) **Preset options:** - `this_month` - Current month (default i"
+      "description": "The period can be a date range or one of the presets. Date ranges must consist of whole months (start on 1st, end on last day of month). **Date range formats:** - `YYYYMMDD..YYYYMMDD` (e.g., `20250101..20250131`) - `YYYYMM..YYYYMM` (e.g., `202501..202501`) - `YYYYMM` (e.g., `202501`) **Preset options:** - `this_month` - Current month (default if not specified) - `prev_month` - Previous month - `ne"
      },
      "financial_account_id": {
       "type": [
@@ -6279,7 +6279,7 @@
   {
    "slug": "moneybird.get_administration_id_reports_creditors",
    "name": "Creditors report",
-   "description": "Returns a creditors report for the specified administration. ### Required scope(s) `documents`",
+   "description": "Returns the balance of each creditor at the end of the specified period. The start of the period does not change the result. ### Required scope(s) `documents`",
    "input": {
     "type": "object",
     "properties": {
@@ -6296,7 +6296,7 @@
      },
      "period": {
       "type": "string",
-      "description": "The period, given as a single whole month (start on the 1st, end on the last day of the month) or one of the month presets. **Date range formats:** - `YYYYMM` (e.g., `202501`) - `YYYYMM..YYYYMM` with the same month on both sides (e.g., `202501..202501`) - `YYYYMMDD..YYYYMMDD` spanning exactly one whole month (e.g., `20250101..20250131`) **Preset options:** - `this_month` - Current month (default i"
+      "description": "The period can be a date range or one of the presets. Date ranges must consist of whole months (start on 1st, end on last day of month). **Date range formats:** - `YYYYMMDD..YYYYMMDD` (e.g., `20250101..20250131`) - `YYYYMM..YYYYMM` (e.g., `202501..202501`) - `YYYYMM` (e.g., `202501`) **Preset options:** - `this_month` - Current month (default if not specified) - `prev_month` - Previous month - `ne"
      },
      "page": {
       "type": [
@@ -6397,7 +6397,7 @@
   {
    "slug": "moneybird.get_administration_id_reports_debtors",
    "name": "Debtors report",
-   "description": "Returns a debtors report for the specified administration. ### Required scope(s) `sales_invoices`",
+   "description": "Returns the balance of each debtor at the end of the specified period. The start of the period does not change the result. ### Required scope(s) `sales_invoices`",
    "input": {
     "type": "object",
     "properties": {
@@ -6414,7 +6414,7 @@
      },
      "period": {
       "type": "string",
-      "description": "The period, given as a single whole month (start on the 1st, end on the last day of the month) or one of the month presets. **Date range formats:** - `YYYYMM` (e.g., `202501`) - `YYYYMM..YYYYMM` with the same month on both sides (e.g., `202501..202501`) - `YYYYMMDD..YYYYMMDD` spanning exactly one whole month (e.g., `20250101..20250131`) **Preset options:** - `this_month` - Current month (default i"
+      "description": "The period can be a date range or one of the presets. Date ranges must consist of whole months (start on 1st, end on last day of month). **Date range formats:** - `YYYYMMDD..YYYYMMDD` (e.g., `20250101..20250131`) - `YYYYMM..YYYYMM` (e.g., `202501..202501`) - `YYYYMM` (e.g., `202501`) **Preset options:** - `this_month` - Current month (default if not specified) - `prev_month` - Previous month - `ne"
      },
      "page": {
       "type": [
@@ -6532,7 +6532,7 @@
      },
      "period": {
       "type": "string",
-      "description": "The period, given as a single whole month (start on the 1st, end on the last day of the month) or one of the month presets. **Date range formats:** - `YYYYMM` (e.g., `202501`) - `YYYYMM..YYYYMM` with the same month on both sides (e.g., `202501..202501`) - `YYYYMMDD..YYYYMMDD` spanning exactly one whole month (e.g., `20250101..20250131`) **Preset options:** - `this_month` - Current month (default i"
+      "description": "The period can be a date range or one of the presets. Date ranges must consist of whole months (start on 1st, end on last day of month). **Date range formats:** - `YYYYMMDD..YYYYMMDD` (e.g., `20250101..20250131`) - `YYYYMM..YYYYMM` (e.g., `202501..202501`) - `YYYYMM` (e.g., `202501`) **Preset options:** - `this_month` - Current month (default if not specified) - `prev_month` - Previous month - `ne"
      },
      "page": {
       "type": [
@@ -6591,7 +6591,7 @@
      },
      "period": {
       "type": "string",
-      "description": "The period, given as a single whole month (start on the 1st, end on the last day of the month) or one of the month presets. **Date range formats:** - `YYYYMM` (e.g., `202501`) - `YYYYMM..YYYYMM` with the same month on both sides (e.g., `202501..202501`) - `YYYYMMDD..YYYYMMDD` spanning exactly one whole month (e.g., `20250101..20250131`) **Preset options:** - `this_month` - Current month (default i"
+      "description": "The period can be a date range or one of the presets. Date ranges must consist of whole months (start on 1st, end on last day of month). **Date range formats:** - `YYYYMMDD..YYYYMMDD` (e.g., `20250101..20250131`) - `YYYYMM..YYYYMM` (e.g., `202501..202501`) - `YYYYMM` (e.g., `202501`) **Preset options:** - `this_month` - Current month (default if not specified) - `prev_month` - Previous month - `ne"
      },
      "page": {
       "type": [
@@ -6693,7 +6693,7 @@
      },
      "period": {
       "type": "string",
-      "description": "The period, given as a single whole month (start on the 1st, end on the last day of the month) or one of the month presets. **Date range formats:** - `YYYYMM` (e.g., `202501`) - `YYYYMM..YYYYMM` with the same month on both sides (e.g., `202501..202501`) - `YYYYMMDD..YYYYMMDD` spanning exactly one whole month (e.g., `20250101..20250131`) **Preset options:** - `this_month` - Current month (default i"
+      "description": "The period can be a date range or one of the presets. Date ranges must consist of whole months (start on 1st, end on last day of month). **Date range formats:** - `YYYYMMDD..YYYYMMDD` (e.g., `20250101..20250131`) - `YYYYMM..YYYYMM` (e.g., `202501..202501`) - `YYYYMM` (e.g., `202501`) **Preset options:** - `this_month` - Current month (default if not specified) - `prev_month` - Previous month - `ne"
      },
      "page": {
       "type": [
@@ -6840,7 +6840,7 @@
      },
      "period": {
       "type": "string",
-      "description": "The period, given as a single whole month (start on the 1st, end on the last day of the month) or one of the month presets. **Date range formats:** - `YYYYMM` (e.g., `202501`) - `YYYYMM..YYYYMM` with the same month on both sides (e.g., `202501..202501`) - `YYYYMMDD..YYYYMMDD` spanning exactly one whole month (e.g., `20250101..20250131`) **Preset options:** - `this_month` - Current month (default i"
+      "description": "The period can be a date range or one of the presets. Date ranges must consist of whole months (start on 1st, end on last day of month). **Date range formats:** - `YYYYMMDD..YYYYMMDD` (e.g., `20250101..20250131`) - `YYYYMM..YYYYMM` (e.g., `202501..202501`) - `YYYYMM` (e.g., `202501`) **Preset options:** - `this_month` - Current month (default if not specified) - `prev_month` - Previous month - `ne"
      },
      "page": {
       "type": [
@@ -6899,7 +6899,7 @@
      },
      "period": {
       "type": "string",
-      "description": "The period, given as a single whole month (start on the 1st, end on the last day of the month) or one of the month presets. **Date range formats:** - `YYYYMM` (e.g., `202501`) - `YYYYMM..YYYYMM` with the same month on both sides (e.g., `202501..202501`) - `YYYYMMDD..YYYYMMDD` spanning exactly one whole month (e.g., `20250101..20250131`) **Preset options:** - `this_month` - Current month (default i"
+      "description": "The period can be a date range or one of the presets. Date ranges must consist of whole months (start on 1st, end on last day of month). **Date range formats:** - `YYYYMMDD..YYYYMMDD` (e.g., `20250101..20250131`) - `YYYYMM..YYYYMM` (e.g., `202501..202501`) - `YYYYMM` (e.g., `202501`) **Preset options:** - `this_month` - Current month (default if not specified) - `prev_month` - Previous month - `ne"
      },
      "page": {
       "type": [
@@ -6941,7 +6941,7 @@
   {
    "slug": "moneybird.get_administration_id_reports_subscriptions",
    "name": "Subscriptions report",
-   "description": "Get the subscriptions report for the administration. ### Required scope(s) `sales_invoices`",
+   "description": "Get the subscriptions report for the administration. All values are for the last month of the specified period. For example, `this_year` returns the values for December. ### Required scope(s) `sales_invoices`",
    "input": {
     "type": "object",
     "properties": {
@@ -6958,7 +6958,7 @@
      },
      "period": {
       "type": "string",
-      "description": "The period, given as a single whole month (start on the 1st, end on the last day of the month) or one of the month presets. **Date range formats:** - `YYYYMM` (e.g., `202501`) - `YYYYMM..YYYYMM` with the same month on both sides (e.g., `202501..202501`) - `YYYYMMDD..YYYYMMDD` spanning exactly one whole month (e.g., `20250101..20250131`) **Preset options:** - `this_month` - Current month (default i"
+      "description": "The period can be a date range or one of the presets. Date ranges must consist of whole months (start on 1st, end on last day of month). **Date range formats:** - `YYYYMMDD..YYYYMMDD` (e.g., `20250101..20250131`) - `YYYYMM..YYYYMM` (e.g., `202501..202501`) - `YYYYMM` (e.g., `202501`) **Preset options:** - `this_month` - Current month (default if not specified) - `prev_month` - Previous month - `ne"
      }
     },
     "required": [
@@ -7001,7 +7001,7 @@
      },
      "period": {
       "type": "string",
-      "description": "The period, given as a single whole month (start on the 1st, end on the last day of the month) or one of the month presets. **Date range formats:** - `YYYYMM` (e.g., `202501`) - `YYYYMM..YYYYMM` with the same month on both sides (e.g., `202501..202501`) - `YYYYMMDD..YYYYMMDD` spanning exactly one whole month (e.g., `20250101..20250131`) **Preset options:** - `this_month` - Current month (default i"
+      "description": "The period can be a date range or one of the presets. Date ranges must consist of whole months (start on 1st, end on last day of month). **Date range formats:** - `YYYYMMDD..YYYYMMDD` (e.g., `20250101..20250131`) - `YYYYMM..YYYYMM` (e.g., `202501..202501`) - `YYYYMM` (e.g., `202501`) **Preset options:** - `this_month` - Current month (default if not specified) - `prev_month` - Previous month - `ne"
      }
     },
     "required": [

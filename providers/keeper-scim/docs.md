@@ -53,7 +53,7 @@ Keeper Workflow (announced May 13, 2026) extends approval governance to AI agent
 
 ## Security Architecture
 
-Source: https://www.keepersecurity.com/security.html
+Source: https://www.keepersecurity.com/security/
 
 Keeper uses a zero-knowledge, zero-trust architecture. Encryption and decryption always occur locally on the user's device. Keeper's servers never receive plaintext data, and Keeper employees cannot access vault contents.
 
@@ -221,7 +221,7 @@ An embedded conversational DBA co-pilot with full schema context. Runs read-only
 - The standalone desktop app works for any Keeper account tier that supports Keeper Secrets Manager record retrieval.
 - The standalone app can also run in a purely local mode with no Keeper account at all, using OS-native credential storage — effectively a free, secure database client.
 
-Download links for the standalone app: https://www.keepersecurity.com/download.html
+Download links for the standalone app: https://www.keepersecurity.com/download/
 
 ---
 
@@ -361,7 +361,7 @@ KeeperPAM is sold via custom quote. Pricing has two components: per-user seats (
 - **Tier 3 — 250 to 749 NHIs**: Advanced protection for complex, multi-agent deployments.
 - **Enterprise — 750+ NHIs**: Full-scale NHI security for the most demanding environments.
 
-NHI tier dollar amounts are not published; quote requests at https://www.keepersecurity.com/request-quote.html.
+NHI tier dollar amounts are not published; quote requests at https://www.keepersecurity.com/request-quote/.
 
 ### Personal and Family
 
@@ -370,8 +370,8 @@ NHI tier dollar amounts are not published; quote requests at https://www.keepers
 
 ### Discounts
 
-- Students: 50% off (verified via ID.me) – https://www.keepersecurity.com/student-discount-50off.html
-- Military and Medical: 30% off (verified via ID.me) – https://www.keepersecurity.com/id-me-verification.html
+- Students: 50% off (verified via ID.me) – https://www.keepersecurity.com/student-discount-50off/
+- Military and Medical: 30% off (verified via ID.me) – https://www.keepersecurity.com/affiliate/id-me-verification/
 
 ### Free trials
 
@@ -485,12 +485,12 @@ Source: https://www.keepersecurity.com/pricing/business-add-ons/
 
 ## Free Tools
 
-- Personal Dark Web Scan – https://www.keepersecurity.com/free-data-breach-scan.html
-- Business Dark Web Scan – https://www.keepersecurity.com/data-breach-scan-for-business.html
+- Personal Dark Web Scan – https://www.keepersecurity.com/free-data-breach-scan/
+- Business Dark Web Scan – https://www.keepersecurity.com/data-breach-scan-for-business/
 - Password Generator – https://www.keepersecurity.com/features/password-generator/
 - Passphrase Generator – https://www.keepersecurity.com/features/passphrase-generator/
 - Keeper ROI Calculator – https://www.keepersecurity.com/roi-calculator-password-manager/
-- KeeperChat – https://www.keepersecurity.com/keeperchat.html
+- KeeperChat – https://www.keepersecurity.com/keeperchat/
 - Password Strength Meter – https://www.keepersecurity.com/features/password-strength-meter/
 - AI Blast Radius Calculator – https://www.keepersecurity.com/ai-agent-blast-radius-calculator/
 
@@ -524,7 +524,7 @@ Public bug bounty and Vulnerability Disclosure Program managed through Bugcrowd.
 - Cybersecurity Glossary: https://www.keepersecurity.com/resources/glossary/
 - Cyber Threats Database: https://www.keepersecurity.com/threats/
 - Passkeys Directory: https://www.keepersecurity.com/passkeys-directory/
-- Newsroom: https://www.keepersecurity.com/press.html?t=news
+- Newsroom: https://www.keepersecurity.com/company/press/?t=news
 
 ### Recent research (2026)
 
@@ -535,7 +535,7 @@ Public bug bounty and Vulnerability Disclosure Program managed through Bugcrowd.
 
 ## Downloads
 
-Source: https://www.keepersecurity.com/download.html
+Source: https://www.keepersecurity.com/download/
 
 - Desktop: Mac, Windows, Linux
 - Mobile: iOS, Android
@@ -550,10 +550,10 @@ Beta program available for early access.
 
 - About: https://www.keepersecurity.com/company/about/
 - Careers: https://job-boards.greenhouse.io/keepersecurity
-- Partner Program: https://www.keepersecurity.com/partners.html
-- Press / Newsroom: https://www.keepersecurity.com/press.html?t=news
-- Contact: https://www.keepersecurity.com/contact.html
-- Support: https://www.keepersecurity.com/support.html
+- Partner Program: https://www.keepersecurity.com/partners/
+- Press / Newsroom: https://www.keepersecurity.com/company/press/?t=news
+- Contact: https://www.keepersecurity.com/contact/
+- Support: https://www.keepersecurity.com/support/
 - Help Center: https://help.keeper.io/
 
 ---

@@ -232,12 +232,16 @@ vouches for**: read it, then read their reference.
 - [Sponsors](https://developer.swoogo.com/mcp/tools/sponsors.md): Query, create, and update event sponsors
 - [Contacts](https://developer.swoogo.com/mcp/tools/contacts.md): Query and create account-level CRM contacts
 - [Packages](https://developer.swoogo.com/mcp/tools/packages.md): Query registration packages and pricing
+- [Registration types](https://developer.swoogo.com/mcp/tools/registration-types.md): Query registrant type IDs, names, capacities, and pricing
 - [Discount codes](https://developer.swoogo.com/mcp/tools/discount-codes.md): Query, create, and update event discount codes
 - [Transactions](https://developer.swoogo.com/mcp/tools/transactions.md): List payment transactions, refunds, and offline entries for an event
 - [Line items](https://developer.swoogo.com/mcp/tools/line-items.md): Query registrant invoice lines and their change history
 - [Attendance](https://developer.swoogo.com/mcp/tools/attendance.md): Track session attendance and get aggregated statistics
 - [Registration forms](https://developer.swoogo.com/mcp/tools/forms.md): Retrieve form configuration and display interactive registration forms
+- [Audits & schemas](https://developer.swoogo.com/mcp/tools/audits.md): Field definitions, registration audits, call-for-speakers, and invitation lists
 
 ## OpenAPI Specs
 
 - [openapi](/api-reference/openapi.yaml)
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

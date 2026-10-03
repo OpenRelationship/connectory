@@ -403,7 +403,7 @@
      },
      "filter_state": {
       "type": "string",
-      "description": "Filter by company state/region. Accepts ISO 3166-2 codes or names, resolved against the selected countries; a value that resolves under none is ignored."
+      "description": "Filter by company state/region. Accepts ISO 3166-2 codes or names, listed at https://docs.discolike.com/states/, resolved against the selected countries; a value that resolves under none is ignored."
      },
      "negate_filter_state": {
       "type": "string",
@@ -451,11 +451,11 @@
      },
      "summary": {
       "type": "string",
-      "description": "Filter by profile summary text (semantic search)."
+      "description": "Match the profile summary text: a contact matches when its summary contains every word of any one term, in any order. Words are separate terms; quote a multi-word term to keep it together, prefix + to require a term."
      },
      "negate_summary": {
       "type": "string",
-      "description": "Exclude contacts matching this summary description."
+      "description": "Exclude contacts whose profile summary contains every word of any one term, in any order. Quote a multi-word term to keep it together."
      },
      "person_country": {
       "type": "string",
@@ -467,7 +467,7 @@
      },
      "person_state": {
       "type": "string",
-      "description": "Filter by contact's state/region. Accepts ISO 3166-2 codes or names, resolved against the selected countries; a value that resolves under none is ignored."
+      "description": "Filter by contact's state/region. Accepts ISO 3166-2 codes or names, listed at https://docs.discolike.com/states/, resolved against the selected countries; a value that resolves under none is ignored."
      },
      "has_email": {
       "type": "boolean",
@@ -629,7 +629,7 @@
      },
      "filter_state": {
       "type": "string",
-      "description": "Filter by company state/region. Accepts ISO 3166-2 codes or names, resolved against the selected countries; a value that resolves under none is ignored."
+      "description": "Filter by company state/region. Accepts ISO 3166-2 codes or names, listed at https://docs.discolike.com/states/, resolved against the selected countries; a value that resolves under none is ignored."
      },
      "negate_filter_state": {
       "type": "string",
@@ -677,11 +677,11 @@
      },
      "summary": {
       "type": "string",
-      "description": "Filter by profile summary text (semantic search)."
+      "description": "Match the profile summary text: a contact matches when its summary contains every word of any one term, in any order. Words are separate terms; quote a multi-word term to keep it together, prefix + to require a term."
      },
      "negate_summary": {
       "type": "string",
-      "description": "Exclude contacts matching this summary description."
+      "description": "Exclude contacts whose profile summary contains every word of any one term, in any order. Quote a multi-word term to keep it together."
      },
      "person_country": {
       "type": "string",
@@ -693,7 +693,7 @@
      },
      "person_state": {
       "type": "string",
-      "description": "Filter by contact's state/region. Accepts ISO 3166-2 codes or names, resolved against the selected countries; a value that resolves under none is ignored."
+      "description": "Filter by contact's state/region. Accepts ISO 3166-2 codes or names, listed at https://docs.discolike.com/states/, resolved against the selected countries; a value that resolves under none is ignored."
      },
      "has_email": {
       "type": "boolean",
@@ -855,7 +855,7 @@
      },
      "filter_state": {
       "type": "string",
-      "description": "Filter by company state/region. Accepts ISO 3166-2 codes or names, resolved against the selected countries; a value that resolves under none is ignored."
+      "description": "Filter by company state/region. Accepts ISO 3166-2 codes or names, listed at https://docs.discolike.com/states/, resolved against the selected countries; a value that resolves under none is ignored."
      },
      "negate_filter_state": {
       "type": "string",
@@ -903,11 +903,11 @@
      },
      "summary": {
       "type": "string",
-      "description": "Filter by profile summary text (semantic search)."
+      "description": "Match the profile summary text: a contact matches when its summary contains every word of any one term, in any order. Words are separate terms; quote a multi-word term to keep it together, prefix + to require a term."
      },
      "negate_summary": {
       "type": "string",
-      "description": "Exclude contacts matching this summary description."
+      "description": "Exclude contacts whose profile summary contains every word of any one term, in any order. Quote a multi-word term to keep it together."
      },
      "person_country": {
       "type": "string",
@@ -919,7 +919,7 @@
      },
      "person_state": {
       "type": "string",
-      "description": "Filter by contact's state/region. Accepts ISO 3166-2 codes or names, resolved against the selected countries; a value that resolves under none is ignored."
+      "description": "Filter by contact's state/region. Accepts ISO 3166-2 codes or names, listed at https://docs.discolike.com/states/, resolved against the selected countries; a value that resolves under none is ignored."
      },
      "has_email": {
       "type": "boolean",
@@ -1082,7 +1082,7 @@
      },
      "integration_id": {
       "type": "string",
-      "description": ""
+      "description": "LLM provider integration UUID, or 'native' for keyless extraction without title validation. Omit for the org default (falls back to native when none is set)."
      },
      "search_provider_id": {
       "type": "string",
@@ -1116,6 +1116,10 @@
      "initial_contact_counts": {
       "type": "string",
       "description": ""
+     },
+     "find_emails": {
+      "type": "boolean",
+      "description": "After discovery, run every contact that has a name but no email through the email finder (same as the app's Verify step) and fill `email` / `email_status` on the row before the task completes. Found addresses are billed under the finder's own rules; nothing else is."
      }
     },
     "required": [
@@ -1140,7 +1144,8 @@
      "max_company_records",
      "full_domains",
      "partial_domains",
-     "initial_contact_counts"
+     "initial_contact_counts",
+     "find_emails"
     ],
     "body_format": "json"
    }
@@ -1184,6 +1189,34 @@
       "type": "string",
       "description": "Exclude specified industry categories. Valid values: ACCOUNTING, ADVERTISING_AND_MARKETING, AGRICULTURE_AND_NATURAL_RESOURCES, ALCOHOL_AND_TOBACCO, AUTOMOTIVE, BIG_DATA_AND_ANALYTICS, BIOTECHNOLOGY, BLOCKCHAIN_AND_CRYPTOCURRENCY, BUSINESS_PRODUCTS_AND_SERVICES, CLOUD_COMPUTING, COMPUTER_HARDWARE_AND_SEMICONDUCTORS, CONGLOMERATES_SHELL_AND_HOLDING_COMPANIES, CONSTRUCTION, CONSUMER_PRODUCTS, CONSUME"
      },
+     "sub_industry": {
+      "type": "string",
+      "description": "Filter by sub-industry, a second-level label scoped to an industry category. Accepts a bare label (ROOFING) or a parent-qualified key (CONSTRUCTION/ROOFING), case-insensitive, up to 50 values, normalized to the qualified key. A bare label adds its parent to the category filter. Call list-industry-categories for the label descriptions."
+     },
+     "negate_sub_industry": {
+      "type": "string",
+      "description": "Exclude specified sub-industries. Same format as sub_industry; does not affect the category filter."
+     },
+     "lat": {
+      "type": "string",
+      "description": "Latitude of the search centre. Must be supplied together with lon."
+     },
+     "lon": {
+      "type": "string",
+      "description": "Longitude of the search centre. Must be supplied together with lat."
+     },
+     "radius": {
+      "type": "string",
+      "description": "Search radius around lat/lon: a number optionally suffixed with km or mi (50km, 30mi, 50). A bare number is kilometres. Defaults to 50km when lat/lon are supplied, maximum 1000km."
+     },
+     "geo": {
+      "type": "string",
+      "description": "A circular area to search, written lat,lon or lat,lon,radius (30.27,-97.74 or 30.27,-97.74,30mi). The radius is a number optionally suffixed with km or mi, a bare number meaning kilometres; it defaults to 50km and may not exceed 1000km. Repeatable: every geo circle, every bbox and the lat/lon/radius centre are OR'd together, up to 10 shapes in total."
+     },
+     "bbox": {
+      "type": "string",
+      "description": "Bounding box as min_lat,min_lon,max_lat,max_lon. Longitudes may wrap the antimeridian (min_lon above max_lon). Repeatable: every geo circle, every bbox and the lat/lon/radius centre are OR'd together, up to 10 shapes in total."
+     },
      "min_digital_footprint": {
       "type": "string",
       "description": "Minimum digital footprint score (0-800). Default 50."
@@ -1194,7 +1227,7 @@
      },
      "state": {
       "type": "string",
-      "description": "Filter by ISO 3166-2 state codes or names (up to 100). Requires exactly one country value, which may be a region alias; the state is then resolved against every country the alias covers. A value that resolves under none is rejected."
+      "description": "Filter by ISO 3166-2 state codes or names (up to 100), listed at https://docs.discolike.com/states/. Requires exactly one country value, which may be a region alias; the state is then resolved against every country the alias covers. A value that resolves under none is rejected."
      },
      "negate_state": {
       "type": "string",
@@ -1292,6 +1325,13 @@
      "negate_tech_stack",
      "category",
      "negate_category",
+     "sub_industry",
+     "negate_sub_industry",
+     "lat",
+     "lon",
+     "radius",
+     "geo",
+     "bbox",
      "min_digital_footprint",
      "max_digital_footprint",
      "state",
@@ -1624,13 +1664,21 @@
      },
      "integration_id": {
       "type": "string",
-      "description": "LLM provider integration UUID (omit for org default)"
+      "description": "LLM provider integration UUID (omit for org default), or 'native-icp' to score an ICP validation prompt with the native model"
      },
      "web_search": {
       "type": "boolean",
       "description": ""
      },
      "include_x_search": {
+      "type": "boolean",
+      "description": ""
+     },
+     "typed_columns": {
+      "type": "boolean",
+      "description": "Let the detector answer yes/no, fixed-set and scale columns with a TypeSafe judgment model"
+     },
+     "include_confidence": {
       "type": "boolean",
       "description": ""
      },
@@ -1681,6 +1729,8 @@
      "integration_id",
      "web_search",
      "include_x_search",
+     "typed_columns",
+     "include_confidence",
      "search_provider_id",
      "search_context_size",
      "domains",
@@ -1703,13 +1753,21 @@
      },
      "integration_id": {
       "type": "string",
-      "description": "LLM provider integration UUID (omit for org default)"
+      "description": "LLM provider integration UUID (omit for org default), or 'native-icp' to score an ICP validation prompt with the native model"
      },
      "web_search": {
       "type": "boolean",
       "description": ""
      },
      "include_x_search": {
+      "type": "boolean",
+      "description": ""
+     },
+     "typed_columns": {
+      "type": "boolean",
+      "description": "Let the detector answer yes/no, fixed-set and scale columns with a TypeSafe judgment model"
+     },
+     "include_confidence": {
       "type": "boolean",
       "description": ""
      },
@@ -1762,6 +1820,8 @@
      "integration_id",
      "web_search",
      "include_x_search",
+     "typed_columns",
+     "include_confidence",
      "search_provider_id",
      "search_context_size",
      "persona_ids",
@@ -1810,6 +1870,34 @@
       "type": "string",
       "description": "Exclude specified industry categories. Valid values: ACCOUNTING, ADVERTISING_AND_MARKETING, AGRICULTURE_AND_NATURAL_RESOURCES, ALCOHOL_AND_TOBACCO, AUTOMOTIVE, BIG_DATA_AND_ANALYTICS, BIOTECHNOLOGY, BLOCKCHAIN_AND_CRYPTOCURRENCY, BUSINESS_PRODUCTS_AND_SERVICES, CLOUD_COMPUTING, COMPUTER_HARDWARE_AND_SEMICONDUCTORS, CONGLOMERATES_SHELL_AND_HOLDING_COMPANIES, CONSTRUCTION, CONSUMER_PRODUCTS, CONSUME"
      },
+     "sub_industry": {
+      "type": "string",
+      "description": "Filter by sub-industry, a second-level label scoped to an industry category. Accepts a bare label (ROOFING) or a parent-qualified key (CONSTRUCTION/ROOFING), case-insensitive, up to 50 values, normalized to the qualified key. A bare label adds its parent to the category filter. Call list-industry-categories for the label descriptions."
+     },
+     "negate_sub_industry": {
+      "type": "string",
+      "description": "Exclude specified sub-industries. Same format as sub_industry; does not affect the category filter."
+     },
+     "lat": {
+      "type": "string",
+      "description": "Latitude of the search centre. Must be supplied together with lon."
+     },
+     "lon": {
+      "type": "string",
+      "description": "Longitude of the search centre. Must be supplied together with lat."
+     },
+     "radius": {
+      "type": "string",
+      "description": "Search radius around lat/lon: a number optionally suffixed with km or mi (50km, 30mi, 50). A bare number is kilometres. Defaults to 50km when lat/lon are supplied, maximum 1000km."
+     },
+     "geo": {
+      "type": "string",
+      "description": "A circular area to search, written lat,lon or lat,lon,radius (30.27,-97.74 or 30.27,-97.74,30mi). The radius is a number optionally suffixed with km or mi, a bare number meaning kilometres; it defaults to 50km and may not exceed 1000km. Repeatable: every geo circle, every bbox and the lat/lon/radius centre are OR'd together, up to 10 shapes in total."
+     },
+     "bbox": {
+      "type": "string",
+      "description": "Bounding box as min_lat,min_lon,max_lat,max_lon. Longitudes may wrap the antimeridian (min_lon above max_lon). Repeatable: every geo circle, every bbox and the lat/lon/radius centre are OR'd together, up to 10 shapes in total."
+     },
      "min_digital_footprint": {
       "type": "string",
       "description": "Minimum digital footprint score (0-800). Default 50."
@@ -1820,7 +1908,7 @@
      },
      "state": {
       "type": "string",
-      "description": "Filter by ISO 3166-2 state codes or names (up to 100). Requires exactly one country value, which may be a region alias; the state is then resolved against every country the alias covers. A value that resolves under none is rejected."
+      "description": "Filter by ISO 3166-2 state codes or names (up to 100), listed at https://docs.discolike.com/states/. Requires exactly one country value, which may be a region alias; the state is then resolved against every country the alias covers. A value that resolves under none is rejected."
      },
      "negate_state": {
       "type": "string",
@@ -2006,6 +2094,13 @@
      "negate_tech_stack",
      "category",
      "negate_category",
+     "sub_industry",
+     "negate_sub_industry",
+     "lat",
+     "lon",
+     "radius",
+     "geo",
+     "bbox",
      "min_digital_footprint",
      "max_digital_footprint",
      "state",
@@ -3115,7 +3210,7 @@
   {
    "slug": "discolike.validate_icp_validate_icp_post",
    "name": "Validate icp",
-   "description": "Validate domains against an ICP description. Generates a validation prompt from the ICP text, then runs it through DiscoGen with a fixed output schema: fit (yes/no), confidence (high/medium/low), reasoning. Returns an async task \u2014 poll GET /discogen/status/{task_id} for results.",
+   "description": "Validate domains against an ICP description. Generates a validation prompt from the ICP text, then runs it through DiscoGen with a fixed output schema: fit (Yes/No), confidence (high/medium/low), reasoning. Pass integration_id=\"native-icp\" to score with DiscoLike's own ICP-fit model instead of an LLM, at no LLM cost; that run returns ICP Fit / ICP Score / Reasoning instead, with the same Yes/No ve",
    "input": {
     "type": "object",
     "properties": {
@@ -3138,7 +3233,7 @@
      },
      "integration_id": {
       "type": "string",
-      "description": "LLM provider integration UUID (omit for org default)"
+      "description": "LLM provider integration UUID (omit for org default), or 'native-icp' to score with DiscoLike's own ICP-fit model at no LLM cost"
      },
      "web_search": {
       "type": "boolean",

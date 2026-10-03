@@ -88,7 +88,7 @@ return {
     ["todoist.import_into_project_from_file_api_v1_templates_import_into_project_from_file_post"] = { method = "POST", url = "https://api.todoist.com/api/v1/templates/import_into_project_from_file", body = {"project_id", "file"} },
     ["todoist.import_into_project_from_template_id_api_v1_templates_import_into_project_from_template_id_post"] = { method = "POST", url = "https://api.todoist.com/api/v1/templates/import_into_project_from_template_id", body = {"project_id", "template_id", "locale"} },
     ["todoist.invitations_api_v1_workspaces_invitations_get"] = { method = "GET", url = "https://api.todoist.com/api/v1/workspaces/invitations", query = {"workspace_id"} },
-    ["todoist.invite_workspace_users_api_v1_workspaces_workspace_id_users_invite_post"] = { method = "POST", url = "https://api.todoist.com/api/v1/workspaces/{workspace_id}/users/invite", path = {"workspace_id"}, body = {"email_list", "role"} },
+    ["todoist.invite_workspace_users_api_v1_workspaces_workspace_id_users_invite_post"] = { method = "POST", url = "https://api.todoist.com/api/v1/workspaces/{workspace_id}/users/invite", path = {"workspace_id"}, body = {"email_list", "role", "app"} },
     ["todoist.join_api_v1_projects_project_id_join_post"] = { method = "POST", url = "https://api.todoist.com/api/v1/projects/{project_id}/join", path = {"project_id"} },
     ["todoist.join_api_v1_workspaces_join_post"] = { method = "POST", url = "https://api.todoist.com/api/v1/workspaces/join", body = {"invite_code", "workspace_id"} },
     ["todoist.migrate_personal_token_api_v1_access_tokens_migrate_personal_token_post"] = { method = "POST", url = "https://api.todoist.com/api/v1/access_tokens/migrate_personal_token", body = {"client_id", "client_secret", "personal_token", "scope"} },
@@ -129,7 +129,7 @@ return {
     ["todoist.usage_billing_history_api_v1_usage_billing_history_get"] = { method = "GET", url = "https://api.todoist.com/api/v1/usage_billing/history", query = {"product", "types", "cursor", "limit"} },
     ["todoist.usage_billing_state_api_v1_usage_billing_state_get"] = { method = "GET", url = "https://api.todoist.com/api/v1/usage_billing/state", query = {"product"} },
     ["todoist.usage_billing_top_up_api_v1_usage_billing_top_up_post"] = { method = "POST", url = "https://api.todoist.com/api/v1/usage_billing/top_up", body = {"amount", "currency", "return_url"} },
-    ["todoist.usage_billing_usage_summary_api_v1_usage_billing_usage_summary_get"] = { method = "GET", url = "https://api.todoist.com/api/v1/usage_billing/usage_summary", query = {"product", "category", "since", "until"} },
+    ["todoist.usage_billing_usage_summary_api_v1_usage_billing_usage_summary_get"] = { method = "GET", url = "https://api.todoist.com/api/v1/usage_billing/usage_summary", query = {"product", "category", "since", "until", "group_by"} },
     ["todoist.user_info_api_v1_user_get"] = { method = "GET", url = "https://api.todoist.com/api/v1/user" },
   },
 }

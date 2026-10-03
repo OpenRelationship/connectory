@@ -589,7 +589,7 @@
      },
      "files": {
       "type": "array",
-      "description": "A list of URLs that resolve to files that should be attached to the Found Document"
+      "description": "A list of files that should be attached to the Found Document, each given as a publicly accessible URL or as base64-encoded PDF/PNG content"
      },
      "vendor_name": {
       "type": "string",
@@ -828,7 +828,7 @@
   {
    "slug": "lumos.create_user_offboarding",
    "name": "Create user offboarding",
-   "description": "Trigger or schedule an offboarding for an identity using the domain's configured offboarding workflow. Omit `scheduled_at` to run immediately, or provide a future datetime to schedule it.",
+   "description": "Trigger or schedule an offboarding for an identity. Omit `scheduled_at` to run immediately, or provide a future datetime to schedule it. Omit `workflow_config_id` to use the offboarding workflow configuration your organization has selected for automatic offboarding.",
    "input": {
     "type": "object",
     "properties": {
@@ -839,6 +839,10 @@
      "scheduled_at": {
       "type": "string",
       "description": "When to run the offboarding, as an ISO 8601 datetime. Omit to trigger the offboarding immediately; provide a future datetime to schedule it."
+     },
+     "workflow_config_id": {
+      "type": "string",
+      "description": "The UUID of the offboarding workflow configuration to run. Omit to use the configuration your organization has selected for automatic offboarding. This field is only accepted for organizations with the multiple offboarding workflows feature; a request that includes it is rejected otherwise."
      }
     },
     "required": [
@@ -853,7 +857,8 @@
     "header": [],
     "body": [
      "user_id",
-     "scheduled_at"
+     "scheduled_at",
+     "workflow_config_id"
     ],
     "body_format": "json"
    }

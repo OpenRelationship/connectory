@@ -2,7 +2,7 @@
 --
 -- GENERATED from https://api.fiber.ai/openapi.json
 -- Published on the vendor's own documentation site (https://api.fiber.ai).
--- 247 operations · do not edit
+-- 249 operations · do not edit
 --
 -- The credential is never in here. `auth.env` names an environment variable; the value
 -- stays in the environment, which is what makes this file safe to publish.
@@ -30,6 +30,7 @@ return {
     ["fiber-ai.add_prospects_to_exclusion_list"] = { method = "POST", url = "https://api.fiber.ai/v1/exclusions/prospects/add-to-list", body = {"listId", "prospects"} },
     ["fiber-ai.add_tracker_companies"] = { method = "PUT", url = "https://api.fiber.ai/v1/tracker/company-lists/{listId}/companies", path = {"listId"}, body = {"companies", "initialSignals"} },
     ["fiber-ai.add_tracker_people"] = { method = "PUT", url = "https://api.fiber.ai/v1/tracker/person-lists/{listId}/people", path = {"listId"}, body = {"people", "initialSignals"} },
+    ["fiber-ai.basic_work_email_reveal"] = { method = "POST", url = "https://api.fiber.ai/v1/contact-details/basic-work-email", body = {"name", "company"} },
     ["fiber-ai.blue_collar_jobs_search"] = { method = "POST", url = "https://api.fiber.ai/v1/blue-collar-jobs/search", body = {"companySlug", "query", "location", "nextPageToken"} },
     ["fiber-ai.blue_collar_resolve_company"] = { method = "POST", url = "https://api.fiber.ai/v1/blue-collar-jobs/resolve-company", body = {"companyName", "domain"} },
     ["fiber-ai.build_audience"] = { method = "POST", url = "https://api.fiber.ai/v1/audiences/{audienceId}/build", path = {"audienceId"} },
@@ -67,6 +68,7 @@ return {
     ["fiber-ai.delete_webhook_endpoint"] = { method = "DELETE", url = "https://api.fiber.ai/v1/webhooks/endpoints/{endpointId}", path = {"endpointId"} },
     ["fiber-ai.domain_lookup_polling"] = { method = "POST", url = "https://api.fiber.ai/v1/domain-lookup/polling", body = {"domainAgentRunId", "cursor", "pageSize"} },
     ["fiber-ai.domain_lookup_trigger"] = { method = "POST", url = "https://api.fiber.ai/v1/domain-lookup/trigger", body = {"overAllContext", "companyInfo"} },
+    ["fiber-ai.download_api_requests"] = { method = "POST", url = "https://api.fiber.ai/v1/api-requests/download", body = {"from", "to", "routePath", "method", "statusCode", "errorCode"} },
     ["fiber-ai.email_bounce_detection"] = { method = "POST", url = "https://api.fiber.ai/v1/validate-email/single", body = {"email"} },
     ["fiber-ai.estimate_enrichment_cost"] = { method = "POST", url = "https://api.fiber.ai/v1/audiences/{audienceId}/enrichment/estimate", path = {"audienceId"}, body = {"maxProspectsToEnrich", "enrichmentType", "runCompanyLiveEnrichment", "runProfileLiveEnrichment", "runProfileSalesNav", "runContactEnrichment"} },
     ["fiber-ai.export_companies"] = { method = "POST", url = "https://api.fiber.ai/v1/audiences/{audienceId}/export/companies", path = {"audienceId"}, body = {"format", "maxRowsToExport", "excludeFields", "userEmail"} },
@@ -138,7 +140,7 @@ return {
     ["fiber-ai.instagram_profile"] = { method = "POST", url = "https://api.fiber.ai/v1/instagram/profile", body = {"handle"} },
     ["fiber-ai.instagram_user_posts"] = { method = "POST", url = "https://api.fiber.ai/v1/instagram/user-posts", body = {"handle", "nextPageToken"} },
     ["fiber-ai.instagram_user_reels"] = { method = "POST", url = "https://api.fiber.ai/v1/instagram/user-reels", body = {"handle", "nextPageToken"} },
-    ["fiber-ai.instant_contact_reveal"] = { method = "POST", url = "https://api.fiber.ai/v1/contact-details/instant", body = {"input", "enrichmentType"} },
+    ["fiber-ai.instant_contact_reveal"] = { method = "POST", url = "https://api.fiber.ai/v1/contact-details/instant", body = {"input", "enrichmentType", "company"} },
     ["fiber-ai.job_posting_search"] = { method = "POST", url = "https://api.fiber.ai/v1/job-search", body = {"searchParams", "pageSize", "cursor"} },
     ["fiber-ai.job_posting_search_count"] = { method = "POST", url = "https://api.fiber.ai/v1/job-search/count", body = {"searchParams"} },
     ["fiber-ai.job_title_rewrite"] = { method = "POST", url = "https://api.fiber.ai/v1/typeahead/job-title", body = {"query", "limit"} },
@@ -159,7 +161,7 @@ return {
     ["fiber-ai.list_tracker_signals"] = { method = "GET", url = "https://api.fiber.ai/v1/tracker/signals/{listId}", path = {"listId"}, query = {"since", "cursor", "pageSize", "filter"} },
     ["fiber-ai.list_webhook_endpoints"] = { method = "GET", url = "https://api.fiber.ai/v1/webhooks/endpoints" },
     ["fiber-ai.list_webhook_event_types"] = { method = "GET", url = "https://api.fiber.ai/v1/webhooks/event-types" },
-    ["fiber-ai.lite_contact_reveal"] = { method = "POST", url = "https://api.fiber.ai/v1/contact-details/lite", body = {"input", "enrichmentType", "patience"} },
+    ["fiber-ai.lite_contact_reveal"] = { method = "POST", url = "https://api.fiber.ai/v1/contact-details/lite", body = {"input", "enrichmentType", "company", "patience"} },
     ["fiber-ai.lite_reverse_email_lookup"] = { method = "POST", url = "https://api.fiber.ai/v1/email-to-person/single/lite", body = {"email"} },
     ["fiber-ai.location_typeahead"] = { method = "POST", url = "https://api.fiber.ai/v1/typeahead/location", body = {"query"} },
     ["fiber-ai.manually_spawn_saved_search_run"] = { method = "POST", url = "https://api.fiber.ai/v1/saved-search/spawn", body = {"savedSearchId"} },
@@ -169,7 +171,7 @@ return {
     ["fiber-ai.people_search"] = { method = "POST", url = "https://api.fiber.ai/v1/people-search", body = {"searchParams", "pageSize", "cursor", "currentCompanies", "prospectExclusionListIDs", "companyExclusionListIDs", "includeCount"} },
     ["fiber-ai.people_search_count"] = { method = "POST", url = "https://api.fiber.ai/v1/people-search/count", body = {"searchParams", "currentCompanies", "prospectExclusionListIDs", "companyExclusionListIDs", "includeCount"} },
     ["fiber-ai.poll_batch_contact_details"] = { method = "POST", url = "https://api.fiber.ai/v1/contact-details/batch/poll", body = {"taskId", "cursor", "take"} },
-    ["fiber-ai.poll_batch_live_enrich"] = { method = "POST", url = "https://api.fiber.ai/v1/linkedin-live-fetch/batch/poll", body = {"taskId", "cursor", "take"} },
+    ["fiber-ai.poll_batch_live_enrich"] = { method = "POST", url = "https://api.fiber.ai/v1/linkedin-live-fetch/batch/poll", body = {"taskId", "cursor", "take", "getDetailedEducation", "getDetailedWorkExperience"} },
     ["fiber-ai.poll_depth_chart"] = { method = "POST", url = "https://api.fiber.ai/v1/depth-chart/poll", body = {"reportId"} },
     ["fiber-ai.poll_exhaustive_contact_enrichment_result"] = { method = "POST", url = "https://api.fiber.ai/v1/contact-details/exhaustive/poll", body = {"taskId"} },
     ["fiber-ai.poll_google_maps_results"] = { method = "POST", url = "https://api.fiber.ai/v1/google-maps-search/poll", body = {"searchID", "pageSize", "cursor"} },
@@ -219,8 +221,8 @@ return {
     ["fiber-ai.start_mosaic"] = { method = "POST", url = "https://api.fiber.ai/v1/mosaic/start", body = {"sourceUrl", "customInstructions", "options"} },
     ["fiber-ai.stealth_founders_count"] = { method = "POST", url = "https://api.fiber.ai/v1/stealth-founders/count", body = {"stealthConfig", "searchParams"} },
     ["fiber-ai.stealth_founders_search"] = { method = "POST", url = "https://api.fiber.ai/v1/stealth-founders/search", body = {"stealthConfig", "searchParams", "pageSize", "cursor"} },
-    ["fiber-ai.sync_quick_contact_reveal"] = { method = "POST", url = "https://api.fiber.ai/v1/contact-details/single", body = {"linkedinUrl", "enrichmentType", "patience", "validateEmails"} },
-    ["fiber-ai.sync_turbo_contact_enrichment"] = { method = "POST", url = "https://api.fiber.ai/v1/contact-details/turbo/sync", body = {"linkedinUrl", "enrichmentType", "patience"} },
+    ["fiber-ai.sync_quick_contact_reveal"] = { method = "POST", url = "https://api.fiber.ai/v1/contact-details/single", body = {"linkedinUrl", "enrichmentType", "patience", "validateEmails", "company"} },
+    ["fiber-ai.sync_turbo_contact_enrichment"] = { method = "POST", url = "https://api.fiber.ai/v1/contact-details/turbo/sync", body = {"linkedinUrl", "enrichmentType", "patience", "company"} },
     ["fiber-ai.tiktok_comment_replies"] = { method = "POST", url = "https://api.fiber.ai/v1/tiktok/comment-replies", body = {"commentId", "videoUrl", "nextPageToken"} },
     ["fiber-ai.tiktok_popular_songs"] = { method = "POST", url = "https://api.fiber.ai/v1/tiktok/popular-songs" },
     ["fiber-ai.tiktok_profile"] = { method = "POST", url = "https://api.fiber.ai/v1/tiktok/profile", body = {"handle"} },

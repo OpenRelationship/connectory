@@ -72,16 +72,20 @@ The complete index of pages, grouped by category, is appended at the end of this
 ## Guides
 
 - [Batch Guide](https://docs.easypost.com/markdown/guides/batches-guide.md): Use when discussing batch shipments, bulk label creation, or high-volume shipping workflows.
-- [Carrier Claims Program Guide](https://docs.easypost.com/markdown/guides/carrier-claims-guide.md): Use for advanced EasyPost workflow guidance related to carrier claims.
 - [Centralized (Self-Managed Billing) Implementation Guide](https://docs.easypost.com/markdown/guides/get-started-with-forge/self-managed-billing-guide.md): A quick start guide for Forge Centralized Implementation.
+- [Claim Messages](https://docs.easypost.com/markdown/guides/claim-messages-guide.md): Use when a customer wants claim questions, replies, approval, and denial in their own system.
 - [Commercial Invoice Guide](https://docs.easypost.com/markdown/guides/commercial-invoice-guide.md): Use for advanced EasyPost workflow guidance related to commercial invoice.
+- [CPSC Regulatory Updates](https://docs.easypost.com/markdown/guides/cpsc-regulatory-updates-guide.md): Use for guidance on US CPSC customs-documentation requirements and the EasyPost fields that satisfy them.
 - [Decentralized (EasyPost-Managed Billing) Guide](https://docs.easypost.com/markdown/guides/get-started-with-forge/easypost-managed-billing-guide.md): A quick start guide for the Forge Decentralized Implementation.
 - [Decentralized (with Stripe Connect)](https://docs.easypost.com/markdown/guides/get-started-with-forge/decentralized-with-stripe-connect.md): A guide to establishing billing methods and wallets for decentralized sub accounts using Stripe Connect.
 - [Dependency Pinning Guide](https://docs.easypost.com/markdown/guides/dependency-pinning-guide.md): Guide to pin specific versions or version types of dependencies.
+- [EasyPost MCP Guide](https://docs.easypost.com/markdown/guides/mcp-guide.md): Use to connect an AI assistant or agent to EasyPost MCP with a production API key.
 - [EasyPost Tracking Guide](https://docs.easypost.com/markdown/guides/tracking-guide.md): A complete guide to tracking using EasyPost.
 - [Embeddable Components Guide](https://docs.easypost.com/markdown/guides/embeddables-guide.md): Learn how to integrate EasyPost's Embeddable Components to embed Forge dashboard functionality directly within external applications.
 - [Endshipper Guide](https://docs.easypost.com/markdown/guides/endshipper-guide.md): Use for advanced EasyPost workflow guidance related to endshipper.
 - [Errors Guide](https://docs.easypost.com/markdown/guides/errors-guide.md): A full guide on how to catch errors thrown by EasyPost objects.
+- [EU Regulatory Updates](https://docs.easypost.com/markdown/guides/eu-regulatory-updates-guide.md): Use for guidance on EU customs regulatory requirements and the EasyPost fields that satisfy them.
+- [FedEx — EU Regulatory Updates](https://docs.easypost.com/markdown/guides/fedex-eu-regulatory-updates-guide.md): Use for guidance on how FedEx renders VAT/IOSS on the commercial invoice for EU-bound shipments.
 - [Forge Overview](https://docs.easypost.com/markdown/guides/forge-overview.md): An overview of building a white label shipping integration with Forge.
 - [Form Guide](https://docs.easypost.com/markdown/guides/form-guide.md): Use for advanced EasyPost workflow guidance related to form.
 - [Get Started with Forge](https://docs.easypost.com/markdown/guides/get-started-with-forge.md): A guide on getting started with Forge.
@@ -95,7 +99,9 @@ The complete index of pages, grouped by category, is appended at the end of this
 - [Organize Sets of Users With the EasyPost API](https://docs.easypost.com/markdown/guides/child-users-guide.md): Use for advanced EasyPost workflow guidance related to child users.
 - [Rate Limiting Guide](https://docs.easypost.com/markdown/guides/rate-limiting-guide.md): Use when discussing API rate limits, 429 responses, throttling, or strategies for managing request volume.
 - [SmartRate Guide](https://docs.easypost.com/markdown/guides/smartrate-guide.md): Use for advanced EasyPost workflow guidance related to SmartRate.
+- [UPS — EU Regulatory Updates](https://docs.easypost.com/markdown/guides/ups-eu-regulatory-updates-guide.md): Use for guidance on UPS-specific EU regulatory requirements and the EasyPost fields that satisfy them.
 - [Use VCR for test integrations](https://docs.easypost.com/markdown/guides/vcr-guide.md): Guide to why you should use VCR for testing against the EasyPost API.
+- [USPS Claims Guide](https://docs.easypost.com/markdown/guides/carrier-claims-guide.md): USPS labels purchased through EasyPost. Not insurance claims and not BYO tracker registrations.
 - [Webhooks Guide](https://docs.easypost.com/markdown/guides/webhooks-guide.md): Use for customer-facing webhooks implementation guidance.
 
 ## Carrier Guides
@@ -177,6 +183,7 @@ The complete index of pages, grouped by category, is appended at the end of this
 - [USPS Guide](https://docs.easypost.com/markdown/carriers/usps-guide.md): A complete guide to using USPS with EasyPost.
 - [USPS Ship Guide](https://docs.easypost.com/markdown/carriers/usps-ship-guide.md): A complete guide to using USPS Ship with EasyPost.
 - [Veho Guide](https://docs.easypost.com/markdown/carriers/veho-guide.md): A complete guide to using Veho with EasyPost.
+- [Veho Wallet Guide](https://docs.easypost.com/markdown/carriers/veho-wallet-guide.md): A complete guide to using Veho Wallet with EasyPost.
 
 ## Dashboard Links
 

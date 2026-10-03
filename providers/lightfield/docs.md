@@ -57,6 +57,7 @@ Overview: [HTTP](https://docs.lightfield.app/api/resources/(resource) account/in
 - Delete: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) account > (method) delete/index.md)
 - Field History: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) account > (method) fieldHistory/index.md)
 - List: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) account > (method) list/index.md)
+- Restore: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) account > (method) restore/index.md)
 - Retrieve: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) account > (method) retrieve/index.md)
 - Update: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) account > (method) update/index.md)
 
@@ -82,6 +83,7 @@ Overview: [HTTP](https://docs.lightfield.app/api/resources/(resource) contact/in
 - Delete: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) contact > (method) delete/index.md)
 - Field History: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) contact > (method) fieldHistory/index.md)
 - List: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) contact > (method) list/index.md)
+- Restore: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) contact > (method) restore/index.md)
 - Retrieve: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) contact > (method) retrieve/index.md)
 - Update: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) contact > (method) update/index.md)
 
@@ -133,6 +135,7 @@ Overview: [HTTP](https://docs.lightfield.app/api/resources/(resource) meeting/in
 - Definitions: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) meeting > (method) definitions/index.md)
 - Delete: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) meeting > (method) delete/index.md)
 - List: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) meeting > (method) list/index.md)
+- Restore: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) meeting > (method) restore/index.md)
 - Retrieve: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) meeting > (method) retrieve/index.md)
 - Update: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) meeting > (method) update/index.md)
 
@@ -168,6 +171,7 @@ Overview: [HTTP](https://docs.lightfield.app/api/resources/(resource) note/index
 - Definitions: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) note > (method) definitions/index.md)
 - Delete: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) note > (method) delete/index.md)
 - List: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) note > (method) list/index.md)
+- Restore: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) note > (method) restore/index.md)
 - Retrieve: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) note > (method) retrieve/index.md)
 - Update: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) note > (method) update/index.md)
 
@@ -181,6 +185,7 @@ Overview: [HTTP](https://docs.lightfield.app/api/resources/(resource) object/ind
 - Field History: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) object > (method) fieldHistory/index.md)
 - List: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) object > (method) list/index.md)
 - List Definitions: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) object > (method) listDefinitions/index.md)
+- Restore: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) object > (method) restore/index.md)
 - Retrieve: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) object > (method) retrieve/index.md)
 - Update: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) object > (method) update/index.md)
 
@@ -193,8 +198,22 @@ Overview: [HTTP](https://docs.lightfield.app/api/resources/(resource) opportunit
 - Delete: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) opportunity > (method) delete/index.md)
 - Field History: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) opportunity > (method) fieldHistory/index.md)
 - List: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) opportunity > (method) list/index.md)
+- Restore: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) opportunity > (method) restore/index.md)
 - Retrieve: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) opportunity > (method) retrieve/index.md)
 - Update: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) opportunity > (method) update/index.md)
+
+### Sequence
+
+Overview: [HTTP](https://docs.lightfield.app/api/resources/(resource) sequence/index.md)
+
+- List: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) sequence > (method) list/index.md)
+- List Enrollments: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) sequence > (method) listEnrollments/index.md)
+- List Messages: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) sequence > (method) listMessages/index.md)
+- Retrieve: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) sequence > (method) retrieve/index.md)
+- Retrieve Enrollment: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) sequence > (method) retrieveEnrollment/index.md)
+- Retrieve Message: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) sequence > (method) retrieveMessage/index.md)
+- Retrieve Performance: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) sequence > (method) retrievePerformance/index.md)
+- Update Enrollments: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) sequence > (method) updateEnrollments/index.md)
 
 ### Task
 
@@ -204,6 +223,7 @@ Overview: [HTTP](https://docs.lightfield.app/api/resources/(resource) task/index
 - Definitions: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) task > (method) definitions/index.md)
 - Delete: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) task > (method) delete/index.md)
 - List: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) task > (method) list/index.md)
+- Restore: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) task > (method) restore/index.md)
 - Retrieve: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) task > (method) retrieve/index.md)
 - Update: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) task > (method) update/index.md)
 

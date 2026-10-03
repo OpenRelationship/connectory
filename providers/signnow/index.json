@@ -7111,7 +7111,7 @@
   {
    "slug": "signnow.post_api_v2_events",
    "name": "Create event subscription",
-   "description": "Allows to subscribe an external service(callback_url) to a specific event of user or document",
+   "description": "Allows to subscribe an external service(callback_url) to a specific event of user or document > [!NOTE] > For the payload your service receives for each event, see the response examples in [Get callback info by ID](/docs/callbacks-info/operations/get-v2-dashboard-event-subscriptions-subscription-id-callbacks).",
    "input": {
     "type": "object",
     "properties": {
@@ -8895,14 +8895,10 @@
   {
    "slug": "signnow.post_v2_document_groups_document_group_id_invite_document_group_invite_id_correction",
    "name": "Initiate dg correction",
-   "description": "This endpoint allows users to initiate document group correction. After sending it, users can [change](/docs/document-group/operations/put-v2-document-groups-document-group-id-invite-document-group-invite-id-correction) the signers of the document group and the invite settings. Document group cannot be corrected in the following cases: * Invite is not in pending status * Document group contains mu",
+   "description": "This endpoint allows API users to put a document group invite into correction mode. After that, [complete the correction](/docs/document-group/operations/put-v2-document-groups-document-group-id-invite-document-group-invite-id-correction) to change the signers, documents, and invite settings. A correction can be initiated after some recipients have already signed. When the correction starts: * Inv",
    "input": {
     "type": "object",
     "properties": {
-     "Content-Type": {
-      "type": "string",
-      "description": "application/json"
-     },
      "dg_id": {
       "type": "string",
       "description": "ID of the document group."
@@ -8930,9 +8926,7 @@
      "dg_invite_id"
     ],
     "query": [],
-    "header": [
-     "Content-Type"
-    ],
+    "header": [],
     "body": [
      "client_timestamp"
     ],
@@ -11926,7 +11920,7 @@
   {
    "slug": "signnow.put_v2_document_groups_document_group_id_invite_document_group_invite_id_correction",
    "name": "Complete dg correction",
-   "description": "This endpoint allows users to complete document group correction. Users can change the following: * Change signers of the document group * Update the invite settings * Reorder and remove documents that were not signed yet * Add new documents to the document group Before completing the correction, users must [initiate](/docs/document-group/operations/post-v2-document-groups-document-group-id-invite",
+   "description": "This endpoint allows API users to complete a document group correction and apply the new signers, documents, and invite settings. With this endpoint, you can: * Change the signers and viewers of the document group * Update the invite settings * Reorder and remove documents that were not signed yet * Add new documents to the document group Before completing the correction, [initiate](/docs/document",
    "input": {
     "type": "object",
     "properties": {

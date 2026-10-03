@@ -280,7 +280,7 @@
      },
      "model": {
       "type": "string",
-      "description": "Model ID in provider/model format (e.g., \"openai/gpt-5\", \"anthropic/claude-sonnet-4-6\"). If models is also provided, models takes precedence. Required if neither models nor preset is provided."
+      "description": "Model ID in provider/model format (e.g., \"openai/gpt-5.6-terra\", \"anthropic/claude-sonnet-4-6\"). If models is also provided, models takes precedence. Required if neither models nor preset is provided."
      },
      "models": {
       "type": "array",
@@ -317,6 +317,10 @@
      "tools": {
       "type": "array",
       "description": "Tools available to the model"
+     },
+     "tool_choice": {
+      "type": "string",
+      "description": "Tool choice strategy. Use `{\"type\":\"image_search\"}` to force image search."
      },
      "skills": {
       "type": "array",
@@ -358,6 +362,7 @@
      "store",
      "stream",
      "tools",
+     "tool_choice",
      "skills",
      "temperature",
      "top_p"
@@ -951,9 +956,10 @@
      },
      "search_type": {
       "type": "string",
-      "description": "Search type - \"web\" for general web search, \"people\" for people search. max_results above 20 is only supported for people search.",
+      "description": "Search type - \"web\" for general web search, \"fast\" for lower-latency, lower-cost web search, \"people\" for people search. max_results above 20 is only supported for people search.",
       "enum": [
        "web",
+       "fast",
        "people"
       ]
      },

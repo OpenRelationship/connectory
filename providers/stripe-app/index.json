@@ -252,6 +252,40 @@
    }
   },
   {
+   "slug": "stripe-app.delete_customers_customer_tax_exemptions_id",
+   "name": "Delete a tax exemption",
+   "description": "Delete a location specific tax exemption for a customer.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "customer": {
+      "type": "string",
+      "description": ""
+     },
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "customer",
+     "id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.stripe.com/v1/customers/{customer}/tax_exemptions/{id}",
+    "path": [
+     "customer",
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "stripe-app.delete_customers_customer_tax_ids_id",
    "name": "Delete a customer tax id",
    "description": "Deletes an existing tax_id object.",
@@ -1039,7 +1073,7 @@
    }
   },
   {
-   "slug": "stripe-app.delete_v2_signals_account_activity_id",
+   "slug": "stripe-app.delete_v2_signals_account_activities_id",
    "name": "Delete an account activity",
    "description": "Deletes an AccountActivity by its ID.",
    "input": {
@@ -1056,7 +1090,7 @@
    },
    "request": {
     "method": "DELETE",
-    "url": "https://api.stripe.com/v2/signals/account_activity/{id}",
+    "url": "https://api.stripe.com/v2/signals/account_activities/{id}",
     "path": [
      "id"
     ],
@@ -1835,6 +1869,129 @@
    }
   },
   {
+   "slug": "stripe-app.get_apps_installs",
+   "name": "List all app installs",
+   "description": "Returns a list of app installs. An app developer or embedding platform filtering by its own app sees the installs across the accounts that installed it; other callers see the installs on their own account. The key selects the environment: a live key lists live installs, a sandbox API key lists the installs on that sandbox, and the key of an app\u2019s managed sandbox filtering by app lists that app\u2019s i",
+   "input": {
+    "type": "object",
+    "properties": {
+     "account": {
+      "type": "string",
+      "description": "Only return installs made by this account. Only useful to app developers and embedding platforms, whose lists span the accounts that installed their app."
+     },
+     "app": {
+      "type": "string",
+      "description": "Only return installs for the app specified by this app ID."
+     },
+     "approval_required": {
+      "type": "boolean",
+      "description": "Only return installs whose installer must authorize pending permissions, content security policy entries, or endpoints."
+     },
+     "channel": {
+      "type": "string",
+      "description": "Only return installs in the distribution channel specified by this channel name.",
+      "enum": [
+       "private_live",
+       "private_test",
+       "public",
+       "testing"
+      ]
+     },
+     "created": {
+      "type": "string",
+      "description": "Only return app installs that were created during the given date interval."
+     },
+     "created_by": {
+      "type": "string",
+      "description": "Only return installs created by the embedding platform specified by this account ID."
+     },
+     "ending_before": {
+      "type": "string",
+      "description": "A cursor for use in pagination. `ending_before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the previous page of the list."
+     },
+     "expand": {
+      "type": "array",
+      "description": "Specifies which fields in the response should be expanded."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 10."
+     },
+     "starting_after": {
+      "type": "string",
+      "description": "A cursor for use in pagination. `starting_after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the next page of the list."
+     },
+     "status": {
+      "type": "string",
+      "description": "Only return installs with the given status.",
+      "enum": [
+       "install_failed",
+       "installed",
+       "installing",
+       "uninstall_failed",
+       "uninstalling"
+      ]
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.stripe.com/v1/apps/installs",
+    "path": [],
+    "query": [
+     "account",
+     "app",
+     "approval_required",
+     "channel",
+     "created",
+     "created_by",
+     "ending_before",
+     "expand",
+     "limit",
+     "starting_after",
+     "status"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "stripe-app.get_apps_installs_id",
+   "name": "Retrieve an app install",
+   "description": "Retrieves an app install. The installing account, the app\u2019s developer (with the keys of the account that owns the app or of the app\u2019s managed sandbox), and the embedding platform that created the install can retrieve it.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "expand": {
+      "type": "array",
+      "description": "Specifies which fields in the response should be expanded."
+     },
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.stripe.com/v1/apps/installs/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [
+     "expand"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "stripe-app.get_apps_secrets",
    "name": "List secrets",
    "description": "List all secrets stored on the given scope.",
@@ -2552,8 +2709,8 @@
   },
   {
    "slug": "stripe-app.get_billing_feedback_options",
-   "name": "Feedback options list api method",
-   "description": "An API method for listing the feedback options model",
+   "name": "List all feedback options",
+   "description": "Returns a list of your feedback options.",
    "input": {
     "type": "object",
     "properties": {
@@ -2603,7 +2760,7 @@
   {
    "slug": "stripe-app.get_billing_feedback_options_id",
    "name": "Retrieve a feedback option",
-   "description": "Retrieves a feedback options object given an ID.",
+   "description": "Retrieves a feedback option object given an ID.",
    "input": {
     "type": "object",
     "properties": {
@@ -2613,7 +2770,7 @@
      },
      "id": {
       "type": "string",
-      "description": ""
+      "description": "The ID of the feedback option to retrieve."
      }
     },
     "required": [
@@ -4637,6 +4794,7 @@
        "btc",
        "eth",
        "matic",
+       "ripusd",
        "sol",
        "usdc",
        "usdt",
@@ -5317,6 +5475,100 @@
    "request": {
     "method": "GET",
     "url": "https://api.stripe.com/v1/customers/{customer}/sources/{id}",
+    "path": [
+     "customer",
+     "id"
+    ],
+    "query": [
+     "expand"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "stripe-app.get_customers_customer_tax_exemptions",
+   "name": "List tax exemptions",
+   "description": "List all location specific tax exemptions for a customer.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "country": {
+      "type": "string",
+      "description": "Filter by two-letter ISO country code (ISO 3166-1 alpha-2)."
+     },
+     "customer": {
+      "type": "string",
+      "description": ""
+     },
+     "ending_before": {
+      "type": "string",
+      "description": "A cursor for use in pagination. `ending_before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the previous page of the list."
+     },
+     "expand": {
+      "type": "array",
+      "description": "Specifies which fields in the response should be expanded."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 10."
+     },
+     "starting_after": {
+      "type": "string",
+      "description": "A cursor for use in pagination. `starting_after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the next page of the list."
+     }
+    },
+    "required": [
+     "customer"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.stripe.com/v1/customers/{customer}/tax_exemptions",
+    "path": [
+     "customer"
+    ],
+    "query": [
+     "country",
+     "ending_before",
+     "expand",
+     "limit",
+     "starting_after"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "stripe-app.get_customers_customer_tax_exemptions_id",
+   "name": "Retrieve a tax exemption",
+   "description": "Retrieve a location specific tax exemption for a customer.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "customer": {
+      "type": "string",
+      "description": ""
+     },
+     "expand": {
+      "type": "array",
+      "description": "Specifies which fields in the response should be expanded."
+     },
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "customer",
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.stripe.com/v1/customers/{customer}/tax_exemptions/{id}",
     "path": [
      "customer",
      "id"
@@ -6332,7 +6584,7 @@
   {
    "slug": "stripe-app.get_financial_connections_accounts_account",
    "name": "Retrieve an account",
-   "description": "Retrieves the details of an Financial Connections Account.",
+   "description": "Retrieves the details of a Financial Connections Account.",
    "input": {
     "type": "object",
     "properties": {
@@ -6470,7 +6722,7 @@
   {
    "slug": "stripe-app.get_financial_connections_authorizations_authorization",
    "name": "Retrieve an authorization",
-   "description": "Retrieves the details of an Financial Connections Authorization.",
+   "description": "Retrieves the details of a Financial Connections Authorization.",
    "input": {
     "type": "object",
     "properties": {
@@ -6485,6 +6737,40 @@
     "method": "GET",
     "url": "https://api.stripe.com/v1/financial_connections/authorizations/{authorization}",
     "path": [],
+    "query": [
+     "expand"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "stripe-app.get_financial_connections_consents_consent",
+   "name": "Retrieve a consent",
+   "description": "Retrieves the details of a Financial Connections Consent.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "consent": {
+      "type": "string",
+      "description": ""
+     },
+     "expand": {
+      "type": "array",
+      "description": "Specifies which fields in the response should be expanded."
+     }
+    },
+    "required": [
+     "consent"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.stripe.com/v1/financial_connections/consents/{consent}",
+    "path": [
+     "consent"
+    ],
     "query": [
      "expand"
     ],
@@ -10597,6 +10883,10 @@
    "input": {
     "type": "object",
     "properties": {
+     "active": {
+      "type": "boolean",
+      "description": "Only return trial offers that are active (`true`) or archived (`false`). If omitted, both active and archived trial offers are returned."
+     },
      "created": {
       "type": "string",
       "description": "Only return trial offers that were created during the given date interval."
@@ -10629,6 +10919,7 @@
     "url": "https://api.stripe.com/v1/product_catalog/trial_offers",
     "path": [],
     "query": [
+     "active",
      "created",
      "ending_before",
      "expand",
@@ -10700,7 +10991,7 @@
      },
      "ids": {
       "type": "array",
-      "description": "Only return products with the given IDs. Cannot be used with [starting_after](https://api.stripe.com#list_products-starting_after) or [ending_before](https://api.stripe.com#list_products-ending_before)."
+      "description": "Only return products with the given IDs. Cannot be used with [starting_after](https://docs.stripe.com/api#list_products-starting_after) or [ending_before](https://docs.stripe.com/api#list_products-ending_before)."
      },
      "limit": {
       "type": "integer",
@@ -12153,6 +12444,66 @@
    }
   },
   {
+   "slug": "stripe-app.get_reserve_plans",
+   "name": "List reserve plans",
+   "description": "Returns a list of ReservePlans previously created. The ReservePlans are returned in sorted order, with the most recent ReservePlans appearing first.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "destination": {
+      "type": "string",
+      "description": "Only return ReservePlans with the specified destination. If omitted, returns ReservePlans with any destination.",
+      "enum": [
+       "risk_reserved",
+       "settlement_reserved"
+      ]
+     },
+     "ending_before": {
+      "type": "string",
+      "description": "A cursor for use in pagination. `ending_before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the previous page of the list."
+     },
+     "expand": {
+      "type": "array",
+      "description": "Specifies which fields in the response should be expanded."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 10."
+     },
+     "starting_after": {
+      "type": "string",
+      "description": "A cursor for use in pagination. `starting_after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the next page of the list."
+     },
+     "status": {
+      "type": "string",
+      "description": "Only return ReservePlans with the specified status. If omitted, returns ReservePlans with any status.",
+      "enum": [
+       "active",
+       "disabled",
+       "expired"
+      ]
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.stripe.com/v1/reserve/plans",
+    "path": [],
+    "query": [
+     "destination",
+     "ending_before",
+     "expand",
+     "limit",
+     "starting_after",
+     "status"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "stripe-app.get_reserve_plans_id",
    "name": "Retrieve a reserve plan",
    "description": "Retrieve a ReservePlan.",
@@ -12716,7 +13067,7 @@
   {
    "slug": "stripe-app.get_sigma_scheduled_query_runs_scheduled_query_run",
    "name": "Retrieve a scheduled query run",
-   "description": "Retrieves the details of an scheduled query run.",
+   "description": "Retrieves the details of a scheduled query run.",
    "input": {
     "type": "object",
     "properties": {
@@ -13439,6 +13790,14 @@
       "type": "string",
       "description": "A cursor for use in pagination. `starting_after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the next page of the list."
      },
+     "status": {
+      "type": "string",
+      "description": "Filter forms by draft or finalized status.",
+      "enum": [
+       "draft",
+       "finalized"
+      ]
+     },
      "type": {
       "type": "string",
       "description": "An optional filter on the list, based on the object `type` field. Without the filter, the list includes all current and future tax form types. If your integration expects only one type of tax form in the response, make sure to provide a type value in the request.",
@@ -13468,6 +13827,7 @@
      "limit",
      "payee",
      "starting_after",
+     "status",
      "type"
     ],
     "header": [],
@@ -13706,7 +14066,7 @@
   {
    "slug": "stripe-app.get_tax_locations",
    "name": "List tax locations",
-   "description": "Retrieve a list of all tax locations. Tax locations can represent the venues for services, tickets, or other product types. The response includes detailed information for each tax location, such as its address, name, description, and current operational status. You can paginate through the list by using the limit parameter to control the number of results returned in each request.",
+   "description": "Retrieve a list of all tax locations. Tax locations can represent the venues for services, tickets, or other product types. The response includes detailed information for each tax location, such as its address, type, and description. You can paginate through the list by using the limit parameter to control the number of results returned in each request.",
    "input": {
     "type": "object",
     "properties": {
@@ -14441,6 +14801,99 @@
     "url": "https://api.stripe.com/v1/test_helpers/test_clocks/{test_clock}",
     "path": [
      "test_clock"
+    ],
+    "query": [
+     "expand"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "stripe-app.get_three_dsecure_authentications",
+   "name": "List all 3 d secure authentications",
+   "description": "Returns a list of 3D Secure Authentications.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "created": {
+      "type": "string",
+      "description": "A filter on the list, based on the object `created` field. The value can be a string with an integer Unix timestamp or a dictionary with a number of different query options."
+     },
+     "ending_before": {
+      "type": "string",
+      "description": "A cursor for use in pagination. `ending_before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the previous page of the list."
+     },
+     "expand": {
+      "type": "array",
+      "description": "Specifies which fields in the response should be expanded."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 10."
+     },
+     "starting_after": {
+      "type": "string",
+      "description": "A cursor for use in pagination. `starting_after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the next page of the list."
+     },
+     "status": {
+      "type": "string",
+      "description": "Only return 3D Secure Authentications for specified status.",
+      "enum": [
+       "canceled",
+       "error",
+       "failed",
+       "requires_challenge",
+       "requires_submission",
+       "succeeded"
+      ]
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.stripe.com/v1/three_d_secure/authentications",
+    "path": [],
+    "query": [
+     "created",
+     "ending_before",
+     "expand",
+     "limit",
+     "starting_after",
+     "status"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "stripe-app.get_three_dsecure_authentications_authentication",
+   "name": "Retrieve a 3 ds authentication",
+   "description": "This endpoint retrieves a 3DS Authentication.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "authentication": {
+      "type": "string",
+      "description": ""
+     },
+     "expand": {
+      "type": "array",
+      "description": "Specifies which fields in the response should be expanded."
+     }
+    },
+    "required": [
+     "authentication"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.stripe.com/v1/three_d_secure/authentications/{authentication}",
+    "path": [
+     "authentication"
     ],
     "query": [
      "expand"
@@ -18102,7 +18555,7 @@
     "properties": {
      "include": {
       "type": "array",
-      "description": "Additional fields to include in the response. Currently supports `webhook_endpoint.url`."
+      "description": "Include the normally redacted `webhook_endpoint.url` in each returned destination."
      },
      "limit": {
       "type": "integer",
@@ -18607,6 +19060,34 @@
    }
   },
   {
+   "slug": "stripe-app.get_v2_core_vault_network_tokens_id",
+   "name": "Retrieve a network token",
+   "description": "Retrieves an existing network token.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "ID of the network token."
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.stripe.com/v2/core/vault/network_tokens/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "stripe-app.get_v2_core_vault_us_bank_accounts",
    "name": "List us bank accounts",
    "description": "List USBankAccount objects. Optionally filter by verification status.",
@@ -18666,6 +19147,94 @@
    }
   },
   {
+   "slug": "stripe-app.get_v2_data_query_runs_id",
+   "name": "Retrieve a query run",
+   "description": "Retrieves the status and results of a previously created `QueryRun`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "The unique identifier of the `QueryRun` to retrieve."
+     },
+     "include": {
+      "type": "array",
+      "description": "Any optional includes (see https://docs.stripe.com/api-includable-response-values)."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "The maximum number of inline `QueryRun` result rows to return. Defaults to 10. Maximum is 1000."
+     },
+     "page": {
+      "type": "string",
+      "description": "The page token for paginating the inline `QueryRun` result rows."
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.stripe.com/v2/data/query_runs/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [
+     "include",
+     "limit",
+     "page"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "stripe-app.get_v2_data_report_runs_id",
+   "name": "Retrieve a report run",
+   "description": "Fetches the current state and details of a previously created `ReportRun`. If the `ReportRun` has succeeded, the endpoint provides details for how to retrieve the results.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "The unique identifier of the `ReportRun` to retrieve."
+     },
+     "include": {
+      "type": "array",
+      "description": "Any optional includes (see https://docs.stripe.com/api-includable-response-values)."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "The maximum number of inline `ReportRun` result rows to return. Defaults to 10. Maximum is 1000."
+     },
+     "page": {
+      "type": "string",
+      "description": "The page token for paginating the inline `ReportRun` result rows."
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.stripe.com/v2/data/report_runs/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [
+     "include",
+     "limit",
+     "page"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "stripe-app.get_v2_data_reporting_query_runs_id",
    "name": "Retrieve a query run",
    "description": "Fetches the current state and details of a previously created `QueryRun`. If the `QueryRun` has succeeded, the endpoint will provide details for how to retrieve the results.",
@@ -18694,6 +19263,148 @@
     "query": [
      "include"
     ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "stripe-app.get_v2_data_reports",
+   "name": "List reports",
+   "description": "Returns a list of Stripe-defined reports that the caller can create a `ReportRun` for.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "include": {
+      "type": "array",
+      "description": "Any optional includes (see https://docs.stripe.com/api-includable-response-values)."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "The maximum number of results per page. Defaults to 10. Maximum is 100."
+     },
+     "name": {
+      "type": "string",
+      "description": "If supplied, only return reports with this exact, case-sensitive name."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.stripe.com/v2/data/reports",
+    "path": [],
+    "query": [
+     "include",
+     "limit",
+     "name"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "stripe-app.get_v2_data_reports_id",
+   "name": "Retrieve a report",
+   "description": "Retrieves metadata about a specific `Report`, including its name, description, and the parameters it accepts. It's useful for understanding the capabilities and requirements of a particular `Report` before requesting a `ReportRun`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "The unique identifier of the `Report` to retrieve."
+     },
+     "include": {
+      "type": "array",
+      "description": "Any optional includes (see https://docs.stripe.com/api-includable-response-values)."
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.stripe.com/v2/data/reports/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [
+     "include"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "stripe-app.get_v2_data_schemas",
+   "name": "List schemas",
+   "description": "Returns a list of schemas describing the tables available to query.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "dataset": {
+      "type": "string",
+      "description": "If supplied, only return schemas belonging to this dataset.",
+      "enum": [
+       "analytical"
+      ]
+     },
+     "include": {
+      "type": "array",
+      "description": "Any optional includes (see https://docs.stripe.com/api-includable-response-values)."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "The maximum number of results per page. Defaults to 10. Maximum is 100."
+     },
+     "name": {
+      "type": "string",
+      "description": "If supplied, only return schemas with this name."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.stripe.com/v2/data/schemas",
+    "path": [],
+    "query": [
+     "dataset",
+     "include",
+     "limit",
+     "name"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "stripe-app.get_v2_data_schemas_id",
+   "name": "Retrieve a schema",
+   "description": "Retrieves the schema for a particular table.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "The identifier of the schema to retrieve."
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.stripe.com/v2/data/schemas/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
     "header": [],
     "body": [],
     "body_format": "json"
@@ -18957,24 +19668,8 @@
       "description": "Filter for Adjustments linked to a Flow."
      },
      "created": {
-      "type": "string",
-      "description": "Filter for objects created at the specified timestamp. Must be an RFC 3339 date & time value, for example: 2022-09-18T13:22:00Z."
-     },
-     "created_gt": {
-      "type": "string",
-      "description": "Filter for objects created after the specified timestamp. Must be an RFC 3339 date & time value, for example: 2022-09-18T13:22:00Z."
-     },
-     "created_gte": {
-      "type": "string",
-      "description": "Filter for objects created on or after the specified timestamp. Must be an RFC 3339 date & time value, for example: 2022-09-18T13:22:00Z."
-     },
-     "created_lt": {
-      "type": "string",
-      "description": "Filter for objects created before the specified timestamp. Must be an RFC 3339 date & time value, for example: 2022-09-18T13:22:00Z."
-     },
-     "created_lte": {
-      "type": "string",
-      "description": "Filter for objects created on or before the specified timestamp. Must be an RFC 3339 date & time value, for example: 2022-09-18T13:22:00Z."
+      "type": "object",
+      "description": "Set of filters to query Adjustments within a range of `created` timestamps."
      },
      "limit": {
       "type": "integer",
@@ -18990,10 +19685,6 @@
     "query": [
      "adjusted_flow",
      "created",
-     "created_gt",
-     "created_gte",
-     "created_lt",
-     "created_lte",
      "limit"
     ],
     "header": [],
@@ -19148,6 +19839,65 @@
    "request": {
     "method": "GET",
     "url": "https://api.stripe.com/v2/money_management/debit_disputes/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "stripe-app.get_v2_money_management_earned_credits",
+   "name": "List earned credits",
+   "description": "Returns a list of EarnedCredits.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "financial_account": {
+      "type": "string",
+      "description": "The FinancialAccount to list EarnedCredits for."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "The maximum number of EarnedCredits to return."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.stripe.com/v2/money_management/earned_credits",
+    "path": [],
+    "query": [
+     "financial_account",
+     "limit"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "stripe-app.get_v2_money_management_earned_credits_id",
+   "name": "Retrieve an earned credit",
+   "description": "Retrieves an EarnedCredit.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "Unique identifier for the EarnedCredit."
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.stripe.com/v2/money_management/earned_credits/{id}",
     "path": [
      "id"
     ],
@@ -19325,19 +20075,43 @@
    }
   },
   {
+   "slug": "stripe-app.get_v2_money_management_financial_accounts_id_wallet_export",
+   "name": "Retrieve a financial account wallet export",
+   "description": "Retrieves the wallet export metadata for a closed FinancialAccount. Credentials are returned only by the export_credentials action.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "ID of the parent FinancialAccount."
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.stripe.com/v2/money_management/financial_accounts/{id}/wallet_export",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "stripe-app.get_v2_money_management_financial_addresses",
    "name": "List financial addresses",
-   "description": "List all FinancialAddresses for a FinancialAccount.",
+   "description": "List all FinancialAddresses for a FinancialAccount (V2 shape).",
    "input": {
     "type": "object",
     "properties": {
      "financial_account": {
       "type": "string",
       "description": "The ID of the FinancialAccount for which FinancialAddresses are to be returned."
-     },
-     "include": {
-      "type": "array",
-      "description": "Open Enum. A list of fields to reveal in the FinancialAddresses returned."
      },
      "limit": {
       "type": "integer",
@@ -19352,7 +20126,6 @@
     "path": [],
     "query": [
      "financial_account",
-     "include",
      "limit"
     ],
     "header": [],
@@ -19363,17 +20136,13 @@
   {
    "slug": "stripe-app.get_v2_money_management_financial_addresses_id",
    "name": "Retrieve a financial address",
-   "description": "Retrieve a FinancialAddress. By default, the FinancialAddress will be returned in its unexpanded state, revealing only the last 4 digits of the account number.",
+   "description": "Retrieve a FinancialAddress (V2 shape).",
    "input": {
     "type": "object",
     "properties": {
      "id": {
       "type": "string",
       "description": "The ID of the FinancialAddress to retrieve."
-     },
-     "include": {
-      "type": "array",
-      "description": "Open Enum. A list of fields to reveal in the FinancialAddresses returned."
      }
     },
     "required": [
@@ -19386,9 +20155,7 @@
     "path": [
      "id"
     ],
-    "query": [
-     "include"
-    ],
+    "query": [],
     "header": [],
     "body": [],
     "body_format": "json"
@@ -19402,24 +20169,8 @@
     "type": "object",
     "properties": {
      "created": {
-      "type": "string",
-      "description": "Filter for objects created at the specified timestamp. Must be an RFC 3339 date & time value, for example: 2022-09-18T13:22:00Z."
-     },
-     "created_gt": {
-      "type": "string",
-      "description": "Filter for objects created after the specified timestamp. Must be an RFC 3339 date & time value, for example: 2022-09-18T13:22:00Z."
-     },
-     "created_gte": {
-      "type": "string",
-      "description": "Filter for objects created on or after the specified timestamp. Must be an RFC 3339 date & time value, for example: 2022-09-18T13:22:00Z."
-     },
-     "created_lt": {
-      "type": "string",
-      "description": "Filter for objects created before the specified timestamp. Must be an RFC 3339 date & time value, for example: 2022-09-18T13:22:00Z."
-     },
-     "created_lte": {
-      "type": "string",
-      "description": "Filter for objects created on or before the specified timestamp. Must be an RFC 3339 date & time value, for example: 2022-09-18T13:22:00Z."
+      "type": "object",
+      "description": "Hash of options for filtering on creation time."
      },
      "limit": {
       "type": "integer",
@@ -19434,10 +20185,6 @@
     "path": [],
     "query": [
      "created",
-     "created_gt",
-     "created_gte",
-     "created_lt",
-     "created_lte",
      "limit"
     ],
     "header": [],
@@ -19875,24 +20622,8 @@
     "type": "object",
     "properties": {
      "created": {
-      "type": "string",
-      "description": "Filter for objects created at the specified timestamp. Must be an RFC 3339 date & time value, for example: 2022-09-18T13:22:00Z."
-     },
-     "created_gt": {
-      "type": "string",
-      "description": "Filter for objects created after the specified timestamp. Must be an RFC 3339 date & time value, for example: 2022-09-18T13:22:00Z."
-     },
-     "created_gte": {
-      "type": "string",
-      "description": "Filter for objects created on or after the specified timestamp. Must be an RFC 3339 date & time value, for example: 2022-09-18T13:22:00Z."
-     },
-     "created_lt": {
-      "type": "string",
-      "description": "Filter for objects created before the specified timestamp. Must be an RFC 3339 date & time value, for example: 2022-09-18T13:22:00Z."
-     },
-     "created_lte": {
-      "type": "string",
-      "description": "Filter for objects created on or before the specified timestamp. Must be an RFC 3339 date & time value, for example: 2022-09-18T13:22:00Z."
+      "type": "object",
+      "description": "Hash of options for filtering on creation time."
      },
      "limit": {
       "type": "integer",
@@ -19907,10 +20638,6 @@
     "path": [],
     "query": [
      "created",
-     "created_gt",
-     "created_gte",
-     "created_lt",
-     "created_lte",
      "limit"
     ],
     "header": [],
@@ -20113,24 +20840,8 @@
     "type": "object",
     "properties": {
      "created": {
-      "type": "string",
-      "description": "Filter for Transactions created at an exact time."
-     },
-     "created_gt": {
-      "type": "string",
-      "description": "Filter for Transactions created after the specified timestamp."
-     },
-     "created_gte": {
-      "type": "string",
-      "description": "Filter for Transactions created at or after the specified timestamp."
-     },
-     "created_lt": {
-      "type": "string",
-      "description": "Filter for Transactions created before the specified timestamp."
-     },
-     "created_lte": {
-      "type": "string",
-      "description": "Filter for Transactions created at or before the specified timestamp."
+      "type": "object",
+      "description": "Set of filters to query TransactionEntries within a range of `created` timestamps."
      },
      "limit": {
       "type": "integer",
@@ -20149,10 +20860,6 @@
     "path": [],
     "query": [
      "created",
-     "created_gt",
-     "created_gte",
-     "created_lt",
-     "created_lte",
      "limit",
      "transaction"
     ],
@@ -20197,24 +20904,8 @@
     "type": "object",
     "properties": {
      "created": {
-      "type": "string",
-      "description": "Filter for Transactions created at an exact time."
-     },
-     "created_gt": {
-      "type": "string",
-      "description": "Filter for Transactions created after the specified timestamp."
-     },
-     "created_gte": {
-      "type": "string",
-      "description": "Filter for Transactions created at or after the specified timestamp."
-     },
-     "created_lt": {
-      "type": "string",
-      "description": "Filter for Transactions created before the specified timestamp."
-     },
-     "created_lte": {
-      "type": "string",
-      "description": "Filter for Transactions created at or before the specified timestamp."
+      "type": "object",
+      "description": "Set of filters to query Transactions within a range of `created` timestamps."
      },
      "financial_account": {
       "type": "string",
@@ -20237,10 +20928,6 @@
     "path": [],
     "query": [
      "created",
-     "created_gt",
-     "created_gte",
-     "created_lt",
-     "created_lte",
      "financial_account",
      "flow",
      "limit"
@@ -20609,6 +21296,220 @@
    }
   },
   {
+   "slug": "stripe-app.get_v2_provisioning_catalog_providers",
+   "name": "List providers",
+   "description": "Lists providers available in the catalog.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "catalog": {
+      "type": "string",
+      "description": "Catalog partition to list providers from.",
+      "enum": [
+       "dev",
+       "prod",
+       "testing"
+      ]
+     },
+     "development": {
+      "type": "boolean",
+      "description": "When `true`, list development-only providers. When unset or `false`, development providers are excluded."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Maximum number of providers to return."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.stripe.com/v2/provisioning/catalog/providers",
+    "path": [],
+    "query": [
+     "catalog",
+     "development",
+     "limit"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "stripe-app.get_v2_provisioning_catalog_services",
+   "name": "List provider service details",
+   "description": "Lists services available in the catalog.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "catalog": {
+      "type": "string",
+      "description": "Catalog partition to list services from.",
+      "enum": [
+       "dev",
+       "prod",
+       "testing"
+      ]
+     },
+     "development": {
+      "type": "boolean",
+      "description": "When `true`, list development-only services. When unset or `false`, development services are excluded."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Maximum number of services to return."
+     },
+     "provider_name": {
+      "type": "string",
+      "description": "Filters services to those offered by the provider with this name."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.stripe.com/v2/provisioning/catalog/services",
+    "path": [],
+    "query": [
+     "catalog",
+     "development",
+     "limit",
+     "provider_name"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "stripe-app.get_v2_provisioning_eligibility",
+   "name": "Retrieve an eligibility",
+   "description": "Checks whether a project is eligible to provision resources with a provider, including any outstanding KYC requirements that must be satisfied first.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.stripe.com/v2/provisioning/eligibility",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "stripe-app.get_v2_provisioning_payment_profile",
+   "name": "Retrieve a payment profile",
+   "description": "Retrieves the payment profile for the current project.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "livemode": {
+      "type": "boolean",
+      "description": "Whether the billing operation should use Stripe live-mode objects. When omitted, this resolves from the authenticated request context."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.stripe.com/v2/provisioning/payment_profile",
+    "path": [],
+    "query": [
+     "livemode"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "stripe-app.get_v2_provisioning_provider_connection_requests_id",
+   "name": "Retrieve a provider connection request",
+   "description": "Retrieves a provider connection.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "Identifier of the provider connection to retrieve."
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.stripe.com/v2/provisioning/provider_connection_requests/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "stripe-app.get_v2_provisioning_provider_connections",
+   "name": "List provider connections",
+   "description": "Lists the provider connections for the account.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "limit": {
+      "type": "integer",
+      "description": "Maximum number of provider connections to return."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.stripe.com/v2/provisioning/provider_connections",
+    "path": [],
+    "query": [
+     "limit"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "stripe-app.get_v2_provisioning_resources_id",
+   "name": "Retrieve a resource",
+   "description": "Retrieves a provider resource.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "Identifier of the resource to retrieve."
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.stripe.com/v2/provisioning/resources/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "stripe-app.get_v2_reporting_report_runs_id",
    "name": "Retrieve a report run",
    "description": "Fetches the current state and details of a previously created `ReportRun`. If the `ReportRun` has succeeded, the endpoint will provide details for how to retrieve the results.",
@@ -20732,7 +21633,7 @@
    }
   },
   {
-   "slug": "stripe-app.get_v2_signals_account_activity_id",
+   "slug": "stripe-app.get_v2_signals_account_activities_id",
    "name": "Retrieve an account activity",
    "description": "Retrieves an AccountActivity by its ID.",
    "input": {
@@ -20749,7 +21650,7 @@
    },
    "request": {
     "method": "GET",
-    "url": "https://api.stripe.com/v2/signals/account_activity/{id}",
+    "url": "https://api.stripe.com/v2/signals/account_activities/{id}",
     "path": [
      "id"
     ],
@@ -20762,7 +21663,7 @@
   {
    "slug": "stripe-app.get_v2_signals_account_evaluations_id",
    "name": "Retrieve an account evaluation",
-   "description": "Retrieves an AccountEvaluation by its ID.",
+   "description": "Retrieves an AccountEvaluation by its ID for up to 90 days after creation. Evaluations more than 90 days old are inaccessible.",
    "input": {
     "type": "object",
     "properties": {
@@ -20790,7 +21691,7 @@
   {
    "slug": "stripe-app.get_v2_signals_account_signals",
    "name": "List account signals",
-   "description": "Lists the latest AccountSignals for a given account or customer, filtered by signal type. Note that this endpoint returns only the latest signal for each requested signal type.",
+   "description": "Lists AccountSignals for a given account or customer. Signals more than 90 days old are omitted. Returns only the latest AccountSignal for each requested signal type.",
    "input": {
     "type": "object",
     "properties": {
@@ -20828,7 +21729,7 @@
   {
    "slug": "stripe-app.get_v2_signals_account_signals_id",
    "name": "Retrieve an account signal",
-   "description": "Retrieves an AccountSignal by its ID.",
+   "description": "Retrieves an AccountSignal by its ID for up to 90 days after creation. Signals more than 90 days old are inaccessible.",
    "input": {
     "type": "object",
     "properties": {
@@ -21180,7 +22081,7 @@
   {
    "slug": "stripe-app.post_account_sessions",
    "name": "Create an account session",
-   "description": "Creates a AccountSession object that includes a single-use token that the platform can use on their front-end to grant client-side API access.",
+   "description": "Creates an AccountSession object that includes a single-use token that the platform can use on their front-end to grant client-side API access.",
    "input": {
     "type": "object",
     "properties": {
@@ -21225,7 +22126,7 @@
     "properties": {
      "account_token": {
       "type": "string",
-      "description": "An [account token](https://api.stripe.com#create_account_token), used to securely provide details to the account."
+      "description": "An [account token](https://docs.stripe.com/api#create_account_token), used to securely provide details to the account."
      },
      "business_profile": {
       "type": "object",
@@ -21356,7 +22257,7 @@
      },
      "account_token": {
       "type": "string",
-      "description": "An [account token](https://api.stripe.com#create_account_token), used to securely provide details to the account."
+      "description": "An [account token](https://docs.stripe.com/api#create_account_token), used to securely provide details to the account."
      },
      "business_profile": {
       "type": "object",
@@ -22130,7 +23031,16 @@
      },
      "reason": {
       "type": "string",
-      "description": "The reason for rejecting the account. Can be `fraud`, `terms_of_service`, or `other`."
+      "description": "The reason for rejecting the account. Can be `fraud_payment_method_casher`, `fraud_payment_method_tester`, `fraud_no_intent_to_fulfill`, `fraud_other`, `credit`, `terms_of_service`, or `other`.",
+      "enum": [
+       "credit",
+       "fraud_no_intent_to_fulfill",
+       "fraud_other",
+       "fraud_payment_method_casher",
+       "fraud_payment_method_tester",
+       "other",
+       "terms_of_service"
+      ]
      }
     },
     "required": [
@@ -22306,6 +23216,128 @@
      "amount",
      "expand",
      "metadata"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "stripe-app.post_apps_installs",
+   "name": "Create an app install",
+   "description": "Creates an app install. An account installs its own private app with its own key; public and testing installs are made from the Dashboard. An app developer or embedding platform acting on a connected account through Stripe-Account installs or reinstalls its app there. For a private app, creating an install installs the newest completed upload; when that version is already installed with nothing pe",
+   "input": {
+    "type": "object",
+    "properties": {
+     "app": {
+      "type": "string",
+      "description": "The ID of the app to install."
+     },
+     "channel": {
+      "type": "string",
+      "description": "The distribution channel to install from. Defaults to `public`. A private app must be installed on `private_test` or `private_live`, matching the mode of the API key.",
+      "enum": [
+       "private_live",
+       "private_test",
+       "public",
+       "testing"
+      ]
+     },
+     "code_challenge": {
+      "type": "string",
+      "description": "For OAuth apps, the PKCE code challenge used to issue the `auth_code` returned on the install. Must be 43 to 128 characters and contain only letters, numbers, `-`, `.`, `_`, and `~`. Only applies to installs made by the app developer or an embedding platform; ignored when an account installs its own private app."
+     },
+     "code_challenge_method": {
+      "type": "string",
+      "description": "The method used to derive `code_challenge`. Required when `code_challenge` is provided, and must be `S256`."
+     },
+     "expand": {
+      "type": "array",
+      "description": "Specifies which fields in the response should be expanded."
+     }
+    },
+    "required": [
+     "app"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.stripe.com/v1/apps/installs",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "app",
+     "channel",
+     "code_challenge",
+     "code_challenge_method",
+     "expand"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "stripe-app.post_apps_installs_id",
+   "name": "Update an app install",
+   "description": "Reauthorizes an app install. The installer grants the permissions, content security policy entries, and endpoints that the version being installed requests. An account reauthorizes its own installs on any channel with its own key; app developers and embedding platforms reauthorize installs on connected accounts through Stripe-Account. For private apps, the version being installed is the newest com",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     },
+     "expand": {
+      "type": "array",
+      "description": "Specifies which fields in the response should be expanded."
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.stripe.com/v1/apps/installs/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "expand"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "stripe-app.post_apps_installs_id_uninstall",
+   "name": "Uninstall an app install",
+   "description": "Uninstalls an app from the account that installed it.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     },
+     "expand": {
+      "type": "array",
+      "description": "Specifies which fields in the response should be expanded."
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.stripe.com/v1/apps/installs/{id}/uninstall",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "expand"
     ],
     "body_format": "json"
    }
@@ -22856,7 +23888,7 @@
     "properties": {
      "description": {
       "type": "string",
-      "description": ""
+      "description": "The text of the feedback option, which customers see when canceling. Maximum 100 characters."
      },
      "expand": {
       "type": "array",
@@ -22889,11 +23921,11 @@
     "properties": {
      "id": {
       "type": "string",
-      "description": ""
+      "description": "The ID of the feedback option to update."
      },
      "description": {
       "type": "string",
-      "description": ""
+      "description": "The text of the feedback option, which customers see when canceling. Maximum 100 characters."
      },
      "expand": {
       "type": "array",
@@ -22928,7 +23960,7 @@
     "properties": {
      "id": {
       "type": "string",
-      "description": ""
+      "description": "The ID of the feedback option to deactivate."
      },
      "expand": {
       "type": "array",
@@ -23456,6 +24488,10 @@
    "input": {
     "type": "object",
     "properties": {
+     "after_expiration": {
+      "type": "object",
+      "description": "Behavior after the portal session expires."
+     },
      "configuration": {
       "type": "string",
       "description": "The ID of an existing [configuration](https://docs.stripe.com/api/customer_portal/configurations) to use for this session, describing its functionality and features. If not specified, the session uses the default configuration."
@@ -23512,6 +24548,7 @@
     "query": [],
     "header": [],
     "body": [
+     "after_expiration",
      "configuration",
      "customer",
      "customer_account",
@@ -23561,7 +24598,7 @@
   {
    "slug": "stripe-app.post_charges",
    "name": "Create a charge",
-   "description": "This method is no longer recommended\u2014use the Payment Intents API to initiate a new payment instead. Confirmation of the PaymentIntent creates the Charge object used to request payment.",
+   "description": "This method is deprecated and will be removed soon. If your integration uses it, you need to update it to use a different payment flow, such as the Payment Intents API.",
    "input": {
     "type": "object",
     "properties": {
@@ -23579,7 +24616,7 @@
      },
      "capture": {
       "type": "boolean",
-      "description": "Whether to immediately capture the charge. Defaults to `true`. When `false`, the charge issues an authorization (or pre-authorization), and will need to be [captured](https://api.stripe.com#capture_charge) later. Uncaptured charges expire after a set number of days (7 by default). For more information, see the [authorizing charges and settling later](https://docs.stripe.com/charges/placing-a-hold)"
+      "description": "Whether to immediately capture the charge. Defaults to `true`. When `false`, the charge issues an authorization (or pre-authorization), and will need to be [captured](https://docs.stripe.com/api#capture_charge) later. Uncaptured charges expire after a set number of days (7 by default). For more information, see the [authorizing charges and settling later](https://docs.stripe.com/charges/placing-a-"
      },
      "currency": {
       "type": "string",
@@ -23751,7 +24788,7 @@
   {
    "slug": "stripe-app.post_charges_charge_capture",
    "name": "Capture a charge",
-   "description": "Capture the payment of an existing, uncaptured charge that was created with the capture option set to false. Uncaptured payments expire a set number of days after they are created (7 by default), after which they are marked as refunded and capture attempts will fail. Don\u2019t use this method to capture a PaymentIntent-initiated charge. Use Capture a PaymentIntent.",
+   "description": "This method is deprecated and will be removed soon. If your integration uses it, you need to update it to use a different payment flow, such as the Payment Intents API.",
    "input": {
     "type": "object",
     "properties": {
@@ -23846,6 +24883,10 @@
       "type": "boolean",
       "description": "Enables user redeemable promotion codes."
      },
+     "allowed_payment_method_types": {
+      "type": "array",
+      "description": "A list of the types of payment methods (e.g., `card`) this Checkout Session can accept. Unlike `payment_method_types`, this acts as a filter on the dynamically computed set of eligible payment methods rather than an explicit static list. Only payment methods that are both dynamically eligible and present in this list will be offered to the customer."
+     },
      "approval_method": {
       "type": "string",
       "description": "Determines whether the customer's attempt to pay must be manually approved. Default is `auto`, when the customer's attempt to pay is approved automatically with no action required on your server. When set to `manual`, you must approve the customer's attempt to pay by calling [approve](api/checkout/sessions/approve) from your server.",
@@ -23892,7 +24933,7 @@
      },
      "custom_fields": {
       "type": "array",
-      "description": "Collect additional information from your customer using custom fields. Up to 3 fields are supported. You can't set this parameter if `ui_mode` is `custom`."
+      "description": "Collect additional information from your customer using custom fields. Up to 3 fields are supported. You can't set this parameter if `ui_mode` is `elements`."
      },
      "custom_payment_method_types": {
       "type": "array",
@@ -23900,7 +24941,7 @@
      },
      "custom_text": {
       "type": "object",
-      "description": "Display additional text for your customers using custom text. You can't set this parameter if `ui_mode` is `custom`."
+      "description": "Display additional text for your customers using custom text. You can't set this parameter if `ui_mode` is `elements`."
      },
      "customer": {
       "type": "string",
@@ -23997,6 +25038,10 @@
       "type": "object",
       "description": "Controls name collection settings for the session. You can configure Checkout to collect your customers' business names, individual names, or both. Each name field can be either required or optional. If a [Customer](https://docs.stripe.com/api/customers) is created or provided, the names can be saved to the Customer object as well."
      },
+     "on_behalf_of": {
+      "type": "string",
+      "description": "The account on behalf of which to charge. See the [Connect documentation](https://support.stripe.com/questions/sending-invoices-on-behalf-of-connected-accounts) for details."
+     },
      "optional_items": {
       "type": "array",
       "description": "A list of optional items the customer can add to their order at checkout. Use this parameter to pass one-time or recurring [Prices](https://docs.stripe.com/api/prices). There is a maximum of 10 optional items allowed on a Checkout Session, and the existing limits on the number of line items allowed on a Checkout Session apply to the combined number of line items and optional items. For `payment` m"
@@ -24033,13 +25078,9 @@
       "type": "object",
       "description": "Payment-method-specific configuration."
      },
-     "payment_method_types": {
-      "type": "array",
-      "description": "A list of the types of payment methods (e.g., `card`) this Checkout Session can accept. You can omit this attribute to manage your payment methods from the [Stripe Dashboard](https://dashboard.stripe.com/settings/payment_methods). See [Dynamic Payment Methods](https://docs.stripe.com/payments/payment-methods/integration-options#using-dynamic-payment-methods) for more details. Read more about the s"
-     },
      "permissions": {
       "type": "object",
-      "description": "This property is used to set up permissions for various actions (e.g., update) on the CheckoutSession object. Can only be set when creating `embedded` or `custom` sessions. For specific permissions, please refer to their dedicated subsections, such as `permissions.update_shipping_details`."
+      "description": "This property is used to set up permissions for various actions (for example, update) on the CheckoutSession object. Can only be set when creating `embedded_page` or `elements` sessions. For specific permissions, please refer to their dedicated subsections, such as `permissions.update_shipping_details`."
      },
      "phone_number_collection": {
       "type": "object",
@@ -24124,6 +25165,7 @@
      "adaptive_pricing",
      "after_expiration",
      "allow_promotion_codes",
+     "allowed_payment_method_types",
      "approval_method",
      "automatic_surcharge",
      "automatic_tax",
@@ -24154,6 +25196,7 @@
      "metadata",
      "mode",
      "name_collection",
+     "on_behalf_of",
      "optional_items",
      "origin_context",
      "payment_intent_data",
@@ -24161,7 +25204,6 @@
      "payment_method_configuration",
      "payment_method_data",
      "payment_method_options",
-     "payment_method_types",
      "permissions",
      "phone_number_collection",
      "redirect_on_completion",
@@ -24197,7 +25239,7 @@
      },
      "collected_information": {
       "type": "object",
-      "description": "Information about the customer collected within the Checkout Session. Can only be set when updating `embedded` or `custom` sessions."
+      "description": "Information about the customer collected within the Checkout Session. Can only be set when updating `embedded_page` or `elements` sessions."
      },
      "discounts": {
       "type": "string",
@@ -24218,6 +25260,10 @@
      "metadata": {
       "type": "string",
       "description": "Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to `metadata`."
+     },
+     "payment_intent_data": {
+      "type": "object",
+      "description": "A subset of parameters to apply to the PaymentIntent for Checkout Sessions in `payment` mode. You can only update these parameters when `ui_mode` is `elements` and while the session is active. If the PaymentIntent requires customer action or confirmation, updating these parameters abandons the current payment attempt and returns the PaymentIntent to `requires_payment_method`. You can't update thes"
      },
      "shipping_options": {
       "type": "string",
@@ -24248,6 +25294,7 @@
      "invoice_creation",
      "line_items",
      "metadata",
+     "payment_intent_data",
      "shipping_options",
      "subscription_data"
     ],
@@ -24277,6 +25324,10 @@
       "type": "object",
       "description": "A subset of parameters to be passed to PaymentIntent creation for Checkout Sessions in `payment` mode."
      },
+     "payment_method_options": {
+      "type": "object",
+      "description": "Payment method-specific configuration to apply to the Checkout Session during approval. Currently only supports `card` payment method options."
+     },
      "return_url": {
       "type": "string",
       "description": "The URL to redirect your customer back to after they authenticate or cancel their payment on the payment method's app or site. This parameter is allowed and required if and only if you did not set the return URL during Checkout Session creation or in `checkout.confirm()` in Stripe.js."
@@ -24303,6 +25354,7 @@
      "attempt",
      "expand",
      "payment_intent_data",
+     "payment_method_options",
      "return_url",
      "subscription_data"
     ],
@@ -24886,6 +25938,7 @@
        "btc",
        "eth",
        "matic",
+       "ripusd",
        "sol",
        "usdc",
        "usdt",
@@ -24947,8 +26000,11 @@
       "type": "string",
       "description": "The default source fiat currency for the onramp session. * When left null, a default currency is selected based on user locale. * When set, it must be one of the fiat currencies supported by onramp. Users can still select a different currency in the onramp UI.",
       "enum": [
+       "cad",
+       "cop",
        "eur",
        "gbp",
+       "php",
        "usd"
       ]
      },
@@ -25141,7 +26197,7 @@
      },
      "invoice_prefix": {
       "type": "string",
-      "description": "The prefix for the customer used to generate unique invoice numbers. Must be 3\u201312 uppercase letters or numbers."
+      "description": "The prefix for the customer used to generate unique invoice numbers. Must be 1\u201312 uppercase letters or numbers."
      },
      "invoice_settings": {
       "type": "object",
@@ -25291,7 +26347,7 @@
      },
      "invoice_prefix": {
       "type": "string",
-      "description": "The prefix for the customer used to generate unique invoice numbers. Must be 3\u201312 uppercase letters or numbers."
+      "description": "The prefix for the customer used to generate unique invoice numbers. Must be 1\u201312 uppercase letters or numbers."
      },
      "invoice_settings": {
       "type": "object",
@@ -25796,6 +26852,72 @@
     "body": [
      "amounts",
      "expand"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "stripe-app.post_customers_customer_tax_exemptions",
+   "name": "Create a tax exemption",
+   "description": "Create a location specific tax exemption for a customer.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "customer": {
+      "type": "string",
+      "description": ""
+     },
+     "ca": {
+      "type": "object",
+      "description": "Canada-specific exemption details. Required when country is CA; must be absent otherwise."
+     },
+     "country": {
+      "type": "string",
+      "description": "Two-letter ISO country code for the exemption location."
+     },
+     "effective_date": {
+      "type": "string",
+      "description": "ISO 8601 date (YYYY-MM-DD) when the exemption becomes effective. Must be no more than one year after today's UTC date (inclusive)."
+     },
+     "es": {
+      "type": "object",
+      "description": "Spain-specific exemption details. Optional when country is ES; must be absent otherwise."
+     },
+     "expand": {
+      "type": "array",
+      "description": "Specifies which fields in the response should be expanded."
+     },
+     "expiration_date": {
+      "type": "string",
+      "description": "ISO 8601 date (YYYY-MM-DD) when the exemption expires."
+     },
+     "us": {
+      "type": "object",
+      "description": "US-specific exemption details. Required when country is US; must be absent otherwise."
+     }
+    },
+    "required": [
+     "country",
+     "customer",
+     "effective_date"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.stripe.com/v1/customers/{customer}/tax_exemptions",
+    "path": [
+     "customer"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "ca",
+     "country",
+     "effective_date",
+     "es",
+     "expand",
+     "expiration_date",
+     "us"
     ],
     "body_format": "json"
    }
@@ -26635,7 +27757,7 @@
      },
      "file_link_data": {
       "type": "object",
-      "description": "Optional parameters that automatically create a [file link](https://api.stripe.com#file_links) for the newly created file."
+      "description": "Optional parameters that automatically create a [file link](https://docs.stripe.com/api#file_links) for the newly created file."
      },
      "purpose": {
       "type": "string",
@@ -26826,6 +27948,44 @@
     "body": [
      "expand",
      "features"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "stripe-app.post_financial_connections_consents",
+   "name": "Create a consent",
+   "description": "Creates a Financial Connections Consent object for an account holder.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "account_holder": {
+      "type": "object",
+      "description": "The account holder for whom the Consent is issued."
+     },
+     "expand": {
+      "type": "array",
+      "description": "Specifies which fields in the response should be expanded."
+     },
+     "locale": {
+      "type": "string",
+      "description": "The customer's preferred locale for the consent text, expressed as a BCP 47 language tag. If omitted, Stripe uses the default locale."
+     }
+    },
+    "required": [
+     "account_holder"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.stripe.com/v1/financial_connections/consents",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "account_holder",
+     "expand",
+     "locale"
     ],
     "body_format": "json"
    }
@@ -27435,6 +28595,10 @@
        "id_number"
       ]
      },
+     "user_consent": {
+      "type": "object",
+      "description": "Details on the user's consent to Stripe Terms of Service and Privacy Policy."
+     },
      "verification_flow": {
       "type": "string",
       "description": "The ID of a verification flow from the Dashboard. See https://docs.stripe.com/identity/verification-flows."
@@ -27460,6 +28624,7 @@
      "related_person",
      "return_url",
      "type",
+     "user_consent",
      "verification_flow"
     ],
     "body_format": "json"
@@ -27504,6 +28669,10 @@
        "email",
        "id_number"
       ]
+     },
+     "user_consent": {
+      "type": "object",
+      "description": "Details on the user's consent to Stripe Terms of Service and Privacy Policy."
      }
     },
     "required": [
@@ -27524,7 +28693,8 @@
      "metadata",
      "options",
      "provided_details",
-     "type"
+     "type",
+     "user_consent"
     ],
     "body_format": "json"
    }
@@ -27832,6 +29002,13 @@
       "type": "array",
       "description": "Specifies which fields in the response should be expanded."
      },
+     "invoicing_rules": {
+      "type": "string",
+      "description": "Pass an empty string to remove previously-defined invoicing rules. Setting invoicing rules is not supported.",
+      "enum": [
+       ""
+      ]
+     },
      "margins": {
       "type": "string",
       "description": "The ids of the margins to apply to the invoice item. When set, the `default_margins` on the invoice do not apply to this invoice item."
@@ -27900,6 +29077,7 @@
      "discountable",
      "discounts",
      "expand",
+     "invoicing_rules",
      "margins",
      "metadata",
      "period",
@@ -28052,7 +29230,7 @@
      },
      "rendering": {
       "type": "object",
-      "description": "The rendering-related settings that control how the invoice is displayed on customer-facing surfaces such as PDF and Hosted Invoice Page."
+      "description": "The rendering-related settings that control how invoices render in customer-facing interfaces such as the PDF or hosted invoice page."
      },
      "shipping_cost": {
       "type": "object",
@@ -28183,6 +29361,10 @@
        "recurring"
       ]
      },
+     "pricing_token": {
+      "type": "string",
+      "description": "A pricing token whose presentment currency and exchange rate are used to convert the amounts on the previewed invoice into the customer-facing presentment currency. When omitted, amounts are returned in the settlement currency."
+     },
      "schedule": {
       "type": "string",
       "description": "The identifier of the schedule whose upcoming invoice you'd like to retrieve. Cannot be used with subscription or subscription fields."
@@ -28221,6 +29403,7 @@
      "issuer",
      "on_behalf_of",
      "preview_mode",
+     "pricing_token",
      "schedule",
      "schedule_details",
      "subscription",
@@ -28232,7 +29415,7 @@
   {
    "slug": "stripe-app.post_invoices_invoice",
    "name": "Update an invoice",
-   "description": "Draft invoices are fully editable. Once an invoice is finalized, monetary values, as well as collection_method, become uneditable. If you would like to stop the Stripe Billing engine from automatically finalizing, reattempting payments on, sending reminders for, or automatically reconciling invoices, pass auto_advance=false.",
+   "description": "Draft invoices are fully editable. Once an invoice is finalized, you can no longer change most of its details, including monetary values and collection_method. For most invoices, this also includes description. If you would like to stop the Stripe Billing engine from automatically finalizing, reattempting payments on, sending reminders for, or automatically reconciling invoices, pass auto_advance=",
    "input": {
     "type": "object",
     "properties": {
@@ -28342,7 +29525,7 @@
      },
      "rendering": {
       "type": "object",
-      "description": "The rendering-related settings that control how the invoice is displayed on customer-facing surfaces such as PDF and Hosted Invoice Page."
+      "description": "The rendering-related settings that control how invoices render in customer-facing interfaces such as the PDF or hosted invoice page."
      },
      "shipping_cost": {
       "type": "string",
@@ -29167,6 +30350,10 @@
       "type": "string",
       "description": "The [Cardholder](https://docs.stripe.com/api#issuing_cardholder_object) object with which the card will be associated."
      },
+     "crypto_wallet": {
+      "type": "object",
+      "description": "The crypto wallet to attach this card to for Bridge integration."
+     },
      "currency": {
       "type": "string",
       "description": "The currency for the card."
@@ -29263,6 +30450,7 @@
     "header": [],
     "body": [
      "cardholder",
+     "crypto_wallet",
      "currency",
      "exp_month",
      "exp_year",
@@ -29302,6 +30490,10 @@
        "lost",
        "stolen"
       ]
+     },
+     "crypto_wallet": {
+      "type": "object",
+      "description": "Updates the cryptocurrency used to fund this card's existing crypto wallet."
      },
      "expand": {
       "type": "array",
@@ -29355,6 +30547,7 @@
     "header": [],
     "body": [
      "cancellation_reason",
+     "crypto_wallet",
      "expand",
      "metadata",
      "personalization_design",
@@ -30380,6 +31573,14 @@
       "type": "string",
       "description": "Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to `metadata`."
      },
+     "payment_evaluations": {
+      "type": "array",
+      "description": "Payment evaluations associated with this reported payment."
+     },
+     "payment_method_details": {
+      "type": "object",
+      "description": "Information about the Payment Method debited for this payment."
+     },
      "processor_details": {
       "type": "object",
       "description": "Processor information for this payment."
@@ -30401,6 +31602,8 @@
      "authorized_at",
      "expand",
      "metadata",
+     "payment_evaluations",
+     "payment_method_details",
      "processor_details"
     ],
     "body_format": "json"
@@ -30437,7 +31640,9 @@
       "type": "string",
       "description": "The reason the payment attempt was canceled.",
       "enum": [
-       "blocked_for_fraud"
+       "blocked_for_fraud",
+       "merchant_canceled",
+       "rerouted"
       ]
      }
     },
@@ -30865,11 +32070,11 @@
      },
      "customer": {
       "type": "string",
-      "description": "ID of the Customer this PaymentIntent belongs to, if one exists. Payment methods attached to other Customers cannot be used with this PaymentIntent. If [setup_future_usage](https://api.stripe.com#payment_intent_object-setup_future_usage) is set and this PaymentIntent's payment method is not `card_present`, then the payment method attaches to the Customer after the PaymentIntent has been confirmed "
+      "description": "ID of the Customer this PaymentIntent belongs to, if one exists. Payment methods attached to other Customers cannot be used with this PaymentIntent. If [setup_future_usage](https://docs.stripe.com/api#payment_intent_object-setup_future_usage) is set and this PaymentIntent's payment method is not `card_present`, then the payment method attaches to the Customer after the PaymentIntent has been confi"
      },
      "customer_account": {
       "type": "string",
-      "description": "ID of the Account representing the customer that this PaymentIntent belongs to, if one exists. Payment methods attached to other Accounts cannot be used with this PaymentIntent. If [setup_future_usage](https://api.stripe.com#payment_intent_object-setup_future_usage) is set and this PaymentIntent's payment method is not `card_present`, then the payment method attaches to the Account after the Payme"
+      "description": "ID of the Account representing the customer that this PaymentIntent belongs to, if one exists. Payment methods attached to other Accounts cannot be used with this PaymentIntent. If [setup_future_usage](https://docs.stripe.com/api#payment_intent_object-setup_future_usage) is set and this PaymentIntent's payment method is not `card_present`, then the payment method attaches to the Account after the "
      },
      "description": {
       "type": "string",
@@ -30934,10 +32139,6 @@
      "payment_method_options": {
       "type": "object",
       "description": "Payment method-specific configuration for this PaymentIntent."
-     },
-     "payment_method_types": {
-      "type": "array",
-      "description": "The list of payment method types (for example, a card) that this PaymentIntent can use. If you don't provide this, Stripe will dynamically show relevant payment methods from your [payment method settings](https://dashboard.stripe.com/settings/payment_methods). A list of valid payment method types can be found [here](https://docs.stripe.com/api/payment_methods/object#payment_method_object-type)."
      },
      "payments_orchestration": {
       "type": "object",
@@ -31037,7 +32238,6 @@
      "payment_method_configuration",
      "payment_method_data",
      "payment_method_options",
-     "payment_method_types",
      "payments_orchestration",
      "radar_options",
      "receipt_email",
@@ -31100,11 +32300,11 @@
      },
      "customer": {
       "type": "string",
-      "description": "ID of the Customer this PaymentIntent belongs to, if one exists. Payment methods attached to other Customers cannot be used with this PaymentIntent. If [setup_future_usage](https://api.stripe.com#payment_intent_object-setup_future_usage) is set and this PaymentIntent's payment method is not `card_present`, then the payment method attaches to the Customer after the PaymentIntent has been confirmed "
+      "description": "ID of the Customer this PaymentIntent belongs to, if one exists. Payment methods attached to other Customers cannot be used with this PaymentIntent. If [setup_future_usage](https://docs.stripe.com/api#payment_intent_object-setup_future_usage) is set and this PaymentIntent's payment method is not `card_present`, then the payment method attaches to the Customer after the PaymentIntent has been confi"
      },
      "customer_account": {
       "type": "string",
-      "description": "ID of the Account representing the customer that this PaymentIntent belongs to, if one exists. Payment methods attached to other Accounts cannot be used with this PaymentIntent. If [setup_future_usage](https://api.stripe.com#payment_intent_object-setup_future_usage) is set and this PaymentIntent's payment method is not `card_present`, then the payment method attaches to the Account after the Payme"
+      "description": "ID of the Account representing the customer that this PaymentIntent belongs to, if one exists. Payment methods attached to other Accounts cannot be used with this PaymentIntent. If [setup_future_usage](https://docs.stripe.com/api#payment_intent_object-setup_future_usage) is set and this PaymentIntent's payment method is not `card_present`, then the payment method attaches to the Account after the "
      },
      "description": {
       "type": "string",
@@ -31153,10 +32353,6 @@
      "payment_method_options": {
       "type": "object",
       "description": "Payment-method-specific configuration for this PaymentIntent."
-     },
-     "payment_method_types": {
-      "type": "array",
-      "description": "The list of payment method types (for example, card) that this PaymentIntent can use. Use `automatic_payment_methods` to manage payment methods from the [Stripe Dashboard](https://dashboard.stripe.com/settings/payment_methods). A list of valid payment method types can be found [here](https://docs.stripe.com/api/payment_methods/object#payment_method_object-type)."
      },
      "receipt_email": {
       "type": "string",
@@ -31226,7 +32422,6 @@
      "payment_method_configuration",
      "payment_method_data",
      "payment_method_options",
-     "payment_method_types",
      "receipt_email",
      "setup_future_usage",
      "shipping",
@@ -31493,7 +32688,7 @@
      },
      "payment_method": {
       "type": "string",
-      "description": "ID of the payment method (a PaymentMethod, Card, or [compatible Source](https://docs.stripe.com/payments/payment-methods/transitioning#compatibility) object) to attach to this PaymentIntent. If the payment method is attached to a Customer, it must match the [customer](https://api.stripe.com#create_payment_intent-customer) that is set on this PaymentIntent."
+      "description": "ID of the payment method (a PaymentMethod, Card, or [compatible Source](https://docs.stripe.com/payments/payment-methods/transitioning#compatibility) object) to attach to this PaymentIntent. If the payment method is attached to a Customer, it must match the [customer](https://docs.stripe.com/api#create_payment_intent-customer) that is set on this PaymentIntent."
      },
      "payment_method_data": {
       "type": "object",
@@ -31502,10 +32697,6 @@
      "payment_method_options": {
       "type": "object",
       "description": "Payment method-specific configuration for this PaymentIntent."
-     },
-     "payment_method_types": {
-      "type": "array",
-      "description": "The list of payment method types (for example, a card) that this PaymentIntent can use. If you don't provide this, Stripe will dynamically show relevant payment methods from your [payment method settings](https://dashboard.stripe.com/settings/payment_methods). A list of valid payment method types can be found [here](https://docs.stripe.com/api/payment_methods/object#payment_method_object-type)."
      },
      "radar_options": {
       "type": "object",
@@ -31569,7 +32760,6 @@
      "payment_method",
      "payment_method_data",
      "payment_method_options",
-     "payment_method_types",
      "radar_options",
      "receipt_email",
      "return_url",
@@ -31931,11 +33121,11 @@
      },
      "custom_fields": {
       "type": "array",
-      "description": "Collect additional information from your customer using custom fields. Up to 3 fields are supported. You can't set this parameter if `ui_mode` is `custom`."
+      "description": "Collect additional information from your customer using custom fields. Up to 3 fields are supported. You can't set this parameter if `ui_mode` is `elements`."
      },
      "custom_text": {
       "type": "object",
-      "description": "Display additional text for your customers using custom text. You can't set this parameter if `ui_mode` is `custom`."
+      "description": "Display additional text for your customers using custom text. You can't set this parameter if `ui_mode` is `elements`."
      },
      "customer_creation": {
       "type": "string",
@@ -32138,11 +33328,11 @@
      },
      "custom_fields": {
       "type": "string",
-      "description": "Collect additional information from your customer using custom fields. Up to 3 fields are supported. You can't set this parameter if `ui_mode` is `custom`."
+      "description": "Collect additional information from your customer using custom fields. Up to 3 fields are supported. You can't set this parameter if `ui_mode` is `elements`."
      },
      "custom_text": {
       "type": "object",
-      "description": "Display additional text for your customers using custom text. You can't set this parameter if `ui_mode` is `custom`."
+      "description": "Display additional text for your customers using custom text. You can't set this parameter if `ui_mode` is `elements`."
      },
      "customer_creation": {
       "type": "string",
@@ -33334,11 +34524,11 @@
      },
      "alma": {
       "type": "object",
-      "description": "If this is a Alma PaymentMethod, this hash contains details about the Alma payment method."
+      "description": "If this is an Alma PaymentMethod, this hash contains details about the Alma payment method."
      },
      "amazon_pay": {
       "type": "object",
-      "description": "If this is a AmazonPay PaymentMethod, this hash contains details about the AmazonPay payment method."
+      "description": "If this is an AmazonPay PaymentMethod, this hash contains details about the AmazonPay payment method."
      },
      "au_becs_debit": {
       "type": "object",
@@ -33755,10 +34945,6 @@
       "type": "string",
       "description": "Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to `metadata`."
      },
-     "payto": {
-      "type": "object",
-      "description": "If this is a `payto` PaymentMethod, this hash contains details about the PayTo payment method."
-     },
      "us_bank_account": {
       "type": "object",
       "description": "If this is an `us_bank_account` PaymentMethod, this hash contains details about the US bank account payment method."
@@ -33783,7 +34969,6 @@
      "custom",
      "expand",
      "metadata",
-     "payto",
      "us_bank_account"
     ],
     "body_format": "json"
@@ -34085,6 +35270,10 @@
       "type": "string",
       "description": "The ID of the Payment Record."
      },
+     "canceled": {
+      "type": "object",
+      "description": "Information about the payment attempt cancelation."
+     },
      "description": {
       "type": "string",
       "description": "An arbitrary string attached to the object. Often useful for displaying to users."
@@ -34113,6 +35302,7 @@
       "type": "string",
       "description": "The outcome of the reported payment.",
       "enum": [
+       "canceled",
        "failed",
        "guaranteed"
       ]
@@ -34140,6 +35330,7 @@
     "query": [],
     "header": [],
     "body": [
+     "canceled",
      "description",
      "expand",
      "failed",
@@ -34184,7 +35375,9 @@
       "type": "string",
       "description": "The reason the payment attempt was canceled.",
       "enum": [
-       "blocked_for_fraud"
+       "blocked_for_fraud",
+       "merchant_canceled",
+       "rerouted"
       ]
      }
     },
@@ -34499,6 +35692,10 @@
       "type": "object",
       "description": "The amount you initially requested for this payment."
      },
+     "canceled": {
+      "type": "object",
+      "description": "Information about the payment attempt cancelation."
+     },
      "customer_details": {
       "type": "object",
       "description": "Customer information for this payment."
@@ -34539,6 +35736,7 @@
       "type": "string",
       "description": "The outcome of the reported payment.",
       "enum": [
+       "canceled",
        "failed",
        "guaranteed"
       ]
@@ -34570,6 +35768,7 @@
     "header": [],
     "body": [
      "amount_requested",
+     "canceled",
      "customer_details",
      "customer_presence",
      "description",
@@ -34595,7 +35794,7 @@
     "properties": {
      "amount": {
       "type": "integer",
-      "description": "A positive integer in cents representing how much to payout."
+      "description": "A positive integer in cents representing how much to pay out."
      },
      "currency": {
       "type": "string",
@@ -34628,6 +35827,10 @@
      "payout_method": {
       "type": "string",
       "description": "The ID of a v2 FinancialAccount to send funds to."
+     },
+     "payout_method_options": {
+      "type": "object",
+      "description": "Additional options that complement the payout_method. The keys in this dictionary identify the type of payout method the options apply to."
      },
      "source_type": {
       "type": "string",
@@ -34663,6 +35866,7 @@
      "metadata",
      "method",
      "payout_method",
+     "payout_method_options",
      "source_type",
      "statement_descriptor"
     ],
@@ -34818,7 +36022,7 @@
      },
      "id": {
       "type": "string",
-      "description": "An identifier randomly generated by Stripe. Used to identify this plan when subscribing a customer. You can optionally override this ID, but the ID must be unique across all plans in your Stripe account. You can, however, use the same plan ID in both live and test modes."
+      "description": "An identifier randomly generated by Stripe. Used to identify this plan when subscribing a customer. You can optionally override this ID, but the ID must be unique across all plans in your Stripe account. You can use the same plan ID in live mode and in your sandboxes."
      },
      "interval": {
       "type": "string",
@@ -35386,6 +36590,10 @@
    "input": {
     "type": "object",
     "properties": {
+     "active": {
+      "type": "boolean",
+      "description": "Whether the trial offer can be used for new subscriptions. Defaults to true."
+     },
      "duration": {
       "type": "object",
       "description": "Duration of one service period of the trial."
@@ -35398,9 +36606,9 @@
       "type": "array",
       "description": "Specifies which fields in the response should be expanded."
      },
-     "name": {
+     "nickname": {
       "type": "string",
-      "description": "A brief, user-friendly name for the trial offer-for identification purposes."
+      "description": "A brief description of the trial offer, hidden from customers."
      },
      "price": {
       "type": "string",
@@ -35420,11 +36628,51 @@
     "query": [],
     "header": [],
     "body": [
+     "active",
      "duration",
      "end_behavior",
      "expand",
-     "name",
+     "nickname",
      "price"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "stripe-app.post_product_catalog_trial_offers_id",
+   "name": "Update a trial offer",
+   "description": "Updates the specified trial offer by setting the values of the parameters passed. Any parameters not provided are left unchanged.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     },
+     "active": {
+      "type": "boolean",
+      "description": "Whether the trial offer can be used for new purchases."
+     },
+     "expand": {
+      "type": "array",
+      "description": "Specifies which fields in the response should be expanded."
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.stripe.com/v1/product_catalog/trial_offers/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "active",
+     "expand"
     ],
     "body_format": "json"
    }
@@ -36433,6 +37681,55 @@
    }
   },
   {
+   "slug": "stripe-app.post_radar_billing_evaluations",
+   "name": "Create a billing evaluation",
+   "description": "Request Stripe Radar\u2019s assessment of the non-payment abuse risk of an upcoming charge, before the payment is attempted.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "client_device_metadata_details": {
+      "type": "object",
+      "description": "Details about the client device to associate with the billing evaluation."
+     },
+     "customer_details": {
+      "type": "object",
+      "description": "Details about the customer whose upcoming payment is being evaluated."
+     },
+     "expand": {
+      "type": "array",
+      "description": "Specifies which fields in the response should be expanded."
+     },
+     "metadata": {
+      "type": "object",
+      "description": "Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to `metadata`."
+     },
+     "payment_details": {
+      "type": "object",
+      "description": "Details about the upcoming payment being evaluated."
+     }
+    },
+    "required": [
+     "customer_details",
+     "payment_details"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.stripe.com/v1/radar/billing_evaluations",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "client_device_metadata_details",
+     "customer_details",
+     "expand",
+     "metadata",
+     "payment_details"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "stripe-app.post_radar_customer_evaluations",
    "name": "Create a customer evaluation",
    "description": "Creates a new CustomerEvaluation object.",
@@ -37117,10 +38414,6 @@
       "type": "object",
       "description": "Payment method-specific configuration for this SetupIntent."
      },
-     "payment_method_types": {
-      "type": "array",
-      "description": "The list of payment method types (for example, card) that this SetupIntent can use. If you don't provide this, Stripe will dynamically show relevant payment methods from your [payment method settings](https://dashboard.stripe.com/settings/payment_methods). A list of valid payment method types can be found [here](https://docs.stripe.com/api/payment_methods/object#payment_method_object-type)."
-     },
      "return_url": {
       "type": "string",
       "description": "The URL to redirect your customer back to after they authenticate or cancel their payment on the payment method's app or site. To redirect to a mobile application, you can alternatively supply an application URI scheme. This parameter can only be used with [`confirm=true`](https://docs.stripe.com/api/setup_intents/create#create_setup_intent-confirm)."
@@ -37173,7 +38466,6 @@
      "payment_method_configuration",
      "payment_method_data",
      "payment_method_options",
-     "payment_method_types",
      "return_url",
      "setup_details",
      "single_use",
@@ -37246,10 +38538,6 @@
       "type": "object",
       "description": "Payment method-specific configuration for this SetupIntent."
      },
-     "payment_method_types": {
-      "type": "array",
-      "description": "The list of payment method types (for example, card) that this SetupIntent can set up. If you don't provide this, Stripe will dynamically show relevant payment methods from your [payment method settings](https://dashboard.stripe.com/settings/payment_methods). A list of valid payment method types can be found [here](https://docs.stripe.com/api/payment_methods/object#payment_method_object-type)."
-     },
      "setup_details": {
       "type": "object",
       "description": "Provides industry-specific information about the SetupIntent."
@@ -37281,7 +38569,6 @@
      "payment_method_configuration",
      "payment_method_data",
      "payment_method_options",
-     "payment_method_types",
      "setup_details"
     ],
     "body_format": "json"
@@ -38051,11 +39338,11 @@
      },
      "price": {
       "type": "string",
-      "description": "The ID of the price object. One of `price` or `price_data` is required. When changing a subscription item's price, `quantity` is set to 1 unless a `quantity` parameter is provided."
+      "description": "The ID of the price object. You can use either `price` or `price_data`, but not both, to set or change this item's price. If you're updating an existing item without changing its price, omit both. When changing a subscription item's price, `quantity` is set to 1 unless a `quantity` parameter is provided."
      },
      "price_data": {
       "type": "object",
-      "description": "Data used to generate a new [Price](https://docs.stripe.com/api/prices) object inline. One of `price` or `price_data` is required."
+      "description": "Data used to generate a new [Price](https://docs.stripe.com/api/prices) object inline. You can use either `price` or `price_data`, but not both, to set or change this item's price. If you're updating an existing item without changing its price, omit both."
      },
      "proration_behavior": {
       "type": "string",
@@ -38488,7 +39775,7 @@
      },
      "billing_schedules": {
       "type": "array",
-      "description": "Sets the billing schedules for the subscription."
+      "description": "An array of billing schedules, which allow you to bill customers in advance for multiple service periods. Requires flexible billing mode and API version 2026-05-27.dahlia or later. Learn more about [prebilling](https://docs.stripe.com/billing/subscriptions/prebilling)."
      },
      "billing_thresholds": {
       "type": "string",
@@ -38611,11 +39898,11 @@
      },
      "trial_from_plan": {
       "type": "boolean",
-      "description": "Indicates if a plan's `trial_period_days` should be applied to the subscription. Setting `trial_end` per subscription is preferred, and this defaults to `false`. Setting this flag to `true` together with `trial_end` is not allowed. See [Using trial periods on subscriptions](https://docs.stripe.com/billing/subscriptions/trials) to learn more."
+      "description": "Indicates if a plan's `trial_period_days` should be applied to the subscription. Setting `trial_end` per subscription is preferred, and this defaults to `false`. Setting this flag to `true` together with `trial_end` is not allowed. See [Using trial periods on subscriptions](https://docs.stripe.com/billing/subscriptions/trials/free-trials) to learn more."
      },
      "trial_period_days": {
       "type": "integer",
-      "description": "Integer representing the number of trial period days before the customer is charged for the first time. This will always overwrite any trials that might apply via a subscribed plan. See [Using trial periods on subscriptions](https://docs.stripe.com/billing/subscriptions/trials) to learn more."
+      "description": "Integer representing the number of trial period days before the customer is charged for the first time. This will always overwrite any trials that might apply via a subscribed plan. See [Using trial periods on subscriptions](https://docs.stripe.com/billing/subscriptions/trials/free-trials) to learn more."
      },
      "trial_settings": {
       "type": "object",
@@ -38741,16 +40028,12 @@
       "description": "The Billing Cadence which controls the timing of recurring invoice generation for this subscription. If unset, the subscription will bill according to its own configured schedule and create its own invoices. If set, this subscription will be billed by the cadence instead, potentially sharing invoices with the other subscriptions linked to that Cadence."
      },
      "billing_cycle_anchor": {
-      "type": "string",
-      "description": "Either `now` or `unchanged`. Setting the value to `now` resets the subscription's billing cycle anchor to the current time (in UTC). For more information, see the billing cycle [documentation](https://docs.stripe.com/billing/subscriptions/billing-cycle).",
-      "enum": [
-       "now",
-       "unchanged"
-      ]
+      "type": "object",
+      "description": "Controls how the subscription's billing cycle anchor changes. Set `type` to `now` to reset the billing cycle anchor to the current time (in UTC), or `unchanged` to preserve it. For more information, see the billing cycle [documentation](https://docs.stripe.com/billing/subscriptions/billing-cycle)."
      },
      "billing_schedules": {
       "type": "string",
-      "description": "Sets the billing schedules for the subscription."
+      "description": "An array of billing schedules, which allow you to bill customers in advance for multiple service periods. Requires flexible billing mode and API version 2026-05-27.dahlia or later. Learn more about [prebilling](https://docs.stripe.com/billing/subscriptions/prebilling)."
      },
      "billing_thresholds": {
       "type": "string",
@@ -38850,6 +40133,10 @@
       "type": "object",
       "description": "If specified, the invoicing for the given billing cycle iterations will be processed now."
      },
+     "pricing_token": {
+      "type": "string",
+      "description": "Token used to resolve the presentment currency and FX rate applied to this subscription's adaptive pricing."
+     },
      "proration_behavior": {
       "type": "string",
       "description": "Determines how to handle [prorations](https://docs.stripe.com/billing/subscriptions/prorations) when the billing cycle changes (e.g., when switching plans, resetting `billing_cycle_anchor=now`, or starting a trial), or if an item's `quantity` changes. The default value is `create_prorations`.",
@@ -38873,7 +40160,7 @@
      },
      "trial_from_plan": {
       "type": "boolean",
-      "description": "Indicates if a plan's `trial_period_days` should be applied to the subscription. Setting `trial_end` per subscription is preferred, and this defaults to `false`. Setting this flag to `true` together with `trial_end` is not allowed. See [Using trial periods on subscriptions](https://docs.stripe.com/billing/subscriptions/trials) to learn more."
+      "description": "Indicates if a plan's `trial_period_days` should be applied to the subscription. Setting `trial_end` per subscription is preferred, and this defaults to `false`. Setting this flag to `true` together with `trial_end` is not allowed. See [Using trial periods on subscriptions](https://docs.stripe.com/billing/subscriptions/trials/free-trials) to learn more."
      },
      "trial_settings": {
       "type": "object",
@@ -38921,6 +40208,7 @@
      "payment_settings",
      "pending_invoice_item_interval",
      "prebilling",
+     "pricing_token",
      "proration_behavior",
      "proration_date",
      "transfer_data",
@@ -39039,12 +40327,8 @@
       "description": ""
      },
      "billing_cycle_anchor": {
-      "type": "string",
-      "description": "The billing cycle anchor that applies when the subscription is resumed. Either `now` or `unchanged`. The default is `now`. For more information, see the billing cycle [documentation](https://docs.stripe.com/billing/subscriptions/billing-cycle).",
-      "enum": [
-       "now",
-       "unchanged"
-      ]
+      "type": "object",
+      "description": "The billing cycle anchor that applies when the subscription is resumed. Either `now` or `unchanged`. The default is `now`. For more information, see the billing cycle [documentation](https://docs.stripe.com/billing/subscriptions/billing-cycle)."
      },
      "expand": {
       "type": "array",
@@ -39219,7 +40503,7 @@
   {
    "slug": "stripe-app.post_tax_locations",
    "name": "Create a tax location",
-   "description": "Create a tax location to use in calculating taxes for a service, ticket, or other type of product. The resulting object contains the id, address, name, description, and current operational status of the tax location.",
+   "description": "Create a tax location to use in calculating taxes for a service, ticket, or other type of product. The resulting object contains the ID, address, type, and description of the tax location.",
    "input": {
     "type": "object",
     "properties": {
@@ -39316,6 +40600,7 @@
       "enum": [
        "amusement_tax",
        "communications_tax",
+       "digital_excise_tax",
        "gst",
        "hst",
        "igst",
@@ -39324,8 +40609,7 @@
        "mass_transit_parking_tax",
        "parking_tax",
        "pst",
-       "qst",
-       "retail_delivery_fee"
+       "qst"
       ]
      }
     },
@@ -39406,6 +40690,7 @@
       "enum": [
        "amusement_tax",
        "communications_tax",
+       "digital_excise_tax",
        "gst",
        "hst",
        "igst",
@@ -39414,8 +40699,7 @@
        "mass_transit_parking_tax",
        "parking_tax",
        "pst",
-       "qst",
-       "retail_delivery_fee"
+       "qst"
       ]
      }
     },
@@ -39542,7 +40826,7 @@
   {
    "slug": "stripe-app.post_tax_settings",
    "name": "Update settings",
-   "description": "Updates Tax Settings parameters used in tax calculations. All parameters are editable but none can be removed once set.",
+   "description": "Updates Tax Settings parameters used in tax calculations. All parameters are editable but none can be removed once set. Check the returned Tax Settings object and validate that its status is active.",
    "input": {
     "type": "object",
     "properties": {
@@ -41175,6 +42459,20 @@
       "type": "object",
       "description": "Details about the authorization, such as identifiers, set by the card network."
      },
+     "pos_condition": {
+      "type": "string",
+      "description": "The point-of-sale initiation condition for this test authorization.",
+      "enum": [
+       "account_verification",
+       "card_not_present",
+       "card_present",
+       "e_commerce",
+       "key_entered_pos",
+       "other",
+       "pin_entered",
+       "recurring_or_moto"
+      ]
+     },
      "risk_assessment": {
       "type": "object",
       "description": "Stripe\u2019s assessment of the fraud risk for this authorization."
@@ -41219,6 +42517,7 @@
      "merchant_currency",
      "merchant_data",
      "network_data",
+     "pos_condition",
      "risk_assessment",
      "verification_data",
      "wallet"
@@ -42935,6 +44234,7 @@
       "description": "Specifies the network rails to be used. If not set, will default to the PaymentMethod's preferred network. See the [docs](https://docs.stripe.com/treasury/money-movement/timelines) to learn more about money movement timelines for each network type.",
       "enum": [
        "ach",
+       "rtp",
        "us_domestic_wire"
       ]
      },
@@ -43088,6 +44388,211 @@
    }
   },
   {
+   "slug": "stripe-app.post_three_dsecure_authentications",
+   "name": "Create a 3 ds authentication",
+   "description": "This endpoint creates a 3DS Authentication. Refer to the Create a 3DS Authentication object section of the Standalone 3DS guide for more information. You can pass the submit parameter to automatically submit the 3DS Authentication object when you create it. Refer to the Submit at creation section of the Standalone 3DS guide for more information.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "acquirer_details": {
+      "type": "object",
+      "description": "Contains additional details about the acquirer for this 3DS Authentication. Refer to the [Pass acquirer details and directory server section of the standalone 3DS guide](/payments/3d-secure/standalone-3d-secure#pass-acquirer-details-and-directory-server) for more information."
+     },
+     "amount": {
+      "type": "integer",
+      "description": "A non-negative integer representing the amount in the [smallest currency unit](/currencies#zero-decimal). You can't include this parameter if `message_category` is `non_payment_authentication`"
+     },
+     "channel": {
+      "type": "object",
+      "description": "Contains additional details on the channel used for this 3DS Authentication."
+     },
+     "currency": {
+      "type": "string",
+      "description": "Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in lowercase. Must be a [supported currency](https://stripe.com/docs/currencies)."
+     },
+     "directory_server": {
+      "type": "string",
+      "description": "The 3DS directory server with which this 3DS Authentication was processed.",
+      "enum": [
+       "american_express",
+       "cartes_bancaires",
+       "discover",
+       "mastercard",
+       "visa"
+      ]
+     },
+     "expand": {
+      "type": "array",
+      "description": "Specifies which fields in the response should be expanded."
+     },
+     "flow_preference": {
+      "type": "object",
+      "description": "Contains additional details on your flow preference for this 3DS Authentication. Refer to the [Specify a flow preference section of the standalone 3DS guide](/payments/3d-secure/standalone-3d-secure#specify-a-flow-preference) for more information."
+     },
+     "future_usage": {
+      "type": "object",
+      "description": "Contains information about future usage of this 3DS Authentication"
+     },
+     "message_category": {
+      "type": "string",
+      "description": "Indicates whether this 3DS Authentication is being performed for a payment or non-payment use case.",
+      "enum": [
+       "non_payment_authentication",
+       "payment_authentication"
+      ]
+     },
+     "metadata": {
+      "type": "string",
+      "description": "Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to `metadata`."
+     },
+     "payment_method": {
+      "type": "string",
+      "description": "ID of the payment method (a PaymentMethod object) to attach to this 3DS Authentication."
+     },
+     "payment_method_data": {
+      "type": "object",
+      "description": "Hash used to generate the PaymentMethod to be used for this Authentication. This is mutually exclusive with the `payment_method` parameter."
+     },
+     "reason": {
+      "type": "string",
+      "description": "The reason for invoking standalone 3DS. This is tailored specifically for cases when you want Stripe to help determine the standalone 3DS flow to fit your use case instead of needing to select a specific 3DS flow. This parameter is exclusive with `flow_preference`. You can either use `reason` for controlling 3DS according to your business requirements, or use `flow_preference` for having fine-grai",
+      "enum": [
+       "cardholder_authentication",
+       "issuer_requested",
+       "liability_shift",
+       "processing_costs",
+       "regulatory_compliance"
+      ]
+     },
+     "shipping_address": {
+      "type": "object",
+      "description": "The shipping address requested by the cardholder. You should try to include as complete address information as possible."
+     },
+     "submit": {
+      "type": "string",
+      "description": "Set to `always` to skip the fingerprinting step and submit this Authentication immediately or `if_fingerprinting_not_supported` to submit this Authentication only if fingerprinting is not available. This parameter defaults to `never`. Refer to the [Submit at creation section of the standalone 3DS guide](/payments/3d-secure/standalone-3d-secure#submit-at-creation) for more information.",
+      "enum": [
+       "always",
+       "if_fingerprinting_not_supported",
+       "never"
+      ]
+     }
+    },
+    "required": [
+     "channel",
+     "message_category"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.stripe.com/v1/three_d_secure/authentications",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "acquirer_details",
+     "amount",
+     "channel",
+     "currency",
+     "directory_server",
+     "expand",
+     "flow_preference",
+     "future_usage",
+     "message_category",
+     "metadata",
+     "payment_method",
+     "payment_method_data",
+     "reason",
+     "shipping_address",
+     "submit"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "stripe-app.post_three_dsecure_authentications_authentication_cancel",
+   "name": "Cancel a 3 ds authentication",
+   "description": "This endpoint cancels a 3DS Authentication. You can cancel a 3DS Authentication object when it\u2019s in a non-final status: requires_submission or requires_challenge.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "authentication": {
+      "type": "string",
+      "description": ""
+     },
+     "expand": {
+      "type": "array",
+      "description": "Specifies which fields in the response should be expanded."
+     },
+     "metadata": {
+      "type": "string",
+      "description": "Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to `metadata`."
+     }
+    },
+    "required": [
+     "authentication"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.stripe.com/v1/three_d_secure/authentications/{authentication}/cancel",
+    "path": [
+     "authentication"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "expand",
+     "metadata"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "stripe-app.post_three_dsecure_authentications_authentication_submit",
+   "name": "Submit a 3 ds authentication",
+   "description": "This endpoint submits a 3DS Authentication. You can submit a 3DS Authentication object when it has status requires_submission. Refer to the Submit the 3DS Authentication object section of the Standalone 3DS guide for more information.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "authentication": {
+      "type": "string",
+      "description": ""
+     },
+     "expand": {
+      "type": "array",
+      "description": "Specifies which fields in the response should be expanded."
+     },
+     "fingerprinting_result": {
+      "type": "string",
+      "description": "The fingerprinting result of the issuer fingerprinting step. Refer to the [Issuer fingerprinting section of the Standalone 3DS guide](/payments/3d-secure/standalone-3d-secure#issuer-fingerprinting) for more information."
+     },
+     "metadata": {
+      "type": "string",
+      "description": "Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to `metadata`."
+     }
+    },
+    "required": [
+     "authentication"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.stripe.com/v1/three_d_secure/authentications/{authentication}/submit",
+    "path": [
+     "authentication"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "expand",
+     "fingerprinting_result",
+     "metadata"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "stripe-app.post_tokens",
    "name": "Create a bank account token",
    "description": "Creates a single-use token that represents a bank account\u2019s details. You can use this token with any v1 API method in place of a bank account dictionary. You can only use this token once. To do so, attach it to a connected account where controller.requirement_collection is application, which includes Custom accounts.",
@@ -43185,7 +44690,7 @@
      },
      "source": {
       "type": "string",
-      "description": "The ID of a source to transfer funds from. For most users, this should be left unspecified which will use the bank account that was set up in the dashboard for the specified currency. In test mode, this can be a test bank token (see [Testing Top-ups](https://docs.stripe.com/connect/testing#testing-top-ups))."
+      "description": "The ID of a source to transfer funds from. For most users, this should be left unspecified which will use the bank account that was set up in the dashboard for the specified currency. While testing, this can be a test bank token (see [Testing Top-ups](https://docs.stripe.com/connect/testing#testing-top-ups))."
      },
      "statement_descriptor": {
       "type": "string",
@@ -43868,6 +45373,10 @@
       "type": "string",
       "description": "The origin payment method to be debited for the InboundTransfer."
      },
+     "origin_payment_method_options": {
+      "type": "object",
+      "description": "Additional options about the origin PaymentMethod."
+     },
      "statement_descriptor": {
       "type": "string",
       "description": "The complete description that appears on your customers' statements. Maximum 10 characters. Can only include -#.$&*, spaces, and alphanumeric characters."
@@ -43894,6 +45403,7 @@
      "financial_account",
      "metadata",
      "origin_payment_method",
+     "origin_payment_method_options",
      "statement_descriptor"
     ],
     "body_format": "json"
@@ -44796,6 +46306,10 @@
       "type": "string",
       "description": "The ID of the contract to update."
      },
+     "billing_settings": {
+      "type": "object",
+      "description": "The billing settings to update on the contract."
+     },
      "include": {
       "type": "array",
       "description": "Additional fields to include in the response."
@@ -44830,6 +46344,7 @@
     "query": [],
     "header": [],
     "body": [
+     "billing_settings",
      "include",
      "metadata",
      "one_time_fee_actions",
@@ -46803,7 +48318,7 @@
      },
      "use_case": {
       "type": "object",
-      "description": "The use case of the AccountLink."
+      "description": "Specifies the Stripe-hosted flow for this Account Link. Set `type` and the matching options hash\u2014for example, `account_onboarding`\u2014to configure the flow, including which Account configurations to collect information for and any flow-specific collection or redirect options."
      }
     },
     "required": [
@@ -47720,23 +49235,23 @@
     "properties": {
      "amazon_eventbridge": {
       "type": "object",
-      "description": "Amazon EventBridge configuration."
+      "description": "AWS account and region where Stripe creates the EventBridge partner event source."
      },
      "azure_event_grid": {
       "type": "object",
-      "description": "Azure Event Grid configuration."
+      "description": "Azure subscription, resource group, and region where Stripe creates the partner topic."
      },
      "description": {
       "type": "string",
-      "description": "An optional description of what the event destination is used for."
+      "description": "An optional user-defined description of the destination's purpose."
      },
      "enabled_events": {
       "type": "array",
-      "description": "The list of events to enable for this endpoint."
+      "description": "The list of event types enabled for delivery to this destination."
      },
      "event_payload": {
       "type": "string",
-      "description": "Payload type of events being subscribed to.",
+      "description": "Whether to deliver as snapshot or thin events.",
       "enum": [
        "snapshot",
        "thin"
@@ -47744,27 +49259,27 @@
      },
      "events_from": {
       "type": "array",
-      "description": "Specifies which accounts' events route to this destination. `@self`: Receive events from the account that owns the event destination. `@accounts`: Receive events emitted from other accounts you manage which includes your v1 and v2 accounts. `@organization_members`: Receive events from accounts directly linked to the organization. `@organization_members/@accounts`: Receive events from all accounts "
+      "description": "The account or organization scopes that can supply events. Use this with `enabled_events` to define the subscription. `@self`: Receive events from the account that owns the event destination. `@accounts`: Receive events emitted from other accounts you manage, including your v1 and v2 accounts. `@organization_members`: Receive events from accounts directly linked to the organization. `@organization"
      },
      "include": {
       "type": "array",
-      "description": "Additional fields to include in the response."
+      "description": "Include normally redacted webhook fields in the create response. Public API clients must include `webhook_endpoint.signing_secret` to receive the signing secret."
      },
      "metadata": {
       "type": "object",
-      "description": "Metadata."
+      "description": "User-defined key/value data for the destination."
      },
      "name": {
       "type": "string",
-      "description": "Event destination name."
+      "description": "A user-defined label for identifying the destination."
      },
      "snapshot_api_version": {
       "type": "string",
-      "description": "If using the snapshot event payload, the API version events are rendered as."
+      "description": "For snapshot events only, the Stripe API version used to render event objects; do not provide this for thin events."
      },
      "type": {
       "type": "string",
-      "description": "Event destination type.",
+      "description": "The delivery transport. Chosen when the destination is created and cannot be changed by update.",
       "enum": [
        "amazon_eventbridge",
        "azure_event_grid",
@@ -47773,7 +49288,7 @@
      },
      "webhook_endpoint": {
       "type": "object",
-      "description": "Webhook endpoint configuration."
+      "description": "Delivery target for the webhook endpoint. Live mode requires HTTPS; sandbox mode also supports HTTP."
      }
     },
     "required": [
@@ -47819,15 +49334,15 @@
      },
      "description": {
       "type": "string",
-      "description": "An optional description of what the event destination is used for."
+      "description": "An optional user-defined description of the destination's purpose; it does not control routing."
      },
      "enabled_events": {
       "type": "array",
-      "description": "The list of events to enable for this endpoint."
+      "description": "The list of event types enabled for delivery to this destination. Event scopes are configured when the destination is created."
      },
      "include": {
       "type": "array",
-      "description": "Additional fields to include in the response. Currently supports `webhook_endpoint.url`."
+      "description": "Include the normally redacted `webhook_endpoint.url` in the response."
      },
      "metadata": {
       "type": "object",
@@ -47835,11 +49350,11 @@
      },
      "name": {
       "type": "string",
-      "description": "Event destination name."
+      "description": "A user-defined label for identifying the destination; it does not control routing."
      },
      "webhook_endpoint": {
       "type": "object",
-      "description": "Webhook endpoint configuration."
+      "description": "New delivery target for the webhook endpoint. Live mode requires HTTPS; sandbox mode also supports HTTP."
      }
     },
     "required": [
@@ -48103,6 +49618,115 @@
     "body": [
      "business_type",
      "name"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "stripe-app.post_v2_core_vault_network_tokens",
+   "name": "Create or return a network token using raw card data",
+   "description": "Create or Return a Network Token Using Raw Card Data.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "card": {
+      "type": "object",
+      "description": "Raw card values used to provision the network token."
+     },
+     "type": {
+      "type": "string",
+      "description": "Private preview supports card only.",
+      "enum": [
+       "card"
+      ]
+     }
+    },
+    "required": [
+     "type"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.stripe.com/v2/core/vault/network_tokens",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "card",
+     "type"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "stripe-app.post_v2_core_vault_network_tokens_create_from_credential",
+   "name": "Create a network token using an existing credential",
+   "description": "Creates or returns a Network Token from an existing card reference.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "card": {
+      "type": "object",
+      "description": "The existing Stripe card reference to provision or resolve."
+     },
+     "type": {
+      "type": "string",
+      "description": "Private preview supports card only.",
+      "enum": [
+       "card"
+      ]
+     }
+    },
+    "required": [
+     "type"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.stripe.com/v2/core/vault/network_tokens/create_from_credential",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "card",
+     "type"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "stripe-app.post_v2_core_vault_network_tokens_id_generate_cryptogram",
+   "name": "Generate a cryptogram for a given network token",
+   "description": "Every successful call generates a new cryptogram, and retrying can generate another cryptogram. The cryptogram is returned only in this response and is never persisted.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "ID of the NetworkToken for which to generate a single-use cryptogram."
+     },
+     "type": {
+      "type": "string",
+      "description": "The cryptogram type. When omitted, token_cryptogram is used.",
+      "enum": [
+       "token_cryptogram"
+      ]
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.stripe.com/v2/core/vault/network_tokens/{id}/generate_cryptogram",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "type"
     ],
     "body_format": "json"
    }
@@ -48372,6 +49996,105 @@
      "page",
      "starts_at",
      "timezone"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "stripe-app.post_v2_data_query_runs",
+   "name": "Create a query run",
+   "description": "Submits a SQL query for execution against a dataset and returns a `QueryRun` object to track progress and retrieve results.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "dataset": {
+      "type": "string",
+      "description": "The dataset to query.",
+      "enum": [
+       "analytical"
+      ]
+     },
+     "format": {
+      "type": "string",
+      "description": "The file format for the result.",
+      "enum": [
+       "csv"
+      ]
+     },
+     "query": {
+      "type": "object",
+      "description": "The query to execute."
+     },
+     "result_options": {
+      "type": "object",
+      "description": "Optional settings that customize the generated result file."
+     }
+    },
+    "required": [
+     "dataset",
+     "format",
+     "query"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.stripe.com/v2/data/query_runs",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "dataset",
+     "format",
+     "query",
+     "result_options"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "stripe-app.post_v2_data_report_runs",
+   "name": "Create a report run",
+   "description": "Initiates the generation of a `ReportRun` based on the specified `Report` and caller-provided parameters. Returns a `ReportRun` object which can be used to track the progress and retrieve the results of the report.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "format": {
+      "type": "string",
+      "description": "The file format for the result.",
+      "enum": [
+       "csv"
+      ]
+     },
+     "parameters": {
+      "type": "object",
+      "description": "A map of parameter names to values, specifying how the report should be customized. The accepted parameters depend on the specific `Report` being run."
+     },
+     "report": {
+      "type": "object",
+      "description": "A reference to the `Report` to run, by ID or name."
+     },
+     "result_options": {
+      "type": "object",
+      "description": "Optional settings that customize the generated result file."
+     }
+    },
+    "required": [
+     "format",
+     "parameters",
+     "report"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.stripe.com/v2/data/report_runs",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "format",
+     "parameters",
+     "report",
+     "result_options"
     ],
     "body_format": "json"
    }
@@ -48767,6 +50490,10 @@
       "type": "string",
       "description": "A descriptive name for the FinancialAccount, up to 50 characters long. This name will be used in the Stripe Dashboard and embedded components."
      },
+     "forwarding_settings": {
+      "type": "object",
+      "description": "Forwarding settings for a closed FinancialAccount. Post-close forwarding updates are not yet implemented."
+     },
      "metadata": {
       "type": "object",
       "description": "Metadata associated with the FinancialAccount."
@@ -48790,6 +50517,7 @@
     "header": [],
     "body": [
      "display_name",
+     "forwarding_settings",
      "metadata",
      "storage"
     ],
@@ -48831,38 +50559,69 @@
    }
   },
   {
-   "slug": "stripe-app.post_v2_money_management_financial_addresses",
-   "name": "Create a financial address",
-   "description": "Create a new FinancialAddress for a FinancialAccount.",
+   "slug": "stripe-app.post_v2_money_management_financial_accounts_id_wallet_export_export_credentials",
+   "name": "Export financial account wallet credentials a financial account wallet export credentials",
+   "description": "Exports wallet credentials encrypted to the supplied recipient key. The first successful request starts one fixed one-hour retrieval window; later requests may use a different recipient key without extending it.",
    "input": {
     "type": "object",
     "properties": {
-     "crypto_properties": {
+     "id": {
+      "type": "string",
+      "description": "ID of the parent FinancialAccount."
+     },
+     "encryption": {
       "type": "object",
-      "description": "Properties needed to create a FinancialAddress for an FA with USDC currency."
+      "description": "Encryption parameters for the exported credentials."
+     }
+    },
+    "required": [
+     "encryption",
+     "id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.stripe.com/v2/money_management/financial_accounts/{id}/wallet_export/export_credentials",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "encryption"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "stripe-app.post_v2_money_management_financial_addresses",
+   "name": "Create a financial address",
+   "description": "Create a new FinancialAddress for a FinancialAccount (V2 shape).",
+   "input": {
+    "type": "object",
+    "properties": {
+     "bank_account": {
+      "type": "object",
+      "description": "Properties for creating a bank account FinancialAddress."
+     },
+     "crypto_wallet": {
+      "type": "object",
+      "description": "Properties for creating a crypto wallet FinancialAddress."
      },
      "financial_account": {
       "type": "string",
       "description": "The ID of the FinancialAccount the new FinancialAddress should be associated with."
      },
-     "sepa_bank_account": {
-      "type": "object",
-      "description": "Optional SEPA Bank account options, used to configure the type of SEPA Bank account to create, such as the originating country."
-     },
      "settlement_currency": {
       "type": "string",
-      "description": "Open Enum. The currency the FinancialAddress settles into the FinancialAccount. Currently, only the `usd`, `gbp` and `usdc` values are supported."
+      "description": "Open Enum. The currency the FinancialAddress settles into the FinancialAccount."
      },
      "type": {
       "type": "string",
-      "description": "The type of FinancialAddress details to provision.",
+      "description": "The type of FinancialAddress to create. Must agree with which branch of financial_address_type_properties is set.",
       "enum": [
-       "ca_bank_account",
-       "crypto_wallet",
-       "gb_bank_account",
-       "mx_bank_account",
-       "sepa_bank_account",
-       "us_bank_account"
+       "bank_account",
+       "crypto_wallet"
       ]
      }
     },
@@ -48878,9 +50637,9 @@
     "query": [],
     "header": [],
     "body": [
-     "crypto_properties",
+     "bank_account",
+     "crypto_wallet",
      "financial_account",
-     "sepa_bank_account",
      "settlement_currency",
      "type"
     ],
@@ -48906,6 +50665,10 @@
       "type": "object",
       "description": "Object containing details about where the funds will originate from."
      },
+     "statement_descriptor": {
+      "type": "string",
+      "description": "An optional statement descriptor surfaced on the payer's bank statement. Max 10 characters. When omitted, Stripe sends its default descriptor."
+     },
      "to": {
       "type": "object",
       "description": "Object containing details about where the funds will land."
@@ -48927,6 +50690,7 @@
      "amount",
      "description",
      "from",
+     "statement_descriptor",
      "to"
     ],
     "body_format": "json"
@@ -49095,6 +50859,10 @@
    "input": {
     "type": "object",
     "properties": {
+     "from_resource": {
+      "type": "object",
+      "description": "An existing resource to use as the source for setting up outbound credentials."
+     },
      "payout_method": {
       "type": "string",
       "description": "If provided, the existing payout method resource to link to this setup intent. Any payout_method_data provided is used to update information on this linked payout method resource."
@@ -49121,6 +50889,7 @@
     "query": [],
     "header": [],
     "body": [
+     "from_resource",
      "payout_method",
      "payout_method_data",
      "usage_intent"
@@ -49689,6 +51458,105 @@
    }
   },
   {
+   "slug": "stripe-app.post_v2_money_management_test_helpers_earned_credits",
+   "name": "Create a test earned credit",
+   "description": "Creates an EarnedCredit in a Sandbox environment for testing purposes.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "amount": {
+      "type": "object",
+      "description": "The amount and currency of the EarnedCredit."
+     },
+     "financial_account": {
+      "type": "string",
+      "description": "The FinancialAccount to simulate the EarnedCredit for."
+     },
+     "type": {
+      "type": "string",
+      "description": "The type of EarnedCredit to create. Currently only interest is supported.",
+      "enum": [
+       "interest"
+      ]
+     }
+    },
+    "required": [
+     "amount",
+     "financial_account",
+     "type"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.stripe.com/v2/money_management/test_helpers/earned_credits",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "amount",
+     "financial_account",
+     "type"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "stripe-app.post_v2_money_management_test_helpers_financial_addresses_id_credit",
+   "name": "Credit a financial address",
+   "description": "Simulate crediting a FinancialAddress in a Sandbox environment. This can be used to add virtual funds and increase your balance for testing.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "The ID of the FinancialAddress to credit."
+     },
+     "amount": {
+      "type": "object",
+      "description": "Object containing the amount value and currency to credit."
+     },
+     "network": {
+      "type": "string",
+      "description": "Open Enum. The network to use in simulating the funds flow. This will be the reflected in the resulting ReceivedCredit.",
+      "enum": [
+       "ach",
+       "acss",
+       "chaps",
+       "fps",
+       "rtp",
+       "sepa_credit_transfer",
+       "swift",
+       "wire"
+      ]
+     },
+     "statement_descriptor": {
+      "type": "string",
+      "description": "String explaining funds flow. Use this field to populate the statement descriptor of the ReceivedCredit created as an eventual result of this simulation."
+     }
+    },
+    "required": [
+     "amount",
+     "id",
+     "network"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.stripe.com/v2/money_management/test_helpers/financial_addresses/{id}/credit",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "amount",
+     "network",
+     "statement_descriptor"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "stripe-app.post_v2_money_management_test_helpers_financial_addresses_id_debit",
    "name": "Debit a financial address",
    "description": "Simulate debiting a FinancialAddress in a Sandbox environment. This can be used to remove virtual funds and decrease your balance for testing.",
@@ -49739,6 +51607,34 @@
    }
   },
   {
+   "slug": "stripe-app.post_v2_money_management_test_helpers_financial_addresses_id_generate_microdeposits",
+   "name": "Generate microdeposits for a financial address",
+   "description": "Generates microdeposits for a FinancialAddress in a Sandbox environment.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "The id of the financial address to generate microdeposits for."
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.stripe.com/v2/money_management/test_helpers/financial_addresses/{id}/generate_microdeposits",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "stripe-app.post_v2_money_management_transactions_id",
    "name": "Update a transaction",
    "description": "Updates the description of an existing Transaction.",
@@ -49774,6 +51670,34 @@
      "description",
      "metadata"
     ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "stripe-app.post_v2_money_management_transactions_id_refresh_regulatory_receipt",
+   "name": "Refresh regulatory receipt a transaction",
+   "description": "Creates a fresh hosted URL for a Transaction's regulatory receipt.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "The ID of the Transaction whose regulatory receipt URL should be refreshed."
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.stripe.com/v2/money_management/transactions/{id}/refresh_regulatory_receipt",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
     "body_format": "json"
    }
   },
@@ -49900,6 +51824,10 @@
       "type": "string",
       "description": "An arbitrary string attached to the object. Often useful for displaying to users."
      },
+     "include": {
+      "type": "array",
+      "description": "Additional fields to include in the response."
+     },
      "metadata": {
       "type": "object",
       "description": "Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Learn more about [storing information in metadata](https://docs.stripe.com/payments/payment-intents#storing-information-in-metadata)."
@@ -49973,6 +51901,7 @@
      "capture",
      "customer",
      "description",
+     "include",
      "metadata",
      "on_behalf_of",
      "payment_details",
@@ -50380,6 +52309,595 @@
    }
   },
   {
+   "slug": "stripe-app.post_v2_provisioning_payment_method_requests",
+   "name": "Create a payment method request",
+   "description": "Creates a request for a customer to authorize a new payment method.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "livemode": {
+      "type": "boolean",
+      "description": "Whether the billing operation should use Stripe live-mode objects. When omitted, this resolves from the authenticated request context."
+     },
+     "payment_method_owner": {
+      "type": "string",
+      "description": "Owner of the requested payment method.",
+      "enum": [
+       "platform"
+      ]
+     },
+     "source_account": {
+      "type": "string",
+      "description": "Connected account to source the payment method from."
+     },
+     "source_customer": {
+      "type": "string",
+      "description": "Customer to source the payment method from."
+     },
+     "source_payment_method": {
+      "type": "string",
+      "description": "Existing payment method to reuse instead of collecting a new one."
+     },
+     "usage_limits": {
+      "type": "object",
+      "description": "Usage limit to apply to the requested payment method."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.stripe.com/v2/provisioning/payment_method_requests",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "livemode",
+     "payment_method_owner",
+     "source_account",
+     "source_customer",
+     "source_payment_method",
+     "usage_limits"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "stripe-app.post_v2_provisioning_payment_profile_update_limit",
+   "name": "Update a payment profile",
+   "description": "Updates the usage limit on the payment profile for a provider.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "livemode": {
+      "type": "boolean",
+      "description": "Whether the billing operation should use Stripe live-mode objects. When omitted, this resolves from the authenticated request context."
+     },
+     "provider": {
+      "type": "string",
+      "description": "Provider to update the usage limit for."
+     },
+     "usage_limits": {
+      "type": "object",
+      "description": "New usage limit to apply."
+     }
+    },
+    "required": [
+     "usage_limits"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.stripe.com/v2/provisioning/payment_profile/update_limit",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "livemode",
+     "provider",
+     "usage_limits"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "stripe-app.post_v2_provisioning_projects",
+   "name": "Create a project",
+   "description": "Creates a new project.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "catalog": {
+      "type": "string",
+      "description": "Catalog partition to create the project in.",
+      "enum": [
+       "dev",
+       "prod",
+       "testing"
+      ]
+     },
+     "name": {
+      "type": "string",
+      "description": "Human-readable name for the new project."
+     },
+     "project_profile": {
+      "type": "string",
+      "description": "Identifier of the developer profile to associate with the new project."
+     }
+    },
+    "required": [
+     "name"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.stripe.com/v2/provisioning/projects",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "catalog",
+     "name",
+     "project_profile"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "stripe-app.post_v2_provisioning_provider_connection_requests",
+   "name": "Create a provider connection request",
+   "description": "Creates a new provider connection.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "code_challenge": {
+      "type": "string",
+      "description": "PKCE code challenge: BASE64URL(SHA256(code_verifier)). Optional; when present the OAuth callback must supply the matching code_verifier. Not a secret (it is a hash of the verifier)."
+     },
+     "code_challenge_method": {
+      "type": "string",
+      "description": "PKCE code challenge method. Only \"S256\" is supported."
+     },
+     "configuration": {
+      "type": "object",
+      "description": "Provider-specific configuration payload for the connection."
+     },
+     "project": {
+      "type": "string",
+      "description": "Project this provider connection is created for. Used to infer the catalog partition for provider calls. Optional; when absent the provider connection defaults to the prod catalog."
+     },
+     "provider": {
+      "type": "string",
+      "description": "Identifier of the provider to connect to."
+     },
+     "provider_name": {
+      "type": "string",
+      "description": "Deprecated identifier of the provider to connect to; use `provider` instead."
+     }
+    },
+    "required": [
+     "configuration"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.stripe.com/v2/provisioning/provider_connection_requests",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "code_challenge",
+     "code_challenge_method",
+     "configuration",
+     "project",
+     "provider",
+     "provider_name"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "stripe-app.post_v2_provisioning_provider_connection_requests_id_submit_information",
+   "name": "Submit provider connection request information a provider connection request",
+   "description": "Submits additional information requested by the provider for a provider connection.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "Identifier of the provider connection to submit information for."
+     },
+     "confirmation_secret": {
+      "type": "string",
+      "description": "Secret used to confirm the request when submitting on behalf of a resource without an authenticated session."
+     },
+     "information": {
+      "type": "object",
+      "description": "Information requested by the provider, matching the connection's needs_information_schema."
+     }
+    },
+    "required": [
+     "id",
+     "information"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.stripe.com/v2/provisioning/provider_connection_requests/{id}/submit_information",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "confirmation_secret",
+     "information"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "stripe-app.post_v2_provisioning_provider_connections_id_unlink",
+   "name": "Unlink a provider connection",
+   "description": "Unlinks a provider connection so it can no longer be used to create resources.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "Identifier of the provider connection to unlink."
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.stripe.com/v2/provisioning/provider_connections/{id}/unlink",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "stripe-app.post_v2_provisioning_resources",
+   "name": "Create a resource",
+   "description": "Creates a new provider resource.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "catalog": {
+      "type": "string",
+      "description": "Catalog partition to create the resource in.",
+      "enum": [
+       "dev",
+       "prod",
+       "testing"
+      ]
+     },
+     "configuration": {
+      "type": "object",
+      "description": "Provider-specific configuration payload for the resource."
+     },
+     "environment": {
+      "type": "string",
+      "description": "Environment the resource should be created in.",
+      "enum": [
+       "dev",
+       "prod"
+      ]
+     },
+     "livemode": {
+      "type": "boolean",
+      "description": "Whether the resource should use Stripe live-mode objects. When omitted, this resolves to false for a sandbox target and true otherwise. Sandbox targets cannot create live-mode resources."
+     },
+     "name": {
+      "type": "string",
+      "description": "Human-readable name for the resource."
+     },
+     "project": {
+      "type": "string",
+      "description": "Identifier of the project to create the resource in."
+     },
+     "provider": {
+      "type": "string",
+      "description": "Identifier of the provider to create the resource with."
+     },
+     "service_ref": {
+      "type": "string",
+      "description": "Identifier of the provider service to create the resource from."
+     }
+    },
+    "required": [
+     "configuration",
+     "provider",
+     "service_ref"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.stripe.com/v2/provisioning/resources",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "catalog",
+     "configuration",
+     "environment",
+     "livemode",
+     "name",
+     "project",
+     "provider",
+     "service_ref"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "stripe-app.post_v2_provisioning_resources_id",
+   "name": "Update a resource",
+   "description": "Updates a resource's configuration or service.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "Identifier of the resource to update."
+     },
+     "catalog": {
+      "type": "string",
+      "description": "Catalog partition of the resource.",
+      "enum": [
+       "dev",
+       "prod",
+       "testing"
+      ]
+     },
+     "configuration": {
+      "type": "object",
+      "description": "New provider-specific configuration payload for the resource."
+     },
+     "service_ref": {
+      "type": "string",
+      "description": "Provider's service id to switch the resource to. If omitted, the resource's existing service is retained and this is treated as a config-only update."
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.stripe.com/v2/provisioning/resources/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "catalog",
+     "configuration",
+     "service_ref"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "stripe-app.post_v2_provisioning_resources_id_remove",
+   "name": "Remove a resource",
+   "description": "Removes a resource.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "Identifier of the resource to remove."
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.stripe.com/v2/provisioning/resources/{id}/remove",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "stripe-app.post_v2_provisioning_resources_id_reveal_access_configuration",
+   "name": "Reveal an access configuration",
+   "description": "Reveals the current provider-issued access configuration for a completed Resource. This is a read-only disclosure: it does not create, refresh, mint, or rotate credentials. Repeated calls are safe and do not require an idempotency key, but can return a newer configuration after a separate Rotate operation completes.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "Identifier of the resource whose access configuration should be revealed."
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.stripe.com/v2/provisioning/resources/{id}/reveal_access_configuration",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "stripe-app.post_v2_provisioning_resources_id_rotate_credentials",
+   "name": "Rotate resource credentials a resource",
+   "description": "Rotates a resource's credentials.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "Identifier of the resource to rotate credentials for."
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.stripe.com/v2/provisioning/resources/{id}/rotate_credentials",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "stripe-app.post_v2_provisioning_resources_id_submit_information",
+   "name": "Submit resource information a resource",
+   "description": "Submits additional information requested by the provider for a resource.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "Identifier of the resource to submit information for."
+     },
+     "submitted_information": {
+      "type": "object",
+      "description": "Additional information being submitted for the resource."
+     }
+    },
+    "required": [
+     "id",
+     "submitted_information"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.stripe.com/v2/provisioning/resources/{id}/submit_information",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "submitted_information"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "stripe-app.post_v2_provisioning_resources_id_unlink",
+   "name": "Unlink a resource",
+   "description": "Unlinks a resource without removing it from the provider.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "Identifier of the resource to unlink."
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.stripe.com/v2/provisioning/resources/{id}/unlink",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "stripe-app.post_v2_provisioning_resources_link",
+   "name": "Link a resource",
+   "description": "Links an existing provider resource to a project or account.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "catalog": {
+      "type": "string",
+      "description": "Catalog partition of the existing resource.",
+      "enum": [
+       "dev",
+       "prod",
+       "testing"
+      ]
+     },
+     "environment": {
+      "type": "string",
+      "description": "Environment the existing resource runs in.",
+      "enum": [
+       "dev",
+       "prod"
+      ]
+     },
+     "livemode": {
+      "type": "boolean",
+      "description": "Whether the resource should use Stripe live-mode objects. When omitted, this resolves to false for a sandbox target and true otherwise. Sandbox targets cannot link live-mode resources."
+     },
+     "project": {
+      "type": "string",
+      "description": "Identifier of the project to link the resource to."
+     },
+     "provider": {
+      "type": "string",
+      "description": "Identifier of the provider that hosts the existing resource."
+     },
+     "service_ref": {
+      "type": "string",
+      "description": "Identifier of the provider service the existing resource belongs to."
+     }
+    },
+    "required": [
+     "provider",
+     "service_ref"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.stripe.com/v2/provisioning/resources/link",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "catalog",
+     "environment",
+     "livemode",
+     "project",
+     "provider",
+     "service_ref"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "stripe-app.post_v2_reporting_report_runs",
    "name": "Create a report run",
    "description": "Initiates the generation of a `ReportRun` based on the specified report template and user-provided parameters. It's the starting point for obtaining report data, and returns a `ReportRun` object which can be used to track the progress and retrieve the results of the report.",
@@ -50463,7 +52981,7 @@
    }
   },
   {
-   "slug": "stripe-app.post_v2_signals_account_activity",
+   "slug": "stripe-app.post_v2_signals_account_activities",
    "name": "Create an account activity",
    "description": "Creates a new account activity to report account registration, login, or evaluation follow-up activity.",
    "input": {
@@ -50480,6 +52998,10 @@
      "account_restricted": {
       "type": "object",
       "description": "Details for the account restriction. Provide only when type is account_restricted. The activity requires an existing account_details.account or account_details.customer; inline data is unsupported."
+     },
+     "account_reviewed": {
+      "type": "object",
+      "description": "Details for the account review. Provide only when type is account_reviewed. The activity requires an existing account_details.account or account_details.customer; inline data is unsupported."
      },
      "account_suspended": {
       "type": "object",
@@ -50514,6 +53036,7 @@
       "description": "The type of activity.",
       "enum": [
        "account_restricted",
+       "account_reviewed",
        "account_suspended",
        "login_attempt",
        "login_decision",
@@ -50528,7 +53051,7 @@
    },
    "request": {
     "method": "POST",
-    "url": "https://api.stripe.com/v2/signals/account_activity",
+    "url": "https://api.stripe.com/v2/signals/account_activities",
     "path": [],
     "query": [],
     "header": [],
@@ -50536,6 +53059,7 @@
      "account_details",
      "account_evaluation",
      "account_restricted",
+     "account_reviewed",
      "account_suspended",
      "login_attempt",
      "login_decision",
@@ -50853,89 +53377,6 @@
     "body": [
      "address"
     ],
-    "body_format": "json"
-   }
-  },
-  {
-   "slug": "stripe-app.post_v2_test_helpers_financial_addresses_id_credit",
-   "name": "Credit a financial address",
-   "description": "Simulate crediting a FinancialAddress in a Sandbox environment. This can be used to add virtual funds and increase your balance for testing.",
-   "input": {
-    "type": "object",
-    "properties": {
-     "id": {
-      "type": "string",
-      "description": "The ID of the FinancialAddress to credit."
-     },
-     "amount": {
-      "type": "object",
-      "description": "Object containing the amount value and currency to credit."
-     },
-     "network": {
-      "type": "string",
-      "description": "Open Enum. The network to use in simulating the funds flow. This will be the reflected in the resulting ReceivedCredit.",
-      "enum": [
-       "ach",
-       "acss",
-       "chaps",
-       "fps",
-       "rtp",
-       "sepa_credit_transfer",
-       "wire"
-      ]
-     },
-     "statement_descriptor": {
-      "type": "string",
-      "description": "String explaining funds flow. Use this field to populate the statement descriptor of the ReceivedCredit created as an eventual result of this simulation."
-     }
-    },
-    "required": [
-     "amount",
-     "id",
-     "network"
-    ]
-   },
-   "request": {
-    "method": "POST",
-    "url": "https://api.stripe.com/v2/test_helpers/financial_addresses/{id}/credit",
-    "path": [
-     "id"
-    ],
-    "query": [],
-    "header": [],
-    "body": [
-     "amount",
-     "network",
-     "statement_descriptor"
-    ],
-    "body_format": "json"
-   }
-  },
-  {
-   "slug": "stripe-app.post_v2_test_helpers_financial_addresses_id_generate_microdeposits",
-   "name": "Generate microdeposits for a financial address",
-   "description": "Generates microdeposits for a FinancialAddress in a Sandbox environment.",
-   "input": {
-    "type": "object",
-    "properties": {
-     "id": {
-      "type": "string",
-      "description": "The id of the financial address to generate microdeposits for."
-     }
-    },
-    "required": [
-     "id"
-    ]
-   },
-   "request": {
-    "method": "POST",
-    "url": "https://api.stripe.com/v2/test_helpers/financial_addresses/{id}/generate_microdeposits",
-    "path": [
-     "id"
-    ],
-    "query": [],
-    "header": [],
-    "body": [],
     "body_format": "json"
    }
   },

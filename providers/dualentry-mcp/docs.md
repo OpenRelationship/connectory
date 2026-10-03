@@ -19,32 +19,50 @@ vouches for**: read it, then read their reference.
 ### Get Started
 
 - [DualEntry Developer Docs](https://docs.dualentry.com/developers/guides/index.md): Build on the DualEntry Public API, CLI, and MCP server. Find guides, references, and quickstarts for every way to integrate with DualEntry.
-- [Quickstart: DualEntry Public API](https://docs.dualentry.com/developers/guides/quickstart.md): Get a DualEntry API key, make your first authenticated request to the Public API, and confirm the response, all in under five minutes.
-- [Introduction to the DualEntry Public API](https://docs.dualentry.com/developers/guides/introduction.md): Introduction to the DualEntry Public API: a RESTful, JSON-based, server-to-server interface for reading and writing your organization's accounting data.
-- [DualEntry Public API Authentication with X-API-KEY](https://docs.dualentry.com/developers/guides/authentication.md): Authenticate DualEntry Public API requests with an API key in the X-API-KEY header, covering key statuses, the roles a key carries, and both 403 responses.
+- [Versioning](https://docs.dualentry.com/developers/guides/versioning-policy.md): DualEntry's Public API versioning policy: semantic versioning, what counts as a breaking change, and which version to build against.
 
-### API Keys
+### API
 
-- [How to Give an Integration Access to DualEntry](https://docs.dualentry.com/developers/guides/how-to-give-an-integration-access.md): Create a scoped API key in Organization Settings, choose the roles it carries, and hand it to the developer or vendor who needs it.
-- [How to Authenticate Your Requests to the DualEntry API](https://docs.dualentry.com/developers/guides/how-to-authenticate-your-requests.md): Store your API key, send it in the X-API-KEY header, and confirm it authenticates against the Public API before you build anything on it.
-- [How to Replace an API Key](https://docs.dualentry.com/developers/guides/how-to-replace-an-api-key.md): Rotate or revoke a DualEntry API key that has been lost, leaked, or scheduled for replacement, using a revoke-first or cut-over-first order.
+- [DualEntry Public API](https://docs.dualentry.com/developers/guides/api/index.md): Everything for building against the DualEntry Public API: what it is, your first request, authentication, and task-specific guides.
+- [Quickstart: DualEntry Public API](https://docs.dualentry.com/developers/guides/api/quickstart.md): Get a DualEntry API key, make your first authenticated request to the Public API, and confirm the response, all in under five minutes.
+- [Authentication: API Keys, Roles, and Statuses](https://docs.dualentry.com/developers/guides/api/authentication.md): Authenticate DualEntry Public API requests with an API key in the X-API-KEY header, covering key statuses, the roles a key carries, and both 403 responses.
 
-### Working with the API
+#### API Keys
 
-- [Rate Limiting: Public API Quotas and Overrides](https://docs.dualentry.com/developers/guides/rate-limiting.md): Reference for DualEntry API rate limits: two-layer token bucket model, per-tenant defaults, organization overrides, response headers, and retry-after behavior.
-- [Pagination](https://docs.dualentry.com/developers/guides/pagination.md): Paginate DualEntry Public API list endpoints with limit and offset, and filter by update time using the inclusive updated_after and updated_before bounds.
-- [Error Handling](https://docs.dualentry.com/developers/guides/errors.md): Understand DualEntry Public API errors: standard HTTP status codes and a consistent JSON error format, with the meaning of each code.
-- [Idempotency and Write Validation](https://docs.dualentry.com/developers/guides/idempotency-and-write-validation.md): Use the Idempotency-Key header to make DualEntry Public API writes safe to retry, and see which fields the API requires on posted records.
-- [Working with Attachments](https://docs.dualentry.com/developers/guides/working-with-attachments.md): How to add and read file attachments on DualEntry records through the V2 API, including the attachment schema and the lack of a delete endpoint.
-- [Bank Connections: Inbound Feed API](https://docs.dualentry.com/developers/guides/bank-connections-inbound.md): Push customer-built bank feeds into DualEntry with the V2 bank-connections API: register accounts, batch-push transactions, and unregister feeds.
+- [API Keys](https://docs.dualentry.com/developers/guides/api/api-keys/index.md): Issue, use, and replace DualEntry Public API keys: choosing roles, sending the X-API-KEY header, and rotating a key without downtime.
+- [How to Give an Integration Access to DualEntry](https://docs.dualentry.com/developers/guides/api/api-keys/how-to-give-an-integration-access.md): Create a scoped API key in Organization Settings, choose the roles it carries, and hand it to the developer or vendor who needs it.
+- [How to Authenticate Your Requests to the DualEntry API](https://docs.dualentry.com/developers/guides/api/api-keys/how-to-authenticate-your-requests.md): Store your API key, send it in the X-API-KEY header, and confirm it authenticates against the Public API before you build anything on it.
+- [How to Replace an API Key](https://docs.dualentry.com/developers/guides/api/api-keys/how-to-replace-an-api-key.md): Rotate or revoke a DualEntry API key that has been lost, leaked, or scheduled for replacement, using a revoke-first or cut-over-first order.
 
-### Tools & Integrations
+#### Core Concepts
 
-- [DualEntry MCP: Developer Overview](https://docs.dualentry.com/developers/guides/mcp.md): DualEntry's MCP server connects Claude, Cursor, and other AI clients to your accounting data. Find the setup guide, tool catalog, and troubleshooting.
-- [DualEntry CLI Reference: Commands, Flags, and Exit Codes](https://docs.dualentry.com/developers/guides/cli-reference.md): Full DualEntry CLI reference: every resource, subcommand, flag, exit code, environment variable, and config file option, with syntax examples for each command.
-- [Building a Custom Integration](https://docs.dualentry.com/developers/guides/building-a-custom-integration.md): Design, build, and certify a custom DualEntry Public API integration: API key auth, webhook handling, pagination, error retries, and partner review criteria.
+- [Core Concepts](https://docs.dualentry.com/developers/guides/api/core-concepts/index.md): The mechanics every DualEntry Public API integration needs to get right: rate limits, pagination, errors, and idempotent writes.
+- [Rate Limiting: Public API Quotas and Overrides](https://docs.dualentry.com/developers/guides/api/core-concepts/rate-limiting.md): Reference for DualEntry API rate limits: two-layer token bucket model, per-tenant defaults, organization overrides, response headers, and retry-after behavior.
+- [Pagination](https://docs.dualentry.com/developers/guides/api/core-concepts/pagination.md): Paginate DualEntry Public API list endpoints with limit and offset, and filter by update time using the inclusive updated_after and updated_before bounds.
+- [Error Handling](https://docs.dualentry.com/developers/guides/api/core-concepts/errors.md): Understand DualEntry Public API errors: standard HTTP status codes and a consistent JSON error format, with the meaning of each code.
+- [Idempotency and Write Validation](https://docs.dualentry.com/developers/guides/api/core-concepts/idempotency-and-write-validation.md): Use the Idempotency-Key header to make DualEntry Public API writes safe to retry, and see which fields the API requires on posted records.
 
-- [API Reference (449 pages)](https://docs.dualentry.com/_llms/api-reference.md): Documentation for API Reference.
+#### Building Blocks
+
+- [Building Blocks](https://docs.dualentry.com/developers/guides/api/building-blocks/index.md): Task-specific DualEntry Public API guidance: syncing attachments, pushing an inbound bank feed, and calculating tax before creating an invoice or bill.
+- [Working with Attachments](https://docs.dualentry.com/developers/guides/api/building-blocks/working-with-attachments.md): How to add and read file attachments on DualEntry records through the V2 API, including the attachment schema and the lack of a delete endpoint.
+- [Bank Connections: Inbound Feed API](https://docs.dualentry.com/developers/guides/api/building-blocks/bank-connections-inbound.md): Push customer-built bank feeds into DualEntry with the V2 bank-connections API: register accounts, batch-push transactions, and unregister feeds.
+- [Calculate Tax, Then Create an Invoice or Bill](https://docs.dualentry.com/developers/guides/api/building-blocks/calculate-tax-before-invoicing.md): How to call the V2 tax calculator before creating an invoice or bill, map the calculator result onto each line's tax fields, then post the record.
+
+### Command-Line Interface
+
+- [DualEntry CLI Reference](https://docs.dualentry.com/developers/guides/cli/reference.md): Full DualEntry CLI reference: every resource, subcommand, flag, exit code, environment variable, and config file option, with syntax examples for each command.
+- [How to Automate Bill Status Checks in CI/CD](https://docs.dualentry.com/developers/guides/cli/how-to-automate-bill-status-checks-in-cicd.md): Use the DualEntry CLI with an API key to pull posted bills as JSON in a CI/CD pipeline, then pipe the results to jq or a scheduled job.
+
+### Integrations & Tools
+
+- [Integrations & Tools](https://docs.dualentry.com/developers/guides/integrations-and-tools/index.md): Connect an AI assistant to DualEntry with MCP, or design, build, and certify a custom Public API integration for the partner program.
+- [DualEntry MCP](https://docs.dualentry.com/developers/guides/integrations-and-tools/mcp.md): DualEntry's MCP server connects Claude, Cursor, and other AI clients to your accounting data. Find the setup guide, tool catalog, and troubleshooting.
+- [How Custom Integrations Work](https://docs.dualentry.com/developers/guides/integrations-and-tools/how-custom-integrations-work.md): The architecture behind a DualEntry partner integration: its layers, the categories integrations fall into, and the complexity tiers that shape setup.
+- [How to Build a Custom DualEntry Integration](https://docs.dualentry.com/developers/guides/integrations-and-tools/how-to-build-a-custom-integration.md): Design, build, and certify a custom DualEntry Public API integration: partner access, auth, sync, field mapping, cut-off dates, and error handling.
+- [Custom Integration Reference](https://docs.dualentry.com/developers/guides/integrations-and-tools/custom-integration-reference.md): The certification checklist, common pitfalls, troubleshooting reference, and kickoff checklist for a custom DualEntry Public API integration.
+
+- [API Reference (750 pages)](https://docs.dualentry.com/_llms/api-reference.md): Documentation for API Reference.
 
 ## OpenAPI Specs
 
@@ -52,4 +70,9 @@ vouches for**: read it, then read their reference.
 
 ## Indexes
 
-- [API Reference (449 pages)](https://docs.dualentry.com/_llms/api-reference.md): Documentation for API Reference.
+- [API Reference (750 pages)](https://docs.dualentry.com/_llms/api-reference.md): Documentation for API Reference.
+- [API Reference / V2 (267 pages)](https://docs.dualentry.com/_llms/api-reference/v2.md): Documentation for API Reference / V2.
+- [API Reference / V1 (202 pages)](https://docs.dualentry.com/_llms/api-reference/v1.md): Documentation for API Reference / V1.
+- [API Reference / V3-alpha (281 pages)](https://docs.dualentry.com/_llms/api-reference/v3-alpha.md): Documentation for API Reference / V3-alpha.
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

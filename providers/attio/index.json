@@ -34,7 +34,7 @@
   {
    "slug": "attio.delete_v2_activities_activity_records_record_id",
    "name": "Delete an activity record",
-   "description": "Deletes a single activity record by its `record_id`. This endpoint is in alpha and may be subject to breaking changes as we gather feedback. Required scopes: `activity_record:read-write`, `activity_configuration:read`, `object_configuration:read`, `record_permission:read`.",
+   "description": "Deletes a single activity record by its `record_id`. This endpoint is in alpha and may be subject to breaking changes as we gather feedback. Required scopes: `activity_record:read-write`, `activity_configuration:read`, `object_configuration:read`, `record_permission:read`. Supported token levels: `workspace`, `user`.",
    "input": {
     "type": "object",
     "properties": {
@@ -68,7 +68,7 @@
   {
    "slug": "attio.delete_v2_comments_comment_id",
    "name": "Delete a comment",
-   "description": "Deletes a comment by ID. If deleting a comment at the head of a thread, all messages in the thread are also deleted. A workspace-level access token may delete any comment. A user-level access token may only delete comments authored by the member it acts for. Required scopes: `comment:read-write`.",
+   "description": "Deletes a comment by ID. If deleting a comment at the head of a thread, all messages in the thread are also deleted. A workspace-level access token may delete any comment. A user-level access token may only delete comments authored by the member it acts for. Required scopes: `comment:read-write`. Supported token levels: `workspace`, `user`.",
    "input": {
     "type": "object",
     "properties": {
@@ -96,7 +96,7 @@
   {
    "slug": "attio.delete_v2_files_file_id",
    "name": "Delete a file",
-   "description": "Delete a single file by ID. Deleting a folder will delete all of its descendants. This endpoint is in beta. We will aim to avoid breaking changes, but small updates may be made as we roll out to more users. Required scopes: `file:read-write`, `object_configuration:read`, `record_permission:read`.",
+   "description": "Delete a single file by ID. Deleting a folder will delete all of its descendants. This endpoint is in beta. We will aim to avoid breaking changes, but small updates may be made as we roll out to more users. Required scopes: `file:read-write`, `object_configuration:read`, `record_permission:read`. Supported token levels: `workspace`, `user`.",
    "input": {
     "type": "object",
     "properties": {
@@ -124,7 +124,7 @@
   {
    "slug": "attio.delete_v2_lists_list_entries_entry_id",
    "name": "Delete a list entry",
-   "description": "Deletes a single list entry by its `entry_id`. Required scopes: `list_entry:read-write`, `list_configuration:read`.",
+   "description": "Deletes a single list entry by its `entry_id`. Required scopes: `list_entry:read-write`, `list_configuration:read`. Supported token levels: `workspace`, `user`.",
    "input": {
     "type": "object",
     "properties": {
@@ -158,7 +158,7 @@
   {
    "slug": "attio.delete_v2_meetings_meeting_id",
    "name": "Delete a meeting",
-   "description": "Deletes a single meeting by ID. Meetings created by calendar sync cannot be deleted through the API. Delete the underlying calendar event, or disconnect the calendar, instead. This endpoint is in beta. We will aim to avoid breaking changes, but small updates may be made as we roll out to more users. Required scopes: `meeting:read-write`.",
+   "description": "Deletes a single meeting by ID. Meetings created by calendar sync cannot be deleted through the API. Delete the underlying calendar event, or disconnect the calendar, instead. This endpoint is in beta. We will aim to avoid breaking changes, but small updates may be made as we roll out to more users. Required scopes: `meeting:read-write`. Supported token levels: `workspace`, `user`.",
    "input": {
     "type": "object",
     "properties": {
@@ -186,7 +186,7 @@
   {
    "slug": "attio.delete_v2_meetings_meeting_id_call_recordings_call_recording_id",
    "name": "Delete call recording",
-   "description": "Deletes the specified call recording. This will remove the call recording and all associated data. This endpoint is in beta. We will aim to avoid breaking changes, but small updates may be made as we roll out to more users. Required scopes: `meeting:read`, `call_recording:read-write`.",
+   "description": "Deletes the specified call recording. This will remove the call recording and all associated data. This endpoint is in beta. We will aim to avoid breaking changes, but small updates may be made as we roll out to more users. Required scopes: `meeting:read`, `call_recording:read-write`. Supported token levels: `workspace`, `user`.",
    "input": {
     "type": "object",
     "properties": {
@@ -220,7 +220,7 @@
   {
    "slug": "attio.delete_v2_notes_note_id",
    "name": "Delete a note",
-   "description": "Delete a single note by ID. Required scopes: `note:read-write`.",
+   "description": "Delete a single note by ID. Required scopes: `note:read-write`. Supported token levels: `workspace`, `user`.",
    "input": {
     "type": "object",
     "properties": {
@@ -248,7 +248,7 @@
   {
    "slug": "attio.delete_v2_objects_object",
    "name": "Delete an object",
-   "description": "Deletes a single object by its `object_id` or slug, along with all of its records. Only custom objects can be deleted; system objects, such as people and companies, cannot. This endpoint should be used with caution as it has the potential to remove a large amount of potentially valuable data. Required scopes: `object_configuration:read-write`, `record_permission:read-write`.",
+   "description": "Deletes a single object by its `object_id` or slug, along with all of its records. Only custom objects can be deleted; system objects, such as people and companies, cannot. This endpoint should be used with caution as it has the potential to remove a large amount of potentially valuable data. Required scopes: `object_configuration:read-write`, `record_permission:read-write`. Supported token levels",
    "input": {
     "type": "object",
     "properties": {
@@ -276,7 +276,7 @@
   {
    "slug": "attio.delete_v2_objects_object_records_record_id",
    "name": "Delete a record",
-   "description": "Deletes a single record (e.g. a company or person) by ID. Required scopes: `object_configuration:read`, `record_permission:read-write`.",
+   "description": "Deletes a single record (e.g. a company or person) by ID. Required scopes: `object_configuration:read`, `record_permission:read-write`. Supported token levels: `workspace`, `user`.",
    "input": {
     "type": "object",
     "properties": {
@@ -310,7 +310,7 @@
   {
    "slug": "attio.delete_v2_tasks_task_id",
    "name": "Delete a task",
-   "description": "Delete a task by ID. Required scopes: `task:read-write`.",
+   "description": "Delete a task by ID. Required scopes: `task:read-write`. Supported token levels: `workspace`, `user`.",
    "input": {
     "type": "object",
     "properties": {
@@ -338,7 +338,7 @@
   {
    "slug": "attio.delete_v2_webhooks_webhook_id",
    "name": "Delete a webhook",
-   "description": "Delete a webhook by ID. Required scopes: `webhook:read-write`.",
+   "description": "Delete a webhook by ID. Required scopes: `webhook:read-write`. Supported token levels: `workspace`.",
    "input": {
     "type": "object",
     "properties": {
@@ -366,7 +366,7 @@
   {
    "slug": "attio.get_v2_activities",
    "name": "List activities",
-   "description": "Lists all system-defined and user-defined activities in your workspace. This endpoint is in alpha and may be subject to breaking changes as we gather feedback. Required scopes: `activity_configuration:read`.",
+   "description": "Lists all system-defined and user-defined activities in your workspace. This endpoint is in alpha and may be subject to breaking changes as we gather feedback. Required scopes: `activity_configuration:read`. Supported token levels: `workspace`, `user`.",
    "input": {
     "type": "object",
     "properties": {
@@ -397,7 +397,7 @@
   {
    "slug": "attio.get_v2_activities_activity",
    "name": "Get an activity",
-   "description": "Gets a single activity by its `activity_id` or slug. This endpoint is in alpha and may be subject to breaking changes as we gather feedback. Required scopes: `activity_configuration:read`.",
+   "description": "Gets a single activity by its `activity_id` or slug. This endpoint is in alpha and may be subject to breaking changes as we gather feedback. Required scopes: `activity_configuration:read`. Supported token levels: `workspace`, `user`.",
    "input": {
     "type": "object",
     "properties": {
@@ -425,7 +425,7 @@
   {
    "slug": "attio.get_v2_activities_activity_records_record_id",
    "name": "Get an activity record",
-   "description": "Gets a single activity record by its `record_id`. This endpoint is in alpha and may be subject to breaking changes as we gather feedback. Required scopes: `activity_record:read`, `activity_configuration:read`, `object_configuration:read`, `record_permission:read`.",
+   "description": "Gets a single activity record by its `record_id`. This endpoint is in alpha and may be subject to breaking changes as we gather feedback. Required scopes: `activity_record:read`, `activity_configuration:read`, `object_configuration:read`, `record_permission:read`. Supported token levels: `workspace`, `user`.",
    "input": {
     "type": "object",
     "properties": {
@@ -459,7 +459,7 @@
   {
    "slug": "attio.get_v2_comments_comment_id",
    "name": "Get a comment",
-   "description": "Get a single comment by ID. To view comments on records, you will need the `object_configuration:read` and `record_permission:read` scopes. To view comments on list entries, you will need the `list_configuration:read` and `list_entry:read` scopes. Required scopes: `comment:read`.",
+   "description": "Get a single comment by ID. To view comments on records, you will need the `object_configuration:read` and `record_permission:read` scopes. To view comments on list entries, you will need the `list_configuration:read` and `list_entry:read` scopes. Required scopes: `comment:read`. Supported token levels: `workspace`, `user`.",
    "input": {
     "type": "object",
     "properties": {
@@ -620,7 +620,7 @@
   {
    "slug": "attio.get_v2_files_file_id",
    "name": "Get a file",
-   "description": "Get a single file entry by ID. This endpoint is in beta. We will aim to avoid breaking changes, but small updates may be made as we roll out to more users. Required scopes: `file:read`, `object_configuration:read`, `record_permission:read`.",
+   "description": "Get a single file entry by ID. This endpoint is in beta. We will aim to avoid breaking changes, but small updates may be made as we roll out to more users. Required scopes: `file:read`, `object_configuration:read`, `record_permission:read`. Supported token levels: `workspace`, `user`.",
    "input": {
     "type": "object",
     "properties": {
@@ -648,7 +648,7 @@
   {
    "slug": "attio.get_v2_files_file_id_download",
    "name": "Download a file",
-   "description": "Downloads a file by redirecting to a signed URL. This endpoint is in beta. We will aim to avoid breaking changes, but small updates may be made as we roll out to more users. Required scopes: `object_configuration:read`, `record_permission:read`, `file:read`.",
+   "description": "Downloads a file by redirecting to a signed URL. This endpoint is in beta. We will aim to avoid breaking changes, but small updates may be made as we roll out to more users. Required scopes: `object_configuration:read`, `record_permission:read`, `file:read`. Supported token levels: `workspace`, `user`.",
    "input": {
     "type": "object",
     "properties": {
@@ -676,7 +676,7 @@
   {
    "slug": "attio.get_v2_lists",
    "name": "List all lists",
-   "description": "List all lists that your access token has access to. lists are returned in the order that they are sorted in the sidebar. Required scopes: `list_configuration:read`.",
+   "description": "List all lists that your access token has access to. lists are returned in the order that they are sorted in the sidebar. Required scopes: `list_configuration:read`. Supported token levels: `workspace`, `user`.",
    "input": {
     "type": "object",
     "properties": {},
@@ -695,7 +695,7 @@
   {
    "slug": "attio.get_v2_lists_list",
    "name": "Get a list",
-   "description": "Gets a single list in your workspace that your access token has access to. Required scopes: `list_configuration:read`.",
+   "description": "Gets a single list in your workspace that your access token has access to. Required scopes: `list_configuration:read`. Supported token levels: `workspace`, `user`.",
    "input": {
     "type": "object",
     "properties": {
@@ -723,7 +723,7 @@
   {
    "slug": "attio.get_v2_lists_list_entries_entry_id",
    "name": "Get a list entry",
-   "description": "Gets a single list entry by its `entry_id`. Required scopes: `list_entry:read`, `list_configuration:read`.",
+   "description": "Gets a single list entry by its `entry_id`. Required scopes: `list_entry:read`, `list_configuration:read`. Supported token levels: `workspace`, `user`.",
    "input": {
     "type": "object",
     "properties": {
@@ -757,7 +757,7 @@
   {
    "slug": "attio.get_v2_lists_list_entries_entry_id_attributes_attribute_values",
    "name": "List attribute values for a list entry",
-   "description": "Gets all values for a given attribute on a list entry. This endpoint has the ability to return all historic values using the `show_historic` query param. Historic values are sorted from oldest to newest (by `active_from`). Required scopes: `list_entry:read`, `list_configuration:read`.",
+   "description": "Gets all values for a given attribute on a list entry. This endpoint has the ability to return all historic values using the `show_historic` query param. Historic values are sorted from oldest to newest (by `active_from`). Required scopes: `list_entry:read`, `list_configuration:read`. Supported token levels: `workspace`, `user`.",
    "input": {
     "type": "object",
     "properties": {
@@ -813,7 +813,7 @@
   {
    "slug": "attio.get_v2_lists_list_views",
    "name": "List views for list",
-   "description": "Lists saved views for a list. Results are ordered by view ID (`id.view_id` ascending). Required scopes: `list_configuration:read`.",
+   "description": "Lists saved views for a list. Results are ordered by view ID (`id.view_id` ascending). Required scopes: `list_configuration:read`. Supported token levels: `workspace`, `user`.",
    "input": {
     "type": "object",
     "properties": {
@@ -933,7 +933,7 @@
   {
    "slug": "attio.get_v2_meetings_meeting_id",
    "name": "Get a meeting",
-   "description": "Get a single meeting by ID. This endpoint is in beta. We will aim to avoid breaking changes, but small updates may be made as we roll out to more users. Required scopes: `meeting:read`, `record_permission:read`.",
+   "description": "Get a single meeting by ID. This endpoint is in beta. We will aim to avoid breaking changes, but small updates may be made as we roll out to more users. Required scopes: `meeting:read`, `record_permission:read`. Supported token levels: `workspace`, `user`.",
    "input": {
     "type": "object",
     "properties": {
@@ -961,7 +961,7 @@
   {
    "slug": "attio.get_v2_meetings_meeting_id_call_recordings",
    "name": "List call recordings",
-   "description": "List all call recordings for a meeting. This endpoint is in beta. We will aim to avoid breaking changes, but small updates may be made as we roll out to more users. Required scopes: `meeting:read`, `call_recording:read`.",
+   "description": "List all call recordings for a meeting. This endpoint is in beta. We will aim to avoid breaking changes, but small updates may be made as we roll out to more users. Required scopes: `meeting:read`, `call_recording:read`. Supported token levels: `workspace`, `user`.",
    "input": {
     "type": "object",
     "properties": {
@@ -1000,7 +1000,7 @@
   {
    "slug": "attio.get_v2_meetings_meeting_id_call_recordings_call_recording_id",
    "name": "Get call recording",
-   "description": "Get a single call recording by ID. This endpoint is in beta. We will aim to avoid breaking changes, but small updates may be made as we roll out to more users. Required scopes: `meeting:read`, `call_recording:read`.",
+   "description": "Get a single call recording by ID. This endpoint is in beta. We will aim to avoid breaking changes, but small updates may be made as we roll out to more users. Required scopes: `meeting:read`, `call_recording:read`. Supported token levels: `workspace`, `user`.",
    "input": {
     "type": "object",
     "properties": {
@@ -1034,7 +1034,7 @@
   {
    "slug": "attio.get_v2_meetings_meeting_id_call_recordings_call_recording_id_transcript",
    "name": "Deprecated: get call transcript",
-   "description": "Deprecated: prefer using `GET /v2/meetings/:meeting_id/call_recordings/:call_recording_id` to get the transcript for a call recording. This endpoint is in beta. We will aim to avoid breaking changes, but small updates may be made as we roll out to more users. Required scopes: `meeting:read`, `call_recording:read`.",
+   "description": "Deprecated: prefer using `GET /v2/meetings/:meeting_id/call_recordings/:call_recording_id` to get the transcript for a call recording. This endpoint is in beta. We will aim to avoid breaking changes, but small updates may be made as we roll out to more users. Required scopes: `meeting:read`, `call_recording:read`. Supported token levels: `workspace`.",
    "input": {
     "type": "object",
     "properties": {
@@ -1074,7 +1074,7 @@
   {
    "slug": "attio.get_v2_notes",
    "name": "List notes",
-   "description": "List notes for all records or for a specific record. This endpoint is temporarily rate limited to 10 requests per second. Required scopes: `note:read`, `object_configuration:read`, `record_permission:read`.",
+   "description": "List notes for all records or for a specific record. This endpoint is temporarily rate limited to 10 requests per second. Required scopes: `note:read`, `object_configuration:read`, `record_permission:read`. Supported token levels: `workspace`, `user`.",
    "input": {
     "type": "object",
     "properties": {
@@ -1115,7 +1115,7 @@
   {
    "slug": "attio.get_v2_notes_note_id",
    "name": "Get a note",
-   "description": "Get a single note by ID. Required scopes: `note:read`, `object_configuration:read`, `record_permission:read`.",
+   "description": "Get a single note by ID. Required scopes: `note:read`, `object_configuration:read`, `record_permission:read`. Supported token levels: `workspace`, `user`.",
    "input": {
     "type": "object",
     "properties": {
@@ -1143,7 +1143,7 @@
   {
    "slug": "attio.get_v2_objects",
    "name": "List objects",
-   "description": "Lists all system-defined and user-defined objects in your workspace. Required scopes: `object_configuration:read`.",
+   "description": "Lists all system-defined and user-defined objects in your workspace. Required scopes: `object_configuration:read`. Supported token levels: `workspace`, `user`.",
    "input": {
     "type": "object",
     "properties": {},
@@ -1162,7 +1162,7 @@
   {
    "slug": "attio.get_v2_objects_object",
    "name": "Get an object",
-   "description": "Gets a single object by its `object_id` or slug. Required scopes: `object_configuration:read`.",
+   "description": "Gets a single object by its `object_id` or slug. Required scopes: `object_configuration:read`. Supported token levels: `workspace`, `user`.",
    "input": {
     "type": "object",
     "properties": {
@@ -1190,7 +1190,7 @@
   {
    "slug": "attio.get_v2_objects_object_records_record_id",
    "name": "Get a record",
-   "description": "Gets a single person, company or other record by its `record_id`. Required scopes: `record_permission:read`, `object_configuration:read`.",
+   "description": "Gets a single person, company or other record by its `record_id`. Required scopes: `record_permission:read`, `object_configuration:read`. Supported token levels: `workspace`, `user`.",
    "input": {
     "type": "object",
     "properties": {
@@ -1325,7 +1325,7 @@
   {
    "slug": "attio.get_v2_objects_object_views",
    "name": "List views for object",
-   "description": "Lists saved views for an object. Results are ordered by view ID (`id.view_id` ascending). Required scopes: `object_configuration:read`.",
+   "description": "Lists saved views for an object. Results are ordered by view ID (`id.view_id` ascending). Required scopes: `object_configuration:read`. Supported token levels: `workspace`, `user`.",
    "input": {
     "type": "object",
     "properties": {
@@ -1388,7 +1388,7 @@
   {
    "slug": "attio.get_v2_target_identifier_attributes",
    "name": "List attributes",
-   "description": "Lists all attributes defined on a specific object or list. Attributes are returned in the order that they are sorted by in the UI. When `target` is `objects`, the required scopes are `object_configuration:read`. When `target` is `lists`, the required scopes are `list_configuration:read`.",
+   "description": "Lists all attributes defined on a specific object or list. Attributes are returned in the order that they are sorted by in the UI. When `target` is `objects`, the required scopes are `object_configuration:read`. When `target` is `lists`, the required scopes are `list_configuration:read`. Supported token levels: `workspace`, `user`.",
    "input": {
     "type": "object",
     "properties": {
@@ -1442,7 +1442,7 @@
   {
    "slug": "attio.get_v2_target_identifier_attributes_attribute",
    "name": "Get an attribute",
-   "description": "Gets information about a single attribute on either an object or a list. When `target` is `objects`, the required scopes are `object_configuration:read`. When `target` is `lists`, the required scopes are `list_configuration:read`.",
+   "description": "Gets information about a single attribute on either an object or a list. When `target` is `objects`, the required scopes are `object_configuration:read`. When `target` is `lists`, the required scopes are `list_configuration:read`. Supported token levels: `workspace`, `user`.",
    "input": {
     "type": "object",
     "properties": {
@@ -1486,7 +1486,7 @@
   {
    "slug": "attio.get_v2_target_identifier_attributes_attribute_options",
    "name": "List select options",
-   "description": "Lists all select options for a particular attribute on either an object or a list. When `target` is `objects`, the required scopes are `object_configuration:read`. When `target` is `lists`, the required scopes are `list_configuration:read`.",
+   "description": "Lists all select options for a particular attribute on either an object or a list. When `target` is `objects`, the required scopes are `object_configuration:read`. When `target` is `lists`, the required scopes are `list_configuration:read`. Supported token levels: `workspace`, `user`.",
    "input": {
     "type": "object",
     "properties": {
@@ -1536,7 +1536,7 @@
   {
    "slug": "attio.get_v2_target_identifier_attributes_attribute_statuses",
    "name": "List statuses",
-   "description": "Lists all statuses for a particular status attribute on either an object or a list. When `target` is `objects`, the required scopes are `object_configuration:read`. When `target` is `lists`, the required scopes are `list_configuration:read`.",
+   "description": "Lists all statuses for a particular status attribute on either an object or a list. When `target` is `objects`, the required scopes are `object_configuration:read`. When `target` is `lists`, the required scopes are `list_configuration:read`. Supported token levels: `workspace`, `user`.",
    "input": {
     "type": "object",
     "properties": {
@@ -1586,7 +1586,7 @@
   {
    "slug": "attio.get_v2_tasks",
    "name": "List tasks",
-   "description": "List all tasks. Results are sorted by creation date, from oldest to newest. Required scopes: `task:read`, `object_configuration:read`, `record_permission:read`, `user_management:read`.",
+   "description": "List all tasks. Results are sorted by creation date, from oldest to newest. Required scopes: `task:read`, `object_configuration:read`, `record_permission:read`, `user_management:read`. Supported token levels: `workspace`, `user`.",
    "input": {
     "type": "object",
     "properties": {
@@ -1651,7 +1651,7 @@
   {
    "slug": "attio.get_v2_tasks_task_id",
    "name": "Get a task",
-   "description": "Get a single task by ID. Required scopes: `task:read`, `object_configuration:read`, `record_permission:read`, `user_management:read`.",
+   "description": "Get a single task by ID. Required scopes: `task:read`, `object_configuration:read`, `record_permission:read`, `user_management:read`. Supported token levels: `workspace`, `user`.",
    "input": {
     "type": "object",
     "properties": {
@@ -1777,7 +1777,7 @@
   {
    "slug": "attio.get_v2_webhooks",
    "name": "List webhooks",
-   "description": "Get all of the webhooks in your workspace. Required scopes: `webhook:read`.",
+   "description": "Get all of the webhooks in your workspace. Required scopes: `webhook:read`. Supported token levels: `workspace`.",
    "input": {
     "type": "object",
     "properties": {
@@ -1808,7 +1808,7 @@
   {
    "slug": "attio.get_v2_webhooks_webhook_id",
    "name": "Get a webhook",
-   "description": "Get a single webhook. Required scopes: `webhook:read`.",
+   "description": "Get a single webhook. Required scopes: `webhook:read`. Supported token levels: `workspace`.",
    "input": {
     "type": "object",
     "properties": {
@@ -1836,7 +1836,7 @@
   {
    "slug": "attio.get_v2_workspace_members",
    "name": "List workspace members",
-   "description": "Lists all workspace members in the workspace. Required scopes: `user_management:read`.",
+   "description": "Lists all workspace members in the workspace. Required scopes: `user_management:read`. Supported token levels: `workspace`, `user`.",
    "input": {
     "type": "object",
     "properties": {},
@@ -1855,7 +1855,7 @@
   {
    "slug": "attio.get_v2_workspace_members_workspace_member_id",
    "name": "Get a workspace member",
-   "description": "Gets a single workspace member by ID. Required scopes: `user_management:read`.",
+   "description": "Gets a single workspace member by ID. Required scopes: `user_management:read`. Supported token levels: `workspace`, `user`.",
    "input": {
     "type": "object",
     "properties": {
@@ -1883,7 +1883,7 @@
   {
    "slug": "attio.patch_v2_activities_activity",
    "name": "Update an activity",
-   "description": "Updates a single activity by its `activity_id` or slug. The schema an activity extends is fixed after creation, so `extends` cannot be changed. This endpoint is in alpha and may be subject to breaking changes as we gather feedback. Required scopes: `activity_configuration:read-write`.",
+   "description": "Updates a single activity by its `activity_id` or slug. The schema an activity extends is fixed after creation, so `extends` cannot be changed. This endpoint is in alpha and may be subject to breaking changes as we gather feedback. Required scopes: `activity_configuration:read-write`. Supported token levels: `workspace`, `user`.",
    "input": {
     "type": "object",
     "properties": {
@@ -1994,7 +1994,7 @@
   {
    "slug": "attio.patch_v2_lists_list_entries_entry_id",
    "name": "Update a list entry (append multiselect values)",
-   "description": "Use this endpoint to update list entries by `entry_id`. If the update payload includes multiselect attributes, the values supplied will be created and prepended to the list of values that already exist (if any). Use the `PUT` endpoint to overwrite or remove multiselect attribute values. Required scopes: `list_entry:read-write`, `list_configuration:read`.",
+   "description": "Use this endpoint to update list entries by `entry_id`. If the update payload includes multiselect attributes, the values supplied will be created and prepended to the list of values that already exist (if any). Use the `PUT` endpoint to overwrite or remove multiselect attribute values. Required scopes: `list_entry:read-write`, `list_configuration:read`. Supported token levels: `workspace`, `user`",
    "input": {
     "type": "object",
     "properties": {
@@ -2033,9 +2033,44 @@
    }
   },
   {
+   "slug": "attio.patch_v2_meetings_meeting_id",
+   "name": "Update a meeting (append linked records)",
+   "description": "Links records to a meeting. The records supplied are added to the meeting's existing linked records, and records which are already linked are ignored. Use the `PUT` endpoint to replace or remove linked records. No other meeting fields can be updated. Attio automatically links the meeting participants' companies to the meeting; this behavior is asynchronous. This endpoint is in beta. We will aim to",
+   "input": {
+    "type": "object",
+    "properties": {
+     "meeting_id": {
+      "type": "string",
+      "description": "A UUID which identifies the meeting to update."
+     },
+     "data": {
+      "type": "object",
+      "description": ""
+     }
+    },
+    "required": [
+     "data",
+     "meeting_id"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.attio.com/v2/meetings/{meeting_id}",
+    "path": [
+     "meeting_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "data"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "attio.patch_v2_notes_note_id",
    "name": "Update a note",
-   "description": "Updates an existing note's title and/or content. Only the fields you provide are changed, and any field you omit is left untouched. Providing `content` replaces the note's entire content. A note's parent record cannot be changed. Required scopes: `note:read-write`, `object_configuration:read`, `record_permission:read`.",
+   "description": "Updates an existing note's title and/or content. Only the fields you provide are changed, and any field you omit is left untouched. Providing `content` replaces the note's entire content. A note's parent record cannot be changed. Required scopes: `note:read-write`, `object_configuration:read`, `record_permission:read`. Supported token levels: `workspace`, `user`.",
    "input": {
     "type": "object",
     "properties": {
@@ -2070,7 +2105,7 @@
   {
    "slug": "attio.patch_v2_objects_object",
    "name": "Update an object",
-   "description": "Updates a single object. The object to be updated is identified by its `object_id`. Required scopes: `object_configuration:read-write`.",
+   "description": "Updates a single object. The object to be updated is identified by its `object_id`. Required scopes: `object_configuration:read-write`. Supported token levels: `workspace`, `user`.",
    "input": {
     "type": "object",
     "properties": {
@@ -2105,7 +2140,7 @@
   {
    "slug": "attio.patch_v2_objects_object_records_record_id",
    "name": "Update a record (append multiselect values)",
-   "description": "Use this endpoint to update people, companies, and other records by `record_id`. If the update payload includes multiselect attributes, the values supplied will be created and prepended to the list of values that already exist (if any). Use the `PUT` endpoint to overwrite or remove multiselect attribute values. Required scopes: `record_permission:read-write`, `object_configuration:read`.",
+   "description": "Use this endpoint to update people, companies, and other records by `record_id`. If the update payload includes multiselect attributes, the values supplied will be created and prepended to the list of values that already exist (if any). Use the `PUT` endpoint to overwrite or remove multiselect attribute values. Required scopes: `record_permission:read-write`, `object_configuration:read`. Supported",
    "input": {
     "type": "object",
     "properties": {
@@ -2146,7 +2181,7 @@
   {
    "slug": "attio.patch_v2_target_identifier_attributes_attribute",
    "name": "Update an attribute",
-   "description": "Updates a single attribute on a given object or list. When `target` is `objects`, the required scopes are `object_configuration:read-write`. When `target` is `lists`, the required scopes are `list_configuration:read-write`.",
+   "description": "Updates a single attribute on a given object or list. When `target` is `objects`, the required scopes are `object_configuration:read-write`. When `target` is `lists`, the required scopes are `list_configuration:read-write`. Supported token levels: `workspace`, `user`.",
    "input": {
     "type": "object",
     "properties": {
@@ -2197,7 +2232,7 @@
   {
    "slug": "attio.patch_v2_target_identifier_attributes_attribute_options_option",
    "name": "Update a select option",
-   "description": "Updates a select option on an attribute on either an object or a list. When `target` is `objects`, the required scopes are `object_configuration:read-write`. When `target` is `lists`, the required scopes are `list_configuration:read-write`.",
+   "description": "Updates a select option on an attribute on either an object or a list. When `target` is `objects`, the required scopes are `object_configuration:read-write`. When `target` is `lists`, the required scopes are `list_configuration:read-write`. Supported token levels: `workspace`, `user`.",
    "input": {
     "type": "object",
     "properties": {
@@ -2254,7 +2289,7 @@
   {
    "slug": "attio.patch_v2_target_identifier_attributes_attribute_statuses_status",
    "name": "Update a status",
-   "description": "Update a status on an status attribute on either an object or a list. When `target` is `objects`, the required scopes are `object_configuration:read-write`. When `target` is `lists`, the required scopes are `list_configuration:read-write`.",
+   "description": "Update a status on an status attribute on either an object or a list. When `target` is `objects`, the required scopes are `object_configuration:read-write`. When `target` is `lists`, the required scopes are `list_configuration:read-write`. Supported token levels: `workspace`, `user`.",
    "input": {
     "type": "object",
     "properties": {
@@ -2311,7 +2346,7 @@
   {
    "slug": "attio.patch_v2_tasks_task_id",
    "name": "Update a task",
-   "description": "Updates an existing task by `task_id`. At present, only the `deadline_at`, `is_completed`, `linked_records`, and `assignees` fields can be updated. Required scopes: `task:read-write`, `object_configuration:read`, `record_permission:read`, `user_management:read`.",
+   "description": "Updates an existing task by `task_id`. At present, only the `deadline_at`, `is_completed`, `linked_records`, and `assignees` fields can be updated. Required scopes: `task:read-write`, `object_configuration:read`, `record_permission:read`, `user_management:read`. Supported token levels: `workspace`, `user`.",
    "input": {
     "type": "object",
     "properties": {
@@ -2346,7 +2381,7 @@
   {
    "slug": "attio.patch_v2_webhooks_webhook_id",
    "name": "Update a webhook",
-   "description": "Update a webhook and associated subscriptions. Each combination of target URL, event type and filter must be unique within your workspace; duplicates are rejected with a 409. Changing the target URL re-checks the webhook's existing subscriptions against the new URL. Required scopes: `webhook:read-write`.",
+   "description": "Update a webhook and associated subscriptions. Each combination of target URL, event type and filter must be unique within your workspace; duplicates are rejected with a 409. Changing the target URL re-checks the webhook's existing subscriptions against the new URL. Required scopes: `webhook:read-write`. Supported token levels: `workspace`.",
    "input": {
     "type": "object",
     "properties": {
@@ -2381,7 +2416,7 @@
   {
    "slug": "attio.post_v2_activities",
    "name": "Create an activity",
-   "description": "Creates a new custom activity in your workspace. Your workspace must have the custom activities billing feature enabled. Public apps may instead create activities with the integration activities billing feature. This endpoint is in alpha and may be subject to breaking changes as we gather feedback. Required scopes: `activity_configuration:read-write`.",
+   "description": "Creates a new custom activity in your workspace. Your workspace must have the custom activities billing feature enabled. Public apps may instead create activities with the integration activities billing feature. This endpoint is in alpha and may be subject to breaking changes as we gather feedback. Required scopes: `activity_configuration:read-write`. Supported token levels: `workspace`, `user`.",
    "input": {
     "type": "object",
     "properties": {
@@ -2409,7 +2444,7 @@
   {
    "slug": "attio.post_v2_activities_activity_records",
    "name": "Create an activity record",
-   "description": "Creates a new activity record, for example one specific phone call. This endpoint is in alpha and may be subject to breaking changes as we gather feedback. Required scopes: `activity_record:read-write`, `activity_configuration:read`, `object_configuration:read`, `record_permission:read`.",
+   "description": "Creates a new activity record, for example one specific phone call. This endpoint is in alpha and may be subject to breaking changes as we gather feedback. Required scopes: `activity_record:read-write`, `activity_configuration:read`, `object_configuration:read`, `record_permission:read`. Supported token levels: `workspace`, `user`.",
    "input": {
     "type": "object",
     "properties": {
@@ -2444,7 +2479,7 @@
   {
    "slug": "attio.post_v2_activities_activity_records_query",
    "name": "List activity records",
-   "description": "Lists activity records, with the option to filter and sort results. This endpoint is in alpha and may be subject to breaking changes as we gather feedback. Required scopes: `activity_record:read`, `activity_configuration:read`, `object_configuration:read`, `record_permission:read`.",
+   "description": "Lists activity records, with the option to filter and sort results. This endpoint is in alpha and may be subject to breaking changes as we gather feedback. Required scopes: `activity_record:read`, `activity_configuration:read`, `object_configuration:read`, `record_permission:read`. Supported token levels: `workspace`, `user`.",
    "input": {
     "type": "object",
     "properties": {
@@ -2493,7 +2528,7 @@
   {
    "slug": "attio.post_v2_comments",
    "name": "Create a comment",
-   "description": "Creates a new comment related to an existing thread, record or entry. To create comments on records, you will need the `object_configuration:read` and `record_permission:read` scopes. To create comments on list entries, you will need the `list_configuration:read` and `list_entry:read` scopes. Required scopes: `comment:read-write`.",
+   "description": "Creates a new comment related to an existing thread, record or entry. To create comments on records, you will need the `object_configuration:read` and `record_permission:read` scopes. To create comments on list entries, you will need the `list_configuration:read` and `list_entry:read` scopes. Required scopes: `comment:read-write`. Supported token levels: `workspace`, `user`.",
    "input": {
     "type": "object",
     "properties": {
@@ -2521,7 +2556,7 @@
   {
    "slug": "attio.post_v2_files",
    "name": "Create a folder",
-   "description": "Creates a native folder entry or a connected file/folder entry on an object record. This endpoint is in beta. We will aim to avoid breaking changes, but small updates may be made as we roll out to more users. Required scopes: `file:read-write`, `object_configuration:read`, `record_permission:read`.",
+   "description": "Creates a native folder entry or a connected file/folder entry on an object record. This endpoint is in beta. We will aim to avoid breaking changes, but small updates may be made as we roll out to more users. Required scopes: `file:read-write`, `object_configuration:read`, `record_permission:read`. Supported token levels: `workspace`, `user`.",
    "input": {
     "type": "object",
     "properties": {},
@@ -2540,7 +2575,7 @@
   {
    "slug": "attio.post_v2_files_upload",
    "name": "Upload a file",
-   "description": "Uploads a file to native Attio storage for a record. Send multipart/form-data with a single binary field named `file` together with the body fields `object`, `record_id`, and optional `parent_folder_id`. Maximum file size is 50 MB. This endpoint is in beta. We will aim to avoid breaking changes, but small updates may be made as we roll out to more users. Required scopes: `file:read-write`, `object",
+   "description": "Uploads a file to native Attio storage for a record. Send multipart/form-data with a single binary field named `file` together with the body fields `object`, `record_id`, and optional `parent_folder_id`. Maximum file size is 50 MB. This endpoint is rate limited to 1 request per second. This endpoint is in beta. We will aim to avoid breaking changes, but small updates may be made as we roll out to ",
    "input": {
     "type": "object",
     "properties": {
@@ -2613,7 +2648,7 @@
   {
    "slug": "attio.post_v2_lists_list_entries",
    "name": "Create an entry (add record to list)",
-   "description": "Adds a record to a list as a new list entry. This endpoint will throw on conflicts of unique attributes. Multiple list entries are allowed for the same parent record Required scopes: `list_entry:read-write`, `list_configuration:read`.",
+   "description": "Adds a record to a list as a new list entry. This endpoint will throw on conflicts of unique attributes. Multiple list entries are allowed for the same parent record Required scopes: `list_entry:read-write`, `list_configuration:read`. Supported token levels: `workspace`, `user`.",
    "input": {
     "type": "object",
     "properties": {
@@ -2648,7 +2683,7 @@
   {
    "slug": "attio.post_v2_lists_list_entries_query",
    "name": "List entries",
-   "description": "Lists entries in a given list, with the option to filter and sort results. Required scopes: `list_entry:read`, `list_configuration:read`.",
+   "description": "Lists entries in a given list, with the option to filter and sort results. Required scopes: `list_entry:read`, `list_configuration:read`. Supported token levels: `workspace`, `user`.",
    "input": {
     "type": "object",
     "properties": {
@@ -2702,7 +2737,7 @@
   {
    "slug": "attio.post_v2_meetings",
    "name": "Create a meeting",
-   "description": "Creates a new meeting. [See here](/rest-api/guides/syncing-meetings) for guidance on avoiding duplicate meetings. This endpoint is in beta. We will aim to avoid breaking changes, but small updates may be made as we roll out to more users. Required scopes: `meeting:read-write`, `record_permission:read`.",
+   "description": "Creates a new meeting. [See here](/rest-api/guides/syncing-meetings) for guidance on avoiding duplicate meetings. This endpoint is in beta. We will aim to avoid breaking changes, but small updates may be made as we roll out to more users. Required scopes: `meeting:read-write`, `record_permission:read`. Supported token levels: `workspace`, `user`.",
    "input": {
     "type": "object",
     "properties": {
@@ -2765,7 +2800,7 @@
   {
    "slug": "attio.post_v2_notes",
    "name": "Create a note",
-   "description": "Creates a new note for a given record. Required scopes: `note:read-write`, `object_configuration:read`, `record_permission:read`.",
+   "description": "Creates a new note for a given record. Required scopes: `note:read-write`, `object_configuration:read`, `record_permission:read`. Supported token levels: `workspace`, `user`.",
    "input": {
     "type": "object",
     "properties": {
@@ -2793,7 +2828,7 @@
   {
    "slug": "attio.post_v2_objects",
    "name": "Create an object",
-   "description": "Creates a new custom object in your workspace. Required scopes: `object_configuration:read-write`.",
+   "description": "Creates a new custom object in your workspace. Required scopes: `object_configuration:read-write`. Supported token levels: `workspace`, `user`.",
    "input": {
     "type": "object",
     "properties": {
@@ -2821,7 +2856,7 @@
   {
    "slug": "attio.post_v2_objects_object_records",
    "name": "Create a record",
-   "description": "Creates a new person, company or other record. This endpoint will throw on conflicts of unique attributes. If you would prefer to update records on conflicts, please use the [Upsert record endpoint](/rest-api/endpoint-reference/records/upsert-a-record) instead. Required scopes: `record_permission:read-write`, `object_configuration:read`.",
+   "description": "Creates a new person, company or other record. This endpoint will throw on conflicts of unique attributes. If you would prefer to update records on conflicts, please use the [Upsert record endpoint](/rest-api/endpoint-reference/records/upsert-a-record) instead. Required scopes: `record_permission:read-write`, `object_configuration:read`. Supported token levels: `workspace`, `user`.",
    "input": {
     "type": "object",
     "properties": {
@@ -2891,7 +2926,7 @@
   {
    "slug": "attio.post_v2_objects_object_records_query",
    "name": "List records",
-   "description": "Lists people, company or other records, with the option to filter and sort results. Required scopes: `record_permission:read`, `object_configuration:read`.",
+   "description": "Lists people, company or other records, with the option to filter and sort results. Required scopes: `record_permission:read`, `object_configuration:read`. Supported token levels: `workspace`, `user`.",
    "input": {
     "type": "object",
     "properties": {
@@ -3018,7 +3053,7 @@
   {
    "slug": "attio.post_v2_sql",
    "name": "Query sql",
-   "description": "Query records and lists with SQL. Your workspace must be on the Enterprise plan in order to access this endpoint. This endpoint is in beta. We will aim to avoid breaking changes, but small updates may be made as we roll out to more users. Required scopes: `record_permission:read`, `object_configuration:read`.",
+   "description": "Query records and lists with SQL. Your workspace must be on the Enterprise plan in order to access this endpoint. This endpoint is rate limited to 2 requests per second. This endpoint is in beta. We will aim to avoid breaking changes, but small updates may be made as we roll out to more users. Required scopes: `record_permission:read`, `object_configuration:read`. Supported token levels: `workspac",
    "input": {
     "type": "object",
     "properties": {
@@ -3091,7 +3126,7 @@
   {
    "slug": "attio.post_v2_target_identifier_attributes_attribute_options",
    "name": "Create a select option",
-   "description": "Adds a select option to a select attribute on an object or a list. When `target` is `objects`, the required scopes are `object_configuration:read-write`. When `target` is `lists`, the required scopes are `list_configuration:read-write`.",
+   "description": "Adds a select option to a select attribute on an object or a list. When `target` is `objects`, the required scopes are `object_configuration:read-write`. When `target` is `lists`, the required scopes are `list_configuration:read-write`. Supported token levels: `workspace`, `user`.",
    "input": {
     "type": "object",
     "properties": {
@@ -3142,7 +3177,7 @@
   {
    "slug": "attio.post_v2_target_identifier_attributes_attribute_statuses",
    "name": "Create a status",
-   "description": "Add a new status to a status attribute on either an object or a list. When `target` is `objects`, the required scopes are `object_configuration:read-write`. When `target` is `lists`, the required scopes are `list_configuration:read-write`.",
+   "description": "Add a new status to a status attribute on either an object or a list. When `target` is `objects`, the required scopes are `object_configuration:read-write`. When `target` is `lists`, the required scopes are `list_configuration:read-write`. Supported token levels: `workspace`, `user`.",
    "input": {
     "type": "object",
     "properties": {
@@ -3193,7 +3228,7 @@
   {
    "slug": "attio.post_v2_tasks",
    "name": "Create a task",
-   "description": "Creates a new task. At present, tasks can only be created from plaintext without record reference formatting. Required scopes: `task:read-write`, `object_configuration:read`, `record_permission:read`, `user_management:read`.",
+   "description": "Creates a new task. At present, tasks can only be created from plaintext without record reference formatting. Required scopes: `task:read-write`, `object_configuration:read`, `record_permission:read`, `user_management:read`. Supported token levels: `workspace`, `user`.",
    "input": {
     "type": "object",
     "properties": {
@@ -3221,7 +3256,7 @@
   {
    "slug": "attio.post_v2_webhooks",
    "name": "Create a webhook",
-   "description": "Create a webhook and associated subscriptions. Each combination of target URL, event type and filter must be unique within your workspace; duplicates are rejected with a 409. Required scopes: `webhook:read-write`.",
+   "description": "Create a webhook and associated subscriptions. Each combination of target URL, event type and filter must be unique within your workspace; duplicates are rejected with a 409. Required scopes: `webhook:read-write`. Supported token levels: `workspace`.",
    "input": {
     "type": "object",
     "properties": {
@@ -3239,6 +3274,48 @@
     "url": "https://api.attio.com/v2/webhooks",
     "path": [],
     "query": [],
+    "header": [],
+    "body": [
+     "data"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "attio.put_v2_activities_activity_records",
+   "name": "Upsert an activity record",
+   "description": "Use this endpoint to create or update an activity record. A matching attribute is used to search for existing activity records. If a record is found with the same value for the matching attribute, that record will be updated. If no record with the same value for the matching attribute is found, a new record will be created instead. If you would like to avoid matching, please use the create activit",
+   "input": {
+    "type": "object",
+    "properties": {
+     "activity": {
+      "type": "string",
+      "description": "A UUID or slug to identify the activity."
+     },
+     "matching_attribute": {
+      "type": "string",
+      "description": "The ID or slug of the attribute to use to check if an activity record already exists. The attribute must be unique."
+     },
+     "data": {
+      "type": "object",
+      "description": ""
+     }
+    },
+    "required": [
+     "activity",
+     "data",
+     "matching_attribute"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.attio.com/v2/activities/{activity}/records",
+    "path": [
+     "activity"
+    ],
+    "query": [
+     "matching_attribute"
+    ],
     "header": [],
     "body": [
      "data"
@@ -3325,7 +3402,7 @@
   {
    "slug": "attio.put_v2_lists_list_entries_entry_id",
    "name": "Update a list entry (overwrite multiselect values)",
-   "description": "Use this endpoint to update list entries by `entry_id`. If the update payload includes multiselect attributes, the values supplied will overwrite/remove the list of values that already exist (if any). Use the `PATCH` endpoint to add multiselect attribute values without removing those value that already exist. Required scopes: `list_entry:read-write`, `list_configuration:read`.",
+   "description": "Use this endpoint to update list entries by `entry_id`. If the update payload includes multiselect attributes, the values supplied will overwrite/remove the list of values that already exist (if any). Use the `PATCH` endpoint to add multiselect attribute values without removing those value that already exist. Required scopes: `list_entry:read-write`, `list_configuration:read`. Supported token leve",
    "input": {
     "type": "object",
     "properties": {
@@ -3401,6 +3478,41 @@
      "list",
      "entry_id",
      "attribute"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "data"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "attio.put_v2_meetings_meeting_id",
+   "name": "Update a meeting (overwrite linked records)",
+   "description": "Replaces a meeting's linked records with the records supplied. Any record which is currently linked and is not in the request is unlinked, including records which Attio linked automatically from the meeting's participants. Passing an empty array unlinks every record. Use the `PATCH` endpoint to add linked records without removing the records which already exist. No other meeting fields can be upda",
+   "input": {
+    "type": "object",
+    "properties": {
+     "meeting_id": {
+      "type": "string",
+      "description": "A UUID which identifies the meeting to update."
+     },
+     "data": {
+      "type": "object",
+      "description": ""
+     }
+    },
+    "required": [
+     "data",
+     "meeting_id"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.attio.com/v2/meetings/{meeting_id}",
+    "path": [
+     "meeting_id"
     ],
     "query": [],
     "header": [],

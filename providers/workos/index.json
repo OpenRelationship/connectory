@@ -118,6 +118,10 @@
       "type": "object",
       "description": "Who may mint sessions from this blueprint."
      },
+     "invocable_as": {
+      "type": "object",
+      "description": "How sessions may be minted from this blueprint."
+     },
      "session_settings": {
       "type": "object",
       "description": "Token and session lifetimes for sessions minted from this blueprint."
@@ -138,6 +142,7 @@
      "description",
      "permissions",
      "invocable_by",
+     "invocable_as",
      "session_settings"
     ],
     "body_format": "json"
@@ -275,6 +280,10 @@
       "type": "object",
       "description": "Who may mint sessions from this blueprint. Omitted lists are left unchanged."
      },
+     "invocable_as": {
+      "type": "object",
+      "description": "How sessions may be minted from this blueprint. Omitted lists are left unchanged."
+     },
      "session_settings": {
       "type": "object",
       "description": "Token and session lifetimes for sessions minted from this blueprint. Omitted fields are left unchanged."
@@ -297,6 +306,7 @@
      "description",
      "permissions",
      "invocable_by",
+     "invocable_as",
      "session_settings"
     ],
     "body_format": "json"
@@ -4038,6 +4048,165 @@
    }
   },
   {
+   "slug": "workos.data_integrations_controller_create_api_key_connection",
+   "name": "Create another api key connected account",
+   "description": "Creates another API key-based connected account for the specified integration, owned by the user or, when `connection_owner` is `organization`, shared by the organization. Requires `connection_intent: add` and does not accept `connected_account_id`; use PUT to create or rotate the compatibility connection or to update an exact connection. Creating an additional connection is not yet available: unt",
+   "input": {
+    "type": "object",
+    "properties": {
+     "slug": {
+      "type": "string",
+      "description": "The identifier of the integration."
+     },
+     "account_display_name": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "A mutable, non-unique label. Omit to preserve an existing label; null clears it. Labels are never account identifiers."
+     },
+     "account_identifier": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "A developer-attested provider account identifier, never inferred from a label or credential. Omit to preserve an existing identifier; null clears it."
+     },
+     "user_id": {
+      "type": "string",
+      "description": "A [User](/reference/authkit/user) identifier."
+     },
+     "organization_id": {
+      "type": "string",
+      "description": "An [Organization](/reference/organization) identifier. Optional parameter to scope the connection to a specific organization. Required when `connection_owner` is `organization`."
+     },
+     "connection_owner": {
+      "type": "string",
+      "description": "Whose connection to create or rotate. `user` (the default) addresses the connection owned by `user_id`. `organization` addresses the connection shared by every member of `organization_id`; `user_id` then identifies the member performing the request and must be an active member of the organization.",
+      "enum": [
+       "user",
+       "organization"
+      ]
+     },
+     "connection_intent": {
+      "type": "string",
+      "description": "Must be `add`: this endpoint only creates another connection. The first connection for an owner shape fills the compatibility slot; later connections are standard. Creating an additional connection is not yet available: until it is, `add` succeeds only when the owner has no connection for this integration and otherwise returns 404 `multiple_connections_unavailable`."
+     }
+    },
+    "required": [
+     "connection_intent",
+     "slug",
+     "user_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.workos.com/data-integrations/{slug}/api-key",
+    "path": [
+     "slug"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "account_display_name",
+     "account_identifier",
+     "user_id",
+     "organization_id",
+     "connection_owner",
+     "connection_intent"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "workos.data_integrations_controller_create_client_credentials_connection",
+   "name": "Create another client credentials connected account",
+   "description": "Creates another client credentials-based connected account for the specified integration, owned by the user or, when `connection_owner` is `organization`, shared by the organization. Requires `connection_intent: add` and does not accept `connected_account_id`; use PUT to create or rotate the compatibility connection or to update an exact connection. Creating an additional connection is not yet ava",
+   "input": {
+    "type": "object",
+    "properties": {
+     "slug": {
+      "type": "string",
+      "description": "The identifier of the integration."
+     },
+     "account_display_name": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "A mutable, non-unique label. Omit to preserve an existing label; null clears it. Labels are never account identifiers."
+     },
+     "account_identifier": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "A developer-attested provider account identifier, never inferred from a label or credential. Omit to preserve an existing identifier; null clears it."
+     },
+     "user_id": {
+      "type": "string",
+      "description": "A [User](/reference/authkit/user) identifier."
+     },
+     "organization_id": {
+      "type": "string",
+      "description": "An [Organization](/reference/organization) identifier. Optional parameter to scope the connection to a specific organization. Required when `connection_owner` is `organization`."
+     },
+     "connection_owner": {
+      "type": "string",
+      "description": "Whose connection to create or rotate. `user` (the default) addresses the connection owned by `user_id`. `organization` addresses the connection shared by every member of `organization_id`; `user_id` then identifies the member performing the request and must be an active member of the organization.",
+      "enum": [
+       "user",
+       "organization"
+      ]
+     },
+     "client_id": {
+      "type": "string",
+      "description": "The OAuth client ID to store for this integration."
+     },
+     "client_secret": {
+      "type": "string",
+      "description": "The OAuth client secret to store for this integration."
+     },
+     "config": {
+      "type": "object",
+      "description": "Provider-specific configuration values collected for this installation, keyed by the provider's config field descriptors."
+     },
+     "connection_intent": {
+      "type": "string",
+      "description": "Must be `add`: this endpoint only creates another connection. The first connection for an owner shape fills the compatibility slot; later connections are standard. Creating an additional connection is not yet available: until it is, `add` succeeds only when the owner has no connection for this integration and otherwise returns 404 `multiple_connections_unavailable`."
+     }
+    },
+    "required": [
+     "client_id",
+     "client_secret",
+     "connection_intent",
+     "slug",
+     "user_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.workos.com/data-integrations/{slug}/client-credentials",
+    "path": [
+     "slug"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "account_display_name",
+     "account_identifier",
+     "user_id",
+     "organization_id",
+     "connection_owner",
+     "client_id",
+     "client_secret",
+     "config",
+     "connection_intent"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "workos.data_integrations_controller_get_data_integration_authorize_url",
    "name": "Get authorization url",
    "description": "Generates an OAuth authorization URL to initiate the connection flow for a user. Redirect the user to the returned URL to begin the OAuth flow with the third-party provider.",
@@ -4047,35 +4216,10 @@
      "slug": {
       "type": "string",
       "description": "The slug identifier of the provider (e.g., `github`, `slack`, `notion`)."
-     },
-     "user_id": {
-      "type": "string",
-      "description": "The ID of the user to authorize. When `connection_owner` is `organization`, this is the user authorizing on behalf of the organization; they must be an active member of the organization and do not become the owner of the resulting connected account."
-     },
-     "organization_id": {
-      "type": "string",
-      "description": "An organization ID to scope the authorization to a specific organization. Required when `connection_owner` is `organization`."
-     },
-     "connection_owner": {
-      "type": "string",
-      "description": "Who will own the connected account. `user` (the default) connects the user's own account. `organization` connects the organization's shared account and requires `organization_id`.",
-      "enum": [
-       "user",
-       "organization"
-      ]
-     },
-     "return_to": {
-      "type": "string",
-      "description": "The URL to redirect the user to after authorization."
-     },
-     "config": {
-      "type": "object",
-      "description": "Connect-time config values for the provider-declared `installation`-scope fields (e.g. a Zendesk `subdomain`), keyed by the config field. Only fields the provider declares may be supplied, and required fields must be provided unless already pinned on the integration."
      }
     },
     "required": [
-     "slug",
-     "user_id"
+     "slug"
     ]
    },
    "request": {
@@ -4086,13 +4230,7 @@
     ],
     "query": [],
     "header": [],
-    "body": [
-     "user_id",
-     "organization_id",
-     "connection_owner",
-     "return_to",
-     "config"
-    ],
+    "body": [],
     "body_format": "json"
    }
   },
@@ -4158,38 +4296,17 @@
   {
    "slug": "workos.data_integrations_controller_upsert_api_key",
    "name": "Upsert an api key for a connected account",
-   "description": "Creates or updates an API-key-based installation for the specified integration, owned by the user or, when `connection_owner` is `organization`, shared by the organization. If an installation already exists, the stored API key is rotated to the new value.",
+   "description": "Creates or updates an API-key-based installation for the specified integration, owned by the user or, when `connection_owner` is `organization`, shared by the organization. If an installation already exists, the stored API key is rotated to the new value. To create another connection, use POST.",
    "input": {
     "type": "object",
     "properties": {
      "slug": {
       "type": "string",
       "description": "The identifier of the integration."
-     },
-     "user_id": {
-      "type": "string",
-      "description": "A [User](/reference/authkit/user) identifier."
-     },
-     "organization_id": {
-      "type": "string",
-      "description": "An [Organization](/reference/organization) identifier. Optional parameter to scope the connection to a specific organization. Required when `connection_owner` is `organization`."
-     },
-     "connected_account_id": {
-      "type": "string",
-      "description": "A [connected account](/reference/pipes/connected-account) identifier. Use this to rotate a specific existing connection."
-     },
-     "connection_owner": {
-      "type": "string",
-      "description": "Whose connection to create or rotate. `user` (the default) addresses the connection owned by `user_id`. `organization` addresses the connection shared by every member of `organization_id`; `user_id` then identifies the member performing the request and must be an active member of the organization.",
-      "enum": [
-       "user",
-       "organization"
-      ]
      }
     },
     "required": [
-     "slug",
-     "user_id"
+     "slug"
     ]
    },
    "request": {
@@ -4200,64 +4317,24 @@
     ],
     "query": [],
     "header": [],
-    "body": [
-     "user_id",
-     "organization_id",
-     "connected_account_id",
-     "connection_owner"
-    ],
+    "body": [],
     "body_format": "json"
    }
   },
   {
    "slug": "workos.data_integrations_controller_upsert_client_credentials",
    "name": "Upsert client credentials for a connected account",
-   "description": "Creates or updates a client-credentials-based installation for the specified integration, owned by the user or, when `connection_owner` is `organization`, shared by the organization. If an installation already exists, the stored client credentials are rotated to the new values.",
+   "description": "Creates or updates a client-credentials-based installation for the specified integration, owned by the user or, when `connection_owner` is `organization`, shared by the organization. If an installation already exists, the stored client credentials are rotated to the new values. To create another connection, use POST.",
    "input": {
     "type": "object",
     "properties": {
      "slug": {
       "type": "string",
       "description": "The identifier of the integration."
-     },
-     "user_id": {
-      "type": "string",
-      "description": "A [User](/reference/authkit/user) identifier."
-     },
-     "organization_id": {
-      "type": "string",
-      "description": "An [Organization](/reference/organization) identifier. Optional parameter to scope the connection to a specific organization. Required when `connection_owner` is `organization`."
-     },
-     "connected_account_id": {
-      "type": "string",
-      "description": "A [connected account](/reference/pipes/connected-account) identifier. Use this to rotate a specific existing connection."
-     },
-     "connection_owner": {
-      "type": "string",
-      "description": "Whose connection to create or rotate. `user` (the default) addresses the connection owned by `user_id`. `organization` addresses the connection shared by every member of `organization_id`; `user_id` then identifies the member performing the request and must be an active member of the organization.",
-      "enum": [
-       "user",
-       "organization"
-      ]
-     },
-     "client_id": {
-      "type": "string",
-      "description": "The OAuth client ID to store for this integration."
-     },
-     "client_secret": {
-      "type": "string",
-      "description": "The OAuth client secret to store for this integration."
-     },
-     "config": {
-      "type": "object",
-      "description": "Provider-specific configuration values collected for this installation, keyed by the provider's config field descriptors."
      }
     },
     "required": [
-     "client_id",
-     "client_secret",
-     "slug",
-     "user_id"
+     "slug"
     ]
    },
    "request": {
@@ -4268,22 +4345,14 @@
     ],
     "query": [],
     "header": [],
-    "body": [
-     "user_id",
-     "organization_id",
-     "connected_account_id",
-     "connection_owner",
-     "client_id",
-     "client_secret",
-     "config"
-    ],
+    "body": [],
     "body_format": "json"
    }
   },
   {
    "slug": "workos.data_integrations_controller_vend_credentials",
    "name": "Vend credentials for a connected account",
-   "description": "Returns credentials for a user's connected account. Branches on the installation's `auth_method`: OAuth installations return an access token (refreshed if needed); API-key installations return the stored secret.",
+   "description": "Returns credentials for a user's connected account. Branches on the installation's `auth_method`: OAuth installations return an access token (refreshed if needed); API-key installations return the stored secret. Every active credential includes `config`: provider-declared, non-secret values from the installation snapshot, with current provider defaults for unset fields. Editing integration or orga",
    "input": {
     "type": "object",
     "properties": {
@@ -4707,7 +4776,7 @@
   {
    "slug": "workos.data_integrations_organization_controller_create_organization_data_installation",
    "name": "Import an organization connected account",
-   "description": "Imports an organization-owned [connected account](/reference/pipes/connected-account) by providing OAuth tokens directly. Use this to migrate existing connections or set up connections without going through the OAuth flow.",
+   "description": "Imports an organization-owned [connected account](/reference/pipes/connected-account) by providing OAuth tokens directly. Omit `connection_intent` to create only the compatibility connection, or set it to `add` to explicitly create another connection. This creation-only endpoint does not accept `connected_account_id` or reauthorization intent.",
    "input": {
     "type": "object",
     "properties": {
@@ -4718,6 +4787,20 @@
      "slug": {
       "type": "string",
       "description": "The slug identifier of the provider (e.g., `github`, `slack`, `notion`)."
+     },
+     "account_display_name": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "A mutable, non-unique connection label; null clears it. Not an account identifier."
+     },
+     "account_identifier": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "A developer-attested account identifier; null clears it."
      },
      "refresh_token": {
       "type": "string",
@@ -4738,11 +4821,20 @@
        "connected",
        "needs_reauthorization"
       ]
+     },
+     "user_id": {
+      "type": "string",
+      "description": "The [User](/reference/authkit/user) identifier of the organization member on whose behalf the connected account is being imported or updated. The user must be an active member of the organization."
+     },
+     "connection_intent": {
+      "type": "string",
+      "description": "Set to `add` to create another connected account. Omit this field for permanent compatibility behavior. Creating an additional connection is not yet available: until it is, `add` succeeds only when the owner has no connection for this integration, which creates the compatibility connection, and otherwise returns 404 `multiple_connections_unavailable`."
      }
     },
     "required": [
      "organization_id",
-     "slug"
+     "slug",
+     "user_id"
     ]
    },
    "request": {
@@ -4755,10 +4847,14 @@
     "query": [],
     "header": [],
     "body": [
+     "account_display_name",
+     "account_identifier",
      "refresh_token",
      "expires_at",
      "scopes",
-     "state"
+     "state",
+     "user_id",
+     "connection_intent"
     ],
     "body_format": "json"
    }
@@ -4904,11 +5000,29 @@
      },
      "supports_multiple_connections": {
       "type": "boolean",
-      "description": "Set to `true` to use the plural connection contract. When omitted or `false`, only the compatibility connection is considered."
+      "description": "Accepted for compatibility; does not change update targeting. Omit intent and selector to update the compatibility connection, or supply `connected_account_id` to update an exact connection."
      },
      "connected_account_id": {
       "type": "string",
       "description": "A [connected account](/reference/pipes/connected-account) identifier. Use this to select the connection to update."
+     },
+     "connection_intent": {
+      "type": "string",
+      "description": "Set to `reauthorize` with `connected_account_id` to update one exact connection. The intent may be omitted when supplying an ID. Omit both for permanent compatibility behavior."
+     },
+     "account_display_name": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "A mutable, non-unique connection label; null clears it. Not an account identifier."
+     },
+     "account_identifier": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "A developer-attested account identifier; null clears it."
      },
      "refresh_token": {
       "type": "string",
@@ -4929,11 +5043,16 @@
        "connected",
        "needs_reauthorization"
       ]
+     },
+     "user_id": {
+      "type": "string",
+      "description": "The [User](/reference/authkit/user) identifier of the organization member on whose behalf the connected account is being imported or updated. The user must be an active member of the organization."
      }
     },
     "required": [
      "organization_id",
-     "slug"
+     "slug",
+     "user_id"
     ]
    },
    "request": {
@@ -4945,14 +5064,18 @@
     ],
     "query": [
      "supports_multiple_connections",
-     "connected_account_id"
+     "connected_account_id",
+     "connection_intent"
     ],
     "header": [],
     "body": [
+     "account_display_name",
+     "account_identifier",
      "refresh_token",
      "expires_at",
      "scopes",
-     "state"
+     "state",
+     "user_id"
     ],
     "body_format": "json"
    }
@@ -4976,6 +5099,20 @@
       "type": "string",
       "description": "An [Organization](/reference/organization) identifier. Optional parameter if the connection is scoped to an organization."
      },
+     "account_display_name": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "A mutable, non-unique connection label; null clears it. Not an account identifier."
+     },
+     "account_identifier": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "A developer-attested account identifier; null clears it."
+     },
      "refresh_token": {
       "type": "string",
       "description": "The OAuth refresh token for the connected account."
@@ -4995,6 +5132,10 @@
        "connected",
        "needs_reauthorization"
       ]
+     },
+     "connection_intent": {
+      "type": "string",
+      "description": "Set to `add` to create another connected account. Omit this field for permanent compatibility behavior. Creating an additional connection is not yet available: until it is, `add` succeeds only when the owner has no connection for this integration, which creates the compatibility connection, and otherwise returns 404 `multiple_connections_unavailable`."
      }
     },
     "required": [
@@ -5014,10 +5155,13 @@
     ],
     "header": [],
     "body": [
+     "account_display_name",
+     "account_identifier",
      "refresh_token",
      "expires_at",
      "scopes",
-     "state"
+     "state",
+     "connection_intent"
     ],
     "body_format": "json"
    }
@@ -5182,11 +5326,29 @@
      },
      "supports_multiple_connections": {
       "type": "boolean",
-      "description": "Set to `true` to use the plural connection contract. When omitted or `false`, only the compatibility connection is considered."
+      "description": "Accepted for compatibility; does not change update targeting. Omit intent and selector to update the compatibility connection, or supply `connected_account_id` to update an exact connection."
      },
      "connected_account_id": {
       "type": "string",
       "description": "A [connected account](/reference/pipes/connected-account) identifier. Use this to select the connection to update."
+     },
+     "connection_intent": {
+      "type": "string",
+      "description": "Set to `reauthorize` with `connected_account_id` to update one exact connection. The intent may be omitted when supplying an ID. Omit both for permanent compatibility behavior."
+     },
+     "account_display_name": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "A mutable, non-unique connection label; null clears it. Not an account identifier."
+     },
+     "account_identifier": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "A developer-attested account identifier; null clears it."
      },
      "refresh_token": {
       "type": "string",
@@ -5224,10 +5386,13 @@
     "query": [
      "organization_id",
      "supports_multiple_connections",
-     "connected_account_id"
+     "connected_account_id",
+     "connection_intent"
     ],
     "header": [],
     "body": [
+     "account_display_name",
+     "account_identifier",
      "refresh_token",
      "expires_at",
      "scopes",
@@ -5348,6 +5513,34 @@
      "search",
      "domain"
     ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "workos.directories_controller_sync_directory",
+   "name": "Sync a directory",
+   "description": "Request an asynchronous sync from the directory provider. Currently supports Google Workspace directories in linked or validating state. Manual requests share a five-minute per-directory cooldown across the API, Dashboard, Admin Portal, and MCP. Acceptance means the request was queued, not that the sync has started or completed. A running sync prevents another request from being queued.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "Unique identifier for the Directory."
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.workos.com/directories/{id}/sync",
+    "path": [
+     "id"
+    ],
+    "query": [],
     "header": [],
     "body": [],
     "body_format": "json"
@@ -8514,6 +8707,10 @@
        "urn:ietf:params:oauth:grant-type:token-exchange"
       ]
      },
+     "code_verifier": {
+      "type": "string",
+      "description": "The PKCE code verifier matching the `code_challenge` sent with the authorization request. Required when the authorization request included a `code_challenge`. Must be sent in the request body."
+     },
      "subject_token": {
       "type": "string",
       "description": "The OIDC ID token to exchange. Required when `grant_type` is `urn:ietf:params:oauth:grant-type:token-exchange`. Must be sent in the request body."
@@ -8549,6 +8746,7 @@
      "client_secret",
      "code",
      "grant_type",
+     "code_verifier",
      "subject_token",
      "subject_token_type",
      "organization_id"

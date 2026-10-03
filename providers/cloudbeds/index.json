@@ -172,17 +172,13 @@
       "type": "string",
       "description": "Allotment block name"
      },
-     "groupCode": {
-      "type": "string",
-      "description": "A group profile code"
-     },
-     "groupProfileID": {
+     "eventProfileID": {
       "type": "string",
       "description": "GPS (Group Profile Service) external profile ID. Returns all allotment blocks linked to this GPS profile."
      },
      "eventCode": {
       "type": "string",
-      "description": "An event code"
+      "description": "An event (group profile) code"
      },
      "allotmentBlockStatus": {
       "type": "string",
@@ -216,11 +212,11 @@
      },
      "startDate": {
       "type": "string",
-      "description": "Interval start date"
+      "description": "Lower limit for the block's date range. That range includes shoulder dates, so it can begin before the earliest interval startDate. A block is returned only if its date range starts on or after this date."
      },
      "endDate": {
       "type": "string",
-      "description": "Interval end date"
+      "description": "Upper limit for the block's date range. That range includes shoulder dates, so it can end after the latest interval endDate. A block is returned only if its date range ends on or before this date."
      },
      "forUpdate": {
       "type": "boolean",
@@ -229,6 +225,10 @@
      "includeResources": {
       "type": "boolean",
       "description": "When true, each block in the response will include a resources[] array with associated space resource quotes. Requires the spaces-allotment-blocks feature flag to be enabled for the property; when the flag is off, resources[] will be empty even if the param is true."
+     },
+     "includeShoulderDates": {
+      "type": "boolean",
+      "description": "When true, each interval's availability[] also includes the interval's shoulder dates, and every availability entry carries isShoulderDate. On a shoulder date blockAllotted and blockRemaining are 0 and blockConfirmed is the number of rooms picked up against the block for that night, so it may exceed blockAllotted. Requires the property's shoulder-dates feature to be enabled; when it is off, availa"
      }
     },
     "required": [
@@ -243,8 +243,7 @@
      "propertyID",
      "allotmentBlockCode",
      "allotmentBlockName",
-     "groupCode",
-     "groupProfileID",
+     "eventProfileID",
      "eventCode",
      "allotmentBlockStatus",
      "allotmentBlockType",
@@ -254,7 +253,8 @@
      "startDate",
      "endDate",
      "forUpdate",
-     "includeResources"
+     "includeResources",
+     "includeShoulderDates"
     ],
     "header": [],
     "body": [],
@@ -609,9 +609,9 @@
       "type": "string",
       "description": "Property ID"
      },
-     "groupCode": {
+     "eventCode": {
       "type": "string",
-      "description": "The group code, if the files are to be fetched from a group profile"
+      "description": "The event (group profile) code, if the files are to be fetched from a group profile"
      },
      "sortBy": {
       "type": "string",
@@ -652,7 +652,7 @@
     "path": [],
     "query": [
      "propertyID",
-     "groupCode",
+     "eventCode",
      "sortBy",
      "orderBy",
      "name",
@@ -675,9 +675,9 @@
       "type": "string",
       "description": "Property ID"
      },
-     "groupCode": {
+     "eventCode": {
       "type": "string",
-      "description": "Group code"
+      "description": "Event (group) code"
      },
      "pageSize": {
       "type": "integer",
@@ -689,7 +689,7 @@
      }
     },
     "required": [
-     "groupCode",
+     "eventCode",
      "pageNumber",
      "pageSize",
      "propertyID"
@@ -701,7 +701,7 @@
     "path": [],
     "query": [
      "propertyID",
-     "groupCode",
+     "eventCode",
      "pageSize",
      "pageNumber"
     ],
@@ -721,13 +721,13 @@
       "type": "string",
       "description": "Property ID"
      },
-     "groupCode": {
+     "eventCode": {
       "type": "string",
-      "description": "Unique ID for a group"
+      "description": "Unique code for an event (group)"
      },
-     "groupProfileID": {
+     "eventProfileID": {
       "type": "string",
-      "description": "GPS (Group Profile Service) external profile ID. Returns all MFD groups linked to this GPS profile."
+      "description": "GPS (Group Profile Service) external event profile ID. Returns all MFD groups linked to this GPS profile."
      },
      "type": {
       "type": "string",
@@ -773,8 +773,8 @@
     "path": [],
     "query": [
      "propertyID",
-     "groupCode",
-     "groupProfileID",
+     "eventCode",
+     "eventProfileID",
      "type",
      "status",
      "createdFrom",
@@ -1344,6 +1344,10 @@
       "type": "string",
       "description": "Property ID"
      },
+     "roomIDs": {
+      "type": "string",
+      "description": "Filter by room ID. If more than one, send as a comma-separated list, i.e. 101-0,101-3. A room ID has the form {roomTypeID}-{index} and is the same value this endpoint returns as data.roomID. Combined with the other filters using AND. A value that is not of that form is rejected with a 400 response. A well-formed ID that matches no room of this property is not an error - it simply contributes no re"
+     },
      "roomTypeIDs": {
       "type": "string",
       "description": "Filter by room type ID. If more than one, send as comma-separated, i.e. 37,345,89"
@@ -1381,6 +1385,7 @@
     "path": [],
     "query": [
      "propertyID",
+     "roomIDs",
      "roomTypeIDs",
      "housekeeperIDs",
      "roomCondition",
@@ -1971,7 +1976,7 @@
      },
      "roomName": {
       "type": "string",
-      "description": "Filters reservation with the supplied room name (customizable by each property). CheckIn/checkOut dates OR status are required. If dates are provided and span more than one day, more than one reservation can be returned."
+      "description": "Filters reservation with the supplied room name (customizable by each property). CheckIn/checkOut dates OR status are required. If dates are provided and span more than one day, more than one reservation can be returned. If no room with the supplied name exists, an empty result is returned."
      },
      "roomTypeID": {
       "type": "string",
@@ -2021,9 +2026,9 @@
       "type": "string",
       "description": "Filters reservation with the supplied allotment block code."
      },
-     "groupCode": {
+     "eventCode": {
       "type": "string",
-      "description": "Filters reservation with the supplied group code."
+      "description": "Filters reservation with the supplied event (group profile) code."
      },
      "sortByRecent": {
       "type": "boolean",
@@ -2070,7 +2075,7 @@
      "lastName",
      "guestID",
      "allotmentBlockCode",
-     "groupCode",
+     "eventCode",
      "sortByRecent",
      "pageNumber",
      "pageSize"
@@ -2730,7 +2735,11 @@
     "properties": {
      "property_id": {
       "type": "string",
-      "description": "Specify a property ID when using role_details"
+      "description": "Property to resolve role_details for. When the user holds both an Organization-level role and a Property-level role for this property, both are returned in `roles` and `acl` is the union of their permissions (an \"allow\" in either role wins). Takes precedence over organization_id when both are supplied."
+     },
+     "organization_id": {
+      "type": "string",
+      "description": "Organization to resolve role_details for (alternative to property_id). Returns the user's Organization-level role for that organization and its permissions."
      },
      "role_details": {
       "type": "boolean",
@@ -2745,6 +2754,7 @@
     "path": [],
     "query": [
      "property_id",
+     "organization_id",
      "role_details"
     ],
     "header": [],
@@ -2821,15 +2831,15 @@
      },
      "reservationID": {
       "type": "string",
-      "description": "Reservation identifier. Required if no houseAccountID or groupCode is provided."
+      "description": "Reservation identifier. Required if no houseAccountID or eventCode is provided."
      },
      "houseAccountID": {
       "type": "string",
-      "description": "House Account identifier. Required if no reservationID or groupCode is provided."
+      "description": "House Account identifier. Required if no reservationID or eventCode is provided."
      },
-     "groupCode": {
+     "eventCode": {
       "type": "string",
-      "description": "Group code. Required if no reservationID or houseAccountID is provided."
+      "description": "Event (group profile) code. Required if no reservationID or houseAccountID is provided."
      },
      "referenceID": {
       "type": "string",
@@ -2880,7 +2890,7 @@
      "propertyID",
      "reservationID",
      "houseAccountID",
-     "groupCode",
+     "eventCode",
      "referenceID",
      "subReservationID",
      "roomID",
@@ -2901,10 +2911,6 @@
    "input": {
     "type": "object",
     "properties": {
-     "groupCode": {
-      "type": "string",
-      "description": "The unique identifier of the group profile the allotment block should be created"
-     },
      "eventCode": {
       "type": "string",
       "description": "The unique identifier of the event the allotment block should be created"
@@ -2969,7 +2975,6 @@
     "query": [],
     "header": [],
     "body": [
-     "groupCode",
      "eventCode",
      "allotmentBlockName",
      "rateType",
@@ -3110,9 +3115,9 @@
    "input": {
     "type": "object",
     "properties": {
-     "groupCode": {
+     "eventCode": {
       "type": "string",
-      "description": "code for a group"
+      "description": "code for an event (group)"
      },
      "propertyID": {
       "type": "string",
@@ -3174,7 +3179,7 @@
     "query": [],
     "header": [],
     "body": [
-     "groupCode",
+     "eventCode",
      "propertyID",
      "name",
      "type",
@@ -3251,6 +3256,10 @@
      "itemID": {
       "type": "string",
       "description": "Apply Adjustment to. Identifier for: product, tax, fee. Not for rate"
+     },
+     "serviceDate": {
+      "type": "string",
+      "description": "Adjustment service date in the property timezone, format YYYY-MM-DD. Must be within the reservation's check-in and check-out dates. When omitted, the current date and time are used. A past date requires permission to post adjustments for past dates; a future date creates an unposted transaction."
      }
     },
     "required": []
@@ -3267,7 +3276,8 @@
      "type",
      "amount",
      "notes",
-     "itemID"
+     "itemID",
+     "serviceDate"
     ],
     "body_format": "json"
    }
@@ -3441,9 +3451,9 @@
       "type": "string",
       "description": "House Account ID"
      },
-     "groupID": {
+     "eventID": {
       "type": "string",
-      "description": "Group ID"
+      "description": "Event (group profile) ID"
      },
      "accountsReceivableLedgerID": {
       "type": "string",
@@ -3490,7 +3500,7 @@
      "propertyID",
      "reservationID",
      "houseAccountID",
-     "groupID",
+     "eventID",
      "accountsReceivableLedgerID",
      "amount",
      "currency",
@@ -3636,15 +3646,15 @@
      },
      "reservationID": {
       "type": "string",
-      "description": "Reservation identifier. Required if no houseAccountID or groupCode is provided."
+      "description": "Reservation identifier. Required if no houseAccountID or eventCode is provided."
      },
      "houseAccountID": {
       "type": "string",
-      "description": "House account identifier. Required if no reservationID or groupCode is provided."
+      "description": "House account identifier. Required if no reservationID or eventCode is provided."
      },
-     "groupCode": {
+     "eventCode": {
       "type": "string",
-      "description": "Group identifier. Required if no reservationID or houseAccountID is provided."
+      "description": "Event (group profile) code. Required if no reservationID or houseAccountID is provided."
      },
      "referenceID": {
       "type": "string",
@@ -3695,7 +3705,7 @@
      "propertyID",
      "reservationID",
      "houseAccountID",
-     "groupCode",
+     "eventCode",
      "referenceID",
      "subReservationID",
      "roomID",
@@ -3886,9 +3896,9 @@
       "type": "string",
       "description": "Form-based File Upload Allowed file types: *.pdf, *.rtf, *.doc, *.docx, *.txt, *.jpg, *.jpeg, *.png, *.gif, *.csv, *.xls, *.xlsx, *.xml, *.json Allowed max file size: 100MB"
      },
-     "groupCode": {
+     "eventCode": {
       "type": "string",
-      "description": "optional - the group code if the file is to be attached to a group profile"
+      "description": "optional - the event (group profile) code if the file is to be attached to a group profile"
      }
     },
     "required": []
@@ -3902,7 +3912,7 @@
     "body": [
      "propertyID",
      "file",
-     "groupCode"
+     "eventCode"
     ],
     "body_format": "json"
    }
@@ -3979,9 +3989,9 @@
       "type": "string",
       "description": "Property ID"
      },
-     "groupCode": {
+     "eventCode": {
       "type": "string",
-      "description": "Group code"
+      "description": "Event (group) code"
      },
      "groupNote": {
       "type": "string",
@@ -3998,7 +4008,7 @@
     "header": [],
     "body": [
      "propertyID",
-     "groupCode",
+     "eventCode",
      "groupNote"
     ],
     "body_format": "json"
@@ -4393,7 +4403,7 @@
      },
      "roomIDs": {
       "type": "string",
-      "description": "List of room IDs comma-separated, i.e. 37,345,89"
+      "description": "List of room IDs comma-separated, i.e. 101-0,101-3"
      },
      "housekeeperID": {
       "type": "string",
@@ -4490,15 +4500,15 @@
      },
      "reservationID": {
       "type": "string",
-      "description": "Reservation identifier. Required if no houseAccountID or groupCode is provided."
+      "description": "Reservation identifier. Required if no houseAccountID or eventCode is provided."
      },
      "houseAccountID": {
       "type": "string",
-      "description": "House account identifier. Required if no reservationID or groupCode is provided."
+      "description": "House account identifier. Required if no reservationID or eventCode is provided."
      },
-     "groupCode": {
+     "eventCode": {
       "type": "string",
-      "description": "Group identifier. Required if no reservationID or houseAccountID is provided."
+      "description": "Event (group profile) code. Required if no reservationID or houseAccountID is provided."
      },
      "subReservationID": {
       "type": "string",
@@ -4545,7 +4555,7 @@
      "propertyID",
      "reservationID",
      "houseAccountID",
-     "groupCode",
+     "eventCode",
      "subReservationID",
      "itemID",
      "itemQuantity",
@@ -4669,7 +4679,7 @@
   {
    "slug": "cloudbeds.post_postPayment",
    "name": "Post payment",
-   "description": "Add a payment to a specified reservation, house account, or group. If multiple IDs are provided, precedence is reservationID, then houseAccountID, then groupCode.",
+   "description": "Add a payment to a specified reservation, house account, or group. If multiple IDs are provided, precedence is reservationID, then houseAccountID, then eventCode.",
    "input": {
     "type": "object",
     "properties": {
@@ -4685,9 +4695,9 @@
       "type": "string",
       "description": "House Account identifier is necessary if reservationID not sent"
      },
-     "groupCode": {
+     "eventCode": {
       "type": "string",
-      "description": "Group Code. Required if neither reservationID nor houseAccountID is sent"
+      "description": "Event (group profile) code. Required if neither reservationID nor houseAccountID is sent"
      },
      "subReservationID": {
       "type": "string",
@@ -4726,7 +4736,7 @@
      "propertyID",
      "reservationID",
      "houseAccountID",
-     "groupCode",
+     "eventCode",
      "subReservationID",
      "type",
      "amount",
@@ -4851,9 +4861,9 @@
       "type": "string",
       "description": "Allotment block code to add reservation to allotment block."
      },
-     "groupCode": {
+     "eventCode": {
       "type": "string",
-      "description": "Code from the Aggregate Allotment block the reservation will be added to."
+      "description": "Event (group profile) code the reservation will be added to."
      },
      "dateCreated": {
       "type": "string",
@@ -4897,7 +4907,7 @@
      "customFields",
      "promoCode",
      "allotmentBlockCode",
-     "groupCode",
+     "eventCode",
      "dateCreated",
      "sendEmailConfirmation"
     ],
@@ -5228,15 +5238,15 @@
      },
      "reservationID": {
       "type": "string",
-      "description": "Reservation identifier. Required if no houseAccountID or groupCode is provided."
+      "description": "Reservation identifier. Required if no houseAccountID or eventCode is provided."
      },
      "houseAccountID": {
       "type": "string",
-      "description": "House Account identifier. Required if no reservationID or groupCode is provided."
+      "description": "House Account identifier. Required if no reservationID or eventCode is provided."
      },
-     "groupCode": {
+     "eventCode": {
       "type": "string",
-      "description": "Group identifier. Required if no reservationID or houseAccountID is provided."
+      "description": "Event (group profile) code. Required if no reservationID or houseAccountID is provided."
      },
      "soldProductID": {
       "type": "string",
@@ -5255,7 +5265,7 @@
      "propertyID",
      "reservationID",
      "houseAccountID",
-     "groupCode",
+     "eventCode",
      "soldProductID"
     ],
     "body_format": "json"

@@ -16,70 +16,84 @@ vouches for**: read it, then read their reference.
 
 > Guru's Developer Network Documentation helps you and your team leverage Guru data to customize your knowledge network
 
-Append .md to any documentation page URL to get its markdown version.
-
-## Guides
+## Docs: Getting Started
 - [Welcome to the Guru Developer Network](https://developer.getguru.com/docs/welcome.md): Everything you need to build on Guru: REST API, webhooks, Python SDK, MCP server, CLI, and integration platform connectors.
 - [API Quickstart](https://developer.getguru.com/docs/getting-started.md): Get your API credentials, understand the two token types, and make your first authenticated call.
 - [API Tokens](https://developer.getguru.com/docs/user-tokens-vs-collection-tokens.md): Compare user tokens and collection tokens to pick the right credential for your integration.
 - [Pagination](https://developer.getguru.com/docs/paging.md): Use the Link header to walk through paged results from any list endpoint.
 - [Advanced Authentication](https://developer.getguru.com/docs/advanced-authentication.md): Impersonation tokens and OAuth2 clients for advanced integration scenarios.
-- [Impersonation Tokens](https://developer.getguru.com/docs/impersonation-tokens.md): Create workspace-level tokens that act on behalf of any workspace member.
-- [OAuth2 Clients](https://developer.getguru.com/docs/oauth2-clients.md): Create and manage OAuth2 clients and run the authorization and token exchange flows.
-- [OAuth2 Example: Custom GPT](https://developer.getguru.com/docs/oauth2-example-custom-gpt.md): Connect a ChatGPT Custom GPT to Guru with an OAuth2 client, end to end.
+  - [Impersonation Tokens](https://developer.getguru.com/docs/impersonation-tokens.md): Create workspace-level tokens that act on behalf of any workspace member.
+  - [OAuth2 Clients](https://developer.getguru.com/docs/oauth2-clients.md): Create and manage OAuth2 clients and run the authorization and token exchange flows.
+  - [OAuth2 Example: Custom GPT](https://developer.getguru.com/docs/oauth2-example-custom-gpt.md): Connect a ChatGPT Custom GPT to Guru with an OAuth2 client, end to end.
+
+## Docs: Working with the API
 - [Analytics](https://developer.getguru.com/docs/analytics-1.md): Guides for exporting Guru analytics data.
-- [Analytics API Overview](https://developer.getguru.com/docs/analytics.md): Export Guru usage events and team content stats into your own analytics tools.
-- [List Analytics Data](https://developer.getguru.com/docs/list-analytics-data.md): The raw data that powers Guru's Analytics Dashboard is available for export.
-- [Get Team Stats](https://developer.getguru.com/docs/get-team-stats.md): Get summary counts of your team's cards and their verification states.
+  - [Analytics API Overview](https://developer.getguru.com/docs/analytics.md): Export Guru usage events and team content stats into your own analytics tools.
+  - [List Analytics Data](https://developer.getguru.com/docs/list-analytics-data.md): The raw data that powers Guru's Analytics Dashboard is available for export.
+  - [Get Team Stats](https://developer.getguru.com/docs/get-team-stats.md): Get summary counts of your team's cards and their verification states.
 - [Cards](https://developer.getguru.com/docs/cards.md): Guides for reading, exporting, and managing cards via the API.
-- [Listing Cards](https://developer.getguru.com/docs/listing-cards.md): Query your team's cards with filters, sorting, and paging.
-- [Guru Query Language](https://developer.getguru.com/docs/guru-query-language.md): Filter card queries with Guru Query Language expressions, from dates to tags to verification state.
-- [Get Card Attachments](https://developer.getguru.com/docs/get-card-attachments.md): Retrieve the attachments hosted on a card in two API calls.
-- [Historical Card Versions](https://developer.getguru.com/docs/historical-card-versions.md): Retrieve current and historical versions of a card for auditing and comparison.
+  - [Listing Cards](https://developer.getguru.com/docs/listing-cards.md): Query your team's cards with filters, sorting, and paging.
+  - [Guru Query Language](https://developer.getguru.com/docs/guru-query-language.md): Filter card queries with Guru Query Language expressions, from dates to tags to verification state.
+  - [Get Card Attachments](https://developer.getguru.com/docs/get-card-attachments.md): Retrieve the attachments hosted on a card in two API calls.
+  - [Historical Card Versions](https://developer.getguru.com/docs/historical-card-versions.md): Retrieve current and historical versions of a card for auditing and comparison.
 - [Folders](https://developer.getguru.com/docs/folders-1.md): Guides for working with folders via the API.
-- [Folders API](https://developer.getguru.com/docs/folders-api.md): Create folders and move cards with the folders action endpoint.
+  - [Folders API](https://developer.getguru.com/docs/folders-api.md): Create folders and move cards with the folders action endpoint.
 - [Tags](https://developer.getguru.com/docs/tags-1.md): Guides for managing tags and tag categories via the API.
-- [Managing Tags](https://developer.getguru.com/docs/creating-updating-and-deleting-tags.md): Create tags and update or move them between categories.
-- [Tag Categories](https://developer.getguru.com/docs/tag-categories.md): List, create, update, and delete tag categories.
+  - [Managing Tags](https://developer.getguru.com/docs/creating-updating-and-deleting-tags.md): Create tags and update or move them between categories.
+  - [Tag Categories](https://developer.getguru.com/docs/tag-categories.md): List, create, update, and delete tag categories.
 - [Profiles](https://developer.getguru.com/docs/profiles.md): Guides for updating user profiles via the API.
-- [Updating Profiles](https://developer.getguru.com/docs/updating-profiles.md): Update Guru profile fields from an external HRIS system.
-- [Bulk Upload Avatars](https://developer.getguru.com/docs/bulk-upload-profile-avatars-via-the-api.md): Upload avatar images and attach them to user profiles in bulk.
+  - [Updating Profiles](https://developer.getguru.com/docs/updating-profiles.md): Update Guru profile fields from an external HRIS system.
+  - [Bulk Upload Avatars](https://developer.getguru.com/docs/bulk-upload-profile-avatars-via-the-api.md): Upload avatar images and attach them to user profiles in bulk.
 - [Importing and Syncing Content](https://developer.getguru.com/docs/importing-content.md): Guides for importing and syncing content into Guru.
-- [Importing a .zip Directory](https://developer.getguru.com/docs/importing-a-zip-directory.md): Structure a .zip file to import cards, folders, and resources into a collection.
-- [Guru Manual Sync](https://developer.getguru.com/docs/guru-manual-sync.md): Sync external content into a read-only collection by uploading a structured .zip file.
-- [Sync Data to Guru with iPaaS](https://developer.getguru.com/docs/sync-data-to-guru-using-ipaas.md): A high-level flow for syncing third-party content into Guru with an iPaaS tool.
+  - [Importing a .zip Directory](https://developer.getguru.com/docs/importing-a-zip-directory.md): Structure a .zip file to import cards, folders, and resources into a collection.
+  - [Guru Manual Sync](https://developer.getguru.com/docs/guru-manual-sync.md): Sync external content into a read-only collection by uploading a structured .zip file.
+  - [Sync Data to Guru with iPaaS](https://developer.getguru.com/docs/sync-data-to-guru-using-ipaas.md): A high-level flow for syncing third-party content into Guru with an iPaaS tool.
 - [Exporting Content](https://developer.getguru.com/docs/exporting-content.md): Guides for exporting content out of Guru.
-- [Exporting Collections](https://developer.getguru.com/docs/collection-exports.md): Automate collection exports for backups or downstream publishing.
-- [Exporting Folders to PDF](https://developer.getguru.com/docs/exporting-folders-to-pdf.md): Export large folders to PDF asynchronously with the bulk operation endpoints.
-- [Exporting Cards to PDF](https://developer.getguru.com/docs/download-cards-to-pdf.md): Download folders or individual cards as PDF files for backup.
-- [Exporting Cards to an External System](https://developer.getguru.com/docs/publishing-guru-cards-to-a-third-party.md): Publish card content to an external system with the REST API or the Python SDK's Publisher framework.
-- [Card Sync Flowchart](https://developer.getguru.com/docs/card-sync-flowchart.md): Mirror card creates, updates, and archives from Guru's webhooks into any external tool.
+  - [Exporting Collections](https://developer.getguru.com/docs/collection-exports.md): Automate collection exports for backups or downstream publishing.
+  - [Exporting Folders to PDF](https://developer.getguru.com/docs/exporting-folders-to-pdf.md): Export large folders to PDF asynchronously with the bulk operation endpoints.
+  - [Exporting Cards to PDF](https://developer.getguru.com/docs/download-cards-to-pdf.md): Download folders or individual cards as PDF files for backup.
+  - [Exporting Cards to an External System](https://developer.getguru.com/docs/publishing-guru-cards-to-a-third-party.md): Publish card content to an external system with the REST API or the Python SDK's Publisher framework.
+  - [Card Sync Flowchart](https://developer.getguru.com/docs/card-sync-flowchart.md): Mirror card creates, updates, and archives from Guru's webhooks into any external tool.
 - [Creating a Custom Source](https://developer.getguru.com/docs/custom-sources-for-answers.md): Push data from any system into Guru as searchable, citable objects using the custom source API, from creating the source through running a sync.
+  - [Adding Native Permissions to a Custom Source](https://developer.getguru.com/docs/adding-native-permissions-to-a-custom-source.md): Mirror your source system's permission model in Guru by syncing users, groups, and per-record access for a custom source.
+  - [Pushing Files to a Custom Source](https://developer.getguru.com/docs/pushing-files-to-a-custom-source.md): Upload PDFs, Word documents, and other files to a custom source, and let Guru extract, tag, and sync their text.
+  - [Organizing a Custom Source into Folders](https://developer.getguru.com/docs/organizing-a-custom-source-into-folders.md): Sync a folder tree to a custom source, tag records with their folder, and scope filters and Knowledge Agents by folder.
+  - [Managing a Custom Source](https://developer.getguru.com/docs/managing-a-custom-source.md): Share a custom source with groups, rename it, read back its records, and delete single records between syncs.
+
+## Docs: AI & Knowledge Agents
 - [Ask a Question](https://developer.getguru.com/docs/ask-a-question.md): Ask a Knowledge Agent a question without waiting on the response — submit it, then check back when it's ready.
 - [Connecting Guru to Your Chatbot](https://developer.getguru.com/docs/connecting-guru-to-your-chatbot.md): Four patterns for making Guru the knowledge behind your chatbot, and how to choose between them.
+
+## Docs: Webhooks
 - [Webhooks Overview](https://developer.getguru.com/docs/getting-started-with-gurus-webhook-services.md): Subscribe to real-time notifications for events in Guru, from card edits to team membership changes.
 - [Creating a Webhook](https://developer.getguru.com/docs/creating-a-webhook.md): Create a webhook subscription, choose its delivery mode and event filter, and retrieve it any time.
 - [Receiving a Webhook Event](https://developer.getguru.com/docs/receiving-a-webhook-event.md): How Guru delivers events, how retries and error responses work, and what SINGLE and BATCH payloads look like.
 - [Updating a Webhook](https://developer.getguru.com/docs/updating-a-webhook.md): Modify a webhook's target URL, delivery mode, or event filter, and pause or re-enable it with the status endpoint.
 - [Testing & Monitoring a Webhook](https://developer.getguru.com/docs/testing-monitoring-webhook.md): Send a manual test event to a webhook and retrieve its delivery logs.
 - [Deleting a Webhook](https://developer.getguru.com/docs/delete-a-webhook.md): Remove a webhook subscription you no longer need.
+
+## Docs: MCP Server
 - [MCP Server Overview](https://developer.getguru.com/docs/guru-mcp-server-overview.md): Connect Guru's verified knowledge to Claude, ChatGPT, Cursor, and any other MCP-compatible client. No code or API setup required.
 - [Authentication & Connection Setup](https://developer.getguru.com/docs/authentication-connection-setup.md): Authenticate an MCP client with Guru using OAuth or an API token.
 - [Available Capabilities](https://developer.getguru.com/docs/available-capabilities.md): The tools Guru's MCP server exposes to your AI client, from asking questions to drafting cards.
 - [Connecting Your Tools](https://developer.getguru.com/docs/connections.md): Connect Cursor, Claude Code, OpenAI Agent Builder, n8n, or a custom client to Guru's MCP server.
 - [MCP Use Cases](https://developer.getguru.com/docs/inspiration.md): Ways to use Guru's MCP server in your development workflow, from coding context to documentation drafts.
+
+## Docs: Tooling
 - [Command Line Interface (CLI)](https://developer.getguru.com/docs/command-line-interface-cli.md): An overview of the Guru CLI — what it is, why it pairs well with AI agents, and what your agent can do with access to your knowledge base.
-- [Using the Guru CLI with an AI agent](https://developer.getguru.com/docs/using-the-guru-cli-with-an-ai-agent.md): A conceptual overview of setting up the Guru CLI with an AI agent — credentials, write levels, audit logging, and how to integrate with Claude Code, Cursor, and other coding assistants.
+  - [Using the Guru CLI with an AI agent](https://developer.getguru.com/docs/using-the-guru-cli-with-an-ai-agent.md): A conceptual overview of setting up the Guru CLI with an AI agent — credentials, write levels, audit logging, and how to integrate with Claude Code, Cursor, and other coding assistants.
 - [Python SDK](https://developer.getguru.com/docs/getting-started-with-the-guru-sdk.md): Install Guru's Python SDK, authenticate, and read card content in a few lines of code.
-- [Using the SDK for Syncs or Imports](https://developer.getguru.com/docs/using-the-sdk-for-syncs-or-imports.md): Use the SDK to build, preview, and upload content bundles for syncs and imports.
+  - [Using the SDK for Syncs or Imports](https://developer.getguru.com/docs/using-the-sdk-for-syncs-or-imports.md): Use the SDK to build, preview, and upload content bundles for syncs and imports.
 - [Integration Platforms](https://developer.getguru.com/docs/integration-platforms.md): Connect Guru to Zapier, Workato, Prismatic, or any other iPaaS platform.
 
-## API Reference
+## API Reference: Getting Started
 - [Overview](https://developer.getguru.com/reference/authentication.md): Learn how to authenticate in order to use Guru's API
-- [List events](https://developer.getguru.com/reference/getv1teamsanalyticsgetanalytics.md): Returns all events for the team. Date range parameters can be added. A maximum of 500 events will be returned.  If more than 500 events exist, a link to the next page of results will be included in the Link header
+
+## API Reference: Guru API
+- [List events](https://developer.getguru.com/reference/getv1teamsanalyticsgetanalytics.md): Returns all events for the team. Date range parameters can be added. A maximum of 500 events will be returned.  If more than 500 events exist, a link to the next page of results will be included in…
 - [Get Team Announcements](https://developer.getguru.com/reference/getv1announcementsgetteamannouncements.md)
 - [Create an announcement](https://developer.getguru.com/reference/postv1announcementscreateannouncement.md)
-- [List announcements](https://developer.getguru.com/reference/getv1announcementsgetdelegatedannouncements.md): Returns all announcements owned by the authenticated user.  A maximum of 50 announcements will be returned.  If more than 50 announcements exist, a link to the next page of results will be included in the Link header
+- [List announcements](https://developer.getguru.com/reference/getv1announcementsgetdelegatedannouncements.md): Returns all announcements owned by the authenticated user.  A maximum of 50 announcements will be returned.  If more than 50 announcements exist, a link to the next page of results will be included…
 - [Delete an announcement](https://developer.getguru.com/reference/deletev1announcementsdeleteannouncement.md)
 - [Get full Announcement by ID](https://developer.getguru.com/reference/getv1announcementsgetannouncement.md)
 - [Export announcement user details](https://developer.getguru.com/reference/postv1announcementsexportannouncementusers.md): Initiates the export of user details for the announcement with the given announcementId.  Results will be emailed when available.
@@ -95,22 +109,22 @@ Append .md to any documentation page URL to get its markdown version.
 - [Ask a question asynchronously](https://developer.getguru.com/reference/postv1chataskquestionasync.md)
 - [Get the result of an async ask operation](https://developer.getguru.com/reference/getv1chatgetasyncanswer.md)
 - [Get card](https://developer.getguru.com/reference/getv1cardsgetextendedfact.md): Load the card and the card teams and collaborators.  If there are more than 25 teams or collaborators, a Link header will be provided for the next page of results.
-- [Create card](https://developer.getguru.com/reference/postv1cardscreateextendedfact.md): Content and title are required. Card share status should be set to TEAM to make a card team shared.  Omitting the share status value or setting it to PRIVATE will result in a card that is only accessible by the card owner. This endpoint allows the verifier to be set upon card creation, rather than requiring a separate call.
-- [Update card](https://developer.getguru.com/reference/putv1cardsupdateextendedfact.md): This endpoint allows the verifier to be set upon card creation, rather than requiring a separate call. Content and title are required. Card share status should be set to TEAM to make a card team shared. Omitting the share status value or setting it to PRIVATE will result in a card that is only accessible by the card owner. If tags are omitted or an empty list, then all existing tags will be removed from the card.
+- [Create card](https://developer.getguru.com/reference/postv1cardscreateextendedfact.md): Content and title are required. Card share status should be set to TEAM to make a card team shared.  Omitting the share status value or setting it to PRIVATE will result in a card that is only…
+- [Update card](https://developer.getguru.com/reference/putv1cardsupdateextendedfact.md): This endpoint allows the verifier to be set upon card creation, rather than requiring a separate call. Content and title are required. Card share status should be set to TEAM to make a card team…
 - [Delete card](https://developer.getguru.com/reference/deletev1cardsdeletefact.md)
 - [Verify card](https://developer.getguru.com/reference/putv1cardsverify.md)
 - [Unverify card](https://developer.getguru.com/reference/postv1cardsunverifyfact.md): Mark the card with the given cardId as unverified
-- [List unverified cards](https://developer.getguru.com/reference/getv1cardsgetverificationmanager.md): Returns all unverified cards accessible by the authenticated user.  A maximum of 50 cards will be returned.  If more than 50 cards exist, a link to the next page of results will be included in the Link header
+- [List unverified cards](https://developer.getguru.com/reference/getv1cardsgetverificationmanager.md): Returns all unverified cards accessible by the authenticated user.  A maximum of 50 cards will be returned.  If more than 50 cards exist, a link to the next page of results will be included in the…
 - [List folders a card is on](https://developer.getguru.com/reference/getv1cardsgetfactfolders.md)
 - [List favorite lists including this card](https://developer.getguru.com/reference/getv1cardsgetfactfavoritelists.md)
 - [List a card's version history](https://developer.getguru.com/reference/getv1cardsgetversionhistory.md)
 - [Get a specific card version](https://developer.getguru.com/reference/getv1cardsgetfactversion.md): version may be 'lastVerified' which will return the most recently verified version of the card.
-- [List card comments](https://developer.getguru.com/reference/getv1cardscommentsgetcomments.md): Returns all undeleted card comments accessible to the authenticated user.  A maximum of 25 card comments will be returned.  If more than 25 card comments exist, a link to the next page of results will be included in the Link header
+- [List card comments](https://developer.getguru.com/reference/getv1cardscommentsgetcomments.md): Returns all undeleted card comments accessible to the authenticated user.  A maximum of 25 card comments will be returned.  If more than 25 card comments exist, a link to the next page of results…
 - [Create a card comment](https://developer.getguru.com/reference/postv1cardscommentscreatecomment.md): Comment content is required
 - [Delete a card comment](https://developer.getguru.com/reference/deletev1cardscommentsdeletecomment.md)
 - [Find a card comment by ID](https://developer.getguru.com/reference/getv1cardscommentsgetcomment.md)
 - [Update a card comment](https://developer.getguru.com/reference/putv1cardscommentsupdatecomment.md)
-- [List replies to a comment](https://developer.getguru.com/reference/getv1cardscommentsgetcommentreplies.md): Returns all replies to a single comment accessible to the authenticated user.  A maximum of 25 card comments will be returned.  If more than 25 card comments exist, a link to the next page of results will be included in the Link header
+- [List replies to a comment](https://developer.getguru.com/reference/getv1cardscommentsgetcommentreplies.md): Returns all replies to a single comment accessible to the authenticated user.  A maximum of 25 card comments will be returned.  If more than 25 card comments exist, a link to the next page of results…
 - [Create a new reply to a comment](https://developer.getguru.com/reference/postv1cardscommentscreatecommentreply.md)
 - [Delete a comment reply](https://developer.getguru.com/reference/deletev1cardscommentsdeletecommentreply.md)
 - [Update a comment reply](https://developer.getguru.com/reference/putv1cardscommentsupdatecommentreply.md)
@@ -130,13 +144,13 @@ Append .md to any documentation page URL to get its markdown version.
 - [Give a group access to a collection](https://developer.getguru.com/reference/postv1collectionscreatecollectionaccess.md)
 - [Delete a group's access to a collection](https://developer.getguru.com/reference/deletev1collectionsdeletecollectionaccess.md)
 - [Update a group's access to a collection](https://developer.getguru.com/reference/putv1collectionsupdatecollectionaccess.md)
-- [List folders](https://developer.getguru.com/reference/getv1foldersgetfolders.md): Returns all undeleted folders  the current user has access to.  A maximum of 110 folders will be returned.  If more than 110 folders exist, a link to the next page of results will be included in the Link header
-- [Get folder](https://developer.getguru.com/reference/getv1foldersgetfolder.md): Including a Folder's ID will load information about a single folder with its cards and sections. With this call, you can also return a 'Home Folder', which is what we call the structure that lists what Folders exist within a collection. To return this information, set the `folderId` to `homeBoardSlug` from the collection's response
+- [List folders](https://developer.getguru.com/reference/getv1foldersgetfolders.md): Returns all undeleted folders  the current user has access to.  A maximum of 110 folders will be returned.  If more than 110 folders exist, a link to the next page of results will be included in the…
+- [Get folder](https://developer.getguru.com/reference/getv1foldersgetfolder.md): Including a Folder's ID will load information about a single folder with its cards and sections. With this call, you can also return a 'Home Folder', which is what we call the structure that lists…
 - [Search for folders](https://developer.getguru.com/reference/getv1foldersfoldersearch.md)
 - [Create folder](https://developer.getguru.com/reference/postv1folderscreatenewfolder.md): Title is required
 - [Update folder](https://developer.getguru.com/reference/putv1foldersupdatefolder.md)
 - [Delete folder](https://developer.getguru.com/reference/deletev1foldersdeletefolder.md)
-- [Get folder items](https://developer.getguru.com/reference/getv1foldersgetfolderitems.md): Gets items (cards and folders) that live directly within a folder. A maximum of 50 folder items will be returned.  If more than 50 items exist, a link to the next page of results will be included in the Link header
+- [Get folder items](https://developer.getguru.com/reference/getv1foldersgetfolderitems.md): Gets items (cards and folders) that live directly within a folder. A maximum of 50 folder items will be returned.  If more than 50 items exist, a link to the next page of results will be included in…
 - [Get folder parent](https://developer.getguru.com/reference/getv1foldersgetparentfolder.md)
 - [Get folder effective permissions](https://developer.getguru.com/reference/getv1foldersgeteffectivepermissions.md): Get permissions that are applied to a folder - this includes permissions configured on the folder itself, as well as permissions that are configured at a folder higher up in the hierarchy.
 - [Export folder to PDF](https://developer.getguru.com/reference/getv1foldersgetfolderaspdf.md): Timeout set to 2 minutes. If you experience a timeout, please contact our support team

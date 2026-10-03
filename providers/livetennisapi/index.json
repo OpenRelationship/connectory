@@ -168,6 +168,60 @@
    }
   },
   {
+   "slug": "livetennisapi.get_broadcast_live",
+   "name": "The broadcast object for every live match (ultra)",
+   "description": "The same object as `GET /broadcast/match/{matchId}`, for every actively-live match, in one call. A ticker or a multi-match wall polls this instead of one URL per match, and it stays ONE request however many matches are live. At most 200 objects. Same 1 Hz contract, same `ETag` and `Cache-Control`, same display-form fields, same every-key-present rule. An empty `data` means nothing is live right no",
+   "input": {
+    "type": "object",
+    "properties": {
+     "tour": {
+      "type": "string",
+      "description": "Restrict to one tour, same vocabulary as `?tour=` elsewhere."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.livetennisapi.com/api/public/v1/broadcast/live",
+    "path": [],
+    "query": [
+     "tour"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "livetennisapi.get_broadcast_match",
+   "name": "One flat object for on air graphics (ultra)",
+   "description": "Added 2026-09-24, from a broadcaster's request. ONE flat JSON object for one match, built so a graphics template can bind each field to a fixed path. Three properties make it different from `GET /matches/{matchId}`, and each exists because a graphics pipeline breaks without it. The object is FLAT \u2014 no nested score object, no arrays of arrays. Every key is PRESENT on every read: a value we do not h",
+   "input": {
+    "type": "object",
+    "properties": {
+     "matchId": {
+      "type": "integer",
+      "description": "The match id. Every match route shares ONE id space, so the same value works everywhere `matchId` appears. Get it from any match list, where it is the `id` field of each match object: `GET /matches?status=live` (in progress), `GET /matches?status=upcoming` or `GET /fixtures` (scheduled), `GET /matches?status=completed` or `GET /history/matches` (finished). Ids are stable for the life of a match, s"
+     }
+    },
+    "required": [
+     "matchId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.livetennisapi.com/api/public/v1/broadcast/match/{matchId}",
+    "path": [
+     "matchId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "livetennisapi.get_charting_match",
    "name": "One charted match, every stat family for both players (ultra)",
    "description": "Every Match Charting Project stat family for one charted match, both players, with the per-set split (row/set 1, 2, Total) exactly as charted. `chartingMatchId` is this product's own id space (1960\u20132026, mostly matches with no counterpart in the live table).",
@@ -269,7 +323,7 @@
   {
    "slug": "livetennisapi.get_history_coverage",
    "name": "Measured completeness rollup per tour \u00d7 draw bucket (basic)",
-   "description": "Requires BASIC on the live API, or any Historical Data API plan (Starter and up \u2014 see https://livetennisapi.com/historical-tennis-data-api). The numbers to read BEFORE choosing what to backtest, in one call instead of paging the archive. A PREBUILT snapshot rebuilt nightly right after the completeness ledger reconverges \u2014 never computed at read time \u2014 so `as_of` (= `built_at`) dates every number, ",
+   "description": "Requires BASIC on the live API, or any Historical Data API plan (Starter and up \u2014 see https://livetennisapi.com/historical-tennis-data-api). A FREE key may spend its 20 free history calls per calendar month here; past that the answer is `403 upgrade_required` carrying `free_history_taste: \"used\"`. The numbers to read BEFORE choosing what to backtest, in one call instead of paging the archive. A PR",
    "input": {
     "type": "object",
     "properties": {},
@@ -441,6 +495,10 @@
      "after_seq": {
       "type": "integer",
       "description": "Return only points with `seq` greater than this \u2014 the resume cursor. Pass the `last_seq` of the previous page (or the last seq your WS stream delivered) to continue; 0 or absent reads from the start of the match. A non-integer or negative value is a 400 `bad_after_seq`."
+     },
+     "changed_since": {
+      "type": "string",
+      "description": "Added 2026-09-20. Return only rows whose `ts` OR `tagged_at` is later than this instant \u2014 the revision filter for a reader without a socket, composable with `after_seq`. ISO-8601 with a `Z` or an offset (e.g. `2026-09-20T00:35:18Z`); a naive value is read as UTC; a date alone is not an instant and is refused. Anything that is not an ISO-8601 timestamp is a 400 `bad_changed_since`. An empty page on"
      }
     },
     "required": [
@@ -454,7 +512,8 @@
      "matchId"
     ],
     "query": [
-     "after_seq"
+     "after_seq",
+     "changed_since"
     ],
     "header": [],
     "body": [],
@@ -510,6 +569,10 @@
      "matchId": {
       "type": "integer",
       "description": "The match id. Every match route shares ONE id space, so the same value works everywhere `matchId` appears. Get it from any match list, where it is the `id` field of each match object: `GET /matches?status=live` (in progress), `GET /matches?status=upcoming` or `GET /fixtures` (scheduled), `GET /matches?status=completed` or `GET /history/matches` (finished). Ids are stable for the life of a match, s"
+     },
+     "sequence": {
+      "type": "integer",
+      "description": "The `sequence` YOU HOLD for this match, from the push feed, the WebSocket or an earlier read. `verdict` is recomputed on every read over the newest state, so on its own it says nothing about a sequence that was withdrawn before the next state landed. With `?sequence=N`, and only when the read carries no verdict of its own, `verdict` answers for N from the durable withdrawal record: `kind: withdraw"
      }
     },
     "required": [
@@ -522,7 +585,9 @@
     "path": [
      "matchId"
     ],
-    "query": [],
+    "query": [
+     "sequence"
+    ],
     "header": [],
     "body": [],
     "body_format": "json"
@@ -616,7 +681,7 @@
      },
      "points": {
       "type": "string",
-      "description": "`default` serves observed rows first \u2014 what our own pipeline committed, a SAMPLED record of the match. `complete` is the explicit opt-out of that precedence for consumers who want every point: where a whole-match reconstruction exists it is served WHOLE, in its own point order, with `point_winner` on every row and null timestamps/model fields per the reconstruction contract. Where none exists, the",
+      "description": "`default` serves observed rows first \u2014 what our own pipeline committed, a SAMPLED record of the match. `complete` is the explicit opt-out of that precedence for consumers who want every point: where a whole-match reconstruction exists it is served WHOLE, in its own point order, with `point_winner` (and `winner`, the same verdict) on every row and null timestamps/model fields per the reconstruction",
       "enum": [
        "default",
        "complete"
@@ -643,9 +708,37 @@
    }
   },
   {
+   "slug": "livetennisapi.get_match_withdrawals",
+   "name": "The durable record of every score state we withdrew on this match (ultra)",
+   "description": "Added 2026-09-25. One row per refused `sequence`, oldest first, each carrying the `score_withdrawn` frame exactly as the push feed sent it. This is the RECOVERY PATH for a missed frame. The `verdict` object on `GET /matches/{matchId}/score` is recomputed on every read over the newest state, so it returns null again as soon as the next state is accepted, which in a live match is seconds. The record",
+   "input": {
+    "type": "object",
+    "properties": {
+     "matchId": {
+      "type": "integer",
+      "description": "The match id. Every match route shares ONE id space, so the same value works everywhere `matchId` appears. Get it from any match list, where it is the `id` field of each match object: `GET /matches?status=live` (in progress), `GET /matches?status=upcoming` or `GET /fixtures` (scheduled), `GET /matches?status=completed` or `GET /history/matches` (finished). Ids are stable for the life of a match, s"
+     }
+    },
+    "required": [
+     "matchId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.livetennisapi.com/api/public/v1/matches/{matchId}/withdrawals",
+    "path": [
+     "matchId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "livetennisapi.get_player",
    "name": "One player's bio + ranking + cached stats (free)",
-   "description": "One player's bio + ranking + cached stats (FREE)",
+   "description": "`playerId` is a ROSTER id \u2014 the live player registry, the id space `/players`, `/matches` and `/rankings` all speak. It is NOT the archive corpus person id. The results archive (1968\u20132022) keeps its own person registry, and archive match rows publish those ids as `winner.player_id` / `loser.player_id`. The two spaces are disjoint: no corpus id resolves here, and since 2026-09-20 a 404 for one says",
    "input": {
     "type": "object",
     "properties": {
@@ -861,6 +954,14 @@
    "input": {
     "type": "object",
     "properties": {
+     "id": {
+      "type": "integer",
+      "description": "Look a person up BY the corpus person id \u2014 the value archive match rows publish as `winner.player_id` / `loser.player_id`. This is the only place that reads the PERSON by that id; the one other surface taking it, `/rankings?archive_player=`, is ULTRA, requires `system=elo`, and answers with ratings rather than a bio. Corpus ids and roster ids are disjoint id spaces, so the same value on `/players/"
+     },
+     "player_id": {
+      "type": "integer",
+      "description": "Alias of `id`, under the name the same value carries on an archive match row. Sending both with different values is a 400."
+     },
      "name": {
       "type": "string",
       "description": "Case-insensitive substring filter (min 3 chars)."
@@ -889,6 +990,8 @@
     "url": "https://api.livetennisapi.com/api/public/v1/history/archive/players",
     "path": [],
     "query": [
+     "id",
+     "player_id",
      "name",
      "tour",
      "limit",
@@ -902,13 +1005,25 @@
   {
    "slug": "livetennisapi.list_completed_matches",
    "name": "Completed matches, newest first, with derived winner and tape coverage (basic)",
-   "description": "Requires BASIC on the live API, or any Historical Data API plan (Starter and up \u2014 see https://livetennisapi.com/historical-tennis-data-api). All tours, January 2023 \u2192 now (deeper results live in the results archive, 1968\u20132022, at `/history/archive/matches`). Filter to a date range with `from`/`to`, and by `tour`, `draw` (singles/doubles), `player` (either participant) and `country` \u2014 same vocabula",
+   "description": "Requires BASIC on the live API, or any Historical Data API plan (Starter and up \u2014 see https://livetennisapi.com/historical-tennis-data-api). A FREE key may spend its 20 free history calls per calendar month here; past that the answer is `403 upgrade_required` carrying `free_history_taste: \"used\"`. All tours, January 2023 \u2192 now (deeper results live in the results archive, 1968\u20132022, at `/history/ar",
    "input": {
     "type": "object",
     "properties": {
      "has_market": {
       "type": "boolean",
       "description": "Return only matches that DO (`true`) or do NOT (`false`) have a mapped match-winner market, matching the `has_market` flag each row carries (added 2026-09-15). Omit for both. Anything other than true/false is a 400 `bad_has_market`, never a silently ignored filter. These are the matches `/history/matches/{id}/prices` and `/matches/{id}/prices` can serve; every other id answers 404 `no_market`. Mea"
+     },
+     "is_qualifying": {
+      "type": "boolean",
+      "description": "Return only matches in the QUALIFYING draw (`true`) or only those the source states are not (`false`), matching the `is_qualifying` flag each row carries (field added 2026-08-12, filter added 2026-10-02). Omit for both. Anything other than true/false is a 400 `bad_is_qualifying`, never a silently ignored filter. THIS IS THE ONLY WAY TO SPLIT THE TWO DRAWS, and the reason is in the `is_qualifying` "
+     },
+     "gender": {
+      "type": "string",
+      "description": "Return only men's or only women's matches, matching the `gender` field each row carries (added 2026-09-09, documented here 2026-10-02). Omit for both. Anything other than men/women is a 400 `bad_gender`, never a silently ignored filter. It exists because `?tour=` deliberately collapses: `challenger` is ATP Challenger AND WTA 125, and `itf` and `juniors` are both sexes \u2014 so without this there is no",
+      "enum": [
+       "men",
+       "women"
+      ]
      },
      "limit": {
       "type": "integer",
@@ -957,6 +1072,10 @@
       "type": "string",
       "description": "Filter to one tournament \u2014 exact match on the stable numeric id every match row publishes as `tournament_id` and `/tournaments` publishes as `id`, so the value round-trips straight off any response. Works on `/matches` (every status) and `/history/matches`, and composes with every other filter: `?tour=atp&draw=singles&tournament_id=1217` is one slam's men's singles, where `?tour=` alone still mixe"
      },
+     "tier": {
+      "type": "string",
+      "description": "Tier filter (added 2026-09-22): comma-separated exact values from the closed tier vocabulary (`?tier=wta_125`, `?tier=itf_w35,itf_w50,itf_w75`, `?tier=challenger_75,challenger_100`). Selects matches whose `tier` field carries one of the values \u2014 the level the tournament was played at in the MATCH'S season, read from the same per-season table, so filter and field cannot disagree. A match whose `tie"
+     },
      "coverage": {
       "type": "string",
       "description": "Keep only matches whose tape has this coverage. An unknown value is a 400 `bad_coverage` listing the accepted values in `allowed`.",
@@ -975,6 +1094,10 @@
        "true",
        "false"
       ]
+     },
+     "restated_since": {
+      "type": "string",
+      "description": "Keep only matches whose published result was CORRECTED after this instant (added 2026-09-22) \u2014 a `restatement` row on their status history later than it. The poll to run after recording results: anything it returns has a `result_restated_at` past your cursor and a `result_version` above the one you hold, and its status history says what changed. An ISO-8601 instant with a `Z` or an offset (a naive"
      }
     },
     "required": []
@@ -985,6 +1108,8 @@
     "path": [],
     "query": [
      "has_market",
+     "is_qualifying",
+     "gender",
      "limit",
      "offset",
      "from",
@@ -994,8 +1119,10 @@
      "player",
      "country",
      "tournament_id",
+     "tier",
      "coverage",
-     "points_complete"
+     "points_complete",
+     "restated_since"
     ],
     "header": [],
     "body": [],
@@ -1028,6 +1155,18 @@
        "doubles"
       ]
      },
+     "is_qualifying": {
+      "type": "boolean",
+      "description": "Return only matches in the QUALIFYING draw (`true`) or only those the source states are not (`false`), matching the `is_qualifying` flag each row carries (field added 2026-08-12, filter added 2026-10-02). Omit for both. Anything other than true/false is a 400 `bad_is_qualifying`, never a silently ignored filter. THIS IS THE ONLY WAY TO SPLIT THE TWO DRAWS, and the reason is in the `is_qualifying` "
+     },
+     "gender": {
+      "type": "string",
+      "description": "Return only men's or only women's matches, matching the `gender` field each row carries (added 2026-09-09, documented here 2026-10-02). Omit for both. Anything other than men/women is a 400 `bad_gender`, never a silently ignored filter. It exists because `?tour=` deliberately collapses: `challenger` is ATP Challenger AND WTA 125, and `itf` and `juniors` are both sexes \u2014 so without this there is no",
+      "enum": [
+       "men",
+       "women"
+      ]
+     },
      "limit": {
       "type": "integer",
       "description": ""
@@ -1046,9 +1185,30 @@
     "query": [
      "tour",
      "draw",
+     "is_qualifying",
+     "gender",
      "limit",
      "offset"
     ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "livetennisapi.list_history_incidents",
+   "name": "Published data quality incidents (basic)",
+   "description": "Every data-quality incident we have published, oldest window first. This is the register to reconcile against when a published value changed after you read it: each record states the window it applies to, the rule before and after, what the defect was, which surfaces it touched, how to tell an affected row from a clean one, and whether corrections and a per-match list are available. Nothing here i",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.livetennisapi.com/api/public/v1/history/incidents",
+    "path": [],
+    "query": [],
     "header": [],
     "body": [],
     "body_format": "json"
@@ -1133,9 +1293,47 @@
    }
   },
   {
+   "slug": "livetennisapi.list_incident_matches",
+   "name": "The matches one incident affected, as jsonl or csv (basic)",
+   "description": "One row per affected match, streamed as JSONL by default or CSV with `?format=csv`. Columns are `incident_id`, `match_id`, `tournament`, `tour`, `round`, `draw_stage`, `scheduled_time`, `affected_field`, `served` and `expected`. `served` and `expected` carry that incident's own vocabulary: for the deciding-set rule `match_tiebreak` against `full_set`, for the price side `side_reversed` against `si",
+   "input": {
+    "type": "object",
+    "properties": {
+     "incidentId": {
+      "type": "string",
+      "description": ""
+     },
+     "format": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "jsonl",
+       "csv"
+      ]
+     }
+    },
+    "required": [
+     "incidentId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.livetennisapi.com/api/public/v1/history/incidents/{incidentId}/matches",
+    "path": [
+     "incidentId"
+    ],
+    "query": [
+     "format"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "livetennisapi.list_markets",
-   "name": "Match winner market(s) for a match (pro)",
-   "description": "Match-winner market(s) for a match (PRO)",
+   "name": "The match's match winner market (pro)",
+   "description": "The match-winner market mapped to this match \u2014 `data` holds at most one object, and `meta.count` is 0 when nothing is mapped. MATCH-WINNER ONLY. No handicaps or game spreads, no totals, no set-winner books, and no per-game or per-set derivative of any kind. A quote here is the probability that a player WINS THE MATCH. Venues do list tennis derivatives beside the match-winner book \u2014 game spreads su",
    "input": {
     "type": "object",
     "properties": {
@@ -1246,13 +1444,13 @@
   {
    "slug": "livetennisapi.list_matches",
    "name": "List matches by lifecycle status (free)",
-   "description": "`status=live` and `status=upcoming` are the FREE current-state picture. `status=completed` pages historical results and is part of the paid History product \u2014 it requires BASIC (the same rule as `/history/matches`) and returns `403 upgrade_required` on a FREE key. The `player`, `country`, `from`/`to`, `tour`, `draw`, `has_analysis` and `has_market` filters are optional, AND-composed, applied inside",
+   "description": "`status=live` and `status=upcoming` are the FREE current-state picture. `status=completed` pages historical results and is part of the paid History product \u2014 it requires BASIC (the same rule as `/history/matches`). A FREE key may spend its 20 free history calls per calendar month here; past that the answer is `403 upgrade_required` carrying `free_history_taste: \"used\"`. The `player`, `country`, `f",
    "input": {
     "type": "object",
     "properties": {
      "status": {
       "type": "string",
-      "description": "`live` (default) and `upcoming` are the FREE current-state picture. `completed` and `cancelled` are terminal LISTINGS, part of the history product (BASIC, or any History plan on a free key). `cancelled` covers feed-cancelled, walkover-with-no-stated-winner and postponed-never-played matches; a walkover that named its winner is `completed`. `cancelled` pages with `limit`/`offset` (optionally `from`",
+      "description": "`live` (default) and `upcoming` are the FREE current-state picture. `completed` and `cancelled` are terminal LISTINGS, part of the history product (BASIC, or any History plan on a free key; a FREE key's 20 free history calls each month are served here too). `cancelled` covers feed-cancelled, walkover-with-no-stated-winner and postponed-never-played matches; a walkover that named its winner is `com",
       "enum": [
        "live",
        "upcoming",
@@ -1291,6 +1489,10 @@
       "type": "string",
       "description": "Filter to one tournament \u2014 exact match on the stable numeric id every match row publishes as `tournament_id` and `/tournaments` publishes as `id`, so the value round-trips straight off any response. Works on `/matches` (every status) and `/history/matches`, and composes with every other filter: `?tour=atp&draw=singles&tournament_id=1217` is one slam's men's singles, where `?tour=` alone still mixe"
      },
+     "tier": {
+      "type": "string",
+      "description": "Tier filter (added 2026-09-22): comma-separated exact values from the closed tier vocabulary (`?tier=wta_125`, `?tier=itf_w35,itf_w50,itf_w75`, `?tier=challenger_75,challenger_100`). Selects matches whose `tier` field carries one of the values \u2014 the level the tournament was played at in the MATCH'S season, read from the same per-season table, so filter and field cannot disagree. A match whose `tie"
+     },
      "has_analysis": {
       "type": "boolean",
       "description": "Return only matches that DO (`true`) or do NOT (`false`) have model analysis, matching the `has_analysis` flag each row carries (filter added 2026-09-14, documented here 2026-09-20). Omit for both. Anything other than true/false is a 400 `bad_has_analysis`, never a silently ignored filter. These are the matches `/matches/{matchId}/analysis` can serve; every other id answers 404 `no_analysis`. The "
@@ -1298,6 +1500,18 @@
      "has_market": {
       "type": "boolean",
       "description": "Return only matches that DO (`true`) or do NOT (`false`) have a mapped match-winner market, matching the `has_market` flag each row carries (added 2026-09-15). Omit for both. Anything other than true/false is a 400 `bad_has_market`, never a silently ignored filter. These are the matches `/history/matches/{id}/prices` and `/matches/{id}/prices` can serve; every other id answers 404 `no_market`. Mea"
+     },
+     "is_qualifying": {
+      "type": "boolean",
+      "description": "Return only matches in the QUALIFYING draw (`true`) or only those the source states are not (`false`), matching the `is_qualifying` flag each row carries (field added 2026-08-12, filter added 2026-10-02). Omit for both. Anything other than true/false is a 400 `bad_is_qualifying`, never a silently ignored filter. THIS IS THE ONLY WAY TO SPLIT THE TWO DRAWS, and the reason is in the `is_qualifying` "
+     },
+     "gender": {
+      "type": "string",
+      "description": "Return only men's or only women's matches, matching the `gender` field each row carries (added 2026-09-09, documented here 2026-10-02). Omit for both. Anything other than men/women is a 400 `bad_gender`, never a silently ignored filter. It exists because `?tour=` deliberately collapses: `challenger` is ATP Challenger AND WTA 125, and `itf` and `juniors` are both sexes \u2014 so without this there is no",
+      "enum": [
+       "men",
+       "women"
+      ]
      },
      "from": {
       "type": "string",
@@ -1310,6 +1524,10 @@
      "updated_since": {
       "type": "string",
       "description": "CHANGE FEED. A UTC date (YYYY-MM-DD) or ISO-8601 datetime. Returns the rows whose `updated_at` is at or after it, OLDEST FIRST, with `meta.next_cursor` and `meta.watermark`. Poll from `meta.watermark`, not from your own clock \u2014 it trails the server by 5s on purpose, because a row committed while your request was being served can carry a timestamp below your `now` and still not be in your result. O"
+     },
+     "withdrawn_since": {
+      "type": "string",
+      "description": "ULTRA. A DIFFERENT LISTING, not a filter on the match page: the match ids with a WITHDRAWN score state at or after this instant, newest first, one row per match as `{ match_id, withdrawals, last_withdrawn_at }` with an exact `meta.total` and `limit` / `offset` paging. A UTC date (YYYY-MM-DD) or an ISO-8601 UTC datetime. This is how a stream consumer that was disconnected finds which matches to ask"
      },
      "cursor": {
       "type": "string",
@@ -1337,11 +1555,15 @@
      "player",
      "country",
      "tournament_id",
+     "tier",
      "has_analysis",
      "has_market",
+     "is_qualifying",
+     "gender",
      "from",
      "to",
      "updated_since",
+     "withdrawn_since",
      "cursor",
      "limit",
      "offset"
@@ -1536,7 +1758,7 @@
      },
      "tour": {
       "type": "string",
-      "description": "REQUIRED for an `elo` listing and for `archive_player`. The ATP and WTA Elo walks are disjoint universes whose players never meet, so a combined leaderboard would not be comparable.",
+      "description": "REQUIRED for an `elo` listing and for `archive_player`. The ATP and WTA Elo walks are disjoint universes whose players never meet, so a combined leaderboard would not be comparable. On an OFFICIAL system it is accepted when it agrees with that system's own tour (`system=atp&tour=atp`) and REFUSED with 400 when it contradicts it. CORRECTION 2026-09-20: until that date `system=atp&tour=wta` returned",
       "enum": [
        "atp",
        "wta"
@@ -1544,15 +1766,15 @@
      },
      "surface": {
       "type": "array",
-      "description": "`system=elo` only. Listing mode takes exactly one (default `overall`); per-player mode is repeatable and defaults to all four ladders. A ladder the player has never played is omitted, never substituted."
+      "description": "`system=elo` only. Listing mode takes exactly one (default `overall`); per-player mode is repeatable and defaults to all four ladders. A ladder the player has never played is omitted, never substituted. REFUSED with 400 when no requested system is `elo` \u2014 there is no clay ATP ranking, so the filter cannot be made to act. CORRECTION 2026-09-20: until that date `system=atp&surface=clay` returned 200"
      },
      "min_matches": {
       "type": "integer",
-      "description": "`system=elo` listing only. Minimum matches on that ladder. Every ladder starts at 1500, so without a floor the top of the table is players who won a handful of matches from the starting rating. Echoed back in `meta.coverage.qualified`."
+      "description": "`system=elo` listing only. Minimum matches on that ladder. Every ladder starts at 1500, so without a floor the top of the table is players who won a handful of matches from the starting rating. Echoed back in `meta.coverage.qualified`. REFUSED with 400 when no requested system is `elo` (2026-09-20); it was previously accepted and ignored."
      },
      "activity_weeks": {
       "type": "integer",
-      "description": "`system=elo` listing only. The ladder must have moved within this many weeks of `as_of`. Elo does not decay, so without an activity window every leaderboard is topped permanently by players who have stopped playing. Echoed back in `meta.coverage.qualified`."
+      "description": "`system=elo` listing only. The ladder must have moved within this many weeks of `as_of`. Elo does not decay, so without an activity window every leaderboard is topped permanently by players who have stopped playing. Echoed back in `meta.coverage.qualified`. REFUSED with 400 when no requested system is `elo` (2026-09-20); it was previously accepted and ignored."
      },
      "as_of": {
       "type": "string",
@@ -1638,7 +1860,7 @@
   {
    "slug": "livetennisapi.list_tournaments",
    "name": "Tournament catalogue \u2014 the id space `match tournament id` joins (free)",
-   "description": "Stable tournament identity, one row per tournament \u00d7 event type, stable across seasons. `city`/`country` come from a curated table and `category` only where our catalogues agree unambiguously on an exact-name join \u2014 each is null otherwise, never derived from the tournament name.",
+   "description": "Stable tournament identity, one row per tournament \u00d7 event type, stable across seasons. `city`/`country` come from a curated table and `category` only where our catalogues agree unambiguously on an exact-name join \u2014 each is null otherwise, never derived from the tournament name. Each row also carries the CURRENT season's `tier` / `tier_source` (added 2026-09-22) \u2014 the level in a closed vocabulary ",
    "input": {
     "type": "object",
     "properties": {
@@ -1665,6 +1887,10 @@
        "doubles"
       ]
      },
+     "tier": {
+      "type": "string",
+      "description": "Tier filter (added 2026-09-24): comma-separated exact values from the same closed tier vocabulary as `Match.tier` (`?tier=atp_500`, `?tier=atp_500,challenger_100`). Selects tournaments whose own `tier` field carries one of the values, which on this resource is the **current season's** level, because a catalogue row has no season of its own. That is the one difference from `?tier=` on `/matches` an"
+     },
      "limit": {
       "type": "integer",
       "description": ""
@@ -1684,6 +1910,7 @@
      "search",
      "tour",
      "draw",
+     "tier",
      "limit",
      "offset"
     ],

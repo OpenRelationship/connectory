@@ -14,7 +14,7 @@ vouches for**: read it, then read their reference.
 ---
 # Cal.com Docs
 
-- [API v2 Reference (357 pages)](https://cal.com/docs/_llms/api-v2-reference.md): Documentation for API v2 Reference.
+- [API v2 Reference (364 pages)](https://cal.com/docs/_llms/api-v2-reference.md): Documentation for API v2 Reference.
 
 ## Atoms
 
@@ -87,5 +87,7 @@ vouches for**: read it, then read their reference.
 
 ## Indexes
 
-- [API v2 Reference (357 pages)](https://cal.com/docs/_llms/api-v2-reference.md): Documentation for API v2 Reference.
-- [API v2 Reference / ORGANIZATIONS (143 pages)](https://cal.com/docs/_llms/api-v2-reference/organizations.md): Documentation for API v2 Reference / ORGANIZATIONS.
+- [API v2 Reference (364 pages)](https://cal.com/docs/_llms/api-v2-reference.md): Documentation for API v2 Reference.
+- [API v2 Reference / ORGANIZATIONS (144 pages)](https://cal.com/docs/_llms/api-v2-reference/organizations.md): Documentation for API v2 Reference / ORGANIZATIONS.
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

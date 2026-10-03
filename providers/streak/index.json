@@ -4,183 +4,9 @@
  "source": "https://api.streak.com/api/openapi.json",
  "operations": [
   {
-   "slug": "streak.delete_v1_apikeys_apiKeyKey",
-   "name": "Delete api key",
-   "description": "Deletes an API key by key",
-   "input": {
-    "type": "object",
-    "properties": {
-     "apiKeyKey": {
-      "type": "string",
-      "description": ""
-     }
-    },
-    "required": [
-     "apiKeyKey"
-    ]
-   },
-   "request": {
-    "method": "DELETE",
-    "url": "https://api.streak.com/api/v1/apikeys/{apiKeyKey}",
-    "path": [
-     "apiKeyKey"
-    ],
-    "query": [],
-    "header": [],
-    "body": [],
-    "body_format": "json"
-   }
-  },
-  {
-   "slug": "streak.delete_v1_pipelines_pipelineKey_fields_fieldKey",
-   "name": "Delete pipeline field",
-   "description": "Deletes a custom field and clears the value from all the pipeline's boxes.",
-   "input": {
-    "type": "object",
-    "properties": {
-     "fieldKey": {
-      "type": "string",
-      "description": ""
-     },
-     "pipelineKey": {
-      "type": "string",
-      "description": ""
-     }
-    },
-    "required": [
-     "fieldKey",
-     "pipelineKey"
-    ]
-   },
-   "request": {
-    "method": "DELETE",
-    "url": "https://api.streak.com/api/v1/pipelines/{pipelineKey}/fields/{fieldKey}",
-    "path": [
-     "fieldKey",
-     "pipelineKey"
-    ],
-    "query": [],
-    "header": [],
-    "body": [],
-    "body_format": "json"
-   }
-  },
-  {
-   "slug": "streak.delete_v2_comments_commentKey",
-   "name": "Delete comment",
-   "description": "Deletes a comment by key",
-   "input": {
-    "type": "object",
-    "properties": {
-     "commentKey": {
-      "type": "string",
-      "description": ""
-     }
-    },
-    "required": [
-     "commentKey"
-    ]
-   },
-   "request": {
-    "method": "DELETE",
-    "url": "https://api.streak.com/api/v2/comments/{commentKey}",
-    "path": [
-     "commentKey"
-    ],
-    "query": [],
-    "header": [],
-    "body": [],
-    "body_format": "json"
-   }
-  },
-  {
-   "slug": "streak.delete_v2_contacts_contactKey",
-   "name": "Delete contact",
-   "description": "Deletes a contact and schedules cleanup of its links. A missing contact returns 404.",
-   "input": {
-    "type": "object",
-    "properties": {
-     "contactKey": {
-      "type": "string",
-      "description": "Key of the contact."
-     }
-    },
-    "required": [
-     "contactKey"
-    ]
-   },
-   "request": {
-    "method": "DELETE",
-    "url": "https://api.streak.com/api/v2/contacts/{contactKey}",
-    "path": [
-     "contactKey"
-    ],
-    "query": [],
-    "header": [],
-    "body": [],
-    "body_format": "json"
-   }
-  },
-  {
-   "slug": "streak.delete_v2_meetings_meetingKey",
-   "name": "Delete meeting",
-   "description": "Deletes a meeting or call log by key",
-   "input": {
-    "type": "object",
-    "properties": {
-     "meetingKey": {
-      "type": "string",
-      "description": ""
-     }
-    },
-    "required": [
-     "meetingKey"
-    ]
-   },
-   "request": {
-    "method": "DELETE",
-    "url": "https://api.streak.com/api/v2/meetings/{meetingKey}",
-    "path": [
-     "meetingKey"
-    ],
-    "query": [],
-    "header": [],
-    "body": [],
-    "body_format": "json"
-   }
-  },
-  {
-   "slug": "streak.delete_v2_organizations_organizationKey",
-   "name": "Delete an organization",
-   "description": "Deletes an organization and schedules removal of its relationships and box links.",
-   "input": {
-    "type": "object",
-    "properties": {
-     "organizationKey": {
-      "type": "string",
-      "description": "Key of the organization."
-     }
-    },
-    "required": [
-     "organizationKey"
-    ]
-   },
-   "request": {
-    "method": "DELETE",
-    "url": "https://api.streak.com/api/v2/organizations/{organizationKey}",
-    "path": [
-     "organizationKey"
-    ],
-    "query": [],
-    "header": [],
-    "body": [],
-    "body_format": "json"
-   }
-  },
-  {
-   "slug": "streak.delete_v2_pipelines_pipelineKey",
-   "name": "Delete pipeline",
-   "description": "Deletes an empty pipeline.",
+   "slug": "streak.batch_get_boxes",
+   "name": "Get pipeline boxes by key",
+   "description": "Returns readable boxes for the supplied keys. Missing boxes are omitted.",
    "input": {
     "type": "object",
     "properties": {
@@ -194,8 +20,8 @@
     ]
    },
    "request": {
-    "method": "DELETE",
-    "url": "https://api.streak.com/api/v2/pipelines/{pipelineKey}",
+    "method": "POST",
+    "url": "https://api.streak.com/api/v1/pipelines/{pipelineKey}/boxes/batch",
     "path": [
      "pipelineKey"
     ],
@@ -206,256 +32,27 @@
    }
   },
   {
-   "slug": "streak.delete_v2_pipelines_pipelineKey_stages_stageKey",
-   "name": "Delete stage",
-   "description": "Deletes an empty stage. The final stage in a pipeline cannot be deleted.",
+   "slug": "streak.create_api_key",
+   "name": "Create api key",
+   "description": "Creates an API key for the current user",
    "input": {
     "type": "object",
     "properties": {
-     "pipelineKey": {
-      "type": "string",
+     "teamKey": {
+      "type": [
+       "string",
+       "null"
+      ],
       "description": ""
-     },
-     "stageKey": {
-      "type": "string",
-      "description": ""
-     }
-    },
-    "required": [
-     "pipelineKey",
-     "stageKey"
-    ]
-   },
-   "request": {
-    "method": "DELETE",
-    "url": "https://api.streak.com/api/v2/pipelines/{pipelineKey}/stages/{stageKey}",
-    "path": [
-     "pipelineKey",
-     "stageKey"
-    ],
-    "query": [],
-    "header": [],
-    "body": [],
-    "body_format": "json"
-   }
-  },
-  {
-   "slug": "streak.delete_v2_tasks_taskKey",
-   "name": "Delete task",
-   "description": "Deletes a task by key.",
-   "input": {
-    "type": "object",
-    "properties": {
-     "taskKey": {
-      "type": "string",
-      "description": "Key for the task to delete."
-     }
-    },
-    "required": [
-     "taskKey"
-    ]
-   },
-   "request": {
-    "method": "DELETE",
-    "url": "https://api.streak.com/api/v2/tasks/{taskKey}",
-    "path": [
-     "taskKey"
-    ],
-    "query": [],
-    "header": [],
-    "body": [],
-    "body_format": "json"
-   }
-  },
-  {
-   "slug": "streak.get_v1_apikeys",
-   "name": "List api keys",
-   "description": "Lists API keys owned by the current user",
-   "input": {
-    "type": "object",
-    "properties": {
-     "limit": {
-      "type": "integer",
-      "description": "Number of items to return."
-     },
-     "page": {
-      "type": "integer",
-      "description": "Zero-based page number"
      }
     },
     "required": []
    },
    "request": {
-    "method": "GET",
+    "method": "PUT",
     "url": "https://api.streak.com/api/v1/apikeys",
     "path": [],
     "query": [
-     "limit",
-     "page"
-    ],
-    "header": [],
-    "body": [],
-    "body_format": "json"
-   }
-  },
-  {
-   "slug": "streak.get_v1_boxes_boxKey_md",
-   "name": "Get box markdown",
-   "description": "Returns the box as one markdown document: an overview, its columns, contacts, organizations, linked boxes, tasks and pipeline, followed by its timeline. Every timestamp is ISO-8601 UTC. The document's structure is best-effort and may change; use the JSON endpoints for a stable contract.",
-   "input": {
-    "type": "object",
-    "properties": {
-     "boxKey": {
-      "type": "string",
-      "description": ""
-     },
-     "maxTokens": {
-      "type": [
-       "integer",
-       "null"
-      ],
-      "description": "A token cap for the entire document, counted with OpenAI's o200k_base encoding. It covers the box sections first, then uses the remaining tokens for the timeline. A marker shows where entries were left out. If the box does not fit under the cap, a 400 error shows the minimum it needs. Omit the cap to return the full box."
-     }
-    },
-    "required": [
-     "boxKey"
-    ]
-   },
-   "request": {
-    "method": "GET",
-    "url": "https://api.streak.com/api/v1/boxes/{boxKey}/md",
-    "path": [
-     "boxKey"
-    ],
-    "query": [
-     "maxTokens"
-    ],
-    "header": [],
-    "body": [],
-    "body_format": "json"
-   }
-  },
-  {
-   "slug": "streak.get_v1_pipelines_pipelineKey_fields",
-   "name": "List pipeline fields",
-   "description": "Returns the fields in a pipeline in their stored order.",
-   "input": {
-    "type": "object",
-    "properties": {
-     "pipelineKey": {
-      "type": "string",
-      "description": ""
-     }
-    },
-    "required": [
-     "pipelineKey"
-    ]
-   },
-   "request": {
-    "method": "GET",
-    "url": "https://api.streak.com/api/v1/pipelines/{pipelineKey}/fields",
-    "path": [
-     "pipelineKey"
-    ],
-    "query": [],
-    "header": [],
-    "body": [],
-    "body_format": "json"
-   }
-  },
-  {
-   "slug": "streak.get_v1_pipelines_pipelineKey_fields_fieldKey",
-   "name": "Get pipeline field",
-   "description": "Returns a field by its key within a pipeline.",
-   "input": {
-    "type": "object",
-    "properties": {
-     "fieldKey": {
-      "type": "string",
-      "description": ""
-     },
-     "pipelineKey": {
-      "type": "string",
-      "description": ""
-     }
-    },
-    "required": [
-     "fieldKey",
-     "pipelineKey"
-    ]
-   },
-   "request": {
-    "method": "GET",
-    "url": "https://api.streak.com/api/v1/pipelines/{pipelineKey}/fields/{fieldKey}",
-    "path": [
-     "fieldKey",
-     "pipelineKey"
-    ],
-    "query": [],
-    "header": [],
-    "body": [],
-    "body_format": "json"
-   }
-  },
-  {
-   "slug": "streak.get_v1_search",
-   "name": "Search boxes, contacts, and organizations",
-   "description": "Searches visible boxes, contacts, and organizations by query, or visible boxes by exact name. Exactly one of query or name must be provided.",
-   "input": {
-    "type": "object",
-    "properties": {
-     "name": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": "Exact box name to search for."
-     },
-     "page": {
-      "type": "integer",
-      "description": "Zero-based page number."
-     },
-     "pipelineKey": {
-      "type": [
-       "array",
-       "null"
-      ],
-      "description": "Pipeline keys to constrain the search to."
-     },
-     "query": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": "Full-text query to search across boxes, contacts, and organizations."
-     },
-     "stageKey": {
-      "type": [
-       "array",
-       "null"
-      ],
-      "description": "Stage keys to constrain the search to."
-     },
-     "teamKey": {
-      "type": [
-       "array",
-       "null"
-      ],
-      "description": "Team keys to constrain the search to."
-     }
-    },
-    "required": []
-   },
-   "request": {
-    "method": "GET",
-    "url": "https://api.streak.com/api/v1/search",
-    "path": [],
-    "query": [
-     "name",
-     "page",
-     "pipelineKey",
-     "query",
-     "stageKey",
      "teamKey"
     ],
     "header": [],
@@ -464,820 +61,7 @@
    }
   },
   {
-   "slug": "streak.get_v1_users_me",
-   "name": "Get current user",
-   "description": "Returns information about the currently authenticated user",
-   "input": {
-    "type": "object",
-    "properties": {},
-    "required": []
-   },
-   "request": {
-    "method": "GET",
-    "url": "https://api.streak.com/api/v1/users/me",
-    "path": [],
-    "query": [],
-    "header": [],
-    "body": [],
-    "body_format": "json"
-   }
-  },
-  {
-   "slug": "streak.get_v1_users_userKey",
-   "name": "Get user by key",
-   "description": "Returns information about a specific user by their key",
-   "input": {
-    "type": "object",
-    "properties": {
-     "userKey": {
-      "type": "string",
-      "description": ""
-     }
-    },
-    "required": [
-     "userKey"
-    ]
-   },
-   "request": {
-    "method": "GET",
-    "url": "https://api.streak.com/api/v1/users/{userKey}",
-    "path": [
-     "userKey"
-    ],
-    "query": [],
-    "header": [],
-    "body": [],
-    "body_format": "json"
-   }
-  },
-  {
-   "slug": "streak.get_v2_boxes_boxKey_comments",
-   "name": "List comments",
-   "description": "Lists comments on a box",
-   "input": {
-    "type": "object",
-    "properties": {
-     "boxKey": {
-      "type": "string",
-      "description": ""
-     }
-    },
-    "required": [
-     "boxKey"
-    ]
-   },
-   "request": {
-    "method": "GET",
-    "url": "https://api.streak.com/api/v2/boxes/{boxKey}/comments",
-    "path": [
-     "boxKey"
-    ],
-    "query": [],
-    "header": [],
-    "body": [],
-    "body_format": "json"
-   }
-  },
-  {
-   "slug": "streak.get_v2_boxes_boxKey_meetings",
-   "name": "List meetings",
-   "description": "Lists meetings and call logs on a box",
-   "input": {
-    "type": "object",
-    "properties": {
-     "boxKey": {
-      "type": "string",
-      "description": ""
-     },
-     "limit": {
-      "type": "integer",
-      "description": "Number of items to return."
-     },
-     "page": {
-      "type": "integer",
-      "description": "Zero-based page number"
-     }
-    },
-    "required": [
-     "boxKey"
-    ]
-   },
-   "request": {
-    "method": "GET",
-    "url": "https://api.streak.com/api/v2/boxes/{boxKey}/meetings",
-    "path": [
-     "boxKey"
-    ],
-    "query": [
-     "limit",
-     "page"
-    ],
-    "header": [],
-    "body": [],
-    "body_format": "json"
-   }
-  },
-  {
-   "slug": "streak.get_v2_boxes_boxKey_tasks",
-   "name": "List box tasks",
-   "description": "Lists tasks on a box, ordered by creation date.",
-   "input": {
-    "type": "object",
-    "properties": {
-     "boxKey": {
-      "type": "string",
-      "description": "Key for the box whose tasks should be listed."
-     },
-     "limit": {
-      "type": "integer",
-      "description": "Number of items to return. Maximum: 1000"
-     },
-     "page": {
-      "type": "integer",
-      "description": "Zero-based page number"
-     }
-    },
-    "required": [
-     "boxKey"
-    ]
-   },
-   "request": {
-    "method": "GET",
-    "url": "https://api.streak.com/api/v2/boxes/{boxKey}/tasks",
-    "path": [
-     "boxKey"
-    ],
-    "query": [
-     "limit",
-     "page"
-    ],
-    "header": [],
-    "body": [],
-    "body_format": "json"
-   }
-  },
-  {
-   "slug": "streak.get_v2_comments_commentKey",
-   "name": "Get comment",
-   "description": "Returns a comment by key",
-   "input": {
-    "type": "object",
-    "properties": {
-     "commentKey": {
-      "type": "string",
-      "description": ""
-     }
-    },
-    "required": [
-     "commentKey"
-    ]
-   },
-   "request": {
-    "method": "GET",
-    "url": "https://api.streak.com/api/v2/comments/{commentKey}",
-    "path": [
-     "commentKey"
-    ],
-    "query": [],
-    "header": [],
-    "body": [],
-    "body_format": "json"
-   }
-  },
-  {
-   "slug": "streak.get_v2_contacts_contactKey",
-   "name": "Get contact",
-   "description": "Returns an accessible contact by key.",
-   "input": {
-    "type": "object",
-    "properties": {
-     "contactKey": {
-      "type": "string",
-      "description": "Key of the contact."
-     }
-    },
-    "required": [
-     "contactKey"
-    ]
-   },
-   "request": {
-    "method": "GET",
-    "url": "https://api.streak.com/api/v2/contacts/{contactKey}",
-    "path": [
-     "contactKey"
-    ],
-    "query": [],
-    "header": [],
-    "body": [],
-    "body_format": "json"
-   }
-  },
-  {
-   "slug": "streak.get_v2_meetings_meetingKey",
-   "name": "Get meeting",
-   "description": "Returns a meeting or call log by key",
-   "input": {
-    "type": "object",
-    "properties": {
-     "meetingKey": {
-      "type": "string",
-      "description": ""
-     }
-    },
-    "required": [
-     "meetingKey"
-    ]
-   },
-   "request": {
-    "method": "GET",
-    "url": "https://api.streak.com/api/v2/meetings/{meetingKey}",
-    "path": [
-     "meetingKey"
-    ],
-    "query": [],
-    "header": [],
-    "body": [],
-    "body_format": "json"
-   }
-  },
-  {
-   "slug": "streak.get_v2_organizations_organizationKey",
-   "name": "Get an organization",
-   "description": "Returns an organization accessible to the current user, including custom fields and relationships.",
-   "input": {
-    "type": "object",
-    "properties": {
-     "organizationKey": {
-      "type": "string",
-      "description": "Key of the organization."
-     }
-    },
-    "required": [
-     "organizationKey"
-    ]
-   },
-   "request": {
-    "method": "GET",
-    "url": "https://api.streak.com/api/v2/organizations/{organizationKey}",
-    "path": [
-     "organizationKey"
-    ],
-    "query": [],
-    "header": [],
-    "body": [],
-    "body_format": "json"
-   }
-  },
-  {
-   "slug": "streak.get_v2_pipelines",
-   "name": "List pipelines",
-   "description": "Lists pipelines accessible to the current user.",
-   "input": {
-    "type": "object",
-    "properties": {
-     "sortBy": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": ""
-     },
-     "limit": {
-      "type": "integer",
-      "description": "Number of items to return."
-     },
-     "page": {
-      "type": "integer",
-      "description": "Zero-based page number"
-     }
-    },
-    "required": []
-   },
-   "request": {
-    "method": "GET",
-    "url": "https://api.streak.com/api/v2/pipelines",
-    "path": [],
-    "query": [
-     "sortBy",
-     "limit",
-     "page"
-    ],
-    "header": [],
-    "body": [],
-    "body_format": "json"
-   }
-  },
-  {
-   "slug": "streak.get_v2_pipelines_pipelineKey",
-   "name": "Get pipeline",
-   "description": "Returns a pipeline by key.",
-   "input": {
-    "type": "object",
-    "properties": {
-     "pipelineKey": {
-      "type": "string",
-      "description": ""
-     }
-    },
-    "required": [
-     "pipelineKey"
-    ]
-   },
-   "request": {
-    "method": "GET",
-    "url": "https://api.streak.com/api/v2/pipelines/{pipelineKey}",
-    "path": [
-     "pipelineKey"
-    ],
-    "query": [],
-    "header": [],
-    "body": [],
-    "body_format": "json"
-   }
-  },
-  {
-   "slug": "streak.get_v2_pipelines_pipelineKey_stages",
-   "name": "List stages",
-   "description": "Returns the pipeline's stages keyed by stage key.",
-   "input": {
-    "type": "object",
-    "properties": {
-     "pipelineKey": {
-      "type": "string",
-      "description": ""
-     }
-    },
-    "required": [
-     "pipelineKey"
-    ]
-   },
-   "request": {
-    "method": "GET",
-    "url": "https://api.streak.com/api/v2/pipelines/{pipelineKey}/stages",
-    "path": [
-     "pipelineKey"
-    ],
-    "query": [],
-    "header": [],
-    "body": [],
-    "body_format": "json"
-   }
-  },
-  {
-   "slug": "streak.get_v2_pipelines_pipelineKey_stages_stageKey",
-   "name": "Get stage",
-   "description": "Returns a stage in a pipeline.",
-   "input": {
-    "type": "object",
-    "properties": {
-     "pipelineKey": {
-      "type": "string",
-      "description": ""
-     },
-     "stageKey": {
-      "type": "string",
-      "description": ""
-     }
-    },
-    "required": [
-     "pipelineKey",
-     "stageKey"
-    ]
-   },
-   "request": {
-    "method": "GET",
-    "url": "https://api.streak.com/api/v2/pipelines/{pipelineKey}/stages/{stageKey}",
-    "path": [
-     "pipelineKey",
-     "stageKey"
-    ],
-    "query": [],
-    "header": [],
-    "body": [],
-    "body_format": "json"
-   }
-  },
-  {
-   "slug": "streak.get_v2_tasks",
-   "name": "List upcoming tasks",
-   "description": "Lists tasks across all pipelines and boxes. By default, returns incomplete tasks assigned to the current user before tomorrow in the user's timezone, which includes today's and overdue tasks. Use userKeys, pipelineKey, includeCompleted, direction, limit, and sortOrder to page through other agenda slices.",
-   "input": {
-    "type": "object",
-    "properties": {
-     "direction": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": "Agenda direction. Accepted values are desc, past, asc, and future. Defaults to desc."
-     },
-     "includeCompleted": {
-      "type": "boolean",
-      "description": "Whether completed tasks should be included in the returned agenda."
-     },
-     "limit": {
-      "type": "integer",
-      "description": "Maximum number of tasks to return per assigned user."
-     },
-     "pipelineKey": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": "Key for the pipeline to filter tasks to. Omit to search across all visible pipelines."
-     },
-     "sortOrder": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": "Opaque 30-digit sort cursor returned as task.sortOrder. Omit to use tomorrow at local midnight as the cursor boundary."
-     },
-     "userKeys": {
-      "type": [
-       "array",
-       "null"
-      ],
-      "description": "User keys whose assigned tasks should be returned. Omit to return tasks assigned to the current user."
-     }
-    },
-    "required": []
-   },
-   "request": {
-    "method": "GET",
-    "url": "https://api.streak.com/api/v2/tasks",
-    "path": [],
-    "query": [
-     "direction",
-     "includeCompleted",
-     "limit",
-     "pipelineKey",
-     "sortOrder",
-     "userKeys"
-    ],
-    "header": [],
-    "body": [],
-    "body_format": "json"
-   }
-  },
-  {
-   "slug": "streak.get_v2_tasks_taskKey",
-   "name": "Get task",
-   "description": "Returns a single task by key.",
-   "input": {
-    "type": "object",
-    "properties": {
-     "taskKey": {
-      "type": "string",
-      "description": "Key for the task to return."
-     }
-    },
-    "required": [
-     "taskKey"
-    ]
-   },
-   "request": {
-    "method": "GET",
-    "url": "https://api.streak.com/api/v2/tasks/{taskKey}",
-    "path": [
-     "taskKey"
-    ],
-    "query": [],
-    "header": [],
-    "body": [],
-    "body_format": "json"
-   }
-  },
-  {
-   "slug": "streak.get_v2_teams_teamKey",
-   "name": "Get team",
-   "description": "Returns a team by key.",
-   "input": {
-    "type": "object",
-    "properties": {
-     "teamKey": {
-      "type": "string",
-      "description": "Key for the team to return."
-     }
-    },
-    "required": [
-     "teamKey"
-    ]
-   },
-   "request": {
-    "method": "GET",
-    "url": "https://api.streak.com/api/v2/teams/{teamKey}",
-    "path": [
-     "teamKey"
-    ],
-    "query": [],
-    "header": [],
-    "body": [],
-    "body_format": "json"
-   }
-  },
-  {
-   "slug": "streak.get_v2_teams_teamKey_contacts",
-   "name": "List contacts",
-   "description": "Lists contacts in stable order. Pass the returned cursor to continue; keep the same after filter across pages. A full last page may be followed by an empty page.",
-   "input": {
-    "type": "object",
-    "properties": {
-     "teamKey": {
-      "type": "string",
-      "description": "Key of the team."
-     },
-     "after": {
-      "type": "integer",
-      "description": "Include contacts last saved at or after this epoch-seconds timestamp."
-     },
-     "cursor": {
-      "type": "string",
-      "description": "Cursor returned by the previous response. Omit or leave blank to start from the beginning."
-     },
-     "limit": {
-      "type": "integer",
-      "description": "Maximum number of results to return. Defaults to 100. Values above 1000 are capped."
-     }
-    },
-    "required": [
-     "teamKey"
-    ]
-   },
-   "request": {
-    "method": "GET",
-    "url": "https://api.streak.com/api/v2/teams/{teamKey}/contacts",
-    "path": [
-     "teamKey"
-    ],
-    "query": [
-     "after",
-     "cursor",
-     "limit"
-    ],
-    "header": [],
-    "body": [],
-    "body_format": "json"
-   }
-  },
-  {
-   "slug": "streak.get_v2_teams_teamKey_organizations",
-   "name": "List organizations",
-   "description": "Returns organizations in a team, ordered by key. Pass the returned cursor to retrieve the next page.",
-   "input": {
-    "type": "object",
-    "properties": {
-     "teamKey": {
-      "type": "string",
-      "description": "Key of the team."
-     },
-     "cursor": {
-      "type": "string",
-      "description": "Cursor returned by the previous response. Omit or leave blank to start from the beginning."
-     },
-     "limit": {
-      "type": "integer",
-      "description": "Maximum number of results to return. Defaults to 100. Values above 1000 are capped."
-     }
-    },
-    "required": [
-     "teamKey"
-    ]
-   },
-   "request": {
-    "method": "GET",
-    "url": "https://api.streak.com/api/v2/teams/{teamKey}/organizations",
-    "path": [
-     "teamKey"
-    ],
-    "query": [
-     "cursor",
-     "limit"
-    ],
-    "header": [],
-    "body": [],
-    "body_format": "json"
-   }
-  },
-  {
-   "slug": "streak.get_v2_teams_teamKey_users",
-   "name": "Get all users on team",
-   "description": "Returns all the users on a single team including archived users, payer only users, agents, owners and regular members.",
-   "input": {
-    "type": "object",
-    "properties": {
-     "teamKey": {
-      "type": "string",
-      "description": ""
-     }
-    },
-    "required": [
-     "teamKey"
-    ]
-   },
-   "request": {
-    "method": "GET",
-    "url": "https://api.streak.com/api/v2/teams/{teamKey}/users",
-    "path": [
-     "teamKey"
-    ],
-    "query": [],
-    "header": [],
-    "body": [],
-    "body_format": "json"
-   }
-  },
-  {
-   "slug": "streak.get_v2_users_me_teams",
-   "name": "List current user's teams",
-   "description": "Lists the teams the current user belongs to, newest first.",
-   "input": {
-    "type": "object",
-    "properties": {
-     "limit": {
-      "type": "integer",
-      "description": "Number of items to return."
-     },
-     "page": {
-      "type": "integer",
-      "description": "Zero-based page number"
-     }
-    },
-    "required": []
-   },
-   "request": {
-    "method": "GET",
-    "url": "https://api.streak.com/api/v2/users/me/teams",
-    "path": [],
-    "query": [
-     "limit",
-     "page"
-    ],
-    "header": [],
-    "body": [],
-    "body_format": "json"
-   }
-  },
-  {
-   "slug": "streak.post_v1_pipelines_pipelineKey_fields_fieldKey",
-   "name": "Update pipeline field",
-   "description": "Updates a field's name, default value, options, or AI settings.",
-   "input": {
-    "type": "object",
-    "properties": {
-     "fieldKey": {
-      "type": "string",
-      "description": ""
-     },
-     "pipelineKey": {
-      "type": "string",
-      "description": ""
-     },
-     "addOnly": {
-      "type": "boolean",
-      "description": "Append dropdown or tag options while retaining existing options. Defaults to false."
-     },
-     "name": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": "New field name."
-     },
-     "defaultValue": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": "New default value or formula."
-     },
-     "dropdownSettings": {
-      "type": [
-       "object",
-       "null"
-      ],
-      "description": "Dropdown options to apply."
-     },
-     "tagSettings": {
-      "type": [
-       "object",
-       "null"
-      ],
-      "description": "Tag options to apply."
-     },
-     "aiSettings": {
-      "type": [
-       "object",
-       "null"
-      ],
-      "description": "AI settings to update."
-     }
-    },
-    "required": [
-     "fieldKey",
-     "pipelineKey"
-    ]
-   },
-   "request": {
-    "method": "POST",
-    "url": "https://api.streak.com/api/v1/pipelines/{pipelineKey}/fields/{fieldKey}",
-    "path": [
-     "fieldKey",
-     "pipelineKey"
-    ],
-    "query": [
-     "addOnly"
-    ],
-    "header": [],
-    "body": [
-     "name",
-     "defaultValue",
-     "dropdownSettings",
-     "tagSettings",
-     "aiSettings"
-    ],
-    "body_format": "json"
-   }
-  },
-  {
-   "slug": "streak.post_v1_users_userKey",
-   "name": "Update user by key",
-   "description": "Updates a specific user by their key",
-   "input": {
-    "type": "object",
-    "properties": {
-     "userKey": {
-      "type": "string",
-      "description": ""
-     },
-     "timezoneId": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": "IANA timezone identifier for the user, such as America/Los_Angeles."
-     },
-     "firstName": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": "Given name for the user."
-     },
-     "lastName": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": "Family name for the user."
-     },
-     "automaticallySendInvoiceEmails": {
-      "type": [
-       "boolean",
-       "null"
-      ],
-      "description": "Whether invoice emails should be sent automatically."
-     },
-     "emailsToSendInvoiceTo": {
-      "type": [
-       "array",
-       "null"
-      ],
-      "description": "Who should receive invoices"
-     },
-     "customerSpecifiedInvoiceData": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": "Custom data that should be shown on the invoice"
-     }
-    },
-    "required": [
-     "userKey"
-    ]
-   },
-   "request": {
-    "method": "POST",
-    "url": "https://api.streak.com/api/v1/users/{userKey}",
-    "path": [
-     "userKey"
-    ],
-    "query": [],
-    "header": [],
-    "body": [
-     "timezoneId",
-     "firstName",
-     "lastName",
-     "automaticallySendInvoiceEmails",
-     "emailsToSendInvoiceTo",
-     "customerSpecifiedInvoiceData"
-    ],
-    "body_format": "json"
-   }
-  },
-  {
-   "slug": "streak.post_v2_boxes_boxKey_comments",
+   "slug": "streak.create_comment",
    "name": "Create comment",
    "description": "Creates a comment on a box",
    "input": {
@@ -1336,7 +120,209 @@
    }
   },
   {
-   "slug": "streak.post_v2_boxes_boxKey_meetings",
+   "slug": "streak.create_contact",
+   "name": "Create contact",
+   "description": "Creates a contact from its basic details. Links and custom fields require a subsequent update.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "teamKey": {
+      "type": "string",
+      "description": "Key of the team."
+     },
+     "getIfExisting": {
+      "type": [
+       "boolean",
+       "null"
+      ],
+      "description": "Return an existing email match instead of creating a contact. When getIfExisting=true, an email match is returned without merging new values."
+     },
+     "givenName": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Given name."
+     },
+     "familyName": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Family name."
+     },
+     "title": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Job title."
+     },
+     "other": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Additional notes about the contact."
+     },
+     "emailAddresses": {
+      "type": [
+       "array",
+       "null"
+      ],
+      "description": "Email addresses for the contact."
+     },
+     "phoneNumbers": {
+      "type": [
+       "array",
+       "null"
+      ],
+      "description": "Phone numbers for the contact."
+     },
+     "addresses": {
+      "type": [
+       "array",
+       "null"
+      ],
+      "description": "Postal addresses for the contact."
+     },
+     "domains": {
+      "type": [
+       "array",
+       "null"
+      ],
+      "description": "Website domains associated with the contact."
+     },
+     "twitterHandle": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Twitter handle."
+     },
+     "facebookHandle": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Facebook handle."
+     },
+     "linkedinHandle": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "LinkedIn handle."
+     },
+     "instagramHandle": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Instagram handle."
+     },
+     "photoUrl": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "URL for the contact's photo."
+     }
+    },
+    "required": [
+     "teamKey"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.streak.com/api/v2/teams/{teamKey}/contacts",
+    "path": [
+     "teamKey"
+    ],
+    "query": [
+     "getIfExisting"
+    ],
+    "header": [],
+    "body": [
+     "givenName",
+     "familyName",
+     "title",
+     "other",
+     "emailAddresses",
+     "phoneNumbers",
+     "addresses",
+     "domains",
+     "twitterHandle",
+     "facebookHandle",
+     "linkedinHandle",
+     "instagramHandle",
+     "photoUrl"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "streak.create_field",
+   "name": "Create pipeline field",
+   "description": "Creates a custom field in a pipeline.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "pipelineKey": {
+      "type": "string",
+      "description": ""
+     },
+     "name": {
+      "type": "string",
+      "description": "Field name."
+     },
+     "type": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "TEXT_INPUT",
+       "DROPDOWN",
+       "CHECKBOX",
+       "DATE",
+       "PERSON",
+       "FORMULA",
+       "TAG",
+       "TEAM_CONTACT",
+       "TEAM_ORGANIZATION"
+      ]
+     },
+     "defaultValue": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Initial default value. Currently only used for formula fields."
+     }
+    },
+    "required": [
+     "name",
+     "pipelineKey",
+     "type"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.streak.com/api/v2/pipelines/{pipelineKey}/fields",
+    "path": [
+     "pipelineKey"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "type",
+     "defaultValue"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "streak.create_meeting",
    "name": "Create meeting",
    "description": "Creates a meeting or call log on a box",
    "input": {
@@ -1407,7 +393,269 @@
    }
   },
   {
-   "slug": "streak.post_v2_boxes_boxKey_tasks",
+   "slug": "streak.create_organization",
+   "name": "Create an organization",
+   "description": "Creates an organization in a team. Available enrichment data may fill missing details. Provide a name or at least one domain. Set custom fields and relationships in a subsequent update.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "teamKey": {
+      "type": "string",
+      "description": "Key of the team."
+     },
+     "getIfExisting": {
+      "type": "boolean",
+      "description": "Return an existing organization matching a supplied domain instead of creating another organization. The supplied values are not merged into the existing organization."
+     },
+     "name": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Organization name."
+     },
+     "other": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Freeform notes about the organization."
+     },
+     "domains": {
+      "type": [
+       "array",
+       "null"
+      ],
+      "description": "Website domains for the organization, with the primary domain first."
+     },
+     "industry": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Industry of the organization."
+     },
+     "phoneNumbers": {
+      "type": [
+       "array",
+       "null"
+      ],
+      "description": "Phone numbers for the organization."
+     },
+     "addresses": {
+      "type": [
+       "array",
+       "null"
+      ],
+      "description": "Postal addresses for the organization."
+     },
+     "employeeCount": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Company size as text, which can include an employee-count range."
+     },
+     "logoURL": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "URL of the organization's logo."
+     },
+     "twitterHandle": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Twitter profile handle or URL."
+     },
+     "facebookHandle": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Facebook profile handle or URL."
+     },
+     "linkedinHandle": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "LinkedIn profile handle or URL."
+     },
+     "instagramHandle": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Instagram profile handle or URL."
+     }
+    },
+    "required": [
+     "teamKey"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.streak.com/api/v2/teams/{teamKey}/organizations",
+    "path": [
+     "teamKey"
+    ],
+    "query": [
+     "getIfExisting"
+    ],
+    "header": [],
+    "body": [
+     "name",
+     "other",
+     "domains",
+     "industry",
+     "phoneNumbers",
+     "addresses",
+     "employeeCount",
+     "logoURL",
+     "twitterHandle",
+     "facebookHandle",
+     "linkedinHandle",
+     "instagramHandle"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "streak.create_pipeline",
+   "name": "Create pipeline",
+   "description": "Creates a basic pipeline.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": "string",
+      "description": "Pipeline name."
+     },
+     "teamKey": {
+      "type": "string",
+      "description": "Key for the team that will own the pipeline."
+     },
+     "stages": {
+      "type": "array",
+      "description": "Stage names in display order."
+     },
+     "icon": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Pipeline icon name."
+     },
+     "description": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Pipeline description."
+     },
+     "templateType": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Template identifier associated with the pipeline."
+     },
+     "fields": {
+      "type": [
+       "array",
+       "null"
+      ],
+      "description": "Fields to create in the pipeline."
+     },
+     "defaultPermissionSetName": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Default permission set for users without an explicit assignment."
+     },
+     "sharingRestrictedToTeam": {
+      "type": [
+       "boolean",
+       "null"
+      ],
+      "description": "Whether sharing is restricted to members of the owning team."
+     }
+    },
+    "required": [
+     "name",
+     "stages",
+     "teamKey"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.streak.com/api/v2/pipelines",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "teamKey",
+     "stages",
+     "icon",
+     "description",
+     "templateType",
+     "fields",
+     "defaultPermissionSetName",
+     "sharingRestrictedToTeam"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "streak.create_stage",
+   "name": "Create stage",
+   "description": "Creates a stage at the end of the pipeline's stage order.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "pipelineKey": {
+      "type": "string",
+      "description": ""
+     },
+     "name": {
+      "type": "string",
+      "description": "Nonempty name of the new stage."
+     },
+     "color": {
+      "type": [
+       "object",
+       "null"
+      ],
+      "description": "Custom stage colors. Omit or set to null to use the pipeline theme."
+     }
+    },
+    "required": [
+     "name",
+     "pipelineKey"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.streak.com/api/v2/pipelines/{pipelineKey}/stages",
+    "path": [
+     "pipelineKey"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "color"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "streak.create_task",
    "name": "Create task",
    "description": "Creates a task on a box.",
    "input": {
@@ -1487,7 +735,1476 @@
    }
   },
   {
-   "slug": "streak.post_v2_comments_commentKey",
+   "slug": "streak.create_team",
+   "name": "Create team",
+   "description": "Creates a team with an initial member roster.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": "string",
+      "description": "Display name for the new team."
+     },
+     "members": {
+      "type": "array",
+      "description": "Initial team members. The authenticated creator must be included."
+     }
+    },
+    "required": [
+     "members",
+     "name"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.streak.com/api/v2/teams",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "members"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "streak.delete_api_key",
+   "name": "Delete api key",
+   "description": "Deletes an API key by key",
+   "input": {
+    "type": "object",
+    "properties": {
+     "apiKeyKey": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "apiKeyKey"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.streak.com/api/v1/apikeys/{apiKeyKey}",
+    "path": [
+     "apiKeyKey"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "streak.delete_comment",
+   "name": "Delete comment",
+   "description": "Deletes a comment by key",
+   "input": {
+    "type": "object",
+    "properties": {
+     "commentKey": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "commentKey"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.streak.com/api/v2/comments/{commentKey}",
+    "path": [
+     "commentKey"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "streak.delete_contact",
+   "name": "Delete contact",
+   "description": "Deletes a contact and schedules cleanup of its links. A missing contact returns 404.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "contactKey": {
+      "type": "string",
+      "description": "Key of the contact."
+     }
+    },
+    "required": [
+     "contactKey"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.streak.com/api/v2/contacts/{contactKey}",
+    "path": [
+     "contactKey"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "streak.delete_field",
+   "name": "Delete pipeline field",
+   "description": "Deletes a custom field and clears the value from all the pipeline's boxes.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "fieldKey": {
+      "type": "string",
+      "description": ""
+     },
+     "pipelineKey": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "fieldKey",
+     "pipelineKey"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.streak.com/api/v1/pipelines/{pipelineKey}/fields/{fieldKey}",
+    "path": [
+     "fieldKey",
+     "pipelineKey"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "streak.delete_meeting",
+   "name": "Delete meeting",
+   "description": "Deletes a meeting or call log by key",
+   "input": {
+    "type": "object",
+    "properties": {
+     "meetingKey": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "meetingKey"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.streak.com/api/v2/meetings/{meetingKey}",
+    "path": [
+     "meetingKey"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "streak.delete_organization",
+   "name": "Delete an organization",
+   "description": "Deletes an organization and schedules removal of its relationships and box links.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "organizationKey": {
+      "type": "string",
+      "description": "Key of the organization."
+     }
+    },
+    "required": [
+     "organizationKey"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.streak.com/api/v2/organizations/{organizationKey}",
+    "path": [
+     "organizationKey"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "streak.delete_pipeline",
+   "name": "Delete pipeline",
+   "description": "Deletes an empty pipeline.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "pipelineKey": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "pipelineKey"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.streak.com/api/v2/pipelines/{pipelineKey}",
+    "path": [
+     "pipelineKey"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "streak.delete_stage",
+   "name": "Delete stage",
+   "description": "Deletes an empty stage. The final stage in a pipeline cannot be deleted.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "pipelineKey": {
+      "type": "string",
+      "description": ""
+     },
+     "stageKey": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "pipelineKey",
+     "stageKey"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.streak.com/api/v2/pipelines/{pipelineKey}/stages/{stageKey}",
+    "path": [
+     "pipelineKey",
+     "stageKey"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "streak.delete_task",
+   "name": "Delete task",
+   "description": "Deletes a task by key.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "taskKey": {
+      "type": "string",
+      "description": "Key for the task to delete."
+     }
+    },
+    "required": [
+     "taskKey"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.streak.com/api/v2/tasks/{taskKey}",
+    "path": [
+     "taskKey"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "streak.get_api_keys",
+   "name": "List api keys",
+   "description": "Lists API keys owned by the current user",
+   "input": {
+    "type": "object",
+    "properties": {
+     "limit": {
+      "type": "integer",
+      "description": "Number of items to return."
+     },
+     "page": {
+      "type": "integer",
+      "description": "Zero-based page number"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.streak.com/api/v1/apikeys",
+    "path": [],
+    "query": [
+     "limit",
+     "page"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "streak.get_assigned_tasks",
+   "name": "List upcoming tasks",
+   "description": "Lists tasks across all pipelines and boxes. By default, returns incomplete tasks assigned to the current user before tomorrow in the user's timezone, which includes today's and overdue tasks. Use userKeys, pipelineKey, includeCompleted, direction, limit, and sortOrder to page through other agenda slices.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "direction": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Agenda direction. Accepted values are desc, past, asc, and future. Defaults to desc."
+     },
+     "includeCompleted": {
+      "type": "boolean",
+      "description": "Whether completed tasks should be included in the returned agenda."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Maximum number of tasks to return per assigned user."
+     },
+     "pipelineKey": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Key for the pipeline to filter tasks to. Omit to search across all visible pipelines."
+     },
+     "sortOrder": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Opaque 30-digit sort cursor returned as task.sortOrder. Omit to use tomorrow at local midnight as the cursor boundary."
+     },
+     "userKeys": {
+      "type": [
+       "array",
+       "null"
+      ],
+      "description": "User keys whose assigned tasks should be returned. Omit to return tasks assigned to the current user."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.streak.com/api/v2/tasks",
+    "path": [],
+    "query": [
+     "direction",
+     "includeCompleted",
+     "limit",
+     "pipelineKey",
+     "sortOrder",
+     "userKeys"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "streak.get_box",
+   "name": "Get box",
+   "description": "Returns a box by key, including its custom fields, linked records and activity statistics.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "boxKey": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "boxKey"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.streak.com/api/v1/boxes/{boxKey}",
+    "path": [
+     "boxKey"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "streak.get_box_markdown",
+   "name": "Get box markdown",
+   "description": "Returns the box as one markdown document: an overview, its columns, contacts, organizations, linked boxes, tasks and pipeline, followed by its timeline. Every timestamp is ISO-8601 UTC. The document's structure is best-effort and may change; use the JSON endpoints for a stable contract.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "boxKey": {
+      "type": "string",
+      "description": ""
+     },
+     "maxTokens": {
+      "type": [
+       "integer",
+       "null"
+      ],
+      "description": "A token cap for the entire document, counted with OpenAI's o200k_base encoding. It covers the box sections first, then uses the remaining tokens for the timeline. A marker shows where entries were left out. If the box does not fit under the cap, a 400 error shows the minimum it needs. Omit the cap to return the full box."
+     }
+    },
+    "required": [
+     "boxKey"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.streak.com/api/v1/boxes/{boxKey}/md",
+    "path": [
+     "boxKey"
+    ],
+    "query": [
+     "maxTokens"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "streak.get_comment",
+   "name": "Get comment",
+   "description": "Returns a comment by key",
+   "input": {
+    "type": "object",
+    "properties": {
+     "commentKey": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "commentKey"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.streak.com/api/v2/comments/{commentKey}",
+    "path": [
+     "commentKey"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "streak.get_comments",
+   "name": "List comments",
+   "description": "Lists comments on a box",
+   "input": {
+    "type": "object",
+    "properties": {
+     "boxKey": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "boxKey"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.streak.com/api/v2/boxes/{boxKey}/comments",
+    "path": [
+     "boxKey"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "streak.get_contact",
+   "name": "Get contact",
+   "description": "Returns an accessible contact by key.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "contactKey": {
+      "type": "string",
+      "description": "Key of the contact."
+     }
+    },
+    "required": [
+     "contactKey"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.streak.com/api/v2/contacts/{contactKey}",
+    "path": [
+     "contactKey"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "streak.get_contacts",
+   "name": "Get contacts in bulk",
+   "description": "Returns accessible contacts indexed by their requested keys. Missing and inaccessible contacts are omitted.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.streak.com/api/v2/contacts/batch/get",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "streak.get_current_user",
+   "name": "Get current user",
+   "description": "Returns information about the currently authenticated user",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.streak.com/api/v1/users/me",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "streak.get_current_user_teams",
+   "name": "List current user's teams",
+   "description": "Lists the teams the current user belongs to, newest first.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "limit": {
+      "type": "integer",
+      "description": "Number of items to return."
+     },
+     "page": {
+      "type": "integer",
+      "description": "Zero-based page number"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.streak.com/api/v2/users/me/teams",
+    "path": [],
+    "query": [
+     "limit",
+     "page"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "streak.get_field",
+   "name": "Get pipeline field",
+   "description": "Returns a field by its key within a pipeline.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "fieldKey": {
+      "type": "string",
+      "description": ""
+     },
+     "pipelineKey": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "fieldKey",
+     "pipelineKey"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.streak.com/api/v1/pipelines/{pipelineKey}/fields/{fieldKey}",
+    "path": [
+     "fieldKey",
+     "pipelineKey"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "streak.get_meeting",
+   "name": "Get meeting",
+   "description": "Returns a meeting or call log by key",
+   "input": {
+    "type": "object",
+    "properties": {
+     "meetingKey": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "meetingKey"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.streak.com/api/v2/meetings/{meetingKey}",
+    "path": [
+     "meetingKey"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "streak.get_meetings",
+   "name": "List meetings",
+   "description": "Lists meetings and call logs on a box",
+   "input": {
+    "type": "object",
+    "properties": {
+     "boxKey": {
+      "type": "string",
+      "description": ""
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Number of items to return."
+     },
+     "page": {
+      "type": "integer",
+      "description": "Zero-based page number"
+     }
+    },
+    "required": [
+     "boxKey"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.streak.com/api/v2/boxes/{boxKey}/meetings",
+    "path": [
+     "boxKey"
+    ],
+    "query": [
+     "limit",
+     "page"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "streak.get_organization",
+   "name": "Get an organization",
+   "description": "Returns an organization accessible to the current user, including custom fields and relationships.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "organizationKey": {
+      "type": "string",
+      "description": "Key of the organization."
+     }
+    },
+    "required": [
+     "organizationKey"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.streak.com/api/v2/organizations/{organizationKey}",
+    "path": [
+     "organizationKey"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "streak.get_organizations",
+   "name": "Get organizations in a batch",
+   "description": "Returns organizations keyed by their organization keys. Missing and inaccessible organizations are omitted.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.streak.com/api/v2/organizations/batch/get",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "streak.get_pipeline",
+   "name": "Get pipeline",
+   "description": "Returns a pipeline by key.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "pipelineKey": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "pipelineKey"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.streak.com/api/v2/pipelines/{pipelineKey}",
+    "path": [
+     "pipelineKey"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "streak.get_recent_boxes",
+   "name": "List recently viewed boxes",
+   "description": "Returns boxes recently viewed by the current user, most recently viewed first. Only accessible boxes are returned, so permission filtering may reduce the number of results. Limits above 20 are clamped to 20.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "limit": {
+      "type": "integer",
+      "description": "Number of items to return. Default: 5, Maximum: 20"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.streak.com/api/v2/boxes/recent",
+    "path": [],
+    "query": [
+     "limit"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "streak.get_stage",
+   "name": "Get stage",
+   "description": "Returns a stage in a pipeline.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "pipelineKey": {
+      "type": "string",
+      "description": ""
+     },
+     "stageKey": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "pipelineKey",
+     "stageKey"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.streak.com/api/v2/pipelines/{pipelineKey}/stages/{stageKey}",
+    "path": [
+     "pipelineKey",
+     "stageKey"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "streak.get_task",
+   "name": "Get task",
+   "description": "Returns a single task by key.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "taskKey": {
+      "type": "string",
+      "description": "Key for the task to return."
+     }
+    },
+    "required": [
+     "taskKey"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.streak.com/api/v2/tasks/{taskKey}",
+    "path": [
+     "taskKey"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "streak.get_tasks_for_box",
+   "name": "List box tasks",
+   "description": "Lists tasks on a box, ordered by creation date.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "boxKey": {
+      "type": "string",
+      "description": "Key for the box whose tasks should be listed."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Number of items to return. Maximum: 1000"
+     },
+     "page": {
+      "type": "integer",
+      "description": "Zero-based page number"
+     }
+    },
+    "required": [
+     "boxKey"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.streak.com/api/v2/boxes/{boxKey}/tasks",
+    "path": [
+     "boxKey"
+    ],
+    "query": [
+     "limit",
+     "page"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "streak.get_team",
+   "name": "Get team",
+   "description": "Returns a team by key.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "teamKey": {
+      "type": "string",
+      "description": "Key for the team to return."
+     }
+    },
+    "required": [
+     "teamKey"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.streak.com/api/v2/teams/{teamKey}",
+    "path": [
+     "teamKey"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "streak.get_trending_boxes",
+   "name": "List trending boxes",
+   "description": "Returns accessible boxes viewed by teammates in the last seven days, ordered by the number of distinct viewers. The current user's views are excluded. Limits above 20 are clamped to 20.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "limit": {
+      "type": "integer",
+      "description": "Number of items to return. Default: 10, Maximum: 20"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.streak.com/api/v2/boxes/trending",
+    "path": [],
+    "query": [
+     "limit"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "streak.get_user",
+   "name": "Get user by key",
+   "description": "Returns information about a specific user by their key",
+   "input": {
+    "type": "object",
+    "properties": {
+     "userKey": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "userKey"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.streak.com/api/v1/users/{userKey}",
+    "path": [
+     "userKey"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "streak.get_users_on_team",
+   "name": "Get all users on team",
+   "description": "Returns all the users on a single team including archived users, payer only users, agents, owners and regular members.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "teamKey": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "teamKey"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.streak.com/api/v2/teams/{teamKey}/users",
+    "path": [
+     "teamKey"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "streak.list_boxes",
+   "name": "List pipeline boxes",
+   "description": "Returns boxes the current user can read in a pipeline. Omit limit to return all matching boxes. Pagination is applied before permission filtering.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "pipelineKey": {
+      "type": "string",
+      "description": ""
+     },
+     "assignedToKey": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Only return boxes assigned to this user. Assigned-only access always limits results to the current user."
+     },
+     "sortBy": {
+      "type": "string",
+      "description": "Sort order; defaults to creationTimestamp.",
+      "enum": [
+       "lastUpdatedTimestamp",
+       "creationTimestamp"
+      ]
+     },
+     "stageKey": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Only return boxes in this stage."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Number of items to return. Maximum: 1000"
+     },
+     "page": {
+      "type": "integer",
+      "description": "Zero-based page number"
+     }
+    },
+    "required": [
+     "pipelineKey"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.streak.com/api/v2/pipelines/{pipelineKey}/boxes",
+    "path": [
+     "pipelineKey"
+    ],
+    "query": [
+     "assignedToKey",
+     "sortBy",
+     "stageKey",
+     "limit",
+     "page"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "streak.list_contact_boxes",
+   "name": "List contact boxes",
+   "description": "Returns accessible boxes linked to a contact. Pass the returned cursor to continue. hasNextPage indicates whether a continuation cursor is available, even if permission filtering leaves the results empty.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "contactKey": {
+      "type": "string",
+      "description": ""
+     },
+     "cursor": {
+      "type": "string",
+      "description": "Cursor returned by the previous response. Omit or leave empty to start from the beginning."
+     }
+    },
+    "required": [
+     "contactKey"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.streak.com/api/v2/contacts/{contactKey}/boxes",
+    "path": [
+     "contactKey"
+    ],
+    "query": [
+     "cursor"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "streak.list_contacts",
+   "name": "List contacts",
+   "description": "Lists contacts in stable order. Pass the returned cursor to continue; keep the same after filter across pages. A full last page may be followed by an empty page.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "teamKey": {
+      "type": "string",
+      "description": "Key of the team."
+     },
+     "after": {
+      "type": "integer",
+      "description": "Include contacts last saved at or after this epoch-seconds timestamp."
+     },
+     "cursor": {
+      "type": "string",
+      "description": "Cursor returned by the previous response. Omit or leave empty to start from the beginning."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Maximum number of results to return. Defaults to 100. Values above 1000 are capped."
+     }
+    },
+    "required": [
+     "teamKey"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.streak.com/api/v2/teams/{teamKey}/contacts",
+    "path": [
+     "teamKey"
+    ],
+    "query": [
+     "after",
+     "cursor",
+     "limit"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "streak.list_fields",
+   "name": "List pipeline fields",
+   "description": "Returns the fields in a pipeline in their stored order.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "pipelineKey": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "pipelineKey"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.streak.com/api/v1/pipelines/{pipelineKey}/fields",
+    "path": [
+     "pipelineKey"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "streak.list_organization_boxes",
+   "name": "List organization boxes",
+   "description": "Returns accessible boxes linked to an organization. Pass the returned cursor to continue. hasNextPage indicates whether a continuation cursor is available, even if permission filtering leaves the results empty.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "organizationKey": {
+      "type": "string",
+      "description": ""
+     },
+     "cursor": {
+      "type": "string",
+      "description": "Cursor returned by the previous response. Omit or leave empty to start from the beginning."
+     }
+    },
+    "required": [
+     "organizationKey"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.streak.com/api/v2/organizations/{organizationKey}/boxes",
+    "path": [
+     "organizationKey"
+    ],
+    "query": [
+     "cursor"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "streak.list_organizations",
+   "name": "List organizations",
+   "description": "Returns organizations in a team, ordered by key. Pass the returned cursor to retrieve the next page.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "teamKey": {
+      "type": "string",
+      "description": "Key of the team."
+     },
+     "cursor": {
+      "type": "string",
+      "description": "Cursor returned by the previous response. Omit or leave empty to start from the beginning."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Maximum number of results to return. Defaults to 100. Values above 1000 are capped."
+     }
+    },
+    "required": [
+     "teamKey"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.streak.com/api/v2/teams/{teamKey}/organizations",
+    "path": [
+     "teamKey"
+    ],
+    "query": [
+     "cursor",
+     "limit"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "streak.list_pipelines",
+   "name": "List pipelines",
+   "description": "Lists pipelines accessible to the current user.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sortBy": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": ""
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Number of items to return."
+     },
+     "page": {
+      "type": "integer",
+      "description": "Zero-based page number"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.streak.com/api/v2/pipelines",
+    "path": [],
+    "query": [
+     "sortBy",
+     "limit",
+     "page"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "streak.list_stages",
+   "name": "List stages",
+   "description": "Returns the pipeline's stages keyed by stage key.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "pipelineKey": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "pipelineKey"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.streak.com/api/v2/pipelines/{pipelineKey}/stages",
+    "path": [
+     "pipelineKey"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "streak.react_to_comment",
+   "name": "React to comment",
+   "description": "Adds an emoji reaction to a comment",
+   "input": {
+    "type": "object",
+    "properties": {
+     "commentKey": {
+      "type": "string",
+      "description": ""
+     },
+     "emoji": {
+      "type": "string",
+      "description": "Emoji to add or remove as a reaction."
+     }
+    },
+    "required": [
+     "commentKey",
+     "emoji"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.streak.com/api/v2/comments/{commentKey}/react",
+    "path": [
+     "commentKey"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "emoji"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "streak.search",
+   "name": "Search boxes, contacts, and organizations",
+   "description": "Searches visible boxes, contacts, and organizations by query, or visible boxes by exact name. Exactly one of query or name must be provided.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Exact box name to search for."
+     },
+     "page": {
+      "type": "integer",
+      "description": "Zero-based page number."
+     },
+     "pipelineKey": {
+      "type": [
+       "array",
+       "null"
+      ],
+      "description": "Pipeline keys to constrain the search to."
+     },
+     "query": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Full-text query to search across boxes, contacts, and organizations."
+     },
+     "stageKey": {
+      "type": [
+       "array",
+       "null"
+      ],
+      "description": "Stage keys to constrain the search to."
+     },
+     "teamKey": {
+      "type": [
+       "array",
+       "null"
+      ],
+      "description": "Team keys to constrain the search to."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.streak.com/api/v1/search",
+    "path": [],
+    "query": [
+     "name",
+     "page",
+     "pipelineKey",
+     "query",
+     "stageKey",
+     "teamKey"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "streak.unreact_to_comment",
+   "name": "Remove comment reaction",
+   "description": "Removes an emoji reaction from a comment",
+   "input": {
+    "type": "object",
+    "properties": {
+     "commentKey": {
+      "type": "string",
+      "description": ""
+     },
+     "emoji": {
+      "type": "string",
+      "description": "Emoji to add or remove as a reaction."
+     }
+    },
+    "required": [
+     "commentKey",
+     "emoji"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.streak.com/api/v2/comments/{commentKey}/unreact",
+    "path": [
+     "commentKey"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "emoji"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "streak.update_comment",
    "name": "Update comment",
    "description": "Updates a comment by key",
    "input": {
@@ -1532,96 +2249,7 @@
    }
   },
   {
-   "slug": "streak.post_v2_comments_commentKey_react",
-   "name": "React to comment",
-   "description": "Adds an emoji reaction to a comment",
-   "input": {
-    "type": "object",
-    "properties": {
-     "commentKey": {
-      "type": "string",
-      "description": ""
-     },
-     "emoji": {
-      "type": "string",
-      "description": "Emoji to add or remove as a reaction."
-     }
-    },
-    "required": [
-     "commentKey",
-     "emoji"
-    ]
-   },
-   "request": {
-    "method": "POST",
-    "url": "https://api.streak.com/api/v2/comments/{commentKey}/react",
-    "path": [
-     "commentKey"
-    ],
-    "query": [],
-    "header": [],
-    "body": [
-     "emoji"
-    ],
-    "body_format": "json"
-   }
-  },
-  {
-   "slug": "streak.post_v2_comments_commentKey_unreact",
-   "name": "Remove comment reaction",
-   "description": "Removes an emoji reaction from a comment",
-   "input": {
-    "type": "object",
-    "properties": {
-     "commentKey": {
-      "type": "string",
-      "description": ""
-     },
-     "emoji": {
-      "type": "string",
-      "description": "Emoji to add or remove as a reaction."
-     }
-    },
-    "required": [
-     "commentKey",
-     "emoji"
-    ]
-   },
-   "request": {
-    "method": "POST",
-    "url": "https://api.streak.com/api/v2/comments/{commentKey}/unreact",
-    "path": [
-     "commentKey"
-    ],
-    "query": [],
-    "header": [],
-    "body": [
-     "emoji"
-    ],
-    "body_format": "json"
-   }
-  },
-  {
-   "slug": "streak.post_v2_contacts_batch_get",
-   "name": "Get contacts in bulk",
-   "description": "Returns accessible contacts indexed by their requested keys. Missing and inaccessible contacts are omitted.",
-   "input": {
-    "type": "object",
-    "properties": {},
-    "required": []
-   },
-   "request": {
-    "method": "POST",
-    "url": "https://api.streak.com/api/v2/contacts/batch/get",
-    "path": [],
-    "query": [],
-    "header": [],
-    "body": [],
-    "body_format": "json"
-   }
-  },
-  {
-   "slug": "streak.post_v2_contacts_contactKey",
+   "slug": "streak.update_contact",
    "name": "Update contact",
    "description": "Applies supplied changes. Null or omitted fields remain unchanged.",
    "input": {
@@ -1778,7 +2406,88 @@
    }
   },
   {
-   "slug": "streak.post_v2_meetings_meetingKey",
+   "slug": "streak.update_field",
+   "name": "Update pipeline field",
+   "description": "Updates a field's name, default value, options, or AI settings.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "fieldKey": {
+      "type": "string",
+      "description": ""
+     },
+     "pipelineKey": {
+      "type": "string",
+      "description": ""
+     },
+     "addOnly": {
+      "type": "boolean",
+      "description": "Append dropdown or tag options while retaining existing options. Defaults to false."
+     },
+     "name": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "New field name."
+     },
+     "defaultValue": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "New default value or formula."
+     },
+     "dropdownSettings": {
+      "type": [
+       "object",
+       "null"
+      ],
+      "description": "Dropdown options to apply."
+     },
+     "tagSettings": {
+      "type": [
+       "object",
+       "null"
+      ],
+      "description": "Tag options to apply."
+     },
+     "aiSettings": {
+      "type": [
+       "object",
+       "null"
+      ],
+      "description": "AI settings to update."
+     }
+    },
+    "required": [
+     "fieldKey",
+     "pipelineKey"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.streak.com/api/v1/pipelines/{pipelineKey}/fields/{fieldKey}",
+    "path": [
+     "fieldKey",
+     "pipelineKey"
+    ],
+    "query": [
+     "addOnly"
+    ],
+    "header": [],
+    "body": [
+     "name",
+     "defaultValue",
+     "dropdownSettings",
+     "tagSettings",
+     "aiSettings"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "streak.update_meeting",
    "name": "Update meeting",
    "description": "Updates a meeting or call log by key",
    "input": {
@@ -1855,26 +2564,7 @@
    }
   },
   {
-   "slug": "streak.post_v2_organizations_batch_get",
-   "name": "Get organizations in a batch",
-   "description": "Returns organizations keyed by their organization keys. Missing and inaccessible organizations are omitted.",
-   "input": {
-    "type": "object",
-    "properties": {},
-    "required": []
-   },
-   "request": {
-    "method": "POST",
-    "url": "https://api.streak.com/api/v2/organizations/batch/get",
-    "path": [],
-    "query": [],
-    "header": [],
-    "body": [],
-    "body_format": "json"
-   }
-  },
-  {
-   "slug": "streak.post_v2_organizations_organizationKey",
+   "slug": "streak.update_organization",
    "name": "Update an organization",
    "description": "Updates an organization. Omitted and null properties are unchanged. Supplied lists replace existing lists, subject to field validation.",
    "input": {
@@ -2023,95 +2713,7 @@
    }
   },
   {
-   "slug": "streak.post_v2_pipelines",
-   "name": "Create pipeline",
-   "description": "Creates a basic pipeline.",
-   "input": {
-    "type": "object",
-    "properties": {
-     "name": {
-      "type": "string",
-      "description": "Pipeline name."
-     },
-     "teamKey": {
-      "type": "string",
-      "description": "Key for the team that will own the pipeline."
-     },
-     "stages": {
-      "type": "array",
-      "description": "Stage names in display order."
-     },
-     "icon": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": "Pipeline icon name."
-     },
-     "description": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": "Pipeline description."
-     },
-     "templateType": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": "Template identifier associated with the pipeline."
-     },
-     "fields": {
-      "type": [
-       "array",
-       "null"
-      ],
-      "description": "Fields to create in the pipeline."
-     },
-     "defaultPermissionSetName": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": "Default permission set for users without an explicit assignment."
-     },
-     "sharingRestrictedToTeam": {
-      "type": [
-       "boolean",
-       "null"
-      ],
-      "description": "Whether sharing is restricted to members of the owning team."
-     }
-    },
-    "required": [
-     "name",
-     "stages",
-     "teamKey"
-    ]
-   },
-   "request": {
-    "method": "POST",
-    "url": "https://api.streak.com/api/v2/pipelines",
-    "path": [],
-    "query": [],
-    "header": [],
-    "body": [
-     "name",
-     "teamKey",
-     "stages",
-     "icon",
-     "description",
-     "templateType",
-     "fields",
-     "defaultPermissionSetName",
-     "sharingRestrictedToTeam"
-    ],
-    "body_format": "json"
-   }
-  },
-  {
-   "slug": "streak.post_v2_pipelines_pipelineKey",
+   "slug": "streak.update_pipeline",
    "name": "Update pipeline",
    "description": "Updates the supplied Pipeline fields. Omitted fields remain unchanged.",
    "input": {
@@ -2220,110 +2822,7 @@
    }
   },
   {
-   "slug": "streak.post_v2_pipelines_pipelineKey_fields",
-   "name": "Create pipeline field",
-   "description": "Creates a custom field in a pipeline.",
-   "input": {
-    "type": "object",
-    "properties": {
-     "pipelineKey": {
-      "type": "string",
-      "description": ""
-     },
-     "name": {
-      "type": "string",
-      "description": "Field name."
-     },
-     "type": {
-      "type": "string",
-      "description": "",
-      "enum": [
-       "TEXT_INPUT",
-       "DROPDOWN",
-       "CHECKBOX",
-       "DATE",
-       "PERSON",
-       "FORMULA",
-       "TAG",
-       "TEAM_CONTACT",
-       "TEAM_ORGANIZATION"
-      ]
-     },
-     "defaultValue": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": "Initial default value. Currently only used for formula fields."
-     }
-    },
-    "required": [
-     "name",
-     "pipelineKey",
-     "type"
-    ]
-   },
-   "request": {
-    "method": "POST",
-    "url": "https://api.streak.com/api/v2/pipelines/{pipelineKey}/fields",
-    "path": [
-     "pipelineKey"
-    ],
-    "query": [],
-    "header": [],
-    "body": [
-     "name",
-     "type",
-     "defaultValue"
-    ],
-    "body_format": "json"
-   }
-  },
-  {
-   "slug": "streak.post_v2_pipelines_pipelineKey_stages",
-   "name": "Create stage",
-   "description": "Creates a stage at the end of the pipeline's stage order.",
-   "input": {
-    "type": "object",
-    "properties": {
-     "pipelineKey": {
-      "type": "string",
-      "description": ""
-     },
-     "name": {
-      "type": "string",
-      "description": "Nonempty name of the new stage."
-     },
-     "color": {
-      "type": [
-       "object",
-       "null"
-      ],
-      "description": "Custom stage colors. Omit or set to null to use the pipeline theme."
-     }
-    },
-    "required": [
-     "name",
-     "pipelineKey"
-    ]
-   },
-   "request": {
-    "method": "POST",
-    "url": "https://api.streak.com/api/v2/pipelines/{pipelineKey}/stages",
-    "path": [
-     "pipelineKey"
-    ],
-    "query": [],
-    "header": [],
-    "body": [
-     "name",
-     "color"
-    ],
-    "body_format": "json"
-   }
-  },
-  {
-   "slug": "streak.post_v2_pipelines_pipelineKey_stages_stageKey",
+   "slug": "streak.update_stage",
    "name": "Update stage",
    "description": "Updates the supplied stage name or colors.",
    "input": {
@@ -2374,7 +2873,7 @@
    }
   },
   {
-   "slug": "streak.post_v2_tasks_taskKey",
+   "slug": "streak.update_task",
    "name": "Update task",
    "description": "Updates a task by key. Omitted body fields are left unchanged.",
    "input": {
@@ -2456,41 +2955,7 @@
    }
   },
   {
-   "slug": "streak.post_v2_teams",
-   "name": "Create team",
-   "description": "Creates a team with an initial member roster.",
-   "input": {
-    "type": "object",
-    "properties": {
-     "name": {
-      "type": "string",
-      "description": "Display name for the new team."
-     },
-     "members": {
-      "type": "array",
-      "description": "Initial team members. The authenticated creator must be included."
-     }
-    },
-    "required": [
-     "members",
-     "name"
-    ]
-   },
-   "request": {
-    "method": "POST",
-    "url": "https://api.streak.com/api/v2/teams",
-    "path": [],
-    "query": [],
-    "header": [],
-    "body": [
-     "name",
-     "members"
-    ],
-    "body_format": "json"
-   }
-  },
-  {
-   "slug": "streak.post_v2_teams_teamKey",
+   "slug": "streak.update_team",
    "name": "Update team",
    "description": "Updates a team by key. Omitted body fields are left unchanged.",
    "input": {
@@ -2591,304 +3056,79 @@
    }
   },
   {
-   "slug": "streak.post_v2_teams_teamKey_contacts",
-   "name": "Create contact",
-   "description": "Creates a contact from its basic details. Links and custom fields require a subsequent update.",
+   "slug": "streak.update_user",
+   "name": "Update user by key",
+   "description": "Updates a specific user by their key",
    "input": {
     "type": "object",
     "properties": {
-     "teamKey": {
+     "userKey": {
       "type": "string",
-      "description": "Key of the team."
+      "description": ""
      },
-     "getIfExisting": {
+     "timezoneId": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "IANA timezone identifier for the user, such as America/Los_Angeles."
+     },
+     "firstName": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Given name for the user."
+     },
+     "lastName": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Family name for the user."
+     },
+     "automaticallySendInvoiceEmails": {
       "type": [
        "boolean",
        "null"
       ],
-      "description": "Return an existing email match instead of creating a contact. When getIfExisting=true, an email match is returned without merging new values."
+      "description": "Whether invoice emails should be sent automatically."
      },
-     "givenName": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": "Given name."
-     },
-     "familyName": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": "Family name."
-     },
-     "title": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": "Job title."
-     },
-     "other": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": "Additional notes about the contact."
-     },
-     "emailAddresses": {
+     "emailsToSendInvoiceTo": {
       "type": [
        "array",
        "null"
       ],
-      "description": "Email addresses for the contact."
+      "description": "Who should receive invoices"
      },
-     "phoneNumbers": {
-      "type": [
-       "array",
-       "null"
-      ],
-      "description": "Phone numbers for the contact."
-     },
-     "addresses": {
-      "type": [
-       "array",
-       "null"
-      ],
-      "description": "Postal addresses for the contact."
-     },
-     "domains": {
-      "type": [
-       "array",
-       "null"
-      ],
-      "description": "Website domains associated with the contact."
-     },
-     "twitterHandle": {
+     "customerSpecifiedInvoiceData": {
       "type": [
        "string",
        "null"
       ],
-      "description": "Twitter handle."
-     },
-     "facebookHandle": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": "Facebook handle."
-     },
-     "linkedinHandle": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": "LinkedIn handle."
-     },
-     "instagramHandle": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": "Instagram handle."
-     },
-     "photoUrl": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": "URL for the contact's photo."
+      "description": "Custom data that should be shown on the invoice"
      }
     },
     "required": [
-     "teamKey"
+     "userKey"
     ]
    },
    "request": {
     "method": "POST",
-    "url": "https://api.streak.com/api/v2/teams/{teamKey}/contacts",
+    "url": "https://api.streak.com/api/v1/users/{userKey}",
     "path": [
-     "teamKey"
+     "userKey"
     ],
-    "query": [
-     "getIfExisting"
-    ],
+    "query": [],
     "header": [],
     "body": [
-     "givenName",
-     "familyName",
-     "title",
-     "other",
-     "emailAddresses",
-     "phoneNumbers",
-     "addresses",
-     "domains",
-     "twitterHandle",
-     "facebookHandle",
-     "linkedinHandle",
-     "instagramHandle",
-     "photoUrl"
+     "timezoneId",
+     "firstName",
+     "lastName",
+     "automaticallySendInvoiceEmails",
+     "emailsToSendInvoiceTo",
+     "customerSpecifiedInvoiceData"
     ],
-    "body_format": "json"
-   }
-  },
-  {
-   "slug": "streak.post_v2_teams_teamKey_organizations",
-   "name": "Create an organization",
-   "description": "Creates an organization in a team. Available enrichment data may fill missing details. Provide a name or at least one domain. Set custom fields and relationships in a subsequent update.",
-   "input": {
-    "type": "object",
-    "properties": {
-     "teamKey": {
-      "type": "string",
-      "description": "Key of the team."
-     },
-     "getIfExisting": {
-      "type": "boolean",
-      "description": "Return an existing organization matching a supplied domain instead of creating another organization. The supplied values are not merged into the existing organization."
-     },
-     "name": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": "Organization name."
-     },
-     "other": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": "Freeform notes about the organization."
-     },
-     "domains": {
-      "type": [
-       "array",
-       "null"
-      ],
-      "description": "Website domains for the organization, with the primary domain first."
-     },
-     "industry": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": "Industry of the organization."
-     },
-     "phoneNumbers": {
-      "type": [
-       "array",
-       "null"
-      ],
-      "description": "Phone numbers for the organization."
-     },
-     "addresses": {
-      "type": [
-       "array",
-       "null"
-      ],
-      "description": "Postal addresses for the organization."
-     },
-     "employeeCount": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": "Company size as text, which can include an employee-count range."
-     },
-     "logoURL": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": "URL of the organization's logo."
-     },
-     "twitterHandle": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": "Twitter profile handle or URL."
-     },
-     "facebookHandle": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": "Facebook profile handle or URL."
-     },
-     "linkedinHandle": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": "LinkedIn profile handle or URL."
-     },
-     "instagramHandle": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": "Instagram profile handle or URL."
-     }
-    },
-    "required": [
-     "teamKey"
-    ]
-   },
-   "request": {
-    "method": "POST",
-    "url": "https://api.streak.com/api/v2/teams/{teamKey}/organizations",
-    "path": [
-     "teamKey"
-    ],
-    "query": [
-     "getIfExisting"
-    ],
-    "header": [],
-    "body": [
-     "name",
-     "other",
-     "domains",
-     "industry",
-     "phoneNumbers",
-     "addresses",
-     "employeeCount",
-     "logoURL",
-     "twitterHandle",
-     "facebookHandle",
-     "linkedinHandle",
-     "instagramHandle"
-    ],
-    "body_format": "json"
-   }
-  },
-  {
-   "slug": "streak.put_v1_apikeys",
-   "name": "Create api key",
-   "description": "Creates an API key for the current user",
-   "input": {
-    "type": "object",
-    "properties": {
-     "teamKey": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": ""
-     }
-    },
-    "required": []
-   },
-   "request": {
-    "method": "PUT",
-    "url": "https://api.streak.com/api/v1/apikeys",
-    "path": [],
-    "query": [
-     "teamKey"
-    ],
-    "header": [],
-    "body": [],
     "body_format": "json"
    }
   }

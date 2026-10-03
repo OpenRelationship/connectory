@@ -5,8 +5,8 @@
  "operations": [
   {
    "slug": "scrollstash-mcp.ads_by_brand",
-   "name": "A brand's attributed ads (brand ad map), newest start first",
-   "description": "A brand's attributed ads (brand_ad_map), newest start first. Scope `ads:read`; cache `hourly`.",
+   "name": "A brand's attributed ads, newest start first  `body chars` cuts each `body text` to that many characters and sets `body truncated` on every row",
+   "description": "A brand's attributed ads, newest start first. `body_chars` cuts each `body_text` to that many characters and sets `body_truncated` on every row. Scope `ads:read`; cache `hourly`.",
    "input": {
     "type": "object",
     "properties": {
@@ -40,6 +40,10 @@
        "dco",
        "other"
       ]
+     },
+     "body_chars": {
+      "type": "integer",
+      "description": ""
      }
     },
     "required": [
@@ -56,7 +60,8 @@
      "limit",
      "cursor",
      "status",
-     "format"
+     "format",
+     "body_chars"
     ],
     "header": [],
     "body": [],
@@ -781,6 +786,168 @@
    }
   },
   {
+   "slug": "scrollstash-mcp.brands_copy_reuse",
+   "name": "Ad body texts the brand runs that pages outside its linked set also run \u2014 at most twelve, by foreign ads",
+   "description": "Ad body texts the brand runs that pages outside its linked set also run \u2014 at most twelve, by foreign ads. Scope `brands:read`; cache `daily`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "brandId": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "brandId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://mcp.scrollstash.com/v1/brands/{brandId}/copy-reuse",
+    "path": [
+     "brandId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "scrollstash-mcp.brands_creative_libraries",
+   "name": "Brands creative library for many brands in one read: each brand's sample of active ads with stored media and its totals over every active ad, as brands creative library answers them  every public brand asked is answered, in the order asked",
+   "description": "brands.creativeLibrary for many brands in one read: each brand's sample of active ads with stored media and its totals over every active ad, as brands.creativeLibrary answers them. Every public brand asked is answered, in the order asked. Scope `brands:read`; cache `daily`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "brands": {
+      "type": "string",
+      "description": ""
+     },
+     "sample": {
+      "type": "integer",
+      "description": ""
+     }
+    },
+    "required": [
+     "brands"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://mcp.scrollstash.com/v1/brand-creative-library",
+    "path": [],
+    "query": [
+     "brands",
+     "sample"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "scrollstash-mcp.brands_creative_library",
+   "name": "A sample of the brand's active ads with stored media (half the longest running, half the newest; at most `sample`, answered as sample cap), plus format, cta and longevity totals over every active ad",
+   "description": "A sample of the brand's active ads with stored media (half the longest-running, half the newest; at most `sample`, answered as sample_cap), plus format, CTA and longevity totals over every active ad. Scope `brands:read`; cache `daily`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "brandId": {
+      "type": "string",
+      "description": ""
+     },
+     "sample": {
+      "type": "integer",
+      "description": ""
+     }
+    },
+    "required": [
+     "brandId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://mcp.scrollstash.com/v1/brands/{brandId}/creative-library",
+    "path": [
+     "brandId"
+    ],
+    "query": [
+     "sample"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "scrollstash-mcp.brands_daily_activities",
+   "name": "Brands daily activity for many brands in one read: each brand's daily active, new and retired ads, oldest first  every public brand asked is answered, in the order asked; `days: []` means no observed day",
+   "description": "brands.dailyActivity for many brands in one read: each brand's daily active, new and retired ads, oldest first. Every public brand asked is answered, in the order asked; `days: []` means no observed day. Scope `brands:read`; cache `daily`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "brands": {
+      "type": "string",
+      "description": ""
+     },
+     "days": {
+      "type": "integer",
+      "description": ""
+     }
+    },
+    "required": [
+     "brands"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://mcp.scrollstash.com/v1/brand-daily-activity",
+    "path": [],
+    "query": [
+     "brands",
+     "days"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "scrollstash-mcp.brands_daily_activity",
+   "name": "Daily active, new and retired ads for one brand, oldest first  unreliable days carry reliable:false (draw a gap); days never observed are absent, not zero",
+   "description": "Daily active, new and retired ads for one brand, oldest first. Unreliable days carry reliable:false (draw a gap); days never observed are absent, not zero. Scope `brands:read`; cache `daily`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "brandId": {
+      "type": "string",
+      "description": ""
+     },
+     "days": {
+      "type": "integer",
+      "description": ""
+     }
+    },
+    "required": [
+     "brandId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://mcp.scrollstash.com/v1/brands/{brandId}/daily-activity",
+    "path": [
+     "brandId"
+    ],
+    "query": [
+     "days"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "scrollstash-mcp.brands_demographics",
    "name": "Similarweb audience gender and age shares for the brand's domain",
    "description": "Similarweb audience gender and age shares for the brand's domain. Scope `brands:read`; cache `daily`.",
@@ -809,6 +976,34 @@
    }
   },
   {
+   "slug": "scrollstash-mcp.brands_facebook_pages",
+   "name": "Facebook pages linked to the brand with their servable role (quarantined links dropped, unservable claims as unverified), followers and ad counts, most ads first",
+   "description": "Facebook pages linked to the brand with their servable role (quarantined links dropped, unservable claims as UNVERIFIED), followers and ad counts, most ads first. Scope `brands:read`; cache `daily`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "brandId": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "brandId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://mcp.scrollstash.com/v1/brands/{brandId}/facebook-pages",
+    "path": [
+     "brandId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "scrollstash-mcp.brands_get",
    "name": "One brand (by id or slug) with its current ad statistics",
    "description": "One brand (by id or slug) with its current ad statistics. Scope `brands:read`; cache `daily`.",
@@ -827,6 +1022,34 @@
    "request": {
     "method": "GET",
     "url": "https://mcp.scrollstash.com/v1/brands/{brandId}",
+    "path": [
+     "brandId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "scrollstash-mcp.brands_leakage",
+   "name": "How many of the brand's active ads run on pages it does not own: totals over every page, and the ten largest third party pages",
+   "description": "How many of the brand's active ads run on pages it does not own: totals over every page, and the ten largest third-party pages. Scope `brands:read`; cache `daily`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "brandId": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "brandId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://mcp.scrollstash.com/v1/brands/{brandId}/leakage",
     "path": [
      "brandId"
     ],
@@ -898,6 +1121,104 @@
    }
   },
   {
+   "slug": "scrollstash-mcp.brands_network",
+   "name": "The shared page network of one brand (it and its direct neighbours) or of one category (its public brands): brands, brand to brand links with their confidence and shared page count, and how many brands in a category have no link  ownership claims are not part of it",
+   "description": "The shared-page network of one brand (it and its direct neighbours) or of one category (its public brands): brands, brand-to-brand links with their confidence and shared page count, and how many brands in a category have no link. Ownership claims are not part of it. Scope `brands:read`; cache `daily`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "brand_id": {
+      "type": "string",
+      "description": ""
+     },
+     "category_id": {
+      "type": "string",
+      "description": ""
+     },
+     "min_confidence": {
+      "type": "number",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://mcp.scrollstash.com/v1/brand-network",
+    "path": [],
+    "query": [
+     "brand_id",
+     "category_id",
+     "min_confidence"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "scrollstash-mcp.brands_partnerships",
+   "name": "Creators the brand ran branded content with in the last 365 days, both directions, merged per creator, most ads first",
+   "description": "Creators the brand ran branded content with in the last 365 days, both directions, merged per creator, most ads first. Scope `brands:read`; cache `daily`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "brandId": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "brandId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://mcp.scrollstash.com/v1/brands/{brandId}/partnerships",
+    "path": [
+     "brandId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "scrollstash-mcp.brands_shop",
+   "name": "The brand's store on shop (shop com, shopify's shopping app), as read from its public store page: the store's shop ratings and reviews, the social and contact links it declares, its business address and retail locations, its top products in shop's best seller order with price, compare at price and rating, and the brand kit the store publishes (colours, and logo, avatar, cover and wordmark copied to our cdn)  the rank is a position, never a sales number; emails and phone numbers are not served  a brand with no linked store answers status not collected",
+   "description": "The brand's store on Shop (shop.com, Shopify's shopping app), as read from its public store page: the store's Shop ratings and reviews, the social and contact links it declares, its business address and retail locations, its top products in Shop's best-seller order with price, compare-at price and rating, and the brand kit the store publishes (colours, and logo, avatar, cover and wordmark copied t",
+   "input": {
+    "type": "object",
+    "properties": {
+     "brandId": {
+      "type": "string",
+      "description": ""
+     },
+     "max_products": {
+      "type": "integer",
+      "description": ""
+     }
+    },
+    "required": [
+     "brandId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://mcp.scrollstash.com/v1/brands/{brandId}/shop",
+    "path": [
+     "brandId"
+    ],
+    "query": [
+     "max_products"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "scrollstash-mcp.brands_similar",
    "name": "Sites similarweb rates as similar to this brand, by affinity, linked to tracked brands",
    "description": "Sites Similarweb rates as similar to this brand, by affinity, linked to tracked brands. Scope `brands:read`; cache `daily`.",
@@ -933,8 +1254,8 @@
   },
   {
    "slug": "scrollstash-mcp.brands_sitemap",
-   "name": "Indexable brand pages for sitemap generation (slug, url, last update), optionally within a category at any level",
-   "description": "Indexable brand pages for sitemap generation (slug, url, last update), optionally within a category at any level. Scope `brands:read`; cache `daily`.",
+   "name": "Indexable brand pages for sitemap generation (slug, url, last update), optionally within a category at any level  with `similar min`, only brands with at least that many similarweb similar sites, most similar sites first",
+   "description": "Indexable brand pages for sitemap generation (slug, url, last update), optionally within a category at any level. With `similar_min`, only brands with at least that many Similarweb similar sites, most similar sites first. Scope `brands:read`; cache `daily`.",
    "input": {
     "type": "object",
     "properties": {
@@ -949,6 +1270,10 @@
      "category_id": {
       "type": "string",
       "description": ""
+     },
+     "similar_min": {
+      "type": "integer",
+      "description": ""
      }
     },
     "required": []
@@ -960,7 +1285,70 @@
     "query": [
      "limit",
      "cursor",
-     "category_id"
+     "category_id",
+     "similar_min"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "scrollstash-mcp.brands_split_tests",
+   "name": "The testing tools installed on the brand's site and every test observed on their accounts: type, state and its basis, arms with configured allocations, the pages each acts on with the brand's active ads there, and the category's test type profile  configured and observed: it never says which arm did better  no price or shipping amount is served \u2014 a price test says it is one",
+   "description": "The testing tools installed on the brand's site and every test observed on their accounts: type, state and its basis, arms with configured allocations, the pages each acts on with the brand's active ads there, and the category's test-type profile. Configured and observed: it never says which arm did better. No price or shipping amount is served \u2014 a price test says it is one. Scope `brands:read`; c",
+   "input": {
+    "type": "object",
+    "properties": {
+     "brandId": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "brandId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://mcp.scrollstash.com/v1/brands/{brandId}/split-tests",
+    "path": [
+     "brandId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "scrollstash-mcp.brands_store",
+   "name": "The brand's public shopify catalog as last read: the latest scan's contract (only an exhausted enumeration is the whole feed), products with variants, listed prices and the available flag as published, and twelve weeks of observed changes  a brand never scanned answers status not collected, never an empty catalog",
+   "description": "The brand's public Shopify catalog as last read: the latest scan's contract (only an exhausted enumeration is the whole feed), products with variants, listed prices and the available flag as published, and twelve weeks of observed changes. A brand never scanned answers status not_collected, never an empty catalog. Scope `brands:read`; cache `daily`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "brandId": {
+      "type": "string",
+      "description": ""
+     },
+     "max_products": {
+      "type": "integer",
+      "description": ""
+     }
+    },
+    "required": [
+     "brandId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://mcp.scrollstash.com/v1/brands/{brandId}/store",
+    "path": [
+     "brandId"
+    ],
+    "query": [
+     "max_products"
     ],
     "header": [],
     "body": [],
@@ -996,9 +1384,76 @@
    }
   },
   {
+   "slug": "scrollstash-mcp.brands_thumbs",
+   "name": "Up to four of each brand's newest live creatives with a stored image or poster  every brand asked is answered; an empty list means none is stored",
+   "description": "Up to four of each brand's newest live creatives with a stored image or poster. Every brand asked is answered; an empty list means none is stored. Scope `brands:read`; cache `daily`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "brands": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "brands"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://mcp.scrollstash.com/v1/brand-thumbs",
+    "path": [],
+    "query": [
+     "brands"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "scrollstash-mcp.brands_tiktok_shop",
+   "name": "The brand's tik tok shop sales (us), from tik tok's public units sold counters read daily: per linked shop, units sold per utc day (exact, from the shop's own counter) and a gmv estimate as a low high band from the prices listed that day, with the top tracked products  never revenue: the counter excludes returned items and the page shows today's prices  history starts at the first read  a brand with no linked shop, or one not yet read on two days, answers status not collected, never zero sales",
+   "description": "The brand's TikTok Shop sales (US), from TikTok's public units-sold counters read daily: per linked shop, units sold per UTC day (exact, from the shop's own counter) and a GMV ESTIMATE as a low-high band from the prices listed that day, with the top tracked products. Never revenue: the counter excludes returned items and the page shows today's prices. History starts at the first read. A brand with",
+   "input": {
+    "type": "object",
+    "properties": {
+     "brandId": {
+      "type": "string",
+      "description": ""
+     },
+     "days": {
+      "type": "integer",
+      "description": ""
+     },
+     "max_products": {
+      "type": "integer",
+      "description": ""
+     }
+    },
+    "required": [
+     "brandId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://mcp.scrollstash.com/v1/brands/{brandId}/tiktok-shop",
+    "path": [
+     "brandId"
+    ],
+    "query": [
+     "days",
+     "max_products"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "scrollstash-mcp.brands_track",
-   "name": "Track a brand in a workspace; the scraper hand off happens asynchronously",
-   "description": "Track a brand in a workspace; the scraper hand-off happens asynchronously. Scope `tracking:write`; cache `none`.",
+   "name": "Track a brand in a workspace; collection starts asynchronously",
+   "description": "Track a brand in a workspace; collection starts asynchronously. Scope `tracking:write`; cache `none`.",
    "input": {
     "type": "object",
     "properties": {
@@ -1080,8 +1535,8 @@
   },
   {
    "slug": "scrollstash-mcp.brands_tracked_freshness",
-   "name": "Freshness slo status of the workspace's tracked brands, most overdue first: the last reliable scrape session, when the next is due, and whether the cadence's slo is breached",
-   "description": "Freshness SLO status of the workspace's tracked brands, most overdue first: the last reliable scrape session, when the next is due, and whether the cadence's SLO is breached. Scope `brands:read`; cache `none`.",
+   "name": "Freshness slo status of the workspace's tracked brands, most overdue first: the last reliable read, when the next is due, and whether the cadence's slo is breached",
+   "description": "Freshness SLO status of the workspace's tracked brands, most overdue first: the last reliable read, when the next is due, and whether the cadence's SLO is breached. Scope `brands:read`; cache `none`.",
    "input": {
     "type": "object",
     "properties": {
@@ -1163,6 +1618,39 @@
      "brandId"
     ],
     "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "scrollstash-mcp.brands_velocities",
+   "name": "Brands velocity for many brands in one read: each brand's weekly ad counts, as brands velocity answers them  every public brand asked is answered, in the order asked; `weeks: []` means no observed week",
+   "description": "brands.velocity for many brands in one read: each brand's weekly ad counts, as brands.velocity answers them. Every public brand asked is answered, in the order asked; `weeks: []` means no observed week. Scope `brands:read`; cache `daily`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "brands": {
+      "type": "string",
+      "description": ""
+     },
+     "weeks": {
+      "type": "integer",
+      "description": ""
+     }
+    },
+    "required": [
+     "brands"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://mcp.scrollstash.com/v1/brand-velocity",
+    "path": [],
+    "query": [
+     "brands",
+     "weeks"
+    ],
     "header": [],
     "body": [],
     "body_format": "json"
@@ -1445,6 +1933,514 @@
    }
   },
   {
+   "slug": "scrollstash-mcp.collections_add_item",
+   "name": "Add an item to a collection; adding one already there changes nothing",
+   "description": "Add an item to a collection; adding one already there changes nothing. Scope `collections:write`; cache `none`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "ws": {
+      "type": "string",
+      "description": ""
+     },
+     "collectionId": {
+      "type": "string",
+      "description": ""
+     },
+     "item_type": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "brand",
+       "ad",
+       "creative",
+       "landing_page"
+      ]
+     },
+     "item_key": {
+      "type": "string",
+      "description": ""
+     },
+     "snapshot": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "collectionId",
+     "item_key",
+     "item_type",
+     "ws"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://mcp.scrollstash.com/v1/workspaces/{ws}/collections/{collectionId}/items",
+    "path": [
+     "ws",
+     "collectionId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "item_type",
+     "item_key",
+     "snapshot"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "scrollstash-mcp.collections_create",
+   "name": "Create a collection, optionally inside a folder and with a first item",
+   "description": "Create a collection, optionally inside a folder and with a first item. Scope `collections:write`; cache `none`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "ws": {
+      "type": "string",
+      "description": ""
+     },
+     "name": {
+      "type": "string",
+      "description": ""
+     },
+     "description": {
+      "type": "string",
+      "description": ""
+     },
+     "parent_id": {
+      "type": "string",
+      "description": ""
+     },
+     "visibility": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "workspace",
+       "private"
+      ]
+     },
+     "first_item": {
+      "type": "object",
+      "description": ""
+     }
+    },
+    "required": [
+     "name",
+     "ws"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://mcp.scrollstash.com/v1/workspaces/{ws}/collections",
+    "path": [
+     "ws"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "description",
+     "parent_id",
+     "visibility",
+     "first_item"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "scrollstash-mcp.collections_delete",
+   "name": "Delete a collection and every collection inside it",
+   "description": "Delete a collection and every collection inside it. Scope `collections:write`; cache `none`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "ws": {
+      "type": "string",
+      "description": ""
+     },
+     "collectionId": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "collectionId",
+     "ws"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://mcp.scrollstash.com/v1/workspaces/{ws}/collections/{collectionId}",
+    "path": [
+     "ws",
+     "collectionId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "scrollstash-mcp.collections_list",
+   "name": "The workspace's collections with their items, most recently changed first  private boards appear only to their creator and editors",
+   "description": "The workspace's collections with their items, most recently changed first. Private boards appear only to their creator and editors. Scope `collections:read`; cache `none`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "ws": {
+      "type": "string",
+      "description": ""
+     },
+     "limit": {
+      "type": "integer",
+      "description": ""
+     },
+     "cursor": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "ws"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://mcp.scrollstash.com/v1/workspaces/{ws}/collections",
+    "path": [
+     "ws"
+    ],
+    "query": [
+     "limit",
+     "cursor"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "scrollstash-mcp.collections_remove_item",
+   "name": "Remove an item from a collection; answers removed:false when it was not there",
+   "description": "Remove an item from a collection; answers removed:false when it was not there. Scope `collections:write`; cache `none`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "ws": {
+      "type": "string",
+      "description": ""
+     },
+     "collectionId": {
+      "type": "string",
+      "description": ""
+     },
+     "itemType": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "brand",
+       "ad",
+       "creative",
+       "landing_page"
+      ]
+     },
+     "itemKey": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "collectionId",
+     "itemKey",
+     "itemType",
+     "ws"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://mcp.scrollstash.com/v1/workspaces/{ws}/collections/{collectionId}/items/{itemType}/{itemKey}",
+    "path": [
+     "ws",
+     "collectionId",
+     "itemType",
+     "itemKey"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "scrollstash-mcp.collections_save",
+   "name": "Save an item; saving one already saved changes nothing",
+   "description": "Save an item; saving one already saved changes nothing. Scope `collections:write`; cache `none`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "ws": {
+      "type": "string",
+      "description": ""
+     },
+     "item_type": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "brand",
+       "ad",
+       "creative",
+       "landing_page"
+      ]
+     },
+     "item_key": {
+      "type": "string",
+      "description": ""
+     },
+     "snapshot": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "item_key",
+     "item_type",
+     "ws"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://mcp.scrollstash.com/v1/workspaces/{ws}/saved",
+    "path": [
+     "ws"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "item_type",
+     "item_key",
+     "snapshot"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "scrollstash-mcp.collections_saved",
+   "name": "The workspace's saved items, newest first, optionally of one type",
+   "description": "The workspace's saved items, newest first, optionally of one type. Scope `collections:read`; cache `none`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "ws": {
+      "type": "string",
+      "description": ""
+     },
+     "item_type": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "brand",
+       "ad",
+       "creative",
+       "landing_page"
+      ]
+     },
+     "limit": {
+      "type": "integer",
+      "description": ""
+     },
+     "cursor": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "ws"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://mcp.scrollstash.com/v1/workspaces/{ws}/saved",
+    "path": [
+     "ws"
+    ],
+    "query": [
+     "item_type",
+     "limit",
+     "cursor"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "scrollstash-mcp.collections_unsave",
+   "name": "Unsave an item; answers removed:false when it was not saved",
+   "description": "Unsave an item; answers removed:false when it was not saved. Scope `collections:write`; cache `none`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "ws": {
+      "type": "string",
+      "description": ""
+     },
+     "itemType": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "brand",
+       "ad",
+       "creative",
+       "landing_page"
+      ]
+     },
+     "itemKey": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "itemKey",
+     "itemType",
+     "ws"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://mcp.scrollstash.com/v1/workspaces/{ws}/saved/{itemType}/{itemKey}",
+    "path": [
+     "ws",
+     "itemType",
+     "itemKey"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "scrollstash-mcp.collections_update",
+   "name": "Rename, describe, move, or change who can see and edit a collection",
+   "description": "Rename, describe, move, or change who can see and edit a collection. Scope `collections:write`; cache `none`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "ws": {
+      "type": "string",
+      "description": ""
+     },
+     "collectionId": {
+      "type": "string",
+      "description": ""
+     },
+     "name": {
+      "type": "string",
+      "description": ""
+     },
+     "description": {
+      "type": "string",
+      "description": ""
+     },
+     "parent_id": {
+      "type": "string",
+      "description": ""
+     },
+     "visibility": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "workspace",
+       "private"
+      ]
+     },
+     "editor_ids": {
+      "type": "array",
+      "description": ""
+     }
+    },
+    "required": [
+     "collectionId",
+     "ws"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://mcp.scrollstash.com/v1/workspaces/{ws}/collections/{collectionId}",
+    "path": [
+     "ws",
+     "collectionId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "description",
+     "parent_id",
+     "visibility",
+     "editor_ids"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "scrollstash-mcp.creatives_coverage",
+   "name": "How far the pipeline has taken a brand's creative files (or every public brand's), against its measured file count, and each closed field's values over the described files \u2014 the denominators every creative share is printed with",
+   "description": "How far the pipeline has taken a brand's creative files (or every public brand's), against its measured file count, and each closed field's values over the described files \u2014 the denominators every creative share is printed with. Scope `creatives:read`; cache `daily`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "brand_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://mcp.scrollstash.com/v1/creative-coverage",
+    "path": [],
+    "query": [
+     "brand_id"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "scrollstash-mcp.creatives_coverages",
+   "name": "Creatives coverage for many brands in one read: each brand's coverage as creatives coverage answers it  every public brand asked is answered, in the order asked",
+   "description": "creatives.coverage for many brands in one read: each brand's coverage as creatives.coverage answers it. Every public brand asked is answered, in the order asked. Scope `creatives:read`; cache `daily`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "brands": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "brands"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://mcp.scrollstash.com/v1/brand-creative-coverage",
+    "path": [],
+    "query": [
+     "brands"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "scrollstash-mcp.creatives_for_ad",
    "name": "Every archived creative asset of one ad",
    "description": "Every archived creative asset of one ad. Scope `creatives:read`; cache `daily`.",
@@ -1542,6 +2538,257 @@
    }
   },
   {
+   "slug": "scrollstash-mcp.creatives_record",
+   "name": "One creative record by its key or a prefix of at least ten characters: media facts with frame times, the transcript with corrections, the classification, and the corpus join (ads carrying it, live ads, first start, landing page, creator run)  an ambiguous prefix is a conflict",
+   "description": "One creative record by its key or a prefix of at least ten characters: media facts with frame times, the transcript with corrections, the classification, and the corpus join (ads carrying it, live ads, first start, landing page, creator-run). An ambiguous prefix is a conflict. Scope `creatives:read`; cache `daily`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "creativeKey": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "creativeKey"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://mcp.scrollstash.com/v1/creative-records/{creativeKey}",
+    "path": [
+     "creativeKey"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "scrollstash-mcp.creatives_records",
+   "name": "Creatives record for many creatives in one read, by full key: each record as creatives record answers it, in the order asked  a key no stage holds yet, or whose brand is not public, is left out",
+   "description": "creatives.record for many creatives in one read, by full key: each record as creatives.record answers it, in the order asked. A key no stage holds yet, or whose brand is not public, is left out. Scope `creatives:read`; cache `daily`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "keys": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "keys"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://mcp.scrollstash.com/v1/creative-records/batch",
+    "path": [],
+    "query": [
+     "keys"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "scrollstash-mcp.creatives_search",
+   "name": "Search creative records (one per stored file, not per ad) by brand, analysis depth, media kind, any of the values of each closed field, words said or written on screen, and numeric ranges; most live ads first  counts are ads carrying a file, never spend",
+   "description": "Search creative records (one per stored file, not per ad) by brand, analysis depth, media kind, any of the values of each closed field, words said or written on screen, and numeric ranges; most live ads first. Counts are ads carrying a file, never spend. Scope `creatives:read`; cache `daily`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "limit": {
+      "type": "integer",
+      "description": ""
+     },
+     "cursor": {
+      "type": "string",
+      "description": ""
+     },
+     "brand_id": {
+      "type": "string",
+      "description": ""
+     },
+     "depth": {
+      "type": "array",
+      "description": ""
+     },
+     "kind": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "video",
+       "image"
+      ]
+     },
+     "audience_gender": {
+      "type": "array",
+      "description": ""
+     },
+     "audience_life_stage": {
+      "type": "array",
+      "description": ""
+     },
+     "desire": {
+      "type": "array",
+      "description": ""
+     },
+     "awareness": {
+      "type": "array",
+      "description": ""
+     },
+     "hook_trigger": {
+      "type": "array",
+      "description": ""
+     },
+     "lead_type": {
+      "type": "array",
+      "description": ""
+     },
+     "narrative_form": {
+      "type": "array",
+      "description": ""
+     },
+     "emotional_driver": {
+      "type": "array",
+      "description": ""
+     },
+     "format": {
+      "type": "array",
+      "description": ""
+     },
+     "production": {
+      "type": "array",
+      "description": ""
+     },
+     "offer_type": {
+      "type": "array",
+      "description": ""
+     },
+     "stage": {
+      "type": "array",
+      "description": ""
+     },
+     "said": {
+      "type": "string",
+      "description": ""
+     },
+     "on_screen": {
+      "type": "string",
+      "description": ""
+     },
+     "q": {
+      "type": "string",
+      "description": ""
+     },
+     "brand_said_s_min": {
+      "type": "number",
+      "description": ""
+     },
+     "brand_said_s_max": {
+      "type": "number",
+      "description": ""
+     },
+     "product_shown_s_min": {
+      "type": "number",
+      "description": ""
+     },
+     "product_shown_s_max": {
+      "type": "number",
+      "description": ""
+     },
+     "length_s_min": {
+      "type": "number",
+      "description": ""
+     },
+     "length_s_max": {
+      "type": "number",
+      "description": ""
+     },
+     "running_days_min": {
+      "type": "integer",
+      "description": ""
+     },
+     "running_days_max": {
+      "type": "integer",
+      "description": ""
+     },
+     "ads_min": {
+      "type": "integer",
+      "description": ""
+     },
+     "ads_max": {
+      "type": "integer",
+      "description": ""
+     },
+     "confidence_min": {
+      "type": "number",
+      "description": ""
+     },
+     "confidence_max": {
+      "type": "number",
+      "description": ""
+     },
+     "sort": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "ads",
+       "newest",
+       "running"
+      ]
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://mcp.scrollstash.com/v1/creative-records",
+    "path": [],
+    "query": [
+     "limit",
+     "cursor",
+     "brand_id",
+     "depth",
+     "kind",
+     "audience_gender",
+     "audience_life_stage",
+     "desire",
+     "awareness",
+     "hook_trigger",
+     "lead_type",
+     "narrative_form",
+     "emotional_driver",
+     "format",
+     "production",
+     "offer_type",
+     "stage",
+     "said",
+     "on_screen",
+     "q",
+     "brand_said_s_min",
+     "brand_said_s_max",
+     "product_shown_s_min",
+     "product_shown_s_max",
+     "length_s_min",
+     "length_s_max",
+     "running_days_min",
+     "running_days_max",
+     "ads_min",
+     "ads_max",
+     "confidence_min",
+     "confidence_max",
+     "sort"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "scrollstash-mcp.me_get",
    "name": "The caller's workspace, role, plan and granted scopes",
    "description": "The caller's workspace, role, plan and granted scopes. Scope `me:read`; cache `none`.",
@@ -1557,6 +2804,148 @@
     "query": [],
     "header": [],
     "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "scrollstash-mcp.notes_delete",
+   "name": "Delete a note; answers removed:false when it did not exist",
+   "description": "Delete a note; answers removed:false when it did not exist. Scope `notes:write`; cache `none`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "ws": {
+      "type": "string",
+      "description": ""
+     },
+     "noteId": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "noteId",
+     "ws"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://mcp.scrollstash.com/v1/workspaces/{ws}/notes/{noteId}",
+    "path": [
+     "ws",
+     "noteId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "scrollstash-mcp.notes_list",
+   "name": "The workspace's notes, most recently edited first, optionally on one subject type or one subject",
+   "description": "The workspace's notes, most recently edited first, optionally on one subject type or one subject. Scope `notes:read`; cache `none`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "ws": {
+      "type": "string",
+      "description": ""
+     },
+     "subject_type": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "brand",
+       "ad",
+       "creative",
+       "collection"
+      ]
+     },
+     "subject_id": {
+      "type": "string",
+      "description": ""
+     },
+     "limit": {
+      "type": "integer",
+      "description": ""
+     },
+     "cursor": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "ws"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://mcp.scrollstash.com/v1/workspaces/{ws}/notes",
+    "path": [
+     "ws"
+    ],
+    "query": [
+     "subject_type",
+     "subject_id",
+     "limit",
+     "cursor"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "scrollstash-mcp.notes_put",
+   "name": "Write the caller's note on a subject: creates it, or replaces the caller's existing note on that subject",
+   "description": "Write the caller's note on a subject: creates it, or replaces the caller's existing note on that subject. Scope `notes:write`; cache `none`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "ws": {
+      "type": "string",
+      "description": ""
+     },
+     "subject_type": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "brand",
+       "ad",
+       "creative",
+       "collection"
+      ]
+     },
+     "subject_id": {
+      "type": "string",
+      "description": ""
+     },
+     "body": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "body",
+     "subject_id",
+     "subject_type",
+     "ws"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://mcp.scrollstash.com/v1/workspaces/{ws}/notes",
+    "path": [
+     "ws"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "subject_type",
+     "subject_id",
+     "body"
+    ],
     "body_format": "json"
    }
   },
@@ -1684,9 +3073,37 @@
    }
   },
   {
+   "slug": "scrollstash-mcp.pages_details",
+   "name": "Up to 100 landing pages with their page metadata and classification, by id  unknown or non public ids are left out",
+   "description": "Up to 100 landing pages with their page metadata and classification, by id. Unknown or non-public ids are left out. Scope `pages:read`; cache `daily`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "ids": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "ids"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://mcp.scrollstash.com/v1/page-details",
+    "path": [],
+    "query": [
+     "ids"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "scrollstash-mcp.pages_get",
-   "name": "One landing page with its scraped metadata and classification",
-   "description": "One landing page with its scraped metadata and classification. Scope `pages:read`; cache `daily`.",
+   "name": "One landing page with its page metadata and classification",
+   "description": "One landing page with its page metadata and classification. Scope `pages:read`; cache `daily`.",
    "input": {
     "type": "object",
     "properties": {
@@ -1787,8 +3204,8 @@
   },
   {
    "slug": "scrollstash-mcp.radar_feed",
-   "name": "Observed ad changes across the workspace's tracked brands in the last `days` days, newest first: ads started, ads the scraper confirmed inactive, and ads whose destination link changed",
-   "description": "Observed ad changes across the workspace's tracked brands in the last `days` days, newest first: ads started, ads the scraper confirmed inactive, and ads whose destination link changed. Scope `tracking:read`; cache `none`.",
+   "name": "Observed ad changes across the workspace's tracked brands in the last `days` days, newest first: ads started, ads confirmed inactive, and ads whose destination link changed",
+   "description": "Observed ad changes across the workspace's tracked brands in the last `days` days, newest first: ads started, ads confirmed inactive, and ads whose destination link changed. Scope `tracking:read`; cache `none`.",
    "input": {
     "type": "object",
     "properties": {
@@ -2141,8 +3558,8 @@
   },
   {
    "slug": "scrollstash-mcp.system_freshness",
-   "name": "Corpus size, last scrape time and per category coverage",
-   "description": "Corpus size, last scrape time and per-category coverage. Scope `system:read`; cache `hourly`.",
+   "name": "Corpus size, last read time and per category coverage",
+   "description": "Corpus size, last read time and per-category coverage. Scope `system:read`; cache `hourly`.",
    "input": {
     "type": "object",
     "properties": {},
@@ -2261,6 +3678,25 @@
      "limit",
      "cursor"
     ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "scrollstash-mcp.tools_testing_census",
+   "name": "Every a b testing tool: public brands with it installed, how many of those a collector has read, how many run at least one experiment, and whether we read the tool at all (null counts mean not read, never zero)  personalizations and rollouts are not counted as tests",
+   "description": "Every A/B-testing tool: public brands with it installed, how many of those a collector has read, how many run at least one experiment, and whether we read the tool at all (null counts mean not read, never zero). Personalizations and rollouts are not counted as tests. Scope `tools:read`; cache `daily`.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://mcp.scrollstash.com/v1/split-test-census",
+    "path": [],
+    "query": [],
     "header": [],
     "body": [],
     "body_format": "json"

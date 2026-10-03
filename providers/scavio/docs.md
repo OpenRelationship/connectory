@@ -140,7 +140,6 @@ the exceptions are stated per platform below.
 - `POST /api/v1/pinterest/user/boards`
 
 #### Weibo
-- `POST /api/v1/weibo/channel-feed`
 - `POST /api/v1/weibo/hot-search`
 - `POST /api/v1/weibo/hot-search/index`
 - `POST /api/v1/weibo/post`
@@ -667,6 +666,7 @@ Arcade, Agno (in core), and OpenClaw skills.
 - https://scavio.dev/docs/walmart-offers
 - https://scavio.dev/docs/walmart-seller
 - https://scavio.dev/docs/walmart-seller-products
+- https://scavio.dev/docs/walmart-stores
 
 ### eBay
 - https://scavio.dev/docs/ebay-search

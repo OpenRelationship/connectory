@@ -42,7 +42,7 @@ vouches for**: read it, then read their reference.
 - [Error codes](https://docs.loopreturns.com/api-reference/error-codes.md): Some error responses include a code indicating the specific reason for the error. Refer to the table of error codes below.
 - [Postman Collection](https://docs.loopreturns.com/api-reference/postman.md)
 - [Process Return](https://docs.loopreturns.com/api-reference/latest/return-actions/process-return.md): Process a return in Loop based on the return ID. Processing a return will archive it in Loop and fulfill any remaining outcomes, such as placing exchange orders or creating gift cards.
-- [Remove Line Items](https://docs.loopreturns.com/api-reference/latest/return-actions/remove-line-items.md): Remove line items from a return and process the return.
+- [Remove Line Items](https://docs.loopreturns.com/api-reference/latest/return-actions/remove-line-items.md): Remove one or more line items from an open return.
 - [Cancel Return](https://docs.loopreturns.com/api-reference/latest/return-actions/cancel-return.md): Cancel a return in Loop. Canceling a return will allow a customer to make another return with the same items.
 - [Flag Return](https://docs.loopreturns.com/api-reference/latest/return-actions/flag-return.md): Flag a return in Loop for review. This will prevent automated processing and will require a human to go into the merchant admin in Loop and review this return.
 - [Close Return](https://docs.loopreturns.com/api-reference/latest/return-actions/close-return.md): Close a return. Closing a return will not fulfill any outcomes such as exchanges or gift cards, and the items are not able to be used in a new return.
@@ -77,6 +77,7 @@ vouches for**: read it, then read their reference.
 - [Get Allowlist Item](https://docs.loopreturns.com/api-reference/latest/allowlist/get-allowlist-item.md): Retrieve an allowlist entry.
 - [Delete Allowlist Item](https://docs.loopreturns.com/api-reference/latest/allowlist/delete-allowlist-item.md): Delete an allowlist entry.
 - [Create Fraud Report](https://docs.loopreturns.com/api-reference/latest/return-actions/create-fraud-report.md): Attach a fraud report to a return.
+- [Look Up Order Return Eligibility by Order Name](https://docs.loopreturns.com/api-reference/latest/orders/look-up-order-return-eligibility.md): Report per-line-item return eligibility for an order, by its order name, without starting a return. Available to Shopify and Commerce Data merchants.
 - [Get Shipment Information](https://docs.loopreturns.com/api-reference/latest/happy-returns-shipment/get-shipment-information.md): Get high level information from a Happy Returns shipment.
 - [Get Shipments](https://docs.loopreturns.com/api-reference/latest/happy-returns-shipment/get-shipments.md): Get information about all Happy Returns shipments created within a given timeframe. The response is a paginated list of shipments, with up to 200 shipments per page.
 - [Get Shipment Items](https://docs.loopreturns.com/api-reference/latest/happy-returns-shipment-items/get-shipment-items.md): Get all items for a Happy Returns shipment.
@@ -85,7 +86,8 @@ vouches for**: read it, then read their reference.
 - [Create Label Request Error](https://docs.loopreturns.com/api-reference/latest/label-requests/create-a-label-request-error.md): Report a label generation failure against a label request.
 - [Create Label](https://docs.loopreturns.com/api-reference/latest/label-requests/create-label.md): Create a label for a label request.
 - [Generate Label](https://docs.loopreturns.com/api-reference/latest/label-requests/generate-label.md): Queue label generation for a return. This endpoint triggers an asynchronous label generation process for the specified return.
-- [Update Label Status](https://docs.loopreturns.com/api-reference/latest/label-requests/update-label-status.md): Update the status of the label.
+- [Update Label Status](https://docs.loopreturns.com/api-reference/latest/label-requests/update-label-status.md): Push a status update for a label. Required for carriers Loop doesn't track automatically. For supported carriers, Loop already tracks third-party labels and updates their status, so this call isn't needed. See the [Third Party Labels integration guide](/integration-guides/labels-integration) for det…
+- [Return Create Overview](https://docs.loopreturns.com/api-reference/latest/draft-returns/overview.md): Overview of the Return Create (Draft Returns) API.
 - [Get Draft Return](https://docs.loopreturns.com/api-reference/latest/draft-returns/get-draft-return.md): Retrieves the details of a draft return, including its current state, returning items, cart items, and available actions. The response includes the draft return data, context information, and any available actions based on the current state.
 - [Initialize Draft Return](https://docs.loopreturns.com/api-reference/latest/draft-returns/initialize-draft-return.md): Initialize a new draft return.
 - [Cancel Draft Return](https://docs.loopreturns.com/api-reference/latest/draft-returns/cancel-draft-return.md): Cancel a draft return.
@@ -177,6 +179,43 @@ vouches for**: read it, then read their reference.
 - [Happy Returns Shipment](https://docs.loopreturns.com/webhook-reference/topics/happy-returns-shipment-webhook.md)
 - [Gift card](https://docs.loopreturns.com/webhook-reference/topics/gift-card-webhook.md)
 - [Restock](https://docs.loopreturns.com/webhook-reference/topics/restock-webhook.md)
+- [Getting Started](https://docs.loopreturns.com/api-reference/getting-started.md)
+- [Authentication](https://docs.loopreturns.com/api-reference/authentication.md)
+- [API Versioning](https://docs.loopreturns.com/api-reference/versioning.md): How Loop versions its public API and what that means for your integration.
+- [Rate limit](https://docs.loopreturns.com/api-reference/rate-limit.md)
+- [Pagination](https://docs.loopreturns.com/api-reference/pagination.md)
+- [Error codes](https://docs.loopreturns.com/api-reference/error-codes.md): Some error responses include a code indicating the specific reason for the error. Refer to the table of error codes below.
+- [Postman Collection](https://docs.loopreturns.com/api-reference/postman.md)
+- [Draft Returns](https://docs.loopreturns.com/api-reference/unreleased/draft-returns/overview.md): Build a return-creation flow by managing draft returns through a state machine.
+- [List Draft Returns](https://docs.loopreturns.com/api-reference/unreleased/draft-returns/list-draft-returns.md): Returns a collection describing the draft-return actions available for the shop.
+- [Get Draft Return](https://docs.loopreturns.com/api-reference/unreleased/draft-returns/get-draft-return.md): Retrieves a draft return as a draft return.
+- [List Order Line Items](https://docs.loopreturns.com/api-reference/unreleased/draft-returns/list-order-line-items.md): Returns the order's line items in the context of the draft return, including return and warranty eligibility, available return reasons, variant details, and advanced-exchange options. Prices are integers in minor units (e.g. cents).
+- [Get Draft Return Totals](https://docs.loopreturns.com/api-reference/unreleased/draft-returns/get-draft-return-totals.md): Returns the computed monetary totals for the draft return. Money values are objects with an integer `amount` in minor units and a `currencyCode`.
+- [Initialize Draft Return](https://docs.loopreturns.com/api-reference/unreleased/draft-returns/initialize-draft-return.md): Initialize a new draft return and receive a response.
+- [Accept Return Policy](https://docs.loopreturns.com/api-reference/unreleased/draft-returns/accept-return-policy.md): Records the customer's acceptance of the return policy.
+- [Cancel Draft Return](https://docs.loopreturns.com/api-reference/unreleased/draft-returns/cancel-draft-return.md): Cancel a draft return. Cancelled draft returns can't be reopened.
+- [Set Customer](https://docs.loopreturns.com/api-reference/unreleased/draft-returns/set-customer.md): Sets the customer information for the draft return.
+- [Set Address](https://docs.loopreturns.com/api-reference/unreleased/draft-returns/set-address.md): Sets the return shipping address for the draft return.
+- [Add Returning Item](https://docs.loopreturns.com/api-reference/unreleased/draft-returns/add-returning-item.md): Adds a specific item to the draft return's ReturningItems.
+- [Remove Returning Item](https://docs.loopreturns.com/api-reference/unreleased/draft-returns/remove-returning-item.md): Removes a specific item from the draft return's ReturningItems.
+- [Set Returning Item Return Reason](https://docs.loopreturns.com/api-reference/unreleased/draft-returns/set-returning-item-return-reason.md): Sets the return reason for a specific returning item.
+- [Add Returning Item User Input](https://docs.loopreturns.com/api-reference/unreleased/draft-returns/add-returning-item-user-input.md): Adds user input for a specific returning item. This allows collecting additional information from the customer about their return.
+- [Set Returning Item Return Type](https://docs.loopreturns.com/api-reference/unreleased/draft-returns/set-returning-item-return-type.md): Sets the return type (credit or exchange) for a specific returning item.
+- [Add Returning Item Exchange Item](https://docs.loopreturns.com/api-reference/unreleased/draft-returns/add-returning-item-exchange-item.md): Adds an exchange item for a specific returning item to the cart.
+- [Add Cart Item](https://docs.loopreturns.com/api-reference/unreleased/draft-returns/add-cart-item.md): Adds an item to the draft return's cart.
+- [Remove Cart Item](https://docs.loopreturns.com/api-reference/unreleased/draft-returns/remove-cart-item.md): Removes a specific item from the draft return's cart.
+- [Set Credit Type](https://docs.loopreturns.com/api-reference/unreleased/draft-returns/set-credit-type.md): Sets the credit type for the draft return.
+- [Unset Credit Type](https://docs.loopreturns.com/api-reference/unreleased/draft-returns/unset-credit-type.md): Removes the credit type selection from the draft return.
+- [Finalize Items](https://docs.loopreturns.com/api-reference/unreleased/draft-returns/finalize-items.md): Finalizes the returning items and cart items of the draft return.
+- [Unfinalize Items](https://docs.loopreturns.com/api-reference/unreleased/draft-returns/unfinalize-items.md): Reopens the returning items and cart items of the draft return for modification.
+- [Select Return Method](https://docs.loopreturns.com/api-reference/unreleased/draft-returns/select-return-method.md): Selects a return method for the draft return.
+- [Select Return Method Carrier](https://docs.loopreturns.com/api-reference/unreleased/draft-returns/select-return-method-carrier.md): Selects the carrier label format for a previously selected return method.
+- [Set Language](https://docs.loopreturns.com/api-reference/unreleased/draft-returns/set-language.md): Sets the display language for the draft return.
+- [Set Presentment Currency](https://docs.loopreturns.com/api-reference/unreleased/draft-returns/set-presentment-currency.md): Sets the presentment currency for the draft return.
+- [Set Cart](https://docs.loopreturns.com/api-reference/unreleased/draft-returns/set-cart.md): Sets the entire cart for the draft return in a single request.
+- [Create Payment Intent](https://docs.loopreturns.com/api-reference/unreleased/draft-returns/create-payment-intent.md): Creates a payment intent for the draft return.
+- [Remove Payment Intent](https://docs.loopreturns.com/api-reference/unreleased/draft-returns/remove-payment-intent.md): Removes a payment intent from the draft return.
+- [Submit Draft Return](https://docs.loopreturns.com/api-reference/unreleased/draft-returns/submit-draft-return.md): Submits the draft return.
 
 ## OpenAPI Specs
 
@@ -205,5 +244,9 @@ vouches for**: read it, then read their reference.
 - [return-processing-webhook](/openapi/return-processing-webhook.yaml)
 - [return-webhook](/openapi/return-webhook.yaml)
 - [returns-api](/openapi/returns-api.yaml)
+- [ship-by-loop-api](/openapi/ship-by-loop-api.yaml)
+- [ship-by-loop-webhook](/openapi/ship-by-loop-webhook.yaml)
 
 ## Optional
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

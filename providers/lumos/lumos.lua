@@ -40,7 +40,7 @@ return {
     ["lumos.create_knowledge_context"] = { method = "POST", url = "https://api.lumos.com/v1/knowledge/context", body = {"title", "content", "generic_tags", "product_scopes", "file"} },
     ["lumos.create_order"] = { method = "POST", url = "https://api.lumos.com/orders", body = {"unique_identifier", "vendor", "start_date", "end_date", "opt_out_date", "auto_renewal", "currency", "line_items", "custom_attributes", "source_app_id"} },
     ["lumos.create_pre_approval_rule_appstore_pre_approval_rules_post"] = { method = "POST", url = "https://api.lumos.com/appstore/pre_approval_rules", body = {"justification", "time_based_access", "app_id", "preapproved_groups", "preapproved_permissions", "preapproved_users_by_attribute", "preapproval_webhooks"} },
-    ["lumos.create_user_offboarding"] = { method = "POST", url = "https://api.lumos.com/lifecycle-management/user-offboardings", body = {"user_id", "scheduled_at"} },
+    ["lumos.create_user_offboarding"] = { method = "POST", url = "https://api.lumos.com/lifecycle-management/user-offboardings", body = {"user_id", "scheduled_at", "workflow_config_id"} },
     ["lumos.current_user"] = { method = "GET", url = "https://api.lumos.com/users/current" },
     ["lumos.delete_access_policy"] = { method = "DELETE", url = "https://api.lumos.com/access_policies/{access_policy_id}", path = {"access_policy_id"} },
     ["lumos.delete_access_review"] = { method = "DELETE", url = "https://api.lumos.com/access_reviews/{access_review_id}", path = {"access_review_id"} },

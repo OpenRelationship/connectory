@@ -4,6 +4,68 @@
  "source": "https://docs.granola.ai/api-reference/openapi.json",
  "operations": [
   {
+   "slug": "granola.delete_v1_legal_holds_hold_id",
+   "name": "Release legal hold",
+   "description": "Releases a hold. Release is terminal: the hold is never deleted, there is no un-release, and a matter that reopens is a new hold. Releasing an already-released hold returns its original `released_at`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "hold_id": {
+      "type": "string",
+      "description": "The legal hold id"
+     }
+    },
+    "required": [
+     "hold_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://public-api.granola.ai/v1/legal-holds/{hold_id}",
+    "path": [
+     "hold_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "granola.delete_v1_legal_holds_hold_id_custodians_custodian_id",
+   "name": "Remove legal hold custodian",
+   "description": "Removes a custodian from a hold. The record of who was held survives: the entry is returned by the list endpoint with `removed_at` set. A custodian id that was never issued returns 404.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "hold_id": {
+      "type": "string",
+      "description": "The legal hold id"
+     },
+     "custodian_id": {
+      "type": "string",
+      "description": "The custodian entry id"
+     }
+    },
+    "required": [
+     "custodian_id",
+     "hold_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://public-api.granola.ai/v1/legal-holds/{hold_id}/custodians/{custodian_id}",
+    "path": [
+     "hold_id",
+     "custodian_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "granola.delete_v1_webhook_endpoints_webhook_endpoint_id",
    "name": "Delete webhook endpoint",
    "description": "Delete webhook endpoint",
@@ -99,6 +161,104 @@
     "method": "GET",
     "url": "https://public-api.granola.ai/v1/folders",
     "path": [],
+    "query": [
+     "cursor",
+     "page_size"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "granola.get_v1_legal_holds",
+   "name": "List legal holds",
+   "description": "Lists every legal hold in your workspace, newest first. Released holds are returned alongside active ones, each carrying `released_at`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "cursor": {
+      "type": "string",
+      "description": "The cursor to continue from"
+     },
+     "page_size": {
+      "type": "integer",
+      "description": "Maximum number of legal holds to return per page"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://public-api.granola.ai/v1/legal-holds",
+    "path": [],
+    "query": [
+     "cursor",
+     "page_size"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "granola.get_v1_legal_holds_hold_id",
+   "name": "Get legal hold",
+   "description": "Get legal hold",
+   "input": {
+    "type": "object",
+    "properties": {
+     "hold_id": {
+      "type": "string",
+      "description": "The legal hold id"
+     }
+    },
+    "required": [
+     "hold_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://public-api.granola.ai/v1/legal-holds/{hold_id}",
+    "path": [
+     "hold_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "granola.get_v1_legal_holds_hold_id_custodians",
+   "name": "List legal hold custodians",
+   "description": "Lists the users a hold names, oldest first. Removed custodians are returned alongside active ones, each carrying `removed_at`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "hold_id": {
+      "type": "string",
+      "description": "The legal hold id"
+     },
+     "cursor": {
+      "type": "string",
+      "description": "The cursor to continue from"
+     },
+     "page_size": {
+      "type": "integer",
+      "description": "Maximum number of custodians to return per page"
+     }
+    },
+    "required": [
+     "hold_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://public-api.granola.ai/v1/legal-holds/{hold_id}/custodians",
+    "path": [
+     "hold_id"
+    ],
     "query": [
      "cursor",
      "page_size"
@@ -255,6 +415,53 @@
    }
   },
   {
+   "slug": "granola.patch_v1_legal_holds_hold_id",
+   "name": "Update legal hold",
+   "description": "Renames or re-describes a hold, or widens and narrows its workspace-wide coverage. Toggling coverage never touches the custodians the hold names. A released hold cannot be updated.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "hold_id": {
+      "type": "string",
+      "description": "The legal hold id"
+     },
+     "name": {
+      "type": "string",
+      "description": "A new name for the matter"
+     },
+     "description": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "New free text for the matter, or null to clear it"
+     },
+     "covers_entire_workspace": {
+      "type": "boolean",
+      "description": "Whether the hold covers every member of your workspace. Toggling this never touches the custodians the hold names."
+     }
+    },
+    "required": [
+     "hold_id"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://public-api.granola.ai/v1/legal-holds/{hold_id}",
+    "path": [
+     "hold_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "description",
+     "covers_entire_workspace"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "granola.patch_v1_webhook_endpoints_webhook_endpoint_id",
    "name": "Update webhook endpoint",
    "description": "Update webhook endpoint",
@@ -304,6 +511,88 @@
      "events",
      "folder_ids",
      "enabled"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "granola.post_v1_legal_holds",
+   "name": "Create legal hold",
+   "description": "Places a named legal hold on custodians in your workspace. Granola preserves a custodian's notes, transcripts and attachments while any hold covering them is active. Custodians see no change in the product.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": "string",
+      "description": "A name for the matter this hold preserves"
+     },
+     "description": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Free text describing the matter"
+     },
+     "covers_entire_workspace": {
+      "type": "boolean",
+      "description": "Whether the hold covers every member of your workspace, current and future. Required: scope is never something a caller falls into."
+     },
+     "custodians": {
+      "type": "array",
+      "description": "Users to name individually when the hold is created"
+     }
+    },
+    "required": [
+     "covers_entire_workspace",
+     "name"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://public-api.granola.ai/v1/legal-holds",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "description",
+     "covers_entire_workspace",
+     "custodians"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "granola.post_v1_legal_holds_hold_id_custodians",
+   "name": "Add legal hold custodians",
+   "description": "Names users on a hold, by email or by Granola user id. Idempotent: the response carries the request's full resolved set, whether each entry was newly added or already present.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "hold_id": {
+      "type": "string",
+      "description": "The legal hold id"
+     },
+     "custodians": {
+      "type": "array",
+      "description": "Users to name on this hold"
+     }
+    },
+    "required": [
+     "custodians",
+     "hold_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://public-api.granola.ai/v1/legal-holds/{hold_id}/custodians",
+    "path": [
+     "hold_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "custodians"
     ],
     "body_format": "json"
    }
