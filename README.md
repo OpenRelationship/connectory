@@ -1,4 +1,4 @@
-# connectory
+# 🔌 connectory
 
 A directory of the platforms a program might want to talk to, and what it takes to talk to
 them: where the API lives, what signs a request, what you can ask it to do, what it looks like,
