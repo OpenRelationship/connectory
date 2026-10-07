@@ -5,16 +5,22 @@ them: where the API lives, what signs a request, what you can ask it to do, what
 and whether it runs an MCP server of its own.
 
 Every API is also one Lua file. GitHub's entire REST API is 1,201 operations in 249 KB that
-stock Lua loads in under two milliseconds. With the runtime and the port in `lua/`, that file
-is a complete client — no SDK, no service in the middle, no C modules.
+stock Lua loads in under two milliseconds. With the port in `lua/`, that file is a complete
+client for an agent: no SDK, no service in the middle, no C modules. The port is built for
+[Tablua](https://github.com/OpenRelationship/tablua)'s harness, and any Lua host can give it
+the three things it needs.
 
 ```lua
-local port = require "port_http" {
-  catalog = require "providers.github.github",
-  request = function (r) return your_http(r) end,   -- whatever your host already has
-}
+local connect = require "connectory.lua.connect"
+local c = connect.new({ fetch = your_fetch }, {
+  read = function (path) return read_file("connectory/" .. path) end,
+  secret = function (name) return keychain(name) end,   -- the person's own credential, by name
+})
 
-port.execute("github.issues_create", { owner = "you", repo = "yours", title = "it works" })
+c:find("issue tracker")                        -- { { service = "github", ... }, ... }
+c:operations("github", "create an issue")      -- { { op = "github.issues_create", args = { "owner*", ... } } }
+local issue, err = c:call("github.issues_create", { owner = "you", repo = "yours", title = "it works" })
+-- with no credential: err.code == "denied", and err.needs says what to ask the person for
 ```
 
     853 platforms
@@ -24,10 +30,11 @@ port.execute("github.issues_create", { owner = "you", repo = "yours", title = "i
 
 ## Why it is built this way
 
-**Authentication is an environment variable and nothing else.** There is no OAuth dance here
-and no service holding your tokens. `auth.env` names a variable; the value stays in your
-environment. That is what lets an exported program run anywhere, and it is why this repository
-can be public: there is nothing in it to leak.
+**A credential is a name and nothing else.** There is no OAuth dance here and no service
+holding your tokens. `auth.env` names the credential (`STRIPE_SECRET_KEY`); the host's
+`secret(name)` reads it from wherever the person keeps it (a keychain, or the environment) at
+the moment a call is signed. That is why this repository can be public: there is nothing in
+it to leak.
 
 **Only the vendor's own description is used.** Fuzzy matching finds `klarna.com:openai` for
 OpenAI and Sunshine Conversations for Zendesk — right organisation, wrong product. A wrong
@@ -89,17 +96,23 @@ runs it and opens a pull request when something moved.
     python3 tools/mcp.py         which of them run an MCP server
     python3 tools/index.py       the searchable index
 
-## Calling a provider, and its test
+## Calling a provider, and its tests
 
-`lua/port_http.lua` signs each call the way the provider's pack says (`auth`: a header in the vendor's own format,
-a bearer token, a query parameter, or a user and password) with values it asks the host for by name, and refuses a
-call whose credential is missing before anything is sent. `lua lua/port_http_test.lua` checks every kind; it runs
-on LuaJIT and Lua 5.4 and later.
+`lua/connect.lua` is the port an agent uses: find a service, list its calls, make one, and say what to ask the
+person for when a credential is missing or refused. `lua/http.lua` builds and signs each call the way the
+provider's pack says (`auth`: a header in the vendor's own format, a bearer token, a query parameter, or a user and
+password) with values it asks the host for by name, and refuses a call whose credential is missing before anything
+is sent. `lua/library.md` is the card an agent reads.
 
-A buck2 monorepo that attaches this repository as a submodule gets the port as `connectory.lua.port_http` from the
-`BUCK` at its root. [Arock](https://arock.ai) does: its agent finds a service here, reads
-its calls and makes them with the person's own account, asking them for the credential, which it keeps in the Mac's
-keychain, the first time a call needs it.
+The tests run from the folder above this one, with Tablua's `core/` on the path for its JSON:
+
+    luajit -e 'package.path = "./?.lua;TABLUA/core/?.lua;" .. package.path' connectory/lua/http_test.lua
+    luajit -e 'package.path = "./?.lua;TABLUA/core/?.lua;" .. package.path' connectory/lua/connect_test.lua
+
+[Moonsplice](https://github.com/OpenRelationship/moonsplice) attaches this repository as a submodule, and its
+agent, Tablua, reaches services through it: it finds a service, reads its calls, asks before any call that changes
+something, and makes calls with the person's own account. When a credential is missing, the person is asked in a
+masked field or a prompt that does not echo, and the value goes to the keychain, never to the agent.
 
 ## Where the facts come from
 

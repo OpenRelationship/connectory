@@ -1,11 +1,11 @@
 {
   "_": [
-    "The providers a workbook can call, and the three things a spec never tells you honestly:",
+    "The providers an agent can call, and the three things a spec never tells you honestly:",
     "where the spec lives, how a request is authenticated, and what can start a workflow.",
     "Everything else — operations, parameters, schemas — is read from the spec itself.",
     "",
-    "auth.env is the variable the generated code reads. A workbook runs with YOUR token: there",
-    "is no OAuth dance here, and an exported workbook needs nothing but its environment.",
+    "auth.env names the credential a call is signed with. A call runs with the person's own",
+    "credential, read by the host's secret(name): there is no OAuth dance here.",
     "",
     "A trigger is curated because OpenAPI describes requests, not events. kind=poll names the",
     "operation to call and the field that moves; kind=webhook names what the vendor posts."
@@ -110,7 +110,7 @@
       "auth": {
         "scheme": "bearer",
         "env": "GOOGLE_ACCESS_TOKEN",
-        "about": "A Google OAuth access token for the mailbox. Google issues no static key, so this is refreshed outside the workbook."
+        "about": "A Google OAuth access token for the mailbox. Google issues no static key, so this is refreshed outside connectory."
       },
       "triggers": [
         {

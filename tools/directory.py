@@ -41,8 +41,8 @@ VARIANT = re.compile(
 # "Zendesk (API Token)" names a credential, not a product. The entry is the product now.
 DECORATION = re.compile(r"\s*[\(\[][^)\]]*[\)\]]\s*$")
 
-# Which authentication we can actually run with. A workbook signs requests with a token from the
-# environment, so a static credential is the whole story; an OAuth token is fine too, it is just
+# Which authentication we can actually run with. An agent signs requests with a credential the
+# person gives, so a static credential is the whole story; an OAuth token is fine too, it is just
 # obtained elsewhere and pasted in. The rest need a handshake we do not do yet.
 RUNS = {
     "API_KEY": "key",  # a key the vendor gives you
@@ -59,7 +59,7 @@ RANK = ["API_KEY", "BASIC", "OAUTH2_CC", "OAUTH2", "MCP_OAUTH2", "None", "NONE"]
 
 
 def fetch(url):
-    req = urllib.request.Request(url, headers={"user-agent": "workbooks-catalog"})
+    req = urllib.request.Request(url, headers={"user-agent": "connectory"})
     with urllib.request.urlopen(req, timeout=60) as r:
         return r.read()
 
@@ -181,10 +181,10 @@ def auth(slug, p):
     if key.get("pattern"):
         out["pattern"] = key["pattern"]
     if kind == "oauth" and not key.get("description"):
-        out["about"] = "An OAuth access token for the account. The vendor issues no static key, so it is refreshed outside the workbook."
+        out["about"] = "An OAuth access token for the account. The vendor issues no static key, so it is refreshed outside connectory."
     if kind is None:
         out["about"] = (
-            "This provider authenticates with a handshake a workbook does not do yet (%s)."
+            "This provider authenticates with a handshake connectory does not do yet (%s)."
             % mode
         )
     return out

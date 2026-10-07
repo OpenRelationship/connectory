@@ -1,35 +1,26 @@
--- The port a workbook runs against: it turns a step into an HTTP request, signs it with the
--- token in the environment, and hands it to one function the host provides.
+-- One call to a service, signed: connectory's request builder. It finds the operation in a pack, makes its address
+-- (path arguments, and the parts of the address a person's account gives, such as a subdomain), signs it with the
+-- credential the pack names, and hands the request to the host. It never holds a credential: `secret(name)` is the
+-- host's, asked at the moment of signing, and a missing one is refused before anything is sent.
 --
---   local port = require "port_http" { request = function (r) ... end }
---   wb.run(book, event, port, inputs)
+--   local http = require("connectory.lua.http")
+--   local h = http.new{ catalog = pack | { pack, ... }, request = fn(r) -> status, body_table | nil, why,
+--                       secret = fn(name) -> text | nil }
+--   h.call(op, args) -> value   or nil, err      err = { port = "connectory", call, code, message }
 --
--- `request` takes { method, url, headers, body, body_format } and returns
--- (status, body_table) or (nil, message). Use whatever your host already has — an HTTP
--- client in the language embedding Lua, or curl through io.popen.
---
--- What it can call comes from `host.catalog`, which is either the `endpoints` an export
--- writes, one provider pack, or a list of them:
---
---   require "port_http" { request = …, catalog = require "providers.github" }
---   require "port_http" { request = …, catalog = { require "providers.github",
---                                                  require "providers.slack" } }
---
--- With no catalog it falls back to `require "endpoints"`, which is what an exported
--- workbook ships beside it.
+-- `request` takes { method, url, headers, body, body_format } (body_format "form" or JSON). codes: not_found,
+-- malformed, denied (no credential, or the service refused it), exhausted (rate limited), unavailable.
+-- connectory.lua.connect is the port an agent uses; this is the part of it that builds and signs a request.
 
 local M = {}
 
--- A pack describes one provider; an export's endpoints table describes several. Both become
--- the same two lookups: an operation by name, and the provider that signs it.
+-- one pack or several become two lookups: an operation by name, and the provider that signs it
 local function as_catalog(source)
-  if source.operations and source.providers then return source end
-
   local packs = source.provider and { source } or source
   local providers, operations = {}, {}
   for i = 1, #packs do
     local pack = packs[i]
-    -- a pack keeps how it signs under `auth`; an export's provider has it at the top
+    -- a pack keeps how it signs under `auth`
     local signs = setmetatable({}, { __index = pack })
     for k, v in pairs(pack.auth or {}) do signs[k] = v end
     providers[pack.provider] = signs
@@ -62,7 +53,7 @@ local function pick(args, names)
 end
 
 local function err(code, message)
-  return nil, { port = "workbook", call = "execute", code = code, message = message }
+  return nil, { port = "connectory", call = "call", code = code, message = message }
 end
 
 -- Basic authentication is base64 of "user:password", and Lua has no base64. Twenty lines
@@ -90,7 +81,7 @@ local function sign(provider, headers, query, getenv)
   local function need(name)
     local v = name and getenv(name)
     if name and (v == nil or v == "") then
-      return nil, provider.name .. " needs " .. name .. " in the environment"
+      return nil, provider.name .. " needs " .. name
     end
     return v
   end
@@ -121,27 +112,29 @@ end
 
 function M.new(host)
   if type(host) ~= "table" or type(host.request) ~= "function" then
-    error("port_http.new{ request = function (r) ... end }: request is required", 2)
+    error("http.new{ request = function (r) ... end }: request is required", 2)
   end
+  if type(host.catalog) ~= "table" then error("http.new{ catalog = pack }: a catalog is required", 2) end
 
-  local getenv = host.getenv or os.getenv
-  local endpoints = as_catalog(host.catalog or require "endpoints")
+  local getenv = host.secret or function() return nil end
+  local endpoints = as_catalog(host.catalog)
 
   return {
-    execute = function (tool, args)
+    call = function (tool, args)
+      args = args or {}
       local op = endpoints.operations[tool]
-      if not op then return err("not_found", "this workbook has no endpoint for " .. tostring(tool)) end
+      if not op then return err("not_found", "no call is named " .. tostring(tool)) end
 
       local provider = endpoints.providers[op.provider]
 
       local url = op.url
 
       -- Some APIs have no one address: yours lives at your own subdomain, or your own
-      -- instance. Those come from the environment too, never from an argument.
+      -- instance. Those come from the person's connection too, never from an argument.
       for name, env in pairs(provider.config or {}) do
         local v = getenv(env)
         if v == nil or v == "" then
-          return err("denied", provider.name .. " needs " .. env .. " in the environment: it is part of the address")
+          return err("denied", provider.name .. " needs " .. env .. ": it is part of the address")
         end
         url = url:gsub("{" .. name .. "}", v)
       end
@@ -187,4 +180,4 @@ function M.new(host)
   }
 end
 
-return setmetatable(M, { __call = function (_, host) return M.new(host) end })
+return M

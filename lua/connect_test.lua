@@ -1,5 +1,7 @@
 -- connectory.lua.connect over a directory of two services held in memory: one described (calls, a header token and an
 -- address part), one only listed. Nothing touches the network or the keychain.
+-- Run from the folder above connectory, with Tablua's core on the path (its ports.json):
+--   luajit -e 'package.path = "./?.lua;TABLUA/core/?.lua;" .. package.path' connectory/lua/connect_test.lua
 local connect = require("connectory.lua.connect")
 local json = require("ports.json")
 
@@ -48,6 +50,7 @@ local none, why = c:operations("quiet")
 assert(none == nil and why:find("publishes no description") and why:find("https://quiet.test"))
 assert(c:method("acme.tickets_list") == "GET" and c:method("acme.tickets_create") == "POST")
 assert(c:method("acme.nope") == nil)
+assert(c:reads("acme.tickets_list") and not c:reads("acme.tickets_create") and not c:reads("acme.nope"))
 
 -- what the person must give, from the pack: the token is a secret, the domain is not
 local needs = c:needs("acme")

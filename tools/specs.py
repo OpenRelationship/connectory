@@ -68,7 +68,7 @@ def token():
 
 
 def gh(path, params="", tries=3):
-    headers = {"accept": "application/vnd.github+json", "user-agent": "workbooks-catalog"}
+    headers = {"accept": "application/vnd.github+json", "user-agent": "connectory"}
     if token():
         headers["authorization"] = "Bearer " + token()
     req = urllib.request.Request("https://api.github.com" + path + params, headers=headers)
@@ -90,7 +90,7 @@ def gh(path, params="", tries=3):
 
 
 def fetch(url, n=None):
-    req = urllib.request.Request(url, headers={"user-agent": "workbooks-catalog"})
+    req = urllib.request.Request(url, headers={"user-agent": "connectory"})
     try:
         with urllib.request.urlopen(req, timeout=30) as r:
             return r.read(n) if n else r.read()
@@ -126,7 +126,7 @@ def names_the_api(repo_name, provider, org):
     """Is this repo the vendor's main API, or a side product of theirs?
 
     `zendesk/sunshine-conversations-api-spec` is published by Zendesk and is a real OpenAPI,
-    but it describes Sunshine Conversations, not the Zendesk API a workbook means by @zendesk.
+    but it describes Sunshine Conversations, not the Zendesk API a program means by zendesk.
     So: take the repo name, remove the words that mean "this is a spec", and whatever is left
     must be the vendor's own name — or nothing at all, as in `figma/rest-api-spec`.
     """

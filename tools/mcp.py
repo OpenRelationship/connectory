@@ -2,7 +2,7 @@
 
 An API description says what a program can ask a platform to do. An MCP server is the same
 platform offering itself to an agent directly — usually a smaller, opinionated surface, often
-hosted by the vendor. When one exists it is the better door for an agent, and a workbook should
+hosted by the vendor. When one exists it is the better door for an agent, and an agent should
 know it is there rather than rebuilding it out of REST calls.
 
 Two sources, and the same rule as everywhere else: only the vendor's own.

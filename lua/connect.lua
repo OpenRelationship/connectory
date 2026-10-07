@@ -1,5 +1,6 @@
--- Other people's apps, through connectory (submodules/connectory, PROJECT.md §17): a directory of 853 services
--- and, for the ones whose makers describe their API, every call it accepts as data. This port finds a service,
+-- The port an agent reaches other people's apps through: connectory's directory of 853 services and, for the ones
+-- whose makers describe their API, every call it accepts as data. Built for Tablua's harness (its ports.json, its
+-- host = { fetch, now? }); lua/library.md is the card an agent reads. This port finds a service,
 -- shows the calls it has, and makes one, signed with the person's own credential for that service. It never
 -- holds a credential: the host's `secret(name)` reads it when a call is signed (the desktop keeps them in the
 -- keychain), and a call that has none, or one the service refuses, comes back saying what the person must give
@@ -11,6 +12,8 @@
 --   c:operations(service, words?, n?) -> { { op, name, about, args = { "owner*", "repo*", "title*", "body" } } }
 --                                      (* needed), best first; or nil, why
 --   c:method(op)                    -> "GET", "POST" ... or nil (no such call)
+--   c:reads(op)                     -> true when the call only reads (GET, HEAD): anything else changes something,
+--                                      and a harness asks the person before it runs
 --   c:needs(service)                -> { service, name, docs, fields = { { name, label, secret } }, missing = { name } }
 --   c:call(op, args)                -> value, record   or nil, err
 --                                      err = { code, message, needs? }: needs when the credential is missing or
@@ -19,7 +22,7 @@
 --
 -- The record is what the log may keep: never the address (a query credential rides in it) nor any header.
 local json = require("ports.json")
-local port_http = require("connectory.lua.port_http")
+local http = require("connectory.lua.http")
 
 local M = {}
 local C = {}
@@ -167,6 +170,11 @@ function C:method(op)
   return o and o.method or nil
 end
 
+function C:reads(op)
+  local m = self:method(op)
+  return m == "GET" or m == "HEAD"
+end
+
 -- "GITHUB_TOKEN" is GitHub's "token": the words of the service's own name are left off
 local function label(name, service)
   local skip = {}
@@ -253,8 +261,8 @@ function C:call(op, args)
   end
   local now = self.host.now or os.time
   local seen, t0 = {}, now()
-  local p = port_http { catalog = pack, request = request(self, seen), getenv = self.secret }
-  local value, err = p.execute(op, args or {})
+  local p = http.new { catalog = pack, request = request(self, seen), secret = self.secret }
+  local value, err = p.call(op, args or {})
   local record = { service = service, op = op, method = pack.operations[op].method, status = seen.status,
     seconds = now() - t0 }
   if value == nil then
@@ -273,8 +281,8 @@ function C:check(service)
   local probe = { provider = pack.provider, name = pack.name, auth = pack.auth, config = pack.config,
     headers = pack.headers, operations = { [service .. ".verify"] = op } }
   local seen = {}
-  local value, err = port_http { catalog = probe, request = request(self, seen), getenv = self.secret }
-    .execute(service .. ".verify", {})
+  local value, err = http.new { catalog = probe, request = request(self, seen), secret = self.secret }
+    .call(service .. ".verify", {})
   local record = { service = service, op = "verify", method = op.method, status = seen.status }
   if value == nil then
     local out = { code = err.code, message = err.message }

@@ -1,10 +1,10 @@
-# For a buck2 monorepo that attaches connectory as a submodule (Arock's, OpenRelationship/arock): the port, as
-# `connectory.lua.port_http`, the same name it has on a Lua path that holds the folder above this one.
+# For a buck2 monorepo that attaches connectory as a submodule: the request builder as `connectory.lua.http` and the
+# agent's port as `connectory.lua.connect`, the names they have on a Lua path that holds the folder above this one.
 load("@nomimono//rules/lua:defs.bzl", "lua_library", "lua_test")
 
 lua_library(
-    name = "port_http",
-    srcs = ["lua/port_http.lua"],
+    name = "http",
+    srcs = ["lua/http.lua"],
     prefix = "connectory",
     visibility = ["PUBLIC"],
 )
@@ -15,8 +15,14 @@ lua_library(
     name = "connect",
     srcs = ["lua/connect.lua"],
     prefix = "connectory",
-    deps = [":port_http", "//submodules/tablua/core/ports:ports"],
+    deps = [":http", "//submodules/tablua/core/ports:ports"],
     visibility = ["PUBLIC"],
+)
+
+lua_test(
+    name = "http_test",
+    src = "lua/http_test.lua",
+    deps = [":http"],
 )
 
 lua_test(
