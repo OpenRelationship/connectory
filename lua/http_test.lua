@@ -25,6 +25,7 @@ local p = port({ kind = "key", header = "x-api-key", format = "{token}", env = "
 assert(p.call("demo.get", { id = 7, q = "a b" }))
 assert(sent.headers["x-api-key"] == "t0k", "a header credential is sent")
 assert(sent.headers.accept == "x")
+assert(sent.headers["user-agent"] == "connectory", "a request names its client")
 assert(sent.url == "https://api.demo.test/things/7?q=a%20b", sent.url)
 
 p = port({ kind = "oauth", env = "DEMO_TOKEN" }, env)

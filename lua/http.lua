@@ -146,7 +146,8 @@ function M.new(host)
         url = url:gsub("{" .. name .. "}", tostring(v))
       end
 
-      local headers = {}
+      -- some services refuse a request that names no client (GitHub answers 403), so connectory names itself
+      local headers = { ["user-agent"] = "connectory" }
       for k, v in pairs(provider.headers or {}) do headers[k] = v end
       for k, v in pairs((pick(args, op.header))) do headers[k] = tostring(v) end
 
