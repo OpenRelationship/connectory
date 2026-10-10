@@ -2,7 +2,7 @@
 --
 -- GENERATED from https://docs.x.ai/openapi.json
 -- Published on the vendor's own documentation site (https://docs.x.ai).
--- 43 operations · do not edit
+-- 44 operations · do not edit
 --
 -- The credential is never in here. `auth.env` names an environment variable; the value
 -- stays in the environment, which is what makes this file safe to publish.
@@ -31,20 +31,21 @@ return {
     ["xai.handle_document_search_request_v2"] = { method = "POST", url = "https://api.x.ai/v1/documents/search", body = {"filter", "group_by", "instructions", "limit", "query", "ranking_metric", "retrieval_mode", "source"} },
     ["xai.handle_download_file_content_request"] = { method = "GET", url = "https://api.x.ai/v1/files/{file_id}/content", path = {"file_id"}, query = {"format"} },
     ["xai.handle_download_skill_content_request"] = { method = "GET", url = "https://api.x.ai/v1/skills/{skill_id}/content", path = {"skill_id"} },
-    ["xai.handle_edit_image_request"] = { method = "POST", url = "https://api.x.ai/v1/images/edits", body = {"aspect_ratio", "image", "images", "model", "n", "prompt", "resolution", "response_format", "storage_options", "user"} },
+    ["xai.handle_edit_image_request"] = { method = "POST", url = "https://api.x.ai/v1/images/edits", body = {"aspect_ratio", "deferred", "image", "images", "model", "n", "output", "prompt", "resolution", "response_format", "storage_options", "user"} },
     ["xai.handle_edit_video_request"] = { method = "POST", url = "https://api.x.ai/v1/videos/edits", body = {"model", "output", "prompt", "storage_options", "user", "video"} },
     ["xai.handle_embedding_model_get_request"] = { method = "GET", url = "https://api.x.ai/v1/embedding-models/{model_id}", path = {"model_id"} },
     ["xai.handle_embedding_models_list_request"] = { method = "GET", url = "https://api.x.ai/v1/embedding-models" },
     ["xai.handle_embedding_request"] = { method = "POST", url = "https://api.x.ai/v1/embeddings", body = {"dimensions", "encoding_format", "input", "model", "preview", "user"} },
     ["xai.handle_extend_video_request"] = { method = "POST", url = "https://api.x.ai/v1/videos/extensions", body = {"duration", "model", "output", "prompt", "storage_options", "video"} },
-    ["xai.handle_generate_image_request"] = { method = "POST", url = "https://api.x.ai/v1/images/generations", body = {"aspect_ratio", "model", "n", "prompt", "resolution", "response_format", "storage_options", "user"} },
-    ["xai.handle_generate_video_request"] = { method = "POST", url = "https://api.x.ai/v1/videos/generations", body = {"aspect_ratio", "duration", "image", "model", "output", "prompt", "reference_audios", "reference_images", "resolution", "storage_options", "user"} },
+    ["xai.handle_generate_image_request"] = { method = "POST", url = "https://api.x.ai/v1/images/generations", body = {"aspect_ratio", "deferred", "model", "n", "output", "prompt", "resolution", "response_format", "storage_options", "user"} },
+    ["xai.handle_generate_video_request"] = { method = "POST", url = "https://api.x.ai/v1/videos/generations", body = {"aspect_ratio", "duration", "image", "keyframes", "model", "output", "prompt", "reference_audios", "reference_images", "resolution", "storage_options", "user"} },
     ["xai.handle_generic_complete_request"] = { method = "POST", url = "https://api.x.ai/v1/complete", body = {"max_tokens_to_sample", "metadata", "model", "prompt", "stop_sequences", "stream", "temperature", "top_k", "top_p"} },
     ["xai.handle_generic_completion_request"] = { method = "POST", url = "https://api.x.ai/v1/chat/completions", body = {"deferred", "frequency_penalty", "logit_bias", "logprobs", "max_completion_tokens", "max_tokens", "messages", "model", "n", "parallel_tool_calls", "presence_penalty", "prompt_cache_key", "reasoning_effort", "response_format", "safety_identifier", "search_parameters", "seed", "service_tier", "stop", "stream", "stream_options", "temperature", "tool_choice", "tools", "top_logprobs", "top_p", "user", "web_search_options"} },
     ["xai.handle_generic_messages_request"] = { method = "POST", url = "https://api.x.ai/v1/messages", body = {"max_tokens", "messages", "metadata", "model", "stop_sequences", "stream", "system", "temperature", "tool_choice", "tools", "top_k", "top_p"} },
     ["xai.handle_generic_model_request"] = { method = "POST", url = "https://api.x.ai/v1/responses", body = {"background", "context_management", "include", "input", "instructions", "logprobs", "max_output_tokens", "max_turns", "metadata", "min_p", "model", "parallel_tool_calls", "previous_response_id", "prompt_cache_key", "reasoning", "reasoning_effort", "safety_identifier", "search_parameters", "service_tier", "store", "stream", "temperature", "text", "tool_choice", "tools", "top_k", "top_logprobs", "top_p", "truncation", "user"} },
     ["xai.handle_get_api_key_info_request"] = { method = "GET", url = "https://api.x.ai/v1/api-key" },
     ["xai.handle_get_deferred_completion_request"] = { method = "GET", url = "https://api.x.ai/v1/chat/deferred-completion/{request_id}", path = {"request_id"} },
+    ["xai.handle_get_deferred_image_request"] = { method = "GET", url = "https://api.x.ai/v1/images/{request_id}", path = {"request_id"} },
     ["xai.handle_get_deferred_video_request"] = { method = "GET", url = "https://api.x.ai/v1/videos/{request_id}", path = {"request_id"} },
     ["xai.handle_get_me_request"] = { method = "GET", url = "https://api.x.ai/v1/me" },
     ["xai.handle_get_stored_completion_request"] = { method = "GET", url = "https://api.x.ai/v1/responses/{response_id}", path = {"response_id"} },

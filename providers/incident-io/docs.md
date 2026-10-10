@@ -23,23 +23,24 @@ Most AI controls live in [Settings → AI governance](https://app.incident.io/~/
 
 ## Every AI control
 
-| Control                         | Where to set it                                                | Default                       | What it affects                                                                                         |
-| ------------------------------- | -------------------------------------------------------------- | ----------------------------- | ------------------------------------------------------------------------------------------------------- |
-| Store incident channel messages | **Settings → AI governance**                                   | Enabled                       | Whether we keep incident channel messages. Most AI features need this on.                               |
-| AI incident access              | **Settings → AI governance**                                   | All incidents and alerts      | Whether AI features work in private incidents and alerts                                                |
-| AI data redaction               | **Settings → AI governance**. Contact us to unlock it          | Off                           | Strips credit card numbers, US Social Security numbers and phone numbers before content reaches a model |
-| AI subprocessors                | **Settings → AI governance**. Contact us to change             | All allowed                   | Which providers may receive your data                                                                   |
-| @incident                       | **Settings → AI governance → Store incident channel messages** | Enabled on Pro and Enterprise | Chatting to the agent in Slack, the Microsoft Teams incident tab, the dashboard and the mobile app      |
-| Suggestions                     | **Settings → Suggestions**                                     | Off                           | Suggested summaries, follow-ups and updates, and the catch-up posted to someone joining a channel       |
-| Investigations                  | **Investigations → Investigation settings**                    | Off                           | Whether investigations run, and [when](/investigations/triggering)                                      |
-| Proposing code fixes            | **Investigations → Investigation settings**                    | Off                           | Whether an investigation opens a draft pull request without being asked                                 |
-| Code scanning, per repository   | **Investigations → Code changes**                              | Off                           | Whether we read a repository's merge requests and use it as investigation context                       |
-| Scribe                          | **Settings → Calls → Scribe**                                  | Off                           | Whether [Scribe](/ai/scribe) joins incident calls, transcribes them and posts notes                     |
-| Scribe auto-join                | **Settings → Calls → Scribe**                                  | On                            | Whether Scribe joins every incident call, or waits to be invited                                        |
-| Meeting Notes                   | **Settings → Calls → Scribe**                                  | On                            | Whether people can add Meeting Notes to post-mortems to record debrief calls                            |
-| Transcript viewing              | Contact us                                                     | On                            | Whether people can read call transcripts in the dashboard and through the API                           |
-| Auto-delete call notes          | **Settings → Calls → Scribe**                                  | Never                         | Deletes transcripts and notes 7, 14 or 90 days after the call                                           |
-| Remote MCP server               | **Settings → MCP**                                             | On                            | Whether AI clients such as Claude or ChatGPT can query your incidents, alerts and escalations           |
+| Control | Where to set it | Default | What it affects |
+| - | - | - | - |
+| Store incident channel messages | **Settings → AI governance** | Enabled | Whether we keep incident channel messages. Most AI features need this on. |
+| AI incident access | **Settings → AI governance** | All incidents and alerts | Whether AI features work in private incidents and alerts |
+| AI data redaction | **Settings → AI governance**. Contact us to unlock it | Off | Strips credit card numbers, US Social Security numbers and phone numbers before content reaches a model |
+| AI subprocessors | **Settings → AI governance**. Contact us to change | All allowed | Which providers may receive your data |
+| @incident | **Settings → AI governance → Store incident channel messages** | Enabled on Pro and Enterprise | Chatting to the agent in Slack, the Microsoft Teams incident tab, the dashboard and the mobile app |
+| Suggestions | **Settings → Suggestions** | Off | Suggested summaries, follow-ups and updates, and the catch-up posted to someone joining a channel |
+| Investigations | **Investigations → Investigation settings** | Off | Whether investigations run, and [when](/investigations/triggering) |
+| Proposing code fixes | **Investigations → Investigation settings** | Off | Whether an investigation opens a draft pull request without being asked |
+| Code scanning, per repository | **Investigations → Code changes** | Off | Whether we read a repository's merge requests and use it as investigation context |
+| Scribe | **Settings → Calls → Scribe** | Off | Whether [Scribe](/ai/scribe) joins incident calls, transcribes them and posts notes |
+| Scribe auto-join | **Settings → Calls → Scribe** | On | Whether Scribe joins every incident call, or waits to be invited |
+| Meeting Notes | **Settings → Calls → Scribe** | On | Whether people can add Meeting Notes to post-mortems to record debrief calls |
+| Transcript viewing | Contact us | On | Whether people can read call transcripts and download recordings, in the dashboard and through the API |
+| Call recording | **Settings → Calls → Scribe** | Off | Whether Scribe keeps a recording of the incident calls it joins, to download from the call notes |
+| Auto-delete call notes | **Settings → Calls → Scribe** | Never | Deletes transcripts, recordings and notes 7, 14 or 90 days after the call |
+| Remote MCP server | **Settings → MCP** | On | Whether AI clients such as Claude or ChatGPT can query your incidents, alerts and escalations |
 
 ## Who can change these settings
 
@@ -113,7 +114,7 @@ incident.io uses AI to help take away some of the overhead of incident response 
 
 Our AI features are powered by OpenAI, Anthropic, and Google Vertex. We send data on-demand to their APIs when required by a feature — this includes (but is not limited to) incident updates, summaries, and custom fields. This data is not stored by them and is not used for any reason other than to provide these services. This means it is explicitly *not* used for training purposes.
 
-Audio is handled by two further providers. [Scribe](/ai/scribe) joins your incident calls through Recall.ai, and ElevenLabs transcribes the call audio. We store the resulting transcript, not the audio.
+Audio is handled by two further providers. [Scribe](/ai/scribe) joins your incident calls through Recall.ai, and ElevenLabs transcribes the call audio. By default, we store the resulting transcript, not the audio or video. If you turn on [call recording](/ai/scribe#feature-call-recording), we also keep a recording of each incident call Scribe joins. Recordings are never sent to an AI model.
 
 ElevenLabs also transcribes voicemail left on your [call routes](/on-call/live-call-routing#send-calls-to-voicemail). Voicemail works differently: we store the recording as well as the transcript, so you can listen back to it.
 
@@ -239,7 +240,7 @@ Source: https://docs.incident.io/admin/api-keys
 
 Control API access with account-level and team-scoped permissions.
 
-Create and manage API keys from [**Settings → API keys**](https://app.incident.io/~/settings/api-keys).
+Create and manage API keys from [**Settings → API keys**](https://app.incident.io/~/settings/api-keys). A key works with the [API](/api-reference/introduction) directly, with our [SDKs](/integrations/sdks), and with the [Terraform](/admin/terraform) and [Pulumi](/admin/pulumi) providers.
 
 ## Creating an API key
 
@@ -269,94 +270,94 @@ A **Team** value of *Yes* means the permission can also be scoped to specific te
 
 ### Incidents and investigations
 
-| Permission                                                               | What it allows                                                                            | Team |
-| ------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------- | ---- |
-| **View data** `viewer`                                                   | Read-only access to public incidents and most organization settings.                      |      |
-| **View all incident data** `global_access`                               | Adds read access to private incidents, alerts, and escalations.                           |      |
-| **Create incidents** `incident_creator`                                  | Open incidents and set fields, role assignments, timestamps, and attachments at creation. |      |
-| **Edit incidents** `incident_editor`                                     | Update, decline, merge, or cancel incidents, and manage calls and linked alerts.          |      |
-| **Manage incident memberships** `incident_memberships_editor`            | View all incident data, including private incidents, and grant or revoke incident access. |      |
-| **Opt out of post-incident flow** `post_incident_flow_opt_out`           | Close an incident by opting it out of the post-incident flow.                             |      |
-| **Manage postmortems** `postmortems_manage`                              | Manage postmortems, including updating their status and running imports.                  |      |
-| **Download investigation artifacts** `investigation_download`            | Download AI investigation artifacts attached to incidents.                                |      |
-| **View call transcripts** `call_transcripts_viewer`                      | View call sessions and the transcripts Scribe captured for them.                          |      |
-| **View participant workload** `incident_workload_viewer`                 | View participant-workload analytics (who's been involved in how many incidents).          |      |
-| **View private participant workload** `incident_workload_private_viewer` | View participant-workload analytics, including for private incidents.                     |      |
+| Permission | What it allows | Team |
+| - | - | - |
+| **View data** `viewer` | Read-only access to public incidents and most organization settings. | |
+| **View all incident data** `global_access` | Adds read access to private incidents, alerts, and escalations. | |
+| **Create incidents** `incident_creator` | Open incidents and set fields, role assignments, timestamps, and attachments at creation. | |
+| **Edit incidents** `incident_editor` | Update, decline, merge, or cancel incidents, and manage calls and linked alerts. | |
+| **Manage incident memberships** `incident_memberships_editor` | View all incident data, including private incidents, and grant or revoke incident access. | |
+| **Opt out of post-incident flow** `post_incident_flow_opt_out` | Close an incident by opting it out of the post-incident flow. | |
+| **Manage postmortems** `postmortems_manage` | Manage postmortems, including updating their status and running imports. | |
+| **Download investigation artifacts** `investigation_download` | Download AI investigation artifacts attached to incidents. | |
+| **View call transcripts** `call_transcripts_viewer` | View call sessions and the transcripts Scribe captured for them. | |
+| **View participant workload** `incident_workload_viewer` | View participant-workload analytics (who's been involved in how many incidents). | |
+| **View private participant workload** `incident_workload_private_viewer` | View participant-workload analytics, including for private incidents. | |
 
 ### Catalog and teams
 
-| Permission                                            | What it allows                                      | Team |
-| ----------------------------------------------------- | --------------------------------------------------- | ---- |
-| **View catalog** `catalog_viewer`                     | Read-only access to catalog types and entries.      |      |
-| **Manage catalog** `catalog_editor`                   | Create, edit, and delete catalog types and entries. | Yes  |
-| **Manage team memberships** `team_memberships_manage` | Update team memberships and edit catalog entries.   |      |
+| Permission | What it allows | Team |
+| - | - | - |
+| **View catalog** `catalog_viewer` | Read-only access to catalog types and entries. | |
+| **Manage catalog** `catalog_editor` | Create, edit, and delete catalog types and entries. | Yes |
+| **Manage team memberships** `team_memberships_manage` | Update team memberships and edit catalog entries. | |
 
 ### On-call, escalations, and notifications
 
-| Permission                                                                        | What it allows                                                                                          | Team |
-| --------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ---- |
-| **Manage on-call resources** `on_call_editor`                                     | Full on-call surface: alerts, sources, routes, schema, schedules, escalations, and maintenance windows. | Yes  |
-| **View on-call resources** `on_call_viewer`                                       | Read-only view of on-call resources like alerts, escalations, and schedules.                            |      |
-| **Create escalations** `escalation_creator`                                       | Create, respond to, and cancel escalations.                                                             | Yes  |
-| **Manage notification methods** `notification_methods_manage`                     | Configure the on-call paging provider, and users' notification methods and rules.                       |      |
-| **View unredacted notification methods** `notification_methods_unredacted_viewer` | View users' notification methods, including unredacted phone numbers. Grant sparingly.                  |      |
+| Permission | What it allows | Team |
+| - | - | - |
+| **Manage on-call resources** `on_call_editor` | Full on-call surface: alerts, sources, routes, schema, schedules, escalations, and maintenance windows. | Yes |
+| **View on-call resources** `on_call_viewer` | Read-only view of on-call resources like alerts, escalations, and schedules. | |
+| **Create escalations** `escalation_creator` | Create, respond to, and cancel escalations. | Yes |
+| **Manage notification methods** `notification_methods_manage` | Configure the on-call paging provider, and users' notification methods and rules. | |
+| **View unredacted notification methods** `notification_methods_unredacted_viewer` | View users' notification methods, including unredacted phone numbers. Grant sparingly. | |
 
 ### Schedules
 
-| Permission                                                | What it allows                                                | Team |
-| --------------------------------------------------------- | ------------------------------------------------------------- | ---- |
-| **Create and update schedules** `schedules_editor`        | Create, update, delete, and view schedules.                   | Yes  |
-| **Read schedules** `schedules_reader`                     | Read-only access to schedules.                                | Yes  |
-| **Manage schedule overrides** `schedule_overrides_editor` | Create, update, and delete schedule overrides, not schedules. | Yes  |
+| Permission | What it allows | Team |
+| - | - | - |
+| **Create and update schedules** `schedules_editor` | Create, update, delete, and view schedules. | Yes |
+| **Read schedules** `schedules_reader` | Read-only access to schedules. | Yes |
+| **Manage schedule overrides** `schedule_overrides_editor` | Create, update, and delete schedule overrides, not schedules. | Yes |
 
 ### On-call pay
 
-| Permission                                         | What it allows                                                 | Team |
-| -------------------------------------------------- | -------------------------------------------------------------- | ---- |
-| **View pay configurations** `pay_configs_viewer`   | Read-only access to pay configurations and their rules.        |      |
-| **Manage pay configurations** `pay_configs_editor` | Create, update, and delete pay configurations and their rules. |      |
+| Permission | What it allows | Team |
+| - | - | - |
+| **View pay configurations** `pay_configs_viewer` | Read-only access to pay configurations and their rules. | |
+| **Manage pay configurations** `pay_configs_editor` | Create, update, and delete pay configurations and their rules. | |
 
 ### Workflows
 
-| Permission                                                                    | What it allows                                                         | Team |
-| ----------------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---- |
-| **Manage workflows** `workflows_editor`                                       | Create, update, delete, and view workflows.                            | Yes  |
-| **Manage workflows that run on private incidents** `private_workflows_editor` | Everything in workflows, plus workflows that run on private incidents. | Yes  |
-| **Workflows on private escalations** `private_escalation_workflows_editor`    | Manage workflows that run on private escalations.                      |      |
+| Permission | What it allows | Team |
+| - | - | - |
+| **Manage workflows** `workflows_editor` | Create, update, delete, and view workflows. | Yes |
+| **Manage workflows that run on private incidents** `private_workflows_editor` | Everything in workflows, plus workflows that run on private incidents. | Yes |
+| **Workflows on private escalations** `private_escalation_workflows_editor` | Manage workflows that run on private escalations. | |
 
 ### Status pages
 
-| Permission                                       | What it allows                                                             | Team |
-| ------------------------------------------------ | -------------------------------------------------------------------------- | ---- |
-| **Publish status pages** `status_page_publisher` | Create status page incidents and maintenance windows, and publish updates. |      |
+| Permission | What it allows | Team |
+| - | - | - |
+| **Publish status pages** `status_page_publisher` | Create status page incidents and maintenance windows, and publish updates. | |
 
 ### Secrets
 
-| Permission                          | What it allows                                               | Team |
-| ----------------------------------- | ------------------------------------------------------------ | ---- |
-| **Manage secrets** `secrets_manage` | View, create, update, rotate, delete, and reference secrets. | Yes  |
-| **Use secrets** `secrets_use`       | View secret metadata and reference secrets.                  | Yes  |
+| Permission | What it allows | Team |
+| - | - | - |
+| **Manage secrets** `secrets_manage` | View, create, update, rotate, delete, and reference secrets. | Yes |
+| **Use secrets** `secrets_use` | View secret metadata and reference secrets. | Yes |
 
 ### Telemetry
 
-| Permission                                                       | What it allows                                                               | Team |
-| ---------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---- |
-| **Query restricted telemetry** `telemetry_query_restricted`      | Query [restricted telemetry data sources](/nexus/telemetry/access-controls). | Yes  |
-| **Update telemetry data sources** `telemetry_data_source_update` | Update the configuration and credentials of telemetry data sources.          | Yes  |
+| Permission | What it allows | Team |
+| - | - | - |
+| **Query restricted telemetry** `telemetry_query_restricted` | Query [restricted telemetry data sources](/nexus/telemetry/access-controls). | Yes |
+| **Update telemetry data sources** `telemetry_data_source_update` | Update the configuration and credentials of telemetry data sources. | Yes |
 
 ### Organization and security
 
-| Permission                                              | What it allows                                                                         | Team |
-| ------------------------------------------------------- | -------------------------------------------------------------------------------------- | ---- |
-| **Manage organization settings** `manage_settings`      | Change organization-level configuration such as custom fields, and manage the catalog. |      |
-| **Update security settings** `security_settings_editor` | Update the organization's security settings. Grant sparingly.                          |      |
+| Permission | What it allows | Team |
+| - | - | - |
+| **Manage organization settings** `manage_settings` | Change organization-level configuration such as custom fields, and manage the catalog. | |
+| **Update security settings** `security_settings_editor` | Update the organization's security settings. Grant sparingly. | |
 
 ### API keys and attribution
 
-| Permission                                          | What it allows                                                                                                                                                                   | Team |
-| --------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---- |
-| **Manage API keys** `api_keys_manage`               | View, create, edit, delete, or rotate API keys. A key with this permission can create more keys, but only within its own access. Can't be granted through the public API.        | Yes  |
-| **Act on behalf of users** `act_on_behalf_of_users` | Attach the on-behalf-of header to attribute API actions to a specific user. Grants no actions on its own, so pair it with another permission. Availability depends on your plan. |      |
+| Permission | What it allows | Team |
+| - | - | - |
+| **Manage API keys** `api_keys_manage` | View, create, edit, delete, or rotate API keys. A key with this permission can create more keys, but only within its own access. Can't be granted through the public API. | Yes |
+| **Act on behalf of users** `act_on_behalf_of_users` | Attach the on-behalf-of header to attribute API actions to a specific user. Grants no actions on its own, so pair it with another permission. Availability depends on your plan. | |
 
 ## Best practices
 
@@ -416,7 +417,7 @@ Audit logs track configuration, permission, and security changes made within you
 Audit logs cover configuration, permission, and security events. They record:
 
 * Alert sources, routes, priorities, and escalation paths
-* Schedules, schedule overrides, and holiday feeds
+* Schedules, schedule overrides, holiday feeds, and notification pauses
 * Custom fields, incident types, roles, statuses, timestamps, and severities
 * Workflows, nudges, announcement rules, post-incident tasks, and post-mortem templates
 * Status pages, policies, and Catalog types
@@ -747,7 +748,7 @@ Duration metrics define a relationship between 2 timestamps by having a start an
 
 [Navigate to your settings page and the timestamps tab](https://app.incident.io/~/settings/lifecycle?tab=timestamps), create a new metric or select an existing one to edit. Select the timestamps you wish to validate and that they are in the order you want to enforce.
 
-Make sure to tick **Enable validation** and then click save.
+Turn on **Enable validation** and save.
 
 <img alt="Creating a duration metric with validation enabled" />
 
@@ -997,4 +998,92 @@ Changes to an incident are recorded in the activity log and timeline. To erase s
 
 ## AI data redaction
 
-incident.io has Zero Data Retention agreements with all AI providers (OpenAI, Anthropic, and Google Vertex), meaning they don't store a
+incident.io has Zero Data Retention agreements with all AI providers (OpenAI, Anthropic, and Google Vertex), meaning they don't store any inputs or outputs and don't use them for training.
+
+On top of this, you can enable automatic redaction that strips sensitive patterns from incident channel messages, attachments read by AI, and new spoken Scribe transcript entries. When enabled, matches are replaced with `[REDACTED]` before the content reaches an AI model.
+
+Scribe applies redaction as each transcript entry is processed. The redacted value appears in the transcript and is used by Scribe summaries, key moments, and current topic. Turning on a strategy does not rewrite existing transcript entries.
+
+[Call recordings](/ai/scribe#feature-call-recording) aren't redacted, because they're never sent to an AI model. To remove sensitive content from a recording, [delete the call notes](/ai/deleting-notes), which deletes any recordings of the call.
+
+Available redaction strategies:
+
+| Strategy | What it matches |
+| - | - |
+| **Credit card numbers** | Common credit card formats (Visa, Mastercard, Amex, etc.) — 13 to 19 digit sequences |
+| **US Social Security numbers** | Numbers in XXX-XX-XXXX format |
+| **Phone numbers** | Phone numbers in various formats, including international numbers |
+
+You can enable any combination of these strategies.
+
+<Info>
+  Redaction can occasionally remove data that isn't actually sensitive (e.g., a long number that resembles a credit card). This may reduce AI accuracy in some cases.
+</Info>
+
+Redaction is off by default. To turn it on for your account, contact your account team or email [help@incident.io](mailto:help@incident.io). Once it's available, you choose which strategies to apply in [Settings → AI governance](https://app.incident.io/~/settings/ai-governance#ai-data-redaction).
+
+For more on how incident.io uses AI, see [AI usage](/admin/ai-usage).
+
+## Audit trail
+
+All data erasure actions are recorded in the [audit log](/admin/audit-logs), including who performed the erasure and when. The erased content itself is not included in audit log entries.
+
+## Need help?
+
+If you need to remove data that isn't covered above, contact us at [help@incident.io](mailto:help@incident.io) and we'll help you clean it up.
+
+<AccordionGroup>
+  <Accordion title="Is erasing data permanent?">
+    Yes. Erasing replaces the original content with a placeholder value and cannot be undone. All erasure events are
+    recorded in the [audit log](/admin/audit-logs).
+  </Accordion>
+
+  <Accordion title="Who can erase data?">
+    By default, only account owners. You can grant this to other roles using the **Permanently erase data** permission
+    in [custom RBAC](/admin/user-permissions).
+  </Accordion>
+
+  <Accordion title="Can you delete all our data?">
+    If you decide to stop using incident.io, we're happy to delete application data upon request. Contact us at
+    [help@incident.io](mailto:help@incident.io).
+  </Accordion>
+
+  <Accordion title="Does AI redaction happen before data leaves incident.io?">
+    Yes. When enabled, sensitive patterns are stripped from supported content before it is sent to AI providers.
+  </Accordion>
+</AccordionGroup>
+
+# Microsoft Intune on mobile
+Source: https://docs.incident.io/admin/microsoft-intune
+
+Apply Intune app protection policies to the incident.io mobile app on managed and personal devices alike.
+
+The incident.io mobile app supports Microsoft Intune Mobile Application Management (MAM), so your organization can enforce app protection policies on the incident.io app without requiring full device enrollment (MDM).
+
+This lets you protect corporate data on both company-owned and personal (BYOD) devices by controlling actions like copy and paste, screenshots, and selective wipe, all scoped to the incident.io app.
+
+<Info>
+  Microsoft Intune on mobile is available on the Enterprise plan, and requires version 1.15.0 or later of the
+  incident.io app on iOS and Android.
+</Info>
+
+## How it works
+
+When Intune is enabled for your organization:
+
+1. Users log into incident.io normally (SSO, email, etc.)
+2. The app detects that your organization requires Intune and asks them to sign in with their Microsoft work account
+3. incident.io checks that the account belongs to your linked Microsoft Entra tenant and matches their incident.io email
+4. The app registers with Intune and your app protection policies are applied. Intune may restart the app the first time a policy applies.
+
+After that, your policies are enforced inside the incident.io app, for example blocking screenshots or restricting data transfer, without managing the whole device.
+
+incident.io links your organization to a single Entra tenant. That link is how we know which Microsoft accounts are yours, so connecting it is the first step in setup.
+
+## Prerequisites
+
+* The **Manage security settings** permission in incident.io
+* A Microsoft Entra ID tenant with Intune licenses, plus admin access to the Microsoft Entra admin center and the Microsoft Intune admin center
+* An app protection policy in Intune for iOS/iPadOS, Android, or both
+* On Android, the Intune Company Portal app installed on each device. Intune requires it to apply app protection policies on Android.
+* Everyone's incident.io email must match the email on their Microsoft work 

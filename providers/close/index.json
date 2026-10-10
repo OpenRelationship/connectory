@@ -9007,7 +9007,7 @@
        "string",
        "null"
       ],
-      "description": "URL of the audio file used as this member's voicemail drop recording."
+      "description": "URL of the audio file used as this member's Voicemail Drop recording."
      },
      "may_workflows_impersonate": {
       "type": "boolean",
@@ -9172,7 +9172,7 @@
        "string",
        "null"
       ],
-      "description": "URL of the audio file used as this member's voicemail drop recording."
+      "description": "URL of the audio file used as this member's Voicemail Drop recording."
      },
      "may_workflows_impersonate": {
       "type": "boolean",
@@ -10350,7 +10350,7 @@
   {
    "slug": "close.phone_numbers_create",
    "name": "Request an internal phone number",
-   "description": "Renting a phone number incurs a cost. You need the \"Manage Team Phone Numbers\" permission to rent group numbers. If a number was rented, a 201 response is returned with the new number. If no number was rented (4xx response code), the response contains a `status` field which may contain one of the values below. New statuses may be added in the future. * `has-voice-only`: This country/prefix combina",
+   "description": "Renting a phone number incurs a cost. The new number is assigned to you unless you name other users via `assign_to`, which requires the \"Manage Team Phone Numbers\" permission. If a number was rented, a 201 response is returned with the new number. If no number was rented (4xx response code), the response contains a `status` field which may contain one of the values below. New statuses may be added",
    "input": {
     "type": "object",
     "properties": {
@@ -10429,7 +10429,7 @@
   {
    "slug": "close.phone_numbers_delete",
    "name": "Delete a phone number",
-   "description": "You need the \"Manage Team Phone Numbers\" permission to delete a group number. You can only delete your own personal numbers.",
+   "description": "If you're the only member of a number, you can delete it. Deleting any other number requires the \"Manage Team Phone Numbers\" permission.",
    "input": {
     "type": "object",
     "properties": {
@@ -10559,7 +10559,7 @@
   {
    "slug": "close.phone_numbers_update",
    "name": "Update a phone number",
-   "description": "You need the \"Manage Team Phone Numbers\" permission to update a group number. You can only update your own personal numbers. You can: - Change a `label` of your number. - Set up call forwarding via `forward_to` and `forward_to_enabled`. - Set up a voicemail greeting by including a URL of an mp3 recording in `voicemail_greeting_url`. We require the URL to be secure (i.e. starting with https://). - ",
+   "description": "You need the \"Manage Team Phone Numbers\" permission to change most settings. If you're the only member of a number, you can change its `label`, voicemail greeting, and call forwarding without that permission. You can: - Change the `label` of the number. - Set up call forwarding via `forward_to` and `forward_to_enabled`. - Set up a voicemail greeting by including a URL of an mp3 recording in `voice",
    "input": {
     "type": "object",
     "properties": {
@@ -10581,6 +10581,10 @@
      },
      "label": {
       "type": "string",
+      "description": ""
+     },
+     "participant_groups": {
+      "type": "array",
       "description": ""
      },
      "participants": {
@@ -10620,6 +10624,7 @@
      "forward_to_enabled",
      "inbound_ring_duration",
      "label",
+     "participant_groups",
      "participants",
      "phone_numbers",
      "press_1_to_accept",
@@ -12236,7 +12241,7 @@
   {
    "slug": "close.sequences_update_subscription",
    "name": "Update a specific subscription",
-   "description": "Update a specific Subscription",
+   "description": "Setting `status` to `active` restarts the Subscription, so it requires a plan that includes Workflow runs and otherwise returns a 400. Setting it to `paused` works on every plan.",
    "input": {
     "type": "object",
     "properties": {

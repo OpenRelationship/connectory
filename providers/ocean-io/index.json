@@ -4,6 +4,61 @@
  "source": "https://api.ocean.io/openapi.json",
  "operations": [
   {
+   "slug": "ocean-io.add_list_items",
+   "name": "Add items to exclusion list",
+   "description": "Add people or companies to an exclusion list. Creates a new list when `listId` is omitted. Each request accepts up to 10,000 items. A list holds up to 300,000 items, or your plan's exclusion limit if it is lower. A request that would take the list past that limit returns a 400 and adds nothing.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "apiToken": {
+      "type": "string",
+      "description": ""
+     },
+     "x-api-token": {
+      "type": "string",
+      "description": ""
+     },
+     "type": {
+      "type": "string",
+      "description": "Whether the list holds people or companies.",
+      "enum": [
+       "people",
+       "companies"
+      ]
+     },
+     "listId": {
+      "type": "string",
+      "description": "List to add items to. A new list is created when omitted."
+     },
+     "items": {
+      "type": "array",
+      "description": "Ids of people or companies to add, up to 10,000 per request."
+     }
+    },
+    "required": [
+     "items",
+     "type"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.ocean.io/v2/exclusion-lists/items",
+    "path": [],
+    "query": [
+     "apiToken"
+    ],
+    "header": [
+     "x-api-token"
+    ],
+    "body": [
+     "type",
+     "listId",
+     "items"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "ocean-io.add_marked_domains",
    "name": "Add domains to the positive or negative list of a segmentation",
    "description": "Append domains to the positive or negative list of an existing segmentation to steer future results toward good-fit companies and away from poor-fit ones.",
@@ -352,6 +407,55 @@
    }
   },
   {
+   "slug": "ocean-io.create_exclusion_list",
+   "name": "Create exclusion list",
+   "description": "Create a new exclusion list of people or companies.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "apiToken": {
+      "type": "string",
+      "description": ""
+     },
+     "x-api-token": {
+      "type": "string",
+      "description": ""
+     },
+     "type": {
+      "type": "string",
+      "description": "Whether the list holds people or companies.",
+      "enum": [
+       "people",
+       "companies"
+      ]
+     },
+     "name": {
+      "type": "string",
+      "description": "Optional display name for the list."
+     }
+    },
+    "required": [
+     "type"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.ocean.io/v2/exclusion-lists",
+    "path": [],
+    "query": [
+     "apiToken"
+    ],
+    "header": [
+     "x-api-token"
+    ],
+    "body": [
+     "type",
+     "name"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "ocean-io.create_segmentation",
    "name": "Create segmentation",
    "description": "Create a new segmentation from a list of company domains. Runs asynchronously \u2014 poll [Get Segmentation](/docs/getSegmentation) until `status` is `SUCCESSFUL` to read the resulting segments.",
@@ -407,6 +511,93 @@
      "numberOfSegmentsMode",
      "positiveDomains",
      "negativeDomains"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "ocean-io.delete_exclusion_list",
+   "name": "Delete exclusion list",
+   "description": "Delete an exclusion list and all of its items.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "list_id": {
+      "type": "string",
+      "description": ""
+     },
+     "apiToken": {
+      "type": "string",
+      "description": ""
+     },
+     "x-api-token": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "list_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.ocean.io/v2/exclusion-lists/{list_id}",
+    "path": [
+     "list_id"
+    ],
+    "query": [
+     "apiToken"
+    ],
+    "header": [
+     "x-api-token"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "ocean-io.edit_exclusion_list",
+   "name": "Edit exclusion list",
+   "description": "Rename an exclusion list.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "list_id": {
+      "type": "string",
+      "description": ""
+     },
+     "apiToken": {
+      "type": "string",
+      "description": ""
+     },
+     "x-api-token": {
+      "type": "string",
+      "description": ""
+     },
+     "name": {
+      "type": "string",
+      "description": "New display name for the list."
+     }
+    },
+    "required": [
+     "list_id",
+     "name"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.ocean.io/v2/exclusion-lists/{list_id}",
+    "path": [
+     "list_id"
+    ],
+    "query": [
+     "apiToken"
+    ],
+    "header": [
+     "x-api-token"
+    ],
+    "body": [
+     "name"
     ],
     "body_format": "json"
    }
@@ -612,6 +803,58 @@
    }
   },
   {
+   "slug": "ocean-io.get_company_posts",
+   "name": "Get company posts",
+   "description": "Get posts from a company's LinkedIn page. Provide either `linkedinNumID` or `linkedinID`. A valid empty result is not charged.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "linkedinNumID": {
+      "type": "string",
+      "description": "LinkedIn numeric company ID (e.g. \"35625249\"). The preferred, faster identifier."
+     },
+     "linkedinID": {
+      "type": "string",
+      "description": "LinkedIn vanity ID (e.g. \"google\"). Slower and less preferred than linkedinNumID."
+     },
+     "page": {
+      "type": "integer",
+      "description": "Page number (1-indexed)"
+     },
+     "perPage": {
+      "type": "integer",
+      "description": "Number of items per page"
+     },
+     "apiToken": {
+      "type": "string",
+      "description": ""
+     },
+     "x-api-token": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.ocean.io/v2/social/company/posts",
+    "path": [],
+    "query": [
+     "linkedinNumID",
+     "linkedinID",
+     "page",
+     "perPage",
+     "apiToken"
+    ],
+    "header": [
+     "x-api-token"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "ocean-io.get_credit_balance",
    "name": "Get credit balance",
    "description": "Get credit balance",
@@ -666,6 +909,311 @@
     "url": "https://api.ocean.io/v2/data-fields",
     "path": [],
     "query": [
+     "apiToken"
+    ],
+    "header": [
+     "x-api-token"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "ocean-io.get_exclusion_list",
+   "name": "Get exclusion list",
+   "description": "Retrieve an exclusion list by id, including its size and items.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "list_id": {
+      "type": "string",
+      "description": ""
+     },
+     "apiToken": {
+      "type": "string",
+      "description": ""
+     },
+     "x-api-token": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "list_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.ocean.io/v2/exclusion-lists/{list_id}",
+    "path": [
+     "list_id"
+    ],
+    "query": [
+     "apiToken"
+    ],
+    "header": [
+     "x-api-token"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "ocean-io.get_exclusion_lists",
+   "name": "Get exclusion lists",
+   "description": "Retrieve all exclusion lists for the organization.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "apiToken": {
+      "type": "string",
+      "description": ""
+     },
+     "x-api-token": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.ocean.io/v2/exclusion-lists",
+    "path": [],
+    "query": [
+     "apiToken"
+    ],
+    "header": [
+     "x-api-token"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "ocean-io.get_person_posts",
+   "name": "Get person posts",
+   "description": "Get posts from a person's LinkedIn profile. Provide either `linkedinEntityID` or `linkedinID`. A valid empty result is not charged.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "linkedinEntityID": {
+      "type": "string",
+      "description": "LinkedIn entity ID for the person. The preferred, faster identifier."
+     },
+     "linkedinID": {
+      "type": "string",
+      "description": "LinkedIn ID for the person. Slower and less preferred than linkedinEntityID."
+     },
+     "perPage": {
+      "type": "integer",
+      "description": "Number of items per page"
+     },
+     "paginationToken": {
+      "type": "string",
+      "description": "Token for pagination, required to return results beyond the first page."
+     },
+     "apiToken": {
+      "type": "string",
+      "description": ""
+     },
+     "x-api-token": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.ocean.io/v2/social/person/posts",
+    "path": [],
+    "query": [
+     "linkedinEntityID",
+     "linkedinID",
+     "perPage",
+     "paginationToken",
+     "apiToken"
+    ],
+    "header": [
+     "x-api-token"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "ocean-io.get_post_comments",
+   "name": "Get post comments",
+   "description": "Get comments for a LinkedIn post. A valid empty result is not charged.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "postUrn": {
+      "type": "string",
+      "description": "LinkedIn post URN"
+     },
+     "page": {
+      "type": "integer",
+      "description": "Page number (1-indexed). Increment together with paginationToken."
+     },
+     "paginationToken": {
+      "type": "string",
+      "description": "Omit on page 1. For each next page, increment page and pass the returned token with other parameters unchanged."
+     },
+     "perPage": {
+      "type": "integer",
+      "description": "Number of items per page"
+     },
+     "numReplies": {
+      "type": "integer",
+      "description": "Number of replies to include per comment"
+     },
+     "sortOrder": {
+      "type": "string",
+      "description": "`CHRONOLOGICAL` returns the complete top-level comment page; `RELEVANCE` may return only LinkedIn's curated subset.",
+      "enum": [
+       "CHRONOLOGICAL",
+       "RELEVANCE"
+      ]
+     },
+     "apiToken": {
+      "type": "string",
+      "description": ""
+     },
+     "x-api-token": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "postUrn"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.ocean.io/v2/social/post/comments",
+    "path": [],
+    "query": [
+     "postUrn",
+     "page",
+     "paginationToken",
+     "perPage",
+     "numReplies",
+     "sortOrder",
+     "apiToken"
+    ],
+    "header": [
+     "x-api-token"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "ocean-io.get_post_reactions",
+   "name": "Get post reactions",
+   "description": "Get reactions for a LinkedIn post. A valid empty result is not charged.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "postUrn": {
+      "type": "string",
+      "description": "LinkedIn post URN"
+     },
+     "page": {
+      "type": "integer",
+      "description": "Page number (1-indexed). Increment together with paginationToken."
+     },
+     "paginationToken": {
+      "type": "string",
+      "description": "Omit on page 1. For each next page, increment page and pass the returned token with other parameters unchanged."
+     },
+     "perPage": {
+      "type": "integer",
+      "description": "Number of items per page"
+     },
+     "reactionType": {
+      "type": "string",
+      "description": "Type of reaction to filter, if not supplied returns all reactions"
+     },
+     "apiToken": {
+      "type": "string",
+      "description": ""
+     },
+     "x-api-token": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "postUrn"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.ocean.io/v2/social/post/reactions",
+    "path": [],
+    "query": [
+     "postUrn",
+     "page",
+     "paginationToken",
+     "perPage",
+     "reactionType",
+     "apiToken"
+    ],
+    "header": [
+     "x-api-token"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "ocean-io.get_post_reshares",
+   "name": "Get post reshares",
+   "description": "Get reshares for a LinkedIn post. A valid empty result is not charged.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "postUrn": {
+      "type": "string",
+      "description": "LinkedIn post URN"
+     },
+     "page": {
+      "type": "integer",
+      "description": "Page number (1-indexed)"
+     },
+     "perPage": {
+      "type": "integer",
+      "description": "Number of items per page"
+     },
+     "paginationToken": {
+      "type": "string",
+      "description": "Token required for pagination, returned on the first request."
+     },
+     "apiToken": {
+      "type": "string",
+      "description": ""
+     },
+     "x-api-token": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "postUrn"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.ocean.io/v2/social/post/reshares",
+    "path": [],
+    "query": [
+     "postUrn",
+     "page",
+     "perPage",
+     "paginationToken",
      "apiToken"
     ],
     "header": [
@@ -847,6 +1395,63 @@
      "size",
      "companiesFilters",
      "peopleFilters"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "ocean-io.remove_exclusion_list_items",
+   "name": "Remove items from exclusion list",
+   "description": "Remove people or companies from a list.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "list_id": {
+      "type": "string",
+      "description": ""
+     },
+     "apiToken": {
+      "type": "string",
+      "description": ""
+     },
+     "x-api-token": {
+      "type": "string",
+      "description": ""
+     },
+     "type": {
+      "type": "string",
+      "description": "Whether the list holds people or companies.",
+      "enum": [
+       "people",
+       "companies"
+      ]
+     },
+     "items": {
+      "type": "array",
+      "description": "Ids of people or companies to remove, up to 10,000 per request."
+     }
+    },
+    "required": [
+     "items",
+     "list_id",
+     "type"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.ocean.io/v2/exclusion-lists/{list_id}/items/remove",
+    "path": [
+     "list_id"
+    ],
+    "query": [
+     "apiToken"
+    ],
+    "header": [
+     "x-api-token"
+    ],
+    "body": [
+     "type",
+     "items"
     ],
     "body_format": "json"
    }

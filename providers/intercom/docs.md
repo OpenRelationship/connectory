@@ -102,6 +102,7 @@ vouches for**: read it, then read their reference.
 ### Channels
 
 - [Customizing, updating, or troubleshooting welcome messages in Intercom messenger](https://www.intercom.com/help/en/articles/11892770-customizing-updating-or-troubleshooting-welcome-messages-in-intercom-messenger.md): Intercom Messenger offers options to customize, update, and troubleshoot welcome messages. This guide helps you navigate these settings.
+- [New Messenger install experience in your mobile app](https://www.intercom.com/help/en/articles/16947979-new-messenger-install-experience-in-your-mobile-app.md): Step-by-step guide to installing the Intercom Messenger on iOS, Android, or React Native — from adding the SDK to authenticating signed-in users and testing.
 - [The Intercom JavaScript API](https://www.intercom.com/help/en/articles/172-the-intercom-javascript-api.md)
 - [Connect your Slack channel](https://www.intercom.com/help/en/articles/11534476-connect-your-slack-channel.md): View and respond to customer messages in Slack with seamless Intercom Inbox integration and AI-powered support.
 - [Connect your WhatsApp channel](https://www.intercom.com/help/en/articles/5454490-connect-your-whatsapp-channel.md): Use the WhatsApp integration to handle conversations from WhatsApp directly in your Intercom Inbox and send outbound WhatsApp messages.
@@ -192,9 +193,9 @@ vouches for**: read it, then read their reference.
 
 ### Fin AI Agent
 
-- [Effectuez une revue hebdomadaire des performances du support avec Fin Operator](https://www.intercom.com/help/fr/articles/16736503-effectuez-une-revue-hebdomadaire-des-performances-du-support-avec-fin-operator.md): Un guide étape par étape pour utiliser Fin Operator afin de réaliser un RCA hebdomadaire structuré, couvrant le volume, le temps de traitement, le score CX, la répartition des sujets et l'investiga...
+- [Effectuez une revue hebdomadaire des performances du support avec Fin Operator](https://www.intercom.com/help/fr/articles/16736503-effectuez-une-revue-hebdomadaire-des-performances-du-support-avec-fin-operator.md): Un guide étape par étape pour utiliser Fin Operator afin de réaliser un RCA hebdomadaire structuré, couvrant le volume, le temps de traitement, le score CX, la répartition des sujets et l'analyse d...
 - [Guide de démarrage rapide des connecteurs de données](https://www.intercom.com/help/fr/articles/15970053-guide-de-demarrage-rapide-des-connecteurs-de-donnees.md): Nouveau sur Fin Data connectors ? Ce guide couvre toute la configuration, de la création du connecteur aux API, authentification, objets personnalisés, tests et dépannage.
-- [Fin Agent API : Serveur MCP](https://www.intercom.com/help/fr/articles/15481203-fin-agent-api-serveur-mcp.md): Ce qu'est le Fin Agent API MCP Server et comment l'utiliser.
+- [Fin Agent API : serveur MCP](https://www.intercom.com/help/fr/articles/15481203-fin-agent-api-serveur-mcp.md): Ce qu'est le serveur Fin Agent API MCP et comment l'utiliser.
 - [Comment utiliser les connecteurs de données dans les procédures Fin](https://www.intercom.com/help/fr/articles/13459820-comment-utiliser-les-connecteurs-de-donnees-dans-les-procedures-fin.md): Utilisez les connecteurs de données pour lire et agir sur les données API externes et effectuer des actions automatisées lors des conversations avec les clients.
 - [Déclencher une procédure proactive depuis votre site web ou une API externe](https://www.intercom.com/help/fr/articles/15645332-declencher-une-procedure-proactive-depuis-votre-site-web-ou-une-api-externe.md): Comment déclencher les procédures Fin depuis un clic sur un bouton du site ou un appel API externe : configuration, expérience client et routage.
 - [Introduction à Deploy](https://www.intercom.com/help/fr/articles/11769044-introduction-a-deploy.md): Un guide stratégique pour lancer Fin sur vos canaux de support pour un impact immédiat et évolutif.
@@ -208,7 +209,3 @@ vouches for**: read it, then read their reference.
 - [Intégration de Fin Voice avec Aircall via le transfert d'appel](https://www.intercom.com/help/fr/articles/13845993-integration-de-fin-voice-avec-aircall-via-le-transfert-d-appel.md): Utilisez ce guide pour connecter Fin Voice avec Aircall en utilisant le transfert d'appel universel PSTN.
 - [Intégration de Fin Voice avec CXone via le transfert d'appel](https://www.intercom.com/help/fr/articles/13272720-integration-de-fin-voice-avec-cxone-via-le-transfert-d-appel.md): Apprenez comment connecter Fin Voice à CXone en utilisant le transfert d'appel PSTN pour résoudre instantanément les questions des clients avec l'IA.
 - [Intégration de Fin Voice avec le transfert d'appel Five9](https://www.intercom.com/help/fr/articles/14122381-integration-de-fin-voice-avec-le-transfert-d-appel-five9.md): Connectez Fin Voice à Five9 et dirigez les appels entrants via un script IVR.
-
-### Canaux
-
-- [Personnalisation, mise à jour ou dépannage des messages de bienvenue dans Intercom messenger](https://www.intercom.com/help/fr/articles/11892770-personnalisation-mise-a-jour-ou-depannage-des-messages-de-bienvenue-dans-intercom-messenger.md): Intercom Messenger offre des options pour personnaliser, mettre à jour et dépanner les messages de bienvenue. Ce guide vous aide à naviguer dans ces paramètres.

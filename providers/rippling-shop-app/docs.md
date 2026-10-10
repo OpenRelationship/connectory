@@ -189,9 +189,25 @@ First-party Model Context Protocol connection for AI clients. Runs as the connec
 
 ## Pipelines and Transformations
 
-- [Pipelines getting started](https://developer.rippling.com/documentation/rippling-platform/pipelines/getting-started): In-Rippling data pipelines.
-- [Custom pipeline setup](https://developer.rippling.com/documentation/rippling-platform/pipelines/custom-pipeline-setup)
+- [Get started with pipelines](https://developer.rippling.com/documentation/rippling-platform/pipelines/getting-started): In-Rippling data pipelines.
+- [Set up a custom pipeline](https://developer.rippling.com/documentation/rippling-platform/pipelines/custom-pipeline-setup)
+- [Permissions for pipelines](https://developer.rippling.com/documentation/rippling-platform/pipelines/permissions)
+- [Pipeline sync management guide](https://developer.rippling.com/documentation/rippling-platform/pipelines/sync-management)
+- [Pipeline FAQs](https://developer.rippling.com/documentation/rippling-platform/pipelines/faqs)
 - [Transformations](https://developer.rippling.com/documentation/rippling-platform/transformations/getting-started): SQL transformations over Rippling data.
+
+## Reports and Dashboards
+
+- [Get started with reports](https://developer.rippling.com/documentation/rippling-platform/reports/getting-started): In-product reports, time frames, and data refresh behavior.
+- [Joins in reports](https://developer.rippling.com/documentation/rippling-platform/reports/joins)
+- [Filters and time frames in reports](https://developer.rippling.com/documentation/rippling-platform/reports/filters)
+- [Charts, grouping, and formatting in reports](https://developer.rippling.com/documentation/rippling-platform/reports/visualization)
+- [Report permissions](https://developer.rippling.com/documentation/rippling-platform/reports/permissions)
+- [Share and download reports](https://developer.rippling.com/documentation/rippling-platform/reports/sharing)
+- [Get started with dashboards](https://developer.rippling.com/documentation/rippling-platform/dashboards/getting-started)
+- [Overview of dashboard filters](https://developer.rippling.com/documentation/rippling-platform/dashboards/filters)
+- [Dashboard sharing and permissions](https://developer.rippling.com/documentation/rippling-platform/dashboards/sharing)
+- [Generate and Download Reports Using the API](https://developer.rippling.com/documentation/rest-api/guides/reports): Run built-in reports via the REST API.
 
 ## Optional
 

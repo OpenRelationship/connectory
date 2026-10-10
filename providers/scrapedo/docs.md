@@ -78,6 +78,7 @@ vouches for**: read it, then read their reference.
 - [Google Hotels API](https://scrape.do/documentation/google-scraper-api/hotels.md): Scrape Google Hotels listings with names, ratings, star classes, amenities, coordinates, images, prices, and per-vendor booking sources. Filters for price, rating, hotel class, eco-certification, and free cancellation. Worldwide currency support.
 - [Google Food API](https://scrape.do/documentation/google-scraper-api/food.md): Scrape Google Food order-online provider lists for restaurants. Returns pickup and delivery ordering providers, deep links, ETAs, fees, logos, and preferred-by-business flags from a Google entity ID.
 - [Google Play Store API](https://scrape.do/documentation/google-scraper-api/play-store.md): Scrape Google Play Store for Android apps, app details, and user reviews. Returns titles, package IDs, ratings, developers, prices, screenshots, downloads, versions, release notes, and paginated reviews with developer responses. Category, chart, and device-type filters supported.
+- [YouTube Video API](https://scrape.do/documentation/google-scraper-api/youtube-video.md): Scrape a YouTube video for structured metadata, including exact view and like counts, stable channel IDs, UTC publication timestamps, comments, chapters, related videos, and continuation tokens.
 - [Google News API](https://scrape.do/documentation/google-scraper-api/news.md): Scrape Google News articles with bylines, ISO dates, thumbnails, and direct publisher URLs. Navigate by keyword, topic, story cluster, publication, or Knowledge Graph entity. No redirect chains, no pagination quirks.
 
 ### Google Trends API
@@ -92,10 +93,10 @@ vouches for**: read it, then read their reference.
 
 ## Walmart Scraper API
 
-- [Walmart Scraper API](https://scrape.do/documentation/walmart-scraper-api.md): Scrape Walmart search results, product details, and any Walmart page scoped to a specific store or ZIP code. Structured JSON with store-accurate pricing and availability.
+- [Walmart Scraper API](https://scrape.do/documentation/walmart-scraper-api.md): Scrape Walmart search results, product details, and Walmart US or Canada pages scoped to a specific store. Structured JSON with store-accurate pricing and availability.
 - [Search Results](https://scrape.do/documentation/walmart-scraper-api/search.md): Search a specific Walmart store's shelf and get structured results
 - [Product Details](https://scrape.do/documentation/walmart-scraper-api/product.md): Get one Walmart item's price, stock, and specifications at a specific store
-- [Store-Scoped Page Fetch](https://scrape.do/documentation/walmart-scraper-api/store.md): Fetch any Walmart URL through a session warmed for a specific store
+- [Store-Scoped Page Fetch](https://scrape.do/documentation/walmart-scraper-api/store.md): Fetch Walmart US or Canada URLs through a session warmed for a specific store
 - [Lowes Scraper API](https://scrape.do/documentation/lowes-api.md): Scrape Lowes with store-level pricing and availability. Pass a store ID and zip code to get product pages, search results, and category listings exactly as that store serves them.
 - [Home Depot Scraper API](https://scrape.do/documentation/homedepot-api.md): Scrape Home Depot product pages with store-level pricing and availability. Pass a store ID and zip code to get the page exactly as that store serves it, or search stores by zip code or lat/lng coordinates.
 - [YouTube Scraper API](https://scrape.do/documentation/youtube-api.md): Scrape YouTube search results with videos, channels, playlists, Shorts shelves, ads, and related searches. Up to 30 videos per request with the num parameter, structured JSON, no JavaScript rendering, full localization, sp filters for sort/type/duration/features/upload date.

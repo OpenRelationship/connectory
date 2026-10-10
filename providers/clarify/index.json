@@ -1,0 +1,4173 @@
+{
+ "_": "GENERATED \u2014 what an authoring tool needs to FIND an operation. The calling table is the .lua beside it.",
+ "provider": "clarify",
+ "source": "https://clarify.ai/openapi.json",
+ "operations": [
+  {
+   "slug": "clarify.add_record_attachment",
+   "name": "Attach an uploaded file to a record",
+   "description": "Links a previously uploaded file (see the upload-URL endpoint) to the record and returns the updated record.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     },
+     "object": {
+      "type": "string",
+      "description": "The object type: a built-in entity (`person`, `company`, `deal`, \u2026) or a custom object (`c_*`)."
+     },
+     "id": {
+      "type": "string",
+      "description": "The unique ID of the record."
+     },
+     "silent": {
+      "type": "boolean",
+      "description": "When true, suppresses in-app and Slack notifications for this mutation."
+     },
+     "name": {
+      "type": "string",
+      "description": "The file name, including its extension."
+     },
+     "attachmentId": {
+      "type": "string",
+      "description": "The attachment ID returned by the signed-upload-URL request."
+     }
+    },
+    "required": [
+     "attachmentId",
+     "id",
+     "name",
+     "object",
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/objects/{object}/records/{id}/attachments",
+    "path": [
+     "workspace",
+     "object",
+     "id"
+    ],
+    "query": [
+     "silent"
+    ],
+    "header": [],
+    "body": [
+     "name",
+     "attachmentId"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.confirm_media_upload",
+   "name": "Confirm a recording media upload",
+   "description": "Finalizes a media upload after the file has been submitted to the presigned policy: validates the stored object and marks the recording complete. Returns the finalized recording.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     },
+     "meetingId": {
+      "type": "string",
+      "description": "The unique ID of the meeting."
+     },
+     "recordingId": {
+      "type": "string",
+      "description": "The unique ID of the recording."
+     },
+     "silent": {
+      "type": "boolean",
+      "description": "When true, suppresses in-app and Slack notifications for this mutation."
+     }
+    },
+    "required": [
+     "meetingId",
+     "recordingId",
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/meetings/{meetingId}/recordings/media/{recordingId}",
+    "path": [
+     "workspace",
+     "meetingId",
+     "recordingId"
+    ],
+    "query": [
+     "silent"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.create_api_key",
+   "name": "Create an api key",
+   "description": "Creates an API key and returns it as a JSON:API resource whose `cleartext_api_key` holds the secret, shown only this once. Requires a user access token, because an API key cannot create another API key. Only admins can create `workspace` keys.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     },
+     "silent": {
+      "type": "boolean",
+      "description": "When true, suppresses in-app and Slack notifications for this mutation."
+     },
+     "data": {
+      "type": "object",
+      "description": "The resource to create."
+     }
+    },
+    "required": [
+     "data",
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/api-keys",
+    "path": [
+     "workspace"
+    ],
+    "query": [
+     "silent"
+    ],
+    "header": [],
+    "body": [
+     "data"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.create_bulk_records",
+   "name": "Create records in bulk",
+   "description": "Creates multiple records of the given object type in one request. The request is validated as a whole: if any record fails validation, none are created. Pass `match_on` with the name of a unique field to upsert matching records instead of creating duplicates. The response lists one record per input, in input order.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     },
+     "object": {
+      "type": "string",
+      "description": "The object type: a built-in entity (`person`, `company`, `deal`, \u2026) or a custom object (`c_*`)."
+     },
+     "silent": {
+      "type": "boolean",
+      "description": "When true, suppresses in-app and Slack notifications for this mutation."
+     },
+     "data": {
+      "type": "array",
+      "description": "The resources to create."
+     },
+     "match_on": {
+      "type": "string",
+      "description": "Enables upsert mode: the name of a unique field (marked unique in the schema, e.g. \"domains\" for companies, \"email_addresses\" for people) to match incoming records against existing ones. When a value matches exactly one existing record, the attributes are merged into it and its ID is returned instead of inserting a new row; a value that matches multiple existing records errors. Scalar unique field"
+     }
+    },
+    "required": [
+     "data",
+     "object",
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/objects/{object}/records/bulk",
+    "path": [
+     "workspace",
+     "object"
+    ],
+    "query": [
+     "silent"
+    ],
+    "header": [],
+    "body": [
+     "data",
+     "match_on"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.create_comment",
+   "name": "Create a comment",
+   "description": "Creates a comment on a record. The comment body is rich text, and `owner_id` plus `entity` identify the record it is attached to. Returns the created comment row.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     },
+     "silent": {
+      "type": "boolean",
+      "description": "When true, suppresses in-app and Slack notifications for this mutation."
+     },
+     "_id": {
+      "type": "string",
+      "description": "The unique ID of the comment. Generated by the server when omitted on create."
+     },
+     "message": {
+      "type": "array",
+      "description": "The comment body, as a non-empty array of rich-text (BlockNote) nodes."
+     },
+     "owner_id": {
+      "type": "string",
+      "description": "The unique ID of the record the comment is attached to."
+     },
+     "entity": {
+      "type": "string",
+      "description": "The object type of the record the comment is attached to. Must be an object that supports comments (e.g. `person`, `deal`, `task`, or a custom object such as `c_dog`). Lead-finder records (`tam_person`, `tam_company`) cannot be commented on."
+     },
+     "_event_id": {
+      "type": "string",
+      "description": "An optional client-supplied ID for the comment creation event; generated by the server when omitted."
+     }
+    },
+    "required": [
+     "entity",
+     "message",
+     "owner_id",
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/comments",
+    "path": [
+     "workspace"
+    ],
+    "query": [
+     "silent"
+    ],
+    "header": [],
+    "body": [
+     "_id",
+     "message",
+     "owner_id",
+     "entity",
+     "_event_id"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.create_custom_object",
+   "name": "Create a custom object",
+   "description": "Creates a new custom object type in the workspace and returns its generated JSON Schema. The name is normalized to a `c_`-prefixed identifier (for example \"Sales Order\" becomes `c_sales_order`).",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     },
+     "silent": {
+      "type": "boolean",
+      "description": "When true, suppresses in-app and Slack notifications for this mutation."
+     },
+     "name": {
+      "type": "string",
+      "description": "The name will be normalized to a c_ prefixed identifier (e.g., \"Sales Order\" becomes \"c_sales_order\")"
+     },
+     "plural": {
+      "type": "string",
+      "description": "The plural name will be used to display the object type in the UI"
+     },
+     "description": {
+      "type": "string",
+      "description": "The description is stored as AI context for this object type"
+     },
+     "icon": {
+      "type": "string",
+      "description": "Icon name for the object avatar. Must be one of the curated avatar icon names (xClarifyPresentation.icon).",
+      "enum": [
+       "Box",
+       "Package",
+       "FileText",
+       "Folder",
+       "Ticket",
+       "Briefcase",
+       "Store",
+       "Component",
+       "Layers",
+       "MapPin",
+       "Globe",
+       "BankNote"
+      ]
+     },
+     "backgroundColor": {
+      "type": "string",
+      "description": "Background color for the object avatar. A Tailwind color name rendered at the 500 shade (xClarifyPresentation.backgroundColor).",
+      "enum": [
+       "red",
+       "orange",
+       "amber",
+       "yellow",
+       "lime",
+       "green",
+       "emerald",
+       "teal",
+       "cyan",
+       "sky",
+       "blue",
+       "indigo"
+      ]
+     },
+     "properties": {
+      "type": "object",
+      "description": "Initial fields for the object, keyed by field name and valued by JSON Schema. Built-in system fields are always added and cannot be overridden."
+     }
+    },
+    "required": [
+     "name",
+     "plural",
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/schemas/objects",
+    "path": [
+     "workspace"
+    ],
+    "query": [
+     "silent"
+    ],
+    "header": [],
+    "body": [
+     "name",
+     "plural",
+     "description",
+     "icon",
+     "backgroundColor",
+     "properties"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.create_grant",
+   "name": "Create a record access grant",
+   "description": "Shares a single record \u2014 a record entity (`deal`, `company`, `person`, or a custom object) or a `list`, `meeting`, or `message` \u2014 with a user or the whole workspace at a given access level. Only the record\u2019s owner or a workspace permission admin (records and lists), the record\u2019s owner (messages), a participant (meetings), or the assignee or creator (tasks) can create grants. Requires a user-backed",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     },
+     "object": {
+      "type": "string",
+      "description": "The shareable object the record belongs to: a record entity (`deal`, `company`, `person`, `task`, a custom object) or `list` / `meeting` / `message`."
+     },
+     "id": {
+      "type": "string",
+      "description": "The unique ID of the shared record."
+     },
+     "silent": {
+      "type": "boolean",
+      "description": "When true, suppresses in-app and Slack notifications for this mutation."
+     },
+     "data": {
+      "type": "object",
+      "description": ""
+     }
+    },
+    "required": [
+     "data",
+     "id",
+     "object",
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/objects/{object}/records/{id}/access",
+    "path": [
+     "workspace",
+     "object",
+     "id"
+    ],
+    "query": [
+     "silent"
+    ],
+    "header": [],
+    "body": [
+     "data"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.create_grants_bulk",
+   "name": "Create record access grants in bulk",
+   "description": "Shares a single record with multiple users and/or the whole workspace in one request, up to 1000 grants per call. Only the record\u2019s owner or a workspace permission admin (records and lists), the record\u2019s owner (messages), a participant (meetings), or the assignee or creator (tasks) can create grants. Requires a user-backed API key; workspace-actor API keys are not supported.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     },
+     "object": {
+      "type": "string",
+      "description": "The shareable object the record belongs to: a record entity (`deal`, `company`, `person`, `task`, a custom object) or `list` / `meeting` / `message`."
+     },
+     "id": {
+      "type": "string",
+      "description": "The unique ID of the shared record."
+     },
+     "silent": {
+      "type": "boolean",
+      "description": "When true, suppresses in-app and Slack notifications for this mutation."
+     },
+     "data": {
+      "type": "array",
+      "description": ""
+     }
+    },
+    "required": [
+     "data",
+     "id",
+     "object",
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/objects/{object}/records/{id}/access/bulk",
+    "path": [
+     "workspace",
+     "object",
+     "id"
+    ],
+    "query": [
+     "silent"
+    ],
+    "header": [],
+    "body": [
+     "data"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.create_invitation",
+   "name": "Invite a user",
+   "description": "Emails an invitation to join the workspace and returns the outcome as a JSON:API resource. Inviting someone with a pending invitation resends it, and inviting an existing member sends nothing and returns a `null` id.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     },
+     "silent": {
+      "type": "boolean",
+      "description": "When true, suppresses in-app and Slack notifications for this mutation."
+     },
+     "data": {
+      "type": "object",
+      "description": "The resource to create."
+     }
+    },
+    "required": [
+     "data",
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/invitations",
+    "path": [
+     "workspace"
+    ],
+    "query": [
+     "silent"
+    ],
+    "header": [],
+    "body": [
+     "data"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.create_list",
+   "name": "Create a list",
+   "description": "Creates a list on the given object type. A `dynamic` list derives its membership from the SQL `query`; a `static` list starts empty. Returns the created list.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     },
+     "object": {
+      "type": "string",
+      "description": "The object type: a built-in entity (`person`, `company`, `deal`, \u2026) or a custom object (`c_*`)."
+     },
+     "silent": {
+      "type": "boolean",
+      "description": "When true, suppresses in-app and Slack notifications for this mutation."
+     },
+     "title": {
+      "type": "string",
+      "description": "The display name of the list."
+     },
+     "emoji": {
+      "type": "string",
+      "description": "The emoji shown next to the list, or `null` for none."
+     },
+     "description": {
+      "type": "string",
+      "description": "A short description of the list."
+     },
+     "layout": {
+      "type": "string",
+      "description": "How the list is rendered in the app: `table` or `board`.",
+      "enum": [
+       "table",
+       "board"
+      ]
+     },
+     "options": {
+      "type": "object",
+      "description": "View-level display options such as column widths and layout."
+     },
+     "query": {
+      "type": "object",
+      "description": "For dynamic lists, the SQL query that defines membership; `null` for static and default lists."
+     },
+     "rank": {
+      "type": "number",
+      "description": "The sort position of the list; defaults to appending after existing lists."
+     },
+     "type": {
+      "type": "string",
+      "description": "The list type: `dynamic` (membership derives from `query`) or `static` (an explicit set of records).",
+      "enum": [
+       "dynamic",
+       "static"
+      ]
+     },
+     "state": {
+      "type": "string",
+      "description": "Whether the list is created as a `draft` or `published`.",
+      "enum": [
+       "draft",
+       "published"
+      ]
+     }
+    },
+    "required": [
+     "description",
+     "layout",
+     "object",
+     "title",
+     "type",
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/objects/{object}/lists",
+    "path": [
+     "workspace",
+     "object"
+    ],
+    "query": [
+     "silent"
+    ],
+    "header": [],
+    "body": [
+     "title",
+     "emoji",
+     "description",
+     "layout",
+     "options",
+     "query",
+     "rank",
+     "type",
+     "state"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.create_record",
+   "name": "Create a record",
+   "description": "Creates a record of the given object type. Pass `match_on` with the name of a unique field to upsert: when an incoming value matches exactly one existing record, that record is updated instead of a new one being created.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     },
+     "object": {
+      "type": "string",
+      "description": "The object type: a built-in entity (`person`, `company`, `deal`, \u2026) or a custom object (`c_*`)."
+     },
+     "silent": {
+      "type": "boolean",
+      "description": "When true, suppresses in-app and Slack notifications for this mutation."
+     },
+     "data": {
+      "type": "object",
+      "description": "The resource to create."
+     },
+     "match_on": {
+      "type": "string",
+      "description": "Enables upsert mode: the name of a unique field (marked unique in the schema, e.g. \"domains\" for companies, \"email_addresses\" for people) to match incoming records against existing ones. When a value matches exactly one existing record, the attributes are merged into it and its ID is returned instead of inserting a new row; a value that matches multiple existing records errors. Scalar unique field"
+     }
+    },
+    "required": [
+     "data",
+     "object",
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/objects/{object}/records",
+    "path": [
+     "workspace",
+     "object"
+    ],
+    "query": [
+     "silent"
+    ],
+    "header": [],
+    "body": [
+     "data",
+     "match_on"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.create_resource",
+   "name": "Create a resource",
+   "description": "Creates a resource of the given object type. The `type` in the body must match the `object` path parameter. Returns the created resource as a JSON:API document.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     },
+     "object": {
+      "type": "string",
+      "description": "The object type: a built-in entity (`person`, `company`, `deal`, \u2026) or a custom object (`c_*`)."
+     },
+     "silent": {
+      "type": "boolean",
+      "description": "When true, suppresses in-app and Slack notifications for this mutation."
+     },
+     "data": {
+      "type": "object",
+      "description": "The resource to create."
+     }
+    },
+    "required": [
+     "data",
+     "object",
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/objects/{object}/resources",
+    "path": [
+     "workspace",
+     "object"
+    ],
+    "query": [
+     "silent"
+    ],
+    "header": [],
+    "body": [
+     "data"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.create_schema_properties",
+   "name": "Add object fields",
+   "description": "Adds one or more non-relationship fields to an object type. Each key in `attributes` is a new field name mapped to its JSON Schema, and every type except `boolean` must include `\"null\"` \u2014 declare `[\"string\", \"null\"]` rather than `\"string\"`, because the column behind such a field is nullable and a non-nullable declaration would reject its own stored values. Fields that already exist are rejected \u2014 ",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     },
+     "entity": {
+      "type": "string",
+      "description": "The object type: a built-in entity (`person`, `company`, `deal`, \u2026) or a custom object (`c_*`)."
+     },
+     "silent": {
+      "type": "boolean",
+      "description": "When true, suppresses in-app and Slack notifications for this mutation."
+     },
+     "data": {
+      "type": "object",
+      "description": "The resource carrying the new fields to add."
+     }
+    },
+    "required": [
+     "data",
+     "entity",
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/schemas/{entity}/properties",
+    "path": [
+     "workspace",
+     "entity"
+    ],
+    "query": [
+     "silent"
+    ],
+    "header": [],
+    "body": [
+     "data"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.create_schema_relationship_properties",
+   "name": "Add object relationships",
+   "description": "Creates relationship fields between object types. The `attributes` map is keyed first by object type, then by field name, and both sides of each relationship must be supplied together so the pairing is consistent. On `one-to-many` and `many-to-many` sides, the field must declare `\"oneOf\": [{ \"$ref\": \"https://getclarify.ai/schemas/core/collectionOfIds\" }, { \"type\": \"null\" }]` \u2014 the exact `$ref` str",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     },
+     "entity": {
+      "type": "string",
+      "description": "The object type: a built-in entity (`person`, `company`, `deal`, \u2026) or a custom object (`c_*`)."
+     },
+     "silent": {
+      "type": "boolean",
+      "description": "When true, suppresses in-app and Slack notifications for this mutation."
+     },
+     "data": {
+      "type": "object",
+      "description": "The relationship definition to create."
+     }
+    },
+    "required": [
+     "data",
+     "entity",
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/schemas/{entity}/relationships",
+    "path": [
+     "workspace",
+     "entity"
+    ],
+    "query": [
+     "silent"
+    ],
+    "header": [],
+    "body": [
+     "data"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.create_workflow",
+   "name": "Create a workflow",
+   "description": "Creates a workflow from a trigger and a set of blocks. Create it disabled and enable it once the automation graph is complete. Returns the created workflow.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     },
+     "silent": {
+      "type": "boolean",
+      "description": "When true, suppresses in-app and Slack notifications for this mutation."
+     },
+     "data": {
+      "type": "object",
+      "description": "The resource to create."
+     }
+    },
+    "required": [
+     "data",
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/workflows",
+    "path": [
+     "workspace"
+    ],
+    "query": [
+     "silent"
+    ],
+    "header": [],
+    "body": [
+     "data"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.create_workspace",
+   "name": "Create a workspace",
+   "description": "Creates a workspace owned by the signed-in user and returns it as a JSON:API resource once it is ready to use. Requires a user access token sent as `Authorization: Bearer `. Retrying after a failure resumes the unfinished workspace instead of creating a second one, and repeating a create with the same name within ten minutes returns that workspace with status 200 and `meta.existing` set.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "silent": {
+      "type": "boolean",
+      "description": "When true, suppresses in-app and Slack notifications for this mutation."
+     },
+     "data": {
+      "type": "object",
+      "description": "The workspace to create."
+     }
+    },
+    "required": [
+     "data"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.clarify.ai/v1/workspaces",
+    "path": [],
+    "query": [
+     "silent"
+    ],
+    "header": [],
+    "body": [
+     "data"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.delete_api_key",
+   "name": "Delete an api key",
+   "description": "Revokes an API key so it stops authenticating requests. Requires a user access token. Admins can delete any key, and members only their own personal keys.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     },
+     "id": {
+      "type": "string",
+      "description": "The unique ID of the API key."
+     },
+     "silent": {
+      "type": "boolean",
+      "description": "When true, suppresses in-app and Slack notifications for this mutation."
+     }
+    },
+    "required": [
+     "id",
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/api-keys/{id}",
+    "path": [
+     "workspace",
+     "id"
+    ],
+    "query": [
+     "silent"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.delete_comment",
+   "name": "Delete a comment",
+   "description": "Permanently deletes a comment. A comment can be deleted by its author, by an admin, or by the owner of the agent that posted it. Returns the deleted comment. This cannot be undone.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     },
+     "id": {
+      "type": "string",
+      "description": "The unique ID of the comment."
+     },
+     "silent": {
+      "type": "boolean",
+      "description": "When true, suppresses in-app and Slack notifications for this mutation."
+     }
+    },
+    "required": [
+     "id",
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/comments/{id}",
+    "path": [
+     "workspace",
+     "id"
+    ],
+    "query": [
+     "silent"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.delete_custom_object",
+   "name": "Delete a custom object",
+   "description": "Deletes a custom object type and all of its records. The deletion runs asynchronously: the response returns a task you can poll to track progress. Only custom (`c_*`) objects can be deleted. This cannot be undone.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     },
+     "object": {
+      "type": "string",
+      "description": "The custom object type to delete (a `c_*` identifier)."
+     },
+     "silent": {
+      "type": "boolean",
+      "description": "When true, suppresses in-app and Slack notifications for this mutation."
+     }
+    },
+    "required": [
+     "object",
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/schemas/objects/{object}",
+    "path": [
+     "workspace",
+     "object"
+    ],
+    "query": [
+     "silent"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.delete_list",
+   "name": "Delete a list",
+   "description": "Permanently deletes a list. The object\u2019s default list and the last remaining list on an object cannot be deleted. This cannot be undone.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     },
+     "object": {
+      "type": "string",
+      "description": "The object type: a built-in entity (`person`, `company`, `deal`, \u2026) or a custom object (`c_*`)."
+     },
+     "list": {
+      "type": "string",
+      "description": "The unique ID of the list."
+     },
+     "silent": {
+      "type": "boolean",
+      "description": "When true, suppresses in-app and Slack notifications for this mutation."
+     }
+    },
+    "required": [
+     "list",
+     "object",
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/objects/{object}/lists/{list}",
+    "path": [
+     "workspace",
+     "object",
+     "list"
+    ],
+    "query": [
+     "silent"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.delete_record",
+   "name": "Delete a record",
+   "description": "Permanently deletes a record. This cannot be undone.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     },
+     "object": {
+      "type": "string",
+      "description": "The object type: a built-in entity (`person`, `company`, `deal`, \u2026) or a custom object (`c_*`)."
+     },
+     "id": {
+      "type": "string",
+      "description": "The unique ID of the record."
+     },
+     "silent": {
+      "type": "boolean",
+      "description": "When true, suppresses in-app and Slack notifications for this mutation."
+     }
+    },
+    "required": [
+     "id",
+     "object",
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/objects/{object}/records/{id}",
+    "path": [
+     "workspace",
+     "object",
+     "id"
+    ],
+    "query": [
+     "silent"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.delete_record_attachment",
+   "name": "Delete a record attachment",
+   "description": "Removes an attachment from the record and returns the updated record. This cannot be undone.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     },
+     "object": {
+      "type": "string",
+      "description": "The object type: a built-in entity (`person`, `company`, `deal`, \u2026) or a custom object (`c_*`)."
+     },
+     "id": {
+      "type": "string",
+      "description": "The unique ID of the record."
+     },
+     "attachmentId": {
+      "type": "string",
+      "description": "The unique ID of the attachment."
+     },
+     "silent": {
+      "type": "boolean",
+      "description": "When true, suppresses in-app and Slack notifications for this mutation."
+     }
+    },
+    "required": [
+     "attachmentId",
+     "id",
+     "object",
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/objects/{object}/records/{id}/attachments/{attachmentId}",
+    "path": [
+     "workspace",
+     "object",
+     "id",
+     "attachmentId"
+    ],
+    "query": [
+     "silent"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.delete_record_relationship",
+   "name": "Unlink related records",
+   "description": "Removes the links to the records in `data` from the given relationship. The records themselves are not deleted.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     },
+     "object": {
+      "type": "string",
+      "description": "The object type: a built-in entity (`person`, `company`, `deal`, \u2026) or a custom object (`c_*`)."
+     },
+     "id": {
+      "type": "string",
+      "description": "The unique ID of the record."
+     },
+     "relationship": {
+      "type": "string",
+      "description": "The relationship field name as defined in the object\u2019s schema, e.g. `people` or `companies`."
+     },
+     "silent": {
+      "type": "boolean",
+      "description": "When true, suppresses in-app and Slack notifications for this mutation."
+     },
+     "data": {
+      "type": "array",
+      "description": "The related records to link."
+     }
+    },
+    "required": [
+     "data",
+     "id",
+     "object",
+     "relationship",
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/objects/{object}/records/{id}/relationships/{relationship}",
+    "path": [
+     "workspace",
+     "object",
+     "id",
+     "relationship"
+    ],
+    "query": [
+     "silent"
+    ],
+    "header": [],
+    "body": [
+     "data"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.delete_records",
+   "name": "Delete records in bulk",
+   "description": "Permanently deletes the records listed in `items`. This cannot be undone.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     },
+     "object": {
+      "type": "string",
+      "description": "The object type: a built-in entity (`person`, `company`, `deal`, \u2026) or a custom object (`c_*`)."
+     },
+     "silent": {
+      "type": "boolean",
+      "description": "When true, suppresses in-app and Slack notifications for this mutation."
+     },
+     "items": {
+      "type": "array",
+      "description": "The IDs of the records to delete."
+     }
+    },
+    "required": [
+     "items",
+     "object",
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/objects/{object}/records",
+    "path": [
+     "workspace",
+     "object"
+    ],
+    "query": [
+     "silent"
+    ],
+    "header": [],
+    "body": [
+     "items"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.delete_schema_relationship_property",
+   "name": "Delete an object relationship",
+   "description": "Deletes a relationship field from an object type, along with its counterpart field on the related object. The deletion runs asynchronously: the response returns a task you can poll to track progress. Deleting an already-removed relationship is a no-op that still returns a task.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     },
+     "entity": {
+      "type": "string",
+      "description": "The object type: a built-in entity (`person`, `company`, `deal`, \u2026) or a custom object (`c_*`)."
+     },
+     "fieldName": {
+      "type": "string",
+      "description": "The name of the relationship field to delete."
+     },
+     "silent": {
+      "type": "boolean",
+      "description": "When true, suppresses in-app and Slack notifications for this mutation."
+     }
+    },
+    "required": [
+     "entity",
+     "fieldName",
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/schemas/{entity}/relationships/{fieldName}",
+    "path": [
+     "workspace",
+     "entity",
+     "fieldName"
+    ],
+    "query": [
+     "silent"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.delete_workflow",
+   "name": "Delete a workflow",
+   "description": "Deletes a workflow. The deletion is applied asynchronously and the response body is empty. This cannot be undone.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     },
+     "id": {
+      "type": "string",
+      "description": "The unique ID of the workflow."
+     },
+     "silent": {
+      "type": "boolean",
+      "description": "When true, suppresses in-app and Slack notifications for this mutation."
+     }
+    },
+    "required": [
+     "id",
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/workflows/{id}",
+    "path": [
+     "workspace",
+     "id"
+    ],
+    "query": [
+     "silent"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.delete_workspace_setting",
+   "name": "Reset a workspace setting",
+   "description": "Removes the stored value of a workspace setting so it falls back to its default. Read-only settings are rejected, and some settings require admin permissions.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     },
+     "silent": {
+      "type": "boolean",
+      "description": "When true, suppresses in-app and Slack notifications for this mutation."
+     }
+    },
+    "required": [
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/settings",
+    "path": [
+     "workspace"
+    ],
+    "query": [
+     "silent"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.disable_recording",
+   "name": "Disable meeting recording",
+   "description": "Turns off recording for a meeting so no notetaker bot joins the call. Returns the updated meeting record.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     },
+     "meetingId": {
+      "type": "string",
+      "description": "The unique ID of the meeting."
+     },
+     "silent": {
+      "type": "boolean",
+      "description": "When true, suppresses in-app and Slack notifications for this mutation."
+     }
+    },
+    "required": [
+     "meetingId",
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/meetings/{meetingId}/recording",
+    "path": [
+     "workspace",
+     "meetingId"
+    ],
+    "query": [
+     "silent"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.enable_recording",
+   "name": "Enable meeting recording",
+   "description": "Turns on recording for a meeting so a notetaker bot joins the call. Returns the updated meeting record.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     },
+     "meetingId": {
+      "type": "string",
+      "description": "The unique ID of the meeting."
+     },
+     "silent": {
+      "type": "boolean",
+      "description": "When true, suppresses in-app and Slack notifications for this mutation."
+     }
+    },
+    "required": [
+     "meetingId",
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/meetings/{meetingId}/recording",
+    "path": [
+     "workspace",
+     "meetingId"
+    ],
+    "query": [
+     "silent"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.get_activities",
+   "name": "List record activities",
+   "description": "Returns the activity feed for a record: a paginated, reverse-chronological list of change events (field updates, comments, relationship changes) grouped into activities. Each activity bundles one or more related events. `meta.total_records` can be a lower bound, so follow `links.next` to page.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     },
+     "object": {
+      "type": "string",
+      "description": "The object type: a built-in entity (`person`, `company`, `deal`, \u2026) or a custom object (`c_*`)."
+     },
+     "record": {
+      "type": "string",
+      "description": "The unique ID of the record."
+     },
+     "page": {
+      "type": "object",
+      "description": "Offset pagination, e.g. `page[offset]=0&page[limit]=100`."
+     },
+     "sortOrder": {
+      "type": "object",
+      "description": "Sort order, e.g. `sortOrder[column]=_created_at&sortOrder[dir]=DESC`."
+     }
+    },
+    "required": [
+     "object",
+     "record",
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/objects/{object}/records/{record}/activities",
+    "path": [
+     "workspace",
+     "object",
+     "record"
+    ],
+    "query": [
+     "page",
+     "sortOrder"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.get_api_keys",
+   "name": "List api keys",
+   "description": "Returns API keys as a JSON:API list with `links` and `meta`, in one page. Requires a user access token. Admins see every personal and workspace key, and members see only their own personal keys. Secrets are never returned.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     }
+    },
+    "required": [
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/api-keys",
+    "path": [
+     "workspace"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.get_cli_auth_config",
+   "name": "Get cli sign in settings",
+   "description": "Returns the OAuth 2.0 device flow settings a command-line client uses to sign a user in. The response is plain JSON, not a JSON:API document, and the endpoint needs no authentication.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.clarify.ai/v1/auth/cli",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.get_comment",
+   "name": "Get a comment",
+   "description": "Returns a single comment by its ID.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     },
+     "id": {
+      "type": "string",
+      "description": "The unique ID of the comment."
+     }
+    },
+    "required": [
+     "id",
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/comments/{id}",
+    "path": [
+     "workspace",
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.get_current_user",
+   "name": "Get the current user",
+   "description": "Returns the user the request authenticates as, in the same JSON:API shape as getting a user by ID. A workspace API key that is not bound to a person has no current user.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     }
+    },
+    "required": [
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/users/me",
+    "path": [
+     "workspace"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.get_deleted_resources",
+   "name": "List deleted resources",
+   "description": "Returns a paginated JSON:API collection of the object\u2019s recently deleted records, newest deletion first. Each resource\u2019s `attributes` are the record\u2019s field values as they stood at the moment of deletion, plus `_deleted_at`. Deletions older than 30 days are not returned. A record the caller could not read while it existed is not returned either. Poll incrementally with `filter[_deleted_at][Greater",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     },
+     "object": {
+      "type": "string",
+      "description": "The object type: a built-in entity (`person`, `company`, `deal`, \u2026) or a custom object (`c_*`)."
+     },
+     "page": {
+      "type": "object",
+      "description": "Offset pagination, e.g. `page[offset]=0&page[limit]=100`."
+     },
+     "filter": {
+      "type": "object",
+      "description": "Deletion-time filter, e.g. `filter[_deleted_at][Greater than]=1787273241` for everything deleted since that moment \u2014 the incremental read a polling client wants. The value is epoch seconds. Accepts `Less than`, `Less than or equal`, `Greater than`, `Greater than or equal`. `_deleted_at` is the only field that can be filtered."
+     }
+    },
+    "required": [
+     "object",
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/objects/{object}/deleted-resources",
+    "path": [
+     "workspace",
+     "object"
+    ],
+    "query": [
+     "page",
+     "filter"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.get_grants",
+   "name": "List record access grants",
+   "description": "Returns every access grant on a single record \u2014 a record entity (`deal`, `company`, `person`, or a custom object) or a `list`, `meeting`, or `message` \u2014 as a JSON:API collection. A grant shares the record with a single workspace member or the whole workspace at a given access level. Visible to anyone who can already read the record. Requires a user-backed API key; workspace-actor API keys are not ",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     },
+     "object": {
+      "type": "string",
+      "description": "The shareable object the record belongs to: a record entity (`deal`, `company`, `person`, `task`, a custom object) or `list` / `meeting` / `message`."
+     },
+     "id": {
+      "type": "string",
+      "description": "The unique ID of the shared record."
+     }
+    },
+    "required": [
+     "id",
+     "object",
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/objects/{object}/records/{id}/access",
+    "path": [
+     "workspace",
+     "object",
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.get_invitations",
+   "name": "List invitations",
+   "description": "Returns the workspace\u2019s invitations and their states as a JSON:API list with `links` and `meta`, in one page.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     }
+    },
+    "required": [
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/invitations",
+    "path": [
+     "workspace"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.get_layout_by_id",
+   "name": "Get a layout",
+   "description": "Returns a single layout by its ID. A layout defines the UI structure \u2014 navigation, record page regions \u2014 rendered for the workspace.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     },
+     "id": {
+      "type": "string",
+      "description": "The unique ID of the layout."
+     }
+    },
+    "required": [
+     "id",
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/layouts/{id}",
+    "path": [
+     "workspace",
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.get_list",
+   "name": "Get a list",
+   "description": "Returns a single list by ID as a JSON:API resource.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     },
+     "object": {
+      "type": "string",
+      "description": "The object type: a built-in entity (`person`, `company`, `deal`, \u2026) or a custom object (`c_*`)."
+     },
+     "list": {
+      "type": "string",
+      "description": "The unique ID of the list."
+     }
+    },
+    "required": [
+     "list",
+     "object",
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/objects/{object}/lists/{list}",
+    "path": [
+     "workspace",
+     "object",
+     "list"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.get_list_resources",
+   "name": "List resources in a list",
+   "description": "Returns a paginated JSON:API collection of the resources that belong to a specific list, applying the list\u2019s membership on top of any `filter` you pass. Use `include` to embed related resources.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     },
+     "object": {
+      "type": "string",
+      "description": "The object type: a built-in entity (`person`, `company`, `deal`, \u2026) or a custom object (`c_*`)."
+     },
+     "list": {
+      "type": "string",
+      "description": "The unique ID of the list."
+     },
+     "page": {
+      "type": "object",
+      "description": "Offset pagination, e.g. `page[offset]=0&page[limit]=100`."
+     },
+     "sortOrder": {
+      "type": "object",
+      "description": "Sort order, e.g. `sortOrder[column]=_created_at&sortOrder[dir]=DESC`."
+     },
+     "include": {
+      "type": "string",
+      "description": "Comma-separated relationship names to embed under `relationships` and return in `included`, e.g. `include=company,deals`."
+     },
+     "filter": {
+      "type": "object",
+      "description": "Nested filter object keyed by field name, e.g. `filter[status]=active` or `filter[amount][Greater than]=100`. See the endpoint description for the full operator syntax."
+     }
+    },
+    "required": [
+     "list",
+     "object",
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/objects/{object}/lists/{list}/resources",
+    "path": [
+     "workspace",
+     "object",
+     "list"
+    ],
+    "query": [
+     "page",
+     "sortOrder",
+     "include",
+     "filter"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.get_list_rows_csv",
+   "name": "Export a list\u2019s rows as csv",
+   "description": "Streams the rows of a list as a `text/csv` file download. The first row is a header of field names. Pass a `sql` statement in the body to export a custom query instead of the list\u2019s own rows.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     },
+     "object": {
+      "type": "string",
+      "description": "The object type: a built-in entity (`person`, `company`, `deal`, \u2026) or a custom object (`c_*`)."
+     },
+     "list": {
+      "type": "string",
+      "description": "The unique ID of the list."
+     },
+     "silent": {
+      "type": "boolean",
+      "description": "When true, suppresses in-app and Slack notifications for this mutation."
+     },
+     "sql": {
+      "type": "string",
+      "description": "Overrides the list\u2019s own query with a custom SQL statement selecting the rows to export. Defaults to the list\u2019s query."
+     },
+     "search": {
+      "type": "object",
+      "description": "Full-text search applied on top of the list\u2019s rows."
+     }
+    },
+    "required": [
+     "list",
+     "object",
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/objects/{object}/lists/{list}/rows/csv",
+    "path": [
+     "workspace",
+     "object",
+     "list"
+    ],
+    "query": [
+     "silent"
+    ],
+    "header": [],
+    "body": [
+     "sql",
+     "search"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.get_lists",
+   "name": "List an object\u2019s lists",
+   "description": "Returns the lists defined on an object type as a paginated JSON:API collection. Dynamic lists are excluded unless you pass a matching `filter`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     },
+     "object": {
+      "type": "string",
+      "description": "The object type: a built-in entity (`person`, `company`, `deal`, \u2026) or a custom object (`c_*`)."
+     },
+     "page": {
+      "type": "object",
+      "description": "Offset pagination, e.g. `page[offset]=0&page[limit]=100`."
+     },
+     "sortOrder": {
+      "type": "object",
+      "description": "Sort order, e.g. `sortOrder[column]=_created_at&sortOrder[dir]=DESC`."
+     },
+     "filter": {
+      "type": "object",
+      "description": "Nested filter object, e.g. `filter[type]=static&filter[state]=published`. When omitted, dynamic lists are excluded."
+     },
+     "search": {
+      "type": "string",
+      "description": "Case-insensitive substring match against the list title."
+     }
+    },
+    "required": [
+     "object",
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/objects/{object}/lists",
+    "path": [
+     "workspace",
+     "object"
+    ],
+    "query": [
+     "page",
+     "sortOrder",
+     "filter",
+     "search"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.get_object_access",
+   "name": "List object access delegations",
+   "description": "Returns entity-wide access delegations for the object type as a JSON:API collection. Entity-wide access delegation grants another user the same access you have to every record of that object type. The response includes both delegations you have granted and delegations granted to you. Requires a user-backed API key; workspace-actor API keys are not supported.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     },
+     "object": {
+      "type": "string",
+      "description": "The object type this delegation applies to: `meeting` or `message`.",
+      "enum": [
+       "meeting",
+       "message"
+      ]
+     }
+    },
+    "required": [
+     "object",
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/objects/{object}/access",
+    "path": [
+     "workspace",
+     "object"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.get_recipients",
+   "name": "List campaign recipients",
+   "description": "Returns the people enrolled in a campaign as an offset-paginated JSON:API collection, each with their per-recipient engagement \u2014 whether they opened, clicked, replied, or unsubscribed, and when each last happened. Filter by engagement with `filter[event]` (for example `filter[event]=clicked` to build a retargeting audience), by delivery state with `filter[status]`, or by name/email with `filter[q]",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     },
+     "campaignId": {
+      "type": "string",
+      "description": "The unique ID of the campaign."
+     },
+     "page": {
+      "type": "object",
+      "description": "Offset pagination, e.g. `page[offset]=0&page[limit]=100`."
+     },
+     "sortOrder": {
+      "type": "object",
+      "description": "Sort order, e.g. `sortOrder[column]=_created_at&sortOrder[dir]=DESC`."
+     },
+     "filter": {
+      "type": "object",
+      "description": "Nested filter object, e.g. `filter[event]=clicked&filter[status]=completed`."
+     }
+    },
+    "required": [
+     "campaignId",
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/campaigns/{campaignId}/recipients",
+    "path": [
+     "workspace",
+     "campaignId"
+    ],
+    "query": [
+     "page",
+     "sortOrder",
+     "filter"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.get_record",
+   "name": "Get a record",
+   "description": "Returns a single record as a JSON:API resource. Use `include` to embed related records under `relationships`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     },
+     "object": {
+      "type": "string",
+      "description": "The object type: a built-in entity (`person`, `company`, `deal`, \u2026) or a custom object (`c_*`)."
+     },
+     "id": {
+      "type": "string",
+      "description": "The unique ID of the record."
+     },
+     "include": {
+      "type": "string",
+      "description": "Comma-separated list of relationship names to resolve and embed under `relationships`, e.g. `include=companies,deals`."
+     }
+    },
+    "required": [
+     "id",
+     "object",
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/objects/{object}/records/{id}",
+    "path": [
+     "workspace",
+     "object",
+     "id"
+    ],
+    "query": [
+     "include"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.get_record_attachment",
+   "name": "Get an attachment download url",
+   "description": "Returns a short-lived signed URL for downloading the attachment contents.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     },
+     "object": {
+      "type": "string",
+      "description": "The object type: a built-in entity (`person`, `company`, `deal`, \u2026) or a custom object (`c_*`)."
+     },
+     "id": {
+      "type": "string",
+      "description": "The unique ID of the record."
+     },
+     "attachmentId": {
+      "type": "string",
+      "description": "The unique ID of the attachment."
+     }
+    },
+    "required": [
+     "attachmentId",
+     "id",
+     "object",
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/objects/{object}/records/{id}/attachments/{attachmentId}",
+    "path": [
+     "workspace",
+     "object",
+     "id",
+     "attachmentId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.get_record_relationships",
+   "name": "List related records",
+   "description": "Returns the records linked to a record through the given relationship, e.g. the deals related to a person.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     },
+     "object": {
+      "type": "string",
+      "description": "The object type: a built-in entity (`person`, `company`, `deal`, \u2026) or a custom object (`c_*`)."
+     },
+     "id": {
+      "type": "string",
+      "description": "The unique ID of the record."
+     },
+     "relationship": {
+      "type": "string",
+      "description": "The relationship field name as defined in the object\u2019s schema, e.g. `people` or `companies`."
+     },
+     "page": {
+      "type": "object",
+      "description": "Offset pagination, e.g. `page[offset]=0&page[limit]=100`."
+     },
+     "sortOrder": {
+      "type": "object",
+      "description": "Sort order, e.g. `sortOrder[column]=_created_at&sortOrder[dir]=DESC`."
+     },
+     "include": {
+      "type": "string",
+      "description": "Comma-separated list of nested relationship paths to resolve, relative to the parent record, e.g. `include=companies.deals`."
+     }
+    },
+    "required": [
+     "id",
+     "object",
+     "relationship",
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/objects/{object}/records/{id}/relationships/{relationship}",
+    "path": [
+     "workspace",
+     "object",
+     "id",
+     "relationship"
+    ],
+    "query": [
+     "page",
+     "sortOrder",
+     "include"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.get_recording_artifacts",
+   "name": "Get recording artifacts",
+   "description": "Returns short-lived signed URLs for a recording\u2019s video and transcript files. Either URL is `null` when that artifact is not available.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     },
+     "meetingId": {
+      "type": "string",
+      "description": "The unique ID of the meeting."
+     },
+     "id": {
+      "type": "string",
+      "description": "The unique ID of the recording."
+     },
+     "silent": {
+      "type": "boolean",
+      "description": "When true, suppresses in-app and Slack notifications for this mutation."
+     }
+    },
+    "required": [
+     "id",
+     "meetingId",
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/meetings/{meetingId}/recordings/{id}/artifacts",
+    "path": [
+     "workspace",
+     "meetingId",
+     "id"
+    ],
+    "query": [
+     "silent"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.get_resource",
+   "name": "Get a resource",
+   "description": "Returns a single resource as a JSON:API document. Use `include` to embed related resources under `relationships` and return them in `included`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     },
+     "object": {
+      "type": "string",
+      "description": "The object type: a built-in entity (`person`, `company`, `deal`, \u2026) or a custom object (`c_*`)."
+     },
+     "id": {
+      "type": "string",
+      "description": "The unique ID of the record."
+     },
+     "include": {
+      "type": "string",
+      "description": "Comma-separated relationship names to embed under `relationships` and return in `included`, e.g. `include=company,deals`."
+     }
+    },
+    "required": [
+     "id",
+     "object",
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/objects/{object}/resources/{id}",
+    "path": [
+     "workspace",
+     "object",
+     "id"
+    ],
+    "query": [
+     "include"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.get_resources",
+   "name": "List resources",
+   "description": "Returns a paginated JSON:API collection of an object\u2019s resources. Use `include` to embed related resources and `filter` to narrow results by field \u2014 a bare value is an exact match, including on collection fields (`filter[email_addresses]=jane@acme.com`); shorthand operators are parsed from the value (`filter[status]=active,pending`, `filter[amount]=>100`, `filter[name]=*Smith*`, `filter[assigned]=",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     },
+     "object": {
+      "type": "string",
+      "description": "The object type: a built-in entity (`person`, `company`, `deal`, \u2026) or a custom object (`c_*`)."
+     },
+     "page": {
+      "type": "object",
+      "description": "Offset pagination, e.g. `page[offset]=0&page[limit]=100`."
+     },
+     "sortOrder": {
+      "type": "object",
+      "description": "Sort order, e.g. `sortOrder[column]=_created_at&sortOrder[dir]=DESC`."
+     },
+     "include": {
+      "type": "string",
+      "description": "Comma-separated relationship names to embed under `relationships` and return in `included`, e.g. `include=company,deals`."
+     },
+     "filter": {
+      "type": "object",
+      "description": "Nested filter object keyed by field name, e.g. `filter[status]=active` or `filter[amount][Greater than]=100`. See the endpoint description for the full operator syntax."
+     }
+    },
+    "required": [
+     "object",
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/objects/{object}/resources",
+    "path": [
+     "workspace",
+     "object"
+    ],
+    "query": [
+     "page",
+     "sortOrder",
+     "include",
+     "filter"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.get_schema_activities",
+   "name": "List schema activities",
+   "description": "Returns the history of schema changes for an object type as a paginated list of activities. Each activity groups the change events for one modification, such as adding or editing a field.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     },
+     "entity": {
+      "type": "string",
+      "description": "The object type: a built-in entity (`person`, `company`, `deal`, \u2026) or a custom object (`c_*`)."
+     },
+     "page": {
+      "type": "object",
+      "description": "Offset pagination, e.g. `page[offset]=0&page[limit]=100`."
+     },
+     "sortOrder": {
+      "type": "object",
+      "description": "Sort order, e.g. `sortOrder[column]=_created_at&sortOrder[dir]=DESC`."
+     }
+    },
+    "required": [
+     "entity",
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/schemas/{entity}/activities",
+    "path": [
+     "workspace",
+     "entity"
+    ],
+    "query": [
+     "page",
+     "sortOrder"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.get_schemas",
+   "name": "List object schemas",
+   "description": "Returns every object schema in the workspace as a cursor-paginated list of JSON:API resources. Each resource holds the full JSON Schema for one object type, including its fields, relationships, and presentation metadata.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     }
+    },
+    "required": [
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/schemas",
+    "path": [
+     "workspace"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.get_signed_url_for_record_attachment_upload",
+   "name": "Request an attachment upload url",
+   "description": "Returns a pre-signed URL for uploading a file. Upload the file contents to `signedUrl` via HTTP PUT, then attach it to the record by POSTing the returned `key` and `attachmentId` to the attachments endpoint.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     },
+     "object": {
+      "type": "string",
+      "description": "The object type: a built-in entity (`person`, `company`, `deal`, \u2026) or a custom object (`c_*`)."
+     },
+     "id": {
+      "type": "string",
+      "description": "The unique ID of the record."
+     },
+     "silent": {
+      "type": "boolean",
+      "description": "When true, suppresses in-app and Slack notifications for this mutation."
+     },
+     "name": {
+      "type": "string",
+      "description": "The file name, including its extension."
+     }
+    },
+    "required": [
+     "id",
+     "name",
+     "object",
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/objects/{object}/records/{id}/attachments",
+    "path": [
+     "workspace",
+     "object",
+     "id"
+    ],
+    "query": [
+     "silent"
+    ],
+    "header": [],
+    "body": [
+     "name"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.get_user",
+   "name": "Get a user",
+   "description": "Returns a single workspace user as a JSON:API resource, including their roles and the time they were last active.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     },
+     "userId": {
+      "type": "string",
+      "description": "The unique ID of the user."
+     }
+    },
+    "required": [
+     "userId",
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/users/{userId}",
+    "path": [
+     "workspace",
+     "userId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.get_users",
+   "name": "List users",
+   "description": "Returns the workspace\u2019s users as a paginated JSON:API list. Each user includes their roles.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     },
+     "page": {
+      "type": "object",
+      "description": "Offset pagination, e.g. `page[offset]=0&page[limit]=100`."
+     },
+     "sortOrder": {
+      "type": "object",
+      "description": "Sort order, e.g. `sortOrder[column]=_created_at&sortOrder[dir]=DESC`."
+     }
+    },
+    "required": [
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/users",
+    "path": [
+     "workspace"
+    ],
+    "query": [
+     "page",
+     "sortOrder"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.get_workflow",
+   "name": "Get a workflow",
+   "description": "Returns a single workflow as a JSON:API resource, including its trigger and the blocks that make up its automation graph.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     },
+     "id": {
+      "type": "string",
+      "description": "The unique ID of the workflow."
+     }
+    },
+    "required": [
+     "id",
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/workflows/{id}",
+    "path": [
+     "workspace",
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.get_workflows",
+   "name": "List workflows",
+   "description": "Returns the workspace\u2019s workflows as an offset-paginated list of JSON:API resources. Use the `type` filter to return only sequences (campaigns) or general workflows.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     },
+     "page": {
+      "type": "object",
+      "description": "Offset pagination, e.g. `page[offset]=0&page[limit]=100`."
+     },
+     "sortOrder": {
+      "type": "object",
+      "description": "Sort order, e.g. `sortOrder[column]=_created_at&sortOrder[dir]=DESC`."
+     },
+     "filter": {
+      "type": "object",
+      "description": "Filters applied to the workflow list."
+     }
+    },
+    "required": [
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/workflows",
+    "path": [
+     "workspace"
+    ],
+    "query": [
+     "page",
+     "sortOrder",
+     "filter"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.get_workspace",
+   "name": "Get a workspace",
+   "description": "Returns a single workspace as a JSON:API resource, including the WorkOS organization ID used to mint an access token for it.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     }
+    },
+    "required": [
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}",
+    "path": [
+     "workspace"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.get_workspace_lists",
+   "name": "List a workspace\u2019s lists",
+   "description": "Returns every list across all object types in the workspace as a paginated JSON:API collection. Filter by object type with `filter[entity]`. Dynamic lists are excluded unless you pass a matching `filter`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     },
+     "page": {
+      "type": "object",
+      "description": "Offset pagination, e.g. `page[offset]=0&page[limit]=100`."
+     },
+     "sortOrder": {
+      "type": "object",
+      "description": "Sort order, e.g. `sortOrder[column]=_created_at&sortOrder[dir]=DESC`."
+     },
+     "filter": {
+      "type": "object",
+      "description": "Nested filter object, e.g. `filter[entity]=deal&filter[type]=static`. When omitted, dynamic lists are excluded."
+     },
+     "search": {
+      "type": "string",
+      "description": "Case-insensitive substring match against the list title."
+     }
+    },
+    "required": [
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/lists",
+    "path": [
+     "workspace"
+    ],
+    "query": [
+     "page",
+     "sortOrder",
+     "filter",
+     "search"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.give_object_access",
+   "name": "Grant object access",
+   "description": "Grants another user entity-wide access delegation: the same access you have to every record of the given object type. Requires a paid plan with access delegation enabled. Requires a user-backed API key; workspace-actor API keys are not supported.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     },
+     "object": {
+      "type": "string",
+      "description": "The object type this delegation applies to: `meeting` or `message`.",
+      "enum": [
+       "meeting",
+       "message"
+      ]
+     },
+     "silent": {
+      "type": "boolean",
+      "description": "When true, suppresses in-app and Slack notifications for this mutation."
+     },
+     "data": {
+      "type": "object",
+      "description": "The resource to create."
+     }
+    },
+    "required": [
+     "data",
+     "object",
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/objects/{object}/access",
+    "path": [
+     "workspace",
+     "object"
+    ],
+    "query": [
+     "silent"
+    ],
+    "header": [],
+    "body": [
+     "data"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.init_media_upload",
+   "name": "Start a recording media upload",
+   "description": "Creates a pending recording on the meeting and returns a presigned S3 POST policy for uploading an audio or video file directly to storage. Uploaded media is stored for playback and is not transcribed. Optionally include a transcript in the same request so one recording carries both video and transcript. Submit the file to the returned policy, then confirm the upload. Pass `recordingId` to overwri",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     },
+     "meetingId": {
+      "type": "string",
+      "description": "The unique ID of the meeting."
+     },
+     "silent": {
+      "type": "boolean",
+      "description": "When true, suppresses in-app and Slack notifications for this mutation."
+     },
+     "recordingId": {
+      "type": "string",
+      "description": "A completed manual-upload recording to overwrite. When omitted, a new recording is created on the meeting. Only the artifacts supplied in this request are overwritten; other stored artifacts are left intact."
+     },
+     "contentType": {
+      "type": "string",
+      "description": "The MIME type of the media file to upload; must be an `audio/*` or `video/*` type. Uploaded media is stored for playback and is not transcribed."
+     },
+     "transcript": {
+      "type": "array",
+      "description": "An optional transcript to attach to the same recording as the media, so one recording carries both. Applied to the recording when the upload is confirmed, then used to generate the summary."
+     }
+    },
+    "required": [
+     "contentType",
+     "meetingId",
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/meetings/{meetingId}/recordings/media",
+    "path": [
+     "workspace",
+     "meetingId"
+    ],
+    "query": [
+     "silent"
+    ],
+    "header": [],
+    "body": [
+     "recordingId",
+     "contentType",
+     "transcript"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.list_record_attachments",
+   "name": "List record attachments",
+   "description": "Returns the attachments on a record, both user uploads and files extracted from emails. Omit `page` to return all attachments.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     },
+     "object": {
+      "type": "string",
+      "description": "The object type: a built-in entity (`person`, `company`, `deal`, \u2026) or a custom object (`c_*`)."
+     },
+     "id": {
+      "type": "string",
+      "description": "The unique ID of the record."
+     },
+     "page": {
+      "type": "object",
+      "description": "Offset pagination, e.g. `page[offset]=0&page[limit]=100`. Omit to return all attachments."
+     }
+    },
+    "required": [
+     "id",
+     "object",
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/objects/{object}/records/{id}/attachments",
+    "path": [
+     "workspace",
+     "object",
+     "id"
+    ],
+    "query": [
+     "page"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.list_workspaces",
+   "name": "List workspaces",
+   "description": "Returns every workspace the signed-in user belongs to as a JSON:API list with `links` and `meta`, in one page. Requires a user access token sent as `Authorization: Bearer `; an API key gets 401 because it belongs to one workspace.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.clarify.ai/v1/workspaces",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.merge_records",
+   "name": "Merge records",
+   "description": "Merges the source records listed in `sources` into the target record. Field values and relationships are combined onto the target, and the source records are deleted. This cannot be undone.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     },
+     "object": {
+      "type": "string",
+      "description": "The object type: a built-in entity (`person`, `company`, `deal`, \u2026) or a custom object (`c_*`)."
+     },
+     "record": {
+      "type": "string",
+      "description": "The unique ID of the record."
+     },
+     "silent": {
+      "type": "boolean",
+      "description": "When true, suppresses in-app and Slack notifications for this mutation."
+     },
+     "data": {
+      "type": "object",
+      "description": "The resource to create."
+     }
+    },
+    "required": [
+     "data",
+     "object",
+     "record",
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/objects/{object}/records/{record}/merges",
+    "path": [
+     "workspace",
+     "object",
+     "record"
+    ],
+    "query": [
+     "silent"
+    ],
+    "header": [],
+    "body": [
+     "data"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.patch_enum_field_values",
+   "name": "Add or remove enum field values",
+   "description": "Adds or removes options on enum (single- and multi-select) fields for one object type. The request carries exactly one item in `data`; each field in `meta` names an `append` or `remove` operation. To modify several object types, send separate requests.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     },
+     "silent": {
+      "type": "boolean",
+      "description": "When true, suppresses in-app and Slack notifications for this mutation."
+     },
+     "data": {
+      "type": "array",
+      "description": "A single-element array holding the enum-field patch to apply."
+     }
+    },
+    "required": [
+     "data",
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/schemas",
+    "path": [
+     "workspace"
+    ],
+    "query": [
+     "silent"
+    ],
+    "header": [],
+    "body": [
+     "data"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.publish_list",
+   "name": "Publish a list",
+   "description": "Publishes a draft list, making it visible to its audience. Returns the updated list.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     },
+     "object": {
+      "type": "string",
+      "description": "The object type: a built-in entity (`person`, `company`, `deal`, \u2026) or a custom object (`c_*`)."
+     },
+     "list": {
+      "type": "string",
+      "description": "The unique ID of the list."
+     },
+     "silent": {
+      "type": "boolean",
+      "description": "When true, suppresses in-app and Slack notifications for this mutation."
+     }
+    },
+    "required": [
+     "list",
+     "object",
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/objects/{object}/lists/{list}/publish",
+    "path": [
+     "workspace",
+     "object",
+     "list"
+    ],
+    "query": [
+     "silent"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.read_all_workspace_settings",
+   "name": "List workspace settings",
+   "description": "Returns every workspace setting keyed by name, with defaults applied for settings the workspace has not overridden.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     }
+    },
+    "required": [
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/settings",
+    "path": [
+     "workspace"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.read_workspace_settings",
+   "name": "Get a workspace setting",
+   "description": "Returns the value of a single workspace setting; the default value when the workspace has not overridden it.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     }
+    },
+    "required": [
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/settings/{key}",
+    "path": [
+     "workspace"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.remove_user",
+   "name": "Remove a user",
+   "description": "Removes a user from the workspace: they lose access, their campaigns stop, and their connected mailboxes disconnect. Their records stay in the workspace. The last user and the last admin cannot be removed.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     },
+     "userId": {
+      "type": "string",
+      "description": "The unique ID of the user."
+     },
+     "silent": {
+      "type": "boolean",
+      "description": "When true, suppresses in-app and Slack notifications for this mutation."
+     }
+    },
+    "required": [
+     "userId",
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/users/{userId}",
+    "path": [
+     "workspace",
+     "userId"
+    ],
+    "query": [
+     "silent"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.resend_invitation",
+   "name": "Resend an invitation",
+   "description": "Sends the invitation email again for a pending invitation.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     },
+     "invitationId": {
+      "type": "string",
+      "description": "The unique ID of the invitation."
+     },
+     "silent": {
+      "type": "boolean",
+      "description": "When true, suppresses in-app and Slack notifications for this mutation."
+     }
+    },
+    "required": [
+     "invitationId",
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/invitations/{invitationId}/resend",
+    "path": [
+     "workspace",
+     "invitationId"
+    ],
+    "query": [
+     "silent"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.reset_layout",
+   "name": "Reset a layout",
+   "description": "Restores the layout to its default `tree` and returns the resulting layout.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     },
+     "id": {
+      "type": "string",
+      "description": "The unique ID of the layout."
+     },
+     "silent": {
+      "type": "boolean",
+      "description": "When true, suppresses in-app and Slack notifications for this mutation."
+     }
+    },
+    "required": [
+     "id",
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/layouts/{id}/reset",
+    "path": [
+     "workspace",
+     "id"
+    ],
+    "query": [
+     "silent"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.revoke_grant",
+   "name": "Revoke a record access grant",
+   "description": "Permanently removes an access grant from a record. Only the record\u2019s owner or a workspace permission admin (records and lists), the record\u2019s owner (messages), a participant (meetings), or the assignee or creator (tasks) can manage grants. Returns 202 Accepted with an empty body. Requires a user-backed API key; workspace-actor API keys are not supported.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     },
+     "object": {
+      "type": "string",
+      "description": "The shareable object the record belongs to: a record entity (`deal`, `company`, `person`, `task`, a custom object) or `list` / `meeting` / `message`."
+     },
+     "id": {
+      "type": "string",
+      "description": "The unique ID of the shared record."
+     },
+     "grantId": {
+      "type": "string",
+      "description": "The unique ID of the grant."
+     },
+     "silent": {
+      "type": "boolean",
+      "description": "When true, suppresses in-app and Slack notifications for this mutation."
+     }
+    },
+    "required": [
+     "grantId",
+     "id",
+     "object",
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/objects/{object}/records/{id}/access/{grantId}",
+    "path": [
+     "workspace",
+     "object",
+     "id",
+     "grantId"
+    ],
+    "query": [
+     "silent"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.revoke_invitation",
+   "name": "Revoke an invitation",
+   "description": "Revokes a pending invitation so it can no longer be accepted.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     },
+     "invitationId": {
+      "type": "string",
+      "description": "The unique ID of the invitation."
+     },
+     "silent": {
+      "type": "boolean",
+      "description": "When true, suppresses in-app and Slack notifications for this mutation."
+     }
+    },
+    "required": [
+     "invitationId",
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/invitations/{invitationId}",
+    "path": [
+     "workspace",
+     "invitationId"
+    ],
+    "query": [
+     "silent"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.revoke_object_access",
+   "name": "Revoke object access",
+   "description": "Revokes a previously granted access delegation. Requires a paid plan with access delegation enabled. Returns 202 Accepted with an empty body. Requires a user-backed API key; workspace-actor API keys are not supported.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     },
+     "object": {
+      "type": "string",
+      "description": "The object type this delegation applies to: `meeting` or `message`.",
+      "enum": [
+       "meeting",
+       "message"
+      ]
+     },
+     "id": {
+      "type": "string",
+      "description": "The unique ID of the access delegation."
+     },
+     "silent": {
+      "type": "boolean",
+      "description": "When true, suppresses in-app and Slack notifications for this mutation."
+     }
+    },
+    "required": [
+     "id",
+     "object",
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/objects/{object}/access/{id}",
+    "path": [
+     "workspace",
+     "object",
+     "id"
+    ],
+    "query": [
+     "silent"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.unpublish_list",
+   "name": "Unpublish a list",
+   "description": "Reverts a published list to draft state. Returns the updated list.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     },
+     "object": {
+      "type": "string",
+      "description": "The object type: a built-in entity (`person`, `company`, `deal`, \u2026) or a custom object (`c_*`)."
+     },
+     "list": {
+      "type": "string",
+      "description": "The unique ID of the list."
+     },
+     "silent": {
+      "type": "boolean",
+      "description": "When true, suppresses in-app and Slack notifications for this mutation."
+     }
+    },
+    "required": [
+     "list",
+     "object",
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/objects/{object}/lists/{list}/unpublish",
+    "path": [
+     "workspace",
+     "object",
+     "list"
+    ],
+    "query": [
+     "silent"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.update_comment",
+   "name": "Update a comment",
+   "description": "Replaces the body of an existing comment. Only the comment\u2019s author may edit it. Returns the updated comment.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     },
+     "id": {
+      "type": "string",
+      "description": "The unique ID of the comment."
+     },
+     "silent": {
+      "type": "boolean",
+      "description": "When true, suppresses in-app and Slack notifications for this mutation."
+     },
+     "message": {
+      "type": "array",
+      "description": "The comment body, as a non-empty array of rich-text (BlockNote) nodes."
+     }
+    },
+    "required": [
+     "id",
+     "message",
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/comments/{id}",
+    "path": [
+     "workspace",
+     "id"
+    ],
+    "query": [
+     "silent"
+    ],
+    "header": [],
+    "body": [
+     "message"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.update_entity_schema",
+   "name": "Replace an object schema",
+   "description": "Replaces the full JSON Schema for an object type with the request body, whose `$id` must match the object in the path. Only Text and Multiline text, or Number and Currency convert into each other. Any other field type change, or adding or removing a number field's tier bands, is rejected with a 422. A read-only object, such as the Lead Finder people and companies, rejects any change with a 422. Th",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     },
+     "object": {
+      "type": "string",
+      "description": "The object type: a built-in entity (`person`, `company`, `deal`, \u2026) or a custom object (`c_*`)."
+     },
+     "silent": {
+      "type": "boolean",
+      "description": "When true, suppresses in-app and Slack notifications for this mutation."
+     }
+    },
+    "required": [
+     "object",
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/schemas/objects/{object}",
+    "path": [
+     "workspace",
+     "object"
+    ],
+    "query": [
+     "silent"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.update_grant",
+   "name": "Update a record access grant",
+   "description": "Changes the access level of an existing grant on a record. Only the record\u2019s owner or a workspace permission admin (records and lists), the record\u2019s owner (messages), a participant (meetings), or the assignee or creator (tasks) can manage grants. Requires a user-backed API key; workspace-actor API keys are not supported.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     },
+     "object": {
+      "type": "string",
+      "description": "The shareable object the record belongs to: a record entity (`deal`, `company`, `person`, `task`, a custom object) or `list` / `meeting` / `message`."
+     },
+     "id": {
+      "type": "string",
+      "description": "The unique ID of the shared record."
+     },
+     "grantId": {
+      "type": "string",
+      "description": "The unique ID of the grant."
+     },
+     "silent": {
+      "type": "boolean",
+      "description": "When true, suppresses in-app and Slack notifications for this mutation."
+     },
+     "data": {
+      "type": "object",
+      "description": "The resource to create."
+     }
+    },
+    "required": [
+     "data",
+     "grantId",
+     "id",
+     "object",
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/objects/{object}/records/{id}/access/{grantId}",
+    "path": [
+     "workspace",
+     "object",
+     "id",
+     "grantId"
+    ],
+    "query": [
+     "silent"
+    ],
+    "header": [],
+    "body": [
+     "data"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.update_layout",
+   "name": "Update a layout",
+   "description": "Replaces the layout\u2019s `tree` and returns the updated layout.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     },
+     "id": {
+      "type": "string",
+      "description": "The unique ID of the layout."
+     },
+     "silent": {
+      "type": "boolean",
+      "description": "When true, suppresses in-app and Slack notifications for this mutation."
+     },
+     "data": {
+      "type": "object",
+      "description": "The changes to apply."
+     },
+     "meta": {
+      "type": "string",
+      "description": "Optional JSON:API meta member carrying request-specific options; not accepted for this resource."
+     }
+    },
+    "required": [
+     "data",
+     "id",
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/layouts/{id}",
+    "path": [
+     "workspace",
+     "id"
+    ],
+    "query": [
+     "silent"
+    ],
+    "header": [],
+    "body": [
+     "data",
+     "meta"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.update_list",
+   "name": "Update a list",
+   "description": "Applies a partial update to a list: only the fields present in the body are changed. The object\u2019s default list cannot be updated. Returns the updated list.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     },
+     "object": {
+      "type": "string",
+      "description": "The object type: a built-in entity (`person`, `company`, `deal`, \u2026) or a custom object (`c_*`)."
+     },
+     "list": {
+      "type": "string",
+      "description": "The unique ID of the list."
+     },
+     "silent": {
+      "type": "boolean",
+      "description": "When true, suppresses in-app and Slack notifications for this mutation."
+     },
+     "title": {
+      "type": "string",
+      "description": "The display name of the list."
+     },
+     "emoji": {
+      "type": "string",
+      "description": "The emoji shown next to the list, or `null` if unset."
+     },
+     "description": {
+      "type": "string",
+      "description": "A short description of the list."
+     },
+     "layout": {
+      "type": "string",
+      "description": "How the list is rendered in the app: `table` or `board`.",
+      "enum": [
+       "table",
+       "board"
+      ]
+     },
+     "options": {
+      "type": "object",
+      "description": "View-level display options such as column widths and layout."
+     },
+     "query": {
+      "type": "object",
+      "description": "For dynamic lists, the SQL query that defines membership; `null` for static and default lists."
+     },
+     "rank": {
+      "type": "number",
+      "description": "The sort position of the list relative to its siblings."
+     }
+    },
+    "required": [
+     "list",
+     "object",
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/objects/{object}/lists/{list}",
+    "path": [
+     "workspace",
+     "object",
+     "list"
+    ],
+    "query": [
+     "silent"
+    ],
+    "header": [],
+    "body": [
+     "title",
+     "emoji",
+     "description",
+     "layout",
+     "options",
+     "query",
+     "rank"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.update_record",
+   "name": "Update a record",
+   "description": "Applies a partial update to a record: only the fields present in `attributes` are changed, all other fields keep their current values.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     },
+     "object": {
+      "type": "string",
+      "description": "The object type: a built-in entity (`person`, `company`, `deal`, \u2026) or a custom object (`c_*`)."
+     },
+     "id": {
+      "type": "string",
+      "description": "The unique ID of the record."
+     },
+     "silent": {
+      "type": "boolean",
+      "description": "When true, suppresses in-app and Slack notifications for this mutation."
+     },
+     "data": {
+      "type": "object",
+      "description": "The changes to apply."
+     },
+     "meta": {
+      "type": "object",
+      "description": "Per-field write strategies, keyed by field name; controls how array, collection, and object values are merged instead of replaced."
+     }
+    },
+    "required": [
+     "data",
+     "id",
+     "object",
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/objects/{object}/records/{id}",
+    "path": [
+     "workspace",
+     "object",
+     "id"
+    ],
+    "query": [
+     "silent"
+    ],
+    "header": [],
+    "body": [
+     "data",
+     "meta"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.update_record_relationship",
+   "name": "Replace related records",
+   "description": "Replaces the linked records for to-one and many-to-many relationships with the records in `data`: links not listed are removed. For one-to-many relationships the listed records are linked additively; pass `id: null` to unlink every related record first.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     },
+     "object": {
+      "type": "string",
+      "description": "The object type: a built-in entity (`person`, `company`, `deal`, \u2026) or a custom object (`c_*`)."
+     },
+     "id": {
+      "type": "string",
+      "description": "The unique ID of the record."
+     },
+     "relationship": {
+      "type": "string",
+      "description": "The relationship field name as defined in the object\u2019s schema, e.g. `people` or `companies`."
+     },
+     "silent": {
+      "type": "boolean",
+      "description": "When true, suppresses in-app and Slack notifications for this mutation."
+     },
+     "data": {
+      "type": "array",
+      "description": "The related records to link."
+     }
+    },
+    "required": [
+     "data",
+     "id",
+     "object",
+     "relationship",
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/objects/{object}/records/{id}/relationships/{relationship}",
+    "path": [
+     "workspace",
+     "object",
+     "id",
+     "relationship"
+    ],
+    "query": [
+     "silent"
+    ],
+    "header": [],
+    "body": [
+     "data"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.update_records",
+   "name": "Update records in bulk",
+   "description": "Applies partial updates to multiple records in one request. Each entry names the record by `id` and lists only the fields to change.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     },
+     "object": {
+      "type": "string",
+      "description": "The object type: a built-in entity (`person`, `company`, `deal`, \u2026) or a custom object (`c_*`)."
+     },
+     "silent": {
+      "type": "boolean",
+      "description": "When true, suppresses in-app and Slack notifications for this mutation."
+     },
+     "data": {
+      "type": "array",
+      "description": "The per-resource changes to apply."
+     },
+     "meta": {
+      "type": "object",
+      "description": "Per-field write strategies, keyed by field name; controls how array, collection, and object values are merged instead of replaced."
+     }
+    },
+    "required": [
+     "data",
+     "object",
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/objects/{object}/records",
+    "path": [
+     "workspace",
+     "object"
+    ],
+    "query": [
+     "silent"
+    ],
+    "header": [],
+    "body": [
+     "data",
+     "meta"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.update_schema_property_order",
+   "name": "Reorder object fields",
+   "description": "Sets the display order of an object type\u2019s fields. The `order` array lists every field name in the desired order. The change is applied asynchronously and the response body is empty.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     },
+     "entity": {
+      "type": "string",
+      "description": "The object type: a built-in entity (`person`, `company`, `deal`, \u2026) or a custom object (`c_*`)."
+     },
+     "silent": {
+      "type": "boolean",
+      "description": "When true, suppresses in-app and Slack notifications for this mutation."
+     },
+     "data": {
+      "type": "object",
+      "description": "The resource carrying the new property order."
+     }
+    },
+    "required": [
+     "data",
+     "entity",
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/schemas/{entity}/fields-order",
+    "path": [
+     "workspace",
+     "entity"
+    ],
+    "query": [
+     "silent"
+    ],
+    "header": [],
+    "body": [
+     "data"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.update_schema_property_visibility",
+   "name": "Set object field visibility",
+   "description": "Shows or hides an object type\u2019s fields on the record detail view. The `hiddenInDetails` map keys each field name to a boolean, where `true` hides the field. The change is applied asynchronously and the response body is empty.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     },
+     "entity": {
+      "type": "string",
+      "description": "The object type: a built-in entity (`person`, `company`, `deal`, \u2026) or a custom object (`c_*`)."
+     },
+     "silent": {
+      "type": "boolean",
+      "description": "When true, suppresses in-app and Slack notifications for this mutation."
+     },
+     "data": {
+      "type": "object",
+      "description": "The resource carrying the new property visibility."
+     }
+    },
+    "required": [
+     "data",
+     "entity",
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/schemas/{entity}/fields-visibility",
+    "path": [
+     "workspace",
+     "entity"
+    ],
+    "query": [
+     "silent"
+    ],
+    "header": [],
+    "body": [
+     "data"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.update_user_role",
+   "name": "Change a user\u2019s role",
+   "description": "Sets a workspace user\u2019s role to `admin` or `member` and returns the updated user as a JSON:API resource. Requires an admin signed in with a user access token; the last admin cannot be demoted.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     },
+     "userId": {
+      "type": "string",
+      "description": "The unique ID of the user."
+     },
+     "silent": {
+      "type": "boolean",
+      "description": "When true, suppresses in-app and Slack notifications for this mutation."
+     },
+     "role": {
+      "type": "string",
+      "description": "The role to assign: `admin` or `member`.",
+      "enum": [
+       "admin",
+       "member"
+      ]
+     }
+    },
+    "required": [
+     "role",
+     "userId",
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/users/{userId}/role",
+    "path": [
+     "workspace",
+     "userId"
+    ],
+    "query": [
+     "silent"
+    ],
+    "header": [],
+    "body": [
+     "role"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.update_workflow",
+   "name": "Update a workflow",
+   "description": "Applies a partial update to a workflow: only the fields present in `attributes` are changed. Use it to rename, enable or disable, or edit the trigger and blocks. Returns the updated workflow.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     },
+     "id": {
+      "type": "string",
+      "description": "The unique ID of the workflow."
+     },
+     "silent": {
+      "type": "boolean",
+      "description": "When true, suppresses in-app and Slack notifications for this mutation."
+     },
+     "data": {
+      "type": "object",
+      "description": "The changes to apply."
+     },
+     "meta": {
+      "type": "string",
+      "description": "Optional JSON:API meta member carrying request-specific options; not accepted for this resource."
+     }
+    },
+    "required": [
+     "data",
+     "id",
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/workflows/{id}",
+    "path": [
+     "workspace",
+     "id"
+    ],
+    "query": [
+     "silent"
+    ],
+    "header": [],
+    "body": [
+     "data",
+     "meta"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.update_workspace",
+   "name": "Rename a workspace",
+   "description": "Changes the workspace display name and returns the updated JSON:API resource. The slug never changes. Requires an admin signed in with a user access token.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     },
+     "silent": {
+      "type": "boolean",
+      "description": "When true, suppresses in-app and Slack notifications for this mutation."
+     },
+     "data": {
+      "type": "object",
+      "description": "The changes to apply to the workspace."
+     }
+    },
+    "required": [
+     "data",
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}",
+    "path": [
+     "workspace"
+    ],
+    "query": [
+     "silent"
+    ],
+    "header": [],
+    "body": [
+     "data"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.upload_recording_transcript",
+   "name": "Upload a recording transcript",
+   "description": "Creates a recording on the meeting from an externally captured transcript, so meetings recorded outside Clarify can be summarized and searched, and triggers summary generation. A meeting with a recording already gets a second recording. Pass `recordingId` to overwrite a completed manual-upload recording\u2019s transcript instead. Returns the recording.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     },
+     "meetingId": {
+      "type": "string",
+      "description": "The unique ID of the meeting."
+     },
+     "silent": {
+      "type": "boolean",
+      "description": "When true, suppresses in-app and Slack notifications for this mutation."
+     },
+     "recordingId": {
+      "type": "string",
+      "description": "A completed manual-upload recording to overwrite. When omitted, a new recording is created on the meeting. Only the artifacts supplied in this request are overwritten; other stored artifacts are left intact."
+     },
+     "transcript": {
+      "type": "array",
+      "description": "The meeting transcript, as an ordered list of speaker segments."
+     }
+    },
+    "required": [
+     "meetingId",
+     "transcript",
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/meetings/{meetingId}/recordings/transcript",
+    "path": [
+     "workspace",
+     "meetingId"
+    ],
+    "query": [
+     "silent"
+    ],
+    "header": [],
+    "body": [
+     "recordingId",
+     "transcript"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clarify.write_workspace_setting",
+   "name": "Write a workspace setting",
+   "description": "Sets the value of a workspace setting by key. Read-only settings are rejected, and some settings require admin permissions.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace": {
+      "type": "string",
+      "description": "The workspace slug \u2014 the `{slug}` segment of your Clarify workspace URL."
+     },
+     "silent": {
+      "type": "boolean",
+      "description": "When true, suppresses in-app and Slack notifications for this mutation."
+     },
+     "value": {
+      "type": "string",
+      "description": "The setting value; its type depends on the setting key."
+     }
+    },
+    "required": [
+     "workspace"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.clarify.ai/v1/workspaces/{workspace}/settings",
+    "path": [
+     "workspace"
+    ],
+    "query": [
+     "silent"
+    ],
+    "header": [],
+    "body": [
+     "value"
+    ],
+    "body_format": "json"
+   }
+  }
+ ]
+}

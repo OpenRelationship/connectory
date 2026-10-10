@@ -12,7 +12,7 @@
     "properties": {
      "select": {
       "type": "array",
-      "description": "A list of fields to return. - `ahrefs_rank` - `backlinks` - `backlinks_dofollow` - `backlinks_internal` - `backlinks_nofollow` - `backlinks_redirect` - `domain_rating` - `index` - `ip` - `linked_domains` - `linked_domains_dofollow` - `mode` - `org_cost` (10 units) - `org_keywords` - `org_keywords_11_20` - `org_keywords_1_3` - `org_keywords_21_50` - `org_keywords_4_10` - `org_keywords_51_plus` - `o"
+      "description": "A list of fields to return. - `ahrefs_rank` - `backlinks` - `backlinks_dofollow` - `backlinks_internal` - `backlinks_nofollow` - `backlinks_redirect` - `domain_rating` - `index` - `ip` - `linked_domains` - `linked_domains_dofollow` - `mode` - `org_cost` (10 units) - `org_keywords` - `org_keywords_1_3` - `org_keywords_4_10` - `org_keywords_11_20` - `org_keywords_21_50` - `org_keywords_51_plus` - `o"
      },
      "order_by": {
       "type": "array",
@@ -165,14 +165,6 @@
       "type": "string",
       "description": "A date to compare `date` with, in YYYY-MM-DD format. Must be strictly earlier than `date`. When set, the report covers every prompt answered on either date and the `status` field reports how each one changed between them. A prompt answered only on `date_compared` is reported as `lost`, and the rest of its fields describe its `date_compared` response, since it has none on `date`."
      },
-     "search_volume_type": {
-      "type": "string",
-      "description": "AI visibility reports are switching to AI adjusted volume. It better estimates demand for AI responses across chatbots and AI search surfaces. It is calculated by adjusting Google search volume for each AI platform\u2019s estimated usage compared with Google. This param will be deprecated on September 30, 2026; all requests will use new AI adjusted volume. `ask_volume` - New calculation (default). Esti",
-      "enum": [
-       "ask_volume",
-       "keyword_volume"
-      ]
-     },
      "order_by": {
       "type": "string",
       "description": "A column to order the results by.",
@@ -211,7 +203,6 @@
      "limit",
      "date",
      "date_compared",
-     "search_volume_type",
      "order_by",
      "output"
     ],
@@ -247,6 +238,10 @@
       "type": "array",
       "description": "A list of competitor names and websites to search for."
      },
+     "content_filter": {
+      "type": "object",
+      "description": "Optional phrases used to include or exclude results based on their content."
+     },
      "data_source": {
       "type": "array",
       "description": "A list of chatbot models. All models can be combined with each other. `claude` module supports only custom prompts. The `google_ai_overviews_keywords` and `google_ai_mode_keywords` models report AI Overviews / AI Mode visibility derived from Google search queries (keywords) rather than prompts."
@@ -274,14 +269,6 @@
      "date_compared": {
       "type": "string",
       "description": "A date to compare `date` with, in YYYY-MM-DD format. Must be strictly earlier than `date`. When set, the report covers every prompt answered on either date and the `status` field reports how each one changed between them. A prompt answered only on `date_compared` is reported as `lost`, and the rest of its fields describe its `date_compared` response, since it has none on `date`."
-     },
-     "search_volume_type": {
-      "type": "string",
-      "description": "AI visibility reports are switching to AI adjusted volume. It better estimates demand for AI responses across chatbots and AI search surfaces. It is calculated by adjusting Google search volume for each AI platform\u2019s estimated usage compared with Google. This param will be deprecated on September 30, 2026; all requests will use new AI adjusted volume. `ask_volume` - New calculation (default). Esti",
-      "enum": [
-       "ask_volume",
-       "keyword_volume"
-      ]
      },
      "order_by": {
       "type": "string",
@@ -333,13 +320,13 @@
      "report_id",
      "brands",
      "competitors",
+     "content_filter",
      "data_source",
      "country",
      "prompts",
      "limit",
      "date",
      "date_compared",
-     "search_volume_type",
      "order_by",
      "tags_filter",
      "brand_filter",
@@ -352,7 +339,7 @@
   },
   {
    "slug": "ahrefs.brand_radar_citations_history",
-   "name": "Overview history   citations",
+   "name": "Citations",
    "description": ">Requests to this endpoint consume API units based on the `prompts` parameter: requests returning only custom prompt data are free, while requests including Ahrefs prompt data follow standard API unit pricing. Every entity provided in `brands` (and `competitors`, when applicable) must include at least one value in `url_groups`. Entities consisting only of `names` are not supported here because cit",
    "input": {
     "type": "object",
@@ -368,6 +355,10 @@
      "brands": {
       "type": "array",
       "description": "A list of brand names and websites to search for."
+     },
+     "content_filter": {
+      "type": "object",
+      "description": "Optional phrases used to include or exclude results based on their content."
      },
      "data_source": {
       "type": "array",
@@ -392,14 +383,6 @@
      "date_to": {
       "type": "string",
       "description": "The end date of the historical period in YYYY-MM-DD format."
-     },
-     "search_volume_type": {
-      "type": "string",
-      "description": "AI visibility reports are switching to AI adjusted volume. It better estimates demand for AI responses across chatbots and AI search surfaces. It is calculated by adjusting Google search volume for each AI platform\u2019s estimated usage compared with Google. This param will be deprecated on September 30, 2026; all requests will use new AI adjusted volume. `ask_volume` - New calculation (default). Esti",
-      "enum": [
-       "ask_volume",
-       "keyword_volume"
-      ]
      },
      "tags_filter": {
       "type": "object",
@@ -431,12 +414,12 @@
      "where",
      "report_id",
      "brands",
+     "content_filter",
      "data_source",
      "country",
      "prompts",
      "date_from",
      "date_to",
-     "search_volume_type",
      "tags_filter",
      "output"
     ],
@@ -445,14 +428,14 @@
   },
   {
    "slug": "ahrefs.brand_radar_citations_overview",
-   "name": "Overview   citations",
+   "name": "Citations",
    "description": ">Requests to this endpoint consume API units based on the `prompts` parameter: requests returning only custom prompt data are free, while requests including Ahrefs prompt data follow standard API unit pricing. Every entity provided in `brands` (and `competitors`, when applicable) must include at least one value in `url_groups`. Entities consisting only of `names` are not supported here because cit",
    "input": {
     "type": "object",
     "properties": {
      "select": {
       "type": "array",
-      "description": "A list of fields to return. - `brand` - `no_tracked_brands` - `only_competitors_brands` - `only_target_brand` - `target_and_competitors_brands` - `total`"
+      "description": "A list of fields to return. - `brand` - `entity_type` - `no_tracked_brands` - `only_competitors_brands` - `only_target_brand` - `target_and_competitors_brands` - `total`"
      },
      "where": {
       "type": "object",
@@ -470,6 +453,10 @@
       "type": "array",
       "description": "A list of competitor names and websites to search for."
      },
+     "content_filter": {
+      "type": "object",
+      "description": "Optional phrases used to include or exclude results based on their content."
+     },
      "data_source": {
       "type": "array",
       "description": "A list of chatbot models. All models can be combined with each other. `claude` module supports only custom prompts. The `google_ai_overviews_keywords` and `google_ai_mode_keywords` models report AI Overviews / AI Mode visibility derived from Google search queries (keywords) rather than prompts."
@@ -484,14 +471,6 @@
       "enum": [
        "ahrefs",
        "custom"
-      ]
-     },
-     "search_volume_type": {
-      "type": "string",
-      "description": "AI visibility reports are switching to AI adjusted volume. It better estimates demand for AI responses across chatbots and AI search surfaces. It is calculated by adjusting Google search volume for each AI platform\u2019s estimated usage compared with Google. This param will be deprecated on September 30, 2026; all requests will use new AI adjusted volume. `ask_volume` - New calculation (default). Esti",
-      "enum": [
-       "ask_volume",
-       "keyword_volume"
       ]
      },
      "tags_filter": {
@@ -526,10 +505,10 @@
      "report_id",
      "brands",
      "competitors",
+     "content_filter",
      "data_source",
      "country",
      "prompts",
-     "search_volume_type",
      "tags_filter",
      "output"
     ],
@@ -613,14 +592,6 @@
       "type": "string",
       "description": "The date to search for in YYYY-MM-DD format."
      },
-     "search_volume_type": {
-      "type": "string",
-      "description": "AI visibility reports are switching to AI adjusted volume. It better estimates demand for AI responses across chatbots and AI search surfaces. It is calculated by adjusting Google search volume for each AI platform\u2019s estimated usage compared with Google. This param will be deprecated on September 30, 2026; all requests will use new AI adjusted volume. `ask_volume` - New calculation (default). Esti",
-      "enum": [
-       "ask_volume",
-       "keyword_volume"
-      ]
-     },
      "output": {
       "type": "string",
       "description": "The output format.",
@@ -650,7 +621,6 @@
      "prompts",
      "limit",
      "date",
-     "search_volume_type",
      "output"
     ],
     "header": [],
@@ -685,6 +655,10 @@
       "type": "array",
       "description": "A list of competitor names and websites to search for."
      },
+     "content_filter": {
+      "type": "object",
+      "description": "Optional phrases used to include or exclude results based on their content."
+     },
      "data_source": {
       "type": "array",
       "description": "A list of chatbot models. All models can be combined with each other. `claude` module supports only custom prompts. The `google_ai_overviews_keywords` and `google_ai_mode_keywords` models report AI Overviews / AI Mode visibility derived from Google search queries (keywords) rather than prompts."
@@ -708,14 +682,6 @@
      "date": {
       "type": "string",
       "description": "The date to search for in YYYY-MM-DD format."
-     },
-     "search_volume_type": {
-      "type": "string",
-      "description": "AI visibility reports are switching to AI adjusted volume. It better estimates demand for AI responses across chatbots and AI search surfaces. It is calculated by adjusting Google search volume for each AI platform\u2019s estimated usage compared with Google. This param will be deprecated on September 30, 2026; all requests will use new AI adjusted volume. `ask_volume` - New calculation (default). Esti",
-      "enum": [
-       "ask_volume",
-       "keyword_volume"
-      ]
      },
      "tags_filter": {
       "type": "object",
@@ -755,12 +721,12 @@
      "report_id",
      "brands",
      "competitors",
+     "content_filter",
      "data_source",
      "country",
      "prompts",
      "limit",
      "date",
-     "search_volume_type",
      "tags_filter",
      "brand_filter",
      "volume_range",
@@ -846,14 +812,6 @@
       "type": "string",
       "description": "The date to search for in YYYY-MM-DD format."
      },
-     "search_volume_type": {
-      "type": "string",
-      "description": "AI visibility reports are switching to AI adjusted volume. It better estimates demand for AI responses across chatbots and AI search surfaces. It is calculated by adjusting Google search volume for each AI platform\u2019s estimated usage compared with Google. This param will be deprecated on September 30, 2026; all requests will use new AI adjusted volume. `ask_volume` - New calculation (default). Esti",
-      "enum": [
-       "ask_volume",
-       "keyword_volume"
-      ]
-     },
      "tracked_urls": {
       "type": "string",
       "description": "A comma-separated list of tracked page URLs. When provided, the response includes rows with zero citations for any tracked URLs that have no data."
@@ -887,7 +845,6 @@
      "prompts",
      "limit",
      "date",
-     "search_volume_type",
      "tracked_urls",
      "output"
     ],
@@ -923,6 +880,10 @@
       "type": "array",
       "description": "A list of competitor names and websites to search for."
      },
+     "content_filter": {
+      "type": "object",
+      "description": "Optional phrases used to include or exclude results based on their content."
+     },
      "data_source": {
       "type": "array",
       "description": "A list of chatbot models. All models can be combined with each other. `claude` module supports only custom prompts. The `google_ai_overviews_keywords` and `google_ai_mode_keywords` models report AI Overviews / AI Mode visibility derived from Google search queries (keywords) rather than prompts."
@@ -946,14 +907,6 @@
      "date": {
       "type": "string",
       "description": "The date to search for in YYYY-MM-DD format."
-     },
-     "search_volume_type": {
-      "type": "string",
-      "description": "AI visibility reports are switching to AI adjusted volume. It better estimates demand for AI responses across chatbots and AI search surfaces. It is calculated by adjusting Google search volume for each AI platform\u2019s estimated usage compared with Google. This param will be deprecated on September 30, 2026; all requests will use new AI adjusted volume. `ask_volume` - New calculation (default). Esti",
-      "enum": [
-       "ask_volume",
-       "keyword_volume"
-      ]
      },
      "tracked_urls": {
       "type": "array",
@@ -997,12 +950,12 @@
      "report_id",
      "brands",
      "competitors",
+     "content_filter",
      "data_source",
      "country",
      "prompts",
      "limit",
      "date",
-     "search_volume_type",
      "tracked_urls",
      "tags_filter",
      "brand_filter",
@@ -1014,7 +967,7 @@
   },
   {
    "slug": "ahrefs.brand_radar_impressions_history",
-   "name": "Overview history   impressions",
+   "name": "Impressions",
    "description": ">Requests to this endpoint consume API units based on the `prompts` parameter: requests returning only custom prompt data are free, while requests including Ahrefs prompt data follow standard API unit pricing.",
    "input": {
     "type": "object",
@@ -1081,14 +1034,6 @@
       "type": "string",
       "description": "The end date of the historical period in YYYY-MM-DD format."
      },
-     "search_volume_type": {
-      "type": "string",
-      "description": "AI visibility reports are switching to AI adjusted volume. It better estimates demand for AI responses across chatbots and AI search surfaces. It is calculated by adjusting Google search volume for each AI platform\u2019s estimated usage compared with Google. This param will be deprecated on September 30, 2026; all requests will use new AI adjusted volume. `ask_volume` - New calculation (default). Esti",
-      "enum": [
-       "ask_volume",
-       "keyword_volume"
-      ]
-     },
      "output": {
       "type": "string",
       "description": "The output format.",
@@ -1119,7 +1064,6 @@
      "prompts",
      "date_from",
      "date_to",
-     "search_volume_type",
      "output"
     ],
     "header": [],
@@ -1129,7 +1073,7 @@
   },
   {
    "slug": "ahrefs.brand_radar_impressions_history_post",
-   "name": "Overview history   impressions",
+   "name": "Impressions",
    "description": ">Requests to this endpoint consume API units based on the `prompts` parameter: requests returning only custom prompt data are free, while requests including Ahrefs prompt data follow standard API unit pricing.",
    "input": {
     "type": "object",
@@ -1145,6 +1089,10 @@
      "brands": {
       "type": "array",
       "description": "A list of brand names and websites to search for."
+     },
+     "content_filter": {
+      "type": "object",
+      "description": "Optional phrases used to include or exclude results based on their content."
      },
      "data_source": {
       "type": "array",
@@ -1169,14 +1117,6 @@
      "date_to": {
       "type": "string",
       "description": "The end date of the historical period in YYYY-MM-DD format."
-     },
-     "search_volume_type": {
-      "type": "string",
-      "description": "AI visibility reports are switching to AI adjusted volume. It better estimates demand for AI responses across chatbots and AI search surfaces. It is calculated by adjusting Google search volume for each AI platform\u2019s estimated usage compared with Google. This param will be deprecated on September 30, 2026; all requests will use new AI adjusted volume. `ask_volume` - New calculation (default). Esti",
-      "enum": [
-       "ask_volume",
-       "keyword_volume"
-      ]
      },
      "tags_filter": {
       "type": "object",
@@ -1208,12 +1148,12 @@
      "where",
      "report_id",
      "brands",
+     "content_filter",
      "data_source",
      "country",
      "prompts",
      "date_from",
      "date_to",
-     "search_volume_type",
      "tags_filter",
      "output"
     ],
@@ -1222,14 +1162,14 @@
   },
   {
    "slug": "ahrefs.brand_radar_impressions_overview",
-   "name": "Overview   impressions",
+   "name": "Impressions",
    "description": ">Requests to this endpoint consume API units based on the `prompts` parameter: requests returning only custom prompt data are free, while requests including Ahrefs prompt data follow standard API unit pricing.",
    "input": {
     "type": "object",
     "properties": {
      "select": {
       "type": "string",
-      "description": "A comma-separated list of fields to return. - `brand` - `no_tracked_brands` - `only_competitors_brands` - `only_target_brand` - `target_and_competitors_brands` - `total`"
+      "description": "A comma-separated list of fields to return. - `brand` - `entity_type` - `no_tracked_brands` - `only_competitors_brands` - `only_target_brand` - `target_and_competitors_brands` - `total`"
      },
      "where": {
       "type": "string",
@@ -1289,14 +1229,6 @@
        "custom"
       ]
      },
-     "search_volume_type": {
-      "type": "string",
-      "description": "AI visibility reports are switching to AI adjusted volume. It better estimates demand for AI responses across chatbots and AI search surfaces. It is calculated by adjusting Google search volume for each AI platform\u2019s estimated usage compared with Google. This param will be deprecated on September 30, 2026; all requests will use new AI adjusted volume. `ask_volume` - New calculation (default). Esti",
-      "enum": [
-       "ask_volume",
-       "keyword_volume"
-      ]
-     },
      "output": {
       "type": "string",
       "description": "The output format.",
@@ -1326,7 +1258,6 @@
      "data_source",
      "country",
      "prompts",
-     "search_volume_type",
      "output"
     ],
     "header": [],
@@ -1336,14 +1267,14 @@
   },
   {
    "slug": "ahrefs.brand_radar_impressions_overview_post",
-   "name": "Overview   impressions",
+   "name": "Impressions",
    "description": ">Requests to this endpoint consume API units based on the `prompts` parameter: requests returning only custom prompt data are free, while requests including Ahrefs prompt data follow standard API unit pricing.",
    "input": {
     "type": "object",
     "properties": {
      "select": {
       "type": "array",
-      "description": "A list of fields to return. - `brand` - `no_tracked_brands` - `only_competitors_brands` - `only_target_brand` - `target_and_competitors_brands` - `total`"
+      "description": "A list of fields to return. - `brand` - `entity_type` - `no_tracked_brands` - `only_competitors_brands` - `only_target_brand` - `target_and_competitors_brands` - `total`"
      },
      "where": {
       "type": "object",
@@ -1361,6 +1292,10 @@
       "type": "array",
       "description": "A list of competitor names and websites to search for."
      },
+     "content_filter": {
+      "type": "object",
+      "description": "Optional phrases used to include or exclude results based on their content."
+     },
      "data_source": {
       "type": "array",
       "description": "A list of chatbot models. All models can be combined with each other. `claude` module supports only custom prompts. The `google_ai_overviews_keywords` and `google_ai_mode_keywords` models report AI Overviews / AI Mode visibility derived from Google search queries (keywords) rather than prompts."
@@ -1375,14 +1310,6 @@
       "enum": [
        "ahrefs",
        "custom"
-      ]
-     },
-     "search_volume_type": {
-      "type": "string",
-      "description": "AI visibility reports are switching to AI adjusted volume. It better estimates demand for AI responses across chatbots and AI search surfaces. It is calculated by adjusting Google search volume for each AI platform\u2019s estimated usage compared with Google. This param will be deprecated on September 30, 2026; all requests will use new AI adjusted volume. `ask_volume` - New calculation (default). Esti",
-      "enum": [
-       "ask_volume",
-       "keyword_volume"
       ]
      },
      "tags_filter": {
@@ -1417,10 +1344,10 @@
      "report_id",
      "brands",
      "competitors",
+     "content_filter",
      "data_source",
      "country",
      "prompts",
-     "search_volume_type",
      "tags_filter",
      "output"
     ],
@@ -1429,7 +1356,7 @@
   },
   {
    "slug": "ahrefs.brand_radar_mentions_history",
-   "name": "Overview history   mentions",
+   "name": "Mentions",
    "description": ">Requests to this endpoint consume API units based on the `prompts` parameter: requests returning only custom prompt data are free, while requests including Ahrefs prompt data follow standard API unit pricing.",
    "input": {
     "type": "object",
@@ -1496,14 +1423,6 @@
       "type": "string",
       "description": "The end date of the historical period in YYYY-MM-DD format."
      },
-     "search_volume_type": {
-      "type": "string",
-      "description": "AI visibility reports are switching to AI adjusted volume. It better estimates demand for AI responses across chatbots and AI search surfaces. It is calculated by adjusting Google search volume for each AI platform\u2019s estimated usage compared with Google. This param will be deprecated on September 30, 2026; all requests will use new AI adjusted volume. `ask_volume` - New calculation (default). Esti",
-      "enum": [
-       "ask_volume",
-       "keyword_volume"
-      ]
-     },
      "output": {
       "type": "string",
       "description": "The output format.",
@@ -1534,7 +1453,6 @@
      "prompts",
      "date_from",
      "date_to",
-     "search_volume_type",
      "output"
     ],
     "header": [],
@@ -1544,7 +1462,7 @@
   },
   {
    "slug": "ahrefs.brand_radar_mentions_history_post",
-   "name": "Overview history   mentions",
+   "name": "Mentions",
    "description": ">Requests to this endpoint consume API units based on the `prompts` parameter: requests returning only custom prompt data are free, while requests including Ahrefs prompt data follow standard API unit pricing. Every entity provided in `brands` (and `competitors`, when applicable) must include at least one value in `names`. Entities consisting only of `url_groups` are not supported here because men",
    "input": {
     "type": "object",
@@ -1561,6 +1479,10 @@
       "type": "array",
       "description": "A list of brand names and websites to search for."
      },
+     "content_filter": {
+      "type": "object",
+      "description": "Optional phrases used to include or exclude results based on their content."
+     },
      "data_source": {
       "type": "array",
       "description": "A list of chatbot models. All models can be combined with each other. `claude` module supports only custom prompts. The `google_ai_overviews_keywords` and `google_ai_mode_keywords` models report AI Overviews / AI Mode visibility derived from Google search queries (keywords) rather than prompts."
@@ -1584,14 +1506,6 @@
      "date_to": {
       "type": "string",
       "description": "The end date of the historical period in YYYY-MM-DD format."
-     },
-     "search_volume_type": {
-      "type": "string",
-      "description": "AI visibility reports are switching to AI adjusted volume. It better estimates demand for AI responses across chatbots and AI search surfaces. It is calculated by adjusting Google search volume for each AI platform\u2019s estimated usage compared with Google. This param will be deprecated on September 30, 2026; all requests will use new AI adjusted volume. `ask_volume` - New calculation (default). Esti",
-      "enum": [
-       "ask_volume",
-       "keyword_volume"
-      ]
      },
      "tags_filter": {
       "type": "object",
@@ -1623,12 +1537,12 @@
      "where",
      "report_id",
      "brands",
+     "content_filter",
      "data_source",
      "country",
      "prompts",
      "date_from",
      "date_to",
-     "search_volume_type",
      "tags_filter",
      "output"
     ],
@@ -1637,14 +1551,14 @@
   },
   {
    "slug": "ahrefs.brand_radar_mentions_overview",
-   "name": "Overview   mentions",
+   "name": "Mentions",
    "description": ">Requests to this endpoint consume API units based on the `prompts` parameter: requests returning only custom prompt data are free, while requests including Ahrefs prompt data follow standard API unit pricing.",
    "input": {
     "type": "object",
     "properties": {
      "select": {
       "type": "string",
-      "description": "A comma-separated list of fields to return. - `brand` - `no_tracked_brands` - `only_competitors_brands` - `only_target_brand` - `target_and_competitors_brands` - `total`"
+      "description": "A comma-separated list of fields to return. - `brand` - `entity_type` - `no_tracked_brands` - `only_competitors_brands` - `only_target_brand` - `target_and_competitors_brands` - `total`"
      },
      "where": {
       "type": "string",
@@ -1704,14 +1618,6 @@
        "custom"
       ]
      },
-     "search_volume_type": {
-      "type": "string",
-      "description": "AI visibility reports are switching to AI adjusted volume. It better estimates demand for AI responses across chatbots and AI search surfaces. It is calculated by adjusting Google search volume for each AI platform\u2019s estimated usage compared with Google. This param will be deprecated on September 30, 2026; all requests will use new AI adjusted volume. `ask_volume` - New calculation (default). Esti",
-      "enum": [
-       "ask_volume",
-       "keyword_volume"
-      ]
-     },
      "output": {
       "type": "string",
       "description": "The output format.",
@@ -1741,7 +1647,6 @@
      "data_source",
      "country",
      "prompts",
-     "search_volume_type",
      "output"
     ],
     "header": [],
@@ -1751,14 +1656,14 @@
   },
   {
    "slug": "ahrefs.brand_radar_mentions_overview_post",
-   "name": "Overview   mentions",
+   "name": "Mentions",
    "description": ">Requests to this endpoint consume API units based on the `prompts` parameter: requests returning only custom prompt data are free, while requests including Ahrefs prompt data follow standard API unit pricing. Every entity provided in `brands` (and `competitors`, when applicable) must include at least one value in `names`. Entities consisting only of `url_groups` are not supported here because men",
    "input": {
     "type": "object",
     "properties": {
      "select": {
       "type": "array",
-      "description": "A list of fields to return. - `brand` - `no_tracked_brands` - `only_competitors_brands` - `only_target_brand` - `target_and_competitors_brands` - `total`"
+      "description": "A list of fields to return. - `brand` - `entity_type` - `no_tracked_brands` - `only_competitors_brands` - `only_target_brand` - `target_and_competitors_brands` - `total`"
      },
      "where": {
       "type": "object",
@@ -1776,6 +1681,10 @@
       "type": "array",
       "description": "A list of competitor names and websites to search for."
      },
+     "content_filter": {
+      "type": "object",
+      "description": "Optional phrases used to include or exclude results based on their content."
+     },
      "data_source": {
       "type": "array",
       "description": "A list of chatbot models. All models can be combined with each other. `claude` module supports only custom prompts. The `google_ai_overviews_keywords` and `google_ai_mode_keywords` models report AI Overviews / AI Mode visibility derived from Google search queries (keywords) rather than prompts."
@@ -1790,14 +1699,6 @@
       "enum": [
        "ahrefs",
        "custom"
-      ]
-     },
-     "search_volume_type": {
-      "type": "string",
-      "description": "AI visibility reports are switching to AI adjusted volume. It better estimates demand for AI responses across chatbots and AI search surfaces. It is calculated by adjusting Google search volume for each AI platform\u2019s estimated usage compared with Google. This param will be deprecated on September 30, 2026; all requests will use new AI adjusted volume. `ask_volume` - New calculation (default). Esti",
-      "enum": [
-       "ask_volume",
-       "keyword_volume"
       ]
      },
      "tags_filter": {
@@ -1832,10 +1733,10 @@
      "report_id",
      "brands",
      "competitors",
+     "content_filter",
      "data_source",
      "country",
      "prompts",
-     "search_volume_type",
      "tags_filter",
      "output"
     ],
@@ -1844,7 +1745,7 @@
   },
   {
    "slug": "ahrefs.brand_radar_sov_history",
-   "name": "Overview history   share of voice",
+   "name": "Share of voice",
    "description": ">Requests to this endpoint consume API units based on the `prompts` parameter: requests returning only custom prompt data are free, while requests including Ahrefs prompt data follow standard API unit pricing.",
    "input": {
     "type": "object",
@@ -1915,14 +1816,6 @@
       "type": "string",
       "description": "The end date of the historical period in YYYY-MM-DD format."
      },
-     "search_volume_type": {
-      "type": "string",
-      "description": "AI visibility reports are switching to AI adjusted volume. It better estimates demand for AI responses across chatbots and AI search surfaces. It is calculated by adjusting Google search volume for each AI platform\u2019s estimated usage compared with Google. This param will be deprecated on September 30, 2026; all requests will use new AI adjusted volume. `ask_volume` - New calculation (default). Esti",
-      "enum": [
-       "ask_volume",
-       "keyword_volume"
-      ]
-     },
      "output": {
       "type": "string",
       "description": "The output format.",
@@ -1951,7 +1844,6 @@
      "prompts",
      "date_from",
      "date_to",
-     "search_volume_type",
      "output"
     ],
     "header": [],
@@ -1961,7 +1853,7 @@
   },
   {
    "slug": "ahrefs.brand_radar_sov_history_post",
-   "name": "Overview history   share of voice",
+   "name": "Share of voice",
    "description": ">Requests to this endpoint consume API units based on the `prompts` parameter: requests returning only custom prompt data are free, while requests including Ahrefs prompt data follow standard API unit pricing.",
    "input": {
     "type": "object",
@@ -1981,6 +1873,10 @@
      "competitors": {
       "type": "array",
       "description": "A list of competitor names and websites to search for."
+     },
+     "content_filter": {
+      "type": "object",
+      "description": "Optional phrases used to include or exclude results based on their content."
      },
      "data_source": {
       "type": "array",
@@ -2005,14 +1901,6 @@
      "date_to": {
       "type": "string",
       "description": "The end date of the historical period in YYYY-MM-DD format."
-     },
-     "search_volume_type": {
-      "type": "string",
-      "description": "AI visibility reports are switching to AI adjusted volume. It better estimates demand for AI responses across chatbots and AI search surfaces. It is calculated by adjusting Google search volume for each AI platform\u2019s estimated usage compared with Google. This param will be deprecated on September 30, 2026; all requests will use new AI adjusted volume. `ask_volume` - New calculation (default). Esti",
-      "enum": [
-       "ask_volume",
-       "keyword_volume"
-      ]
      },
      "tags_filter": {
       "type": "object",
@@ -2043,12 +1931,12 @@
      "report_id",
      "brands",
      "competitors",
+     "content_filter",
      "data_source",
      "country",
      "prompts",
      "date_from",
      "date_to",
-     "search_volume_type",
      "tags_filter",
      "output"
     ],
@@ -2057,7 +1945,7 @@
   },
   {
    "slug": "ahrefs.brand_radar_sov_overview",
-   "name": "Overview   share of voice",
+   "name": "Share of voice",
    "description": ">Requests to this endpoint consume API units based on the `prompts` parameter: requests returning only custom prompt data are free, while requests including Ahrefs prompt data follow standard API unit pricing.",
    "input": {
     "type": "object",
@@ -2120,14 +2008,6 @@
        "custom"
       ]
      },
-     "search_volume_type": {
-      "type": "string",
-      "description": "AI visibility reports are switching to AI adjusted volume. It better estimates demand for AI responses across chatbots and AI search surfaces. It is calculated by adjusting Google search volume for each AI platform\u2019s estimated usage compared with Google. This param will be deprecated on September 30, 2026; all requests will use new AI adjusted volume. `ask_volume` - New calculation (default). Esti",
-      "enum": [
-       "ask_volume",
-       "keyword_volume"
-      ]
-     },
      "output": {
       "type": "string",
       "description": "The output format.",
@@ -2155,7 +2035,6 @@
      "data_source",
      "country",
      "prompts",
-     "search_volume_type",
      "output"
     ],
     "header": [],
@@ -2165,7 +2044,7 @@
   },
   {
    "slug": "ahrefs.brand_radar_sov_overview_post",
-   "name": "Overview   share of voice",
+   "name": "Share of voice",
    "description": ">Requests to this endpoint consume API units based on the `prompts` parameter: requests returning only custom prompt data are free, while requests including Ahrefs prompt data follow standard API unit pricing.",
    "input": {
     "type": "object",
@@ -2186,6 +2065,10 @@
       "type": "array",
       "description": "A list of competitor names and websites to search for."
      },
+     "content_filter": {
+      "type": "object",
+      "description": "Optional phrases used to include or exclude results based on their content."
+     },
      "data_source": {
       "type": "array",
       "description": "A list of chatbot models. All models can be combined with each other. `claude` module supports only custom prompts. The `google_ai_overviews_keywords` and `google_ai_mode_keywords` models report AI Overviews / AI Mode visibility derived from Google search queries (keywords) rather than prompts."
@@ -2200,14 +2083,6 @@
       "enum": [
        "ahrefs",
        "custom"
-      ]
-     },
-     "search_volume_type": {
-      "type": "string",
-      "description": "AI visibility reports are switching to AI adjusted volume. It better estimates demand for AI responses across chatbots and AI search surfaces. It is calculated by adjusting Google search volume for each AI platform\u2019s estimated usage compared with Google. This param will be deprecated on September 30, 2026; all requests will use new AI adjusted volume. `ask_volume` - New calculation (default). Esti",
-      "enum": [
-       "ask_volume",
-       "keyword_volume"
       ]
      },
      "tags_filter": {
@@ -2240,11 +2115,410 @@
      "report_id",
      "brands",
      "competitors",
+     "content_filter",
      "data_source",
      "country",
      "prompts",
-     "search_volume_type",
      "tags_filter",
+     "output"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "ahrefs.brand_radar_topics",
+   "name": "Topics",
+   "description": ">Requests to this endpoint consume API units based on the `prompts` parameter: requests returning only custom prompt data are free, while requests including Ahrefs prompt data follow standard API unit pricing.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "select": {
+      "type": "array",
+      "description": "A list of fields to return. - `country` - `mentions` - `responses` - `topic` - `volume`"
+     },
+     "where": {
+      "type": "object",
+      "description": "The filter expression. The following column identifiers are recognized (this differs from the identifiers recognized by the `select` parameter). **cited_domain**: The domain of a page that was used to generate the response. type: domain **cited_domain_subdomains**: The domain of a page that was used to generate the response. Any subdomain of the given domain will also match. type: string **cited_u"
+     },
+     "report_id": {
+      "type": "string",
+      "description": "The ID of the report to use. If one is given, other parameters are taken from the report (brand, competitors, market, country, filters). If country or filters are provided, they override the ones in the report. You can find it in the URL of your Brand Radar report in Ahrefs: `https://app.ahrefs.com/brand-radar/reports/#report_id#/...`"
+     },
+     "brands": {
+      "type": "array",
+      "description": "A list of brand names and websites to search for."
+     },
+     "competitors": {
+      "type": "array",
+      "description": "A list of competitor names and websites to search for."
+     },
+     "content_filter": {
+      "type": "object",
+      "description": "Optional phrases used to include or exclude results based on their content."
+     },
+     "data_source": {
+      "type": "array",
+      "description": "A list of chatbot models. All models can be combined with each other. `claude` module supports only custom prompts. The `google_ai_overviews_keywords` and `google_ai_mode_keywords` models report AI Overviews / AI Mode visibility derived from Google search queries (keywords) rather than prompts."
+     },
+     "country": {
+      "type": "array",
+      "description": "A list of two-letter country codes (ISO 3166-1 alpha-2)."
+     },
+     "prompts": {
+      "type": "string",
+      "description": "The type of prompts to use. If not specified, both will be used. Custom prompts require a report_id to be provided.",
+      "enum": [
+       "ahrefs",
+       "custom"
+      ]
+     },
+     "limit": {
+      "type": "integer",
+      "description": "The number of results to return."
+     },
+     "date": {
+      "type": "string",
+      "description": "The date to search for in YYYY-MM-DD format."
+     },
+     "date_from": {
+      "type": "string",
+      "description": "The start date of the historical period in YYYY-MM-DD format."
+     },
+     "date_to": {
+      "type": "string",
+      "description": "The end date of the historical period in YYYY-MM-DD format."
+     },
+     "tags_filter": {
+      "type": "object",
+      "description": "A filter expression for prompt tags. Requires `report_id`. Uses [filter syntax](https://docs.ahrefs.com/api/docs/filter-syntax) with the following restrictions: the only valid field name is `\"tag\"`; the only valid operator are: `\"eq\"`, `\"neq\"`, `\"substring\"`, `\"isubstring\"`, `\"phrase_match\"`, `\"iphrase_match\"`, `\"prefix\"`, `\"suffix\"`, `\"empty\"`; maximum nesting depth of `and`, `or` is 2."
+     },
+     "brand_filter": {
+      "type": "object",
+      "description": "A filter expression for your brand's visibility, mirroring the \"Your brand\" filter. `brand_name` matches whether a response mentions your brand: `\"mentioned\"` or `\"not_mentioned\"`. `page_status` matches how the AI used your pages: `\"cited\"` (the AI retrieved pages from your site and referenced them in the answer), `\"found_but_not_cited\"` (the AI retrieved pages from your site as potential sources "
+     },
+     "volume_range": {
+      "type": "object",
+      "description": "The volume range to filter by."
+     },
+     "output": {
+      "type": "string",
+      "description": "The output format.",
+      "enum": [
+       "json",
+       "php"
+      ]
+     }
+    },
+    "required": [
+     "data_source",
+     "select"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.ahrefs.com/v3/brand-radar/topics",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "select",
+     "where",
+     "report_id",
+     "brands",
+     "competitors",
+     "content_filter",
+     "data_source",
+     "country",
+     "prompts",
+     "limit",
+     "date",
+     "date_from",
+     "date_to",
+     "tags_filter",
+     "brand_filter",
+     "volume_range",
+     "output"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "ahrefs.brand_radar_web_pages",
+   "name": "Web pages",
+   "description": "Returns web pages that mention the requested brands or competitors. Brand mentions are matched against page titles and content from Ahrefs' web index.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "select": {
+      "type": "array",
+      "description": "A list of fields to return. - `content` - `domain_rating` - `referring_domains` - `title` - `traffic` - `traffic_value` - `url`"
+     },
+     "where": {
+      "type": "object",
+      "description": "The filter expression. The following column identifiers are recognized (this differs from the identifiers recognized by the `select` parameter). **content**: An excerpt of the page content containing the mention. type: string **title**: The title of the page. type: string **url**: The URL of the page mentioning a requested brand or competitor. type: url"
+     },
+     "report_id": {
+      "type": "string",
+      "description": "The ID of the report to use. If one is given, other parameters are taken from the report (brand, competitors, market, country, filters). If country or filters are provided, they override the ones in the report. You can find it in the URL of your Brand Radar report in Ahrefs: `https://app.ahrefs.com/brand-radar/reports/#report_id#/...`"
+     },
+     "brands": {
+      "type": "array",
+      "description": "A list of brand names and websites to find mentions of on web pages."
+     },
+     "competitors": {
+      "type": "array",
+      "description": "A list of competitor names and websites to find mentions of on web pages."
+     },
+     "content_filter": {
+      "type": "object",
+      "description": "Optional phrases used to include or exclude results based on their content."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "The number of web pages to return."
+     },
+     "order_by": {
+      "type": "string",
+      "description": "How to order the web pages.",
+      "enum": [
+       "relevance",
+       "traffic"
+      ]
+     },
+     "page_type": {
+      "type": "string",
+      "description": "Whether to return all web pages or only news pages.",
+      "enum": [
+       "all_pages",
+       "news"
+      ]
+     },
+     "publication_type": {
+      "type": "string",
+      "description": "Whether to return all pages, pages published once, or republished pages.",
+      "enum": [
+       "all",
+       "published_once",
+       "republished"
+      ]
+     },
+     "date_from": {
+      "type": "string",
+      "description": "The start of the publication-date range, in YYYY-MM-DD format. Requires `date_to`."
+     },
+     "date_to": {
+      "type": "string",
+      "description": "The inclusive end of the publication-date range, in YYYY-MM-DD format. Requires `date_from`."
+     },
+     "platform": {
+      "type": "string",
+      "description": "The platform or technology used by the page.",
+      "enum": [
+       "all",
+       "blogs",
+       "wordpress",
+       "ecommerce",
+       "cms",
+       "message-boards",
+       "wikis"
+      ]
+     },
+     "language": {
+      "type": "string",
+      "description": "The language of the page.",
+      "enum": [
+       "all",
+       "en",
+       "es",
+       "ru",
+       "zh-cn",
+       "ja",
+       "af",
+       "sq",
+       "ar",
+       "bn",
+       "bg",
+       "zh-tw"
+      ]
+     },
+     "output": {
+      "type": "string",
+      "description": "The output format.",
+      "enum": [
+       "json",
+       "csv",
+       "xml",
+       "php"
+      ]
+     }
+    },
+    "required": [
+     "select"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.ahrefs.com/v3/brand-radar/web-pages",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "select",
+     "where",
+     "report_id",
+     "brands",
+     "competitors",
+     "content_filter",
+     "limit",
+     "order_by",
+     "page_type",
+     "publication_type",
+     "date_from",
+     "date_to",
+     "platform",
+     "language",
+     "output"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "ahrefs.competitive_analysis_link_intersect_refdomains",
+   "name": "Referring domains",
+   "description": "Referring domains",
+   "input": {
+    "type": "object",
+    "properties": {
+     "select": {
+      "type": "array",
+      "description": "A list of columns to return. See response schema for valid column identifiers."
+     },
+     "where": {
+      "type": "object",
+      "description": "The filter expression. The following column identifiers are recognized (this differs from the identifiers recognized by the `select` parameter). **anchor**: The clickable words in a link that point to a URL. type: string **domain**: The referring domain. type: string **domain_rating**: The Domain Rating of the referring domain. type: float **intersect**: Number of competitors linked from this resu"
+     },
+     "order_by": {
+      "type": "array",
+      "description": "A list of columns to order results by, with optional direction. See response schema for valid column identifiers."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "The number of results to return."
+     },
+     "timeout": {
+      "type": "integer",
+      "description": "A manual timeout duration in seconds."
+     },
+     "target": {
+      "type": "object",
+      "description": "The target to compare."
+     },
+     "competitors": {
+      "type": "array",
+      "description": "The competitors whose backlinks are compared with the target, in output column order."
+     },
+     "output": {
+      "type": "string",
+      "description": "The output format.",
+      "enum": [
+       "json",
+       "csv",
+       "xml",
+       "php"
+      ]
+     }
+    },
+    "required": [
+     "competitors",
+     "select",
+     "target"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.ahrefs.com/v3/competitive-analysis/link-intersect-refdomains",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "select",
+     "where",
+     "order_by",
+     "limit",
+     "timeout",
+     "target",
+     "competitors",
+     "output"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "ahrefs.competitive_analysis_link_intersect_refpages",
+   "name": "Referring pages",
+   "description": "Referring pages",
+   "input": {
+    "type": "object",
+    "properties": {
+     "select": {
+      "type": "array",
+      "description": "A list of columns to return. See response schema for valid column identifiers."
+     },
+     "where": {
+      "type": "object",
+      "description": "The filter expression. The following column identifiers are recognized (this differs from the identifiers recognized by the `select` parameter). **anchor**: The clickable words in a link that point to a URL. type: string **domain**: The referring page's root domain. type: string **domain_rating**: The Domain Rating of the referring page's domain. type: float **intersect**: Number of competitors li"
+     },
+     "order_by": {
+      "type": "array",
+      "description": "A list of columns to order results by, with optional direction. See response schema for valid column identifiers."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "The number of results to return."
+     },
+     "timeout": {
+      "type": "integer",
+      "description": "A manual timeout duration in seconds."
+     },
+     "target": {
+      "type": "object",
+      "description": "The target to compare."
+     },
+     "competitors": {
+      "type": "array",
+      "description": "The competitors whose backlinks are compared with the target, in output column order."
+     },
+     "output": {
+      "type": "string",
+      "description": "The output format.",
+      "enum": [
+       "json",
+       "csv",
+       "xml",
+       "php"
+      ]
+     }
+    },
+    "required": [
+     "competitors",
+     "select",
+     "target"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.ahrefs.com/v3/competitive-analysis/link-intersect-refpages",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "select",
+     "where",
+     "order_by",
+     "limit",
+     "timeout",
+     "target",
+     "competitors",
      "output"
     ],
     "body_format": "json"
@@ -2324,25 +2598,25 @@
    "input": {
     "type": "object",
     "properties": {
-     "timeout": {
-      "type": "integer",
-      "description": "A manual timeout duration in seconds."
-     },
-     "limit": {
-      "type": "integer",
-      "description": "The number of results to return."
-     },
-     "order_by": {
+     "select": {
       "type": "string",
-      "description": "A comma-separated list of columns to order results by, with optional direction. See response schema for valid column identifiers."
+      "description": "A comma-separated list of columns to return. See response schema for valid column identifiers."
      },
      "where": {
       "type": "string",
       "description": "The filter expression. The following column identifiers are recognized (this differs from the identifiers recognized by the `select` parameter). **keyword** type: string **url** type: string"
      },
-     "select": {
+     "order_by": {
       "type": "string",
-      "description": "A comma-separated list of columns to return. See response schema for valid column identifiers."
+      "description": "A comma-separated list of columns to order results by, with optional direction. See response schema for valid column identifiers."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "The number of results to return."
+     },
+     "timeout": {
+      "type": "integer",
+      "description": "A manual timeout duration in seconds."
      },
      "project_id": {
       "type": "integer",
@@ -2393,11 +2667,11 @@
     "url": "https://api.ahrefs.com/v3/gsc/anonymous-queries",
     "path": [],
     "query": [
-     "timeout",
-     "limit",
-     "order_by",
-     "where",
      "select",
+     "where",
+     "order_by",
+     "limit",
+     "timeout",
      "project_id",
      "date_from",
      "country",
@@ -3521,25 +3795,25 @@
    "input": {
     "type": "object",
     "properties": {
-     "timeout": {
-      "type": "integer",
-      "description": "A manual timeout duration in seconds."
-     },
-     "limit": {
-      "type": "integer",
-      "description": "The number of results to return. Max: `150000`."
-     },
-     "order_by": {
+     "select": {
       "type": "string",
-      "description": "A column to order results by. See the response schema for valid column identifiers, except for `volume_monthly`, which is not supported in `order_by` for this endpoint."
+      "description": "A comma-separated list of columns to return. See response schema for valid column identifiers."
      },
      "where": {
       "type": "string",
       "description": "The filter expression. The following column identifiers are recognized (this differs from the identifiers recognized by the `select` parameter). **cpc**: Cost Per Click shows the average price that advertisers pay for each ad click in paid search results for a keyword, in USD cents. type: integer nullable **cps**: Clicks Per Search (or CPS) is the ratio of Clicks to Keyword Search volume. It shows"
      },
-     "select": {
+     "order_by": {
       "type": "string",
-      "description": "A comma-separated list of columns to return. See response schema for valid column identifiers."
+      "description": "A column to order results by. See the response schema for valid column identifiers, except for `volume_monthly`, which is not supported in `order_by` for this endpoint."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "The number of results to return. Max: `150000`."
+     },
+     "timeout": {
+      "type": "integer",
+      "description": "A manual timeout duration in seconds."
      },
      "keyword_list_id": {
       "type": "integer",
@@ -3603,11 +3877,11 @@
     "url": "https://api.ahrefs.com/v3/keywords-explorer/matching-terms",
     "path": [],
     "query": [
-     "timeout",
-     "limit",
-     "order_by",
-     "where",
      "select",
+     "where",
+     "order_by",
+     "limit",
+     "timeout",
      "keyword_list_id",
      "keywords",
      "country",
@@ -3627,25 +3901,25 @@
    "input": {
     "type": "object",
     "properties": {
-     "timeout": {
-      "type": "integer",
-      "description": "A manual timeout duration in seconds."
-     },
-     "limit": {
-      "type": "integer",
-      "description": "The number of results to return."
-     },
-     "order_by": {
+     "select": {
       "type": "string",
-      "description": "A column to order results by. See the response schema for valid column identifiers, except for `volume_monthly`, which is not supported in `order_by` for this endpoint."
+      "description": "A comma-separated list of columns to return. See response schema for valid column identifiers."
      },
      "where": {
       "type": "string",
       "description": "The filter expression. The following column identifiers are recognized (this differs from the identifiers recognized by the `select` parameter). **clicks**: The average monthly number of clicks on the search results that people make while searching for the target keyword. type: integer nullable **cpc**: Cost Per Click shows the average price that advertisers pay for each ad click in paid search re"
      },
-     "select": {
+     "order_by": {
       "type": "string",
-      "description": "A comma-separated list of columns to return. See response schema for valid column identifiers."
+      "description": "A column to order results by. See the response schema for valid column identifiers, except for `volume_monthly`, which is not supported in `order_by` for this endpoint."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "The number of results to return."
+     },
+     "timeout": {
+      "type": "integer",
+      "description": "A manual timeout duration in seconds."
      },
      "keyword_list_id": {
       "type": "integer",
@@ -3723,11 +3997,11 @@
     "url": "https://api.ahrefs.com/v3/keywords-explorer/overview",
     "path": [],
     "query": [
-     "timeout",
-     "limit",
-     "order_by",
-     "where",
      "select",
+     "where",
+     "order_by",
+     "limit",
+     "timeout",
      "keyword_list_id",
      "keywords",
      "country",
@@ -3750,25 +4024,25 @@
    "input": {
     "type": "object",
     "properties": {
-     "timeout": {
-      "type": "integer",
-      "description": "A manual timeout duration in seconds."
-     },
-     "limit": {
-      "type": "integer",
-      "description": "The number of results to return. Max: `150000`."
-     },
-     "order_by": {
+     "select": {
       "type": "string",
-      "description": "A column to order results by. See the response schema for valid column identifiers, except for `volume_monthly`, which is not supported in `order_by` for this endpoint."
+      "description": "A comma-separated list of columns to return. See response schema for valid column identifiers."
      },
      "where": {
       "type": "string",
       "description": "The filter expression. The following column identifiers are recognized (this differs from the identifiers recognized by the `select` parameter). **cpc**: Cost Per Click shows the average price that advertisers pay for each ad click in paid search results for a keyword, in USD cents. type: integer nullable **cps**: Clicks Per Search (or CPS) is the ratio of Clicks to Keyword Search volume. It shows"
      },
-     "select": {
+     "order_by": {
       "type": "string",
-      "description": "A comma-separated list of columns to return. See response schema for valid column identifiers."
+      "description": "A column to order results by. See the response schema for valid column identifiers, except for `volume_monthly`, which is not supported in `order_by` for this endpoint."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "The number of results to return. Max: `150000`."
+     },
+     "timeout": {
+      "type": "integer",
+      "description": "A manual timeout duration in seconds."
      },
      "keyword_list_id": {
       "type": "integer",
@@ -3833,11 +4107,11 @@
     "url": "https://api.ahrefs.com/v3/keywords-explorer/related-terms",
     "path": [],
     "query": [
-     "timeout",
-     "limit",
-     "order_by",
-     "where",
      "select",
+     "where",
+     "order_by",
+     "limit",
+     "timeout",
      "keyword_list_id",
      "keywords",
      "country",
@@ -3857,25 +4131,25 @@
    "input": {
     "type": "object",
     "properties": {
-     "timeout": {
-      "type": "integer",
-      "description": "A manual timeout duration in seconds."
-     },
-     "limit": {
-      "type": "integer",
-      "description": "The number of results to return. Max: `150000`."
-     },
-     "order_by": {
+     "select": {
       "type": "string",
-      "description": "A column to order results by. See the response schema for valid column identifiers, except for `volume_monthly`, which is not supported in `order_by` for this endpoint."
+      "description": "A comma-separated list of columns to return. See response schema for valid column identifiers."
      },
      "where": {
       "type": "string",
       "description": "The filter expression. The following column identifiers are recognized (this differs from the identifiers recognized by the `select` parameter). **cpc**: Cost Per Click shows the average price that advertisers pay for each ad click in paid search results for a keyword, in USD cents. type: integer nullable **cps**: Clicks Per Search (or CPS) is the ratio of Clicks to Keyword Search volume. It shows"
      },
-     "select": {
+     "order_by": {
       "type": "string",
-      "description": "A comma-separated list of columns to return. See response schema for valid column identifiers."
+      "description": "A column to order results by. See the response schema for valid column identifiers, except for `volume_monthly`, which is not supported in `order_by` for this endpoint."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "The number of results to return. Max: `150000`."
+     },
+     "timeout": {
+      "type": "integer",
+      "description": "A manual timeout duration in seconds."
      },
      "keyword_list_id": {
       "type": "integer",
@@ -3923,11 +4197,11 @@
     "url": "https://api.ahrefs.com/v3/keywords-explorer/search-suggestions",
     "path": [],
     "query": [
-     "timeout",
-     "limit",
-     "order_by",
-     "where",
      "select",
+     "where",
+     "order_by",
+     "limit",
+     "timeout",
      "keyword_list_id",
      "keywords",
      "country",
@@ -4067,9 +4341,8 @@
       "description": "The output format.",
       "enum": [
        "json",
-       "csv",
-       "xml",
-       "php"
+       "php",
+       "xml"
       ]
      }
     },
@@ -4106,9 +4379,8 @@
       "description": "The output format.",
       "enum": [
        "json",
-       "csv",
-       "xml",
-       "php"
+       "php",
+       "xml"
       ]
      },
      "prompts": {
@@ -4157,9 +4429,8 @@
       "description": "The output format.",
       "enum": [
        "json",
-       "csv",
-       "xml",
-       "php"
+       "php",
+       "xml"
       ]
      },
      "prompts": {
@@ -4213,9 +4484,8 @@
       "description": "The output format.",
       "enum": [
        "json",
-       "csv",
-       "xml",
-       "php"
+       "php",
+       "xml"
       ]
      },
      "prompts": {
@@ -4359,6 +4629,10 @@
       "type": "integer",
       "description": "The ID of the project to use."
      },
+     "content_filter": {
+      "type": "object",
+      "description": "Optional phrases used to include or exclude results based on their content."
+     },
      "prompts_frequency": {
       "type": "array",
       "description": "The prompts frequency to use."
@@ -4379,6 +4653,7 @@
      "competitors",
      "name",
      "project_id",
+     "content_filter",
      "prompts_frequency"
     ],
     "body_format": "json"
@@ -4989,8 +5264,6 @@
       "description": "The output format.",
       "enum": [
        "json",
-       "csv",
-       "xml",
        "php"
       ]
      }
@@ -5029,8 +5302,6 @@
       "description": "The output format.",
       "enum": [
        "json",
-       "csv",
-       "xml",
        "php"
       ]
      }
@@ -5064,8 +5335,6 @@
       "description": "The output format.",
       "enum": [
        "json",
-       "csv",
-       "xml",
        "php"
       ]
      },
@@ -5152,8 +5421,6 @@
       "description": "The output format.",
       "enum": [
        "json",
-       "csv",
-       "xml",
        "php"
       ]
      },
@@ -5269,6 +5536,14 @@
       "type": "string",
       "description": "The target of the search: a domain or a URL."
      },
+     "version": {
+      "type": "string",
+      "description": "The Domain Rating version: `dr3` or `dr4`.",
+      "enum": [
+       "dr3",
+       "dr4"
+      ]
+     },
      "output": {
       "type": "string",
       "description": "The output format.",
@@ -5290,6 +5565,7 @@
     "path": [],
     "query": [
      "target",
+     "version",
      "output"
     ],
     "header": [],
@@ -5309,14 +5585,20 @@
       "description": "The output format.",
       "enum": [
        "json",
-       "csv",
-       "xml",
        "php"
       ]
      },
      "targets": {
       "type": "array",
       "description": "The targets of the search: domains or URLs."
+     },
+     "version": {
+      "type": "string",
+      "description": "The Domain Rating version: `dr3` or `dr4`.",
+      "enum": [
+       "dr3",
+       "dr4"
+      ]
      }
     },
     "required": [
@@ -5332,7 +5614,8 @@
     ],
     "header": [],
     "body": [
-     "targets"
+     "targets",
+     "version"
     ],
     "body_format": "json"
    }
@@ -5386,25 +5669,25 @@
    "input": {
     "type": "object",
     "properties": {
-     "timeout": {
-      "type": "integer",
-      "description": "A manual timeout duration in seconds."
-     },
-     "limit": {
-      "type": "integer",
-      "description": "The number of results to return."
-     },
-     "order_by": {
+     "select": {
       "type": "string",
-      "description": "A comma-separated list of columns to order results by, with optional direction. See response schema for valid column identifiers."
+      "description": "A comma-separated list of columns to return. See response schema for valid column identifiers."
      },
      "where": {
       "type": "string",
       "description": "The filter expression. The following column identifiers are recognized (this differs from the identifiers recognized by the `select` parameter). **country**: The country that a given keyword is being tracked in. A two-letter country code (ISO 3166-1 alpha-2). type: string enum: `\"AD\"` `\"AE\"` `\"AF\"` `\"AG\"` `\"AI\"` `\"AL\"` `\"AM\"` `\"AO\"` `\"AQ\"` `\"AR\"` `\"AS\"` `\"AT\"` `\"AU\"` `\"AW\"` `\"AX\"` `\"AZ\"` `\"BA\"` `\""
      },
-     "select": {
+     "order_by": {
       "type": "string",
-      "description": "A comma-separated list of columns to return. See response schema for valid column identifiers."
+      "description": "A comma-separated list of columns to order results by, with optional direction. See response schema for valid column identifiers."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "The number of results to return."
+     },
+     "timeout": {
+      "type": "integer",
+      "description": "A manual timeout duration in seconds."
      },
      "volume_mode": {
       "type": "string",
@@ -5461,11 +5744,11 @@
     "url": "https://api.ahrefs.com/v3/rank-tracker/competitors-domains",
     "path": [],
     "query": [
-     "timeout",
-     "limit",
-     "order_by",
-     "where",
      "select",
+     "where",
+     "order_by",
+     "limit",
+     "timeout",
      "volume_mode",
      "project_id",
      "device",
@@ -5486,25 +5769,25 @@
    "input": {
     "type": "object",
     "properties": {
-     "timeout": {
-      "type": "integer",
-      "description": "A manual timeout duration in seconds."
-     },
-     "limit": {
-      "type": "integer",
-      "description": "The number of results to return."
-     },
-     "order_by": {
+     "select": {
       "type": "string",
-      "description": "A comma-separated list of columns to order results by, with optional direction. See response schema for valid column identifiers."
+      "description": "A comma-separated list of columns to return. See response schema for valid column identifiers."
      },
      "where": {
       "type": "string",
       "description": "The filter expression. The following column identifiers are recognized (this differs from the identifiers recognized by the `select` parameter). **country**: The country that a given keyword is being tracked in. A two-letter country code (ISO 3166-1 alpha-2). type: string enum: `\"AD\"` `\"AE\"` `\"AF\"` `\"AG\"` `\"AI\"` `\"AL\"` `\"AM\"` `\"AO\"` `\"AQ\"` `\"AR\"` `\"AS\"` `\"AT\"` `\"AU\"` `\"AW\"` `\"AX\"` `\"AZ\"` `\"BA\"` `\""
      },
-     "select": {
+     "order_by": {
       "type": "string",
-      "description": "A comma-separated list of columns to return. See response schema for valid column identifiers."
+      "description": "A comma-separated list of columns to order results by, with optional direction. See response schema for valid column identifiers."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "The number of results to return."
+     },
+     "timeout": {
+      "type": "integer",
+      "description": "A manual timeout duration in seconds."
      },
      "volume_mode": {
       "type": "string",
@@ -5555,11 +5838,11 @@
     "url": "https://api.ahrefs.com/v3/rank-tracker/competitors-overview",
     "path": [],
     "query": [
-     "timeout",
-     "limit",
-     "order_by",
-     "where",
      "select",
+     "where",
+     "order_by",
+     "limit",
+     "timeout",
      "volume_mode",
      "project_id",
      "device",
@@ -5579,25 +5862,25 @@
    "input": {
     "type": "object",
     "properties": {
-     "timeout": {
-      "type": "integer",
-      "description": "A manual timeout duration in seconds."
-     },
-     "limit": {
-      "type": "integer",
-      "description": "The number of results to return."
-     },
-     "order_by": {
+     "select": {
       "type": "string",
-      "description": "A comma-separated list of columns to order results by, with optional direction. See response schema for valid column identifiers."
+      "description": "A comma-separated list of columns to return. See response schema for valid column identifiers."
      },
      "where": {
       "type": "string",
       "description": "The filter expression. The following column identifiers are recognized (this differs from the identifiers recognized by the `select` parameter). **country**: The country that a given keyword is being tracked in. A two-letter country code (ISO 3166-1 alpha-2). type: string enum: `\"AD\"` `\"AE\"` `\"AF\"` `\"AG\"` `\"AI\"` `\"AL\"` `\"AM\"` `\"AO\"` `\"AQ\"` `\"AR\"` `\"AS\"` `\"AT\"` `\"AU\"` `\"AW\"` `\"AX\"` `\"AZ\"` `\"BA\"` `\""
      },
-     "select": {
+     "order_by": {
       "type": "string",
-      "description": "A comma-separated list of columns to return. See response schema for valid column identifiers."
+      "description": "A comma-separated list of columns to order results by, with optional direction. See response schema for valid column identifiers."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "The number of results to return."
+     },
+     "timeout": {
+      "type": "integer",
+      "description": "A manual timeout duration in seconds."
      },
      "volume_mode": {
       "type": "string",
@@ -5654,11 +5937,11 @@
     "url": "https://api.ahrefs.com/v3/rank-tracker/competitors-pages",
     "path": [],
     "query": [
-     "timeout",
-     "limit",
-     "order_by",
-     "where",
      "select",
+     "where",
+     "order_by",
+     "limit",
+     "timeout",
      "volume_mode",
      "project_id",
      "device",
@@ -5749,25 +6032,25 @@
    "input": {
     "type": "object",
     "properties": {
-     "timeout": {
-      "type": "integer",
-      "description": "A manual timeout duration in seconds."
-     },
-     "limit": {
-      "type": "integer",
-      "description": "The number of results to return."
-     },
-     "order_by": {
+     "select": {
       "type": "string",
-      "description": "A comma-separated list of columns to order results by, with optional direction. See response schema for valid column identifiers."
+      "description": "A comma-separated list of columns to return. See response schema for valid column identifiers."
      },
      "where": {
       "type": "string",
       "description": "The filter expression. The following column identifiers are recognized (this differs from the identifiers recognized by the `select` parameter). **best_position_has_thumbnail**: The top position (or target URL\u2019s, if set) has a thumbnail. type: boolean nullable **best_position_has_thumbnail_previous**: The top position (or target URL\u2019s, if set) has a thumbnail on the comparison date. type: boolean "
      },
-     "select": {
+     "order_by": {
       "type": "string",
-      "description": "A comma-separated list of columns to return. See response schema for valid column identifiers."
+      "description": "A comma-separated list of columns to order results by, with optional direction. See response schema for valid column identifiers."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "The number of results to return."
+     },
+     "timeout": {
+      "type": "integer",
+      "description": "A manual timeout duration in seconds."
      },
      "volume_mode": {
       "type": "string",
@@ -5820,11 +6103,11 @@
     "url": "https://api.ahrefs.com/v3/rank-tracker/overview",
     "path": [],
     "query": [
-     "timeout",
-     "limit",
-     "order_by",
-     "where",
      "select",
+     "where",
+     "order_by",
+     "limit",
+     "timeout",
      "volume_mode",
      "project_id",
      "device",
@@ -5899,9 +6182,8 @@
       "description": "The output format.",
       "enum": [
        "json",
-       "csv",
-       "xml",
-       "php"
+       "php",
+       "xml"
       ]
      }
     },
@@ -6335,8 +6617,6 @@
       "description": "The output format.",
       "enum": [
        "json",
-       "csv",
-       "xml",
        "php"
       ]
      }
@@ -6371,25 +6651,25 @@
    "input": {
     "type": "object",
     "properties": {
-     "timeout": {
-      "type": "integer",
-      "description": "A manual timeout duration in seconds."
-     },
-     "limit": {
-      "type": "integer",
-      "description": "The number of results to return."
-     },
-     "order_by": {
+     "select": {
       "type": "string",
-      "description": "A column to order results by. See the response schema for valid column identifiers, except for `link_group_count`, which is not supported in `order_by` for this endpoint."
+      "description": "A comma-separated list of columns to return. See response schema for valid column identifiers."
      },
      "where": {
       "type": "string",
       "description": "The filter expression. The following column identifiers are recognized (this differs from the identifiers recognized by the `select` parameter). **ahrefs_rank_source**: The strength of the referring domain's backlink profile compared to the other websites in our database, with rank #1 being the strongest. type: integer **ahrefs_rank_target**: The strength of the target domain's backlink profile co"
      },
-     "select": {
+     "order_by": {
       "type": "string",
-      "description": "A comma-separated list of columns to return. See response schema for valid column identifiers."
+      "description": "A column to order results by. See the response schema for valid column identifiers, except for `link_group_count`, which is not supported in `order_by` for this endpoint."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "The number of results to return."
+     },
+     "timeout": {
+      "type": "integer",
+      "description": "A manual timeout duration in seconds."
      },
      "aggregation": {
       "type": "string",
@@ -6417,6 +6697,10 @@
      "target": {
       "type": "string",
       "description": "The target of the search: a domain or a URL."
+     },
+     "portfolio_id": {
+      "type": "integer",
+      "description": "The unique identifier of the portfolio. When provided, it takes precedence over `target`."
      },
      "protocol": {
       "type": "string",
@@ -6448,15 +6732,16 @@
     "url": "https://api.ahrefs.com/v3/site-explorer/all-backlinks",
     "path": [],
     "query": [
-     "timeout",
-     "limit",
-     "order_by",
-     "where",
      "select",
+     "where",
+     "order_by",
+     "limit",
+     "timeout",
      "aggregation",
      "history",
      "mode",
      "target",
+     "portfolio_id",
      "protocol",
      "output"
     ],
@@ -6472,25 +6757,25 @@
    "input": {
     "type": "object",
     "properties": {
-     "timeout": {
-      "type": "integer",
-      "description": "A manual timeout duration in seconds."
-     },
-     "limit": {
-      "type": "integer",
-      "description": "The number of results to return."
-     },
-     "order_by": {
+     "select": {
       "type": "string",
-      "description": "A comma-separated list of columns to order results by, with optional direction. See response schema for valid column identifiers."
+      "description": "A comma-separated list of columns to return. See response schema for valid column identifiers."
      },
      "where": {
       "type": "string",
       "description": "The filter expression. The following column identifiers are recognized (this differs from the identifiers recognized by the `select` parameter). **anchor**: The clickable words in a link that point to a URL. type: string **discovered_status**: The reason the link was discovered during the last crawl: the page was crawled for the first time, the link was added to the page, or the link re-appeared a"
      },
-     "select": {
+     "order_by": {
       "type": "string",
-      "description": "A comma-separated list of columns to return. See response schema for valid column identifiers."
+      "description": "A comma-separated list of columns to order results by, with optional direction. See response schema for valid column identifiers."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "The number of results to return."
+     },
+     "timeout": {
+      "type": "integer",
+      "description": "A manual timeout duration in seconds."
      },
      "history": {
       "type": "string",
@@ -6509,6 +6794,10 @@
      "target": {
       "type": "string",
       "description": "The target of the search: a domain or a URL."
+     },
+     "portfolio_id": {
+      "type": "integer",
+      "description": "The unique identifier of the portfolio. When provided, it takes precedence over `target`."
      },
      "protocol": {
       "type": "string",
@@ -6540,14 +6829,15 @@
     "url": "https://api.ahrefs.com/v3/site-explorer/anchors",
     "path": [],
     "query": [
-     "timeout",
-     "limit",
-     "order_by",
-     "where",
      "select",
+     "where",
+     "order_by",
+     "limit",
+     "timeout",
      "history",
      "mode",
      "target",
+     "portfolio_id",
      "protocol",
      "output"
     ],
@@ -6580,6 +6870,10 @@
      "target": {
       "type": "string",
       "description": "The target of the search: a domain or a URL."
+     },
+     "portfolio_id": {
+      "type": "integer",
+      "description": "The unique identifier of the portfolio. When provided, it takes precedence over `target`."
      },
      "protocol": {
       "type": "string",
@@ -6614,6 +6908,7 @@
      "date",
      "mode",
      "target",
+     "portfolio_id",
      "protocol",
      "output"
     ],
@@ -6629,25 +6924,25 @@
    "input": {
     "type": "object",
     "properties": {
-     "timeout": {
-      "type": "integer",
-      "description": "A manual timeout duration in seconds."
-     },
-     "limit": {
-      "type": "integer",
-      "description": "The number of results to return."
-     },
-     "order_by": {
+     "select": {
       "type": "string",
-      "description": "A column to order results by. See the response schema for valid column identifiers, except for `http_code_target`, `last_visited_target`, `link_group_count`, which are not supported in `order_by` for this endpoint."
+      "description": "A comma-separated list of columns to return. See response schema for valid column identifiers."
      },
      "where": {
       "type": "string",
       "description": "The filter expression. The following column identifiers are recognized (this differs from the identifiers recognized by the `select` parameter). **ahrefs_rank_source**: The strength of the referring domain's backlink profile compared to the other websites in our database, with rank #1 being the strongest. type: integer **ahrefs_rank_target**: The strength of the target domain's backlink profile co"
      },
-     "select": {
+     "order_by": {
       "type": "string",
-      "description": "A comma-separated list of columns to return. See response schema for valid column identifiers."
+      "description": "A column to order results by. See the response schema for valid column identifiers, except for `http_code_target`, `last_visited_target`, `link_group_count`, which are not supported in `order_by` for this endpoint."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "The number of results to return."
+     },
+     "timeout": {
+      "type": "integer",
+      "description": "A manual timeout duration in seconds."
      },
      "aggregation": {
       "type": "string",
@@ -6671,6 +6966,10 @@
      "target": {
       "type": "string",
       "description": "The target of the search: a domain or a URL."
+     },
+     "portfolio_id": {
+      "type": "integer",
+      "description": "The unique identifier of the portfolio. When provided, it takes precedence over `target`."
      },
      "protocol": {
       "type": "string",
@@ -6702,14 +7001,15 @@
     "url": "https://api.ahrefs.com/v3/site-explorer/broken-backlinks",
     "path": [],
     "query": [
-     "timeout",
-     "limit",
-     "order_by",
-     "where",
      "select",
+     "where",
+     "order_by",
+     "limit",
+     "timeout",
      "aggregation",
      "mode",
      "target",
+     "portfolio_id",
      "protocol",
      "output"
     ],
@@ -6769,9 +7069,8 @@
       "description": "The output format.",
       "enum": [
        "json",
-       "csv",
-       "xml",
-       "php"
+       "php",
+       "xml"
       ]
      }
     },
@@ -6929,6 +7228,10 @@
       "type": "string",
       "description": "The target of the search: a domain or a URL."
      },
+     "portfolio_id": {
+      "type": "integer",
+      "description": "The unique identifier of the portfolio. When provided, it takes precedence over `target`."
+     },
      "protocol": {
       "type": "string",
       "description": "The protocol of your target.",
@@ -6997,6 +7300,7 @@
      "select",
      "mode",
      "target",
+     "portfolio_id",
      "protocol",
      "country",
      "date_from",
@@ -7016,25 +7320,25 @@
    "input": {
     "type": "object",
     "properties": {
-     "timeout": {
-      "type": "integer",
-      "description": "A manual timeout duration in seconds."
-     },
-     "limit": {
-      "type": "integer",
-      "description": "The number of results to return."
-     },
-     "order_by": {
+     "select": {
       "type": "string",
-      "description": "A comma-separated list of columns to order results by, with optional direction. See response schema for valid column identifiers."
+      "description": "A comma-separated list of columns to return. See response schema for valid column identifiers."
      },
      "where": {
       "type": "string",
       "description": "The filter expression. The following column identifiers are recognized (this differs from the identifiers recognized by the `select` parameter). **anchor**: The clickable words in a link that point to a URL. type: string **dofollow_links**: The number of outbound links with a given anchor from your target that don\u2019t have the \u201cnofollow\u201d attribute. type: integer **domain**: A linked domain that has "
      },
-     "select": {
+     "order_by": {
       "type": "string",
-      "description": "A comma-separated list of columns to return. See response schema for valid column identifiers."
+      "description": "A comma-separated list of columns to order results by, with optional direction. See response schema for valid column identifiers."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "The number of results to return."
+     },
+     "timeout": {
+      "type": "integer",
+      "description": "A manual timeout duration in seconds."
      },
      "mode": {
       "type": "string",
@@ -7049,6 +7353,10 @@
      "target": {
       "type": "string",
       "description": "The target of the search: a domain or a URL."
+     },
+     "portfolio_id": {
+      "type": "integer",
+      "description": "The unique identifier of the portfolio. When provided, it takes precedence over `target`."
      },
      "protocol": {
       "type": "string",
@@ -7080,13 +7388,14 @@
     "url": "https://api.ahrefs.com/v3/site-explorer/linked-anchors-external",
     "path": [],
     "query": [
-     "timeout",
-     "limit",
-     "order_by",
-     "where",
      "select",
+     "where",
+     "order_by",
+     "limit",
+     "timeout",
      "mode",
      "target",
+     "portfolio_id",
      "protocol",
      "output"
     ],
@@ -7102,25 +7411,25 @@
    "input": {
     "type": "object",
     "properties": {
-     "timeout": {
-      "type": "integer",
-      "description": "A manual timeout duration in seconds."
-     },
-     "limit": {
-      "type": "integer",
-      "description": "The number of results to return."
-     },
-     "order_by": {
+     "select": {
       "type": "string",
-      "description": "A comma-separated list of columns to order results by, with optional direction. See response schema for valid column identifiers."
+      "description": "A comma-separated list of columns to return. See response schema for valid column identifiers."
      },
      "where": {
       "type": "string",
       "description": "The filter expression. The following column identifiers are recognized (this differs from the identifiers recognized by the `select` parameter). **anchor**: The clickable words in a link that point to a URL. type: string **dofollow_links**: The number of outbound links with a given anchor from your target that don\u2019t have the \u201cnofollow\u201d attribute. type: integer **domain**: A linked domain that has "
      },
-     "select": {
+     "order_by": {
       "type": "string",
-      "description": "A comma-separated list of columns to return. See response schema for valid column identifiers."
+      "description": "A comma-separated list of columns to order results by, with optional direction. See response schema for valid column identifiers."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "The number of results to return."
+     },
+     "timeout": {
+      "type": "integer",
+      "description": "A manual timeout duration in seconds."
      },
      "mode": {
       "type": "string",
@@ -7135,6 +7444,10 @@
      "target": {
       "type": "string",
       "description": "The target of the search: a domain or a URL."
+     },
+     "portfolio_id": {
+      "type": "integer",
+      "description": "The unique identifier of the portfolio. When provided, it takes precedence over `target`."
      },
      "protocol": {
       "type": "string",
@@ -7166,13 +7479,14 @@
     "url": "https://api.ahrefs.com/v3/site-explorer/linked-anchors-internal",
     "path": [],
     "query": [
-     "timeout",
-     "limit",
-     "order_by",
-     "where",
      "select",
+     "where",
+     "order_by",
+     "limit",
+     "timeout",
      "mode",
      "target",
+     "portfolio_id",
      "protocol",
      "output"
     ],
@@ -7188,25 +7502,25 @@
    "input": {
     "type": "object",
     "properties": {
-     "timeout": {
-      "type": "integer",
-      "description": "A manual timeout duration in seconds."
-     },
-     "limit": {
-      "type": "integer",
-      "description": "The number of results to return."
-     },
-     "order_by": {
+     "select": {
       "type": "string",
-      "description": "A comma-separated list of columns to order results by, with optional direction. See response schema for valid column identifiers."
+      "description": "A comma-separated list of columns to return. See response schema for valid column identifiers."
      },
      "where": {
       "type": "string",
       "description": "The filter expression. The following column identifiers are recognized (this differs from the identifiers recognized by the `select` parameter). **anchor**: The clickable words in a link that point to a URL. type: string **dofollow_linked_domains**: The number of unique root domains with dofollow links linked from the linked domain. type: integer **dofollow_links**: The number of links from your t"
      },
-     "select": {
+     "order_by": {
       "type": "string",
-      "description": "A comma-separated list of columns to return. See response schema for valid column identifiers."
+      "description": "A comma-separated list of columns to order results by, with optional direction. See response schema for valid column identifiers."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "The number of results to return."
+     },
+     "timeout": {
+      "type": "integer",
+      "description": "A manual timeout duration in seconds."
      },
      "mode": {
       "type": "string",
@@ -7221,6 +7535,10 @@
      "target": {
       "type": "string",
       "description": "The target of the search: a domain or a URL."
+     },
+     "portfolio_id": {
+      "type": "integer",
+      "description": "The unique identifier of the portfolio. When provided, it takes precedence over `target`."
      },
      "protocol": {
       "type": "string",
@@ -7252,13 +7570,14 @@
     "url": "https://api.ahrefs.com/v3/site-explorer/linkeddomains",
     "path": [],
     "query": [
-     "timeout",
-     "limit",
-     "order_by",
-     "where",
      "select",
+     "where",
+     "order_by",
+     "limit",
+     "timeout",
      "mode",
      "target",
+     "portfolio_id",
      "protocol",
      "output"
     ],
@@ -7291,6 +7610,10 @@
      "target": {
       "type": "string",
       "description": "The target of the search: a domain or a URL."
+     },
+     "portfolio_id": {
+      "type": "integer",
+      "description": "The unique identifier of the portfolio. When provided, it takes precedence over `target`."
      },
      "protocol": {
       "type": "string",
@@ -7359,6 +7682,7 @@
      "date",
      "mode",
      "target",
+     "portfolio_id",
      "protocol",
      "country",
      "volume_mode",
@@ -7377,13 +7701,13 @@
    "input": {
     "type": "object",
     "properties": {
-     "limit": {
-      "type": "integer",
-      "description": "The number of results to return."
-     },
      "select": {
       "type": "string",
       "description": "A comma-separated list of columns to return. See response schema for valid column identifiers."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "The number of results to return."
      },
      "date": {
       "type": "string",
@@ -7402,6 +7726,10 @@
      "target": {
       "type": "string",
       "description": "The target of the search: a domain or a URL."
+     },
+     "portfolio_id": {
+      "type": "integer",
+      "description": "The unique identifier of the portfolio. When provided, it takes precedence over `target`."
      },
      "protocol": {
       "type": "string",
@@ -7449,11 +7777,12 @@
     "url": "https://api.ahrefs.com/v3/site-explorer/metrics-by-country",
     "path": [],
     "query": [
-     "limit",
      "select",
+     "limit",
      "date",
      "mode",
      "target",
+     "portfolio_id",
      "protocol",
      "volume_mode",
      "traffic_mode",
@@ -7488,6 +7817,10 @@
      "target": {
       "type": "string",
       "description": "The target of the search: a domain or a URL."
+     },
+     "portfolio_id": {
+      "type": "integer",
+      "description": "The unique identifier of the portfolio. When provided, it takes precedence over `target`."
      },
      "protocol": {
       "type": "string",
@@ -7573,6 +7906,7 @@
      "select",
      "mode",
      "target",
+     "portfolio_id",
      "protocol",
      "country",
      "date_from",
@@ -7594,25 +7928,25 @@
    "input": {
     "type": "object",
     "properties": {
-     "timeout": {
-      "type": "integer",
-      "description": "A manual timeout duration in seconds."
-     },
-     "limit": {
-      "type": "integer",
-      "description": "The number of results to return."
-     },
-     "order_by": {
+     "select": {
       "type": "string",
-      "description": "A comma-separated list of columns to order results by, with optional direction. See response schema for valid column identifiers."
+      "description": "A comma-separated list of columns to return. See response schema for valid column identifiers."
      },
      "where": {
       "type": "string",
       "description": "The filter expression. The following column identifiers are recognized (this differs from the identifiers recognized by the `select` parameter). **competitor_domain**: A competitor's domain of your target in \u201cdomains\" group mode. type: domain nullable **competitor_url**: A competitor's URL of your target in pages\" group mode. type: url nullable **cpc_competitor**: Cost Per Click shows the average "
      },
-     "select": {
+     "order_by": {
       "type": "string",
-      "description": "A comma-separated list of columns to return. See response schema for valid column identifiers."
+      "description": "A comma-separated list of columns to order results by, with optional direction. See response schema for valid column identifiers."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "The number of results to return."
+     },
+     "timeout": {
+      "type": "integer",
+      "description": "A manual timeout duration in seconds."
      },
      "volume_mode": {
       "type": "string",
@@ -7669,6 +8003,10 @@
      "target": {
       "type": "string",
       "description": "The target of the search: a domain or a URL."
+     },
+     "portfolio_id": {
+      "type": "integer",
+      "description": "The unique identifier of the portfolio. When provided, it takes precedence over `target`."
      },
      "protocol": {
       "type": "string",
@@ -7702,11 +8040,11 @@
     "url": "https://api.ahrefs.com/v3/site-explorer/organic-competitors",
     "path": [],
     "query": [
-     "timeout",
-     "limit",
-     "order_by",
-     "where",
      "select",
+     "where",
+     "order_by",
+     "limit",
+     "timeout",
      "volume_mode",
      "traffic_mode",
      "date",
@@ -7714,6 +8052,7 @@
      "country",
      "mode",
      "target",
+     "portfolio_id",
      "protocol",
      "output"
     ],
@@ -7729,25 +8068,25 @@
    "input": {
     "type": "object",
     "properties": {
-     "timeout": {
-      "type": "integer",
-      "description": "A manual timeout duration in seconds."
-     },
-     "limit": {
-      "type": "integer",
-      "description": "The number of results to return."
-     },
-     "order_by": {
+     "select": {
       "type": "string",
-      "description": "A comma-separated list of columns to order results by, with optional direction. See response schema for valid column identifiers."
+      "description": "A comma-separated list of columns to return. See response schema for valid column identifiers."
      },
      "where": {
       "type": "string",
       "description": "The filter expression. The following column identifiers are recognized (this differs from the identifiers recognized by the `select` parameter). **best_position**: The top position your target ranks for in the organic search results for a keyword. type: integer nullable **best_position_diff**: The change in position between your selected dates. type: integer nullable **best_position_has_thumbnail*"
      },
-     "select": {
+     "order_by": {
       "type": "string",
-      "description": "A comma-separated list of columns to return. See response schema for valid column identifiers."
+      "description": "A comma-separated list of columns to order results by, with optional direction. See response schema for valid column identifiers."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "The number of results to return."
+     },
+     "timeout": {
+      "type": "integer",
+      "description": "A manual timeout duration in seconds."
      },
      "volume_mode": {
       "type": "string",
@@ -7805,6 +8144,10 @@
       "type": "string",
       "description": "The target of the search: a domain or a URL."
      },
+     "portfolio_id": {
+      "type": "integer",
+      "description": "The unique identifier of the portfolio. When provided, it takes precedence over `target`."
+     },
      "protocol": {
       "type": "string",
       "description": "The protocol of your target.",
@@ -7835,11 +8178,11 @@
     "url": "https://api.ahrefs.com/v3/site-explorer/organic-keywords",
     "path": [],
     "query": [
-     "timeout",
-     "limit",
-     "order_by",
-     "where",
      "select",
+     "where",
+     "order_by",
+     "limit",
+     "timeout",
      "volume_mode",
      "traffic_mode",
      "date",
@@ -7847,6 +8190,7 @@
      "country",
      "mode",
      "target",
+     "portfolio_id",
      "protocol",
      "output"
     ],
@@ -7922,25 +8266,25 @@
    "input": {
     "type": "object",
     "properties": {
-     "timeout": {
-      "type": "integer",
-      "description": "A manual timeout duration in seconds."
-     },
-     "limit": {
-      "type": "integer",
-      "description": "The number of results to return."
-     },
-     "order_by": {
+     "select": {
       "type": "string",
-      "description": "A column to order results by. See the response schema for valid column identifiers, except for `http_code_target`, `languages_target`, `last_visited_target`, `powered_by_target`, `target_redirect`, `title_target`, `url_rating_target`, which are not supported in `order_by` for this endpoint."
+      "description": "A comma-separated list of columns to return. See response schema for valid column identifiers."
      },
      "where": {
       "type": "string",
       "description": "The filter expression. The following column identifiers are recognized (this differs from the identifiers recognized by the `select` parameter). **anchor**: The clickable words in a link that point to a URL. type: string **dofollow_to_target**: The number of links to your target page that don\u2019t have the \u201cnofollow\u201d attribute. type: integer **domain_rating_source**: The strength of the referring dom"
      },
-     "select": {
+     "order_by": {
       "type": "string",
-      "description": "A comma-separated list of columns to return. See response schema for valid column identifiers."
+      "description": "A column to order results by. See the response schema for valid column identifiers, except for `http_code_target`, `languages_target`, `last_visited_target`, `powered_by_target`, `target_redirect`, `title_target`, `url_rating_target`, which are not supported in `order_by` for this endpoint."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "The number of results to return."
+     },
+     "timeout": {
+      "type": "integer",
+      "description": "A manual timeout duration in seconds."
      },
      "history": {
       "type": "string",
@@ -7959,6 +8303,10 @@
      "target": {
       "type": "string",
       "description": "The target of the search: a domain or a URL."
+     },
+     "portfolio_id": {
+      "type": "integer",
+      "description": "The unique identifier of the portfolio. When provided, it takes precedence over `target`."
      },
      "protocol": {
       "type": "string",
@@ -7990,14 +8338,15 @@
     "url": "https://api.ahrefs.com/v3/site-explorer/pages-by-backlinks",
     "path": [],
     "query": [
-     "timeout",
-     "limit",
-     "order_by",
-     "where",
      "select",
+     "where",
+     "order_by",
+     "limit",
+     "timeout",
      "history",
      "mode",
      "target",
+     "portfolio_id",
      "protocol",
      "output"
     ],
@@ -8013,25 +8362,25 @@
    "input": {
     "type": "object",
     "properties": {
-     "timeout": {
-      "type": "integer",
-      "description": "A manual timeout duration in seconds."
-     },
-     "limit": {
-      "type": "integer",
-      "description": "The number of results to return."
-     },
-     "order_by": {
+     "select": {
       "type": "string",
-      "description": "A column to order results by. See the response schema for valid column identifiers, except for `http_code_target`, `languages_target`, `last_visited_target`, `powered_by_target`, `target_redirect`, `title_target`, `url_rating_target`, which are not supported in `order_by` for this endpoint."
+      "description": "A comma-separated list of columns to return. See response schema for valid column identifiers."
      },
      "where": {
       "type": "string",
       "description": "The filter expression. The following column identifiers are recognized (this differs from the identifiers recognized by the `select` parameter). **anchor**: The clickable words in a link that point to a URL. type: string **canonical_to_target**: The number of inbound canonical links to your target page. type: integer **dofollow_to_target**: The number of links to your target page that don\u2019t have t"
      },
-     "select": {
+     "order_by": {
       "type": "string",
-      "description": "A comma-separated list of columns to return. See response schema for valid column identifiers."
+      "description": "A column to order results by. See the response schema for valid column identifiers, except for `http_code_target`, `languages_target`, `last_visited_target`, `powered_by_target`, `target_redirect`, `title_target`, `url_rating_target`, which are not supported in `order_by` for this endpoint."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "The number of results to return."
+     },
+     "timeout": {
+      "type": "integer",
+      "description": "A manual timeout duration in seconds."
      },
      "mode": {
       "type": "string",
@@ -8046,6 +8395,10 @@
      "target": {
       "type": "string",
       "description": "The target of the search: a domain or a URL."
+     },
+     "portfolio_id": {
+      "type": "integer",
+      "description": "The unique identifier of the portfolio. When provided, it takes precedence over `target`."
      },
      "protocol": {
       "type": "string",
@@ -8077,13 +8430,14 @@
     "url": "https://api.ahrefs.com/v3/site-explorer/pages-by-internal-links",
     "path": [],
     "query": [
-     "timeout",
-     "limit",
-     "order_by",
-     "where",
      "select",
+     "where",
+     "order_by",
+     "limit",
+     "timeout",
      "mode",
      "target",
+     "portfolio_id",
      "protocol",
      "output"
     ],
@@ -8102,6 +8456,10 @@
      "target": {
       "type": "string",
       "description": "The target of the search: a domain or a URL."
+     },
+     "portfolio_id": {
+      "type": "integer",
+      "description": "The unique identifier of the portfolio. When provided, it takes precedence over `target`."
      },
      "protocol": {
       "type": "string",
@@ -8177,6 +8535,7 @@
     "path": [],
     "query": [
      "target",
+     "portfolio_id",
      "protocol",
      "mode",
      "volume_mode",
@@ -8209,6 +8568,10 @@
      "target": {
       "type": "string",
       "description": "The target of the search: a domain or a URL."
+     },
+     "portfolio_id": {
+      "type": "integer",
+      "description": "The unique identifier of the portfolio. When provided, it takes precedence over `target`."
      },
      "protocol": {
       "type": "string",
@@ -8285,6 +8648,7 @@
     "query": [
      "mode",
      "target",
+     "portfolio_id",
      "protocol",
      "country",
      "date_from",
@@ -8305,25 +8669,25 @@
    "input": {
     "type": "object",
     "properties": {
-     "timeout": {
-      "type": "integer",
-      "description": "A manual timeout duration in seconds."
-     },
-     "limit": {
-      "type": "integer",
-      "description": "The number of results to return."
-     },
-     "order_by": {
+     "select": {
       "type": "string",
-      "description": "A comma-separated list of columns to order results by, with optional direction. See response schema for valid column identifiers."
+      "description": "A comma-separated list of columns to return. See response schema for valid column identifiers."
      },
      "where": {
       "type": "string",
       "description": "The filter expression. The following column identifiers are recognized (this differs from the identifiers recognized by the `select` parameter). **ads_count**: The number of unique ads with a page. type: integer **ads_count_diff**: The change in ads between your selected dates. type: integer **ads_count_prev**: The number of ads on the comparison date. type: integer **cpc** type: integer nullable "
      },
-     "select": {
+     "order_by": {
       "type": "string",
-      "description": "A comma-separated list of columns to return. See response schema for valid column identifiers."
+      "description": "A comma-separated list of columns to order results by, with optional direction. See response schema for valid column identifiers."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "The number of results to return."
+     },
+     "timeout": {
+      "type": "integer",
+      "description": "A manual timeout duration in seconds."
      },
      "volume_mode": {
       "type": "string",
@@ -8373,6 +8737,10 @@
       "type": "string",
       "description": "The target of the search: a domain or a URL."
      },
+     "portfolio_id": {
+      "type": "integer",
+      "description": "The unique identifier of the portfolio. When provided, it takes precedence over `target`."
+     },
      "protocol": {
       "type": "string",
       "description": "The protocol of your target.",
@@ -8404,17 +8772,18 @@
     "url": "https://api.ahrefs.com/v3/site-explorer/paid-pages",
     "path": [],
     "query": [
-     "timeout",
-     "limit",
-     "order_by",
-     "where",
      "select",
+     "where",
+     "order_by",
+     "limit",
+     "timeout",
      "volume_mode",
      "date",
      "date_compared",
      "country",
      "mode",
      "target",
+     "portfolio_id",
      "protocol",
      "output"
     ],
@@ -8430,25 +8799,25 @@
    "input": {
     "type": "object",
     "properties": {
-     "timeout": {
-      "type": "integer",
-      "description": "A manual timeout duration in seconds."
-     },
-     "limit": {
-      "type": "integer",
-      "description": "The number of results to return."
-     },
-     "order_by": {
+     "select": {
       "type": "string",
-      "description": "A comma-separated list of columns to order results by, with optional direction. See response schema for valid column identifiers."
+      "description": "A comma-separated list of columns to return. See response schema for valid column identifiers."
      },
      "where": {
       "type": "string",
       "description": "The filter expression. The following column identifiers are recognized (this differs from the identifiers recognized by the `select` parameter). **anchor**: The clickable words in a link that point to a URL. type: string **discovered_status**: The reason the link was discovered during the last crawl: the page was crawled for the first time, the link was added to the page, or the link re-appeared a"
      },
-     "select": {
+     "order_by": {
       "type": "string",
-      "description": "A comma-separated list of columns to return. See response schema for valid column identifiers."
+      "description": "A comma-separated list of columns to order results by, with optional direction. See response schema for valid column identifiers."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "The number of results to return."
+     },
+     "timeout": {
+      "type": "integer",
+      "description": "A manual timeout duration in seconds."
      },
      "history": {
       "type": "string",
@@ -8467,6 +8836,10 @@
      "target": {
       "type": "string",
       "description": "The target of the search: a domain or a URL."
+     },
+     "portfolio_id": {
+      "type": "integer",
+      "description": "The unique identifier of the portfolio. When provided, it takes precedence over `target`."
      },
      "protocol": {
       "type": "string",
@@ -8498,14 +8871,15 @@
     "url": "https://api.ahrefs.com/v3/site-explorer/refdomains",
     "path": [],
     "query": [
-     "timeout",
-     "limit",
-     "order_by",
-     "where",
      "select",
+     "where",
+     "order_by",
+     "limit",
+     "timeout",
      "history",
      "mode",
      "target",
+     "portfolio_id",
      "protocol",
      "output"
     ],
@@ -8534,6 +8908,10 @@
      "target": {
       "type": "string",
       "description": "The target of the search: a domain or a URL."
+     },
+     "portfolio_id": {
+      "type": "integer",
+      "description": "The unique identifier of the portfolio. When provided, it takes precedence over `target`."
      },
      "protocol": {
       "type": "string",
@@ -8584,6 +8962,7 @@
     "query": [
      "mode",
      "target",
+     "portfolio_id",
      "protocol",
      "date_from",
      "date_to",
@@ -8602,25 +8981,25 @@
    "input": {
     "type": "object",
     "properties": {
-     "timeout": {
-      "type": "integer",
-      "description": "A manual timeout duration in seconds."
-     },
-     "limit": {
-      "type": "integer",
-      "description": "The number of results to return."
-     },
-     "order_by": {
+     "select": {
       "type": "string",
-      "description": "A comma-separated list of columns to order results by, with optional direction. See response schema for valid column identifiers."
+      "description": "A comma-separated list of columns to return. See response schema for valid column identifiers."
      },
      "where": {
       "type": "string",
       "description": "The filter expression. The following column identifiers are recognized (this differs from the identifiers recognized by the `select` parameter). **ai_responses_chatgpt** (10 units): The number of ChatGPT responses in which the page appeared, in the selected country (or summed across all countries). This includes cases where the page was cited as a source or only retrieved in the background. Powere"
      },
-     "select": {
+     "order_by": {
       "type": "string",
-      "description": "A comma-separated list of columns to return. See response schema for valid column identifiers."
+      "description": "A comma-separated list of columns to order results by, with optional direction. See response schema for valid column identifiers."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "The number of results to return."
+     },
+     "timeout": {
+      "type": "integer",
+      "description": "A manual timeout duration in seconds."
      },
      "volume_mode": {
       "type": "string",
@@ -8678,6 +9057,10 @@
       "type": "string",
       "description": "The target of the search: a domain or a URL."
      },
+     "portfolio_id": {
+      "type": "integer",
+      "description": "The unique identifier of the portfolio. When provided, it takes precedence over `target`."
+     },
      "protocol": {
       "type": "string",
       "description": "The protocol of your target.",
@@ -8709,11 +9092,11 @@
     "url": "https://api.ahrefs.com/v3/site-explorer/top-pages",
     "path": [],
     "query": [
-     "timeout",
-     "limit",
-     "order_by",
-     "where",
      "select",
+     "where",
+     "order_by",
+     "limit",
+     "timeout",
      "volume_mode",
      "traffic_mode",
      "date",
@@ -8721,6 +9104,7 @@
      "country",
      "mode",
      "target",
+     "portfolio_id",
      "protocol",
      "output"
     ],
@@ -8749,6 +9133,10 @@
      "target": {
       "type": "string",
       "description": "The target of the search: a domain or a URL."
+     },
+     "portfolio_id": {
+      "type": "integer",
+      "description": "The unique identifier of the portfolio. When provided, it takes precedence over `target`."
      },
      "protocol": {
       "type": "string",
@@ -8833,6 +9221,7 @@
     "query": [
      "mode",
      "target",
+     "portfolio_id",
      "protocol",
      "country",
      "date_from",
@@ -9072,8 +9461,6 @@
       "description": "The output format.",
       "enum": [
        "json",
-       "csv",
-       "xml",
        "php"
       ]
      },
@@ -9139,8 +9526,6 @@
       "description": "The output format.",
       "enum": [
        "json",
-       "csv",
-       "xml",
        "php"
       ]
      },
@@ -9233,8 +9618,6 @@
       "description": "The output format.",
       "enum": [
        "json",
-       "csv",
-       "xml",
        "php"
       ]
      },

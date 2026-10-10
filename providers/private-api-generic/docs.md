@@ -68,6 +68,7 @@ Use provider URLs by replacing `{slug}` with a slug from the API catalog:
 - [Backend: HTTP API: Environments: Get an environment API key](https://nango.dev/docs/reference/backend/http-api/environments/get-api-key.md)
 - [Backend: HTTP API: Environments: Create an environment API key](https://nango.dev/docs/reference/backend/http-api/environments/create-api-key.md)
 - [Backend: HTTP API: Environments: Delete an environment API key](https://nango.dev/docs/reference/backend/http-api/environments/delete-api-key.md)
+- [Backend: HTTP API: Environments: Rotate the webhook signing key](https://nango.dev/docs/reference/backend/http-api/environments/rotate-webhook-signing-key.md)
 - [Backend: HTTP API: Integrations: List all integrations](https://nango.dev/docs/reference/backend/http-api/integration/list.md)
 - [Backend: HTTP API: Integrations: Get an integration](https://nango.dev/docs/reference/backend/http-api/integration/get.md)
 - [Backend: HTTP API: Integrations: Create an integration](https://nango.dev/docs/reference/backend/http-api/integration/create.md)
@@ -128,7 +129,7 @@ Use provider URLs by replacing `{slug}` with a slug from the API catalog:
 - [Backend: Backend SDK: Go](https://nango.dev/docs/reference/backend/backend-sdk/go.md)
 - [Backend: Backend SDK: Rust](https://nango.dev/docs/reference/backend/backend-sdk/rust.md)
 - [Backend: Backend SDK: PHP](https://nango.dev/docs/reference/backend/backend-sdk/php.md)
-- [Backend: Management MCP (Beta)](https://nango.dev/docs/reference/backend/management-mcp.md): Manage a Nango environment from an MCP client.
+- [Backend: Management MCP](https://nango.dev/docs/reference/backend/management-mcp.md): Manage Nango from an MCP client.
 - [Functions: Functions CLI](https://nango.dev/docs/reference/functions/functions-cli.md): Full reference of the CLI available to implement, test & deploy Nango Functions.
 - [Functions: Functions SDK](https://nango.dev/docs/reference/functions/functions-sdk.md): Full reference of the SDK available in Nango Functions.
 
@@ -139,7 +140,7 @@ Use provider URLs by replacing `{slug}` with a slug from the API catalog:
 
 ## APIs and integrations
 
-- [API catalog](https://nango.dev/docs/api-catalog.txt): 1012 provider slugs with canonical docs routes, auth modes, setup guides, and connect guides.
+- [API catalog](https://nango.dev/docs/api-catalog.txt): 1048 provider slugs with canonical docs routes, auth modes, setup guides, and connect guides.
 - Provider-specific pages are intentionally not expanded here so core Nango guides remain easy for agents to find.
 
 ## Resources

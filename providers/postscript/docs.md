@@ -16,18 +16,26 @@ vouches for**: read it, then read their reference.
 
 > Partner API docs for Postscript.
 
-Append .md to any documentation page URL to get its markdown version.
-
-## Guides
+## Guides: Getting Started
 - [Introduction](https://developers.postscript.io/docs/getting-started.md): Welcome to the Postscript API Docs!
+
+## Guides: Webhooks
+
+## Guides: JavaScript SDK
 - [SDK API Reference](https://developers.postscript.io/docs/javascript-sdk-api-reference.md): The API Reference for our JavaScript SDK
 - [SDK Events](https://developers.postscript.io/docs/sdk-events.md): Reference for handling events emitted by the Postscript SDK
+
+## Guides: Tutorials
 - [How to Add Subscribers Using the API](https://developers.postscript.io/docs/how-to-add-subscribers-using-api.md): Collect subscribers using our API
+
+## Guides: FAQs
 - [Can I send events via both V1 and V2 API versions?](https://developers.postscript.io/docs/can-i-send-events-via-both-v1-and-v2-api-versions.md)
 - [In the V1 API, Partners needed to install triggers for each partner before adding them to the store. Will we need to do the same for the V2 API?](https://developers.postscript.io/docs/in-the-v1-api-partners-needed-to-install-triggers-for-each-partner-before-adding-them-to-the-store-will-we-need-to-do-the-same-for-the-v2-api.md)
 - [Who has access to the Partner API?](https://developers.postscript.io/docs/who-has-access-to-the-partner-api.md)
 
-## API Reference
+## Guides: Headless
+
+## API Reference: Postscript API
 - [Unsubscribe](https://developers.postscript.io/reference/unsubscribe.md): Opt outs subscribers from Postscript messaging.
 - [Redact](https://developers.postscript.io/reference/redact.md): Note: When passed an email, phone number, Shopify customer ID, or Postscript subscriber ID, this endpoint will also unsubscribe the subscriber if they have an active subscription
 - [Create Custom Event](https://developers.postscript.io/reference/create-custom-event.md): Send a Custom Event to use in Flows

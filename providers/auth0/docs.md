@@ -615,668 +615,530 @@ No credit card needed to sign up.
 
 > How well AI coding agents integrate Auth0 — measured across real-world tasks, not synthetic benchmarks.
 
-**Average without Auth0 tools**: 73%
+**Average without Auth0 tools**: 87%
 **Average with Auth0 tools**: 98%
-**Models tested**: 8 (Claude Haiku 4.5, Claude Opus 5, Claude Sonnet 5, GPT-5.6 Luna, GPT-5.6 Sol, GPT-5.6 Terra, Gemini 3.1 Pro, Gemini 3.5 Flash)
+**Models tested**: 8 (Claude Haiku 5.5, Claude Opus 5, Claude Sonnet 5, GPT-5.6 Luna, GPT-5.6 Sol, GPT-5.6 Terra, Gemini 3.1 Pro, Gemini 3.8 Flash)
 **Frameworks tested**: 15 (Android, Angular, Expo, Express, Express API, FastAPI, Fastify API, Flask, Next.js, Nuxt, React, React Native, SPA JS, Swift, Vue)
 **Total configurations**: 120
 
 [Methodology](https://auth0.com/docs/get-started/auth0-agent-experience)
 
-## Scores
+## Quickstart Scores
 
 | # | Model | Framework | Without Tools | With Auth0 Tools | Grade | Cost | Time |
-|---|-------|-----------|---------------|------------------|-------|------|------|
-| 1 | Claude Haiku 4.5 | Express API | 70% | 100% (+30%) | A | $0.10 | 52s |
-| 2 | GPT-5.6 Luna | React | 92% | 100% (+8%) | A | $0.13 | 43s |
-| 3 | Claude Haiku 4.5 | FastAPI | 50% | 100% (+50%) | A | $0.13 | 52s |
-| 4 | GPT-5.6 Luna | Angular | 92% | 100% (+8%) | A | $0.15 | 48s |
-| 5 | Claude Haiku 4.5 | Express | 73% | 100% (+27%) | A | $0.19 | 2m 21s |
-| 6 | GPT-5.6 Luna | React Native | 85% | 100% (+15%) | A | $0.27 | 1m 16s |
-| 7 | Gemini 3.1 Pro | React | 92% | 100% (+8%) | A | $0.28 | 50s |
-| 8 | Gemini 3.1 Pro | SPA JS | 86% | 100% (+14%) | A | $0.28 | 41s |
-| 9 | GPT-5.6 Luna | Expo | 73% | 100% (+27%) | A | $0.32 | 2m 24s |
-| 10 | GPT-5.6 Luna | Next.js | 86% | 100% (+14%) | A | $0.33 | 1m 46s |
-| 11 | Claude Haiku 4.5 | React | 92% | 100% (+8%) | A | $0.34 | 3m 41s |
-| 12 | GPT-5.6 Terra | FastAPI | 50% | 100% (+50%) | A | $0.40 | 40s |
-| 13 | Claude Sonnet 5 | FastAPI | 50% | 100% (+50%) | A | $0.40 | 1m 18s |
-| 14 | GPT-5.6 Terra | React | 92% | 100% (+8%) | A | $0.43 | 1m 6s |
-| 15 | Claude Sonnet 5 | Fastify API | 69% | 100% (+31%) | A | $0.43 | 1m 33s |
-| 16 | GPT-5.6 Terra | Next.js | 93% | 100% (+7%) | A | $0.45 | 1m 7s |
-| 17 | Claude Haiku 4.5 | SPA JS | 86% | 100% (+14%) | A | $0.45 | 5m 52s |
-| 18 | GPT-5.6 Terra | Vue | 92% | 100% (+8%) | A | $0.47 | 42s |
-| 19 | Claude Sonnet 5 | Express API | 70% | 100% (+30%) | A | $0.52 | 1m 49s |
-| 20 | Claude Sonnet 5 | Vue | 92% | 100% (+8%) | A | $0.54 | 2m 3s |
-| 21 | GPT-5.6 Terra | React Native | 85% | 100% (+15%) | A | $0.56 | 1m 10s |
-| 22 | GPT-5.6 Terra | Angular | 92% | 100% (+8%) | A | $0.57 | 1m 31s |
-| 23 | Claude Sonnet 5 | Swift | 70% | 100% (+30%) | A | $0.62 | 2m 57s |
-| 24 | Gemini 3.5 Flash | Android | 67% | 100% (+33%) | A | $0.65 | 1m 11s |
-| 25 | Claude Sonnet 5 | Next.js | 86% | 100% (+14%) | A | $0.83 | 4m 58s |
-| 26 | Claude Sonnet 5 | React | 92% | 100% (+8%) | A | $0.85 | 4m 14s |
-| 27 | Gemini 3.1 Pro | Angular | 92% | 100% (+8%) | A | $0.89 | 1m 15s |
-| 28 | Claude Sonnet 5 | SPA JS | 93% | 100% (+7%) | A | $0.94 | 2m 32s |
-| 29 | Gemini 3.1 Pro | Next.js | 57% | 100% (+43%) | A | $0.97 | 1m 27s |
-| 30 | Gemini 3.1 Pro | Android | 56% | 100% (+44%) | A | $0.98 | 2m 8s |
-| 31 | Claude Opus 5 | Vue | 92% | 100% (+8%) | A | $1.06 | 3m 0s |
-| 32 | GPT-5.6 Terra | Nuxt | 65% | 100% (+35%) | A | $1.13 | 1m 52s |
-| 33 | Claude Opus 5 | React | 92% | 100% (+8%) | A | $1.14 | 4m 13s |
-| 34 | Claude Opus 5 | Next.js | 86% | 100% (+14%) | A | $1.33 | 3m 44s |
-| 35 | Claude Sonnet 5 | Angular | 92% | 100% (+8%) | A | $1.42 | 4m 50s |
-| 36 | Gemini 3.5 Flash | Angular | 92% | 100% (+8%) | A | $1.44 | 2m 21s |
-| 37 | Gemini 3.1 Pro | React Native | 85% | 100% (+15%) | A | $1.48 | 2m 29s |
-| 38 | Claude Opus 5 | Expo | 82% | 100% (+18%) | A | $1.61 | 3m 45s |
-| 39 | Claude Sonnet 5 | Android | 67% | 100% (+33%) | A | $1.66 | 4m 27s |
-| 40 | Gemini 3.1 Pro | Expo | 73% | 100% (+27%) | A | $1.94 | 3m 5s |
-| 41 | GPT-5.6 Luna | Swift | 70% | 99% (+29%) | A | $0.17 | 53s |
-| 42 | GPT-5.6 Luna | FastAPI | 79% | 99% (+20%) | A | $0.18 | 39s |
-| 43 | GPT-5.6 Luna | Vue | 92% | 99% (+7%) | A | $0.20 | 1m 34s |
-| 44 | GPT-5.6 Luna | Express API | 70% | 99% (+29%) | A | $0.21 | 1m 7s |
-| 45 | GPT-5.6 Luna | Android | 56% | 99% (+43%) | A | $0.22 | 1m 6s |
-| 46 | GPT-5.6 Luna | SPA JS | 93% | 99% (+6%) | A | $0.23 | 1m 43s |
-| 47 | GPT-5.6 Luna | Nuxt | 55% | 99% (+44%) | A | $0.31 | 2m 29s |
-| 48 | Claude Haiku 4.5 | Android | 67% | 99% (+32%) | A | $0.32 | 2m 26s |
-| 49 | Claude Sonnet 5 | Express | 80% | 99% (+19%) | A | $0.40 | 2m 5s |
-| 50 | GPT-5.6 Terra | Fastify API | 54% | 99% (+45%) | A | $0.41 | 35s |
-| 51 | GPT-5.6 Luna | Flask | 36% | 99% (+63%) | A | $0.43 | 2m 20s |
-| 52 | GPT-5.6 Terra | SPA JS | 93% | 99% (+6%) | A | $0.46 | 1m 58s |
-| 53 | GPT-5.6 Terra | Express | 80% | 99% (+19%) | A | $0.49 | 1m 1s |
-| 54 | Claude Sonnet 5 | Flask | 43% | 99% (+56%) | A | $0.58 | 2m 57s |
-| 55 | GPT-5.6 Terra | Flask | 36% | 99% (+63%) | A | $0.63 | 1m 17s |
-| 56 | Gemini 3.1 Pro | Vue | 92% | 99% (+7%) | A | $0.64 | 1m 11s |
-| 57 | Gemini 3.5 Flash | SPA JS | 86% | 99% (+13%) | A | $0.71 | 1m 11s |
-| 58 | Gemini 3.5 Flash | React | 92% | 99% (+7%) | A | $0.98 | 1m 57s |
-| 59 | GPT-5.6 Sol | SPA JS | 93% | 99% (+6%) | A | $1.04 | 1m 9s |
-| 60 | Gemini 3.1 Pro | Flask | 36% | 99% (+63%) | A | $1.12 | 1m 44s |
-| 61 | GPT-5.6 Terra | Android | 67% | 99% (+32%) | A | $1.21 | 1m 59s |
-| 62 | GPT-5.6 Sol | Vue | 92% | 99% (+7%) | A | $1.38 | 2m 12s |
-| 63 | GPT-5.6 Sol | Angular | 92% | 99% (+7%) | A | $1.42 | 1m 58s |
-| 64 | GPT-5.6 Sol | FastAPI | 79% | 99% (+20%) | A | $1.46 | 1m 33s |
-| 65 | Gemini 3.5 Flash | Expo | 82% | 99% (+17%) | A | $1.48 | 2m 14s |
-| 66 | GPT-5.6 Sol | React | 92% | 99% (+7%) | A | $1.53 | 1m 47s |
-| 67 | GPT-5.6 Sol | React Native | 85% | 99% (+14%) | A | $1.57 | 2m 18s |
-| 68 | Gemini 3.5 Flash | Next.js | 57% | 99% (+42%) | A | $1.67 | 2m 28s |
-| 69 | GPT-5.6 Sol | Next.js | 86% | 99% (+13%) | A | $1.81 | 2m 1s |
-| 70 | GPT-5.6 Sol | Express API | 70% | 99% (+29%) | A | $2.78 | 3m 8s |
-| 71 | Claude Opus 5 | Android | 33% | 99% (+66%) | A | $2.84 | 5m 16s |
-| 72 | Claude Haiku 4.5 | Fastify API | 54% | 98% (+44%) | A | $0.09 | 54s |
-| 73 | GPT-5.6 Luna | Fastify API | 54% | 98% (+44%) | A | $0.22 | 1m 14s |
-| 74 | Gemini 3.1 Pro | Express | 73% | 98% (+25%) | A | $0.53 | 59s |
-| 75 | Gemini 3.1 Pro | FastAPI | 50% | 98% (+48%) | A | $0.53 | 1m 5s |
-| 76 | GPT-5.6 Terra | Swift | 70% | 98% (+28%) | A | $0.55 | 1m 8s |
-| 77 | Gemini 3.1 Pro | Fastify API | 54% | 98% (+44%) | A | $0.69 | 1m 4s |
-| 78 | Gemini 3.5 Flash | FastAPI | 43% | 98% (+55%) | A | $0.81 | 2m 8s |
-| 79 | GPT-5.6 Terra | Express API | 70% | 98% (+28%) | A | $0.91 | 1m 53s |
-| 80 | Claude Opus 5 | SPA JS | 93% | 98% (+5%) | A | $1.05 | 2m 7s |
-| 81 | GPT-5.6 Sol | Fastify API | 69% | 98% (+29%) | A | $1.06 | 1m 11s |
-| 82 | Gemini 3.5 Flash | Vue | 92% | 98% (+6%) | A | $1.25 | 1m 52s |
-| 83 | Gemini 3.1 Pro | Nuxt | 55% | 98% (+43%) | A | $1.47 | 3m 3s |
-| 84 | Claude Opus 5 | Swift | 60% | 98% (+38%) | A | $1.48 | 2m 59s |
-| 85 | Gemini 3.5 Flash | Nuxt | 40% | 98% (+58%) | A | $1.48 | 2m 33s |
-| 86 | Claude Sonnet 5 | React Native | 85% | 98% (+13%) | A | $1.57 | 7m 22s |
-| 87 | GPT-5.6 Sol | Flask | 36% | 98% (+62%) | A | $2.08 | 3m 34s |
-| 88 | GPT-5.6 Sol | Android | 67% | 98% (+31%) | A | $2.56 | 3m 52s |
-| 89 | GPT-5.6 Sol | Nuxt | 70% | 98% (+28%) | A | $4.11 | 4m 9s |
-| 90 | Claude Haiku 4.5 | Swift | 70% | 97% (+27%) | A | $0.18 | 1m 12s |
-| 91 | GPT-5.6 Luna | Express | 80% | 97% (+17%) | A | $0.23 | 1m 35s |
-| 92 | Gemini 3.1 Pro | Swift | 80% | 97% (+17%) | A | $0.37 | 48s |
-| 93 | Gemini 3.1 Pro | Express API | 70% | 97% (+27%) | A | $0.53 | 54s |
-| 94 | Claude Haiku 4.5 | Angular | 92% | 97% (+5%) | A | $0.55 | 6m 6s |
-| 95 | Claude Haiku 4.5 | Vue | 92% | 97% (+5%) | A | $0.64 | 6m 16s |
-| 96 | Gemini 3.5 Flash | Express | 73% | 97% (+24%) | A | $0.88 | 2m 25s |
-| 97 | Claude Sonnet 5 | Nuxt | 50% | 97% (+47%) | A | $0.89 | 4m 15s |
-| 98 | Gemini 3.5 Flash | Fastify API | 46% | 97% (+51%) | A | $1.24 | 1m 47s |
-| 99 | GPT-5.6 Terra | Expo | 82% | 97% (+15%) | A | $1.33 | 1m 45s |
-| 100 | Gemini 3.5 Flash | Express API | 70% | 97% (+27%) | A | $1.51 | 2m 49s |
-| 101 | Claude Opus 5 | React Native | 85% | 97% (+12%) | A | $1.63 | 4m 13s |
-| 102 | Claude Opus 5 | Angular | 92% | 97% (+5%) | A | $1.69 | 6m 15s |
-| 103 | GPT-5.6 Sol | Express | 80% | 97% (+17%) | A | $1.96 | 2m 32s |
-| 104 | GPT-5.6 Sol | Expo | 82% | 97% (+15%) | A | $2.27 | 2m 48s |
-| 105 | Gemini 3.5 Flash | React Native | 85% | 97% (+12%) | A | $2.65 | 3m 29s |
-| 106 | Claude Haiku 4.5 | Expo | 73% | 96% (+23%) | A | $0.34 | 2m 59s |
-| 107 | Claude Opus 5 | Express | 80% | 96% (+16%) | A | $0.63 | 1m 47s |
-| 108 | Claude Opus 5 | Fastify API | 69% | 96% (+27%) | A | $0.71 | 2m 9s |
-| 109 | Claude Opus 5 | Express API | 70% | 96% (+26%) | A | $0.87 | 1m 46s |
-| 110 | Gemini 3.5 Flash | Flask | 29% | 96% (+67%) | A | $0.96 | 1m 59s |
-| 111 | Claude Sonnet 5 | Expo | 73% | 96% (+23%) | A | $1.15 | 3m 31s |
-| 112 | Claude Haiku 4.5 | Next.js | 57% | 95% (+38%) | A | $0.40 | 4m 41s |
-| 113 | Gemini 3.5 Flash | Swift | 80% | 95% (+15%) | A | $0.57 | 1m 9s |
-| 114 | Claude Haiku 4.5 | Flask | 43% | 94% (+51%) | A | $0.22 | 3m 4s |
-| 115 | GPT-5.6 Sol | Swift | 70% | 94% (+24%) | A | $2.33 | 2m 34s |
-| 116 | Claude Haiku 4.5 | Nuxt | 45% | 93% (+48%) | A | $0.74 | 7m 24s |
-| 117 | Claude Haiku 4.5 | React Native | 85% | 92% (+7%) | A | $0.47 | 3m 24s |
-| 118 | Claude Opus 5 | FastAPI | 79% | 92% (+13%) | A | $0.68 | 1m 40s |
-| 119 | Claude Opus 5 | Flask | 36% | 91% (+55%) | A | $0.92 | 2m 23s |
-| 120 | Claude Opus 5 | Nuxt | 75% | 90% (+15%) | A | $2.30 | 5m 3s |
-
-## Methodology
-
-### 1. Real integration tasks
-We test each model with realistic developer prompts — the kind you'd actually type when building an app. No optimized instructions, no guided walkthroughs.
-
-### 2. Automated grading
-Every response is scored across multiple dimensions: correct SDK usage, proper configuration, security best practices, and more. Grading is deterministic and reproducible.
-
-### 3. Tool comparison
-Each model runs twice: once with just its training knowledge (baseline), and once with Auth0's MCP Server and Agent Skills enabled. The delta measures the real-world impact of Auth0's developer platform.
-
-## Developer Tools
-
-### Auth0 MCP Server
-Connect AI agents directly to Auth0 for real-time tenant management.
-
-[Documentation](https://auth0.com/docs/get-started/build-with-ai-tools#auth0-docs-mcp-server)
-
-### Auth0 Agent Skills
-Pre-built implementation knowledge for AI coding agents.
-
-[GitHub Repository](https://github.com/auth0/agent-skills)
-
-## Grade Scale
-
-- **A** (90-100%): Production-ready implementation
-- **B** (75-89%): Good with minor issues
-- **C** (60-74%): Functional but needs review
-- **D** (<60%): Significant issues
-
-*Last updated: August 2026*
-
----
-
-## Access Management
-
-Platform > Access Management
-
-# Developer-friendly access management
-
-Seamlessly define access roles for your apps and APIs, and tap into advanced authorization mechanics for more flexible access control.
-
-**API AUTHORIZATION**
-
-## For developers, by developers
-
-Experience a smarter way to manage access.
-
-## Resources
-
-## Frequently asked questions
-
-### Can I manage API permissions in Auth0?
-
-Yes, Auth0 allows you to define granular scopes for your APIs, helps ensure that client applications only have the permissions they need. By centralizing API [access management](https://auth0.com/platform/access-management) in Auth0, you can enforce consistent security policies across all your microservices and third-party integrations, simplifying the audit process and reducing the risk of unauthorized data exposure.
-
-### Does Auth0 support RBAC out of the box?
-
-Yes. Auth0 provides native, out-of-the-box support for Role-Based Access Control (RBAC), which serves as the foundational security layer for both human users and the AI applications that act on their behalf. By centralizing RBAC at the Identity Layer, you eliminate the 'Identity Plumbing' tax—the weeks of manual, 'hardcoded' authorization code typically required for agentic workflows. This allows your developers to quickly assign granular API permissions to the client applications powering your agents, helping ensureing they follow the Principle of Least Privilege. By providing this 'Standardized Handshake' out of the box, Auth0 helps you bypass the security bottlenecks that typically stall AI projects in the sandbox, accelerating your move to production.
-
-### What is Auth0 Access Management?
-
-Yes. Auth0 Access Management is the central identity control plane that allows you to orchestrate the trusted journey of both human users and AI agents. By providing native support for both Role-Based Access Control (RBAC) (the security floor) and Fine-Grained Authorization (FGA) (the document-level ceiling for RAG), we eliminate the manual 'identity plumbing' that typically stalls AI projects. This allows your developers to move your agentic workflows from the sandbox to production faster by providing a clear audit trail and 'human-in-the-loop' safeguards for every high-stakes action.
-
-### My developers are already building auth for our agents in LangChain/Vercel. Why do they need Auth0?
-
-LangChain and Vercel are world-class frameworks for building and deploying AI logic, but they were not built to be Enterprise Identity Control Planes. By offloading your Identity Orchestration to Auth0, you help ensure that every agentic action is governed by a central, secure-by-design layer. This allows your developers to focus 100% of their sprints on improving the 'AI Brain' while Auth0 handles the complex 'Identity Plumbing' (like FGA and CIBA) that enterprises require for production.
-
-## Extensibility
-
-Platform > Extensibility
-
-## Discover the power of Actions
-
-Actions are a more secure, tenant-specific, versioned Node.js functions that let you customize your login and identity flows. Use low-code for speed or pro-code for full control. Leverage a drag-and-drop interface, a versatile code environment, built-in version control, robust debugging, and access to over a million npm modules.
-
-## Want to learn more?
-
-## Frequently asked questions
-
-### Does Auth0 support custom UI branding?
-
-Yes, Auth0 is highly extensible at the UI layer through [Universal Login](https://auth0.com/features/universal-login). Developers can fully customize the look and feel of the login page—including CSS, HTML, and custom domains—to help ensure that the [authentication](https://auth0.com/platform/authentication) experience is a native, branded part of the customer journey, maintaining trust and brand consistency from start to finish.
-
-### What is the Auth0 Marketplace?
-
-The Auth0 Marketplace is a hub for pre-built integrations and serverless functions created by Auth0 and its partners. It allows developers to quickly add sophisticated features—like identity verification, [MFA](https://auth0.com/features/multifactor-authentication), and consent management—to their login flow with minimal coding. This speeds up development and helps ensure that customizations follow industry best practices for security.
-
-## Elevate your extensibility game today
-
-Kickstart with Actions and redefine your extensibility narrative.
-
----
-
-## Move to Actions
-
-Move to Actions
-
-# Move to Actions
-
-Reduce the amount of custom code and time to build and maintain solutions, by upgrading from Rules and Hooks to Auth0 Actions.
-
-## Simplify your development experience
-
-Auth0 Actions is our next-generation [extensibility](https://auth0.com/platform/extensibility) [platform](https://auth0.com/platform). It offers a more powerful, unified development environment than Rule and Hooks – empowering you to use both pro and no-code options to easily extend and customize Auth0.
-
-### Improved developer experience
-Actions provides you with integrated version control, debugging, caching, Node18 support, and 2,000,000+ npm modules.
-[Write Your First Action](https://auth0.com/docs/customize/actions/write-your-first-action)
-
-### Support for multiple flows
-Actions let you handle multiple flows: [authentication](https://auth0.com/platform/authentication), pre and post user registration, password change, client credential exchange, and phone message sending.
-[How Auth0 Actions Work](https://auth0.com/docs/customize/actions/actions-overview)
-
-### Options for no-code integrations
-Actions enables you to leverage no-code integrations directly from the Marketplace, or to build your own integrations with code.
-[Marketplace](https://marketplace.auth0.com/)
-
-## Feature comparison
-
-Deep dive into Auth0's serverless extensibility [features](https://auth0.com/features), and see how Actions improves upon Rules and Hooks with a unified FaaS developer experience.
-
-## Ready to make the move?
-
-## Additional resources
-
-### Migrating Auth0 Rules to Auth0 Actions
-Read our guidelines on how to migrate your existing Auth0 Rules to Auth0 Actions successfully.
-[Learn more](https://auth0.com/blog/migrating-auth0-rules-to-auth0-actions/)
-
-### Migrating Auth0 Hooks to Auth0 Actions
-Learn how to migrate your existing Auth0 Hooks to Auth0 Actions successfully.
-[Learn more](https://auth0.com/blog/migrating-auth0-hooks-to-auth0-actions/)
-
----
-
-## User Management
-
-Platform > User Management
-
-## Painless user migration
-
-Transferring user databases can be a developer's nightmare. We've simplified the process so you can either do a bulk import or gradually migrate users as they login.
-
-## Elevate user experiences
-
-Hop on for hassle-free user management, and enrich your users experience.
-
-## Resources
-
-## Frequently asked questions
-
-### Can I customize Auth0 user profiles?
-
-Yes, Auth0 allows you to store custom [metadata](https://auth0.com/docs/manage-users/user-accounts/metadata) for every user, including 'user\_metadata' for preferences and 'app\_metadata' for security-related data. This flexibility allows you to build personalized user experiences and enforce granular authorization logic based on specific user attributes without needing a separate database.
-
-### Can I search for users via the Auth0 API?
-
-Auth0 provides a powerful [User Search](https://auth0.com/docs/manage-users/user-search/user-search-query-syntax) API (v3) that allows you to find users based on email, name, metadata, or last login date. This is essential for helpdesk teams and developers who need to manage users at scale, conduct security audits, or build custom administrative dashboards to support their application's user base.
-
-### Does Auth0 support bulk user imports?
-
-Yes, Auth0 provides robust tools and APIs for [bulk user imports](https://auth0.com/docs/manage-users/user-migration/bulk-user-imports) and migrations. Whether you are moving users from a legacy database or consolidating multiple user stores, Auth0 ensures a secure transition with [features](https://auth0.com/features) like 'trickle migration' that allow users to move over as they log in, preventing the need for a forced password reset.
-
-### How does Auth0 handle user search?
-
-Auth0 provides a powerful [User Search](https://auth0.com/docs/manage-users/user-search) API that allows developers to find users based on specific criteria, such as email, name, or custom metadata. This is essential for helpdesk teams and administrators who need to quickly locate and manage specific accounts to provide support or conduct security audits.
-
-### Is Auth0 User Management secure?
-
-Auth0 User Management is built on a [highly secure, encrypted infrastructure](https://auth0.com/docs/secure/data-privacy-and-compliance) that meets SOC2 and ISO 27001 standards. Every administrative action is logged, and sensitive data is protected by industry-leading encryption. Auth0 also provides '[Dashboard Access' roles](https://auth0.com/docs/get-started/manage-dashboard-access/feature-access-by-role), ensuring that only authorized staff can manage your user data.
-
-### What is Auth0 User Management?
-
-Auth0 [User Management](https://auth0.com/platform/user-management) provides a [centralized dashboard](https://auth0.com/docs/manage-users/user-accounts/manage-users-using-the-dashboard) and API for managing every aspect of the user lifecycle. Developers can easily create, search, and update user profiles, manage roles and permissions, and handle password resets. This 'Identity-as-a-Service' model offloads the administrative burden of user management, allowing teams to focus on core product innovation.
-
----
-
-## Cloud Deployment
-
-Platform > Cloud Deployment
-
-# Deploy on private or public cloud
-
-Choose a neutral, independent CIAM solution for customizable cloud deployment aligned with your growth strategy.
-
-## Elevate user experiences
-
-Sign up free today. Choose the cloud service provider and deployment option that fits your long-term growth strategy.
-
-## Resources
-
----
-
-## Cloud Deployment - AWS
-
-Platform > Cloud Deployment > AWS
-
-# The Auth0 Platform on AWS
-
-Deploy Auth0's complete customer identity and access management (CIAM) solution on AWS using either public or private cloud.
-
-## Public Cloud
-
-Access the Auth0 [Platform](https://auth0.com/platform) as-a-service, backed by a 99.99% uptime SLA, with standard [authentication](https://auth0.com/platform/authentication), personalization, and [user management](https://auth0.com/platform/user-management) [features](https://auth0.com/features). Public Cloud includes a 100 RPS option and supports a time-limited higher capacity burst option, available in the US, UK, EU, Japan, Australia, and Canada.
-
-## Private Cloud
-
-Private cloud deployments on AWS deliver complete control over performance, with 10,000 RPS capacity and flexible burst options for time-limited needs. They also have more available regions to deploy to than our Public Cloud offering and are backed by a 99.99% SLA. The higher-performance Private Cloud offerings come with support for non-production environments.
-
-## Resources
-
----
-
-## Cloud Deployment - Azure
-
-Platform > Cloud Deployment > Azure
-
-# Auth0 Identity Platform on Azure
-
-Choose Auth0’s comprehensive CIAM solution with private cloud deployment available across various Azure regions.
-
-## Resources
-
----
-
-## Actions
-
-Features > Actions
-
-# Building custom Identity experiences
-
-Explore our suite of serverless developer tools to seamlessly extend and enhance your Identity ecosystem.
-
-## Identity is not one-size-fits-all
-
-In today's dynamic digital landscape, generic solutions don't make the cut. With Actions, developers get an [extensibility platform](https://auth0.com/platform/extensibility) engineered for flexibility, allowing for adaptation to complex Identity challenges.
-
-## Embrace serverless
-
-Say goodbye to the burdens of hosting, performance concerns, and security woes. Rely on our robust infrastructure for storing and executing your code with optimal efficiency and security.
-
-## Forms
-
-Build custom signup and login flows to prompt users for additional information and store it as metadata on the Auth0 user profile.
-
-## Ready to dive in?
-
-Implement Auth0 Actions to enhance your application's authentication process.
-
-## Resources
-
-## Frequently asked questions
-
-### Are Auth0 Actions developer-friendly?
-
-Auth0 Actions are highly developer-friendly, featuring an in-browser IDE, version control, and support for the full Node.js ecosystem. Developers can test their custom logic in a sandbox environment before deploying it to production, helping ensure that identity customizations are reliable, maintainable, and highly performant for millions of users. Auth0 provides [Actions Types NPM](https://www.npmjs.com/package/@auth0/actions) which allows coding with Actions TypeScript definitions in external IDEs. This in combination with CLI, CI/CD, or API tooling can be used to develop Actions outside of the Auth0 Dashboard.  Actions Types NPM also helps AI Agents to understand how Actions objects and interfaces are defined, improving the accuracy of the generated code.
-[https://auth0.com/docs/customize/actions/actions-overview](https://auth0.com/docs/customize/actions/actions-overview)
-[https://auth0.com/docs/customize/actions/actions-npm](https://auth0.com/docs/customize/actions/actions-npm)
-
-### What are Auth0 Actions?
-
-Auth0 Actions are serverless functions that allow developers to customize and extend the Auth0 platform during the authentication and authorization process. Developers can build custom logic—such as real-time fraud checks, progressive profiling, and step up authentication—directly into the login flow. [https://auth0.com/docs/customize/actions/actions-overview](https://auth0.com/docs/customize/actions/actions-overview)
-
-## Breached Passwords
-
-Features > Breached Passwords
-
-## Third-party breaches cast a shadow
-
-Data breaches are an everyday reality. Traditional recovery steps spring into action only when the breach surfaces in the public domain. By then, the damage is done. With Auth0, transition from a reactive stance to proactive defense.
-
-[Breached Password Detection docs](https://auth0.com/docs/secure/attack-protection/breached-password-detection)
-
-## Ready to dive in?
-
-Protect your users and your business from third-party breach risks with Breached Password Detection and Credential Guard.
-
-## Resources
-
----
-
-## Forms
-
-Features > Forms
-
-## Orchestrate customer experiences
-
-Create custom signup and login flows with flexibility and control using a no-code visual editor.
-
-## Simplify user data collection
-
-Define business logic to collect user information with ease and enrich user profiles over time with progressive profiling.
-
-## Accelerate time to market
-
-Design, adjust, and deploy forms quickly with pre-built templates, debugger mode, and more—without the hassle of coding and maintenance.
-
-> "Forms no-code functionality has made building customized user experiences easier, faster and more secure for our teams, and more importantly, helped provide an integrated frictionless experience for our customers."
-> — Kaitlin Sawyer, Software Engineer, Product Delivery
-
-## Want to learn more?
-
-## Start your journey with Auth0
-
-Get best-in-class customer identity, with security built in️.
-
----
-
-## Highly Regulated Identity
-
-Features > Highly Regulated Identity
-
-# Secure sensitive customer operations
-
-Elevate security, privacy, and user experience beyond the login box. Secure your most sensitive customer operations while maintaining compliance and intuitive user experiences.
-
-## Here's how it helps you
-
-## Strong Customer Authentication
-
-Strong Customer Authentication (SCA) lets users review and approve sensitive operations in real time. Dynamic Linking ties transaction details to the SCA approval confirmation to help prevent transaction tampering.
-
-## Financial grade API protocols
-
-A certified FAPI 1 Advanced security profile implementation to ensure data privacy and app security. FAPI protects the end-to-end flow against cyber and fraud risks like transaction tampering. (FAPI is the Financial Grade API working group at the OpenID Foundation).
-
-## Customizable user journeys
-
-Here’s when the magic of the Customer Identity Cloud kicks in: customizing is easy. Simply use Actions to run custom policy and adopt new UX templates for the [MFA](https://auth0.com/features/multifactor-authentication) waiting screen and custom consent screen. Easy, right?
-
-## Customer Managed Keys
-
-Some organizations have stricter compliance and audit policies that require them to have complete control over their encryption keys. Customer Managed Keys is our way of tackling this. You can import self-generated keys for encryption and rotate and rekey tenant keys.
-
-## Easy & secure customer interactions
-
-See how Highly Regulated Identity simplifies the process for everyone involved.
-
-## Ready to dive in?
-
-Implement Auth0 Actions to enhance your application's authentication process.
-
----
-
-## Machine to Machine
-
-Features > Machine-to-Machine
-
-## Go beyond human identities with IoT
-
-When machines talk, make sure it's secure. Leverage the unique Identity of each IoT device for a streamlined, impenetrable communication setup.
-
-## Seamless API onboarding for non-interactive apps
-
-Integrate non-interactive applications like servers, CLIs, daemons, and more into your ecosystem. They might operate in the background, but their security takes the front seat.
-
-## Scopes and granular permissions
-
-Chart the course for every client's journey in your API landscape. Grant or restrict access based on granular permissions: • Application Backends • Command line interfaces • Miscellaneous processes
-
-## Security backed by standards
-
-Sleep better knowing every byte of data exchanged adheres to globally accepted standards. Dive into the OAuth2 Client Credentials Grant flow, and witness security in motion.
-
-## Frequently asked questions
-
-### Does Auth0 support M2M for IoT devices?
-
-Yes, Auth0 [M2M authentication](https://auth0.com/docs/get-started/onboarding/self-service-m2m#use-cases) is ideal for securing IoT devices and sensors that need to communicate with back-end APIs. By treating each device as a secure client, Auth0 ensures that data transmitted from the field is authenticated at the source, preventing unauthorized data injection and protecting the integrity of your IoT network and data analytics.
-
-## Ready to dive in?
-
-Unlock the potential of seamless machine-to-machine communications.
-
-## Resources
-
-- [Developers: Developer Center](https://developer.auth0.com)
-
----
-
-## Multi-Factor Authentication
-
-Features > Multi-Factor Authentication (MFA)
-
-# Multi-factor auth, without the hassle
-
-MFA shouldn’t be a pain. Implement a flexible MFA experience that optimizes security without compromising user experience.
-
-## Want to learn more?
-
-- [Resources: Enable SMS for MFA Using Auth0 and Twilio](https://developer.auth0.com/resources/labs/authentication/enable-mfa-with-sms#introduction)
-
-## Frequently asked questions
-
-### Does Auth0 support FIDO2 and Passkeys?
-
-Yes, Auth0 MFA supports FIDO2-certified WebAuthn, enabling the use of Passkeys, FaceID, and TouchID. These phishing-resistant methods offer the highest level of security available today while providing a modern, passwordless login experience.
-
-### What is Adaptive MFA in Auth0?
-
-Adaptive MFA uses machine learning to analyze the risk of every login attempt based on context (location, device, IP). If a login appears suspicious, Auth0 automatically triggers an MFA challenge; for low-risk, recognized logins, it stays out of the user's way to minimize friction.
-
-## Start your journey with Auth0
-
-Get best-in-class customer identity, with security built in️.
-
----
-
-## Passwordless
-
-Features > Passwordless
-
-## The best password is no password
-
-More than two-thirds of users still recycle passwords across accounts. Free your users from post-it note passwords by giving them a more secure, easy way to login.
-
-## Go passwordless today
-
-Get hands-on with tools and guides crafted for developers, helping you maximize the potential of passwordless authentication.
-
-## Resources
-
-## Frequently asked questions
-
-### Does Auth0 support Passkeys?
-
-Yes, [Auth0 Passkeys](https://auth0.com/docs/authenticate/database-connections/passkeys) are a phishing-resistant alternative to traditional authentication factors (such as identifier/password) that offer an easier and more secure login experience to users. Passkeys are modeled from FIDO® W3C Web Authentication (WebAuthn) and Client to Authenticator Protocol (CTAP) [specifications](https://fidoalliance.org/specs/fido-v2.1-ps-20210615/fido-client-to-authenticator-protocol-v2.1-ps-errata-20220621.html#intro).
-
-### How does Passwordless improve security?
-
-Passwordless authentication improves security by eliminating the most common point of failure: the user-created password. By eliminating the reliance on passwords and other memorized codes, you can provide users with a more convenient way of accessing applications while also reducing the likelihood of data breaches due to stolen or weak passwords. Auth0 helps ensure that authentication is tied to a verified device or communication channel, providing high-assurance identity verification.
-
-### What are the benefits of Passwordless?
-
-**Reduce friction and improve user experience:** Passwords are a point of friction for consumers. Using Passwordless Authentication increases conversion rates. **Reduce security breaches:** Passwords are the most common cause of security breaches.Passwordless authentication improves an organization's security posture. **Reduce overhead:** Going passwordless removes the need for manual password resets by IT and support teams saving time, resources and money.
-
-## Single Sign-On
-
-Features > Single Sign-On
-
-# Streamline access with SSO
-
-Enable users to access all your applications and services with SSO, while delivering a fast, seamless experience.
-
-## One secure login, across every app
-
-Our developer-friendly SSO platform makes it easy to connect users across enterprise, social, and custom apps.
-
-## Implement and launch faster
-
-In-house-built SSO slows you down. Auth0 helps organizations integrate SSO in a matter of days.
-
-## SSO for B2B and B2C applications
-
-## Unlock growth: SSO for enterprises
-
-Trusted by some of the world's largest enterprises, our SSO seamlessly integrates with your AD/LDAP directories to simplify access and accelerate productivity.
-
-## Make it seamless for your customers
-
-A clunky login can be a customer's first and last impression. Use SSO to create a single, satisfying journey across all your apps that delights users from the very start.
-
-## Want to learn more?
-
-- [WHITEPAPER: The developer’s guide to single sign-on (SSO)](https://auth0.com/resources/whitepapers/auth0-guide-to-single-sign-on-sso)
-
-## Frequently asked questions
-
-### Does Auth0 support SSO for mobile apps?
-
-Yes, Auth0 provides SDKs for iOS and Android that support SSO through a more secure browser-based authentication. By sharing the session cookie between the system browser and your native applications, users can enjoy a seamless 'one-tap' login experience across your entire mobile and web presence, maintaining brand consistency and high security across platforms.
-
-### Does Auth0 support Native to Web SSO?
-
-Yes, Auth0 supports this [feature](https://auth0.com/docs/authenticate/single-sign-on/native-to-web) natively in the [platform](https://auth0.com/platform). It offers end users a seamless experience that transitions authenticated users from your native application to your web application.
-
-### How does SSO improve security?
-
-SSO improves security by reducing the 'attack surface' for credentials. Since users only need to remember one set of credentials, they are less likely to use weak passwords or write them down. Furthermore, SSO makes it easier for IT teams to enforce strong [Multi-Factor Authentication (MFA)](https://auth0.com/features/multifactor-authentication) at a single central point, ensuring that all connected applications are protected by the same high-assurance standard.
-
-### What is Auth0 Single Sign-On (SSO)?
-
-Auth0 Single Sign-On (SSO) allows a user to authenticate once and gain access to multiple applications within your ecosystem without being prompted for credentials again. By setting a secure cookie at the central Auth0 domain, the platform can 'silently' authenticate the user as they move between your web, mobile, and legacy apps, significantly reducing login friction and password fatigue.
-
-### What is Single Logout (SLO) in Auth0?
-
-Single Logout (SLO) helps ensure that when a user logs out of one application, their session is terminated across all other applications in the SSO circle. Auth0 handles this by clearing the central session cookie and notifying connected apps to invalidate their local sessions. This is a critical security feature for shared computers or highly sensitive enterprise environments.URL
-
-## Start your journey with Auth0
-
-Get best-in-class customer identity, with security built in️.
-
----
-
-## Token Vault
-
-Token Vault
-
-# Connect AI agents to apps and APIs
-
-Token Vault integrates your apps and AI agents with third-party tools. It handles access and refresh tokens automatically, so you don’t have to.
-
-## AI agents, meet external tools
-
-Build an AI agent that can book flights, respond to emails, and get stuff done.
-
-## Integrations
-
-Empower agents to search your Gmail inbox, create a GitHub pull request, build a Spotify playlist, or leverage one of our 30+ integrations to do even more.
-
-## Trusted by developers
-
-> "Removing sensitive values (like keys/secrets) from code is essential. The next-level unlock is then being able to dynamically exchange an inert variable for the real key. The ability for Token Vault to handle this with such a seamless DX makes it a no brainer for those building AI Agents that talk to authorized integrations. Really incredible work by the Auth0 team."
-> — Sean Roberts, VP of Applied AI
-
-> "When building agentic applications with LlamaIndex, building a capable agent is only the first step: you have to make sure it's safe and secure before you can ship it. Auth0 is the industry leader in tackling this problem and we're delighted to integrate with them."
-> — Murtaza Khomusi, Head of Product Marketing
-
-## See it in action
-
-Watch the demo to see how Token Vault works in practice. Want more details?
-
-## Frequently asked questions
-
-### What is the Auth0 Token Vault?
-
-The [Auth0 Token Vault](https://auth0.com/docs/secure/call-apis-on-users-behalf/token-vault) is a security feature that manages and protects third-party API tokens used by AI agents on behalf of users. It stores, retrieves, and automatically refreshes OAuth 2.0 tokens for external services (such as Google, GitHub, Salesforce, etc.), verifying that sensitive credentials are not exposed to AI agents or client-side code. This significantly reduces the risk of token theft and unauthorized API access in modern agentic architectures.
-
-### How does Token Vault secure AI agents?
-
-Auth0 Token Vault helps secure AI agents by
+|---|-------|---------|---------------|------------------|-------|------|------|
+| 1 | Claude Haiku 5.5 | Express API | 80% | 95% (+15%) | A | $0.74 | 1m 6s |
+| 2 | GPT-5.6 Luna | React | 98% | 100% (+2%) | A | $0.13 | 43s |
+| 3 | Claude Haiku 5.5 | FastAPI | 62% | 89% (+27%) | B | $0.52 | 54s |
+| 4 | GPT-5.6 Luna | Angular | 95% | 100% (+5%) | A | $0.15 | 48s |
+| 5 | Claude Haiku 5.5 | Express | 95% | 94% (-1%) | A | $1.06 | 1m 38s |
+| 6 | GPT-5.6 Luna | React Native | 94% | 100% (+6%) | A | $0.27 | 1m 16s |
+| 7 | Gemini 3.1 Pro | React | 97% | 100% (+3%) | A | $0.28 | 50s |
+| 8 | Gemini 3.1 Pro | SPA JS | 100% | 100% (+0%) | A | $0.28 | 41s |
+| 9 | GPT-5.6 Luna | Expo | 89% | 100% (+11%) | A | $0.32 | 2m 24s |
+| 10 | GPT-5.6 Luna | Next.js | 99% | 100% (+1%) | A | $0.33 | 1m 46s |
+| 11 | Claude Haiku 5.5 | React | 100% | 100% (+0%) | A | $0.81 | 57s |
+| 12 | GPT-5.6 Terra | FastAPI | 62% | 100% (+38%) | A | $0.40 | 40s |
+| 13 | Claude Sonnet 5 | FastAPI | 74% | 100% (+26%) | A | $0.40 | 1m 18s |
+| 14 | GPT-5.6 Terra | React | 100% | 100% (+0%) | A | $0.43 | 1m 6s |
+| 15 | Claude Sonnet 5 | Fastify API | 76% | 100% (+24%) | A | $0.43 | 1m 33s |
+| 16 | GPT-5.6 Terra | Next.js | 99% | 100% (+1%) | A | $0.45 | 1m 7s |
+| 17 | Claude Haiku 5.5 | SPA JS | 96% | 96% (+0%) | A | $0.42 | 41s |
+| 18 | GPT-5.6 Terra | Vue | 100% | 100% (+0%) | A | $0.47 | 42s |
+| 19 | Claude Sonnet 5 | Express API | 100% | 100% (+0%) | A | $0.52 | 1m 49s |
+| 20 | Claude Sonnet 5 | Vue | 98% | 100% (+2%) | A | $0.54 | 2m 3s |
+| 21 | GPT-5.6 Terra | React Native | 94% | 100% (+6%) | A | $0.56 | 1m 10s |
+| 22 | GPT-5.6 Terra | Angular | 97% | 100% (+3%) | A | $0.57 | 1m 31s |
+| 23 | Claude Sonnet 5 | Swift | 71% | 100% (+29%) | A | $0.62 | 2m 57s |
+| 24 | Gemini 3.8 Flash | Android | 93% | 98% (+5%) | A | $1.09 | 2m 38s |
+| 25 | Claude Sonnet 5 | Next.js | 92% | 100% (+8%) | A | $0.83 | 4m 58s |
+| 26 | Claude Sonnet 5 | React | 100% | 100% (+0%) | A | $0.85 | 4m 14s |
+| 27 | Gemini 3.1 Pro | Angular | 99% | 100% (+1%) | A | $0.89 | 1m 15s |
+| 28 | Claude Sonnet 5 | SPA JS | 100% | 100% (+0%) | A | $0.94 | 2m 32s |
+| 29 | Gemini 3.1 Pro | Next.js | 95% | 100% (+5%) | A | $0.97 | 1m 27s |
+| 30 | Gemini 3.1 Pro | Android | 90% | 100% (+10%) | A | $0.98 | 2m 8s |
+| 31 | Claude Opus 5 | Vue | 98% | 100% (+2%) | A | $1.06 | 3m 0s |
+| 32 | GPT-5.6 Terra | Nuxt | 100% | 100% (+0%) | A | $1.13 | 1m 52s |
+| 33 | Claude Opus 5 | React | 100% | 100% (+0%) | A | $1.14 | 4m 13s |
+| 34 | Claude Opus 5 | Next.js | 80% | 99% (+19%) | A | $1.33 | 3m 44s |
+| 35 | Claude Sonnet 5 | Angular | 99% | 100% (+1%) | A | $1.42 | 4m 50s |
+| 36 | Gemini 3.8 Flash | Angular | 100% | 100% (+0%) | A | $0.49 | 2m 39s |
+| 37 | Gemini 3.1 Pro | React Native | 90% | 99% (+9%) | A | $1.48 | 2m 29s |
+| 38 | Claude Opus 5 | Expo | 89% | 99% (+10%) | A | $1.61 | 3m 45s |
+| 39 | Claude Sonnet 5 | Android | 90% | 100% (+10%) | A | $1.66 | 4m 27s |
+| 40 | Gemini 3.1 Pro | Expo | 90% | 100% (+10%) | A | $1.94 | 3m 5s |
+| 41 | GPT-5.6 Luna | Swift | 73% | 99% (+26%) | A | $0.17 | 53s |
+| 42 | GPT-5.6 Luna | FastAPI | 62% | 99% (+37%) | A | $0.18 | 39s |
+| 43 | GPT-5.6 Luna | Vue | 97% | 99% (+2%) | A | $0.20 | 1m 34s |
+| 44 | GPT-5.6 Luna | Express API | 86% | 99% (+13%) | A | $0.21 | 1m 7s |
+| 45 | GPT-5.6 Luna | Android | 85% | 99% (+14%) | A | $0.22 | 1m 6s |
+| 46 | GPT-5.6 Luna | SPA JS | 94% | 99% (+5%) | A | $0.23 | 1m 43s |
+| 47 | GPT-5.6 Luna | Nuxt | 83% | 99% (+16%) | A | $0.31 | 2m 29s |
+| 48 | Claude Haiku 5.5 | Android | 87% | 99% (+12%) | A | $1.31 | 1m 48s |
+| 49 | Claude Sonnet 5 | Express | 96% | 99% (+3%) | A | $0.40 | 2m 5s |
+| 50 | GPT-5.6 Terra | Fastify API | 67% | 99% (+32%) | A | $0.41 | 35s |
+| 51 | GPT-5.6 Luna | Flask | 77% | 99% (+22%) | A | $0.43 | 2m 20s |
+| 52 | GPT-5.6 Terra | SPA JS | 98% | 99% (+1%) | A | $0.46 | 1m 58s |
+| 53 | GPT-5.6 Terra | Express | 97% | 99% (+2%) | A | $0.49 | 1m 1s |
+| 54 | Claude Sonnet 5 | Flask | 87% | 99% (+12%) | A | $0.58 | 2m 57s |
+| 55 | GPT-5.6 Terra | Flask | 82% | 99% (+17%) | A | $0.63 | 1m 17s |
+| 56 | Gemini 3.1 Pro | Vue | 98% | 99% (+1%) | A | $0.64 | 1m 11s |
+| 57 | Gemini 3.8 Flash | SPA JS | 98% | 99% (+1%) | A | $0.39 | 1m 11s |
+| 58 | Gemini 3.8 Flash | React | 98% | 96% (-2%) | A | $0.60 | 2m 27s |
+| 59 | GPT-5.6 Sol | SPA JS | 100% | 99% (-1%) | A | $1.04 | 1m 9s |
+| 60 | Gemini 3.1 Pro | Flask | 81% | 99% (+18%) | A | $1.12 | 1m 44s |
+| 61 | GPT-5.6 Terra | Android | 86% | 99% (+13%) | A | $1.21 | 1m 59s |
+| 62 | GPT-5.6 Sol | Vue | 97% | 99% (+2%) | A | $1.38 | 2m 12s |
+| 63 | GPT-5.6 Sol | Angular | 99% | 99% (+0%) | A | $1.42 | 1m 58s |
+| 64 | GPT-5.6 Sol | FastAPI | 66% | 99% (+33%) | A | $1.46 | 1m 33s |
+| 65 | Gemini 3.8 Flash | Expo | 89% | 98% (+9%) | A | $0.76 | 2m 12s |
+| 66 | GPT-5.6 Sol | React | 99% | 99% (+0%) | A | $1.53 | 1m 47s |
+| 67 | GPT-5.6 Sol | React Native | 94% | 99% (+5%) | A | $1.57 | 2m 18s |
+| 68 | Gemini 3.8 Flash | Next.js | 95% | 100% (+5%) | A | $0.52 | 2m 4s |
+| 69 | GPT-5.6 Sol | Next.js | 99% | 99% (+0%) | A | $1.81 | 2m 1s |
+| 70 | GPT-5.6 Sol | Express API | 84% | 99% (+15%) | A | $2.78 | 3m 8s |
+| 71 | Claude Opus 5 | Android | 94% | 99% (+5%) | A | $2.84 | 5m 16s |
+| 72 | Claude Haiku 5.5 | Fastify API | 82% | 100% (+18%) | A | $0.74 | 50s |
+| 73 | GPT-5.6 Luna | Fastify API | 70% | 98% (+28%) | A | $0.22 | 1m 14s |
+| 74 | Gemini 3.1 Pro | Express | 98% | 98% (+0%) | A | $0.53 | 59s |
+| 75 | Gemini 3.1 Pro | FastAPI | 68% | 98% (+30%) | A | $0.53 | 1m 5s |
+| 76 | GPT-5.6 Terra | Swift | 74% | 98% (+24%) | A | $0.55 | 1m 8s |
+| 77 | Gemini 3.1 Pro | Fastify API | 72% | 97% (+25%) | A | $0.69 | 1m 4s |
+| 78 | Gemini 3.8 Flash | FastAPI | 68% | 98% (+30%) | A | $0.52 | 1m 52s |
+| 79 | GPT-5.6 Terra | Express API | 84% | 98% (+14%) | A | $0.91 | 1m 53s |
+| 80 | Claude Opus 5 | SPA JS | 94% | 98% (+4%) | A | $1.05 | 2m 7s |
+| 81 | GPT-5.6 Sol | Fastify API | 71% | 98% (+27%) | A | $1.06 | 1m 11s |
+| 82 | Gemini 3.8 Flash | Vue | 97% | 97% (+0%) | A | $0.33 | 1m 26s |
+| 83 | Gemini 3.1 Pro | Nuxt | 91% | 98% (+7%) | A | $1.47 | 3m 3s |
+| 84 | Claude Opus 5 | Swift | 95% | 98% (+3%) | A | $1.48 | 2m 59s |
+| 85 | Gemini 3.8 Flash | Nuxt | 89% | 96% (+7%) | A | $0.55 | 2m 31s |
+| 86 | Claude Sonnet 5 | React Native | 73% | 98% (+25%) | A | $1.57 | 7m 22s |
+| 87 | GPT-5.6 Sol | Flask | 80% | 98% (+18%) | A | $2.08 | 3m 34s |
+| 88 | GPT-5.6 Sol | Android | 90% | 98% (+8%) | A | $2.56 | 3m 52s |
+| 89 | GPT-5.6 Sol | Nuxt | 100% | 98% (-2%) | A | $4.11 | 4m 9s |
+| 90 | Claude Haiku 5.5 | Swift | 79% | 93% (+14%) | A | $0.96 | 1m 3s |
+| 91 | GPT-5.6 Luna | Express | 93% | 97% (+4%) | A | $0.23 | 1m 35s |
+| 92 | Gemini 3.1 Pro | Swift | 72% | 97% (+25%) | A | $0.37 | 48s |
+| 93 | Gemini 3.1 Pro | Express API | 88% | 97% (+9%) | A | $0.53 | 54s |
+| 94 | Claude Haiku 5.5 | Angular | 98% | 100% (+2%) | A | $1.16 | 1m 39s |
+| 95 | Claude Haiku 5.5 | Vue | 80% | 100% (+20%) | A | $0.92 | 1m 31s |
+| 96 | Gemini 3.8 Flash | Express | 85% | 96% (+11%) | A | $0.41 | 1m 32s |
+| 97 | Claude Sonnet 5 | Nuxt | 97% | 96% (-1%) | A | $0.89 | 4m 15s |
+| 98 | Gemini 3.8 Flash | Fastify API | 65% | 97% (+32%) | A | $0.81 | 2m 23s |
+| 99 | GPT-5.6 Terra | Expo | 89% | 97% (+8%) | A | $1.33 | 1m 45s |
+| 100 | Gemini 3.8 Flash | Express API | 85% | 97% (+12%) | A | $1.52 | 3m 35s |
+| 101 | Claude Opus 5 | React Native | 97% | 97% (+0%) | A | $1.63 | 4m 13s |
+| 102 | Claude Opus 5 | Angular | 100% | 97% (-3%) | A | $1.69 | 6m 15s |
+| 103 | GPT-5.6 Sol | Express | 95% | 97% (+2%) | A | $1.96 | 2m 32s |
+| 104 | GPT-5.6 Sol | Expo | 89% | 97% (+8%) | A | $2.27 | 2m 48s |
+| 105 | Gemini 3.8 Flash | React Native | 92% | 96% (+4%) | A | $1.01 | 3m 50s |
+| 106 | Claude Haiku 5.5 | Expo | 90% | 99% (+9%) | A | $1.10 | 1m 18s |
+| 107 | Claude Opus 5 | Express | 87% | 96% (+9%) | A | $0.63 | 1m 47s |
+| 108 | Claude Opus 5 | Fastify API | 79% | 96% (+17%) | A | $0.71 | 2m 9s |
+| 109 | Claude Opus 5 | Express API | 95% | 96% (+1%) | A | $0.87 | 1m 46s |
+| 110 | Gemini 3.8 Flash | Flask | 78% | 95% (+17%) | A | $0.54 | 3m 11s |
+| 111 | Claude Sonnet 5 | Expo | 92% | 96% (+4%) | A | $1.15 | 3m 31s |
+| 112 | Claude Haiku 5.5 | Next.js | 86% | 87% (+1%) | B | $1.74 | 2m 47s |
+| 113 | Gemini 3.8 Flash | Swift | 72% | 94% (+22%) | A | $0.76 | 1m 54s |
+| 114 | Claude Haiku 5.5 | Flask | 86% | 96% (+10%) | A | $1.90 | 3m 14s |
+| 115 | GPT-5.6 Sol | Swift | 76% | 94% (+18%) | A | $2.33 | 2m 34s |
+| 116 | Claude Haiku 5.5 | Nuxt | 91% | 91% (+0%) | A | $2.20 | 3m 22s |
+| 117 | Claude Haiku 5.5 | React Native | 95% | 93% (-2%) | A | $0.00 | 2m 47s |
+| 118 | Claude Opus 5 | FastAPI | 63% | 92% (+29%) | A | $0.68 | 1m 40s |
+| 119 | Claude Opus 5 | Flask | 82% | 91% (+9%) | A | $0.92 | 2m 23s |
+| 120 | Claude Opus 5 | Nuxt | 92% | 90% (-2%) | A | $2.30 | 5m 3s |
+
+## MFA Scores
+
+**Average without Auth0 tools**: 89% · **Average with Auth0 tools**: 98% · **Targets tested**: 17 · **Total configurations**: 136
+
+| # | Model | Target | Without Tools | With Auth0 Tools | Grade | Cost | Time |
+|---|-------|------|---------------|------------------|-------|------|------|
+| 1 | Claude Opus 5 | Auth0 CLI | 100% | 100% (+0%) | A | $0.57 | 58s |
+| 2 | Claude Opus 5 | Android | 64% | 100% (+36%) | A | $1.65 | 5m 56s |
+| 3 | Claude Opus 5 | Angular | 76% | 100% (+24%) | A | $0.79 | 2m 5s |
+| 4 | Claude Opus 5 | Auth0.js | 95% | 100% (+5%) | A | $0.66 | 2m 5s |
+| 5 | Claude Opus 5 | Express | 90% | 100% (+10%) | A | $0.45 | 1m 21s |
+| 6 | Claude Opus 5 | React | 84% | 100% (+16%) | A | $0.70 | 2m 2s |
+| 7 | Claude Opus 5 | SPA JS | 84% | 100% (+16%) | A | $0.46 | 1m 12s |
+| 8 | Claude Opus 5 | Swift | 95% | 100% (+5%) | A | $1.02 | 3m 24s |
+| 9 | Claude Opus 5 | Vue | 54% | 100% (+46%) | A | $0.66 | 1m 47s |
+| 10 | Claude Sonnet 5 | Auth0 CLI | 91% | 100% (+9%) | A | $0.18 | 38s |
+| 11 | Claude Sonnet 5 | Android | 84% | 100% (+16%) | A | $0.79 | 7m 54s |
+| 12 | Claude Sonnet 5 | Express API | 100% | 100% (+0%) | A | $0.22 | 1m 0s |
+| 13 | Claude Sonnet 5 | Swift | 91% | 100% (+9%) | A | $0.45 | 3m 35s |
+| 14 | GPT-5.6 Luna | Auth0 CLI | 92% | 100% (+8%) | A | $0.14 | 30s |
+| 15 | GPT-5.6 Luna | Express API | 96% | 100% (+4%) | A | $0.15 | 29s |
+| 16 | GPT-5.6 Sol | Auth0 CLI | 100% | 100% (+0%) | A | $0.88 | 41s |
+| 17 | GPT-5.6 Terra | Auth0 CLI | 63% | 100% (+37%) | A | $0.36 | 30s |
+| 18 | GPT-5.6 Terra | Express API | 96% | 100% (+4%) | A | $0.36 | 21s |
+| 19 | Gemini 3.1 Pro | Auth0 CLI | 94% | 100% (+6%) | A | $0.59 | 51s |
+| 20 | Gemini 3.1 Pro | Android | 97% | 100% (+3%) | A | $0.72 | 2m 11s |
+| 21 | Gemini 3.1 Pro | React | 80% | 100% (+20%) | A | $0.95 | 1m 54s |
+| 22 | Gemini 3.1 Pro | Swift | 99% | 100% (+1%) | A | $0.34 | 1m 10s |
+| 23 | Gemini 3.1 Pro | Vue | 82% | 100% (+18%) | A | $0.61 | 59s |
+| 24 | Gemini 3.8 Flash | Auth0 CLI | 98% | 100% (+2%) | A | $0.31 | 1m 20s |
+| 25 | Gemini 3.8 Flash | Android | 88% | 100% (+12%) | A | $0.53 | 2m 46s |
+| 26 | Gemini 3.8 Flash | React | 80% | 100% (+20%) | A | $0.46 | 1m 44s |
+| 27 | Gemini 3.8 Flash | Swift | 74% | 100% (+26%) | A | $0.43 | 2m 22s |
+| 28 | Claude Sonnet 5 | Auth0 Server JS | 66% | 100% (+34%) | A | $0.93 | 10m 18s |
+| 29 | Claude Sonnet 5 | Express | 94% | 99% (+5%) | A | $0.37 | 2m 43s |
+| 30 | Claude Sonnet 5 | Next.js | 87% | 99% (+12%) | A | $1.12 | 10m 38s |
+| 31 | Claude Sonnet 5 | React | 83% | 99% (+16%) | A | $0.47 | 3m 18s |
+| 32 | Claude Sonnet 5 | SPA JS | 84% | 99% (+15%) | A | $0.35 | 1m 43s |
+| 33 | Claude Sonnet 5 | Auth0.js | 88% | 99% (+11%) | A | $1.03 | 10m 10s |
+| 34 | Claude Sonnet 5 | Vue | 86% | 99% (+13%) | A | $0.56 | 2m 27s |
+| 35 | GPT-5.6 Sol | Express API | 97% | 99% (+2%) | A | $1.57 | 40s |
+| 36 | GPT-5.6 Sol | Vue | 81% | 99% (+18%) | A | $2.04 | 1m 27s |
+| 37 | Gemini 3.1 Pro | Express | 93% | 99% (+6%) | A | $1.45 | 2m 32s |
+| 38 | GPT-5.6 Terra | React | 85% | 99% (+14%) | A | $0.49 | 51s |
+| 39 | Gemini 3.1 Pro | Auth0 Server JS | 97% | 99% (+2%) | A | $1.15 | 2m 32s |
+| 40 | GPT-5.6 Luna | Express | 80% | 99% (+19%) | A | $0.21 | 41s |
+| 41 | GPT-5.6 Luna | React | 79% | 99% (+20%) | A | $0.20 | 53s |
+| 42 | GPT-5.6 Luna | SPA JS | 84% | 99% (+15%) | A | $0.20 | 38s |
+| 43 | GPT-5.6 Luna | Swift | 99% | 99% (+0%) | A | $0.25 | 56s |
+| 44 | Gemini 3.8 Flash | Express | 89% | 99% (+10%) | A | $0.38 | 2m 23s |
+| 45 | GPT-5.6 Terra | SPA JS | 88% | 99% (+11%) | A | $0.42 | 39s |
+| 46 | Gemini 3.1 Pro | Angular | 82% | 98% (+16%) | A | $1.18 | 2m 22s |
+| 47 | GPT-5.6 Sol | React | 82% | 98% (+16%) | A | $1.81 | 1m 38s |
+| 48 | GPT-5.6 Terra | Angular | 83% | 98% (+15%) | A | $0.70 | 58s |
+| 49 | GPT-5.6 Terra | Vue | 80% | 98% (+18%) | A | $0.74 | 52s |
+| 50 | Claude Opus 5 | Auth0 Server JS | 69% | 98% (+29%) | A | $1.25 | 3m 32s |
+| 51 | GPT-5.6 Terra | Auth0 Server JS | 98% | 98% (+0%) | A | $0.74 | 1m 29s |
+| 52 | Claude Haiku 5.5 | Express API | 99% | 100% (+1%) | A | $0.39 | 33s |
+| 53 | Claude Opus 5 | Express API | 89% | 98% (+9%) | A | $0.61 | 1m 8s |
+| 54 | Claude Sonnet 5 | Python | 70% | 98% (+28%) | A | $0.69 | 5m 14s |
+| 55 | Gemini 3.1 Pro | Auth0.js | 92% | 98% (+6%) | A | $0.83 | 1m 52s |
+| 56 | GPT-5.6 Luna | Vue | 80% | 98% (+18%) | A | $0.24 | 55s |
+| 57 | GPT-5.6 Sol | Angular | 81% | 98% (+17%) | A | $1.85 | 1m 37s |
+| 58 | Gemini 3.1 Pro | SPA JS | 88% | 98% (+10%) | A | $0.80 | 1m 16s |
+| 59 | Gemini 3.8 Flash | Auth0.js | 94% | 98% (+4%) | A | $0.75 | 2m 35s |
+| 60 | GPT-5.6 Sol | Android | 99% | 97% (-2%) | A | $2.35 | 3m 29s |
+| 61 | Gemini 3.1 Pro | Express API | 97% | 97% (+0%) | A | $0.87 | 1m 24s |
+| 62 | GPT-5.6 Sol | SPA JS | 82% | 97% (+15%) | A | $1.15 | 54s |
+| 63 | GPT-5.6 Sol | Next.js | 96% | 97% (+1%) | A | $1.85 | 2m 55s |
+| 64 | GPT-5.6 Sol | Swift | 90% | 97% (+7%) | A | $2.06 | 2m 17s |
+| 65 | Gemini 3.8 Flash | SPA JS | 86% | 97% (+11%) | A | $0.35 | 1m 51s |
+| 66 | GPT-5.6 Luna | Android | 97% | 97% (+0%) | A | $0.37 | 1m 30s |
+| 67 | GPT-5.6 Terra | Android | 98% | 97% (-1%) | A | $0.96 | 1m 58s |
+| 68 | GPT-5.6 Luna | Angular | 78% | 97% (+19%) | A | $0.32 | 1m 7s |
+| 69 | Gemini 3.8 Flash | Auth0 Server JS | 88% | 97% (+9%) | A | $0.76 | 5m 56s |
+| 70 | Gemini 3.8 Flash | Angular | 81% | 96% (+15%) | A | $1.32 | 3m 14s |
+| 71 | Gemini 3.8 Flash | Vue | 82% | 96% (+14%) | A | $0.40 | 3m 6s |
+| 72 | GPT-5.6 Sol | Auth0 Server JS | 99% | 96% (-3%) | A | $1.96 | 1m 44s |
+| 73 | Claude Haiku 5.5 | SPA JS | 86% | 99% (+13%) | A | $0.57 | 52s |
+| 74 | GPT-5.6 Sol | Auth0.js | 95% | 96% (+1%) | A | $1.90 | 1m 22s |
+| 75 | GPT-5.6 Terra | Auth0.js | 93% | 96% (+3%) | A | $0.76 | 1m 4s |
+| 76 | Gemini 3.8 Flash | Next.js | 85% | 96% (+11%) | A | $0.95 | 3m 15s |
+| 77 | Gemini 3.8 Flash | Express API | 95% | 96% (+1%) | A | $0.40 | 1m 49s |
+| 78 | Claude Haiku 5.5 | Express | 92% | 97% (+5%) | A | $1.67 | 3m 30s |
+| 79 | GPT-5.6 Terra | Express | 87% | 96% (+9%) | A | $0.61 | 54s |
+| 80 | Claude Opus 5 | Python | 81% | 95% (+14%) | A | $0.81 | 1m 57s |
+| 81 | Gemini 3.1 Pro | Next.js | 97% | 95% (-2%) | A | $1.02 | 1m 59s |
+| 82 | GPT-5.6 Sol | Express | 86% | 95% (+9%) | A | $1.16 | 1m 11s |
+| 83 | GPT-5.6 Luna | Python | 88% | 95% (+7%) | A | $0.41 | 1m 22s |
+| 84 | GPT-5.6 Luna | Auth0.js | 97% | 94% (-3%) | A | $0.42 | 1m 7s |
+| 85 | GPT-5.6 Terra | Swift | 87% | 94% (+7%) | A | $1.28 | 1m 34s |
+| 86 | GPT-5.6 Terra | Next.js | 95% | 94% (-1%) | A | $0.75 | 1m 24s |
+| 87 | GPT-5.6 Luna | Next.js | 94% | 94% (+0%) | A | $0.35 | 1m 16s |
+| 88 | Gemini 3.8 Flash | Python | 92% | 94% (+2%) | A | $0.52 | 3m 17s |
+| 89 | Claude Haiku 5.5 | Vue | 79% | 100% (+21%) | A | $0.75 | 1m 15s |
+| 90 | GPT-5.6 Sol | Python | 85% | 93% (+8%) | A | $1.71 | 1m 47s |
+| 91 | GPT-5.6 Terra | Python | 77% | 93% (+16%) | A | $0.70 | 1m 3s |
+| 92 | Claude Haiku 5.5 | React | 84% | 99% (+15%) | A | $0.61 | 1m 1s |
+| 93 | Claude Opus 5 | Next.js | 84% | 92% (+8%) | A | $0.00 | 8m 18s |
+| 94 | Claude Sonnet 5 | Angular | 82% | 91% (+9%) | A | $0.88 | 5m 45s |
+| 95 | GPT-5.6 Luna | Auth0 Server JS | 86% | 90% (+4%) | A | $0.45 | 1m 33s |
+| 96 | Claude Haiku 5.5 | Swift | 96% | 100% (+4%) | A | $0.72 | 1m 18s |
+| 97 | Gemini 3.1 Pro | Python | 74% | 87% (+13%) | B | $0.60 | 1m 40s |
+| 98 | Claude Haiku 5.5 | Android | 82% | 99% (+17%) | A | $2.10 | 4m 13s |
+| 99 | Claude Haiku 5.5 | Auth0.js | 91% | 92% (+1%) | A | $2.22 | 4m 15s |
+| 100 | Claude Haiku 5.5 | Next.js | 97% | 95% (-2%) | A | $1.50 | 2m 46s |
+| 101 | Claude Haiku 5.5 | Python | 71% | 92% (+21%) | A | $1.85 | 3m 57s |
+| 102 | Claude Haiku 5.5 | Auth0 Server JS | 87% | 90% (+3%) | A | $2.80 | 6m 3s |
+| 103 | Claude Haiku 5.5 | Auth0 CLI | 86% | 97% (+11%) | A | $0.53 | 37s |
+| 104 | Claude Haiku 5.5 | Angular | 84% | 85% (+1%) | B | $1.02 | 2m 3s |
+| 105 | GPT-5.6 Terra | Python API | 100% | 100% (+0%) | A | $0.40 | 17s |
+| 106 | Claude Sonnet 5 | Go | 100% | 100% (+0%) | A | $0.11 | 18s |
+| 107 | Gemini 3.8 Flash | ASP.NET Core API | 99% | 100% (+1%) | A | $0.15 | 49s |
+| 108 | Claude Sonnet 5 | Python API | 95% | 100% (+5%) | A | $0.14 | 29s |
+| 109 | Claude Opus 5 | React Native | 65% | 100% (+35%) | A | $1.08 | 3m 8s |
+| 110 | Claude Sonnet 5 | React Native | 66% | 99% (+33%) | A | $0.56 | 2m 35s |
+| 111 | Gemini 3.1 Pro | React Native | 96% | 99% (+3%) | A | $0.80 | 2m 15s |
+| 112 | Claude Haiku 5.5 | ASP.NET Core API | 99% | 98% (-1%) | A | $0.29 | 24s |
+| 113 | Gemini 3.8 Flash | React Native | 100% | 99% (-1%) | A | $3.32 | 9m 28s |
+| 114 | Claude Sonnet 5 | ASP.NET Core API | 99% | 99% (+0%) | A | $0.15 | 28s |
+| 115 | Gemini 3.1 Pro | ASP.NET Core API | 99% | 98% (-0%) | A | $0.29 | 34s |
+| 116 | GPT-5.6 Terra | ASP.NET Core API | 98% | 98% (+0%) | A | $0.53 | 22s |
+| 117 | GPT-5.6 Terra | Go | 98% | 98% (+1%) | A | $0.58 | 26s |
+| 118 | GPT-5.6 Luna | Go | 100% | 98% (-2%) | A | $0.19 | 24s |
+| 119 | GPT-5.6 Luna | Python API | 98% | 98% (-0%) | A | $0.26 | 35s |
+| 120 | GPT-5.6 Sol | Python API | 97% | 98% (+1%) | A | $1.18 | 44s |
+| 121 | Claude Opus 5 | Python API | 98% | 98% (+0%) | A | $0.46 | 51s |
+| 122 | Claude Opus 5 | Go | 98% | 98% (+0%) | A | $0.50 | 56s |
+| 123 | Gemini 3.1 Pro | Go | 97% | 98% (+1%) | A | $0.29 | 37s |
+| 124 | Claude Opus 5 | ASP.NET Core API | 98% | 98% (+0%) | A | $0.59 | 38s |
+| 125 | Claude Haiku 5.5 | Go | 98% | 98% (+0%) | A | $0.21 | 19s |
+| 126 | GPT-5.6 Sol | ASP.NET Core API | 98% | 97% (-0%) | A | $1.20 | 24s |
+| 127 | GPT-5.6 Terra | React Native | 99% | 97% (-2%) | A | $0.85 | 1m 1s |
+| 128 | GPT-5.6 Sol | Go | 98% | 97% (-1%) | A | $1.06 | 30s |
+| 129 | GPT-5.6 Sol | React Native | 96% | 97% (+1%) | A | $1.42 | 1m 12s |
+| 130 | GPT-5.6 Luna | ASP.NET Core API | 96% | 97% (+1%) | A | $0.23 | 30s |
+| 131 | Claude Haiku 5.5 | Python API | 100% | 98% (-2%) | A | $0.16 | 14s |
+| 132 | Gemini 3.8 Flash | Go | 96% | 96% (-0%) | A | $0.52 | 2m 53s |
+| 133 | Gemini 3.8 Flash | Python API | 97% | 95% (-1%) | A | $0.44 | 1m 15s |
+| 134 | GPT-5.6 Luna | React Native | 97% | 95% (-2%) | A | $0.34 | 49s |
+| 135 | Gemini 3.1 Pro | Python API | 96% | 94% (-3%) | A | $0.30 | 38s |
+| 136 | Claude Haiku 5.5 | React Native | 99% | 97% (-2%) | A | $2.33 | 3m 52s |
+
+## Organizations Scores
+
+**Average without Auth0 tools**: 92% · **Average with Auth0 tools**: 98% · **Targets tested**: 18 · **Total configurations**: 144
+
+| # | Model | Target | Without Tools | With Auth0 Tools | Grade | Cost | Time |
+|---|-------|------|---------------|------------------|-------|------|------|
+| 1 | Claude Opus 5 | Auth0 CLI | 100% | 100% (+0%) | A | $0.78 | 1m 20s |
+| 2 | Claude Sonnet 5 | Auth0 CLI | 74% | 94% (+20%) | A | $0.39 | 1m 45s |
+| 3 | Gemini 3.1 Pro | Auth0 CLI | 100% | 100% (+0%) | A | $2.51 | 2m 28s |
+| 4 | Gemini 3.8 Flash | Auth0 CLI | 100% | 100% (+0%) | A | $0.38 | 1m 1s |
+| 5 | Claude Sonnet 5 | React | 100% | 100% (+0%) | A | $0.19 | 1m 13s |
+| 6 | Gemini 3.1 Pro | React | 100% | 100% (+0%) | A | $0.32 | 41s |
+| 7 | GPT-5.6 Terra | React | 100% | 99% (-1%) | A | $0.51 | 32s |
+| 8 | Claude Opus 5 | Python | 100% | 100% (+0%) | A | $0.71 | 1m 41s |
+| 9 | Claude Opus 5 | SPA JS | 100% | 100% (+0%) | A | $0.45 | 1m 2s |
+| 10 | Gemini 3.1 Pro | SPA JS | 100% | 99% (-1%) | A | $0.79 | 1m 23s |
+| 11 | Gemini 3.8 Flash | SPA JS | 100% | 100% (+0%) | A | $0.30 | 1m 23s |
+| 12 | GPT-5.6 Terra | SPA JS | 100% | 99% (-1%) | A | $0.51 | 44s |
+| 13 | Claude Opus 5 | Swift | 100% | 100% (+0%) | A | $0.92 | 2m 12s |
+| 14 | Gemini 3.1 Pro | Auth0 Server JS | 99% | 100% (+1%) | A | $2.05 | 1m 46s |
+| 15 | Claude Opus 5 | Express API | 99% | 100% (+1%) | A | $0.42 | 58s |
+| 16 | Gemini 3.1 Pro | Swift | 99% | 100% (+1%) | A | $0.89 | 1m 32s |
+| 17 | Gemini 3.8 Flash | Express API | 99% | 97% (-2%) | A | $0.38 | 1m 22s |
+| 18 | Gemini 3.8 Flash | Auth0 API JS | 99% | 98% (-1%) | A | $0.54 | 2m 8s |
+| 19 | Gemini 3.1 Pro | Express API | 98% | 99% (+1%) | A | $0.71 | 1m 1s |
+| 20 | Gemini 3.8 Flash | Python | 98% | 98% (+0%) | A | $1.69 | 3m 52s |
+| 21 | Gemini 3.1 Pro | Android | 98% | 95% (-3%) | A | $0.41 | 2m 4s |
+| 22 | Claude Sonnet 5 | Auth0 API JS | 98% | 100% (+2%) | A | $0.26 | 1m 18s |
+| 23 | Claude Opus 5 | Android | 97% | 100% (+3%) | A | $1.27 | 4m 5s |
+| 24 | Gemini 3.8 Flash | Swift | 97% | 100% (+3%) | A | $0.53 | 1m 49s |
+| 25 | Claude Opus 5 | Auth0 API JS | 97% | 100% (+3%) | A | $0.44 | 1m 10s |
+| 26 | GPT-5.6 Sol | SPA JS | 97% | 99% (+2%) | A | $1.18 | 1m 4s |
+| 27 | Claude Opus 5 | Auth0 Server JS | 97% | 100% (+3%) | A | $0.59 | 1m 47s |
+| 28 | Claude Sonnet 5 | Python | 96% | 100% (+4%) | A | $0.61 | 3m 55s |
+| 29 | GPT-5.6 Terra | Next.js | 96% | 95% (-1%) | A | $0.47 | 39s |
+| 30 | GPT-5.6 Luna | Swift | 96% | 98% (+2%) | A | $0.27 | 1m 24s |
+| 31 | Claude Sonnet 5 | Auth0 Server JS | 96% | 99% (+3%) | A | $0.74 | 5m 53s |
+| 32 | GPT-5.6 Sol | Express API | 96% | 96% (+0%) | A | $3.60 | 1m 51s |
+| 33 | GPT-5.6 Terra | Swift | 96% | 96% (+0%) | A | $0.72 | 1m 1s |
+| 34 | Gemini 3.1 Pro | Auth0.js | 96% | 100% (+4%) | A | $2.46 | 3m 42s |
+| 35 | GPT-5.6 Sol | React | 96% | 98% (+2%) | A | $1.58 | 1m 20s |
+| 36 | Gemini 3.8 Flash | Express | 95% | 99% (+4%) | A | $0.39 | 1m 44s |
+| 37 | GPT-5.6 Terra | Python | 94% | 97% (+3%) | A | $0.89 | 1m 13s |
+| 38 | GPT-5.6 Luna | SPA JS | 94% | 99% (+5%) | A | $0.23 | 32s |
+| 39 | Gemini 3.1 Pro | Auth0 API JS | 93% | 98% (+5%) | A | $0.56 | 52s |
+| 40 | GPT-5.6 Luna | Python | 93% | 99% (+6%) | A | $0.36 | 59s |
+| 41 | GPT-5.6 Sol | Android | 93% | 96% (+3%) | A | $3.46 | 2m 32s |
+| 42 | Claude Sonnet 5 | SPA JS | 93% | 99% (+6%) | A | $0.35 | 1m 25s |
+| 43 | Claude Opus 5 | Express | 93% | 100% (+7%) | A | $0.69 | 1m 35s |
+| 44 | GPT-5.6 Sol | Auth0 CLI | 95% | 95% (+0%) | A | $1.20 | 39s |
+| 45 | GPT-5.6 Terra | Auth0 CLI | 95% | 95% (+0%) | A | $0.59 | 32s |
+| 46 | GPT-5.6 Sol | Python | 93% | 99% (+6%) | A | $2.38 | 1m 36s |
+| 47 | GPT-5.6 Luna | React | 93% | 100% (+7%) | A | $0.13 | 39s |
+| 48 | GPT-5.6 Luna | Android | 93% | 99% (+6%) | A | $0.27 | 58s |
+| 49 | Gemini 3.1 Pro | Next.js | 93% | 96% (+3%) | A | $0.50 | 1m 4s |
+| 50 | Gemini 3.8 Flash | React | 92% | 100% (+8%) | A | $0.38 | 1m 48s |
+| 51 | Gemini 3.8 Flash | Next.js | 92% | 96% (+4%) | A | $1.24 | 3m 28s |
+| 52 | Gemini 3.8 Flash | Android | 92% | 93% (+1%) | A | $0.56 | 2m 35s |
+| 53 | Claude Opus 5 | Auth0.js | 92% | 100% (+8%) | A | $0.92 | 2m 30s |
+| 54 | GPT-5.6 Luna | Next.js | 92% | 96% (+4%) | A | $0.33 | 56s |
+| 55 | Claude Opus 5 | React | 91% | 100% (+9%) | A | $0.46 | 1m 18s |
+| 56 | Claude Haiku 5.5 | Python | 89% | 97% (+8%) | A | $0.74 | 1m 8s |
+| 57 | GPT-5.6 Sol | Next.js | 90% | 99% (+9%) | A | $2.27 | 1m 36s |
+| 58 | Claude Haiku 5.5 | Auth0 Server JS | 95% | 99% (+4%) | A | $0.89 | 1m 29s |
+| 59 | Claude Haiku 5.5 | Auth0 API JS | 98% | 100% (+2%) | A | $0.82 | 1m 17s |
+| 60 | GPT-5.6 Sol | Auth0 API JS | 89% | 98% (+9%) | A | $0.95 | 44s |
+| 61 | Claude Haiku 5.5 | Express API | 90% | 98% (+8%) | A | $0.54 | 54s |
+| 62 | Claude Opus 5 | Next.js | 89% | 96% (+7%) | A | $0.56 | 2m 3s |
+| 63 | Gemini 3.1 Pro | Python | 89% | 97% (+8%) | A | $0.68 | 56s |
+| 64 | Gemini 3.1 Pro | Express | 89% | 98% (+9%) | A | $0.58 | 1m 5s |
+| 65 | GPT-5.6 Terra | Android | 88% | 96% (+8%) | A | $0.89 | 1m 44s |
+| 66 | GPT-5.6 Terra | Auth0 API JS | 88% | 97% (+9%) | A | $0.62 | 58s |
+| 67 | GPT-5.6 Terra | Express API | 88% | 99% (+11%) | A | $0.54 | 32s |
+| 68 | Claude Haiku 5.5 | React | 89% | 96% (+7%) | A | $0.60 | 1m 8s |
+| 69 | GPT-5.6 Luna | Auth0 API JS | 88% | 100% (+12%) | A | $0.21 | 38s |
+| 70 | GPT-5.6 Sol | Express | 88% | 97% (+9%) | A | $2.54 | 1m 51s |
+| 71 | Claude Sonnet 5 | Express API | 88% | 100% (+12%) | A | $0.26 | 1m 19s |
+| 72 | GPT-5.6 Luna | Express | 87% | 98% (+11%) | A | $0.15 | 46s |
+| 73 | Claude Haiku 5.5 | Express | 88% | 99% (+11%) | A | $1.03 | 1m 40s |
+| 74 | GPT-5.6 Luna | Auth0 Server JS | 86% | 99% (+13%) | A | $0.24 | 42s |
+| 75 | Claude Haiku 5.5 | SPA JS | 95% | 99% (+4%) | A | $0.66 | 1m 10s |
+| 76 | GPT-5.6 Sol | Swift | 86% | 95% (+9%) | A | $3.78 | 2m 4s |
+| 77 | Claude Haiku 5.5 | Swift | 95% | 100% (+5%) | A | $0.74 | 1m 26s |
+| 78 | Claude Haiku 5.5 | Next.js | 94% | 97% (+3%) | A | $1.75 | 3m 28s |
+| 79 | GPT-5.6 Luna | Express API | 84% | 97% (+13%) | A | $0.21 | 36s |
+| 80 | GPT-5.6 Terra | Auth0 Server JS | 83% | 98% (+15%) | A | $0.62 | 1m 6s |
+| 81 | GPT-5.6 Sol | Auth0.js | 82% | 97% (+15%) | A | $3.59 | 2m 31s |
+| 82 | GPT-5.6 Terra | Auth0.js | 82% | 96% (+14%) | A | $0.75 | 1m 8s |
+| 83 | GPT-5.6 Sol | Auth0 Server JS | 82% | 98% (+16%) | A | $1.18 | 53s |
+| 84 | Gemini 3.8 Flash | Auth0 Server JS | 81% | 97% (+16%) | A | $0.46 | 2m 19s |
+| 85 | Claude Sonnet 5 | Swift | 81% | 96% (+15%) | A | $1.03 | 6m 43s |
+| 86 | GPT-5.6 Terra | Express | 81% | 99% (+18%) | A | $0.55 | 47s |
+| 87 | GPT-5.6 Luna | Auth0.js | 81% | 97% (+16%) | A | $0.66 | 1m 32s |
+| 88 | Claude Haiku 5.5 | Android | 86% | 98% (+12%) | A | $1.56 | 2m 54s |
+| 89 | GPT-5.6 Luna | Auth0 CLI | 66% | 89% (+23%) | B | $0.24 | 39s |
+| 90 | Claude Haiku 5.5 | Auth0.js | 92% | 96% (+4%) | A | $1.64 | 2m 51s |
+| 91 | Gemini 3.8 Flash | Auth0.js | 74% | 99% (+25%) | A | $1.17 | 3m 6s |
+| 92 | Claude Sonnet 5 | Android | 80% | 96% (+16%) | A | $1.24 | 8m 34s |
+| 93 | Claude Sonnet 5 | Express | 72% | 100% (+28%) | A | $0.39 | 2m 23s |
+| 94 | Claude Sonnet 5 | Auth0.js | 71% | 100% (+29%) | A | $1.29 | 7m 0s |
+| 95 | Claude Sonnet 5 | Next.js | 69% | 100% (+31%) | A | $0.75 | 5m 9s |
+| 96 | Claude Haiku 5.5 | Auth0 CLI | 83% | 100% (+17%) | A | $0.65 | 1m 1s |
+| 97 | Gemini 3.1 Pro | ASP.NET Core API | 100% | 100% (+0%) | A | $0.43 | 43s |
+| 98 | Gemini 3.1 Pro | React Native | 100% | 100% (+0%) | A | $0.47 | 53s |
+| 99 | GPT-5.6 Terra | Python API | 100% | 100% (+0%) | A | $0.51 | 36s |
+| 100 | GPT-5.6 Luna | .NET OIDC (iOS) | 97% | 100% (+3%) | A | $0.19 | 40s |
+| 101 | Gemini 3.1 Pro | .NET OIDC (WPF) | 97% | 100% (+3%) | A | $0.90 | 2m 6s |
+| 102 | Claude Opus 5 | .NET OIDC (WPF) | 97% | 100% (+3%) | A | $0.79 | 2m 10s |
+| 103 | Claude Opus 5 | .NET OIDC (iOS) | 97% | 100% (+3%) | A | $0.59 | 1m 53s |
+| 104 | GPT-5.6 Sol | Python API | 97% | 100% (+3%) | A | $2.40 | 1m 17s |
+| 105 | Claude Opus 5 | Python API | 97% | 100% (+3%) | A | $0.38 | 59s |
+| 106 | Claude Sonnet 5 | .NET OIDC (WPF) | 96% | 100% (+4%) | A | $0.48 | 3m 49s |
+| 107 | Gemini 3.1 Pro | Go | 93% | 100% (+7%) | A | $0.34 | 53s |
+| 108 | Claude Opus 5 | Go | 90% | 100% (+10%) | A | $0.74 | 2m 34s |
+| 109 | Claude Opus 5 | ASP.NET Core API | 88% | 100% (+12%) | A | $0.49 | 1m 16s |
+| 110 | Claude Haiku 5.5 | React Native | 91% | 94% (+3%) | A | $0.00 | 3m 34s |
+| 111 | Claude Opus 5 | React Native | 86% | 100% (+14%) | A | $0.69 | 2m 12s |
+| 112 | Gemini 3.8 Flash | .NET OIDC (WPF) | 95% | 100% (+5%) | A | $1.65 | 9m 47s |
+| 113 | Gemini 3.8 Flash | ASP.NET Core API | 87% | 100% (+13%) | A | $1.04 | 3m 11s |
+| 114 | Gemini 3.8 Flash | Python API | 99% | 100% (+1%) | A | $1.90 | 4m 57s |
+| 115 | Gemini 3.8 Flash | .NET OIDC (iOS) | 96% | 100% (+4%) | A | $3.04 | 29m 2s |
+| 116 | Gemini 3.8 Flash | Go | 87% | 100% (+13%) | A | $2.26 | 8m 59s |
+| 117 | Claude Sonnet 5 | .NET OIDC (iOS) | 93% | 99% (+6%) | A | $0.90 | 6m 30s |
+| 118 | Gemini 3.1 Pro | Python API | 100% | 99% (-1%) | A | $2.57 | 2m 39s |
+| 119 | Gemini 3.8 Flash | React Native | 87% | 99% (+12%) | A | $1.83 | 7m 57s |
+| 120 | Claude Sonnet 5 | Python API | 100% | 99% (-1%) | A | $0.24 | 1m 27s |
+| 121 | Claude Sonnet 5 | ASP.NET Core API | 95% | 99% (+4%) | A | $0.18 | 40s |
+| 122 | GPT-5.6 Luna | Python API | 97% | 99% (+2%) | A | $0.26 | 46s |
+| 123 | GPT-5.6 Sol | .NET OIDC (iOS) | 92% | 99% (+7%) | A | $1.69 | 1m 24s |
+| 124 | GPT-5.6 Luna | .NET OIDC (WPF) | 96% | 99% (+3%) | A | $0.20 | 49s |
+| 125 | GPT-5.6 Terra | ASP.NET Core API | 98% | 99% (+1%) | A | $0.52 | 25s |
+| 126 | GPT-5.6 Sol | ASP.NET Core API | 100% | 98% (-2%) | A | $0.97 | 46s |
+| 127 | GPT-5.6 Terra | React Native | 88% | 98% (+10%) | A | $0.42 | 35s |
+| 128 | GPT-5.6 Luna | React Native | 89% | 98% (+9%) | A | $0.21 | 47s |
+| 129 | GPT-5.6 Sol | .NET OIDC (WPF) | 94% | 98% (+4%) | A | $1.46 | 1m 12s |
+| 130 | Claude Sonnet 5 | Go | 92% | 98% (+6%) | A | $0.46 | 1m 31s |
+| 131 | GPT-5.6 Sol | Go | 90% | 98% (+8%) | A | $3.69 | 1m 22s |
+| 132 | GPT-5.6 Terra | Go | 99% | 97% (-2%) | A | $0.81 | 50s |
+| 133 | GPT-5.6 Terra | .NET OIDC (iOS) | 91% | 97% (+6%) | A | $0.63 | 39s |
+| 134 | Gemini 3.1 Pro | .NET OIDC (iOS) | 97% | 97% (+0%) | A | $0.75 | 1m 19s |
+| 135 | GPT-5.6 Luna | ASP.NET Core API | 97% | 97% (+0%) | A | $0.17 | 31s |
+| 136 | Claude Haiku 5.5 | .NET OIDC (WPF) | 91% | 100% (+9%) | A | $0.78 | 1m 25s |
+| 137 | GPT-5.6 Luna | Go | 83% | 97% (+14%) | A | $0.42 | 1m 15s |
+| 138 | Claude Sonnet 5 | React Native | 98% | 97% (-1%) | A | $0.41 | 3m 11s |
+| 139 | Claude Haiku 5.5 | Python API | 98% | 100% (+2%) | A | $0.76 | 1m 24s |
+| 140 | GPT-5.6 Terra | .NET OIDC (WPF) | 93% | 96% (+3%) | A | $0.68 | 47s |
+| 141 | GPT-5.6 Sol | React Native | 93% | 96% (+3%) | A | $1.53 | 1m 1s |
+| 142 | Claude Haiku 5.5 | ASP.NET Core API | 94% | 99% (+5%) | A | $0.73 | 1m 13s |
+| 143 | Claude Haiku 5.5 | Go | 91% | 98% (+7%) | A | $0.77 | 1m 0s |
+| 144 | Claude Haiku 5.5 | .NET OIDC (iOS) | 96% | 100% (+4%) | A | $0.84 | 1m 29s |
+
+## Passkeys Scores
+
+**Average without Auth0 tools**: 88% · **Average with Auth0 tools**: 97% · **Targets tested**: 9 · **Total configurations**: 72
+
+| # | Model | Target | Without Tools | With Auth0 Tools | Grade | Cost | Time |
+|---|-------|------|---------------|------------------|-------|------|------|
+| 1 | GPT-5.6 Luna | Auth0 CLI | 100% | 100% (+0%) | A | $0.25 | 36s |
+| 2 | Gemini 3.8 Flash | Auth0 CLI | 100% | 100% (+0%) | A | $0.83 | 3m 16s |
+| 3 | Claude Opus 5 | Auth0.js | 100% | 100% (+0%) | A | $1.14 | 3m 27s |
+| 4 | Gemini 3.1 Pro | Auth0.js | 100% | 100% (+0%) | A | $1.72 | 2m 23s |
+| 5 | GPT-5.6 Sol | Auth0 CLI | 100% | 97% (-3%) | A | $1.43 | 36s |
+| 6 | Gemini 3.8 Flash | Auth0 Server JS | 100% | 100% (+0%) | A | $4.69 | 12m 6s |
+| 7 | Gemini 3.8 Flash | SPA JS | 100% | 100% (+0%) | A | $2.52 | 6m 21s |
+| 8 | Gemini 3.8 Flash | React | 99% | 100% (+1%) | A | $1.21 | 4m 19s |
+| 9 | Claude Sonnet 5 | Auth0 Server JS | 98% | 97% (-1%) | A | $0.00 | 15m 10s |
+| 10 | GPT-5.6 Terra | Auth0.js | 98% | 96% (-2%) | A | $1.16 | 1m 5s |
+| 11 | GPT-5.6 Terra | Swift | 98% | 96% (-2%) | A | $1.12 | 1m 14s |
+| 12 | Gemini 3.1 Pro | Swift | 98% | 100% (+2%) | A | $1.15 | 2m 51s |
+| 13 | GPT-5.6 Sol | Auth0.js | 98% | 96% (-2%) | A | $2.65 | 1m 31s |
+| 14 | GPT-5.6 Sol | Auth0 Server JS | 97% | 94% (-3%) | A | $3.30 | 1m 29s |
+| 15 | GPT-5.6 Luna | Auth0 Server JS | 97% | 98% (+1%) | A | $0.25 | 46s |
+| 16 | GPT-5.6 Luna | Next.js | 96% | 94% (-2%) | A | $0.46 | 1m 29s |
+| 17 | Claude Opus 5 | Swift | 96% | 100% (+4%) | A | $1.11 | 3m 44s |
+| 18 | GPT-5.6 Luna | Swift | 96% | 97% (+1%) | A | $0.29 | 59s |
+| 19 | Gemini 3.1 Pro | Next.js | 95% | 93% (-2%) | A | $1.40 | 2m 25s |
+| 20 | GPT-5.6 Terra | Next.js | 95% | 91% (-4%) | A | $1.18 | 1m 21s |
+| 21 | GPT-5.6 Luna | Python | 95% | 94% (-1%) | A | $0.24 | 41s |
+| 22 | Claude Sonnet 5 | Next.js | 95% | 90% (-5%) | B | $0.00 | 13m 58s |
+| 23 | Claude Opus 5 | Next.js | 95% | 95% (+0%) | A | $1.04 | 3m 16s |
+| 24 | GPT-5.6 Terra | Python | 95% | 95% (+0%) | A | $1.12 | 1m 6s |
+| 25 | Gemini 3.8 Flash | Next.js | 95% | 95% (+0%) | A | $4.06 | 10m 37s |
+| 26 | GPT-5.6 Sol | Next.js | 95% | 93% (-2%) | A | $4.08 | 1m 49s |
+| 27 | GPT-5.6 Terra | Auth0 Server JS | 94% | 98% (+4%) | A | $0.58 | 55s |
+| 28 | Claude Opus 5 | Auth0 Server JS | 94% | 100% (+6%) | A | $1.13 | 3m 11s |
+| 29 | Claude Opus 5 | Auth0 CLI | 94% | 96% (+2%) | A | $0.84 | 1m 36s |
+| 30 | Gemini 3.1 Pro | SPA JS | 93% | 99% (+6%) | A | $1.17 | 1m 36s |
+| 31 | GPT-5.6 Sol | Python | 93% | 94% (+1%) | A | $1.28 | 1m 15s |
+| 32 | Gemini 3.8 Flash | Auth0.js | 93% | 100% (+7%) | A | $2.39 | 6m 53s |
+| 33 | GPT-5.6 Luna | Auth0.js | 93% | 94% (+1%) | A | $0.62 | 56s |
+| 34 | GPT-5.6 Luna | SPA JS | 92% | 98% (+6%) | A | $0.24 | 41s |
+| 35 | Gemini 3.1 Pro | Auth0 CLI | 91% | 100% (+9%) | A | $1.01 | 1m 56s |
+| 36 | GPT-5.6 Terra | Auth0 CLI | 91% | 91% (+0%) | A | $0.55 | 33s |
+| 37 | Claude Opus 5 | React | 91% | 89% (-2%) | B | $0.60 | 1m 32s |
+| 38 | Claude Opus 5 | SPA JS | 90% | 100% (+10%) | A | $0.60 | 1m 38s |
+| 39 | Claude Opus 5 | Python | 89% | 94% (+5%) | A | $0.92 | 3m 7s |
+| 40 | Gemini 3.8 Flash | Swift | 88% | 100% (+12%) | A | $2.44 | 7m 47s |
+| 41 | Claude Haiku 5.5 | Auth0 CLI | 91% | 94% (+3%) | A | $0.38 | 34s |
+| 42 | Gemini 3.1 Pro | Android | 87% | 100% (+13%) | A | $2.30 | 2m 59s |
+| 43 | Claude Sonnet 5 | Auth0 CLI | 87% | 100% (+13%) | A | $0.33 | 1m 11s |
+| 44 | Gemini 3.1 Pro | Python | 85% | 97% (+12%) | A | $1.30 | 2m 12s |
+| 45 | GPT-5.6 Terra | SPA JS | 84% | 98% (+14%) | A | $0.67 | 37s |
+| 46 | Claude Sonnet 5 | SPA JS | 83% | 99% (+16%) | A | $0.42 | 1m 54s |
+| 47 | Claude Haiku 5.5 | Python | 69% | 97% (+28%) | A | $1.04 | 2m 6s |
+| 48 | Claude Sonnet 5 | Python | 83% | 97% (+14%) | A | $0.78 | 8m 11s |
+| 49 | Gemini 3.1 Pro | Auth0 Server JS | 82% | 98% (+16%) | A | $2.16 | 3m 12s |
+| 50 | GPT-5.6 Sol | SPA JS | 81% | 97% (+16%) | A | $2.29 | 1m 19s |
+| 51 | GPT-5.6 Terra | React | 81% | 99% (+18%) | A | $0.78 | 42s |
+| 52 | Gemini 3.8 Flash | Android | 81% | 98% (+17%) | A | $2.74 | 7m 58s |
+| 53 | Gemini 3.1 Pro | React | 80% | 100% (+20%) | A | $0.43 | 53s |
+| 54 | GPT-5.6 Sol | React | 79% | 99% (+20%) | A | $2.08 | 1m 18s |
+| 55 | Claude Sonnet 5 | React | 79% | 100% (+21%) | A | $0.42 | 2m 8s |
+| 56 | GPT-5.6 Luna | React | 78% | 99% (+21%) | A | $0.28 | 38s |
+| 57 | GPT-5.6 Terra | Android | 71% | 98% (+27%) | A | $0.82 | 1m 1s |
+| 58 | Claude Haiku 5.5 | React | 81% | 97% (+16%) | A | $0.61 | 59s |
+| 59 | GPT-5.6 Sol | Android | 70% | 98% (+28%) | A | $2.81 | 1m 41s |
+| 60 | Claude Haiku 5.5 | Swift | 91% | 98% (+7%) | A | $1.78 | 3m 45s |
+| 61 | GPT-5.6 Luna | Android | 69% | 98% (+29%) | A | $0.32 | 1m 10s |
+| 62 | Claude Sonnet 5 | Auth0.js | 69% | 100% (+31%) | A | $1.27 | 12m 37s |
+| 63 | Claude Haiku 5.5 | SPA JS | 84% | 98% (+14%) | A | $0.86 | 1m 9s |
+| 64 | GPT-5.6 Sol | Swift | 67% | 97% (+30%) | A | $4.23 | 2m 25s |
+| 65 | Claude Haiku 5.5 | Android | 94% | 98% (+4%) | A | $2.61 | 5m 20s |
+| 66 | Claude Haiku 5.5 | Auth0.js | 94% | 95% (+1%) | A | $1.35 | 2m 35s |
+| 67 | Gemini 3.8 Flash | Python | 60% | 72% (+12%) | C | $0.92 | 21m 13s |
+| 68 | Claude Sonnet 5 | Swift | 60% | 100% (+40%) | A | $0.75 | 6m 5s |
+| 69 | Claude Opus 5 | Android | 56% | 98% (+42%) | A | $1.44 | 6m 50s |
+| 70 | Claude Sonnet 5 | Android | 55% | 97% (+42%) | A | $0.83 | 9m 32s |
+| 71 | Claude Haiku 5.5 | Next.js | 100% | 96% (-4%) | A | $2.26 | 4m 29s |
+| 72 | Claude Haiku 5.5 | Auth0 Server JS | 94% | 98% (+4%) | A | $1.76 | 2m 58s |
+
+## Custom Token Exchange Scores
+
+**Average without Auth0 tools**: 93% · **Average with Auth0 tools**: 98% · **Targets tested**: 11 · **Total configurations**: 88
+
+| # | Model | Target | Without Tools | With Auth0 Tools | Grade | Cost | Time |
+|---|-------|------|---------------|------------------|-------|------|------|
+| 1 | Claude Opus 5 | Next.js | 100% | 100% (+0%) | A | $0.47 | 1m 17s |
+| 2 | Claude Sonnet 5 | React | 98% | 100% (+2%) | A | $0.36 | 1m 21s |
+| 3 | Claude Opus 5 | React Native | 100% | 100% (+0%) | A | $0.33 | 43s |
+| 4 | Claude Sonnet 5 | React Native | 98% | 100% (+2%) | A | $0.24 | 57s |
+| 5 | Gemini 3.1 Pro | React Native | 100% | 100% (+0%) | A | $1.56 | 1m 31s |
+| 6 | Gemini 3.1 Pro | SPA JS | 100% | 100% (+0%) | A | $0.69 | 59s |
+| 7 | Gemini 3.1 Pro | Swift | 100% | 100% (+0%) | A | $0.77 | 55s |
+| 8 | Gemini 3.1 Pro | Auth0 Server JS | 100% | 99% (-1%) | A | $1.03 | 1m 13s |
+| 9 | Gemini 3.1 Pro | Auth0.js | 100% | 99% (-1%) | A | $0.83 | 1m 11s |
+| 10 | GPT-5.6 Terra | Auth0 CLI | 100% | 98% (-2%) | A | $1.68 | 1m 15s |
+| 11 | GPT-5.6 Sol | Python API | 95% | 98% (+3%) | A | $0.76 | 23s |
+| 12 | GPT-5.6 Sol | Python | 97% | 98% (+1%) | A | $1.46 | 1m 3s |
+| 13 | Gemini 3.1 Pro | Python API | 100% | 98% (-2%) | A | $0.32 | 39s |
+| 14 | Gemini 3.8 Flash | React | 100% | 100% (+0%) | A | $3.97 | 5m 21s |
+| 15 | Gemin

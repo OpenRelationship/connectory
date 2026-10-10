@@ -36,6 +36,8 @@ vouches for**: read it, then read their reference.
 - [Errors](https://developer.folk.app/api-reference/errors.md)
 - [Pagination](https://developer.folk.app/api-reference/pagination.md)
 - [Filtering](https://developer.folk.app/api-reference/filtering.md)
+- [Idempotency](https://developer.folk.app/api-reference/idempotency.md)
+- [Batch requests](https://developer.folk.app/api-reference/batch-requests.md)
 - [Rate limits](https://developer.folk.app/api-reference/rate-limits.md)
 - [Request ID](https://developer.folk.app/api-reference/request-id.md)
 - [Versioning](https://developer.folk.app/api-reference/versioning.md)
@@ -44,11 +46,15 @@ vouches for**: read it, then read their reference.
 - [Get a person](https://developer.folk.app/api-reference/people/get-a-person.md): Retrieve an existing person in the workspace.
 - [Update a person](https://developer.folk.app/api-reference/people/update-a-person.md): Update an existing person in the workspace.
 - [Delete a person](https://developer.folk.app/api-reference/people/delete-a-person.md): Delete an existing person in the workspace.
+- [Create people in batch](https://developer.folk.app/api-reference/people/create-people-in-batch.md): Create up to 100 new people in the workspace. Each record is created on its own: one that fails does not prevent the others from being created.
+- [Update people in batch](https://developer.folk.app/api-reference/people/update-people-in-batch.md): Update up to 100 existing people in the workspace, each with the fields `PATCH /v1/people/{personId}` accepts. Each record is updated on its own: one that fails does not prevent the others from being updated.
+- [Delete people in batch](https://developer.folk.app/api-reference/people/delete-people-in-batch.md): Delete up to 100 existing people in the workspace. Each record is deleted on its own: one that fails does not prevent the others from being deleted.
 - [List companies](https://developer.folk.app/api-reference/companies/list-companies.md): Retrieve a list of companies in the workspace.
 - [Create a company](https://developer.folk.app/api-reference/companies/create-a-company.md): Create a new company in the workspace.
 - [Get a company](https://developer.folk.app/api-reference/companies/get-a-company.md): Retrieve an existing company in the workspace.
 - [Update a company](https://developer.folk.app/api-reference/companies/update-a-company.md): Update an existing company in the workspace.
 - [Delete a company](https://developer.folk.app/api-reference/companies/delete-a-company.md): Delete an existing company in the workspace.
+- [Delete companies in batch](https://developer.folk.app/api-reference/companies/delete-companies-in-batch.md): Delete up to 100 existing companies in the workspace. Each record is deleted on its own: one that fails does not prevent the others from being deleted.
 - [List group members](https://developer.folk.app/api-reference/group-members/list-group-members.md): Returns a list of the group members. For a public group, all workspace members are members of the group.
 - [Add a group member](https://developer.folk.app/api-reference/group-members/add-a-group-member.md): Adds a member to a group.
 - [Update a group member](https://developer.folk.app/api-reference/group-members/update-a-group-member.md): Updates a group member's role.
@@ -62,12 +68,14 @@ vouches for**: read it, then read their reference.
 - [Get a deal](https://developer.folk.app/api-reference/deals/get-a-deal.md): Retrieve an existing deal in the workspace.
 - [Update a deal](https://developer.folk.app/api-reference/deals/update-a-deal.md): Update an existing deal in the workspace.
 - [Delete a deal](https://developer.folk.app/api-reference/deals/delete-a-deal.md): Delete an existing deal in the workspace.
+- [Delete deals in batch](https://developer.folk.app/api-reference/deals/delete-deals-in-batch.md): Delete up to 100 existing deals of one type in a group. Each record is deleted on its own: one that fails does not prevent the others from being deleted.
 - [Custom objects](https://developer.folk.app/api-reference/custom-objects/overview.md): One set of endpoints for every object type in a group.
 - [List objects](https://developer.folk.app/api-reference/custom-objects/list-objects.md): Retrieve a list of objects of any type in a group.
 - [Create an object](https://developer.folk.app/api-reference/custom-objects/create-an-object.md): Create a new object of any type in a group.
 - [Get an object](https://developer.folk.app/api-reference/custom-objects/get-an-object.md): Retrieve a single object of any type by its ID.
 - [Update an object](https://developer.folk.app/api-reference/custom-objects/update-an-object.md): Update an existing object of any type in a group.
 - [Delete an object](https://developer.folk.app/api-reference/custom-objects/delete-an-object.md): Delete an existing object of any type from a group.
+- [Delete objects in batch](https://developer.folk.app/api-reference/custom-objects/delete-objects-in-batch.md): Delete up to 100 objects of one type from a group.
 - [List groups](https://developer.folk.app/api-reference/groups/list-groups.md): Returns a list of workspace groups.
 - [Create a group](https://developer.folk.app/api-reference/groups/create-a-group.md): Create a new group in the workspace. A default "All people" table view is automatically created for the group.
 - [Update a group](https://developer.folk.app/api-reference/groups/update-a-group.md): Update a group's name and/or visibility.
@@ -91,9 +99,10 @@ vouches for**: read it, then read their reference.
 - [Delete a task](https://developer.folk.app/api-reference/tasks/delete-a-task.md): Delete an existing task in the workspace.
 - [Mark a task as done](https://developer.folk.app/api-reference/tasks/mark-a-task-as-done.md): Mark an existing task as done.
 - [Mark a task as to do](https://developer.folk.app/api-reference/tasks/mark-a-task-as-to-do.md): Mark an existing task as to do.
+- [(Beta) List interactions](https://developer.folk.app/api-reference/interactions/list-interactions.md): Retrieves paginated past or upcoming interactions linked to a person, company, or object, optionally filtered by imported interaction type and workspace member.<br/><Warning>This endpoint is currently in open beta. The API surface may change as we iterate based on feedback.</Warning>
 - [Create an interaction](https://developer.folk.app/api-reference/interactions/create-an-interaction.md): Creates a new [interaction](https://help.folk.app/en/articles/7012167-log-a-new-interaction) with a person or a company.
-- [(Beta) List past interactions](https://developer.folk.app/api-reference/interactions/list-past-interactions.md): Retrieves paginated past interactions linked to a person, company, or object.<br/><Warning>This endpoint is currently in open beta. The API surface may change as we iterate based on feedback.</Warning>
-- [(Beta) List upcoming interactions](https://developer.folk.app/api-reference/interactions/list-upcoming-interactions.md): Retrieves paginated upcoming interactions linked to a person, company, or object.<br/><Warning>This endpoint is currently in open beta. The API surface may change as we iterate based on feedback.</Warning>
+- [(Beta) List past interactions](https://developer.folk.app/api-reference/interactions/list-past-interactions.md): Retrieves paginated past interactions linked to a person, company, or object.<br/><Warning>This endpoint is currently in open beta. The API surface may change as we iterate based on feedback.</Warning><br/><Warning>This endpoint is deprecated since September 29, 2026 and will be removed on March 29,…
+- [(Beta) List upcoming interactions](https://developer.folk.app/api-reference/interactions/list-upcoming-interactions.md): Retrieves paginated upcoming interactions linked to a person, company, or object.<br/><Warning>This endpoint is currently in open beta. The API surface may change as we iterate based on feedback.</Warning><br/><Warning>This endpoint is deprecated since September 29, 2026 and will be removed on March…
 - [(Beta) Get a past or upcoming interaction](https://developer.folk.app/api-reference/interactions/get-a-past-or-upcoming-interaction.md): Retrieves a single interaction. Full email or calendar body is included when privacy rules allow it.<br/><Warning>This endpoint is currently in open beta. The API surface may change as we iterate based on feedback.</Warning>
 - [(Beta) Update an interaction](https://developer.folk.app/api-reference/interactions/update-an-interaction.md): Partially update an existing logged interaction (title, content, date-time, activityType). Imported interactions cannot be updated.<br/><Warning>This endpoint is currently in open beta. The API surface may change as we iterate based on feedback.</Warning>
 - [(Beta) Delete an interaction](https://developer.folk.app/api-reference/interactions/delete-an-interaction.md): Delete an existing logged interaction. Imported interactions cannot be deleted.<br/><Warning>This endpoint is currently in open beta. The API surface may change as we iterate based on feedback.</Warning>
@@ -110,3 +119,5 @@ vouches for**: read it, then read their reference.
 - [Roadmap](https://developer.folk.app/roadmap.md)
 
 ## OpenAPI Specs
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

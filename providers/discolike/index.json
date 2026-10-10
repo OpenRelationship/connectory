@@ -53,6 +53,62 @@
    }
   },
   {
+   "slug": "discolike.approve_prospecting_run_prospecting_runs_run_id_approve_post",
+   "name": "Approve prospecting run",
+   "description": "Approve the current plan version and start the run. Repeating the approval of the already approved version returns the run unchanged, so `Idempotency-Key` is accepted but not needed.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "run_id": {
+      "type": "string",
+      "description": ""
+     },
+     "Idempotency-Key": {
+      "type": "string",
+      "description": ""
+     },
+     "plan_version": {
+      "type": "integer",
+      "description": ""
+     },
+     "checkpoints": {
+      "type": "string",
+      "description": ""
+     },
+     "seed_segments": {
+      "type": "string",
+      "description": ""
+     },
+     "segment": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "plan_version",
+     "run_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.discolike.com/prospecting/runs/{run_id}/approve",
+    "path": [
+     "run_id"
+    ],
+    "query": [],
+    "header": [
+     "Idempotency-Key"
+    ],
+    "body": [
+     "plan_version",
+     "checkpoints",
+     "seed_segments",
+     "segment"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "discolike.authorize_crm_provider_authorize_get",
    "name": "Authorize",
    "description": "Authorize",
@@ -303,6 +359,34 @@
    }
   },
   {
+   "slug": "discolike.cancel_prospecting_run_prospecting_runs_run_id_cancel_post",
+   "name": "Cancel prospecting run",
+   "description": "Stop scheduling work. Completed results and already incurred charges are retained.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "run_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "run_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.discolike.com/prospecting/runs/{run_id}/cancel",
+    "path": [
+     "run_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "discolike.clear_default_search_provider_search_providers_integration_id_default_delete",
    "name": "Clear default search provider",
    "description": "Remove the default flag from a search provider. Only clears the default if the specified integration is currently the default.",
@@ -403,7 +487,7 @@
      },
      "filter_state": {
       "type": "string",
-      "description": "Filter by company state/region. Accepts ISO 3166-2 codes or names, resolved against the selected countries; a value that resolves under none is ignored."
+      "description": "Filter by company state/region. Accepts ISO 3166-2 codes or names, listed at https://docs.discolike.com/states/, resolved against the selected countries; a value that resolves under none is ignored."
      },
      "negate_filter_state": {
       "type": "string",
@@ -451,11 +535,11 @@
      },
      "summary": {
       "type": "string",
-      "description": "Filter by profile summary text (semantic search)."
+      "description": "Match the profile summary text: a contact matches when its summary contains every word of any one term, in any order. Words are separate terms; quote a multi-word term to keep it together, prefix + to require a term."
      },
      "negate_summary": {
       "type": "string",
-      "description": "Exclude contacts matching this summary description."
+      "description": "Exclude contacts whose profile summary contains every word of any one term, in any order. Quote a multi-word term to keep it together."
      },
      "person_country": {
       "type": "string",
@@ -467,7 +551,7 @@
      },
      "person_state": {
       "type": "string",
-      "description": "Filter by contact's state/region. Accepts ISO 3166-2 codes or names, resolved against the selected countries; a value that resolves under none is ignored."
+      "description": "Filter by contact's state/region. Accepts ISO 3166-2 codes or names, listed at https://docs.discolike.com/states/, resolved against the selected countries; a value that resolves under none is ignored."
      },
      "has_email": {
       "type": "boolean",
@@ -475,7 +559,7 @@
      },
      "email_validated": {
       "type": "boolean",
-      "description": "Only include contacts with validated email addresses."
+      "description": "Deprecated: treated as has_email. Results are not pre-verified; run email verification instead."
      },
      "has_phone": {
       "type": "boolean",
@@ -629,7 +713,7 @@
      },
      "filter_state": {
       "type": "string",
-      "description": "Filter by company state/region. Accepts ISO 3166-2 codes or names, resolved against the selected countries; a value that resolves under none is ignored."
+      "description": "Filter by company state/region. Accepts ISO 3166-2 codes or names, listed at https://docs.discolike.com/states/, resolved against the selected countries; a value that resolves under none is ignored."
      },
      "negate_filter_state": {
       "type": "string",
@@ -677,11 +761,11 @@
      },
      "summary": {
       "type": "string",
-      "description": "Filter by profile summary text (semantic search)."
+      "description": "Match the profile summary text: a contact matches when its summary contains every word of any one term, in any order. Words are separate terms; quote a multi-word term to keep it together, prefix + to require a term."
      },
      "negate_summary": {
       "type": "string",
-      "description": "Exclude contacts matching this summary description."
+      "description": "Exclude contacts whose profile summary contains every word of any one term, in any order. Quote a multi-word term to keep it together."
      },
      "person_country": {
       "type": "string",
@@ -693,7 +777,7 @@
      },
      "person_state": {
       "type": "string",
-      "description": "Filter by contact's state/region. Accepts ISO 3166-2 codes or names, resolved against the selected countries; a value that resolves under none is ignored."
+      "description": "Filter by contact's state/region. Accepts ISO 3166-2 codes or names, listed at https://docs.discolike.com/states/, resolved against the selected countries; a value that resolves under none is ignored."
      },
      "has_email": {
       "type": "boolean",
@@ -701,7 +785,7 @@
      },
      "email_validated": {
       "type": "boolean",
-      "description": "Only include contacts with validated email addresses."
+      "description": "Deprecated: treated as has_email. Results are not pre-verified; run email verification instead."
      },
      "has_phone": {
       "type": "boolean",
@@ -855,7 +939,7 @@
      },
      "filter_state": {
       "type": "string",
-      "description": "Filter by company state/region. Accepts ISO 3166-2 codes or names, resolved against the selected countries; a value that resolves under none is ignored."
+      "description": "Filter by company state/region. Accepts ISO 3166-2 codes or names, listed at https://docs.discolike.com/states/, resolved against the selected countries; a value that resolves under none is ignored."
      },
      "negate_filter_state": {
       "type": "string",
@@ -903,11 +987,11 @@
      },
      "summary": {
       "type": "string",
-      "description": "Filter by profile summary text (semantic search)."
+      "description": "Match the profile summary text: a contact matches when its summary contains every word of any one term, in any order. Words are separate terms; quote a multi-word term to keep it together, prefix + to require a term."
      },
      "negate_summary": {
       "type": "string",
-      "description": "Exclude contacts matching this summary description."
+      "description": "Exclude contacts whose profile summary contains every word of any one term, in any order. Quote a multi-word term to keep it together."
      },
      "person_country": {
       "type": "string",
@@ -919,7 +1003,7 @@
      },
      "person_state": {
       "type": "string",
-      "description": "Filter by contact's state/region. Accepts ISO 3166-2 codes or names, resolved against the selected countries; a value that resolves under none is ignored."
+      "description": "Filter by contact's state/region. Accepts ISO 3166-2 codes or names, listed at https://docs.discolike.com/states/, resolved against the selected countries; a value that resolves under none is ignored."
      },
      "has_email": {
       "type": "boolean",
@@ -927,7 +1011,7 @@
      },
      "email_validated": {
       "type": "boolean",
-      "description": "Only include contacts with validated email addresses."
+      "description": "Deprecated: treated as has_email. Results are not pre-verified; run email verification instead."
      },
      "has_phone": {
       "type": "boolean",
@@ -1082,7 +1166,7 @@
      },
      "integration_id": {
       "type": "string",
-      "description": ""
+      "description": "LLM provider integration UUID, or 'native' for keyless extraction without title validation. Omit for native when it is available and a search provider resolves (the org default, or its only one), else the org default LLM."
      },
      "search_provider_id": {
       "type": "string",
@@ -1116,6 +1200,10 @@
      "initial_contact_counts": {
       "type": "string",
       "description": ""
+     },
+     "find_emails": {
+      "type": "boolean",
+      "description": "After discovery, run every contact that has a name but no email through the email finder (same as the app's Verify step) and fill `email` / `email_status` on the row before the task completes. Found addresses are billed under the finder's own rules; nothing else is."
      }
     },
     "required": [
@@ -1140,7 +1228,8 @@
      "max_company_records",
      "full_domains",
      "partial_domains",
-     "initial_contact_counts"
+     "initial_contact_counts",
+     "find_emails"
     ],
     "body_format": "json"
    }
@@ -1184,6 +1273,34 @@
       "type": "string",
       "description": "Exclude specified industry categories. Valid values: ACCOUNTING, ADVERTISING_AND_MARKETING, AGRICULTURE_AND_NATURAL_RESOURCES, ALCOHOL_AND_TOBACCO, AUTOMOTIVE, BIG_DATA_AND_ANALYTICS, BIOTECHNOLOGY, BLOCKCHAIN_AND_CRYPTOCURRENCY, BUSINESS_PRODUCTS_AND_SERVICES, CLOUD_COMPUTING, COMPUTER_HARDWARE_AND_SEMICONDUCTORS, CONGLOMERATES_SHELL_AND_HOLDING_COMPANIES, CONSTRUCTION, CONSUMER_PRODUCTS, CONSUME"
      },
+     "sub_industry": {
+      "type": "string",
+      "description": "Filter by sub-industry, a second-level label scoped to an industry category. Accepts a bare label (ROOFING) or a parent-qualified key (CONSTRUCTION/ROOFING), case-insensitive, up to 50 values, normalized to the qualified key. A bare label adds its parent to the category filter. A category with one of its sub-industries selected is narrowed to them; any other selected category stays whole, so categ"
+     },
+     "negate_sub_industry": {
+      "type": "string",
+      "description": "Exclude specified sub-industries. Same format as sub_industry; does not affect the category filter."
+     },
+     "lat": {
+      "type": "string",
+      "description": "Latitude of the search centre. Must be supplied together with lon."
+     },
+     "lon": {
+      "type": "string",
+      "description": "Longitude of the search centre. Must be supplied together with lat."
+     },
+     "radius": {
+      "type": "string",
+      "description": "Search radius around lat/lon: a number optionally suffixed with km or mi (50km, 30mi, 50). A bare number is kilometres. Defaults to 50km when lat/lon are supplied, maximum 1000km."
+     },
+     "geo": {
+      "type": "string",
+      "description": "A circular area to search, written lat,lon or lat,lon,radius (30.27,-97.74 or 30.27,-97.74,30mi). The radius is a number optionally suffixed with km or mi, a bare number meaning kilometres; it defaults to 50km and may not exceed 1000km. Repeatable: every geo circle, every bbox and the lat/lon/radius centre are OR'd together, up to 10 shapes in total."
+     },
+     "bbox": {
+      "type": "string",
+      "description": "Bounding box as min_lat,min_lon,max_lat,max_lon. Longitudes may wrap the antimeridian (min_lon above max_lon). Repeatable: every geo circle, every bbox and the lat/lon/radius centre are OR'd together, up to 10 shapes in total."
+     },
      "min_digital_footprint": {
       "type": "string",
       "description": "Minimum digital footprint score (0-800). Default 50."
@@ -1194,7 +1311,7 @@
      },
      "state": {
       "type": "string",
-      "description": "Filter by ISO 3166-2 state codes or names (up to 100). Requires exactly one country value, which may be a region alias; the state is then resolved against every country the alias covers. A value that resolves under none is rejected."
+      "description": "Filter by ISO 3166-2 state codes or names (up to 100), listed at https://docs.discolike.com/states/. Requires exactly one country value, which may be a region alias; the state is then resolved against every country the alias covers. A value that resolves under none is rejected."
      },
      "negate_state": {
       "type": "string",
@@ -1292,6 +1409,13 @@
      "negate_tech_stack",
      "category",
      "negate_category",
+     "sub_industry",
+     "negate_sub_industry",
+     "lat",
+     "lon",
+     "radius",
+     "geo",
+     "bbox",
      "min_digital_footprint",
      "max_digital_footprint",
      "state",
@@ -1556,6 +1680,34 @@
    }
   },
   {
+   "slug": "discolike.delete_prospecting_run_prospecting_runs_run_id_delete",
+   "name": "Delete prospecting run",
+   "description": "Delete the chat: an unfinished run is cancelled first, then the run is gone from list and get. Already incurred charges and the daily allowance it used are not refunded.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "run_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "run_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.discolike.com/prospecting/runs/{run_id}",
+    "path": [
+     "run_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "discolike.delete_query_queries_query_id_delete",
    "name": "Delete query",
    "description": "Delete a query by ID. Scoped to the caller's client domain.",
@@ -1624,7 +1776,7 @@
      },
      "integration_id": {
       "type": "string",
-      "description": "LLM provider integration UUID (omit for org default)"
+      "description": "LLM provider integration UUID (omit for the org default, or its only integration), or 'native-icp' to score an ICP validation prompt with the native model"
      },
      "web_search": {
       "type": "boolean",
@@ -1634,9 +1786,17 @@
       "type": "boolean",
       "description": ""
      },
+     "typed_columns": {
+      "type": "boolean",
+      "description": "Let the detector answer yes/no, fixed-set and scale columns with a TypeSafe judgment model"
+     },
+     "include_confidence": {
+      "type": "boolean",
+      "description": ""
+     },
      "search_provider_id": {
       "type": "string",
-      "description": "Search provider integration UUID (omit for org default)"
+      "description": "Search provider integration UUID (omit for the org default, or its only provider)"
      },
      "search_context_size": {
       "type": "string",
@@ -1681,6 +1841,8 @@
      "integration_id",
      "web_search",
      "include_x_search",
+     "typed_columns",
+     "include_confidence",
      "search_provider_id",
      "search_context_size",
      "domains",
@@ -1703,7 +1865,7 @@
      },
      "integration_id": {
       "type": "string",
-      "description": "LLM provider integration UUID (omit for org default)"
+      "description": "LLM provider integration UUID (omit for the org default, or its only integration), or 'native-icp' to score an ICP validation prompt with the native model"
      },
      "web_search": {
       "type": "boolean",
@@ -1713,9 +1875,17 @@
       "type": "boolean",
       "description": ""
      },
+     "typed_columns": {
+      "type": "boolean",
+      "description": "Let the detector answer yes/no, fixed-set and scale columns with a TypeSafe judgment model"
+     },
+     "include_confidence": {
+      "type": "boolean",
+      "description": ""
+     },
      "search_provider_id": {
       "type": "string",
-      "description": "Search provider integration UUID (omit for org default)"
+      "description": "Search provider integration UUID (omit for the org default, or its only provider)"
      },
      "search_context_size": {
       "type": "string",
@@ -1762,6 +1932,8 @@
      "integration_id",
      "web_search",
      "include_x_search",
+     "typed_columns",
+     "include_confidence",
      "search_provider_id",
      "search_context_size",
      "persona_ids",
@@ -1810,6 +1982,34 @@
       "type": "string",
       "description": "Exclude specified industry categories. Valid values: ACCOUNTING, ADVERTISING_AND_MARKETING, AGRICULTURE_AND_NATURAL_RESOURCES, ALCOHOL_AND_TOBACCO, AUTOMOTIVE, BIG_DATA_AND_ANALYTICS, BIOTECHNOLOGY, BLOCKCHAIN_AND_CRYPTOCURRENCY, BUSINESS_PRODUCTS_AND_SERVICES, CLOUD_COMPUTING, COMPUTER_HARDWARE_AND_SEMICONDUCTORS, CONGLOMERATES_SHELL_AND_HOLDING_COMPANIES, CONSTRUCTION, CONSUMER_PRODUCTS, CONSUME"
      },
+     "sub_industry": {
+      "type": "string",
+      "description": "Filter by sub-industry, a second-level label scoped to an industry category. Accepts a bare label (ROOFING) or a parent-qualified key (CONSTRUCTION/ROOFING), case-insensitive, up to 50 values, normalized to the qualified key. A bare label adds its parent to the category filter. A category with one of its sub-industries selected is narrowed to them; any other selected category stays whole, so categ"
+     },
+     "negate_sub_industry": {
+      "type": "string",
+      "description": "Exclude specified sub-industries. Same format as sub_industry; does not affect the category filter."
+     },
+     "lat": {
+      "type": "string",
+      "description": "Latitude of the search centre. Must be supplied together with lon."
+     },
+     "lon": {
+      "type": "string",
+      "description": "Longitude of the search centre. Must be supplied together with lat."
+     },
+     "radius": {
+      "type": "string",
+      "description": "Search radius around lat/lon: a number optionally suffixed with km or mi (50km, 30mi, 50). A bare number is kilometres. Defaults to 50km when lat/lon are supplied, maximum 1000km."
+     },
+     "geo": {
+      "type": "string",
+      "description": "A circular area to search, written lat,lon or lat,lon,radius (30.27,-97.74 or 30.27,-97.74,30mi). The radius is a number optionally suffixed with km or mi, a bare number meaning kilometres; it defaults to 50km and may not exceed 1000km. Repeatable: every geo circle, every bbox and the lat/lon/radius centre are OR'd together, up to 10 shapes in total."
+     },
+     "bbox": {
+      "type": "string",
+      "description": "Bounding box as min_lat,min_lon,max_lat,max_lon. Longitudes may wrap the antimeridian (min_lon above max_lon). Repeatable: every geo circle, every bbox and the lat/lon/radius centre are OR'd together, up to 10 shapes in total."
+     },
      "min_digital_footprint": {
       "type": "string",
       "description": "Minimum digital footprint score (0-800). Default 50."
@@ -1820,7 +2020,7 @@
      },
      "state": {
       "type": "string",
-      "description": "Filter by ISO 3166-2 state codes or names (up to 100). Requires exactly one country value, which may be a region alias; the state is then resolved against every country the alias covers. A value that resolves under none is rejected."
+      "description": "Filter by ISO 3166-2 state codes or names (up to 100), listed at https://docs.discolike.com/states/. Requires exactly one country value, which may be a region alias; the state is then resolved against every country the alias covers. A value that resolves under none is rejected."
      },
      "negate_state": {
       "type": "string",
@@ -2006,6 +2206,13 @@
      "negate_tech_stack",
      "category",
      "negate_category",
+     "sub_industry",
+     "negate_sub_industry",
+     "lat",
+     "lon",
+     "radius",
+     "geo",
+     "bbox",
      "min_digital_footprint",
      "max_digital_footprint",
      "state",
@@ -2235,6 +2442,55 @@
    }
   },
   {
+   "slug": "discolike.get_prospecting_run_prospecting_runs_run_id_get",
+   "name": "Get prospecting run",
+   "description": "Retrieve progress, events and chat messages after their cursors, and a page of results. Partial results remain available after the run stops.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "run_id": {
+      "type": "string",
+      "description": ""
+     },
+     "offset": {
+      "type": "integer",
+      "description": ""
+     },
+     "limit": {
+      "type": "integer",
+      "description": ""
+     },
+     "events_after": {
+      "type": "integer",
+      "description": ""
+     },
+     "messages_after": {
+      "type": "integer",
+      "description": ""
+     }
+    },
+    "required": [
+     "run_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.discolike.com/prospecting/runs/{run_id}",
+    "path": [
+     "run_id"
+    ],
+    "query": [
+     "offset",
+     "limit",
+     "events_after",
+     "messages_after"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "discolike.get_task_status_task_status_task_id_get",
    "name": "Get task status",
    "description": "Get the status of an asynchronous task. Args: task: The type of task (segment, bulkmatch, discogen) task_id: The unique identifier for the task request: The FastAPI request object auth_info: Authentication information Returns: JSON response with task status, progress, and results if available Raises: HTTPException: If task type is not supported or task not found",
@@ -2355,6 +2611,37 @@
     "url": "https://api.discolike.com/discogen/models",
     "path": [],
     "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "discolike.list_prospecting_runs_prospecting_runs_get",
+   "name": "List prospecting runs",
+   "description": "List this organization's recent runs, newest first.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "limit": {
+      "type": "integer",
+      "description": ""
+     },
+     "before": {
+      "type": "string",
+      "description": "Return the runs created before this run."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.discolike.com/prospecting/runs",
+    "path": [],
+    "query": [
+     "limit",
+     "before"
+    ],
     "header": [],
     "body": [],
     "body_format": "json"
@@ -2540,6 +2827,57 @@
     ],
     "header": [],
     "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "discolike.post_prospecting_message_prospecting_runs_run_id_messages_post",
+   "name": "Post prospecting message",
+   "description": "Send a chat message to the run in any status; the agent's reply arrives on the messages cursor. `intake` answers the open intake card instead of `text`; the stored message reads as a summary of the answers. `question_seq` names the question a suggested reply was clicked on, so it never answers a newer question. Reuse the same key when retrying; the stored message is returned instead of a duplicate",
+   "input": {
+    "type": "object",
+    "properties": {
+     "run_id": {
+      "type": "string",
+      "description": ""
+     },
+     "Idempotency-Key": {
+      "type": "string",
+      "description": ""
+     },
+     "text": {
+      "type": "string",
+      "description": ""
+     },
+     "intake": {
+      "type": "string",
+      "description": ""
+     },
+     "question_seq": {
+      "type": "string",
+      "description": "The seq of the question message whose suggested reply this is; the reply answers that question only, never a newer one."
+     }
+    },
+    "required": [
+     "Idempotency-Key",
+     "run_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.discolike.com/prospecting/runs/{run_id}/messages",
+    "path": [
+     "run_id"
+    ],
+    "query": [],
+    "header": [
+     "Idempotency-Key"
+    ],
+    "body": [
+     "text",
+     "intake",
+     "question_seq"
+    ],
     "body_format": "json"
    }
   },
@@ -2846,6 +3184,119 @@
    }
   },
   {
+   "slug": "discolike.start_prospecting_prospecting_runs_post",
+   "name": "Start prospecting",
+   "description": "Plan a prospecting run; it waits at `proposed` with a plan message for approval. Reuse the same key when retrying a submission.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "Idempotency-Key": {
+      "type": "string",
+      "description": ""
+     },
+     "brief": {
+      "type": "string",
+      "description": ""
+     },
+     "domains": {
+      "type": "array",
+      "description": ""
+     },
+     "company_names": {
+      "type": "array",
+      "description": ""
+     },
+     "customer_domains": {
+      "type": "array",
+      "description": "Your customers' domains, grouped into segments; lookalikes of each are found. Cannot be combined with domains or company_names."
+     },
+     "exclude_domains": {
+      "type": "array",
+      "description": ""
+     },
+     "target_companies": {
+      "type": "integer",
+      "description": ""
+     },
+     "contacts_per_company": {
+      "type": "integer",
+      "description": ""
+     },
+     "max_candidates": {
+      "type": "integer",
+      "description": ""
+     },
+     "max_actions": {
+      "type": "integer",
+      "description": ""
+     },
+     "validation_integration_id": {
+      "type": "string",
+      "description": ""
+     },
+     "contact_integration_id": {
+      "type": "string",
+      "description": ""
+     },
+     "search_provider_id": {
+      "type": "string",
+      "description": ""
+     },
+     "segment": {
+      "type": "boolean",
+      "description": ""
+     },
+     "deliverable": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "leads",
+       "accounts"
+      ]
+     },
+     "goal": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "leads",
+       "companies"
+      ]
+     }
+    },
+    "required": [
+     "Idempotency-Key",
+     "brief"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.discolike.com/prospecting/runs",
+    "path": [],
+    "query": [],
+    "header": [
+     "Idempotency-Key"
+    ],
+    "body": [
+     "brief",
+     "domains",
+     "company_names",
+     "customer_domains",
+     "exclude_domains",
+     "target_companies",
+     "contacts_per_company",
+     "max_candidates",
+     "max_actions",
+     "validation_integration_id",
+     "contact_integration_id",
+     "search_provider_id",
+     "segment",
+     "deliverable",
+     "goal"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "discolike.subsidiaries_subsidiaries_get",
    "name": "Get subsidiary relationships",
    "description": "Returns parent company or subsidiary relationships for a domain.",
@@ -3022,6 +3473,125 @@
    }
   },
   {
+   "slug": "discolike.update_prospecting_plan_prospecting_runs_run_id_plan_patch",
+   "name": "Update prospecting plan",
+   "description": "Change the engines, company target or spending limit of a plan waiting for approval. Engines take option ids from its plan message. The plan is re-estimated at a new plan_version and its latest plan message is rewritten in place (same seq), so read the plan from this response's messages rather than the messages cursor; approve that version.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "run_id": {
+      "type": "string",
+      "description": ""
+     },
+     "plan_version": {
+      "type": "integer",
+      "description": ""
+     },
+     "contact_integration_id": {
+      "type": "string",
+      "description": "Contact research engine: an option id from the plan's contact_engine."
+     },
+     "validation_integration_id": {
+      "type": "string",
+      "description": "Company check engine: an option id from the plan's company_check_engine."
+     },
+     "search_provider_id": {
+      "type": "string",
+      "description": "Search provider: an option id from the plan's search_provider; 'none' skips web research."
+     },
+     "max_spend_usd": {
+      "type": "string",
+      "description": "Most the run may spend on DiscoLike records and per-call fees, in USD at your plan's rates, before it stops; 0 removes the limit."
+     },
+     "target_companies": {
+      "type": "string",
+      "description": "How many qualified companies the run aims for; the plan's limits are re-derived around it."
+     },
+     "contacts_per_company": {
+      "type": "string",
+      "description": "Most contacts to find at each qualified company."
+     },
+     "deliverable": {
+      "type": "string",
+      "description": "leads finds people at the companies; accounts returns the checked companies only."
+     },
+     "goal": {
+      "type": "string",
+      "description": "leads keeps adding rounds until the target is met; companies takes target_companies matching companies and works only those."
+     },
+     "max_provider_spend_usd": {
+      "type": "string",
+      "description": "Most the run may spend on your own AI and search provider keys, in USD, before it stops starting new work; batches already running finish, so the total can end slightly above it. 0 removes the limit."
+     }
+    },
+    "required": [
+     "plan_version",
+     "run_id"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.discolike.com/prospecting/runs/{run_id}/plan",
+    "path": [
+     "run_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "plan_version",
+     "contact_integration_id",
+     "validation_integration_id",
+     "search_provider_id",
+     "max_spend_usd",
+     "target_companies",
+     "contacts_per_company",
+     "deliverable",
+     "goal",
+     "max_provider_spend_usd"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "discolike.update_prospecting_run_prospecting_runs_run_id_patch",
+   "name": "Update prospecting run",
+   "description": "Rename the chat or switch Manual/Auto, in any active status.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "run_id": {
+      "type": "string",
+      "description": ""
+     },
+     "title": {
+      "type": "string",
+      "description": ""
+     },
+     "checkpoints": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "run_id"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.discolike.com/prospecting/runs/{run_id}",
+    "path": [
+     "run_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "title",
+     "checkpoints"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "discolike.update_query_queries_query_id_patch",
    "name": "Update query",
    "description": "Update query name and/or tags.",
@@ -3115,7 +3685,7 @@
   {
    "slug": "discolike.validate_icp_validate_icp_post",
    "name": "Validate icp",
-   "description": "Validate domains against an ICP description. Generates a validation prompt from the ICP text, then runs it through DiscoGen with a fixed output schema: fit (yes/no), confidence (high/medium/low), reasoning. Returns an async task \u2014 poll GET /discogen/status/{task_id} for results.",
+   "description": "Validate domains against an ICP description. Generates a validation prompt from the ICP text, then runs it through DiscoGen with a fixed output schema: fit (Yes/No), confidence (high/medium/low), reasoning. Pass integration_id=\"native-icp\" to score with DiscoLike's own ICP-fit model instead of an LLM, at no LLM cost; that run returns ICP Fit / ICP Score / Reasoning instead, with the same Yes/No ve",
    "input": {
     "type": "object",
     "properties": {
@@ -3138,7 +3708,7 @@
      },
      "integration_id": {
       "type": "string",
-      "description": "LLM provider integration UUID (omit for org default)"
+      "description": "LLM provider integration UUID (omit for org default), or 'native-icp' to score with DiscoLike's own ICP-fit model at no LLM cost"
      },
      "web_search": {
       "type": "boolean",

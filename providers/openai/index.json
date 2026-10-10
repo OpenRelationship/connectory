@@ -412,7 +412,10 @@
     "type": "object",
     "properties": {
      "after": {
-      "type": "string",
+      "type": [
+       "string",
+       "null"
+      ],
       "description": "Return keys with IDs that come after this ID in the pagination order."
      },
      "order": {
@@ -1071,7 +1074,7 @@
    },
    "request": {
     "method": "POST",
-    "url": "https://api.openai.com/v1/evals/{eval_id}/runs/{run_id}",
+    "url": "https://api.openai.com/v1/evals/{eval_id}/runs/{run_id}/cancel",
     "path": [
      "eval_id",
      "run_id"
@@ -1386,7 +1389,7 @@
        "array",
        "null"
       ],
-      "description": "Tools available to the agent. Defaults to an empty list."
+      "description": "Tools available to the agent. Defaults to an empty list. The tool list must fit within 3 MiB (3,145,728 bytes) of compact UTF-8 JSON."
      },
      "multi_agent": {
       "type": "string",
@@ -1413,6 +1416,48 @@
      "instructions",
      "tools",
      "multi_agent"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "openai.create_agent_environment",
+   "name": "Create an agent environment",
+   "description": "Creates an OpenAI-hosted environment before creating a session. Requires access to the prewarming beta.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "Idempotency-Key": {
+      "type": "string",
+      "description": "Deduplicates creation for 24 hours within the authenticated organization, project, and creator. Retry the same JSON parameters with the same key to retrieve the original environment in its current state. Different parameters or an incomplete hosted creation return 409. Deleted environments are not recreated. After retention expires, the key may create a new environment. Without this header, each r"
+     },
+     "environment": {
+      "type": "string",
+      "description": "Configuration for a new prewarmed OpenAI-hosted environment."
+     },
+     "vault_ids": {
+      "type": [
+       "array",
+       "null"
+      ],
+      "description": "The IDs of up to 10 vaults made available to an OpenAI-hosted environment."
+     }
+    },
+    "required": [
+     "environment"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.openai.com/v1/agents/environments",
+    "path": [],
+    "query": [],
+    "header": [
+     "Idempotency-Key"
+    ],
+    "body": [
+     "environment",
+     "vault_ids"
     ],
     "body_format": "json"
    }
@@ -1465,7 +1510,11 @@
      },
      "network": {
       "type": "string",
-      "description": "Network access policy for the environment. Defaults to disabled for GA requests and enabled for alpha/beta requests."
+      "description": "Network access policy for the environment. If omitted, the API version determines whether network access is enabled or disabled."
+     },
+     "desktop": {
+      "type": "string",
+      "description": "Desktop provisioning. Omission or null inherits the template setting, or defaults to disabled."
      },
      "env": {
       "type": [
@@ -1522,6 +1571,7 @@
      "packages",
      "setup_commands",
      "network",
+     "desktop",
      "env",
      "capability_directories",
      "skills",
@@ -1539,6 +1589,10 @@
    "input": {
     "type": "object",
     "properties": {
+     "spend_control": {
+      "type": "string",
+      "description": "Optional spending limit in USD cents. Omission or null creates an unlimited session."
+     },
      "metadata": {
       "type": [
        "object",
@@ -1585,6 +1639,7 @@
     "query": [],
     "header": [],
     "body": [
+     "spend_control",
      "metadata",
      "agent",
      "agent_id",
@@ -1599,7 +1654,7 @@
   {
    "slug": "openai.create_agent_session_events",
    "name": "Create agent session input events",
-   "description": "Submits message, cancellation, or tool-result events to a managed agent session. Cancellation can recover a still-open turn whose backend execution has ended by marking it cancelled and abandoning unpublished outputs. Saved results, published files, and existing terminal outcomes are preserved. HTTP 202 confirms acceptance, not durable completion. See [session events](https://developers.openai.com",
+   "description": "Submits message, cancellation, tool-result, or computer-use approval-response events to a managed agent session. Cancellation can recover a still-open turn whose backend execution has ended by marking it cancelled and abandoning unpublished outputs. Saved results, published files, and existing terminal outcomes are preserved. HTTP 202 confirms acceptance, not durable completion. See [session event",
    "input": {
     "type": "object",
     "properties": {
@@ -1784,39 +1839,66 @@
       "description": "The prompt(s) to generate completions for, encoded as a string, array of strings, array of tokens, or array of token arrays. Note that is the document separator that the model sees during training, so if a prompt is not specified the model will generate as if from the beginning of a new document."
      },
      "best_of": {
-      "type": "integer",
+      "type": [
+       "integer",
+       "null"
+      ],
       "description": "Generates `best_of` completions server-side and returns the \"best\" (the one with the highest log probability per token). Results cannot be streamed. When used with `n`, `best_of` controls the number of candidate completions and `n` specifies how many to return \u2013 `best_of` must be greater than `n`. **Note:** Because this parameter generates many completions, it can quickly consume your token quota."
      },
      "echo": {
-      "type": "boolean",
+      "type": [
+       "boolean",
+       "null"
+      ],
       "description": "Echo back the prompt in addition to the completion"
      },
      "frequency_penalty": {
-      "type": "number",
+      "type": [
+       "number",
+       "null"
+      ],
       "description": "Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim. [See more information about frequency and presence penalties.](https://developers.openai.com/api/docs/guides/text)"
      },
      "logit_bias": {
-      "type": "object",
+      "type": [
+       "object",
+       "null"
+      ],
       "description": "Modify the likelihood of specified tokens appearing in the completion. Accepts a JSON object that maps tokens (specified by their token ID in the GPT tokenizer) to an associated bias value from -100 to 100. You can use this [tokenizer tool](https://platform.openai.com/tokenizer?view=bpe) to convert text to token IDs. Mathematically, the bias is added to the logits generated by the model prior to s"
      },
      "logprobs": {
-      "type": "integer",
+      "type": [
+       "integer",
+       "null"
+      ],
       "description": "Include the log probabilities on the `logprobs` most likely output tokens, as well the chosen tokens. For example, if `logprobs` is 5, the API will return a list of the 5 most likely tokens. The API will always return the `logprob` of the sampled token, so there may be up to `logprobs+1` elements in the response. The maximum value for `logprobs` is 5."
      },
      "max_tokens": {
-      "type": "integer",
+      "type": [
+       "integer",
+       "null"
+      ],
       "description": "The maximum number of [tokens](https://platform.openai.com/tokenizer) that can be generated in the completion. The token count of your prompt plus `max_tokens` cannot exceed the model's context length. [Example Python code](https://cookbook.openai.com/examples/how_to_count_tokens_with_tiktoken) for counting tokens."
      },
      "n": {
-      "type": "integer",
+      "type": [
+       "integer",
+       "null"
+      ],
       "description": "How many completions to generate for each prompt. **Note:** Because this parameter generates many completions, it can quickly consume your token quota. Use carefully and ensure that you have reasonable settings for `max_tokens` and `stop`."
      },
      "presence_penalty": {
-      "type": "number",
+      "type": [
+       "number",
+       "null"
+      ],
       "description": "Number between -2.0 and 2.0. Positive values penalize new tokens based on whether they appear in the text so far, increasing the model's likelihood to talk about new topics. [See more information about frequency and presence penalties.](https://developers.openai.com/api/docs/guides/text)"
      },
      "seed": {
-      "type": "integer",
+      "type": [
+       "integer",
+       "null"
+      ],
       "description": "If specified, our system will make a best effort to sample deterministically, such that repeated requests with the same `seed` and parameters should return the same result. Determinism is not guaranteed, and you should refer to the `system_fingerprint` response parameter to monitor changes in the backend."
      },
      "stop": {
@@ -1824,7 +1906,10 @@
       "description": "Not supported with latest reasoning models `o3` and `o4-mini`. Up to 4 sequences where the API will stop generating further tokens. The returned text will not contain the stop sequence."
      },
      "stream": {
-      "type": "boolean",
+      "type": [
+       "boolean",
+       "null"
+      ],
       "description": "Whether to stream back partial progress. If set, tokens will be sent as data-only [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format) as they become available, with the stream terminated by a `data: [DONE]` message. [Example Python code](https://cookbook.openai.com/examples/how_to_stream_completions)."
      },
      "stream_options": {
@@ -1832,15 +1917,24 @@
       "description": ""
      },
      "suffix": {
-      "type": "string",
+      "type": [
+       "string",
+       "null"
+      ],
       "description": "The suffix that comes after a completion of inserted text. This parameter is only supported for `gpt-3.5-turbo-instruct`."
      },
      "temperature": {
-      "type": "number",
+      "type": [
+       "number",
+       "null"
+      ],
       "description": "What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. We generally recommend altering this or `top_p` but not both."
      },
      "top_p": {
-      "type": "number",
+      "type": [
+       "number",
+       "null"
+      ],
       "description": "An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered. We generally recommend altering this or `temperature` but not both."
      },
      "user": {
@@ -2048,6 +2142,54 @@
     "header": [],
     "body": [
      "items"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "openai.create_decision",
+   "name": "Create a decision",
+   "description": "Use this endpoint to ask classification or scoring questions about the same input. You\u2019ll get the answers back in the order you asked the questions. For text, you can pass a string. You can also send user messages containing `input_text` and `input_image` parts, with up to 128 images per request. Images can be base64 data URLs or publicly accessible HTTP(S) URLs. File IDs aren\u2019t accepted. Other me",
+   "input": {
+    "type": "object",
+    "properties": {
+     "model": {
+      "type": "string",
+      "description": ""
+     },
+     "input": {
+      "type": "string",
+      "description": "The text or images to evaluate for every question. Provide a text string or user messages containing text and images. Images can be base64 data URLs or publicly accessible HTTP(S) URLs; at most 128 images are allowed across all messages in one request. Files, audio, tools, and item references are not supported."
+     },
+     "questions": {
+      "type": "array",
+      "description": ""
+     },
+     "safety_identifier": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Opaque caller-provided end-user identifier, scoped by the verified org. Match Responses' limit; this is never the authenticated user identity."
+     }
+    },
+    "required": [
+     "input",
+     "model",
+     "questions"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.openai.com/v1/decisions",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "model",
+     "input",
+     "questions",
+     "safety_identifier"
     ],
     "body_format": "json"
    }
@@ -2296,19 +2438,31 @@
       "description": "The hyperparameters used for the fine-tuning job. This value is now deprecated in favor of `method`, and should be passed in under the `method` parameter."
      },
      "suffix": {
-      "type": "string",
+      "type": [
+       "string",
+       "null"
+      ],
       "description": "A string of up to 64 characters that will be added to your fine-tuned model name. For example, a `suffix` of \"custom-model-name\" would produce a model name like `ft:gpt-4o-mini:openai:custom-model-name:7p4lURel`."
      },
      "validation_file": {
-      "type": "string",
+      "type": [
+       "string",
+       "null"
+      ],
       "description": "The ID of an uploaded file that contains validation data. If you provide this file, the data is used to generate validation metrics periodically during fine-tuning. These metrics can be viewed in the fine-tuning results file. The same data should not be present in both train and validation files. Your dataset must be formatted as a JSONL file. You must upload your file with the purpose `fine-tune`"
      },
      "integrations": {
-      "type": "array",
+      "type": [
+       "array",
+       "null"
+      ],
       "description": "A list of integrations to enable for your fine-tuning job."
      },
      "seed": {
-      "type": "integer",
+      "type": [
+       "integer",
+       "null"
+      ],
       "description": "The seed controls the reproducibility of the job. Passing in the same seed and job parameters should produce the same results, but may differ in rare cases. If a seed is not specified, one will be generated for you."
      },
      "method": {
@@ -2376,59 +2530,57 @@
   {
    "slug": "openai.create_image",
    "name": "Create image",
-   "description": "Creates an image given a prompt. [Learn more](https://developers.openai.com/api/docs/guides/images-vision).",
+   "description": "Creates an image given a prompt using a GPT Image model. [Learn more](https://developers.openai.com/api/docs/guides/images-vision).",
    "input": {
     "type": "object",
     "properties": {
      "prompt": {
       "type": "string",
-      "description": "A text description of the desired image(s). The maximum length is 32000 characters for the GPT image models, 1000 characters for `dall-e-2` and 4000 characters for `dall-e-3`."
+      "description": "A text description of the desired image(s). The maximum length is 32000 characters."
      },
      "model": {
       "type": "string",
-      "description": "The model to use for image generation. One of `dall-e-2`, `dall-e-3`, or a GPT image model (`gpt-image-1`, `gpt-image-1-mini`, `gpt-image-1.5`, `gpt-image-2`, `gpt-image-2-2026-04-21`, `gpt-image-2.5-sunburst`, `gpt-image-2.5-sunburst-2026-09-08`, `gpt-image-2.5-flare`, `gpt-image-2.5-flare-2026-09-08`). Defaults to `dall-e-2` unless a parameter specific to the GPT image models is used."
+      "description": "The GPT image model to use for image generation. Specify a model explicitly. Supported models include `gpt-image-1`, `gpt-image-1-mini`, `gpt-image-1.5`, `gpt-image-2`, `gpt-image-2-2026-04-21`, `gpt-image-2.5-sunburst`, `gpt-image-2.5-sunburst-2026-09-08`, `gpt-image-2.5-flare`, `gpt-image-2.5-flare-2026-09-08`, and `chatgpt-image-latest`."
      },
      "n": {
-      "type": "integer",
-      "description": "The number of images to generate. Must be between 1 and 10. For `dall-e-3`, only `n=1` is supported."
+      "type": [
+       "integer",
+       "null"
+      ],
+      "description": "The number of images to generate. Must be between 1 and 10."
      },
      "quality": {
       "type": "string",
-      "description": "The quality of the image that will be generated. - `auto` (default value) will automatically select the best quality for the given model. - `high`, `medium` and `low` are supported for the GPT image models. - `gpt-image-2.5-sunburst` and `gpt-image-2.5-flare`, including their `2026-09-08` snapshots, also support `xhigh` and `max`. - `hd` and `standard` are supported for `dall-e-3`. - `standard` is",
-      "enum": [
-       "standard",
-       "hd",
-       "low",
-       "medium",
-       "high",
-       "xhigh",
-       "max",
-       "auto"
-      ]
+      "description": "The quality of the image that will be generated. - `auto` (default value) will automatically select the best quality for the given model. - `high`, `medium` and `low` are supported for the GPT image models. - `gpt-image-2.5-sunburst` and `gpt-image-2.5-flare`, including their `2026-09-08` snapshots, also support `xhigh` and `max`."
      },
      "response_format": {
-      "type": "string",
-      "description": "The format in which generated images with `dall-e-2` and `dall-e-3` are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated. This parameter isn't supported for the GPT image models, which always return base64-encoded images.",
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Legacy response format parameter for retired image models. Unsupported for GPT image models, which always return base64-encoded images.",
       "enum": [
        "url",
-       "b64_json"
+       "b64_json",
+       null
       ]
      },
      "output_format": {
       "type": "string",
-      "description": "The format in which the generated images are returned. This parameter is only supported for the GPT image models. Must be one of `png`, `jpeg`, or `webp`.",
-      "enum": [
-       "png",
-       "jpeg",
-       "webp"
-      ]
+      "description": "The format in which the generated images are returned. This parameter is only supported for the GPT image models. Must be one of `png`, `jpeg`, or `webp`."
      },
      "output_compression": {
-      "type": "integer",
+      "type": [
+       "integer",
+       "null"
+      ],
       "description": "The compression level (0-100%) for the generated images. This parameter is only supported for the GPT image models with the `webp` or `jpeg` output formats, and defaults to 100."
      },
      "stream": {
-      "type": "boolean",
+      "type": [
+       "boolean",
+       "null"
+      ],
       "description": "Generate the image in streaming mode. Defaults to `false`. See the [Image generation guide](https://developers.openai.com/api/docs/guides/image-generation) for more information. This parameter is only supported for the GPT image models."
      },
      "partial_images": {
@@ -2441,27 +2593,22 @@
      },
      "moderation": {
       "type": "string",
-      "description": "Control the content-moderation level for images generated by the GPT image models. Must be either `low` for less restrictive filtering or `auto` (default value).",
-      "enum": [
-       "low",
-       "auto"
-      ]
+      "description": "Control the content-moderation level for images generated by the GPT image models. Must be either `low` for less restrictive filtering or `auto` (default value)."
      },
      "background": {
       "type": "string",
-      "description": "Set the background of the generated image(s). This parameter is only supported for the GPT image models. Must be one of `transparent`, `opaque`, or `auto` (default value). When `auto` is used, the model will automatically determine the best background for the image. `gpt-image-2.5-sunburst` and `gpt-image-2.5-flare`, including their `2026-09-08` snapshots, support `opaque` and `transparent` backgr",
-      "enum": [
-       "transparent",
-       "opaque",
-       "auto"
-      ]
+      "description": "Set the background of the generated image(s). This parameter is only supported for the GPT image models. Must be one of `transparent`, `opaque`, or `auto` (default value). When `auto` is used, the model will automatically determine the best background for the image. `gpt-image-2.5-sunburst` and `gpt-image-2.5-flare`, including their `2026-09-08` snapshots, support `opaque` and `transparent` backgr"
      },
      "style": {
-      "type": "string",
-      "description": "The style of the generated images. This parameter is only supported for `dall-e-3`. Must be one of `vivid` or `natural`. Vivid causes the model to lean towards generating hyper-real and dramatic images. Natural causes the model to produce more natural, less hyper-real looking images.",
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Legacy style parameter for retired image models. Unsupported for GPT image models; describe the desired style in the prompt instead.",
       "enum": [
        "vivid",
-       "natural"
+       "natural",
+       null
       ]
      },
      "user": {
@@ -2470,6 +2617,7 @@
      }
     },
     "required": [
+     "model",
      "prompt"
     ]
    },
@@ -2501,13 +2649,13 @@
   {
    "slug": "openai.create_image_edit",
    "name": "Create image edit",
-   "description": "Creates an edited or extended image given one or more source images and a prompt. This endpoint supports GPT Image models and `dall-e-2`.",
+   "description": "Creates an edited or extended image given one or more source images and a prompt. This endpoint supports GPT Image models.",
    "input": {
     "type": "object",
     "properties": {
      "model": {
       "type": "string",
-      "description": "The GPT image model to use for image editing, including `gpt-image-2`, its dated snapshot `gpt-image-2-2026-04-21`, `gpt-image-2.5-sunburst`, `gpt-image-2.5-sunburst-2026-09-08`, `gpt-image-2.5-flare`, and `gpt-image-2.5-flare-2026-09-08`."
+      "description": "The GPT image model to use for image editing, including `gpt-image-2`, its dated snapshot `gpt-image-2-2026-04-21`, `gpt-image-2.5-sunburst`, `gpt-image-2.5-sunburst-2026-09-08`, `gpt-image-2.5-flare`, and `gpt-image-2.5-flare-2026-09-08`. Defaults to `gpt-image-2.5-sunburst`."
      },
      "images": {
       "type": "array",
@@ -2531,7 +2679,7 @@
      },
      "input_fidelity": {
       "type": "string",
-      "description": "Controls fidelity to the original input image(s)."
+      "description": "Control how much effort the model will exert to match the style and features, especially facial features, of input images. Supports `high` and `low` on `gpt-image-1` and `gpt-image-1.5`; `gpt-image-1-mini` supports only `low`. For `gpt-image-2`, omit this parameter. Defaults to `low` on supported models."
      },
      "size": {
       "type": "string",
@@ -2598,71 +2746,9 @@
    }
   },
   {
-   "slug": "openai.create_image_variation",
-   "name": "Create image variation",
-   "description": "Creates a variation of a given image. This endpoint only supports `dall-e-2`.",
-   "input": {
-    "type": "object",
-    "properties": {
-     "image": {
-      "type": "string",
-      "description": "The image to use as the basis for the variation(s). Must be a valid PNG file, less than 4MB, and square."
-     },
-     "model": {
-      "type": "string",
-      "description": "The model to use for image generation. Only `dall-e-2` is supported at this time."
-     },
-     "n": {
-      "type": "integer",
-      "description": "The number of images to generate. Must be between 1 and 10."
-     },
-     "response_format": {
-      "type": "string",
-      "description": "The format in which the generated images are returned. Must be one of `url` or `b64_json`. URLs are only valid for 60 minutes after the image has been generated.",
-      "enum": [
-       "url",
-       "b64_json"
-      ]
-     },
-     "size": {
-      "type": "string",
-      "description": "The size of the generated images. Must be one of `256x256`, `512x512`, or `1024x1024`.",
-      "enum": [
-       "256x256",
-       "512x512",
-       "1024x1024"
-      ]
-     },
-     "user": {
-      "type": "string",
-      "description": "A unique identifier representing your end-user, which can help OpenAI to monitor and detect abuse. [Learn more](https://developers.openai.com/api/docs/guides/safety-best-practices#implement-safety-identifiers)."
-     }
-    },
-    "required": [
-     "image"
-    ]
-   },
-   "request": {
-    "method": "POST",
-    "url": "https://api.openai.com/v1/images/variations",
-    "path": [],
-    "query": [],
-    "header": [],
-    "body": [
-     "image",
-     "model",
-     "n",
-     "response_format",
-     "size",
-     "user"
-    ],
-    "body_format": "json"
-   }
-  },
-  {
    "slug": "openai.create_live",
    "name": "Create session",
-   "description": "Create a Live WebRTC session. Start with the [Live prompting guide](https://developers.openai.com/api/docs/guides/live-prompting).",
+   "description": "Create a Live WebRTC session or place an outbound SIP call. Start with the [Live prompting guide](https://developers.openai.com/api/docs/guides/live-prompting) for session configuration and [Telephony and SIP](https://developers.openai.com/api/docs/guides/voice-sip?api=live#place-an-outbound-call) for trunk setup and call monitoring. Set transport.type to `webrtc` and supply an SDP offer, or set i",
    "input": {
     "type": "object",
     "properties": {
@@ -2671,8 +2757,8 @@
       "description": "Startup configuration for a Live media session. Follow the [Live prompting guide](https://developers.openai.com/api/docs/guides/live-prompting) when writing frontend instructions and the backend prompt under delegation.responses.instructions."
      },
      "transport": {
-      "type": "object",
-      "description": "WebRTC transport carrying the offer SDP in a creation request or answer SDP in its response."
+      "type": "string",
+      "description": "WebRTC transport with an SDP offer, or SIP transport with a destination and per-call trunk credentials."
      }
     },
     "required": [
@@ -3147,7 +3233,7 @@
       "description": "Ephemeral key returned by the API."
      },
      "modalities": {
-      "type": "string",
+      "type": "array",
       "description": "The set of modalities the model can respond with. To disable audio, set this to [\"text\"]."
      },
      "instructions": {
@@ -3250,7 +3336,7 @@
       "description": "Configuration for turn detection. Can be set to `null` to turn off. Server VAD means that the model will detect the start and end of speech based on audio volume and respond at the end of user speech."
      },
      "input_audio_noise_reduction": {
-      "type": "object",
+      "type": "string",
       "description": "Configuration for input audio noise reduction. This can be set to `null` to turn off. Noise reduction filters audio added to the input audio buffer before it is sent to VAD and the model. Filtering the audio can improve VAD and turn detection accuracy (reducing false positives) and model performance by improving perception of the input audio."
      },
      "input_audio_format": {
@@ -3408,19 +3494,31 @@
       "description": ""
      },
      "instructions": {
-      "type": "string",
+      "type": [
+       "string",
+       "null"
+      ],
       "description": "Overrides the [instructions](https://developers.openai.com/api/docs/assistants/migration) of the assistant. This is useful for modifying the behavior on a per-run basis."
      },
      "additional_instructions": {
-      "type": "string",
+      "type": [
+       "string",
+       "null"
+      ],
       "description": "Appends additional instructions at the end of the instructions for the run. This is useful for modifying the behavior on a per-run basis without overriding other instructions."
      },
      "additional_messages": {
-      "type": "array",
+      "type": [
+       "array",
+       "null"
+      ],
       "description": "Adds additional messages to the thread before creating the run."
      },
      "tools": {
-      "type": "array",
+      "type": [
+       "array",
+       "null"
+      ],
       "description": "Override the tools the assistant can use for this run. This is useful for modifying the behavior on a per-run basis."
      },
      "metadata": {
@@ -3428,23 +3526,38 @@
       "description": ""
      },
      "temperature": {
-      "type": "number",
+      "type": [
+       "number",
+       "null"
+      ],
       "description": "What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic."
      },
      "top_p": {
-      "type": "number",
+      "type": [
+       "number",
+       "null"
+      ],
       "description": "An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered. We generally recommend altering this or temperature but not both."
      },
      "stream": {
-      "type": "boolean",
+      "type": [
+       "boolean",
+       "null"
+      ],
       "description": "If `true`, returns a stream of events that happen during the Run as server-sent events, terminating when the Run enters a terminal state with a `data: [DONE]` message."
      },
      "max_prompt_tokens": {
-      "type": "integer",
+      "type": [
+       "integer",
+       "null"
+      ],
       "description": "The maximum number of prompt tokens that may be used over the course of the run. The run will make a best effort to use only the number of prompt tokens specified, across multiple turns of the run. If the run exceeds the number of prompt tokens specified, the run will end with status `incomplete`. See `incomplete_details` for more info."
      },
      "max_completion_tokens": {
-      "type": "integer",
+      "type": [
+       "integer",
+       "null"
+      ],
       "description": "The maximum number of completion tokens that may be used over the course of the run. The run will make a best effort to use only the number of completion tokens specified, across multiple turns of the run. If the run exceeds the number of completion tokens specified, the run will end with status `incomplete`. See `incomplete_details` for more info."
      },
      "truncation_strategy": {
@@ -3590,7 +3703,7 @@
      },
      "voice": {
       "type": "string",
-      "description": "A built-in voice name or a custom voice reference."
+      "description": "The voice to use when generating the audio. Supported built-in voices are `alloy`, `ash`, `ballad`, `coral`, `echo`, `fable`, `onyx`, `nova`, `sage`, `shimmer`, `verse`, `marin`, and `cedar`. You may also provide a custom voice object with an `id`, for example `{ \"id\": \"voice_1234\" }`. Previews of the voices are available in the [Text to speech guide](https://developers.openai.com/api/docs/guides/"
      },
      "response_format": {
       "type": "string",
@@ -3697,15 +3810,24 @@
       "description": "The ID of the [Model](https://developers.openai.com/api/reference/resources/models) to be used to execute this run. If a value is provided here, it will override the model associated with the assistant. If not, the model associated with the assistant will be used."
      },
      "instructions": {
-      "type": "string",
+      "type": [
+       "string",
+       "null"
+      ],
       "description": "Override the default system message of the assistant. This is useful for modifying the behavior on a per-run basis."
      },
      "tools": {
-      "type": "array",
+      "type": [
+       "array",
+       "null"
+      ],
       "description": "Override the tools the assistant can use for this run. This is useful for modifying the behavior on a per-run basis."
      },
      "tool_resources": {
-      "type": "object",
+      "type": [
+       "object",
+       "null"
+      ],
       "description": "A set of resources that are used by the assistant's tools. The resources are specific to the type of tool. For example, the `code_interpreter` tool requires a list of file IDs, while the `file_search` tool requires a list of vector store IDs."
      },
      "metadata": {
@@ -3713,23 +3835,38 @@
       "description": ""
      },
      "temperature": {
-      "type": "number",
+      "type": [
+       "number",
+       "null"
+      ],
       "description": "What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic."
      },
      "top_p": {
-      "type": "number",
+      "type": [
+       "number",
+       "null"
+      ],
       "description": "An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered. We generally recommend altering this or temperature but not both."
      },
      "stream": {
-      "type": "boolean",
+      "type": [
+       "boolean",
+       "null"
+      ],
       "description": "If `true`, returns a stream of events that happen during the Run as server-sent events, terminating when the Run enters a terminal state with a `data: [DONE]` message."
      },
      "max_prompt_tokens": {
-      "type": "integer",
+      "type": [
+       "integer",
+       "null"
+      ],
       "description": "The maximum number of prompt tokens that may be used over the course of the run. The run will make a best effort to use only the number of prompt tokens specified, across multiple turns of the run. If the run exceeds the number of prompt tokens specified, the run will end with status `incomplete`. See `incomplete_details` for more info."
      },
      "max_completion_tokens": {
-      "type": "integer",
+      "type": [
+       "integer",
+       "null"
+      ],
       "description": "The maximum number of completion tokens that may be used over the course of the run. The run will make a best effort to use only the number of completion tokens specified, across multiple turns of the run. If the run exceeds the number of completion tokens specified, the run will end with status `incomplete`. See `incomplete_details` for more info."
      },
      "truncation_strategy": {
@@ -3783,7 +3920,7 @@
   {
    "slug": "openai.create_transcription",
    "name": "Create transcription",
-   "description": "Transcribes audio into the input language. Returns a transcription object in `json`, `diarized_json`, or `verbose_json` format, or a stream of transcript events.",
+   "description": "Transcribes audio into the input language. Returns a transcription object in `json`, `diarized_json`, or `verbose_json` format, plain text in `text`, `srt`, or `vtt` format, or a stream of transcript events. Supported formats depend on the model.",
    "input": {
     "type": "object",
     "properties": {
@@ -4043,6 +4180,10 @@
      "name": {
       "type": "string",
       "description": "The name is trimmed before storage. It must contain 1 to 256 UTF-8 bytes after trimming."
+     },
+     "metadata": {
+      "type": "object",
+      "description": "Up to 16 string key-value pairs, with keys up to 64 and values up to 512 characters. Defaults to an empty map."
      }
     },
     "required": [
@@ -4059,7 +4200,8 @@
     "query": [],
     "header": [],
     "body": [
-     "name"
+     "name",
+     "metadata"
     ],
     "body_format": "json"
    }
@@ -4212,28 +4354,11 @@
   {
    "slug": "openai.create_voice",
    "name": "Create voice",
-   "description": "Creates a custom voice.",
+   "description": "Create a custom voice you can use for audio output (for example, in Text-to-Speech and the Realtime API). This requires an audio sample and a previously uploaded consent recording. Send `name`, `audio_sample`, and the `consent` recording ID as multipart form data. The optional `type` defaults to `audio_sample`. Returns the saved voice's metadata. See the [custom voices guide](https://developers.op",
    "input": {
     "type": "object",
-    "properties": {
-     "name": {
-      "type": "string",
-      "description": "The name of the new voice."
-     },
-     "audio_sample": {
-      "type": "string",
-      "description": "The sample audio recording file. Maximum size is 10 MiB. Supported MIME types: `audio/mpeg`, `audio/wav`, `audio/x-wav`, `audio/ogg`, `audio/aac`, `audio/flac`, `audio/webm`, `audio/mp4`."
-     },
-     "consent": {
-      "type": "string",
-      "description": "The consent recording ID (for example, `cons_1234`)."
-     }
-    },
-    "required": [
-     "audio_sample",
-     "consent",
-     "name"
-    ]
+    "properties": {},
+    "required": []
    },
    "request": {
     "method": "POST",
@@ -4241,11 +4366,7 @@
     "path": [],
     "query": [],
     "header": [],
-    "body": [
-     "name",
-     "audio_sample",
-     "consent"
-    ],
+    "body": [],
     "body_format": "json"
    }
   },
@@ -5655,7 +5776,7 @@
   {
    "slug": "openai.deleteanexternalstorageconfiguration",
    "name": "Delete an external storage configuration",
-   "description": "Soft-delete one customer-managed external storage configuration.",
+   "description": "Disconnect a customer-managed external storage configuration. Removing the project's last configuration restores organization-default retention if customer-managed retention was active. Repeating a deletion also completes any interrupted retention update. Cloud storage is unchanged.",
    "input": {
     "type": "object",
     "properties": {
@@ -7108,6 +7229,54 @@
    }
   },
   {
+   "slug": "openai.list_agent_environments",
+   "name": "List agent environments",
+   "description": "Lists OpenAI-hosted environments owned by the authenticated principal. Requires access to the prewarming beta.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "limit": {
+      "type": "integer",
+      "description": "The maximum number of resources to return, between 1 and 100. Defaults to 20."
+     },
+     "order": {
+      "type": "string",
+      "description": "The order in which resources are returned. Defaults to `desc`.",
+      "enum": [
+       "asc",
+       "desc"
+      ]
+     },
+     "after": {
+      "type": "string",
+      "description": "Return resources after this resource ID in the selected order."
+     },
+     "type": {
+      "type": "string",
+      "description": "The hosting type to list. Defaults to `openai_hosted`.",
+      "enum": [
+       "openai_hosted"
+      ]
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.openai.com/v1/agents/environments",
+    "path": [],
+    "query": [
+     "limit",
+     "order",
+     "after",
+     "type"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "openai.list_agent_session_artifacts",
    "name": "List agent session artifacts",
    "description": "Lists immutable artifacts published by completed hosted session turns. See [session artifacts](https://developers.openai.com/api/docs/guides/agents-api/environments/files#openai-hosted-artifacts).",
@@ -7118,13 +7287,21 @@
       "type": "string",
       "description": "The ID of the session."
      },
+     "limit": {
+      "type": "integer",
+      "description": "The maximum number of resources to return, between 1 and 100. Defaults to 20."
+     },
      "order": {
       "type": "string",
-      "description": "Sort by creation time and ID. Defaults to descending.",
+      "description": "The order in which resources are returned. Defaults to `desc`.",
       "enum": [
        "asc",
        "desc"
       ]
+     },
+     "after": {
+      "type": "string",
+      "description": "Return resources after this resource ID in the selected order."
      },
      "environment_id": {
       "type": [
@@ -7132,20 +7309,6 @@
        "null"
       ],
       "description": "Restrict the listing to artifacts produced by this environment."
-     },
-     "limit": {
-      "type": [
-       "integer",
-       "null"
-      ],
-      "description": "The maximum number of artifacts to return, between 1 and 100."
-     },
-     "after": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": "Return artifacts after this immutable artifact ID."
      }
     },
     "required": [
@@ -7159,10 +7322,10 @@
      "session_id"
     ],
     "query": [
-     "order",
-     "environment_id",
      "limit",
-     "after"
+     "order",
+     "after",
+     "environment_id"
     ],
     "header": [],
     "body": [],
@@ -7462,6 +7625,108 @@
    }
   },
   {
+   "slug": "openai.list_agent_session_traces",
+   "name": "List agent session traces",
+   "description": "Lists published root-turn traces as OTLP JSON, ordered by turn creation time and ID. Unpublished traces are skipped. Each page returns data available when read; it does not wait for late traces. Trace reads and the JSON response are limited to 16 MiB per request. If the limit is exceeded, request fewer traces.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "session_id": {
+      "type": "string",
+      "description": "The ID of the session."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "The maximum number of resources to return, between 1 and 100. Defaults to 20."
+     },
+     "order": {
+      "type": "string",
+      "description": "The order in which resources are returned. Defaults to `desc`.",
+      "enum": [
+       "asc",
+       "desc"
+      ]
+     },
+     "after": {
+      "type": "string",
+      "description": "Return resources after this resource ID in the selected order."
+     }
+    },
+    "required": [
+     "session_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.openai.com/v1/agents/sessions/{session_id}/traces",
+    "path": [
+     "session_id"
+    ],
+    "query": [
+     "limit",
+     "order",
+     "after"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "openai.list_agent_session_turn_items",
+   "name": "List agent session turn items",
+   "description": "Lists items belonging to one root-agent turn, including its interactions with subagents. See [inspecting agent output](https://developers.openai.com/api/docs/guides/agents-api/observability).",
+   "input": {
+    "type": "object",
+    "properties": {
+     "session_id": {
+      "type": "string",
+      "description": "The ID of the session that owns the turn."
+     },
+     "turn_id": {
+      "type": "string",
+      "description": "The ID of the turn."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "The maximum number of resources to return, between 1 and 100. Defaults to 20."
+     },
+     "order": {
+      "type": "string",
+      "description": "The order in which resources are returned. Defaults to `desc`.",
+      "enum": [
+       "asc",
+       "desc"
+      ]
+     },
+     "after": {
+      "type": "string",
+      "description": "Return resources after this resource ID in the selected order."
+     }
+    },
+    "required": [
+     "session_id",
+     "turn_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.openai.com/v1/agents/sessions/{session_id}/turns/{turn_id}/items",
+    "path": [
+     "session_id",
+     "turn_id"
+    ],
+    "query": [
+     "limit",
+     "order",
+     "after"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "openai.list_agent_session_turns",
    "name": "List agent session turns",
    "description": "Lists turns by creation time and turn ID. The after cursor is exclusive in the selected order. See [session turns](https://developers.openai.com/api/docs/guides/agents-api/sessions/manage#inspect-session-turns).",
@@ -7517,27 +7782,24 @@
     "type": "object",
     "properties": {
      "limit": {
-      "type": [
-       "integer",
-       "null"
-      ],
-      "description": "The maximum number of resources to return."
+      "type": "integer",
+      "description": "The maximum number of resources to return, between 1 and 100. Defaults to 20."
      },
      "order": {
       "type": "string",
-      "description": "Sort order by the `created_at` timestamp. Use `asc` for ascending order or `desc` for descending order. Defaults to `desc`.",
+      "description": "The order in which resources are returned. Defaults to `desc`.",
       "enum": [
        "asc",
        "desc"
       ]
      },
-     "agent_id": {
-      "type": "string",
-      "description": "Only return sessions whose root agent has this ID. Omit to return sessions for all agents."
-     },
      "after": {
       "type": "string",
       "description": "Return resources after this resource ID in the selected order."
+     },
+     "agent_id": {
+      "type": "string",
+      "description": "Only return sessions whose root agent has this ID. Omit to return sessions for all agents."
      }
     },
     "required": []
@@ -7549,8 +7811,8 @@
     "query": [
      "limit",
      "order",
-     "agent_id",
-     "after"
+     "after",
+     "agent_id"
     ],
     "header": [],
     "body": [],
@@ -7565,11 +7827,8 @@
     "type": "object",
     "properties": {
      "limit": {
-      "type": [
-       "integer",
-       "null"
-      ],
-      "description": "The maximum number of resources to return."
+      "type": "integer",
+      "description": "The maximum number of resources to return, between 1 and 100. Defaults to 20."
      },
      "order": {
       "type": "string",
@@ -8591,8 +8850,11 @@
       "description": "Number of fine-tuning jobs to retrieve."
      },
      "metadata": {
-      "type": "object",
-      "description": "Optional metadata filter. To filter, use the syntax `metadata[k]=v`. Alternatively, set `metadata=null` to indicate no metadata."
+      "type": [
+       "object",
+       "null"
+      ],
+      "description": "Optional metadata filter. To filter, use the syntax `metadata[k]=v`. Omitting the parameter or passing an empty object applies no metadata filter. An empty value, such as `metadata[k]=`, filters for that key with an empty string value. To select jobs with null metadata, send the literal query string `metadata=null`. Nullable caller types do not specify how a client serializes null for a deep-objec"
      }
     },
     "required": []
@@ -9566,28 +9828,29 @@
       "type": "string",
       "description": "The ID of the vault."
      },
+     "limit": {
+      "type": "integer",
+      "description": "The maximum number of resources to return, between 1 and 100. Defaults to 20."
+     },
      "order": {
       "type": "string",
-      "description": "Sort order by the `created_at` timestamp. Use `asc` for ascending order or `desc` for descending order. Defaults to `desc`.",
+      "description": "The order in which resources are returned. Defaults to `desc`.",
       "enum": [
        "asc",
        "desc"
       ]
      },
-     "limit": {
-      "type": [
-       "integer",
-       "null"
-      ],
-      "description": "The maximum number of resources to return. Defaults to 20. Values are clamped between 1 and 100."
+     "after": {
+      "type": "string",
+      "description": "Return resources after this resource ID in the selected order."
+     },
+     "metadata": {
+      "type": "object",
+      "description": "Exact string matches supplied as `metadata[key]=value`. All supplied pairs must match. Up to 16 pairs, with keys from 1 to 64 characters and values up to 512 characters. Filtering is eventually consistent; metadata changes may take time to appear."
      },
      "status": {
       "type": "string",
       "description": "Filter by one status or a list, such as `status=active` or `status[]=active&status[]=archived`. Both statuses are included by default."
-     },
-     "after": {
-      "type": "string",
-      "description": "Return resources after this resource ID in the selected order."
      }
     },
     "required": [
@@ -9601,10 +9864,11 @@
      "vault_id"
     ],
     "query": [
-     "order",
      "limit",
-     "status",
-     "after"
+     "order",
+     "after",
+     "metadata",
+     "status"
     ],
     "header": [],
     "body": [],
@@ -9618,28 +9882,29 @@
    "input": {
     "type": "object",
     "properties": {
+     "limit": {
+      "type": "integer",
+      "description": "The maximum number of resources to return, between 1 and 100. Defaults to 20."
+     },
      "order": {
       "type": "string",
-      "description": "Sort order by the `created_at` timestamp. Use `asc` for ascending order or `desc` for descending order. Defaults to `desc`.",
+      "description": "The order in which resources are returned. Defaults to `desc`.",
       "enum": [
        "asc",
        "desc"
       ]
      },
-     "limit": {
-      "type": [
-       "integer",
-       "null"
-      ],
-      "description": "The maximum number of resources to return. Defaults to 20. Values are clamped between 1 and 100."
+     "after": {
+      "type": "string",
+      "description": "Return resources after this resource ID in the selected order."
+     },
+     "metadata": {
+      "type": "object",
+      "description": "Exact string matches supplied as `metadata[key]=value`. All supplied pairs must match. Up to 16 pairs, with keys from 1 to 64 characters and values up to 512 characters. Filtering is eventually consistent; metadata changes may take time to appear."
      },
      "status": {
       "type": "string",
       "description": "Filter by one status or a list, such as `status=active` or `status[]=active&status[]=archived`. Both statuses are included by default."
-     },
-     "after": {
-      "type": "string",
-      "description": "Return resources after this resource ID in the selected order."
      }
     },
     "required": []
@@ -9649,10 +9914,11 @@
     "url": "https://api.openai.com/v1/vaults",
     "path": [],
     "query": [
-     "order",
      "limit",
-     "status",
-     "after"
+     "order",
+     "after",
+     "metadata",
+     "status"
     ],
     "header": [],
     "body": [],
@@ -10192,7 +10458,10 @@
       "description": "The ID of the vector store to modify."
      },
      "name": {
-      "type": "string",
+      "type": [
+       "string",
+       "null"
+      ],
       "description": "The name of the vector store."
      },
      "expires_after": {
@@ -10221,6 +10490,84 @@
      "expires_after",
      "metadata"
     ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "openai.organization_decisionsusage",
+   "name": "Decisions",
+   "description": "Get Decisions API usage details for the organization.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "start_time": {
+      "type": "integer",
+      "description": "Start time (Unix seconds) of the query time range, inclusive."
+     },
+     "end_time": {
+      "type": "string",
+      "description": "End time (Unix seconds) of the query time range, exclusive."
+     },
+     "bucket_width": {
+      "type": "string",
+      "description": "Width of each time bucket in response. Currently `1m`, `1h` and `1d` are supported, default to `1d`."
+     },
+     "limit": {
+      "type": "string",
+      "description": "Specifies the number of buckets to return. - `bucket_width=1d`: default: 7, max: 31 - `bucket_width=1h`: default: 24, max: 168 - `bucket_width=1m`: default: 60, max: 1440"
+     },
+     "page": {
+      "type": "string",
+      "description": "A cursor for use in pagination. Corresponding to the `next_page` field from the previous response."
+     },
+     "project_ids": {
+      "type": "string",
+      "description": "Return only usage for these projects."
+     },
+     "group_by": {
+      "type": "string",
+      "description": "Group the usage data by the specified fields. Support fields include `project_id`, `user_id`, `api_key_id`, `model`, `batch`, `service_tier`, `api_source` or any combination of them. When grouped by `api_source`, results use `agents_api` for attributed Agents API activity and `unlabeled` for all other activity. Without source grouping, `api_source` is null."
+     },
+     "user_ids": {
+      "type": "string",
+      "description": "Return only usage for these users."
+     },
+     "api_key_ids": {
+      "type": "string",
+      "description": "Return only usage for these API keys."
+     },
+     "models": {
+      "type": "string",
+      "description": "Return only usage for these models."
+     },
+     "batch": {
+      "type": "string",
+      "description": "If `true`, return batch jobs only. If `false`, return non-batch jobs only. By default, return both."
+     }
+    },
+    "required": [
+     "start_time"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.openai.com/v1/organization/usage/decisions",
+    "path": [],
+    "query": [
+     "start_time",
+     "end_time",
+     "bucket_width",
+     "limit",
+     "page",
+     "project_ids",
+     "group_by",
+     "user_ids",
+     "api_key_ids",
+     "models",
+     "batch"
+    ],
+    "header": [],
+    "body": [],
     "body_format": "json"
    }
   },
@@ -11776,8 +12123,8 @@
   },
   {
    "slug": "openai.rotate_vault_credential",
-   "name": "Rotate a vault credential",
-   "description": "Rotates a vault credential's write-only secret and returns only credential metadata. See [vaults](https://developers.openai.com/api/docs/guides/agents-api/tools/vaults).",
+   "name": "Update a vault credential",
+   "description": "Updates credential metadata or rotates its write-only secret. See [vaults](https://developers.openai.com/api/docs/guides/agents-api/tools/vaults).",
    "input": {
     "type": "object",
     "properties": {
@@ -11788,6 +12135,10 @@
      "credential_id": {
       "type": "string",
       "description": "The ID of the vault credential."
+     },
+     "metadata": {
+      "type": "object",
+      "description": "Replaces all metadata. Omit to preserve it, or pass {} to clear it. Up to 16 string key-value pairs, with keys up to 64 and values up to 512 characters."
      }
     },
     "required": [
@@ -11804,7 +12155,9 @@
     ],
     "query": [],
     "header": [],
-    "body": [],
+    "body": [
+     "metadata"
+    ],
     "body_format": "json"
    }
   },
@@ -12236,7 +12589,7 @@
        "array",
        "null"
       ],
-      "description": "Tools available to the agent."
+      "description": "Replaces the tool list. Omit to leave it unchanged, or pass null to clear it. The replacement must fit within 3 MiB (3,145,728 bytes) of compact UTF-8 JSON."
      }
     },
     "required": [
@@ -12296,7 +12649,11 @@
      },
      "network": {
       "type": "string",
-      "description": "Network access available after setup completes. Omit to preserve the current policy, or pass `null` to reset to disabled for GA requests or enabled for alpha/beta requests."
+      "description": "Network access available after setup completes. Omit to preserve the current policy, or pass `null` to reset to the default policy."
+     },
+     "desktop": {
+      "type": "string",
+      "description": "Replacement desktop configuration, or null to disable the desktop."
      },
      "env": {
       "type": [
@@ -12351,6 +12708,7 @@
      "packages",
      "setup_commands",
      "network",
+     "desktop",
      "env",
      "capability_directories",
      "skills",
@@ -12370,6 +12728,10 @@
      "session_id": {
       "type": "string",
       "description": "The ID of the session."
+     },
+     "spend_control": {
+      "type": "string",
+      "description": "Omit to retain the limit; null or a null limit removes it without resetting spend."
      },
      "agent": {
       "type": "object",
@@ -12396,6 +12758,7 @@
     "query": [],
     "header": [],
     "body": [
+     "spend_control",
      "agent",
      "metadata"
     ],
@@ -13090,6 +13453,48 @@
    }
   },
   {
+   "slug": "openai.update_vault",
+   "name": "Update a vault",
+   "description": "Updates the name or metadata of an active vault. Omitted fields remain unchanged. See [vaults](https://developers.openai.com/api/docs/guides/agents-api/tools/vaults).",
+   "input": {
+    "type": "object",
+    "properties": {
+     "vault_id": {
+      "type": "string",
+      "description": "The ID of the vault."
+     },
+     "metadata": {
+      "type": "object",
+      "description": "Replaces all metadata. Omit to leave unchanged, or pass {} to clear it. Up to 16 string key-value pairs, with keys up to 64 and values up to 512 characters."
+     },
+     "name": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "A replacement name. Omit to leave unchanged, or pass null to clear it. The name is trimmed before storage. It must contain 1 to 256 UTF-8 bytes after trimming."
+     }
+    },
+    "required": [
+     "vault_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.openai.com/v1/vaults/{vault_id}",
+    "path": [
+     "vault_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "metadata",
+     "name"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "openai.update_vector_store_file_attributes",
    "name": "Update vector store file attributes",
    "description": "Update attributes on a vector store file.",
@@ -13606,7 +14011,7 @@
      },
      "group_by": {
       "type": "array",
-      "description": "Group the usage data by the specified fields. Support fields include `project_id`, `user_id`, `api_key_id`, `model`, `batch`, `service_tier` or any combination of them."
+      "description": "Group the usage data by the specified fields. Support fields include `project_id`, `user_id`, `api_key_id`, `model`, `batch`, `service_tier`, `api_source` or any combination of them. When grouped by `api_source`, results use `agents_api` for attributed Agents API activity and `unlabeled` for all other activity. Without source grouping, `api_source` is null."
      },
      "limit": {
       "type": "integer",
@@ -13679,7 +14084,7 @@
      },
      "group_by": {
       "type": "array",
-      "description": "Group the costs by the specified fields. Support fields include `project_id`, `line_item`, `api_key_id` and any combination of them."
+      "description": "Group the costs by the specified fields. Supported fields include `project_id`, `user_id`, `line_item`, `api_key_id`, and `api_source`. Support for combining `user_id` with `project_id` grouping or the `project_ids` filter depends on the organization and requested time range. Unsupported combinations return HTTP 400. When grouped by `api_source`, results use `agents_api` for attributed Agents API "
      },
      "limit": {
       "type": "integer",
@@ -14145,7 +14550,7 @@
      },
      "group_by": {
       "type": "array",
-      "description": "Group the usage data by the specified fields. Support fields include `project_id`, `user_id`, `api_key_id`, `model`, `context_level` or any combination of them."
+      "description": "Group the usage data by the specified fields. Support fields include `project_id`, `user_id`, `api_key_id`, `model`, `context_level`, `api_source` or any combination of them. When grouped by `api_source`, results use `agents_api` for attributed Agents API activity and `unlabeled` for all other activity. Without source grouping, `api_source` is null."
      },
      "limit": {
       "type": "integer",

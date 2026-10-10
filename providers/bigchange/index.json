@@ -39,6 +39,47 @@
    }
   },
   {
+   "slug": "bigchange.delete_v1_attachments_attachmentId",
+   "name": "Delete an attachment",
+   "description": "Deletes a single attachment (required scope attachments:write)",
+   "input": {
+    "type": "object",
+    "properties": {
+     "Customer-Id": {
+      "type": "integer",
+      "description": "The customer identifier"
+     },
+     "attachmentId": {
+      "type": "integer",
+      "description": "Attachment id"
+     },
+     "attachmentUid": {
+      "type": "string",
+      "description": "Attachment UID"
+     }
+    },
+    "required": [
+     "Customer-Id",
+     "attachmentId"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.bigchange.com/v1/attachments/{attachmentId}",
+    "path": [
+     "attachmentId"
+    ],
+    "query": [
+     "attachmentUid"
+    ],
+    "header": [
+     "Customer-Id"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "bigchange.delete_v1_contactGroups_contactGroupId",
    "name": "Delete a contact group",
    "description": "Soft deletes a contact group (required scope contacts:write)",
@@ -1020,6 +1061,127 @@
    }
   },
   {
+   "slug": "bigchange.get_v1_attachments",
+   "name": "Get a list of attachments",
+   "description": "Retrieves a paged collection of attachments belonging to the specified contact (required scope attachments:read)",
+   "input": {
+    "type": "object",
+    "properties": {
+     "Customer-Id": {
+      "type": "integer",
+      "description": "The customer identifier"
+     },
+     "contactId": {
+      "type": "integer",
+      "description": "Only return attachments associated with the contact matching the value provided"
+     },
+     "entityType": {
+      "type": "array",
+      "description": "Only return attachments where `entityType` matches the value(s) provided (Max items: 50)"
+     },
+     "fileName": {
+      "type": "string",
+      "description": "Only return attachments where the file name contains the value provided. Do not include the file extension, as it is not matched against"
+     },
+     "createdAtFrom": {
+      "type": "string",
+      "description": "Only return attachments where `createdAt` is the same or newer than this UTC value"
+     },
+     "createdAtTo": {
+      "type": "string",
+      "description": "Only return attachments where `createdAt` is the same or older than this UTC value"
+     },
+     "isResourceVisible": {
+      "type": "boolean",
+      "description": "Only return attachments where `isResourceVisible` matches the value provided"
+     },
+     "sortBy": {
+      "type": "string",
+      "description": "The field to sort items in the page by",
+      "enum": [
+       "createdAt"
+      ]
+     },
+     "direction": {
+      "type": "string",
+      "description": "The direction to apply the sort",
+      "enum": [
+       "ascending",
+       "descending"
+      ]
+     },
+     "pageNumber": {
+      "type": "integer",
+      "description": "The page number being requested (minimum: 1, maximum: 2147483)"
+     },
+     "pageSize": {
+      "type": "integer",
+      "description": "The page size being requested (minimum: 1, maximum: 1000)"
+     }
+    },
+    "required": [
+     "Customer-Id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.bigchange.com/v1/attachments",
+    "path": [],
+    "query": [
+     "contactId",
+     "entityType",
+     "fileName",
+     "createdAtFrom",
+     "createdAtTo",
+     "isResourceVisible",
+     "sortBy",
+     "direction",
+     "pageNumber",
+     "pageSize"
+    ],
+    "header": [
+     "Customer-Id"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "bigchange.get_v1_attachments_attachmentId",
+   "name": "Get an attachment",
+   "description": "Retrieves a single attachment, including its download URL (required scope attachments:read)",
+   "input": {
+    "type": "object",
+    "properties": {
+     "Customer-Id": {
+      "type": "integer",
+      "description": "The customer identifier"
+     },
+     "attachmentId": {
+      "type": "integer",
+      "description": "The unique identifier of the attachment"
+     }
+    },
+    "required": [
+     "Customer-Id",
+     "attachmentId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.bigchange.com/v1/attachments/{attachmentId}",
+    "path": [
+     "attachmentId"
+    ],
+    "query": [],
+    "header": [
+     "Customer-Id"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "bigchange.get_v1_contactGroups",
    "name": "Get a list of contact groups",
    "description": "Retrieve a paged collection of contact groups (required scope contacts:read)",
@@ -1279,6 +1441,52 @@
    "request": {
     "method": "GET",
     "url": "https://api.bigchange.com/v1/contacts/{contactId}/accessHours",
+    "path": [
+     "contactId"
+    ],
+    "query": [
+     "pageNumber",
+     "pageSize"
+    ],
+    "header": [
+     "Customer-Id"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "bigchange.get_v1_contacts_contactId_attachments_folders",
+   "name": "Get a list of attachment folders",
+   "description": "Retrieve a collection of attachment folders belonging to a contact (required scope attachments:read)",
+   "input": {
+    "type": "object",
+    "properties": {
+     "Customer-Id": {
+      "type": "integer",
+      "description": "The customer identifier"
+     },
+     "pageNumber": {
+      "type": "integer",
+      "description": "The page number being requested (minimum: 1, maximum: 2147483)"
+     },
+     "pageSize": {
+      "type": "integer",
+      "description": "The page size being requested (minimum: 1, maximum: 1000)"
+     },
+     "contactId": {
+      "type": "integer",
+      "description": "The unique identifier of the contact"
+     }
+    },
+    "required": [
+     "Customer-Id",
+     "contactId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.bigchange.com/v1/contacts/{contactId}/attachments/folders",
     "path": [
      "contactId"
     ],
@@ -5844,6 +6052,62 @@
    }
   },
   {
+   "slug": "bigchange.get_v1_resources_resourceId_skills",
+   "name": "Get skills assigned to a resource",
+   "description": "Retrieve all skills assigned to a resource (required scope resources:read)",
+   "input": {
+    "type": "object",
+    "properties": {
+     "Customer-Id": {
+      "type": "integer",
+      "description": "The customer identifier"
+     },
+     "resourceId": {
+      "type": "integer",
+      "description": "The unique identifier of the resource"
+     },
+     "skillId": {
+      "type": "integer",
+      "description": "Filter by skill identifier"
+     },
+     "includeExpired": {
+      "type": "boolean",
+      "description": "Include expired skills"
+     },
+     "pageNumber": {
+      "type": "integer",
+      "description": "The page number being requested (minimum: 1, maximum: 2147483)"
+     },
+     "pageSize": {
+      "type": "integer",
+      "description": "The page size being requested (minimum: 1, maximum: 1000)"
+     }
+    },
+    "required": [
+     "Customer-Id",
+     "resourceId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.bigchange.com/v1/resources/{resourceId}/skills",
+    "path": [
+     "resourceId"
+    ],
+    "query": [
+     "skillId",
+     "includeExpired",
+     "pageNumber",
+     "pageSize"
+    ],
+    "header": [
+     "Customer-Id"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "bigchange.get_v1_resources_resourceId_timesheets",
    "name": "Gets a list of timesheets that belong to the specified resource",
    "description": "Retrieve a paged list of timesheets for a resource (required scope resources:read)",
@@ -5946,6 +6210,45 @@
      "timesheetId"
     ],
     "query": [],
+    "header": [
+     "Customer-Id"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "bigchange.get_v1_routes",
+   "name": "Get a list of routes",
+   "description": "Retrieves a paged collection of routes belonging to the authenticated customer (required scope routes:read)",
+   "input": {
+    "type": "object",
+    "properties": {
+     "Customer-Id": {
+      "type": "integer",
+      "description": "The customer identifier"
+     },
+     "pageNumber": {
+      "type": "integer",
+      "description": "The page number being requested (minimum: 1, maximum: 2147483)"
+     },
+     "pageSize": {
+      "type": "integer",
+      "description": "The page size being requested (minimum: 1, maximum: 1000)"
+     }
+    },
+    "required": [
+     "Customer-Id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.bigchange.com/v1/routes",
+    "path": [],
+    "query": [
+     "pageNumber",
+     "pageSize"
+    ],
     "header": [
      "Customer-Id"
     ],
@@ -6829,6 +7132,72 @@
      "vehicleId"
     ],
     "query": [],
+    "header": [
+     "Customer-Id"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "bigchange.get_v1_vehicles_vehicleId_defects",
+   "name": "Get defects for a vehicle",
+   "description": "Retrieve a paged collection of defects for a specific vehicle (required scope vehicles:read)",
+   "input": {
+    "type": "object",
+    "properties": {
+     "Customer-Id": {
+      "type": "integer",
+      "description": "The customer identifier"
+     },
+     "vehicleId": {
+      "type": "integer",
+      "description": "The unique identifier of the vehicle"
+     },
+     "status": {
+      "type": "string",
+      "description": "Filter by defect status",
+      "enum": [
+       "open",
+       "inProgress",
+       "closed"
+      ]
+     },
+     "reportedFrom": {
+      "type": "string",
+      "description": "Filter defects reported on or after this date (YYYY-MM-DD format)"
+     },
+     "reportedTo": {
+      "type": "string",
+      "description": "Filter defects reported on or before this date (YYYY-MM-DD format)"
+     },
+     "page": {
+      "type": "integer",
+      "description": "The page number being requested"
+     },
+     "pageSize": {
+      "type": "integer",
+      "description": "The page size being requested (minimum: 1, maximum: 1000)"
+     }
+    },
+    "required": [
+     "Customer-Id",
+     "vehicleId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.bigchange.com/v1/vehicles/{vehicleId}/defects",
+    "path": [
+     "vehicleId"
+    ],
+    "query": [
+     "status",
+     "reportedFrom",
+     "reportedTo",
+     "page",
+     "pageSize"
+    ],
     "header": [
      "Customer-Id"
     ],
@@ -8242,6 +8611,10 @@
       "type": "array",
       "description": "Custom fields associated with the job.Omit or use an empty list to retain current values. Validation:- Cannot be null when provided.- Each custom field must satisfy its definition rules for the job type.Optional: Omit to retain current value"
      },
+     "assistants": {
+      "type": "array",
+      "description": "Assistants associated with the job.Optional: Omit to retain current value"
+     },
      "siteContactId": {
       "type": "integer",
       "description": "The unique identifier of the site contact for this job.If provided, the contact must exist within the customer's account.Cannot be null when provided.Optional: Omit to retain current value or provide null to unset"
@@ -8274,6 +8647,7 @@
      "isActioned",
      "officeNotes",
      "customFields",
+     "assistants",
      "siteContactId"
     ],
     "body_format": "json"
@@ -11324,6 +11698,90 @@
    }
   },
   {
+   "slug": "bigchange.post_v1_notes_noteId_comments",
+   "name": "Create a note comment",
+   "description": "Creates a comment for a specific note (required scope notes:write)",
+   "input": {
+    "type": "object",
+    "properties": {
+     "Customer-Id": {
+      "type": "integer",
+      "description": "The customer identifier"
+     },
+     "noteId": {
+      "type": "integer",
+      "description": ""
+     },
+     "commentEntityType": {
+      "type": "string",
+      "description": "The type of entity that the note comment is associated toPossible values:note: Associated with a note entityassetDefect: Associated with an asset defect entity",
+      "enum": [
+       "note",
+       "assetDefect"
+      ]
+     },
+     "entityId": {
+      "type": "integer",
+      "description": "The unique identifier of the associated entity that owns the comment, relative to the `commentEntityType`"
+     },
+     "noteComment": {
+      "type": "string",
+      "description": "The comment body to save"
+     },
+     "userIds": {
+      "type": "array",
+      "description": "A list of user IDs to mention in the comment"
+     },
+     "isPreviousMentions": {
+      "type": "boolean",
+      "description": "When true, the service reuses mentions from the most recent existing comment for the same entity"
+     },
+     "isMentions": {
+      "type": "boolean",
+      "description": "Enables mention handling for the comment"
+     },
+     "reaction": {
+      "type": "string",
+      "description": "The reaction to a note commentPossible values:like: Represents a \"Like\" reactionheart: Represents a \"Heart\" reactionapplause: Represents an \"Applause\" reactiondislike: Represents a \"Dislike\" reaction",
+      "enum": [
+       "like",
+       "heart",
+       "applause",
+       "dislike"
+      ]
+     }
+    },
+    "required": [
+     "Customer-Id",
+     "commentEntityType",
+     "entityId",
+     "noteComment",
+     "noteId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.bigchange.com/v1/notes/{noteId}/comments",
+    "path": [
+     "noteId"
+    ],
+    "query": [],
+    "header": [
+     "Customer-Id"
+    ],
+    "body": [
+     "commentEntityType",
+     "entityId",
+     "noteComment",
+     "userIds",
+     "isPreviousMentions",
+     "isMentions",
+     "reaction"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "bigchange.post_v1_notes_noteId_flags",
    "name": "Create a new flag for a note",
    "description": "Create a new flag for a note (required scope notes:write)",
@@ -12232,6 +12690,52 @@
    }
   },
   {
+   "slug": "bigchange.put_v1_attachments_attachmentId",
+   "name": "Update an attachment's metadata",
+   "description": "Updates the metadata of a single attachment (required scope attachments:write)",
+   "input": {
+    "type": "object",
+    "properties": {
+     "Customer-Id": {
+      "type": "integer",
+      "description": "The customer identifier"
+     },
+     "attachmentId": {
+      "type": "integer",
+      "description": "Attachment id"
+     },
+     "fileName": {
+      "type": "string",
+      "description": "The file name to assign to the attachment Validation:- Required- Maximum length of 250 characters"
+     },
+     "isVisibleToResource": {
+      "type": "boolean",
+      "description": "Whether the attachment should be visible to the resource"
+     }
+    },
+    "required": [
+     "Customer-Id",
+     "attachmentId"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.bigchange.com/v1/attachments/{attachmentId}",
+    "path": [
+     "attachmentId"
+    ],
+    "query": [],
+    "header": [
+     "Customer-Id"
+    ],
+    "body": [
+     "fileName",
+     "isVisibleToResource"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "bigchange.put_v1_contacts_contactId_accessHours",
    "name": "Update a site access hours",
    "description": "Update the details of access hours for a contact (required scope contacts:write)",
@@ -12832,6 +13336,52 @@
    }
   },
   {
+   "slug": "bigchange.put_v1_jobs_jobId_assistants",
+   "name": "Update job assistants",
+   "description": "Add or remove assistants from a specific job (required scope jobs:write)",
+   "input": {
+    "type": "object",
+    "properties": {
+     "Customer-Id": {
+      "type": "integer",
+      "description": "The customer identifier"
+     },
+     "jobId": {
+      "type": "integer",
+      "description": ""
+     },
+     "add": {
+      "type": "array",
+      "description": "The list of assistant IDs to add to the job. If provided, these assistants will be added to the job's existing assistants"
+     },
+     "remove": {
+      "type": "array",
+      "description": "The list of assistant IDs to remove from the job. If provided, these assistants will be removed from the job's existing assistants"
+     }
+    },
+    "required": [
+     "Customer-Id",
+     "jobId"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.bigchange.com/v1/jobs/{jobId}/assistants",
+    "path": [
+     "jobId"
+    ],
+    "query": [],
+    "header": [
+     "Customer-Id"
+    ],
+    "body": [
+     "add",
+     "remove"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "bigchange.put_v1_jobs_jobId_cancel",
    "name": "Cancel a job",
    "description": "Cancels a specific job. The job cannot be cancelled if it has already been started, suspended or completed (required scope jobs:write)",
@@ -13021,6 +13571,10 @@
      "plannedStartAt": {
       "type": "string",
       "description": "The UTC timestamp of when the job is planned to start"
+     },
+     "assistantIds": {
+      "type": "array",
+      "description": "A list of unique identifiers of the resources assigned to this job"
      }
     },
     "required": [
@@ -13041,7 +13595,8 @@
     "body": [
      "resourceId",
      "vehicleId",
-     "plannedStartAt"
+     "plannedStartAt",
+     "assistantIds"
     ],
     "body_format": "json"
    }

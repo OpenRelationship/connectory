@@ -2670,6 +2670,34 @@
    }
   },
   {
+   "slug": "pandadoc.get_workspace_privacy_settings",
+   "name": "[beta] workspace privacy settings details",
+   "description": "Returns the privacy settings currently in effect for a workspace in your organization. You must be an **organization admin**. Organization admin is an organization-wide role and is separate from workspace admin. Workspace admin alone is not enough for this endpoint. List workspaces with `GET /public/v1/workspaces` when you need workspace ids.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace_id": {
+      "type": "string",
+      "description": "Workspace id."
+     }
+    },
+    "required": [
+     "workspace_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.pandadoc.com/public/beta/privacy-settings/workspaces/{workspace_id}",
+    "path": [
+     "workspace_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "pandadoc.get_workspaces_list",
    "name": "List workspaces",
    "description": "Get a list of all the active workspaces in the organization.",
@@ -3725,7 +3753,7 @@
   {
    "slug": "pandadoc.quote_update",
    "name": "Quote update",
-   "description": "This operation updates the details of a specific quote within a document by specifying the document ID and quote ID.",
+   "description": "This operation updates the details of a specific quote within a document by specifying the document ID and quote ID. > \ud83d\udcd8 **Permissions** > > Requires the 'Can Edit Document' and 'Can Edit Content' permissions. > The document must be in Draft (`document.draft`). > Updating quotes is available on plans that include > [Product Catalog](https://support.pandadoc.com/en/articles/9714691-product-catalog)",
    "input": {
     "type": "object",
     "properties": {
@@ -3773,6 +3801,41 @@
      "summary",
      "sections",
      "settings"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "pandadoc.quotes_batch_update",
+   "name": "[beta] update multiple quotes",
+   "description": "This operation updates multiple quotes within a single document in one request \u2014 the batch variant of Quote update. The response is always `200 OK` once the request itself is valid; each quote's outcome is reported independently in `results[]`, so one bad quote does not fail the others. See `QuotesBatchUpdateResult` for the possible per-quote outcomes. > \ud83d\udcd8 **Permissions** > > Requires the 'Can Edi",
+   "input": {
+    "type": "object",
+    "properties": {
+     "document_id": {
+      "type": "string",
+      "description": "Document ID"
+     },
+     "quotes": {
+      "type": "array",
+      "description": "Quotes to update within this document. Each entry is processed independently \u2014 see the operation description for the partial-success model. Duplicate `id` values are not allowed."
+     }
+    },
+    "required": [
+     "document_id",
+     "quotes"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.pandadoc.com/public/v1/documents/{document_id}/quotes",
+    "path": [
+     "document_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "quotes"
     ],
     "body_format": "json"
    }
@@ -4276,6 +4339,84 @@
    }
   },
   {
+   "slug": "pandadoc.template_approval_workflow_get",
+   "name": "[beta] get submit for approval configuration",
+   "description": "Retrieves the Submit for approval configuration on a template. Learn more about [approval workflows](https://support.pandadoc.com/en/?q=Approval+workflow).",
+   "input": {
+    "type": "object",
+    "properties": {
+     "template_id": {
+      "type": "string",
+      "description": "Unique identifier of the template."
+     }
+    },
+    "required": [
+     "template_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.pandadoc.com/public/beta/templates/{template_id}/approval-workflow",
+    "path": [
+     "template_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "pandadoc.template_approval_workflow_update",
+   "name": "[beta] update template approval workflow",
+   "description": "Creates or replaces the Submit for approval configuration on a template. A template has at most one configuration; this operation always writes the full desired end-state. `steps` lists the stages in the approval order and must contain at least one stage. The property name stays `steps` so it matches `selected_approvers.steps` on Send Document. Learn more about [approval workflows](https://support",
+   "input": {
+    "type": "object",
+    "properties": {
+     "template_id": {
+      "type": "string",
+      "description": "Unique identifier of the template."
+     },
+     "is_enabled": {
+      "type": "boolean",
+      "description": "Whether Submit for approval runs when a document is created from this template. Set to `false` to turn it off while keeping its stages. Defaults to `true` when omitted."
+     },
+     "is_ordering_enabled": {
+      "type": "boolean",
+      "description": "Approval order. When `true`, the document goes to one approver at a time. When `false`, every approver is requested together. Defaults to `true` when omitted. An unconfigured GET returns `false`. That empty state is not this default. Set the field, or omit it, when building a create request from that GET body."
+     },
+     "is_editing_allowed": {
+      "type": "boolean",
+      "description": "Whether the approvers and approval groups can be edited on documents created from this template."
+     },
+     "steps": {
+      "type": "array",
+      "description": "Stages in the approval order. Each stage is one approver or one approval group. At least 1 stage, at most 50, and at most 100 approvers across all stages. A stage with one approver counts as one approver. A stage with an approval group counts as each approver in that group. An empty array is rejected. To turn Submit for approval off without dropping its stages, set `is_enabled` to `false`."
+     }
+    },
+    "required": [
+     "steps",
+     "template_id"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.pandadoc.com/public/beta/templates/{template_id}/approval-workflow",
+    "path": [
+     "template_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "is_enabled",
+     "is_ordering_enabled",
+     "is_editing_allowed",
+     "steps"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "pandadoc.template_settings_get",
    "name": "Get template settings",
    "description": "Retrieves the settings for a specified template. Only the language field is currently supported.",
@@ -4365,6 +4506,10 @@
      "to_membership_id": {
       "type": "string",
       "description": "A unique identifier of a workspace member to whom you want to transfer ownership."
+     },
+     "silent": {
+      "type": "boolean",
+      "description": "If set to `true`, disables the email and in-app notifications about the ownership transfer that are sent to the new documents owner."
      }
     },
     "required": []
@@ -4377,7 +4522,8 @@
     "header": [],
     "body": [
      "from_membership_id",
-     "to_membership_id"
+     "to_membership_id",
+     "silent"
     ],
     "body_format": "json"
    }
@@ -4396,6 +4542,10 @@
      "membership_id": {
       "type": "string",
       "description": "A unique identifier of a workspace member."
+     },
+     "silent": {
+      "type": "boolean",
+      "description": "If set to `true`, disables the email and in-app notifications about the ownership transfer that are sent to the new document owner."
      }
     },
     "required": [
@@ -4411,7 +4561,8 @@
     "query": [],
     "header": [],
     "body": [
-     "membership_id"
+     "membership_id",
+     "silent"
     ],
     "body_format": "json"
    }
@@ -4918,6 +5069,55 @@
      "name",
      "icon_url",
      "branding"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "pandadoc.update_workspace_privacy_settings",
+   "name": "[beta] update workspace privacy settings",
+   "description": "Updates one or more AI privacy settings for a workspace in your organization. This is a PATCH: include only the fields you want to change. Fields you omit keep their current values. Unknown properties are ignored. You must be an **organization admin**. Organization admin is an organization-wide role and is separate from workspace admin. Workspace admin alone is not enough for this endpoint. ## Wri",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace_id": {
+      "type": "string",
+      "description": "Workspace id."
+     },
+     "ai_features_enabled": {
+      "type": "boolean",
+      "description": "Master switch for AI features. Setting it to `false` also disables `ai_on_premises_processing_enabled`, `ai_cloud_third_party_enabled`, `ai_on_premises_training_enabled`, and `ai_third_party_training_enabled`."
+     },
+     "ai_on_premises_processing_enabled": {
+      "type": "boolean",
+      "description": "Whether PandaDoc-operated AI processing is enabled."
+     },
+     "ai_cloud_third_party_enabled": {
+      "type": "boolean",
+      "description": "Whether third-party cloud AI processing is enabled."
+     },
+     "ai_third_party_training_enabled": {
+      "type": "boolean",
+      "description": "Whether third-party model training is enabled."
+     }
+    },
+    "required": [
+     "workspace_id"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.pandadoc.com/public/beta/privacy-settings/workspaces/{workspace_id}",
+    "path": [
+     "workspace_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "ai_features_enabled",
+     "ai_on_premises_processing_enabled",
+     "ai_cloud_third_party_enabled",
+     "ai_third_party_training_enabled"
     ],
     "body_format": "json"
    }

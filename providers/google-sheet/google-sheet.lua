@@ -1,4 +1,4 @@
--- Google Sheet — every call this API accepts, as data.
+-- Google Sheets — every call this API accepts, as data.
 --
 -- GENERATED from https://api.apis.guru/v2/specs/googleapis.com/sheets/v4/openapi.json
 -- APIs.guru's mirror of googleapis.com:sheets, matched on googleapis.com. A mirror lags the vendor.
@@ -8,7 +8,7 @@
 -- stays in the environment, which is what makes this file safe to publish.
 return {
   provider = "google-sheet",
-  name = "Google Sheet",
+  name = "Google Sheets",
   base = "https://sheets.googleapis.com",
   docs = "https://nango.dev/docs/api-integrations/google-sheet",
   auth = {

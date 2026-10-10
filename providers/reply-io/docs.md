@@ -16,11 +16,19 @@ vouches for**: read it, then read their reference.
 
 ## Other
 
+- [Active Contacts Billing](https://docs.reply.io/api-reference/schemas/active-contacts-billing.md): Active contacts usage in Reply, shaped by billing scope: one shared organization pool, or one entry per team.
+- [Active Contacts Daily Usage](https://docs.reply.io/api-reference/schemas/active-contacts-daily-usage.md): Active contacts for a single day of a Reply billing month: contacts first touched, the running total, what is left, and the per-team split.
+- [Active Contacts Usage](https://docs.reply.io/api-reference/schemas/active-contacts-usage.md): Active contacts consumed in the current Reply billing month, with the pool size, what remains, and a day-by-day breakdown.
+- [AI Field Definition](https://docs.reply.io/api-reference/schemas/ai-field-definition.md): The prompt an AI custom field runs against each contact. Present only when the field's `fieldSource` is `ai`.
+- [AI Learning](https://docs.reply.io/api-reference/schemas/ai-learning.md): A standing rule that shapes how the AI writes, together with the learnings it contradicts.
+- [AI Learning Conflict](https://docs.reply.io/api-reference/schemas/ai-learning-conflict.md): Another AI learning that contradicts the one being read, and which of the two currently applies.
 - [AI Prompt](https://docs.reply.io/api-reference/schemas/ai-prompt.md): An AI prompt you can attach to a sequence step. Returns the id, name, prompt text, scope, and the step type it applies to.
 - [Attachment](https://docs.reply.io/api-reference/schemas/attachment.md): An uploaded file you can attach to email templates, sequence steps, and direct emails in Reply. Returns the id, file name, and size.
 - [Available Domain](https://docs.reply.io/api-reference/schemas/available-domain.md): A domain name offered for purchase, with its first-term and renewal prices in cents.
 - [Background Job](https://docs.reply.io/api-reference/schemas/background-job.md): A long-running job tracked by the Reply API. Returns status, progress, timing, and the raw input and result payloads.
 - [Background Noise](https://docs.reply.io/api-reference/schemas/background-noise.md): The Background Noise object in the Reply API v3, with every field, its type, and what it means.
+- [Billing Details](https://docs.reply.io/api-reference/schemas/billing-details.md): Your Reply subscription and the active contacts consumed so far this billing month, day by day.
+- [Billing Subscription](https://docs.reply.io/api-reference/schemas/billing-subscription.md): A Reply subscription: plan name and type, billing period, plan and subscription state, and the dates of the current term.
 - [Business Problem](https://docs.reply.io/api-reference/schemas/business-problem.md): The error object Reply returns for most 4xx responses. Carries a stable, namespaced error slug you can branch on in code.
 - [Calls Overview Response](https://docs.reply.io/api-reference/schemas/calls-overview-response.md): Aggregated call stats from Reply reporting: total calls, average duration, answered and positive calls, plus a per-member breakdown.
 - [Inbox Category](https://docs.reply.io/api-reference/schemas/category.md): An inbox thread category in Reply. Reserved categories belong to the system and cannot be edited or deleted through the API.
@@ -33,13 +41,18 @@ vouches for**: read it, then read their reference.
 - [Contact Account Details](https://docs.reply.io/api-reference/schemas/contact-account-details.md): A single contact account in Reply with full detail, including the resolved email provider for the company's domain.
 - [Account Filter Item](https://docs.reply.io/api-reference/schemas/contact-account-filter-item.md): One filter condition used when querying contact accounts in Reply. Made up of a property, a condition, and a set of values.
 - [Contact Account List](https://docs.reply.io/api-reference/schemas/contact-account-list.md): An account list in Reply, used to group company records together. Returns the list id and the list name.
+- [Contact Account Note](https://docs.reply.io/api-reference/schemas/contact-account-note.md): The Contact Account Note object in the Reply API v3, with every field, its type, and what it means.
 - [Contact Account Stage](https://docs.reply.io/api-reference/schemas/contact-account-stage.md): The stage assigned to a contact account in Reply. Returns the stage id, its name, and the color id used to display it in the app.
 - [Contact Inbox Thread](https://docs.reply.io/api-reference/schemas/contact-inbox-thread.md): An inbox thread as it appears on a single contact's timeline in Reply. A trimmed view with no message history or body preview.
 - [Contact List](https://docs.reply.io/api-reference/schemas/contact-list.md): The Contact List object in the Reply API. Three fields: the list id, its name, and whether the list is shared with your team.
 - [Contact List Reference](https://docs.reply.io/api-reference/schemas/contact-list-ref.md): A lightweight contact list reference used inside other Reply API responses. Carries just the list id and name, not the full record.
+- [Contact Note](https://docs.reply.io/api-reference/schemas/contact-note.md): The Contact Note object in the Reply API v3, with every field, its type, and what it means.
 - [Count Result](https://docs.reply.io/api-reference/schemas/count-result.md): A simple response object with a single field, count, used by Reply endpoints that only need to return a total.
 - [Create Item Result](https://docs.reply.io/api-reference/schemas/create-item-result.md): The per-item result for bulk create calls in Reply. Successful items return an id; failed ones return an error code and details.
 - [Custom Field](https://docs.reply.io/api-reference/schemas/custom-field.md): A custom field you define to store extra data on Reply contacts. Returns the title, the field type, and whether it is org-wide.
+- [Custom Field Enrichment](https://docs.reply.io/api-reference/schemas/custom-field-enrichment.md): The queued enrichment run. Poll `GET /v3/background-jobs/{jobId}` for its progress and final status.
+- [Custom Field Preview](https://docs.reply.io/api-reference/schemas/custom-field-preview.md): The value an AI custom field's prompt produced for one contact. Nothing is written to the contact.
+- [Custom Field Prompt Action](https://docs.reply.io/api-reference/schemas/custom-field-prompt-action.md): The Custom Field Prompt Action object in the Reply API v3, with every field, its type, and what it means.
 - [Domain Blacklist Rule](https://docs.reply.io/api-reference/schemas/domain-rule.md): A blacklist rule that blocks a whole domain in Reply. Returns the pattern and whether the rule applies across the organization.
 - [Email Account Detail](https://docs.reply.io/api-reference/schemas/email-account-detail.md): The full email account object in Reply, with connection status, sending safety limits, signature, and opt-out configuration.
 - [Email Account Stats](https://docs.reply.io/api-reference/schemas/email-account-stats.md): Sending stats for one email account in Reply: emails sent today, total emails sent, and the current daily sending limit.
@@ -79,8 +92,15 @@ vouches for**: read it, then read their reference.
 - [Offer](https://docs.reply.io/api-reference/schemas/offer.md): The Offer object holds the company details your AI SDR uses to personalize outreach: ICP, pain points, proof points, and calls to action.
 - [Pending LinkedIn Account](https://docs.reply.io/api-reference/schemas/pending-linkedin-account.md): A LinkedIn account waiting to finish connecting to Reply. Returns the connection link, when it expires, and whether it already has.
 - [Playbook](https://docs.reply.io/api-reference/schemas/playbook.md): The Playbook object your AI SDR follows in Reply. Returns the name, description, body text, type, author, and style files.
+- [Playbook draft](https://docs.reply.io/api-reference/schemas/playbook-draft.md): The AI-generated playbook draft for a sequence. Each user has their own draft per sequence. Drafts are deleted after 1 hour of inactivity.
+- [Playbook Sequence](https://docs.reply.io/api-reference/schemas/playbook-sequence.md): The Playbook Sequence object in the Reply API v3, with every field, its type, and what it means.
 - [Playbook Style File](https://docs.reply.io/api-reference/schemas/playbook-style-file.md): A reference document attached to a Reply playbook. Style files shape the tone and voice the AI SDR writes in.
 - [Problem Details](https://docs.reply.io/api-reference/schemas/problem-details.md): The base error object the Reply API returns for 401, 429, and route-level 404 responses. Holds a title, an HTTP status, and a detail message.
+- [Procurement Domain](https://docs.reply.io/api-reference/schemas/procurement-domain.md): A domain your team bought through mailbox procurement, with its subscription, setup and renewal state.
+- [Prompt Action](https://docs.reply.io/api-reference/schemas/prompt-action.md): A reusable AI prompt that runs against contacts and writes its results into contact custom fields.
+- [Prompt Action Output](https://docs.reply.io/api-reference/schemas/prompt-action-output.md): One value a Prompt Action produces, together with the contact custom field it is written into.
+- [Rate Limit](https://docs.reply.io/api-reference/schemas/rate-limit.md): One Reply API rate limit for one window: the standard limit, the limit that applies to you, the requests used and remaining, and when the count resets.
+- [Rate Limits](https://docs.reply.io/api-reference/schemas/rate-limits.md): Every Reply API rate limit that applies to you, with your usage in the current minute, hour and week windows.
 - [Reengagement Card](https://docs.reply.io/api-reference/schemas/reengagement-card.md): The Reengagement Card your AI SDR sends after a set delay. Holds instructions, tone, length, links, media, and send timing.
 - [Reengagement Flow](https://docs.reply.io/api-reference/schemas/reengagement-flow.md): A reengagement flow in an AI SDR knowledge base — an alternative follow-up track. Returns its name, card count, and default flag.
 - [Reengagement Flow State](https://docs.reply.io/api-reference/schemas/reengagement-flow-state.md): Which reengagement flow a contact is currently on. Two fields: the flow id and when it was assigned to them.
@@ -96,8 +116,10 @@ vouches for**: read it, then read their reference.
 - [Sequence Contact](https://docs.reply.io/api-reference/schemas/sequence-contact-item.md): A contact enrolled in a Reply sequence, with sequence data: current step, status, opt-out flag, and call and meeting status.
 - [Sequence Contacts List with Extended State](https://docs.reply.io/api-reference/schemas/sequence-contact-state.md): The paginated response for listing contacts in a Reply sequence, with the extended state columns included.
 - [Sequence Email Account](https://docs.reply.io/api-reference/schemas/sequence-email-account.md): An email account attached to a Reply sequence for sending. Returns the address, sender name, daily limit, and connection status.
+- [Sequence Email Stats Response](https://docs.reply.io/api-reference/schemas/sequence-email-stats-response.md): Email stats for one sequence, broken down per step and per A/B variant — the figures on the sequence's Stats → Email tab.
 - [Sequence Folder](https://docs.reply.io/api-reference/schemas/sequence-folder.md): A folder used to organize sequences in Reply. Returns just two fields: the folder id and the folder name.
 - [Sequence LinkedIn Account](https://docs.reply.io/api-reference/schemas/sequence-linkedin-account.md): A LinkedIn account attached to a Reply sequence. Returns the account id, its name, the profile URL, and the connection status.
+- [Sequence LinkedIn Stats Response](https://docs.reply.io/api-reference/schemas/sequence-linkedin-stats-response.md): LinkedIn stats for one sequence, broken down per step and per A/B variant — the figures on the sequence's Stats → LinkedIn tab.
 - [Sequence](https://docs.reply.io/api-reference/schemas/sequence-response.md): The full Sequence object in the Reply API, including its schedule and the email and LinkedIn accounts it sends from.
 - [Sequence Stats Response](https://docs.reply.io/api-reference/schemas/sequence-stats-response.md): Combined email and LinkedIn stats for a single Reply sequence, returned as two separate overview objects.
 - [Sequence Step Info](https://docs.reply.io/api-reference/schemas/sequence-step-info.md): Where a contact currently sits in a Reply sequence. Returns the step id and a readable label, or Finished when they are done.
@@ -106,6 +128,8 @@ vouches for**: read it, then read their reference.
 - [Settings](https://docs.reply.io/api-reference/schemas/settings.md): Team and user settings in Reply, covering account, email, LinkedIn, calls, contacts, and beta options. Every field can be null.
 - [Task](https://docs.reply.io/api-reference/schemas/task-response.md): The Task object the Reply API returns when you get, create, or update a task. Lists every field, including status, owner, and due dates.
 - [Tasks Overview Response](https://docs.reply.io/api-reference/schemas/tasks-overview-response.md): Task stats from Reply reporting, broken down by type: calls, emails, LinkedIn, SMS, WhatsApp, to-dos, and meetings booked.
+- [Team Active Contacts Usage](https://docs.reply.io/api-reference/schemas/team-active-contacts-usage.md): One Reply team's own subscription and active contacts usage, returned when each team is billed separately.
+- [Team Daily Active Contacts](https://docs.reply.io/api-reference/schemas/team-daily-active-contacts.md): One Reply team's share of the active contacts first touched on a given day of the organization's billing month.
 - [Team Performance Overview Response](https://docs.reply.io/api-reference/schemas/team-performance-overview-response.md): Team performance metrics from Reply reporting: meetings booked, contacts reached, touches per contact, and average response time.
 - [Inbox Thread](https://docs.reply.io/api-reference/schemas/thread.md): The full Reply inbox thread: the contact, channel, sequence, category, meeting-intent flag, and every message in order.
 - [Inbox Thread AI Draft](https://docs.reply.io/api-reference/schemas/thread-ai-draft.md): The AI-written reply waiting for your review on a Reply inbox thread. A thread has at most one active AI draft.
@@ -131,4 +155,6 @@ vouches for**: read it, then read their reference.
 
 ## Indexes
 
-- [3.0 / API Reference (404 pages)](https://docs.reply.io/_llms/3-0/api-reference.md): Documentation for 3.0 / API Reference.
+- [3.0 / API Reference (436 pages)](https://docs.reply.io/_llms/3-0/api-reference.md): Documentation for 3.0 / API Reference.
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

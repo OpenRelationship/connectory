@@ -27,6 +27,7 @@ Customer.io decides who gets a message, what it says, and when it sends. Read th
 ### How to read these docs
 
 - Add `.md` to any documentation URL to get its Markdown source: `https://docs.customer.io/get-started/quick-start-guide.md`. Requesting a page with `Accept: text/markdown` redirects to the same thing.
+- Pages with tabbed examples, such as one per language, platform, or database, take `?tab=<name>` to return only that tab. Repeat it to narrow several tab groups at once: `https://docs.customer.io/integrations/sdk/ios/quick-start-guide.md?tab=objective-c&tab=uikit-with-objective-c`. Each tabbed page lists its tab names at the top of its Markdown.
 - Every section below has its own `llms.txt` naming each page in it, so you can read one area without loading the whole site.
 - [`/openapi.json`](https://docs.customer.io/openapi.json) describes the Track and App APIs together, with the base URL each path answers on. [`/.well-known/api-catalog`](https://docs.customer.io/.well-known/api-catalog) lists every OpenAPI description this site publishes.
 - A request for a page that does not exist answers `Accept: application/json` with a structured error carrying a code, a message, and links back to these indexes.
@@ -37,7 +38,8 @@ Customer.io documentation is organized into the following sections. Each section
 
 ## Additional resources
 
-- [Customer.io API spec](https://docs.customer.io/openapi.json): Primary OpenAPI spec for the Track (ingress) and App APIs together, at the conventional path
+- [Customer.io API spec](https://docs.customer.io/openapi.json): Primary OpenAPI spec for the Track (ingress), App, and Design Studio APIs together, at the conventional path
 - [Pipelines API spec](https://docs.customer.io/files/pipelines.json): OpenAPI spec for the Data Pipelines API
 - [Track API spec](https://docs.customer.io/files/journeys-track.json): OpenAPI spec for the Track API
 - [App API spec](https://docs.customer.io/files/journeys-app.json): OpenAPI spec for the App API
+- [Design Studio API spec](https://docs.customer.io/files/design-studio.json): OpenAPI spec for the Design Studio API

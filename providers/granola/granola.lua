@@ -2,7 +2,7 @@
 --
 -- GENERATED from https://docs.granola.ai/api-reference/openapi.json
 -- Published on the vendor's own documentation site (https://docs.granola.ai).
--- 9 operations · do not edit
+-- 18 operations · do not edit
 --
 -- The credential is never in here. `auth.env` names an environment variable; the value
 -- stays in the environment, which is what makes this file safe to publish.
@@ -23,14 +23,23 @@ return {
   config = {},
   headers = {},
   operations = {
+    ["granola.delete_v1_legal_holds_hold_id"] = { method = "DELETE", url = "https://public-api.granola.ai/v1/legal-holds/{hold_id}", path = {"hold_id"} },
+    ["granola.delete_v1_legal_holds_hold_id_custodians_custodian_id"] = { method = "DELETE", url = "https://public-api.granola.ai/v1/legal-holds/{hold_id}/custodians/{custodian_id}", path = {"hold_id", "custodian_id"} },
     ["granola.delete_v1_webhook_endpoints_webhook_endpoint_id"] = { method = "DELETE", url = "https://public-api.granola.ai/v1/webhook-endpoints/{webhook_endpoint_id}", path = {"webhook_endpoint_id"} },
     ["granola.get_v1_audit"] = { method = "GET", url = "https://public-api.granola.ai/v1/audit", query = {"action", "occurred_before", "occurred_after", "cursor", "page_size"} },
     ["granola.get_v1_folders"] = { method = "GET", url = "https://public-api.granola.ai/v1/folders", query = {"cursor", "page_size"} },
-    ["granola.get_v1_notes"] = { method = "GET", url = "https://public-api.granola.ai/v1/notes", query = {"created_before", "created_after", "updated_after", "folder_id", "cursor", "page_size"} },
+    ["granola.get_v1_legal_holds"] = { method = "GET", url = "https://public-api.granola.ai/v1/legal-holds", query = {"cursor", "page_size"} },
+    ["granola.get_v1_legal_holds_hold_id"] = { method = "GET", url = "https://public-api.granola.ai/v1/legal-holds/{hold_id}", path = {"hold_id"} },
+    ["granola.get_v1_legal_holds_hold_id_custodians"] = { method = "GET", url = "https://public-api.granola.ai/v1/legal-holds/{hold_id}/custodians", path = {"hold_id"}, query = {"cursor", "page_size"} },
+    ["granola.get_v1_notes"] = { method = "GET", url = "https://public-api.granola.ai/v1/notes", query = {"created_before", "created_after", "updated_after", "folder_id", "cursor", "page_size", "space_id"} },
     ["granola.get_v1_notes_note_id"] = { method = "GET", url = "https://public-api.granola.ai/v1/notes/{note_id}", path = {"note_id"}, query = {"include"} },
     ["granola.get_v1_notes_note_id_transcript"] = { method = "GET", url = "https://public-api.granola.ai/v1/notes/{note_id}/transcript", path = {"note_id"}, query = {"cursor", "page_size"} },
+    ["granola.get_v1_spaces"] = { method = "GET", url = "https://public-api.granola.ai/v1/spaces", query = {"cursor", "page_size"} },
     ["granola.get_v1_webhook_endpoints"] = { method = "GET", url = "https://public-api.granola.ai/v1/webhook-endpoints" },
+    ["granola.patch_v1_legal_holds_hold_id"] = { method = "PATCH", url = "https://public-api.granola.ai/v1/legal-holds/{hold_id}", path = {"hold_id"}, body = {"name", "description", "covers_entire_workspace"} },
     ["granola.patch_v1_webhook_endpoints_webhook_endpoint_id"] = { method = "PATCH", url = "https://public-api.granola.ai/v1/webhook-endpoints/{webhook_endpoint_id}", path = {"webhook_endpoint_id"}, body = {"url", "scopes", "events", "folder_ids", "enabled"} },
+    ["granola.post_v1_legal_holds"] = { method = "POST", url = "https://public-api.granola.ai/v1/legal-holds", body = {"name", "description", "covers_entire_workspace", "custodians"} },
+    ["granola.post_v1_legal_holds_hold_id_custodians"] = { method = "POST", url = "https://public-api.granola.ai/v1/legal-holds/{hold_id}/custodians", path = {"hold_id"}, body = {"custodians"} },
     ["granola.post_v1_webhook_endpoints"] = { method = "POST", url = "https://public-api.granola.ai/v1/webhook-endpoints", body = {"url", "scopes", "events", "folder_ids"} },
   },
 }

@@ -58,6 +58,7 @@ curl -H "Authorization: Bearer YOUR_API_KEY" \
 - [Sender Profiles](https://developer.ro.am/docs/guides/sender-profiles.md)
 - [Unfurling Links](https://developer.ro.am/docs/guides/unfurling-links.md)
 - [User Activity](https://developer.ro.am/docs/guides/user-activity.md)
+- [User Status Bubble](https://developer.ro.am/docs/guides/user-status-bubble.md)
 - [User Status](https://developer.ro.am/docs/guides/user-status.md)
 
 ## Pre-built Integrations
@@ -163,6 +164,9 @@ Base URL: `https://api.ro.am/v1`. Prefer this surface for new integrations. Succ
 - [Get user info](https://developer.ro.am/docs/api/user-info.md): GET /user.info
 - [Set a user's Will Return / Out of Roam](https://developer.ro.am/docs/api/user-status-set.md): POST /user.status.set
 - [Clear a user's Will Return / Out of Roam](https://developer.ro.am/docs/api/user-status-clear.md): POST /user.status.clear
+- [Set a user's status bubble](https://developer.ro.am/docs/api/user-status-bubble-set.md): POST /user.statusBubble.set
+- [Get a user's status bubble](https://developer.ro.am/docs/api/user-status-bubble-get.md): GET /user.statusBubble.get
+- [Clear a user's status bubble](https://developer.ro.am/docs/api/user-status-bubble-clear.md): POST /user.statusBubble.clear
 - [Set a user's external activity](https://developer.ro.am/docs/api/user-activity-set.md): POST /user.activity.set
 - [Clear a user's external activity](https://developer.ro.am/docs/api/user-activity-clear.md): POST /user.activity.clear
 - [List a user's external activities](https://developer.ro.am/docs/api/user-activity-list.md): GET /user.activity.list

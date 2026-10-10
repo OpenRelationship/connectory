@@ -2,7 +2,7 @@
 --
 -- GENERATED from https://developers.cloudtalk.io/api-reference/openapi.json
 -- Published on the vendor's own documentation site (https://developers.cloudtalk.io).
--- 84 operations · do not edit
+-- 95 operations · do not edit
 --
 -- The credential is never in here. `auth.env` names an environment variable; the value
 -- stays in the environment, which is what makes this file safe to publish.
@@ -98,6 +98,17 @@ return {
     ["cloudtalk.public_replace_campaign_associations"] = { method = "PUT", url = "https://my.cloudtalk.io/api/dialer/campaigns/{campaignId}/associations", path = {"campaignId"}, body = {"target_tag", "queue_group", "agent"} },
     ["cloudtalk.public_replace_campaign_disposition_buttons"] = { method = "PUT", url = "https://my.cloudtalk.io/api/dialer/campaigns/{campaignId}/disposition-buttons", path = {"campaignId"}, body = {"buttons"} },
     ["cloudtalk.public_replace_survey_questions"] = { method = "PUT", url = "https://my.cloudtalk.io/api/dialer/surveys/{surveyId}/questions", path = {"surveyId"}, body = {"questions"} },
+    ["cloudtalk.public_v1_attach_voice_agent_knowledge_base"] = { method = "PUT", url = "https://my.cloudtalk.io/api/voice-agents/{voiceAgentId}/knowledge-bases/{knowledgeBaseId}", path = {"voiceAgentId", "knowledgeBaseId"} },
+    ["cloudtalk.public_v1_create_knowledge_base"] = { method = "POST", url = "https://my.cloudtalk.io/api/knowledge-bases", body = {"name", "sourceType", "text", "url"} },
+    ["cloudtalk.public_v1_create_voice_agent"] = { method = "POST", url = "https://my.cloudtalk.io/api/voice-agents", body = {"agentName", "createdAt", "defaultOutboundNumberId", "dialTimeoutSeconds", "direction", "elevenLabsSettings", "failoverOutboundNumberId", "goalPrompt", "greeting", "guardrails", "isAgentSpeakingFirst", "knowledgeBaseIds", "language", "llmOverride", "maxCallDurationMinutes", "optimizeStreamingLatency", "providerOverride", "resolvedLlm", "resolvedProvider", "scenarios", "secondaryLanguages", "similarity", "skills", "stability", "status", "temperature", "tone", "updatedAt", "verbosity", "voiceId"} },
+    ["cloudtalk.public_v1_delete_knowledge_base"] = { method = "DELETE", url = "https://my.cloudtalk.io/api/knowledge-bases/{knowledgeBaseId}", path = {"knowledgeBaseId"} },
+    ["cloudtalk.public_v1_delete_voice_agent"] = { method = "DELETE", url = "https://my.cloudtalk.io/api/voice-agents/{voiceAgentId}", path = {"voiceAgentId"} },
+    ["cloudtalk.public_v1_detach_voice_agent_knowledge_base"] = { method = "DELETE", url = "https://my.cloudtalk.io/api/voice-agents/{voiceAgentId}/knowledge-bases/{knowledgeBaseId}", path = {"voiceAgentId", "knowledgeBaseId"} },
+    ["cloudtalk.public_v1_get_voice_agent"] = { method = "GET", url = "https://my.cloudtalk.io/api/voice-agents/{voiceAgentId}", path = {"voiceAgentId"} },
+    ["cloudtalk.public_v1_list_knowledge_bases"] = { method = "GET", url = "https://my.cloudtalk.io/api/knowledge-bases", query = {"limit", "cursor"} },
+    ["cloudtalk.public_v1_list_voice_agents"] = { method = "GET", url = "https://my.cloudtalk.io/api/voice-agents", query = {"limit", "cursor"} },
+    ["cloudtalk.public_v1_replace_voice_agent"] = { method = "PUT", url = "https://my.cloudtalk.io/api/voice-agents/{voiceAgentId}", path = {"voiceAgentId"}, body = {"agentName", "createdAt", "defaultOutboundNumberId", "dialTimeoutSeconds", "direction", "elevenLabsSettings", "failoverOutboundNumberId", "goalPrompt", "greeting", "guardrails", "isAgentSpeakingFirst", "knowledgeBaseIds", "language", "llmOverride", "maxCallDurationMinutes", "optimizeStreamingLatency", "providerOverride", "resolvedLlm", "resolvedProvider", "scenarios", "secondaryLanguages", "similarity", "skills", "stability", "status", "temperature", "tone", "updatedAt", "verbosity", "voiceId"} },
+    ["cloudtalk.public_v1_upload_knowledge_base_file"] = { method = "POST", url = "https://my.cloudtalk.io/api/knowledge-bases/files", body = {"file"} },
     ["cloudtalk.put_activity_add_contactId_json"] = { method = "PUT", url = "https://my.cloudtalk.io/api/activity/add/{contactId}.json", path = {"contactId"}, body = {"type", "name", "activity_date", "description", "activity_author", "external_id", "external_url"} },
     ["cloudtalk.put_agents_add_json"] = { method = "PUT", url = "https://my.cloudtalk.io/api/agents/add.json", body = {"firstname", "lastname", "email", "pass", "status_outbound", "daily_price_limit", "extension", "call_number_id"} },
     ["cloudtalk.put_blacklist_add_json"] = { method = "PUT", url = "https://my.cloudtalk.io/api/blacklist/add.json", body = {"type", "public_number"} },

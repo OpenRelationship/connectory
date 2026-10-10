@@ -14,13 +14,13 @@ vouches for**: read it, then read their reference.
 ---
 ## Executive Summary
 
-This documentation contains analysis of **988 web pages** across **19 categories**. Each page has been analyzed for content quality, categorized by type, and ranked by importance. This comprehensive resource provides insights into the structure and content of the analyzed website.
+This documentation contains analysis of **989 web pages** across **19 categories**. Each page has been analyzed for content quality, categorized by type, and ranked by importance. This comprehensive resource provides insights into the structure and content of the analyzed website.
 
 ## Statistics Overview
 
-- **Total Pages Analyzed**: 988
+- **Total Pages Analyzed**: 989
 - **Categories Covered**: 19
-- **High Importance Pages (4-5/5)**: 324
+- **High Importance Pages (4-5/5)**: 325
 - **Medium Importance Pages (3/5)**: 597
 - **Analysis Date**: 7/29/2025
 
@@ -1050,7 +1050,7 @@ This documentation contains analysis of **988 web pages** across **19 categories
 
 ## News (6 pages)
 
-## Resources (360 pages)
+## Resources (361 pages)
 
 ### [Comprehensive Guide to Website Monetization](https://mailchimp.com/resources/how-to-monetize-a-website/)
 

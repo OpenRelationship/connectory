@@ -43,7 +43,7 @@ below.
 
 <!-- BEGIN:endpoints -->
 
-Scavio serves 304 endpoints across 50 platforms, Extract included (39 platform families in the API, since Google's verticals share one).
+Scavio serves 323 endpoints across 52 platforms, Extract included (41 platform families in the API, since Google's verticals share one).
 Every data endpoint is a POST returning structured JSON. Most cost 1 credit;
 the exceptions are stated per platform below.
 
@@ -140,7 +140,6 @@ the exceptions are stated per platform below.
 - `POST /api/v1/pinterest/user/boards`
 
 #### Weibo
-- `POST /api/v1/weibo/channel-feed`
 - `POST /api/v1/weibo/hot-search`
 - `POST /api/v1/weibo/hot-search/index`
 - `POST /api/v1/weibo/post`
@@ -307,6 +306,8 @@ the exceptions are stated per platform below.
 - `POST /api/v1/capterra/reviews`
 - `POST /api/v1/capterra/search`
 
+### Reviews
+
 ### Ad libraries
 #### Google Ads Transparency
 - `POST /api/v1/googleads/advertisers`
@@ -369,6 +370,7 @@ the exceptions are stated per platform below.
 - [Etsy API](https://scavio.dev/etsy-api) -- listing search, product detail, shop data and reviews
 - [Target API](https://scavio.dev/target-api)
 - [Home Depot API](https://scavio.dev/homedepot-api)
+- [Costco API](https://scavio.dev/costco-api) -- warehouse prices and stock, gas prices, the coupon book, clearance and product data
 - [Kuaishou API](https://scavio.dev/kuaishou-api)
 - [Douyin API](https://scavio.dev/douyin-api) -- videos, creators, comments, sounds, hashtags, live and search
 - [Weibo API](https://scavio.dev/weibo-api) -- hot-search board, user profiles, posts, comments and search
@@ -384,6 +386,7 @@ the exceptions are stated per platform below.
 - [Google Play API](https://scavio.dev/google-play-api)
 - [G2 API](https://scavio.dev/g2-api)
 - [Capterra API](https://scavio.dev/capterra-api)
+- [Trustpilot API](https://scavio.dev/trustpilot-api) -- business search, profiles with reply rate, filtered reviews and category rankings
 - [Google Ads Transparency API](https://scavio.dev/google-ads-transparency-api)
 - [Meta Ad Library API](https://scavio.dev/meta-ads-api)
 - [TikTok Ad Library API](https://scavio.dev/tiktok-ads-api) -- search TikTok's Top Ads and creative by keyword, industry and country
@@ -667,6 +670,7 @@ Arcade, Agno (in core), and OpenClaw skills.
 - https://scavio.dev/docs/walmart-offers
 - https://scavio.dev/docs/walmart-seller
 - https://scavio.dev/docs/walmart-seller-products
+- https://scavio.dev/docs/walmart-stores
 
 ### eBay
 - https://scavio.dev/docs/ebay-search
@@ -683,6 +687,21 @@ Arcade, Agno (in core), and OpenClaw skills.
 - https://scavio.dev/docs/home-depot-search
 - https://scavio.dev/docs/home-depot-product
 - https://scavio.dev/docs/home-depot-reviews
+
+### Costco
+- https://scavio.dev/docs/costco-search
+- https://scavio.dev/docs/costco-category
+- https://scavio.dev/docs/costco-categories
+- https://scavio.dev/docs/costco-product
+- https://scavio.dev/docs/costco-prices
+- https://scavio.dev/docs/costco-availability
+- https://scavio.dev/docs/costco-reviews
+- https://scavio.dev/docs/costco-warehouses
+- https://scavio.dev/docs/costco-gas
+- https://scavio.dev/docs/costco-coupons
+- https://scavio.dev/docs/costco-deals
+- https://scavio.dev/docs/costco-clearance
+- https://scavio.dev/docs/costco-autocomplete
 
 ### TikTok Shop
 - https://scavio.dev/docs/tiktok-shop-search
@@ -774,6 +793,14 @@ Arcade, Agno (in core), and OpenClaw skills.
 - https://scavio.dev/docs/capterra-search
 - https://scavio.dev/docs/capterra-product
 - https://scavio.dev/docs/capterra-reviews
+
+### Trustpilot
+- https://scavio.dev/docs/trustpilot-search
+- https://scavio.dev/docs/trustpilot-business
+- https://scavio.dev/docs/trustpilot-reviews
+- https://scavio.dev/docs/trustpilot-categories
+- https://scavio.dev/docs/trustpilot-category
+- https://scavio.dev/docs/trustpilot-review
 
 ### Google Ads Transparency
 - https://scavio.dev/docs/google-ads-advertisers

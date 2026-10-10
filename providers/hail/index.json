@@ -6,13 +6,27 @@
   {
    "slug": "hail.acquire_number_v1_numbers_post",
    "name": "Acquire number",
-   "description": "Buy a dedicated phone number for the caller's organization. This purchases a real number at the carrier and starts a recurring monthly fee immediately \u2014 it is not a reservation. The number is usable for voice, SMS, or both depending on the requested capabilities and what the carrier offers for the given country_code/number_type.",
+   "description": "Buy a dedicated phone number for the caller's organization. This purchases a real number at the carrier and starts a recurring monthly fee immediately \u2014 it is not a reservation. quote_id is required: request live offers from POST /numbers/quotes first, then buy one. The number is usable for voice, SMS, or both, as the quote lists.",
    "input": {
     "type": "object",
     "properties": {
      "Idempotency-Key": {
       "type": "string",
       "description": ""
+     },
+     "quote_id": {
+      "type": "string",
+      "description": "Unexpired organization-bound quote from POST /numbers/quotes. Required: without it the request is a 422; get a quote first."
+     },
+     "provider": {
+      "type": "string",
+      "description": "Carrier restriction for the quote. Auto accepts the quoted carrier; twilio, telnyx, or didww must match it.",
+      "enum": [
+       "auto",
+       "twilio",
+       "telnyx",
+       "didww"
+      ]
      },
      "country_code": {
       "type": "string",
@@ -30,7 +44,8 @@
      }
     },
     "required": [
-     "country_code"
+     "country_code",
+     "quote_id"
     ]
    },
    "request": {
@@ -42,6 +57,8 @@
      "Idempotency-Key"
     ],
     "body": [
+     "quote_id",
+     "provider",
      "country_code",
      "number_type"
     ],
@@ -84,6 +101,34 @@
    }
   },
   {
+   "slug": "hail.cancel_verification",
+   "name": "Cancel verification",
+   "description": "Withdraw a verification that has not been sent for review, or dismiss a rejected one. The draft is discarded either way. One that is under review cannot be cancelled: wait for the result; if it is rejected, dismiss it.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "verification_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "verification_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.hail.so/v1/verifications/{verification_id}",
+    "path": [
+     "verification_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "hail.check_domain_v1_email_domains_check_domain_get",
    "name": "Check domain",
    "description": "Does this domain already receive mail? Drives apex-vs-prefix onboarding.",
@@ -108,6 +153,99 @@
     ],
     "header": [],
     "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hail.create_agent_v1_agents_post",
+   "name": "Create agent",
+   "description": "Create an agent. Route numbers to it with PATCH /numbers/{id}, or place calls with it via ``agent_id`` on POST /calls.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": "string",
+      "description": "Display name, unique per organization."
+     },
+     "system_prompt": {
+      "type": "string",
+      "description": "Task instructions, sent as the agent's leading system message."
+     },
+     "first_message": {
+      "type": "string",
+      "description": "Opening line spoken after the AI line. Omitted: the agent waits for the other side to speak first."
+     },
+     "ai_disclosure": {
+      "type": "boolean",
+      "description": "Speak the AI line first on every call. Enabled by default. Disable only if you have verified the disclosure is not required (47 CFR 64.1200(b)(1) and several AI bot-disclosure laws). Hail does not verify this for you."
+     },
+     "ai_disclosure_line": {
+      "type": "string",
+      "description": "The AI line this agent speaks. '{org}' is replaced by the organization's name. Omitted: the workspace line, else Hail's built-in line for the call's direction."
+     },
+     "voice_config": {
+      "type": "object",
+      "description": ""
+     },
+     "tools": {
+      "type": "string",
+      "description": "Agent tools to allow. Omitted: every tool the organization's channels support. Empty list: none."
+     },
+     "max_duration_seconds": {
+      "type": "string",
+      "description": "Soft cap per call in seconds (60..3600). Omitted: the workspace limit."
+     },
+     "handover_max_duration_seconds": {
+      "type": "string",
+      "description": "Call limit in seconds (60..3600) once a handover contact answers, counted from the answer. Omitted: 1800 (30 minutes)."
+     },
+     "voice_enabled": {
+      "type": "boolean",
+      "description": "Answer calls on numbers that route calls to this agent."
+     },
+     "sms_enabled": {
+      "type": "boolean",
+      "description": "Answer texts on numbers that route texts to this agent."
+     },
+     "status": {
+      "type": "string",
+      "description": "'paused' agents do not answer; calls to their numbers fail with end_reason 'no_agent'.",
+      "enum": [
+       "live",
+       "paused"
+      ]
+     },
+     "handover_contacts": {
+      "type": "array",
+      "description": "People the agent may hand a live call to, in order. The agent never sees their numbers."
+     }
+    },
+    "required": [
+     "name",
+     "system_prompt"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hail.so/v1/agents",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "system_prompt",
+     "first_message",
+     "ai_disclosure",
+     "ai_disclosure_line",
+     "voice_config",
+     "tools",
+     "max_duration_seconds",
+     "handover_max_duration_seconds",
+     "voice_enabled",
+     "sms_enabled",
+     "status",
+     "handover_contacts"
+    ],
     "body_format": "json"
    }
   },
@@ -181,6 +319,10 @@
      "tools": {
       "type": "string",
       "description": "Agent tools to allow on this call. Omitted: every tool the organization's configured channels support (new channels appear automatically). Empty list: no tools. Tool names are validated against the server's registry."
+     },
+     "agent_id": {
+      "type": "string",
+      "description": "Place the call with a saved agent (POST /agents). The agent supplies system_prompt, first_message, ai_disclosure, voice_config, tools and max duration; any of those given explicitly on this request wins. Satisfies the system_prompt or llm requirement on its own. A paused agent is refused with 409."
      }
     },
     "required": [
@@ -210,7 +352,8 @@
      "voice_config",
      "conversation_id",
      "metadata",
-     "tools"
+     "tools",
+     "agent_id"
     ],
     "body_format": "json"
    }
@@ -303,7 +446,7 @@
   {
    "slug": "hail.create_email_v1_emails_post",
    "name": "Create email",
-   "description": "Send an outbound email through SES. Sends synchronously \u2014 the response reports the final status (sent or failed), not a queued placeholder; no separate poll is needed for the happy path, though a bounce or complaint can still arrive later as a webhook or GET /v1/emails/{email_id}/events entry. Requires recipient_consent=true on the request body; Hail does not verify lawful basis to contact the rec",
+   "description": "Send an outbound email through SES. Sends synchronously. A 201 means SES accepted the message and the response status is 'sent'; no separate poll is needed for the happy path, though a bounce or complaint can still arrive later as a webhook or GET /v1/emails/{email_id}/events entry. If the send fails, the response is 502 'email send failed' with no email body; the email is kept with status 'failed",
    "input": {
     "type": "object",
     "properties": {
@@ -452,7 +595,7 @@
      },
      "from": {
       "type": "string",
-      "description": "Sender phone number, E.164 format. Must be a number owned by the organization with the SMS capability. Omitted: an active org-owned number is used if one exists, else a number is claimed from the shared pool."
+      "description": "Sender phone number, E.164 format. Must be an active number owned by the organization with the SMS capability. Omitted: UK (+44) and Germany (+49) destinations use the organization's sender ID, or the platform default 'HAIL' when none is set; Australia (+61) always uses 'HAIL'. Every other destination uses the organization's oldest active SMS-capable number; if none exists the request fails with 4"
      },
      "body": {
       "type": "string",
@@ -521,6 +664,53 @@
      "target_url",
      "event_types"
     ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hail.create_verification",
+   "name": "Create verification",
+   "description": "Submit your details and documents (multipart/form-data). Parts: `country_code`, `number_type`, `subject_type`, `provider` (optional), `fields` (JSON object), `address` (JSON object, when required), `documents` (JSON object: slot name to `{\"option\": ..., \"fields\": {...}}`), and one file part per slot named `file.`. Get the slot and field names from `GET /verifications/requirements`. The carrier che",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hail.so/v1/verifications",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hail.delete_agent_v1_agents_agent_id_delete",
+   "name": "Delete agent",
+   "description": "Delete an agent. Numbers that routed calls to it are unregistered for inbound and ring out again; numbers that routed texts to it go back to webhooks only.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "agent_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "agent_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.hail.so/v1/agents/{agent_id}",
+    "path": [
+     "agent_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
     "body_format": "json"
    }
   },
@@ -699,9 +889,37 @@
    }
   },
   {
+   "slug": "hail.dns_check_email_domain_v1_email_domains_domain_id_dns_check_get",
+   "name": "Dns check email domain",
+   "description": "Guided DNS check: detect the tenant's DNS host and confirm published records. Read-only \u2014 runs live lookups against public DNS (no resolver dependency) and never touches verification_status; SES stays the authority for that (see POST /{domain_id}/verify). Org-scoped: returns 404 for a domain belonging to a different organization. kind='hail_mail' rows do no DNS lookups at all \u2014 the shared hail-mai",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domain_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "domain_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hail.so/v1/email-domains/{domain_id}/dns-check",
+    "path": [
+     "domain_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "hail.enable_sms_v1_numbers_number_id_enable_sms_post",
    "name": "Enable sms",
-   "description": "Attach a dedicated number to the org's shared SMS Messaging Service. Required once per number before it can send/receive SMS; the number must already have been acquired with sms capability. Idempotent \u2014 calling this again on an already-enabled number just returns its current state. Fails with 422 for a released number or one that lacks sms capability.",
+   "description": "Attach a dedicated number to the org's shared SMS Messaging Service. Hail does this itself when an sms-capable number becomes active and when a texts agent is assigned, so this call is only needed to repair a number whose setup failed, or an older one whose service lacks the inbound text settings. Idempotent \u2014 an already-enabled number gets those settings set again and returns its current state. F",
    "input": {
     "type": "object",
     "properties": {
@@ -719,6 +937,34 @@
     "url": "https://api.hail.so/v1/numbers/{number_id}/enable-sms",
     "path": [
      "number_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hail.get_agent_v1_agents_agent_id_get",
+   "name": "Get agent",
+   "description": "Fetch one agent by id, including its instructions and voice settings.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "agent_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "agent_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hail.so/v1/agents/{agent_id}",
+    "path": [
+     "agent_id"
     ],
     "query": [],
     "header": [],
@@ -915,7 +1161,7 @@
   {
    "slug": "hail.get_number_v1_numbers_number_id_get",
    "name": "Get number",
-   "description": "Fetch one dedicated number by id, including its capabilities and state. Org-scoped: returns 404 for a number belonging to a different organization.",
+   "description": "Fetch one dedicated number by id, including its capabilities and state. Org-scoped: returns 404 for a number belonging to a different organization. Read-only: a pending order is advanced by the background reconciler, never by this request.",
    "input": {
     "type": "object",
     "properties": {
@@ -934,6 +1180,25 @@
     "path": [
      "number_id"
     ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hail.get_prompt_templates_v1_agents_prompt_templates_get",
+   "name": "Get prompt templates",
+   "description": "The full prompt the model gets on each channel, with a marker where the agent's own instructions go. Hail's framing is fixed; only the instructions are the agent's.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hail.so/v1/agents/prompt-templates",
+    "path": [],
     "query": [],
     "header": [],
     "body": [],
@@ -1016,6 +1281,82 @@
    }
   },
   {
+   "slug": "hail.get_verification",
+   "name": "Get verification",
+   "description": "One verification of your organization. Once submitted, its state is updated from the carrier each time you read it.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "verification_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "verification_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hail.so/v1/verifications/{verification_id}",
+    "path": [
+     "verification_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hail.get_verification_requirements",
+   "name": "Get requirements",
+   "description": "What the carrier needs from you to buy this kind of number: the fields, the documents, and whether an address is needed. Build your form from it.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "country_code": {
+      "type": "string",
+      "description": ""
+     },
+     "number_type": {
+      "type": "string",
+      "description": ""
+     },
+     "subject_type": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "person",
+       "business"
+      ]
+     },
+     "provider": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "country_code",
+     "number_type"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hail.so/v1/verifications/requirements",
+    "path": [],
+    "query": [
+     "country_code",
+     "number_type",
+     "subject_type",
+     "provider"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "hail.get_whoami_v1_whoami_get",
    "name": "Get whoami",
    "description": "Identify the caller: auth kind, organization, and (if resolvable) user. Useful for an agent that needs the human's address to put in Reply-To, since the bearer token itself only carries an organization. user_id/email/name come back null for a shared-key (HAIL_API_KEY) call, which has no individual user behind it.",
@@ -1046,6 +1387,25 @@
    "request": {
     "method": "GET",
     "url": "https://api.hail.so/healthz",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hail.list_agents_v1_agents_get",
+   "name": "List agents",
+   "description": "List the organization's agents, newest first.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hail.so/v1/agents",
     "path": [],
     "query": [],
     "header": [],
@@ -1324,7 +1684,7 @@
   {
    "slug": "hail.list_numbers_v1_numbers_get",
    "name": "List numbers",
-   "description": "List dedicated numbers owned by the caller's organization. Cursor-paginated, newest first. Only org-owned numbers are listed \u2014 shared pool numbers used for outbound calls never appear here.",
+   "description": "List dedicated numbers owned by the caller's organization. Cursor-paginated, newest first. Only org-owned numbers are listed \u2014 shared pool numbers used for outbound calls never appear here. Failed orders that were dismissed (DELETE) are not listed.",
    "input": {
     "type": "object",
     "properties": {
@@ -1469,6 +1829,25 @@
      "cursor",
      "limit"
     ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hail.list_verifications",
+   "name": "List verifications",
+   "description": "Your organization's verifications, newest first.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hail.so/v1/verifications",
+    "path": [],
+    "query": [],
     "header": [],
     "body": [],
     "body_format": "json"
@@ -1678,6 +2057,56 @@
    }
   },
   {
+   "slug": "hail.quote_numbers_v1_numbers_quotes_post",
+   "name": "Quote numbers",
+   "description": "Compare live, org-specific offers. Prices include setup + monthly rent. Auto recommends a ready offer with the lowest monthly rent, then setup cost. On a tie the first carrier listed wins. Blocked offers sort by verification effort. SMS capability does not waive messaging registration requirements.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "country_code": {
+      "type": "string",
+      "description": "ISO alpha-2 country code to search. Case-insensitive."
+     },
+     "number_type": {
+      "type": "string",
+      "description": "Restrict number type; omit to compare all supported types."
+     },
+     "capabilities": {
+      "type": "array",
+      "description": "Required channels; every returned offer must support all requested capabilities."
+     },
+     "provider": {
+      "type": "string",
+      "description": "Carrier restriction; twilio, telnyx, or didww returns that carrier's offers only. auto compares all by readiness, remaining verification effort, and rental/setup costs; Twilio wins equivalent ties.",
+      "enum": [
+       "auto",
+       "twilio",
+       "telnyx",
+       "didww"
+      ]
+     }
+    },
+    "required": [
+     "capabilities",
+     "country_code"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hail.so/v1/numbers/quotes",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "country_code",
+     "number_type",
+     "capabilities",
+     "provider"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "hail.redeliver_v1_webhooks_sub_id_deliveries_delivery_id_redeliver_post",
    "name": "Redeliver",
    "description": "Retry one webhook delivery attempt. Resets it to pending with a fresh attempt counter \u2014 the delivery worker picks it up and re-sends the same event payload to target_url shortly after. Useful after fixing an endpoint that was returning errors.",
@@ -1714,7 +2143,7 @@
   {
    "slug": "hail.release_number_v1_numbers_number_id_delete",
    "name": "Release number",
-   "description": "Release a dedicated number. The monthly fee stops accruing after the release month; months already accrued stay owed (the rater bills late, never forgives).",
+   "description": "Release a dedicated number. The monthly fee stops accruing after the release month; months already accrued stay owed (the rater bills late, never forgives). A number that answered calls is taken off the inbound trunk first.",
    "input": {
     "type": "object",
     "properties": {
@@ -1768,6 +2197,45 @@
    }
   },
   {
+   "slug": "hail.route_number_v1_numbers_number_id_patch",
+   "name": "Route number",
+   "description": "Choose which agent answers this number. Setting ``voice_agent_id`` registers the number for inbound calls at the carrier and on Hail's LiveKit inbound trunk; ``null`` unregisters it, and calls ring out again. ``sms_agent_id`` needs the sms capability and sets the number up for SMS at the carrier if that has not happened yet. A field left out keeps its value.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "number_id": {
+      "type": "string",
+      "description": ""
+     },
+     "voice_agent_id": {
+      "type": "string",
+      "description": "Agent that answers calls to this number. Setting it registers the number for inbound calls at the carrier and at LiveKit; null unregisters it. The number needs the voice capability."
+     },
+     "sms_agent_id": {
+      "type": "string",
+      "description": "Agent that answers texts to this number. The number needs the sms capability. Null: texts only reach your webhooks."
+     }
+    },
+    "required": [
+     "number_id"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.hail.so/v1/numbers/{number_id}",
+    "path": [
+     "number_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "voice_agent_id",
+     "sms_agent_id"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "hail.unsubscribe_v1_unsubscribe_get",
    "name": "Unsubscribe",
    "description": "One-click email opt-out (RFC 8058), reached by clicking a link in a sent email. Public and unauthenticated \u2014 the signed token query param is the sole credential, proving the caller holds a link Hail sent to that address. On success, the address is added to the org's suppression list and all future outbound email to it is blocked. Returns an HTML page, not JSON.",
@@ -1783,6 +2251,100 @@
     "query": [],
     "header": [],
     "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hail.update_agent_v1_agents_agent_id_patch",
+   "name": "Update agent",
+   "description": "Change some fields. Fields left out keep their value; ``null`` clears first_message, ai_disclosure_line, tools, max_duration_seconds or handover_max_duration_seconds. Live calls keep the settings they started with. ``handover_contacts`` replaces the list; ``[]`` clears it and ``null`` leaves it.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "agent_id": {
+      "type": "string",
+      "description": ""
+     },
+     "name": {
+      "type": "string",
+      "description": "New display name."
+     },
+     "system_prompt": {
+      "type": "string",
+      "description": "New task instructions."
+     },
+     "first_message": {
+      "type": "string",
+      "description": "New opening line; null makes the agent wait for the other side."
+     },
+     "ai_disclosure": {
+      "type": "string",
+      "description": "Whether the AI line is spoken first."
+     },
+     "ai_disclosure_line": {
+      "type": "string",
+      "description": "New AI line template ('{org}' = organization name); null returns to the workspace line."
+     },
+     "voice_config": {
+      "type": "string",
+      "description": "New TTS voice and language settings."
+     },
+     "tools": {
+      "type": "string",
+      "description": "New allowed tools; null allows every tool."
+     },
+     "max_duration_seconds": {
+      "type": "string",
+      "description": "New soft cap per call; null returns to the workspace limit."
+     },
+     "handover_max_duration_seconds": {
+      "type": "string",
+      "description": "New call limit after a handover contact answers; null returns to 1800 (30 minutes)."
+     },
+     "voice_enabled": {
+      "type": "string",
+      "description": "Whether the agent answers calls."
+     },
+     "sms_enabled": {
+      "type": "string",
+      "description": "Whether the agent answers texts."
+     },
+     "status": {
+      "type": "string",
+      "description": "'live' or 'paused'."
+     },
+     "handover_contacts": {
+      "type": "string",
+      "description": "New handover list; replaces the old one. [] removes all; null leaves it."
+     }
+    },
+    "required": [
+     "agent_id"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.hail.so/v1/agents/{agent_id}",
+    "path": [
+     "agent_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "system_prompt",
+     "first_message",
+     "ai_disclosure",
+     "ai_disclosure_line",
+     "voice_config",
+     "tools",
+     "max_duration_seconds",
+     "handover_max_duration_seconds",
+     "voice_enabled",
+     "sms_enabled",
+     "status",
+     "handover_contacts"
+    ],
     "body_format": "json"
    }
   },

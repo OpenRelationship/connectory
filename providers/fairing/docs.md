@@ -16,22 +16,32 @@ vouches for**: read it, then read their reference.
 
 > Fairing Documentation. Learn how to use Fairing to set up your Question Stream, ask the right survey questions, and integrate with your existing technology and marketing stack.
 
-Append .md to any documentation page URL to get its markdown version.
+## Documentation: DISCOVER FAIRING
 
-## Guides
-- [Headless Integration](https://docs.fairing.co/docs/headless-integration.md): Instructions on implementing your Question Stream on a headless Shopify instance.
+## Documentation: GET STARTED
+  - [Headless Integration](https://docs.fairing.co/docs/headless-integration.md): Instructions on implementing your Question Stream on a headless Shopify instance.
 - [Salesforce Commerce Cloud](https://docs.fairing.co/docs/salesforce-commerce-cloud.md): Developer instructions for adding Fairing to your Salesforce Commerce Cloud Order Confirmation page.
-- [Response Clarification Analytics](https://docs.fairing.co/docs/response-clarification-analytics.md): A how-to guide on viewing the analytics and responses to your follow-up questions.
-- [Events](https://docs.fairing.co/docs/events.md): A JavaScript API for observing the Question Stream
-- [Elevar](https://docs.fairing.co/docs/elevar.md): Elevar and Fairing integration.
-- [Recharge](https://docs.fairing.co/docs/recharge.md): Fairing's Recharge integration allows you to easily embed your post-purchase survey directly onto Recharge's subscription confirmation page.
-- [Fivetran](https://docs.fairing.co/docs/export-using-shopify-flow-and-fivetran.md): A how-to guide to export Question Stream response data to data warehouse using Shopify Flow and Fivetran.
-- [Google Sheets](https://docs.fairing.co/docs/add-responses-to-google-sheets-using-shopify-flow.md): A how-to guide to sending your Question Stream response data to a Google Sheet via Shopify Flow.
-- [Slack](https://docs.fairing.co/docs/send-responses-to-slack-using-shopify-flow.md): A how-to guide to sending your Question Stream response data to Slack
-- [Stitchdata](https://docs.fairing.co/docs/export-using-shopify-flow-and-stitchdata.md): A how-to guide to export Question Stream response data to data warehouse using Shopify Flow and StitchData.
-- [Tag Customers & Orders](https://docs.fairing.co/docs/tag-customers-and-orders-with-response-data.md): A how-to guide to tagging customers and orders with your Question Stream response data.
 
-## API Reference
+## Documentation: Question Stream™
+  - [Response Clarification Analytics](https://docs.fairing.co/docs/response-clarification-analytics.md): A how-to guide on viewing the analytics and responses to your follow-up questions.
+
+## Documentation: Advanced Attribution
+
+## Documentation: Integrations
+- [Events](https://docs.fairing.co/docs/events.md): A JavaScript API for observing the Question Stream
+  - [Elevar](https://docs.fairing.co/docs/elevar.md): Elevar and Fairing integration.
+  - [Recharge](https://docs.fairing.co/docs/recharge.md): Fairing's Recharge integration allows you to easily embed your post-purchase survey directly onto Recharge's subscription confirmation page.
+    - [Fivetran](https://docs.fairing.co/docs/export-using-shopify-flow-and-fivetran.md): A how-to guide to export Question Stream response data to data warehouse using Shopify Flow and Fivetran.
+    - [Google Sheets](https://docs.fairing.co/docs/add-responses-to-google-sheets-using-shopify-flow.md): A how-to guide to sending your Question Stream response data to a Google Sheet via Shopify Flow.
+    - [Slack](https://docs.fairing.co/docs/send-responses-to-slack-using-shopify-flow.md): A how-to guide to sending your Question Stream response data to Slack
+    - [Stitchdata](https://docs.fairing.co/docs/export-using-shopify-flow-and-stitchdata.md): A how-to guide to export Question Stream response data to data warehouse using Shopify Flow and StitchData.
+    - [Tag Customers & Orders](https://docs.fairing.co/docs/tag-customers-and-orders-with-response-data.md): A how-to guide to tagging customers and orders with your Question Stream response data.
+
+## Documentation: TEAM
+
+## Documentation: Resources
+
+## API Reference: Fairing API
 - [Connect with OAuth](https://docs.fairing.co/reference/connect-with-oauth.md)
 - [Rate Limits](https://docs.fairing.co/reference/rate-limits.md)
 - [The response object](https://docs.fairing.co/reference/the-response-object.md)

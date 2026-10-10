@@ -26,7 +26,10 @@ vouches for**: read it, then read their reference.
 - [Search Meetings](https://docs.meetjamie.ai/developers/api/meetings/search-meetings.md): Semantic search across your meeting content
 - [List Tags](https://docs.meetjamie.ai/developers/api/tags/list-tags.md): Retrieve all tags available to you
 - [List Tasks](https://docs.meetjamie.ai/developers/api/tasks/list-tasks.md): Retrieve action items extracted from your meetings
+- [Update Task](https://docs.meetjamie.ai/developers/api/tasks/update-task.md): Edit task text, mark a task as completed, or reopen it
 - [Integrations & Developers](https://docs.meetjamie.ai/enterprise/admins/integrations-and-developers.md): Connect Jamie to the tools your team already uses — CRMs, docs, and task tools — and build on top of it with the API, webhooks, and MCP.
 - [Intune MSI Deployment Guide](https://docs.meetjamie.ai/enterprise/admins/intune-deployment-guide.md): Deploy Jamie as a per-machine Line-of-Business MSI app through Microsoft Intune.
 
 ## Optional
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

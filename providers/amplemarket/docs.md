@@ -78,3 +78,5 @@ vouches for**: read it, then read their reference.
 - [swagger](https://api.amplemarket.com/api-docs/v1/swagger.yaml)
 
 ## Optional
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

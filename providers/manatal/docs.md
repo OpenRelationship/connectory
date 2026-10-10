@@ -16,27 +16,33 @@ vouches for**: read it, then read their reference.
 
 > Manatal API documentation
 
-Append .md to any documentation page URL to get its markdown version.
+## Guides: Documentation
 
-## Guides
-
-## API Reference
+## API Reference: Overview
 - [Welcome to Manatal's API documentation](https://developers.manatal.com/reference/getting-started.md): This page will help you get started with Manatal API.
+
+## API Reference: Guides
 - [Dynamic application forms](https://developers.manatal.com/reference/application-form.md)
+
+## API Reference: Object Models
 - [Matches](https://developers.manatal.com/reference/matches.md)
 - [Job Pipeline Stage](https://developers.manatal.com/reference/job-pipeline-stage.md)
+
+## API Reference: Manatal Career Page API
 - [/career-page/{client_slug}/jobs/](https://developers.manatal.com/reference/career-page_jobs_list.md): Return list view
 - [/career-page/{client_slug}/jobs/{id}/](https://developers.manatal.com/reference/career-page_jobs_read.md): Return detail view
-- [/career-page/{client_slug}/jobs/{id}/application-form/](https://developers.manatal.com/reference/career-page_jobs_application-form_read.md): Endpoint used to: - GET is used to have the list of the application form fields to show on the Front End. - POST is used to submit the application.  1. GET the list of application form fields. 2. When submitting the application. The body needs to be formatted as follows: * The response is nested in `application_data`     * Each application form field ID as key     * The application form field response as value.
-- [/career-page/{client_slug}/jobs/{id}/application-form/](https://developers.manatal.com/reference/career-page_jobs_application-form_create.md): Endpoint used to: - GET is used to have the list of the application form fields to show on the Front End. - POST is used to submit the application.  1. GET the list of application form fields. 2. When submitting the application. The body needs to be formatted as follows: * The response is nested in `application_data`     * Each application form field ID as key     * The application form field response as value.
+- [/career-page/{client_slug}/jobs/{id}/application-form/](https://developers.manatal.com/reference/career-page_jobs_application-form_read.md): Endpoint used to: - GET is used to have the list of the application form fields to show on the Front End. - POST is used to submit the application.  1. GET the list of application form fields. 2.…
+- [/career-page/{client_slug}/jobs/{id}/application-form/](https://developers.manatal.com/reference/career-page_jobs_application-form_create.md): Endpoint used to: - GET is used to have the list of the application form fields to show on the Front End. - POST is used to submit the application.  1. GET the list of application form fields. 2.…
 - [/career-page/{client_slug}/jobs/{id}/apply/](https://developers.manatal.com/reference/career-page_jobs_apply_for_job.md): Retrieves or creates a candidate object based on the provided email  and adds them to the job as if the candidate is applying himself for the job.
 - [/career-page/{client_slug}/jobs/{id}/refer/](https://developers.manatal.com/reference/career-page_jobs_refer_to_job.md): Retrieves or creates a candidate object based on the provided email and adds them to the job as if the candidate is being referred by a third party.
-- [Get Job Post](https://developers.manatal.com/reference/get_job_post_open_v1_job_posts__job_post_id__get.md): Retrieve a job post by ID.  - **job_post_id**: UUID of the job post - **accept_language**: Language code for translations (defaults to system language) - **Returns**: Full job post details with translations.
+- [Get Job Post](https://developers.manatal.com/reference/get_job_post_open_v1_job_posts__job_post_id__get.md): Retrieve a job post by ID.  - **job_post_id**: UUID of the job post - **accept_language**: Language code for translations (defaults to system language) - **Returns**: Full job post details with…
 - [Get Application Form for Job Post](https://developers.manatal.com/reference/get_job_post_application_form_open_v1_job_posts__job_post_id__application_form_get.md): Retrieve the full application form for a specific job post.  - **job_post_id**: UUID of the job post - **Returns**: Full application form details including fields and translations.
-- [Submit Application to Job Post](https://developers.manatal.com/reference/create_job_post_application_open_v1_job_posts__job_post_id__apply_post.md): Submit a direct (non-referred) job application for a specific job post.  - **job_post_id**: UUID of the job post - **application_form**: Filled-in application form data - **Returns**: The created application record.
-- [Submit Referral to Job Post](https://developers.manatal.com/reference/create_job_post_refer_application_open_v1_job_posts__job_post_id__refer_post.md): Submit a referred application for a specific job post.  - **job_post_id**: UUID of the job post - **application_refer_form**: Form data for the referred candidate - **Returns**: The created referral application record.
+- [Submit Application to Job Post](https://developers.manatal.com/reference/create_job_post_application_open_v1_job_posts__job_post_id__apply_post.md): Submit a direct (non-referred) job application for a specific job post.  - **job_post_id**: UUID of the job post - **application_form**: Filled-in application form data - **Returns**: The created…
+- [Submit Referral to Job Post](https://developers.manatal.com/reference/create_job_post_refer_application_open_v1_job_posts__job_post_id__refer_post.md): Submit a referred application for a specific job post.  - **job_post_id**: UUID of the job post - **application_refer_form**: Form data for the referred candidate - **Returns**: The created referral…
 - [Get Application Form](https://developers.manatal.com/reference/get_application_form_open_v1_application_forms__app_form_id__get.md): Retrieve an application form by ID.  - **app_form_id**: UUID of the application form - **Returns**: Full application form details including fields and translations.
-- [List Job Posts](https://developers.manatal.com/reference/get_career_page_job_posts_open_v1_career_pages__client_slug__job_posts_get.md): Get paginated list of published job posts for a career page by client slug.  - **client_slug**: Domain slug of the career page - **search**: Search term for job post name and description - **ordering**: Field to order by (with optional - prefix for desc) - **position_name__icontains**: Filter by position name (case-insensitive) - **created_at__gte**: Filter by creation date (greater than or equal, dd-MM-yyyy) - **created_at__lte**: Filter by creation date (less than or equal, dd-MM-yyyy) - **country__icontains**: Filter by country (case-insensitive) - **city__icontains**: Filter by city (case-insensitive) - **organization__in**: Filter by organization names (comma-separated) - **external_job_id**: Filter by job id
+- [List Job Posts](https://developers.manatal.com/reference/get_career_page_job_posts_open_v1_career_pages__client_slug__job_posts_get.md): Get paginated list of published job posts for a career page by client slug.  - **client_slug**: Domain slug of the career page - **search**: Search term for job post name and description -…
+
+## API Reference: Manatal Open API
 - [/candidates/](https://developers.manatal.com/reference/candidates_list.md): Retrieve all candidates ordered alphabetically.
 - [/candidates/](https://developers.manatal.com/reference/candidates_create.md): Create a new candidate.
 - [/candidates/{candidate_pk}/activities/](https://developers.manatal.com/reference/candidates_activities_list.md): An API endpoint that allows activities to be viewed, deleted or updated.
@@ -173,6 +179,8 @@ Append .md to any documentation page URL to get its markdown version.
 - [/skills/](https://developers.manatal.com/reference/skills_create.md): Bulk create client-only skills for the authenticated client. Accepts up to 50 skill names per request. Created skills are unverified and are linked only to the client's account.
 - [/users/](https://developers.manatal.com/reference/users_list.md): Retrieve all users ordered alphabetically.
 - [/users/{id}/](https://developers.manatal.com/reference/users_read.md): Retrieve a user by id.
+
+## API Reference: Manahook
 - [Get All Webhooks](https://developers.manatal.com/reference/get_all_webhooks_v1_webhooks__get.md): List all active webhooks
 - [Create Webhook](https://developers.manatal.com/reference/create_webhook_v1_webhooks__post.md): Register a new webhook
 - [Verify Connection](https://developers.manatal.com/reference/verify_connection_v1_webhooks_verify__post.md): Verify webhook connection
@@ -180,5 +188,5 @@ Append .md to any documentation page URL to get its markdown version.
 - [Delete Webhook](https://developers.manatal.com/reference/delete_webhook_v1_webhooks__id___delete.md): Delete specific registered webhook
 - [Update Webhook](https://developers.manatal.com/reference/update_webhook_v1_webhooks__id___patch.md): Modify specific registered webhooks action, model or url
 
-## Changelog
+## Announcements
 - [Release of the Career Page Public API](https://developers.manatal.com/changelog/release-of-the-career-page-public-api.md)

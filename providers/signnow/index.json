@@ -129,7 +129,7 @@
      },
      "folder_id": {
       "type": "string",
-      "description": "An ID of the folder where the documents should be stored. To find the ID, use [`GET /user/folder`](/docs/folder/operations/get-all-folders)"
+      "description": "ID of the folder to store the documents in. To find the ID, use [`GET /user/folder`](/docs/folder/operations/get-all-folders)."
      },
      "subject": {
       "type": "string",
@@ -145,7 +145,7 @@
      },
      "signature_type": {
       "type": "string",
-      "description": "Type of QES signature requested from signers. Possible values: `eideasy`, `eideasy-pdf`, and `nom151`. To use it, a user must be a member of an organization with QES settings enabled.For more information, see [QES user guide](/docs/qualified-electronic-signature)"
+      "description": "Type of QES signature requested from signers. Possible values: `eideasy`, `eideasy-pdf`, `nom151`. Available to members of an organization with QES settings enabled. For more information, see the [QES user guide](/docs/qualified-electronic-signature)."
      }
     },
     "required": [
@@ -2792,7 +2792,7 @@
   {
    "slug": "signnow.get_document",
    "name": "Get document",
-   "description": "This endpoint returns details of a specific document. The **Document** object contains: * Metadata: file name, size, extension, and ID * Fields, texts, checks, and signatures * Invites and their statuses (available statuses are: `created`, `pending`, `fulfilled`, `canceled`, `skipped`) * Roles: - Recipients with a sign action appear in the `roles` array. - Recipients with an approve action appear ",
+   "description": "This endpoint allows API users to retrieve the details of a document. The **Document** object contains: * Metadata: file name, size, extension, and ID * Fields, texts, checks, and signatures * Invites and their statuses (available statuses are: `created`, `pending`, `fulfilled`, `canceled`, `skipped`) * Roles: - Recipients with a sign action appear in the `roles` array. - Recipients with an approv",
    "input": {
     "type": "object",
     "properties": {
@@ -2893,7 +2893,7 @@
   {
    "slug": "signnow.get_document_group_info_v2",
    "name": "Get document group info (v 2)",
-   "description": "This endpoint allows API users to retrieve detailed information about a specific document group, including its documents, assigned roles, field and FreeForm invites, share info, owner details, and originator organization settings. Available to the document group owner and to any user invited on any step, regardless of the current invite or step status.",
+   "description": "This endpoint allows API users to retrieve detailed information about a specific document group, including its documents, assigned roles, field and FreeForm invites, share info, owner details, and originator organization settings. Available to the document group owner and to any user invited on any step, regardless of the current invite or step status. **Notes** * Use the `include` query parameter",
    "input": {
     "type": "object",
     "properties": {
@@ -2904,6 +2904,30 @@
      "include=reminder": {
       "type": "string",
       "description": "If used, the response includes `general_expiration_time`, `general_expiration_days`, and `general_reminder` \u2014 defaults applied to all recipients in the invite."
+     },
+     "include=documents.fields": {
+      "type": "string",
+      "description": "If used, each item in `documents` contains a `fields` array with the fields of that document."
+     },
+     "include=documents.freeform_invites": {
+      "type": "string",
+      "description": "If used, each item in `documents` contains a `freeform_invites` array with the FreeForm invites sent for that document."
+     },
+     "include=documents.signatures": {
+      "type": "string",
+      "description": "If used, each item in `documents` contains a `signatures` array with the signatures added to that document."
+     },
+     "include=entity_labels": {
+      "type": "string",
+      "description": "If used, the response contains `entity_labels`: the labels assigned to the document group."
+     },
+     "include=origin_dgt": {
+      "type": "string",
+      "description": "If used, the response contains `origin_dgt`: the document group template the document group was created from."
+     },
+     "include=recently_used": {
+      "type": "string",
+      "description": "If used, the response contains `recently_used`: the Unix timestamp of the last activity on the document group."
      },
      "document_group_id": {
       "type": "string",
@@ -2922,7 +2946,13 @@
     ],
     "query": [
      "include=document_group_attributes",
-     "include=reminder"
+     "include=reminder",
+     "include=documents.fields",
+     "include=documents.freeform_invites",
+     "include=documents.signatures",
+     "include=entity_labels",
+     "include=origin_dgt",
+     "include=recently_used"
     ],
     "header": [],
     "body": [],
@@ -2996,6 +3026,40 @@
     "query": [
      "per_page",
      "page"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "signnow.get_document_group_template_info",
+   "name": "Get doc group template info",
+   "description": "This endpoint allows API users to retrieve information about a specific document group template, including its documents, the roles assigned to each document, and, optionally, the fields in each document. Available to the document group template owner and to users the template is shared with. **Notes** * Use the `include` query parameter to add optional data to the response. Unknown values are ign",
+   "input": {
+    "type": "object",
+    "properties": {
+     "include=documents.fields": {
+      "type": "string",
+      "description": "If used, each item in `documents` contains a `fields` array with the fields of that document."
+     },
+     "document_group_template_id": {
+      "type": "string",
+      "description": "ID of the document group template."
+     }
+    },
+    "required": [
+     "document_group_template_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.signnow.com/v2/document-group-templates/{document_group_template_id}",
+    "path": [
+     "document_group_template_id"
+    ],
+    "query": [
+     "include=documents.fields"
     ],
     "header": [],
     "body": [],
@@ -3193,21 +3257,21 @@
   {
    "slug": "signnow.get_folder_by_id",
    "name": "Get folder by id",
-   "description": "Returns all details of a specific folder including an array of all documents in that folder. Adjust the response using query parameters.",
+   "description": "This endpoint allows API users to retrieve the details of a folder, including its subfolders and the documents it contains. Use query parameters to filter, sort, and paginate the document list. **Notes** * `total_documents` is the total number of documents in the folder. The `documents` array contains only the page selected by `limit` and `offset`. * To include document group templates, set `entit",
    "input": {
     "type": "object",
     "properties": {
      "folder_id": {
       "type": "string",
-      "description": ""
+      "description": "ID of the folder to return."
      },
      "filter-values": {
       "type": "string",
-      "description": "If `filters=signing-status`, possible values are: `signed`, `pending`, `waiting-for-me`, `waiting-for-others`, `unsent`, `expired`.If `filters=documents-created`, must be a UNIX timestamp and the documents that were created after this date are returned.If `filters=documents-updated`, must be a UNIX timestamp and the documents that were updated after this date are returned."
+      "description": "Value for the filter set in `filters`. For `filters=signing-status`, one of: `signed`, `pending`, `waiting-for-me`, `waiting-for-others`, `unsent`, `expired`. For `filters=documents-created` or `filters=documents-updated`, a Unix timestamp: the response includes documents created or updated after this time."
      },
      "sortby": {
       "type": "string",
-      "description": "Sort by created date, updated date, or document name.Possible values: `updated`, `created`, `document-name`."
+      "description": "Field to sort documents by. Possible values: `updated`, `created`, `document-name`."
      },
      "order": {
       "type": "string",
@@ -3215,29 +3279,29 @@
      },
      "offset": {
       "type": "integer",
-      "description": "Display documents from this position (by skipping this number of documents starting from the first one)."
+      "description": "Number of documents to skip before the returned page starts."
      },
      "limit": {
       "type": "integer",
-      "description": "Maximum number of documents to return."
+      "description": "Maximum number of documents to return. Max: `100`."
      },
      "entity_type": {
       "type": "string",
-      "description": "Defines what entities should be in the response.Possible values:- `document-all` (separate documents and documents from doc groups)- `all` (documents and doc groups)- `document` (documents that are not in doc groups)- `document-group` (doc groups only)"
+      "description": "Entities to include in the response. Possible values: `document-all` (documents, including documents in document groups), `document` (documents that aren't in document groups), `document-group` (document groups only), `template` (templates only), `dgt` (document group templates only), `all` (documents and document groups, or templates and document group templates in a templates folder)."
      },
      "entity_labels": {
       "type": "string",
-      "description": "Filters the documents or document groups in the response.Possible values: `declined` (the invite was declined), `undelivered` (the invite email wasn't delivered). Can be used at the same time."
+      "description": "Label to filter documents and document groups by. Possible values: `declined` (the invite was declined), `undelivered` (the invite email wasn't delivered). To use both, separate them with a comma: `declined,undelivered`."
      },
      "filters": {
       "type": "string",
-      "description": "Filter documents by status, created date, or updated date.Possible values: `signing-status`, `documents-created`, `documents-updated`. Must be used with the `filter-values` parameter. Filters by created date and created date exclude templates."
+      "description": "Filter to apply to the document list. Possible values: `signing-status`, `documents-created`, `documents-updated`. Use with `filter-values`. The `documents-created` and `documents-updated` filters exclude templates."
      },
      "include_documents_subfolders": {
       "type": "boolean",
       "description": "Whether to include subfolders to the response. Allowed values: `1`, `0`."
      },
-     "with_team_documents ": {
+     "with_team_documents": {
       "type": "boolean",
       "description": "Whether to display Team Documents folders."
      },
@@ -3266,7 +3330,7 @@
      "entity_labels",
      "filters",
      "include_documents_subfolders",
-     "with_team_documents ",
+     "with_team_documents",
      "only_favorites"
     ],
     "header": [],
@@ -6131,39 +6195,39 @@
     "properties": {
      "filters:name ": {
       "type": "string",
-      "description": "Searches in documents by Document name. Example: `?filters=[{\u201cname\u201d:{\u201ctype\": \"=\", \"value\u201d:\u201dsample name\u201d}}]`"
+      "description": "Searches documents by document name. Example: `?filters=[{\"name\":{\"type\":\"=\",\"value\":\"sample name\"}}]`"
      },
      "filters:signer ": {
       "type": "string",
-      "description": "Searches in documents by Signer email. Example: `?filters=[{\"signer\":{\"type\": \"=\", \"value\":\"signer%40email.com\u201d}}]`"
+      "description": "Searches documents by signer email. Example: `?filters=[{\"signer\":{\"type\":\"=\",\"value\":\"signer%40email.com\"}}]`"
      },
      "filters:owner": {
       "type": "string",
-      "description": "Searches in documents by Owner email. Example: `?filters=[{\"owner\":{\"type\": \"=\", \"value\u201d:\u201downer%40email.com\u201d}}]`"
+      "description": "Searches documents by owner email. Example: `?filters=[{\"owner\":{\"type\":\"=\",\"value\":\"owner%40email.com\"}}]`"
      },
      "filters:text ": {
       "type": "string",
-      "description": "Searches in documents by Document text fields. Example: `?filters=[{\u201ctext\u201d:{\u201ctype\": \"=\", \"value\u201d:\u201dSome sample text\u201d}}]`"
+      "description": "Searches documents by the text in their text fields. Example: `?filters=[{\"text\":{\"type\":\"=\",\"value\":\"Some sample text\"}}]`"
      },
      "filters:status": {
       "type": "string",
-      "description": "Searches in documents by Document status. Possible values: `waiting_for_signing`, `signed` or `pending_payment` Example: `?filters=[{\"status\u201d:{\u201ctype\": \"=\", \"value\":\"signed\u201d}}]`"
+      "description": "Searches documents by document status. Possible values: `waiting_for_signing`, `signed`, `pending_payment`. Example: `?filters=[{\"status\":{\"type\":\"=\",\"value\":\"signed\"}}]`"
      },
      "page": {
       "type": "number",
-      "description": "Page number of searched results. Allowed values: any positive integer starting from 1. Example: `?page=3`"
+      "description": "Page number of the search results. Min: `1`. Example: `?page=3`"
      },
      "sort:name": {
       "type": "string",
-      "description": "Sorts all documents by Document name. Possible values: `asc`, `desc`. Example: `?sort[name]=asc`"
+      "description": "Sorts documents by document name. Possible values: `asc`, `desc`. Example: `?sort[name]=asc`"
      },
      "sort:added": {
       "type": "string",
-      "description": "Sorts all documents by date (Unix timestamp) they were added. Possible values: `asc`, `desc`. Example: `?sort[added]=asc`"
+      "description": "Sorts documents by the date they were added. Possible values: `asc`, `desc`. Example: `?sort[added]=asc`"
      },
      "sort:changed": {
       "type": "string",
-      "description": "Sorts all documents by date (Unix timestamp) they were changed. Possible values: `asc`, `desc`. Example: `?sort[changed]=asc`"
+      "description": "Sorts documents by the date they were last changed. Possible values: `asc`, `desc`. Example: `?sort[changed]=asc`"
      },
      "Content-Type": {
       "type": "string",
@@ -6171,7 +6235,7 @@
      },
      "per_page": {
       "type": "number",
-      "description": "Number of searched results per page. Allowed values: any positive integer starting from 1. Example: `?per_page=12`"
+      "description": "Number of search results per page. Min: `1`. Example: `?per_page=12`"
      },
      "org_unique_id": {
       "type": "string",
@@ -6593,7 +6657,7 @@
      },
      "sort_by": {
       "type": "string",
-      "description": "Sort documents by either updated date, created date, or document name.Possible values: `updated`, `created`, `document_name`."
+      "description": "Field to sort documents by. Possible values: `updated`, `created`, `document_name`."
      },
      "sort_order": {
       "type": "string",
@@ -6609,11 +6673,11 @@
      },
      "filters[signing_status]": {
       "type": "string",
-      "description": "Filter documents by status.Possible values: `waiting-for-me`, `waiting-for-others`, `signed`, `pending`, `has-invites`, `expired`."
+      "description": "Signing status to filter documents by. Possible values: `waiting-for-me`, `waiting-for-others`, `signed`, `pending`, `has-invites`, `expired`."
      },
      "filters[entity_labels]": {
       "type": "string",
-      "description": "Get declined and/or undelivered documents.Possible values: `declinied`, `undelivered`.Can be used at the same time."
+      "description": "Label to filter documents by. Possible values: `declined` (the invite was declined), `undelivered` (the invite email wasn't delivered). You can use both values together."
      },
      "search_key": {
       "type": "string",
@@ -6621,11 +6685,11 @@
      },
      "search_by": {
       "type": "string",
-      "description": "Search by a specific field.Possible values: `document-name`, `signer-email`, `inviter-email`, `document-text`, `document-id`."
+      "description": "Field to search by. Possible values: `document-name`, `signer-email`, `inviter-email`, `document-text`, `document-id`."
      },
      "exclude": {
       "type": "string",
-      "description": "Documents that are in the document groups are excluded from the response.Possible value: `doc-from-dg`."
+      "description": "Entities to exclude from the response. Possible value: `doc-from-dg` (documents that are in document groups)."
      },
      "template_id": {
       "type": "string",
@@ -7111,7 +7175,7 @@
   {
    "slug": "signnow.post_api_v2_events",
    "name": "Create event subscription",
-   "description": "Allows to subscribe an external service(callback_url) to a specific event of user or document",
+   "description": "Allows to subscribe an external service(callback_url) to a specific event of user or document > [!NOTE] > For the payload your service receives for each event, see the response examples in [Get callback info by ID](/docs/callbacks-info/operations/get-v2-dashboard-event-subscriptions-subscription-id-callbacks).",
    "input": {
     "type": "object",
     "properties": {
@@ -8332,7 +8396,7 @@
      },
      "data": {
       "type": "string",
-      "description": "A JSON string containing variable mappings. Keys correspond to tag names in the `.docx` template; values are the pre-filled text for each tag. Supports arrays of objects for repeating sections (e.g., tables, lists). Request example for generating a document with a Products table: `{\"Products\": [{\"ItemPrice\": \"8\", \"ItemName\": \"T-shirt\", \"ItemQuantity\": \"10\"}, {\"ItemPrice\": \"4\", \"ItemName\": \"Belt\", "
+      "description": "A JSON string containing variable mappings. Keys correspond to tag names in the `.docx` template; values are the pre-filled text for each tag. Supports arrays of objects for repeating sections, such as tables and lists. Example for a document with a Products table: `{\"Products\": [{\"ItemPrice\": \"8\", \"ItemName\": \"T-shirt\", \"ItemQuantity\": \"10\"}, {\"ItemPrice\": \"4\", \"ItemName\": \"Belt\", \"ItemQuantity\":"
      },
      "single_document": {
       "type": "boolean",
@@ -8895,14 +8959,10 @@
   {
    "slug": "signnow.post_v2_document_groups_document_group_id_invite_document_group_invite_id_correction",
    "name": "Initiate dg correction",
-   "description": "This endpoint allows users to initiate document group correction. After sending it, users can [change](/docs/document-group/operations/put-v2-document-groups-document-group-id-invite-document-group-invite-id-correction) the signers of the document group and the invite settings. Document group cannot be corrected in the following cases: * Invite is not in pending status * Document group contains mu",
+   "description": "This endpoint allows API users to put a document group invite into correction mode. After that, [complete the correction](/docs/document-group/operations/put-v2-document-groups-document-group-id-invite-document-group-invite-id-correction) to change the signers, documents, and invite settings. A correction can be initiated after some recipients have already signed. When the correction starts: * Inv",
    "input": {
     "type": "object",
     "properties": {
-     "Content-Type": {
-      "type": "string",
-      "description": "application/json"
-     },
      "dg_id": {
       "type": "string",
       "description": "ID of the document group."
@@ -8930,9 +8990,7 @@
      "dg_invite_id"
     ],
     "query": [],
-    "header": [
-     "Content-Type"
-    ],
+    "header": [],
     "body": [
      "client_timestamp"
     ],
@@ -11926,7 +11984,7 @@
   {
    "slug": "signnow.put_v2_document_groups_document_group_id_invite_document_group_invite_id_correction",
    "name": "Complete dg correction",
-   "description": "This endpoint allows users to complete document group correction. Users can change the following: * Change signers of the document group * Update the invite settings * Reorder and remove documents that were not signed yet * Add new documents to the document group Before completing the correction, users must [initiate](/docs/document-group/operations/post-v2-document-groups-document-group-id-invite",
+   "description": "This endpoint allows API users to complete a document group correction and apply the new signers, documents, and invite settings. With this endpoint, you can: * Change the signers and viewers of the document group * Update the invite settings * Reorder and remove documents that were not signed yet * Add new documents to the document group Before completing the correction, [initiate](/docs/document",
    "input": {
     "type": "object",
     "properties": {

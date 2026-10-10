@@ -2,7 +2,7 @@
 --
 -- GENERATED from https://docs.signnow.com/api/openapi.json
 -- Published on the vendor's own documentation site (https://docs.signnow.com).
--- 353 operations · do not edit
+-- 354 operations · do not edit
 --
 -- The credential is never in here. `auth.env` names an environment variable; the value
 -- stays in the environment, which is what makes this file safe to publish.
@@ -112,16 +112,17 @@ return {
     ["signnow.get_document"] = { method = "GET", url = "https://api.signnow.com/document/{document_id}", path = {"document_id"}, query = {"include=integration_objects", "include=document_attributes"} },
     ["signnow.get_document_document_id_metadata"] = { method = "GET", url = "https://api.signnow.com/document/{document_id}/metadata", path = {"document_id"}, header = {"Content-Type"} },
     ["signnow.get_document_download_link"] = { method = "POST", url = "https://api.signnow.com/document/{document_id}/download/link", path = {"document_id"} },
-    ["signnow.get_document_group_info_v2"] = { method = "GET", url = "https://api.signnow.com/v2/document-groups/{document_group_id}", path = {"document_group_id"}, query = {"include=document_group_attributes", "include=reminder"} },
+    ["signnow.get_document_group_info_v2"] = { method = "GET", url = "https://api.signnow.com/v2/document-groups/{document_group_id}", path = {"document_group_id"}, query = {"include=document_group_attributes", "include=reminder", "include=documents.fields", "include=documents.freeform_invites", "include=documents.signatures", "include=entity_labels", "include=origin_dgt", "include=recently_used"} },
     ["signnow.get_document_group_invite"] = { method = "GET", url = "https://api.signnow.com/documentgroup/{document_group_id}/groupinvite/{invite_id}", path = {"document_group_id", "invite_id"} },
     ["signnow.get_document_group_roles"] = { method = "GET", url = "https://api.signnow.com/v2/document-groups/{document_group_id}/roles", path = {"document_group_id"}, query = {"per_page", "page"} },
+    ["signnow.get_document_group_template_info"] = { method = "GET", url = "https://api.signnow.com/v2/document-group-templates/{document_group_template_id}", path = {"document_group_template_id"}, query = {"include=documents.fields"} },
     ["signnow.get_document_historyfull"] = { method = "GET", url = "https://api.signnow.com/document/{document_id}/historyfull", path = {"document_id"} },
     ["signnow.get_document_roles"] = { method = "GET", url = "https://api.signnow.com/v2/documents/{document_id}/roles", path = {"document_id"}, query = {"per_page", "page"} },
     ["signnow.get_documentgroup"] = { method = "GET", url = "https://api.signnow.com/documentgroup/{document_group_id}", path = {"document_group_id"} },
     ["signnow.get_documentgroup_document_group_id_historyfull"] = { method = "GET", url = "https://api.signnow.com/documentgroup/{document_group_id}/historyfull", path = {"document_group_id"}, header = {"Content-Type"} },
     ["signnow.get_emails_invite_step"] = { method = "GET", url = "https://api.signnow.com/documentgroup/{document_group_id}/groupinvite/{invite_id}/invitestep/{step_id}/emails", path = {"document_group_id", "invite_id", "step_id"} },
     ["signnow.get_event_subscription"] = { method = "GET", url = "https://api.signnow.com/event_subscription" },
-    ["signnow.get_folder_by_id"] = { method = "GET", url = "https://api.signnow.com/folder/{folder_id}", path = {"folder_id"}, query = {"filter-values", "sortby", "order", "offset", "limit", "entity_type", "entity_labels", "filters", "include_documents_subfolders", "with_team_documents ", "only_favorites"} },
+    ["signnow.get_folder_by_id"] = { method = "GET", url = "https://api.signnow.com/folder/{folder_id}", path = {"folder_id"}, query = {"filter-values", "sortby", "order", "offset", "limit", "entity_type", "entity_labels", "filters", "include_documents_subfolders", "with_team_documents", "only_favorites"} },
     ["signnow.get_oauth2_token"] = { method = "GET", url = "https://api.signnow.com/oauth2/token" },
     ["signnow.get_oauth2_userauth"] = { method = "GET", url = "https://api.signnow.com/oauth2/userauth", query = {"response_type", "redirect_uri", "client_id"} },
     ["signnow.get_organizations_org_id_merchantaccount_merchant_account_id"] = { method = "GET", url = "https://api.signnow.com/organizations/{org_id}/merchantaccount/{merchant_account_id}", path = {"org_id", "merchant_account_id"} },
@@ -266,7 +267,7 @@ return {
     ["signnow.post_v2_document_groups_document_group_id_free_form_invites"] = { method = "POST", url = "https://api.signnow.com/v2/document-groups/{document_group_id}/free-form-invites", path = {"document_group_id"}, body = {"cc", "to", "message", "subject", "redirect_uri", "client_timestamp"} },
     ["signnow.post_v2_document_groups_document_group_id_free_form_invites_dg_freeform_invite_id_cancel"] = { method = "POST", url = "https://api.signnow.com/v2/document-groups/{document_group_id}/free-form-invites/{dg_freeform_invite_id}/cancel", path = {"document_group_id", "dg_freeform_invite_id"}, body = {"reason", "client_timestamp"} },
     ["signnow.post_v2_document_groups_document_group_id_free_form_invites_dg_freeform_invite_id_users_user_id_cancel"] = { method = "POST", url = "https://api.signnow.com/v2/document-groups/{document_group_id}/free-form-invites/{dg_freeform_invite_id}/users/{user_id}/cancel", path = {"document_group_id", "dg_freeform_invite_id", "user_id"}, body = {"reason", "client_timestamp"} },
-    ["signnow.post_v2_document_groups_document_group_id_invite_document_group_invite_id_correction"] = { method = "POST", url = "https://api.signnow.com/v2/document-groups/{dg_id}/invite/{dg_invite_id}/correction", path = {"dg_id", "dg_invite_id"}, header = {"Content-Type"}, body = {"client_timestamp"} },
+    ["signnow.post_v2_document_groups_document_group_id_invite_document_group_invite_id_correction"] = { method = "POST", url = "https://api.signnow.com/v2/document-groups/{dg_id}/invite/{dg_invite_id}/correction", path = {"dg_id", "dg_invite_id"}, body = {"client_timestamp"} },
     ["signnow.post_v2_document_groups_document_group_id_invites_document_group_invite_id_full_decline"] = { method = "POST", url = "https://api.signnow.com/v2/document-groups/{document_group_id}/invites/{document_group_invite_id}/full-decline", path = {"document_group_id", "document_group_invite_id"}, body = {"decline", "client_timestamp"} },
     ["signnow.post_v2_document_groups_document_group_id_move"] = { method = "POST", url = "https://api.signnow.com/v2/document-groups/{document_group_id}/move", path = {"document_group_id"}, header = {"Content-Type"}, body = {"folder_id", "with_shared_documents"} },
     ["signnow.post_v2_document_groups_document_group_uid_document_group_template"] = { method = "POST", url = "https://api.signnow.com/v2/document-groups/{doc_group_id}/document-group-template", path = {"doc_group_id"}, body = {"name", "folder_id"} },

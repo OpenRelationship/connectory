@@ -9496,7 +9496,7 @@
      },
      "useCache": {
       "type": "boolean",
-      "description": "If `true` or `1`, the system will use a cache to speed up the build process. By default, cache is not used."
+      "description": "If `true` or `1`, the system will use a cache to speed up the build process. Pass `false` or `0` to build without the cache. By default, cache is used."
      },
      "betaPackages": {
       "type": "boolean",
@@ -10734,7 +10734,7 @@
      },
      "idempotency-key": {
       "type": "string",
-      "description": "Always pass a unique idempotency key (any unique string) for each charge to avoid double charging in case of retries or network errors."
+      "description": "Always pass a unique idempotency key (any unique string) for each charge to avoid double charging in case of retries or network errors. The key expires 3 minutes after the charge, so a later request with the same key creates a new charge."
      },
      "eventName": {
       "type": "string",
@@ -10748,6 +10748,7 @@
     "required": [
      "count",
      "eventName",
+     "idempotency-key",
      "runId"
     ]
    },

@@ -33,5 +33,5 @@ vouches for**: read it, then read their reference.
  - [Promise-Based API (BETA)](https://docs.dixa.io/docs/dixamessenger/web/promisebasedapi.md)
  - [Exports API](https://docs.dixa.io/openapi/exports-api.md): Welcome to the Dixa Exports API, which allows you to seamlessly stream up-to-date conversation and message data from the Dixa platform. This can be used to pull Dixa data into your own system, for warehousing purposes. For advanced analytics, BI reporting and audit purposes, have a look at our [Analytics API](https://docs.dixa.io/openapi/dixa-api/v1/tag/Analytics/).
  - [Integrations API [deprecated]](https://docs.dixa.io/openapi/integrations-api.md): Welcome to the Dixa integrations API. Remember to set your credentials using the 'Authorize' button. Note that this API is deprecated and equivalent functionality can be found in Dixa API.
- - [Dixa API](https://docs.dixa.io/openapi/dixa-api/beta.md)
  - [Dixa API](https://docs.dixa.io/openapi/dixa-api/v1.md)
+ - [Dixa API](https://docs.dixa.io/openapi/dixa-api/beta.md)

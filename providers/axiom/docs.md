@@ -38,6 +38,7 @@ Every page below is served as plain Markdown at the linked `.md` URL. The entire
 - [Configure Axiom organization](https://axiom.co/docs/reference/organization-settings.md): This section explains how to configure your Axiom organization.
 - [Usage and billing](https://axiom.co/docs/reference/usage-billing.md): This section explains how to manage usage and billing within your Axiom organization.
 - [Configure user profile](https://axiom.co/docs/reference/profile.md): This section explains how to configure your user profile in Axiom settings.
+- [MCP tools reference](https://axiom.co/docs/console/intelligence/mcp-server/tools.md): Tools and prompts exposed by Axiom MCP Server, with example prompts for AI agents.
 - [Set query cost limits for AI agents](https://axiom.co/docs/console/intelligence/query-cost-limits.md): This page explains how to cap hourly and daily query costs on API tokens and roles so that AI agents can query your data autonomously without creating unexpected costs.
 - [Agent-created organizations](https://axiom.co/docs/console/intelligence/agent-created-orgs.md): This page explains how AI agents can provision a temporary Axiom organization with a single API request, and how a human can later claim the organization and keep everything the agent built.
 - [Install and configure the Axiom for Splunk app](https://axiom.co/docs/splunk/app/setup.md): Learn how to install the Axiom for Splunk app from Splunkbase, connect it to Axiom with an API token, and run your first search.
@@ -87,6 +88,7 @@ Every page below is served as plain Markdown at the linked `.md` URL. The entire
 - [Send logs from Laravel to Axiom](https://axiom.co/docs/guides/send-logs-from-laravel.md): This guide demonstrates how to configure logging in a Laravel app to send logs to Axiom
 - [Send logs from a Ruby on Rails app using Faraday](https://axiom.co/docs/guides/send-logs-from-ruby-on-rails.md): This guide provides step-by-step instructions on how to send logs from a Ruby on Rails app to Axiom using the Faraday library.
 - [Send data from Convex to Axiom](https://axiom.co/docs/send-data/convex.md): This guide explains how to send data from Convex to Axiom.
+- [Send data from Cribl to Axiom](https://axiom.co/docs/send-data/cribl.md): Learn how to configure Cribl Stream to forward data to Axiom using the Webhook or Syslog destination, and how to send OCSF security data with the OCSF for Axiom pack.
 - [Send data from Elastic Bulk API to Axiom](https://axiom.co/docs/send-data/elasticsearch-bulk-api.md): This page explains how to get started with migrating from Elasticsearch to Axiom using the Elastic Bulk API
 - [Send data from Kubernetes Cluster to Axiom](https://axiom.co/docs/send-data/kubernetes.md): This step-by-step guide helps you ingest logs from your Kubernetes cluster into Axiom using the DaemonSet configuration.
 - [Send data from Logstash to Axiom](https://axiom.co/docs/send-data/logstash.md): This step-by-step guide helps you collect, and parse logs from your logstash processing pipeline into Axiom

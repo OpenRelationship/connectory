@@ -72,6 +72,28 @@ vouches for**: read it, then read their reference.
 - [Marking Incidents as Duplicate](https://docs.rootly.com/incidents/incident-operations/marking-as-duplicate.md): Mark incidents as duplicates in Rootly to consolidate response efforts via the web UI, Slack, or API, with auto-cancellation support and parent linking.
 - [Scheduling Maintenance Incidents](https://docs.rootly.com/incidents/incident-operations/scheduling-a-maintenance-incident.md): Learn how to schedule and manage maintenance incidents for planned service interruptions, including Slack channel creation and status page integration.
 
+## Atlas
+
+### AI Connectors
+- [Azure Resource Manager](https://docs.rootly.com/ai/connectors/azure-resource-manager.md): Connect Rootly AI to Microsoft's hosted Azure Resource Manager MCP endpoint for read-only resource inventory and deployment status.
+- [Datadog MCP Connector](https://docs.rootly.com/ai/connectors/datadog.md): Connect Rootly AI to Datadog through read-only OAuth, with API and application keys available as a fallback.
+- [New Relic AI Connector](https://docs.rootly.com/ai/connectors/new-relic.md): Connect Rootly AI to New Relic — entities, NRQL queries, alerts, incidents, logs, and golden metrics — with OAuth or a user API key.
+
+### Private Agents (Early Preview)
+- [Private Agent Limits (Early Access)](https://docs.rootly.com/private-agent-limits.md): Reference for Private Agent limits across Kubernetes, observability, Kafka, Redis, Valkey, databases, internal MCP and HTTP providers, and AI context.
+
+## AI SRE
+
+## Rootly AI
+
+### AI in Slack
+
+### AI During Incidents
+
+### Instructions
+
+### AI Privacy & Security
+
 ## Retrospectives
 
 ### Collaborative Editor
@@ -82,22 +104,10 @@ vouches for**: read it, then read their reference.
 ### AI in Retrospectives
 
 ## Status Pages
+- [Driving a Status Page from the API](https://docs.rootly.com/configuration/status-page-write-api.md): Create, update, and delete status page events programmatically with the Rootly API — post an update, revise it, and remove one posted in error.
 - [Status Page Public API](https://docs.rootly.com/configuration/status-page-public-api.md): Access status and incident information programmatically through public JSON API endpoints exposed on your status page custom domain.
 
 ## Communications
-
-## Rootly AI
-
-### AI in Slack
-
-### AI During Incidents
-
-### AI Connectors
-- [Azure Resource Manager (MCP)](https://docs.rootly.com/ai/connectors/azure-resource-manager.md): Connect Rootly AI to Microsoft's hosted Azure Resource Manager MCP endpoint for read-only resource inventory and deployment status.
-- [Datadog MCP Connector](https://docs.rootly.com/ai/connectors/datadog.md): Connect Rootly AI to Datadog through read-only OAuth, with API and application keys available as a fallback.
-- [New Relic AI Connector](https://docs.rootly.com/ai/connectors/new-relic.md): Connect Rootly AI to New Relic — entities, NRQL queries, alerts, incidents, logs, and golden metrics — with OAuth or a user API key.
-
-### AI Privacy & Security
 
 ## Workflows & Automation
 
@@ -145,15 +155,13 @@ vouches for**: read it, then read their reference.
 ### Services & Functionalities
 
 ### Catalog
+- [Getting Data Into the Catalog](https://docs.rootly.com/catalog-getting-data-in.md): Compare the ways to populate a Rootly catalog — manual entry, the bulk API, and Catalog Sync — and choose the one that matches where your data already lives.
 
 ### Webhooks
 - [Outgoing Webhooks](https://docs.rootly.com/configuration/webhooks.md): Send real-time event notifications from Rootly to any external HTTP endpoint as incidents, alerts, pulses, and workflows progress through their lifecycles.
 - [Event Payloads](https://docs.rootly.com/configuration/event-payloads.md): Reference documentation for webhook event payload structures used in Rootly integrations and custom automations, including incident, alert, and pulse events.
 
 ### Edge Connectors
-
-### Private Agent
-- [Private Agent Limits (Early Access)](https://docs.rootly.com/private-agent-limits.md): Reference for Private Agent execution, Kubernetes, Prometheus, Loki, MCP, and AI context limits.
 
 ## Integrations
 

@@ -2,7 +2,7 @@
 --
 -- GENERATED from https://api.ocean.io/openapi.json
 -- Published on the vendor's own documentation site (https://api.ocean.io).
--- 24 operations · do not edit
+-- 36 operations · do not edit
 --
 -- The credential is never in here. `auth.env` names an environment variable; the value
 -- stays in the environment, which is what makes this file safe to publish.
@@ -23,6 +23,7 @@ return {
   config = {},
   headers = {},
   operations = {
+    ["ocean-io.add_list_items"] = { method = "POST", url = "https://api.ocean.io/v2/exclusion-lists/items", query = {"apiToken"}, header = {"x-api-token"}, body = {"type", "listId", "items"} },
     ["ocean-io.add_marked_domains"] = { method = "POST", url = "https://api.ocean.io/v2/segmentation/{segmentation_id}/markDomains", path = {"segmentation_id"}, query = {"apiToken"}, header = {"x-api-token"}, body = {"domains", "type"} },
     ["ocean-io.attribute_segmentation_domains"] = { method = "POST", url = "https://api.ocean.io/v2/segmentation/{segmentation_id}/attribute-domains", path = {"segmentation_id"}, query = {"apiToken"}, header = {"x-api-token"}, body = {"domains"} },
     ["ocean-io.auto_complete_company"] = { method = "POST", url = "https://api.ocean.io/v2/autocomplete/companies", query = {"apiToken"}, header = {"x-api-token"}, body = {"name", "countryFilters", "excludeDomains", "forLookalikeSearch"} },
@@ -30,17 +31,28 @@ return {
     ["ocean-io.auto_complete_keywords"] = { method = "POST", url = "https://api.ocean.io/v2/autocomplete/keywords", query = {"apiToken"}, header = {"x-api-token"}, body = {"query", "limit"} },
     ["ocean-io.auto_complete_locations"] = { method = "POST", url = "https://api.ocean.io/v2/autocomplete/locations", query = {"apiToken"}, header = {"x-api-token"}, body = {"query", "limit", "locationType"} },
     ["ocean-io.auto_complete_skills"] = { method = "POST", url = "https://api.ocean.io/v2/autocomplete/skills", query = {"apiToken"}, header = {"x-api-token"}, body = {"query", "limit"} },
+    ["ocean-io.create_exclusion_list"] = { method = "POST", url = "https://api.ocean.io/v2/exclusion-lists", query = {"apiToken"}, header = {"x-api-token"}, body = {"type", "name"} },
     ["ocean-io.create_segmentation"] = { method = "POST", url = "https://api.ocean.io/v2/segmentation", query = {"apiToken"}, header = {"x-api-token"}, body = {"domains", "leadScoringFeatures", "numberOfSegmentsMode", "positiveDomains", "negativeDomains"} },
+    ["ocean-io.delete_exclusion_list"] = { method = "DELETE", url = "https://api.ocean.io/v2/exclusion-lists/{list_id}", path = {"list_id"}, query = {"apiToken"}, header = {"x-api-token"} },
+    ["ocean-io.edit_exclusion_list"] = { method = "PATCH", url = "https://api.ocean.io/v2/exclusion-lists/{list_id}", path = {"list_id"}, query = {"apiToken"}, header = {"x-api-token"}, body = {"name"} },
     ["ocean-io.enrich_companies"] = { method = "POST", url = "https://api.ocean.io/v2/enrich/companies", query = {"apiToken"}, header = {"x-api-token"}, body = {"companyDataMapping", "webhookUrl", "fields"} },
     ["ocean-io.enrich_company"] = { method = "POST", url = "https://api.ocean.io/v2/enrich/company", query = {"apiToken"}, header = {"x-api-token"}, body = {"company", "people", "fields"} },
     ["ocean-io.enrich_people"] = { method = "POST", url = "https://api.ocean.io/v2/enrich/people", query = {"apiToken"}, header = {"x-api-token"}, body = {"peopleDataMapping", "webhookUrl"} },
     ["ocean-io.enrich_person"] = { method = "POST", url = "https://api.ocean.io/v2/enrich/person", query = {"apiToken"}, header = {"x-api-token"}, body = {"person", "company", "revealEmails", "revealPhones"} },
+    ["ocean-io.get_company_posts"] = { method = "GET", url = "https://api.ocean.io/v2/social/company/posts", query = {"linkedinNumID", "linkedinID", "page", "perPage", "apiToken"}, header = {"x-api-token"} },
     ["ocean-io.get_credit_balance"] = { method = "GET", url = "https://api.ocean.io/v2/credits/balance", query = {"apiToken"}, header = {"x-api-token"} },
     ["ocean-io.get_data_fields_public"] = { method = "GET", url = "https://api.ocean.io/v2/data-fields", query = {"apiToken"}, header = {"x-api-token"} },
+    ["ocean-io.get_exclusion_list"] = { method = "GET", url = "https://api.ocean.io/v2/exclusion-lists/{list_id}", path = {"list_id"}, query = {"apiToken"}, header = {"x-api-token"} },
+    ["ocean-io.get_exclusion_lists"] = { method = "GET", url = "https://api.ocean.io/v2/exclusion-lists", query = {"apiToken"}, header = {"x-api-token"} },
+    ["ocean-io.get_person_posts"] = { method = "GET", url = "https://api.ocean.io/v2/social/person/posts", query = {"linkedinEntityID", "linkedinID", "perPage", "paginationToken", "apiToken"}, header = {"x-api-token"} },
+    ["ocean-io.get_post_comments"] = { method = "GET", url = "https://api.ocean.io/v2/social/post/comments", query = {"postUrn", "page", "paginationToken", "perPage", "numReplies", "sortOrder", "apiToken"}, header = {"x-api-token"} },
+    ["ocean-io.get_post_reactions"] = { method = "GET", url = "https://api.ocean.io/v2/social/post/reactions", query = {"postUrn", "page", "paginationToken", "perPage", "reactionType", "apiToken"}, header = {"x-api-token"} },
+    ["ocean-io.get_post_reshares"] = { method = "GET", url = "https://api.ocean.io/v2/social/post/reshares", query = {"postUrn", "page", "perPage", "paginationToken", "apiToken"}, header = {"x-api-token"} },
     ["ocean-io.get_segmentation"] = { method = "GET", url = "https://api.ocean.io/v2/segmentation/{segmentation_id}", path = {"segmentation_id"}, query = {"apiToken"}, header = {"x-api-token"} },
     ["ocean-io.lookup_companies"] = { method = "POST", url = "https://api.ocean.io/v2/lookup/companies", query = {"apiToken"}, header = {"x-api-token"}, body = {"domains", "fields"} },
     ["ocean-io.lookup_people"] = { method = "POST", url = "https://api.ocean.io/v2/lookup/people", query = {"apiToken"}, header = {"x-api-token"}, body = {"linkedinHandles", "oceanIds"} },
     ["ocean-io.preview_search_companies_v3"] = { method = "POST", url = "https://api.ocean.io/v3/search/companies/preview", query = {"apiToken"}, header = {"x-api-token"}, body = {"size", "companiesFilters", "peopleFilters"} },
+    ["ocean-io.remove_exclusion_list_items"] = { method = "POST", url = "https://api.ocean.io/v2/exclusion-lists/{list_id}/items/remove", path = {"list_id"}, query = {"apiToken"}, header = {"x-api-token"}, body = {"type", "items"} },
     ["ocean-io.reveal_emails"] = { method = "POST", url = "https://api.ocean.io/v2/reveal/emails", query = {"apiToken"}, header = {"x-api-token"}, body = {"personIds", "webhookUrl"} },
     ["ocean-io.reveal_phones"] = { method = "POST", url = "https://api.ocean.io/v2/reveal/phones", query = {"apiToken"}, header = {"x-api-token"}, body = {"personIds", "webhookUrl"} },
     ["ocean-io.search_companies_v3"] = { method = "POST", url = "https://api.ocean.io/v3/search/companies", query = {"apiToken"}, header = {"x-api-token"}, body = {"size", "searchAfter", "companiesFilters", "peopleFilters", "fields"} },

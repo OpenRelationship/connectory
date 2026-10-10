@@ -241,7 +241,7 @@ return {
     ["close.phone_numbers_delete"] = { method = "DELETE", url = "https://api.close.com/api/v1/phone_number/{id}/", path = {"id"} },
     ["close.phone_numbers_get"] = { method = "GET", url = "https://api.close.com/api/v1/phone_number/{id}/", path = {"id"}, query = {"_fields"} },
     ["close.phone_numbers_list"] = { method = "GET", url = "https://api.close.com/api/v1/phone_number/", query = {"_limit", "_skip", "_fields", "number", "user_id", "is_group_number", "participant_user_id"} },
-    ["close.phone_numbers_update"] = { method = "PUT", url = "https://api.close.com/api/v1/phone_number/{id}/", path = {"id"}, body = {"forward_to", "forward_to_enabled", "inbound_ring_duration", "label", "participants", "phone_numbers", "press_1_to_accept", "voicemail_greeting_url"} },
+    ["close.phone_numbers_update"] = { method = "PUT", url = "https://api.close.com/api/v1/phone_number/{id}/", path = {"id"}, body = {"forward_to", "forward_to_enabled", "inbound_ring_duration", "label", "participant_groups", "participants", "phone_numbers", "press_1_to_accept", "voicemail_greeting_url"} },
     ["close.pipelines_create"] = { method = "POST", url = "https://api.close.com/api/v1/pipeline/", body = {"name", "statuses"} },
     ["close.pipelines_delete"] = { method = "DELETE", url = "https://api.close.com/api/v1/pipeline/{id}/", path = {"id"} },
     ["close.pipelines_get"] = { method = "GET", url = "https://api.close.com/api/v1/pipeline/{id}/", path = {"id"} },

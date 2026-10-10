@@ -143,6 +143,10 @@ You can subscribe to public Twitter Lists in Reader as if they were an RSS feed.
 ## Does Reader have dark mode?
 Reader has both light mode and dark mode, as well as an "auto" setting to detect the theme of the operating system. You can change the mode at any time from the **Appearance** menu, or you can use the keyboard shortcut `Cmd/Ctrl + Option + T`.
 
+On mobile, tap the icon in the top left of the **Appearance** menu to switch between **Light**, **Auto**, and **Dark**. You can also change it from your account settings, under **Appearance** > **Light mode or dark mode**.
+
+Each mobile [reading theme](#can-i-change-the-reading-theme-or-background-color) has both a light and a dark version, and it follows whichever mode you've chosen.
+
 ## Can I change the app icon?
 If you're using Reader on iOS, you can customize the app icon. To change which icon the app uses, go to **Account settings** > **Change app icon** and select the icon that you prefer.
 
@@ -964,20 +968,4 @@ Filters by whether the document has a public link enabled.
 
 ## Numerical Parameters
 
-These parameters filter results based on parameters that accept numbers.
-
-Numerical parameters are most often useful when combined with the `__lt` or `__gt` [operators](#operators).
-
-### words 
-
-Filters by the number of words in the document.
-
-### progress 
-
-Filters by the reading progress percentage.
-
-### highlights 
-
-Filters by the number of highlights made in the document.
-
-To display all documents with at least one highlight, you can also use `h
+These parameters filter results based on parameters that accept n

@@ -137,7 +137,7 @@ vouches for**: read it, then read their reference.
 
 ## Resources
 
-- [How to Move to Bandwidth’s Voice API Without Missing a Beat](https://www.bandwidth.com/resources/move-to-bandwidth/): Watch this demo of a Bandwidth Voice API migration from Twilio. You’ll see Bandwidth’s Developer Migration Toolkit in action. Real codebase. Real output. Real scope.
+- [How to move to Bandwidth’s Voice API without missing a beat](https://www.bandwidth.com/resources/move-to-bandwidth/): Watch this demo of a Bandwidth Voice API migration from Twilio. You’ll see Bandwidth’s Developer Migration Toolkit in action. Real codebase. Real output. Real scope.
 - [Automated Twilio to Bandwidth Compatibility Check](https://www.bandwidth.com/resources/migrate-from-twilio-voice-bxml-compatibility-check/): Switching from Twilio Voice API? Paste your existing code and instantly see how it maps to Bandwidth BXML, line by line, no guesswork, before you commit.
 - [The Insurance contact center carrier audit](https://www.bandwidth.com/resources/insurance-contact-center-carrier-audit/): Is your voice carrier built for CAT-level surge? Audit your carrier layer across 18 readiness criteria before claims volume spikes. Get the guide.
 - [Voice API Enterprise Scaling Scorecard](https://www.bandwidth.com/resources/voice-api-enterprise-scaling-scorecard/): Use these 13 questions to find out if your Voice API provider can scale with you, or if you're paying for a starter stack you've already outgrown.

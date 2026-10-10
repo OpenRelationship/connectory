@@ -310,6 +310,13 @@
       "type": "string",
       "description": ""
      },
+     "deferred": {
+      "type": [
+       "boolean",
+       "null"
+      ],
+      "description": "If set, the request returns immediately with a `request_id` and the edit is generated in the background. Poll `GET /v1/images/{request_id}` for the result. Only `response_format: \"url\"` is supported in this mode."
+     },
      "image": {
       "type": "string",
       "description": ""
@@ -331,6 +338,10 @@
        "null"
       ],
       "description": "Number of image edits to be generated."
+     },
+     "output": {
+      "type": "string",
+      "description": ""
      },
      "prompt": {
       "type": "string",
@@ -371,10 +382,12 @@
     "header": [],
     "body": [
      "aspect_ratio",
+     "deferred",
      "image",
      "images",
      "model",
      "n",
+     "output",
      "prompt",
      "resolution",
      "response_format",
@@ -625,6 +638,13 @@
       "type": "string",
       "description": ""
      },
+     "deferred": {
+      "type": [
+       "boolean",
+       "null"
+      ],
+      "description": "If set, the request returns immediately with a `request_id` and the image is generated in the background. Poll `GET /v1/images/{request_id}` for the result. Only `response_format: \"url\"` is supported in this mode."
+     },
      "model": {
       "type": [
        "string",
@@ -638,6 +658,10 @@
        "null"
       ],
       "description": "Number of images to be generated"
+     },
+     "output": {
+      "type": "string",
+      "description": ""
      },
      "prompt": {
       "type": "string",
@@ -676,8 +700,10 @@
     "header": [],
     "body": [
      "aspect_ratio",
+     "deferred",
      "model",
      "n",
+     "output",
      "prompt",
      "resolution",
      "response_format",
@@ -708,6 +734,10 @@
      "image": {
       "type": "string",
       "description": ""
+     },
+     "keyframes": {
+      "type": "array",
+      "description": "Optional mid-video keyframe anchors, strictly between the endpoint pins (`image` as the first frame, `last_frame` as the last). Each entry pins an image to appear literally at its timestamp. Only supported by select video models; at most 4 entries."
      },
      "model": {
       "type": [
@@ -760,6 +790,7 @@
      "aspect_ratio",
      "duration",
      "image",
+     "keyframes",
      "model",
      "output",
      "prompt",
@@ -1224,7 +1255,7 @@
        "integer",
        "null"
       ],
-      "description": "Max number of tokens that can be generated in a response. This includes both output and reasoning tokens. Defaults to 128,000 when unset; set a larger value to allow longer generations."
+      "description": "Max number of tokens that can be generated in a response. Only applies to visible output tokens (i.e. does not apply to tokens used for reasoning or function calls). Defaults to 128,000 when unset; set a larger value to allow longer generations."
      },
      "max_turns": {
       "type": [
@@ -1278,7 +1309,7 @@
        "string",
        "null"
       ],
-      "description": "reasoning_effort alternative to reasoning configuration. This is a non-standard field meant to ease user experience. We only look at this if the reasoning field is unset."
+      "description": "Non-standard alternative to `reasoning.effort` that accepts the same values. We only look at this if the reasoning field is unset."
      },
      "safety_identifier": {
       "type": [
@@ -1450,6 +1481,34 @@
    "request": {
     "method": "GET",
     "url": "https://api.x.ai/v1/chat/deferred-completion/{request_id}",
+    "path": [
+     "request_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "xai.handle_get_deferred_image_request",
+   "name": "`get  v1 images {request id}`: 202 while pending, 200 with `data` when\ndone or with `error` when failed (a failed generation is a body, not an\nhttp error, so pollers do not retry storm)",
+   "description": "`GET /v1/images/{request_id}`: 202 while pending, 200 with `data` when done or with `error` when failed (a failed generation is a body, not an HTTP error, so pollers do not retry-storm).",
+   "input": {
+    "type": "object",
+    "properties": {
+     "request_id": {
+      "type": "string",
+      "description": "The deferred request id returned by a previous image request."
+     }
+    },
+    "required": [
+     "request_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.x.ai/v1/images/{request_id}",
     "path": [
      "request_id"
     ],

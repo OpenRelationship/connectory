@@ -1021,6 +1021,75 @@
    }
   },
   {
+   "slug": "affinity.v2_files_file_id_get",
+   "name": "Get a single file",
+   "description": "| This endpoint is currently in BETA | |--| Returns a single file's metadata and a temporary signed download URL.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "fileId": {
+      "type": "integer",
+      "description": "File ID"
+     }
+    },
+    "required": [
+     "fileId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.affinity.co/v2/files/{fileId}",
+    "path": [
+     "fileId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "affinity.v2_files_get",
+   "name": "Get all files",
+   "description": "| This endpoint is currently in BETA | |--| Returns a page of Files visible to the caller. You can filter files using the `filter` query parameter. The filter parameter is a string that you can specify conditions based on the following properties. | **Property Name** | **Type** | **Allowed Operators** | **Examples** | |---|---|---|---| | `createdAt` | `datetime` | `>`, `=`, `=2026-01-01T00:00:00Z`",
+   "input": {
+    "type": "object",
+    "properties": {
+     "totalCount": {
+      "type": "boolean",
+      "description": "Include total count of the collection in the pagination response"
+     },
+     "cursor": {
+      "type": "string",
+      "description": "Cursor for the next or previous page"
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Number of items to include in the page"
+     },
+     "filter": {
+      "type": "string",
+      "description": "Filter options"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.affinity.co/v2/files",
+    "path": [],
+    "query": [
+     "totalCount",
+     "cursor",
+     "limit",
+     "filter"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "affinity.v2_files_search_post",
    "name": "Search files by keyword",
    "description": "Search files by keyword. The scope of the search is controlled by the request body: - Provide `fileIds` to limit the search to specific files. - Provide `companyId` to limit the search to files associated with a specific company. - Omit both to search across your entire account. `fileIds` and `companyId` are mutually exclusive. Returns up to `limit` files ordered by relevance. Prompts with no stro",
@@ -1808,6 +1877,46 @@
    }
   },
   {
+   "slug": "affinity.v2_lists_list_id_list_entries_post",
+   "name": "Add a list entry to a list",
+   "description": "| \u26a0\ufe0f This endpoint is currently in BETA | |--| Adds a Company or Person to a List as a new List Entry. Opportunities cannot be added with this endpoint. The type of the entity referenced by `entity.id` is determined by the List's type: a Company ID for a company List, a Person ID for a person List. If no entity of the List's type exists with the given ID, the request is rejected with `400 Bad Requ",
+   "input": {
+    "type": "object",
+    "properties": {
+     "listId": {
+      "type": "integer",
+      "description": "List ID"
+     },
+     "entity": {
+      "type": "object",
+      "description": "The Company or Person to add to the List. Provide its `id`; the entity must exist and match the List's type (a Company ID for a company List, a Person ID for a person List)."
+     },
+     "creatorId": {
+      "type": "integer",
+      "description": "The internal Person ID to record as the List Entry's creator. Defaults to the authenticated user. Must be an internal Person in the same organization as the caller."
+     }
+    },
+    "required": [
+     "entity",
+     "listId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.affinity.co/v2/lists/{listId}/list-entries",
+    "path": [
+     "listId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "entity",
+     "creatorId"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "affinity.v2_lists_list_id_list_entries_search_post",
    "name": "Search list entries",
    "description": "| \u26a0\ufe0f This endpoint is currently in BETA | |--| Search for List Entries on a List matching the given criteria. Accepts an optional combination of filters, sorts, and a search term. All fields in the request body are optional. Omitting the body entirely is equivalent to `GET /v2/lists/{listId}/list-entries` with default pagination. Requires the \"Export data from Lists\" [permission](/pages/external-a",
@@ -2516,6 +2625,34 @@
    }
   },
   {
+   "slug": "affinity.v2_opportunities_opportunity_id_delete",
+   "name": "Delete an opportunity",
+   "description": "| This endpoint is currently in BETA | |--| Deletes an Opportunity. Requires the \"Export data from Lists\" [permission](/pages/external-api-v2/permissions) and manage access to the opportunity.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "opportunityId": {
+      "type": "integer",
+      "description": "Opportunity ID"
+     }
+    },
+    "required": [
+     "opportunityId"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.affinity.co/v2/opportunities/{opportunityId}",
+    "path": [
+     "opportunityId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "affinity.v2_opportunities_opportunity_id_get",
    "name": "Get a single opportunity",
    "description": "Returns basic information but **not** field data on the requested Opportunity. To access field data on Opportunities, use the `/lists/{list_id}/list-entries` or the `/v2/lists/{list_id}/saved-views/{view_id}/list-entries` GET endpoint.",
@@ -2589,6 +2726,40 @@
     ],
     "header": [],
     "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "affinity.v2_opportunities_opportunity_id_post",
+   "name": "Update an opportunity",
+   "description": "| This endpoint is currently in BETA | |--| Updates an Opportunity. Only provided properties are updated; properties omitted from the request keep their current value. Requires the \"Export data from Lists\" [permission](/pages/external-api-v2/permissions) and manage access to the opportunity.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "opportunityId": {
+      "type": "integer",
+      "description": "Opportunity ID"
+     },
+     "name": {
+      "type": "string",
+      "description": "The name of the opportunity."
+     }
+    },
+    "required": [
+     "opportunityId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.affinity.co/v2/opportunities/{opportunityId}",
+    "path": [
+     "opportunityId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "name"
+    ],
     "body_format": "json"
    }
   },
@@ -3514,6 +3685,66 @@
    }
   },
   {
+   "slug": "affinity.v2_reminders_reminder_id_post",
+   "name": "Update a reminder",
+   "description": "| \u26a0\ufe0f This endpoint is currently in BETA | |--| Updates a Reminder. Only provided fields are changed; omitted fields keep their current value. Setting `completedAt` marks the reminder complete (for `recurring` reminders, this advances `dueDate` by `recurrence.periodDays` and `completedAt` remains `null` on the resource). Setting `completedAt` to `null` marks the reminder incomplete and is rejected ",
+   "input": {
+    "type": "object",
+    "properties": {
+     "reminderId": {
+      "type": "integer",
+      "description": "Reminder ID"
+     },
+     "content": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Free-form note attached to the reminder. Send `null` to clear."
+     },
+     "dueDate": {
+      "type": "string",
+      "description": "New due date for the reminder. Must be on or after 2000-01-01 and before 9999-01-01."
+     },
+     "owner": {
+      "type": "object",
+      "description": "The new owner of the reminder. Must reference an internal user."
+     },
+     "completedAt": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Set a value to mark the reminder complete. Send `null` to mark it incomplete (one-time reminders only). `completer` is populated from the API key's owning user."
+     },
+     "recurrence": {
+      "type": "object",
+      "description": "Update recurrence configuration. Only valid when the reminder's existing `type` is `recurring`. Send only the fields you want to change."
+     }
+    },
+    "required": [
+     "reminderId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.affinity.co/v2/reminders/{reminderId}",
+    "path": [
+     "reminderId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "content",
+     "dueDate",
+     "owner",
+     "completedAt",
+     "recurrence"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "affinity.v2_semantic_search_post",
    "name": "Semantic search",
    "description": "Perform an AI-powered semantic search. Use the `entityType` field in the request body to specify which entity type to search. Currently only supports companies. The `prompt` field accepts natural language describing the companies to find. Supported query dimensions include: - Industry or sector - Example: `climate tech companies in our pipeline` - Descriptive technology or business concepts - Exam",
@@ -3685,6 +3916,179 @@
    }
   },
   {
+   "slug": "affinity.v2_teams_get",
+   "name": "Get metadata on all teams",
+   "description": "| \u26a0\ufe0f This endpoint is currently in BETA | |--| Paginate through all Teams in your organization that you have access to view. Use the `includes` query parameter to add `membersPreview` and `accessibleListsPreview` to each team. Each preview carries a `totalCount` and a short `data` sample; the full collections are available at `GET /v2/teams/{teamId}/members` and `GET /v2/teams/{teamId}/accessible-",
+   "input": {
+    "type": "object",
+    "properties": {
+     "cursor": {
+      "type": "string",
+      "description": "Cursor for the next or previous page"
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Number of items to include in the page"
+     },
+     "totalCount": {
+      "type": "boolean",
+      "description": "Include total count of the collection in the pagination response"
+     },
+     "filter": {
+      "type": "string",
+      "description": "Affinity Filter Language expression. See description for filterable properties."
+     },
+     "orderBy": {
+      "type": "array",
+      "description": "Sort order. Prefix with `-` for descending. Defaults to `name` ascending."
+     },
+     "includes": {
+      "type": "array",
+      "description": "Additional properties to include in the response."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.affinity.co/v2/teams",
+    "path": [],
+    "query": [
+     "cursor",
+     "limit",
+     "totalCount",
+     "filter",
+     "orderBy",
+     "includes"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "affinity.v2_teams_team_id_accessible_lists_get",
+   "name": "Get all lists a team has access to",
+   "description": "| \u26a0\ufe0f This endpoint is currently in BETA | |--| Paginate through all Lists this Team has been granted access to. This endpoint backs the `accessibleListsPreview` returned by `GET /v2/teams/{teamId}?includes=accessibleListsPreview`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "teamId": {
+      "type": "integer",
+      "description": "Team ID"
+     },
+     "cursor": {
+      "type": "string",
+      "description": "Cursor for the next or previous page"
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Number of items to include in the page"
+     },
+     "totalCount": {
+      "type": "boolean",
+      "description": "Include total count of the collection in the pagination response"
+     }
+    },
+    "required": [
+     "teamId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.affinity.co/v2/teams/{teamId}/accessible-lists",
+    "path": [
+     "teamId"
+    ],
+    "query": [
+     "cursor",
+     "limit",
+     "totalCount"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "affinity.v2_teams_team_id_get",
+   "name": "Get metadata on a single team",
+   "description": "| \u26a0\ufe0f This endpoint is currently in BETA | |--| Retrieve detailed information about a specific Team. Optional opt-in properties can be requested via the `includes` query parameter.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "teamId": {
+      "type": "integer",
+      "description": "Team ID"
+     },
+     "includes": {
+      "type": "array",
+      "description": "Additional properties to include in the response."
+     }
+    },
+    "required": [
+     "teamId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.affinity.co/v2/teams/{teamId}",
+    "path": [
+     "teamId"
+    ],
+    "query": [
+     "includes"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "affinity.v2_teams_team_id_members_get",
+   "name": "Get all members of a team",
+   "description": "| \u26a0\ufe0f This endpoint is currently in BETA | |--| Paginate through all members of a specific Team. This endpoint backs the `membersPreview` returned by `GET /v2/teams/{teamId}?includes=membersPreview`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "teamId": {
+      "type": "integer",
+      "description": "Team ID"
+     },
+     "cursor": {
+      "type": "string",
+      "description": "Cursor for the next or previous page"
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Number of items to include in the page"
+     },
+     "totalCount": {
+      "type": "boolean",
+      "description": "Include total count of the collection in the pagination response"
+     }
+    },
+    "required": [
+     "teamId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.affinity.co/v2/teams/{teamId}/members",
+    "path": [
+     "teamId"
+    ],
+    "query": [
+     "cursor",
+     "limit",
+     "totalCount"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "affinity.v2_transcripts_get",
    "name": "Get all transcripts",
    "description": "Paginate through all transcripts and return basic metadata only. Use the single transcript endpoint to fetch the entire transcript data. Will only return transcripts that the current authenticated user has permission to see. You can filter transcripts using the `filter` query parameter. The filter parameter is a string that you can specify conditions based on the following properties. | **Property",
@@ -3720,6 +4124,34 @@
      "limit",
      "filter"
     ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "affinity.v2_transcripts_transcript_id_delete",
+   "name": "Delete a single transcript",
+   "description": "| \u26a0\ufe0f This endpoint is currently in BETA | |--| Delete a transcript. The AI Notetaker summary note the transcript belongs to is kept. You can only delete transcripts of notes you created.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "transcriptId": {
+      "type": "integer",
+      "description": "The id of the Transcript to delete"
+     }
+    },
+    "required": [
+     "transcriptId"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.affinity.co/v2/transcripts/{transcriptId}",
+    "path": [
+     "transcriptId"
+    ],
+    "query": [],
     "header": [],
     "body": [],
     "body_format": "json"

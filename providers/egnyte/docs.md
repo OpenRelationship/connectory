@@ -20,6 +20,8 @@ vouches for**: read it, then read their reference.
 
 ## Platform Overview
 
+## Egnyte AI
+
 ## WHAT EGNYTE IS NOT
 
 - [NOT A STRUCTURED SYSTEM]: Egnyte is not a structured relational database (like SQL or Oracle) or a data warehouse (like Snowflake), meaning it does not manage transactional row-and-column data schemas.

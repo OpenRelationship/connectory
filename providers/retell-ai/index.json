@@ -167,17 +167,17 @@
   {
    "slug": "retell-ai.backfill_contact_analysis_data",
    "name": "Backfill contact analysis data",
-   "description": "Creates a backfill contact analysis data.",
+   "description": "Trigger a backfill job that re-applies analysis data mappings to contacts using historical call and SMS chat data. Only one backfill job can run per organization at a time. Select contact_memory to rewrite memory from matching ended phone calls and SMS chats in chronological order, one conversation at a time, with no conversation-count cap. Backfill starts with the contact's existing memory. Each ",
    "input": {
     "type": "object",
     "properties": {
      "backfill_call_filter": {
       "type": "object",
-      "description": ""
+      "description": "Optional filter to scope which conversations are processed. Supports agent and start_timestamp from the standard call filter. The same filter applies to phone calls and SMS chats for both analysis data mappings and contact_memory."
      },
      "backfill_attributes": {
       "type": "array",
-      "description": ""
+      "description": "Contact fields to recompute. Each one must still exist as a contact field and have an analysis data mapping configured, except for the built-in contact_memory attribute, which requires no mapping and supports requests on its own or alongside mapped fields. Memory backfill skips conversations without retained transcripts."
      }
     },
     "required": [
@@ -195,8 +195,7 @@
      "backfill_attributes"
     ],
     "body_format": "json"
-   },
-   "described": "derived"
+   }
   },
   {
    "slug": "retell-ai.clone_voice",
@@ -281,14 +280,14 @@
        "eleven_flash_v2_5",
        "eleven_multilingual_v2",
        "eleven_v3",
+       "eleven_v3_conversational",
+       "eleven_v4",
+       "eleven_v4_turbo",
        "sonic-3",
        "sonic-3-latest",
        "sonic-3.5",
        "sonic-3.6",
-       "tts-1",
-       "gpt-4o-mini-tts",
-       "speech-02-turbo",
-       "speech-2.8-turbo"
+       "tts-1"
       ]
      },
      "fallback_voice_ids": {
@@ -314,20 +313,6 @@
      "volume": {
       "type": "number",
       "description": "If set, will control the volume of the agent. Value ranging from [0,2]. Lower value means quieter agent speech, while higher value means louder agent speech. If unset, default value 1 will apply."
-     },
-     "voice_emotion": {
-      "type": "string",
-      "description": "Controls the emotional tone of the agent's voice. Currently supported for Cartesia and Minimax TTS providers. If unset, no emotion will be used.",
-      "enum": [
-       "calm",
-       "sympathetic",
-       "happy",
-       "sad",
-       "angry",
-       "fearful",
-       "surprised",
-       null
-      ]
      },
      "enable_expressive_mode": {
       "type": "boolean",
@@ -406,6 +391,10 @@
       "type": "array",
       "description": "Provide a customized list of keywords to bias the transcriber model, so that these words are more likely to get transcribed. Commonly used for names, brands, street, etc. Entries may reference dynamic variables with `{{variable}}` syntax."
      },
+     "contact_memory_config": {
+      "type": "object",
+      "description": "Contact memory settings for phone calls and SMS chats. Creating an agent defaults enable_update to false and enable_read to true. Updates only change the supplied flags; omitted flags stay unchanged and an empty object has no effect. Set a flag to false to disable it. The configuration cannot be cleared. Existing agents without this configuration have both disabled."
+     },
      "data_storage_setting": {
       "type": "string",
       "description": "Granular setting to manage how Retell stores sensitive data (transcripts, recordings, logs, etc.). This replaces the deprecated `opt_out_sensitive_data_storage` field. - `everything`: Store all data including transcripts, recordings, and logs. - `everything_except_pii`: Store data without PII when PII is detected. - `basic_attributes_only`: Store only basic attributes; no transcripts/recordings/lo",
@@ -430,6 +419,10 @@
      "pronunciation_dictionary": {
       "type": "array",
       "description": "A list of words / phrases and their pronunciation to be used to guide the audio synthesize for consistent pronunciation. Check the dashboard to see what provider supports this feature. Set to null to remove pronunciation dictionary from this agent."
+     },
+     "enable_dnc_detection": {
+      "type": "boolean",
+      "description": "If set to true, the agent recognizes requests to stop calling or contacting the user, confirms once, and on a clear yes ends the call with disconnection reason user_requested_dnc and sets do_not_call to true on the contact for the user's phone number. If unset, default value false will apply."
      },
      "end_call_after_silence_ms": {
       "type": "integer",
@@ -523,6 +516,10 @@
        "noise-and-background-speech-cancellation"
       ]
      },
+     "denoising_enhancement_level": {
+      "type": "number",
+      "description": "Controls the enhancement level for background voice cancellation. Set to 0 to bypass background voice cancellation without BVC charges. Value ranging from [0,1]. Only applicable when denoising_mode is noise-and-background-speech-cancellation. Defaults to 0.8 if no value is configured. Set to null to clear the configured value. Omitting this field preserves the existing value."
+     },
      "pii_config": {
       "type": "object",
       "description": ""
@@ -538,6 +535,14 @@
      "timezone": {
       "type": "string",
       "description": "IANA timezone for the agent (e.g. America/New_York). Defaults to America/Los_Angeles if not set."
+     },
+     "pre_session_tools": {
+      "type": "array",
+      "description": "Integration (Agent Functions) tools run as a dependency graph during session setup, before the agent's first message. Outputs are injected as dynamic variables. On calls the graph gets one minute unless an outbound caller will be dialed after setup, in which case it gets five minutes. Past that session initialization continues and any remaining tools finish in the background, so their outputs no l"
+     },
+     "post_session_tools": {
+      "type": "array",
+      "description": "Integration (Agent Functions) tools run as a dependency graph during teardown, after post-call analysis. Each tool can be gated by a condition. On calls the graph is stopped after five minutes so teardown can finish. Set to null to clear."
      }
     },
     "required": []
@@ -561,7 +566,6 @@
      "enable_dynamic_voice_speed",
      "enable_dynamic_responsiveness",
      "volume",
-     "voice_emotion",
      "enable_expressive_mode",
      "expressive_emotion_tags",
      "expressive_mode_prompt",
@@ -579,11 +583,13 @@
      "webhook_events",
      "webhook_timeout_ms",
      "boosted_keywords",
+     "contact_memory_config",
      "data_storage_setting",
      "data_storage_retention_days",
      "opt_in_signed_url",
      "signed_url_expiration_ms",
      "pronunciation_dictionary",
+     "enable_dnc_detection",
      "end_call_after_silence_ms",
      "max_call_duration_ms",
      "voicemail_option",
@@ -600,10 +606,13 @@
      "allow_dtmf_interruption",
      "user_dtmf_options",
      "denoising_mode",
+     "denoising_enhancement_level",
      "pii_config",
      "guardrail_config",
      "handbook_config",
-     "timezone"
+     "timezone",
+     "pre_session_tools",
+     "post_session_tools"
     ],
     "body_format": "json"
    }
@@ -646,7 +655,7 @@
   {
    "slug": "retell-ai.create_app",
    "name": "Create app",
-   "description": "Create an App: the connection to one external system (a CRM, calendar, support desk, and so on), holding its credentials and settings. Providers with caller-managed credentials accept auth_config. Providers using the OAuth callback must omit auth_config and be authorized through connect-app. Credentials are stored encrypted and never returned. Up to 20 apps per provider.",
+   "description": "Create an App: the connection to one external system (a CRM, calendar, support desk, and so on), holding its credentials and settings. Providers with caller-managed credentials accept auth_config. Providers using the OAuth callback must omit auth_config and be authorized through connect-app. Credentials are stored encrypted and never returned. Up to 20 apps per provider by default, unless a custom",
    "input": {
     "type": "object",
     "properties": {
@@ -911,6 +920,10 @@
       "type": "integer",
       "description": "The timeout for the webhook in milliseconds. If not set, default value of 10000 will apply."
      },
+     "contact_memory_config": {
+      "type": "object",
+      "description": "Contact memory settings for phone calls and SMS chats. Creating an agent defaults enable_update to false and enable_read to true. Updates only change the supplied flags; omitted flags stay unchanged and an empty object has no effect. Set a flag to false to disable it. The configuration cannot be cleared. Existing agents without this configuration have both disabled."
+     },
      "data_storage_setting": {
       "type": "string",
       "description": "Controls what data is stored for this agent. \"everything\" stores all data including transcripts and recordings. \"everything_except_pii\" stores data but excludes PII when possible based on PII configuration. \"basic_attributes_only\" stores only basic metadata. If not set, defaults to \"everything\".",
@@ -969,6 +982,14 @@
      "timezone": {
       "type": "string",
       "description": "IANA timezone for the agent (e.g. America/New_York). Defaults to America/Los_Angeles if not set."
+     },
+     "pre_session_tools": {
+      "type": "array",
+      "description": "Integration (Agent Functions) tools run as a dependency graph before the chat's first message. Outputs are injected as dynamic variables. Set to null to clear."
+     },
+     "post_session_tools": {
+      "type": "array",
+      "description": "Integration (Agent Functions) tools run as a dependency graph at chat end, after post-chat analysis. Each tool can be gated by a condition. Set to null to clear."
      }
     },
     "required": []
@@ -989,6 +1010,7 @@
      "webhook_url",
      "webhook_events",
      "webhook_timeout_ms",
+     "contact_memory_config",
      "data_storage_setting",
      "data_storage_retention_days",
      "opt_in_signed_url",
@@ -998,7 +1020,9 @@
      "pii_config",
      "guardrail_config",
      "handbook_config",
-     "timezone"
+     "timezone",
+     "pre_session_tools",
+     "post_session_tools"
     ],
     "body_format": "json"
    }
@@ -1060,9 +1084,13 @@
       "type": "boolean",
       "description": ""
      },
-     "contact_tags": {
+     "contact_memory": {
+      "type": "string",
+      "description": "Contact memory text."
+     },
+     "contact_tag_ids": {
       "type": "array",
-      "description": "Full set of tags for the contact."
+      "description": "Full set of tag IDs for the contact."
      },
      "custom_fields": {
       "type": "object",
@@ -1084,7 +1112,8 @@
      "first_name",
      "last_name",
      "do_not_call",
-     "contact_tags",
+     "contact_memory",
+     "contact_tag_ids",
      "custom_fields"
     ],
     "body_format": "json"
@@ -1111,7 +1140,7 @@
      },
      "contact_tags": {
       "type": "array",
-      "description": "Tags added to every contact in this import. Existing tags are preserved. Omit to leave tags unchanged."
+      "description": "Tag labels added to every contact in this import. Labels are trimmed and deduplicated. New labels are added to the org's CRM config with generated tag IDs."
      }
     },
     "required": [
@@ -1275,10 +1304,14 @@
   {
    "slug": "retell-ai.create_phone_call",
    "name": "Create phone call",
-   "description": "Create a new outbound phone call",
+   "description": "Create a new outbound phone call.",
    "input": {
     "type": "object",
     "properties": {
+     "idempotency_key": {
+      "type": "string",
+      "description": "Optional key to retry the same request for up to one hour without creating another call. Use a new key for each new call."
+     },
      "from_number": {
       "type": "string",
       "description": "The number you own in E.164 format. Must be a number purchased from Retell or imported to Retell."
@@ -1314,6 +1347,10 @@
      "ignore_e164_validation": {
       "type": "boolean",
       "description": "If true, the e.164 validation will be ignored for the from_number. This can be useful when you want to dial to internal pseudo numbers. This only applies when you are using custom telephony and does not apply when you are using Retell Telephony. If omitted, the default value is false."
+     },
+     "honor_internal_dnc": {
+      "type": "boolean",
+      "description": "If true, the call is rejected with a 400 error when the contact for to_number is marked do_not_call. If omitted, the default value is false."
      }
     },
     "required": [
@@ -1328,6 +1365,7 @@
     "query": [],
     "header": [],
     "body": [
+     "idempotency_key",
      "from_number",
      "to_number",
      "override_agent_id",
@@ -1336,7 +1374,8 @@
      "metadata",
      "retell_llm_dynamic_variables",
      "custom_sip_headers",
-     "ignore_e164_validation"
+     "ignore_e164_validation",
+     "honor_internal_dnc"
     ],
     "body_format": "json"
    }
@@ -1462,7 +1501,7 @@
      },
      "s2s_model": {
       "type": "string",
-      "description": "Select the underlying speech to speech model. Can only set this or model, not both.",
+      "description": "The speech-to-speech model to use",
       "enum": [
        "gpt-realtime-2.1",
        "gpt-realtime-2.1-mini",
@@ -1563,6 +1602,10 @@
      "retell_llm_dynamic_variables": {
       "type": "object",
       "description": "Add optional dynamic variables in key value pairs of string that injects into your Response Engine prompt and tool description. Only applicable for Response Engine."
+     },
+     "honor_internal_dnc": {
+      "type": "boolean",
+      "description": "If true, the chat is rejected with a 400 error when the contact for to_number is marked do_not_call. If omitted, the default value is false."
      }
     },
     "required": [
@@ -1582,7 +1625,8 @@
      "override_agent_id",
      "override_agent_version",
      "metadata",
-     "retell_llm_dynamic_variables"
+     "retell_llm_dynamic_variables",
+     "honor_internal_dnc"
     ],
     "body_format": "json"
    }
@@ -2244,6 +2288,46 @@
     "query": [],
     "header": [],
     "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "retell-ai.get_app_tool_schema",
+   "name": "Get app tool schema",
+   "description": "One round of multi-step schema resolution for an app tool template against a connected App. parameters is the input parameters resolved so far, with properties configured by const or description, and is empty on the first call. Returns the next input_schema to fill; complete marks the last round (it may accompany the final input_schema) and may include an optional response_schema. Input-schema pro",
+   "input": {
+    "type": "object",
+    "properties": {
+     "app_id": {
+      "type": "string",
+      "description": ""
+     },
+     "app_tool_template_name": {
+      "type": "string",
+      "description": "The app tool template name (the provider's catalog tool name)."
+     },
+     "parameters": {
+      "type": "array",
+      "description": "The input parameters resolved so far; empty on the first call."
+     }
+    },
+    "required": [
+     "app_id",
+     "app_tool_template_name"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.retellai.com/get-app-tool-schema/{app_id}",
+    "path": [
+     "app_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "app_tool_template_name",
+     "parameters"
+    ],
     "body_format": "json"
    }
   },
@@ -3298,7 +3382,7 @@
   {
    "slug": "retell-ai.list_contacts",
    "name": "List contacts",
-   "description": "List contacts, newest conversation first by default, with the total count of matches alongside the page. Page through results with `pagination_key`; `skip` is available for offset-style paging but is slower on large contact sets and can repeat or miss rows as contacts are updated.",
+   "description": "List contacts, newest created first by default, with the total count of matches alongside the page. Page through results with `pagination_key`; `skip` is available for offset-style paging but is slower on large contact sets and can repeat or miss rows as contacts are added or deleted.",
    "input": {
     "type": "object",
     "properties": {
@@ -3312,7 +3396,7 @@
      },
      "sort_order": {
       "type": "string",
-      "description": "Sort contacts by `last_conversation_timestamp` in ascending or descending order. Contacts that have never been contacted sort as if their timestamp were 0.",
+      "description": "Sort contacts by `created_timestamp` in ascending or descending order (newest first by default). Ties are broken by contact ID in the same direction.",
       "enum": [
        "asc",
        "desc"
@@ -3329,6 +3413,10 @@
      "search_query": {
       "type": "string",
       "description": "Case-insensitive substring match against phone number, first name, last name, external ID, and custom field values. This is the only way to match on a contact's name."
+     },
+     "excluded_contact_ids": {
+      "type": "array",
+      "description": "Contact IDs to leave out of both the results and `total`."
      }
     },
     "required": []
@@ -3345,7 +3433,8 @@
      "sort_order",
      "pagination_key",
      "filter_criteria",
-     "search_query"
+     "search_query",
+     "excluded_contact_ids"
     ],
     "body_format": "json"
    }
@@ -4102,14 +4191,14 @@
        "eleven_flash_v2_5",
        "eleven_multilingual_v2",
        "eleven_v3",
+       "eleven_v3_conversational",
+       "eleven_v4",
+       "eleven_v4_turbo",
        "sonic-3",
        "sonic-3-latest",
        "sonic-3.5",
        "sonic-3.6",
-       "tts-1",
-       "gpt-4o-mini-tts",
-       "speech-02-turbo",
-       "speech-2.8-turbo"
+       "tts-1"
       ]
      },
      "fallback_voice_ids": {
@@ -4135,20 +4224,6 @@
      "volume": {
       "type": "number",
       "description": "If set, will control the volume of the agent. Value ranging from [0,2]. Lower value means quieter agent speech, while higher value means louder agent speech. If unset, default value 1 will apply."
-     },
-     "voice_emotion": {
-      "type": "string",
-      "description": "Controls the emotional tone of the agent's voice. Currently supported for Cartesia and Minimax TTS providers. If unset, no emotion will be used.",
-      "enum": [
-       "calm",
-       "sympathetic",
-       "happy",
-       "sad",
-       "angry",
-       "fearful",
-       "surprised",
-       null
-      ]
      },
      "enable_expressive_mode": {
       "type": "boolean",
@@ -4227,6 +4302,10 @@
       "type": "array",
       "description": "Provide a customized list of keywords to bias the transcriber model, so that these words are more likely to get transcribed. Commonly used for names, brands, street, etc. Entries may reference dynamic variables with `{{variable}}` syntax."
      },
+     "contact_memory_config": {
+      "type": "object",
+      "description": "Contact memory settings for phone calls and SMS chats. Creating an agent defaults enable_update to false and enable_read to true. Updates only change the supplied flags; omitted flags stay unchanged and an empty object has no effect. Set a flag to false to disable it. The configuration cannot be cleared. Existing agents without this configuration have both disabled."
+     },
      "data_storage_setting": {
       "type": "string",
       "description": "Granular setting to manage how Retell stores sensitive data (transcripts, recordings, logs, etc.). This replaces the deprecated `opt_out_sensitive_data_storage` field. - `everything`: Store all data including transcripts, recordings, and logs. - `everything_except_pii`: Store data without PII when PII is detected. - `basic_attributes_only`: Store only basic attributes; no transcripts/recordings/lo",
@@ -4251,6 +4330,10 @@
      "pronunciation_dictionary": {
       "type": "array",
       "description": "A list of words / phrases and their pronunciation to be used to guide the audio synthesize for consistent pronunciation. Check the dashboard to see what provider supports this feature. Set to null to remove pronunciation dictionary from this agent."
+     },
+     "enable_dnc_detection": {
+      "type": "boolean",
+      "description": "If set to true, the agent recognizes requests to stop calling or contacting the user, confirms once, and on a clear yes ends the call with disconnection reason user_requested_dnc and sets do_not_call to true on the contact for the user's phone number. If unset, default value false will apply."
      },
      "end_call_after_silence_ms": {
       "type": "integer",
@@ -4344,6 +4427,10 @@
        "noise-and-background-speech-cancellation"
       ]
      },
+     "denoising_enhancement_level": {
+      "type": "number",
+      "description": "Controls the enhancement level for background voice cancellation. Set to 0 to bypass background voice cancellation without BVC charges. Value ranging from [0,1]. Only applicable when denoising_mode is noise-and-background-speech-cancellation. Defaults to 0.8 if no value is configured. Set to null to clear the configured value. Omitting this field preserves the existing value."
+     },
      "pii_config": {
       "type": "object",
       "description": ""
@@ -4359,6 +4446,14 @@
      "timezone": {
       "type": "string",
       "description": "IANA timezone for the agent (e.g. America/New_York). Defaults to America/Los_Angeles if not set."
+     },
+     "pre_session_tools": {
+      "type": "array",
+      "description": "Integration (Agent Functions) tools run as a dependency graph during session setup, before the agent's first message. Outputs are injected as dynamic variables. On calls the graph gets one minute unless an outbound caller will be dialed after setup, in which case it gets five minutes. Past that session initialization continues and any remaining tools finish in the background, so their outputs no l"
+     },
+     "post_session_tools": {
+      "type": "array",
+      "description": "Integration (Agent Functions) tools run as a dependency graph during teardown, after post-call analysis. Each tool can be gated by a condition. On calls the graph is stopped after five minutes so teardown can finish. Set to null to clear."
      }
     },
     "required": [
@@ -4388,7 +4483,6 @@
      "enable_dynamic_voice_speed",
      "enable_dynamic_responsiveness",
      "volume",
-     "voice_emotion",
      "enable_expressive_mode",
      "expressive_emotion_tags",
      "expressive_mode_prompt",
@@ -4406,11 +4500,13 @@
      "webhook_events",
      "webhook_timeout_ms",
      "boosted_keywords",
+     "contact_memory_config",
      "data_storage_setting",
      "data_storage_retention_days",
      "opt_in_signed_url",
      "signed_url_expiration_ms",
      "pronunciation_dictionary",
+     "enable_dnc_detection",
      "end_call_after_silence_ms",
      "max_call_duration_ms",
      "voicemail_option",
@@ -4427,10 +4523,13 @@
      "allow_dtmf_interruption",
      "user_dtmf_options",
      "denoising_mode",
+     "denoising_enhancement_level",
      "pii_config",
      "guardrail_config",
      "handbook_config",
-     "timezone"
+     "timezone",
+     "pre_session_tools",
+     "post_session_tools"
     ],
     "body_format": "json"
    }
@@ -4589,6 +4688,10 @@
       "type": "integer",
       "description": "The timeout for the webhook in milliseconds. If not set, default value of 10000 will apply."
      },
+     "contact_memory_config": {
+      "type": "object",
+      "description": "Contact memory settings for phone calls and SMS chats. Creating an agent defaults enable_update to false and enable_read to true. Updates only change the supplied flags; omitted flags stay unchanged and an empty object has no effect. Set a flag to false to disable it. The configuration cannot be cleared. Existing agents without this configuration have both disabled."
+     },
      "data_storage_setting": {
       "type": "string",
       "description": "Controls what data is stored for this agent. \"everything\" stores all data including transcripts and recordings. \"everything_except_pii\" stores data but excludes PII when possible based on PII configuration. \"basic_attributes_only\" stores only basic metadata. If not set, defaults to \"everything\".",
@@ -4647,6 +4750,14 @@
      "timezone": {
       "type": "string",
       "description": "IANA timezone for the agent (e.g. America/New_York). Defaults to America/Los_Angeles if not set."
+     },
+     "pre_session_tools": {
+      "type": "array",
+      "description": "Integration (Agent Functions) tools run as a dependency graph before the chat's first message. Outputs are injected as dynamic variables. Set to null to clear."
+     },
+     "post_session_tools": {
+      "type": "array",
+      "description": "Integration (Agent Functions) tools run as a dependency graph at chat end, after post-chat analysis. Each tool can be gated by a condition. Set to null to clear."
      }
     },
     "required": [
@@ -4673,6 +4784,7 @@
      "webhook_url",
      "webhook_events",
      "webhook_timeout_ms",
+     "contact_memory_config",
      "data_storage_setting",
      "data_storage_retention_days",
      "opt_in_signed_url",
@@ -4682,7 +4794,9 @@
      "pii_config",
      "guardrail_config",
      "handbook_config",
-     "timezone"
+     "timezone",
+     "pre_session_tools",
+     "post_session_tools"
     ],
     "body_format": "json"
    }
@@ -4763,9 +4877,13 @@
       "type": "boolean",
       "description": ""
      },
-     "contact_tags": {
+     "contact_memory": {
+      "type": "string",
+      "description": "Contact memory text. Pass null to clear."
+     },
+     "contact_tag_ids": {
       "type": "array",
-      "description": "Full replacement set of tags for the contact."
+      "description": "Full replacement set of tag IDs for the contact."
      },
      "custom_fields": {
       "type": "object",
@@ -4788,7 +4906,8 @@
      "first_name",
      "last_name",
      "do_not_call",
-     "contact_tags",
+     "contact_memory",
+     "contact_tag_ids",
      "custom_fields"
     ],
     "body_format": "json"
@@ -4948,6 +5067,10 @@
       "type": "string",
       "description": "ID of the CRM app to link. Pass null to unlink, which stops syncing. Changing it resets the sync cursor, so the next sync re-reads every contact from the new CRM."
      },
+     "contact_memory_update_prompt": {
+      "type": "string",
+      "description": "Workspace-shared memory rewrite prompt. Pass null to restore the built-in preset. Supports conversation dynamic variables using {{variable_name}}."
+     },
      "custom_fields": {
       "type": "array",
       "description": "Replaces the stored list. Names must be snake_case and cannot collide with a built-in contact field or start with `contact`/`external`. Removing a field that an analysis data mapping still targets is rejected \u2014 send crm_analysis_data_mappings in the same request to retarget or drop those mappings."
@@ -4958,7 +5081,7 @@
      },
      "contact_tags": {
       "type": "array",
-      "description": "Replaces the organization's available contact tags. Tags are trimmed and deduplicated. Omit to leave unchanged, or send null or an empty array to clear the list. Does not change tags already assigned to contacts."
+      "description": "Replaces the organization's available contact tags. Tag IDs must be unique 32-character hexadecimal strings and labels are trimmed. Omit to leave unchanged, or send null or an empty array to clear the list. Does not change tags already assigned to contacts."
      },
      "contact_columns_order": {
       "type": "array",
@@ -4975,6 +5098,7 @@
     "header": [],
     "body": [
      "app_id",
+     "contact_memory_update_prompt",
      "custom_fields",
      "crm_analysis_data_mappings",
      "contact_tags",
@@ -5156,7 +5280,7 @@
      },
      "s2s_model": {
       "type": "string",
-      "description": "Select the underlying speech to speech model. Can only set this or model, not both.",
+      "description": "The speech-to-speech model to use",
       "enum": [
        "gpt-realtime-2.1",
        "gpt-realtime-2.1-mini",

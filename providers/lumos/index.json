@@ -296,10 +296,6 @@
       "type": "string",
       "description": "Whether the access policy is enabled. Defaults to false when supported."
      },
-     "apps": {
-      "type": "array",
-      "description": "List of apps granted by this access policy."
-     },
      "access_condition": {
       "type": "string",
       "description": "The Lumos Condition object determining which identities qualify for this policy. Required unless `is_everyone_condition` is `true`. This is a recursive JSON structure that allows you to define complex rules for filtering and matching identities using operators like `equals`, `in`, `and`, `or`, and `not`. For more information, see the [Lumos Conditions documentation](https://support.lumos.com/artic"
@@ -307,6 +303,10 @@
      "is_everyone_condition": {
       "type": "boolean",
       "description": "Whether the access policy applies to everyone. If true, `access_condition` is ignored. Otherwise, `access_condition` must be provided."
+     },
+     "apps": {
+      "type": "array",
+      "description": "List of apps granted by this access policy."
      }
     },
     "required": [
@@ -326,9 +326,9 @@
      "business_justification",
      "status",
      "is_enabled",
-     "apps",
      "access_condition",
-     "is_everyone_condition"
+     "is_everyone_condition",
+     "apps"
     ],
     "body_format": "json"
    }
@@ -346,7 +346,7 @@
      },
      "requester_user_id": {
       "type": "string",
-      "description": "Override the user who made the request. If omitted, use the current user. Only available to organization admins."
+      "description": "Override the user who made the request. If omitted, use the current user. Only organization admins may send this field; any other caller is refused with a 403."
      },
      "target_user_id": {
       "type": "string",
@@ -589,7 +589,7 @@
      },
      "files": {
       "type": "array",
-      "description": "A list of URLs that resolve to files that should be attached to the Found Document"
+      "description": "A list of files that should be attached to the Found Document, each given as a publicly accessible URL or as base64-encoded PDF/PNG content"
      },
      "vendor_name": {
       "type": "string",
@@ -828,7 +828,7 @@
   {
    "slug": "lumos.create_user_offboarding",
    "name": "Create user offboarding",
-   "description": "Trigger or schedule an offboarding for an identity using the domain's configured offboarding workflow. Omit `scheduled_at` to run immediately, or provide a future datetime to schedule it.",
+   "description": "Trigger or schedule an offboarding for an identity. Omit `scheduled_at` to run immediately, or provide a future datetime to schedule it. Omit `workflow_config_id` to use the offboarding workflow configuration your organization has selected for automatic offboarding.",
    "input": {
     "type": "object",
     "properties": {
@@ -839,6 +839,10 @@
      "scheduled_at": {
       "type": "string",
       "description": "When to run the offboarding, as an ISO 8601 datetime. Omit to trigger the offboarding immediately; provide a future datetime to schedule it."
+     },
+     "workflow_config_id": {
+      "type": "string",
+      "description": "The UUID of the offboarding workflow configuration to run. Omit to use the configuration your organization has selected for automatic offboarding. This field is only accepted for organizations with the multiple offboarding workflows feature; a request that includes it is rejected otherwise."
      }
     },
     "required": [
@@ -853,7 +857,8 @@
     "header": [],
     "body": [
      "user_id",
-     "scheduled_at"
+     "scheduled_at",
+     "workflow_config_id"
     ],
     "body_format": "json"
    }
@@ -3138,10 +3143,6 @@
       "type": "string",
       "description": "Whether the access policy is enabled. Defaults to false when supported."
      },
-     "apps": {
-      "type": "array",
-      "description": "List of apps granted by this access policy."
-     },
      "access_condition": {
       "type": "string",
       "description": "The Lumos Condition object determining which identities qualify for this policy. Required unless `is_everyone_condition` is `true`. This is a recursive JSON structure that allows you to define complex rules for filtering and matching identities using operators like `equals`, `in`, `and`, `or`, and `not`. For more information, see the [Lumos Conditions documentation](https://support.lumos.com/artic"
@@ -3149,6 +3150,10 @@
      "is_everyone_condition": {
       "type": "boolean",
       "description": "Whether the access policy applies to everyone. If true, `access_condition` is ignored. Otherwise, `access_condition` must be provided."
+     },
+     "apps": {
+      "type": "array",
+      "description": "List of apps granted by this access policy."
      }
     },
     "required": [
@@ -3171,9 +3176,9 @@
      "business_justification",
      "status",
      "is_enabled",
-     "apps",
      "access_condition",
-     "is_everyone_condition"
+     "is_everyone_condition",
+     "apps"
     ],
     "body_format": "json"
    }

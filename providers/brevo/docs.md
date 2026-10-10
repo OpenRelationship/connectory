@@ -42,6 +42,12 @@ vouches for**: read it, then read their reference.
 - [Batch send transactional emails](https://developers.brevo.com/docs/batch-send-transactional-emails.md): Send up to 1000 personalized email versions in a single API request
 - [SMTP relay integration](https://developers.brevo.com/docs/smtp-integration.md): Configure the SMTP relay to send transactional emails from your email client
 - [Postfix integration](https://developers.brevo.com/docs/using-the-smtp-relay-with-postfix.md)
+- [Send emails from your Base44 app with Brevo](https://developers.brevo.com/docs/base44-integration.md): Send transactional email from a Base44 app through Brevo, using a backend function and a stored API key.
+- [Send emails from Bolt.new with Brevo](https://developers.brevo.com/docs/bolt-new-integration.md): Use Brevo to send both app-triggered emails (order confirmations, notifications) and Supabase-powered authentication emails from a Bolt.new project.
+- [Send emails from your Lovable app with Brevo](https://developers.brevo.com/docs/lovable-integration.md): Connect the Brevo app + chat connector to your Lovable project so it can send transactional or marketing email, manage contacts and lists, and trigger automation workflows through your own Brevo account.
+- [Send email from n8n with Brevo](https://developers.brevo.com/docs/n8n-integration.md): Use the native Brevo node in n8n to send transactional emails and manage contacts as part of a workflow.
+- [Connect Brevo SMTP to Supabase: send your auth emails](https://developers.brevo.com/docs/supabase-smtp-integration.md): Configure Brevo as the custom SMTP provider for Supabase Auth so sign-up confirmations, magic links, password resets, and invites send from your own domain instead of Supabase's shared test server.
+- [Send emails from your v0 app with Brevo](https://developers.brevo.com/docs/v0-integration.md): Add Brevo transactional email sending to a Next.js app generated with v0, using a server-side API route and your Brevo API key.
 - [WhatsApp messages](https://developers.brevo.com/docs/whatsapp-messages.md): Send transactional WhatsApp messages using the Brevo API
 - [Manage your contacts in Brevo](https://developers.brevo.com/docs/synchronise-contact-lists.md): Learn how to create and update contacts using the Brevo API
 - [WhatsApp campaigns](https://developers.brevo.com/docs/whatsapp-campaigns-1.md): Learn how to create and manage WhatsApp campaigns using the Brevo API

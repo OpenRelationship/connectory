@@ -83,10 +83,6 @@
    "input": {
     "type": "object",
     "properties": {
-     "id": {
-      "type": "string",
-      "description": "The ID of the draft to retrieve."
-     },
      "format": {
       "type": "string",
       "description": "The format to return the draft in.",
@@ -100,6 +96,10 @@
      "userId": {
       "type": "string",
       "description": "The user's email address. The special value `me` can be used to indicate the authenticated user."
+     },
+     "id": {
+      "type": "string",
+      "description": "The ID of the draft to retrieve."
      }
     },
     "required": [
@@ -111,8 +111,8 @@
     "method": "GET",
     "url": "https://gmail.googleapis.com/gmail/v1/users/{userId}/drafts/{id}",
     "path": [
-     "id",
-     "userId"
+     "userId",
+     "id"
     ],
     "query": [
      "format"
@@ -129,25 +129,25 @@
    "input": {
     "type": "object",
     "properties": {
+     "q": {
+      "type": "string",
+      "description": "Only return draft messages matching the specified query. Supports the same query format as the Gmail search box. For example, `\"from:someuser@example.com rfc822msgid: is:unread\"`."
+     },
      "maxResults": {
       "type": "integer",
       "description": "Maximum number of drafts to return. This field defaults to 100. The maximum allowed value for this field is 500."
+     },
+     "includeSpamTrash": {
+      "type": "boolean",
+      "description": "Include drafts from `SPAM` and `TRASH` in the results."
      },
      "userId": {
       "type": "string",
       "description": "The user's email address. The special value `me` can be used to indicate the authenticated user."
      },
-     "q": {
-      "type": "string",
-      "description": "Only return draft messages matching the specified query. Supports the same query format as the Gmail search box. For example, `\"from:someuser@example.com rfc822msgid: is:unread\"`."
-     },
      "pageToken": {
       "type": "string",
       "description": "Page token to retrieve a specific page of results in the list."
-     },
-     "includeSpamTrash": {
-      "type": "boolean",
-      "description": "Include drafts from `SPAM` and `TRASH` in the results."
      }
     },
     "required": [
@@ -161,10 +161,10 @@
      "userId"
     ],
     "query": [
-     "maxResults",
      "q",
-     "pageToken",
-     "includeSpamTrash"
+     "maxResults",
+     "includeSpamTrash",
+     "pageToken"
     ],
     "header": [],
     "body": [],
@@ -286,21 +286,25 @@
    "input": {
     "type": "object",
     "properties": {
-     "maxResults": {
-      "type": "integer",
-      "description": "Maximum number of history records to return. This field defaults to 100. The maximum allowed value for this field is 500."
-     },
-     "labelId": {
+     "pageToken": {
       "type": "string",
-      "description": "Only return messages with a label matching the ID."
+      "description": "Page token to retrieve a specific page of results in the list."
      },
      "userId": {
       "type": "string",
       "description": "The user's email address. The special value `me` can be used to indicate the authenticated user."
      },
-     "pageToken": {
+     "labelId": {
       "type": "string",
-      "description": "Page token to retrieve a specific page of results in the list."
+      "description": "Only return messages with a label matching the ID."
+     },
+     "startHistoryId": {
+      "type": "string",
+      "description": "Required. Returns history records after the specified `startHistoryId`. The supplied `startHistoryId` should be obtained from the `historyId` of a message, thread, or previous `list` response. History IDs increase chronologically but are not contiguous with random gaps in between valid IDs. Supplying an invalid or out of date `startHistoryId` typically returns an `HTTP 404` error code. A `historyI"
+     },
+     "maxResults": {
+      "type": "integer",
+      "description": "Maximum number of history records to return. This field defaults to 100. The maximum allowed value for this field is 500."
      },
      "historyTypes": {
       "type": "string",
@@ -311,10 +315,6 @@
        "labelAdded",
        "labelRemoved"
       ]
-     },
-     "startHistoryId": {
-      "type": "string",
-      "description": "Required. Returns history records after the specified `startHistoryId`. The supplied `startHistoryId` should be obtained from the `historyId` of a message, thread, or previous `list` response. History IDs increase chronologically but are not contiguous with random gaps in between valid IDs. Supplying an invalid or out of date `startHistoryId` typically returns an `HTTP 404` error code. A `historyI"
      }
     },
     "required": [
@@ -328,11 +328,11 @@
      "userId"
     ],
     "query": [
-     "maxResults",
-     "labelId",
      "pageToken",
-     "historyTypes",
-     "startHistoryId"
+     "labelId",
+     "startHistoryId",
+     "maxResults",
+     "historyTypes"
     ],
     "header": [],
     "body": [],
@@ -350,17 +350,9 @@
       "type": "string",
       "description": "The user's email address. The special value `me` can be used to indicate the authenticated user."
      },
-     "type": {
-      "type": "string",
-      "description": "The owner type for the label. User labels are created by the user and can be modified and deleted by the user and can be applied to any message or thread. System labels are internally created and cannot be added, modified, or deleted. System labels may be able to be applied to or removed from messages and threads under some circumstances but this is not guaranteed. For example, users can apply and",
-      "enum": [
-       "system",
-       "user"
-      ]
-     },
-     "id": {
-      "type": "string",
-      "description": "The immutable ID of the label."
+     "messagesTotal": {
+      "type": "integer",
+      "description": "The total number of messages with the label."
      },
      "messageListVisibility": {
       "type": "string",
@@ -370,13 +362,37 @@
        "hide"
       ]
      },
+     "threadsTotal": {
+      "type": "integer",
+      "description": "The total number of threads with the label."
+     },
+     "messagesUnread": {
+      "type": "integer",
+      "description": "The number of unread messages with the label."
+     },
      "name": {
       "type": "string",
       "description": "The display name of the label."
      },
-     "messagesTotal": {
+     "id": {
+      "type": "string",
+      "description": "The immutable ID of the label."
+     },
+     "type": {
+      "type": "string",
+      "description": "The owner type for the label. User labels are created by the user and can be modified and deleted by the user and can be applied to any message or thread. System labels are internally created and cannot be added, modified, or deleted. System labels may be able to be applied to or removed from messages and threads under some circumstances but this is not guaranteed. For example, users can apply and",
+      "enum": [
+       "system",
+       "user"
+      ]
+     },
+     "color": {
+      "type": "string",
+      "description": "The color to assign to the label. Color is only available for labels that have their `type` set to `user`."
+     },
+     "threadsUnread": {
       "type": "integer",
-      "description": "The total number of messages with the label."
+      "description": "The number of unread threads with the label."
      },
      "labelListVisibility": {
       "type": "string",
@@ -386,22 +402,6 @@
        "labelShowIfUnread",
        "labelHide"
       ]
-     },
-     "messagesUnread": {
-      "type": "integer",
-      "description": "The number of unread messages with the label."
-     },
-     "color": {
-      "type": "string",
-      "description": "The color to assign to the label. Color is only available for labels that have their `type` set to `user`."
-     },
-     "threadsTotal": {
-      "type": "integer",
-      "description": "The total number of threads with the label."
-     },
-     "threadsUnread": {
-      "type": "integer",
-      "description": "The number of unread threads with the label."
      }
     },
     "required": [
@@ -417,16 +417,16 @@
     "query": [],
     "header": [],
     "body": [
-     "type",
-     "id",
-     "messageListVisibility",
-     "name",
      "messagesTotal",
-     "labelListVisibility",
-     "messagesUnread",
-     "color",
+     "messageListVisibility",
      "threadsTotal",
-     "threadsUnread"
+     "messagesUnread",
+     "name",
+     "id",
+     "type",
+     "color",
+     "threadsUnread",
+     "labelListVisibility"
     ],
     "body_format": "json"
    }
@@ -438,13 +438,13 @@
    "input": {
     "type": "object",
     "properties": {
-     "userId": {
-      "type": "string",
-      "description": "The user's email address. The special value `me` can be used to indicate the authenticated user."
-     },
      "id": {
       "type": "string",
       "description": "The ID of the label to delete."
+     },
+     "userId": {
+      "type": "string",
+      "description": "The user's email address. The special value `me` can be used to indicate the authenticated user."
      }
     },
     "required": [
@@ -456,8 +456,8 @@
     "method": "DELETE",
     "url": "https://gmail.googleapis.com/gmail/v1/users/{userId}/labels/{id}",
     "path": [
-     "userId",
-     "id"
+     "id",
+     "userId"
     ],
     "query": [],
     "header": [],
@@ -534,21 +534,17 @@
    "input": {
     "type": "object",
     "properties": {
-     "userId": {
-      "type": "string",
-      "description": "The user's email address. The special value `me` can be used to indicate the authenticated user."
-     },
      "id": {
       "type": "string",
       "description": "The immutable ID of the label."
      },
-     "type": {
+     "userId": {
       "type": "string",
-      "description": "The owner type for the label. User labels are created by the user and can be modified and deleted by the user and can be applied to any message or thread. System labels are internally created and cannot be added, modified, or deleted. System labels may be able to be applied to or removed from messages and threads under some circumstances but this is not guaranteed. For example, users can apply and",
-      "enum": [
-       "system",
-       "user"
-      ]
+      "description": "The user's email address. The special value `me` can be used to indicate the authenticated user."
+     },
+     "messagesTotal": {
+      "type": "integer",
+      "description": "The total number of messages with the label."
      },
      "messageListVisibility": {
       "type": "string",
@@ -558,13 +554,33 @@
        "hide"
       ]
      },
+     "threadsTotal": {
+      "type": "integer",
+      "description": "The total number of threads with the label."
+     },
+     "messagesUnread": {
+      "type": "integer",
+      "description": "The number of unread messages with the label."
+     },
      "name": {
       "type": "string",
       "description": "The display name of the label."
      },
-     "messagesTotal": {
+     "type": {
+      "type": "string",
+      "description": "The owner type for the label. User labels are created by the user and can be modified and deleted by the user and can be applied to any message or thread. System labels are internally created and cannot be added, modified, or deleted. System labels may be able to be applied to or removed from messages and threads under some circumstances but this is not guaranteed. For example, users can apply and",
+      "enum": [
+       "system",
+       "user"
+      ]
+     },
+     "color": {
+      "type": "string",
+      "description": "The color to assign to the label. Color is only available for labels that have their `type` set to `user`."
+     },
+     "threadsUnread": {
       "type": "integer",
-      "description": "The total number of messages with the label."
+      "description": "The number of unread threads with the label."
      },
      "labelListVisibility": {
       "type": "string",
@@ -574,22 +590,6 @@
        "labelShowIfUnread",
        "labelHide"
       ]
-     },
-     "messagesUnread": {
-      "type": "integer",
-      "description": "The number of unread messages with the label."
-     },
-     "color": {
-      "type": "string",
-      "description": "The color to assign to the label. Color is only available for labels that have their `type` set to `user`."
-     },
-     "threadsTotal": {
-      "type": "integer",
-      "description": "The total number of threads with the label."
-     },
-     "threadsUnread": {
-      "type": "integer",
-      "description": "The number of unread threads with the label."
      }
     },
     "required": [
@@ -601,22 +601,22 @@
     "method": "PATCH",
     "url": "https://gmail.googleapis.com/gmail/v1/users/{userId}/labels/{id}",
     "path": [
-     "userId",
-     "id"
+     "id",
+     "userId"
     ],
     "query": [],
     "header": [],
     "body": [
-     "type",
-     "id",
-     "messageListVisibility",
-     "name",
      "messagesTotal",
-     "labelListVisibility",
-     "messagesUnread",
-     "color",
+     "messageListVisibility",
      "threadsTotal",
-     "threadsUnread"
+     "messagesUnread",
+     "name",
+     "id",
+     "type",
+     "color",
+     "threadsUnread",
+     "labelListVisibility"
     ],
     "body_format": "json"
    }
@@ -628,21 +628,17 @@
    "input": {
     "type": "object",
     "properties": {
-     "userId": {
-      "type": "string",
-      "description": "The user's email address. The special value `me` can be used to indicate the authenticated user."
-     },
      "id": {
       "type": "string",
       "description": "The immutable ID of the label."
      },
-     "type": {
+     "userId": {
       "type": "string",
-      "description": "The owner type for the label. User labels are created by the user and can be modified and deleted by the user and can be applied to any message or thread. System labels are internally created and cannot be added, modified, or deleted. System labels may be able to be applied to or removed from messages and threads under some circumstances but this is not guaranteed. For example, users can apply and",
-      "enum": [
-       "system",
-       "user"
-      ]
+      "description": "The user's email address. The special value `me` can be used to indicate the authenticated user."
+     },
+     "messagesTotal": {
+      "type": "integer",
+      "description": "The total number of messages with the label."
      },
      "messageListVisibility": {
       "type": "string",
@@ -652,13 +648,33 @@
        "hide"
       ]
      },
+     "threadsTotal": {
+      "type": "integer",
+      "description": "The total number of threads with the label."
+     },
+     "messagesUnread": {
+      "type": "integer",
+      "description": "The number of unread messages with the label."
+     },
      "name": {
       "type": "string",
       "description": "The display name of the label."
      },
-     "messagesTotal": {
+     "type": {
+      "type": "string",
+      "description": "The owner type for the label. User labels are created by the user and can be modified and deleted by the user and can be applied to any message or thread. System labels are internally created and cannot be added, modified, or deleted. System labels may be able to be applied to or removed from messages and threads under some circumstances but this is not guaranteed. For example, users can apply and",
+      "enum": [
+       "system",
+       "user"
+      ]
+     },
+     "color": {
+      "type": "string",
+      "description": "The color to assign to the label. Color is only available for labels that have their `type` set to `user`."
+     },
+     "threadsUnread": {
       "type": "integer",
-      "description": "The total number of messages with the label."
+      "description": "The number of unread threads with the label."
      },
      "labelListVisibility": {
       "type": "string",
@@ -668,22 +684,6 @@
        "labelShowIfUnread",
        "labelHide"
       ]
-     },
-     "messagesUnread": {
-      "type": "integer",
-      "description": "The number of unread messages with the label."
-     },
-     "color": {
-      "type": "string",
-      "description": "The color to assign to the label. Color is only available for labels that have their `type` set to `user`."
-     },
-     "threadsTotal": {
-      "type": "integer",
-      "description": "The total number of threads with the label."
-     },
-     "threadsUnread": {
-      "type": "integer",
-      "description": "The number of unread threads with the label."
      }
     },
     "required": [
@@ -695,22 +695,22 @@
     "method": "PUT",
     "url": "https://gmail.googleapis.com/gmail/v1/users/{userId}/labels/{id}",
     "path": [
-     "userId",
-     "id"
+     "id",
+     "userId"
     ],
     "query": [],
     "header": [],
     "body": [
-     "type",
-     "id",
-     "messageListVisibility",
-     "name",
      "messagesTotal",
-     "labelListVisibility",
-     "messagesUnread",
-     "color",
+     "messageListVisibility",
      "threadsTotal",
-     "threadsUnread"
+     "messagesUnread",
+     "name",
+     "id",
+     "type",
+     "color",
+     "threadsUnread",
+     "labelListVisibility"
     ],
     "body_format": "json"
    }
@@ -800,9 +800,17 @@
       "type": "string",
       "description": "The user's email address. The special value `me` can be used to indicate the authenticated user."
      },
+     "removeLabelIds": {
+      "type": "array",
+      "description": "A list of label IDs to remove from messages."
+     },
      "removeClassificationLabelIds": {
       "type": "array",
       "description": "A list of Classification Label values to remove from messages."
+     },
+     "addLabelIds": {
+      "type": "array",
+      "description": "A list of label IDs to add to messages."
      },
      "ids": {
       "type": "array",
@@ -811,14 +819,6 @@
      "addClassificationLabels": {
       "type": "array",
       "description": "A list of Classification Label values to add. If a Classification Label with the same label ID is already applied to the message, fields with existing field IDs will be updated and fields with new field IDs will be added. There's a limit of 20 Classification Label values per request. If the message is already classified and the final total number of Classification Label values exceeds the maximum "
-     },
-     "addLabelIds": {
-      "type": "array",
-      "description": "A list of label IDs to add to messages."
-     },
-     "removeLabelIds": {
-      "type": "array",
-      "description": "A list of label IDs to remove from messages."
      }
     },
     "required": [
@@ -834,11 +834,11 @@
     "query": [],
     "header": [],
     "body": [
+     "removeLabelIds",
      "removeClassificationLabelIds",
-     "ids",
-     "addClassificationLabels",
      "addLabelIds",
-     "removeLabelIds"
+     "ids",
+     "addClassificationLabels"
     ],
     "body_format": "json"
    }
@@ -850,13 +850,13 @@
    "input": {
     "type": "object",
     "properties": {
-     "userId": {
-      "type": "string",
-      "description": "The user's email address. The special value `me` can be used to indicate the authenticated user."
-     },
      "id": {
       "type": "string",
       "description": "The ID of the message to delete."
+     },
+     "userId": {
+      "type": "string",
+      "description": "The user's email address. The special value `me` can be used to indicate the authenticated user."
      }
     },
     "required": [
@@ -868,8 +868,8 @@
     "method": "DELETE",
     "url": "https://gmail.googleapis.com/gmail/v1/users/{userId}/messages/{id}",
     "path": [
-     "userId",
-     "id"
+     "id",
+     "userId"
     ],
     "query": [],
     "header": [],
@@ -884,9 +884,13 @@
    "input": {
     "type": "object",
     "properties": {
-     "id": {
+     "userId": {
       "type": "string",
-      "description": "The ID of the message to retrieve. This ID is usually retrieved using `messages.list`. The ID is also contained in the result when a message is inserted (`messages.insert`) or imported (`messages.import`)."
+      "description": "The user's email address. The special value `me` can be used to indicate the authenticated user."
+     },
+     "metadataHeaders": {
+      "type": "string",
+      "description": "When given and format is `METADATA`, only include headers specified."
      },
      "format": {
       "type": "string",
@@ -898,13 +902,9 @@
        "metadata"
       ]
      },
-     "metadataHeaders": {
+     "id": {
       "type": "string",
-      "description": "When given and format is `METADATA`, only include headers specified."
-     },
-     "userId": {
-      "type": "string",
-      "description": "The user's email address. The special value `me` can be used to indicate the authenticated user."
+      "description": "The ID of the message to retrieve. This ID is usually retrieved using `messages.list`. The ID is also contained in the result when a message is inserted (`messages.insert`) or imported (`messages.import`)."
      }
     },
     "required": [
@@ -916,12 +916,12 @@
     "method": "GET",
     "url": "https://gmail.googleapis.com/gmail/v1/users/{userId}/messages/{id}",
     "path": [
-     "id",
-     "userId"
+     "userId",
+     "id"
     ],
     "query": [
-     "format",
-     "metadataHeaders"
+     "metadataHeaders",
+     "format"
     ],
     "header": [],
     "body": [],
@@ -935,14 +935,6 @@
    "input": {
     "type": "object",
     "properties": {
-     "internalDateSource": {
-      "type": "string",
-      "description": "Source for Gmail's internal date of the message.",
-      "enum": [
-       "receivedTime",
-       "dateHeader"
-      ]
-     },
      "processForCalendar": {
       "type": "boolean",
       "description": "Process calendar invites in the email and add any extracted meetings to the Google Calendar for this user."
@@ -950,6 +942,14 @@
      "userId": {
       "type": "string",
       "description": "The user's email address. The special value `me` can be used to indicate the authenticated user."
+     },
+     "internalDateSource": {
+      "type": "string",
+      "description": "Source for Gmail's internal date of the message.",
+      "enum": [
+       "receivedTime",
+       "dateHeader"
+      ]
      },
      "neverMarkSpam": {
       "type": "boolean",
@@ -959,13 +959,25 @@
       "type": "boolean",
       "description": "Mark the email as permanently deleted (not TRASH) and only visible in Google Vault to a Vault administrator. Only used for Google Workspace accounts."
      },
-     "raw": {
+     "snippet": {
       "type": "string",
-      "description": "The entire email message in an RFC 2822 formatted and base64url encoded string. Returned in `messages.get` and `drafts.get` responses when the `format=RAW` parameter is supplied. @required gmail.users.drafts.create gmail.users.drafts.update"
+      "description": "A short part of the message text."
      },
      "historyId": {
       "type": "string",
       "description": "The ID of the last history record that modified this message."
+     },
+     "threadId": {
+      "type": "string",
+      "description": "The ID of the thread the message belongs to. To add a message or draft to a thread, the following criteria must be met: 1. The requested `threadId` must be specified on the `Message` or `Draft.Message` you supply with your request. 2. The `References` and `In-Reply-To` headers must be set in compliance with the [RFC 2822](https://tools.ietf.org/html/rfc2822) standard. 3. The `Subject` headers must"
+     },
+     "raw": {
+      "type": "string",
+      "description": "The entire email message in an RFC 2822 formatted and base64url encoded string. Returned in `messages.get` and `drafts.get` responses when the `format=RAW` parameter is supplied. @required gmail.users.drafts.create gmail.users.drafts.update"
+     },
+     "id": {
+      "type": "string",
+      "description": "The immutable ID of the message."
      },
      "sizeEstimate": {
       "type": "integer",
@@ -979,25 +991,13 @@
       "type": "array",
       "description": "List of IDs of labels applied to this message."
      },
-     "payload": {
-      "type": "string",
-      "description": "The parsed email structure in the message parts."
-     },
-     "threadId": {
-      "type": "string",
-      "description": "The ID of the thread the message belongs to. To add a message or draft to a thread, the following criteria must be met: 1. The requested `threadId` must be specified on the `Message` or `Draft.Message` you supply with your request. 2. The `References` and `In-Reply-To` headers must be set in compliance with the [RFC 2822](https://tools.ietf.org/html/rfc2822) standard. 3. The `Subject` headers must"
-     },
-     "snippet": {
-      "type": "string",
-      "description": "A short part of the message text."
-     },
-     "id": {
-      "type": "string",
-      "description": "The immutable ID of the message."
-     },
      "internalDate": {
       "type": "string",
       "description": "The internal message creation timestamp (epoch ms), which determines ordering in the inbox. For normal SMTP-received email, this represents the time the message was originally accepted by Google, which is more reliable than the `Date` header. However, for API-migrated mail, it can be configured by client to be based on the `Date` header."
+     },
+     "payload": {
+      "type": "string",
+      "description": "The parsed email structure in the message parts."
      }
     },
     "required": [
@@ -1011,23 +1011,23 @@
      "userId"
     ],
     "query": [
-     "internalDateSource",
      "processForCalendar",
+     "internalDateSource",
      "neverMarkSpam",
      "deleted"
     ],
     "header": [],
     "body": [
-     "raw",
+     "snippet",
      "historyId",
+     "threadId",
+     "raw",
+     "id",
      "sizeEstimate",
      "classificationLabelValues",
      "labelIds",
-     "payload",
-     "threadId",
-     "snippet",
-     "id",
-     "internalDate"
+     "internalDate",
+     "payload"
     ],
     "body_format": "json"
    }
@@ -1039,14 +1039,6 @@
    "input": {
     "type": "object",
     "properties": {
-     "userId": {
-      "type": "string",
-      "description": "The user's email address. The special value `me` can be used to indicate the authenticated user."
-     },
-     "deleted": {
-      "type": "boolean",
-      "description": "Mark the email as permanently deleted (not TRASH) and only visible in Google Vault to a Vault administrator. Only used for Google Workspace accounts."
-     },
      "internalDateSource": {
       "type": "string",
       "description": "Source for Gmail's internal date of the message.",
@@ -1055,13 +1047,33 @@
        "dateHeader"
       ]
      },
-     "raw": {
+     "deleted": {
+      "type": "boolean",
+      "description": "Mark the email as permanently deleted (not TRASH) and only visible in Google Vault to a Vault administrator. Only used for Google Workspace accounts."
+     },
+     "userId": {
       "type": "string",
-      "description": "The entire email message in an RFC 2822 formatted and base64url encoded string. Returned in `messages.get` and `drafts.get` responses when the `format=RAW` parameter is supplied. @required gmail.users.drafts.create gmail.users.drafts.update"
+      "description": "The user's email address. The special value `me` can be used to indicate the authenticated user."
+     },
+     "snippet": {
+      "type": "string",
+      "description": "A short part of the message text."
      },
      "historyId": {
       "type": "string",
       "description": "The ID of the last history record that modified this message."
+     },
+     "threadId": {
+      "type": "string",
+      "description": "The ID of the thread the message belongs to. To add a message or draft to a thread, the following criteria must be met: 1. The requested `threadId` must be specified on the `Message` or `Draft.Message` you supply with your request. 2. The `References` and `In-Reply-To` headers must be set in compliance with the [RFC 2822](https://tools.ietf.org/html/rfc2822) standard. 3. The `Subject` headers must"
+     },
+     "raw": {
+      "type": "string",
+      "description": "The entire email message in an RFC 2822 formatted and base64url encoded string. Returned in `messages.get` and `drafts.get` responses when the `format=RAW` parameter is supplied. @required gmail.users.drafts.create gmail.users.drafts.update"
+     },
+     "id": {
+      "type": "string",
+      "description": "The immutable ID of the message."
      },
      "sizeEstimate": {
       "type": "integer",
@@ -1075,25 +1087,13 @@
       "type": "array",
       "description": "List of IDs of labels applied to this message."
      },
-     "payload": {
-      "type": "string",
-      "description": "The parsed email structure in the message parts."
-     },
-     "threadId": {
-      "type": "string",
-      "description": "The ID of the thread the message belongs to. To add a message or draft to a thread, the following criteria must be met: 1. The requested `threadId` must be specified on the `Message` or `Draft.Message` you supply with your request. 2. The `References` and `In-Reply-To` headers must be set in compliance with the [RFC 2822](https://tools.ietf.org/html/rfc2822) standard. 3. The `Subject` headers must"
-     },
-     "snippet": {
-      "type": "string",
-      "description": "A short part of the message text."
-     },
-     "id": {
-      "type": "string",
-      "description": "The immutable ID of the message."
-     },
      "internalDate": {
       "type": "string",
       "description": "The internal message creation timestamp (epoch ms), which determines ordering in the inbox. For normal SMTP-received email, this represents the time the message was originally accepted by Google, which is more reliable than the `Date` header. However, for API-migrated mail, it can be configured by client to be based on the `Date` header."
+     },
+     "payload": {
+      "type": "string",
+      "description": "The parsed email structure in the message parts."
      }
     },
     "required": [
@@ -1107,21 +1107,21 @@
      "userId"
     ],
     "query": [
-     "deleted",
-     "internalDateSource"
+     "internalDateSource",
+     "deleted"
     ],
     "header": [],
     "body": [
-     "raw",
+     "snippet",
      "historyId",
+     "threadId",
+     "raw",
+     "id",
      "sizeEstimate",
      "classificationLabelValues",
      "labelIds",
-     "payload",
-     "threadId",
-     "snippet",
-     "id",
-     "internalDate"
+     "internalDate",
+     "payload"
     ],
     "body_format": "json"
    }
@@ -1133,29 +1133,29 @@
    "input": {
     "type": "object",
     "properties": {
-     "userId": {
-      "type": "string",
-      "description": "The user's email address. The special value `me` can be used to indicate the authenticated user."
-     },
      "q": {
       "type": "string",
       "description": "Only return messages matching the specified query. Supports the same query format as the Gmail search box. For example, `\"from:someuser@example.com rfc822msgid: is:unread\"`. Parameter cannot be used when accessing the api using the gmail.metadata scope."
      },
-     "pageToken": {
+     "userId": {
       "type": "string",
-      "description": "Page token to retrieve a specific page of results in the list."
+      "description": "The user's email address. The special value `me` can be used to indicate the authenticated user."
      },
-     "includeSpamTrash": {
-      "type": "boolean",
-      "description": "Include messages from `SPAM` and `TRASH` in the results."
+     "labelIds": {
+      "type": "string",
+      "description": "Only return messages with labels that match all of the specified label IDs. Messages in a thread might have labels that other messages in the same thread don't have. To learn more, see [Manage labels on messages and threads](https://developers.google.com/workspace/gmail/api/guides/labels#manage_labels_on_messages_threads)."
      },
      "maxResults": {
       "type": "integer",
       "description": "Maximum number of messages to return. This field defaults to 100. The maximum allowed value for this field is 500."
      },
-     "labelIds": {
+     "includeSpamTrash": {
+      "type": "boolean",
+      "description": "Include messages from `SPAM` and `TRASH` in the results."
+     },
+     "pageToken": {
       "type": "string",
-      "description": "Only return messages with labels that match all of the specified label IDs. Messages in a thread might have labels that other messages in the same thread don't have. To learn more, see [Manage labels on messages and threads](https://developers.google.com/workspace/gmail/api/guides/labels#manage_labels_on_messages_threads)."
+      "description": "Page token to retrieve a specific page of results in the list."
      }
     },
     "required": [
@@ -1170,10 +1170,10 @@
     ],
     "query": [
      "q",
-     "pageToken",
-     "includeSpamTrash",
+     "labelIds",
      "maxResults",
-     "labelIds"
+     "includeSpamTrash",
+     "pageToken"
     ],
     "header": [],
     "body": [],
@@ -1187,21 +1187,13 @@
    "input": {
     "type": "object",
     "properties": {
-     "userId": {
-      "type": "string",
-      "description": "The user's email address. The special value `me` can be used to indicate the authenticated user."
-     },
      "id": {
       "type": "string",
       "description": "The ID of the message to modify."
      },
-     "addLabelIds": {
-      "type": "array",
-      "description": "A list of IDs of labels to add to this message. You can add up to 100 labels with each update."
-     },
-     "removeClassificationLabelIds": {
-      "type": "array",
-      "description": "A list of Classification Label values to remove from this message."
+     "userId": {
+      "type": "string",
+      "description": "The user's email address. The special value `me` can be used to indicate the authenticated user."
      },
      "removeLabelIds": {
       "type": "array",
@@ -1210,6 +1202,14 @@
      "addClassificationLabels": {
       "type": "array",
       "description": "A list of classification label values to add. If a Classification Label with the same label ID is already applied to the message, fields with existing field IDs will be updated and fields with new field IDs will be added. There's a limit of 20 Classification Label values per request. If the message is already classified and the final total number of Classification Label values exceeds the maximum "
+     },
+     "addLabelIds": {
+      "type": "array",
+      "description": "A list of IDs of labels to add to this message. You can add up to 100 labels with each update."
+     },
+     "removeClassificationLabelIds": {
+      "type": "array",
+      "description": "A list of Classification Label values to remove from this message."
      }
     },
     "required": [
@@ -1221,16 +1221,16 @@
     "method": "POST",
     "url": "https://gmail.googleapis.com/gmail/v1/users/{userId}/messages/{id}/modify",
     "path": [
-     "userId",
-     "id"
+     "id",
+     "userId"
     ],
     "query": [],
     "header": [],
     "body": [
-     "addLabelIds",
-     "removeClassificationLabelIds",
      "removeLabelIds",
-     "addClassificationLabels"
+     "addClassificationLabels",
+     "addLabelIds",
+     "removeClassificationLabelIds"
     ],
     "body_format": "json"
    }
@@ -1246,13 +1246,25 @@
       "type": "string",
       "description": "The user's email address. The special value `me` can be used to indicate the authenticated user."
      },
-     "raw": {
+     "snippet": {
       "type": "string",
-      "description": "The entire email message in an RFC 2822 formatted and base64url encoded string. Returned in `messages.get` and `drafts.get` responses when the `format=RAW` parameter is supplied. @required gmail.users.drafts.create gmail.users.drafts.update"
+      "description": "A short part of the message text."
      },
      "historyId": {
       "type": "string",
       "description": "The ID of the last history record that modified this message."
+     },
+     "threadId": {
+      "type": "string",
+      "description": "The ID of the thread the message belongs to. To add a message or draft to a thread, the following criteria must be met: 1. The requested `threadId` must be specified on the `Message` or `Draft.Message` you supply with your request. 2. The `References` and `In-Reply-To` headers must be set in compliance with the [RFC 2822](https://tools.ietf.org/html/rfc2822) standard. 3. The `Subject` headers must"
+     },
+     "raw": {
+      "type": "string",
+      "description": "The entire email message in an RFC 2822 formatted and base64url encoded string. Returned in `messages.get` and `drafts.get` responses when the `format=RAW` parameter is supplied. @required gmail.users.drafts.create gmail.users.drafts.update"
+     },
+     "id": {
+      "type": "string",
+      "description": "The immutable ID of the message."
      },
      "sizeEstimate": {
       "type": "integer",
@@ -1266,25 +1278,13 @@
       "type": "array",
       "description": "List of IDs of labels applied to this message."
      },
-     "payload": {
-      "type": "string",
-      "description": "The parsed email structure in the message parts."
-     },
-     "threadId": {
-      "type": "string",
-      "description": "The ID of the thread the message belongs to. To add a message or draft to a thread, the following criteria must be met: 1. The requested `threadId` must be specified on the `Message` or `Draft.Message` you supply with your request. 2. The `References` and `In-Reply-To` headers must be set in compliance with the [RFC 2822](https://tools.ietf.org/html/rfc2822) standard. 3. The `Subject` headers must"
-     },
-     "snippet": {
-      "type": "string",
-      "description": "A short part of the message text."
-     },
-     "id": {
-      "type": "string",
-      "description": "The immutable ID of the message."
-     },
      "internalDate": {
       "type": "string",
       "description": "The internal message creation timestamp (epoch ms), which determines ordering in the inbox. For normal SMTP-received email, this represents the time the message was originally accepted by Google, which is more reliable than the `Date` header. However, for API-migrated mail, it can be configured by client to be based on the `Date` header."
+     },
+     "payload": {
+      "type": "string",
+      "description": "The parsed email structure in the message parts."
      }
     },
     "required": [
@@ -1300,16 +1300,16 @@
     "query": [],
     "header": [],
     "body": [
-     "raw",
+     "snippet",
      "historyId",
+     "threadId",
+     "raw",
+     "id",
      "sizeEstimate",
      "classificationLabelValues",
      "labelIds",
-     "payload",
-     "threadId",
-     "snippet",
-     "id",
-     "internalDate"
+     "internalDate",
+     "payload"
     ],
     "body_format": "json"
    }
@@ -1467,13 +1467,13 @@
    "input": {
     "type": "object",
     "properties": {
-     "userId": {
-      "type": "string",
-      "description": "The requester's primary email address. To indicate the authenticated user, you can use the special value `me`."
-     },
      "cseEmailAddress": {
       "type": "string",
       "description": "The primary email address associated with the client-side encryption identity configuration that's retrieved."
+     },
+     "userId": {
+      "type": "string",
+      "description": "The requester's primary email address. To indicate the authenticated user, you can use the special value `me`."
      }
     },
     "required": [
@@ -1485,8 +1485,8 @@
     "method": "GET",
     "url": "https://gmail.googleapis.com/gmail/v1/users/{userId}/settings/cse/identities/{cseEmailAddress}",
     "path": [
-     "userId",
-     "cseEmailAddress"
+     "cseEmailAddress",
+     "userId"
     ],
     "query": [],
     "header": [],
@@ -1501,13 +1501,13 @@
    "input": {
     "type": "object",
     "properties": {
-     "userId": {
-      "type": "string",
-      "description": "The requester's primary email address. To indicate the authenticated user, you can use the special value `me`."
-     },
      "pageSize": {
       "type": "integer",
       "description": "The number of identities to return. If not provided, the page size will default to 20 entries."
+     },
+     "userId": {
+      "type": "string",
+      "description": "The requester's primary email address. To indicate the authenticated user, you can use the special value `me`."
      },
      "pageToken": {
       "type": "string",
@@ -1540,13 +1540,13 @@
    "input": {
     "type": "object",
     "properties": {
-     "userId": {
-      "type": "string",
-      "description": "The requester's primary email address. To indicate the authenticated user, you can use the special value `me`."
-     },
      "emailAddress": {
       "type": "string",
       "description": "The email address for the sending identity. The email address must be the primary email address of the authenticated user."
+     },
+     "userId": {
+      "type": "string",
+      "description": "The requester's primary email address. To indicate the authenticated user, you can use the special value `me`."
      },
      "primaryKeyPairId": {
       "type": "string",
@@ -1566,8 +1566,8 @@
     "method": "PATCH",
     "url": "https://gmail.googleapis.com/gmail/v1/users/{userId}/settings/cse/identities/{emailAddress}",
     "path": [
-     "userId",
-     "emailAddress"
+     "emailAddress",
+     "userId"
     ],
     "query": [],
     "header": [],
@@ -1586,6 +1586,10 @@
    "input": {
     "type": "object",
     "properties": {
+     "userId": {
+      "type": "string",
+      "description": "The requester's primary email address. To indicate the authenticated user, you can use the special value `me`."
+     },
      "chainValidation": {
       "type": "string",
       "description": "The type of certificate chain validation to perform at creation. The request will be rejected if the uploaded chain fails to satisfy the requested validation checks. When unspecified, this parameter defaults to `all`.",
@@ -1593,34 +1597,6 @@
        "all",
        "none"
       ]
-     },
-     "userId": {
-      "type": "string",
-      "description": "The requester's primary email address. To indicate the authenticated user, you can use the special value `me`."
-     },
-     "pkcs7": {
-      "type": "string",
-      "description": "Input only. The public key and its certificate chain. The chain must be in [PKCS#7](https://en.wikipedia.org/wiki/PKCS_7) format and use PEM encoding and ASCII armor."
-     },
-     "keyPairId": {
-      "type": "string",
-      "description": "Output only. The immutable ID for the client-side encryption S/MIME key pair."
-     },
-     "privateKeyMetadata": {
-      "type": "array",
-      "description": "Metadata for instances of this key pair's private key."
-     },
-     "pem": {
-      "type": "string",
-      "description": "Output only. The public key and its certificate chain, in [PEM](https://en.wikipedia.org/wiki/Privacy-Enhanced_Mail) format."
-     },
-     "disableTime": {
-      "type": "string",
-      "description": "Output only. If a key pair is set to `DISABLED`, the time that the key pair's state changed from `ENABLED` to `DISABLED`. This field is present only when the key pair is in state `DISABLED`."
-     },
-     "subjectEmailAddresses": {
-      "type": "array",
-      "description": "Output only. The email address identities that are specified on the leaf certificate."
      },
      "enablementState": {
       "type": "string",
@@ -1630,6 +1606,30 @@
        "enabled",
        "disabled"
       ]
+     },
+     "disableTime": {
+      "type": "string",
+      "description": "Output only. If a key pair is set to `DISABLED`, the time that the key pair's state changed from `ENABLED` to `DISABLED`. This field is present only when the key pair is in state `DISABLED`."
+     },
+     "pkcs7": {
+      "type": "string",
+      "description": "Input only. The public key and its certificate chain. The chain must be in [PKCS#7](https://en.wikipedia.org/wiki/PKCS_7) format and use PEM encoding and ASCII armor."
+     },
+     "pem": {
+      "type": "string",
+      "description": "Output only. The public key and its certificate chain, in [PEM](https://en.wikipedia.org/wiki/Privacy-Enhanced_Mail) format."
+     },
+     "subjectEmailAddresses": {
+      "type": "array",
+      "description": "Output only. The email address identities that are specified on the leaf certificate."
+     },
+     "privateKeyMetadata": {
+      "type": "array",
+      "description": "Metadata for instances of this key pair's private key."
+     },
+     "keyPairId": {
+      "type": "string",
+      "description": "Output only. The immutable ID for the client-side encryption S/MIME key pair."
      }
     },
     "required": [
@@ -1647,13 +1647,13 @@
     ],
     "header": [],
     "body": [
-     "pkcs7",
-     "keyPairId",
-     "privateKeyMetadata",
-     "pem",
+     "enablementState",
      "disableTime",
+     "pkcs7",
+     "pem",
      "subjectEmailAddresses",
-     "enablementState"
+     "privateKeyMetadata",
+     "keyPairId"
     ],
     "body_format": "json"
    }
@@ -1733,13 +1733,13 @@
    "input": {
     "type": "object",
     "properties": {
-     "userId": {
-      "type": "string",
-      "description": "The requester's primary email address. To indicate the authenticated user, you can use the special value `me`."
-     },
      "keyPairId": {
       "type": "string",
       "description": "The identifier of the key pair to retrieve."
+     },
+     "userId": {
+      "type": "string",
+      "description": "The requester's primary email address. To indicate the authenticated user, you can use the special value `me`."
      }
     },
     "required": [
@@ -1751,8 +1751,8 @@
     "method": "GET",
     "url": "https://gmail.googleapis.com/gmail/v1/users/{userId}/settings/cse/keypairs/{keyPairId}",
     "path": [
-     "userId",
-     "keyPairId"
+     "keyPairId",
+     "userId"
     ],
     "query": [],
     "header": [],
@@ -1886,13 +1886,13 @@
    "input": {
     "type": "object",
     "properties": {
-     "delegateEmail": {
-      "type": "string",
-      "description": "The email address of the user to be removed as a delegate."
-     },
      "userId": {
       "type": "string",
       "description": "User's email address. The special value \"me\" can be used to indicate the authenticated user."
+     },
+     "delegateEmail": {
+      "type": "string",
+      "description": "The email address of the user to be removed as a delegate."
      }
     },
     "required": [
@@ -1904,8 +1904,8 @@
     "method": "DELETE",
     "url": "https://gmail.googleapis.com/gmail/v1/users/{userId}/settings/delegates/{delegateEmail}",
     "path": [
-     "delegateEmail",
-     "userId"
+     "userId",
+     "delegateEmail"
     ],
     "query": [],
     "header": [],
@@ -1920,13 +1920,13 @@
    "input": {
     "type": "object",
     "properties": {
-     "userId": {
-      "type": "string",
-      "description": "User's email address. The special value \"me\" can be used to indicate the authenticated user."
-     },
      "delegateEmail": {
       "type": "string",
       "description": "The email address of the user whose delegate relationship is to be retrieved."
+     },
+     "userId": {
+      "type": "string",
+      "description": "User's email address. The special value \"me\" can be used to indicate the authenticated user."
      }
     },
     "required": [
@@ -1938,8 +1938,8 @@
     "method": "GET",
     "url": "https://gmail.googleapis.com/gmail/v1/users/{userId}/settings/delegates/{delegateEmail}",
     "path": [
-     "userId",
-     "delegateEmail"
+     "delegateEmail",
+     "userId"
     ],
     "query": [],
     "header": [],
@@ -1986,17 +1986,17 @@
       "type": "string",
       "description": "User's email address. The special value \"me\" can be used to indicate the authenticated user."
      },
-     "id": {
+     "criteria": {
       "type": "string",
-      "description": "The server assigned ID of the filter."
+      "description": "Matching criteria for the filter."
      },
      "action": {
       "type": "string",
       "description": "Action that the filter performs."
      },
-     "criteria": {
+     "id": {
       "type": "string",
-      "description": "Matching criteria for the filter."
+      "description": "The server assigned ID of the filter."
      }
     },
     "required": [
@@ -2012,9 +2012,9 @@
     "query": [],
     "header": [],
     "body": [
-     "id",
+     "criteria",
      "action",
-     "criteria"
+     "id"
     ],
     "body_format": "json"
    }
@@ -2026,13 +2026,13 @@
    "input": {
     "type": "object",
     "properties": {
-     "userId": {
-      "type": "string",
-      "description": "User's email address. The special value \"me\" can be used to indicate the authenticated user."
-     },
      "id": {
       "type": "string",
       "description": "The ID of the filter to be deleted."
+     },
+     "userId": {
+      "type": "string",
+      "description": "User's email address. The special value \"me\" can be used to indicate the authenticated user."
      }
     },
     "required": [
@@ -2044,8 +2044,8 @@
     "method": "DELETE",
     "url": "https://gmail.googleapis.com/gmail/v1/users/{userId}/settings/filters/{id}",
     "path": [
-     "userId",
-     "id"
+     "id",
+     "userId"
     ],
     "query": [],
     "header": [],
@@ -2166,13 +2166,13 @@
    "input": {
     "type": "object",
     "properties": {
-     "userId": {
-      "type": "string",
-      "description": "User's email address. The special value \"me\" can be used to indicate the authenticated user."
-     },
      "forwardingEmail": {
       "type": "string",
       "description": "The forwarding address to be deleted."
+     },
+     "userId": {
+      "type": "string",
+      "description": "User's email address. The special value \"me\" can be used to indicate the authenticated user."
      }
     },
     "required": [
@@ -2184,8 +2184,8 @@
     "method": "DELETE",
     "url": "https://gmail.googleapis.com/gmail/v1/users/{userId}/settings/forwardingAddresses/{forwardingEmail}",
     "path": [
-     "userId",
-     "forwardingEmail"
+     "forwardingEmail",
+     "userId"
     ],
     "query": [],
     "header": [],
@@ -2406,6 +2406,38 @@
       "type": "string",
       "description": "User's email address. The special value \"me\" can be used to indicate the authenticated user."
      },
+     "treatAsAlias": {
+      "type": "boolean",
+      "description": "Whether Gmail should treat this address as an alias for the user's primary email address. This setting only applies to custom \"from\" aliases."
+     },
+     "sendAsEmail": {
+      "type": "string",
+      "description": "The email address that appears in the \"From:\" header for mail sent using this alias. This is read-only for all operations except create."
+     },
+     "smtpMsa": {
+      "type": "string",
+      "description": "An optional SMTP service that will be used as an outbound relay for mail sent using this alias. If this is empty, outbound mail will be sent directly from Gmail's servers to the destination SMTP service. This setting only applies to custom \"from\" aliases."
+     },
+     "signature": {
+      "type": "string",
+      "description": "An optional HTML signature that is included in messages composed with this alias in the Gmail web UI. This signature is added to new emails only."
+     },
+     "isPrimary": {
+      "type": "boolean",
+      "description": "Whether this address is the primary address used to login to the account. Every Gmail account has exactly one primary address, and it cannot be deleted from the collection of send-as aliases. This field is read-only."
+     },
+     "replyToAddress": {
+      "type": "string",
+      "description": "An optional email address that is included in a \"Reply-To:\" header for mail sent using this alias. If this is empty, Gmail will not generate a \"Reply-To:\" header."
+     },
+     "displayName": {
+      "type": "string",
+      "description": "A name that appears in the \"From:\" header for mail sent using this alias. For custom \"from\" addresses, when this is empty, Gmail will populate the \"From:\" header with the name that is used for the primary address associated with the account. If the admin has disabled the ability for users to update their name format, requests to update this field for the primary login will silently fail."
+     },
+     "isDefault": {
+      "type": "boolean",
+      "description": "Whether this address is selected as the default \"From:\" address in situations such as composing a new message or sending a vacation auto-reply. Every Gmail account has exactly one default send-as address, so the only legal value that clients may write to this field is `true`. Changing this from `false` to `true` for an address will result in this field becoming `false` for the other previous defau"
+     },
      "verificationStatus": {
       "type": "string",
       "description": "Indicates whether this address has been verified for use as a send-as alias. Read-only. This setting only applies to custom \"from\" aliases.",
@@ -2414,38 +2446,6 @@
        "accepted",
        "pending"
       ]
-     },
-     "signature": {
-      "type": "string",
-      "description": "An optional HTML signature that is included in messages composed with this alias in the Gmail web UI. This signature is added to new emails only."
-     },
-     "sendAsEmail": {
-      "type": "string",
-      "description": "The email address that appears in the \"From:\" header for mail sent using this alias. This is read-only for all operations except create."
-     },
-     "replyToAddress": {
-      "type": "string",
-      "description": "An optional email address that is included in a \"Reply-To:\" header for mail sent using this alias. If this is empty, Gmail will not generate a \"Reply-To:\" header."
-     },
-     "isDefault": {
-      "type": "boolean",
-      "description": "Whether this address is selected as the default \"From:\" address in situations such as composing a new message or sending a vacation auto-reply. Every Gmail account has exactly one default send-as address, so the only legal value that clients may write to this field is `true`. Changing this from `false` to `true` for an address will result in this field becoming `false` for the other previous defau"
-     },
-     "displayName": {
-      "type": "string",
-      "description": "A name that appears in the \"From:\" header for mail sent using this alias. For custom \"from\" addresses, when this is empty, Gmail will populate the \"From:\" header with the name that is used for the primary address associated with the account. If the admin has disabled the ability for users to update their name format, requests to update this field for the primary login will silently fail."
-     },
-     "smtpMsa": {
-      "type": "string",
-      "description": "An optional SMTP service that will be used as an outbound relay for mail sent using this alias. If this is empty, outbound mail will be sent directly from Gmail's servers to the destination SMTP service. This setting only applies to custom \"from\" aliases."
-     },
-     "treatAsAlias": {
-      "type": "boolean",
-      "description": "Whether Gmail should treat this address as an alias for the user's primary email address. This setting only applies to custom \"from\" aliases."
-     },
-     "isPrimary": {
-      "type": "boolean",
-      "description": "Whether this address is the primary address used to login to the account. Every Gmail account has exactly one primary address, and it cannot be deleted from the collection of send-as aliases. This field is read-only."
      }
     },
     "required": [
@@ -2461,15 +2461,15 @@
     "query": [],
     "header": [],
     "body": [
-     "verificationStatus",
-     "signature",
-     "sendAsEmail",
-     "replyToAddress",
-     "isDefault",
-     "displayName",
-     "smtpMsa",
      "treatAsAlias",
-     "isPrimary"
+     "sendAsEmail",
+     "smtpMsa",
+     "signature",
+     "isPrimary",
+     "replyToAddress",
+     "displayName",
+     "isDefault",
+     "verificationStatus"
     ],
     "body_format": "json"
    }
@@ -2585,6 +2585,34 @@
       "type": "string",
       "description": "The email address that appears in the \"From:\" header for mail sent using this alias. This is read-only for all operations except create."
      },
+     "treatAsAlias": {
+      "type": "boolean",
+      "description": "Whether Gmail should treat this address as an alias for the user's primary email address. This setting only applies to custom \"from\" aliases."
+     },
+     "smtpMsa": {
+      "type": "string",
+      "description": "An optional SMTP service that will be used as an outbound relay for mail sent using this alias. If this is empty, outbound mail will be sent directly from Gmail's servers to the destination SMTP service. This setting only applies to custom \"from\" aliases."
+     },
+     "signature": {
+      "type": "string",
+      "description": "An optional HTML signature that is included in messages composed with this alias in the Gmail web UI. This signature is added to new emails only."
+     },
+     "isPrimary": {
+      "type": "boolean",
+      "description": "Whether this address is the primary address used to login to the account. Every Gmail account has exactly one primary address, and it cannot be deleted from the collection of send-as aliases. This field is read-only."
+     },
+     "replyToAddress": {
+      "type": "string",
+      "description": "An optional email address that is included in a \"Reply-To:\" header for mail sent using this alias. If this is empty, Gmail will not generate a \"Reply-To:\" header."
+     },
+     "displayName": {
+      "type": "string",
+      "description": "A name that appears in the \"From:\" header for mail sent using this alias. For custom \"from\" addresses, when this is empty, Gmail will populate the \"From:\" header with the name that is used for the primary address associated with the account. If the admin has disabled the ability for users to update their name format, requests to update this field for the primary login will silently fail."
+     },
+     "isDefault": {
+      "type": "boolean",
+      "description": "Whether this address is selected as the default \"From:\" address in situations such as composing a new message or sending a vacation auto-reply. Every Gmail account has exactly one default send-as address, so the only legal value that clients may write to this field is `true`. Changing this from `false` to `true` for an address will result in this field becoming `false` for the other previous defau"
+     },
      "verificationStatus": {
       "type": "string",
       "description": "Indicates whether this address has been verified for use as a send-as alias. Read-only. This setting only applies to custom \"from\" aliases.",
@@ -2593,34 +2621,6 @@
        "accepted",
        "pending"
       ]
-     },
-     "signature": {
-      "type": "string",
-      "description": "An optional HTML signature that is included in messages composed with this alias in the Gmail web UI. This signature is added to new emails only."
-     },
-     "replyToAddress": {
-      "type": "string",
-      "description": "An optional email address that is included in a \"Reply-To:\" header for mail sent using this alias. If this is empty, Gmail will not generate a \"Reply-To:\" header."
-     },
-     "isDefault": {
-      "type": "boolean",
-      "description": "Whether this address is selected as the default \"From:\" address in situations such as composing a new message or sending a vacation auto-reply. Every Gmail account has exactly one default send-as address, so the only legal value that clients may write to this field is `true`. Changing this from `false` to `true` for an address will result in this field becoming `false` for the other previous defau"
-     },
-     "displayName": {
-      "type": "string",
-      "description": "A name that appears in the \"From:\" header for mail sent using this alias. For custom \"from\" addresses, when this is empty, Gmail will populate the \"From:\" header with the name that is used for the primary address associated with the account. If the admin has disabled the ability for users to update their name format, requests to update this field for the primary login will silently fail."
-     },
-     "smtpMsa": {
-      "type": "string",
-      "description": "An optional SMTP service that will be used as an outbound relay for mail sent using this alias. If this is empty, outbound mail will be sent directly from Gmail's servers to the destination SMTP service. This setting only applies to custom \"from\" aliases."
-     },
-     "treatAsAlias": {
-      "type": "boolean",
-      "description": "Whether Gmail should treat this address as an alias for the user's primary email address. This setting only applies to custom \"from\" aliases."
-     },
-     "isPrimary": {
-      "type": "boolean",
-      "description": "Whether this address is the primary address used to login to the account. Every Gmail account has exactly one primary address, and it cannot be deleted from the collection of send-as aliases. This field is read-only."
      }
     },
     "required": [
@@ -2638,15 +2638,15 @@
     "query": [],
     "header": [],
     "body": [
-     "verificationStatus",
-     "signature",
-     "sendAsEmail",
-     "replyToAddress",
-     "isDefault",
-     "displayName",
-     "smtpMsa",
      "treatAsAlias",
-     "isPrimary"
+     "sendAsEmail",
+     "smtpMsa",
+     "signature",
+     "isPrimary",
+     "replyToAddress",
+     "displayName",
+     "isDefault",
+     "verificationStatus"
     ],
     "body_format": "json"
    }
@@ -2658,17 +2658,17 @@
    "input": {
     "type": "object",
     "properties": {
-     "sendAsEmail": {
+     "id": {
       "type": "string",
-      "description": "The email address that appears in the \"From:\" header for mail sent using this alias."
+      "description": "The immutable ID for the SmimeInfo."
      },
      "userId": {
       "type": "string",
       "description": "The user's email address. The special value `me` can be used to indicate the authenticated user."
      },
-     "id": {
+     "sendAsEmail": {
       "type": "string",
-      "description": "The immutable ID for the SmimeInfo."
+      "description": "The email address that appears in the \"From:\" header for mail sent using this alias."
      }
     },
     "required": [
@@ -2681,9 +2681,9 @@
     "method": "DELETE",
     "url": "https://gmail.googleapis.com/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}/smimeInfo/{id}",
     "path": [
-     "sendAsEmail",
+     "id",
      "userId",
-     "id"
+     "sendAsEmail"
     ],
     "query": [],
     "header": [],
@@ -2698,10 +2698,6 @@
    "input": {
     "type": "object",
     "properties": {
-     "id": {
-      "type": "string",
-      "description": "The immutable ID for the SmimeInfo."
-     },
      "sendAsEmail": {
       "type": "string",
       "description": "The email address that appears in the \"From:\" header for mail sent using this alias."
@@ -2709,6 +2705,10 @@
      "userId": {
       "type": "string",
       "description": "The user's email address. The special value `me` can be used to indicate the authenticated user."
+     },
+     "id": {
+      "type": "string",
+      "description": "The immutable ID for the SmimeInfo."
      }
     },
     "required": [
@@ -2721,9 +2721,9 @@
     "method": "GET",
     "url": "https://gmail.googleapis.com/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}/smimeInfo/{id}",
     "path": [
-     "id",
      "sendAsEmail",
-     "userId"
+     "userId",
+     "id"
     ],
     "query": [],
     "header": [],
@@ -2746,17 +2746,21 @@
       "type": "string",
       "description": "The email address that appears in the \"From:\" header for mail sent using this alias."
      },
-     "id": {
+     "encryptedKeyPassword": {
       "type": "string",
-      "description": "The immutable ID for the SmimeInfo."
+      "description": "Encrypted key password, when key is encrypted."
      },
-     "issuerCn": {
+     "expiration": {
       "type": "string",
-      "description": "The S/MIME certificate issuer's common name."
+      "description": "When the certificate expires (in milliseconds since epoch)."
      },
      "pem": {
       "type": "string",
       "description": "PEM formatted X509 concatenated certificate string (standard base64 encoding). Format used for returning key, which includes public key as well as certificate chain (not private key)."
+     },
+     "id": {
+      "type": "string",
+      "description": "The immutable ID for the SmimeInfo."
      },
      "pkcs12": {
       "type": "string",
@@ -2766,13 +2770,9 @@
       "type": "boolean",
       "description": "Whether this SmimeInfo is the default one for this user's send-as address."
      },
-     "expiration": {
+     "issuerCn": {
       "type": "string",
-      "description": "When the certificate expires (in milliseconds since epoch)."
-     },
-     "encryptedKeyPassword": {
-      "type": "string",
-      "description": "Encrypted key password, when key is encrypted."
+      "description": "The S/MIME certificate issuer's common name."
      }
     },
     "required": [
@@ -2790,13 +2790,13 @@
     "query": [],
     "header": [],
     "body": [
-     "id",
-     "issuerCn",
+     "encryptedKeyPassword",
+     "expiration",
      "pem",
+     "id",
      "pkcs12",
      "isDefault",
-     "expiration",
-     "encryptedKeyPassword"
+     "issuerCn"
     ],
     "body_format": "json"
    }
@@ -2890,6 +2890,34 @@
       "type": "string",
       "description": "User's email address. The special value \"me\" can be used to indicate the authenticated user."
      },
+     "treatAsAlias": {
+      "type": "boolean",
+      "description": "Whether Gmail should treat this address as an alias for the user's primary email address. This setting only applies to custom \"from\" aliases."
+     },
+     "smtpMsa": {
+      "type": "string",
+      "description": "An optional SMTP service that will be used as an outbound relay for mail sent using this alias. If this is empty, outbound mail will be sent directly from Gmail's servers to the destination SMTP service. This setting only applies to custom \"from\" aliases."
+     },
+     "signature": {
+      "type": "string",
+      "description": "An optional HTML signature that is included in messages composed with this alias in the Gmail web UI. This signature is added to new emails only."
+     },
+     "isPrimary": {
+      "type": "boolean",
+      "description": "Whether this address is the primary address used to login to the account. Every Gmail account has exactly one primary address, and it cannot be deleted from the collection of send-as aliases. This field is read-only."
+     },
+     "replyToAddress": {
+      "type": "string",
+      "description": "An optional email address that is included in a \"Reply-To:\" header for mail sent using this alias. If this is empty, Gmail will not generate a \"Reply-To:\" header."
+     },
+     "displayName": {
+      "type": "string",
+      "description": "A name that appears in the \"From:\" header for mail sent using this alias. For custom \"from\" addresses, when this is empty, Gmail will populate the \"From:\" header with the name that is used for the primary address associated with the account. If the admin has disabled the ability for users to update their name format, requests to update this field for the primary login will silently fail."
+     },
+     "isDefault": {
+      "type": "boolean",
+      "description": "Whether this address is selected as the default \"From:\" address in situations such as composing a new message or sending a vacation auto-reply. Every Gmail account has exactly one default send-as address, so the only legal value that clients may write to this field is `true`. Changing this from `false` to `true` for an address will result in this field becoming `false` for the other previous defau"
+     },
      "verificationStatus": {
       "type": "string",
       "description": "Indicates whether this address has been verified for use as a send-as alias. Read-only. This setting only applies to custom \"from\" aliases.",
@@ -2898,34 +2926,6 @@
        "accepted",
        "pending"
       ]
-     },
-     "signature": {
-      "type": "string",
-      "description": "An optional HTML signature that is included in messages composed with this alias in the Gmail web UI. This signature is added to new emails only."
-     },
-     "replyToAddress": {
-      "type": "string",
-      "description": "An optional email address that is included in a \"Reply-To:\" header for mail sent using this alias. If this is empty, Gmail will not generate a \"Reply-To:\" header."
-     },
-     "isDefault": {
-      "type": "boolean",
-      "description": "Whether this address is selected as the default \"From:\" address in situations such as composing a new message or sending a vacation auto-reply. Every Gmail account has exactly one default send-as address, so the only legal value that clients may write to this field is `true`. Changing this from `false` to `true` for an address will result in this field becoming `false` for the other previous defau"
-     },
-     "displayName": {
-      "type": "string",
-      "description": "A name that appears in the \"From:\" header for mail sent using this alias. For custom \"from\" addresses, when this is empty, Gmail will populate the \"From:\" header with the name that is used for the primary address associated with the account. If the admin has disabled the ability for users to update their name format, requests to update this field for the primary login will silently fail."
-     },
-     "smtpMsa": {
-      "type": "string",
-      "description": "An optional SMTP service that will be used as an outbound relay for mail sent using this alias. If this is empty, outbound mail will be sent directly from Gmail's servers to the destination SMTP service. This setting only applies to custom \"from\" aliases."
-     },
-     "treatAsAlias": {
-      "type": "boolean",
-      "description": "Whether Gmail should treat this address as an alias for the user's primary email address. This setting only applies to custom \"from\" aliases."
-     },
-     "isPrimary": {
-      "type": "boolean",
-      "description": "Whether this address is the primary address used to login to the account. Every Gmail account has exactly one primary address, and it cannot be deleted from the collection of send-as aliases. This field is read-only."
      }
     },
     "required": [
@@ -2943,15 +2943,15 @@
     "query": [],
     "header": [],
     "body": [
-     "verificationStatus",
-     "signature",
-     "sendAsEmail",
-     "replyToAddress",
-     "isDefault",
-     "displayName",
-     "smtpMsa",
      "treatAsAlias",
-     "isPrimary"
+     "sendAsEmail",
+     "smtpMsa",
+     "signature",
+     "isPrimary",
+     "replyToAddress",
+     "displayName",
+     "isDefault",
+     "verificationStatus"
     ],
     "body_format": "json"
    }
@@ -2963,13 +2963,13 @@
    "input": {
     "type": "object",
     "properties": {
-     "userId": {
-      "type": "string",
-      "description": "User's email address. The special value \"me\" can be used to indicate the authenticated user."
-     },
      "sendAsEmail": {
       "type": "string",
       "description": "The send-as alias to be verified."
+     },
+     "userId": {
+      "type": "string",
+      "description": "User's email address. The special value \"me\" can be used to indicate the authenticated user."
      }
     },
     "required": [
@@ -2981,8 +2981,8 @@
     "method": "POST",
     "url": "https://gmail.googleapis.com/gmail/v1/users/{userId}/settings/sendAs/{sendAsEmail}/verify",
     "path": [
-     "userId",
-     "sendAsEmail"
+     "sendAsEmail",
+     "userId"
     ],
     "query": [],
     "header": [],
@@ -3001,10 +3001,6 @@
       "type": "string",
       "description": "User's email address. The special value \"me\" can be used to indicate the authenticated user."
      },
-     "enabled": {
-      "type": "boolean",
-      "description": "Whether all incoming mail is automatically forwarded to another address."
-     },
      "disposition": {
       "type": "string",
       "description": "The state that a message should be left in after it has been forwarded.",
@@ -3015,6 +3011,10 @@
        "trash",
        "markRead"
       ]
+     },
+     "enabled": {
+      "type": "boolean",
+      "description": "Whether all incoming mail is automatically forwarded to another address."
      },
      "emailAddress": {
       "type": "string",
@@ -3034,8 +3034,8 @@
     "query": [],
     "header": [],
     "body": [
-     "enabled",
      "disposition",
+     "enabled",
      "emailAddress"
     ],
     "body_format": "json"
@@ -3052,9 +3052,9 @@
       "type": "string",
       "description": "User's email address. The special value \"me\" can be used to indicate the authenticated user."
      },
-     "enabled": {
-      "type": "boolean",
-      "description": "Whether IMAP is enabled for the account."
+     "maxFolderSize": {
+      "type": "integer",
+      "description": "An optional limit on the number of messages that an IMAP folder may contain. Legal values are 0, 1000, 2000, 5000 or 10000. A value of zero is interpreted to mean that there is no limit."
      },
      "expungeBehavior": {
       "type": "string",
@@ -3066,13 +3066,13 @@
        "deleteForever"
       ]
      },
+     "enabled": {
+      "type": "boolean",
+      "description": "Whether IMAP is enabled for the account."
+     },
      "autoExpunge": {
       "type": "boolean",
       "description": "If this value is true, Gmail will immediately expunge a message when it is marked as deleted in IMAP. Otherwise, Gmail will wait for an update from the client before expunging messages marked as deleted."
-     },
-     "maxFolderSize": {
-      "type": "integer",
-      "description": "An optional limit on the number of messages that an IMAP folder may contain. Legal values are 0, 1000, 2000, 5000 or 10000. A value of zero is interpreted to mean that there is no limit."
      }
     },
     "required": [
@@ -3088,10 +3088,10 @@
     "query": [],
     "header": [],
     "body": [
-     "enabled",
+     "maxFolderSize",
      "expungeBehavior",
-     "autoExpunge",
-     "maxFolderSize"
+     "enabled",
+     "autoExpunge"
     ],
     "body_format": "json"
    }
@@ -3193,37 +3193,37 @@
       "type": "string",
       "description": "User's email address. The special value \"me\" can be used to indicate the authenticated user."
      },
-     "endTime": {
+     "responseSubject": {
       "type": "string",
-      "description": "An optional end time for sending auto-replies (epoch ms). When this is specified, Gmail will automatically reply only to messages that it receives before the end time. If both `startTime` and `endTime` are specified, `startTime` must precede `endTime`."
+      "description": "Optional text to prepend to the subject line in vacation responses. In order to enable auto-replies, either the response subject or the response body must be nonempty."
      },
      "enableAutoReply": {
       "type": "boolean",
       "description": "Flag that controls whether Gmail automatically replies to messages."
      },
+     "restrictToDomain": {
+      "type": "boolean",
+      "description": "Flag that determines whether responses are sent to recipients who are outside of the user's domain. This feature is only available for Google Workspace users."
+     },
      "restrictToContacts": {
       "type": "boolean",
       "description": "Flag that determines whether responses are sent to recipients who are not in the user's list of contacts."
-     },
-     "responseBodyPlainText": {
-      "type": "string",
-      "description": "Response body in plain text format. If both `response_body_plain_text` and `response_body_html` are specified, `response_body_html` will be used."
-     },
-     "responseSubject": {
-      "type": "string",
-      "description": "Optional text to prepend to the subject line in vacation responses. In order to enable auto-replies, either the response subject or the response body must be nonempty."
-     },
-     "startTime": {
-      "type": "string",
-      "description": "An optional start time for sending auto-replies (epoch ms). When this is specified, Gmail will automatically reply only to messages that it receives after the start time. If both `startTime` and `endTime` are specified, `startTime` must precede `endTime`."
      },
      "responseBodyHtml": {
       "type": "string",
       "description": "Response body in HTML format. Gmail will sanitize the HTML before storing it. If both `response_body_plain_text` and `response_body_html` are specified, `response_body_html` will be used."
      },
-     "restrictToDomain": {
-      "type": "boolean",
-      "description": "Flag that determines whether responses are sent to recipients who are outside of the user's domain. This feature is only available for Google Workspace users."
+     "responseBodyPlainText": {
+      "type": "string",
+      "description": "Response body in plain text format. If both `response_body_plain_text` and `response_body_html` are specified, `response_body_html` will be used."
+     },
+     "endTime": {
+      "type": "string",
+      "description": "An optional end time for sending auto-replies (epoch ms). When this is specified, Gmail will automatically reply only to messages that it receives before the end time. If both `startTime` and `endTime` are specified, `startTime` must precede `endTime`."
+     },
+     "startTime": {
+      "type": "string",
+      "description": "An optional start time for sending auto-replies (epoch ms). When this is specified, Gmail will automatically reply only to messages that it receives after the start time. If both `startTime` and `endTime` are specified, `startTime` must precede `endTime`."
      }
     },
     "required": [
@@ -3239,14 +3239,14 @@
     "query": [],
     "header": [],
     "body": [
-     "endTime",
-     "enableAutoReply",
-     "restrictToContacts",
-     "responseBodyPlainText",
      "responseSubject",
-     "startTime",
+     "enableAutoReply",
+     "restrictToDomain",
+     "restrictToContacts",
      "responseBodyHtml",
-     "restrictToDomain"
+     "responseBodyPlainText",
+     "endTime",
+     "startTime"
     ],
     "body_format": "json"
    }
@@ -3286,13 +3286,13 @@
    "input": {
     "type": "object",
     "properties": {
-     "userId": {
-      "type": "string",
-      "description": "The user's email address. The special value `me` can be used to indicate the authenticated user."
-     },
      "id": {
       "type": "string",
       "description": "ID of the Thread to delete."
+     },
+     "userId": {
+      "type": "string",
+      "description": "The user's email address. The special value `me` can be used to indicate the authenticated user."
      }
     },
     "required": [
@@ -3304,8 +3304,8 @@
     "method": "DELETE",
     "url": "https://gmail.googleapis.com/gmail/v1/users/{userId}/threads/{id}",
     "path": [
-     "userId",
-     "id"
+     "id",
+     "userId"
     ],
     "query": [],
     "header": [],
@@ -3320,10 +3320,6 @@
    "input": {
     "type": "object",
     "properties": {
-     "metadataHeaders": {
-      "type": "string",
-      "description": "When given and format is METADATA, only include headers specified."
-     },
      "id": {
       "type": "string",
       "description": "The ID of the thread to retrieve."
@@ -3336,6 +3332,10 @@
        "metadata",
        "minimal"
       ]
+     },
+     "metadataHeaders": {
+      "type": "string",
+      "description": "When given and format is METADATA, only include headers specified."
      },
      "userId": {
       "type": "string",
@@ -3355,8 +3355,8 @@
      "userId"
     ],
     "query": [
-     "metadataHeaders",
-     "format"
+     "format",
+     "metadataHeaders"
     ],
     "header": [],
     "body": [],
@@ -3370,29 +3370,29 @@
    "input": {
     "type": "object",
     "properties": {
-     "maxResults": {
-      "type": "integer",
-      "description": "Maximum number of threads to return. This field defaults to 100. The maximum allowed value for this field is 500."
-     },
-     "labelIds": {
+     "userId": {
       "type": "string",
-      "description": "Only return threads with labels that match all of the specified label IDs."
+      "description": "The user's email address. The special value `me` can be used to indicate the authenticated user."
      },
      "pageToken": {
       "type": "string",
       "description": "Page token to retrieve a specific page of results in the list."
      },
-     "includeSpamTrash": {
-      "type": "boolean",
-      "description": "Include threads from `SPAM` and `TRASH` in the results."
-     },
-     "userId": {
-      "type": "string",
-      "description": "The user's email address. The special value `me` can be used to indicate the authenticated user."
-     },
      "q": {
       "type": "string",
       "description": "Only return threads matching the specified query. Supports the same query format as the Gmail search box. For example, `\"from:someuser@example.com rfc822msgid: is:unread\"`. Parameter cannot be used when accessing the api using the gmail.metadata scope."
+     },
+     "labelIds": {
+      "type": "string",
+      "description": "Only return threads with labels that match all of the specified label IDs."
+     },
+     "maxResults": {
+      "type": "integer",
+      "description": "Maximum number of threads to return. This field defaults to 100. The maximum allowed value for this field is 500."
+     },
+     "includeSpamTrash": {
+      "type": "boolean",
+      "description": "Include threads from `SPAM` and `TRASH` in the results."
      }
     },
     "required": [
@@ -3406,11 +3406,11 @@
      "userId"
     ],
     "query": [
-     "maxResults",
-     "labelIds",
      "pageToken",
-     "includeSpamTrash",
-     "q"
+     "q",
+     "labelIds",
+     "maxResults",
+     "includeSpamTrash"
     ],
     "header": [],
     "body": [],
@@ -3432,13 +3432,13 @@
       "type": "string",
       "description": "The ID of the thread to modify."
      },
-     "removeLabelIds": {
-      "type": "array",
-      "description": "A list of IDs of labels to remove from this thread. You can remove up to 100 labels with each update."
-     },
      "addLabelIds": {
       "type": "array",
       "description": "A list of IDs of labels to add to this thread. You can add up to 100 labels with each update."
+     },
+     "removeLabelIds": {
+      "type": "array",
+      "description": "A list of IDs of labels to remove from this thread. You can remove up to 100 labels with each update."
      }
     },
     "required": [
@@ -3456,8 +3456,8 @@
     "query": [],
     "header": [],
     "body": [
-     "removeLabelIds",
-     "addLabelIds"
+     "addLabelIds",
+     "removeLabelIds"
     ],
     "body_format": "json"
    }
@@ -3469,13 +3469,13 @@
    "input": {
     "type": "object",
     "properties": {
-     "userId": {
-      "type": "string",
-      "description": "The user's email address. The special value `me` can be used to indicate the authenticated user."
-     },
      "id": {
       "type": "string",
       "description": "The ID of the thread to Trash."
+     },
+     "userId": {
+      "type": "string",
+      "description": "The user's email address. The special value `me` can be used to indicate the authenticated user."
      }
     },
     "required": [
@@ -3487,8 +3487,8 @@
     "method": "POST",
     "url": "https://gmail.googleapis.com/gmail/v1/users/{userId}/threads/{id}/trash",
     "path": [
-     "userId",
-     "id"
+     "id",
+     "userId"
     ],
     "query": [],
     "header": [],
@@ -3541,14 +3541,6 @@
       "type": "string",
       "description": "The user's email address. The special value `me` can be used to indicate the authenticated user."
      },
-     "labelIds": {
-      "type": "array",
-      "description": "List of label_ids to restrict notifications about. By default, if unspecified, all changes are pushed out. If specified then dictates which labels are required for a push notification to be generated."
-     },
-     "topicName": {
-      "type": "string",
-      "description": "A fully qualified Google Cloud Pub/Sub API topic name to publish the events to. This topic name **must** already exist in Cloud Pub/Sub and you **must** have already granted gmail \"publish\" permission on it. For example, \"projects/my-project-identifier/topics/my-topic-name\" (using the Cloud Pub/Sub \"v1\" topic naming format). Note that the \"my-project-identifier\" portion must exactly match your Goo"
-     },
      "labelFilterAction": {
       "type": "string",
       "description": "Filtering behavior of `labelIds list` specified. This field is deprecated because it caused incorrect behavior in some cases; use `label_filter_behavior` instead.",
@@ -3564,6 +3556,14 @@
        "include",
        "exclude"
       ]
+     },
+     "topicName": {
+      "type": "string",
+      "description": "A fully qualified Google Cloud Pub/Sub API topic name to publish the events to. This topic name **must** already exist in Cloud Pub/Sub and you **must** have already granted gmail \"publish\" permission on it. For example, \"projects/my-project-identifier/topics/my-topic-name\" (using the Cloud Pub/Sub \"v1\" topic naming format). Note that the \"my-project-identifier\" portion must exactly match your Goo"
+     },
+     "labelIds": {
+      "type": "array",
+      "description": "List of label_ids to restrict notifications about. By default, if unspecified, all changes are pushed out. If specified then dictates which labels are required for a push notification to be generated."
      }
     },
     "required": [
@@ -3579,10 +3579,10 @@
     "query": [],
     "header": [],
     "body": [
-     "labelIds",
-     "topicName",
      "labelFilterAction",
-     "labelFilterBehavior"
+     "labelFilterBehavior",
+     "topicName",
+     "labelIds"
     ],
     "body_format": "json"
    }
