@@ -516,6 +516,10 @@
       "type": "string",
       "description": ""
      },
+     "icon": {
+      "type": "string",
+      "description": "Project icon name. Pass null or omit it for the default icon."
+     },
      "is_favorite": {
       "type": "boolean",
       "description": "Whether the project is a favorite for the user."
@@ -544,6 +548,7 @@
      "description",
      "parent_id",
      "color",
+     "icon",
      "is_favorite",
      "view_style",
      "workspace_id"
@@ -756,7 +761,7 @@
      },
      "duration": {
       "type": "string",
-      "description": "Task duration, in either minutes or days. Only used if `duration_unit` is also provided."
+      "description": "Task duration, as a positive whole number of minutes or days. The API accepts durations longer than 24 hours, but the Todoist web and desktop date picker limits duration edits to 24 hours. Only used if `duration_unit` is also provided."
      },
      "duration_unit": {
       "type": "string",
@@ -2464,6 +2469,15 @@
      "role": {
       "type": "string",
       "description": "Role assigned to invited users."
+     },
+     "app": {
+      "type": "string",
+      "description": "Product name as first-party clients spell it on the wire.",
+      "enum": [
+       "todoist",
+       "comms",
+       "automations"
+      ]
      }
     },
     "required": [
@@ -2480,7 +2494,8 @@
     "header": [],
     "body": [
      "email_list",
-     "role"
+     "role",
+     "app"
     ],
     "body_format": "json"
    }
@@ -3660,6 +3675,10 @@
       "type": "string",
       "description": "Updated project color. Passing null or omitting this field will leave it unchanged."
      },
+     "icon": {
+      "type": "string",
+      "description": "Updated project icon name. Pass null to reset to the default icon. Omit this field to keep it unchanged."
+     },
      "is_favorite": {
       "type": "string",
       "description": "Whether the project is marked as a favorite. Passing null or omitting this field will leave it unchanged."
@@ -3697,6 +3716,7 @@
      "name",
      "description",
      "color",
+     "icon",
      "is_favorite",
      "view_style",
      "child_order",
@@ -3857,7 +3877,7 @@
      },
      "duration": {
       "type": "string",
-      "description": "Updated task duration, in either minutes or days. Only used if `duration_unit` is also provided. Pass null to clear the value. Omit this field to keep it unchanged."
+      "description": "Updated task duration, as a positive whole number of minutes or days. The API accepts durations longer than 24 hours, but the Todoist web and desktop date picker limits duration edits to 24 hours. Only used if `duration_unit` is also provided. Pass null to clear the value. Omit this field to keep it unchanged."
      },
      "duration_unit": {
       "type": "string",
@@ -4124,7 +4144,7 @@
   {
    "slug": "todoist.usage_billing_state_api_v1_usage_billing_state_get",
    "name": "Usage billing state",
-   "description": "Read the caller's usage-billing credit state for a product. A user who has never topped up reads as an empty wallet: `available_units` and `available_amount` are 0, and `usage_allowed` is false. There is no separate \"no account\" answer, because both states send the user to the same top-up screen.",
+   "description": "Read the caller's usage-billing credit state for a product. A user who has never topped up reads as an empty wallet: `available_units` and `available_amount` are 0, `is_settled_low_balance` is true, and `usage_block_reason` is `insufficient_credit`. There is no separate \"no account\" answer, because both states send the user to the same top-up screen.",
    "input": {
     "type": "object",
     "properties": {
@@ -4209,6 +4229,10 @@
      "until": {
       "type": "string",
       "description": "End of the window, exclusive. Omit to run to now. A value with no offset is read as UTC."
+     },
+     "group_by": {
+      "type": "string",
+      "description": "Split the total by the automation that ran, in `groups`. Send `category=automation_run` with it: chat messages carry no automation, so without the filter each chat label becomes a group of its own."
      }
     },
     "required": []
@@ -4221,7 +4245,8 @@
      "product",
      "category",
      "since",
-     "until"
+     "until",
+     "group_by"
     ],
     "header": [],
     "body": [],

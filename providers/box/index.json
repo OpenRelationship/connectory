@@ -1188,7 +1188,7 @@
   {
    "slug": "box.delete_users_id",
    "name": "Delete user",
-   "description": "Deletes a user. By default, this operation fails if the user still owns any content. To proceed, move their owned content first, or use the `force` parameter to delete the user and their files.",
+   "description": "Deletes a user. By default, this operation fails if the user still owns any content. To proceed, move their owned content first, or use the `force` parameter to delete the user and their files. If the enterprise has a retention policy, including a retired one, or a legal hold that is not fully released, you can't delete a user who owns content, even with `force`. Transfer the user's content first ",
    "input": {
     "type": "object",
     "properties": {
@@ -1202,7 +1202,7 @@
      },
      "force": {
       "type": "boolean",
-      "description": "Specifies whether to delete the user even if they still own files."
+      "description": "Specifies whether to delete the user even if they still own files. If the user owns content and the enterprise has a retention policy, including a retired one, or a legal hold that is not fully released, setting `force` to `true` doesn't delete the user. The request returns a `403` error, and you must transfer the user's content before deleting the user."
      }
     },
     "required": [
@@ -6707,11 +6707,11 @@
      },
      "include_confidence_score": {
       "type": "boolean",
-      "description": "A flag to indicate whether confidence scores for every extracted field should be returned."
+      "description": "A flag to indicate whether confidence scores for every extracted field should be returned. Estimates the likelihood that an extracted metadata field value is accurate and correct. Displays a numerical and categorical confidence score to help users and automated systems quickly determine extraction reliability."
      },
      "include_reference": {
       "type": "boolean",
-      "description": "A flag to indicate whether references for every extracted field should be returned."
+      "description": "A flag to indicate whether references for every extracted field should be returned. References and bounding boxes show where the agent extracted the metadata from. They help you check for accuracy and fix any mistakes. References are short, exact quotes from the original document used to verify results. Bounding boxes highlight the specific areas on the page where that text is found."
      },
      "taxonomy_sources": {
       "type": "array",
@@ -7489,7 +7489,7 @@
      },
      "digest": {
       "type": "string",
-      "description": "The [RFC3230][1] message digest of the whole file. Only SHA1 is supported. The SHA1 digest must be Base64 encoded. The format of this header is as `sha=BASE64_ENCODED_DIGEST`. [1]: https://tools.ietf.org/html/rfc3230"
+      "description": "The [RFC3230][1] message digest of the whole file. Only SHA1 is supported. The SHA1 digest must be Base64 encoded. The format of this header is as `sha=BASE64_ENCODED_DIGEST`. `SHA-512` is not supported for the whole-file digest, even if the parts were uploaded with `SHA-512` digests. [1]: https://tools.ietf.org/html/rfc3230"
      },
      "if-match": {
       "type": "string",
@@ -7501,7 +7501,7 @@
      },
      "parts": {
       "type": "array",
-      "description": "The list details for the uploaded parts."
+      "description": "The list details for the uploaded parts. Each entry can include `sha1` or `sha512`. Include `sha512` on every entry or on none of them. A request where only some entries include `sha512` is rejected. Include parts that the server already has, returned as `hits` by the [`Plan upload session`](https://developer.box.com/reference/post-files-upload-sessions-id-plan) endpoint. Use the `part_id`, `offse"
      }
     },
     "required": [
@@ -7531,7 +7531,7 @@
   {
    "slug": "box.post_files_upload_sessions_id_plan",
    "name": "Plan upload session",
-   "description": "Plan an upload session by checking which parts already exist on the server. This endpoint allows clients to optimize uploads by skipping parts that have already been uploaded (cache hits) and only uploading missing parts. The actual endpoint URL is returned by the [`Create upload session`](e://post-files-upload-sessions) and [`Get upload session`](e://get-files-upload-sessions-id) endpoints.",
+   "description": "Plan an upload session by checking which parts already exist on the server. This endpoint allows clients to optimize uploads by skipping parts that have already been uploaded (cache hits) and only uploading missing parts. The actual endpoint URL is returned by the [`Create upload session`](https://developer.box.com/reference/post-files-upload-sessions) and [`Get upload session`](https://developer.",
    "input": {
     "type": "object",
     "properties": {
@@ -8252,7 +8252,7 @@
   {
    "slug": "box.post_metadata_queries_execute_read",
    "name": "Query files folders by metadata",
-   "description": "Create a search using SQL-like syntax to return items that match specific metadata. By default, this endpoint returns only the most basic info about the items for which the query matches. To get additional fields for each item, including any of the metadata, use the `fields` attribute in the query.",
+   "description": "For new integrations, use the [v2026.0 Query API](https://developer.box.com/reference/v2026.0/query-resources). This is the latest version of the Query API, with advanced capabilities including multi-template queries and Query Insights, and is the API we will continue to enhance with new Query capabilities. Create a search using SQL-like syntax to return items that match specific metadata. By defa",
    "input": {
     "type": "object",
     "properties": {
@@ -10652,7 +10652,7 @@
      },
      "digest": {
       "type": "string",
-      "description": "The [RFC3230][1] message digest of the chunk uploaded. Only SHA1 is supported. The SHA1 digest must be base64 encoded. The format of this header is as `sha=BASE64_ENCODED_DIGEST`. To get the value for the `SHA` digest, use the openSSL command to encode the file part: `openssl sha1 -binary | base64`. [1]: https://tools.ietf.org/html/rfc3230"
+      "description": "The [RFC3230][1] message digest of the chunk uploaded. `SHA-1` and `SHA-512` ([RFC5843][2]) are supported. The digest must be base64 encoded. The format of this header is as `sha=BASE64_ENCODED_DIGEST` for `SHA-1`, or `sha-512=BASE64_ENCODED_DIGEST` for `SHA-512`. To get the value for the digest, use the openSSL command to encode the file part: `openssl sha1 -binary | base64` for `SHA-1`, or `open"
      },
      "content-range": {
       "type": "string",

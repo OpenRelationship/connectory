@@ -6,7 +6,7 @@
   {
    "slug": "theirstack.buying_intents_v1",
    "name": "Buying intents",
-   "description": "This endpoint lists the buying intent topics detected for a company. For each topic, it returns the confidence level (`low`, `medium`, `high`), the number of jobs that mention the topic, and the first and last dates it was mentioned. You must specify `company_domain`, `company_name`, `company_linkedin_url`. It consumes **3 API credits** per company lookup, regardless of the number of buying intent",
+   "description": "List the buying intent topics detected for a company. For each topic, it returns the confidence level (`low`, `medium`, `high`), the number of jobs that mention the topic, and the first and last dates it was mentioned. You must specify at least one of `company_domain`, `company_name` or `company_linkedin_url`. It consumes **3 API credits** per company lookup, regardless of the number of buying int",
    "input": {
     "type": "object",
     "properties": {
@@ -20,7 +20,7 @@
      },
      "company_domain": {
       "type": "string",
-      "description": "Only return companies that match this domain exactly. It accepts full urls (https://www.google.com/) and emails (john.polo@gmail.com)."
+      "description": "Only return companies that match this domain exactly. It accepts full urls (https://www.google.com/) and emails (andrew@stripe.com)."
      },
      "company_linkedin_url": {
       "type": "string",
@@ -52,63 +52,63 @@
      },
      "keyword_slug_or": {
       "type": "array",
-      "description": "Return companies that have mentioned any of these keywords (technologies or buying intent topics) in their jobs. Case sensitive. Pass slugs. Check out all keywords at [GET /v0/catalog/keywords](https://theirstack.com/en/docs/api-reference/catalog/get_catalog_keywords_v0)"
+      "description": "Only return these keywords (technologies or buying intent topics). Case sensitive. Pass slugs. Check out all keywords at [GET /v0/catalog/keywords](https://theirstack.com/en/docs/api-reference/catalog/get_catalog_keywords_v0)"
      },
      "keyword_category_slug_or": {
       "type": "array",
-      "description": "Return companies that have mentioned any keyword from any of these categories in their jobs. Case sensitive. Pass slugs. Check out all keyword categories at [GET /v0/catalog/keywords/categories](https://theirstack.com/en/docs/api-reference/catalog/get_catalog_keywords_categories_v0)"
+      "description": "Only return keywords from any of these categories. Case sensitive. Pass slugs. Check out all keyword categories at [GET /v1/catalog/keywords/categories](https://theirstack.com/en/docs/api-reference/catalog/list_keyword_categories_v1)"
      },
      "keyword_parent_category_slug_or": {
       "type": "array",
-      "description": "Return companies that have mentioned any keyword from any of these parent categories in their jobs. Case sensitive. Pass slugs. Check out all keyword categories at [GET /v0/catalog/keywords/categories](https://theirstack.com/en/docs/api-reference/catalog/get_catalog_keywords_categories_v0)"
+      "description": "Only return keywords from any of these parent categories. Case sensitive. Pass slugs. Check out all keyword categories at [GET /v1/catalog/keywords/categories](https://theirstack.com/en/docs/api-reference/catalog/list_keyword_categories_v1)"
      },
      "technology_slug_or": {
       "type": "array",
-      "description": "Deprecated: use `keyword_slug_or` instead. Will return companies that have mentioned any of these technologies in their jobs. Case sensitive. Pass slugs."
+      "description": "Deprecated: use `keyword_slug_or` instead. Only return these technologies. Case sensitive. Pass slugs."
      },
      "technology_category_slug_or": {
       "type": "array",
-      "description": "Deprecated: use `keyword_category_slug_or` instead. Will return companies that have mentioned any keyword from any of these categories in their jobs. Case sensitive. Pass slugs."
+      "description": "Deprecated: use `keyword_category_slug_or` instead. Only return keywords from any of these categories. Case sensitive. Pass slugs."
      },
      "technology_parent_category_slug_or": {
       "type": "array",
-      "description": "Deprecated: use `keyword_parent_category_slug_or` instead. Will return companies that have mentioned any keyword from any of these parent categories in their jobs. Case sensitive. Pass slugs."
+      "description": "Deprecated: use `keyword_parent_category_slug_or` instead. Only return keywords from any of these parent categories. Case sensitive. Pass slugs."
      },
      "max_rank": {
       "type": "string",
-      "description": "The rank measures how common is a technology within its category. The technology most used among similar ones by a company will have a rank of 1, the second: 2, etc. This is useful to filter results by technology and get only results for the primary technology."
+      "description": "The rank measures how common a keyword (technology or buying intent topic) is within its category for a company. The keyword most mentioned among similar ones by a company has a rank of 1, the second 2, etc. Useful to keep only the primary technology or topic of each category."
      },
      "min_jobs": {
       "type": "string",
-      "description": "Minimum number of jobs found by each company using a technology"
+      "description": "Minimum number of jobs in which each company mentions the keyword (technology or buying intent topic)"
      },
      "max_jobs": {
       "type": "string",
-      "description": "Maximum number of jobs found by each company using a technology"
+      "description": "Maximum number of jobs in which each company mentions the keyword (technology or buying intent topic)"
      },
      "min_relative_occurrence": {
       "type": "string",
-      "description": "Minimum value of relative_occurrence_within_category for each technology. Higher values increase the probability that this technology is actually used by the company, because it means a higher percentage of mentions to technologies among this category are of this technology."
+      "description": "Minimum value of relative_occurrence_within_category for each keyword (technology or buying intent topic). Higher values increase the probability that the company actually uses the technology or cares about the topic, because a higher share of the mentions within that category are of this keyword."
      },
      "first_date_found_gte": {
       "type": "string",
-      "description": "Only return technologies where the first time they were found was after or on this date. Format: \"YYYY-MM-DD\""
+      "description": "Only return keywords (technologies or buying intent topics) where the first time they were found was after or on this date. Format: \"YYYY-MM-DD\""
      },
      "first_date_found_lte": {
       "type": "string",
-      "description": "Only return technologies where the first time they were found was before or on this date. Format: \"YYYY-MM-DD\""
+      "description": "Only return keywords (technologies or buying intent topics) where the first time they were found was before or on this date. Format: \"YYYY-MM-DD\""
      },
      "last_date_found_gte": {
       "type": "string",
-      "description": "Only return technologies where the last time they were found was after or on this date. Format: \"YYYY-MM-DD\""
+      "description": "Only return keywords (technologies or buying intent topics) where the last time they were found was after or on this date. Format: \"YYYY-MM-DD\""
      },
      "last_date_found_lte": {
       "type": "string",
-      "description": "Only return technologies where the last time they were found was before or on this date. Format: \"YYYY-MM-DD\""
+      "description": "Only return keywords (technologies or buying intent topics) where the last time they were found was before or on this date. Format: \"YYYY-MM-DD\""
      },
      "confidence_or": {
       "type": "array",
-      "description": "Returns technologies with any of these confidence values that the companies use them. Available values: \"high\", \"medium\", \"low\""
+      "description": "Only return keywords (technologies or buying intent topics) detected with any of these confidence levels. Available values: \"high\", \"medium\", \"low\""
      }
     },
     "required": []
@@ -152,7 +152,7 @@
   {
    "slug": "theirstack.delete_company_lists_by_id_v0",
    "name": "Delete company list",
-   "description": "Delete Company List",
+   "description": "Permanently delete a company list by ID. Only the list goes: the companies in it, and any other list that holds them, are not affected. Only the list's owner can delete it, and the 'Companies seen' list can't be deleted.",
    "input": {
     "type": "object",
     "properties": {
@@ -180,7 +180,7 @@
   {
    "slug": "theirstack.generate_app_url_v0",
    "name": "Generate app url",
-   "description": "Build a deep link into the TheirStack app for a given resource and return it as `{\"url\": ...}`. Pick the resource with the `type` field: `company_list` (view a list), `job_search` / `company_search` (open a search from filters \u2014 same filter shape as `search_jobs_v1` / `search_companies_v1`), `saved_search` (open a saved search), or `webhook` (view a webhook). Search links (`job_search` / `company_",
+   "description": "Build a deep link into the TheirStack app for a given resource and return it as `{\"url\": ...}`. Pick the resource with the `type` field: `company_list` (view a list), `job_search` / `company_search` (open a search from the same filters a job or company search takes), `saved_search` (open a saved search), or `webhook` (view a webhook). Search links (`job_search` / `company_search`) are workspace-in",
    "input": {
     "type": "object",
     "properties": {},
@@ -244,7 +244,7 @@
   {
    "slug": "theirstack.get_catalog_companies_per_company_country_code_v0",
    "name": "Get companies per company country code",
-   "description": "Retrieve all ISO country codes with the number of companies headquartered in each country. Use this endpoint for geographic distribution analysis. Calls to this endpoint are free and do not consume any API credits.",
+   "description": "List every ISO country code with the number of companies headquartered in that country, for geographic distribution analysis. Free: it doesn't consume credits.",
    "input": {
     "type": "object",
     "properties": {
@@ -280,7 +280,7 @@
   {
    "slug": "theirstack.get_catalog_industries_v0",
    "name": "Get industries",
-   "description": "This endpoint lets you list all the industries and their codes, see how many jobs and companies we have per industry and search for an industry. Calls to this endpoint don't cost you credits. Our industries catalogue comes from [LinkedIn Industry Codes V2](https://learn.microsoft.com/en-us/linkedin/shared/references/reference-tables/industry-codes-v2)",
+   "description": "List the industries and their IDs, with how many jobs and companies we have in each, and search them by name. Use the IDs in the industry filters of a job or company search. Free: it doesn't consume credits. Our industries catalogue comes from [LinkedIn Industry Codes V2](https://learn.microsoft.com/en-us/linkedin/shared/references/reference-tables/industry-codes-v2)",
    "input": {
     "type": "object",
     "properties": {
@@ -316,7 +316,7 @@
   {
    "slug": "theirstack.get_catalog_jobs_companies_per_job_country_code_v0",
    "name": "Get jobs and companies per job country code",
-   "description": "This endpoint will return all the country codes and the number of jobs whose location's country code is the given one, and the number of companies with jobs in that country. Calls to this endpoint don't cost you credits.",
+   "description": "List every country code with the number of jobs located in that country and the number of companies hiring there. Search by country name in English. Free: it doesn't consume credits.",
    "input": {
     "type": "object",
     "properties": {
@@ -352,7 +352,7 @@
   {
    "slug": "theirstack.get_catalog_keywords_v0",
    "name": "Get technologies and buying intents",
-   "description": "List all keywords tracked by TheirStack, including both technologies and buying intent topics. Search for any keyword and filter by one or more categories. Calls to this endpoint don't cost you credits. - To get technologies only: filter with `keyword_type=technology` - To get only buying intent topics: filter with `keyword_type_not=technology` **Building an autocomplete?** This endpoint is design",
+   "description": "List all keywords tracked by TheirStack, including both technologies and buying intent topics. Search for any keyword and filter by one or more categories. Free: it doesn't consume credits. - To get technologies only: filter with `keyword_type=technology` - To get only buying intent topics: filter with `keyword_type_not=technology` **Building an autocomplete?** The catalog is meant to be queried, ",
    "input": {
     "type": "object",
     "properties": {
@@ -443,7 +443,7 @@
   {
    "slug": "theirstack.get_catalog_locations_v0",
    "name": "Get geographic locations",
-   "description": "Search for geographic locations by name or ID to retrieve standardized location data including city, region, and country. Use location IDs with job_location_or and job_location_not filters for precise geographic targeting in job searches.",
+   "description": "Search for geographic locations by name or ID to retrieve standardized location data including city, region, and country. Use the location IDs in the job_location_or and job_location_not filters of a job search to filter by city or region.",
    "input": {
     "type": "object",
     "properties": {
@@ -493,8 +493,8 @@
   },
   {
    "slug": "theirstack.get_company_lists_by_id_v0",
-   "name": "Get list",
-   "description": "Get List",
+   "name": "Get company list",
+   "description": "Get one of the team's company lists by ID: its name, owner, type, creation date and number of companies. The companies themselves are not included.",
    "input": {
     "type": "object",
     "properties": {
@@ -522,7 +522,7 @@
   {
    "slug": "theirstack.get_company_lists_companies_v0",
    "name": "Get companies from list",
-   "description": "Get Companies From List",
+   "description": "List the companies in one of the team's company lists, each with its company profile and the dates it was added and revealed. Paginated; sort by reveal date or name, or filter by part of the company name.",
    "input": {
     "type": "object",
     "properties": {
@@ -588,8 +588,8 @@
   },
   {
    "slug": "theirstack.get_company_lists_v0",
-   "name": "List all lists",
-   "description": "Retrieve all company lists for the current team including list name, company count, and creation date. Use company lists to organize and segment companies for targeted outreach and analysis.",
+   "name": "List company lists",
+   "description": "Retrieve all company lists for the current team including list name, company count, and creation date. Use it to find a list's ID before reading its companies, adding companies to it or renaming it.",
    "input": {
     "type": "object",
     "properties": {},
@@ -608,7 +608,7 @@
   {
    "slug": "theirstack.get_credit_consumption_facets_v0",
    "name": "Get observed credit usage filters",
-   "description": "List the endpoints and origins observed on this team's charges in the date range, independent of filter selections. unassigned marks missing attribution. webhook is reported only when the ledger links a webhook event.",
+   "description": "List the endpoints and origins that charged credits to the team in a date range (the last 30 days by default). Use it to pick values for the endpoint and origin filters of the daily credit consumption. `unassigned` stands for charges with no recorded endpoint or origin, and `webhook` appears only for charges linked to a webhook event.",
    "input": {
     "type": "object",
     "properties": {
@@ -639,7 +639,7 @@
   {
    "slug": "theirstack.get_datasets_v1",
    "name": "List datasets",
-   "description": "Retrieve all datasets available for your team including jobs, companies, and technographics. Datasets are updated daily in Parquet format. Use this endpoint to get the latest download URLs for bulk data access.",
+   "description": "List the datasets available to your team (jobs, companies and technographics), updated daily in Parquet format, with the latest download URLs for bulk data access.",
    "input": {
     "type": "object",
     "properties": {},
@@ -658,7 +658,7 @@
   {
    "slug": "theirstack.get_email_preferences_v0",
    "name": "Get email preferences",
-   "description": "Get Email Preferences",
+   "description": "Get which optional emails the current user receives, grouped by category (usage, alerts, onboarding): `form_data` holds each preference as `true` or `false`, and `schema` describes each one. Emails with no preference here, such as invitations, failed payments and support ticket updates, are always sent.",
    "input": {
     "type": "object",
     "properties": {},
@@ -710,7 +710,7 @@
   },
   {
    "slug": "theirstack.get_request_analytics_v0",
-   "name": "Get request analytics",
+   "name": "Get daily request analytics",
    "description": "Daily request activity with one optional breakdown. Counts and actual ledger credits refer to requests that ran in the selected window, bucketed by request date. Split charges count a request once; credits include later charges for those requests. Use credit consumption for billing totals by charge date. Filters match the individual request log.",
    "input": {
     "type": "object",
@@ -806,7 +806,7 @@
   },
   {
    "slug": "theirstack.get_request_facet_metrics_v0",
-   "name": "Get request facet metrics",
+   "name": "Get usage per request filter value",
    "description": "Requests and credits consumed per observed filter value, plus the search patterns of the selected window. Companion to /v0/requests/facets, which returns the values themselves: this one derives search-pattern keys and joins the credit ledger, so it is the slower of the two.",
    "input": {
     "type": "object",
@@ -892,7 +892,7 @@
   },
   {
    "slug": "theirstack.get_request_facets_v0",
-   "name": "Get request facets",
+   "name": "List request filter values",
    "description": "Observed filter values from this team's requests in the selected window, intersected with filters on the other dimensions (a facet ignores its own selection so more values can be added). Values only: how often each one is used, and the search patterns, come from /v0/requests/facets/metrics. API keys are identifiers only; no credentials are returned.",
    "input": {
     "type": "object",
@@ -1211,7 +1211,7 @@
   {
    "slug": "theirstack.get_saved_searches_by_id_v0",
    "name": "Get saved search",
-   "description": "Get Saved Search",
+   "description": "Get one of the team's saved searches by ID: its name, type, filters, email alert settings and whether a webhook is active on it.",
    "input": {
     "type": "object",
     "properties": {
@@ -1239,7 +1239,7 @@
   {
    "slug": "theirstack.get_saved_searches_v0",
    "name": "List all saved searches",
-   "description": "Retrieve all active saved searches for the current user including search filters, type, and creation date. Archived saved searches are excluded. Filter by user IDs or search type and sort by name, created, or updated date.",
+   "description": "Retrieve all active saved searches of the current team, including search filters, type, and creation date. Archived saved searches are excluded. Filter by user IDs or search type and sort by name, created, or updated date.",
    "input": {
     "type": "object",
     "properties": {
@@ -1429,17 +1429,17 @@
   {
    "slug": "theirstack.get_webhooks_events_count_aggregated_v0",
    "name": "Get aggregated webhook event count",
-   "description": "Retrieve webhook event counts aggregated by day within a date range, with options to group by delivery status or webhook ID. Use this endpoint to build time-series charts for monitoring webhook performance and reliability.",
+   "description": "Count the team's webhook events per day over a date range (the last 30 days by default), with the credits they consumed, for one webhook or all of them. Optionally split each day by delivery status, webhook or event type, e.g. to chart delivery health over time.",
    "input": {
     "type": "object",
     "properties": {
      "start_datetime": {
       "type": "string",
-      "description": "Start datetime in ISO format (e.g., 2023-01-01T00:00:00)"
+      "description": "Start of the range, in ISO format (e.g. 2023-01-01T00:00:00). Defaults to 30 days before the end."
      },
      "end_datetime": {
       "type": "string",
-      "description": "End datetime in ISO format (e.g., 2023-01-01T23:59:59)"
+      "description": "End of the range, in ISO format (e.g. 2023-01-01T23:59:59). Defaults to now."
      },
      "timezone": {
       "type": "string",
@@ -1451,7 +1451,7 @@
      },
      "group_by": {
       "type": "string",
-      "description": "Dimensions to group by. Pass multiple values: ?group_by=status&group_by=event_type"
+      "description": "Dimensions to split each day's count by: delivery status, webhook or event type. Several can be combined."
      }
     },
     "required": []
@@ -1475,7 +1475,7 @@
   {
    "slug": "theirstack.get_webhooks_events_count_v0",
    "name": "Get webhook event count",
-   "description": "Get the count of events triggered for a specific webhook, optionally filtered by delivery status. Use this endpoint to quickly check webhook activity volume without fetching the full event list, useful for monitoring dashboards, paginating a status-filtered event list, and usage tracking.",
+   "description": "Count the events a webhook has triggered, optionally only those with a given delivery status. Use it when the number is all you need, such as how many deliveries failed.",
    "input": {
     "type": "object",
     "properties": {
@@ -1674,7 +1674,7 @@
   {
    "slug": "theirstack.patch_company_lists_by_id_v0",
    "name": "Rename company list",
-   "description": "Rename Company List",
+   "description": "Give one of the team's company lists a new name. The 'Companies seen' list can't be renamed.",
    "input": {
     "type": "object",
     "properties": {
@@ -1737,7 +1737,7 @@
   {
    "slug": "theirstack.patch_saved_searches_by_id_v0",
    "name": "Update saved search",
-   "description": "Update Saved Search",
+   "description": "Change a saved search's name, filters, type or email alert. Only the fields you send change. New filters also change what any webhook on this saved search delivers from then on.",
    "input": {
     "type": "object",
     "properties": {
@@ -1759,15 +1759,11 @@
      },
      "is_alert_active": {
       "type": "string",
-      "description": "Is the alert active"
+      "description": "Email new results to the creator of the saved search. Alerts only go to the creator."
      },
      "frequency": {
       "type": "string",
-      "description": "Frequency of emails alerts sent."
-     },
-     "emails_subscribed": {
-      "type": "string",
-      "description": "Emails subscribed to the saved search alerts."
+      "description": "How often the alert email is sent."
      }
     },
     "required": [
@@ -1787,8 +1783,7 @@
      "body",
      "type",
      "is_alert_active",
-     "frequency",
-     "emails_subscribed"
+     "frequency"
     ],
     "body_format": "json"
    }
@@ -1824,7 +1819,7 @@
   {
    "slug": "theirstack.patch_webhooks_by_id_v0",
    "name": "Update webhook",
-   "description": "Update Webhook",
+   "description": "Replace a webhook's settings: target URL, saved search, description, one event per company, and daily event limit. Send every setting you want to keep, because one left out goes back to its default (no daily limit, for example), so read the webhook first. The signing secret and the event types only change when sent. To pause or resume a webhook, change its status instead.",
    "input": {
     "type": "object",
     "properties": {
@@ -1858,7 +1853,7 @@
      },
      "max_events_per_day": {
       "type": "string",
-      "description": "Maximum number of events this webhook may send per day (UTC). The cap is applied when events are created, so events above it are never sent and never charged. Matches above the cap are dropped, not queued: the next day delivers that day's records only, never a backlog. Null means no daily cap. The lowest cap is 1: to stop a webhook from sending anything, deactivate it instead."
+      "description": "Most new records the webhook takes on per UTC day, or null for no cap. A job webhook counts jobs: each can send its job.new and, when it closes, its job.closed, so a job costs at most two credits. Records over it are dropped, never sent, charged or queued for the next day. Minimum 1: to send nothing, disable the webhook."
      }
     },
     "required": [
@@ -1890,7 +1885,7 @@
   {
    "slug": "theirstack.patch_webhooks_status_v0",
    "name": "Enable disable a webhook",
-   "description": "By disabling a webhook, it will stop listening to events. When you enable it again, by default it delivers every record matched while it was disabled. Pass skip_events_while_inactive=true when enabling to start the feed from that moment instead, so nothing matched while disabled is sent or charged.",
+   "description": "Pause or resume a webhook. A disabled webhook sends nothing. When you enable it again, by default it delivers every record matched while it was disabled. Pass skip_events_while_inactive=true when enabling to start the feed from that moment instead, so nothing matched while disabled is sent or charged.",
    "input": {
     "type": "object",
     "properties": {
@@ -1930,17 +1925,17 @@
   {
    "slug": "theirstack.post_company_lists_add_companies_multiple_v0",
    "name": "Add companies to multiple lists",
-   "description": "Add Companies To Multiple Lists",
+   "description": "Add the same companies to several of the team's company lists in one call, by their company IDs, the `id` of each company in a company search result. Nothing is added if any list ID isn't one of the team's lists.",
    "input": {
     "type": "object",
     "properties": {
      "list_ids": {
       "type": "array",
-      "description": "List ids to add companies to"
+      "description": "IDs of the company lists to add the companies to"
      },
      "company_ids": {
       "type": "array",
-      "description": "Company IDs (encrypted slugs) to add to the list"
+      "description": "Company IDs to add, the `id` of each company in a company search result"
      }
     },
     "required": []
@@ -1961,7 +1956,7 @@
   {
    "slug": "theirstack.post_company_lists_add_companies_v0",
    "name": "Add companies to list",
-   "description": "Add Companies To List",
+   "description": "Add companies to one of the team's company lists by their company IDs, the `id` of each company in a company search result. Returns the list with its new company count.",
    "input": {
     "type": "object",
     "properties": {
@@ -1971,7 +1966,7 @@
      },
      "company_ids": {
       "type": "array",
-      "description": "Company IDs (encrypted slugs) to add to the list"
+      "description": "Company IDs to add, the `id` of each company in a company search result"
      },
      "company_names": {
       "type": "array",
@@ -1999,8 +1994,8 @@
   },
   {
    "slug": "theirstack.post_company_lists_duplicate_v0",
-   "name": "Duplicate list",
-   "description": "Duplicate List",
+   "name": "Duplicate company list",
+   "description": "Copy one of the team's company lists, with all its companies, into a new list owned by you and named like the original with ' (copy)' added.",
    "input": {
     "type": "object",
     "properties": {
@@ -2028,7 +2023,7 @@
   {
    "slug": "theirstack.post_company_lists_remove_companies_v0",
    "name": "Remove companies from list",
-   "description": "Remove Companies From List",
+   "description": "Remove companies from one of the team's company lists by their company IDs. Only their place in this list goes: the companies, and any other list that holds them, are not affected.",
    "input": {
     "type": "object",
     "properties": {
@@ -2038,7 +2033,7 @@
      },
      "company_ids": {
       "type": "array",
-      "description": "Company names to remove from the list"
+      "description": "Company IDs to remove, the `id` of each company in a company search result"
      }
     },
     "required": [
@@ -2062,7 +2057,7 @@
   {
    "slug": "theirstack.post_company_lists_v0",
    "name": "Create company list",
-   "description": "Create Company List",
+   "description": "Create an empty company list for the team. Add companies to it afterwards by their company IDs.",
    "input": {
     "type": "object",
     "properties": {
@@ -2109,7 +2104,7 @@
   {
    "slug": "theirstack.post_saved_searches_v0",
    "name": "Create saved search",
-   "description": "Create Saved Search",
+   "description": "Save a job or company search so you can run it again, open it in the app or attach a webhook to it. The body takes the same filters as the job or company search. Saving costs no credits, and a name is generated from the filters when none is given.",
    "input": {
     "type": "object",
     "properties": {
@@ -2131,7 +2126,7 @@
      },
      "is_alert_active": {
       "type": "boolean",
-      "description": "Is the alert active"
+      "description": "Email new results to the creator of the saved search, weekly by default."
      }
     },
     "required": [
@@ -2157,7 +2152,7 @@
   {
    "slug": "theirstack.post_webhooks_events_retry_v0",
    "name": "Retry webhook events",
-   "description": "Retry delivery of failed webhook events by providing their event IDs. Use this endpoint to recover from transient failures such as network timeouts or temporary server errors on your receiving endpoint.",
+   "description": "Send failed webhook events again, by their event IDs, to recover from a temporary failure such as a timeout or a server error at the receiving URL. Find the IDs by listing a webhook's events with status FAILED.",
    "input": {
     "type": "object",
     "properties": {
@@ -2221,7 +2216,7 @@
   {
    "slug": "theirstack.post_webhooks_v0",
    "name": "Create new webhook",
-   "description": "Create a new webhook that listens for events from a saved search and sends real-time HTTP POST notifications to your specified URL. Configure event types, filters, and delivery settings for automated data pipelines.",
+   "description": "Create a webhook on a saved search: each new record the search matches is sent as an HTTP POST to the URL you give, and every record sent consumes credits. Use it when the user wants new matches delivered to their own system. Check the URL first with a test event, and size the daily event limit from the saved search's estimated volume.",
    "input": {
     "type": "object",
     "properties": {
@@ -2251,7 +2246,7 @@
      },
      "max_events_per_day": {
       "type": "string",
-      "description": "Maximum number of events this webhook may send per day (UTC). The cap is applied when events are created, so events above it are never sent and never charged. Matches above the cap are dropped, not queued: the next day delivers that day's records only, never a backlog. Null means no daily cap. The lowest cap is 1: to stop a webhook from sending anything, deactivate it instead."
+      "description": "Most new records the webhook takes on per UTC day, or null for no cap. A job webhook counts jobs: each can send its job.new and, when it closes, its job.closed, so a job costs at most two credits. Records over it are dropped, never sent, charged or queued for the next day. Minimum 1: to send nothing, disable the webhook."
      }
     },
     "required": [
@@ -2280,10 +2275,23 @@
   {
    "slug": "theirstack.put_email_preferences_v0",
    "name": "Update email preferences",
-   "description": "Update Email Preferences",
+   "description": "Turn the current user's optional emails on or off. Send only the preferences to change, grouped by category, as `true` (send) or `false` (don't send); the rest keep their value. Returns every preference after the change.",
    "input": {
     "type": "object",
-    "properties": {},
+    "properties": {
+     "usage": {
+      "type": "object",
+      "description": ""
+     },
+     "alerts": {
+      "type": "object",
+      "description": ""
+     },
+     "onboarding": {
+      "type": "object",
+      "description": ""
+     }
+    },
     "required": []
    },
    "request": {
@@ -2292,20 +2300,24 @@
     "path": [],
     "query": [],
     "header": [],
-    "body": [],
+    "body": [
+     "usage",
+     "alerts",
+     "onboarding"
+    ],
     "body_format": "json"
    }
   },
   {
    "slug": "theirstack.search_companies_v1",
    "name": "Company search",
-   "description": "Search and filter companies and accounts by firmographics (industry, country, employee count, revenue), funding, technology and tech stack (technographics), and hiring signals (which roles and technologies they are actively hiring for). Built for ABM, account and lead prospecting, lookalike-account discovery, competitive displacement, and buying-intent targeting. Returns the matching companies alo",
+   "description": "Search and filter companies by firmographics (industry, country, employee count, revenue), funding, the technologies they use (technographics) and hiring signals (the roles and technologies they are hiring for). Use it to find the companies that match a profile, such as the companies in a country that use a technology or are hiring for a role. Returns the matching companies along with the jobs and",
    "input": {
     "type": "object",
     "properties": {
      "expand_technology_slugs": {
       "type": "array",
-      "description": "Specify technology slugs to include detailed technology usage information for each company. The response will include a 'technologies_found' field containing metrics like confidence score, ranking, and job count for each specified technology. Note: If a technology is not listed for a company, it means that company does not use that technology. This feature is useful for enriching company data with"
+      "description": "Specify technology slugs to include detailed technology usage information for each company. The response will include a 'technologies_found' field containing metrics like confidence score, ranking, and job count for each specified technology. Note: If a technology is not listed for a company, it means we haven't detected it in that company's jobs. This feature is useful for enriching company data "
      },
      "order_by": {
       "type": "array",
@@ -2329,11 +2341,11 @@
      },
      "company_domain_or": {
       "type": "array",
-      "description": "Only return companies that match these domains exactly. It accepts full urls (https://www.google.com/) and emails (john.polo@gmail.com). This filter acts as an OR filter, so if you pass more than one company domain, it will return companies that match any of the domains."
+      "description": "Only return companies that match these domains exactly. It accepts full urls (https://www.google.com/) and emails (andrew@stripe.com). This filter acts as an OR filter, so if you pass more than one company domain, it will return companies that match any of the domains."
      },
      "company_domain_not": {
       "type": "array",
-      "description": "Only return companies that don't match these domains exactly. It accepts full urls (https://www.google.com/) and emails (john.polo@gmail.com)."
+      "description": "Only return companies that don't match these domains exactly. It accepts full urls (https://www.google.com/) and emails (andrew@stripe.com)."
      },
      "company_name_not": {
       "type": "array",
@@ -2341,11 +2353,11 @@
      },
      "company_name_partial_match_or": {
       "type": "array",
-      "description": "Company names. Will return companies whose name contain any of the the substrings passed here, case-insensitively. For example, if you pass \"google\", it will return \"Google\", \"Google LLC\", \"Google Inc\", etc."
+      "description": "Company names. Will return companies whose name contains any of the substrings passed here, case-insensitively. For example, if you pass \"google\", it will return \"Google\", \"Google LLC\", \"Google Inc\", etc."
      },
      "company_name_partial_match_not": {
       "type": "array",
-      "description": "Company names. Will return companies whose name doesn't contain any of the the substrings passed here, case-insensitively. For example, if you pass 'google', it will exclude 'Google', 'Google LLC', 'Google Inc', etc."
+      "description": "Company names. Will return companies whose name doesn't contain any of the substrings passed here, case-insensitively. For example, if you pass 'google', it will exclude 'Google', 'Google LLC', 'Google Inc', etc."
      },
      "company_linkedin_url_or": {
       "type": "array",
@@ -2385,7 +2397,7 @@
      },
      "company_description_pattern_not": {
       "type": "array",
-      "description": "Case-insensitive patterns to match in the company description. Will return companies that match any of the patterns."
+      "description": "Case-insensitive patterns to match in the company description. Will exclude companies that match any of the patterns."
      },
      "company_description_pattern_accent_insensitive": {
       "type": "string",
@@ -2441,7 +2453,7 @@
      },
      "industry_id_not": {
       "type": "array",
-      "description": "Industry ids to exclude.You can use any of [LinkedIn's Industry Codes V2](https://learn.microsoft.com/en-us/linkedin/shared/references/reference-tables/industry-codes-v2) or [GET /v0/catalog/industries](https://theirstack.com/en/docs/api-reference/catalog/get_catalog_industries_v0)"
+      "description": "Industry ids to exclude. You can use any of [LinkedIn's Industry Codes V2](https://learn.microsoft.com/en-us/linkedin/shared/references/reference-tables/industry-codes-v2) or [GET /v0/catalog/industries](https://theirstack.com/en/docs/api-reference/catalog/get_catalog_industries_v0)"
      },
      "industry_id_not_or_null": {
       "type": "array",
@@ -2465,15 +2477,15 @@
      },
      "company_technology_slug_or": {
       "type": "array",
-      "description": "Will return jobs from companies that that have mentioned any of these technologies in their jobs (not necessarily in the jobs returned). Case sensitive. Pass slugs. Check out all the technologies we track at [GET /v0/catalog/technologies](https://theirstack.com/en/docs/api-reference/catalog/get_catalog_technologies_v0)"
+      "description": "Return results from companies that have mentioned any of these technologies in their jobs (in job searches, not necessarily in the jobs returned). Case sensitive. Pass slugs. Check out all the technologies we track at [GET /v0/catalog/keywords](https://theirstack.com/en/docs/api-reference/catalog/get_catalog_keywords_v0) with `keyword_type=technology`"
      },
      "company_technology_slug_and": {
       "type": "array",
-      "description": "Will return jobs from companies that that have mentioned all of these technologies in their jobs (not necessarily in the jobs returned). Case sensitive. Pass slugs. Check out all the technologies we track at [GET /v0/catalog/technologies](https://theirstack.com/en/docs/api-reference/catalog/get_catalog_technologies_v0)"
+      "description": "Return results from companies that have mentioned all of these technologies in their jobs (in job searches, not necessarily in the jobs returned). Case sensitive. Pass slugs. Check out all the technologies we track at [GET /v0/catalog/keywords](https://theirstack.com/en/docs/api-reference/catalog/get_catalog_keywords_v0) with `keyword_type=technology`"
      },
      "company_technology_slug_not": {
       "type": "array",
-      "description": "Will return jobs from companies that that haven't mentioned any of these technologies in their jobs. Case sensitive. Pass slugs. Check out all the technologies we track at [GET /v0/catalog/technologies](https://theirstack.com/en/docs/api-reference/catalog/get_catalog_technologies_v0)"
+      "description": "Return results from companies that haven't mentioned any of these technologies in their jobs. Case sensitive. Pass slugs. Check out all the technologies we track at [GET /v0/catalog/keywords](https://theirstack.com/en/docs/api-reference/catalog/get_catalog_keywords_v0) with `keyword_type=technology`"
      },
      "company_keyword_slug_or": {
       "type": "array",
@@ -2521,7 +2533,7 @@
      },
      "revealed_company_data": {
       "type": "string",
-      "description": "This field is deprecated and has no effect."
+      "description": "Filter companies (or jobs by their company) by whether the caller's team has them revealed. A company counts as revealed for 90 days after the team reveals it. `true` returns only revealed companies; `false` returns only companies the team has not revealed in the last 90 days, including the ones it never revealed."
      },
      "company_revealed_at_gte": {
       "type": "string",
@@ -2530,6 +2542,22 @@
      "company_revealed_at_lte": {
       "type": "string",
       "description": "Filter companies (or jobs by their company) by when the company was revealed in the caller's account. Returns only companies revealed at or before this ISO-8601 timestamp. Scoped to the caller's team \u2014 has no effect for companies the team has never revealed."
+     },
+     "company_not_revealed_at_gte": {
+      "type": "string",
+      "description": "Exclude companies (or jobs by their company) revealed in the caller's account at or after this ISO-8601 timestamp. Combine with `company_not_revealed_at_lte` to exclude a window. Companies the team never revealed are kept."
+     },
+     "company_not_revealed_at_lte": {
+      "type": "string",
+      "description": "Exclude companies (or jobs by their company) revealed in the caller's account at or before this ISO-8601 timestamp. Combine with `company_not_revealed_at_gte` to exclude a window. Companies the team never revealed are kept."
+     },
+     "company_revealed_within_hours": {
+      "type": "string",
+      "description": "Return only companies (or jobs by their company) revealed in the caller's account in the last N hours, counted back from when the search runs. `168` is the last 7 days. Saved searches and webhooks resolve the window on every run. It counts every reveal in the window: with N above 90 days (2160 hours) it also returns companies whose 90-day reveal has expired, which cost a credit to see again."
+     },
+     "company_not_revealed_within_hours": {
+      "type": "string",
+      "description": "Exclude companies (or jobs by their company) revealed in the caller's account in the last N hours, counted back from when the search runs. `168` hides what the team revealed in the last 7 days; companies revealed earlier, or never, are kept. Viewing an already-revealed company again does not restart its window. Unlike `revealed_company_data=false`, which excludes the whole 90-day reveal period, th"
      },
      "last_funding_round_date_lte": {
       "type": "string",
@@ -2545,7 +2573,7 @@
      },
      "job_filters": {
       "type": "string",
-      "description": ""
+      "description": "Filter companies by the jobs they have posted. Takes the job filters of the job search endpoint and requires a date filter (`posted_at_max_age_days`, `posted_at_gte` or `posted_at_lte`). Returns companies with at least one matching job, or at least `min_num_jobs_found` if set."
      },
      "min_num_jobs_found": {
       "type": "string",
@@ -2622,6 +2650,10 @@
      "revealed_company_data",
      "company_revealed_at_gte",
      "company_revealed_at_lte",
+     "company_not_revealed_at_gte",
+     "company_not_revealed_at_lte",
+     "company_revealed_within_hours",
+     "company_not_revealed_within_hours",
      "last_funding_round_date_lte",
      "last_funding_round_date_gte",
      "include_total_results",
@@ -2635,7 +2667,7 @@
   {
    "slug": "theirstack.search_jobs_v1",
    "name": "Job search",
-   "description": "Search and filter job postings (job ads, vacancies, hiring data) from thousands of company career sites and job boards. Filter by job title, keywords in the job description, company (name, domain or LinkedIn URL), location and country, technology and tech stack, salary, seniority, remote/hybrid, employment type, and posting date. Used for sales prospecting and lead generation, recruiting, and hiri",
+   "description": "Search and filter job postings collected from company career sites and job boards. Filter by job title, keywords in the job description, company (name, domain or LinkedIn URL), location and country, technology and tech stack, salary, seniority, remote/hybrid, employment type, and posting date. Use it to find open roles, to see which companies are hiring for a role or a technology, or to follow the",
    "input": {
     "type": "object",
     "properties": {
@@ -2673,7 +2705,7 @@
      },
      "job_title_pattern_or": {
       "type": "array",
-      "description": "Regex patterns to match job titles. Case-insensitive. Jobs whose job title matches of the filters will be returned."
+      "description": "Regex patterns to match job titles. Case-insensitive. Jobs whose job title matches any of the patterns will be returned."
      },
      "job_title_pattern_not": {
       "type": "array",
@@ -2721,7 +2753,7 @@
      },
      "job_description_pattern_not": {
       "type": "array",
-      "description": "Regex patterns to look for in job descriptions. Case-sensitive. Results will include jobs whose description don't match any of these patterns. Use (?i) at the start of a pattern to make it case-insensitive. Can pass more than one."
+      "description": "Regex patterns to look for in job descriptions. Case-sensitive. Results will include jobs whose description doesn't match any of these patterns. Use (?i) at the start of a pattern to make it case-insensitive. Can pass more than one."
      },
      "job_description_pattern_and": {
       "type": "array",
@@ -2801,15 +2833,15 @@
      },
      "job_technology_slug_or": {
       "type": "array",
-      "description": "Will return jobs where any of these technologies appear. Case sensitive. Pass slugs. Check out all the technologies we track with the technologies endpoint. If you pass more than one technology, we will return jobs that mentnion all of the technologies."
+      "description": "Will return jobs where any of these technologies appear. Case sensitive. Pass slugs. Check out all the technologies we track at [GET /v0/catalog/keywords](https://theirstack.com/en/docs/api-reference/catalog/get_catalog_keywords_v0) with `keyword_type=technology`. If you pass more than one technology, we will return jobs that mention at least one of them."
      },
      "job_technology_slug_not": {
       "type": "array",
-      "description": "Will return jobs where none of these technologies appear. Case sensitive. Pass slugs. Check out all the technologies we track with the technologies endpoint."
+      "description": "Will return jobs where none of these technologies appear. Case sensitive. Pass slugs. Check out all the technologies we track at [GET /v0/catalog/keywords](https://theirstack.com/en/docs/api-reference/catalog/get_catalog_keywords_v0) with `keyword_type=technology`."
      },
      "job_technology_slug_and": {
       "type": "array",
-      "description": "Will return jobs where all of these technologies appear. Case sensitive. Pass slugs. Check out all the technologies we track with the technologies endpoint."
+      "description": "Will return jobs where all of these technologies appear. Case sensitive. Pass slugs. Check out all the technologies we track at [GET /v0/catalog/keywords](https://theirstack.com/en/docs/api-reference/catalog/get_catalog_keywords_v0) with `keyword_type=technology`."
      },
      "job_keyword_slug_or": {
       "type": "array",
@@ -2873,11 +2905,11 @@
      },
      "property_exists_or": {
       "type": "array",
-      "description": "Return jobs that have any of these fields not null. For example, if you pass ['final_url'], it will return jobs that have a final_url set. This field also support chaining of fields. For example, if you pass ['company_object.domain', 'company_object.linkedin_url'], it will return jobs that have a company domain or a company linkedin_url set."
+      "description": "Return jobs that have any of these fields not null. For example, if you pass ['final_url'], it will return jobs that have a final_url set. This field also supports chaining of fields. For example, if you pass ['company_object.domain', 'company_object.linkedin_url'], it will return jobs that have a company domain or a company linkedin_url set."
      },
      "property_exists_and": {
       "type": "array",
-      "description": ""
+      "description": "Return jobs that have all of these fields not null. For example, if you pass ['company_object.domain', 'final_url'], it will only return jobs that have both a company domain and a final_url set."
      },
      "company_name_or": {
       "type": "array",
@@ -2897,11 +2929,11 @@
      },
      "company_domain_or": {
       "type": "array",
-      "description": "Only return companies that match these domains exactly. It accepts full urls (https://www.google.com/) and emails (john.polo@gmail.com). This filter acts as an OR filter, so if you pass more than one company domain, it will return companies that match any of the domains."
+      "description": "Only return companies that match these domains exactly. It accepts full urls (https://www.google.com/) and emails (andrew@stripe.com). This filter acts as an OR filter, so if you pass more than one company domain, it will return companies that match any of the domains."
      },
      "company_domain_not": {
       "type": "array",
-      "description": "Only return companies that don't match these domains exactly. It accepts full urls (https://www.google.com/) and emails (john.polo@gmail.com)."
+      "description": "Only return companies that don't match these domains exactly. It accepts full urls (https://www.google.com/) and emails (andrew@stripe.com)."
      },
      "company_name_not": {
       "type": "array",
@@ -2909,11 +2941,11 @@
      },
      "company_name_partial_match_or": {
       "type": "array",
-      "description": "Company names. Will return companies whose name contain any of the the substrings passed here, case-insensitively. For example, if you pass \"google\", it will return \"Google\", \"Google LLC\", \"Google Inc\", etc."
+      "description": "Company names. Will return companies whose name contains any of the substrings passed here, case-insensitively. For example, if you pass \"google\", it will return \"Google\", \"Google LLC\", \"Google Inc\", etc."
      },
      "company_name_partial_match_not": {
       "type": "array",
-      "description": "Company names. Will return companies whose name doesn't contain any of the the substrings passed here, case-insensitively. For example, if you pass 'google', it will exclude 'Google', 'Google LLC', 'Google Inc', etc."
+      "description": "Company names. Will return companies whose name doesn't contain any of the substrings passed here, case-insensitively. For example, if you pass 'google', it will exclude 'Google', 'Google LLC', 'Google Inc', etc."
      },
      "company_linkedin_url_or": {
       "type": "array",
@@ -2929,7 +2961,7 @@
      },
      "company_description_pattern_not": {
       "type": "array",
-      "description": "Case-insensitive patterns to match in the company description. Will return companies that match any of the patterns."
+      "description": "Case-insensitive patterns to match in the company description. Will exclude companies that match any of the patterns."
      },
      "company_description_pattern_accent_insensitive": {
       "type": "string",
@@ -2985,7 +3017,7 @@
      },
      "industry_id_not": {
       "type": "array",
-      "description": "Industry ids to exclude.You can use any of [LinkedIn's Industry Codes V2](https://learn.microsoft.com/en-us/linkedin/shared/references/reference-tables/industry-codes-v2) or [GET /v0/catalog/industries](https://theirstack.com/en/docs/api-reference/catalog/get_catalog_industries_v0)"
+      "description": "Industry ids to exclude. You can use any of [LinkedIn's Industry Codes V2](https://learn.microsoft.com/en-us/linkedin/shared/references/reference-tables/industry-codes-v2) or [GET /v0/catalog/industries](https://theirstack.com/en/docs/api-reference/catalog/get_catalog_industries_v0)"
      },
      "industry_id_not_or_null": {
       "type": "array",
@@ -3009,15 +3041,15 @@
      },
      "company_technology_slug_or": {
       "type": "array",
-      "description": "Will return jobs from companies that that have mentioned any of these technologies in their jobs (not necessarily in the jobs returned). Case sensitive. Pass slugs. Check out all the technologies we track at [GET /v0/catalog/technologies](https://theirstack.com/en/docs/api-reference/catalog/get_catalog_technologies_v0)"
+      "description": "Return results from companies that have mentioned any of these technologies in their jobs (in job searches, not necessarily in the jobs returned). Case sensitive. Pass slugs. Check out all the technologies we track at [GET /v0/catalog/keywords](https://theirstack.com/en/docs/api-reference/catalog/get_catalog_keywords_v0) with `keyword_type=technology`"
      },
      "company_technology_slug_and": {
       "type": "array",
-      "description": "Will return jobs from companies that that have mentioned all of these technologies in their jobs (not necessarily in the jobs returned). Case sensitive. Pass slugs. Check out all the technologies we track at [GET /v0/catalog/technologies](https://theirstack.com/en/docs/api-reference/catalog/get_catalog_technologies_v0)"
+      "description": "Return results from companies that have mentioned all of these technologies in their jobs (in job searches, not necessarily in the jobs returned). Case sensitive. Pass slugs. Check out all the technologies we track at [GET /v0/catalog/keywords](https://theirstack.com/en/docs/api-reference/catalog/get_catalog_keywords_v0) with `keyword_type=technology`"
      },
      "company_technology_slug_not": {
       "type": "array",
-      "description": "Will return jobs from companies that that haven't mentioned any of these technologies in their jobs. Case sensitive. Pass slugs. Check out all the technologies we track at [GET /v0/catalog/technologies](https://theirstack.com/en/docs/api-reference/catalog/get_catalog_technologies_v0)"
+      "description": "Return results from companies that haven't mentioned any of these technologies in their jobs. Case sensitive. Pass slugs. Check out all the technologies we track at [GET /v0/catalog/keywords](https://theirstack.com/en/docs/api-reference/catalog/get_catalog_keywords_v0) with `keyword_type=technology`"
      },
      "company_keyword_slug_or": {
       "type": "array",
@@ -3065,7 +3097,7 @@
      },
      "revealed_company_data": {
       "type": "string",
-      "description": "This field is deprecated and has no effect."
+      "description": "Filter companies (or jobs by their company) by whether the caller's team has them revealed. A company counts as revealed for 90 days after the team reveals it. `true` returns only revealed companies; `false` returns only companies the team has not revealed in the last 90 days, including the ones it never revealed."
      },
      "company_revealed_at_gte": {
       "type": "string",
@@ -3074,6 +3106,22 @@
      "company_revealed_at_lte": {
       "type": "string",
       "description": "Filter companies (or jobs by their company) by when the company was revealed in the caller's account. Returns only companies revealed at or before this ISO-8601 timestamp. Scoped to the caller's team \u2014 has no effect for companies the team has never revealed."
+     },
+     "company_not_revealed_at_gte": {
+      "type": "string",
+      "description": "Exclude companies (or jobs by their company) revealed in the caller's account at or after this ISO-8601 timestamp. Combine with `company_not_revealed_at_lte` to exclude a window. Companies the team never revealed are kept."
+     },
+     "company_not_revealed_at_lte": {
+      "type": "string",
+      "description": "Exclude companies (or jobs by their company) revealed in the caller's account at or before this ISO-8601 timestamp. Combine with `company_not_revealed_at_gte` to exclude a window. Companies the team never revealed are kept."
+     },
+     "company_revealed_within_hours": {
+      "type": "string",
+      "description": "Return only companies (or jobs by their company) revealed in the caller's account in the last N hours, counted back from when the search runs. `168` is the last 7 days. Saved searches and webhooks resolve the window on every run. It counts every reveal in the window: with N above 90 days (2160 hours) it also returns companies whose 90-day reveal has expired, which cost a credit to see again."
+     },
+     "company_not_revealed_within_hours": {
+      "type": "string",
+      "description": "Exclude companies (or jobs by their company) revealed in the caller's account in the last N hours, counted back from when the search runs. `168` hides what the team revealed in the last 7 days; companies revealed earlier, or never, are kept. Viewing an already-revealed company again does not restart its window. Unlike `revealed_company_data=false`, which excludes the whole 90-day reveal period, th"
      },
      "last_funding_round_date_lte": {
       "type": "string",
@@ -3206,6 +3254,10 @@
      "revealed_company_data",
      "company_revealed_at_gte",
      "company_revealed_at_lte",
+     "company_not_revealed_at_gte",
+     "company_not_revealed_at_lte",
+     "company_revealed_within_hours",
+     "company_not_revealed_within_hours",
      "last_funding_round_date_lte",
      "last_funding_round_date_gte",
      "include_total_results"
@@ -3216,7 +3268,7 @@
   {
    "slug": "theirstack.technographics_v1",
    "name": "Technographics",
-   "description": "This endpoint lists the technologies used by a company. For each technology, it returns the confidence level (`low`, `medium`, `high`), the number of jobs that mention the technology, and the first and last dates it was mentioned. You must specify `company_domain`, `company_name`, `company_linkedin_url`. It consumes **3 API credits** per company lookup, regardless of the number of technologies ret",
+   "description": "List the technologies a company uses. For each technology, it returns the confidence level (`low`, `medium`, `high`), the number of jobs that mention the technology, and the first and last dates it was mentioned. You must specify at least one of `company_domain`, `company_name` or `company_linkedin_url`. It consumes **3 API credits** per company lookup, regardless of the number of technologies ret",
    "input": {
     "type": "object",
     "properties": {
@@ -3230,7 +3282,7 @@
      },
      "company_domain": {
       "type": "string",
-      "description": "Only return companies that match this domain exactly. It accepts full urls (https://www.google.com/) and emails (john.polo@gmail.com)."
+      "description": "Only return companies that match this domain exactly. It accepts full urls (https://www.google.com/) and emails (andrew@stripe.com)."
      },
      "company_linkedin_url": {
       "type": "string",
@@ -3262,63 +3314,63 @@
      },
      "keyword_slug_or": {
       "type": "array",
-      "description": "Return companies that have mentioned any of these keywords (technologies or buying intent topics) in their jobs. Case sensitive. Pass slugs. Check out all keywords at [GET /v0/catalog/keywords](https://theirstack.com/en/docs/api-reference/catalog/get_catalog_keywords_v0)"
+      "description": "Only return these keywords (technologies or buying intent topics). Case sensitive. Pass slugs. Check out all keywords at [GET /v0/catalog/keywords](https://theirstack.com/en/docs/api-reference/catalog/get_catalog_keywords_v0)"
      },
      "keyword_category_slug_or": {
       "type": "array",
-      "description": "Return companies that have mentioned any keyword from any of these categories in their jobs. Case sensitive. Pass slugs. Check out all keyword categories at [GET /v0/catalog/keywords/categories](https://theirstack.com/en/docs/api-reference/catalog/get_catalog_keywords_categories_v0)"
+      "description": "Only return keywords from any of these categories. Case sensitive. Pass slugs. Check out all keyword categories at [GET /v1/catalog/keywords/categories](https://theirstack.com/en/docs/api-reference/catalog/list_keyword_categories_v1)"
      },
      "keyword_parent_category_slug_or": {
       "type": "array",
-      "description": "Return companies that have mentioned any keyword from any of these parent categories in their jobs. Case sensitive. Pass slugs. Check out all keyword categories at [GET /v0/catalog/keywords/categories](https://theirstack.com/en/docs/api-reference/catalog/get_catalog_keywords_categories_v0)"
+      "description": "Only return keywords from any of these parent categories. Case sensitive. Pass slugs. Check out all keyword categories at [GET /v1/catalog/keywords/categories](https://theirstack.com/en/docs/api-reference/catalog/list_keyword_categories_v1)"
      },
      "technology_slug_or": {
       "type": "array",
-      "description": "Deprecated: use `keyword_slug_or` instead. Will return companies that have mentioned any of these technologies in their jobs. Case sensitive. Pass slugs."
+      "description": "Deprecated: use `keyword_slug_or` instead. Only return these technologies. Case sensitive. Pass slugs."
      },
      "technology_category_slug_or": {
       "type": "array",
-      "description": "Deprecated: use `keyword_category_slug_or` instead. Will return companies that have mentioned any keyword from any of these categories in their jobs. Case sensitive. Pass slugs."
+      "description": "Deprecated: use `keyword_category_slug_or` instead. Only return keywords from any of these categories. Case sensitive. Pass slugs."
      },
      "technology_parent_category_slug_or": {
       "type": "array",
-      "description": "Deprecated: use `keyword_parent_category_slug_or` instead. Will return companies that have mentioned any keyword from any of these parent categories in their jobs. Case sensitive. Pass slugs."
+      "description": "Deprecated: use `keyword_parent_category_slug_or` instead. Only return keywords from any of these parent categories. Case sensitive. Pass slugs."
      },
      "max_rank": {
       "type": "string",
-      "description": "The rank measures how common is a technology within its category. The technology most used among similar ones by a company will have a rank of 1, the second: 2, etc. This is useful to filter results by technology and get only results for the primary technology."
+      "description": "The rank measures how common a keyword (technology or buying intent topic) is within its category for a company. The keyword most mentioned among similar ones by a company has a rank of 1, the second 2, etc. Useful to keep only the primary technology or topic of each category."
      },
      "min_jobs": {
       "type": "string",
-      "description": "Minimum number of jobs found by each company using a technology"
+      "description": "Minimum number of jobs in which each company mentions the keyword (technology or buying intent topic)"
      },
      "max_jobs": {
       "type": "string",
-      "description": "Maximum number of jobs found by each company using a technology"
+      "description": "Maximum number of jobs in which each company mentions the keyword (technology or buying intent topic)"
      },
      "min_relative_occurrence": {
       "type": "string",
-      "description": "Minimum value of relative_occurrence_within_category for each technology. Higher values increase the probability that this technology is actually used by the company, because it means a higher percentage of mentions to technologies among this category are of this technology."
+      "description": "Minimum value of relative_occurrence_within_category for each keyword (technology or buying intent topic). Higher values increase the probability that the company actually uses the technology or cares about the topic, because a higher share of the mentions within that category are of this keyword."
      },
      "first_date_found_gte": {
       "type": "string",
-      "description": "Only return technologies where the first time they were found was after or on this date. Format: \"YYYY-MM-DD\""
+      "description": "Only return keywords (technologies or buying intent topics) where the first time they were found was after or on this date. Format: \"YYYY-MM-DD\""
      },
      "first_date_found_lte": {
       "type": "string",
-      "description": "Only return technologies where the first time they were found was before or on this date. Format: \"YYYY-MM-DD\""
+      "description": "Only return keywords (technologies or buying intent topics) where the first time they were found was before or on this date. Format: \"YYYY-MM-DD\""
      },
      "last_date_found_gte": {
       "type": "string",
-      "description": "Only return technologies where the last time they were found was after or on this date. Format: \"YYYY-MM-DD\""
+      "description": "Only return keywords (technologies or buying intent topics) where the last time they were found was after or on this date. Format: \"YYYY-MM-DD\""
      },
      "last_date_found_lte": {
       "type": "string",
-      "description": "Only return technologies where the last time they were found was before or on this date. Format: \"YYYY-MM-DD\""
+      "description": "Only return keywords (technologies or buying intent topics) where the last time they were found was before or on this date. Format: \"YYYY-MM-DD\""
      },
      "confidence_or": {
       "type": "array",
-      "description": "Returns technologies with any of these confidence values that the companies use them. Available values: \"high\", \"medium\", \"low\""
+      "description": "Only return keywords (technologies or buying intent topics) detected with any of these confidence levels. Available values: \"high\", \"medium\", \"low\""
      }
     },
     "required": []
@@ -3362,7 +3414,7 @@
   {
    "slug": "theirstack.unsubscribe_email_one_click_v0",
    "name": "One click unsubscribe (rfc 8058)",
-   "description": "One-Click Unsubscribe (Rfc 8058)",
+   "description": "Turn off one kind of email for the person the signed `token` belongs to. Answers both the one-click unsubscribe mail clients send (RFC 8058) and the button on the confirmation page.",
    "input": {
     "type": "object",
     "properties": {
@@ -3396,7 +3448,7 @@
   {
    "slug": "theirstack.unsubscribe_email_v0",
    "name": "Unsubscribe from email",
-   "description": "Unsubscribe From Email",
+   "description": "The page an email's unsubscribe link opens. It asks the person to confirm before turning off that kind of email, because mail security scanners open every link in a message. The signed `token` in the link is the authorization.",
    "input": {
     "type": "object",
     "properties": {
@@ -3424,7 +3476,7 @@
   {
    "slug": "theirstack.unsubscribe_saved_search_alert_one_click_v0",
    "name": "One click unsubscribe from a saved search alert (rfc 8058)",
-   "description": "One-Click Unsubscribe From A Saved Search Alert (Rfc 8058)",
+   "description": "Turn off the email alert of the saved search the signed `token` names. Answers both the one-click unsubscribe mail clients send (RFC 8058) and the button on the confirmation page.",
    "input": {
     "type": "object",
     "properties": {
@@ -3450,7 +3502,7 @@
   {
    "slug": "theirstack.unsubscribe_saved_search_alert_v0",
    "name": "Unsubscribe from a saved search alert",
-   "description": "Unsubscribe From A Saved Search Alert",
+   "description": "The page an alert email's unsubscribe link opens. It asks the person to confirm before turning off that saved search's alert, because mail security scanners open every link in a message. The signed `token` in the link is the authorization.",
    "input": {
     "type": "object",
     "properties": {},

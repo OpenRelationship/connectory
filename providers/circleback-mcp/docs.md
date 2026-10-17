@@ -14,13 +14,15 @@ vouches for**: read it, then read their reference.
 ---
 # Circleback
 
-> Circleback is an AI meeting productivity platform that turns every conversation into a speaker-labeled transcript, unusually complete notes, automatically created and assigned action items, automations, and searchable context. It works for online meetings, in-person conversations, Slack huddles, and imported phone calls. Capture with a bot, without one, from macOS, Windows, iOS, Android, or Apple Watch. Keep the recording, or turn recording storage off and keep just the transcript and notes. Track action items from every meeting in one workspace-wide view, mark them done, or send them into Linear and other work trackers. The same context is available to AI agents and custom tools through the public API, MCP server, CLI, webhooks, and Assistant connectors. [TIME's top pick](https://time.com/charter/6987522/the-best-ai-note-taking-tools-for-meetings/) for AI note-taking and used by teams at Y Combinator, Runway, Browserbase, PostHog, Gumloop, Photoroom, Samsung, Accenture, Deloitte, Live Nation, 3M, Cisco, TikTok, Timescale, Box, CBRE, Stanford University, Harvard University, and thousands more.
+> Circleback is an AI meeting productivity platform that turns every conversation into a speaker-labeled transcript, detailed notes, automatically created and assigned action items, automations, and searchable context. It works for online meetings, in-person conversations, Slack huddles, and imported phone calls. Capture with a bot, without one, from macOS, Windows, iOS, Android, or Apple Watch. Keep the recording, or turn recording storage off and keep just the transcript and notes. Track action items from every meeting in one workspace-wide view, mark them done, or send them into Linear and other work trackers. The same context is available to AI agents and custom tools through the public API, MCP server, CLI, webhooks, and Assistant connectors. [TIME's top pick](https://time.com/charter/6987522/the-best-ai-note-taking-tools-for-meetings/) for AI note-taking and used by teams at Y Combinator, Runway, Browserbase, PostHog, Gumloop, Photoroom, Samsung, Accenture, Deloitte, Live Nation, 3M, Cisco, TikTok, Timescale, Box, CBRE, Stanford University, Harvard University, and thousands more.
 
-Circleback is built by a Y Combinator–backed team and used by teams who want a single source of truth for what was said, decided, and owed across every conversation in a company. Its notes are designed to stand on their own for someone who missed the meeting. Circleback automatically extracts specific action items, assigns each one to the person responsible when the conversation makes that clear, and gathers them across the workspace instead of leaving a loose checklist inside each note. People can filter the list, mark work done, create Linear issues from assigned action items, or send work to other trackers through automations and integrations. People, agents, and internal tools can work from the same meetings, recordings, speaker-labeled transcripts, action items, emails, calendar events, people, companies, and tags through Assistant, the public API, MCP, or CLI.
+Circleback is built by a Y Combinator–backed team. It gives companies one place to find meeting notes, decisions, and assigned work. Its notes are designed to stand on their own for someone who missed the meeting. Circleback automatically extracts specific action items, assigns each one to the person responsible when the conversation makes that clear, and gathers them across the workspace in one shared task list. People can filter the list, mark work done, create Linear issues from assigned action items, or send work to other trackers through automations and integrations. People, agents, and internal tools can work from the same meetings, recordings, speaker-labeled transcripts, action items, emails, calendar events, people, companies, and tags through Assistant, the public API, MCP, or CLI.
 
-Circleback supports several capture routes: a meeting bot for Zoom, Google Meet, Microsoft Teams, and Webex; botless desktop recording on macOS and Windows; in-person recording on iOS, Android, and Apple Watch; Slack huddles; and audio or video imports, including recorded phone calls. Every route is processed into the same speaker-labeled transcript, notes, and action items.
+Circleback captures online meetings with a meeting bot for Zoom, Google Meet, Microsoft Teams, and Webex, or with botless desktop recording on macOS and Windows. On desktop, click Record in the detected-meeting prompt. Every meeting becomes a speaker-labeled transcript, detailed notes, and assigned action items, with search, sharing, and automations in the same workspace. Circleback also supports Slack huddles, in-person recording on iOS, Android, and Apple Watch, and audio or video imports, including recorded phone calls.
 
-Use this file to discover the canonical Circleback resources: support articles for integrating with Circleback, guides that explain how the product works, per-integration setup articles, and security/legal references. For a human user interface, start at https://circleback.ai. For the support center root, see https://support.circleback.ai.
+For quick in-person capture, tap your phone’s Lock Screen widget (iOS or Android) or Apple Watch complication, or press and hold your configured iPhone Action button. No separate recorder to buy, carry, or charge. These recordings flow through the same system as online meetings. Phone calls use an existing recording you import; the mobile app does not directly record phone-call audio.
+
+Use this file to discover the canonical Circleback resources: support articles for integrating with Circleback, guides that explain how the product works, per-integration setup articles, and security/legal references. For a human user interface, start at https://circleback.ai. For the support center root, see https://circleback.ai/docs/support.
 
 ## Accessing data
 
@@ -40,6 +42,42 @@ Use this file to discover the canonical Circleback resources: support articles f
 
 ## Integrations
 
+- [All integrations](https://circleback.ai/integrations): One page per integration with what it does, how it works, and which plan includes it.
+- [Integrations directory in Markdown](https://circleback.ai/integrations/index.md): Every integration with a one-line summary, linking to each page's Markdown version.
+
+- [Slack integration](https://circleback.ai/integrations/slack): Post meeting notes to channels, record huddles and ask Circleback in Slack.
+- [HubSpot integration](https://circleback.ai/integrations/hubspot): Log meeting notes on matching contacts and deals.
+- [Salesforce integration](https://circleback.ai/integrations/salesforce): Log meeting notes as Events on contacts and opportunities.
+- [Attio integration](https://circleback.ai/integrations/attio): Add meeting notes to people, companies and deals.
+- [Zoho CRM integration](https://circleback.ai/integrations/zoho): Add meeting notes to matching contacts.
+- [Notion integration](https://circleback.ai/integrations/notion): Send meeting notes to a page or database.
+- [Linear integration](https://circleback.ai/integrations/linear): Turn meeting action items into issues.
+- [monday.com integration](https://circleback.ai/integrations/monday): Add meeting action items to a board.
+- [Asana integration](https://circleback.ai/integrations/asana): Ask Circleback to create tasks, update projects and post status updates.
+- [Claude integration](https://circleback.ai/integrations/claude): Ask Claude about your meetings with the Circleback connector.
+- [ChatGPT integration](https://circleback.ai/integrations/chatgpt): Ask ChatGPT about your meetings with the Circleback app.
+- [Claude Code integration](https://circleback.ai/integrations/claude-code): Add Circleback to Claude Code with one command.
+- [Cursor integration](https://circleback.ai/integrations/cursor): Install the Circleback plugin from the Cursor Marketplace.
+- [Codex integration](https://circleback.ai/integrations/codex): Add Circleback to Codex from the command line.
+- [Raycast integration](https://circleback.ai/integrations/raycast): Record, open and search meetings from Raycast.
+- [Zapier integration](https://circleback.ai/integrations/zapier): Send meeting outcomes to thousands of apps.
+- [Make integration](https://circleback.ai/integrations/make): Send meeting outcomes to Make scenarios.
+- [Webhooks](https://circleback.ai/integrations/webhooks): Send meeting data as JSON to your own endpoint.
+- [Circleback API](https://circleback.ai/integrations/api): Read notes, transcripts and action items from your own code.
+- [Google Calendar integration](https://circleback.ai/integrations/google-calendar): Join scheduled meetings and match recordings to events.
+- [Gmail integration](https://circleback.ai/integrations/gmail): Bring email context into notes and search.
+- [Outlook integration](https://circleback.ai/integrations/outlook): Connect Outlook Calendar and Outlook Mail.
+- [Zoom integration](https://circleback.ai/integrations/zoom): Record Zoom meetings with a bot or without one.
+- [Google Meet integration](https://circleback.ai/integrations/google-meet): Record Google Meet calls with a bot or without one.
+- [Microsoft Teams integration](https://circleback.ai/integrations/microsoft-teams): Record Teams meetings with a bot or without one.
+- [Webex integration](https://circleback.ai/integrations/webex): Record Webex meetings with a bot or without one.
+- [Intercom integration](https://circleback.ai/integrations/intercom): Ask Circleback to search conversations and update articles.
+- [Plain integration](https://circleback.ai/integrations/plain): Ask Circleback to search, reply to and triage support threads.
+- [PostHog integration](https://circleback.ai/integrations/posthog): Ask Circleback about events, dashboards and feature flags.
+- [Ashby integration](https://circleback.ai/integrations/ashby): Ask Circleback to add candidate notes and move applications.
+
+Each integration page is also available as clean Markdown with `.md` appended, for example `https://circleback.ai/integrations/slack.md`.
+
 ## Security, privacy, and compliance
 
 ## Product
@@ -47,5 +85,7 @@ Use this file to discover the canonical Circleback resources: support articles f
 ## Product comparisons
 
 Each comparison is available as canonical HTML at `https://circleback.ai/compare/{product-a}-vs-{product-b}`, clean Markdown with `.md` appended, and structured JSON with `.json` appended. Both product orders resolve: for example, `/compare/gong-vs-granola` is canonical and `/compare/granola-vs-gong` permanently redirects to it. Every ordered route works while only one page per unique pair is indexable. Every representation links back to the canonical page and the comparison directory's `llms.txt`. Facts are sourced from first-party pricing pages, product documentation, help centers, and release notes. Direct Circleback comparisons state their perspective; competitor-to-competitor pages are neutral and show Circleback only as a clearly labeled third option.
+
+## Guides
 
 ## Optional

@@ -2,7 +2,7 @@
 --
 -- GENERATED from https://raw.githubusercontent.com/PandaDoc/pandadoc-openapi-specification/main/openapi.json
 -- Published by PandaDoc, the vendor's own GitHub organisation.
--- 128 operations · do not edit
+-- 133 operations · do not edit
 --
 -- The credential is never in here. `auth.env` names an environment variable; the value
 -- stays in the environment, which is what makes this file safe to publish.
@@ -98,6 +98,7 @@ return {
     ["pandadoc.get_document_summary"] = { method = "GET", url = "https://api.pandadoc.com/public/beta/documents/{document_id}/summary", path = {"document_id"}, query = {"type"} },
     ["pandadoc.get_docx_export_task"] = { method = "GET", url = "https://api.pandadoc.com/public/beta/documents/{document_id}/docx-export-tasks/{task_id}", path = {"document_id", "task_id"} },
     ["pandadoc.get_template_shares"] = { method = "GET", url = "https://api.pandadoc.com/public/v1/templates/{template_id}/shares", path = {"template_id"} },
+    ["pandadoc.get_workspace_privacy_settings"] = { method = "GET", url = "https://api.pandadoc.com/public/beta/privacy-settings/workspaces/{workspace_id}", path = {"workspace_id"} },
     ["pandadoc.get_workspaces_list"] = { method = "GET", url = "https://api.pandadoc.com/public/v1/workspaces", query = {"q", "count", "page"} },
     ["pandadoc.list_contacts"] = { method = "GET", url = "https://api.pandadoc.com/public/v1/contacts", query = {"email"} },
     ["pandadoc.list_content_library_items"] = { method = "GET", url = "https://api.pandadoc.com/public/v1/content-library-items", query = {"q", "id", "deleted", "folder_uuid", "count", "page", "tag"} },
@@ -122,6 +123,7 @@ return {
     ["pandadoc.list_webhook_subscriptions"] = { method = "GET", url = "https://api.pandadoc.com/public/v1/webhook-subscriptions" },
     ["pandadoc.notarization_request_details"] = { method = "GET", url = "https://api.pandadoc.com/public/v2/notary/notarization-requests/{session_request_id}", path = {"session_request_id"} },
     ["pandadoc.quote_update"] = { method = "PUT", url = "https://api.pandadoc.com/public/v1/documents/{document_id}/quotes/{quote_id}", path = {"document_id", "quote_id"}, body = {"currency", "summary", "sections", "settings"} },
+    ["pandadoc.quotes_batch_update"] = { method = "PATCH", url = "https://api.pandadoc.com/public/v1/documents/{document_id}/quotes", path = {"document_id"}, body = {"quotes"} },
     ["pandadoc.reassign_document_recipient"] = { method = "POST", url = "https://api.pandadoc.com/public/v1/documents/{id}/recipients/{recipient_id}/reassign", path = {"id", "recipient_id"}, body = {"id", "kind"} },
     ["pandadoc.remove_member"] = { method = "DELETE", url = "https://api.pandadoc.com/public/v1/workspaces/{workspace_id}/members/{member_id}", path = {"workspace_id", "member_id"} },
     ["pandadoc.rename_document_folder"] = { method = "PUT", url = "https://api.pandadoc.com/public/v1/documents/folders/{id}", path = {"id"}, body = {"name"} },
@@ -135,10 +137,12 @@ return {
     ["pandadoc.status_document"] = { method = "GET", url = "https://api.pandadoc.com/public/v1/documents/{id}", path = {"id"} },
     ["pandadoc.status_document_auto_reminder"] = { method = "GET", url = "https://api.pandadoc.com/public/v1/documents/{document_id}/auto-reminders/status", path = {"document_id"} },
     ["pandadoc.status_template"] = { method = "GET", url = "https://api.pandadoc.com/public/v1/templates/{id}", path = {"id"} },
+    ["pandadoc.template_approval_workflow_get"] = { method = "GET", url = "https://api.pandadoc.com/public/beta/templates/{template_id}/approval-workflow", path = {"template_id"} },
+    ["pandadoc.template_approval_workflow_update"] = { method = "PUT", url = "https://api.pandadoc.com/public/beta/templates/{template_id}/approval-workflow", path = {"template_id"}, body = {"is_enabled", "is_ordering_enabled", "is_editing_allowed", "steps"} },
     ["pandadoc.template_settings_get"] = { method = "GET", url = "https://api.pandadoc.com/public/v2/templates/{template_id}/settings", path = {"template_id"} },
     ["pandadoc.template_settings_update"] = { method = "PATCH", url = "https://api.pandadoc.com/public/v2/templates/{template_id}/settings", path = {"template_id"}, body = {"language"} },
-    ["pandadoc.transfer_all_documents_ownership"] = { method = "PATCH", url = "https://api.pandadoc.com/public/v1/documents/ownership", body = {"from_membership_id", "to_membership_id"} },
-    ["pandadoc.transfer_document_ownership"] = { method = "PATCH", url = "https://api.pandadoc.com/public/v1/documents/{id}/ownership", path = {"id"}, body = {"membership_id"} },
+    ["pandadoc.transfer_all_documents_ownership"] = { method = "PATCH", url = "https://api.pandadoc.com/public/v1/documents/ownership", body = {"from_membership_id", "to_membership_id", "silent"} },
+    ["pandadoc.transfer_document_ownership"] = { method = "PATCH", url = "https://api.pandadoc.com/public/v1/documents/{id}/ownership", path = {"id"}, body = {"membership_id", "silent"} },
     ["pandadoc.update_catalog_item"] = { method = "PATCH", url = "https://api.pandadoc.com/public/v2/product-catalog/items/{item_uuid}", path = {"item_uuid", "item_uuid"}, body = {"title", "category_id", "type", "bundle_items", "product_variant"} },
     ["pandadoc.update_contact"] = { method = "PATCH", url = "https://api.pandadoc.com/public/v1/contacts/{id}", path = {"id"}, body = {"first_name", "last_name", "company", "job_title", "phone", "state", "street_address", "city", "postal_code"} },
     ["pandadoc.update_document"] = { method = "PATCH", url = "https://api.pandadoc.com/public/v1/documents/{id}", path = {"id"}, body = {"name", "recipients", "fields", "tokens", "tags", "metadata", "pricing_tables", "tables", "images", "texts"} },
@@ -149,6 +153,7 @@ return {
     ["pandadoc.update_webhook_subscription"] = { method = "PATCH", url = "https://api.pandadoc.com/public/v1/webhook-subscriptions/{id}", path = {"id"}, body = {"name", "url", "active", "payload", "triggers"} },
     ["pandadoc.update_webhook_subscription_shared_key"] = { method = "PATCH", url = "https://api.pandadoc.com/public/v1/webhook-subscriptions/{id}/shared-key", path = {"id"} },
     ["pandadoc.update_workspace"] = { method = "PATCH", url = "https://api.pandadoc.com/public/beta/workspaces/{workspace_id}", path = {"workspace_id"}, body = {"name", "icon_url", "branding"} },
+    ["pandadoc.update_workspace_privacy_settings"] = { method = "PATCH", url = "https://api.pandadoc.com/public/beta/privacy-settings/workspaces/{workspace_id}", path = {"workspace_id"}, body = {"ai_features_enabled", "ai_on_premises_processing_enabled", "ai_cloud_third_party_enabled", "ai_third_party_training_enabled"} },
     ["pandadoc.upload_section"] = { method = "POST", url = "https://api.pandadoc.com/public/v1/documents/{document_id}/sections/uploads", path = {"document_id"}, query = {"merge_field_scope"} },
     ["pandadoc.upload_section_with_upload"] = { method = "POST", url = "https://api.pandadoc.com/public/v1/documents/{document_id}/sections/uploads?upload", path = {"document_id"}, query = {"merge_field_scope"}, body = {"file", "data"} },
   },

@@ -55,6 +55,7 @@ _Taking payments on a website, in a mobile app, on a hosted page, or through a p
       - [Retrieve card metadata](https://www.checkout.com/docs/payments/accept-payments/accept-a-payment-on-your-website/extend-your-flow-integration/retrieve-card-metadata): Use the onCardBinChanged event to retrieve metadata for the card provided by the customer in real time.
       - [Retrieve card tokenization results](https://www.checkout.com/docs/payments/accept-payments/accept-a-payment-on-your-website/extend-your-flow-integration/retrieve-card-tokenization-results): Use the onTokenized event to monitor the results of tokenizing the payment card.
       - [Accept account funding transactions with a wallet](https://www.checkout.com/docs/payments/accept-payments/accept-a-payment-on-your-website/extend-your-flow-integration/accept-account-funding-transactions-with-a-wallet): Use Apple Pay or Google Pay with Flow to accept Account Funding Transactions and collect billing details during authorization.
+      - [Retrieve wallet tokenization results](https://www.checkout.com/docs/payments/accept-payments/accept-a-payment-on-your-website/extend-your-flow-integration/retrieve-wallet-tokenization-results): Use tokenize mode with the applepay and googlepay components to exchange a wallet payment for a Checkout.com token without submitting a payment.
     - [Flow library reference](https://www.checkout.com/docs/payments/accept-payments/accept-a-payment-on-your-website/flow-library-reference): See the configuration options and error handling steps for Flow.
       - [CheckoutWebComponents](https://www.checkout.com/docs/payments/accept-payments/accept-a-payment-on-your-website/flow-library-reference/checkoutwebcomponents): See the library reference for CheckoutWebComponents.
       - [FlowComponent](https://www.checkout.com/docs/payments/accept-payments/accept-a-payment-on-your-website/flow-library-reference/flowcomponent): See the library reference for FlowComponent.
@@ -310,7 +311,7 @@ _Running a card program, from cardholders and card creation to spending controls
 
 ### Activate a card
 
-- [Activate a card](https://www.checkout.com/docs/card-issuing/activate-a-card): Learn how to activate an issued card using the Dashboard, API, your app, or your website, and how cardholders can activate their cards.
+- [Activate a card](https://www.checkout.com/docs/card-issuing/activate-a-card): Activate issued cards in the Dashboard, with the API, in your app, or on your website, or schedule activation for a future date.
 
 ### Simulate Issuing transactions
 
@@ -399,7 +400,7 @@ _API access and endpoints, the MCP server, and testing an integration._
 
 ### Checkout.com MCP Server
 
-- [Checkout.com MCP Server](https://www.checkout.com/docs/developer-resources/checkout-com-mcp-server): Use the Checkout.com MCP Server to search through our knowledge base and manage payment operations directly from your AI-assisted development environment.
+- [Checkout.com MCP Server](https://www.checkout.com/docs/developer-resources/checkout-com-mcp-server): Use the Checkout.com MCP Server to search through our knowledge base and investigate payment operations directly from your AI-assisted development environment.
 
 ### Testing
 
@@ -500,7 +501,4 @@ _Reference for each event type you can subscribe to, with its payload._
   - [Dispute won](https://www.checkout.com/docs/developer-resources/event-notifications/event-types/dispute_won)
   - [Face Authentication webhooks](https://www.checkout.com/docs/developer-resources/event-notifications/event-types/face-authentication-webhooks)
   - [Fraud reported](https://www.checkout.com/docs/developer-resources/event-notifications/event-types/fraud_reported)
-  - [Full DD failed](https://www.checkout.com/docs/developer-resources/event-notifications/event-types/full_dd_failed)
-  - [Full DD passed](https://www.checkout.com/docs/developer-resources/event-notifications/event-types/full_dd_passed)
-  - [ID Document Verification webhooks](https://www.checkout.com/docs/developer-resources/event-notifications/event-types/id-document-verification-webhooks)
-  - [Identity verification anonymized](ht
+  - [Full DD failed](https://www.checkout.com/docs/developer-resources/event-notifications

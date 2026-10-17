@@ -1381,6 +1381,18 @@
       "type": "boolean",
       "description": "True to require the Proof Key of Code Exchange (PKCE) flow."
      },
+     "audience_uri": {
+      "type": "string",
+      "description": "An absolute resource URI for a confidential application (RFC 8707 section 2). Registers a resource with no accepted scopes, or adopts an unowned resource with confirmation. Every claimed URI remains permanently reserved to this app, including retirement and deletion, and counts toward the instance resource quota. Changing it stops new exchanges from the old audience immediately. Already-issued tok"
+     },
+     "token_exchange_enabled": {
+      "type": "boolean",
+      "description": "Enable exchanges from the active audience. Requires an audience URI. Disabling preserves target configuration."
+     },
+     "adopt_audience_resource": {
+      "type": "boolean",
+      "description": "Confirm adoption of an existing unowned resource, preserving its accepted scopes and target references. Does not override another application's reservation."
+     },
      "device_authorization_grant_enabled": {
       "type": "boolean",
       "description": "True to enable the OAuth Device Authorization Grant for this application. Enabling requires the new OAuth IdP and a reachable device verification page."
@@ -1407,6 +1419,9 @@
      "scopes",
      "consent_screen_enabled",
      "pkce_required",
+     "audience_uri",
+     "token_exchange_enabled",
+     "adopt_audience_resource",
      "device_authorization_grant_enabled",
      "public"
     ],
@@ -2097,7 +2112,15 @@
      },
      "expires_in_seconds": {
       "type": "integer",
-      "description": "Optional parameter to specify the life duration of the sign in token in seconds. By default, the duration is 30 days."
+      "description": "Optional parameter to specify the life duration of the sign in token in seconds. By default, the duration is 30 days, or 10 minutes when `second_factor_verification` is set."
+     },
+     "second_factor_verification": {
+      "type": "string",
+      "description": "Optional parameter that lets a user with a second factor enabled complete the sign in without being prompted for it. When omitted, redeeming the token completes only the first factor, and the user must still complete their second factor. `fresh`: the second factor is treated as verified at sign in. The session token's `fva` claim reports a second factor age of 0. `stale`: the second factor is trea",
+      "enum": [
+       "fresh",
+       "stale"
+      ]
      }
     },
     "required": [
@@ -2113,7 +2136,36 @@
     "body": [
      "user_id",
      "org_id",
-     "expires_in_seconds"
+     "expires_in_seconds",
+     "second_factor_verification"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clerk.create_ssobypass_allowlist_user",
+   "name": "Add a user to the sso bypass allowlist",
+   "description": "Puts a user on the allowlist. The request is rejected unless the user holds a verified email address on a domain one of the instance's enterprise connections serves.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "user_id": {
+      "type": "string",
+      "description": "The ID of the user to allowlist."
+     }
+    },
+    "required": [
+     "user_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.clerk.com/v1/sso_bypass_allowlist_users",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "user_id"
     ],
     "body_format": "json"
    }
@@ -2178,6 +2230,10 @@
      "locale": {
       "type": "string",
       "description": "The locale to assign to the user (e.g., \"en-US\", \"fr-FR\")"
+     },
+     "timezone": {
+      "type": "string",
+      "description": "The IANA timezone to assign to the user (e.g., \"America/New_York\", \"Europe/Paris\"). Set to null to clear it and allow automatic capture on a later trusted sign-in."
      },
      "email_address": {
       "type": "array",
@@ -2301,6 +2357,7 @@
      "first_name",
      "last_name",
      "locale",
+     "timezone",
      "email_address",
      "email_address_identification_status",
      "phone_number",
@@ -2542,7 +2599,7 @@
   {
    "slug": "clerk.delete_domain",
    "name": "Delete a domain",
-   "description": "Deletes a domain for the instance. The instance's active domain cannot be deleted.",
+   "description": "Deletes a domain for the instance. The instance's active domain cannot be deleted. Deleting a non-satellite domain returns 403 `domain_managed_by_integration` for applications in a Vercel-managed workspace; change the domain from the Vercel integration instead.",
    "input": {
     "type": "object",
     "properties": {
@@ -2650,6 +2707,34 @@
     "path": [
      "user_id",
      "external_account_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clerk.delete_invitation",
+   "name": "Delete an invitation",
+   "description": "Permanently deletes the given invitation and the copies of the invitation email Clerk stored for its recipient. Unlike revoking, deleting removes the invitation record itself, which helps honor a data erasure request from someone who was invited but never signed up. Other records that contain the same email address, such as users or organization invitations, are not affected. Invitations of any st",
+   "input": {
+    "type": "object",
+    "properties": {
+     "invitation_id": {
+      "type": "string",
+      "description": "The ID of the invitation to delete"
+     }
+    },
+    "required": [
+     "invitation_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.clerk.com/v1/invitations/{invitation_id}",
+    "path": [
+     "invitation_id"
     ],
     "query": [],
     "header": [],
@@ -3066,6 +3151,34 @@
     "path": [
      "scim_directory_id",
      "mapping_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clerk.delete_ssobypass_allowlist_user",
+   "name": "Remove a user from the sso bypass allowlist",
+   "description": "Removes the user from the allowlist, across every enterprise connection that serves them.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "userID": {
+      "type": "string",
+      "description": "The ID of the allowlisted user"
+     }
+    },
+    "required": [
+     "userID"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.clerk.com/v1/sso_bypass_allowlist_users/{userID}",
+    "path": [
+     "userID"
     ],
     "query": [],
     "header": [],
@@ -6058,6 +6171,32 @@
    }
   },
   {
+   "slug": "clerk.list_ssobypass_allowlist_users",
+   "name": "List the sso bypass allowlist",
+   "description": "Returns the users who may verify an email code instead of reaching their identity provider when enterprise SSO is unreachable.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "enterprise_connection_id": {
+      "type": "string",
+      "description": "Restrict the list to the users this enterprise connection serves."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.clerk.com/v1/sso_bypass_allowlist_users",
+    "path": [],
+    "query": [
+     "enterprise_connection_id"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "clerk.list_user_biometric_credentials",
    "name": "List a user's biometric credentials",
    "description": "Returns the active biometric credentials enrolled by the user.",
@@ -7704,7 +7843,7 @@
      },
      "allowed_origins": {
       "type": "array",
-      "description": "For browser-like stacks such as browser extensions, Electron (not officially supported), or Capacitor.js (not officially supported), the instance allowed origins need to be updated with the request origin value. For Chrome extensions popup, background, or service worker pages, the origin is chrome-extension://extension_uuid. For Electron apps the default origin is http://localhost:3000. For Capaci"
+      "description": "For browser-like stacks such as browser extensions, Electron, or Capacitor.js (not officially supported), the instance allowed origins need to be updated with the request origin value. For Chrome extensions popup, background, or service worker pages, the origin is chrome-extension://extension_uuid. For Electron apps using `@clerk/electron`, the origins are the custom renderer scheme registered wit"
      },
      "allowed_subdomains": {
       "type": "array",
@@ -7834,6 +7973,10 @@
       "type": "boolean",
       "description": "Whether dynamic OAuth client registration is enabled for the instance (RFC 7591)."
      },
+     "dynamic_client_allowed_scopes": {
+      "type": "array",
+      "description": "Administrator-selected scope ceiling for dynamically registered and automatically admitted CIMD clients. Null preserves registered client limits; defaults must be a subset. Fresh user consent is required for expansion."
+     },
      "default_scopes": {
       "type": "array",
       "description": "Default scopes assigned when a dynamically registered or first-contact CIMD client omits `scope`. Accepts built-in keys and current custom catalog keys. `advertised` does not affect eligibility. Duplicate keys, unknown keys, and `offline_access` are rejected. An empty array or null resets to Clerk-provided defaults."
@@ -7845,6 +7988,10 @@
      "aud_claim_enabled": {
       "type": "boolean",
       "description": "Whether OAuth access tokens can include an aud claim derived from the RFC 8707 resource parameter."
+     },
+     "aud_claim_refresh_backfill_enabled": {
+      "type": "boolean",
+      "description": "Whether refresh grants without a resource can adopt the requested resource when audience claims are enabled."
      },
      "pkce_required": {
       "type": "boolean",
@@ -7873,9 +8020,11 @@
     "header": [],
     "body": [
      "dynamic_oauth_client_registration",
+     "dynamic_client_allowed_scopes",
      "default_scopes",
      "oauth_jwt_access_tokens",
      "aud_claim_enabled",
+     "aud_claim_refresh_backfill_enabled",
      "pkce_required",
      "client_id_metadata_documents_advertised",
      "client_id_metadata_documents_only_allow_pre_registered_clients",
@@ -7955,10 +8104,6 @@
      "rules_enabled": {
       "type": "boolean",
       "description": "Set true to enforce Protect rules on this instance. Set false to stop enforcing and return the instance to its default posture, where traffic is still evaluated in shadow but nothing is blocked. This does not remove the instance from Protect."
-     },
-     "specter_enabled": {
-      "type": "boolean",
-      "description": ""
      }
     },
     "required": []
@@ -7970,8 +8115,7 @@
     "query": [],
     "header": [],
     "body": [
-     "rules_enabled",
-     "specter_enabled"
+     "rules_enabled"
     ],
     "body_format": "json"
    }
@@ -8162,6 +8306,18 @@
       "type": "boolean",
       "description": "True to require the Proof Key of Code Exchange (PKCE) flow."
      },
+     "audience_uri": {
+      "type": "string",
+      "description": "An absolute resource URI for a confidential application (RFC 8707 section 2). Registers a resource with no accepted scopes, or adopts an unowned resource with confirmation. Every claimed URI remains permanently reserved to this app, including retirement and deletion, and counts toward the instance resource quota. Changing it stops new exchanges from the old audience immediately. Already-issued tok"
+     },
+     "token_exchange_enabled": {
+      "type": "boolean",
+      "description": "Enable exchanges from the active audience. Requires an audience URI. Disabling preserves target configuration."
+     },
+     "adopt_audience_resource": {
+      "type": "boolean",
+      "description": "Confirm adoption of an existing unowned resource, preserving its accepted scopes and target references. Does not override another application's reservation."
+     },
      "device_authorization_grant_enabled": {
       "type": "boolean",
       "description": "True to enable the OAuth Device Authorization Grant for this application. Enabling requires the new OAuth IdP and a reachable device verification page. Omit this field to leave the setting unchanged."
@@ -8190,6 +8346,9 @@
      "scopes",
      "consent_screen_enabled",
      "pkce_required",
+     "audience_uri",
+     "token_exchange_enabled",
+     "adopt_audience_resource",
      "device_authorization_grant_enabled",
      "public"
     ],
@@ -8225,7 +8384,11 @@
      },
      "self_serve_sso_enabled": {
       "type": "boolean",
-      "description": "Whether this organization can configure self-serve enterprise SSO. Requires the instance to have the self-serve SSO entitlement enabled."
+      "description": "Whether this organization can configure self-serve enterprise SSO."
+     },
+     "self_serve_directory_sync_enabled": {
+      "type": "boolean",
+      "description": "Whether this organization can configure self-serve Directory Sync (SCIM). Independent of `self_serve_sso_enabled`."
      },
      "created_at": {
       "type": "string",
@@ -8234,6 +8397,10 @@
      "role_set_key": {
       "type": "string",
       "description": "The key of the [role set](https://clerk.com/docs/guides/organizations/control-access/role-sets) to assign to this organization."
+     },
+     "reassignment_mappings": {
+      "type": "object",
+      "description": "Maps role keys in the organization's current role set to role keys in the new role set. Only applies when `role_set_key` changes the role set. Every role that a member holds and that the new role set does not include must be mapped, otherwise the request fails with a 422. Mapping a role that both role sets include moves its members to the destination role. Memberships are reassigned asynchronously"
      }
     },
     "required": [
@@ -8254,8 +8421,10 @@
      "max_allowed_memberships",
      "admin_delete_enabled",
      "self_serve_sso_enabled",
+     "self_serve_directory_sync_enabled",
      "created_at",
-     "role_set_key"
+     "role_set_key",
+     "reassignment_mappings"
     ],
     "body_format": "json"
    }
@@ -8695,6 +8864,10 @@
       "type": "string",
       "description": "The locale to assign to the user (e.g., \"en-US\", \"fr-FR\")"
      },
+     "timezone": {
+      "type": "string",
+      "description": "The IANA timezone to assign to the user (e.g., \"America/New_York\", \"Europe/Paris\"). Set to null to clear it and allow automatic capture on a later trusted sign-in."
+     },
      "primary_email_address_id": {
       "type": "string",
       "description": "The ID of the email address to set as primary. It must be verified, and present on the current user."
@@ -8793,6 +8966,7 @@
      "first_name",
      "last_name",
      "locale",
+     "timezone",
      "primary_email_address_id",
      "notify_primary_email_address_changed",
      "primary_phone_number_id",

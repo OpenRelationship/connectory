@@ -101,7 +101,9 @@ vouches for**: read it, then read their reference.
 - [Examples - Person Changelog API](https://docs.peopledatalabs.com/docs/examples-person-changelog-api.md)
 - [FAQs - Person Changelog API](https://docs.peopledatalabs.com/docs/person-changelog-api-faqs.md)
 - [Subject Request API](https://docs.peopledatalabs.com/docs/subject-request-api.md)
-- [Salesforce Integration](https://docs.peopledatalabs.com/docs/salesforce-integration.md)
+- [Use People Data Labs in Clay](https://docs.peopledatalabs.com/docs/clay-integration.md): Use People Data Labs enrichments inside Clay, with Clay's managed connection or your own PDL account.
+- [Connect Your PDL API Key to Clay](https://docs.peopledatalabs.com/docs/clay-byok.md): Add your People Data Labs API key to Clay and reuse it across your Clay workflows.
+- [Salesforce](https://docs.peopledatalabs.com/docs/salesforce-integration.md)
 - [Mappings](https://docs.peopledatalabs.com/docs/salesforce-integration-mappings.md)
 - [Enrichment Settings](https://docs.peopledatalabs.com/docs/salesforce-integration-enrichment-settings.md)
 - [App Settings](https://docs.peopledatalabs.com/docs/salesforce-integration-app-settings.md)
@@ -110,8 +112,7 @@ vouches for**: read it, then read their reference.
 - [API Dashboard Setup](https://docs.peopledatalabs.com/docs/salesforce-integration-setup-api-dashboard-setup.md)
 - [Verify Enrichment Workflows](https://docs.peopledatalabs.com/docs/salesforce-integration-setup-verify-enrichment-workflows.md)
 - [Troubleshooting](https://docs.peopledatalabs.com/docs/salesforce-integration-setup-troubleshooting.md)
-- [Make.com Integration](https://docs.peopledatalabs.com/docs/makecom-integration.md)
-- [Zapier Integration](https://docs.peopledatalabs.com/docs/zapier.md)
+- [Make.com](https://docs.peopledatalabs.com/docs/makecom-integration.md)
 - [Product Integration Guides](https://docs.peopledatalabs.com/docs/product-integration-guides.md)
 - [Use Cases - Job Posting Search API](https://docs.peopledatalabs.com/docs/use-cases-job-posting-search-api.md): _Copy-pasteable workflows for common Job Posting Search API use cases_
 - [Searching by job_title](https://docs.peopledatalabs.com/docs/searching-by-job-title.md): How to search PDL's job_title field effectively, using exact matches, wildcards, the role/subrole taxonomy, and the Job Title Enrichment API.

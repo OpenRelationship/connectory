@@ -3589,6 +3589,14 @@
       ],
       "description": ""
      },
+     "sort": {
+      "type": "string",
+      "description": "Sorts the list on date, so the newest (`date_desc`) or the oldest (`date_asc`) items come first.",
+      "enum": [
+       "date_desc",
+       "date_asc"
+      ]
+     },
      "per_page": {
       "type": [
        "integer",
@@ -3613,6 +3621,7 @@
      "filter",
      "new_filter",
      "page",
+     "sort",
      "per_page"
     ],
     "header": [],
@@ -3797,6 +3806,14 @@
       ],
       "description": ""
      },
+     "sort": {
+      "type": "string",
+      "description": "Sorts the list on date, so the newest (`date_desc`) or the oldest (`date_asc`) items come first.",
+      "enum": [
+       "date_desc",
+       "date_asc"
+      ]
+     },
      "per_page": {
       "type": [
        "integer",
@@ -3828,6 +3845,7 @@
      "filter",
      "new_filter",
      "page",
+     "sort",
      "per_page",
      "exclude_new_general_journal_documents"
     ],
@@ -4013,6 +4031,14 @@
       ],
       "description": ""
      },
+     "sort": {
+      "type": "string",
+      "description": "Sorts the list on date, so the newest (`date_desc`) or the oldest (`date_asc`) items come first.",
+      "enum": [
+       "date_desc",
+       "date_asc"
+      ]
+     },
      "per_page": {
       "type": [
        "integer",
@@ -4037,6 +4063,7 @@
      "filter",
      "new_filter",
      "page",
+     "sort",
      "per_page"
     ],
     "header": [],
@@ -4221,6 +4248,14 @@
       ],
       "description": ""
      },
+     "sort": {
+      "type": "string",
+      "description": "Sorts the list on date, so the newest (`date_desc`) or the oldest (`date_asc`) items come first.",
+      "enum": [
+       "date_desc",
+       "date_asc"
+      ]
+     },
      "per_page": {
       "type": [
        "integer",
@@ -4245,6 +4280,7 @@
      "filter",
      "new_filter",
      "page",
+     "sort",
      "per_page"
     ],
     "header": [],
@@ -4429,6 +4465,14 @@
       ],
       "description": ""
      },
+     "sort": {
+      "type": "string",
+      "description": "Sorts the list on date, so the newest (`date_desc`) or the oldest (`date_asc`) items come first.",
+      "enum": [
+       "date_desc",
+       "date_asc"
+      ]
+     },
      "per_page": {
       "type": [
        "integer",
@@ -4453,6 +4497,7 @@
      "filter",
      "new_filter",
      "page",
+     "sort",
      "per_page"
     ],
     "header": [],
@@ -6159,7 +6204,7 @@
      },
      "period": {
       "type": "string",
-      "description": "The period, given as a single whole month (start on the 1st, end on the last day of the month) or one of the month presets. **Date range formats:** - `YYYYMM` (e.g., `202501`) - `YYYYMM..YYYYMM` with the same month on both sides (e.g., `202501..202501`) - `YYYYMMDD..YYYYMMDD` spanning exactly one whole month (e.g., `20250101..20250131`) **Preset options:** - `this_month` - Current month (default i"
+      "description": "The period can be a date range or one of the presets. Date ranges must consist of whole months (start on 1st, end on last day of month). **Date range formats:** - `YYYYMMDD..YYYYMMDD` (e.g., `20250101..20250131`) - `YYYYMM..YYYYMM` (e.g., `202501..202501`) - `YYYYMM` (e.g., `202501`) **Preset options:** - `this_month` - Current month (default if not specified) - `prev_month` - Previous month - `ne"
      }
     },
     "required": [
@@ -6185,7 +6230,7 @@
   {
    "slug": "moneybird.get_administration_id_reports_balance_sheet",
    "name": "Balance sheet report",
-   "description": "Get the balance sheet report for the administration showing the financial position at the end of the specified period. ### Required scope(s) `bank`",
+   "description": "Get the balance sheet report for the administration showing the financial position at the end of the specified period. With `granularity`, `periods` also gives the balance sheet at the end of every month, quarter or year in the period. ### Required scope(s) `bank`",
    "input": {
     "type": "object",
     "properties": {
@@ -6203,6 +6248,15 @@
      "period": {
       "type": "string",
       "description": "The period can be a date range or one of the presets. Date ranges must consist of whole months (start on 1st, end on last day of month). **Date range formats:** - `YYYYMMDD..YYYYMMDD` (e.g., `20250101..20250131`) - `YYYYMM..YYYYMM` (e.g., `202501..202501`) - `YYYYMM` (e.g., `202501`) **Preset options:** - `this_month` - Current month (default if not specified) - `prev_month` - Previous month - `ne"
+     },
+     "granularity": {
+      "type": "string",
+      "description": "Splits the report into periods of a month, a quarter or a year. The response then also contains `periods`, with the same fields for each period. The first and the last period are cut off at the start and the end of `period`.",
+      "enum": [
+       "month",
+       "quarter",
+       "year"
+      ]
      }
     },
     "required": [
@@ -6218,7 +6272,8 @@
      "format"
     ],
     "query": [
-     "period"
+     "period",
+     "granularity"
     ],
     "header": [],
     "body": [],
@@ -6226,9 +6281,9 @@
    }
   },
   {
-   "slug": "moneybird.get_administration_id_reports_cash_flow",
-   "name": "Cash flow report",
-   "description": "Get the cash flow report for the administration showing cash received and cash paid during the specified period. ### Required scope(s) `bank`",
+   "slug": "moneybird.get_administration_id_reports_bank_balance",
+   "name": "Bank balance report",
+   "description": "Get the booked balance of each financial account at the end of the specified period. These are the balances in the bookkeeping, not the balances the bank reports. With `granularity`, `periods` also gives the balances at the end of every month, quarter or year in the period. ### Required scope(s) `bank`",
    "input": {
     "type": "object",
     "properties": {
@@ -6245,7 +6300,69 @@
      },
      "period": {
       "type": "string",
-      "description": "The period, given as a single whole month (start on the 1st, end on the last day of the month) or one of the month presets. **Date range formats:** - `YYYYMM` (e.g., `202501`) - `YYYYMM..YYYYMM` with the same month on both sides (e.g., `202501..202501`) - `YYYYMMDD..YYYYMMDD` spanning exactly one whole month (e.g., `20250101..20250131`) **Preset options:** - `this_month` - Current month (default i"
+      "description": "The period can be a date range or one of the presets. Date ranges must consist of whole months (start on 1st, end on last day of month). **Date range formats:** - `YYYYMMDD..YYYYMMDD` (e.g., `20250101..20250131`) - `YYYYMM..YYYYMM` (e.g., `202501..202501`) - `YYYYMM` (e.g., `202501`) **Preset options:** - `this_month` - Current month (default if not specified) - `prev_month` - Previous month - `ne"
+     },
+     "granularity": {
+      "type": "string",
+      "description": "Splits the report into periods of a month, a quarter or a year. The response then also contains `periods`, with the same fields for each period. The first and the last period are cut off at the start and the end of `period`.",
+      "enum": [
+       "month",
+       "quarter",
+       "year"
+      ]
+     }
+    },
+    "required": [
+     "administration_id",
+     "format"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://moneybird.com/api/v2/{administration_id}/reports/bank_balance{format}",
+    "path": [
+     "administration_id",
+     "format"
+    ],
+    "query": [
+     "period",
+     "granularity"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "moneybird.get_administration_id_reports_cash_flow",
+   "name": "Cash flow report",
+   "description": "Get the cash flow report for the administration showing cash received and cash paid during the specified period. The fields at the top level always cover the whole `period`: `opening_balance` is the balance at its start and `closing_balance` the balance at its end. With `granularity`, `periods` gives the same fields per month, quarter or year. Within a period, a section only lists the ledger accou",
+   "input": {
+    "type": "object",
+    "properties": {
+     "administration_id": {
+      "type": [
+       "string",
+       "integer"
+      ],
+      "description": "The unique identifier of the administration"
+     },
+     "format": {
+      "type": "string",
+      "description": "The format in which the response is given, can be empty to use the default format"
+     },
+     "period": {
+      "type": "string",
+      "description": "The period can be a date range or one of the presets. Date ranges must consist of whole months (start on 1st, end on last day of month). **Date range formats:** - `YYYYMMDD..YYYYMMDD` (e.g., `20250101..20250131`) - `YYYYMM..YYYYMM` (e.g., `202501..202501`) - `YYYYMM` (e.g., `202501`) **Preset options:** - `this_month` - Current month (default if not specified) - `prev_month` - Previous month - `ne"
+     },
+     "granularity": {
+      "type": "string",
+      "description": "Splits the report into periods of a month, a quarter or a year. The response then also contains `periods`, with the same fields for each period. The first and the last period are cut off at the start and the end of `period`.",
+      "enum": [
+       "month",
+       "quarter",
+       "year"
+      ]
      },
      "financial_account_id": {
       "type": [
@@ -6269,6 +6386,7 @@
     ],
     "query": [
      "period",
+     "granularity",
      "financial_account_id"
     ],
     "header": [],
@@ -6279,7 +6397,7 @@
   {
    "slug": "moneybird.get_administration_id_reports_creditors",
    "name": "Creditors report",
-   "description": "Returns a creditors report for the specified administration. ### Required scope(s) `documents`",
+   "description": "Returns the balance of each creditor at the end of the specified period. The start of the period does not change the result. With `granularity`, `periods` also gives the balance of each creditor at the end of every month, quarter or year in the period. ### Required scope(s) `documents`",
    "input": {
     "type": "object",
     "properties": {
@@ -6296,7 +6414,16 @@
      },
      "period": {
       "type": "string",
-      "description": "The period, given as a single whole month (start on the 1st, end on the last day of the month) or one of the month presets. **Date range formats:** - `YYYYMM` (e.g., `202501`) - `YYYYMM..YYYYMM` with the same month on both sides (e.g., `202501..202501`) - `YYYYMMDD..YYYYMMDD` spanning exactly one whole month (e.g., `20250101..20250131`) **Preset options:** - `this_month` - Current month (default i"
+      "description": "The period can be a date range or one of the presets. Date ranges must consist of whole months (start on 1st, end on last day of month). **Date range formats:** - `YYYYMMDD..YYYYMMDD` (e.g., `20250101..20250131`) - `YYYYMM..YYYYMM` (e.g., `202501..202501`) - `YYYYMM` (e.g., `202501`) **Preset options:** - `this_month` - Current month (default if not specified) - `prev_month` - Previous month - `ne"
+     },
+     "granularity": {
+      "type": "string",
+      "description": "Splits the report into periods of a month, a quarter or a year. The response then also contains `periods`, with the same fields for each period. The first and the last period are cut off at the start and the end of `period`.",
+      "enum": [
+       "month",
+       "quarter",
+       "year"
+      ]
      },
      "page": {
       "type": [
@@ -6327,6 +6454,7 @@
     ],
     "query": [
      "period",
+     "granularity",
      "page",
      "per_page"
     ],
@@ -6397,7 +6525,7 @@
   {
    "slug": "moneybird.get_administration_id_reports_debtors",
    "name": "Debtors report",
-   "description": "Returns a debtors report for the specified administration. ### Required scope(s) `sales_invoices`",
+   "description": "Returns the balance of each debtor at the end of the specified period. The start of the period does not change the result. With `granularity`, `periods` also gives the balance of each debtor at the end of every month, quarter or year in the period. ### Required scope(s) `sales_invoices`",
    "input": {
     "type": "object",
     "properties": {
@@ -6414,7 +6542,16 @@
      },
      "period": {
       "type": "string",
-      "description": "The period, given as a single whole month (start on the 1st, end on the last day of the month) or one of the month presets. **Date range formats:** - `YYYYMM` (e.g., `202501`) - `YYYYMM..YYYYMM` with the same month on both sides (e.g., `202501..202501`) - `YYYYMMDD..YYYYMMDD` spanning exactly one whole month (e.g., `20250101..20250131`) **Preset options:** - `this_month` - Current month (default i"
+      "description": "The period can be a date range or one of the presets. Date ranges must consist of whole months (start on 1st, end on last day of month). **Date range formats:** - `YYYYMMDD..YYYYMMDD` (e.g., `20250101..20250131`) - `YYYYMM..YYYYMM` (e.g., `202501..202501`) - `YYYYMM` (e.g., `202501`) **Preset options:** - `this_month` - Current month (default if not specified) - `prev_month` - Previous month - `ne"
+     },
+     "granularity": {
+      "type": "string",
+      "description": "Splits the report into periods of a month, a quarter or a year. The response then also contains `periods`, with the same fields for each period. The first and the last period are cut off at the start and the end of `period`.",
+      "enum": [
+       "month",
+       "quarter",
+       "year"
+      ]
      },
      "page": {
       "type": [
@@ -6445,6 +6582,7 @@
     ],
     "query": [
      "period",
+     "granularity",
      "page",
      "per_page"
     ],
@@ -6515,7 +6653,7 @@
   {
    "slug": "moneybird.get_administration_id_reports_expenses_by_contact",
    "name": "Expenses by contact report",
-   "description": "Returns a expenses by contact report for the specified administration. ### Required scope(s) `documents`",
+   "description": "Returns a expenses by contact report for the specified administration. With `granularity`, `periods` splits the amounts per month, quarter or year. Within a period, only the contacts on this page with bookings in that period are listed. ### Required scope(s) `documents`",
    "input": {
     "type": "object",
     "properties": {
@@ -6532,7 +6670,16 @@
      },
      "period": {
       "type": "string",
-      "description": "The period, given as a single whole month (start on the 1st, end on the last day of the month) or one of the month presets. **Date range formats:** - `YYYYMM` (e.g., `202501`) - `YYYYMM..YYYYMM` with the same month on both sides (e.g., `202501..202501`) - `YYYYMMDD..YYYYMMDD` spanning exactly one whole month (e.g., `20250101..20250131`) **Preset options:** - `this_month` - Current month (default i"
+      "description": "The period can be a date range or one of the presets. Date ranges must consist of whole months (start on 1st, end on last day of month). **Date range formats:** - `YYYYMMDD..YYYYMMDD` (e.g., `20250101..20250131`) - `YYYYMM..YYYYMM` (e.g., `202501..202501`) - `YYYYMM` (e.g., `202501`) **Preset options:** - `this_month` - Current month (default if not specified) - `prev_month` - Previous month - `ne"
+     },
+     "granularity": {
+      "type": "string",
+      "description": "Splits the report into periods of a month, a quarter or a year. The response then also contains `periods`, with the same fields for each period. The first and the last period are cut off at the start and the end of `period`.",
+      "enum": [
+       "month",
+       "quarter",
+       "year"
+      ]
      },
      "page": {
       "type": [
@@ -6563,6 +6710,7 @@
     ],
     "query": [
      "period",
+     "granularity",
      "page",
      "per_page"
     ],
@@ -6574,7 +6722,7 @@
   {
    "slug": "moneybird.get_administration_id_reports_expenses_by_project",
    "name": "Expenses by project report",
-   "description": "Returns a expenses by project report for the specified administration. ### Required scope(s) `documents`",
+   "description": "Returns a expenses by project report for the specified administration. With `granularity`, `periods` splits the amounts per month, quarter or year. Within a period, only the projects on this page with bookings in that period are listed. ### Required scope(s) `documents`",
    "input": {
     "type": "object",
     "properties": {
@@ -6591,7 +6739,16 @@
      },
      "period": {
       "type": "string",
-      "description": "The period, given as a single whole month (start on the 1st, end on the last day of the month) or one of the month presets. **Date range formats:** - `YYYYMM` (e.g., `202501`) - `YYYYMM..YYYYMM` with the same month on both sides (e.g., `202501..202501`) - `YYYYMMDD..YYYYMMDD` spanning exactly one whole month (e.g., `20250101..20250131`) **Preset options:** - `this_month` - Current month (default i"
+      "description": "The period can be a date range or one of the presets. Date ranges must consist of whole months (start on 1st, end on last day of month). **Date range formats:** - `YYYYMMDD..YYYYMMDD` (e.g., `20250101..20250131`) - `YYYYMM..YYYYMM` (e.g., `202501..202501`) - `YYYYMM` (e.g., `202501`) **Preset options:** - `this_month` - Current month (default if not specified) - `prev_month` - Previous month - `ne"
+     },
+     "granularity": {
+      "type": "string",
+      "description": "Splits the report into periods of a month, a quarter or a year. The response then also contains `periods`, with the same fields for each period. The first and the last period are cut off at the start and the end of `period`.",
+      "enum": [
+       "month",
+       "quarter",
+       "year"
+      ]
      },
      "page": {
       "type": [
@@ -6622,6 +6779,7 @@
     ],
     "query": [
      "period",
+     "granularity",
      "page",
      "per_page"
     ],
@@ -6633,7 +6791,7 @@
   {
    "slug": "moneybird.get_administration_id_reports_general_ledger",
    "name": "General ledger report",
-   "description": "Get the general ledger report for the administration showing all ledger accounts with their balances and movements during the specified period. ### Required scope(s) `bank`",
+   "description": "Get the general ledger report for the administration showing all ledger accounts with their balances and movements during the specified period. With `granularity`, `periods` gives the same report for every month, quarter or year in the period: the debit and credit sums of that period, and the balance at its start and end. Within a period, only the ledger accounts with a balance or bookings are lis",
    "input": {
     "type": "object",
     "properties": {
@@ -6651,6 +6809,15 @@
      "period": {
       "type": "string",
       "description": "The period can be a date range or one of the presets. Date ranges must consist of whole months (start on 1st, end on last day of month). **Date range formats:** - `YYYYMMDD..YYYYMMDD` (e.g., `20250101..20250131`) - `YYYYMM..YYYYMM` (e.g., `202501..202501`) - `YYYYMM` (e.g., `202501`) **Preset options:** - `this_month` - Current month (default if not specified) - `prev_month` - Previous month - `ne"
+     },
+     "granularity": {
+      "type": "string",
+      "description": "Splits the report into periods of a month, a quarter or a year. The response then also contains `periods`, with the same fields for each period. The first and the last period are cut off at the start and the end of `period`.",
+      "enum": [
+       "month",
+       "quarter",
+       "year"
+      ]
      }
     },
     "required": [
@@ -6666,7 +6833,8 @@
      "format"
     ],
     "query": [
-     "period"
+     "period",
+     "granularity"
     ],
     "header": [],
     "body": [],
@@ -6693,7 +6861,7 @@
      },
      "period": {
       "type": "string",
-      "description": "The period, given as a single whole month (start on the 1st, end on the last day of the month) or one of the month presets. **Date range formats:** - `YYYYMM` (e.g., `202501`) - `YYYYMM..YYYYMM` with the same month on both sides (e.g., `202501..202501`) - `YYYYMMDD..YYYYMMDD` spanning exactly one whole month (e.g., `20250101..20250131`) **Preset options:** - `this_month` - Current month (default i"
+      "description": "The period can be a date range or one of the presets. Date ranges must consist of whole months (start on 1st, end on last day of month). **Date range formats:** - `YYYYMMDD..YYYYMMDD` (e.g., `20250101..20250131`) - `YYYYMM..YYYYMM` (e.g., `202501..202501`) - `YYYYMM` (e.g., `202501`) **Preset options:** - `this_month` - Current month (default if not specified) - `prev_month` - Previous month - `ne"
      },
      "page": {
       "type": [
@@ -6791,6 +6959,15 @@
       "type": "string",
       "description": "The period can be a date range or one of the presets. Date ranges must consist of whole months (start on 1st, end on last day of month). **Date range formats:** - `YYYYMMDD..YYYYMMDD` (e.g., `20250101..20250131`) - `YYYYMM..YYYYMM` (e.g., `202501..202501`) - `YYYYMM` (e.g., `202501`) **Preset options:** - `this_month` - Current month (default if not specified) - `prev_month` - Previous month - `ne"
      },
+     "granularity": {
+      "type": "string",
+      "description": "Splits the report into periods of a month, a quarter or a year. The response then also contains `periods`, with the same fields for each period. The first and the last period are cut off at the start and the end of `period`.",
+      "enum": [
+       "month",
+       "quarter",
+       "year"
+      ]
+     },
      "project_id": {
       "type": [
        "string",
@@ -6813,6 +6990,7 @@
     ],
     "query": [
      "period",
+     "granularity",
      "project_id"
     ],
     "header": [],
@@ -6823,7 +7001,7 @@
   {
    "slug": "moneybird.get_administration_id_reports_revenue_by_contact",
    "name": "Revenue by contact report",
-   "description": "Returns a revenue by contact report for the specified administration. ### Required scope(s) `sales_invoices`",
+   "description": "Returns a revenue by contact report for the specified administration. With `granularity`, `periods` splits the amounts per month, quarter or year. Within a period, only the contacts on this page with bookings in that period are listed. ### Required scope(s) `sales_invoices`",
    "input": {
     "type": "object",
     "properties": {
@@ -6840,7 +7018,16 @@
      },
      "period": {
       "type": "string",
-      "description": "The period, given as a single whole month (start on the 1st, end on the last day of the month) or one of the month presets. **Date range formats:** - `YYYYMM` (e.g., `202501`) - `YYYYMM..YYYYMM` with the same month on both sides (e.g., `202501..202501`) - `YYYYMMDD..YYYYMMDD` spanning exactly one whole month (e.g., `20250101..20250131`) **Preset options:** - `this_month` - Current month (default i"
+      "description": "The period can be a date range or one of the presets. Date ranges must consist of whole months (start on 1st, end on last day of month). **Date range formats:** - `YYYYMMDD..YYYYMMDD` (e.g., `20250101..20250131`) - `YYYYMM..YYYYMM` (e.g., `202501..202501`) - `YYYYMM` (e.g., `202501`) **Preset options:** - `this_month` - Current month (default if not specified) - `prev_month` - Previous month - `ne"
+     },
+     "granularity": {
+      "type": "string",
+      "description": "Splits the report into periods of a month, a quarter or a year. The response then also contains `periods`, with the same fields for each period. The first and the last period are cut off at the start and the end of `period`.",
+      "enum": [
+       "month",
+       "quarter",
+       "year"
+      ]
      },
      "page": {
       "type": [
@@ -6871,6 +7058,7 @@
     ],
     "query": [
      "period",
+     "granularity",
      "page",
      "per_page"
     ],
@@ -6882,7 +7070,7 @@
   {
    "slug": "moneybird.get_administration_id_reports_revenue_by_project",
    "name": "Revenue by project report",
-   "description": "Returns a revenue by project report for the specified administration. ### Required scope(s) `sales_invoices`",
+   "description": "Returns a revenue by project report for the specified administration. With `granularity`, `periods` splits the amounts per month, quarter or year. Within a period, only the projects on this page with bookings in that period are listed. ### Required scope(s) `sales_invoices`",
    "input": {
     "type": "object",
     "properties": {
@@ -6899,7 +7087,16 @@
      },
      "period": {
       "type": "string",
-      "description": "The period, given as a single whole month (start on the 1st, end on the last day of the month) or one of the month presets. **Date range formats:** - `YYYYMM` (e.g., `202501`) - `YYYYMM..YYYYMM` with the same month on both sides (e.g., `202501..202501`) - `YYYYMMDD..YYYYMMDD` spanning exactly one whole month (e.g., `20250101..20250131`) **Preset options:** - `this_month` - Current month (default i"
+      "description": "The period can be a date range or one of the presets. Date ranges must consist of whole months (start on 1st, end on last day of month). **Date range formats:** - `YYYYMMDD..YYYYMMDD` (e.g., `20250101..20250131`) - `YYYYMM..YYYYMM` (e.g., `202501..202501`) - `YYYYMM` (e.g., `202501`) **Preset options:** - `this_month` - Current month (default if not specified) - `prev_month` - Previous month - `ne"
+     },
+     "granularity": {
+      "type": "string",
+      "description": "Splits the report into periods of a month, a quarter or a year. The response then also contains `periods`, with the same fields for each period. The first and the last period are cut off at the start and the end of `period`.",
+      "enum": [
+       "month",
+       "quarter",
+       "year"
+      ]
      },
      "page": {
       "type": [
@@ -6930,6 +7127,7 @@
     ],
     "query": [
      "period",
+     "granularity",
      "page",
      "per_page"
     ],
@@ -6941,7 +7139,7 @@
   {
    "slug": "moneybird.get_administration_id_reports_subscriptions",
    "name": "Subscriptions report",
-   "description": "Get the subscriptions report for the administration. ### Required scope(s) `sales_invoices`",
+   "description": "Get the subscriptions report for the administration. All values are for the last month of the specified period. For example, `this_year` returns the values for December. ### Required scope(s) `sales_invoices`",
    "input": {
     "type": "object",
     "properties": {
@@ -6958,7 +7156,7 @@
      },
      "period": {
       "type": "string",
-      "description": "The period, given as a single whole month (start on the 1st, end on the last day of the month) or one of the month presets. **Date range formats:** - `YYYYMM` (e.g., `202501`) - `YYYYMM..YYYYMM` with the same month on both sides (e.g., `202501..202501`) - `YYYYMMDD..YYYYMMDD` spanning exactly one whole month (e.g., `20250101..20250131`) **Preset options:** - `this_month` - Current month (default i"
+      "description": "The period can be a date range or one of the presets. Date ranges must consist of whole months (start on 1st, end on last day of month). **Date range formats:** - `YYYYMMDD..YYYYMMDD` (e.g., `20250101..20250131`) - `YYYYMM..YYYYMM` (e.g., `202501..202501`) - `YYYYMM` (e.g., `202501`) **Preset options:** - `this_month` - Current month (default if not specified) - `prev_month` - Previous month - `ne"
      }
     },
     "required": [
@@ -6984,7 +7182,7 @@
   {
    "slug": "moneybird.get_administration_id_reports_tax",
    "name": "Tax report",
-   "description": "Get the tax report for the administration. ### Required scope(s) `documents` and `sales_invoices`",
+   "description": "Get the tax report for the administration. `tax_rates` at the top level always covers the whole `period`. With `granularity`, `periods` gives the same list per month, quarter or year. Within a period, only the tax rates with a non-zero amount in that period are listed. ### Required scope(s) `documents` and `sales_invoices`",
    "input": {
     "type": "object",
     "properties": {
@@ -7001,7 +7199,16 @@
      },
      "period": {
       "type": "string",
-      "description": "The period, given as a single whole month (start on the 1st, end on the last day of the month) or one of the month presets. **Date range formats:** - `YYYYMM` (e.g., `202501`) - `YYYYMM..YYYYMM` with the same month on both sides (e.g., `202501..202501`) - `YYYYMMDD..YYYYMMDD` spanning exactly one whole month (e.g., `20250101..20250131`) **Preset options:** - `this_month` - Current month (default i"
+      "description": "The period can be a date range or one of the presets. Date ranges must consist of whole months (start on 1st, end on last day of month). **Date range formats:** - `YYYYMMDD..YYYYMMDD` (e.g., `20250101..20250131`) - `YYYYMM..YYYYMM` (e.g., `202501..202501`) - `YYYYMM` (e.g., `202501`) **Preset options:** - `this_month` - Current month (default if not specified) - `prev_month` - Previous month - `ne"
+     },
+     "granularity": {
+      "type": "string",
+      "description": "Splits the report into periods of a month, a quarter or a year. The response then also contains `periods`, with the same fields for each period. The first and the last period are cut off at the start and the end of `period`.",
+      "enum": [
+       "month",
+       "quarter",
+       "year"
+      ]
      }
     },
     "required": [
@@ -7017,7 +7224,61 @@
      "format"
     ],
     "query": [
-     "period"
+     "period",
+     "granularity"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "moneybird.get_administration_id_reports_working_capital",
+   "name": "Working capital report",
+   "description": "Get the working capital of the administration at the end of the specified period, with the same figures as the balance card on the reports page. With `granularity`, `periods` also gives the working capital at the end of every month, quarter or year in the period. ### Required scope(s) `bank`",
+   "input": {
+    "type": "object",
+    "properties": {
+     "administration_id": {
+      "type": [
+       "string",
+       "integer"
+      ],
+      "description": "The unique identifier of the administration"
+     },
+     "format": {
+      "type": "string",
+      "description": "The format in which the response is given, can be empty to use the default format"
+     },
+     "period": {
+      "type": "string",
+      "description": "The period can be a date range or one of the presets. Date ranges must consist of whole months (start on 1st, end on last day of month). **Date range formats:** - `YYYYMMDD..YYYYMMDD` (e.g., `20250101..20250131`) - `YYYYMM..YYYYMM` (e.g., `202501..202501`) - `YYYYMM` (e.g., `202501`) **Preset options:** - `this_month` - Current month (default if not specified) - `prev_month` - Previous month - `ne"
+     },
+     "granularity": {
+      "type": "string",
+      "description": "Splits the report into periods of a month, a quarter or a year. The response then also contains `periods`, with the same fields for each period. The first and the last period are cut off at the start and the end of `period`.",
+      "enum": [
+       "month",
+       "quarter",
+       "year"
+      ]
+     }
+    },
+    "required": [
+     "administration_id",
+     "format"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://moneybird.com/api/v2/{administration_id}/reports/working_capital{format}",
+    "path": [
+     "administration_id",
+     "format"
+    ],
+    "query": [
+     "period",
+     "granularity"
     ],
     "header": [],
     "body": [],
@@ -7027,7 +7288,7 @@
   {
    "slug": "moneybird.get_administration_id_sales_invoices",
    "name": "List all invoices",
-   "description": "Returns a paginated list of sales invoices in the administration. ### Required scope(s) `sales_invoices`",
+   "description": "Returns a paginated list of sales invoices in the administration. Sorting with `sort=date_asc` does not work when the period includes today and the filter includes draft or scheduled invoices; the request then answers 400. Use for example `state:open|pending_payment|reminded|late|paid|uncollectible`, or a period that does not include today. ### Required scope(s) `sales_invoices`",
    "input": {
     "type": "object",
     "properties": {
@@ -7053,6 +7314,14 @@
       ],
       "description": ""
      },
+     "sort": {
+      "type": "string",
+      "description": "Sorts the list on date, so the newest (`date_desc`) or the oldest (`date_asc`) items come first.",
+      "enum": [
+       "date_desc",
+       "date_asc"
+      ]
+     },
      "per_page": {
       "type": [
        "integer",
@@ -7076,6 +7345,7 @@
     "query": [
      "filter",
      "page",
+     "sort",
      "per_page"
     ],
     "header": [],

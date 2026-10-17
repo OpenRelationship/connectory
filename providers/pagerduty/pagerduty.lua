@@ -2,7 +2,7 @@
 --
 -- GENERATED from https://raw.githubusercontent.com/PagerDuty/api-schema/main/reference/REST/openapiv3.json
 -- Published by PagerDuty, the vendor's own GitHub organisation.
--- 451 operations · do not edit
+-- 452 operations · do not edit
 --
 -- The credential is never in here. `auth.env` names an environment variable; the value
 -- stays in the environment, which is what makes this file safe to publish.
@@ -212,7 +212,7 @@ return {
     ["pagerduty.get_enrichment_schema"] = { method = "GET", url = "https://api.pagerduty.com/enrichment/schemas/{schema_id}", path = {"schema_id"}, header = {"Accept"} },
     ["pagerduty.get_entity_type_by_id_tags"] = { method = "GET", url = "https://api.pagerduty.com/{entity_type}/{id}/tags", path = {"entity_type", "id"}, query = {"limit", "offset", "total"}, header = {"Accept", "Content-Type"} },
     ["pagerduty.get_escalation_policy"] = { method = "GET", url = "https://api.pagerduty.com/escalation_policies/{id}", path = {"id"}, query = {"include[]"}, header = {"Accept", "Content-Type"} },
-    ["pagerduty.get_event"] = { method = "GET", url = "https://api.pagerduty.com/v3/schedules/{id}/rotations/{rotation_id}/events/{event_id}", path = {"id", "rotation_id", "event_id"}, query = {"since", "until"} },
+    ["pagerduty.get_event"] = { method = "GET", url = "https://api.pagerduty.com/v3/schedules/{id}/rotations/{rotation_id}/events/{event_id}", path = {"id", "rotation_id", "event_id"} },
     ["pagerduty.get_event_enrichment"] = { method = "GET", url = "https://api.pagerduty.com/enrichment/event_enrichments/{id}", path = {"id"}, query = {"include[]"}, header = {"Accept"} },
     ["pagerduty.get_event_enrichment_rules"] = { method = "GET", url = "https://api.pagerduty.com/enrichment/event_enrichments/{id}/rules", path = {"id"}, header = {"Accept"} },
     ["pagerduty.get_extension"] = { method = "GET", url = "https://api.pagerduty.com/extensions/{id}", path = {"id"}, query = {"include[]"}, header = {"Accept", "Content-Type"} },
@@ -224,6 +224,7 @@ return {
     ["pagerduty.get_incident_field_values"] = { method = "GET", url = "https://api.pagerduty.com/incidents/{id}/custom_fields/values", path = {"id"} },
     ["pagerduty.get_incident_impacted_business_services"] = { method = "GET", url = "https://api.pagerduty.com/incidents/{id}/business_services/impacts", path = {"id"}, header = {"Accept"} },
     ["pagerduty.get_incident_notification_subscribers"] = { method = "GET", url = "https://api.pagerduty.com/incidents/{id}/status_updates/subscribers", path = {"id"}, header = {"Accept"} },
+    ["pagerduty.get_incident_scribe_transcripts"] = { method = "GET", url = "https://api.pagerduty.com/incidents/{id}/scribe_transcripts", path = {"id"}, query = {"format"}, header = {"Accept", "Content-Type"} },
     ["pagerduty.get_incident_type"] = { method = "GET", url = "https://api.pagerduty.com/incidents/types/{type_id_or_name}", path = {"type_id_or_name"}, header = {"Accept", "Content-Type"} },
     ["pagerduty.get_incident_type_custom_field"] = { method = "GET", url = "https://api.pagerduty.com/incidents/types/{type_id_or_name}/custom_fields/{field_id}", path = {"type_id_or_name", "field_id"}, query = {"include[]"}, header = {"Accept", "Content-Type"} },
     ["pagerduty.get_incident_type_custom_field_field_options"] = { method = "GET", url = "https://api.pagerduty.com/incidents/types/{type_id_or_name}/custom_fields/{field_id}/field_options/{field_option_id}", path = {"type_id_or_name", "field_option_id", "field_id"}, header = {"Accept", "Content-Type"} },
@@ -249,7 +250,7 @@ return {
     ["pagerduty.get_post_update"] = { method = "GET", url = "https://api.pagerduty.com/status_pages/{id}/posts/{post_id}/post_updates/{post_update_id}", path = {"id", "post_id", "post_update_id"}, header = {"Accept"} },
     ["pagerduty.get_postmortem"] = { method = "GET", url = "https://api.pagerduty.com/status_pages/{id}/posts/{post_id}/postmortem", path = {"id", "post_id"}, header = {"Accept"} },
     ["pagerduty.get_related_incidents"] = { method = "GET", url = "https://api.pagerduty.com/incidents/{id}/related_incidents", path = {"id"}, query = {"additional_details[]"}, header = {"Accept", "Content-Type"} },
-    ["pagerduty.get_rotation"] = { method = "GET", url = "https://api.pagerduty.com/v3/schedules/{id}/rotations/{rotation_id}", path = {"id", "rotation_id"}, query = {"since", "until"} },
+    ["pagerduty.get_rotation"] = { method = "GET", url = "https://api.pagerduty.com/v3/schedules/{id}/rotations/{rotation_id}", path = {"id", "rotation_id"} },
     ["pagerduty.get_ruleset"] = { method = "GET", url = "https://api.pagerduty.com/rulesets/{id}", path = {"id"}, header = {"Accept", "Content-Type"} },
     ["pagerduty.get_ruleset_event_rule"] = { method = "GET", url = "https://api.pagerduty.com/rulesets/{id}/rules/{rule_id}", path = {"id", "rule_id"}, header = {"Accept", "Content-Type"} },
     ["pagerduty.get_schedule"] = { method = "GET", url = "https://api.pagerduty.com/schedules/{id}", path = {"id"}, query = {"time_zone", "since", "until", "overflow", "include_next_oncall_for_user"}, header = {"Accept", "Content-Type"} },
@@ -306,7 +307,7 @@ return {
     ["pagerduty.list_cache_var_on_global_orch"] = { method = "GET", url = "https://api.pagerduty.com/event_orchestrations/{id}/cache_variables", path = {"id"}, header = {"Accept", "Content-Type"} },
     ["pagerduty.list_cache_var_on_service_orch"] = { method = "GET", url = "https://api.pagerduty.com/event_orchestrations/services/{service_id}/cache_variables", path = {"service_id"}, header = {"Accept", "Content-Type"} },
     ["pagerduty.list_change_events"] = { method = "GET", url = "https://api.pagerduty.com/change_events", query = {"limit", "offset", "total", "team_ids[]", "integration_ids[]", "since", "until"}, header = {"Accept", "Content-Type"} },
-    ["pagerduty.list_custom_shifts"] = { method = "GET", url = "https://api.pagerduty.com/v3/schedules/{id}/custom_shifts", path = {"id"}, query = {"since", "until", "time_zone", "overflow", "limit", "offset"} },
+    ["pagerduty.list_custom_shifts"] = { method = "GET", url = "https://api.pagerduty.com/v3/schedules/{id}/custom_shifts", path = {"id"}, query = {"since", "until", "time_zone", "overflow"} },
     ["pagerduty.list_enrichment_records"] = { method = "GET", url = "https://api.pagerduty.com/enrichment/schemas/{schema_id}/records", path = {"schema_id"}, query = {"limit", "cursor"}, header = {"Accept"} },
     ["pagerduty.list_enrichment_schemas"] = { method = "GET", url = "https://api.pagerduty.com/enrichment/schemas", header = {"Accept"} },
     ["pagerduty.list_escalation_policies"] = { method = "GET", url = "https://api.pagerduty.com/escalation_policies", query = {"limit", "offset", "total", "query", "user_ids[]", "team_ids[]", "include[]", "sort_by"}, header = {"Accept", "Content-Type"} },
@@ -339,7 +340,7 @@ return {
     ["pagerduty.list_oauth_clients"] = { method = "GET", url = "https://api.pagerduty.com/webhook_subscriptions/oauth_clients", header = {"Accept", "Content-Type"} },
     ["pagerduty.list_on_calls"] = { method = "GET", url = "https://api.pagerduty.com/oncalls", query = {"time_zone", "limit", "offset", "total", "include[]", "user_ids[]", "escalation_policy_ids[]", "schedule_ids[]", "since", "until", "earliest"}, header = {"Accept", "Content-Type"} },
     ["pagerduty.list_orchestration_integrations"] = { method = "GET", url = "https://api.pagerduty.com/event_orchestrations/{id}/integrations", path = {"id"}, header = {"Accept", "Content-Type"} },
-    ["pagerduty.list_overrides"] = { method = "GET", url = "https://api.pagerduty.com/v3/schedules/{id}/overrides", path = {"id"}, query = {"since", "until", "time_zone", "overflow", "limit", "offset"} },
+    ["pagerduty.list_overrides"] = { method = "GET", url = "https://api.pagerduty.com/v3/schedules/{id}/overrides", path = {"id"}, query = {"since", "until", "time_zone", "overflow"} },
     ["pagerduty.list_priorities"] = { method = "GET", url = "https://api.pagerduty.com/priorities", query = {"limit", "offset", "total"}, header = {"Accept", "Content-Type"} },
     ["pagerduty.list_recommended_rules"] = { method = "GET", url = "https://api.pagerduty.com/recommendations/event_orchestrations/rules", query = {"service_id", "service_ids[]", "team_ids[]", "actions[]", "limit", "cursor"}, header = {"Accept", "Content-Type"} },
     ["pagerduty.list_resource_standards"] = { method = "GET", url = "https://api.pagerduty.com/standards/scores/{resource_type}/{id}", path = {"id", "resource_type"}, header = {"Accept"} },
@@ -352,7 +353,7 @@ return {
     ["pagerduty.list_schedules"] = { method = "GET", url = "https://api.pagerduty.com/schedules", query = {"limit", "offset", "total", "query", "include[]", "time_zone", "include_next_oncall_for_user", "since", "until", "team_ids[]"}, header = {"Accept", "Content-Type"} },
     ["pagerduty.list_schedules_audit_records"] = { method = "GET", url = "https://api.pagerduty.com/schedules/{id}/audit/records", path = {"id"}, query = {"limit", "cursor", "since", "until"}, header = {"Accept", "Content-Type"} },
     ["pagerduty.list_schedules_audit_records_v3"] = { method = "GET", url = "https://api.pagerduty.com/v3/schedules/{id}/audit/records", path = {"id"}, query = {"limit", "cursor", "since", "until"}, header = {"Accept", "Content-Type"} },
-    ["pagerduty.list_schedules_v3"] = { method = "GET", url = "https://api.pagerduty.com/v3/schedules", query = {"limit", "offset", "query", "total", "team_ids[]"} },
+    ["pagerduty.list_schedules_v3"] = { method = "GET", url = "https://api.pagerduty.com/v3/schedules", query = {"limit", "offset", "query", "total", "team_ids[]", "user_id"} },
     ["pagerduty.list_service_audit_records"] = { method = "GET", url = "https://api.pagerduty.com/services/{id}/audit/records", path = {"id"}, query = {"limit", "cursor", "since", "until"}, header = {"Accept", "Content-Type"} },
     ["pagerduty.list_service_change_events"] = { method = "GET", url = "https://api.pagerduty.com/services/{id}/change_events", path = {"id"}, query = {"since", "until", "limit", "offset", "total", "team_ids[]", "integration_ids[]"}, header = {"Accept", "Content-Type"} },
     ["pagerduty.list_service_custom_field_options"] = { method = "GET", url = "https://api.pagerduty.com/services/custom_fields/{field_id}/field_options", path = {"field_id"}, header = {"Accept", "Content-Type"} },

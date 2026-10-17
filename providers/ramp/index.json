@@ -13,26 +13,20 @@
      "email": {
       "type": "string",
       "description": ""
-     },
-     "ramplify_app_id": {
-      "type": "string",
-      "description": ""
      }
     },
     "required": [
-     "email",
-     "ramplify_app_id"
+     "email"
     ]
    },
    "request": {
     "method": "POST",
-    "url": "https://api.ramp.com/api/ramplify/high-intent-prequal",
+    "url": "https://api.ramp.com/api/v1/high-intent-prequal",
     "path": [],
     "query": [],
     "header": [],
     "body": [
-     "email",
-     "ramplify_app_id"
+     "email"
     ],
     "body_format": "json"
    }
@@ -45,10 +39,6 @@
     "type": "object",
     "properties": {
      "email": {
-      "type": "string",
-      "description": ""
-     },
-     "ramplify_app_id": {
       "type": "string",
       "description": ""
      },
@@ -75,21 +65,62 @@
     },
     "required": [
      "discovery_method",
-     "email",
-     "ramplify_app_id"
+     "email"
     ]
    },
    "request": {
     "method": "POST",
-    "url": "https://api.ramp.com/api/ramplify/low-intent-no-prequal",
+    "url": "https://api.ramp.com/api/v1/low-intent-no-prequal",
     "path": [],
     "query": [],
     "header": [],
     "body": [
      "email",
-     "ramplify_app_id",
      "discovery_method",
      "discovery_method_details"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "ramp.track",
+   "name": "Track a segment event",
+   "description": "Send a Segment track event from an external page or app. Events are sent server-side through ramp.com's Segment source and respect the visitor's privacy opt-out (Global Privacy Control or the ramp.com data privacy opt-out cookie). Send JSON as `application/json` or `text/plain` (e.g. with `navigator.sendBeacon`), and use `credentials: 'include'` to default `anonymousId` to the ramp_web_id cookie.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "event": {
+      "type": "string",
+      "description": "Segment event name. Reuse an existing ramp.com event such as \"Marketing Site CTA Clicked\" where possible."
+     },
+     "properties": {
+      "type": "object",
+      "description": "Event properties. At most 50 keys, keys up to 100 characters, and 8 KB when serialized as JSON."
+     },
+     "anonymousId": {
+      "type": "string",
+      "description": "Segment anonymous ID. Defaults to the ramp_web_id cookie when the request includes it; required otherwise."
+     },
+     "page": {
+      "type": "object",
+      "description": "Page the event happened on. Defaults to the referer header when omitted."
+     }
+    },
+    "required": [
+     "event"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.ramp.com/api/v1/track",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "event",
+     "properties",
+     "anonymousId",
+     "page"
     ],
     "body_format": "json"
    }

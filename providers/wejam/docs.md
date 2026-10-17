@@ -25,7 +25,7 @@ vouches for**: read it, then read their reference.
 - [Hiring Manager Guide](https://docs.wejam.ai/external/hiring-assistant/hiring-manager-guide.md): Set up and evaluate AI roleplay assessments for sales hiring, and interpret candidate results.
 - [Candidate Assessment Guide](https://docs.wejam.ai/external/hiring-assistant/candidate-guide.md): Everything you need to know about completing your AI roleplay assessment for a sales role.
 - [Integrating Call Scoring](https://docs.wejam.ai/external/call-scoring/integration-guide.md): Connect your transcription provider to Jam so real sales calls are automatically analyzed and scored.
-- [Create a new real call session](https://docs.wejam.ai/api-reference/real-call-session/create-a-new-real-call-session.md): Attributes the session to exactly one of userId or email. A known email resolves to the existing user. When the email does not match an existing user in the caller's organization, a Member user is automatically provisioned (the account requires setting a password on first login) ONLY when the organi…
+- [Create a new real call session](https://docs.wejam.ai/api-reference/real-call-session/create-a-new-real-call-session.md): Attributes the session to exactly one of userId or email, which must resolve to a user in the caller's organization: the caller themselves, or a user the caller manages. A known email resolves to the existing user. When the email does not match an existing user in the caller's organization, a Member…
 - [Get a real call session by ID](https://docs.wejam.ai/api-reference/real-call-session/get-a-real-call-session-by-id.md)
 - [Assign a scorecard to a real call session](https://docs.wejam.ai/api-reference/real-call-session/assign-a-scorecard-to-a-real-call-session.md)
 - [Export paginated users data](https://docs.wejam.ai/api-reference/data-export/export-paginated-users-data.md)
@@ -42,3 +42,5 @@ vouches for**: read it, then read their reference.
 ## OpenAPI Specs
 
 - [docs-json](https://api.wejam.ai/docs-json)
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

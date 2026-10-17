@@ -1,0 +1,969 @@
+{
+ "_": "GENERATED \u2014 what an authoring tool needs to FIND an operation. The calling table is the .lua beside it.",
+ "provider": "mailtrap",
+ "source": "https://raw.githubusercontent.com/mailtrap/mailtrap-openapi/main/specs/sandbox.openapi.yml",
+ "operations": [
+  {
+   "slug": "mailtrap.clean_sandbox",
+   "name": "Clean sandbox",
+   "description": "Delete all messages (emails) from sandbox.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sandbox_id": {
+      "type": "integer",
+      "description": "Unique sandbox ID"
+     }
+    },
+    "required": [
+     "sandbox_id"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://{subdomain}.api.mailtrap.io/api/sandboxes/{sandbox_id}/clean",
+    "path": [
+     "sandbox_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "mailtrap.create_project",
+   "name": "Create project",
+   "description": "The project name is min 2 characters and max 100 characters long.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "project": {
+      "type": "object",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://{subdomain}.api.mailtrap.io/api/projects",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "project"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "mailtrap.create_sandbox",
+   "name": "Create a sandbox",
+   "description": "Create a sandbox in a project.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "project_id": {
+      "type": "integer",
+      "description": "Unique project ID"
+     },
+     "sandbox": {
+      "type": "object",
+      "description": ""
+     }
+    },
+    "required": [
+     "project_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://{subdomain}.api.mailtrap.io/api/projects/{project_id}/sandboxes",
+    "path": [
+     "project_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "sandbox"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "mailtrap.delete_project",
+   "name": "Delete project",
+   "description": "Delete project and its sandboxes.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "project_id": {
+      "type": "integer",
+      "description": "Unique project ID"
+     }
+    },
+    "required": [
+     "project_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://{subdomain}.api.mailtrap.io/api/projects/{project_id}",
+    "path": [
+     "project_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "mailtrap.delete_sandbox",
+   "name": "Delete a sandbox",
+   "description": "Delete a sandbox with all its emails.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sandbox_id": {
+      "type": "integer",
+      "description": "Unique sandbox ID"
+     }
+    },
+    "required": [
+     "sandbox_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://{subdomain}.api.mailtrap.io/api/sandboxes/{sandbox_id}",
+    "path": [
+     "sandbox_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "mailtrap.delete_sandbox_email_message",
+   "name": "Delete message",
+   "description": "Delete message from sandbox.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sandbox_id": {
+      "type": "integer",
+      "description": "Unique sandbox ID"
+     },
+     "message_id": {
+      "type": "integer",
+      "description": "Unique message ID"
+     }
+    },
+    "required": [
+     "message_id",
+     "sandbox_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://{subdomain}.api.mailtrap.io/api/sandboxes/{sandbox_id}/messages/{message_id}",
+    "path": [
+     "sandbox_id",
+     "message_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "mailtrap.enable_sandbox_email_addresses",
+   "name": "Enable email address",
+   "description": "Turn the email address of the sandbox on/off.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sandbox_id": {
+      "type": "integer",
+      "description": "Unique sandbox ID"
+     }
+    },
+    "required": [
+     "sandbox_id"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://{subdomain}.api.mailtrap.io/api/sandboxes/{sandbox_id}/toggle_email_username",
+    "path": [
+     "sandbox_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "mailtrap.forward_sandbox_email_message",
+   "name": "Forward message",
+   "description": "Forward message to an email address. The email address must be confirmed by the recipient in advance.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sandbox_id": {
+      "type": "integer",
+      "description": "Unique sandbox ID"
+     },
+     "message_id": {
+      "type": "integer",
+      "description": "Unique message ID"
+     },
+     "email": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "message_id",
+     "sandbox_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://{subdomain}.api.mailtrap.io/api/sandboxes/{sandbox_id}/messages/{message_id}/forward",
+    "path": [
+     "sandbox_id",
+     "message_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "email"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "mailtrap.get_mail_headers_of_email_message",
+   "name": "Get mail headers",
+   "description": "Get mail headers of a message",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sandbox_id": {
+      "type": "integer",
+      "description": "Unique sandbox ID"
+     },
+     "message_id": {
+      "type": "integer",
+      "description": "Unique message ID"
+     }
+    },
+    "required": [
+     "message_id",
+     "sandbox_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://{subdomain}.api.mailtrap.io/api/sandboxes/{sandbox_id}/messages/{message_id}/mail_headers",
+    "path": [
+     "sandbox_id",
+     "message_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "mailtrap.get_project",
+   "name": "Get project by id",
+   "description": "Get the project and its sandboxes.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "project_id": {
+      "type": "integer",
+      "description": "Unique project ID"
+     }
+    },
+    "required": [
+     "project_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://{subdomain}.api.mailtrap.io/api/projects/{project_id}",
+    "path": [
+     "project_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "mailtrap.get_projects",
+   "name": "Get a list of projects",
+   "description": "List projects and their sandboxes to which the API token has access.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://{subdomain}.api.mailtrap.io/api/projects",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "mailtrap.get_sandbox_attributes",
+   "name": "Get sandbox attributes",
+   "description": "Get sandbox attributes by sandbox id. See the list of attributes in the example",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sandbox_id": {
+      "type": "integer",
+      "description": "Unique sandbox ID"
+     }
+    },
+    "required": [
+     "sandbox_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://{subdomain}.api.mailtrap.io/api/sandboxes/{sandbox_id}",
+    "path": [
+     "sandbox_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "mailtrap.get_sandbox_email_message",
+   "name": "Get messages",
+   "description": "Get all messages in the sandbox. The response contains up to 30 messages. Use `last_id` or `page` to retrieve more.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sandbox_id": {
+      "type": "integer",
+      "description": "Unique sandbox ID"
+     },
+     "search": {
+      "type": "string",
+      "description": "Search query string. Matches `subject`, `to_email`, and `to_name`."
+     },
+     "last_id": {
+      "type": "number",
+      "description": "If specified, a page of records before `last_id` is returned. Overrides `page` if both are given."
+     },
+     "page": {
+      "type": "number",
+      "description": "Page number for paginated results."
+     }
+    },
+    "required": [
+     "sandbox_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://{subdomain}.api.mailtrap.io/api/sandboxes/{sandbox_id}/messages",
+    "path": [
+     "sandbox_id"
+    ],
+    "query": [
+     "search",
+     "last_id",
+     "page"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "mailtrap.get_sandbox_email_message_body_as_eml",
+   "name": "Get message as  eml",
+   "description": "Get email message in .eml format.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sandbox_id": {
+      "type": "integer",
+      "description": "Unique sandbox ID"
+     },
+     "message_id": {
+      "type": "integer",
+      "description": "Unique message ID"
+     }
+    },
+    "required": [
+     "message_id",
+     "sandbox_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://{subdomain}.api.mailtrap.io/api/sandboxes/{sandbox_id}/messages/{message_id}/body.eml",
+    "path": [
+     "sandbox_id",
+     "message_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "mailtrap.get_sandbox_email_message_body_as_html",
+   "name": "Get html message",
+   "description": "Get formatted HTML email body. Not applicable for plain text emails.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sandbox_id": {
+      "type": "integer",
+      "description": "Unique sandbox ID"
+     },
+     "message_id": {
+      "type": "integer",
+      "description": "Unique message ID"
+     }
+    },
+    "required": [
+     "message_id",
+     "sandbox_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://{subdomain}.api.mailtrap.io/api/sandboxes/{sandbox_id}/messages/{message_id}/body.html",
+    "path": [
+     "sandbox_id",
+     "message_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "mailtrap.get_sandbox_email_message_body_as_html_source",
+   "name": "Get message source",
+   "description": "Get HTML source of email.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sandbox_id": {
+      "type": "integer",
+      "description": "Unique sandbox ID"
+     },
+     "message_id": {
+      "type": "integer",
+      "description": "Unique message ID"
+     }
+    },
+    "required": [
+     "message_id",
+     "sandbox_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://{subdomain}.api.mailtrap.io/api/sandboxes/{sandbox_id}/messages/{message_id}/body.htmlsource",
+    "path": [
+     "sandbox_id",
+     "message_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "mailtrap.get_sandbox_email_message_body_as_raw",
+   "name": "Get raw message",
+   "description": "Get raw email body.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sandbox_id": {
+      "type": "integer",
+      "description": "Unique sandbox ID"
+     },
+     "message_id": {
+      "type": "integer",
+      "description": "Unique message ID"
+     }
+    },
+    "required": [
+     "message_id",
+     "sandbox_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://{subdomain}.api.mailtrap.io/api/sandboxes/{sandbox_id}/messages/{message_id}/body.raw",
+    "path": [
+     "sandbox_id",
+     "message_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "mailtrap.get_sandbox_email_message_body_as_txt",
+   "name": "Get text message",
+   "description": "Get text email body, if it exists.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sandbox_id": {
+      "type": "integer",
+      "description": "Unique sandbox ID"
+     },
+     "message_id": {
+      "type": "integer",
+      "description": "Unique message ID"
+     }
+    },
+    "required": [
+     "message_id",
+     "sandbox_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://{subdomain}.api.mailtrap.io/api/sandboxes/{sandbox_id}/messages/{message_id}/body.txt",
+    "path": [
+     "sandbox_id",
+     "message_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "mailtrap.get_sandbox_email_message_htmlanalysis",
+   "name": "Get message html analysis",
+   "description": "Get a brief HTML report by message ID.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sandbox_id": {
+      "type": "integer",
+      "description": "Unique sandbox ID"
+     },
+     "message_id": {
+      "type": "integer",
+      "description": "Unique message ID"
+     }
+    },
+    "required": [
+     "message_id",
+     "sandbox_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://{subdomain}.api.mailtrap.io/api/sandboxes/{sandbox_id}/messages/{message_id}/analyze",
+    "path": [
+     "sandbox_id",
+     "message_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "mailtrap.get_sandbox_email_message_spam_report",
+   "name": "Get message spam score",
+   "description": "Get a brief spam report by message ID.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sandbox_id": {
+      "type": "integer",
+      "description": "Unique sandbox ID"
+     },
+     "message_id": {
+      "type": "integer",
+      "description": "Unique message ID"
+     }
+    },
+    "required": [
+     "message_id",
+     "sandbox_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://{subdomain}.api.mailtrap.io/api/sandboxes/{sandbox_id}/messages/{message_id}/spam_report",
+    "path": [
+     "sandbox_id",
+     "message_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "mailtrap.get_sandbox_message_attachment",
+   "name": "Get single attachment",
+   "description": "Get message single attachment by id.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sandbox_id": {
+      "type": "integer",
+      "description": "Unique sandbox ID"
+     },
+     "message_id": {
+      "type": "integer",
+      "description": "Unique message ID"
+     },
+     "attachment_id": {
+      "type": "integer",
+      "description": "Unique attachment ID"
+     }
+    },
+    "required": [
+     "attachment_id",
+     "message_id",
+     "sandbox_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://{subdomain}.api.mailtrap.io/api/sandboxes/{sandbox_id}/messages/{message_id}/attachments/{attachment_id}",
+    "path": [
+     "sandbox_id",
+     "message_id",
+     "attachment_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "mailtrap.get_sandbox_message_attachments",
+   "name": "Get attachments",
+   "description": "Get message attachments by sandbox_id and message_id.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sandbox_id": {
+      "type": "integer",
+      "description": "Unique sandbox ID"
+     },
+     "message_id": {
+      "type": "integer",
+      "description": "Unique message ID"
+     },
+     "attachment_type": {
+      "type": "string",
+      "description": "Attachment type"
+     }
+    },
+    "required": [
+     "message_id",
+     "sandbox_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://{subdomain}.api.mailtrap.io/api/sandboxes/{sandbox_id}/messages/{message_id}/attachments",
+    "path": [
+     "sandbox_id",
+     "message_id"
+    ],
+    "query": [
+     "attachment_type"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "mailtrap.get_sandboxes",
+   "name": "Get a list of sandboxes",
+   "description": "Get a list of sandboxes.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://{subdomain}.api.mailtrap.io/api/sandboxes",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "mailtrap.mark_as_read_sandbox",
+   "name": "Mark as read",
+   "description": "Mark all messages in the sandbox as read.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sandbox_id": {
+      "type": "integer",
+      "description": "Unique sandbox ID"
+     }
+    },
+    "required": [
+     "sandbox_id"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://{subdomain}.api.mailtrap.io/api/sandboxes/{sandbox_id}/all_read",
+    "path": [
+     "sandbox_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "mailtrap.reset_email_user_name_per_sandbox",
+   "name": "Reset email address",
+   "description": "Reset username of email address per sandbox.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sandbox_id": {
+      "type": "integer",
+      "description": "Unique sandbox ID"
+     }
+    },
+    "required": [
+     "sandbox_id"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://{subdomain}.api.mailtrap.io/api/sandboxes/{sandbox_id}/reset_email_username",
+    "path": [
+     "sandbox_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "mailtrap.reset_sandbox_credentials",
+   "name": "Reset credentials",
+   "description": "Reset SMTP credentials of the sandbox.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sandbox_id": {
+      "type": "integer",
+      "description": "Unique sandbox ID"
+     }
+    },
+    "required": [
+     "sandbox_id"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://{subdomain}.api.mailtrap.io/api/sandboxes/{sandbox_id}/reset_credentials",
+    "path": [
+     "sandbox_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "mailtrap.show_sandbox_email_message",
+   "name": "Show email message",
+   "description": "Get email message by ID.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sandbox_id": {
+      "type": "integer",
+      "description": "Unique sandbox ID"
+     },
+     "message_id": {
+      "type": "integer",
+      "description": "Unique message ID"
+     }
+    },
+    "required": [
+     "message_id",
+     "sandbox_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://{subdomain}.api.mailtrap.io/api/sandboxes/{sandbox_id}/messages/{message_id}",
+    "path": [
+     "sandbox_id",
+     "message_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "mailtrap.update_project",
+   "name": "Update project",
+   "description": "Update project name. The project name is min 2 characters and max 100 characters long.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "project_id": {
+      "type": "integer",
+      "description": "Unique project ID"
+     },
+     "project": {
+      "type": "object",
+      "description": ""
+     }
+    },
+    "required": [
+     "project_id"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://{subdomain}.api.mailtrap.io/api/projects/{project_id}",
+    "path": [
+     "project_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "project"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "mailtrap.update_sandbox",
+   "name": "Update a sandbox",
+   "description": "Update sandbox name, sandbox email username.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sandbox_id": {
+      "type": "integer",
+      "description": "Unique sandbox ID"
+     },
+     "sandbox": {
+      "type": "object",
+      "description": ""
+     }
+    },
+    "required": [
+     "sandbox_id"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://{subdomain}.api.mailtrap.io/api/sandboxes/{sandbox_id}",
+    "path": [
+     "sandbox_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "sandbox"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "mailtrap.update_sandbox_email_message",
+   "name": "Update message",
+   "description": "Update message attributes (right now only the **is_read** attribute is available for modification).",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sandbox_id": {
+      "type": "integer",
+      "description": "Unique sandbox ID"
+     },
+     "message_id": {
+      "type": "integer",
+      "description": "Unique message ID"
+     },
+     "message": {
+      "type": "object",
+      "description": ""
+     }
+    },
+    "required": [
+     "message_id",
+     "sandbox_id"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://{subdomain}.api.mailtrap.io/api/sandboxes/{sandbox_id}/messages/{message_id}",
+    "path": [
+     "sandbox_id",
+     "message_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "message"
+    ],
+    "body_format": "json"
+   }
+  }
+ ]
+}

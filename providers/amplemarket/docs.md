@@ -28,6 +28,8 @@ vouches for**: read it, then read their reference.
 - [List Accounts](https://docs.amplemarket.com/api-reference/accounts/get-accounts.md): List Accounts
 - [Retrieve Account](https://docs.amplemarket.com/api-reference/accounts/get-account.md): Retrieve Account
 - [List users](https://docs.amplemarket.com/api-reference/users/get-users.md): List users
+- [List personas](https://docs.amplemarket.com/api-reference/personas/get-personas.md): List personas
+- [List territories](https://docs.amplemarket.com/api-reference/territories/get-territories.md): List territories
 - [List Lead Lists](https://docs.amplemarket.com/api-reference/lead-list/get-lead-lists.md): List Lead Lists
 - [Create Lead List](https://docs.amplemarket.com/api-reference/lead-list/create-lead-list.md): Create Lead List
 - [Retrieve Lead List](https://docs.amplemarket.com/api-reference/lead-list/retrieve-lead-list.md): Retrieve Lead List
@@ -78,3 +80,5 @@ vouches for**: read it, then read their reference.
 - [swagger](https://api.amplemarket.com/api-docs/v1/swagger.yaml)
 
 ## Optional
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

@@ -1,0 +1,61 @@
+{
+ "_": "GENERATED \u2014 what an authoring tool needs to FIND an operation. The calling table is the .lua beside it.",
+ "provider": "astro-mcp",
+ "source": "https://astronomer.io/.well-known/openapi.json",
+ "operations": [
+  {
+   "slug": "astro-mcp.create_mux_upload",
+   "name": "Create a mux direct upload url",
+   "description": "Create a Mux direct-upload URL",
+   "input": {
+    "type": "object",
+    "properties": {
+     "title": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.astronomer.io/.netlify/functions/mux-create-upload",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "title"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "astro-mcp.get_mux_playback_id",
+   "name": "Get mux playback readiness by upload id",
+   "description": "Get Mux playback readiness by upload ID",
+   "input": {
+    "type": "object",
+    "properties": {
+     "uploadId": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "uploadId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.astronomer.io/.netlify/functions/mux-get-playback-id",
+    "path": [],
+    "query": [
+     "uploadId"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  }
+ ]
+}

@@ -225,19 +225,23 @@ vouches for**: read it, then read their reference.
 - [Get Registrant Audit Sessions](https://developer.swoogo.com/api-reference/registration-audit/get-registrant-audit-sessions.md): Returns a time-bounded audit log of session attendance changes for a specific registrant. Each record captures the registrant's session selections and attendance type at a point in time. Requires both `event_id` and `start_time` query parameters. Supports up to 1,000 results per page.
 - [Introduction](https://developer.swoogo.com/mcp/introduction.md): Connect AI assistants to your Swoogo data with the Model Context Protocol
 - [Setup](https://developer.swoogo.com/mcp/setup.md): Connect your AI assistant to Swoogo via the MCP server
-- [Events](https://developer.swoogo.com/mcp/tools/events.md): Query events, fuzzy-match by name, and fetch complete event bundles
+- [Events](https://developer.swoogo.com/mcp/tools/events.md): Query events, fuzzy-match by name, fetch complete event bundles, and update events
 - [Sessions](https://developer.swoogo.com/mcp/tools/sessions.md): List, create, and update event sessions
-- [Registrants](https://developer.swoogo.com/mcp/tools/registrants.md): Query registrants, create registrations, manage session assignments, and add registrant types
-- [Speakers](https://developer.swoogo.com/mcp/tools/speakers.md): Query and update event speakers
+- [Registrants](https://developer.swoogo.com/mcp/tools/registrants.md): Query registrants, create registrations, manage session assignments, add registrant types, get registration stats, and send emails
+- [Speakers](https://developer.swoogo.com/mcp/tools/speakers.md): Query, create, and update event speakers
 - [Sponsors](https://developer.swoogo.com/mcp/tools/sponsors.md): Query, create, and update event sponsors
 - [Contacts](https://developer.swoogo.com/mcp/tools/contacts.md): Query and create account-level CRM contacts
 - [Packages](https://developer.swoogo.com/mcp/tools/packages.md): Query registration packages and pricing
+- [Registration types](https://developer.swoogo.com/mcp/tools/registration-types.md): Query registrant type IDs, names, capacities, and pricing
 - [Discount codes](https://developer.swoogo.com/mcp/tools/discount-codes.md): Query, create, and update event discount codes
 - [Transactions](https://developer.swoogo.com/mcp/tools/transactions.md): List payment transactions, refunds, and offline entries for an event
 - [Line items](https://developer.swoogo.com/mcp/tools/line-items.md): Query registrant invoice lines and their change history
-- [Attendance](https://developer.swoogo.com/mcp/tools/attendance.md): Track session attendance and get aggregated statistics
+- [Attendance](https://developer.swoogo.com/mcp/tools/attendance.md): Track session attendance, check registrants in and out, and get aggregated statistics
 - [Registration forms](https://developer.swoogo.com/mcp/tools/forms.md): Retrieve form configuration and display interactive registration forms
+- [Audits & schemas](https://developer.swoogo.com/mcp/tools/audits.md): Field definitions, registration audits, call-for-speakers, and invitation list management
 
 ## OpenAPI Specs
 
 - [openapi](/api-reference/openapi.yaml)
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

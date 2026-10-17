@@ -2,7 +2,7 @@
 --
 -- GENERATED from https://developer.affinity.co/api-reference/openapi.json
 -- Published on the vendor's own documentation site (https://developer.affinity.co).
--- 103 operations · do not edit
+-- 114 operations · do not edit
 --
 -- The credential is never in here. `auth.env` names an environment variable; the value
 -- stays in the environment, which is what makes this file safe to publish.
@@ -48,6 +48,8 @@ return {
     ["affinity.v2_emails_get"] = { method = "GET", url = "https://api.affinity.co/v2/emails", query = {"cursor", "limit", "filter"} },
     ["affinity.v2_feedback_post"] = { method = "POST", url = "https://api.affinity.co/v2/feedback", body = {"type", "subject", "body"} },
     ["affinity.v2_field_value_changes_get"] = { method = "GET", url = "https://api.affinity.co/v2/field-value-changes", query = {"filter", "orderBy", "cursor", "limit"} },
+    ["affinity.v2_files_file_id_get"] = { method = "GET", url = "https://api.affinity.co/v2/files/{fileId}", path = {"fileId"} },
+    ["affinity.v2_files_get"] = { method = "GET", url = "https://api.affinity.co/v2/files", query = {"totalCount", "cursor", "limit", "filter"} },
     ["affinity.v2_files_search_post"] = { method = "POST", url = "https://api.affinity.co/v2/files/search" },
     ["affinity.v2_inferred_connections_coworkers_get"] = { method = "GET", url = "https://api.affinity.co/v2/inferred-connections/coworkers", query = {"filter", "cursor", "limit", "totalCount"} },
     ["affinity.v2_inferred_connections_investor_executive_connections_get"] = { method = "GET", url = "https://api.affinity.co/v2/inferred-connections/investor-executive-connections", query = {"filter", "cursor", "limit", "totalCount"} },
@@ -67,6 +69,7 @@ return {
     ["affinity.v2_lists_list_id_list_entries_list_entry_id_fields_get"] = { method = "GET", url = "https://api.affinity.co/v2/lists/{listId}/list-entries/{listEntryId}/fields", path = {"listId", "listEntryId"}, query = {"ids", "types", "cursor", "limit"} },
     ["affinity.v2_lists_list_id_list_entries_list_entry_id_fields_patch"] = { method = "PATCH", url = "https://api.affinity.co/v2/lists/{listId}/list-entries/{listEntryId}/fields", path = {"listId", "listEntryId"} },
     ["affinity.v2_lists_list_id_list_entries_list_entry_id_get"] = { method = "GET", url = "https://api.affinity.co/v2/lists/{listId}/list-entries/{listEntryId}", path = {"listId", "listEntryId"}, query = {"fieldIds", "fieldTypes"} },
+    ["affinity.v2_lists_list_id_list_entries_post"] = { method = "POST", url = "https://api.affinity.co/v2/lists/{listId}/list-entries", path = {"listId"}, body = {"entity", "creatorId"} },
     ["affinity.v2_lists_list_id_list_entries_search_post"] = { method = "POST", url = "https://api.affinity.co/v2/lists/{listId}/list-entries/search", path = {"listId"}, query = {"fieldIds", "fieldTypes", "cursor", "limit", "totalCount"}, body = {"filters", "sorts", "search"} },
     ["affinity.v2_lists_list_id_saved_views_get"] = { method = "GET", url = "https://api.affinity.co/v2/lists/{listId}/saved-views", path = {"listId"}, query = {"cursor", "limit"} },
     ["affinity.v2_lists_list_id_saved_views_view_id_get"] = { method = "GET", url = "https://api.affinity.co/v2/lists/{listId}/saved-views/{viewId}", path = {"listId", "viewId"} },
@@ -85,8 +88,10 @@ return {
     ["affinity.v2_notes_post"] = { method = "POST", url = "https://api.affinity.co/v2/notes" },
     ["affinity.v2_notes_search_post"] = { method = "POST", url = "https://api.affinity.co/v2/notes/search" },
     ["affinity.v2_opportunities_get"] = { method = "GET", url = "https://api.affinity.co/v2/opportunities", query = {"cursor", "limit", "ids"} },
+    ["affinity.v2_opportunities_opportunity_id_delete"] = { method = "DELETE", url = "https://api.affinity.co/v2/opportunities/{opportunityId}", path = {"opportunityId"} },
     ["affinity.v2_opportunities_opportunity_id_get"] = { method = "GET", url = "https://api.affinity.co/v2/opportunities/{opportunityId}", path = {"opportunityId"} },
     ["affinity.v2_opportunities_opportunity_id_notes_get"] = { method = "GET", url = "https://api.affinity.co/v2/opportunities/{opportunityId}/notes", path = {"opportunityId"}, query = {"filter", "cursor", "limit", "totalCount"} },
+    ["affinity.v2_opportunities_opportunity_id_post"] = { method = "POST", url = "https://api.affinity.co/v2/opportunities/{opportunityId}", path = {"opportunityId"}, body = {"name"} },
     ["affinity.v2_person_merges_get"] = { method = "GET", url = "https://api.affinity.co/v2/person-merges", query = {"cursor", "limit", "filter"} },
     ["affinity.v2_person_merges_merge_id_get"] = { method = "GET", url = "https://api.affinity.co/v2/person-merges/{mergeId}", path = {"mergeId"} },
     ["affinity.v2_person_merges_post"] = { method = "POST", url = "https://api.affinity.co/v2/person-merges", body = {"primaryPersonId", "duplicatePersonId"} },
@@ -111,12 +116,18 @@ return {
     ["affinity.v2_reminders_post"] = { method = "POST", url = "https://api.affinity.co/v2/reminders" },
     ["affinity.v2_reminders_reminder_id_delete"] = { method = "DELETE", url = "https://api.affinity.co/v2/reminders/{reminderId}", path = {"reminderId"} },
     ["affinity.v2_reminders_reminder_id_get"] = { method = "GET", url = "https://api.affinity.co/v2/reminders/{reminderId}", path = {"reminderId"} },
+    ["affinity.v2_reminders_reminder_id_post"] = { method = "POST", url = "https://api.affinity.co/v2/reminders/{reminderId}", path = {"reminderId"}, body = {"content", "dueDate", "owner", "completedAt", "recurrence"} },
     ["affinity.v2_semantic_search_post"] = { method = "POST", url = "https://api.affinity.co/v2/semantic-search", body = {"prompt", "limit", "entityType", "listIds"} },
     ["affinity.v2_tasks_company_merges_get"] = { method = "GET", url = "https://api.affinity.co/v2/tasks/company-merges", query = {"cursor", "limit", "filter"} },
     ["affinity.v2_tasks_company_merges_task_id_get"] = { method = "GET", url = "https://api.affinity.co/v2/tasks/company-merges/{taskId}", path = {"taskId"} },
     ["affinity.v2_tasks_person_merges_get"] = { method = "GET", url = "https://api.affinity.co/v2/tasks/person-merges", query = {"cursor", "limit", "filter"} },
     ["affinity.v2_tasks_person_merges_task_id_get"] = { method = "GET", url = "https://api.affinity.co/v2/tasks/person-merges/{taskId}", path = {"taskId"} },
+    ["affinity.v2_teams_get"] = { method = "GET", url = "https://api.affinity.co/v2/teams", query = {"cursor", "limit", "totalCount", "filter", "orderBy", "includes"} },
+    ["affinity.v2_teams_team_id_accessible_lists_get"] = { method = "GET", url = "https://api.affinity.co/v2/teams/{teamId}/accessible-lists", path = {"teamId"}, query = {"cursor", "limit", "totalCount"} },
+    ["affinity.v2_teams_team_id_get"] = { method = "GET", url = "https://api.affinity.co/v2/teams/{teamId}", path = {"teamId"}, query = {"includes"} },
+    ["affinity.v2_teams_team_id_members_get"] = { method = "GET", url = "https://api.affinity.co/v2/teams/{teamId}/members", path = {"teamId"}, query = {"cursor", "limit", "totalCount"} },
     ["affinity.v2_transcripts_get"] = { method = "GET", url = "https://api.affinity.co/v2/transcripts", query = {"totalCount", "cursor", "limit", "filter"} },
+    ["affinity.v2_transcripts_transcript_id_delete"] = { method = "DELETE", url = "https://api.affinity.co/v2/transcripts/{transcriptId}", path = {"transcriptId"} },
     ["affinity.v2_transcripts_transcript_id_fragments_get"] = { method = "GET", url = "https://api.affinity.co/v2/transcripts/{transcriptId}/fragments", path = {"transcriptId"}, query = {"cursor", "limit", "totalCount"} },
     ["affinity.v2_transcripts_transcript_id_get"] = { method = "GET", url = "https://api.affinity.co/v2/transcripts/{transcriptId}", path = {"transcriptId"} },
     ["affinity.v2_users_get"] = { method = "GET", url = "https://api.affinity.co/v2/users", query = {"cursor", "limit", "term", "filter"} },

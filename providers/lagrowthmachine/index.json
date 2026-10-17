@@ -1,0 +1,2640 @@
+{
+ "_": "GENERATED \u2014 what an authoring tool needs to FIND an operation. The calling table is the .lua beside it.",
+ "provider": "lagrowthmachine",
+ "source": "https://developers.lagrowthmachine.com/openapi.yaml",
+ "operations": [
+  {
+   "slug": "lagrowthmachine.add_campaign_step_message",
+   "name": "Add a message to an empty campaign step",
+   "description": "Creates a new message and links it to a campaign step that has **no message yet** (a step returned by `GET /campaigns/{campaignId}/steps` with `hasMessage: false`). The channel is inferred from the step. If the step already has a message, the call is rejected: edit it with `POST /campaigns/{campaignId}/messages/{templateId}` instead. The content is validated server-side with the same rules as the ",
+   "input": {
+    "type": "object",
+    "properties": {
+     "campaignId": {
+      "type": "string",
+      "description": "ID of the campaign the step belongs to (24-character hex string)."
+     },
+     "stepId": {
+      "type": "string",
+      "description": "ID of the step, the `stepId` returned by `GET /campaigns/{campaignId}/steps`."
+     },
+     "newHtml": {
+      "type": "string",
+      "description": "The message body, in the `newHtml` format."
+     },
+     "subjectNewHtml": {
+      "type": "string",
+      "description": "Email steps only: the subject, as a single `\u2026` containing text, `` or ``. Ignored for LinkedIn and Twitter steps."
+     }
+    },
+    "required": [
+     "campaignId",
+     "newHtml",
+     "stepId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://apiv2.lagrowthmachine.com/flow/campaigns/{campaignId}/steps/{stepId}/message",
+    "path": [
+     "campaignId",
+     "stepId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "newHtml",
+     "subjectNewHtml"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "lagrowthmachine.archive_conversation",
+   "name": "Archive conversation",
+   "description": "Archives a conversation, removing it from the active inbox. Reversible with *Unarchive conversation*. Provide `conversationId`, or identify the lead with `leadId`, `email` or `linkedinUrl`. When the lead has several conversations (one per identity), narrow it down with `identityId`, `campaignId` or `campaignName`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "conversationId": {
+      "type": "string",
+      "description": "ID of the conversation (from *Search conversations*)."
+     },
+     "leadId": {
+      "type": "string",
+      "description": "ID of the lead, alternative to `conversationId`."
+     },
+     "email": {
+      "type": "string",
+      "description": "Email of the lead, alternative to `conversationId`."
+     },
+     "linkedinUrl": {
+      "type": "string",
+      "description": "LinkedIn profile URL of the lead (must contain `linkedin.com`), alternative to `conversationId`."
+     },
+     "identityId": {
+      "type": "string",
+      "description": "When the lead is identified without `conversationId`, picks the conversation with this identity."
+     },
+     "campaignId": {
+      "type": "string",
+      "description": "When the lead is identified without `conversationId`, picks the conversation with this campaign's identity."
+     },
+     "campaignName": {
+      "type": "string",
+      "description": "Same as `campaignId`, by campaign name."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://apiv2.lagrowthmachine.com/flow/inbox/conversations/archive",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "conversationId",
+     "leadId",
+     "email",
+     "linkedinUrl",
+     "identityId",
+     "campaignId",
+     "campaignName"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "lagrowthmachine.complete_call_manual_task",
+   "name": "Complete call manual task",
+   "description": "Completes a **call** manual task of a campaign, as when you log the call outcome in the inbox. The task is marked as done and leaves the call inbox. The outcome (`callStatus`, and `tag` if given) is then applied to the lead asynchronously.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "manualTaskId": {
+      "type": "string",
+      "description": "ID of the call manual task."
+     },
+     "callStatus": {
+      "type": "string",
+      "description": "`DECISIVE` if you reached the lead, `UNREACHABLE` otherwise.",
+      "enum": [
+       "DECISIVE",
+       "UNREACHABLE"
+      ]
+     },
+     "tag": {
+      "type": "string",
+      "description": "Status to give the lead in the campaign.",
+      "enum": [
+       "NOT_ACTIVATED",
+       "SKIPPED",
+       "ACTIVATED",
+       "ENRICHED",
+       "CONTACTED",
+       "COMPLETED_WITHOUT_REPLY",
+       "TO_QUALIFY",
+       "UNSUBSCRIBED",
+       "OUT_OF_OFFICE",
+       "WRONG_TIMING",
+       "INTERESTED",
+       "NOT_INTERESTED"
+      ]
+     }
+    },
+    "required": [
+     "callStatus",
+     "manualTaskId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://apiv2.lagrowthmachine.com/flow/manualtasks/call/complete",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "manualTaskId",
+     "callStatus",
+     "tag"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "lagrowthmachine.complete_message_manual_task",
+   "name": "Complete message manual task",
+   "description": "Completes a **custom message** manual task: you provide the message that the campaign step will send to the lead. The message is stored on the pending campaign action, which is then released and sent by the campaign. The channel comes from the campaign step: * LinkedIn: `message` is the text sent. `subject`, `cc`, `bcc` and `attachments` are ignored. * Email: `message` is the HTML body, `subject` ",
+   "input": {
+    "type": "object",
+    "properties": {
+     "manualTaskId": {
+      "type": "string",
+      "description": "ID of the custom message manual task."
+     },
+     "message": {
+      "type": "string",
+      "description": "Message to send. Plain text for LinkedIn, HTML for email."
+     },
+     "subject": {
+      "type": "string",
+      "description": "Email subject (email steps only)."
+     },
+     "cc": {
+      "type": "string",
+      "description": "Comma-separated CC recipients (email steps only)."
+     },
+     "bcc": {
+      "type": "string",
+      "description": "Comma-separated BCC recipients (email steps only)."
+     },
+     "attachments": {
+      "type": "array",
+      "description": "Files attached to the email (email steps only)."
+     }
+    },
+    "required": [
+     "manualTaskId",
+     "message"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://apiv2.lagrowthmachine.com/flow/manualtasks/message/complete",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "manualTaskId",
+     "message",
+     "subject",
+     "cc",
+     "bcc",
+     "attachments"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "lagrowthmachine.create_audience",
+   "name": "Create audience",
+   "description": "Creates an empty audience (type `CLASSIC`). Add leads to it with `POST /flow/leads`. To create an audience from a LinkedIn URL (search or post), use `POST /flow/audiences` instead.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": "string",
+      "description": "Audience name. Must be unique in the workspace."
+     }
+    },
+    "required": [
+     "name"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://apiv2.lagrowthmachine.com/flow/audiences/create",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "name"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "lagrowthmachine.create_audience_from_linkedin_url",
+   "name": "Create audience from linkedin url",
+   "description": "Import leads into your LGM audiences by providing a LinkedIn Regular search URL, a Sales Navigator search or list URL, a LinkedIn post URL, a company followers URL or a LinkedIn event URL. You must also provide the identity to impersonate for the search query and specify the name of the audience to populate. If no audience matches `audience` (by name, then by ID), a new one is created. The import ",
+   "input": {
+    "type": "object",
+    "properties": {
+     "audience": {
+      "type": "string",
+      "description": "Name (or ID) of the audience to populate. Created if it does not exist."
+     },
+     "linkedinUrl": {
+      "type": "string",
+      "description": "HTTPS LinkedIn URL. Global \"All results\" search URLs are rejected; use a \"People\" search."
+     },
+     "identityId": {
+      "type": "string",
+      "description": "ID of the identity whose LinkedIn account runs the import (see `GET /flow/identities`)."
+     },
+     "linkedinPostCategory": {
+      "type": "string",
+      "description": "For a post URL, which engagement to import.",
+      "enum": [
+       "like",
+       "comment"
+      ]
+     },
+     "excludeContactedLeads": {
+      "type": "boolean",
+      "description": "Skip leads already contacted in one of your campaigns."
+     },
+     "autoImport": {
+      "type": "boolean",
+      "description": "Keep importing new matching leads into the audience over time."
+     }
+    },
+    "required": [
+     "audience",
+     "identityId",
+     "linkedinUrl"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://apiv2.lagrowthmachine.com/flow/audiences",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "audience",
+     "linkedinUrl",
+     "identityId",
+     "linkedinPostCategory",
+     "excludeContactedLeads",
+     "autoImport"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "lagrowthmachine.create_inbox_event_webhook",
+   "name": "Create inbox event webhook",
+   "description": "Registers a webhook that receives real-time inbox events: every new LinkedIn or email message, sent or received, in the conversations of your workspace. **url** must be publicly accessible and respond to POST requests with a 200 OK. If **campaigns** is omitted, the webhook receives messages from all campaigns (`[\"all\"]`). To filter, pass the IDs of the campaigns to follow: an event is sent when th",
+   "input": {
+    "type": "object",
+    "properties": {
+     "url": {
+      "type": "string",
+      "description": "URL that receives the events. Must be a valid, publicly accessible URL accepting POST."
+     },
+     "name": {
+      "type": "string",
+      "description": "Name of the webhook, returned as `key`."
+     },
+     "description": {
+      "type": "string",
+      "description": "Accepted but not stored."
+     },
+     "campaigns": {
+      "type": "array",
+      "description": "IDs of the campaigns to follow. Omit it to receive every campaign (`[\"all\"]`). An empty array disables the webhook."
+     }
+    },
+    "required": [
+     "name",
+     "url"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://apiv2.lagrowthmachine.com/flow/inboxWebhooks",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "url",
+     "name",
+     "description",
+     "campaigns"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "lagrowthmachine.create_or_update_alead",
+   "name": "Create or update a lead",
+   "description": "Creates a lead (or updates it when it already exists). ### Identifying the lead At least one of the following is required: `leadId`, `proEmail`, `persoEmail`, `linkedinUrl`, `twitter`, `crm_id`, OR `firstname` + `lastname` + (`companyName` or `companyUrl`). - With `leadId`, that exact lead is updated (404 if it does not exist). - Otherwise the lead is matched against existing leads on these identi",
+   "input": {
+    "type": "object",
+    "properties": {
+     "audience": {
+      "type": "string",
+      "description": "Name (or ID) of the target audience, created if it does not exist."
+     },
+     "leadId": {
+      "type": "string",
+      "description": "ID of an existing lead to update."
+     },
+     "firstname": {
+      "type": "string",
+      "description": ""
+     },
+     "lastname": {
+      "type": "string",
+      "description": ""
+     },
+     "gender": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "man",
+       "woman"
+      ]
+     },
+     "bio": {
+      "type": "string",
+      "description": ""
+     },
+     "note": {
+      "type": "string",
+      "description": "Free-text note shown on the lead profile. Replaces the existing note."
+     },
+     "companyName": {
+      "type": "string",
+      "description": ""
+     },
+     "companyUrl": {
+      "type": "string",
+      "description": ""
+     },
+     "jobTitle": {
+      "type": "string",
+      "description": ""
+     },
+     "profilePicture": {
+      "type": "string",
+      "description": "URL of the profile picture."
+     },
+     "linkedinUrl": {
+      "type": "string",
+      "description": ""
+     },
+     "twitter": {
+      "type": "string",
+      "description": ""
+     },
+     "proEmail": {
+      "type": "string",
+      "description": ""
+     },
+     "persoEmail": {
+      "type": "string",
+      "description": ""
+     },
+     "industry": {
+      "type": "string",
+      "description": ""
+     },
+     "phone": {
+      "type": "string",
+      "description": ""
+     },
+     "crm_id": {
+      "type": "string",
+      "description": "Contact ID in the connected CRM."
+     },
+     "location": {
+      "type": "string",
+      "description": ""
+     },
+     "relationsCount": {
+      "type": "integer",
+      "description": ""
+     },
+     "excludeContactedLeads": {
+      "type": "boolean",
+      "description": ""
+     },
+     "enrichData": {
+      "type": "object",
+      "description": "Enrichment data keyed by field name."
+     },
+     "enrichStatus": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://apiv2.lagrowthmachine.com/flow/leads",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "audience",
+     "leadId",
+     "firstname",
+     "lastname",
+     "gender",
+     "bio",
+     "note",
+     "companyName",
+     "companyUrl",
+     "jobTitle",
+     "profilePicture",
+     "linkedinUrl",
+     "twitter",
+     "proEmail",
+     "persoEmail",
+     "industry",
+     "phone",
+     "crm_id",
+     "location",
+     "relationsCount",
+     "excludeContactedLeads",
+     "enrichData",
+     "enrichStatus"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "lagrowthmachine.delete_identity_preference",
+   "name": "Delete an identity preference",
+   "description": "Deletes one preference of an identity. Get the `preferenceId` from `GET /identities/{identityId}/preferences`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "identityId": {
+      "type": "string",
+      "description": "ID of the identity (24-character hex string)."
+     },
+     "preferenceId": {
+      "type": "string",
+      "description": "ID of the preference to delete (24-character hex string)."
+     }
+    },
+    "required": [
+     "identityId",
+     "preferenceId"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://apiv2.lagrowthmachine.com/flow/identities/{identityId}/preferences/{preferenceId}",
+    "path": [
+     "identityId",
+     "preferenceId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "lagrowthmachine.delete_inbox_webhooks",
+   "name": "Delete inbox webhooks",
+   "description": "Deletes an inbox webhook by its `webhookId`. Once deleted, no more inbox events are sent to its URL. The response is `{\"success\": true}` even when no webhook has this ID: check with *List inbox webhooks* if needed.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "webhookId": {
+      "type": "string",
+      "description": "Webhook `id` returned at creation or by the list."
+     }
+    },
+    "required": [
+     "webhookId"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://apiv2.lagrowthmachine.com/flow/inboxWebhooks/{webhookId}",
+    "path": [
+     "webhookId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "lagrowthmachine.duplicate_accessible_campaign",
+   "name": "Duplicate a campaign shared by code",
+   "description": "Copies a campaign shared with an access code into your workspace, as a new draft campaign (status `READY`, not launched, no audience). The copy uses the last identity you used and your last language for that identity. Your workspace needs at least one identity. Then edit its messages like any of your campaigns. This endpoint takes no request body.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "code": {
+      "type": "string",
+      "description": "The access code received from the campaign owner."
+     }
+    },
+    "required": [
+     "code"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://apiv2.lagrowthmachine.com/flow/campaigns/duplicate/accessible/{code}",
+    "path": [
+     "code"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "lagrowthmachine.duplicate_campaign",
+   "name": "Duplicate a campaign",
+   "description": "Creates a new draft copy of a campaign: its sequence and every step's message (with new message IDs). The copy is created with status `READY` and is **not launched**. Works with: - your own campaigns (IDs from `GET /campaigns`): the copy keeps the source identity, audience and language; - public catalog templates (IDs from `GET /campaigns/public`): the copy uses the last identity you used, your la",
+   "input": {
+    "type": "object",
+    "properties": {
+     "campaignId": {
+      "type": "string",
+      "description": "ID of the campaign to duplicate (24-character hex string)."
+     }
+    },
+    "required": [
+     "campaignId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://apiv2.lagrowthmachine.com/flow/campaigns/{campaignId}/duplicate",
+    "path": [
+     "campaignId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "lagrowthmachine.edit_campaign_message",
+   "name": "Edit a campaign message",
+   "description": "Replaces the content of an existing message of a campaign step. Get the `campaignId` and the `templateId` (the `id` of each message) from `GET /campaigns/{campaignId}/messages`. To fill a step that has no message yet, use `POST /campaigns/{campaignId}/steps/{stepId}/message` instead. The content is validated server-side; a malformed message is rejected with a `400` and nothing is saved. **Not retr",
+   "input": {
+    "type": "object",
+    "properties": {
+     "campaignId": {
+      "type": "string",
+      "description": "ID of the campaign the message belongs to (24-character hex string)."
+     },
+     "templateId": {
+      "type": "string",
+      "description": "ID of the message to edit (24-character hex string), the `id` returned by `GET /campaigns/{campaignId}/messages`."
+     },
+     "newHtml": {
+      "type": "string",
+      "description": "The new message body, in the `newHtml` format described above."
+     },
+     "subjectNewHtml": {
+      "type": "string",
+      "description": "Email steps only: the subject, as a single `\u2026` containing text, `` or `` (no lists, images, headings or signature). Omit it for LinkedIn and Twitter steps. An empty string is accepted."
+     }
+    },
+    "required": [
+     "campaignId",
+     "newHtml",
+     "templateId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://apiv2.lagrowthmachine.com/flow/campaigns/{campaignId}/messages/{templateId}",
+    "path": [
+     "campaignId",
+     "templateId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "newHtml",
+     "subjectNewHtml"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "lagrowthmachine.edit_inbox_conversation_note",
+   "name": "Edit inbox conversation note",
+   "description": "Writes the note (post-it) attached to an inbox conversation. ### Finding the conversation Provide `conversationId`, or identify the lead with `leadId`, `email` or `linkedinUrl`. When you identify the lead and it has several conversations (one per identity), narrow it down with `identityId`, `campaignId` or `campaignName` (the campaign's identity is used), otherwise the request fails with `Multiple",
+   "input": {
+    "type": "object",
+    "properties": {
+     "conversationId": {
+      "type": "string",
+      "description": "ID of the conversation (from *Search conversations*)."
+     },
+     "leadId": {
+      "type": "string",
+      "description": "ID of the lead, alternative to `conversationId`."
+     },
+     "email": {
+      "type": "string",
+      "description": "Email of the lead, alternative to `conversationId`."
+     },
+     "linkedinUrl": {
+      "type": "string",
+      "description": "LinkedIn profile URL of the lead (must contain `linkedin.com`), alternative to `conversationId`."
+     },
+     "identityId": {
+      "type": "string",
+      "description": "When the lead is identified without `conversationId`, picks the conversation with this identity."
+     },
+     "campaignId": {
+      "type": "string",
+      "description": "When the lead is identified without `conversationId`, picks the conversation with this campaign's identity."
+     },
+     "campaignName": {
+      "type": "string",
+      "description": "Same as `campaignId`, by campaign name."
+     },
+     "note": {
+      "type": "string",
+      "description": "Note content. An empty string clears the note in `replace` mode."
+     },
+     "mode": {
+      "type": "string",
+      "description": "Replace the existing note or append to it.",
+      "enum": [
+       "replace",
+       "append"
+      ]
+     }
+    },
+    "required": [
+     "note"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://apiv2.lagrowthmachine.com/flow/inbox/conversations/note",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "conversationId",
+     "leadId",
+     "email",
+     "linkedinUrl",
+     "identityId",
+     "campaignId",
+     "campaignName",
+     "note",
+     "mode"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "lagrowthmachine.enrich_lead",
+   "name": "Enrich lead",
+   "description": "Starts an enrichment request. Depending on `enrichType`, it returns a pro email, a phone number, LinkedIn profile fields, or email and LinkedIn together. ### Body \u2014 at least one identifier required - `leadId` (string, 24 chars) \u2014 id of an existing lead; the enriched fields are written on the lead. - OR `linkedinUrl` (https, `linkedin.com`, max 500). - OR `firstname` + `lastname` (+ `companyName` /",
+   "input": {
+    "type": "object",
+    "properties": {
+     "leadId": {
+      "type": "string",
+      "description": "ID of an existing lead."
+     },
+     "linkedinUrl": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "HTTPS LinkedIn profile URL."
+     },
+     "firstname": {
+      "type": "string",
+      "description": "Requires `lastname`."
+     },
+     "lastname": {
+      "type": "string",
+      "description": ""
+     },
+     "companyName": {
+      "type": "string",
+      "description": ""
+     },
+     "companyUrl": {
+      "type": "string",
+      "description": ""
+     },
+     "enrichType": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "EMAIL_ENRICH",
+       "LINKEDIN_ENRICH",
+       "FULL_ENRICH",
+       "PHONE_ENRICH"
+      ]
+     },
+     "mode": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "polling",
+       "sync",
+       "webhook"
+      ]
+     },
+     "webhookUrl": {
+      "type": "string",
+      "description": "Public HTTPS URL. Required when `mode` is `webhook`."
+     },
+     "source": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "api",
+       "extension"
+      ]
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://apiv2.lagrowthmachine.com/flow/leads/enrich",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "leadId",
+     "linkedinUrl",
+     "firstname",
+     "lastname",
+     "companyName",
+     "companyUrl",
+     "enrichType",
+     "mode",
+     "webhookUrl",
+     "source"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "lagrowthmachine.enrich_linkedin_post",
+   "name": "Enrich linked in post",
+   "description": "Fetches the content and engagement of a public LinkedIn post from its URL: text, author, reaction counts, comments and reposts, posting date and URN. **Costs 1 credit per successful call.** The balance is checked first (`400` when it is too low) and the credit is only charged when the post is fetched. Requires a plan with enrichment; during a trial it requires the external enrichment option. The r",
+   "input": {
+    "type": "object",
+    "properties": {
+     "postUrl": {
+      "type": "string",
+      "description": "HTTPS URL of the LinkedIn post (must contain `linkedin.com`). Query parameters such as `utm_source` are tolerated."
+     }
+    },
+    "required": [
+     "postUrl"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://apiv2.lagrowthmachine.com/flow/posts/enrich",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "postUrl"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "lagrowthmachine.get_audience_detail",
+   "name": "Get audience detail",
+   "description": "Returns detailed information about a specific audience. Use it to follow an import started with `POST /flow/audiences`: `importStatus` reports how many leads were screened.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "audienceId": {
+      "type": "string",
+      "description": "The audience ID (24-char hex ObjectId)."
+     }
+    },
+    "required": [
+     "audienceId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://apiv2.lagrowthmachine.com/flow/audiences/{audienceId}/detail",
+    "path": [
+     "audienceId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "lagrowthmachine.get_audience_leads",
+   "name": "Get audience leads",
+   "description": "Returns a paginated list of leads belonging to a specific audience, with the full lead record. Use `skip` and `limit` to page through the audience; `total` is the number of leads in the audience. Every field is always present in the response. Values depend on the lead's enrichment level: a lead that was never enriched returns empty strings (and `null` for `relationsCount`, `emailStatus`, `emailFou",
+   "input": {
+    "type": "object",
+    "properties": {
+     "audienceId": {
+      "type": "string",
+      "description": "The audience ID (24-char hex ObjectId)."
+     },
+     "skip": {
+      "type": "integer",
+      "description": "Number of leads to skip."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Max leads to return."
+     }
+    },
+    "required": [
+     "audienceId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://apiv2.lagrowthmachine.com/flow/audiences/{audienceId}/leads",
+    "path": [
+     "audienceId"
+    ],
+    "query": [
+     "skip",
+     "limit"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "lagrowthmachine.get_campaign",
+   "name": "Get campaign",
+   "description": "Use this endpoint to get one campaign: its status, audience, sending identity and settings. This endpoint takes no query parameter: any query parameter is rejected with a `404` error.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "campaignId": {
+      "type": "string",
+      "description": "Campaign ID (24-character hex string)."
+     }
+    },
+    "required": [
+     "campaignId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://apiv2.lagrowthmachine.com/flow/campaigns/{campaignId}",
+    "path": [
+     "campaignId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "lagrowthmachine.get_campaign_by_access_code",
+   "name": "Preview a campaign shared by code",
+   "description": "Returns a preview of a campaign shared with an access code: name, description, language, the inventory of sequence actions and the content of its messages. Use it to review a shared campaign before copying it with `POST /campaigns/duplicate/accessible/{code}`. Leading and trailing spaces in the code are ignored.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "code": {
+      "type": "string",
+      "description": "The access code received from the campaign owner."
+     }
+    },
+    "required": [
+     "code"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://apiv2.lagrowthmachine.com/flow/campaigns/accessible/{code}",
+    "path": [
+     "code"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "lagrowthmachine.get_campaign_leads_stats",
+   "name": "Get campaign leads stats",
+   "description": "Use this endpoint to get the stats of every lead of one campaign: status in the campaign, LinkedIn relation, counts of emails, LinkedIn messages and tweets, and the lead tag. ### Pagination Each request returns **25 leads maximum**, most recently added leads first. * To get the first 25 leads, do not specify any query parameter. * To get the 25 next leads, use `getLeadsAfter` with the `id` of the ",
+   "input": {
+    "type": "object",
+    "properties": {
+     "campaignId": {
+      "type": "string",
+      "description": "Campaign ID (24-character hex string)."
+     },
+     "getLeadsAfter": {
+      "type": "string",
+      "description": "Lead ID. Returns the leads that come after this one (next page)."
+     },
+     "getLeadsBefore": {
+      "type": "string",
+      "description": "Lead ID. Returns leads that come before this one, starting from the first lead of the campaign (see the known issue in the description of `hasLess`)."
+     }
+    },
+    "required": [
+     "campaignId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://apiv2.lagrowthmachine.com/flow/campaigns/{campaignId}/statsleads",
+    "path": [
+     "campaignId"
+    ],
+    "query": [
+     "getLeadsAfter",
+     "getLeadsBefore"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "lagrowthmachine.get_campaign_messages",
+   "name": "Get campaign messages",
+   "description": "Returns the text messages (templates) configured in a campaign's sequence: emails, LinkedIn messages and tweets. Audio and call steps are not returned. Each message has two representations: * `contentHtml` / `subjectHtml`: rendered output, read-only. * `newHtml` / `subjectNewHtml`: editable source in the LGM editor format. Send these back to _Edit Campaign Message_ to change a message. `order` is ",
+   "input": {
+    "type": "object",
+    "properties": {
+     "campaignId": {
+      "type": "string",
+      "description": "The campaign ID (24-character hex string)."
+     }
+    },
+    "required": [
+     "campaignId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://apiv2.lagrowthmachine.com/flow/campaigns/{campaignId}/messages",
+    "path": [
+     "campaignId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "lagrowthmachine.get_campaign_stats",
+   "name": "Get campaign stats",
+   "description": "Use this endpoint to get the stats of one campaign: audience, replies, LinkedIn relations, per-channel metrics, lead statuses and per-message (template) metrics. All `...Percent` fields are integers between 0 and 100. If your plan does not include lead qualification, the detailed `status.won` and `status.lost` counters and percentages are returned as `0` (only their `total` is kept). This endpoint",
+   "input": {
+    "type": "object",
+    "properties": {
+     "campaignId": {
+      "type": "string",
+      "description": "Campaign ID (24-character hex string)."
+     }
+    },
+    "required": [
+     "campaignId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://apiv2.lagrowthmachine.com/flow/campaigns/{campaignId}/stats",
+    "path": [
+     "campaignId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "lagrowthmachine.get_campaign_steps",
+   "name": "Get campaign steps",
+   "description": "Lists the steps of a campaign sequence that carry a message (email, LinkedIn message, tweet, Twitter DM), in sequence order. Use it to find a step's `stepId` and to spot empty steps (`hasMessage: false`), then fill them with _Add Campaign Step Message_. A step that already has a message is edited with _Edit Campaign Message_, using the step's `templateId`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "campaignId": {
+      "type": "string",
+      "description": "The campaign ID (24-character hex string)."
+     }
+    },
+    "required": [
+     "campaignId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://apiv2.lagrowthmachine.com/flow/campaigns/{campaignId}/steps",
+    "path": [
+     "campaignId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "lagrowthmachine.get_campaigns",
+   "name": "Get campaigns",
+   "description": "Use this endpoint to retrieve **all your campaigns**, with their status, audience, sending identity and a few key metrics. ### Pagination This endpoint supports pagination using the `skip` and `limit` query parameters: * `limit` \u2192 number of items to return (**required**, 25 maximum) * `skip` \u2192 number of items to skip (used to navigate pages) **Examples:** * Page 1 \u2192 `?skip=0&limit=25` * Page 2 \u2192 `",
+   "input": {
+    "type": "object",
+    "properties": {
+     "limit": {
+      "type": "integer",
+      "description": "Number of campaigns to return (25 max)."
+     },
+     "skip": {
+      "type": "integer",
+      "description": "Number of campaigns to skip (0 minimum)."
+     },
+     "status": {
+      "type": "string",
+      "description": "Comma-separated list of statuses to keep, among `RUNNING`, `READY`, `PAUSED`, `CANCELED`. Values are not validated, an unknown status simply matches nothing."
+     },
+     "search": {
+      "type": "string",
+      "description": "Case-insensitive search on the campaign name."
+     }
+    },
+    "required": [
+     "limit"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://apiv2.lagrowthmachine.com/flow/campaigns",
+    "path": [],
+    "query": [
+     "limit",
+     "skip",
+     "status",
+     "search"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "lagrowthmachine.get_conversation_messages",
+   "name": "Get conversation messages",
+   "description": "Returns the **25 most recent messages** of a conversation, sorted chronologically (oldest first). Besides LinkedIn and email messages, the list can hold inbox system entries (`channel` `LGM`, `COMMENT`, `MANUAL_TASK`...). For these, and for messages with status `INFO` or `SEND_FAILED`, `direction` is `received`: rely on `status` to know who wrote a message.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "conversationId": {
+      "type": "string",
+      "description": "The conversation ID (24-char hex ObjectId)."
+     },
+     "page": {
+      "type": "integer",
+      "description": "Accepted (integer, 0 or more) but currently has no effect: the 25 most recent messages are always returned."
+     }
+    },
+    "required": [
+     "conversationId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://apiv2.lagrowthmachine.com/flow/conversations/{conversationId}/messages",
+    "path": [
+     "conversationId"
+    ],
+    "query": [
+     "page"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "lagrowthmachine.get_credits",
+   "name": "Get credits",
+   "description": "Returns the credit balance for the authenticated workspace, and whether it has CRM and extension access. - `credits.total` \u2014 total credits available. - `credits.perishable` \u2014 credits that expire soon (already included in `total`). Credits are spent by `POST /flow/leads/enrich` (up to 1, 5 or 20 credits depending on `enrichType`) and `POST /flow/posts/enrich` (1 credit).",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://apiv2.lagrowthmachine.com/flow/credits",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "lagrowthmachine.get_enrich_result",
+   "name": "Get enrich result",
+   "description": "Retrieves the result of an enrichment request previously created with `POST /flow/leads/enrich` (any mode). Requests are kept for 24 hours. ### Possible statuses - `pending` \u2014 still running, poll again later. - `enriched` \u2014 done; the result fields are in the response. - `not_found` \u2014 nothing was found. - `error` \u2014 the enrichment failed (for example not enough credits when it ran). - `expired` \u2014 a ",
+   "input": {
+    "type": "object",
+    "properties": {
+     "enrichRequestId": {
+      "type": "string",
+      "description": "ID returned by `POST /flow/leads/enrich`."
+     }
+    },
+    "required": [
+     "enrichRequestId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://apiv2.lagrowthmachine.com/flow/leads/enrich/{enrichRequestId}",
+    "path": [
+     "enrichRequestId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "lagrowthmachine.get_identity_preferences",
+   "name": "List identity preferences",
+   "description": "Lists the preferences saved for an identity, sorted by category then key (by key only when filtered on a category). Preferences are key-value pairs, grouped by category, used to personalize the AI-generated content of this identity (tone, language, signature\u2026).",
+   "input": {
+    "type": "object",
+    "properties": {
+     "identityId": {
+      "type": "string",
+      "description": "ID of the identity (24-character hex string)."
+     },
+     "category": {
+      "type": "string",
+      "description": "Only return the preferences of this category."
+     }
+    },
+    "required": [
+     "identityId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://apiv2.lagrowthmachine.com/flow/identities/{identityId}/preferences",
+    "path": [
+     "identityId"
+    ],
+    "query": [
+     "category"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "lagrowthmachine.get_lead_conversations",
+   "name": "Get lead conversations",
+   "description": "Returns all inbox conversations associated with a specific lead. Read the messages of a conversation with `GET /flow/conversations/{conversationId}/messages`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "leadId": {
+      "type": "string",
+      "description": "The lead ID (24-char hex ObjectId)."
+     },
+     "identityId": {
+      "type": "string",
+      "description": "Filter conversations by identity ID (24-char hex ObjectId)."
+     }
+    },
+    "required": [
+     "leadId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://apiv2.lagrowthmachine.com/flow/leads/{leadId}/conversations",
+    "path": [
+     "leadId"
+    ],
+    "query": [
+     "identityId"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "lagrowthmachine.get_lead_logs",
+   "name": "Get lead logs",
+   "description": "Returns a paginated list of activity logs for a specific lead, most recent first. `total` is the number of logs before pagination.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "leadId": {
+      "type": "string",
+      "description": "The lead ID (24-char hex ObjectId)."
+     },
+     "identityId": {
+      "type": "string",
+      "description": "Filter logs by identity ID (24-char hex ObjectId)."
+     },
+     "skip": {
+      "type": "integer",
+      "description": "Number of logs to skip."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Max logs to return."
+     }
+    },
+    "required": [
+     "leadId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://apiv2.lagrowthmachine.com/flow/leads/{leadId}/logs",
+    "path": [
+     "leadId"
+    ],
+    "query": [
+     "identityId",
+     "skip",
+     "limit"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "lagrowthmachine.get_me",
+   "name": "Get the authenticated member",
+   "description": "Returns the member (the person) behind the credentials used for the call: their member ID and email. This is the person, not the workspace: in a workspace shared by several members, each member gets their own answer. With a standard API key, the member is the owner of the workspace.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://apiv2.lagrowthmachine.com/flow/me",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "lagrowthmachine.get_public_campaigns",
+   "name": "Get public campaigns",
+   "description": "Lists the ready-made campaigns anyone can copy with _Duplicate Campaign_. The duplicated campaign has no audience and no sending identity yet: set them before launching it. Each item has an `origin`: * `catalog`: official LGM strategy templates (sequence architectures such as \"LinkedIn > Email - 3 Follow-ups\"). * `creators`: use-case templates shared by LGM or by other LGM users. They only appear ",
+   "input": {
+    "type": "object",
+    "properties": {
+     "type": {
+      "type": "string",
+      "description": "Which set of campaigns to return.",
+      "enum": [
+       "public",
+       "recommended",
+       "featured"
+      ]
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://apiv2.lagrowthmachine.com/flow/campaigns/public",
+    "path": [],
+    "query": [
+     "type"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "lagrowthmachine.list_audiences",
+   "name": "List audiences",
+   "description": "Returns all audiences of the authenticated workspace (deleted audiences excluded). No parameter needed. Each audience carries its `id`, `name`, `type`, `size` (number of leads) and import state.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://apiv2.lagrowthmachine.com/flow/audiences",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "lagrowthmachine.list_identities",
+   "name": "List identities",
+   "description": "Lists the identities (the LinkedIn and email accounts that send your campaigns) connected to the workspace. Use an identity `id` wherever an `identityId` is required, for example to create an audience from a LinkedIn URL or to send a message.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://apiv2.lagrowthmachine.com/flow/identities",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "lagrowthmachine.list_inbox_webhooks",
+   "name": "List inbox webhooks",
+   "description": "Lists the inbox webhooks configured in your workspace, with their IDs, names, target URLs and campaign filters.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://apiv2.lagrowthmachine.com/flow/inboxWebhooks",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "lagrowthmachine.list_members",
+   "name": "List members",
+   "description": "Lists the members (users) of the workspace. Use a member `id` as the `memberId` required by some endpoints, such as sending a LinkedIn message.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://apiv2.lagrowthmachine.com/flow/members",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "lagrowthmachine.list_workspaces",
+   "name": "List workspaces",
+   "description": "Lists the workspaces the authenticated person can act in: their own workspace and the sub-workspaces (clones) of the same account. Most accounts have a single workspace, in which case `multiWorkspace` is `false` and nothing else is needed. ### Acting in another workspace By default every call acts in the workspace of your API key. On a multi-workspace account, add the header `X-LGM-Workspace: ` (a",
+   "input": {
+    "type": "object",
+    "properties": {
+     "X-LGM-Workspace": {
+      "type": "string",
+      "description": "ID of the workspace to act in (see above). Accepted by every endpoint of the API."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://apiv2.lagrowthmachine.com/flow/workspaces",
+    "path": [],
+    "query": [],
+    "header": [
+     "X-LGM-Workspace"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "lagrowthmachine.post_website_visitor_webhook",
+   "name": "Website visitor native webhook",
+   "description": "Native webhook for website visitor identification tools (RB2B, Warmly, Vector). Copy this URL into the tool's dashboard (for RB2B: Integration > La Growth Machine): ``` https://apiv2.lagrowthmachine.com/flow/leads/visitors/{provider}/{audience}?apikey=YOUR_API_KEY ``` Each visitor identified by the tool is created (or updated) as a lead and added to the audience. **Make sure to replace YOUR_API_KE",
+   "input": {
+    "type": "object",
+    "properties": {
+     "provider": {
+      "type": "string",
+      "description": "The visitor identification tool.",
+      "enum": [
+       "rb2b",
+       "warmly",
+       "vector"
+      ]
+     },
+     "audienceId": {
+      "type": "string",
+      "description": "Name of the audience (matched first) or its ID. Created with this name if it does not exist. URL-encode spaces."
+     },
+     "LinkedIn URL": {
+      "type": "string",
+      "description": "RB2B, Warmly."
+     },
+     "First Name": {
+      "type": "string",
+      "description": "RB2B, Warmly."
+     },
+     "Last Name": {
+      "type": "string",
+      "description": "RB2B, Warmly."
+     },
+     "Title": {
+      "type": "string",
+      "description": "RB2B, Warmly."
+     },
+     "Company Name": {
+      "type": "string",
+      "description": "RB2B, Warmly."
+     },
+     "Business Email": {
+      "type": "string",
+      "description": "RB2B, Warmly."
+     },
+     "Website": {
+      "type": "string",
+      "description": "RB2B, Warmly."
+     },
+     "Industry": {
+      "type": "string",
+      "description": "RB2B, Warmly."
+     },
+     "Employee Count": {
+      "type": [
+       "string",
+       "integer"
+      ],
+      "description": "RB2B, Warmly."
+     },
+     "Estimate Revenue": {
+      "type": "string",
+      "description": "RB2B, Warmly."
+     },
+     "City": {
+      "type": "string",
+      "description": "RB2B, Warmly."
+     },
+     "State": {
+      "type": "string",
+      "description": "RB2B, Warmly."
+     },
+     "Zipcode": {
+      "type": "string",
+      "description": "RB2B."
+     },
+     "Country": {
+      "type": "string",
+      "description": "Warmly."
+     },
+     "Seen At": {
+      "type": "string",
+      "description": "RB2B, Warmly."
+     },
+     "Referrer": {
+      "type": "string",
+      "description": "RB2B, Warmly."
+     },
+     "Captured URL": {
+      "type": "string",
+      "description": "RB2B."
+     },
+     "Tags": {
+      "type": "string",
+      "description": "RB2B."
+     },
+     "Session Identification Confidence": {
+      "type": "string",
+      "description": "Warmly."
+     },
+     "Pages Viewed": {
+      "type": [
+       "string",
+       "integer"
+      ],
+      "description": "Warmly."
+     },
+     "contact": {
+      "type": "object",
+      "description": "Vector."
+     },
+     "segment": {
+      "type": "object",
+      "description": "Vector."
+     }
+    },
+    "required": [
+     "audienceId",
+     "provider"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://apiv2.lagrowthmachine.com/flow/leads/visitors/{provider}/{audienceId}",
+    "path": [
+     "provider",
+     "audienceId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "LinkedIn URL",
+     "First Name",
+     "Last Name",
+     "Title",
+     "Company Name",
+     "Business Email",
+     "Website",
+     "Industry",
+     "Employee Count",
+     "Estimate Revenue",
+     "City",
+     "State",
+     "Zipcode",
+     "Country",
+     "Seen At",
+     "Referrer",
+     "Captured URL",
+     "Tags",
+     "Session Identification Confidence",
+     "Pages Viewed",
+     "contact",
+     "segment"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "lagrowthmachine.remove_lead_from_audiences",
+   "name": "Remove lead from audiences",
+   "description": "Removes a lead from one or more audiences. ### Body - `audience` (**required**) \u2014 `\"all\"`, an audience name or ID, or an array of names or IDs. - At least one lead identifier: `crm_id`, `proEmail`, `persoEmail`, `linkedinUrl`, `twitter`, or `firstname` + `lastname` + (`companyName` or `companyUrl`). `leadId` is not accepted here. If the lead is not present in the audience, the operation is silentl",
+   "input": {
+    "type": "object",
+    "properties": {
+     "audience": {
+      "type": "string",
+      "description": "`all`, an audience name or ID, or an array of them."
+     },
+     "crm_id": {
+      "type": "string",
+      "description": ""
+     },
+     "firstname": {
+      "type": "string",
+      "description": ""
+     },
+     "lastname": {
+      "type": "string",
+      "description": ""
+     },
+     "persoEmail": {
+      "type": "string",
+      "description": ""
+     },
+     "proEmail": {
+      "type": "string",
+      "description": ""
+     },
+     "linkedinUrl": {
+      "type": "string",
+      "description": ""
+     },
+     "twitter": {
+      "type": "string",
+      "description": ""
+     },
+     "companyName": {
+      "type": "string",
+      "description": ""
+     },
+     "companyUrl": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "audience"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://apiv2.lagrowthmachine.com/flow/leads/removefromaudience",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "audience",
+     "crm_id",
+     "firstname",
+     "lastname",
+     "persoEmail",
+     "proEmail",
+     "linkedinUrl",
+     "twitter",
+     "companyName",
+     "companyUrl"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "lagrowthmachine.save_identity_preference",
+   "name": "Save an identity preference",
+   "description": "Creates or updates a preference of an identity. A preference is identified by its `category`, `key` and `channel`: saving the same triple again replaces its value. An identity holds at most 50 preferences. The response does not return the preference ID; list the preferences to get it.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "identityId": {
+      "type": "string",
+      "description": "ID of the identity (24-character hex string)."
+     },
+     "category": {
+      "type": "string",
+      "description": "Preference category, for example `tone`, `language` or `style`."
+     },
+     "value": {
+      "type": "string",
+      "description": "Preference value."
+     },
+     "channel": {
+      "type": "string",
+      "description": "Optional channel scope, for example `linkedin` or `email`. Omit it for a preference that applies to every channel."
+     }
+    },
+    "required": [
+     "category",
+     "identityId",
+     "value"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://apiv2.lagrowthmachine.com/flow/identities/{identityId}/preferences",
+    "path": [
+     "identityId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "category",
+     "value",
+     "channel"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "lagrowthmachine.search_conversations",
+   "name": "Search conversations",
+   "description": "Searches and filters the inbox conversations of your workspace: free text, lead, identity, campaign, audience, channel, direction of the last message, dates and flags. Filters combine with AND. Returns conversation IDs and metadata only, no lead names or message text: get the messages with *Get conversation messages*. ### Pagination Results are sorted by `lastMessageAt`, newest first, by default. ",
+   "input": {
+    "type": "object",
+    "properties": {
+     "q": {
+      "type": "string",
+      "description": "Full-text search on leads (name, company...). Only conversations of the matching leads are returned."
+     },
+     "identityIds": {
+      "type": "array",
+      "description": "Identity IDs, comma-separated."
+     },
+     "leadIds": {
+      "type": "array",
+      "description": "Lead IDs, comma-separated."
+     },
+     "audienceIds": {
+      "type": "array",
+      "description": "Audience IDs, comma-separated."
+     },
+     "campaignIds": {
+      "type": "array",
+      "description": "Campaign IDs, comma-separated. A campaign filters on its audience and its identity; ignored for each of these when `audienceIds` or `identityIds` is also set."
+     },
+     "status": {
+      "type": "array",
+      "description": "Conversation status, comma-separated."
+     },
+     "lastMessageStatus": {
+      "type": "array",
+      "description": "Status of the last message, comma-separated. `RECEIVED` = the lead spoke last, `SENT` = you spoke last."
+     },
+     "lastMessageType": {
+      "type": "array",
+      "description": "Channel of the last message, comma-separated. `EMAIL` and `LINKEDIN` are the useful values."
+     },
+     "lastMessageAtFrom": {
+      "type": "integer",
+      "description": "Last message at or after this date (Unix timestamp in milliseconds)."
+     },
+     "lastMessageAtTo": {
+      "type": "integer",
+      "description": "Last message at or before this date (Unix timestamp in milliseconds)."
+     },
+     "callCompletedAtFrom": {
+      "type": "integer",
+      "description": "Call task completed at or after this date (Unix timestamp in milliseconds)."
+     },
+     "callCompletedAtTo": {
+      "type": "integer",
+      "description": "Call task completed at or before this date (Unix timestamp in milliseconds)."
+     },
+     "leadReplied": {
+      "type": "boolean",
+      "description": "Only conversations where the lead has replied (`true`) or not (`false`)."
+     },
+     "unsubscribed": {
+      "type": "boolean",
+      "description": "Filter on unsubscribed leads."
+     },
+     "favourite": {
+      "type": "boolean",
+      "description": "`true`: only the conversations starred by the member. `false` has no effect."
+     },
+     "read": {
+      "type": "boolean",
+      "description": "`false`: unread conversations only; `true`: read ones only."
+     },
+     "perseverance": {
+      "type": "string",
+      "description": "Reply manager follow-up filter. `PERSEVERED` = conversations already followed up; `TO_PERSEVERE` = open or curious replies still to follow up.",
+      "enum": [
+       "PERSEVERED",
+       "TO_PERSEVERE"
+      ]
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Page size."
+     },
+     "searchAfter": {
+      "type": "string",
+      "description": "Pagination cursor, the `nextToken` of the previous page. Not a conversation ID."
+     },
+     "sortField": {
+      "type": "string",
+      "description": "Sort field.",
+      "enum": [
+       "lastMessageAt",
+       "callCompletedAt",
+       "snoozeUntil"
+      ]
+     },
+     "sortDirection": {
+      "type": "integer",
+      "description": "`-1` descending (newest first), `1` ascending.",
+      "enum": [
+       1,
+       -1
+      ]
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://apiv2.lagrowthmachine.com/flow/conversations/search",
+    "path": [],
+    "query": [
+     "q",
+     "identityIds",
+     "leadIds",
+     "audienceIds",
+     "campaignIds",
+     "status",
+     "lastMessageStatus",
+     "lastMessageType",
+     "lastMessageAtFrom",
+     "lastMessageAtTo",
+     "callCompletedAtFrom",
+     "callCompletedAtTo",
+     "leadReplied",
+     "unsubscribed",
+     "favourite",
+     "read",
+     "perseverance",
+     "limit",
+     "searchAfter",
+     "sortField",
+     "sortDirection"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "lagrowthmachine.search_crm",
+   "name": "Search crm",
+   "description": "Looks up a contact in the CRM connected to the workspace (HubSpot or Pipedrive). ### Body \u2014 at least one of the following is required - `email` | `proEmail` | `persoEmail` (email) - OR `firstname` (+ `lastname` to narrow down) - OR `hubspotId` / `pipedriveId` (direct lookup by CRM contact id) ### Additional optional fields - `lastname`, `companyName` (string, max 255) - `linkedinUrl` (string, max ",
+   "input": {
+    "type": "object",
+    "properties": {
+     "email": {
+      "type": "string",
+      "description": ""
+     },
+     "proEmail": {
+      "type": "string",
+      "description": ""
+     },
+     "persoEmail": {
+      "type": "string",
+      "description": ""
+     },
+     "firstname": {
+      "type": "string",
+      "description": ""
+     },
+     "lastname": {
+      "type": "string",
+      "description": ""
+     },
+     "companyName": {
+      "type": "string",
+      "description": ""
+     },
+     "linkedinUrl": {
+      "type": "string",
+      "description": ""
+     },
+     "linkedinLongPublicId": {
+      "type": "string",
+      "description": ""
+     },
+     "hubspotId": {
+      "type": "string",
+      "description": ""
+     },
+     "pipedriveId": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://apiv2.lagrowthmachine.com/flow/crm/search",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "email",
+     "proEmail",
+     "persoEmail",
+     "firstname",
+     "lastname",
+     "companyName",
+     "linkedinUrl",
+     "linkedinLongPublicId",
+     "hubspotId",
+     "pipedriveId"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "lagrowthmachine.search_lead",
+   "name": "Search lead",
+   "description": "Searches for a lead in the authenticated workspace and returns the first match, with the campaigns it is involved in and its most recent activity. ### Query params \u2014 at least one criterion required - `leadId` \u2014 direct lookup by id - `crmId` \u2014 direct lookup by external CRM id - `linkedinUrl` / `linkedinId` / `linkedinPublicId` / `linkedinLongPublicId` \u2014 LinkedIn lookup - `email` \u2014 lookup by email (",
+   "input": {
+    "type": "object",
+    "properties": {
+     "leadId": {
+      "type": "string",
+      "description": "Lead id (24 chars)."
+     },
+     "crmId": {
+      "type": "string",
+      "description": "Contact id in the connected CRM."
+     },
+     "firstname": {
+      "type": "string",
+      "description": "Lead firstname (with `lastname` and `companyName` or `companyUrl`)."
+     },
+     "lastname": {
+      "type": "string",
+      "description": "Lead lastname."
+     },
+     "companyName": {
+      "type": "string",
+      "description": "Lead company name."
+     },
+     "companyUrl": {
+      "type": "string",
+      "description": "Lead company URL."
+     },
+     "linkedinUrl": {
+      "type": "string",
+      "description": "Lead LinkedIn profile URL (with or without trailing slash)."
+     },
+     "linkedinId": {
+      "type": "string",
+      "description": "Lead LinkedIn numeric id."
+     },
+     "linkedinPublicId": {
+      "type": "string",
+      "description": "Lead LinkedIn public id (slug)."
+     },
+     "linkedinLongPublicId": {
+      "type": "string",
+      "description": "Lead LinkedIn long public id."
+     },
+     "email": {
+      "type": "string",
+      "description": "Lead email (pro or perso)."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://apiv2.lagrowthmachine.com/flow/leads/search",
+    "path": [],
+    "query": [
+     "leadId",
+     "crmId",
+     "firstname",
+     "lastname",
+     "companyName",
+     "companyUrl",
+     "linkedinUrl",
+     "linkedinId",
+     "linkedinPublicId",
+     "linkedinLongPublicId",
+     "email"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "lagrowthmachine.send_alinkedin_message_to_alead",
+   "name": "Send a linkedin message to a lead",
+   "description": "Sends a **LinkedIn text or voice message** to a lead from one of your connected LinkedIn identities. You must provide either a `leadId` or a `linkedinUrl`, along with the `identityId` and the `memberId` performing the action. ### Important rules * You **must** provide at least one of: `leadId` **or** `linkedinUrl`. * You **must** provide at least one of: `message` **or** `audioUrl`. When `audioUrl",
+   "input": {
+    "type": "object",
+    "properties": {
+     "identityId": {
+      "type": "string",
+      "description": "ID of the LinkedIn identity that sends the message."
+     },
+     "memberId": {
+      "type": "string",
+      "description": "ID of the member performing the action, used for attribution and permissions."
+     },
+     "leadId": {
+      "type": "string",
+      "description": "ID of the lead to message. Required if `linkedinUrl` is not provided."
+     },
+     "linkedinUrl": {
+      "type": "string",
+      "description": "LinkedIn profile URL of an existing lead. Required if `leadId` is not provided."
+     },
+     "message": {
+      "type": "string",
+      "description": "Text message to send. Required if `audioUrl` is not provided."
+     },
+     "audioUrl": {
+      "type": "string",
+      "description": "Public URL of a hosted voice message (MP3). Required if `message` is not provided. When set, a voice message is sent."
+     },
+     "attachments": {
+      "type": "array",
+      "description": "Public URLs of files to attach to the message."
+     },
+     "source": {
+      "type": "string",
+      "description": "Optional source identifier, used to tag the call in your API logs. Any other value is rejected.",
+      "enum": [
+       "api",
+       "make",
+       "n8n",
+       "zapier"
+      ]
+     }
+    },
+    "required": [
+     "identityId",
+     "memberId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://apiv2.lagrowthmachine.com/flow/inbox/linkedin",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "identityId",
+     "memberId",
+     "leadId",
+     "linkedinUrl",
+     "message",
+     "audioUrl",
+     "attachments",
+     "source"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "lagrowthmachine.send_an_email_message_to_alead",
+   "name": "Send an email message to a lead",
+   "description": "Sends an email to a lead from one of your connected email identities, **as a reply in an existing email thread**. ### Important rules * You must provide at least one of `leadId` or `leadEmail`. * You must provide `replyInLastThread: true` or a `replyToMessageId`: * `replyInLastThread: true` replies in the most recent email thread of the conversation. The subject is set to `Re: `, whatever `subject",
+   "input": {
+    "type": "object",
+    "properties": {
+     "message": {
+      "type": "object",
+      "description": ""
+     },
+     "identityId": {
+      "type": "string",
+      "description": "ID of the email identity that sends the message."
+     },
+     "leadId": {
+      "type": "string",
+      "description": "ID of the target lead. Required if `leadEmail` is not provided."
+     },
+     "leadEmail": {
+      "type": "string",
+      "description": "Email address of an existing lead. Required if `leadId` is not provided."
+     },
+     "replyInLastThread": {
+      "type": "boolean",
+      "description": "Reply in the most recent email thread of the conversation."
+     },
+     "replyToMessageId": {
+      "type": "string",
+      "description": "ID of the message to reply to."
+     },
+     "subject": {
+      "type": "string",
+      "description": "Email subject. Ignored when `replyInLastThread` finds a thread (the subject becomes `Re:` + the thread subject)."
+     },
+     "cc": {
+      "type": "string",
+      "description": "Comma-separated list of CC recipients."
+     },
+     "bcc": {
+      "type": "string",
+      "description": "Comma-separated list of BCC recipients."
+     },
+     "source": {
+      "type": "string",
+      "description": "Optional source identifier, used to tag the call in your API logs.",
+      "enum": [
+       "api",
+       "make",
+       "n8n",
+       "zapier"
+      ]
+     }
+    },
+    "required": [
+     "identityId",
+     "message"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://apiv2.lagrowthmachine.com/flow/inbox/email",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "message",
+     "identityId",
+     "leadId",
+     "leadEmail",
+     "replyInLastThread",
+     "replyToMessageId",
+     "subject",
+     "cc",
+     "bcc",
+     "source"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "lagrowthmachine.share_campaign_by_code",
+   "name": "Share a campaign by code",
+   "description": "Generates an access code for one of your campaigns. Anyone with an LGM account and the code can preview the campaign (`GET /campaigns/accessible/{code}`) and copy it into their own workspace (`POST /campaigns/duplicate/accessible/{code}`). The preview exposes the sequence and its messages only; leads and stats are never shared. The code is made of 24 random hex characters, a `-`, then a compact fo",
+   "input": {
+    "type": "object",
+    "properties": {
+     "campaignId": {
+      "type": "string",
+      "description": "ID of the campaign to share (24-character hex string)."
+     }
+    },
+    "required": [
+     "campaignId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://apiv2.lagrowthmachine.com/flow/campaigns/{campaignId}/share-by-code",
+    "path": [
+     "campaignId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "lagrowthmachine.snooze_conversation",
+   "name": "Snooze conversation",
+   "description": "Snoozes a conversation until `snoozeUntil`: it leaves the active inbox and comes back at that date. Reversible with *Unsnooze conversation*. Provide `conversationId`, or identify the lead with `leadId`, `email` or `linkedinUrl`. When the lead has several conversations (one per identity), narrow it down with `identityId`, `campaignId` or `campaignName`. A conversation that is already snoozed cannot",
+   "input": {
+    "type": "object",
+    "properties": {
+     "conversationId": {
+      "type": "string",
+      "description": "ID of the conversation (from *Search conversations*)."
+     },
+     "leadId": {
+      "type": "string",
+      "description": "ID of the lead, alternative to `conversationId`."
+     },
+     "email": {
+      "type": "string",
+      "description": "Email of the lead, alternative to `conversationId`."
+     },
+     "linkedinUrl": {
+      "type": "string",
+      "description": "LinkedIn profile URL of the lead (must contain `linkedin.com`), alternative to `conversationId`."
+     },
+     "identityId": {
+      "type": "string",
+      "description": "When the lead is identified without `conversationId`, picks the conversation with this identity."
+     },
+     "campaignId": {
+      "type": "string",
+      "description": "When the lead is identified without `conversationId`, picks the conversation with this campaign's identity."
+     },
+     "campaignName": {
+      "type": "string",
+      "description": "Same as `campaignId`, by campaign name."
+     },
+     "snoozeUntil": {
+      "type": "string",
+      "description": "ISO 8601 date, in the future, until which the conversation stays snoozed."
+     }
+    },
+    "required": [
+     "snoozeUntil"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://apiv2.lagrowthmachine.com/flow/inbox/conversations/snooze",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "conversationId",
+     "leadId",
+     "email",
+     "linkedinUrl",
+     "identityId",
+     "campaignId",
+     "campaignName",
+     "snoozeUntil"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "lagrowthmachine.stop_sharing_campaign_by_code",
+   "name": "Stop sharing a campaign by code",
+   "description": "Revokes the access code of a campaign. The code stops working immediately; copies already made by other accounts are not affected. Idempotent: calling it on a campaign that is not shared returns the same response. This endpoint takes no request body.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "campaignId": {
+      "type": "string",
+      "description": "ID of the campaign (24-character hex string)."
+     }
+    },
+    "required": [
+     "campaignId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://apiv2.lagrowthmachine.com/flow/campaigns/{campaignId}/stop-sharing-by-code",
+    "path": [
+     "campaignId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "lagrowthmachine.unarchive_conversation",
+   "name": "Unarchive conversation",
+   "description": "Moves an archived conversation back to the active inbox. Provide `conversationId`, or identify the lead with `leadId`, `email` or `linkedinUrl`. When the lead has several conversations (one per identity), narrow it down with `identityId`, `campaignId` or `campaignName`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "conversationId": {
+      "type": "string",
+      "description": "ID of the conversation (from *Search conversations*)."
+     },
+     "leadId": {
+      "type": "string",
+      "description": "ID of the lead, alternative to `conversationId`."
+     },
+     "email": {
+      "type": "string",
+      "description": "Email of the lead, alternative to `conversationId`."
+     },
+     "linkedinUrl": {
+      "type": "string",
+      "description": "LinkedIn profile URL of the lead (must contain `linkedin.com`), alternative to `conversationId`."
+     },
+     "identityId": {
+      "type": "string",
+      "description": "When the lead is identified without `conversationId`, picks the conversation with this identity."
+     },
+     "campaignId": {
+      "type": "string",
+      "description": "When the lead is identified without `conversationId`, picks the conversation with this campaign's identity."
+     },
+     "campaignName": {
+      "type": "string",
+      "description": "Same as `campaignId`, by campaign name."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://apiv2.lagrowthmachine.com/flow/inbox/conversations/unarchive",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "conversationId",
+     "leadId",
+     "email",
+     "linkedinUrl",
+     "identityId",
+     "campaignId",
+     "campaignName"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "lagrowthmachine.unsnooze_conversation",
+   "name": "Unsnooze conversation",
+   "description": "Brings a snoozed conversation back to the active inbox right away. Provide `conversationId`, or identify the lead with `leadId`, `email` or `linkedinUrl`. When the lead has several conversations (one per identity), narrow it down with `identityId`, `campaignId` or `campaignName`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "conversationId": {
+      "type": "string",
+      "description": "ID of the conversation (from *Search conversations*)."
+     },
+     "leadId": {
+      "type": "string",
+      "description": "ID of the lead, alternative to `conversationId`."
+     },
+     "email": {
+      "type": "string",
+      "description": "Email of the lead, alternative to `conversationId`."
+     },
+     "linkedinUrl": {
+      "type": "string",
+      "description": "LinkedIn profile URL of the lead (must contain `linkedin.com`), alternative to `conversationId`."
+     },
+     "identityId": {
+      "type": "string",
+      "description": "When the lead is identified without `conversationId`, picks the conversation with this identity."
+     },
+     "campaignId": {
+      "type": "string",
+      "description": "When the lead is identified without `conversationId`, picks the conversation with this campaign's identity."
+     },
+     "campaignName": {
+      "type": "string",
+      "description": "Same as `campaignId`, by campaign name."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://apiv2.lagrowthmachine.com/flow/inbox/conversations/unsnooze",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "conversationId",
+     "leadId",
+     "email",
+     "linkedinUrl",
+     "identityId",
+     "campaignId",
+     "campaignName"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "lagrowthmachine.update_campaign",
+   "name": "Update campaign",
+   "description": "Use this endpoint to update the settings of one campaign. Send only the settings you want to change. At least one of `name`, `audienceId`, `enrich`, `autoRescheduleOutOfOffice`, `hubspot`, `pipedrive`, `skipAlreadyContacted`, `ignoreEmojiOnlyReply` is required. The other settings of the campaign are left unchanged. Any other field is rejected with a `400` error. Some settings depend on the campaig",
+   "input": {
+    "type": "object",
+    "properties": {
+     "campaignId": {
+      "type": "string",
+      "description": "Campaign ID (24-character hex string)."
+     },
+     "name": {
+      "type": "string",
+      "description": "New campaign name, unique in your workspace."
+     },
+     "audienceId": {
+      "type": "string",
+      "description": "Audience to attach (campaign `READY` only)."
+     },
+     "enrich": {
+      "type": "boolean",
+      "description": "Auto-enrichment of the campaign leads."
+     },
+     "autoRescheduleOutOfOffice": {
+      "type": "boolean",
+      "description": "Reschedule actions when a lead is detected out of office."
+     },
+     "hubspot": {
+      "type": "boolean",
+      "description": "Sync the campaign with HubSpot."
+     },
+     "pipedrive": {
+      "type": "boolean",
+      "description": "Sync the campaign with Pipedrive."
+     },
+     "skipAlreadyContacted": {
+      "type": "boolean",
+      "description": "Skip leads you have already contacted in another campaign."
+     },
+     "ignoreEmojiOnlyReply": {
+      "type": "boolean",
+      "description": "A reply made only of emojis (e.g. \ud83d\udc4d) does not stop the sequence."
+     }
+    },
+    "required": [
+     "campaignId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://apiv2.lagrowthmachine.com/flow/campaigns/{campaignId}/settings",
+    "path": [
+     "campaignId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "audienceId",
+     "enrich",
+     "autoRescheduleOutOfOffice",
+     "hubspot",
+     "pipedrive",
+     "skipAlreadyContacted",
+     "ignoreEmojiOnlyReply"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "lagrowthmachine.update_campaign_status",
+   "name": "Update campaign status",
+   "description": "Use this endpoint to pause or resume one campaign. Send the target `status`: * `PAUSED`: pauses the campaign. Only a `RUNNING` campaign can be paused. Scheduled actions of the campaign leads are put on hold. * `RUNNING`: resumes the campaign. Only a `PAUSED` campaign can be resumed. Actions of the campaign leads are scheduled again. The same plan rules as in the app apply (running campaigns limit,",
+   "input": {
+    "type": "object",
+    "properties": {
+     "campaignId": {
+      "type": "string",
+      "description": "Campaign ID (24-character hex string)."
+     },
+     "status": {
+      "type": "string",
+      "description": "Target status.",
+      "enum": [
+       "PAUSED",
+       "RUNNING"
+      ]
+     }
+    },
+    "required": [
+     "campaignId",
+     "status"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://apiv2.lagrowthmachine.com/flow/campaigns/{campaignId}/status",
+    "path": [
+     "campaignId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "status"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "lagrowthmachine.update_lead_status",
+   "name": "Update lead status",
+   "description": "Use this endpoint for updating lead status in campaign. You need to specify at least one Lead field (persoEmail, proEmail, linkedinUrl, twitter, crm_id) or firstname + lastname + (companyUrl or companyName), or you can specify its ID in the body with the param `leadId`. ### Campaigns `campaign` is a campaign name or ID, an array of them, or `\"all\"` for every non-stopped campaign whose audience con",
+   "input": {
+    "type": "object",
+    "properties": {
+     "campaign": {
+      "type": "string",
+      "description": "Campaign name or ID, array of them, or `all`."
+     },
+     "status": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "RESUME",
+       "PAUSED",
+       "STOPPED",
+       "CONVERTED",
+       "SUBSCRIBED",
+       "COMPLETED_NO_REPLY",
+       "REPLIED",
+       "CANNOT_CONTACT",
+       "NOT_ACTIVATED",
+       "SKIPPED",
+       "ACTIVATED",
+       "ENRICHED"
+      ]
+     },
+     "leadId": {
+      "type": "string",
+      "description": ""
+     },
+     "crm_id": {
+      "type": "string",
+      "description": ""
+     },
+     "firstname": {
+      "type": "string",
+      "description": ""
+     },
+     "lastname": {
+      "type": "string",
+      "description": ""
+     },
+     "persoEmail": {
+      "type": "string",
+      "description": ""
+     },
+     "proEmail": {
+      "type": "string",
+      "description": ""
+     },
+     "linkedinUrl": {
+      "type": "string",
+      "description": ""
+     },
+     "twitter": {
+      "type": "string",
+      "description": ""
+     },
+     "companyName": {
+      "type": "string",
+      "description": ""
+     },
+     "companyUrl": {
+      "type": "string",
+      "description": ""
+     },
+     "memberEmail": {
+      "type": "string",
+      "description": "Member on whose behalf a `SUBSCRIBED` change is made."
+     },
+     "from": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "lead",
+       "member"
+      ]
+     }
+    },
+    "required": [
+     "campaign",
+     "status"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://apiv2.lagrowthmachine.com/flow/leads/status",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "campaign",
+     "status",
+     "leadId",
+     "crm_id",
+     "firstname",
+     "lastname",
+     "persoEmail",
+     "proEmail",
+     "linkedinUrl",
+     "twitter",
+     "companyName",
+     "companyUrl",
+     "memberEmail",
+     "from"
+    ],
+    "body_format": "json"
+   }
+  }
+ ]
+}

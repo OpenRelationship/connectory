@@ -1,0 +1,184 @@
+{
+ "_": "GENERATED \u2014 what an authoring tool needs to FIND an operation. The calling table is the .lua beside it.",
+ "provider": "blandai",
+ "source": "https://bland.ai/openapi.json",
+ "operations": [
+  {
+   "slug": "blandai.get_blog_post_markdown",
+   "name": "Get one blog post as markdown",
+   "description": "Returns the full body of a published blog post rendered as plain markdown, with a title heading, byline and excerpt blockquote. Intended for AI crawlers and retrieval pipelines that want the text without HTML. Success responses are `text/markdown`, not JSON; errors are JSON. No authentication and no rate limit; cached for one hour.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "slug": {
+      "type": "string",
+      "description": "Post slug, as returned in `posts[].slug.current` by listBlogPosts."
+     }
+    },
+    "required": [
+     "slug"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.bland.ai/api/blog/{slug}/markdown",
+    "path": [
+     "slug"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "blandai.get_call_stats",
+   "name": "Get modeled calls resolved counter",
+   "description": "Returns the modeled calls-resolved estimate used by the marketing homepage as two anchors five minutes apart. This is a mathematical model, not a live platform or warehouse query, so a caller can derive the apparent rate without the endpoint exposing a derivative. Values are bucketed to 5-minute boundaries and are identical across regions for the same bucket. No authentication and no rate limit; e",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.bland.ai/api/stats/calls",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "blandai.list_blog_posts",
+   "name": "List published blog posts",
+   "description": "Returns a page of published editorial blog posts ordered newest first, with the total count and a `hasMore` cursor flag. Body content is excluded. Call getBlogPostMarkdown with a slug from `posts[].slug.current` to read a post. No authentication and no rate limit. Responses are cached for one hour and invalidated when content is published.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "page": {
+      "type": "integer",
+      "description": "1-based page number. Values below 1 are clamped to 1."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Posts per page. Clamped to the range 1-100."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.bland.ai/api/blog",
+    "path": [],
+    "query": [
+     "page",
+     "limit"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "blandai.submit_contact_form",
+   "name": "Submit the contact form",
+   "description": "Submits a general contact enquiry. The submission is forwarded to HubSpot; a HubSpot outage is logged server-side and still returns 200, so a success response means \"accepted\", not \"delivered to CRM\". No authentication. Cloudflare Turnstile is enforced only when the site is configured with a Turnstile secret. There is no per-IP rate limit on this endpoint. Use submitLead for programmatic lead capt",
+   "input": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": "string",
+      "description": "Full name of the person getting in touch."
+     },
+     "email": {
+      "type": "string",
+      "description": "Reply-to email address."
+     },
+     "company": {
+      "type": "string",
+      "description": "Optional company name. Forwarded to HubSpot as an empty string when omitted."
+     },
+     "message": {
+      "type": "string",
+      "description": "Free-text message."
+     },
+     "turnstileToken": {
+      "type": "string",
+      "description": "Cloudflare Turnstile token. Only enforced when the site is configured with a Turnstile secret; a missing token then yields TURNSTILE_MISSING (400) and an invalid one TURNSTILE_INVALID (403)."
+     }
+    },
+    "required": [
+     "email",
+     "message",
+     "name"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.bland.ai/api/contact",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "email",
+     "company",
+     "message",
+     "turnstileToken"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "blandai.submit_lead",
+   "name": "Submit a lead to a named form",
+   "description": "Universal lead capture. The `formSlug` selects a form definition in the CMS, which determines the accepted fields, their validation rules, the post-submit behaviour and the downstream destinations. The submission is stored synchronously; HubSpot and other destinations are pushed after the response is sent, so a 200 means \"stored\", not \"synced\". No authentication. Rate limited per IP per form to th",
+   "input": {
+    "type": "object",
+    "properties": {
+     "formSlug": {
+      "type": "string",
+      "description": "Slug of the form definition in the CMS. Determines validation and routing."
+     },
+     "values": {
+      "type": "object",
+      "description": "Field values keyed by the field names defined on the form in the CMS. Validation (required, email/phone/URL format, allowed options, max length, domain policy) is driven entirely by that form definition, so the accepted keys vary per `formSlug`."
+     },
+     "turnstileToken": {
+      "type": "string",
+      "description": "Cloudflare Turnstile token. Required by default per form (`requireTurnstile`). A missing token or an unreachable Cloudflare fails OPEN; a supplied token that Cloudflare explicitly rejects fails CLOSED with 403 TURNSTILE_INVALID."
+     },
+     "attribution": {
+      "type": "object",
+      "description": "First-touch / last-touch attribution plus page context. Every field is optional."
+     },
+     "event_id": {
+      "type": "string",
+      "description": "Client-minted UUID v4 conversion id. Replaying the same valid UUID v4 `event_id` returns the original success envelope without re-firing HubSpot, downstream destinations, or ad conversions. Omitted or invalid IDs disable idempotency for compatibility with older clients; automatic retries can then create duplicate leads. Use crypto.randomUUID() and retain the same ID for retries."
+     }
+    },
+    "required": [
+     "formSlug",
+     "values"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.bland.ai/api/leads",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "formSlug",
+     "values",
+     "turnstileToken",
+     "attribution",
+     "event_id"
+    ],
+    "body_format": "json"
+   }
+  }
+ ]
+}

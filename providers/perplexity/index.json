@@ -280,7 +280,7 @@
      },
      "model": {
       "type": "string",
-      "description": "Model ID in provider/model format (e.g., \"openai/gpt-5\", \"anthropic/claude-sonnet-4-6\"). If models is also provided, models takes precedence. Required if neither models nor preset is provided."
+      "description": "Model ID in provider/model format (e.g., \"openai/gpt-5.6-terra\", \"anthropic/claude-sonnet-5-5\"). If models is also provided, models takes precedence. Required if neither models nor preset is provided."
      },
      "models": {
       "type": "array",
@@ -317,6 +317,10 @@
      "tools": {
       "type": "array",
       "description": "Tools available to the model"
+     },
+     "tool_choice": {
+      "type": "string",
+      "description": "Tool choice strategy. Use `{\"type\":\"image_search\"}` to force image search."
      },
      "skills": {
       "type": "array",
@@ -358,6 +362,7 @@
      "store",
      "stream",
      "tools",
+     "tool_choice",
      "skills",
      "temperature",
      "top_p"
@@ -414,6 +419,46 @@
     "query": [],
     "header": [],
     "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "perplexity.decisions_v1_decisions_post",
+   "name": "Answer questions",
+   "description": "Evaluate one or more named questions against the content in `state`. Mix `noul`, `choice`, and `score` questions in one request; the response returns one answer per question under the same name, plus the model name and token usage. Set `model` to `pplx-decider-v1.2` or `pplx-decider-flash-v1.2`, or to the alias `pplx-decider-latest` or `pplx-decider-flash-latest`; a missing or unknown model return",
+   "input": {
+    "type": "object",
+    "properties": {
+     "model": {
+      "type": "string",
+      "description": "The decision model: `pplx-decider-v1.2` (27B, $0.02 per million input tokens) or `pplx-decider-flash-v1.2` (4B, $0.01 per million input tokens). The aliases `pplx-decider-latest` and `perplexity/pplx-decider-latest` select `pplx-decider-v1.2`, and `pplx-decider-flash-latest` and `perplexity/pplx-decider-flash-latest` select `pplx-decider-flash-v1.2`; an alias can move to a newer model over time. `"
+     },
+     "state": {
+      "type": "string",
+      "description": "The content every question in the request refers to: a string, an object, or an array. Images can appear anywhere in `state` as OpenAI-style `image_url` parts with base64 PNG, JPEG, or WebP data URLs and are read in place. Up to 8 images per question."
+     },
+     "questions": {
+      "type": "object",
+      "description": "Questions keyed by a non-empty name you choose. The response uses the same names. 1 to 128 questions."
+     }
+    },
+    "required": [
+     "model",
+     "questions",
+     "state"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.perplexity.ai/v1/decisions",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "model",
+     "state",
+     "questions"
+    ],
     "body_format": "json"
    }
   },
@@ -951,15 +996,12 @@
      },
      "search_type": {
       "type": "string",
-      "description": "Search type - \"web\" for general web search, \"people\" for people search. max_results above 20 is only supported for people search.",
+      "description": "Search type - \"web\" for general web search, \"fast\" for lower-latency, lower-cost web search, \"people\" for people search. max_results above 20 is only supported for people search.",
       "enum": [
        "web",
+       "fast",
        "people"
       ]
-     },
-     "search_context_size": {
-      "type": "string",
-      "description": "Controls how much content is extracted from result pages. - `low` \u2014 short passages most relevant to the query. - `medium` \u2014 a balanced amount of content per document. - `high` (default) \u2014 detailed content relevant to the query. Omit when using `max_tokens` or `max_tokens_per_page`."
      },
      "max_tokens": {
       "type": "integer",
@@ -992,7 +1034,6 @@
      "country",
      "max_results",
      "search_type",
-     "search_context_size",
      "max_tokens",
      "max_tokens_per_page",
      "query",
