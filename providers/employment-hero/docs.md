@@ -104,6 +104,16 @@ Every linked entry also has a plain-text version, fetchable directly at the URL 
     - [Get Certifications](https://developer.employmenthero.com/api-references/certification/get-certifications/v1.md)
   - Update certification
     - [Update Certification](https://developer.employmenthero.com/api-references/certification/update-certification/v1.md)
+- Compliance Document Tag
+  - [Compliance Document Tag](https://developer.employmenthero.com/api-references/compliance-document-tag.md)
+  - Archive compliance document tag
+    - [Archive Compliance Document Tag](https://developer.employmenthero.com/api-references/compliance-document-tag/archive-compliance-document-tag/v1.md)
+  - Create compliance document tag
+    - [Create Compliance Document Tag](https://developer.employmenthero.com/api-references/compliance-document-tag/create-compliance-document-tag/v1.md)
+  - Get compliance document tags
+    - [List Compliance Document Tags](https://developer.employmenthero.com/api-references/compliance-document-tag/get-compliance-document-tags/v1.md)
+  - Update compliance document tag
+    - [Rename Compliance Document Tag](https://developer.employmenthero.com/api-references/compliance-document-tag/update-compliance-document-tag/v1.md)
 - Contractor Job History
   - [Contractor Job History](https://developer.employmenthero.com/api-references/contractor-job-history.md)
   - Get job histories
@@ -122,6 +132,10 @@ Every linked entry also has a plain-text version, fetchable directly at the URL 
     - [Create Department](https://developer.employmenthero.com/api-references/department/create-department/v1.md)
   - Update department
     - [Update Department](https://developer.employmenthero.com/api-references/department/update-department/v1.md)
+- Disciplinary Summary
+  - [Disciplinary Summary](https://developer.employmenthero.com/api-references/disciplinary-summary.md)
+  - Get disciplinary summary
+    - [Get Disciplinary Summary](https://developer.employmenthero.com/api-references/disciplinary-summary/get-disciplinary-summary/v1.md)
 - Document
   - [Document](https://developer.employmenthero.com/api-references/document.md)
   - Create document
@@ -130,8 +144,15 @@ Every linked entry also has a plain-text version, fetchable directly at the URL 
     - [Get Documents](https://developer.employmenthero.com/api-references/document/get-documents/v1.md)
 - Emergency Contact
   - [Emergency Contact](https://developer.employmenthero.com/api-references/emergency-contact.md)
+  - Create emergency contact
+    - [Create Emergency Contact](https://developer.employmenthero.com/api-references/emergency-contact/create-emergency-contact/v1.md)
+  - Delete emergency contact
+    - [Delete Emergency Contact](https://developer.employmenthero.com/api-references/emergency-contact/delete-emergency-contact/v1.md)
   - Get emergency contacts
     - [Get Emergency Contacts](https://developer.employmenthero.com/api-references/emergency-contact/get-emergency-contacts/v1.md)
+    - [Get Emergency Contacts](https://developer.employmenthero.com/api-references/emergency-contact/get-emergency-contacts/v2.md)
+  - Update emergency contact
+    - [Update Emergency Contact](https://developer.employmenthero.com/api-references/emergency-contact/update-emergency-contact/v1.md)
 - Employee
   - [Employee](https://developer.employmenthero.com/api-references/employee.md)
   - Delete employee
@@ -184,6 +205,14 @@ Every linked entry also has a plain-text version, fetchable directly at the URL 
     - [Get Employee Custom Fields](https://developer.employmenthero.com/api-references/employee-custom-field/get-employee-custom-fields/v1.md)
   - Update custom field
     - [Update Employee Custom Field](https://developer.employmenthero.com/api-references/employee-custom-field/update-custom-field/v1.md)
+- Employee Disciplinary
+  - [Employee Disciplinary](https://developer.employmenthero.com/api-references/employee-disciplinary.md)
+  - Get employee disciplinaries
+    - [Get Employee Disciplinaries](https://developer.employmenthero.com/api-references/employee-disciplinary/get-employee-disciplinaries/v1.md)
+- Employee Policy
+  - [Employee Policy](https://developer.employmenthero.com/api-references/employee-policy.md)
+  - Get employee policies
+    - [Get Employee Policies](https://developer.employmenthero.com/api-references/employee-policy/get-employee-policies/v1.md)
 - Employing Entity
   - [Employing Entity](https://developer.employmenthero.com/api-references/employing-entity.md)
   - Get employing entities
@@ -280,6 +309,22 @@ Every linked entry also has a plain-text version, fetchable directly at the URL 
     - [Update Key Result Health Status](https://developer.employmenthero.com/api-references/goal/update-goal-key-result-health-status/v1.md)
   - Upload goal files
     - [Upload Goal Files](https://developer.employmenthero.com/api-references/goal/upload-goal-files/v1.md)
+- Induction Content
+  - [Induction Content](https://developer.employmenthero.com/api-references/induction-content.md)
+  - Create induction content
+    - [Create Induction Content](https://developer.employmenthero.com/api-references/induction-content/create-induction-content/v1.md)
+  - Delete induction content
+    - [Delete Induction Content](https://developer.employmenthero.com/api-references/induction-content/delete-induction-content/v1.md)
+  - Get induction content
+    - [Get Induction Content](https://developer.employmenthero.com/api-references/induction-content/get-induction-content/v1.md)
+  - Get induction contents
+    - [List Induction Content](https://developer.employmenthero.com/api-references/induction-content/get-induction-contents/v1.md)
+  - Share induction content
+    - [Share Induction Content](https://developer.employmenthero.com/api-references/induction-content/share-induction-content/v1.md)
+  - Update induction content
+    - [Update Induction Content](https://developer.employmenthero.com/api-references/induction-content/update-induction-content/v1.md)
+  - Upload induction content file
+    - [Upload Induction Content File](https://developer.employmenthero.com/api-references/induction-content/upload-induction-content-file/v1.md)
 - Introduction
   - [Introduction](https://developer.employmenthero.com/api-references/introduction.md)
   - [API Versioning Policy](https://developer.employmenthero.com/api-references/introduction/api-versioning-policy.md)
@@ -294,8 +339,24 @@ Every linked entry also has a plain-text version, fetchable directly at the URL 
     - [Bulk Revoke Kiosk Access](https://developer.employmenthero.com/api-references/kiosk-member/bulk-revoke-access/v1.md)
   - Get kiosk members
     - [Get Kiosk Members](https://developer.employmenthero.com/api-references/kiosk-member/get-kiosk-members/v1.md)
+- Labour Rule
+  - [Labour Rule](https://developer.employmenthero.com/api-references/labour-rule.md)
+  - Create labour rule
+    - [Create Labour Rule](https://developer.employmenthero.com/api-references/labour-rule/create-labour-rule/v1.md)
+  - Delete labour rule
+    - [Delete Labour Rule](https://developer.employmenthero.com/api-references/labour-rule/delete-labour-rule/v1.md)
+  - Get labour rule
+    - [Get Labour Rule](https://developer.employmenthero.com/api-references/labour-rule/get-labour-rule/v1.md)
+  - Get labour rule metrics
+    - [Get Labour Rule Metrics](https://developer.employmenthero.com/api-references/labour-rule/get-labour-rule-metrics/v1.md)
+  - Get labour rules
+    - [List Labour Rules](https://developer.employmenthero.com/api-references/labour-rule/get-labour-rules/v1.md)
+  - Update labour rule
+    - [Update Labour Rule](https://developer.employmenthero.com/api-references/labour-rule/update-labour-rule/v1.md)
 - Leave Balance
   - [Leave Balance](https://developer.employmenthero.com/api-references/leave-balance.md)
+  - Bulk update leave balances
+    - [Bulk Update Leave Balances](https://developer.employmenthero.com/api-references/leave-balance/bulk-update-leave-balances/v1.md)
   - Get leave balances
     - [Get Leave Balances](https://developer.employmenthero.com/api-references/leave-balance/get-leave-balances/v1.md)
   - Update leave balance
@@ -350,20 +411,76 @@ Every linked entry also has a plain-text version, fetchable directly at the URL 
     - [Get Payslip](https://developer.employmenthero.com/api-references/payslip/get-payslip/v1.md)
   - Get payslips
     - [Get Payslips](https://developer.employmenthero.com/api-references/payslip/get-payslips/v1.md)
+- Performance Review
+  - [Performance Review](https://developer.employmenthero.com/api-references/performance-review.md)
+  - Create performance review
+    - [Create Performance Review](https://developer.employmenthero.com/api-references/performance-review/create-performance-review/v1.md)
+  - Delete performance review
+    - [Delete Performance Review](https://developer.employmenthero.com/api-references/performance-review/delete-performance-review/v1.md)
+  - Get performance review
+    - [Get Performance Review](https://developer.employmenthero.com/api-references/performance-review/get-performance-review/v1.md)
+  - Get performance review participants
+    - [List Performance Review Participants](https://developer.employmenthero.com/api-references/performance-review/get-performance-review-participants/v1.md)
+  - Get performance reviews
+    - [List Performance Reviews](https://developer.employmenthero.com/api-references/performance-review/get-performance-reviews/v1.md)
+  - Update performance review
+    - [Update Performance Review](https://developer.employmenthero.com/api-references/performance-review/update-performance-review/v1.md)
+  - Upload performance review file
+    - [Upload Performance Review File](https://developer.employmenthero.com/api-references/performance-review/upload-performance-review-file/v1.md)
 - Policy
   - [Policy](https://developer.employmenthero.com/api-references/policy.md)
+  - Archive policy
+    - [Archive Policy](https://developer.employmenthero.com/api-references/policy/archive-policy/v1.md)
+  - Create policy
+    - [Create Policy](https://developer.employmenthero.com/api-references/policy/create-policy/v1.md)
+  - Delete policy
+    - [Delete Policy](https://developer.employmenthero.com/api-references/policy/delete-policy/v1.md)
   - Get policies
     - [Get Policies](https://developer.employmenthero.com/api-references/policy/get-policies/v1.md)
+  - Get policy
+    - [Get Policy](https://developer.employmenthero.com/api-references/policy/get-policy/v1.md)
+  - Get policy acknowledgements
+    - [Get Policy Acknowledgements](https://developer.employmenthero.com/api-references/policy/get-policy-acknowledgements/v1.md)
+  - Remind all policies
+    - [Remind All Policies](https://developer.employmenthero.com/api-references/policy/remind-all-policies/v1.md)
+  - Remind policy
+    - [Remind Policy](https://developer.employmenthero.com/api-references/policy/remind-policy/v1.md)
+  - Share policy
+    - [Share Policy](https://developer.employmenthero.com/api-references/policy/share-policy/v1.md)
+  - Unarchive policy
+    - [Unarchive Policy](https://developer.employmenthero.com/api-references/policy/unarchive-policy/v1.md)
 - Position
   - [Position](https://developer.employmenthero.com/api-references/position.md)
   - Create position
     - [Create Position](https://developer.employmenthero.com/api-references/position/create-position/v1.md)
+  - Get position
+    - [Get Position](https://developer.employmenthero.com/api-references/position/get-position/v1.md)
+  - Get positions
+    - [List Positions](https://developer.employmenthero.com/api-references/position/get-positions/v1.md)
   - Update position
     - [Update Position](https://developer.employmenthero.com/api-references/position/update-position/v1.md)
+- Roster Template
+  - [Roster Template](https://developer.employmenthero.com/api-references/roster-template.md)
+  - Apply roster template
+    - [Apply Roster Template](https://developer.employmenthero.com/api-references/roster-template/apply-roster-template/v1.md)
+  - Create roster template
+    - [Create Roster Template](https://developer.employmenthero.com/api-references/roster-template/create-roster-template/v1.md)
+  - Delete roster template
+    - [Delete Roster Template](https://developer.employmenthero.com/api-references/roster-template/delete-roster-template/v1.md)
+  - Get roster template job status
+    - [Get Roster Template Job Status](https://developer.employmenthero.com/api-references/roster-template/get-roster-template-job-status/v1.md)
+  - Get roster templates
+    - [Get Roster Templates](https://developer.employmenthero.com/api-references/roster-template/get-roster-templates/v1.md)
 - Rostered Shift
   - [Rostered Shift](https://developer.employmenthero.com/api-references/rostered-shift.md)
   - Bulk create rostered shifts
     - [Bulk Create Rostered Shifts](https://developer.employmenthero.com/api-references/rostered-shift/bulk-create-rostered-shifts/v1.md)
+  - Bulk delete rostered shifts
+    - [Bulk Delete Rostered Shifts](https://developer.employmenthero.com/api-references/rostered-shift/bulk-delete-rostered-shifts/v1.md)
+  - Bulk publish rostered shifts
+    - [Bulk Publish Rostered Shifts](https://developer.employmenthero.com/api-references/rostered-shift/bulk-publish-rostered-shifts/v1.md)
+  - Bulk unpublish rostered shifts
+    - [Bulk Unpublish Rostered Shifts](https://developer.employmenthero.com/api-references/rostered-shift/bulk-unpublish-rostered-shifts/v1.md)
   - Get roles
     - [Get Roles/Tags](https://developer.employmenthero.com/api-references/rostered-shift/get-roles/v1.md)
   - Get rostered shift
@@ -373,7 +490,9 @@ Every linked entry also has a plain-text version, fetchable directly at the URL 
   - Get rostered shifts
     - [Get Rostered Shifts](https://developer.employmenthero.com/api-references/rostered-shift/get-rostered-shifts/v1.md)
   - Get rostered shifts bulk create status
-    - [Get Rostered Shifts Bulk Create Job Status](https://developer.employmenthero.com/api-references/rostered-shift/get-rostered-shifts-bulk-create-status/v1.md)
+    - [Get Rostered Shifts Bulk Job Status](https://developer.employmenthero.com/api-references/rostered-shift/get-rostered-shifts-bulk-create-status/v1.md)
+  - Update rostered shift
+    - [Update Rostered Shift](https://developer.employmenthero.com/api-references/rostered-shift/update-rostered-shift/v1.md)
 - Sales Data
   - [Sales Data](https://developer.employmenthero.com/api-references/sales-data.md)
   - Create sales data
@@ -398,16 +517,32 @@ Every linked entry also has a plain-text version, fetchable directly at the URL 
     - [Get Teams](https://developer.employmenthero.com/api-references/team/get-teams/v1.md)
 - Timesheet Entry
   - [Timesheet Entry](https://developer.employmenthero.com/api-references/timesheet-entry.md)
+  - Approve timesheet entry
+    - [Approve Timesheet Entry](https://developer.employmenthero.com/api-references/timesheet-entry/approve-timesheet-entry/v1.md)
+  - Bulk approve timesheet entries
+    - [Bulk Approve Timesheet Entries](https://developer.employmenthero.com/api-references/timesheet-entry/bulk-approve-timesheet-entries/v1.md)
+  - Bulk decline timesheet entries
+    - [Bulk Decline Timesheet Entries](https://developer.employmenthero.com/api-references/timesheet-entry/bulk-decline-timesheet-entries/v1.md)
   - Create timesheet entries
     - [Create Timesheet Entries](https://developer.employmenthero.com/api-references/timesheet-entry/create-timesheet-entries/v1.md)
+  - Decline timesheet entry
+    - [Decline Timesheet Entry](https://developer.employmenthero.com/api-references/timesheet-entry/decline-timesheet-entry/v1.md)
+  - Delete timesheet entry
+    - [Delete Timesheet Entry](https://developer.employmenthero.com/api-references/timesheet-entry/delete-timesheet-entry/v1.md)
   - Get timesheet entries
     - [Get Timesheet Entries](https://developer.employmenthero.com/api-references/timesheet-entry/get-timesheet-entries/v1.md)
+  - Update timesheet entry
+    - [Update Timesheet Entry](https://developer.employmenthero.com/api-references/timesheet-entry/update-timesheet-entry/v1.md)
 - Unavailability
   - [Unavailability](https://developer.employmenthero.com/api-references/unavailability.md)
   - Get unavailabilities
     - [Get Unavailabilities](https://developer.employmenthero.com/api-references/unavailability/get-unavailabilities/v1.md)
   - Get unavailability
     - [Get Unavailability](https://developer.employmenthero.com/api-references/unavailability/get-unavailability/v1.md)
+- User Info
+  - [User Info](https://developer.employmenthero.com/api-references/user-info.md)
+  - Get user info
+    - [Get User Info](https://developer.employmenthero.com/api-references/user-info/get-user-info/v1.md)
 - Webhook
   - [Webhook](https://developer.employmenthero.com/api-references/webhook.md)
   - [Bank Account Data](https://developer.employmenthero.com/api-references/webhook/bank-account-data.md)
@@ -421,6 +556,7 @@ Every linked entry also has a plain-text version, fetchable directly at the URL 
   - [Key Result Data](https://developer.employmenthero.com/api-references/webhook/key-result-data.md)
   - [Leave Request Data](https://developer.employmenthero.com/api-references/webhook/leave-request-data.md)
   - [Member Certification Data](https://developer.employmenthero.com/api-references/webhook/member-certification-data.md)
+  - [Pay Detail Data](https://developer.employmenthero.com/api-references/webhook/pay-detail-data.md)
   - [Registering a Webhook](https://developer.employmenthero.com/api-references/webhook/registering-webhook.md)
   - [Timesheet Entry Data](https://developer.employmenthero.com/api-references/webhook/timesheet-entry-data.md)
   - [Verify Webhook Request](https://developer.employmenthero.com/api-references/webhook/verify-webhook-request.md)
@@ -446,6 +582,24 @@ Every linked entry also has a plain-text version, fetchable directly at the URL 
   - [Work Type](https://developer.employmenthero.com/api-references/work-type.md)
   - Get work types
     - [Get Work Types](https://developer.employmenthero.com/api-references/work-type/get-work-types/v1.md)
+- Workplace Incident
+  - [Workplace Incident](https://developer.employmenthero.com/api-references/workplace-incident.md)
+  - Close workplace incident
+    - [Close Workplace Incident](https://developer.employmenthero.com/api-references/workplace-incident/close-workplace-incident/v1.md)
+  - Create workplace incident
+    - [Create Workplace Incident](https://developer.employmenthero.com/api-references/workplace-incident/create-workplace-incident/v1.md)
+  - Delete workplace incident
+    - [Delete Workplace Incident](https://developer.employmenthero.com/api-references/workplace-incident/delete-workplace-incident/v1.md)
+  - Get workplace incident
+    - [Get Workplace Incident](https://developer.employmenthero.com/api-references/workplace-incident/get-workplace-incident/v1.md)
+  - Get workplace incidents
+    - [List Workplace Incidents](https://developer.employmenthero.com/api-references/workplace-incident/get-workplace-incidents/v1.md)
+  - Submit worksafe authority review
+    - [Submit Worksafe Authority Review](https://developer.employmenthero.com/api-references/workplace-incident/submit-worksafe-authority-review/v1.md)
+  - Update workplace incident
+    - [Update Workplace Incident](https://developer.employmenthero.com/api-references/workplace-incident/update-workplace-incident/v1.md)
+  - Upload workplace incident files
+    - [Upload Workplace Incident Files](https://developer.employmenthero.com/api-references/workplace-incident/upload-workplace-incident-files/v1.md)
 
 ## ATS API Reference
 

@@ -14,8 +14,6 @@ vouches for**: read it, then read their reference.
 ---
 # Fireflies
 
-## Docs
-
 - [Introduction](https://docs.fireflies.ai/getting-started/introduction.md): Welcome to Fireflies public API documentation.
 - [Docs MCP Server](https://docs.fireflies.ai/getting-started/docs-mcp-server.md): Connect your AI tools to Fireflies documentation using MCP for instant access to API references, guides, and code examples.
 - [Join the Developer Program](https://docs.fireflies.ai/getting-started/developer-program.md): Join the Developer Program to build integrations with Fireflies.ai
@@ -46,6 +44,8 @@ vouches for**: read it, then read their reference.
 - [Rule Executions by Meeting](https://docs.fireflies.ai/graphql-api/query/rule-executions-by-meeting.md): Query rule execution logs grouped by meeting for team automation workflows
 - [Audit Events (Beta)](https://docs.fireflies.ai/graphql-api/query/audit-events.md): Query OCSF-compliant audit events for your team — meetings, teammates, and settings changes
 - [Add to Live](https://docs.fireflies.ai/graphql-api/mutation/add-to-live.md): Use the API to add the Fireflies.ai bot to an ongoing meeting
+- [Add User to User Group](https://docs.fireflies.ai/graphql-api/mutation/add-user-to-user-group.md): Use the API to add users to a user group
+- [Remove User from User Group](https://docs.fireflies.ai/graphql-api/mutation/remove-user-from-user-group.md): Use the API to remove users from a user group
 - [Create AskFred Thread](https://docs.fireflies.ai/graphql-api/mutation/create-askfred-thread.md): Create a new AskFred conversation thread with a question about your meetings
 - [Continue AskFred Thread](https://docs.fireflies.ai/graphql-api/mutation/continue-askfred-thread.md): Continue an existing AskFred conversation with follow-up questions
 - [Delete AskFred Thread](https://docs.fireflies.ai/graphql-api/mutation/delete-askfred-thread.md): Delete an AskFred conversation thread and all its messages
@@ -59,9 +59,9 @@ vouches for**: read it, then read their reference.
 - [Update Meeting Channel](https://docs.fireflies.ai/graphql-api/mutation/update-meeting-channel.md): Use the API to update meeting channel assignments
 - [Update Meeting Title](https://docs.fireflies.ai/graphql-api/mutation/update-meeting-title.md): Use the API to update meeting titles
 - [Update Meeting Privacy](https://docs.fireflies.ai/graphql-api/mutation/update-meeting-privacy.md): Use the API to update meeting privacy settings
-- [Share Meeting](https://docs.fireflies.ai/graphql-api/mutation/share-meeting.md): Use the API to share meeting transcripts with external users via email
+- [Share Meeting](https://docs.fireflies.ai/graphql-api/mutation/share-meeting.md): Use the API to share meeting transcripts with external users via email or a password-protected link
 - [Revoke Shared Meeting Access](https://docs.fireflies.ai/graphql-api/mutation/revoke-shared-meeting-access.md): Use the API to revoke shared access to a meeting transcript
-- [Webhooks](https://docs.fireflies.ai/graphql-api/webhooks.md): Webhook events for the Fireflies.ai API
+- [Webhooks V1 (deprecated)](https://docs.fireflies.ai/graphql-api/webhooks.md): Legacy webhook events for the Fireflies.ai API
 - [Webhooks V2](https://docs.fireflies.ai/graphql-api/webhooks-v2.md): Configure event-driven webhooks with granular event subscriptions using Webhooks V2
 - [Overview](https://docs.fireflies.ai/realtime-api/overview.md): Learn about Fireflies.ai's Realtime API for live transcription
 - [Getting Started](https://docs.fireflies.ai/realtime-api/getting-started.md): Learn how to connect to Fireflies.ai's Realtime API for live transcription
@@ -73,6 +73,4 @@ vouches for**: read it, then read their reference.
 - [Language codes](https://docs.fireflies.ai/miscellaneous/language-codes.md): Language code abbreviations for the Fireflies.ai API
 - [Changelog](https://docs.fireflies.ai/additional-info/change-log.md): Recent updates to the Fireflies API
 
-## OpenAPI Specs
-
-- [openapi](https://docs.fireflies.ai/api-reference/openapi.json)
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

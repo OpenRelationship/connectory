@@ -32,6 +32,34 @@
    }
   },
   {
+   "slug": "perplexity.cancel_batch",
+   "name": "Cancel a batch",
+   "description": "Moves the batch to `cancelling`; it becomes `cancelled` once running items stop. Completed items stay in the output file and are billed. Cancelling a cancelled or cancelling batch returns it unchanged.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "batch_id": {
+      "type": "string",
+      "description": "Batch identifier (batch_...)"
+     }
+    },
+    "required": [
+     "batch_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.perplexity.ai/v1/batches/{batch_id}/cancel",
+    "path": [
+     "batch_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "perplexity.chat_completions_chat_completions_post",
    "name": "Create chat completion",
    "description": "Generate a chat completion response for the given conversation.",
@@ -276,23 +304,23 @@
      },
      "max_steps": {
       "type": "integer",
-      "description": "Maximum number of research loop steps. If provided, overrides the preset's max_steps value. For requests that specify model or models without a preset, the default is 1. Set max_steps to at least 3 when using finance_search with a direct model so the agent has enough steps to initialize and run the tool. Must be >= 1 if specified. Maximum allowed is 100."
+      "description": "Maximum number of research loop steps. If provided, overrides the effort level's max_steps value. For requests that specify model or models without an effort level, the default is 1. Set max_steps to at least 3 when using finance_search with a direct model so the agent has enough steps to initialize and run the tool. Must be >= 1 if specified. Maximum allowed is 100."
      },
      "model": {
       "type": "string",
-      "description": "Model ID in provider/model format (e.g., \"openai/gpt-5\", \"anthropic/claude-sonnet-4-6\"). If models is also provided, models takes precedence. Required if neither models nor preset is provided."
+      "description": "Model ID in provider/model format (e.g., \"openai/gpt-5.6-terra\", \"anthropic/claude-sonnet-5-5\"). If models is also provided, models takes precedence. Required if neither models nor effort is provided."
      },
      "models": {
       "type": "array",
       "description": "Model fallback chain. Each model is in provider/model format. Models are tried in order until one succeeds. Max 5 models allowed. If set, takes precedence over single model field. The response.model will reflect the model that actually succeeded."
      },
-     "preset": {
+     "effort": {
       "type": "string",
-      "description": "Preset configuration name (e.g., \"fast\", \"low\", \"medium\", \"high\", \"xhigh\"). Pre-configured model with system prompt and search parameters. Required if model is not provided."
+      "description": "Effort to run, as `name`, `name@latest`, or `name@` (e.g., \"fast\", \"low\", \"fast@2026-09-29.0\"). An effort level is a pre-configured model with system prompt and search parameters. `name` and `name@latest` run the active version. `name@` runs that exact version. An `effort` value returned on a response pins that configuration only when it carries a version. A returned value without a version runs t"
      },
      "profile": {
       "type": "object",
-      "description": "Saved, versioned configuration to run with. The version is resolved when the request is admitted. Cannot be combined with preset."
+      "description": "Saved, versioned configuration to run with. The version is resolved when the request is admitted. Cannot be combined with effort."
      },
      "previous_response_id": {
       "type": "string",
@@ -317,6 +345,10 @@
      "tools": {
       "type": "array",
       "description": "Tools available to the model"
+     },
+     "tool_choice": {
+      "type": "string",
+      "description": "Tool choice strategy. Use `{\"type\":\"image_search\"}` to force image search."
      },
      "skills": {
       "type": "array",
@@ -350,7 +382,7 @@
      "max_steps",
      "model",
      "models",
-     "preset",
+     "effort",
      "profile",
      "previous_response_id",
      "reasoning",
@@ -358,6 +390,7 @@
      "store",
      "stream",
      "tools",
+     "tool_choice",
      "skills",
      "temperature",
      "top_p"
@@ -399,6 +432,99 @@
    }
   },
   {
+   "slug": "perplexity.create_batch",
+   "name": "Create a batch",
+   "description": "Creates a batch from an uploaded input file. The batch starts in `validating`. Send an `Idempotency-Key` header to make retries safe: a repeat with the same key returns the original batch. `output_expires_after` is not supported and is rejected with a 400; output and error files are kept 30 days.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "Idempotency-Key": {
+      "type": "string",
+      "description": "Unique key for this create; a repeat returns the original batch"
+     },
+     "input_file_id": {
+      "type": "string",
+      "description": "Id of a file uploaded with `purpose=batch`"
+     },
+     "endpoint": {
+      "type": "string",
+      "description": "Endpoint every line in the input file targets",
+      "enum": [
+       "/v1/responses"
+      ]
+     },
+     "completion_window": {
+      "type": "string",
+      "description": "Target completion time; `24h` is the only value and the default",
+      "enum": [
+       "24h"
+      ]
+     },
+     "metadata": {
+      "type": "object",
+      "description": "Up to 16 key value pairs; keys up to 64 characters, values up to 512"
+     }
+    },
+    "required": [
+     "endpoint",
+     "input_file_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.perplexity.ai/v1/batches",
+    "path": [],
+    "query": [],
+    "header": [
+     "Idempotency-Key"
+    ],
+    "body": [
+     "input_file_id",
+     "endpoint",
+     "completion_window",
+     "metadata"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "perplexity.create_file",
+   "name": "Upload a file",
+   "description": "Uploads a JSONL batch input file, up to 50,000 lines and 200 MB. Every line is validated before the file is stored. Files expire after 30 days; `expires_after` is not supported and is rejected with a 400.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "file": {
+      "type": "string",
+      "description": "The JSONL file"
+     },
+     "purpose": {
+      "type": "string",
+      "description": "Only `batch` is accepted",
+      "enum": [
+       "batch"
+      ]
+     }
+    },
+    "required": [
+     "file",
+     "purpose"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.perplexity.ai/v1/files",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "file",
+     "purpose"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "perplexity.create_skill",
    "name": "Create a skill",
    "description": "Creates a skill from a zip bundle. The bundle must contain a `SKILL.md` that provides the skill name and description; those fields are read from the bundle, not from the request.",
@@ -411,6 +537,74 @@
     "method": "POST",
     "url": "https://api.perplexity.ai/v1/skills",
     "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "perplexity.decisions_v1_decisions_post",
+   "name": "Answer questions",
+   "description": "Evaluate one or more named questions against the content in `state`. Mix `noul`, `choice`, and `score` questions in one request; the response returns one answer per question under the same name, plus the model name and token usage. Set `model` to `pplx-decider-v1.2` or `pplx-decider-flash-v1.2`, or to the alias `pplx-decider-latest` or `pplx-decider-flash-latest`; a missing or unknown model return",
+   "input": {
+    "type": "object",
+    "properties": {
+     "model": {
+      "type": "string",
+      "description": "The decision model: `pplx-decider-v1.2` (27B, $0.02 per million input tokens) or `pplx-decider-flash-v1.2` (4B, $0.01 per million input tokens). The aliases `pplx-decider-latest` and `perplexity/pplx-decider-latest` select `pplx-decider-v1.2`, and `pplx-decider-flash-latest` and `perplexity/pplx-decider-flash-latest` select `pplx-decider-flash-v1.2`; an alias can move to a newer model over time. `"
+     },
+     "state": {
+      "type": "string",
+      "description": "The content every question in the request refers to: a string, an object, or an array. Images can appear anywhere in `state` as OpenAI-style `image_url` parts with base64 PNG, JPEG, or WebP data URLs and are read in place. Up to 8 images per question."
+     },
+     "questions": {
+      "type": "object",
+      "description": "Questions keyed by a non-empty name you choose. The response uses the same names. 1 to 128 questions."
+     }
+    },
+    "required": [
+     "model",
+     "questions",
+     "state"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.perplexity.ai/v1/decisions",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "model",
+     "state",
+     "questions"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "perplexity.delete_file",
+   "name": "Delete a file",
+   "description": "Deletes a file. Batches already created from it are not affected.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "file_id": {
+      "type": "string",
+      "description": "File identifier (file_...)"
+     }
+    },
+    "required": [
+     "file_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.perplexity.ai/v1/files/{file_id}",
+    "path": [
+     "file_id"
+    ],
     "query": [],
     "header": [],
     "body": [],
@@ -601,6 +795,34 @@
    }
   },
   {
+   "slug": "perplexity.get_batch",
+   "name": "Retrieve a batch",
+   "description": "Retrieve a batch",
+   "input": {
+    "type": "object",
+    "properties": {
+     "batch_id": {
+      "type": "string",
+      "description": "Batch identifier (batch_...)"
+     }
+    },
+    "required": [
+     "batch_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.perplexity.ai/v1/batches/{batch_id}",
+    "path": [
+     "batch_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "perplexity.get_computer_usage_analytics",
    "name": "Usage analytics",
    "description": "Returns your organization's Perplexity usage analytics as a bucketed time series for a single dataset. Requires an organization analytics API key, generated by an org admin from Settings \u2192 Organization \u2192 Computer in the Perplexity web app. Only complete UTC grid buckets are returned: start_time snaps down to its bucket, and the in-progress bucket is never included. Datasets differ in what they cou",
@@ -737,6 +959,62 @@
    }
   },
   {
+   "slug": "perplexity.get_file",
+   "name": "Retrieve a file",
+   "description": "Retrieve a file",
+   "input": {
+    "type": "object",
+    "properties": {
+     "file_id": {
+      "type": "string",
+      "description": "File identifier (file_...)"
+     }
+    },
+    "required": [
+     "file_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.perplexity.ai/v1/files/{file_id}",
+    "path": [
+     "file_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "perplexity.get_file_content",
+   "name": "Download file content",
+   "description": "Streams the raw bytes of an input, output, or error file.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "file_id": {
+      "type": "string",
+      "description": "File identifier (file_...)"
+     }
+    },
+    "required": [
+     "file_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.perplexity.ai/v1/files/{file_id}/content",
+    "path": [
+     "file_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "perplexity.get_skill",
    "name": "Get a skill",
    "description": "Returns a skill. Without `revision`, returns the active revision.",
@@ -812,6 +1090,86 @@
     "url": "https://api.perplexity.ai/v1/async/sonar",
     "path": [],
     "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "perplexity.list_batches",
+   "name": "List batches",
+   "description": "Lists your organization's batches, newest first.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "limit": {
+      "type": "integer",
+      "description": "Maximum number of batches to return"
+     },
+     "after": {
+      "type": "string",
+      "description": "Batch id to start after, the `last_id` of the previous page"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.perplexity.ai/v1/batches",
+    "path": [],
+    "query": [
+     "limit",
+     "after"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "perplexity.list_files",
+   "name": "List files",
+   "description": "Lists your organization's files, both uploads and the output and error files batches write. Deleted and expired files are not listed.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "limit": {
+      "type": "integer",
+      "description": "Maximum number of files to return"
+     },
+     "after": {
+      "type": "string",
+      "description": "File id to start after, the `last_id` of the previous page"
+     },
+     "order": {
+      "type": "string",
+      "description": "Sort order, `desc` for newest first",
+      "enum": [
+       "asc",
+       "desc"
+      ]
+     },
+     "purpose": {
+      "type": "string",
+      "description": "Only list files with this purpose, `batch` for uploads or `batch_output` for output and error files",
+      "enum": [
+       "batch",
+       "batch_output"
+      ]
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.perplexity.ai/v1/files",
+    "path": [],
+    "query": [
+     "limit",
+     "after",
+     "order",
+     "purpose"
+    ],
     "header": [],
     "body": [],
     "body_format": "json"
@@ -951,15 +1309,12 @@
      },
      "search_type": {
       "type": "string",
-      "description": "Search type - \"web\" for general web search, \"people\" for people search. max_results above 20 is only supported for people search.",
+      "description": "Search type - \"web\" for general web search, \"fast\" for lower-latency, lower-cost web search, \"people\" for people search. max_results above 20 is only supported for people search.",
       "enum": [
        "web",
+       "fast",
        "people"
       ]
-     },
-     "search_context_size": {
-      "type": "string",
-      "description": "Controls how much content is extracted from result pages. - `low` \u2014 short passages most relevant to the query. - `medium` \u2014 a balanced amount of content per document. - `high` (default) \u2014 detailed content relevant to the query. Omit when using `max_tokens` or `max_tokens_per_page`."
      },
      "max_tokens": {
       "type": "integer",
@@ -992,7 +1347,6 @@
      "country",
      "max_results",
      "search_type",
-     "search_context_size",
      "max_tokens",
      "max_tokens_per_page",
      "query",

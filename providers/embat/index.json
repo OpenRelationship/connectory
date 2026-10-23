@@ -151,7 +151,7 @@
   {
    "slug": "embat.create_accounting_entry_accountingentries_company_id_post",
    "name": "Create accounting entry",
-   "description": "Creates a single accounting entry (one line of a general ledger journal). If `customId` is omitted, Embat auto-generates one; if the `customId` already exists, the entry is updated instead of duplicated (upsert). An entry always carries both an outflow side (`assetAmount`, stored with its sign inverted so negative means money out) and an inflow side (`liabilityAmount`, stored as sent); if you only",
+   "description": "Creates a single accounting entry (one line of a general ledger journal). If `customId` is omitted, Embat auto-generates one; if the `customId` already exists, the entry is updated instead of duplicated (upsert). An entry always carries both an outflow side (`assetAmount`, stored with its sign inverted so negative means money out) and an inflow side (`liabilityAmount`, stored as sent); both are re",
    "input": {
     "type": "object",
     "properties": {
@@ -173,11 +173,11 @@
      },
      "assetAmount": {
       "type": "number",
-      "description": "Outflow side of the entry, in `currency` (money leaving the account). An entry always has both sides: if you only send `liabilityAmount`, `assetAmount` defaults to 0. The sign is inverted on storage (0 always stays 0): a positive value you send is stored and returned as negative, following the convention that negative amounts are outflows."
+      "description": "Outflow side of the entry, in `currency` (money leaving the account). Required, like `liabilityAmount`: send 0 for the side the entry does not use. The sign is inverted on storage (0 always stays 0): a positive value you send is stored and returned as negative, following the convention that negative amounts are outflows."
      },
      "accountingAssetAmount": {
       "type": "string",
-      "description": "Outflow side expressed in the company accounting currency (`accountingCurrency`). Subject to the same sign convention as `assetAmount`."
+      "description": "Outflow side expressed in the company accounting currency (`accountingCurrency`). Subject to the same sign convention as `assetAmount`, also when sent on its own in an update (then no other amount changes). If an update sends `assetAmount` without it, it is derived: equal to `assetAmount` when `currency` and `accountingCurrency` match (the sent values, else the stored ones, else `EUR`), otherwise "
      },
      "balance": {
       "type": "string",
@@ -185,11 +185,11 @@
      },
      "liabilityAmount": {
       "type": "number",
-      "description": "Inflow side of the entry, in `currency` (money entering the account), stored with the sign you send. An entry always has both sides: if you only send `assetAmount`, `liabilityAmount` defaults to 0."
+      "description": "Inflow side of the entry, in `currency` (money entering the account), stored with the sign you send. Required, like `assetAmount`: send 0 for the side the entry does not use."
      },
      "accountingLiabilityAmount": {
       "type": "string",
-      "description": "Inflow side expressed in the company accounting currency (`accountingCurrency`)."
+      "description": "Inflow side expressed in the company accounting currency (`accountingCurrency`), stored with the sign you send. If an update sends `liabilityAmount` without it, it is derived with the same rules as `accountingAssetAmount`."
      },
      "currency": {
       "type": "string",
@@ -438,7 +438,7 @@
      },
      "values": {
       "type": "string",
-      "description": "Values available for this attribute (relevant when `type` is `list`). If an attribute with this `customId` already exists, sending `values` **replaces** its current list \u2014 any previously stored value not included here is removed. Omitting `values` when creating a new attribute with an existing `customId` also removes all of its current values. An attribute holds at most 5000 values; if the combine"
+      "description": "Values available for this attribute (relevant when `type` is `list`). If an attribute with this `customId` already exists, sending `values` **replaces** its current list \u2014 any previously stored value not included here is removed. Omitting `values` when creating a new attribute with an existing `customId` also removes all of its current values. An attribute holds at most 10000 values; if the combin"
      },
      "parentCustomId": {
       "type": "string",
@@ -2025,7 +2025,7 @@
   {
    "slug": "embat.download_payment_order_receipt_paymentorders_id_receipt_get",
    "name": "Download payment order receipt",
-   "description": "Downloads the PDF receipt of a payment order by its Embat `id`. This endpoint is not scoped by `companyId`: authorization is checked per payment order, and callers without access to it receive a `403`. Errors are reported with the same status code and message returned while retrieving the receipt, which may include statuses other than the ones listed here.",
+   "description": "Downloads the PDF receipt of a payment order by its Embat `id`. This endpoint is not scoped by `companyId`: authorization is checked per payment order, and callers without access to it receive a `403`. Other errors are reported with the same status code returned while retrieving the receipt and a fixed message, which may include statuses other than the ones listed here.",
    "input": {
     "type": "object",
     "properties": {
@@ -2053,7 +2053,7 @@
   {
    "slug": "embat.download_receptions_file_files_receptions_file_id_get",
    "name": "Download file reception",
-   "description": "Downloads the raw content of a file reception by `fileId`. The response content type matches the original file (e.g. XML, TXT, PDF). The `Content-Disposition` header names the file after `fileId`, not its original file name; use `fileName` from `GET /files/receptions` if you need the original name. Errors are reported with the same status code and message that occurred while retrieving the file, w",
+   "description": "Downloads the raw content of a file reception by `fileId`. The response content type matches the original file (e.g. XML, TXT, PDF). The `Content-Disposition` header names the file after `fileId`, not its original file name; use `fileName` from `GET /files/receptions` if you need the original name. Errors are reported with the same status code that occurred while retrieving the file and a fixed me",
    "input": {
     "type": "object",
     "properties": {
@@ -2145,11 +2145,11 @@
      },
      "startUpdatedAt": {
       "type": "string",
-      "description": "Only return entries last modified on or after this timestamp (inclusive). The range cannot exceed 90 days: if `endUpdatedAt` is also given, the span between the two cannot exceed 90 days; if `endUpdatedAt` is omitted, `startUpdatedAt` cannot be more than 90 days in the past."
+      "description": "Only return entries last modified on or after this timestamp (inclusive). The range cannot exceed 90 days: if `endUpdatedAt` is also given, the span between the two cannot exceed 90 days; if `endUpdatedAt` is omitted, `startUpdatedAt` cannot be more than 90 days in the past. A timestamp without a UTC offset is interpreted as UTC."
      },
      "endUpdatedAt": {
       "type": "string",
-      "description": "Only return entries last modified before this timestamp (exclusive). Combined with `startUpdatedAt`, the range cannot exceed 90 days. If used without `startUpdatedAt`, results start 90 days before this timestamp."
+      "description": "Only return entries last modified before this timestamp (exclusive). Combined with `startUpdatedAt`, the range cannot exceed 90 days. If used without `startUpdatedAt`, results start 90 days before this timestamp. A timestamp without a UTC offset is interpreted as UTC."
      },
      "limit": {
       "type": "integer",
@@ -2562,7 +2562,7 @@
   {
    "slug": "embat.list_files_emissions_files_emissions_get",
    "name": "List file emissions",
-   "description": "Returns the banking files submitted to banks (e.g. payment order files) across every company accessible to the authenticated user. Results are paginated: use `limit` to control page size and pass the returned `nextPageToken` to fetch the next page. Errors from the file service are reported with their original status code and message, so responses may include statuses other than the ones listed her",
+   "description": "Returns the banking files submitted to banks (e.g. payment order files) across every company accessible to the authenticated user. Results are paginated: use `limit` to control page size and pass the returned `nextPageToken` to fetch the next page. Errors from the file service are reported with their original status code and a fixed message, so responses may include statuses other than the ones li",
    "input": {
     "type": "object",
     "properties": {
@@ -2986,11 +2986,11 @@
      },
      "startUpdatedAt": {
       "type": "string",
-      "description": "Only return payments last modified on or after this timestamp (inclusive). The range cannot exceed 90 days: if `endUpdatedAt` is also given, the span between the two cannot exceed 90 days; if `endUpdatedAt` is omitted, `startUpdatedAt` cannot be more than 90 days in the past."
+      "description": "Only return payments last modified on or after this timestamp (inclusive). The range cannot exceed 90 days: if `endUpdatedAt` is also given, the span between the two cannot exceed 90 days; if `endUpdatedAt` is omitted, `startUpdatedAt` cannot be more than 90 days in the past. A timestamp without a UTC offset is interpreted as UTC."
      },
      "endUpdatedAt": {
       "type": "string",
-      "description": "Only return payments last modified before this timestamp (exclusive). Combined with `startUpdatedAt`, the range cannot exceed 90 days. If used without `startUpdatedAt`, results start 90 days before this timestamp."
+      "description": "Only return payments last modified before this timestamp (exclusive). Combined with `startUpdatedAt`, the range cannot exceed 90 days. If used without `startUpdatedAt`, results start 90 days before this timestamp. A timestamp without a UTC offset is interpreted as UTC."
      },
      "internalAttributes": {
       "type": "boolean",
@@ -3144,7 +3144,7 @@
      },
      "startValueDate": {
       "type": "string",
-      "description": "Only return transactions whose value date is on or after this date (inclusive). Cannot be later than `endValueDate`, and cannot be in the future when used without `endValueDate`."
+      "description": "Only return transactions whose value date is on or after this date (inclusive). Cannot be later than `endValueDate`."
      },
      "endValueDate": {
       "type": "string",
@@ -3152,7 +3152,7 @@
      },
      "startOperationDate": {
       "type": "string",
-      "description": "Only return transactions booked on or after this date (inclusive). Cannot be later than `endOperationDate`, and cannot be in the future when used without `endOperationDate`."
+      "description": "Only return transactions booked on or after this date (inclusive). Cannot be later than `endOperationDate`."
      },
      "endOperationDate": {
       "type": "string",
@@ -3160,11 +3160,11 @@
      },
      "startUpdatedAt": {
       "type": "string",
-      "description": "Only return transactions last modified on or after this timestamp (inclusive). Cannot be later than `endUpdatedAt`, and cannot be in the future when used without `endUpdatedAt`."
+      "description": "Only return transactions last modified on or after this timestamp (inclusive). Cannot be later than `endUpdatedAt`. A timestamp without a UTC offset is interpreted as UTC."
      },
      "endUpdatedAt": {
       "type": "string",
-      "description": "Only return transactions last modified before this timestamp (exclusive)."
+      "description": "Only return transactions last modified before this timestamp (exclusive). A timestamp without a UTC offset is interpreted as UTC."
      },
      "limit": {
       "type": "integer",
@@ -3812,7 +3812,7 @@
   {
    "slug": "embat.update_accounting_entries_bulk_accountingentries_company_id_patch",
    "name": "Update accounting entries in bulk",
-   "description": "Updates one or more fields of several accounting entries, identified by `customId`, following the same rules as the single-entry update endpoint \u2014 including the `description` reset-when-omitted behavior. Entries whose `customId` does not match any existing entry are reported in `errors` with code `NOT_FOUND` and not applied; `data` only lists the entries that were updated. If none match, the call ",
+   "description": "Updates one or more fields of several accounting entries, identified by `customId`, following the same rules as the single-entry update endpoint \u2014 including the `description` reset-when-omitted behavior. Entries whose `customId` does not match any existing entry are reported in `errors` with code `NOT_FOUND` and not applied, and entries whose missing accounting amount cannot be derived with code `",
    "input": {
     "type": "object",
     "properties": {
@@ -3847,7 +3847,7 @@
   {
    "slug": "embat.update_accounting_entry_accountingentries_company_id_custom_id_patch",
    "name": "Update accounting entry",
-   "description": "Updates one or more fields of an accounting entry identified by `customId`. Only the fields you send are changed \u2014 except `description`: if it is omitted, Embat resets it to an auto-generated value derived from the entry's identifier, overwriting any previously set custom description; resend the current value to keep it unchanged. Updating a `customId` that does not match any existing entry return",
+   "description": "Updates one or more fields of an accounting entry identified by `customId`. Only the fields you send are changed \u2014 except `description`: if it is omitted, Embat resets it to an auto-generated value derived from the entry's identifier, overwriting any previously set custom description; resend the current value to keep it unchanged. An amount sent without its accounting amount has the accounting amo",
    "input": {
     "type": "object",
     "properties": {
@@ -3873,11 +3873,11 @@
      },
      "assetAmount": {
       "type": "string",
-      "description": "Outflow side of the entry, in `currency` (money leaving the account, e.g. a supplier payment). An entry always has both sides: if you set only `assetAmount` or only `liabilityAmount`, the other one defaults to 0. The sign is inverted on storage (0 always stays 0): a positive value you send is stored and returned as negative, following the convention that negative amounts are outflows."
+      "description": "Outflow side of the entry, in `currency` (money leaving the account, e.g. a supplier payment). An entry always has both sides: if you set only `assetAmount` or only `liabilityAmount`, the other side (both amounts) defaults to 0. If you omit `accountingAssetAmount`, it is derived from this amount, as described there. The sign is inverted on storage (0 always stays 0): a positive value you send is s"
      },
      "accountingAssetAmount": {
       "type": "string",
-      "description": "Outflow side expressed in the company accounting currency (`accountingCurrency`). Subject to the same sign convention as `assetAmount`."
+      "description": "Outflow side expressed in the company accounting currency (`accountingCurrency`). Subject to the same sign convention as `assetAmount`, also when sent on its own in an update (then no other amount changes). If an update sends `assetAmount` without it, it is derived: equal to `assetAmount` when `currency` and `accountingCurrency` match (the sent values, else the stored ones, else `EUR`), otherwise "
      },
      "balance": {
       "type": "string",
@@ -3885,11 +3885,11 @@
      },
      "liabilityAmount": {
       "type": "string",
-      "description": "Inflow side of the entry, in `currency` (money entering the account, e.g. a customer collection), stored with the sign you send. An entry always has both sides: if you set only `assetAmount` or only `liabilityAmount`, the other one defaults to 0."
+      "description": "Inflow side of the entry, in `currency` (money entering the account, e.g. a customer collection), stored with the sign you send. An entry always has both sides: if you set only `assetAmount` or only `liabilityAmount`, the other side (both amounts) defaults to 0. If you omit `accountingLiabilityAmount`, it is derived from this amount, as described there."
      },
      "accountingLiabilityAmount": {
       "type": "string",
-      "description": "Inflow side expressed in the company accounting currency (`accountingCurrency`)."
+      "description": "Inflow side expressed in the company accounting currency (`accountingCurrency`), stored with the sign you send. If an update sends `liabilityAmount` without it, it is derived with the same rules as `accountingAssetAmount`."
      },
      "currency": {
       "type": "string",
@@ -4099,7 +4099,7 @@
      },
      "values": {
       "type": "string",
-      "description": "Full list of values the attribute should have after this update. Sending `values` **replaces** the current list: any previously stored value whose `customId` is not included here is removed. Omit `values` entirely to leave the current values untouched. An attribute holds at most 5000 values; if the combined total would exceed the limit, the excess new values are silently discarded and existing one"
+      "description": "Full list of values the attribute should have after this update. Sending `values` **replaces** the current list: any previously stored value whose `customId` is not included here is removed. Omit `values` entirely to leave the current values untouched. An attribute holds at most 10000 values; if the combined total would exceed the limit, the excess new values are silently discarded and existing on"
      },
      "parentCustomId": {
       "type": "string",
@@ -4613,7 +4613,7 @@
      },
      "error": {
       "type": "string",
-      "description": "Error message to record against the payment. Sending an empty string clears a previously set error."
+      "description": "Error message to record against the payment, truncated to 2000 characters. Sending an empty string clears a previously set error."
      },
      "registered": {
       "type": "string",

@@ -296,17 +296,17 @@
       "type": "string",
       "description": "Whether the access policy is enabled. Defaults to false when supported."
      },
-     "apps": {
-      "type": "array",
-      "description": "List of apps granted by this access policy."
-     },
      "access_condition": {
       "type": "string",
-      "description": "The Lumos Condition object determining which identities qualify for this policy. Required unless `is_everyone_condition` is `true`. This is a recursive JSON structure that allows you to define complex rules for filtering and matching identities using operators like `equals`, `in`, `and`, `or`, and `not`. For more information, see the [Lumos Conditions documentation](https://support.lumos.com/artic"
+      "description": "The Lumos Condition object determining which identities qualify for this policy. Required unless `is_everyone_condition` is `true`. This is a recursive JSON structure that allows you to define complex rules for filtering and matching identities using operators like `equals`, `in`, `and`, `or`, and `not`. For more information, see the [Lumos Conditions documentation](https://docs.lumos.com/kb/life_"
      },
      "is_everyone_condition": {
       "type": "boolean",
       "description": "Whether the access policy applies to everyone. If true, `access_condition` is ignored. Otherwise, `access_condition` must be provided."
+     },
+     "apps": {
+      "type": "array",
+      "description": "List of apps granted by this access policy."
      }
     },
     "required": [
@@ -326,9 +326,9 @@
      "business_justification",
      "status",
      "is_enabled",
-     "apps",
      "access_condition",
-     "is_everyone_condition"
+     "is_everyone_condition",
+     "apps"
     ],
     "body_format": "json"
    }
@@ -346,7 +346,7 @@
      },
      "requester_user_id": {
       "type": "string",
-      "description": "Override the user who made the request. If omitted, use the current user. Only available to organization admins."
+      "description": "Override the user who made the request. If omitted, use the current user. Only organization admins may send this field; any other caller is refused with a 403."
      },
      "target_user_id": {
       "type": "string",
@@ -589,7 +589,7 @@
      },
      "files": {
       "type": "array",
-      "description": "A list of URLs that resolve to files that should be attached to the Found Document"
+      "description": "A list of files that should be attached to the Found Document, each given as a publicly accessible URL or as base64-encoded PDF/PNG content"
      },
      "vendor_name": {
       "type": "string",
@@ -828,7 +828,7 @@
   {
    "slug": "lumos.create_user_offboarding",
    "name": "Create user offboarding",
-   "description": "Trigger or schedule an offboarding for an identity using the domain's configured offboarding workflow. Omit `scheduled_at` to run immediately, or provide a future datetime to schedule it.",
+   "description": "Trigger or schedule an offboarding for an identity. Omit `scheduled_at` to run immediately, or provide a future datetime to schedule it. Omit `workflow_config_id` to use the offboarding workflow configuration your organization has selected for automatic offboarding.",
    "input": {
     "type": "object",
     "properties": {
@@ -839,6 +839,10 @@
      "scheduled_at": {
       "type": "string",
       "description": "When to run the offboarding, as an ISO 8601 datetime. Omit to trigger the offboarding immediately; provide a future datetime to schedule it."
+     },
+     "workflow_config_id": {
+      "type": "string",
+      "description": "The UUID of the offboarding workflow configuration to run. Omit to use the configuration your organization has selected for automatic offboarding. This field is only accepted for organizations with the multiple offboarding workflows feature; a request that includes it is rejected otherwise."
      }
     },
     "required": [
@@ -853,7 +857,8 @@
     "header": [],
     "body": [
      "user_id",
-     "scheduled_at"
+     "scheduled_at",
+     "workflow_config_id"
     ],
     "body_format": "json"
    }
@@ -1004,7 +1009,7 @@
     "properties": {
      "knowledge_context_id": {
       "type": "string",
-      "description": ""
+      "description": "The knowledge entry's ID, which `GET /v1/knowledge/context` returns as `id`."
      }
     },
     "required": [
@@ -2027,7 +2032,7 @@
   {
    "slug": "lumos.get_integration",
    "name": "Get integration",
-   "description": "Get a connectable integration (app) by its `app_class_id` (e.g. `okta.com`). Returns catalog metadata only; integrations you have connected are read via the Apps API (`GET /apps`).",
+   "description": "Get a connectable integration (app) by its `app_class_id` (e.g. `okta.com`). Returns catalog metadata only; integrations you have connected are read via the Apps API. An integration the catalog list leaves out returns 404.",
    "input": {
     "type": "object",
     "properties": {
@@ -2055,7 +2060,7 @@
   {
    "slug": "lumos.get_integration_connection_schema",
    "name": "Get integration connection schema",
-   "description": "Get the connection schema for an integration \u2014 the JSON schema of the `auth` and `settings` fields needed to connect it via `POST /apps`. Use it to discover how to connect an integration *before* connecting it (e.g. to populate a Terraform resource). `app_class_id` is the canonical identifier (e.g. `okta.com`, `slack_ics`) \u2014 the same value the connect body uses. Integrations whose connection schem",
+   "description": "Get the connection schema for an integration \u2014 the JSON schema of the `auth` and `settings` fields needed to connect it with the Apps API's create endpoint. Use it to discover how to connect an integration *before* connecting it. `app_class_id` is the canonical identifier (e.g. `okta.com`, `slack_ics`) \u2014 the same value the connect body uses. An integration the catalog list leaves out, or whose con",
    "input": {
     "type": "object",
     "properties": {
@@ -2083,13 +2088,13 @@
   {
    "slug": "lumos.get_knowledge_context",
    "name": "Get knowledge context",
-   "description": "Get a single knowledge entry by ID.",
+   "description": "Get one knowledge entry by ID, with its content, tags, product scopes, and the URL of any attached file. An archived (deleted) entry, or an ID that matches no entry in your organization, returns 404 `knowledge.not_found`.",
    "input": {
     "type": "object",
     "properties": {
      "knowledge_context_id": {
       "type": "string",
-      "description": ""
+      "description": "The knowledge entry's ID, which `GET /v1/knowledge/context` returns as `id`."
      }
     },
     "required": [
@@ -2415,7 +2420,7 @@
      },
      "disconnected": {
       "type": "string",
-      "description": "Filter on whether the app has been disconnected. `false` excludes disconnected apps, `true` returns only disconnected apps whose record Lumos still holds, and omitting it lists every app. Pair `false` with `connection_source=API` to reconcile the integrations you manage from automation such as Terraform."
+      "description": "Filter on whether the app has been disconnected. `false` excludes disconnected apps, `true` returns only disconnected apps whose record Lumos still holds, and omitting it lists every app. Pair `false` with `connection_source=API` to list only the connected apps you manage through the API."
      },
      "expand": {
       "type": "string",
@@ -2453,7 +2458,7 @@
   {
    "slug": "lumos.list_integrations",
    "name": "List integrations",
-   "description": "List the integrations (apps) available to connect in your domain (paginated). Only connectable integrations are returned \u2014 catalog-only apps (e.g. discovered SaaS without a Lumos integration) are excluded. Returns catalog metadata only \u2014 name, category, and logo. Integrations you have connected are read via the Apps API (`GET /apps`).",
+   "description": "List the integrations (apps) available to connect in your domain (paginated). Only connectable integrations are returned \u2014 catalog-only apps (e.g. discovered SaaS without a Lumos integration) are excluded. Returns catalog metadata only \u2014 name, category, and logo. Integrations you have connected are read via the Apps API.",
    "input": {
     "type": "object",
     "properties": {
@@ -2530,13 +2535,13 @@
   {
    "slug": "lumos.list_tasks_tasks_get",
    "name": "List tasks",
-   "description": "List tasks visible to the current user. Combine `task_category`, `product_area`, and `status` to find the tasks you care about: - **Pending access-request approvals**: `GET /tasks?task_category=APPROVAL&product_area=APPSTORE&status=PENDING` Pass `expand=actions` or `expand=assignees` to hydrate those fields on each result. Admins may pass `show_all_tasks=true` to list tasks across the whole domain",
+   "description": "List tasks visible to the current user. Combine `task_category`, `product_area`, and `status` to find the tasks you care about: - **Pending access-request approvals**: `GET /tasks?task_category=APPROVAL&product_area=APPSTORE&status=PENDING` Pass `expand=actions` or `expand=assignees` to hydrate those fields on each result. Callers with permission to view every task, such as Admins, may pass `show_",
    "input": {
     "type": "object",
     "properties": {
      "show_all_tasks": {
       "type": "boolean",
-      "description": "Show all tasks in the domain (admin only)."
+      "description": "Show all tasks in the domain. Needs permission to view every task, such as the Admin role or a custom role that grants it."
      },
      "task_type": {
       "type": "string",
@@ -3138,17 +3143,17 @@
       "type": "string",
       "description": "Whether the access policy is enabled. Defaults to false when supported."
      },
-     "apps": {
-      "type": "array",
-      "description": "List of apps granted by this access policy."
-     },
      "access_condition": {
       "type": "string",
-      "description": "The Lumos Condition object determining which identities qualify for this policy. Required unless `is_everyone_condition` is `true`. This is a recursive JSON structure that allows you to define complex rules for filtering and matching identities using operators like `equals`, `in`, `and`, `or`, and `not`. For more information, see the [Lumos Conditions documentation](https://support.lumos.com/artic"
+      "description": "The Lumos Condition object determining which identities qualify for this policy. Required unless `is_everyone_condition` is `true`. This is a recursive JSON structure that allows you to define complex rules for filtering and matching identities using operators like `equals`, `in`, `and`, `or`, and `not`. For more information, see the [Lumos Conditions documentation](https://docs.lumos.com/kb/life_"
      },
      "is_everyone_condition": {
       "type": "boolean",
       "description": "Whether the access policy applies to everyone. If true, `access_condition` is ignored. Otherwise, `access_condition` must be provided."
+     },
+     "apps": {
+      "type": "array",
+      "description": "List of apps granted by this access policy."
      }
     },
     "required": [
@@ -3171,9 +3176,9 @@
      "business_justification",
      "status",
      "is_enabled",
-     "apps",
      "access_condition",
-     "is_everyone_condition"
+     "is_everyone_condition",
+     "apps"
     ],
     "body_format": "json"
    }
@@ -3473,7 +3478,7 @@
     "properties": {
      "knowledge_context_id": {
       "type": "string",
-      "description": ""
+      "description": "The knowledge entry's ID, which `GET /v1/knowledge/context` returns as `id`."
      },
      "title": {
       "type": "string",
@@ -3484,11 +3489,11 @@
       "description": "New content body. Omit to leave unchanged."
      },
      "generic_tags": {
-      "type": "string",
+      "type": "array",
       "description": "Replacement tag list \u2014 replaces all existing tags. Omit to leave unchanged."
      },
      "product_scopes": {
-      "type": "string",
+      "type": "array",
       "description": "Replacement product scope list \u2014 replaces all existing scopes. Omit to leave unchanged."
      },
      "clear_attachment": {

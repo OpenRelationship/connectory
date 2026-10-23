@@ -16,55 +16,76 @@ vouches for**: read it, then read their reference.
 
 > Documentation for Perk | Developers
 
-Append .md to any documentation page URL to get its markdown version.
-
-## Guides
+## Guides: Get started
 - [Welcome](https://developers.perk.com/docs/api-usage-guidelines.md)
-- [Perk MCP](https://developers.perk.com/docs/perk-mcp.md): Perk MCP is Perk's Model Context Protocol (MCP) server for connecting AI clients to your Perk travel, spend, invoice, and event data. Learn what it does, when to use it instead of the Travel and Spend REST APIs, and the prerequisites to get started.
-- [Connect a client to the Perk MCP server](https://developers.perk.com/docs/connect-a-client-to-the-perk-mcp-server.md): Connect an MCP client to the Perk MCP server at https://mcp.perk.com/api/mcp/mcp. Step-by-step setup for Claude Code, Cursor, Codex, the MCP Inspector, and any MCP-compatible client, with OAuth 2.0 sign-in.
-- [Perk MCP tools reference](https://developers.perk.com/docs/perk-mcp-tools-reference.md): Reference for every Perk MCP tool across trips, users, expenses, invoices, reporting, policy, events, and cards — with each tool's description, required OAuth scope, and read or write behavior.
-- [Publishing Integrations in the Sandbox (for partners)](https://developers.perk.com/docs/publish-an-integration-in-the-sandbox.md): Perform full authorization and integration test between your sandbox account and your application
+
+## Guides: Capabilities
+  - [Connect a client to the Perk MCP server](https://developers.perk.com/docs/connect-a-client-to-the-perk-mcp-server.md): Connect an MCP client to the Perk MCP server at https://mcp.perk.com/api/mcp/mcp. Step-by-step setup for Claude Code, Cursor, Codex, the MCP Inspector, and any MCP-compatible client, with OAuth 2.0…
+  - [Perk MCP tools reference](https://developers.perk.com/docs/perk-mcp-tools-reference.md): Reference for every Perk MCP tool across trips, users, expenses, invoices, reporting, policy, events, and cards — with each tool's description, required OAuth scope, and read or write behavior.
+
+## Guides: Developer tools
+- [Publishing integrations in the Sandbox (for partners)](https://developers.perk.com/docs/publish-an-integration-in-the-sandbox.md): Perform full authorization and integration test between your sandbox account and your application
+
+## Guides: Guides
 - [Set up custom attributes in Okta](https://developers.perk.com/docs/setting-up-custom-attributes-in-your-okta-integration.md): Map extra user attributes from Okta to Perk over SCIM, so profile data stays in sync automatically and you avoid duplicating it by hand.
-- [Map custom attributes in Microsoft Entra ID](https://developers.perk.com/docs/microsoft-azure-ad-scim-user-provisioning-advanced-guide.md): Map extra user attributes from Microsoft Entra ID to Perk over SCIM, with the full target-attribute directory and steps to add and customize mappings.
+  - [Map custom attributes in Microsoft Entra ID](https://developers.perk.com/docs/microsoft-azure-ad-scim-user-provisioning-advanced-guide.md): Map extra user attributes from Microsoft Entra ID to Perk over SCIM, with the full target-attribute directory and steps to add and customize mappings.
 - [Custom fields API](https://developers.perk.com/docs/custom-fields-api.md): Use this API to manage custom fields in your Perk account.
+
+## Guides: Tutorials
+
+## Guides: Terms of use
 - [Developer and Marketplace Terms](https://developers.perk.com/docs/travelperk-marketplace-and-api-terms-of-use.md)
 
-## API Reference
+## API Reference: Using the API
 - [Tips for implementing OAuth 2.0 with Perk](https://developers.perk.com/reference/oauth-20-implementation-guidance.md)
+
+## API Reference: Expenses
 - [The InvoiceProfile model](https://developers.perk.com/reference/the-invoiceprofile-object.md): An invoice profile represents the legal entity a trip is invoiced to, all Invoices will be Issued on an InvoiceProfile.
-- [The Invoice model](https://developers.perk.com/reference/the-invoice-object.md): An invoice represents the legal document issued by Perk (merchant of record) to the selected invoice profile, indicating the services, quantities, and prices for fees and services booked within the platform.
+- [The Invoice model](https://developers.perk.com/reference/the-invoice-object.md): An invoice represents the legal document issued by Perk (merchant of record) to the selected invoice profile, indicating the services, quantities, and prices for fees and services booked within the…
 - [The InvoiceLine model](https://developers.perk.com/reference/the-invoiceline-object.md): Invoices contain invoice lines, which make reference to any service added to the invoice, together with any quantities, unit price and taxes that pertain to them.
 - [List all Invoice Profiles](https://developers.perk.com/reference/list-invoice-profiles.md): List all invoice profiles associated to this account
 - [List all Invoices](https://developers.perk.com/reference/list-invoice.md): Get list of invoices, filters may be added as query parameters. Only invoices issued on or after January 1st 2019 will be returned
 - [List all Invoice lines](https://developers.perk.com/reference/list-invoice-lines-1.md): Get list of invoices lines, filters may be added as query parameters. Returns InvoiceLineExtended models. Only invoices issued on or after January 1st 2019 will be returned
 - [Retrieve an Invoice](https://developers.perk.com/reference/get-invoice.md): Get invoice detail
 - [Retrieve Invoice PDF](https://developers.perk.com/reference/download-pdf.md): Download invoice in PDF format
+
+## API Reference: SCIM
 - [Perk SCIM API](https://developers.perk.com/reference/using-the-scim-api-1.md)
-- [Get the user schema](https://developers.perk.com/reference/get-user-schema.md): Lists all attributes of the user schema.
-- [Get the perkCustomFields user schema](https://developers.perk.com/reference/get-the-perkcustomfields-user-schema.md): Lists all attributes of the perkCustomFields user schema.
-- [User object model](https://developers.perk.com/reference/user-schema.md): The User object represents a user within your Perk account.
+  - [Get the user schema](https://developers.perk.com/reference/get-user-schema.md): Lists all attributes of the user schema.
+  - [Get the perkCustomFields user schema](https://developers.perk.com/reference/get-the-perkcustomfields-user-schema.md): Lists all attributes of the perkCustomFields user schema.
+  - [User object model](https://developers.perk.com/reference/user-schema.md): The User object represents a user within your Perk account.
 - [Create a new user](https://developers.perk.com/reference/create-a-new-user.md): Creates a new user in Perk.
 - [Update a user](https://developers.perk.com/reference/update-a-user.md): Updates attributes for an existing user in Perk, overwriting values for specified attributes. Attributes that are not provided in the request remain unchanged.
 - [Replace a user](https://developers.perk.com/reference/replace-a-user.md): Replaces all of a user's attributes.
+
+## API Reference: Webhooks
 - [Create a webhook endpoint](https://developers.perk.com/reference/subscribe-to-event.md): Subscribes to one or more events, the target url of the webhook must be unique for the account.
-- [Update a webhook endpoint](https://developers.perk.com/reference/update-subscription.md): Updates the webhook endpoint. You may edit the url, the list of events, status, secret or name. The target url of the webhook must be unique for the account, if the target url is not unique a client error HTTP 409 will be returned.
+- [Update a webhook endpoint](https://developers.perk.com/reference/update-subscription.md): Updates the webhook endpoint. You may edit the url, the list of events, status, secret or name. The target url of the webhook must be unique for the account, if the target url is not unique a client…
+
+## API Reference: Trips
 - [Trips](https://developers.perk.com/reference/introduction-3.md)
 - [List all trips](https://developers.perk.com/reference/list-all-trips.md): Trips listed in descending order of `modified` time.
 - [Custom fields model](https://developers.perk.com/reference/custom-fields-model.md)
 - [Retrieve custom fields](https://developers.perk.com/reference/retrieve-custom-fields.md): Get all custom field values associated with a trip.
 - [Retrieve a Trip by ID](https://developers.perk.com/reference/retrieve-a-trip-by-id.md): Get a single trip with the Trip ID
+
+## API Reference: Cost Centers
 - [Cost centers](https://developers.perk.com/reference/cost-centers.md)
-- [List all cost centers](https://developers.perk.com/reference/list-cost-centers.md): Lists all cost centers in your organization. Returns a paginated list with offset and limit controls.
-- [Create cost center](https://developers.perk.com/reference/create-cost-center.md): Creates a cost center with the specified name. You can optionally set an approver, delegate, delegate expiry date and additional approvers (owner_ids).
-- [Get cost center](https://developers.perk.com/reference/get-cost-center.md): Retrieves a cost center by its ID, including assigned users, approver, delegate, company scope and additional approvers (owner_ids/owners).
-- [Update cost center](https://developers.perk.com/reference/update-cost-center.md): Updates a cost center. You can update the name, archive status, approver, delegate, delegate expiry and additional approvers (owner_ids). Passing 'null' for 'approver_id', 'delegate_id', 'delegate_expiry' or 'owner_ids' does not clear those fields; they remain unchanged.
-- [Bulk update cost centers](https://developers.perk.com/reference/bulk-update-cost-centers.md): Archives or unarchives a list of cost centers in a single request. Returns the number of cost centers updated
+- [List all cost centers](https://developers.perk.com/reference/list-cost-centers.md): Lists all cost centers in your organization. Returns a paginated list with offset and limit controls. When cost object types are enabled for your organization, each item includes an optional `type`…
+- [Create cost center](https://developers.perk.com/reference/create-cost-center.md): Creates a cost center with the specified name. You can optionally set an approver, delegate, delegate expiry date, additional approvers (owner_ids), and cost object type (`type`) when that feature is…
+- [Get cost center](https://developers.perk.com/reference/get-cost-center.md): Retrieves a cost center by its ID, including assigned users, approver, delegate, company scope, additional approvers (owner_ids/owners), and cost object type (`type`) when that feature is enabled for…
+- [Update cost center](https://developers.perk.com/reference/update-cost-center.md): Updates a cost center. You can update the name, archive status, approver, delegate, delegate expiry, additional approvers (owner_ids), and cost object type (`type`) when that feature is enabled for…
+- [Bulk update cost centers](https://developers.perk.com/reference/bulk-update-cost-centers.md): Updates a list of cost centers in a single request. You can archive or unarchive them and/or set their cost object type (`type`) when that feature is enabled for your organization. Returns the number…
 - [Set users to a cost center](https://developers.perk.com/reference/set-cost-center-users.md): Replaces all users assigned to the cost center with the provided list. Any users not in the list are removed from the cost center
 - [Set access configuration for a cost center](https://developers.perk.com/reference/set-cost-center-access.md): Updates the access configuration (access_type, user_ids, group_ids) for the cost center.
+
+## API Reference: Custom Fields
 - [Custom fields](https://developers.perk.com/reference/custom-fields.md): Capture project codes, client names, and business-specific data on bookings and expenses with custom fields. Configure select-option lists so users pick consistent values every time.
-- [List all select options](https://developers.perk.com/reference/list-custom-field-select-options.md)
-- [Create select options](https://developers.perk.com/reference/create-custom-field-select-options.md)
-- [Archive or unarchive a select option](https://developers.perk.com/reference/archive-custom-field-select-option.md)
+  - [List all select options](https://developers.perk.com/reference/list-custom-field-select-options.md)
+  - [Create select options](https://developers.perk.com/reference/create-custom-field-select-options.md)
+  - [Archive or unarchive a select option](https://developers.perk.com/reference/archive-custom-field-select-option.md)
+
+## API Reference: COMPANIES
 - [Companies](https://developers.perk.com/reference/companies.md)
 - [List all Companies](https://developers.perk.com/reference/companies-1.md): List all companies associated to this account
 
@@ -72,3 +93,4 @@ Append .md to any documentation page URL to get its markdown version.
 - [Building a custom SCIM integration to manage Perk users](https://developers.perk.com/page/creating-a-custom-app-to-manage-your-travelperk-user-base.md)
 
 ## Changelog
+- [Companies API and company IDs in invoice responses](https://developers.perk.com/changelog/companies-api-and-company-ids-in-invoice-responses.md)

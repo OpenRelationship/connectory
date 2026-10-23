@@ -19,27 +19,28 @@ The controls you can apply to AI usage, where each one lives, and what it affect
 
 Most AI controls live in [Settings → AI governance](https://app.incident.io/~/settings/ai-governance). The rest sit with the feature they control.
 
-<img alt="The AI governance settings page, showing the store incident channel messages and AI incident access sections" />
+![The AI governance settings page, showing the store incident channel messages and AI incident access sections](https://mintcdn.com/incidentio-18bb4170/GvM_xTpbU0uD_KDk/images/ai-governance/settings-page.png?fit=max\&auto=format\&n=GvM_xTpbU0uD_KDk\&q=85\&s=2ca0a2e0a2db05e338f17409ab8e33a8)
 
 ## Every AI control
 
-| Control                         | Where to set it                                                | Default                       | What it affects                                                                                         |
-| ------------------------------- | -------------------------------------------------------------- | ----------------------------- | ------------------------------------------------------------------------------------------------------- |
-| Store incident channel messages | **Settings → AI governance**                                   | Enabled                       | Whether we keep incident channel messages. Most AI features need this on.                               |
-| AI incident access              | **Settings → AI governance**                                   | All incidents and alerts      | Whether AI features work in private incidents and alerts                                                |
-| AI data redaction               | **Settings → AI governance**. Contact us to unlock it          | Off                           | Strips credit card numbers, US Social Security numbers and phone numbers before content reaches a model |
-| AI subprocessors                | **Settings → AI governance**. Contact us to change             | All allowed                   | Which providers may receive your data                                                                   |
-| @incident                       | **Settings → AI governance → Store incident channel messages** | Enabled on Pro and Enterprise | Chatting to the agent in Slack, the Microsoft Teams incident tab, the dashboard and the mobile app      |
-| Suggestions                     | **Settings → Suggestions**                                     | Off                           | Suggested summaries, follow-ups and updates, and the catch-up posted to someone joining a channel       |
-| Investigations                  | **Investigations → Investigation settings**                    | Off                           | Whether investigations run, and [when](/investigations/triggering)                                      |
-| Proposing code fixes            | **Investigations → Investigation settings**                    | Off                           | Whether an investigation opens a draft pull request without being asked                                 |
-| Code scanning, per repository   | **Investigations → Code changes**                              | Off                           | Whether we read a repository's merge requests and use it as investigation context                       |
-| Scribe                          | **Settings → Calls → Scribe**                                  | Off                           | Whether [Scribe](/ai/scribe) joins incident calls, transcribes them and posts notes                     |
-| Scribe auto-join                | **Settings → Calls → Scribe**                                  | On                            | Whether Scribe joins every incident call, or waits to be invited                                        |
-| Meeting Notes                   | **Settings → Calls → Scribe**                                  | On                            | Whether people can add Meeting Notes to post-mortems to record debrief calls                            |
-| Transcript viewing              | Contact us                                                     | On                            | Whether people can read call transcripts in the dashboard and through the API                           |
-| Auto-delete call notes          | **Settings → Calls → Scribe**                                  | Never                         | Deletes transcripts and notes 7, 14 or 90 days after the call                                           |
-| Remote MCP server               | **Settings → MCP**                                             | On                            | Whether AI clients such as Claude or ChatGPT can query your incidents, alerts and escalations           |
+| Control | Where to set it | Default | What it affects |
+| - | - | - | - |
+| Store incident channel messages | **Settings → AI governance** | Enabled | Whether we keep incident channel messages. Most AI features need this on. |
+| AI incident access | **Settings → AI governance** | All incidents and alerts | Whether AI features work in private incidents and alerts |
+| AI data redaction | **Settings → AI governance**. Contact us to unlock it | Off | Strips credit card numbers, US Social Security numbers and phone numbers before content reaches a model |
+| AI subprocessors | **Settings → AI governance**. Contact us to change | All allowed | Which providers may receive your data |
+| @incident | **Settings → AI governance → Store incident channel messages** | Enabled on Pro and Enterprise | Chatting to the agent in Slack, the Microsoft Teams incident tab, the dashboard and the mobile app |
+| Suggestions | **Settings → Suggestions** | Off | Suggested summaries, follow-ups and updates, and the catch-up posted to someone joining a channel |
+| Investigations | **Investigations → Investigation settings** | Off | Whether investigations run, and [when](/investigations/triggering) |
+| Proposing code fixes | **Investigations → Investigation settings** | Off | Whether an investigation opens a draft pull request without being asked |
+| Code scanning, per repository | **Investigations → Code changes** | Off | Whether we read a repository's merge requests and use it as investigation context |
+| Scribe | **Settings → Calls → Scribe** | Off | Whether [Scribe](/ai/scribe) joins incident calls, transcribes them and posts notes |
+| Scribe auto-join | **Settings → Calls → Scribe** | On | Whether Scribe joins every incident call, or waits to be invited |
+| Meeting Notes | **Settings → Calls → Scribe** | On | Whether people can add Meeting Notes to post-mortems to record debrief calls |
+| Transcript viewing | Contact us | On | Whether people can read call transcripts and download recordings, in the dashboard and through the API |
+| Call recording | **Settings → Calls → Scribe** | Off | Whether Scribe keeps a recording of the incident calls it joins, to download from the call notes |
+| Auto-delete call notes | **Settings → Calls → Scribe** | Never | Deletes transcripts, recordings and notes 7, 14 or 90 days after the call |
+| Remote MCP server | **Settings → MCP** | On | Whether AI clients such as Claude or ChatGPT can query your incidents, alerts and escalations |
 
 ## Who can change these settings
 
@@ -74,35 +75,31 @@ AI features route across whichever LLM providers you allow. Opting out of Google
 
 ## FAQs
 
-<AccordionGroup>
-  <Accordion title="Do you train models on our data?">
-    No. We hold zero data retention agreements with the LLM providers behind our AI features, OpenAI, Anthropic and
-    Google Vertex, so what we send them is not stored by them and is never used to train or fine-tune a model. The audio
-    providers behind Scribe and voicemail don't retain your data either. See [AI data handling](/admin/ai-usage).
-  </Accordion>
+> **Do you train models on our data?**
+>
+> No. We hold zero data retention agreements with the LLM providers behind our AI features, OpenAI, Anthropic and
+> Google Vertex, so what we send them is not stored by them and is never used to train or fine-tune a model. The audio
+> providers behind Scribe and voicemail don't retain your data either. See [AI data handling](/admin/ai-usage).
 
-  <Accordion title="Can we bring our own model or API key?">
-    Not currently. Our AI features use a combination of models across providers, chosen for accuracy, so there is no
-    bring-your-own-model or bring-your-own-key option.
-  </Accordion>
+> **Can we bring our own model or API key?**
+>
+> Not currently. Our AI features use a combination of models across providers, chosen for accuracy, so there is no
+> bring-your-own-model or bring-your-own-key option.
 
-  <Accordion title="Where do we get your subprocessor list and DPA?">
-    Our [Trust Center](https://trust.incident.io/) holds the current subprocessor list, the data processing addendum,
-    and our SOC 2 Type II report.
-  </Accordion>
-</AccordionGroup>
+> **Where do we get your subprocessor list and DPA?**
+>
+> Our [Trust Center](https://trust.incident.io/) holds the current subprocessor list, the data processing addendum,
+> and our SOC 2 Type II report.
 
 ## Related
 
-<CardGroup>
-  <Card title="AI data handling" icon="shield" href="/admin/ai-usage">
-    Which providers we use, and how your data is handled.
-  </Card>
+> **[AI data handling](/admin/ai-usage)**
+>
+> Which providers we use, and how your data is handled.
 
-  <Card title="Managing sensitive data" icon="eraser" href="/admin/managing-sensitive-data">
-    Prevent, erase and redact sensitive information.
-  </Card>
-</CardGroup>
+> **[Managing sensitive data](/admin/managing-sensitive-data)**
+>
+> Prevent, erase and redact sensitive information.
 
 # AI data handling
 Source: https://docs.incident.io/admin/ai-usage
@@ -113,7 +110,7 @@ incident.io uses AI to help take away some of the overhead of incident response 
 
 Our AI features are powered by OpenAI, Anthropic, and Google Vertex. We send data on-demand to their APIs when required by a feature — this includes (but is not limited to) incident updates, summaries, and custom fields. This data is not stored by them and is not used for any reason other than to provide these services. This means it is explicitly *not* used for training purposes.
 
-Audio is handled by two further providers. [Scribe](/ai/scribe) joins your incident calls through Recall.ai, and ElevenLabs transcribes the call audio. We store the resulting transcript, not the audio.
+Audio is handled by two further providers. [Scribe](/ai/scribe) joins your incident calls through Recall.ai, and ElevenLabs transcribes the call audio. By default, we store the resulting transcript, not the audio or video. If you turn on [call recording](/ai/scribe#feature-call-recording), we also keep a recording of each incident call Scribe joins. Recordings are never sent to an AI model.
 
 ElevenLabs also transcribes voicemail left on your [call routes](/on-call/live-call-routing#send-calls-to-voicemail). Voicemail works differently: we store the recording as well as the transcript, so you can listen back to it.
 
@@ -141,12 +138,10 @@ You don't need to set anything up to get started. Every account comes with a def
 
 To customize either, go to [Settings → Announcements](https://app.incident.io/~/settings/announcements).
 
-<Frame>
-  <img
-    alt="The Announcements settings page, showing the Templates and Rules
-sections"
-  />
-</Frame>
+![The Announcements settings page, showing the Templates and Rules
+sections](https://mintcdn.com/incidentio-18bb4170/L9ToxNtmN_TtGxo_/images/announcements/settings-overview.png?fit=max\&auto=format\&n=L9ToxNtmN_TtGxo_\&q=85\&s=93aa94a3dc5f901754258d0122564b18)
+
+The Announcements settings page, with your Templates and Rules
 
 ## Templates
 
@@ -154,27 +149,25 @@ A template controls what an announcement post looks like. Every account starts w
 
 Click a template to edit it. You can add or remove fields and actions, reorder them, and configure which emojis appear next to each field, with a live preview of the post as you go.
 
-<Frame>
-  <img
-    alt="The Edit announcement template drawer, showing the fields and actions and a live preview of the
-post"
-  />
-</Frame>
+![The Edit announcement template drawer, showing the fields and actions and a live preview of the
+post](https://mintcdn.com/incidentio-18bb4170/L9ToxNtmN_TtGxo_/images/announcements/edit-template.png?fit=max\&auto=format\&n=L9ToxNtmN_TtGxo_\&q=85\&s=cba33bc82b2f8d203e13fbb2eddf43cc)
+
+Editing an announcement template, with a live preview of the post
 
 To add a field or action, click **Add** and pick from the list.
 
-<Frame>
-  <img alt="Adding a field to a template by picking from the Add menu" />
-</Frame>
+![Adding a field to a template by picking from the Add menu](https://mintcdn.com/incidentio-18bb4170/L9ToxNtmN_TtGxo_/images/announcements/add-field.png?fit=max\&auto=format\&n=L9ToxNtmN_TtGxo_\&q=85\&s=0657e5bdd47abb8cc6b48ea1c700718d)
+
+Adding a field to a template
 
 ### Using more than one template
 
 You're not limited to a single template. Click **Add template** to create additional templates. This is useful when you want variations for specific purposes, such as a stripped-back post for a particular audience, or a template paired with a specific [announcement rule](#rules) so different incidents are announced differently.
 
-<Info>
-  You can also choose a template in the **Post an incident announcement** step of a [workflow](/workflows). Leaving it
-  blank falls back to your default template.
-</Info>
+> [!NOTE]
+>
+> You can also choose a template in the **Post an incident announcement** step of a [workflow](/workflows). Leaving it
+> blank falls back to your default template.
 
 ## Rules
 
@@ -182,20 +175,18 @@ Rules control which incidents get announced, and where. By default, we announce 
 
 Click a rule to edit it. You can change which channel it posts to, add conditions so it only fires for specific incidents (for example, announcing critical incidents in `#customer-support` too), and pick which template it uses.
 
-<Frame>
-  <img
-    alt="The Edit announcement rule drawer, showing the rule's settings, conditions, and a live preview of the
-post"
-  />
-</Frame>
+![The Edit announcement rule drawer, showing the rule's settings, conditions, and a live preview of the
+post](https://mintcdn.com/incidentio-18bb4170/L9ToxNtmN_TtGxo_/images/announcements/edit-rule.png?fit=max\&auto=format\&n=L9ToxNtmN_TtGxo_\&q=85\&s=71aeaeffab009e0e06477b96af3c6071)
+
+Editing an announcement rule, with a live preview of the post
 
 Click **Add rule** to create a new rule, for instance to call out specific incident types or severities in a separate channel.
 
-<Note>
-  Don't delete whichever channel you're using for default announcements. On Slack, if you already had an `#incidents`
-  channel when you installed our app, we'll have created a channel called `#incident-io-incidents` instead, which you
-  can rename to whatever you'd like.
-</Note>
+> [!NOTE]
+>
+> Don't delete whichever channel you're using for default announcements. On Slack, if you already had an `#incidents`
+> channel when you installed our app, we'll have created a channel called `#incident-io-incidents` instead, which you
+> can rename to whatever you'd like.
 
 For more on redirecting announcements to a different channel, see [Announcement channels](/incidents/change-announcements).
 
@@ -210,42 +201,41 @@ Ownership assigns the template or rule to a team. If your organization uses [tea
 
 Each team can see the templates and rules they own on their own **Settings → Announcements** page.
 
-<Frame>
-  <img
-    alt="The Announcements tab of a team's settings, listing the template and rule owned by that
-team"
-  />
-</Frame>
+![The Announcements tab of a team's settings, listing the template and rule owned by that
+team](https://mintcdn.com/incidentio-18bb4170/1bOtFU7v3wez4HQd/images/announcements/team-owned-announcements.png?fit=max\&auto=format\&n=1bOtFU7v3wez4HQd\&q=85\&s=85945d0e7c850ded50d986aeccec0bfc)
+
+A team's owned announcement templates and rules, on their team settings page
 
 ## FAQs
 
-<AccordionGroup>
-  <Accordion title="What's different on Microsoft Teams?">
-    Not much. Templates and rules are configured in the same place and work the same way on both platforms.
+> **What's different on Microsoft Teams?**
+>
+> Not much. Templates and rules are configured in the same place and work the same way on both platforms.
+>
+> The main difference is the default announcement channel: on Slack it's your `#incidents` channel, whereas on Microsoft Teams it's the General channel of your Incidents team. See [Announcement channels](/incidents/change-announcements) for more.
 
-    The main difference is the default announcement channel: on Slack it's your `#incidents` channel, whereas on Microsoft Teams it's the General channel of your Incidents team. See [Announcement channels](/incidents/change-announcements) for more.
-  </Accordion>
-
-  <Accordion title="Can I @mention a Slack user group in an announcement post?">
-    The announcement builder does not currently support free-form text or @mentioning Slack user groups directly in the announcement post.
-
-    If you need to notify a specific team when an incident is announced, consider these alternatives:
-
-  </Accordion>
-</AccordionGroup>
+> **Can I @mention a Slack user group in an announcement post?**
+>
+> The announcement builder does not currently support free-form text or @mentioning Slack user groups directly in the announcement post.
+>
+> If you need to notify a specific team when an incident is announced, consider these alternatives:
+>
+> * **Announce to the team's Slack channel**: Use a [rule](#rules) to post directly to the relevant team's channel.
+> * **Invite the user group via a workflow**: Set up a [workflow](/workflows) to automatically invite the Slack user group to the incident channel.
+> * **Auto-subscribe to certain incidents**: Encourage folks to [auto-subscribe](/incidents/subscribing) to incidents belonging to their team.
 
 # API keys
 Source: https://docs.incident.io/admin/api-keys
 
 Control API access with account-level and team-scoped permissions.
 
-Create and manage API keys from [**Settings → API keys**](https://app.incident.io/~/settings/api-keys).
+Create and manage API keys from [**Settings → API keys**](https://app.incident.io/~/settings/api-keys). A key works with the [API](/api-reference/introduction) directly, with our [SDKs](/integrations/sdks), and with the [Terraform](/admin/terraform) and [Pulumi](/admin/pulumi) providers.
 
 ## Creating an API key
 
-<Warning>
-  We'll only show the API key token once at creation time, so store it somewhere safe.
-</Warning>
+> [!WARNING]
+>
+> We'll only show the API key token once at creation time, so store it somewhere safe.
 
 API keys can have account-level permissions, team-scoped permissions, or a combination of both. This means teams can manage their own config via the API without risking changes to other teams' resources.
 
@@ -269,94 +259,94 @@ A **Team** value of *Yes* means the permission can also be scoped to specific te
 
 ### Incidents and investigations
 
-| Permission                                                               | What it allows                                                                            | Team |
-| ------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------- | ---- |
-| **View data** `viewer`                                                   | Read-only access to public incidents and most organization settings.                      |      |
-| **View all incident data** `global_access`                               | Adds read access to private incidents, alerts, and escalations.                           |      |
-| **Create incidents** `incident_creator`                                  | Open incidents and set fields, role assignments, timestamps, and attachments at creation. |      |
-| **Edit incidents** `incident_editor`                                     | Update, decline, merge, or cancel incidents, and manage calls and linked alerts.          |      |
-| **Manage incident memberships** `incident_memberships_editor`            | View all incident data, including private incidents, and grant or revoke incident access. |      |
-| **Opt out of post-incident flow** `post_incident_flow_opt_out`           | Close an incident by opting it out of the post-incident flow.                             |      |
-| **Manage postmortems** `postmortems_manage`                              | Manage postmortems, including updating their status and running imports.                  |      |
-| **Download investigation artifacts** `investigation_download`            | Download AI investigation artifacts attached to incidents.                                |      |
-| **View call transcripts** `call_transcripts_viewer`                      | View call sessions and the transcripts Scribe captured for them.                          |      |
-| **View participant workload** `incident_workload_viewer`                 | View participant-workload analytics (who's been involved in how many incidents).          |      |
-| **View private participant workload** `incident_workload_private_viewer` | View participant-workload analytics, including for private incidents.                     |      |
+| Permission | What it allows | Team |
+| - | - | - |
+| **View data** `viewer` | Read-only access to public incidents and most organization settings. | |
+| **View all incident data** `global_access` | Adds read access to private incidents, alerts, and escalations. | |
+| **Create incidents** `incident_creator` | Open incidents and set fields, role assignments, timestamps, and attachments at creation. | |
+| **Edit incidents** `incident_editor` | Update, decline, merge, or cancel incidents, and manage calls and linked alerts. | |
+| **Manage incident memberships** `incident_memberships_editor` | View all incident data, including private incidents, and grant or revoke incident access. | |
+| **Opt out of post-incident flow** `post_incident_flow_opt_out` | Close an incident by opting it out of the post-incident flow. | |
+| **Manage postmortems** `postmortems_manage` | Manage postmortems, including updating their status and running imports. | |
+| **Download investigation artifacts** `investigation_download` | Download AI investigation artifacts attached to incidents. | |
+| **View call transcripts** `call_transcripts_viewer` | View call sessions and the transcripts Scribe captured for them. | |
+| **View participant workload** `incident_workload_viewer` | View participant-workload analytics (who's been involved in how many incidents). | |
+| **View private participant workload** `incident_workload_private_viewer` | View participant-workload analytics, including for private incidents. | |
 
 ### Catalog and teams
 
-| Permission                                            | What it allows                                      | Team |
-| ----------------------------------------------------- | --------------------------------------------------- | ---- |
-| **View catalog** `catalog_viewer`                     | Read-only access to catalog types and entries.      |      |
-| **Manage catalog** `catalog_editor`                   | Create, edit, and delete catalog types and entries. | Yes  |
-| **Manage team memberships** `team_memberships_manage` | Update team memberships and edit catalog entries.   |      |
+| Permission | What it allows | Team |
+| - | - | - |
+| **View catalog** `catalog_viewer` | Read-only access to catalog types and entries. | |
+| **Manage catalog** `catalog_editor` | Create, edit, and delete catalog types and entries. | Yes |
+| **Manage team memberships** `team_memberships_manage` | Update team memberships and edit catalog entries. | |
 
 ### On-call, escalations, and notifications
 
-| Permission                                                                        | What it allows                                                                                          | Team |
-| --------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ---- |
-| **Manage on-call resources** `on_call_editor`                                     | Full on-call surface: alerts, sources, routes, schema, schedules, escalations, and maintenance windows. | Yes  |
-| **View on-call resources** `on_call_viewer`                                       | Read-only view of on-call resources like alerts, escalations, and schedules.                            |      |
-| **Create escalations** `escalation_creator`                                       | Create, respond to, and cancel escalations.                                                             | Yes  |
-| **Manage notification methods** `notification_methods_manage`                     | Configure the on-call paging provider, and users' notification methods and rules.                       |      |
-| **View unredacted notification methods** `notification_methods_unredacted_viewer` | View users' notification methods, including unredacted phone numbers. Grant sparingly.                  |      |
+| Permission | What it allows | Team |
+| - | - | - |
+| **Manage on-call resources** `on_call_editor` | Full on-call surface: alerts, sources, routes, schema, schedules, escalations, and maintenance windows. | Yes |
+| **View on-call resources** `on_call_viewer` | Read-only view of on-call resources like alerts, escalations, and schedules. | |
+| **Create escalations** `escalation_creator` | Create, respond to, and cancel escalations. | Yes |
+| **Manage notification methods** `notification_methods_manage` | Configure the on-call paging provider, and users' notification methods and rules. | |
+| **View unredacted notification methods** `notification_methods_unredacted_viewer` | View users' notification methods, including unredacted phone numbers. Grant sparingly. | |
 
 ### Schedules
 
-| Permission                                                | What it allows                                                | Team |
-| --------------------------------------------------------- | ------------------------------------------------------------- | ---- |
-| **Create and update schedules** `schedules_editor`        | Create, update, delete, and view schedules.                   | Yes  |
-| **Read schedules** `schedules_reader`                     | Read-only access to schedules.                                | Yes  |
-| **Manage schedule overrides** `schedule_overrides_editor` | Create, update, and delete schedule overrides, not schedules. | Yes  |
+| Permission | What it allows | Team |
+| - | - | - |
+| **Create and update schedules** `schedules_editor` | Create, update, delete, and view schedules. | Yes |
+| **Read schedules** `schedules_reader` | Read-only access to schedules. | Yes |
+| **Manage schedule overrides** `schedule_overrides_editor` | Create, update, and delete schedule overrides, not schedules. | Yes |
 
 ### On-call pay
 
-| Permission                                         | What it allows                                                 | Team |
-| -------------------------------------------------- | -------------------------------------------------------------- | ---- |
-| **View pay configurations** `pay_configs_viewer`   | Read-only access to pay configurations and their rules.        |      |
-| **Manage pay configurations** `pay_configs_editor` | Create, update, and delete pay configurations and their rules. |      |
+| Permission | What it allows | Team |
+| - | - | - |
+| **View pay configurations** `pay_configs_viewer` | Read-only access to pay configurations and their rules. | |
+| **Manage pay configurations** `pay_configs_editor` | Create, update, and delete pay configurations and their rules. | |
 
 ### Workflows
 
-| Permission                                                                    | What it allows                                                         | Team |
-| ----------------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---- |
-| **Manage workflows** `workflows_editor`                                       | Create, update, delete, and view workflows.                            | Yes  |
-| **Manage workflows that run on private incidents** `private_workflows_editor` | Everything in workflows, plus workflows that run on private incidents. | Yes  |
-| **Workflows on private escalations** `private_escalation_workflows_editor`    | Manage workflows that run on private escalations.                      |      |
+| Permission | What it allows | Team |
+| - | - | - |
+| **Manage workflows** `workflows_editor` | Create, update, delete, and view workflows. | Yes |
+| **Manage workflows that run on private incidents** `private_workflows_editor` | Everything in workflows, plus workflows that run on private incidents. | Yes |
+| **Workflows on private escalations** `private_escalation_workflows_editor` | Manage workflows that run on private escalations. | |
 
 ### Status pages
 
-| Permission                                       | What it allows                                                             | Team |
-| ------------------------------------------------ | -------------------------------------------------------------------------- | ---- |
-| **Publish status pages** `status_page_publisher` | Create status page incidents and maintenance windows, and publish updates. |      |
+| Permission | What it allows | Team |
+| - | - | - |
+| **Publish status pages** `status_page_publisher` | Create status page incidents and maintenance windows, and publish updates. | |
 
 ### Secrets
 
-| Permission                          | What it allows                                               | Team |
-| ----------------------------------- | ------------------------------------------------------------ | ---- |
-| **Manage secrets** `secrets_manage` | View, create, update, rotate, delete, and reference secrets. | Yes  |
-| **Use secrets** `secrets_use`       | View secret metadata and reference secrets.                  | Yes  |
+| Permission | What it allows | Team |
+| - | - | - |
+| **Manage secrets** `secrets_manage` | View, create, update, rotate, delete, and reference secrets. | Yes |
+| **Use secrets** `secrets_use` | View secret metadata and reference secrets. | Yes |
 
 ### Telemetry
 
-| Permission                                                       | What it allows                                                               | Team |
-| ---------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---- |
-| **Query restricted telemetry** `telemetry_query_restricted`      | Query [restricted telemetry data sources](/nexus/telemetry/access-controls). | Yes  |
-| **Update telemetry data sources** `telemetry_data_source_update` | Update the configuration and credentials of telemetry data sources.          | Yes  |
+| Permission | What it allows | Team |
+| - | - | - |
+| **Query restricted telemetry** `telemetry_query_restricted` | Query [restricted telemetry data sources](/nexus/telemetry/access-controls). | Yes |
+| **Update telemetry data sources** `telemetry_data_source_update` | Update the configuration and credentials of telemetry data sources. | Yes |
 
 ### Organization and security
 
-| Permission                                              | What it allows                                                                         | Team |
-| ------------------------------------------------------- | -------------------------------------------------------------------------------------- | ---- |
-| **Manage organization settings** `manage_settings`      | Change organization-level configuration such as custom fields, and manage the catalog. |      |
-| **Update security settings** `security_settings_editor` | Update the organization's security settings. Grant sparingly.                          |      |
+| Permission | What it allows | Team |
+| - | - | - |
+| **Manage organization settings** `manage_settings` | Change organization-level configuration such as custom fields, and manage the catalog. | |
+| **Update security settings** `security_settings_editor` | Update the organization's security settings. Grant sparingly. | |
 
 ### API keys and attribution
 
-| Permission                                          | What it allows                                                                                                                                                                   | Team |
-| --------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---- |
-| **Manage API keys** `api_keys_manage`               | View, create, edit, delete, or rotate API keys. A key with this permission can create more keys, but only within its own access. Can't be granted through the public API.        | Yes  |
-| **Act on behalf of users** `act_on_behalf_of_users` | Attach the on-behalf-of header to attribute API actions to a specific user. Grants no actions on its own, so pair it with another permission. Availability depends on your plan. |      |
+| Permission | What it allows | Team |
+| - | - | - |
+| **Manage API keys** `api_keys_manage` | View, create, edit, delete, or rotate API keys. A key with this permission can create more keys, but only within its own access. Can't be granted through the public API. | Yes |
+| **Act on behalf of users** `act_on_behalf_of_users` | Attach the on-behalf-of header to attribute API actions to a specific user. Grants no actions on its own, so pair it with another permission. Availability depends on your plan. | |
 
 ## Best practices
 
@@ -382,23 +372,21 @@ Users with only team-scoped permissions can create, edit, and delete keys within
 
 ## FAQs
 
-<AccordionGroup>
-  <Accordion title="What's the difference between a permission and a scope?">
-    A scope is a single, granular capability in the API. A permission bundles several scopes together into something
-    meaningful, like the **Edit incidents** permission. You choose permissions when creating a key, not individual
-    scopes. To see the scopes behind a permission, hover its scopes badge in the create dialog.
-  </Accordion>
+> **What's the difference between a permission and a scope?**
+>
+> A scope is a single, granular capability in the API. A permission bundles several scopes together into something
+> meaningful, like the **Edit incidents** permission. You choose permissions when creating a key, not individual
+> scopes. To see the scopes behind a permission, hover its scopes badge in the create dialog.
 
-  <Accordion title="Can an API key be scoped to multiple teams?">
-    Yes. A key can be associated with multiple teams, but it will have the same set of team-scoped permissions across
-    all of them.
-  </Accordion>
+> **Can an API key be scoped to multiple teams?**
+>
+> Yes. A key can be associated with multiple teams, but it will have the same set of team-scoped permissions across
+> all of them.
 
-  <Accordion title="Can a key have both global and team-scoped permissions?">
-    Yes. A single key can have account-level permissions (e.g., read catalog data) alongside team-scoped permissions
-    (e.g., manage schedules for a specific team).
-  </Accordion>
-</AccordionGroup>
+> **Can a key have both global and team-scoped permissions?**
+>
+> Yes. A single key can have account-level permissions (e.g., read catalog data) alongside team-scoped permissions
+> (e.g., manage schedules for a specific team).
 
 # Audit logs
 Source: https://docs.incident.io/admin/audit-logs
@@ -407,16 +395,16 @@ Track configuration changes and permission updates across your account
 
 Audit logs track configuration, permission, and security changes made within your incident.io account, so you have a record of who changed what and when. Available on the [Enterprise plan](https://incident.io/pricing), powered by [WorkOS](https://workos.com/), with entries retained for one year.
 
-<Note>
-  You need the **View audit logs** permission, which Owners and Admins have by default. You can also grant it to a [custom role](/admin/user-permissions#custom-roles).
-</Note>
+> [!NOTE]
+>
+> You need the **View audit logs** permission, which Owners and Admins have by default. You can also grant it to a [custom role](/admin/user-permissions#custom-roles).
 
 ## What’s tracked
 
 Audit logs cover configuration, permission, and security events. They record:
 
 * Alert sources, routes, priorities, and escalation paths
-* Schedules, schedule overrides, and holiday feeds
+* Schedules, schedule overrides, holiday feeds, and notification pauses
 * Custom fields, incident types, roles, statuses, timestamps, and severities
 * Workflows, nudges, announcement rules, post-incident tasks, and post-mortem templates
 * Status pages, policies, and Catalog types
@@ -433,7 +421,7 @@ Day-to-day incident work is recorded in each incident's activity log rather than
 
 Each entry records the actor (person or system making the change), the target (what was modified), and contextual details like location and user agent. Entries follow a versioned schema, so older entries stay parseable. See the [audit log entry schema](/api-reference/audit-logs) for every entry type and its fields.
 
-<img alt="The Audit Logs table, with Actor, Event and Date and time columns and a filter box above" />
+![The Audit Logs table, with Actor, Event and Date and time columns and a filter box above](https://mintcdn.com/incidentio-18bb4170/aih-bzVNJc6xN5Zn/images/help-centre/audit-logs/screenshot-1.png?fit=max\&auto=format\&n=aih-bzVNJc6xN5Zn\&q=85\&s=96054254eb5e2414552487e020d8376d)
 
 ## Viewing audit logs
 
@@ -445,7 +433,7 @@ Access audit logs at [Settings → Security](https://app.incident.io/~/settings/
 
 Entries reach you by log stream or CSV export rather than through the API.
 
-<img alt="Streaming Audit Log Configuration, offering S3, Datadog, Splunk, Google Cloud Storage, Microsoft Sentinel and Generic HTTPS" />
+![Streaming Audit Log Configuration, offering S3, Datadog, Splunk, Google Cloud Storage, Microsoft Sentinel and Generic HTTPS](https://mintcdn.com/incidentio-18bb4170/x_mvWkR2DHebgTRj/images/help-centre/audit-logs/screenshot-2.png?fit=max\&auto=format\&n=x_mvWkR2DHebgTRj\&q=85\&s=5791c098ed1035f73a45278fbeb83bd5)
 
 ## Retention
 
@@ -490,17 +478,15 @@ For details on how to add or remove seats, see [Managing seats](/admin/managing-
 
 ## FAQs
 
-<AccordionGroup>
-  <Accordion title="Do you have a W-9 or W8-BEN form?">
-    We’re a UK-based company so we use a W8-BEN form instead of a W-9. You can download our [W8-BEN
-    form](https://incident.io/docs/files/W-8BEN-E.pdf).
-  </Accordion>
+> **Do you have a W-9 or W8-BEN form?**
+>
+> We’re a UK-based company so we use a W8-BEN form instead of a W-9. You can download our [W8-BEN
+> form](https://incident.io/docs/files/W-8BEN-E.pdf).
 
-  <Accordion title="How do seat types affect billing?">
-    Responder and On-call seats are billed independently. A user with both seats counts against both pools. Viewers are
-    free and unlimited on all plans. See [Seat types & viewers](/admin/seat-types) for the full breakdown.
-  </Accordion>
-</AccordionGroup>
+> **How do seat types affect billing?**
+>
+> Responder and On-call seats are billed independently. A user with both seats counts against both pools. Viewers are
+> free and unlimited on all plans. See [Seat types & viewers](/admin/seat-types) for the full breakdown.
 
 # Changing plans
 Source: https://docs.incident.io/admin/change-plan
@@ -529,9 +515,9 @@ To downgrade to the Basic (free) plan:
 2. If you've recently paid for a subscription, you may be eligible for a prorated refund
 3. Downgrading removes access to premium features — see the [pricing page](https://incident.io/pricing) for what's included in each plan
 
-<Warning>
-  The Basic plan has a limit of 5 responder/on-call seats. If you're downgrading to Basic, ensure you have no more than 5 active responders by changing excess users to "Viewer only" access.
-</Warning>
+> [!WARNING]
+>
+> The Basic plan has a limit of 5 responder/on-call seats. If you're downgrading to Basic, ensure you have no more than 5 active responders by changing excess users to "Viewer only" access.
 
 # Channel bookmarks
 Source: https://docs.incident.io/admin/channel-bookmarks
@@ -542,11 +528,11 @@ You can create custom bookmarks within your incident channels, to give snapshot 
 
 1. To create a custom bookmark, first navigate to [Settings](https://app.incident.io/~/settings/slack-channel) → [Slack Channel](https://app.incident.io/~/settings/slack-channel).
 
-<img alt="The Slack Channel settings page for configuring bookmarks" />
+![The Slack Channel settings page for configuring bookmarks](https://mintcdn.com/incidentio-18bb4170/e2x1yCidKCk3BCKz/images/help-centre/customizing-your-incident-channel-bookmarks/screenshot-1.png?fit=max\&auto=format\&n=e2x1yCidKCk3BCKz\&q=85\&s=8ebbad2091a1c1baa8a47bcb651f2e39)
 
 2. Click the "+ Add New button", and create. You will have three options for the kind of bookmark you'd like to add:
 
-<img alt="Bookmark type picker showing pre-defined property, pre-defined link, and custom link options" />
+![Bookmark type picker showing pre-defined property, pre-defined link, and custom link options](https://mintcdn.com/incidentio-18bb4170/e2x1yCidKCk3BCKz/images/help-centre/customizing-your-incident-channel-bookmarks/screenshot-2.png?fit=max\&auto=format\&n=e2x1yCidKCk3BCKz\&q=85\&s=e42698319aac68ad3cc1ff4de5a28c9f)
 
 "Pre-defined property" is a field that contains useful information about the incident (i.e. the status of the severity), and will update as it is changed.
 
@@ -556,25 +542,23 @@ You can create custom bookmarks within your incident channels, to give snapshot 
 
 3. You can also choose under what condition a bookmark appears (i.e. a link to a critical incident doc only appears on critical incidents).
 
-<img alt="Configuring conditions for when a bookmark appears, such as severity level" />
+![Configuring conditions for when a bookmark appears, such as severity level](https://mintcdn.com/incidentio-18bb4170/e2x1yCidKCk3BCKz/images/help-centre/customizing-your-incident-channel-bookmarks/screenshot-3.png?fit=max\&auto=format\&n=e2x1yCidKCk3BCKz\&q=85\&s=d3dfe8bdea69731e24643432f9a19e8a)
 
 4. Next click "Create", and your bookmarks will appear at the top of the incident channel when the conditions you selected are met.
 
-<img alt="Bookmarks displayed at the top of an incident channel in Slack" />
+![Bookmarks displayed at the top of an incident channel in Slack](https://mintcdn.com/incidentio-18bb4170/e2x1yCidKCk3BCKz/images/help-centre/customizing-your-incident-channel-bookmarks/screenshot-4.png?fit=max\&auto=format\&n=e2x1yCidKCk3BCKz\&q=85\&s=3f9881c862482f5af75224a31678c70f)
 
 Bookmarks are a great way to give at-a-glance information to team members when they join an incident.
 
-<AccordionGroup>
-  <Accordion title="Why are my bookmarks showing up in the wrong order?">
-    The [Slack API](https://api.slack.com/methods/bookmarks.add) limits what we're able to do with the bookmarks in your incident channel. Currently, we're only able to append bookmarks to the end of the list. This might mean that sometimes, you see bookmarks end up in a different order than the one you've set up.
-
-    The alternative is to individually remove and re-add all of the bookmarks we've created. This turned out to be visually much more jarring, and it also resulted in the reordering of any bookmarks that had been manually added to the channel. Although having bookmarks out of order isn't ideal, we feel like this is the best option for now.
-
-    Some actions, such as creating a call for your incident, happen in the background after we've created your incident channel. In these cases, you're likely to see the "Join the call" button show up at the end of your list of bookmarks. We've got much more control over announcement messages: you'll see that the order here will always be what you expect.
-
-    We always keep an eye out for improvements to the Slack API, and we hope to be able to improve this in the future.
-  </Accordion>
-</AccordionGroup>
+> **Why are my bookmarks showing up in the wrong order?**
+>
+> The [Slack API](https://api.slack.com/methods/bookmarks.add) limits what we're able to do with the bookmarks in your incident channel. Currently, we're only able to append bookmarks to the end of the list. This might mean that sometimes, you see bookmarks end up in a different order than the one you've set up.
+>
+> The alternative is to individually remove and re-add all of the bookmarks we've created. This turned out to be visually much more jarring, and it also resulted in the reordering of any bookmarks that had been manually added to the channel. Although having bookmarks out of order isn't ideal, we feel like this is the best option for now.
+>
+> Some actions, such as creating a call for your incident, happen in the background after we've created your incident channel. In these cases, you're likely to see the "Join the call" button show up at the end of your list of bookmarks. We've got much more control over announcement messages: you'll see that the order here will always be what you expect.
+>
+> We always keep an eye out for improvements to the Slack API, and we hope to be able to improve this in the future.
 
 # Default timezone
 Source: https://docs.incident.io/admin/default-timezone
@@ -595,10 +579,10 @@ The following areas are **not** affected by this setting:
 * **Insights** — display in the user's local timezone
 * **Status page emails** — remain in UTC
 
-<Info>
-  If you don't see the timezone setting in your organization settings, contact your Customer Success Manager to have the
-  feature enabled.
-</Info>
+> [!NOTE]
+>
+> If you don't see the timezone setting in your organization settings, contact your Customer Success Manager to have the
+> feature enabled.
 
 # Deleting your organization
 Source: https://docs.incident.io/admin/delete-account
@@ -613,9 +597,9 @@ Since account deletion requires administrative verification, contact us at [help
 
 We'll handle the deletion and cancel your plan. Once complete, all users lose access and automated emails stop. If you want to use incident.io again in the future, you'll need to create a new account.
 
-<Note>
-  Looking to delete an individual user account instead? See [Deleting users](/admin/delete-users).
-</Note>
+> [!NOTE]
+>
+> Looking to delete an individual user account instead? See [Deleting users](/admin/delete-users).
 
 # Deleting users
 Source: https://docs.incident.io/admin/delete-users
@@ -626,9 +610,9 @@ User accounts in incident.io are synced to your Slack workspace, so they're mana
 
 If you're an Enterprise customer using SCIM, you can de-provision users via SCIM.
 
-<Note>
-  Looking to delete your entire organization? See [Deleting your organization](/admin/delete-account).
-</Note>
+> [!NOTE]
+>
+> Looking to delete your entire organization? See [Deleting your organization](/admin/delete-account).
 
 # Duplicate user errors
 Source: https://docs.incident.io/admin/duplicate-users
@@ -649,7 +633,7 @@ To resolve this:
 2. Go to [Settings → Users](https://app.incident.io/~/settings/users/users) and search for the user's name. You should see multiple items in the list
 3. One of those users should be a 'SAML only' user, meaning they won't have a `Slack` connection badge. This user will also have a 'Deactivate User' button in the bottom left → click this!
 
-<img alt="A SAML-only user profile showing the Deactivate user button" />
+![A SAML-only user profile showing the Deactivate user button](https://mintcdn.com/incidentio-18bb4170/XsSsM18yW6o4p-bZ/images/help-centre/duplicate-user-error/screenshot-1.png?fit=max\&auto=format\&n=XsSsM18yW6o4p-bZ\&q=85\&s=26cb9b721f3d4b6a1f5e6b1e9d656e69)
 
 Once you have just a single active user, and the email addresses match, the user should now be able to log in successfully.
 
@@ -686,7 +670,7 @@ You can now control exactly which fields will show on each form, and see the imp
 
 These work ‘in real time’ too, so when you change the severity from Minor to Major, the summary field will appear in your form.
 
-<img alt="Form configuration showing field visibility conditions based on severity" />
+![Form configuration showing field visibility conditions based on severity](https://mintcdn.com/incidentio-18bb4170/v89ml6WIdmNABCDJ/images/help-centre/configuring-incident-forms/screenshot-1.png?fit=max\&auto=format\&n=v89ml6WIdmNABCDJ\&q=85\&s=2ff3da0e67fb083352bbcda4c36d59f3)
 
 ## Choosing when to make a field required
 
@@ -694,7 +678,7 @@ Required fields are a blessing and a curse: it’s useful to ensure that a respo
 
 You can now choose when you want a field to be required: for example, you might have a role as **Comms Lead** which is required if the severity is Critical, but not for lower severity incidents.
 
-<img alt="Setting a role as required only for Critical severity incidents" />
+![Setting a role as required only for Critical severity incidents](https://mintcdn.com/incidentio-18bb4170/v89ml6WIdmNABCDJ/images/help-centre/configuring-incident-forms/screenshot-2.png?fit=max\&auto=format\&n=v89ml6WIdmNABCDJ\&q=85\&s=ab68471ce6b00da85e24d73ff755114c)
 
 As a bonus, if you have a dropdown custom field, you can choose to include a ‘no value’ item in the dropdown. Use this to ensure that a user makes an active choice to input 'no value' instead of just forgetting to fill out the field.
 
@@ -702,7 +686,7 @@ As a bonus, if you have a dropdown custom field, you can choose to include a ‘
 
 You can configure a bespoke form that’ll only apply to incidents of that particular type. For the Declare form, as soon as the user chooses that particular type, the rest of the form will change to match that specific type's form configuration.
 
-<img alt="Configuring a bespoke declare form for a specific incident type" />
+![Configuring a bespoke declare form for a specific incident type](https://mintcdn.com/incidentio-18bb4170/v89ml6WIdmNABCDJ/images/help-centre/configuring-incident-forms/screenshot-3.png?fit=max\&auto=format\&n=v89ml6WIdmNABCDJ\&q=85\&s=911a2bbfca4ed6407813cf4c60b4479c)
 
 If an incident type is [owned by a team](/incidents/incident-types#team-ownership-and-permissions), overriding or editing its forms is restricted to that team (or anyone with the **Manage incident types** permission granted globally). Org-wide forms that aren't tied to a specific type still require the permission granted globally.
 
@@ -714,21 +698,21 @@ To make it even easier to fill out these forms, you can configure default values
 * Set a default value for a custom field
 * Make incidents triage by default, instead of live
 
-<img alt="The Edit field modal with Default value set to Triage" />
+![The Edit field modal with Default value set to Triage](https://mintcdn.com/incidentio-18bb4170/v89ml6WIdmNABCDJ/images/help-centre/configuring-incident-forms/screenshot-4.png?fit=max\&auto=format\&n=v89ml6WIdmNABCDJ\&q=85\&s=2f1ca7db56c7fcbe671b5331e2e1d225)
 
 This also allows you to create templates, so you can make it easier for responders to populate summaries and updates consistently.
 
-<img alt="A summary template with pre-populated text for responders" />
+![A summary template with pre-populated text for responders](https://mintcdn.com/incidentio-18bb4170/v89ml6WIdmNABCDJ/images/help-centre/configuring-incident-forms/screenshot-5.png?fit=max\&auto=format\&n=v89ml6WIdmNABCDJ\&q=85\&s=f7bc4dab1153ae5f959b70d315ebd134)
 
 ## Your form, your way
 
 You can now help your responders by setting placeholder text, as well as adding dividers and help text blocks. Field descriptions are set on the custom field itself, under **Settings → Custom fields**, so they read the same on every form.
 
-<img alt="Adding placeholder text, dividers, and help text to a form" />
+![Adding placeholder text, dividers, and help text to a form](https://mintcdn.com/incidentio-18bb4170/v89ml6WIdmNABCDJ/images/help-centre/configuring-incident-forms/screenshot-6.png?fit=max\&auto=format\&n=v89ml6WIdmNABCDJ\&q=85\&s=ab3f6482a3d52cc9fea46f55f7aeb05e)
 
-<Tip>
-  Only require what you absolutely must, and prefer requiring at incident close than at incident start. If you require 5 fields when opening an incident, responders will be forced to provide 5 values before they begin responding.
-</Tip>
+> [!TIP]
+>
+> Only require what you absolutely must, and prefer requiring at incident close than at incident start. If you require 5 fields when opening an incident, responders will be forced to provide 5 values before they begin responding.
 
 # Incident timestamps
 Source: https://docs.incident.io/admin/incident-timestamps
@@ -747,21 +731,21 @@ Duration metrics define a relationship between 2 timestamps by having a start an
 
 [Navigate to your settings page and the timestamps tab](https://app.incident.io/~/settings/lifecycle?tab=timestamps), create a new metric or select an existing one to edit. Select the timestamps you wish to validate and that they are in the order you want to enforce.
 
-Make sure to tick **Enable validation** and then click save.
+Turn on **Enable validation** and save.
 
-<img alt="Creating a duration metric with validation enabled" />
+![Creating a duration metric with validation enabled](https://mintcdn.com/incidentio-18bb4170/I2we1CkQGIedyDtQ/images/help-centre/validating-incident-timestamps/screenshot-1.png?fit=max\&auto=format\&n=I2we1CkQGIedyDtQ\&q=85\&s=6d282f9bd66c9bf21d647475ebd6b1fa)
 
 ## Validation when editing timestamps
 
 Now that validation is enabled for that duration metric when you go to edit a timestamp in the dashboard and select the wrong date - you will be given a clear warning preventing you from submitting it.
 
-<img alt="A validation warning preventing submission of an out-of-order timestamp" />
+![A validation warning preventing submission of an out-of-order timestamp](https://mintcdn.com/incidentio-18bb4170/I2we1CkQGIedyDtQ/images/help-centre/validating-incident-timestamps/screenshot-2.png?fit=max\&auto=format\&n=I2we1CkQGIedyDtQ\&q=85\&s=f15cb0cb6b3605ddf3ae0e12b109ef97)
 
 ## Warning when resolving incidents
 
 You may have also configured your timestamps to be required when marking an incident as resolved. The values you enter here may also result in invalid durations however as we do not want to increase unnecessary friction we warn users - and notify them within the incident channel (see below) to prompt someone to fix it.
 
-<img alt="A validation warning shown when resolving an incident with invalid timestamps" />
+![A validation warning shown when resolving an incident with invalid timestamps](https://mintcdn.com/incidentio-18bb4170/zaR7zcu-VIqt5-ZN/images/help-centre/validating-incident-timestamps/screenshot-3.png?fit=max\&auto=format\&n=zaR7zcu-VIqt5-ZN\&q=85\&s=2beae9d98033970c5190881a7fe88321)
 
 ## Invalid durations notifications
 
@@ -771,15 +755,15 @@ This means that over time some of the timestamps you might have manually set mig
 
 We will highlight invalid timestamps in the incident's Properties panel, under **Timestamps and durations**:
 
-<img alt="Invalid timestamps highlighted in the incident Properties panel" />
+![Invalid timestamps highlighted in the incident Properties panel](https://mintcdn.com/incidentio-18bb4170/I2we1CkQGIedyDtQ/images/help-centre/validating-incident-timestamps/screenshot-4.png?fit=max\&auto=format\&n=I2we1CkQGIedyDtQ\&q=85\&s=0ee83917234ce787de866576beaaba9e)
 
 In addition to this and to help alert you when automatic changes have made a timestamp invalid we will post a message within the incident channel providing a helpful link to edit the duration directly.
 
-<img alt="A Slack message alerting that a timestamp is now invalid with a link to fix it" />
+![A Slack message alerting that a timestamp is now invalid with a link to fix it](https://mintcdn.com/incidentio-18bb4170/zaR7zcu-VIqt5-ZN/images/help-centre/validating-incident-timestamps/screenshot-5.png?fit=max\&auto=format\&n=zaR7zcu-VIqt5-ZN\&q=85\&s=b5a7c2d941fdf044ec5344235b962ab9)
 
 Clicking this link takes you directly to an edit duration timestamps modal. From here you can quickly alter the dates and save.
 
-<img alt="The edit duration timestamps modal for correcting invalid values" />
+![The edit duration timestamps modal for correcting invalid values](https://mintcdn.com/incidentio-18bb4170/I2we1CkQGIedyDtQ/images/help-centre/validating-incident-timestamps/screenshot-6.png?fit=max\&auto=format\&n=I2we1CkQGIedyDtQ\&q=85\&s=b2b517f94be8abcec8108b5e9b5ca6da)
 
 # Instance name, URL, and icon
 Source: https://docs.incident.io/admin/instance-customization
@@ -814,9 +798,9 @@ To update via Slack:
 2. Wait for the next sync between Slack and incident.io
 3. The new icon will automatically appear in your incident.io instance
 
-<Info>
-  The daily sync between Slack and incident.io may take some time. If you don't see the icon update within 48 hours, contact incident.io support.
-</Info>
+> [!NOTE]
+>
+> The daily sync between Slack and incident.io may take some time. If you don't see the icon update within 48 hours, contact incident.io support.
 
 # IP allowlists
 Source: https://docs.incident.io/admin/ip-allowlists
@@ -856,7 +840,7 @@ Requests from IPs outside the configured allowlist will receive a 403 response.
 
 In order for a user to manage the IP allowlist, they must have the "Manage security settings" scope. This is configured in [Settings → Permissions](https://app.incident.io/~/settings/permissions), on the **Account-level** tab: open a role, then find **Manage security settings** under **Security & billing**.
 
-<img alt="The Manage security settings permission selected in the Security & billing group" />
+![The Manage security settings permission selected in the Security & billing group](https://mintcdn.com/incidentio-18bb4170/4UHmExOMkZvkO0Nx/images/help-centre/direct/security-ip-allowlists/screenshot-1.png?fit=max\&auto=format\&n=4UHmExOMkZvkO0Nx\&q=85\&s=199412cc75554c7dc8af1ba83a1af8de)
 
 Similarly, in order for an API key to manage the IP allowlist, it must have the "Manage security settings" permission.
 
@@ -866,17 +850,17 @@ Navigate to [Settings > Security](https://app.incident.io/~/settings/security) a
 
 Click "Manage" to open the drawer, and enter your selection of IPv4 addresses and/or CIDR IP prefixes.
 
-<img alt="IP allowlist configuration showing named IP addresses and CIDR ranges" />
+![IP allowlist configuration showing named IP addresses and CIDR ranges](https://mintcdn.com/incidentio-18bb4170/-p0k-NlQGgmni0z8/images/help-centre/direct/security-ip-allowlists/screenshot-2.png?fit=max\&auto=format\&n=-p0k-NlQGgmni0z8\&q=85\&s=5a427c32a2a2690891e377102db801ea)
 
 Your current IP will be pre-filled in the list. Any request to modify an enabled allowlist will be rejected if it does not contain the requestor's IP, to prevent lockout.
 
-<Info>
-  Once enabled, the allowlist will immediately become active. Ensure that your allowlist is complete before enabling it.
-</Info>
+> [!NOTE]
+>
+> Once enabled, the allowlist will immediately become active. Ensure that your allowlist is complete before enabling it.
 
 To enable the allowlist, enable the toggle and click "Save"
 
-<img alt="The IP allowlist toggle enabled" />
+![The IP allowlist toggle enabled](https://mintcdn.com/incidentio-18bb4170/-p0k-NlQGgmni0z8/images/help-centre/direct/security-ip-allowlists/screenshot-3.png?fit=max\&auto=format\&n=-p0k-NlQGgmni0z8\&q=85\&s=f133c02dd3276dc2094933aac6072bc2)
 
 ## Disabling the allowlist
 
@@ -920,10 +904,11 @@ On the **Pro** and **Enterprise** plans you can always purchase additional On-ca
 
 You can also purchase On-call seats self-serve from [Settings > Billing](https://app.incident.io/~/settings/billing). Additional seats will be purchased, provisioned immediately and invoiced on your next invoice.
 
-<Note>
-  * Only users with Admin or Billing permissions can purchase seats.
-  * We will send an invoice for the purchased seats to your billing contact within a few days.
-</Note>
+> [!NOTE]
+>
+> * Only users with Admin or Billing permissions can purchase seats.
+> * Seats will be charged pro rata to the end of your subscription term ([co-term](/admin/billing#annual-billing)).
+> * We will send an invoice for the purchased seats to your billing contact within a few days.
 
 ## Removing seats
 
@@ -950,17 +935,17 @@ The best approach is to stop sensitive data from reaching incident.io in the fir
 * **Keep PII out of your logs.** If alerts are triggered from log queries, sensitive data in your logs will end up in your alerts.
 * **Be mindful in Slack and Teams.** It's common for data to be pasted into an incident channel without checking for sensitive fields.
 
-<Tip>
-  You can build a [workflow](/workflows/getting-started) that posts a reminder in new incident channels, prompting responders to avoid sharing sensitive data.
-</Tip>
+> [!TIP]
+>
+> You can build a [workflow](/workflows/getting-started) that posts a reminder in new incident channels, prompting responders to avoid sharing sensitive data.
 
 ## Erasing data
 
 If sensitive information has already made its way into incident.io, you can permanently erase it from several places.
 
-<Warning>
-  Erasing data is permanent and cannot be undone. The original content is replaced with a placeholder value.
-</Warning>
+> [!WARNING]
+>
+> Erasing data is permanent and cannot be undone. The original content is replaced with a placeholder value.
 
 By default, only account owners can erase data. You can grant this to other roles by enabling the **Permanently erase data** permission in your [custom RBAC configuration](/admin/user-permissions).
 
@@ -993,8 +978,4 @@ Changes to an incident are recorded in the activity log and timeline. To erase s
 
 1. Open the incident and go to the **Post-incident** tab
 2. Click the pencil icon to enter edit mode under **Timeline**
-3. Use **Erase data** in the overflow menu of the relevant entry
-
-## AI data redaction
-
-incident.io has Zero Data Retention agreements with all AI providers (OpenAI, Anthropic, and Google Vertex), meaning they don't store a
+3. Use **Erase data** in the overflow menu of the releva

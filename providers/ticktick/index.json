@@ -46,7 +46,7 @@
   {
    "slug": "ticktick.batch_sync_tasks",
    "name": "Batch create or update tasks",
-   "description": "Each add and update operation is limited to 50 tasks. Processing is not atomic: if one task fails, tasks processed before the failure may already have been created or updated. Do not retry the entire request without first checking which tasks succeeded.",
+   "description": "Each add and update array is limited to 50 operations. Known per-item failures return HTTP 200 with `status` (`complete`, `partial`, or `failed`) and stable `items[].errorCode` values, even when every item fails. The request is not atomic. An unexpected 5xx may occur after earlier writes; retrying the request can create duplicate tasks. Check results before retrying.",
    "input": {
     "type": "object",
     "properties": {
@@ -438,6 +438,61 @@
     "query": [],
     "header": [],
     "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "ticktick.get_calendar_accounts",
+   "name": "Get connected calendar accounts",
+   "description": "Get connected calendar accounts",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.ticktick.com/open/v1/calendar/account",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "ticktick.get_calendar_events",
+   "name": "Query events from connected calendar accounts",
+   "description": "Query events from all connected accounts or from one account selected by `accountId`. When no time range is supplied, the range is now through the following three months. A query range may not exceed three months. Recurring events depend on whether the calendar provider returns expanded occurrences; a recurring series that starts outside the range may be omitted even if it has occurrences inside t",
+   "input": {
+    "type": "object",
+    "properties": {
+     "accountId": {
+      "type": "string",
+      "description": "Connected calendar account ID. Omit to query all accounts."
+     },
+     "begin": {
+      "type": "string",
+      "description": "Accepts the TickTick timestamp format, e.g. \"2026-09-24T10:00:00.000+0800\", or an ISO 8601 timestamp with offset."
+     },
+     "end": {
+      "type": "string",
+      "description": "Accepts the TickTick timestamp format, e.g. \"2026-09-24T10:00:00.000+0800\", or an ISO 8601 timestamp with offset."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.ticktick.com/open/v1/calendar/event/query",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "accountId",
+     "begin",
+     "end"
+    ],
     "body_format": "json"
    }
   },

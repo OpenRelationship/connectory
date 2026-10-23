@@ -74,7 +74,7 @@ return {
     ["leadmagic.create_suppression_list"] = { method = "POST", url = "https://api.leadmagic.io/v1/batch/suppression-lists", body = {"list_id", "emails"} },
     ["leadmagic.delete_budget"] = { method = "DELETE", url = "https://api.leadmagic.io/v1/batch/budgets/{id}", path = {"id"} },
     ["leadmagic.delete_suppression_list"] = { method = "DELETE", url = "https://api.leadmagic.io/v1/batch/suppression-lists/{listId}", path = {"listId"} },
-    ["leadmagic.email_finder"] = { method = "POST", url = "https://api.leadmagic.io/v1/people/email-finder", body = {"first_name", "last_name", "full_name", "domain", "company_name"} },
+    ["leadmagic.email_finder"] = { method = "POST", url = "https://api.leadmagic.io/v1/people/email-finder", body = {"first_name", "last_name", "full_name", "profile_url", "domain", "company_name"} },
     ["leadmagic.email_to_b2b_profile"] = { method = "POST", url = "https://api.leadmagic.io/v1/people/b2b-profile", body = {"work_email", "personal_email"} },
     ["leadmagic.email_validation"] = { method = "POST", url = "https://api.leadmagic.io/v1/people/email-validation", body = {"email"} },
     ["leadmagic.employee_finder"] = { method = "POST", url = "https://api.leadmagic.io/v1/people/employee-finder", body = {"company_domain", "company_name", "limit"} },

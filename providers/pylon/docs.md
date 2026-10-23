@@ -17,10 +17,14 @@ vouches for**: read it, then read their reference.
 ## Pylon
 
 - [User Guide](https://docs.usepylon.com/pylon-docs/getting-started/user-guide.md): Common tips and tracks on how to setup and use Pylon!
+- [Template variables](https://docs.usepylon.com/pylon-docs/platform/triggers/template-variables.md): Every variable you can insert into trigger actions, webhook payloads, and macros, with exact syntax and formatting rules.
+- [Resources](https://docs.usepylon.com/pylon-docs/platform/training-data.md): Connect resources that Pylon's AI features can reference when answering questions.
 - [JavaScript API](https://docs.usepylon.com/pylon-docs/chat-widget/javascript-api.md): Available API methods to programmatically interface with the chat widget
 - [API](https://docs.usepylon.com/pylon-docs/developer/api.md): Programmatic access to read and write data in Pylon
 - [Authentication](https://docs.usepylon.com/pylon-docs/developer/api/authentication.md): How to authenticate with Pylon's API
+- [API conventions](https://docs.usepylon.com/pylon-docs/developer/api/conventions.md): How Pylon's API handles IDs, timestamps, pagination, search filters, updates, files, and slugs
 - [Errors](https://docs.usepylon.com/pylon-docs/developer/api/errors.md): Handling errors from Pylon's API
+- [Rate limits](https://docs.usepylon.com/pylon-docs/developer/api/rate-limits.md): How Pylon limits API request volume and how to handle 429 responses
 - [API reference](https://docs.usepylon.com/pylon-docs/developer/api/api-reference.md): Documentation on available endpoints.
 - [Accounts](https://docs.usepylon.com/pylon-docs/developer/api/api-reference/accounts.md)
 - [Activities](https://docs.usepylon.com/pylon-docs/developer/api/api-reference/accounts/activities.md): Create custom activity types and write new activity onto accounts.
@@ -48,6 +52,7 @@ vouches for**: read it, then read their reference.
 - [User roles](https://docs.usepylon.com/pylon-docs/developer/api/api-reference/user-roles.md)
 - [Users](https://docs.usepylon.com/pylon-docs/developer/api/api-reference/users.md)
 - [External IDs](https://docs.usepylon.com/pylon-docs/developer/api/external-ids.md): Identifiers from external systems
+- [SDKs](https://docs.usepylon.com/pylon-docs/developer/api/sdks.md): Official TypeScript, Python, and Go libraries for the Pylon API
 - [Custom Apps](https://docs.usepylon.com/pylon-docs/developer/custom-apps.md)
 - [Embedded Iframes](https://docs.usepylon.com/pylon-docs/developer/embedded-iframes.md): Pylon provides an out-of-the-box customizable iframe app that allows embedding of webpages within the issues and accounts view.
 - [Webhooks](https://docs.usepylon.com/pylon-docs/developer/webhooks.md): Receive webhooks for various events happening in Pylon.
@@ -58,11 +63,15 @@ vouches for**: read it, then read their reference.
 This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
 ## Querying This Documentation
-If you need additional information, you can query the documentation dynamically by asking a question.
-Perform an HTTP GET request on a page URL with the `ask` query parameter:
+This site has an agentic ask interface you may use to query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the following URL with the `ask` and `goal` query parameters:
+
 ```
-GET https://docs.usepylon.com/pylon-docs/getting-started/quickstart.md?ask=<question>
+GET https://docs.usepylon.com/pylon-docs/index.md?ask=<question>&goal=<user_goal>
 ```
-The question should be specific, self-contained, and written in natural language.
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is what the user is ultimately trying to achieve, the reason they need the answer. Sharing it helps GitBook give you a better, more relevant answer. A goal is most helpful when it describes the outcome the user wants rather than restating the question. For example, with `ask=how do I create an API token`, a goal like `automate deployments from our CI pipeline` lets GitBook tailor the answer to that use case.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
-Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

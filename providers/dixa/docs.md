@@ -14,24 +14,310 @@ vouches for**: read it, then read their reference.
 ---
 # Dixa Developer Hub
 
-> Start building with the Dixa API
+> Guides and API reference for the Dixa API, webhooks, custom cards and the Dixa Messenger SDK.
 
-## Table of contents
+Every page is also Markdown at its URL plus `.md`, as linked below. An API reference page has the endpoint, a cURL request, a response example per status and the operation's OpenAPI definition.
+All guides in one file: https://docs.dixa.io/llms-full.txt
 
- - [Retrieving Files & Recordings](https://docs.dixa.io/docs/files-api-guide.md)
- - [Tutorial: How to get access to the Dixa API](https://docs.dixa.io/docs/tutorial-create-an-api-token.md)
- - [API Standards & Rules](https://docs.dixa.io/docs/api-standards-rules.md)
- - [Resource moved](https://docs.dixa.io/docs/export-conversations-via-api.md)
- - [Resource moved](https://docs.dixa.io/docs/export-messages-via-api.md)
- - [Introducing the Dixa API](https://docs.dixa.io/docs.md)
- - [Migrating from deprecated Integrations API](https://docs.dixa.io/docs/integration-migration-guide.md)
- - [Misuse & Abuse of Dixa API](https://docs.dixa.io/docs/misuse-abuse-of-dixa-api.md)
- - [Introducing the Dixa API](https://docs.dixa.io/openapi.md)
- - [Export Conversations and Messages via API](https://docs.dixa.io/docs/exports-api-guide.md)
- - [Outbound webhooks](https://docs.dixa.io/docs/webhooks/webhooks-guide.md)
- - [Webhook payloads](https://docs.dixa.io/docs/webhooks/webhooks-payloads.md)
- - [Promise-Based API (BETA)](https://docs.dixa.io/docs/dixamessenger/web/promisebasedapi.md)
- - [Exports API](https://docs.dixa.io/openapi/exports-api.md): Welcome to the Dixa Exports API, which allows you to seamlessly stream up-to-date conversation and message data from the Dixa platform. This can be used to pull Dixa data into your own system, for warehousing purposes. For advanced analytics, BI reporting and audit purposes, have a look at our [Analytics API](https://docs.dixa.io/openapi/dixa-api/v1/tag/Analytics/).
- - [Integrations API [deprecated]](https://docs.dixa.io/openapi/integrations-api.md): Welcome to the Dixa integrations API. Remember to set your credentials using the 'Authorize' button. Note that this API is deprecated and equivalent functionality can be found in Dixa API.
- - [Dixa API](https://docs.dixa.io/openapi/dixa-api/beta.md)
- - [Dixa API](https://docs.dixa.io/openapi/dixa-api/v1.md)
+## OpenAPI specs
+
+- [Dixa API v1](https://docs.dixa.io/openapi-specs/dixa-v1.yaml): the whole API as OpenAPI 3.0.3, YAML; as JSON: https://docs.dixa.io/openapi-specs/dixa-v1.json
+- [Dixa API beta](https://docs.dixa.io/openapi-specs/dixa-beta.yaml): the whole API as OpenAPI 3.0.3, YAML; as JSON: https://docs.dixa.io/openapi-specs/dixa-beta.json
+- [Exports API](https://docs.dixa.io/openapi-specs/exports.yaml): the whole API as OpenAPI 3.0.0, YAML; as JSON: https://docs.dixa.io/openapi-specs/exports.json
+
+## Guides
+
+- [Introducing the Dixa API](https://docs.dixa.io/docs.md)
+- [API Standards & Rules](https://docs.dixa.io/docs/api-standards-rules.md)
+- [Tutorial: How to get access to the Dixa API](https://docs.dixa.io/docs/tutorial-create-an-api-token.md)
+- [Misuse & Abuse of Dixa API](https://docs.dixa.io/docs/misuse-abuse-of-dixa-api.md)
+- [Migrating from deprecated Integrations API](https://docs.dixa.io/docs/integration-migration-guide.md)
+- [Export Conversations and Messages via API](https://docs.dixa.io/docs/exports-api-guide.md)
+- [Introducing the Intelligence API](https://docs.dixa.io/docs/intelligence-api-guide.md)
+- [Retrieving Files & Recordings](https://docs.dixa.io/docs/files-api-guide.md)
+
+## Webhooks
+
+- [Outbound webhooks](https://docs.dixa.io/docs/webhooks/webhooks-guide.md)
+- [Webhook payloads](https://docs.dixa.io/docs/webhooks/webhooks-payloads.md)
+
+## Custom Cards
+
+## Dixa Messenger SDK
+
+- [Promise-Based API (BETA)](https://docs.dixa.io/docs/dixamessenger/web/promisebasedapi.md)
+
+## AI Transparency
+
+## API References
+
+- [API Overview](https://docs.dixa.io/openapi.md)
+- [Dixa API](https://docs.dixa.io/openapi/dixa-api/v1.md)
+- [Analytics](https://docs.dixa.io/openapi/dixa-api/v1/analytics.md)
+- [Metrics Catalogue](https://docs.dixa.io/openapi/dixa-api/v1/analytics/getanalyticsmetrics.md): GET /v1/analytics/metrics. This endpoint lists all available metric IDs that can be used to fetch data in Get Metric Data
+- [Get Metric Data](https://docs.dixa.io/openapi/dixa-api/v1/analytics/postanalyticsmetrics.md): POST /v1/analytics/metrics. Get data of a specific metric (aggregated)
+- [Metric Description](https://docs.dixa.io/openapi/dixa-api/v1/analytics/getanalyticsmetricsmetricid.md): GET /v1/analytics/metrics/{metricId}. This endpoint lists all available properties of a metric to use for querying its data
+- [Filter values](https://docs.dixa.io/openapi/dixa-api/v1/analytics/getanalyticsfilterfilterattribute.md): GET /v1/analytics/filter/{filterAttribute}. Get possible values to be used with a given filter attribute. Filter attributes are not metric or record specific, so one filter attribute can be used with multiple metrics/records. When a filter value is not relevant for a specific metric/record, it is simply ignored.
+- [Metric Records Catalogue](https://docs.dixa.io/openapi/dixa-api/v1/analytics/getanalyticsrecords.md): GET /v1/analytics/records. This endpoint lists all available record IDs that can be used to fetch data in Get Metric Records Data
+- [Get Metric Records Data](https://docs.dixa.io/openapi/dixa-api/v1/analytics/postanalyticsrecords.md): POST /v1/analytics/records. Get data of specific metric records (unaggregated)
+- [Metric Record Description](https://docs.dixa.io/openapi/dixa-api/v1/analytics/getanalyticsrecordsrecordid.md): GET /v1/analytics/records/{recordId}. This endpoint lists all available properties of a record to use for querying its data
+- [Agents](https://docs.dixa.io/openapi/dixa-api/v1/agents.md)
+- [List presence](https://docs.dixa.io/openapi/dixa-api/v1/agents/getagentspresence.md): GET /v1/agents/presence. List the presence status for all agents/admins in an organization.
+- [List agents](https://docs.dixa.io/openapi/dixa-api/v1/agents/getagents.md): GET /v1/agents. Lists all agents/admins in an organization. It is possible to filter by one of the mutually exclusive parameters: email or phone number. In case both are provided, an error is returned.
+- [Update agents](https://docs.dixa.io/openapi/dixa-api/v1/agents/putagents.md): PUT /v1/agents. Bulk update agents/admins.
+- [Create agent](https://docs.dixa.io/openapi/dixa-api/v1/agents/postagents.md): POST /v1/agents. Create an agent.
+- [Patch agents](https://docs.dixa.io/openapi/dixa-api/v1/agents/patchagents.md): PATCH /v1/agents. Bulk patch agents/admins.
+- [List teams](https://docs.dixa.io/openapi/dixa-api/v1/agents/getagentsagentidteams.md): GET /v1/agents/{agentId}/teams. List the teams in which the agent/admin is a member.
+- [Get presence](https://docs.dixa.io/openapi/dixa-api/v1/agents/getagentsagentidpresence.md): GET /v1/agents/{agentId}/presence. Get the presence status for an agent/admin.
+- [Create agents](https://docs.dixa.io/openapi/dixa-api/v1/agents/postagentsbulk.md): POST /v1/agents/bulk. Create agents in bulk.
+- [Get agent](https://docs.dixa.io/openapi/dixa-api/v1/agents/getagentsagentid.md): GET /v1/agents/{agentId}. Get an agent/admin by id.
+- [Update agent](https://docs.dixa.io/openapi/dixa-api/v1/agents/putagentsagentid.md): PUT /v1/agents/{agentId}. Update an agent/admin.
+- [Delete agent](https://docs.dixa.io/openapi/dixa-api/v1/agents/deleteagentsagentid.md): DELETE /v1/agents/{agentId}. Downgrade an agent/admin to become an end user.
+- [Patch agent](https://docs.dixa.io/openapi/dixa-api/v1/agents/patchagentsagentid.md): PATCH /v1/agents/{agentId}. Patch an agent/admin.
+- [Updates the working channel of an agent](https://docs.dixa.io/openapi/dixa-api/v1/agents/putagentsagentidpresenceworking-channel.md): PUT /v1/agents/{agentId}/presence/working-channel. Updates the working channel of an agent
+- [AI Agents](https://docs.dixa.io/openapi/dixa-api/v1/ai-agents.md)
+- [List AI agents](https://docs.dixa.io/openapi/dixa-api/v1/ai-agents/getai-agents.md): GET /v1/ai-agents. Lists all AI agents in an organization. AI agents include Dixa's native Mim agents and external chatbot integrations.
+- [End Users](https://docs.dixa.io/openapi/dixa-api/v1/end-users.md)
+- [List end users](https://docs.dixa.io/openapi/dixa-api/v1/end-users/getendusers.md): GET /v1/endusers. Lists all end users in an organization. It is possible to filter by one of the mutually exclusive parameters: email or phone number. In case both are provided, an error is returned.
+- [Update end users](https://docs.dixa.io/openapi/dixa-api/v1/end-users/putendusers.md): PUT /v1/endusers. Bulk update end users.
+- [Create end user](https://docs.dixa.io/openapi/dixa-api/v1/end-users/postendusers.md): POST /v1/endusers. Create an end user.
+- [Patch end users](https://docs.dixa.io/openapi/dixa-api/v1/end-users/patchendusers.md): PATCH /v1/endusers. Bulk patch end users.
+- [Create end users](https://docs.dixa.io/openapi/dixa-api/v1/end-users/postendusersbulk.md): POST /v1/endusers/bulk. Create multiple end users in a single bulk action
+- [Get end user](https://docs.dixa.io/openapi/dixa-api/v1/end-users/getendusersuserid.md): GET /v1/endusers/{userId}. Get an end user by id.
+- [Update end user](https://docs.dixa.io/openapi/dixa-api/v1/end-users/putendusersuserid.md): PUT /v1/endusers/{userId}. Update an end user.
+- [Patch end user](https://docs.dixa.io/openapi/dixa-api/v1/end-users/patchendusersuserid.md): PATCH /v1/endusers/{userId}. Patch an end user.
+- [Anonymize end user](https://docs.dixa.io/openapi/dixa-api/v1/end-users/patchendusersuseridanonymize.md): PATCH /v1/endusers/{userId}/anonymize. Request the anonymization of an end user.
+- [Patch end user custom attributes](https://docs.dixa.io/openapi/dixa-api/v1/end-users/patchendusersuseridcustom-attributes.md): PATCH /v1/endusers/{userId}/custom-attributes. Patch custom attributes of an end user
+- [List end user conversations](https://docs.dixa.io/openapi/dixa-api/v1/end-users/getendusersuseridconversations.md): GET /v1/endusers/{userId}/conversations. Lists conversations requested by an end user.
+- [Chatbots](https://docs.dixa.io/openapi/dixa-api/v1/chatbots.md)
+- [Create end user](https://docs.dixa.io/openapi/dixa-api/v1/chatbots/postendusers.md): POST /v1/endusers. Create an end user.
+- [Get end user](https://docs.dixa.io/openapi/dixa-api/v1/chatbots/getendusersuserid.md): GET /v1/endusers/{userId}. Get an end user by id.
+- [List end user conversations](https://docs.dixa.io/openapi/dixa-api/v1/chatbots/getendusersuseridconversations.md): GET /v1/endusers/{userId}/conversations. Lists conversations requested by an end user.
+- [Close conversation](https://docs.dixa.io/openapi/dixa-api/v1/chatbots/putconversationsconversationidclose.md): PUT /v1/conversations/{conversationId}/close. Mark a conversation as closed by providing its id.
+- [Followup conversation](https://docs.dixa.io/openapi/dixa-api/v1/chatbots/putconversationsconversationidfollowup.md): PUT /v1/conversations/{conversationId}/followup. Follow up a conversation by providing its id and expiration timestamp.
+- [Transfer conversation](https://docs.dixa.io/openapi/dixa-api/v1/chatbots/putconversationsconversationidtransferqueue.md): PUT /v1/conversations/{conversationId}/transfer/queue. Transfer a conversation to a target queue.
+- [Create conversation rating result](https://docs.dixa.io/openapi/dixa-api/v1/chatbots/postconversationsconversationidratingsratingidsubmit.md): POST /v1/conversations/{conversationId}/ratings/{ratingId}/submit. Create a rating result for a specific conversation.
+- [Create conversation rating offer](https://docs.dixa.io/openapi/dixa-api/v1/chatbots/postconversationsconversationidratingsoffer.md): POST /v1/conversations/{conversationId}/ratings/offer. Create a rating offer for a specific conversation.
+- [Create conversation](https://docs.dixa.io/openapi/dixa-api/v1/chatbots/postconversations.md): POST /v1/conversations. Create a conversation. For inbound messages the author is assumed to be the requester of the conversation (end user). For outbound messages the author is specified using the agentId field.
+- [Import conversation](https://docs.dixa.io/openapi/dixa-api/v1/chatbots/postconversationsimport.md): POST /v1/conversations/import. Import a previously created conversation into Dixa. For inbound messages the author is assumed to be the requester of the conversation (end user), unless the specific channel supports overriding the message author through its attributes. For outbound messages the author is specified using the agentId field.
+- [Claim conversation](https://docs.dixa.io/openapi/dixa-api/v1/chatbots/putconversationsconversationidclaim.md): PUT /v1/conversations/{conversationId}/claim. Claim a conversation for a given agent. To avoid taking over assigned conversations, set the `force` paremeter to false
+- [Get queue availability](https://docs.dixa.io/openapi/dixa-api/v1/chatbots/getqueuesqueueidavailability.md): GET /v1/queues/{queueId}/availability. Get availability of supported channels for a given queue. Currently supported channels are adachat, kindlychat, digitalgeniuschat, genericapimessaging.
+- [Get the position of the conversation in its current queue](https://docs.dixa.io/openapi/dixa-api/v1/chatbots/getqueuesconversation-positioncsid.md): GET /v1/queues/conversation-position/{csid}. Get the approximate position of a given conversation in its current queue.
+- [Anonymization](https://docs.dixa.io/openapi/dixa-api/v1/anonymization.md)
+- [Anonymize end user](https://docs.dixa.io/openapi/dixa-api/v1/anonymization/patchendusersuseridanonymize.md): PATCH /v1/endusers/{userId}/anonymize. Request the anonymization of an end user.
+- [Anonymize conversation](https://docs.dixa.io/openapi/dixa-api/v1/anonymization/patchconversationsconversationidanonymize.md): PATCH /v1/conversations/{conversationId}/anonymize. Request the anonymization of a conversation.
+- [Anonymize message](https://docs.dixa.io/openapi/dixa-api/v1/anonymization/patchconversationsconversationidmessagesmessageidanonymize.md): PATCH /v1/conversations/{conversationId}/messages/{messageId}/anonymize. Request the anonymization of a single message in a conversation.
+- [Get anonymization status](https://docs.dixa.io/openapi/dixa-api/v1/anonymization/getanonymizationrequestrequestid.md): GET /v1/anonymization/request/{requestId}. Retrieve an anonymization request submitted earlier (user or conversation).
+- [Anonymize entity](https://docs.dixa.io/openapi/dixa-api/v1/anonymization/postanonymization.md): POST /v1/anonymization. Anonymize the requested entity (user or conversation). For a conversation to be successfully anonymized, it should be in the status `closed`. Otherwise, it requires `forceAnonymization` parameter set to `true` in the input body. NOTE: This endpoint is deprecated. Prefer using the anonymization endpoints of specific resources instead.
+- [Custom Attributes](https://docs.dixa.io/openapi/dixa-api/v1/custom-attributes.md)
+- [Patch end user custom attributes](https://docs.dixa.io/openapi/dixa-api/v1/custom-attributes/patchendusersuseridcustom-attributes.md): PATCH /v1/endusers/{userId}/custom-attributes. Patch custom attributes of an end user
+- [Patch conversation custom attributes](https://docs.dixa.io/openapi/dixa-api/v1/custom-attributes/patchconversationsconversationidcustom-attributes.md): PATCH /v1/conversations/{conversationId}/custom-attributes. Patch custom attributes of a conversation
+- [Get custom attribute definition by id](https://docs.dixa.io/openapi/dixa-api/v1/custom-attributes/getcustom-attributescustomattributeid.md): GET /v1/custom-attributes/{customAttributeId}. Get custom attribute in an organization by id.
+- [List custom attributes definitions](https://docs.dixa.io/openapi/dixa-api/v1/custom-attributes/getcustom-attributes.md): GET /v1/custom-attributes. List all custom attributes in an organization.
+- [Teams](https://docs.dixa.io/openapi/dixa-api/v1/teams.md)
+- [List teams](https://docs.dixa.io/openapi/dixa-api/v1/teams/getteams.md): GET /v1/teams. Lists all teams in an organization.
+- [Create team](https://docs.dixa.io/openapi/dixa-api/v1/teams/postteams.md): POST /v1/teams. Create a team.
+- [List members](https://docs.dixa.io/openapi/dixa-api/v1/teams/getteamsteamidagents.md): GET /v1/teams/{teamId}/agents. Lists all agents/admins in a team.
+- [Remove members](https://docs.dixa.io/openapi/dixa-api/v1/teams/deleteteamsteamidagents.md): DELETE /v1/teams/{teamId}/agents. Remove agents/admins from a team.
+- [Add members](https://docs.dixa.io/openapi/dixa-api/v1/teams/patchteamsteamidagents.md): PATCH /v1/teams/{teamId}/agents. Add agents/admins to a team.
+- [List presence](https://docs.dixa.io/openapi/dixa-api/v1/teams/getteamsteamidpresence.md): GET /v1/teams/{teamId}/presence. List the presence status of all agents/admins in a team.
+- [Get team](https://docs.dixa.io/openapi/dixa-api/v1/teams/getteamsteamid.md): GET /v1/teams/{teamId}. Get a team by id.
+- [Delete team](https://docs.dixa.io/openapi/dixa-api/v1/teams/deleteteamsteamid.md): DELETE /v1/teams/{teamId}. Delete a team.
+- [Conversations](https://docs.dixa.io/openapi/dixa-api/v1/conversations.md)
+- [Anonymize conversation](https://docs.dixa.io/openapi/dixa-api/v1/conversations/patchconversationsconversationidanonymize.md): PATCH /v1/conversations/{conversationId}/anonymize. Request the anonymization of a conversation.
+- [Anonymize message](https://docs.dixa.io/openapi/dixa-api/v1/conversations/patchconversationsconversationidmessagesmessageidanonymize.md): PATCH /v1/conversations/{conversationId}/messages/{messageId}/anonymize. Request the anonymization of a single message in a conversation.
+- [Close conversation](https://docs.dixa.io/openapi/dixa-api/v1/conversations/putconversationsconversationidclose.md): PUT /v1/conversations/{conversationId}/close. Mark a conversation as closed by providing its id.
+- [Followup conversation](https://docs.dixa.io/openapi/dixa-api/v1/conversations/putconversationsconversationidfollowup.md): PUT /v1/conversations/{conversationId}/followup. Follow up a conversation by providing its id and expiration timestamp.
+- [Reopen conversation](https://docs.dixa.io/openapi/dixa-api/v1/conversations/putconversationsconversationidreopen.md): PUT /v1/conversations/{conversationId}/reopen. Reopen a conversation and offer it in the same queue. Falls back to the default organization queue if the conversation has no target queue.
+- [Transfer conversation](https://docs.dixa.io/openapi/dixa-api/v1/conversations/putconversationsconversationidtransferqueue.md): PUT /v1/conversations/{conversationId}/transfer/queue. Transfer a conversation to a target queue.
+- [Add internal notes](https://docs.dixa.io/openapi/dixa-api/v1/conversations/postconversationsconversationidnotesbulk.md): POST /v1/conversations/{conversationId}/notes/bulk. Create internal notes in a conversation by providing the conversation id.
+- [List internal notes](https://docs.dixa.io/openapi/dixa-api/v1/conversations/getconversationsconversationidnotes.md): GET /v1/conversations/{conversationId}/notes. Get all internal notes for a particular conversation by providing the conversation id.
+- [Add internal note](https://docs.dixa.io/openapi/dixa-api/v1/conversations/postconversationsconversationidnotes.md): POST /v1/conversations/{conversationId}/notes. Create an internal note in a conversation by providing the conversation id.
+- [Create conversation rating result](https://docs.dixa.io/openapi/dixa-api/v1/conversations/postconversationsconversationidratingsratingidsubmit.md): POST /v1/conversations/{conversationId}/ratings/{ratingId}/submit. Create a rating result for a specific conversation.
+- [Create conversation rating offer](https://docs.dixa.io/openapi/dixa-api/v1/conversations/postconversationsconversationidratingsoffer.md): POST /v1/conversations/{conversationId}/ratings/offer. Create a rating offer for a specific conversation.
+- [List rating](https://docs.dixa.io/openapi/dixa-api/v1/conversations/getconversationsconversationidrating.md): GET /v1/conversations/{conversationId}/rating. Deprecated rating endpoint. Use '/ratings'.
+- [List ratings for a conversation](https://docs.dixa.io/openapi/dixa-api/v1/conversations/getconversationsconversationidratings.md): GET /v1/conversations/{conversationId}/ratings. Lists latest ratings statuses for a particular conversation by providing the conversation ID. For surveys with multiple questions, rating status will be reported for each individual question of the survey. For example, a response for a 3 question survey that was answered will be 3 elements with status "Rated". Additionally, a multiple question survey can be partially answered, therefore a response of such case will be a mix of "Offered" and "Rated" statuses. Note that the IDs of multiple questions response elements will be the same, because they are part of the same survey.
+- [List organization activity log](https://docs.dixa.io/openapi/dixa-api/v1/conversations/getconversationsactivitylog.md): GET /v1/conversations/activitylog. List all activity logs for an organization.
+- [List flows](https://docs.dixa.io/openapi/dixa-api/v1/conversations/getconversationsflows.md): GET /v1/conversations/flows. List all conversations flows in an organization.
+- [Tag conversation](https://docs.dixa.io/openapi/dixa-api/v1/conversations/putconversationsconversationidtagstagid.md): PUT /v1/conversations/{conversationId}/tags/{tagId}. Tag a conversation. You may only use active tags to tag conversations.
+- [Untag conversation](https://docs.dixa.io/openapi/dixa-api/v1/conversations/deleteconversationsconversationidtagstagid.md): DELETE /v1/conversations/{conversationId}/tags/{tagId}. Untag a conversation. You may remove active or inactive tags from a conversation.
+- [Bulk tag conversation](https://docs.dixa.io/openapi/dixa-api/v1/conversations/postconversationsconversationidtagsbulk.md): POST /v1/conversations/{conversationId}/tags/bulk. Initiate bulk tag of a conversation and process it asynchronously. If a tag with corresponding name does not exist it will be created.
+- [List tags](https://docs.dixa.io/openapi/dixa-api/v1/conversations/getconversationsconversationidtags.md): GET /v1/conversations/{conversationId}/tags. Get the tags for a particular conversation by providing the conversation id.
+- [List messages](https://docs.dixa.io/openapi/dixa-api/v1/conversations/getconversationsconversationidmessages.md): GET /v1/conversations/{conversationId}/messages. Get all messages for a particular conversation by providing the conversation id. Note that messages in `ContactForm` conversations can have attributes of `"_type": "EmailAttributes"` if they are created through a webform, or `"_type": "ContactFormAttributes"` when created through a chat widget.
+- [Add message](https://docs.dixa.io/openapi/dixa-api/v1/conversations/postconversationsconversationidmessages.md): POST /v1/conversations/{conversationId}/messages. Add a message to a conversation. For inbound messages the author is assumed to be the requester of the conversation (end user). For outbound messages the author is specified using the agentId field.
+- [Create conversation](https://docs.dixa.io/openapi/dixa-api/v1/conversations/postconversations.md): POST /v1/conversations. Create a conversation. For inbound messages the author is assumed to be the requester of the conversation (end user). For outbound messages the author is specified using the agentId field.
+- [Import conversation](https://docs.dixa.io/openapi/dixa-api/v1/conversations/postconversationsimport.md): POST /v1/conversations/import. Import a previously created conversation into Dixa. For inbound messages the author is assumed to be the requester of the conversation (end user), unless the specific channel supports overriding the message author through its attributes. For outbound messages the author is specified using the agentId field.
+- [Patch conversation custom attributes](https://docs.dixa.io/openapi/dixa-api/v1/conversations/patchconversationsconversationidcustom-attributes.md): PATCH /v1/conversations/{conversationId}/custom-attributes. Patch custom attributes of a conversation
+- [Claim conversation](https://docs.dixa.io/openapi/dixa-api/v1/conversations/putconversationsconversationidclaim.md): PUT /v1/conversations/{conversationId}/claim. Claim a conversation for a given agent. To avoid taking over assigned conversations, set the `force` paremeter to false
+- [List activity log](https://docs.dixa.io/openapi/dixa-api/v1/conversations/getconversationsconversationidactivitylog.md): GET /v1/conversations/{conversationId}/activitylog. Get the activity log for a conversation by providing the conversation id.
+- [Get conversation](https://docs.dixa.io/openapi/dixa-api/v1/conversations/getconversationsconversationid.md): GET /v1/conversations/{conversationId}. Get a conversation by id.
+- [Link a conversation to a parent conversation](https://docs.dixa.io/openapi/dixa-api/v1/conversations/putconversationsconversationidlink.md): PUT /v1/conversations/{conversationId}/link. Links the specified conversation to a parent conversation with the specified link type.
+- [List linked conversations](https://docs.dixa.io/openapi/dixa-api/v1/conversations/getconversationsconversationidlinked.md): GET /v1/conversations/{conversationId}/linked. Lists all linked child conversations for the given conversation ID, such as transcripts and side conversations.
+- [Search conversations](https://docs.dixa.io/openapi/dixa-api/v1/conversations/getsearchconversations.md): GET /v1/search/conversations. NOTE: This endpoint is deprecated and is replaced with POST /search/conversations. Search for conversations containing a particular text.
+- [Search conversations with filters](https://docs.dixa.io/openapi/dixa-api/v1/conversations/postsearchconversations.md): POST /v1/search/conversations. Search for conversations containing a particular text or by filter or combine them both. Only the first 10000 results can be paged through.
+- [Messages](https://docs.dixa.io/openapi/dixa-api/v1/messages.md)
+- [Anonymize message](https://docs.dixa.io/openapi/dixa-api/v1/messages/patchconversationsconversationidmessagesmessageidanonymize.md): PATCH /v1/conversations/{conversationId}/messages/{messageId}/anonymize. Request the anonymization of a single message in a conversation.
+- [List messages](https://docs.dixa.io/openapi/dixa-api/v1/messages/getconversationsconversationidmessages.md): GET /v1/conversations/{conversationId}/messages. Get all messages for a particular conversation by providing the conversation id. Note that messages in `ContactForm` conversations can have attributes of `"_type": "EmailAttributes"` if they are created through a webform, or `"_type": "ContactFormAttributes"` when created through a chat widget.
+- [Add message](https://docs.dixa.io/openapi/dixa-api/v1/messages/postconversationsconversationidmessages.md): POST /v1/conversations/{conversationId}/messages. Add a message to a conversation. For inbound messages the author is assumed to be the requester of the conversation (end user). For outbound messages the author is specified using the agentId field.
+- [Internal Notes](https://docs.dixa.io/openapi/dixa-api/v1/internal-notes.md)
+- [Add internal notes](https://docs.dixa.io/openapi/dixa-api/v1/internal-notes/postconversationsconversationidnotesbulk.md): POST /v1/conversations/{conversationId}/notes/bulk. Create internal notes in a conversation by providing the conversation id.
+- [List internal notes](https://docs.dixa.io/openapi/dixa-api/v1/internal-notes/getconversationsconversationidnotes.md): GET /v1/conversations/{conversationId}/notes. Get all internal notes for a particular conversation by providing the conversation id.
+- [Add internal note](https://docs.dixa.io/openapi/dixa-api/v1/internal-notes/postconversationsconversationidnotes.md): POST /v1/conversations/{conversationId}/notes. Create an internal note in a conversation by providing the conversation id.
+- [Ratings](https://docs.dixa.io/openapi/dixa-api/v1/ratings.md)
+- [Create conversation rating result](https://docs.dixa.io/openapi/dixa-api/v1/ratings/postconversationsconversationidratingsratingidsubmit.md): POST /v1/conversations/{conversationId}/ratings/{ratingId}/submit. Create a rating result for a specific conversation.
+- [Create conversation rating offer](https://docs.dixa.io/openapi/dixa-api/v1/ratings/postconversationsconversationidratingsoffer.md): POST /v1/conversations/{conversationId}/ratings/offer. Create a rating offer for a specific conversation.
+- [List rating](https://docs.dixa.io/openapi/dixa-api/v1/ratings/getconversationsconversationidrating.md): GET /v1/conversations/{conversationId}/rating. Deprecated rating endpoint. Use '/ratings'.
+- [List ratings for a conversation](https://docs.dixa.io/openapi/dixa-api/v1/ratings/getconversationsconversationidratings.md): GET /v1/conversations/{conversationId}/ratings. Lists latest ratings statuses for a particular conversation by providing the conversation ID. For surveys with multiple questions, rating status will be reported for each individual question of the survey. For example, a response for a 3 question survey that was answered will be 3 elements with status "Rated". Additionally, a multiple question survey can be partially answered, therefore a response of such case will be a mix of "Offered" and "Rated" statuses. Note that the IDs of multiple questions response elements will be the same, because they are part of the same survey.
+- [Tags](https://docs.dixa.io/openapi/dixa-api/v1/tags.md)
+- [Tag conversation](https://docs.dixa.io/openapi/dixa-api/v1/tags/putconversationsconversationidtagstagid.md): PUT /v1/conversations/{conversationId}/tags/{tagId}. Tag a conversation. You may only use active tags to tag conversations.
+- [Untag conversation](https://docs.dixa.io/openapi/dixa-api/v1/tags/deleteconversationsconversationidtagstagid.md): DELETE /v1/conversations/{conversationId}/tags/{tagId}. Untag a conversation. You may remove active or inactive tags from a conversation.
+- [Bulk tag conversation](https://docs.dixa.io/openapi/dixa-api/v1/tags/postconversationsconversationidtagsbulk.md): POST /v1/conversations/{conversationId}/tags/bulk. Initiate bulk tag of a conversation and process it asynchronously. If a tag with corresponding name does not exist it will be created.
+- [List tags](https://docs.dixa.io/openapi/dixa-api/v1/tags/getconversationsconversationidtags.md): GET /v1/conversations/{conversationId}/tags. Get the tags for a particular conversation by providing the conversation id.
+- [List tags](https://docs.dixa.io/openapi/dixa-api/v1/tags/gettags.md): GET /v1/tags. List all tags in an organization. Only active tags are returned by default. To include deactivated tags use `?includeDeactivated=true`.
+- [Create tag](https://docs.dixa.io/openapi/dixa-api/v1/tags/posttags.md): POST /v1/tags. Create a tag.
+- [Get tag](https://docs.dixa.io/openapi/dixa-api/v1/tags/gettagstagid.md): GET /v1/tags/{tagId}. Get a tag by id.
+- [Delete tag](https://docs.dixa.io/openapi/dixa-api/v1/tags/deletetagstagid.md): DELETE /v1/tags/{tagId}. Deletes the tag and all its associations. Note that this operation is irreversible.
+- [Deactivate tag](https://docs.dixa.io/openapi/dixa-api/v1/tags/patchtagstagiddeactivate.md): PATCH /v1/tags/{tagId}/deactivate. Deactivate a tag.
+- [Activate tag](https://docs.dixa.io/openapi/dixa-api/v1/tags/patchtagstagidactivate.md): PATCH /v1/tags/{tagId}/activate. Activate a tag.
+- [Queues](https://docs.dixa.io/openapi/dixa-api/v1/queues.md)
+- [List queues](https://docs.dixa.io/openapi/dixa-api/v1/queues/getqueues.md): GET /v1/queues. List all queues in an organization.
+- [Create queue](https://docs.dixa.io/openapi/dixa-api/v1/queues/postqueues.md): POST /v1/queues. Create a queue.
+- [List agents](https://docs.dixa.io/openapi/dixa-api/v1/queues/getqueuesqueueidmembers.md): GET /v1/queues/{queueId}/members. List all agents/admins that are members of a queue by providing the queue id.
+- [Remove agents](https://docs.dixa.io/openapi/dixa-api/v1/queues/deletequeuesqueueidmembers.md): DELETE /v1/queues/{queueId}/members. Bulk remove agents/admins from the specified queue.
+- [Assign agents](https://docs.dixa.io/openapi/dixa-api/v1/queues/patchqueuesqueueidmembers.md): PATCH /v1/queues/{queueId}/members. Assign one or more agents/admins to a given queue.
+- [Get queue availability](https://docs.dixa.io/openapi/dixa-api/v1/queues/getqueuesqueueidavailability.md): GET /v1/queues/{queueId}/availability. Get availability of supported channels for a given queue. Currently supported channels are adachat, kindlychat, digitalgeniuschat, genericapimessaging.
+- [Get queue](https://docs.dixa.io/openapi/dixa-api/v1/queues/getqueuesqueueid.md): GET /v1/queues/{queueId}. Get a queue by id.
+- [Get the position of the conversation in its current queue](https://docs.dixa.io/openapi/dixa-api/v1/queues/getqueuesconversation-positioncsid.md): GET /v1/queues/conversation-position/{csid}. Get the approximate position of a given conversation in its current queue.
+- [Contact Endpoints](https://docs.dixa.io/openapi/dixa-api/v1/contact-endpoints.md)
+- [Get contact endpoint](https://docs.dixa.io/openapi/dixa-api/v1/contact-endpoints/getcontact-endpointscontactendpointid.md): GET /v1/contact-endpoints/{contactEndpointId}. Get contact endpoint by id (email or phone number).
+- [List contact endpoints](https://docs.dixa.io/openapi/dixa-api/v1/contact-endpoints/getcontact-endpoints.md): GET /v1/contact-endpoints. List all available contact endpoints in an organization.
+- [Search](https://docs.dixa.io/openapi/dixa-api/v1/search.md)
+- [Search conversations](https://docs.dixa.io/openapi/dixa-api/v1/search/getsearchconversations.md): GET /v1/search/conversations. NOTE: This endpoint is deprecated and is replaced with POST /search/conversations. Search for conversations containing a particular text.
+- [Search conversations with filters](https://docs.dixa.io/openapi/dixa-api/v1/search/postsearchconversations.md): POST /v1/search/conversations. Search for conversations containing a particular text or by filter or combine them both. Only the first 10000 results can be paged through.
+- [Webhooks](https://docs.dixa.io/openapi/dixa-api/v1/webhooks.md)
+- [Webhook Subscription](https://docs.dixa.io/openapi/dixa-api/v1/webhooks/getwebhookswebhooksubscriptionid.md): GET /v1/webhooks/{webhookSubscriptionId}. Get a Webhook Subscription by ID.
+- [Delete Webhook Subscription](https://docs.dixa.io/openapi/dixa-api/v1/webhooks/deletewebhookswebhooksubscriptionid.md): DELETE /v1/webhooks/{webhookSubscriptionId}. Delete a Webhook Subscription.
+- [Patch Webhook Subscription](https://docs.dixa.io/openapi/dixa-api/v1/webhooks/patchwebhookswebhooksubscriptionid.md): PATCH /v1/webhooks/{webhookSubscriptionId}. Patch a Webhook Subscription.
+- [List all Webhook Subscriptions](https://docs.dixa.io/openapi/dixa-api/v1/webhooks/getwebhooks.md): GET /v1/webhooks. List of all Webhook Subscriptions in an organization.
+- [Create Webhook Subscription](https://docs.dixa.io/openapi/dixa-api/v1/webhooks/postwebhooks.md): POST /v1/webhooks. Create a Webhook Subscription.
+- [Webhook Subscription Last Delivery Statuses](https://docs.dixa.io/openapi/dixa-api/v1/webhooks/getwebhookswebhooksubscriptioniddelivery-status.md): GET /v1/webhooks/{webhookSubscriptionId}/delivery-status. Get the latest delivery statuses of a Webhook Subscription.
+- [Webhook Subscription Event Logs](https://docs.dixa.io/openapi/dixa-api/v1/webhooks/getwebhookswebhooksubscriptioniddelivery-statuslogsevent.md): GET /v1/webhooks/{webhookSubscriptionId}/delivery-status/logs/{event}. Get the latest Webhook Subscription Event logs.
+- [Templates](https://docs.dixa.io/openapi/dixa-api/v1/templates.md)
+- [List templates](https://docs.dixa.io/openapi/dixa-api/v1/templates/gettemplates.md): GET /v1/templates. Lists all templates belonging to an organization.
+- [Delete template](https://docs.dixa.io/openapi/dixa-api/v1/templates/deletetemplatestemplateid.md): DELETE /v1/templates/{templateId}. Deletes the template. Please make sure the template is not used in flows and automations as this operation is irreversible.
+- [Business Hours](https://docs.dixa.io/openapi/dixa-api/v1/business-hours.md)
+- [List business hours schedules](https://docs.dixa.io/openapi/dixa-api/v1/business-hours/getbusiness-hoursschedules.md): GET /v1/business-hours/schedules. List business hours schedules in an organization with pagination.
+- [Get a business hours schedule definition.](https://docs.dixa.io/openapi/dixa-api/v1/business-hours/getbusiness-hoursschedulesscheduleiddefinition.md): GET /v1/business-hours/schedules/{scheduleId}/definition. Get a business hours schedule definition in an organization by providing its ID.
+- [Get the upcoming business hours schedule.](https://docs.dixa.io/openapi/dixa-api/v1/business-hours/getbusiness-hoursschedulesscheduleidupcoming.md): GET /v1/business-hours/schedules/{scheduleId}/upcoming. Get the resolved business hours schedule for the next number of days, applying recurring rules and exceptions. Each entry in `businessHours` describes one upcoming day (see its `nextDate`). An entry with `status: Open` lists the intervals during which the business is open on that day; between and outside those intervals it is closed. An entry with `status: Closed` is a day explicitly configured as closed and has no intervals. Days without any configured business hours are omitted from the response entirely, so `businessHours` can be empty when no day in the requested window has configured hours. In short: the business is open only during the intervals of `status: Open` entries, and closed at all other times.
+- [Check if a business is open](https://docs.dixa.io/openapi/dixa-api/v1/business-hours/getbusiness-hoursschedulesscheduleidstatus.md): GET /v1/business-hours/schedules/{scheduleId}/status. Check if a business is open either right now or at the specified timestamp. When the business is open, `closesAt` holds the end of the current open interval and `opensAt` is null. When it is closed, `opensAt` holds the start of the next open interval — if there is one within the next year — and `closesAt` is null.
+- [Knowledge](https://docs.dixa.io/openapi/dixa-api/v1/knowledge.md)
+- [Get collection](https://docs.dixa.io/openapi/dixa-api/v1/knowledge/getknowledgecollectionscollectionid.md): GET /v1/knowledge/collections/{collectionId}. Get a knowledge collection by id
+- [Get collection catalog](https://docs.dixa.io/openapi/dixa-api/v1/knowledge/getknowledgecollectionscollectionidcatalog.md): GET /v1/knowledge/collections/{collectionId}/catalog. Get collection catalog, including all categories and articles
+- [Get category](https://docs.dixa.io/openapi/dixa-api/v1/knowledge/getknowledgecategoriescategoryid.md): GET /v1/knowledge/categories/{categoryId}. Get a knowledge category by id
+- [Get category translations](https://docs.dixa.io/openapi/dixa-api/v1/knowledge/getknowledgecategoriescategoryidtranslations.md): GET /v1/knowledge/categories/{categoryId}/translations. Get the knowledge category translations
+- [Get article](https://docs.dixa.io/openapi/dixa-api/v1/knowledge/getknowledgearticlesarticleid.md): GET /v1/knowledge/articles/{articleId}. Get a knowledge article by id
+- [Delete article](https://docs.dixa.io/openapi/dixa-api/v1/knowledge/deleteknowledgearticlesarticleid.md): DELETE /v1/knowledge/articles/{articleId}. Delete a knowledge article
+- [Update article](https://docs.dixa.io/openapi/dixa-api/v1/knowledge/patchknowledgearticlesarticleid.md): PATCH /v1/knowledge/articles/{articleId}. Update a knowledge article
+- [Get article translations](https://docs.dixa.io/openapi/dixa-api/v1/knowledge/getknowledgearticlesarticleidtranslations.md): GET /v1/knowledge/articles/{articleId}/translations. Get a knowledge article translations
+- [Update article translations](https://docs.dixa.io/openapi/dixa-api/v1/knowledge/patchknowledgearticlesarticleidtranslations.md): PATCH /v1/knowledge/articles/{articleId}/translations. Update translations for a knowledge article. Supports partial success.
+- [Create article](https://docs.dixa.io/openapi/dixa-api/v1/knowledge/postknowledgearticles.md): POST /v1/knowledge/articles. Create a knowledge article
+- [Publish translation](https://docs.dixa.io/openapi/dixa-api/v1/knowledge/postknowledgearticlesarticleidtranslationslanguageidpublish.md): POST /v1/knowledge/articles/{articleId}/translations/{languageId}/publish. Publish a specific translation for search
+- [Unpublish translation](https://docs.dixa.io/openapi/dixa-api/v1/knowledge/postknowledgearticlesarticleidtranslationslanguageidunpublish.md): POST /v1/knowledge/articles/{articleId}/translations/{languageId}/unpublish. Mark a specific translation as unpublished
+- [Delete article translation](https://docs.dixa.io/openapi/dixa-api/v1/knowledge/deleteknowledgearticlesarticleidtranslationslanguageid.md): DELETE /v1/knowledge/articles/{articleId}/translations/{languageId}. Delete all versions of a knowledge article translation
+- [Publish article](https://docs.dixa.io/openapi/dixa-api/v1/knowledge/postknowledgearticlesarticleidpublish.md): POST /v1/knowledge/articles/{articleId}/publish. Publish a new version of all translations for a knowledge article
+- [Unpublish article](https://docs.dixa.io/openapi/dixa-api/v1/knowledge/postknowledgearticlesarticleidunpublish.md): POST /v1/knowledge/articles/{articleId}/unpublish. Remove all translations of a knowledge article from search
+- [Move article](https://docs.dixa.io/openapi/dixa-api/v1/knowledge/patchknowledgearticlesarticleidparentparentid.md): PATCH /v1/knowledge/articles/{articleId}/parent/{parentId}. Move a knowledge article to a new parent
+- [Remove article parent](https://docs.dixa.io/openapi/dixa-api/v1/knowledge/deleteknowledgearticlesarticleidparent.md): DELETE /v1/knowledge/articles/{articleId}/parent. Remove a parent from a knowledge article
+- [List collections](https://docs.dixa.io/openapi/dixa-api/v1/knowledge/getknowledgecollections.md): GET /v1/knowledge/collections. Paginated list knowledge collections
+- [Upload article attachments](https://docs.dixa.io/openapi/dixa-api/v1/knowledge/postknowledgearticlesattachments.md): POST /v1/knowledge/articles/attachments. Upload one or more image files to be used as attachments in knowledge articles. Supported formats: image/png, image/jpeg, image/gif, image/webp. Maximum 5 files per request, 4 MB per file, with a total request payload limit of 10 MB. Supports partial success.
+- [Organization](https://docs.dixa.io/openapi/dixa-api/v1/organization.md)
+- [Get organization details](https://docs.dixa.io/openapi/dixa-api/v1/organization/getorganization.md): GET /v1/organization. Retrieves information about the organization associated with the provided API token
+- [Dixa API](https://docs.dixa.io/openapi/dixa-api/beta.md)
+- [Analytics](https://docs.dixa.io/openapi/dixa-api/beta/analytics.md)
+- [Metrics Catalogue](https://docs.dixa.io/openapi/dixa-api/beta/analytics/getanalyticsmetrics.md): GET /beta/analytics/metrics. This endpoint lists all available metric IDs that can be used to fetch data in Get Metric Data
+- [Get Metric Data](https://docs.dixa.io/openapi/dixa-api/beta/analytics/postanalyticsmetrics.md): POST /beta/analytics/metrics. Get data of a specific metric (aggregated)
+- [Metric Description](https://docs.dixa.io/openapi/dixa-api/beta/analytics/getanalyticsmetricsmetricid.md): GET /beta/analytics/metrics/{metricId}. This endpoint lists all available properties of a metric to use for querying its data
+- [Filter values](https://docs.dixa.io/openapi/dixa-api/beta/analytics/getanalyticsfilterfilterattribute.md): GET /beta/analytics/filter/{filterAttribute}. Get possible values to be used with a given filter attribute. Filter attributes are not metric or record specific, so one filter attribute can be used with multiple metrics/records. When a filter value is not relevant for a specific metric/record, it is simply ignored.
+- [Metric Records Catalogue](https://docs.dixa.io/openapi/dixa-api/beta/analytics/getanalyticsrecords.md): GET /beta/analytics/records. This endpoint lists all available record IDs that can be used to fetch data in Get Metric Records Data
+- [Get Metric Records Data](https://docs.dixa.io/openapi/dixa-api/beta/analytics/postanalyticsrecords.md): POST /beta/analytics/records. Get data of specific metric records (unaggregated)
+- [Metric Record Description](https://docs.dixa.io/openapi/dixa-api/beta/analytics/getanalyticsrecordsrecordid.md): GET /beta/analytics/records/{recordId}. This endpoint lists all available properties of a record to use for querying its data
+- [Intelligence](https://docs.dixa.io/openapi/dixa-api/beta/intelligence.md): Get the metrics and records behind analytics in Dixa. Find a metric or record and the filters it accepts with List metrics or List records, and look up the ids to filter on with List filter values. Then send the query to the endpoint for its category: `conversations`, `agents` or `aiagents`. A metric returns values such as a count or an average, and a record returns a page of the events behind it. Read the [Intelligence API guide](https://docs.dixa.io/docs/intelligence-api-guide) for a walkthrough.
+- [List metrics](https://docs.dixa.io/openapi/dixa-api/beta/intelligence/getintelligencemetrics.md): GET /beta/intelligence/metrics. List the metrics you can query, with the filters and aggregates of each metric and the records it is based on. Use the metric `id` with Query conversation metric, Query agent metric or Query AI agent metric.
+- [List records](https://docs.dixa.io/openapi/dixa-api/beta/intelligence/getintelligencerecords.md): GET /beta/intelligence/records. List the records you can query, with the fields and filters of each record and the metrics based on it. Use the record `id` with Query conversation records, Query agent records or Query AI agent records.
+- [Get metric](https://docs.dixa.io/openapi/dixa-api/beta/intelligence/getintelligencemetricsmetricid.md): GET /beta/intelligence/metrics/{metricId}. Get a metric by id.
+- [Get record](https://docs.dixa.io/openapi/dixa-api/beta/intelligence/getintelligencerecordsrecordid.md): GET /beta/intelligence/records/{recordId}. Get a record by id.
+- [Query conversation metric](https://docs.dixa.io/openapi/dixa-api/beta/intelligence/postintelligenceconversationsmetricsmetricid.md): POST /beta/intelligence/conversations/metrics/{metricId}. Get the value of a conversation metric for a period or a list of conversations. All aggregates of the metric are returned. If nothing matches, `count` is 0 and the other aggregates are null.
+- [Query agent metric](https://docs.dixa.io/openapi/dixa-api/beta/intelligence/postintelligenceagentsmetricsmetricid.md): POST /beta/intelligence/agents/metrics/{metricId}. Get the value of an agent metric for a period. All aggregates of the metric are returned. If nothing matches, `count` is 0 and the other aggregates are null, except presence durations, which are 0. Deactivated agents are included.
+- [Query AI agent metric](https://docs.dixa.io/openapi/dixa-api/beta/intelligence/postintelligenceaiagentsmetricsmetricid.md): POST /beta/intelligence/aiagents/metrics/{metricId}. Get the value of an AI agent metric for a period. All aggregates of the metric are returned. If nothing matches, the counts are 0. Deleted AI agents are included.
+- [Query conversation records](https://docs.dixa.io/openapi/dixa-api/beta/intelligence/postintelligenceconversationsrecordsrecordid.md): POST /beta/intelligence/conversations/records/{recordId}. Get the rows of a conversation record for a period or a list of conversations. To get the next page, send the same query with `meta.next` as `pagination.pageKey`. Columns without a value are left out of the row.
+- [Query agent records](https://docs.dixa.io/openapi/dixa-api/beta/intelligence/postintelligenceagentsrecordsrecordid.md): POST /beta/intelligence/agents/records/{recordId}. Get the rows of an agent record for a period. To get the next page, send the same query with `meta.next` as `pagination.pageKey`. Without filters, all agents are included, also deactivated ones.
+- [Query AI agent records](https://docs.dixa.io/openapi/dixa-api/beta/intelligence/postintelligenceaiagentsrecordsrecordid.md): POST /beta/intelligence/aiagents/records/{recordId}. Get the rows of an AI agent record for a period. To get the next page, send the same query with `meta.next` as `pagination.pageKey`. Without filters, all AI agents are included, also deleted ones.
+- [List filter values](https://docs.dixa.io/openapi/dixa-api/beta/intelligence/getintelligencefiltersattributevalues.md): GET /beta/intelligence/filters/{attribute}/values. List the values you can filter on for an attribute, such as all queues or all tags. Deactivated agents, queues and tags are included and marked with `deactivated: true`.
+- [Agents](https://docs.dixa.io/openapi/dixa-api/beta/agents.md)
+- [List presence](https://docs.dixa.io/openapi/dixa-api/beta/agents/getagentspresence.md): GET /beta/agents/presence. List the presence status for all agents/admins in an organization.
+- [List agents](https://docs.dixa.io/openapi/dixa-api/beta/agents/getagents.md): GET /beta/agents. Lists all agents/admins in an organization. It is possible to filter by one of the mutually exclusive parameters: email or phone number. In case both are provided, an error is returned.
+- [Update agents](https://docs.dixa.io/openapi/dixa-api/beta/agents/putagents.md): PUT /beta/agents. Bulk update agents/admins.
+- [Create agent](https://docs.dixa.io/openapi/dixa-api/beta/agents/postagents.md): POST /beta/agents. Create an agent.
+- [Patch agents](https://docs.dixa.io/openapi/dixa-api/beta/agents/patchagents.md): PATCH /beta/agents. Bulk patch agents/admins.
+- [List teams](https://docs.dixa.io/openapi/dixa-api/beta/agents/getagentsagentidteams.md): GET /beta/agents/{agentId}/teams. List the teams in which the agent/admin is a member.
+- [Get presence](https://docs.dixa.io/openapi/dixa-api/beta/agents/getagentsagentidpresence.md): GET /beta/agents/{agentId}/presence. Get the presence status for an agent/admin.
+- [Create agents](https://docs.dixa.io/openapi/dixa-api/beta/agents/postagentsbulk.md): POST /beta/agents/bulk. Create agents in bulk.
+- [Get agent](https://docs.dixa.io/openapi/dixa-api/beta/agents/getagentsagentid.md): GET /beta/agents/{agentId}. Get an agent/admin by id.
+- [Update agent](https://docs.dixa.io/openapi/dixa-api/beta/agents/putagentsagentid.md): PUT /beta/agents/{agentId}. Update an agent/admin.
+- [Delete agent](https://docs.dixa.io/openapi/dixa-api/beta/agents/deleteagentsagentid.md): DELETE /beta/agents/{agentId}. Downgrade an agent/admin to become an end user.
+- [Patch agent](https://docs.dixa.io/openapi/dixa-api/beta/agents/patchagentsagentid.md): PATCH /beta/agents/{agentId}. Patch an agent/admin.
+- [Updates the working channel of an agent](https://docs.dixa.io/openapi/dixa-api/beta/agents/putagentsagentidpresenceworking-channel.md): PUT /beta/agents/{agentId}/presence/working-channel. Updates the working channel of an agent
+- [AI Agents](https://docs.dixa.io/openapi/dixa-api/beta/ai-agents.md)
+- [List AI agents](https://docs.dixa.io/openapi/dixa-api/beta/ai-agents/getai-agents.md): GET /beta/ai-agents. Lists all AI agents in an organization. AI agents include Dixa's native Mim agents and external chatbot integrations.
+- [End Users](https://docs.dixa.io/openapi/dixa-api/beta/end-users.md)
+- [List end users](https://docs.dixa.io/openapi/dixa-api/beta/end-users/getendusers.md): GET /beta/endusers. Lists all end users in an organization. It is possible to filter by one of the mutually exclusive parameters: email or phone number. In case both are provided, an error is returned.
+- [Update end users](https://docs.dixa.io/openapi/dixa-api/beta/end-users/putendusers.md): PUT /beta/endusers. Bulk update end users.
+- [Create end user](https://docs.dixa.io/openapi/dixa-api/beta/end-users/postendusers.md): POST /beta/endusers. Create an end user.
+- [Patch end users](https://docs.dixa.io/openapi/dixa-api/beta/end-users/patchendusers.md): PATCH /beta/endusers. Bulk patch end users.
+- [Create end users](https://docs.dixa.io/openapi/dixa-api/beta/end-users/postendusersbulk.md): POST /beta/endusers/bulk. Create multiple end users in a single bulk action
+- [Get end user](https://docs.dixa.io/openapi/dixa-api/beta/end-users/getendusersuserid.md): GET /beta/endusers/{userId}. Get an end user by id.
+- [Update end user](https://docs.dixa.io/openapi/dixa-api/beta/end-users/putendusersuserid.md): PUT /beta/endusers/{userId}. Update an end user.
+- [Patch end user](https://docs.dixa.io/openapi/dixa-api/beta/end-users/patchendusersuserid.md): PATCH /beta/endusers/{userId}. Patch an end user.
+- [Anonymize end user](https://docs.dixa.io/openapi/dixa-api/beta/end-users/patchendusersuseridanonymize.md): PATCH /beta/endusers/{userId}/anonymize. Request the anonymization of an end user.
+- [Patch end user custom attributes](https://docs.dixa.io/openapi/dixa-api/beta/end-users/patchendusersuseridcustom-attributes.md): PATCH /beta/endusers/{userId}/custom-attributes. Patch custom attributes of an end user
+- [List end user conversations](https://docs.dixa.io/openapi/dixa-api/beta/end-users/getendusersuseridconversations.md): GET /beta/endusers/{userId}/conversations. Lists conversations requested by an end user.
+- [Chatbots](https://docs.dixa.io/openapi/dixa-api/beta/chatbots.md)
+- [Create end user](https://docs.dixa.io/openapi/dixa-api/beta/chatbots/postendusers.md): POST /beta/endusers. Create an end user.
+- [Get end user](https://docs.dixa.io/openapi/dixa-api/beta/chatbots/getendusersuserid.md): GET /beta/endusers/{userId}. Get an end user by id.
+- [List end user conversations](https://docs.dixa.io/openapi/dixa-api/beta/chatbots/getendusersuseridconversations.md): GET /beta/endusers/{userId}/conversations. Lists conversations requested by an end user.
+- [Close conversation](https://docs.dixa.io/openapi/dixa-api/beta/chatbots/putconversationsconversationidclose.md): PUT /beta/conversations/{conversationId}/close. Mark a conversation as closed by providing its id.
+- [Followup conversation](https://docs.dixa.io/openapi/dixa-api/beta/chatbots/putconversationsconversationidfollowup.md): PUT /beta/conversations/{conversationId}/followup. Follow up a conversation by providing its id and expiration timestamp.
+- [Transfer conversation](https://docs.dixa.io/openapi/dixa-api/beta/chatbots/putconversationsconversationidtransferqueue.md): PUT /beta/conversations/{conversationId}/transfer/queue. Transfer a conversation to a target queue.
+- [Create conversation rating result](https://docs.dixa.io/openapi/dixa-api/beta/chatbots/postconversationsconversationidratingsratingidsubmit.md): POST /beta/conversations/{conversationId}/ratings/{ratingId}/submit. Create a rating result for a specific conversation.
+- [Create conversation rating offer](https://docs.dixa.io/openapi/dixa-api/beta/chatbots/postconversationsconversationidratingsoffer.md): POST /beta/conversations/{conversationId}/ratings/offer. Create a rating offer for a specific conversation.
+- [Create conversation](https://docs.dixa.io/openapi/dixa-api/beta/chatbots/postconversations.md): POST /beta/conversations. Create a conversation. For inbound messages the author is assumed to be the requester of the conversation (end user). For outbound messages the author is specified using the agentId field.
+- [Import conversation](https://docs.dixa.io/openapi/dixa-api/beta/chatbots/postconversationsimport.md): POST /beta/conversations/import. Import a previously created conversation into Dixa. For inbound messages the author is assumed to be the requester of the conversation (end user), unless the specific channel supports overriding the message author through its attributes. For outbound messages the author is specified using the agentId field.
+- [Claim conversation](https://docs.dixa.io/openapi/dixa-api/beta/chatbots/putconversationsconversationidclaim.md): PUT /beta/conversations/{conversationId}/claim. Claim a conversation for a given agent. To avoid taking over assigned conversations, set the `force` paremeter to false
+- [Get queue availability](https://docs.dixa.io/openapi/dixa-api/beta/chatbots/getqueuesqueueidavailability.md): GET /beta/queues/{queueId}/availability. Get availability of supported channels for a given queue. Currently supported channels are adachat, kindlychat, digitalgeniuschat, genericapimessaging.
+- [Get the position of the conversation in its current queue](https://docs.dixa.io/openapi/dixa-api/beta/chatbots/getqueuesconversation-positioncsid.md): GET /beta/queues/conversation-position/{csid}. Get the approximate position of a given conversation in its current queue.
+- [Anonymization](https://docs.dixa.io/openapi/dixa-api/beta/anonymization.md)
+- [Anonymize end user](https://docs.dixa.io/openapi/dixa-api/beta/anonymization/patchendusersuseridanonymize.md): PATCH /beta/endusers/{userId}/anonymize. Request the anonymization of an end user.
+- [Anonymize conversation](https://docs.dixa.io/openapi/dixa-api/beta/anonymization/patchconversationsconversationidanonymize.md): PATCH /beta/conversations/{conversationId}/anonymize. Request the anonymization of a conversation.
+- [Anonymize message](https://docs.dixa.io/openapi/dixa-api/beta/anonymization/patchconversationsconversationidmessagesmessageidanonymize.md): PATCH /beta/conversations/{conversationId}/messages/{messageId}/anonymize. Request the anonymization of a single message in a conversation.
+- [Get anonymization status](https://docs.dixa.io/openapi/dixa-api/beta/anonymization/getanonymizationrequestrequestid.md): GET /beta/anonymization/request/{requestId}. Retrieve an anonymization request submitted earlier (user or conversation).
+- [Anonymize entity](https://docs.dixa.io/openapi/dixa-api/beta/anonymization/postanonymization.md): POST /beta/anonymization. Anonymize the requested entity (user or conversation). For a conversation to be successfully anonymized, it should be in the status `closed`. Otherwise, it requires `forceAnonymization` parameter set to `true` in the input body. NOTE: This endpoint is deprecated. Prefer using the anonymization endpoints of specific resources instead.
+- [Custom Attributes](https://docs.dixa.io/openapi/dixa-api/beta/custom-attributes.md)
+- [Patch end user custom attributes](https://docs.dixa.io/openapi/dixa-api/beta/custom-attributes/patchendusersuseridcustom-attributes.md): PATCH /beta/endusers/{userId}/custom-attributes. Patch custom attributes of an end user
+- [Patch conversation custom attributes](https://docs.dixa.io/openapi/dixa-api/beta/custom-attributes/patchconversationsconversationidcustom-attributes.md): PATCH /beta/conversations/{conversationId}/custom-attributes. Patch custom attributes of a conversation
+- [Get custom attribute definition by id](https://docs.dixa.io/openapi/dixa-api/beta/custom-attributes/getcustom-attributescustomattributeid.md): GET /beta/custom-attributes/{customAttributeId}. Get custom attribute in an organization by id.
+- [List custom attributes definitions](https://docs.dixa.io/openapi/dixa-api/beta/custom-attributes/getcustom-attributes.md): GET /beta/custom-attributes. List all custom attributes in an organization.
+- [Teams](https://docs.dixa.io/openapi/dixa-api/beta/teams.md)
+- [List teams](https://docs.dixa.io/openapi/dixa-api/beta/teams/getteams.md): GET /beta/teams. Lists all teams in an organization.
+- [Create team](https://docs.dixa.io/openapi/dixa-api/beta/teams/postteams.md): POST /beta/teams. Create a team.
+- [List members](https://docs.dixa.io/openapi/dixa-api/beta/teams/getteamsteamidagents.md): GET /beta/teams/{teamId}/agents. Lists all agents/admins in a team.
+- [Remove members](https://docs.dixa.io/openapi/dixa-api/beta/teams/deleteteamsteamidagents.md): DELETE /beta/teams/{teamId}/agents. Remove agents/admins from a team.
+- [Add members](https://docs.dixa.io/openapi/dixa-api/beta/teams/patchteamsteamidagents.md): PATCH /beta/teams/{teamId}/agents. Add agents/admins to a team.
+- [List presence](https://docs.dixa.io/openapi/dixa-api/beta/teams/getteamsteamidpresence.md): GET /beta/teams/{teamId}/presence. List the presence status of all agents/admins in a team.
+- [Get team](https://docs.dixa.io/openapi/dixa-api/beta/teams/getteamsteamid.md): GET /beta/teams/{teamId}. Get a team by id.
+- [Delete team](https://docs.dixa.io/openapi/dixa-api/beta/teams/deleteteamsteamid.md): DELETE /beta/teams/{teamId}. Delete a team.
+- [Conversations](https://docs.dixa.io/openapi/dixa-api/beta/conversations.md)
+- [Anonymize conversation](https://docs.dixa.io/openapi/dixa-api/beta/conversations/patchconversationsconversationidanonymize.md): PATCH /beta/conversations/{conversationId}/anonymize. Request the anonymization of a conversation.
+- [Anonymize message](https://docs.dixa.io/openapi/dixa-api/beta/conversations/patchconversationsconversationidmessagesmessageidanonymize.md): PATCH /beta/conversations/{conversationId}/messages/{messageId}/anonymize. Request the anonymization of a single message in a conversation.
+- [Close conversation](https://docs.dixa.io/openapi/dixa-api/beta/conversations/putconversationsconversationidclose.md): PUT /beta/conversations/{conversationId}/close. Mark a conversation as closed by providing its id.
+- [Followup conversation](https://docs.dixa.io/openapi/dixa-api/beta/conversations/putconversationsconversationidfollowup.md): PUT /beta/conversations/{conversationId}/followup. Follow up a conversation by providing its id and expiration timestamp.
+- [Reopen conversation](https://docs.dixa.io/openapi/dixa-api/beta/conversations/putconversationsconversationidreopen.md): PUT /beta/conversations/{conversationId}/reopen. Reopen a convers

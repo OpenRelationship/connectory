@@ -102,6 +102,7 @@ Run JavaScript inside Rippling. Functions, workflows, custom settings, and Funct
 - [Invoking Functions](https://developer.rippling.com/documentation/rippling-platform/developer/functions/invoking-functions): UI, workflow, and API invocation.
 - [Functions real-world example](https://developer.rippling.com/documentation/rippling-platform/developer/functions/real-world-example): End-to-end function pattern.
 - [Custom Settings](https://developer.rippling.com/documentation/rippling-platform/developer/custom-settings): Store API keys and config for functions. Do not hardcode secrets.
+- [Create and manage settings](https://developer.rippling.com/documentation/rest-api/guides/custom-settings): Use the Settings API to create, retrieve, update, and delete settings.
 - [Trigger a Workflow Using a Webhook](https://developer.rippling.com/documentation/rippling-platform/developer/workflows/trigger-workflow): Start in-product workflows from events.
 - [Get Started with Function Pages](https://developer.rippling.com/documentation/rippling-platform/sdui/getting-started): SDUI pages backed by functions.
 - [Function Pages hello world](https://developer.rippling.com/documentation/rippling-platform/sdui/hello-world)
@@ -189,9 +190,25 @@ First-party Model Context Protocol connection for AI clients. Runs as the connec
 
 ## Pipelines and Transformations
 
-- [Pipelines getting started](https://developer.rippling.com/documentation/rippling-platform/pipelines/getting-started): In-Rippling data pipelines.
-- [Custom pipeline setup](https://developer.rippling.com/documentation/rippling-platform/pipelines/custom-pipeline-setup)
+- [Get started with pipelines](https://developer.rippling.com/documentation/rippling-platform/pipelines/getting-started): In-Rippling data pipelines.
+- [Set up a custom pipeline](https://developer.rippling.com/documentation/rippling-platform/pipelines/custom-pipeline-setup)
+- [Permissions for pipelines](https://developer.rippling.com/documentation/rippling-platform/pipelines/permissions)
+- [Pipeline sync management guide](https://developer.rippling.com/documentation/rippling-platform/pipelines/sync-management)
+- [Pipeline FAQs](https://developer.rippling.com/documentation/rippling-platform/pipelines/faqs)
 - [Transformations](https://developer.rippling.com/documentation/rippling-platform/transformations/getting-started): SQL transformations over Rippling data.
+
+## Reports and Dashboards
+
+- [Get started with reports](https://developer.rippling.com/documentation/rippling-platform/reports/getting-started): In-product reports, time frames, and data refresh behavior.
+- [Joins in reports](https://developer.rippling.com/documentation/rippling-platform/reports/joins)
+- [Filters and time frames in reports](https://developer.rippling.com/documentation/rippling-platform/reports/filters)
+- [Charts, grouping, and formatting in reports](https://developer.rippling.com/documentation/rippling-platform/reports/visualization)
+- [Report permissions](https://developer.rippling.com/documentation/rippling-platform/reports/permissions)
+- [Share and download reports](https://developer.rippling.com/documentation/rippling-platform/reports/sharing)
+- [Get started with dashboards](https://developer.rippling.com/documentation/rippling-platform/dashboards/getting-started)
+- [Overview of dashboard filters](https://developer.rippling.com/documentation/rippling-platform/dashboards/filters)
+- [Dashboard sharing and permissions](https://developer.rippling.com/documentation/rippling-platform/dashboards/sharing)
+- [Generate and Download Reports Using the API](https://developer.rippling.com/documentation/rest-api/guides/reports): Run built-in reports via the REST API.
 
 ## Optional
 

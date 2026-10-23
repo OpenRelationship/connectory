@@ -2003,13 +2003,17 @@
       "type": "string",
       "description": "Full name of the person (alternative to first_name + last_name)"
      },
+     "profile_url": {
+      "type": "string",
+      "description": "LinkedIn person profile URL (alternative to a name; CRM synonym keys like linkedin_url are accepted and normalized server-side)"
+     },
      "domain": {
       "type": "string",
-      "description": "Company domain name (required if company_name not provided)"
+      "description": "Company domain name (required if company_name not provided; aliases company_domain, website, url accepted)"
      },
      "company_name": {
       "type": "string",
-      "description": "Company name (required if domain not provided)"
+      "description": "Company name (required if domain not provided; aliases company, organization, employer accepted)"
      }
     },
     "required": []
@@ -2024,6 +2028,7 @@
      "first_name",
      "last_name",
      "full_name",
+     "profile_url",
      "domain",
      "company_name"
     ],

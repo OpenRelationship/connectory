@@ -16,10 +16,11 @@ vouches for**: read it, then read their reference.
 
 ## API Docs
 
-- [Gamma Developer Docs](https://developers.gamma.app/readme.md): Build with the Gamma API — generate presentations, documents, websites, and social posts programmatically.
-- [Explore the API](https://developers.gamma.app/get-started/understanding-the-api-options.md): How the Gamma API works, what it can do, and which endpoint to use.
+- [Gamma Developer Docs](https://developers.gamma.app/readme.md): Gamma API and MCP for AI agents and apps: generate branded presentations, documents, webpages, and social posts, then read, edit, and export them.
+- [Explore the API](https://developers.gamma.app/get-started/understanding-the-api-options.md): How the Gamma API works — generate, edit, read, search, export, and analytics endpoints — and when to use the REST API versus the MCP server.
 - [Review access and pricing](https://developers.gamma.app/get-started/access-and-pricing.md): API access requirements, credit-based pricing, and plan details.
-- [GET /generations/{id}](https://developers.gamma.app/generations/get-generation-status.md): Poll this endpoint until status is completed or failed.
+- [Brand, template, and editing controls](https://developers.gamma.app/build-with-gamma/brand-template-editing-controls.md): What the Gamma API and MCP preserve, what they can change, and which operation controls brand, template, content, and revisions.
+- [GET /generations/{id}](https://developers.gamma.app/generations-classic/get-generation-status.md): Poll this endpoint until status is completed or failed.
 - [GET /images/{id}](https://developers.gamma.app/images/get-image-generation-status.md): Poll this endpoint until status is completed or failed.
 - [GET /exports/{id}](https://developers.gamma.app/management/get-export-status.md): Poll this endpoint until export status is completed or failed.
 - [DELETE /gammas/{gammaId}](https://developers.gamma.app/management/delete-gamma.md): Delete a Gamma document. Requires a workspace admin role on the API key's workspace.
@@ -35,7 +36,7 @@ vouches for**: read it, then read their reference.
 - [Output languages](https://developers.gamma.app/reference/output-language-accepted-values.md): Specify the output language of your gamma.
 - [Error codes](https://developers.gamma.app/reference/error-codes.md): Detailed descriptions of API error codes.
 - [Warnings](https://developers.gamma.app/reference/warnings.md): Understanding warning messages in API responses.
-- [API scope and limits](https://developers.gamma.app/reference/common-feature-requests.md): What the Gamma API covers today and how to work within its current scope.
+- [API scope and limits](https://developers.gamma.app/reference/common-feature-requests.md): What the Gamma API and MCP server cover today — generate, edit, read, export, and analyze gammas — and the limits to design around.
 - [Get help](https://developers.gamma.app/reference/get-help.md): There are several ways to get in touch with us.
 - [Changelog](https://developers.gamma.app/reference/changelog.md): New updates and improvements to the Gamma API, MCP Server, and integrations.
 
@@ -45,11 +46,15 @@ vouches for**: read it, then read their reference.
 This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
 ## Querying This Documentation
-If you need additional information, you can query the documentation dynamically by asking a question.
-Perform an HTTP GET request on a page URL with the `ask` query parameter:
+This site has an agentic ask interface you may use to query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the following URL with the `ask` and `goal` query parameters:
+
 ```
-GET https://developers.gamma.app/readme.md?ask=<question>
+GET https://developers.gamma.app/index.md?ask=<question>&goal=<user_goal>
 ```
-The question should be specific, self-contained, and written in natural language.
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is what the user is ultimately trying to achieve, the reason they need the answer. Sharing it helps GitBook give you a better, more relevant answer. A goal is most helpful when it describes the outcome the user wants rather than restating the question. For example, with `ask=how do I create an API token`, a goal like `automate deployments from our CI pipeline` lets GitBook tailor the answer to that use case.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
-Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

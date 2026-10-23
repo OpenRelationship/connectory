@@ -5,7 +5,7 @@
  "operations": [
   {
    "slug": "apify.actor_build_abort_post",
-   "name": "Abort build",
+   "name": "Abort actor build",
    "description": "Aborts an Actor build and returns an object that contains all the details about the build. Only builds that are starting or running are aborted. For builds with status `FINISHED`, `FAILED`, `ABORTING` and `TIMED-OUT` this call does nothing.",
    "input": {
     "type": "object",
@@ -33,7 +33,7 @@
   },
   {
    "slug": "apify.actor_build_default_get",
-   "name": "Get default build",
+   "name": "Get default actor build",
    "description": "Get the default build for an Actor. Use the optional `waitForFinish` parameter to synchronously wait for the build to finish. This avoids the need for periodic polling when waiting for the build to complete. This endpoint does not require an authentication token. Instead, calls are authenticated using the Actor's unique ID. However, if you access the endpoint without a token, certain attributes (e",
    "input": {
     "type": "object",
@@ -67,7 +67,7 @@
   },
   {
    "slug": "apify.actor_build_delete",
-   "name": "Delete build",
+   "name": "Delete actor build",
    "description": "Delete the build. The build that is the current default build for the Actor cannot be deleted. Only users with build permissions for the Actor can delete builds.",
    "input": {
     "type": "object",
@@ -95,7 +95,7 @@
   },
   {
    "slug": "apify.actor_build_get",
-   "name": "Get build",
+   "name": "Get actor build",
    "description": "Gets an object that contains all the details about a specific build of an Actor. By passing the optional `waitForFinish` parameter the API endpoint will synchronously wait for the build to finish. This is useful to avoid periodic polling when waiting for an Actor build to finish. This endpoint does not require the authentication token. Instead, calls are authenticated using a hard-to-guess ID of t",
    "input": {
     "type": "object",
@@ -129,8 +129,8 @@
   },
   {
    "slug": "apify.actor_build_log_get",
-   "name": "Get build's log",
-   "description": "Retrieves Actor build's logs. This endpoint is a shortcut for getting the build's log. Same as [Get log](/api/v2/log-get) endpoint.",
+   "name": "Get actor build's log",
+   "description": "Retrieves Actor build's logs. This endpoint is a shortcut for getting the build's log. Same as [Get Actor build or run log](/api/v2/log-get) endpoint.",
    "input": {
     "type": "object",
     "properties": {
@@ -168,7 +168,7 @@
   },
   {
    "slug": "apify.actor_build_openapi_json_get",
-   "name": "Get open api definition",
+   "name": "Get open api definition of actor build",
    "description": "Get the OpenAPI definition for Actor builds. Two similar endpoints are available: - [First endpoint](/api/v2/actor-openapi-json-get): Requires both `actorId` and `buildId`. Use `default` as the `buildId` to get the OpenAPI schema for the default Actor build. - [Second endpoint](/api/v2/actor-build-openapi-json-get): Requires only `buildId`. Get the OpenAPI definition for a specific Actor build. Au",
    "input": {
     "type": "object",
@@ -196,7 +196,7 @@
   },
   {
    "slug": "apify.actor_builds_get",
-   "name": "Get user builds list",
+   "name": "Get list of user's actor builds",
    "description": "Gets a list of all builds for a user. The response is a JSON array of objects, where each object contains basic information about a single build. The endpoint supports pagination using the `limit` and `offset` parameters and it will not return more than 1000 records. By default, the records are sorted by the `startedAt` field in ascending order. Therefore, you can use pagination to incrementally f",
    "input": {
     "type": "object",
@@ -288,7 +288,7 @@
   },
   {
    "slug": "apify.actor_openapi_json_get",
-   "name": "Get open api definition",
+   "name": "Get open api definition of actor build",
    "description": "Get the OpenAPI definition for Actor builds. Two similar endpoints are available: - [First endpoint](/api/v2/actor-openapi-json-get): Requires both `actorId` and `buildId`. Use `default` as the `buildId` to get the OpenAPI schema for the default Actor build. - [Second endpoint](/api/v2/actor-build-openapi-json-get): Requires only `buildId`. Get the OpenAPI definition for a specific Actor build. To",
    "input": {
     "type": "object",
@@ -348,7 +348,11 @@
      },
      "actorPermissionLevel": {
       "type": "string",
-      "description": ""
+      "description": "Determines the permission level that the Actor requires to run. For details, see [Actor permissions](https://docs.apify.com/platform/actors/development/permissions).",
+      "enum": [
+       "LIMITED_PERMISSIONS",
+       "FULL_PERMISSIONS"
+      ]
      },
      "seoTitle": {
       "type": [
@@ -381,7 +385,7 @@
      },
      "pricingInfos": {
       "type": "array",
-      "description": ""
+      "description": "The Actor's pricing records. You can't add the `FLAT_PRICE_PER_MONTH` or `PRICE_PER_DATASET_ITEM` records, because these pricing models are no longer supported."
      },
      "categories": {
       "type": [
@@ -452,7 +456,7 @@
   },
   {
    "slug": "apify.actor_run_abort_post",
-   "name": "Abort run",
+   "name": "Abort actor run",
    "description": "Aborts an Actor run and returns an object that contains all the details about the run. Only runs that are starting or running are aborted. For runs with status `FINISHED`, `FAILED`, `ABORTING` and `TIMED-OUT` this call does nothing.",
    "input": {
     "type": "object",
@@ -486,7 +490,7 @@
   },
   {
    "slug": "apify.actor_run_dataset_delete",
-   "name": "Delete default dataset",
+   "name": "Delete the default dataset of an actor run",
    "description": "Deletes default dataset associated with an Actor run. This endpoint is a shortcut for getting the last run's `defaultDatasetId` and then using the [ Delete dataset ](/api/v2/dataset-delete) endpoint.",
    "input": {
     "type": "object",
@@ -514,7 +518,7 @@
   },
   {
    "slug": "apify.actor_run_dataset_get",
-   "name": "Get default dataset",
+   "name": "Get the default dataset of an actor run",
    "description": "Returns the default dataset associated with an Actor run. This endpoint is a shortcut for getting the run's `defaultDatasetId` and then using the [Get dataset](/api/v2/dataset-get) endpoint.",
    "input": {
     "type": "object",
@@ -542,7 +546,7 @@
   },
   {
    "slug": "apify.actor_run_dataset_items_get",
-   "name": "Get default dataset items",
+   "name": "Get the default dataset items from an actor run",
    "description": "Returns data stored in the default dataset of the Actor run in the desired format. This endpoint is a shortcut that resolves the run's `defaultDatasetId` and proxies to the [Get dataset items](/api/v2/dataset-items-get) endpoint.",
    "input": {
     "type": "object",
@@ -691,8 +695,8 @@
   },
   {
    "slug": "apify.actor_run_dataset_items_post",
-   "name": "Store items",
-   "description": "Appends an item or an array of items to the end of the Actor run's default dataset. This endpoint is a shortcut that resolves the run's `defaultDatasetId` and proxies to the [Store items](/api/v2/dataset-items-post) endpoint. To save bandwidth and speed up your upload, you can send the request payload compressed and set the `Content-Encoding` header accordingly. Below is a list of supported `Conte",
+   "name": "Store items in the default dataset of an actor run",
+   "description": "Appends an item or an array of items to the end of the Actor run's default dataset. This endpoint is a shortcut that resolves the run's `defaultDatasetId` and proxies to the [Store items in dataset](/api/v2/dataset-items-post) endpoint. To save bandwidth and speed up your upload, you can send the request payload compressed and set the `Content-Encoding` header accordingly. Below is a list of suppo",
    "input": {
     "type": "object",
     "properties": {
@@ -731,7 +735,7 @@
   },
   {
    "slug": "apify.actor_run_dataset_put",
-   "name": "Update default dataset",
+   "name": "Update the default dataset of an actor run",
    "description": "Updates the default dataset associated with an Actor run. This endpoint is a shortcut for getting the run's `defaultDatasetId` and then using the [Put dataset](/api/v2/dataset-put) endpoint.",
    "input": {
     "type": "object",
@@ -779,7 +783,7 @@
   },
   {
    "slug": "apify.actor_run_dataset_statistics_get",
-   "name": "Get default dataset statistics",
+   "name": "Get the default dataset statistics for an actor run",
    "description": "Returns statistics for the Actor run's default dataset. This endpoint is a shortcut that resolves the run's `defaultDatasetId` and proxies to the [Get dataset statistics](/api/v2/dataset-statistics-get) endpoint.",
    "input": {
     "type": "object",
@@ -807,7 +811,7 @@
   },
   {
    "slug": "apify.actor_run_delete",
-   "name": "Delete run",
+   "name": "Delete actor run",
    "description": "Delete the run. Only finished runs can be deleted. Only the person or organization that initiated the run can delete it.",
    "input": {
     "type": "object",
@@ -835,7 +839,7 @@
   },
   {
    "slug": "apify.actor_run_get",
-   "name": "Get run",
+   "name": "Get actor run",
    "description": "This is not a single endpoint, but an entire group of endpoints that lets you retrieve the run or any of its default storages. ##### Convenience endpoints for Actor run default storages * [Dataset](/api/v2/default-dataset) * [Key-value store](/api/v2/default-key-value-store) * [Request queue](/api/v2/default-request-queue) Gets an object that contains all the details about a specific run of an Act",
    "input": {
     "type": "object",
@@ -869,8 +873,8 @@
   },
   {
    "slug": "apify.actor_run_key_value_store_delete",
-   "name": "Delete default store",
-   "description": "Delete the default key-value store. This endpoint is a shortcut for getting the run's `defaultKeyValueStoreId` and then using the [Delete store](/api/v2/key-value-store-delete) endpoint.",
+   "name": "Delete the default key value store of an actor run",
+   "description": "Delete the default key-value store. This endpoint is a shortcut for getting the run's `defaultKeyValueStoreId` and then using the [Delete key-value store](/api/v2/key-value-store-delete) endpoint.",
    "input": {
     "type": "object",
     "properties": {
@@ -897,8 +901,8 @@
   },
   {
    "slug": "apify.actor_run_key_value_store_get",
-   "name": "Get default store",
-   "description": "Gets an object that contains all the details about the default key-value store. This endpoint is a shortcut for getting the run's `defaultKeyValueStoreId` and then using the [Get store](/api/v2/key-value-store-get) endpoint.",
+   "name": "Get the default key value store of an actor run",
+   "description": "Gets an object that contains all the details about the default key-value store. This endpoint is a shortcut for getting the run's `defaultKeyValueStoreId` and then using the [Get key-value store](/api/v2/key-value-store-get) endpoint.",
    "input": {
     "type": "object",
     "properties": {
@@ -925,8 +929,8 @@
   },
   {
    "slug": "apify.actor_run_key_value_store_keys_get",
-   "name": "Get default store's list of keys",
-   "description": "Returns a list of keys for the default key-value store of the Actor run. This endpoint is a shortcut for getting the run's `defaultKeyValueStoreId` and then using the [Get list of keys](/api/v2/key-value-store-keys-get) endpoint.",
+   "name": "Get list of keys in the default key value store of an actor run",
+   "description": "Returns a list of keys for the default key-value store of the Actor run. This endpoint is a shortcut for getting the run's `defaultKeyValueStoreId` and then using the [Get list of key-value store keys](/api/v2/key-value-store-keys-get) endpoint.",
    "input": {
     "type": "object",
     "properties": {
@@ -979,8 +983,8 @@
   },
   {
    "slug": "apify.actor_run_key_value_store_put",
-   "name": "Update default store",
-   "description": "Updates the default key-value store's name and general resource access level using a value specified by a JSON object passed in the PUT payload. This endpoint is a shortcut for getting the run's `defaultKeyValueStoreId` and then using the [Update store](/api/v2/key-value-store-put) endpoint.",
+   "name": "Update the default key value store of an actor run",
+   "description": "Updates the default key-value store's name and general resource access level using a value specified by a JSON object passed in the PUT payload. This endpoint is a shortcut for getting the run's `defaultKeyValueStoreId` and then using the [Update key-value store](/api/v2/key-value-store-put) endpoint.",
    "input": {
     "type": "object",
     "properties": {
@@ -1027,8 +1031,8 @@
   },
   {
    "slug": "apify.actor_run_key_value_store_record_delete",
-   "name": "Delete default store's record",
-   "description": "Removes a record specified by a key from the default key-value store of the Actor run. This endpoint is a shortcut for getting the run's `defaultKeyValueStoreId` and then using the [Delete record](/api/v2/key-value-store-record-delete) endpoint.",
+   "name": "Delete record from the default key value store of an actor run",
+   "description": "Removes a record specified by a key from the default key-value store of the Actor run. This endpoint is a shortcut for getting the run's `defaultKeyValueStoreId` and then using the [Delete key-value store record](/api/v2/key-value-store-record-delete) endpoint.",
    "input": {
     "type": "object",
     "properties": {
@@ -1061,8 +1065,8 @@
   },
   {
    "slug": "apify.actor_run_key_value_store_record_get",
-   "name": "Get default store's record",
-   "description": "Gets a value stored under a specific key in the default key-value store of the Actor run. This endpoint is a shortcut for getting the run's `defaultKeyValueStoreId` and then using the [Get record](/api/v2/key-value-store-record-get) endpoint.",
+   "name": "Get record from the default key value store of an actor run",
+   "description": "Gets a value stored under a specific key in the default key-value store of the Actor run. This endpoint is a shortcut for getting the run's `defaultKeyValueStoreId` and then using the [Get key-value store record](/api/v2/key-value-store-record-get) endpoint.",
    "input": {
     "type": "object",
     "properties": {
@@ -1106,8 +1110,8 @@
   },
   {
    "slug": "apify.actor_run_key_value_store_record_post",
-   "name": "Store record in default store (post)",
-   "description": "Stores a value under a specific key in the default key-value store of the Actor run. This endpoint is a shortcut for getting the run's `defaultKeyValueStoreId` and then using the [Store record](/api/v2/key-value-store-record-post) endpoint.",
+   "name": "Set record in the default key value store of an actor run (post)",
+   "description": "Stores a value under a specific key in the default key-value store of the Actor run. This endpoint is a shortcut for getting the run's `defaultKeyValueStoreId` and then using the [Set key-value store record (POST)](/api/v2/key-value-store-record-post) endpoint.",
    "input": {
     "type": "object",
     "properties": {
@@ -1152,8 +1156,8 @@
   },
   {
    "slug": "apify.actor_run_key_value_store_record_put",
-   "name": "Store record in default store",
-   "description": "Stores a value under a specific key in the default key-value store of the Actor run. This endpoint is a shortcut for getting the run's `defaultKeyValueStoreId` and then using the [Store record](/api/v2/key-value-store-record-put) endpoint.",
+   "name": "Set record in the default key value store of an actor run",
+   "description": "Stores a value under a specific key in the default key-value store of the Actor run. This endpoint is a shortcut for getting the run's `defaultKeyValueStoreId` and then using the [Set key-value store record](/api/v2/key-value-store-record-put) endpoint.",
    "input": {
     "type": "object",
     "properties": {
@@ -1198,8 +1202,8 @@
   },
   {
    "slug": "apify.actor_run_key_value_store_records_get",
-   "name": "Download default store's records",
-   "description": "Downloads all records from the default key-value store of the Actor run as a ZIP archive. This endpoint is a shortcut for getting the run's `defaultKeyValueStoreId` and then using the [Download records](/api/v2/key-value-store-records-get) endpoint.",
+   "name": "Download records from the default key value store of an actor run",
+   "description": "Downloads all records from the default key-value store of the Actor run as a ZIP archive. This endpoint is a shortcut for getting the run's `defaultKeyValueStoreId` and then using the [Download key-value store records](/api/v2/key-value-store-records-get) endpoint.",
    "input": {
     "type": "object",
     "properties": {
@@ -1242,8 +1246,8 @@
   },
   {
    "slug": "apify.actor_run_log_get",
-   "name": "Get run's log",
-   "description": "Retrieves Actor run's logs. This endpoint is a shortcut for getting the run's log. Same as [Get log](/api/v2/log-get) endpoint.",
+   "name": "Get log of an actor run",
+   "description": "Retrieves Actor run's logs. This endpoint is a shortcut for getting the run's log. Same as [Get Actor build or run log](/api/v2/log-get) endpoint.",
    "input": {
     "type": "object",
     "properties": {
@@ -1286,7 +1290,7 @@
   },
   {
    "slug": "apify.actor_run_metamorph_post",
-   "name": "Metamorph run",
+   "name": "Metamorph actor run",
    "description": "Transforms an Actor run into a run of another Actor with a new input. This is useful if you want to use another Actor to finish the work of your current Actor run, without the need to create a completely new run and waiting for its finish. For the users of your Actors, the metamorph operation is transparent, they will just see your Actor got the work done. Internally, the system stops the Docker c",
    "input": {
     "type": "object",
@@ -1326,7 +1330,7 @@
   },
   {
    "slug": "apify.actor_run_put",
-   "name": "Update run",
+   "name": "Update actor run",
    "description": "This endpoint can be used to update both the run's status message and to configure its general resource access level. **Status message:** You can set a single status message on your run that will be displayed in the Apify Console UI. During an Actor run, you will typically do this in order to inform users of your Actor about the Actor's progress. The request body must contain `runId` and `statusMe",
    "input": {
     "type": "object",
@@ -1377,7 +1381,7 @@
   },
   {
    "slug": "apify.actor_run_reboot_post",
-   "name": "Reboot run",
+   "name": "Reboot actor run",
    "description": "Reboots an Actor run and returns an object that contains all the details about the rebooted run. Only runs that are running, i.e. runs with status `RUNNING` can be rebooted. The run's container will be restarted, so any data not persisted in the key-value store, dataset, or request queue will be lost.",
    "input": {
     "type": "object",
@@ -1405,7 +1409,7 @@
   },
   {
    "slug": "apify.actor_run_request_queue_delete",
-   "name": "Delete default request queue",
+   "name": "Delete the default request queue of an actor run",
    "description": "Deletes the default request queue associated with an Actor run. This endpoint is a shortcut for getting the run's `defaultRequestQueueId` and then using the [Delete request queue](/api/v2/request-queue-delete) endpoint.",
    "input": {
     "type": "object",
@@ -1433,7 +1437,7 @@
   },
   {
    "slug": "apify.actor_run_request_queue_get",
-   "name": "Get default request queue",
+   "name": "Get the default request queue of an actor run",
    "description": "Returns the default request queue associated with an Actor run. This endpoint is a shortcut for getting the run's `defaultRequestQueueId` and then using the [Get request queue](/api/v2/request-queue-get) endpoint.",
    "input": {
     "type": "object",
@@ -1461,8 +1465,8 @@
   },
   {
    "slug": "apify.actor_run_request_queue_head_get",
-   "name": "Get default request queue head",
-   "description": "Returns the given number of first requests from the default request queue of the Actor run. This endpoint is a shortcut for getting the run's `defaultRequestQueueId` and then using the [Get head](/api/v2/request-queue-head-get) endpoint.",
+   "name": "Get the default request queue head for an actor run",
+   "description": "Returns the given number of first requests from the default request queue of the Actor run. This endpoint is a shortcut for getting the run's `defaultRequestQueueId` and then using the [Get request queue head](/api/v2/request-queue-head-get) endpoint.",
    "input": {
     "type": "object",
     "properties": {
@@ -1500,8 +1504,8 @@
   },
   {
    "slug": "apify.actor_run_request_queue_head_lock_post",
-   "name": "Get and lock default request queue head",
-   "description": "Returns the given number of first requests from the default request queue of the Actor run and locks them for the given time. This endpoint is a shortcut for getting the run's `defaultRequestQueueId` and then using the [Get head and lock](/api/v2/request-queue-head-lock-post) endpoint.",
+   "name": "Get and lock the default request queue head for an actor run",
+   "description": "Returns the given number of first requests from the default request queue of the Actor run and locks them for the given time. This endpoint is a shortcut for getting the run's `defaultRequestQueueId` and then using the [Get and lock request queue head](/api/v2/request-queue-head-lock-post) endpoint.",
    "input": {
     "type": "object",
     "properties": {
@@ -1545,7 +1549,7 @@
   },
   {
    "slug": "apify.actor_run_request_queue_put",
-   "name": "Update default request queue",
+   "name": "Update the default request queue of an actor run",
    "description": "Updates the default request queue associated with an Actor run. This endpoint is a shortcut for getting the run's `defaultRequestQueueId` and then using the [Update request queue](/api/v2/request-queue-put) endpoint.",
    "input": {
     "type": "object",
@@ -1593,8 +1597,8 @@
   },
   {
    "slug": "apify.actor_run_request_queue_request_delete",
-   "name": "Delete request from default request queue",
-   "description": "Deletes a request from the default request queue of the Actor run. This endpoint is a shortcut for getting the run's `defaultRequestQueueId` and then using the [Delete request](/api/v2/request-queue-request-delete) endpoint.",
+   "name": "Delete request from the default request queue of an actor run",
+   "description": "Deletes a request from the default request queue of the Actor run. This endpoint is a shortcut for getting the run's `defaultRequestQueueId` and then using the [Delete request from request queue](/api/v2/request-queue-request-delete) endpoint.",
    "input": {
     "type": "object",
     "properties": {
@@ -1633,8 +1637,8 @@
   },
   {
    "slug": "apify.actor_run_request_queue_request_get",
-   "name": "Get request from default request queue",
-   "description": "Returns a request from the default request queue of the Actor run. This endpoint is a shortcut for getting the run's `defaultRequestQueueId` and then using the [Get request](/api/v2/request-queue-request-get) endpoint.",
+   "name": "Get request from the default request queue of an actor run",
+   "description": "Returns a request from the default request queue of the Actor run. This endpoint is a shortcut for getting the run's `defaultRequestQueueId` and then using the [Get request from request queue](/api/v2/request-queue-request-get) endpoint.",
    "input": {
     "type": "object",
     "properties": {
@@ -1667,8 +1671,8 @@
   },
   {
    "slug": "apify.actor_run_request_queue_request_lock_delete",
-   "name": "Delete lock on request in default request queue",
-   "description": "Deletes a request lock in the default request queue of the Actor run. This endpoint is a shortcut for getting the run's `defaultRequestQueueId` and then using the [Delete request lock](/api/v2/request-queue-request-lock-delete) endpoint.",
+   "name": "Delete lock on request in the default request queue of an actor run",
+   "description": "Deletes a request lock in the default request queue of the Actor run. This endpoint is a shortcut for getting the run's `defaultRequestQueueId` and then using the [Delete lock on request in request queue](/api/v2/request-queue-request-lock-delete) endpoint.",
    "input": {
     "type": "object",
     "properties": {
@@ -1712,8 +1716,8 @@
   },
   {
    "slug": "apify.actor_run_request_queue_request_lock_put",
-   "name": "Prolong lock on request in default request queue",
-   "description": "Prolongs a request lock in the default request queue of the Actor run. This endpoint is a shortcut for getting the run's `defaultRequestQueueId` and then using the [Prolong request lock](/api/v2/request-queue-request-lock-put) endpoint.",
+   "name": "Prolong lock on request in the default request queue of an actor run",
+   "description": "Prolongs a request lock in the default request queue of the Actor run. This endpoint is a shortcut for getting the run's `defaultRequestQueueId` and then using the [Prolong lock on request in request queue](/api/v2/request-queue-request-lock-put) endpoint.",
    "input": {
     "type": "object",
     "properties": {
@@ -1763,8 +1767,8 @@
   },
   {
    "slug": "apify.actor_run_request_queue_request_put",
-   "name": "Update request in default request queue",
-   "description": "Updates a request in the default request queue of the Actor run. This endpoint is a shortcut for getting the run's `defaultRequestQueueId` and then using the [Update request](/api/v2/request-queue-request-put) endpoint.",
+   "name": "Update request in the default request queue of an actor run",
+   "description": "Updates a request in the default request queue of the Actor run. This endpoint is a shortcut for getting the run's `defaultRequestQueueId` and then using the [Update request in request queue](/api/v2/request-queue-request-put) endpoint.",
    "input": {
     "type": "object",
     "properties": {
@@ -1896,8 +1900,8 @@
   },
   {
    "slug": "apify.actor_run_request_queue_requests_batch_delete",
-   "name": "Batch delete requests from default request queue",
-   "description": "Batch-deletes requests from the default request queue of the Actor run. This endpoint is a shortcut for getting the run's `defaultRequestQueueId` and then using the [Delete requests](/api/v2/request-queue-requests-batch-delete) endpoint.",
+   "name": "Batch delete requests from the default request queue of an actor run",
+   "description": "Batch-deletes requests from the default request queue of the Actor run. This endpoint is a shortcut for getting the run's `defaultRequestQueueId` and then using the [Batch delete requests from request queue](/api/v2/request-queue-requests-batch-delete) endpoint.",
    "input": {
     "type": "object",
     "properties": {
@@ -1937,8 +1941,8 @@
   },
   {
    "slug": "apify.actor_run_request_queue_requests_batch_post",
-   "name": "Batch add requests to default request queue",
-   "description": "Adds requests to the default request queue of the Actor run in batch. This endpoint is a shortcut for getting the run's `defaultRequestQueueId` and then using the [Add requests](/api/v2/request-queue-requests-batch-post) endpoint.",
+   "name": "Batch add requests to the default request queue of an actor run",
+   "description": "Adds requests to the default request queue of the Actor run in batch. This endpoint is a shortcut for getting the run's `defaultRequestQueueId` and then using the [Batch add requests to request queue](/api/v2/request-queue-requests-batch-post) endpoint.",
    "input": {
     "type": "object",
     "properties": {
@@ -1976,8 +1980,8 @@
   },
   {
    "slug": "apify.actor_run_request_queue_requests_get",
-   "name": "List default request queue's requests",
-   "description": "Returns a list of requests from the default request queue of the Actor run. This endpoint is a shortcut for getting the run's `defaultRequestQueueId` and then using the [List requests](/api/v2/request-queue-requests-get) endpoint.",
+   "name": "List requests in the default request queue of an actor run",
+   "description": "Returns a list of requests from the default request queue of the Actor run. This endpoint is a shortcut for getting the run's `defaultRequestQueueId` and then using the [List requests in request queue](/api/v2/request-queue-requests-get) endpoint.",
    "input": {
     "type": "object",
     "properties": {
@@ -2030,8 +2034,8 @@
   },
   {
    "slug": "apify.actor_run_request_queue_requests_post",
-   "name": "Add request to default request queue",
-   "description": "Adds a request to the default request queue of the Actor run. This endpoint is a shortcut for getting the run's `defaultRequestQueueId` and then using the [Add request](/api/v2/request-queue-requests-post) endpoint.",
+   "name": "Add request to the default request queue of an actor run",
+   "description": "Adds a request to the default request queue of the Actor run. This endpoint is a shortcut for getting the run's `defaultRequestQueueId` and then using the [Add request to request queue](/api/v2/request-queue-requests-post) endpoint.",
    "input": {
     "type": "object",
     "properties": {
@@ -2157,8 +2161,8 @@
   },
   {
    "slug": "apify.actor_run_request_queue_requests_unlock_post",
-   "name": "Unlock requests in default request queue",
-   "description": "Unlocks requests in the default request queue of the Actor run that are currently locked by the client. This endpoint is a shortcut for getting the run's `defaultRequestQueueId` and then using the [Unlock requests](/api/v2/request-queue-requests-unlock-post) endpoint.",
+   "name": "Unlock requests in the default request queue of an actor run",
+   "description": "Unlocks requests in the default request queue of the Actor run that are currently locked by the client. This endpoint is a shortcut for getting the run's `defaultRequestQueueId` and then using the [Unlock requests in request queue](/api/v2/request-queue-requests-unlock-post) endpoint.",
    "input": {
     "type": "object",
     "properties": {
@@ -2191,8 +2195,8 @@
   },
   {
    "slug": "apify.actor_run_resurrect_post",
-   "name": "Resurrect run",
-   "description": "**[DEPRECATED]** API endpoints related to run of the Actor were moved under new namespace [`actor-runs`](#/reference/actor-runs).Resurrects a finished Actor run and returns an object that contains all the details about the resurrected run. Only finished runs, i.e. runs with status `FINISHED`, `FAILED`, `ABORTED` and `TIMED-OUT` can be resurrected. Run status will be updated to RUNNING and its cont",
+   "name": "Resurrect actor run",
+   "description": "**[DEPRECATED]** API endpoints related to run of the Actor were moved under new namespace [`actor-runs`](#/reference/actor-runs).Resurrects a finished Actor run and returns an object that contains all the details about the resurrected run. Only finished runs, i.e. runs with status `SUCCEEDED`, `FAILED`, `ABORTED` and `TIMED-OUT` can be resurrected. Run status will be updated to RUNNING and its con",
    "input": {
     "type": "object",
     "properties": {
@@ -2246,7 +2250,7 @@
   },
   {
    "slug": "apify.actor_run_sync_get",
-   "name": "Run actor synchronously without input",
+   "name": "Run actor synchronously and get key value store record (get)",
    "description": "Runs a specific Actor and returns a key-value store record. The response contains the record stored under the `OUTPUT` key in the run's default key-value store. This is a legacy approach that has been replaced by the Actor [output object](https://docs.apify.com/platform/actors/development/actor-definition/output-schema#output-object-definition); the record may not exist, in which case the response",
    "input": {
     "type": "object",
@@ -2315,7 +2319,7 @@
   },
   {
    "slug": "apify.actor_run_sync_get_dataset_items_get",
-   "name": "Run actor synchronously without input and get dataset items",
+   "name": "Run actor synchronously and get dataset items (get)",
    "description": "Runs a specific Actor and returns its dataset items. The run must finish in 300 seconds otherwise the API endpoint returns a timeout error. The Actor is not passed any input. It allows to send all possible options in parameters from [Get Dataset Items](#/reference/datasets/item-collection/get-items) API endpoint. Beware that it might be impossible to maintain an idle HTTP connection for a long per",
    "input": {
     "type": "object",
@@ -2673,7 +2677,7 @@
   },
   {
    "slug": "apify.actor_run_sync_post",
-   "name": "Run actor synchronously and return key value store record",
+   "name": "Run actor synchronously and get key value store record",
    "description": "Runs a specific Actor and returns a key-value store record. The POST payload including its `Content-Type` header is passed as `INPUT` to the Actor (usually application/json). The response contains the record stored under the `OUTPUT` key in the run's default key-value store. This is a legacy approach that has been replaced by the Actor [output object](https://docs.apify.com/platform/actors/develop",
    "input": {
     "type": "object",
@@ -2742,7 +2746,7 @@
   },
   {
    "slug": "apify.actor_runs_get",
-   "name": "Get user runs list",
+   "name": "Get list of user's actor runs",
    "description": "Gets a list of all runs for a user. The response is a list of objects, where each object contains basic information about a single Actor run. The endpoint supports pagination using the `limit` and `offset` parameters and it will not return more than 1000 array elements. By default, the records are sorted by the `startedAt` field in ascending order. Therefore, you can use pagination to incrementall",
    "input": {
     "type": "object",
@@ -2850,7 +2854,7 @@
   },
   {
    "slug": "apify.actor_runs_last_dataset_delete",
-   "name": "Delete last run's default dataset",
+   "name": "Delete the default dataset of an actor's last run",
    "description": "Deletes the default dataset associated with the last Actor run. This endpoint is a shortcut for getting the last run's `defaultDatasetId` and then using the [Delete dataset](/api/v2/dataset-delete) endpoint.",
    "input": {
     "type": "object",
@@ -2902,7 +2906,7 @@
   },
   {
    "slug": "apify.actor_runs_last_dataset_get",
-   "name": "Get last run's default dataset",
+   "name": "Get the default dataset of an actor's last run",
    "description": "Returns the default dataset associated with the last Actor run. This endpoint is a shortcut for getting the last run's `defaultDatasetId` and then using the [Get dataset](/api/v2/dataset-get) endpoint.",
    "input": {
     "type": "object",
@@ -2954,7 +2958,7 @@
   },
   {
    "slug": "apify.actor_runs_last_dataset_items_get",
-   "name": "Get last run's dataset items",
+   "name": "Get the default dataset items from an actor's last run",
    "description": "Returns data stored in the default dataset of the last Actor run in the desired format. This endpoint is a shortcut that resolves the last run's `defaultDatasetId` and proxies to the [Get dataset items](/api/v2/dataset-items-get) endpoint.",
    "input": {
     "type": "object",
@@ -3126,8 +3130,8 @@
   },
   {
    "slug": "apify.actor_runs_last_dataset_items_post",
-   "name": "Store items in last run's dataset",
-   "description": "Appends an item or an array of items to the end of the last Actor run's default dataset. This endpoint is a shortcut that resolves the last run's `defaultDatasetId` and proxies to the [Store items](/api/v2/dataset-items-post) endpoint. To save bandwidth and speed up your upload, you can send the request payload compressed and set the `Content-Encoding` header accordingly. Below is a list of suppor",
+   "name": "Store items in the default dataset of an actor's last run",
+   "description": "Appends an item or an array of items to the end of the last Actor run's default dataset. This endpoint is a shortcut that resolves the last run's `defaultDatasetId` and proxies to the [Store items in dataset](/api/v2/dataset-items-post) endpoint. To save bandwidth and speed up your upload, you can send the request payload compressed and set the `Content-Encoding` header accordingly. Below is a lis",
    "input": {
     "type": "object",
     "properties": {
@@ -3190,7 +3194,7 @@
   },
   {
    "slug": "apify.actor_runs_last_dataset_put",
-   "name": "Update last run's default dataset",
+   "name": "Update the default dataset of an actor's last run",
    "description": "Updates the default dataset associated with the last Actor run. This endpoint is a shortcut for getting the last run's `defaultDatasetId` and then using the [Update dataset](/api/v2/dataset-put) endpoint.",
    "input": {
     "type": "object",
@@ -3262,7 +3266,7 @@
   },
   {
    "slug": "apify.actor_runs_last_dataset_statistics_get",
-   "name": "Get last run's dataset statistics",
+   "name": "Get the default dataset statistics for an actor's last run",
    "description": "Returns statistics for the last Actor run's default dataset. This endpoint is a shortcut that resolves the last run's `defaultDatasetId` and proxies to the [Get dataset statistics](/api/v2/dataset-statistics-get) endpoint.",
    "input": {
     "type": "object",
@@ -3314,7 +3318,7 @@
   },
   {
    "slug": "apify.actor_runs_last_get",
-   "name": "Get last run",
+   "name": "Get actor's last run",
    "description": "This is not a single endpoint, but an entire group of endpoints that lets you to retrieve and manage the last run of given Actor or any of its default storages. All the endpoints require an authentication token. The base path represents the last Actor run object is: `/v2/actors/{actorId}/runs/last{?token,status,origin}` Using the `status` query parameter you can ensure to only get a run with a cer",
    "input": {
     "type": "object",
@@ -3371,8 +3375,8 @@
   },
   {
    "slug": "apify.actor_runs_last_key_value_store_delete",
-   "name": "Delete last run's default store",
-   "description": "Deletes the last Actor run key-value store. This endpoint is a shortcut for getting the run's `defaultKeyValueStoreId` and then using the [Delete store](/api/v2/key-value-store-delete) endpoint.",
+   "name": "Delete the default key value store of an actor's last run",
+   "description": "Deletes the last Actor run key-value store. This endpoint is a shortcut for getting the run's `defaultKeyValueStoreId` and then using the [Delete key-value store](/api/v2/key-value-store-delete) endpoint.",
    "input": {
     "type": "object",
     "properties": {
@@ -3423,8 +3427,8 @@
   },
   {
    "slug": "apify.actor_runs_last_key_value_store_get",
-   "name": "Get last run's default store",
-   "description": "Gets an object that contains all the details about the default key-value store associated with the last Actor run. This endpoint is a shortcut for getting the run's `defaultKeyValueStoreId` and then using the [Get store](/api/v2/key-value-store-get) endpoint.",
+   "name": "Get the default key value store of an actor's last run",
+   "description": "Gets an object that contains all the details about the default key-value store associated with the last Actor run. This endpoint is a shortcut for getting the run's `defaultKeyValueStoreId` and then using the [Get key-value store](/api/v2/key-value-store-get) endpoint.",
    "input": {
     "type": "object",
     "properties": {
@@ -3475,8 +3479,8 @@
   },
   {
    "slug": "apify.actor_runs_last_key_value_store_keys_get",
-   "name": "Get last run's default store's list of keys",
-   "description": "Returns a list of keys for the default key-value store of the last Actor run. This endpoint is a shortcut for getting the last run's `defaultKeyValueStoreId` and then using the [Get list of keys](/api/v2/key-value-store-keys-get) endpoint.",
+   "name": "Get list of keys in the default key value store of an actor's last run",
+   "description": "Returns a list of keys for the default key-value store of the last Actor run. This endpoint is a shortcut for getting the last run's `defaultKeyValueStoreId` and then using the [Get list of key-value store keys](/api/v2/key-value-store-keys-get) endpoint.",
    "input": {
     "type": "object",
     "properties": {
@@ -3552,8 +3556,8 @@
   },
   {
    "slug": "apify.actor_runs_last_key_value_store_put",
-   "name": "Update last run's default store",
-   "description": "Updates the last Actor run key-value store's name and general resource access level using a value specified by a JSON object passed in the PUT payload. This endpoint is a shortcut for getting the run's `defaultKeyValueStoreId` and then using the [Update store](/api/v2/key-value-store-put) endpoint.",
+   "name": "Update the default key value store of an actor's last run",
+   "description": "Updates the last Actor run key-value store's name and general resource access level using a value specified by a JSON object passed in the PUT payload. This endpoint is a shortcut for getting the run's `defaultKeyValueStoreId` and then using the [Update key-value store](/api/v2/key-value-store-put) endpoint.",
    "input": {
     "type": "object",
     "properties": {
@@ -3624,8 +3628,8 @@
   },
   {
    "slug": "apify.actor_runs_last_key_value_store_record_delete",
-   "name": "Delete last run's default store's record",
-   "description": "Removes a record specified by a key from the default key-value store of the last Actor run. This endpoint is a shortcut for getting the last run's `defaultKeyValueStoreId` and then using the [Delete record](/api/v2/key-value-store-record-delete) endpoint.",
+   "name": "Delete record from the default key value store of an actor's last run",
+   "description": "Removes a record specified by a key from the default key-value store of the last Actor run. This endpoint is a shortcut for getting the last run's `defaultKeyValueStoreId` and then using the [Delete key-value store record](/api/v2/key-value-store-record-delete) endpoint.",
    "input": {
     "type": "object",
     "properties": {
@@ -3682,8 +3686,8 @@
   },
   {
    "slug": "apify.actor_runs_last_key_value_store_record_get",
-   "name": "Get last run's default store's record",
-   "description": "Gets a value stored under a specific key in the default key-value store of the last Actor run. This endpoint is a shortcut for getting the last run's `defaultKeyValueStoreId` and then using the [Get record](/api/v2/key-value-store-record-get) endpoint.",
+   "name": "Get record from the default key value store of an actor's last run",
+   "description": "Gets a value stored under a specific key in the default key-value store of the last Actor run. This endpoint is a shortcut for getting the last run's `defaultKeyValueStoreId` and then using the [Get key-value store record](/api/v2/key-value-store-record-get) endpoint.",
    "input": {
     "type": "object",
     "properties": {
@@ -3750,8 +3754,8 @@
   },
   {
    "slug": "apify.actor_runs_last_key_value_store_record_post",
-   "name": "Store record in last run's default store (post)",
-   "description": "Stores a value under a specific key in the default key-value store of the last Actor run. This endpoint is a shortcut for getting the last run's `defaultKeyValueStoreId` and then using the [Store record](/api/v2/key-value-store-record-post) endpoint.",
+   "name": "Set record in the default key value store of an actor's last run (post)",
+   "description": "Stores a value under a specific key in the default key-value store of the last Actor run. This endpoint is a shortcut for getting the last run's `defaultKeyValueStoreId` and then using the [Set key-value store record (POST)](/api/v2/key-value-store-record-post) endpoint.",
    "input": {
     "type": "object",
     "properties": {
@@ -3820,8 +3824,8 @@
   },
   {
    "slug": "apify.actor_runs_last_key_value_store_record_put",
-   "name": "Store record in last run's default store",
-   "description": "Stores a value under a specific key in the default key-value store of the last Actor run. This endpoint is a shortcut for getting the last run's `defaultKeyValueStoreId` and then using the [Store record](/api/v2/key-value-store-record-put) endpoint.",
+   "name": "Set record in the default key value store of an actor's last run",
+   "description": "Stores a value under a specific key in the default key-value store of the last Actor run. This endpoint is a shortcut for getting the last run's `defaultKeyValueStoreId` and then using the [Set key-value store record](/api/v2/key-value-store-record-put) endpoint.",
    "input": {
     "type": "object",
     "properties": {
@@ -3890,8 +3894,8 @@
   },
   {
    "slug": "apify.actor_runs_last_key_value_store_records_get",
-   "name": "Download last run's default store's records",
-   "description": "Downloads all records from the default key-value store of the last Actor run as a ZIP archive. This endpoint is a shortcut for getting the last run's `defaultKeyValueStoreId` and then using the [Download records](/api/v2/key-value-store-records-get) endpoint.",
+   "name": "Download records from the default key value store of an actor's last run",
+   "description": "Downloads all records from the default key-value store of the last Actor run as a ZIP archive. This endpoint is a shortcut for getting the last run's `defaultKeyValueStoreId` and then using the [Download key-value store records](/api/v2/key-value-store-records-get) endpoint.",
    "input": {
     "type": "object",
     "properties": {
@@ -3957,8 +3961,8 @@
   },
   {
    "slug": "apify.actor_runs_last_log_get",
-   "name": "Get last actor run's log",
-   "description": "Retrieves last Actor run's logs. This endpoint is a shortcut for getting last Actor run's log. Same as [Get log](/api/v2/log-get) endpoint.",
+   "name": "Get log of an actor's last run",
+   "description": "Retrieves last Actor run's logs. This endpoint is a shortcut for getting last Actor run's log. Same as [Get Actor build or run log](/api/v2/log-get) endpoint.",
    "input": {
     "type": "object",
     "properties": {
@@ -4139,7 +4143,7 @@
   },
   {
    "slug": "apify.actor_runs_last_request_queue_delete",
-   "name": "Delete last run's default request queue",
+   "name": "Delete the default request queue of an actor's last run",
    "description": "Deletes the default request queue associated with the last Actor run. This endpoint is a shortcut for getting the last run's `defaultRequestQueueId` and then using the [Delete request queue](/api/v2/request-queue-delete) endpoint.",
    "input": {
     "type": "object",
@@ -4191,7 +4195,7 @@
   },
   {
    "slug": "apify.actor_runs_last_request_queue_get",
-   "name": "Get last run's default request queue",
+   "name": "Get the default request queue of an actor's last run",
    "description": "Returns the default request queue associated with the last Actor run. This endpoint is a shortcut for getting the last run's `defaultRequestQueueId` and then using the [Get request queue](/api/v2/request-queue-get) endpoint.",
    "input": {
     "type": "object",
@@ -4243,8 +4247,8 @@
   },
   {
    "slug": "apify.actor_runs_last_request_queue_head_get",
-   "name": "Get last run's default request queue head",
-   "description": "Returns the given number of first requests from the default request queue of the last Actor run. This endpoint is a shortcut for getting the last run's `defaultRequestQueueId` and then using the [Get head](/api/v2/request-queue-head-get) endpoint.",
+   "name": "Get the default request queue head for an actor's last run",
+   "description": "Returns the given number of first requests from the default request queue of the last Actor run. This endpoint is a shortcut for getting the last run's `defaultRequestQueueId` and then using the [Get request queue head](/api/v2/request-queue-head-get) endpoint.",
    "input": {
     "type": "object",
     "properties": {
@@ -4305,8 +4309,8 @@
   },
   {
    "slug": "apify.actor_runs_last_request_queue_head_lock_post",
-   "name": "Get and lock last run's default request queue head",
-   "description": "Returns the given number of first requests from the default request queue of the last Actor run and locks them for the given time. This endpoint is a shortcut for getting the last run's `defaultRequestQueueId` and then using the [Get head and lock](/api/v2/request-queue-head-lock-post) endpoint.",
+   "name": "Get and lock the default request queue head for an actor's last run",
+   "description": "Returns the given number of first requests from the default request queue of the last Actor run and locks them for the given time. This endpoint is a shortcut for getting the last run's `defaultRequestQueueId` and then using the [Get and lock request queue head](/api/v2/request-queue-head-lock-post) endpoint.",
    "input": {
     "type": "object",
     "properties": {
@@ -4373,7 +4377,7 @@
   },
   {
    "slug": "apify.actor_runs_last_request_queue_put",
-   "name": "Update last run's default request queue",
+   "name": "Update the default request queue of an actor's last run",
    "description": "Updates the default request queue associated with the last Actor run. This endpoint is a shortcut for getting the last run's `defaultRequestQueueId` and then using the [Update request queue](/api/v2/request-queue-put) endpoint.",
    "input": {
     "type": "object",
@@ -4445,8 +4449,8 @@
   },
   {
    "slug": "apify.actor_runs_last_request_queue_request_delete",
-   "name": "Delete request from last run's default request queue",
-   "description": "Deletes a request from the default request queue of the last Actor run. This endpoint is a shortcut for getting the last run's `defaultRequestQueueId` and then using the [Delete request](/api/v2/request-queue-request-delete) endpoint.",
+   "name": "Delete request from the default request queue of an actor's last run",
+   "description": "Deletes a request from the default request queue of the last Actor run. This endpoint is a shortcut for getting the last run's `defaultRequestQueueId` and then using the [Delete request from request queue](/api/v2/request-queue-request-delete) endpoint.",
    "input": {
     "type": "object",
     "properties": {
@@ -4508,8 +4512,8 @@
   },
   {
    "slug": "apify.actor_runs_last_request_queue_request_get",
-   "name": "Get request from last run's default request queue",
-   "description": "Returns a request from the default request queue of the last Actor run. This endpoint is a shortcut for getting the last run's `defaultRequestQueueId` and then using the [Get request](/api/v2/request-queue-request-get) endpoint.",
+   "name": "Get request from the default request queue of an actor's last run",
+   "description": "Returns a request from the default request queue of the last Actor run. This endpoint is a shortcut for getting the last run's `defaultRequestQueueId` and then using the [Get request from request queue](/api/v2/request-queue-request-get) endpoint.",
    "input": {
     "type": "object",
     "properties": {
@@ -4566,8 +4570,8 @@
   },
   {
    "slug": "apify.actor_runs_last_request_queue_request_lock_delete",
-   "name": "Delete lock on request in last run's default request queue",
-   "description": "Deletes a request lock in the default request queue of the last Actor run. This endpoint is a shortcut for getting the last run's `defaultRequestQueueId` and then using the [Delete request lock](/api/v2/request-queue-request-lock-delete) endpoint.",
+   "name": "Delete lock on request in the default request queue of an actor's last run",
+   "description": "Deletes a request lock in the default request queue of the last Actor run. This endpoint is a shortcut for getting the last run's `defaultRequestQueueId` and then using the [Delete lock on request in request queue](/api/v2/request-queue-request-lock-delete) endpoint.",
    "input": {
     "type": "object",
     "properties": {
@@ -4634,8 +4638,8 @@
   },
   {
    "slug": "apify.actor_runs_last_request_queue_request_lock_put",
-   "name": "Prolong lock on request in last run's default request queue",
-   "description": "Prolongs a request lock in the default request queue of the last Actor run. This endpoint is a shortcut for getting the last run's `defaultRequestQueueId` and then using the [Prolong request lock](/api/v2/request-queue-request-lock-put) endpoint.",
+   "name": "Prolong lock on request in the default request queue of an actor's last run",
+   "description": "Prolongs a request lock in the default request queue of the last Actor run. This endpoint is a shortcut for getting the last run's `defaultRequestQueueId` and then using the [Prolong lock on request in request queue](/api/v2/request-queue-request-lock-put) endpoint.",
    "input": {
     "type": "object",
     "properties": {
@@ -4708,8 +4712,8 @@
   },
   {
    "slug": "apify.actor_runs_last_request_queue_request_put",
-   "name": "Update request in last run's default request queue",
-   "description": "Updates a request in the default request queue of the last Actor run. This endpoint is a shortcut for getting the last run's `defaultRequestQueueId` and then using the [Update request](/api/v2/request-queue-request-put) endpoint.",
+   "name": "Update request in the default request queue of an actor's last run",
+   "description": "Updates a request in the default request queue of the last Actor run. This endpoint is a shortcut for getting the last run's `defaultRequestQueueId` and then using the [Update request in request queue](/api/v2/request-queue-request-put) endpoint.",
    "input": {
     "type": "object",
     "properties": {
@@ -4864,8 +4868,8 @@
   },
   {
    "slug": "apify.actor_runs_last_request_queue_requests_batch_delete",
-   "name": "Batch delete requests from last run's default request queue",
-   "description": "Batch-deletes requests from the default request queue of the last Actor run. This endpoint is a shortcut for getting the last run's `defaultRequestQueueId` and then using the [Delete requests](/api/v2/request-queue-requests-batch-delete) endpoint.",
+   "name": "Batch delete requests from the default request queue of an actor's last run",
+   "description": "Batch-deletes requests from the default request queue of the last Actor run. This endpoint is a shortcut for getting the last run's `defaultRequestQueueId` and then using the [Batch delete requests from request queue](/api/v2/request-queue-requests-batch-delete) endpoint.",
    "input": {
     "type": "object",
     "properties": {
@@ -4928,8 +4932,8 @@
   },
   {
    "slug": "apify.actor_runs_last_request_queue_requests_batch_post",
-   "name": "Batch add requests to last run's default request queue",
-   "description": "Adds requests to the default request queue of the last Actor run in batch. This endpoint is a shortcut for getting the last run's `defaultRequestQueueId` and then using the [Add requests](/api/v2/request-queue-requests-batch-post) endpoint.",
+   "name": "Batch add requests to the default request queue of an actor's last run",
+   "description": "Adds requests to the default request queue of the last Actor run in batch. This endpoint is a shortcut for getting the last run's `defaultRequestQueueId` and then using the [Batch add requests to request queue](/api/v2/request-queue-requests-batch-post) endpoint.",
    "input": {
     "type": "object",
     "properties": {
@@ -4990,8 +4994,8 @@
   },
   {
    "slug": "apify.actor_runs_last_request_queue_requests_get",
-   "name": "List last run's default request queue's requests",
-   "description": "Returns a list of requests from the default request queue of the last Actor run. This endpoint is a shortcut for getting the last run's `defaultRequestQueueId` and then using the [List requests](/api/v2/request-queue-requests-get) endpoint.",
+   "name": "List requests in the default request queue of an actor's last run",
+   "description": "Returns a list of requests from the default request queue of the last Actor run. This endpoint is a shortcut for getting the last run's `defaultRequestQueueId` and then using the [List requests in request queue](/api/v2/request-queue-requests-get) endpoint.",
    "input": {
     "type": "object",
     "properties": {
@@ -5067,8 +5071,8 @@
   },
   {
    "slug": "apify.actor_runs_last_request_queue_requests_post",
-   "name": "Add request to last run's default request queue",
-   "description": "Adds a request to the default request queue of the last Actor run. This endpoint is a shortcut for getting the last run's `defaultRequestQueueId` and then using the [Add request](/api/v2/request-queue-requests-post) endpoint.",
+   "name": "Add request to the default request queue of an actor's last run",
+   "description": "Adds a request to the default request queue of the last Actor run. This endpoint is a shortcut for getting the last run's `defaultRequestQueueId` and then using the [Add request to request queue](/api/v2/request-queue-requests-post) endpoint.",
    "input": {
     "type": "object",
     "properties": {
@@ -5217,8 +5221,8 @@
   },
   {
    "slug": "apify.actor_runs_last_request_queue_requests_unlock_post",
-   "name": "Unlock requests in last run's default request queue",
-   "description": "Unlocks requests in the default request queue of the last Actor run that are currently locked by the client. This endpoint is a shortcut for getting the last run's `defaultRequestQueueId` and then using the [Unlock requests](/api/v2/request-queue-requests-unlock-post) endpoint.",
+   "name": "Unlock requests in the default request queue of an actor's last run",
+   "description": "Unlocks requests in the default request queue of the last Actor run that are currently locked by the client. This endpoint is a shortcut for getting the last run's `defaultRequestQueueId` and then using the [Unlock requests in request queue](/api/v2/request-queue-requests-unlock-post) endpoint.",
    "input": {
     "type": "object",
     "properties": {
@@ -5274,7 +5278,7 @@
   },
   {
    "slug": "apify.actor_task_delete",
-   "name": "Delete task",
+   "name": "Delete actor task",
    "description": "Delete the task specified through the `actorTaskId` parameter.",
    "input": {
     "type": "object",
@@ -5302,7 +5306,7 @@
   },
   {
    "slug": "apify.actor_task_get",
-   "name": "Get task",
+   "name": "Get actor task",
    "description": "Get an object that contains all the details about a task.",
    "input": {
     "type": "object",
@@ -5330,7 +5334,7 @@
   },
   {
    "slug": "apify.actor_task_input_get",
-   "name": "Get task input",
+   "name": "Get actor task input",
    "description": "Returns the input of a given task.",
    "input": {
     "type": "object",
@@ -5358,7 +5362,7 @@
   },
   {
    "slug": "apify.actor_task_input_put",
-   "name": "Update task input",
+   "name": "Update actor task input",
    "description": "Updates the input of a task using values specified by an object passed as JSON in the PUT payload. If the object does not define a specific property, its value is not updated. The response is the full task input as returned by the [Get task input](#/reference/tasks/task-input-object/get-task-input) endpoint. The request needs to specify the `Content-Type: application/json` HTTP header! When provid",
    "input": {
     "type": "object",
@@ -5386,8 +5390,8 @@
   },
   {
    "slug": "apify.actor_task_last_log_get",
-   "name": "Get last actor task run's log",
-   "description": "Retrieves last Actor task run's logs. This endpoint is a shortcut for getting last Actor task run's log. Same as [Get log](/api/v2/log-get) endpoint.",
+   "name": "Get log of an actor task's last run",
+   "description": "Retrieves last Actor task run's logs. This endpoint is a shortcut for getting last Actor task run's log. Same as [Get Actor build or run log](/api/v2/log-get) endpoint.",
    "input": {
     "type": "object",
     "properties": {
@@ -5453,7 +5457,7 @@
   },
   {
    "slug": "apify.actor_task_put",
-   "name": "Update task",
+   "name": "Update actor task",
    "description": "Update settings of a task using values specified by an object passed as JSON in the POST payload. If the object does not define a specific property, its value is not updated. The `publicConfig` field carries the display configuration of the task's public landing page, and `isPublic` publishes or unpublishes the task itself. Both require write permission to the task's Actor. To publish a task, its ",
    "input": {
     "type": "object",
@@ -5528,7 +5532,7 @@
   },
   {
    "slug": "apify.actor_task_run_sync_get",
-   "name": "Run task synchronously",
+   "name": "Run actor task synchronously and get key value store record (get)",
    "description": "Runs an Actor task and synchronously returns a key-value store record. The response contains the record stored under the `OUTPUT` key in the run's default key-value store. This is a legacy approach that has been replaced by the Actor [output object](https://docs.apify.com/platform/actors/development/actor-definition/output-schema#output-object-definition); Actors aren't required to store a record ",
    "input": {
     "type": "object",
@@ -5592,7 +5596,7 @@
   },
   {
    "slug": "apify.actor_task_run_sync_get_dataset_items_get",
-   "name": "Run task synchronously and get dataset items",
+   "name": "Run actor task synchronously and get dataset items (get)",
    "description": "Run a specific task and return its dataset items. The run must finish in 300 seconds otherwise the HTTP request fails with a timeout error (this won't abort the run itself). You can send all the same options in parameters as the [Get Dataset Items](#/reference/datasets/item-collection/get-items) API endpoint. Beware that it might be impossible to maintain an idle HTTP connection for an extended pe",
    "input": {
     "type": "object",
@@ -5766,7 +5770,7 @@
   },
   {
    "slug": "apify.actor_task_run_sync_get_dataset_items_post",
-   "name": "Run task synchronously and get dataset items",
+   "name": "Run actor task synchronously and get dataset items",
    "description": "Runs an Actor task and synchronously returns its dataset items. The run must finish in 300 seconds otherwise the HTTP request fails with a timeout error (this won't abort the run itself). Optionally, you can override the Actor input configuration by passing a JSON object as the POST payload and setting the `Content-Type: application/json` HTTP header. Note that if the object in the POST payload do",
    "input": {
     "type": "object",
@@ -5945,7 +5949,7 @@
   },
   {
    "slug": "apify.actor_task_run_sync_post",
-   "name": "Run task synchronously",
+   "name": "Run actor task synchronously and get key value store record",
    "description": "Runs an Actor task and synchronously returns a key-value store record. The response contains the record stored under the `OUTPUT` key in the run's default key-value store. This is a legacy approach that has been replaced by the Actor [output object](https://docs.apify.com/platform/actors/development/actor-definition/output-schema#output-object-definition); Actors aren't required to store a record ",
    "input": {
     "type": "object",
@@ -6014,7 +6018,7 @@
   },
   {
    "slug": "apify.actor_task_runs_get",
-   "name": "Get list of task runs",
+   "name": "Get list of actor task's runs",
    "description": "Get a list of runs of a specific task. The response is a list of objects, where each object contains essential information about a single task run. The endpoint supports pagination using the `limit` and `offset` parameters, and it does not return more than a 1000 array elements. By default, the records are sorted by the `startedAt` field in ascending order; therefore you can use pagination to incr",
    "input": {
     "type": "object",
@@ -6063,7 +6067,7 @@
   },
   {
    "slug": "apify.actor_task_runs_last_abort_post",
-   "name": "Abort actor task's last run",
+   "name": "Abort last run of an actor task",
    "description": "Aborts the last run of the specified Actor task and returns an object that contains all the details about the run. This endpoint is a shortcut for [Abort run](#/reference/actor-runs/abort-run/abort-run) on the Actor task's last run. Only runs that are starting or running are aborted. For runs with status `FINISHED`, `FAILED`, `ABORTING` and `TIMED-OUT` this call does nothing.",
    "input": {
     "type": "object",
@@ -6120,7 +6124,7 @@
   },
   {
    "slug": "apify.actor_task_runs_last_dataset_delete",
-   "name": "Delete last task run's default dataset",
+   "name": "Delete the default dataset of an actor task's last run",
    "description": "Deletes the default dataset associated with the last Actor task run. This endpoint is a shortcut for getting the last task run's `defaultDatasetId` and then using the [Delete dataset](/api/v2/dataset-delete) endpoint.",
    "input": {
     "type": "object",
@@ -6172,7 +6176,7 @@
   },
   {
    "slug": "apify.actor_task_runs_last_dataset_get",
-   "name": "Get last task run's default dataset",
+   "name": "Get the default dataset of an actor task's last run",
    "description": "Returns the default dataset associated with the last Actor task run. This endpoint is a shortcut for getting the last task run's `defaultDatasetId` and then using the [Get dataset](/api/v2/dataset-get) endpoint.",
    "input": {
     "type": "object",
@@ -6224,7 +6228,7 @@
   },
   {
    "slug": "apify.actor_task_runs_last_dataset_items_get",
-   "name": "Get last task run's dataset items",
+   "name": "Get the default dataset items from an actor task's last run",
    "description": "Returns data stored in the default dataset of the last Actor task run in the desired format. This endpoint is a shortcut that resolves the last task run's `defaultDatasetId` and proxies to the [Get dataset items](/api/v2/dataset-items-get) endpoint.",
    "input": {
     "type": "object",
@@ -6396,8 +6400,8 @@
   },
   {
    "slug": "apify.actor_task_runs_last_dataset_items_post",
-   "name": "Store items in last task run's dataset",
-   "description": "Appends an item or an array of items to the end of the last Actor task run's default dataset. This endpoint is a shortcut that resolves the last task run's `defaultDatasetId` and proxies to the [Store items](/api/v2/dataset-items-post) endpoint. To save bandwidth and speed up your upload, you can send the request payload compressed and set the `Content-Encoding` header accordingly. Below is a list",
+   "name": "Store items in the default dataset of an actor task's last run",
+   "description": "Appends an item or an array of items to the end of the last Actor task run's default dataset. This endpoint is a shortcut that resolves the last task run's `defaultDatasetId` and proxies to the [Store items in dataset](/api/v2/dataset-items-post) endpoint. To save bandwidth and speed up your upload, you can send the request payload compressed and set the `Content-Encoding` header accordingly. Belo",
    "input": {
     "type": "object",
     "properties": {
@@ -6460,7 +6464,7 @@
   },
   {
    "slug": "apify.actor_task_runs_last_dataset_put",
-   "name": "Update last task run's default dataset",
+   "name": "Update the default dataset of an actor task's last run",
    "description": "Updates the default dataset associated with the last Actor task run. This endpoint is a shortcut for getting the last task run's `defaultDatasetId` and then using the [Update dataset](/api/v2/dataset-put) endpoint.",
    "input": {
     "type": "object",
@@ -6532,7 +6536,7 @@
   },
   {
    "slug": "apify.actor_task_runs_last_dataset_statistics_get",
-   "name": "Get last task run's dataset statistics",
+   "name": "Get the default dataset statistics for an actor task's last run",
    "description": "Returns statistics for the last Actor task run's default dataset. This endpoint is a shortcut that resolves the last task run's `defaultDatasetId` and proxies to the [Get dataset statistics](/api/v2/dataset-statistics-get) endpoint.",
    "input": {
     "type": "object",
@@ -6584,7 +6588,7 @@
   },
   {
    "slug": "apify.actor_task_runs_last_get",
-   "name": "Get last run",
+   "name": "Get last run of an actor task",
    "description": "This is not a single endpoint, but an entire group of endpoints that lets you to retrieve and manage the last run of given actor task or any of its default storages. All the endpoints require an authentication token. The base path represents the last actor task run object is: `/v2/actor-tasks/{actorTaskId}/runs/last{?token,status,origin}` Using the `status` query parameter you can ensure to only g",
    "input": {
     "type": "object",
@@ -6641,8 +6645,8 @@
   },
   {
    "slug": "apify.actor_task_runs_last_key_value_store_delete",
-   "name": "Delete last task run's default store",
-   "description": "Deletes the default key-value store of the last Actor task run. This endpoint is a shortcut for getting the last task run's `defaultKeyValueStoreId` and then using the [Delete store](/api/v2/key-value-store-delete) endpoint.",
+   "name": "Delete the default key value store of an actor task's last run",
+   "description": "Deletes the default key-value store of the last Actor task run. This endpoint is a shortcut for getting the last task run's `defaultKeyValueStoreId` and then using the [Delete key-value store](/api/v2/key-value-store-delete) endpoint.",
    "input": {
     "type": "object",
     "properties": {
@@ -6693,8 +6697,8 @@
   },
   {
    "slug": "apify.actor_task_runs_last_key_value_store_get",
-   "name": "Get last task run's default store",
-   "description": "Gets an object that contains all the details about the default key-value store of the last Actor task run. This endpoint is a shortcut for getting the last task run's `defaultKeyValueStoreId` and then using the [Get store](/api/v2/key-value-store-get) endpoint.",
+   "name": "Get the default key value store of an actor task's last run",
+   "description": "Gets an object that contains all the details about the default key-value store of the last Actor task run. This endpoint is a shortcut for getting the last task run's `defaultKeyValueStoreId` and then using the [Get key-value store](/api/v2/key-value-store-get) endpoint.",
    "input": {
     "type": "object",
     "properties": {
@@ -6745,8 +6749,8 @@
   },
   {
    "slug": "apify.actor_task_runs_last_key_value_store_keys_get",
-   "name": "Get last task run's default store's list of keys",
-   "description": "Returns a list of keys for the default key-value store of the last Actor task run. This endpoint is a shortcut for getting the last task run's `defaultKeyValueStoreId` and then using the [Get list of keys](/api/v2/key-value-store-keys-get) endpoint.",
+   "name": "Get list of keys in the default key value store of an actor task's last run",
+   "description": "Returns a list of keys for the default key-value store of the last Actor task run. This endpoint is a shortcut for getting the last task run's `defaultKeyValueStoreId` and then using the [Get list of key-value store keys](/api/v2/key-value-store-keys-get) endpoint.",
    "input": {
     "type": "object",
     "properties": {
@@ -6822,8 +6826,8 @@
   },
   {
    "slug": "apify.actor_task_runs_last_key_value_store_put",
-   "name": "Update last task run's default store",
-   "description": "Updates the default key-value store associated with the last Actor task run. This endpoint is a shortcut for getting the last task run's `defaultKeyValueStoreId` and then using the [Update store](/api/v2/key-value-store-put) endpoint.",
+   "name": "Update the default key value store of an actor task's last run",
+   "description": "Updates the default key-value store associated with the last Actor task run. This endpoint is a shortcut for getting the last task run's `defaultKeyValueStoreId` and then using the [Update key-value store](/api/v2/key-value-store-put) endpoint.",
    "input": {
     "type": "object",
     "properties": {
@@ -6894,8 +6898,8 @@
   },
   {
    "slug": "apify.actor_task_runs_last_key_value_store_record_delete",
-   "name": "Delete last task run's default store's record",
-   "description": "Removes a record specified by a key from the default key-value store of the last Actor task run. This endpoint is a shortcut for getting the last task run's `defaultKeyValueStoreId` and then using the [Delete record](/api/v2/key-value-store-record-delete) endpoint.",
+   "name": "Delete record from the default key value store of an actor task's last run",
+   "description": "Removes a record specified by a key from the default key-value store of the last Actor task run. This endpoint is a shortcut for getting the last task run's `defaultKeyValueStoreId` and then using the [Delete key-value store record](/api/v2/key-value-store-record-delete) endpoint.",
    "input": {
     "type": "object",
     "properties": {
@@ -6952,8 +6956,8 @@
   },
   {
    "slug": "apify.actor_task_runs_last_key_value_store_record_get",
-   "name": "Get last task run's default store's record",
-   "description": "Gets a value stored under a specific key in the default key-value store of the last Actor task run. This endpoint is a shortcut for getting the last task run's `defaultKeyValueStoreId` and then using the [Get record](/api/v2/key-value-store-record-get) endpoint.",
+   "name": "Get record from the default key value store of an actor task's last run",
+   "description": "Gets a value stored under a specific key in the default key-value store of the last Actor task run. This endpoint is a shortcut for getting the last task run's `defaultKeyValueStoreId` and then using the [Get key-value store record](/api/v2/key-value-store-record-get) endpoint.",
    "input": {
     "type": "object",
     "properties": {
@@ -7020,8 +7024,8 @@
   },
   {
    "slug": "apify.actor_task_runs_last_key_value_store_record_post",
-   "name": "Store record in last task run's default store (post)",
-   "description": "Stores a value under a specific key in the default key-value store of the last Actor task run. This endpoint is a shortcut for getting the last task run's `defaultKeyValueStoreId` and then using the [Store record](/api/v2/key-value-store-record-post) endpoint.",
+   "name": "Set record in the default key value store of an actor task's last run (post)",
+   "description": "Stores a value under a specific key in the default key-value store of the last Actor task run. This endpoint is a shortcut for getting the last task run's `defaultKeyValueStoreId` and then using the [Set key-value store record (POST)](/api/v2/key-value-store-record-post) endpoint.",
    "input": {
     "type": "object",
     "properties": {
@@ -7090,8 +7094,8 @@
   },
   {
    "slug": "apify.actor_task_runs_last_key_value_store_record_put",
-   "name": "Store record in last task run's default store",
-   "description": "Stores a value under a specific key in the default key-value store of the last Actor task run. This endpoint is a shortcut for getting the last task run's `defaultKeyValueStoreId` and then using the [Store record](/api/v2/key-value-store-record-put) endpoint.",
+   "name": "Set record in the default key value store of an actor task's last run",
+   "description": "Stores a value under a specific key in the default key-value store of the last Actor task run. This endpoint is a shortcut for getting the last task run's `defaultKeyValueStoreId` and then using the [Set key-value store record](/api/v2/key-value-store-record-put) endpoint.",
    "input": {
     "type": "object",
     "properties": {
@@ -7160,8 +7164,8 @@
   },
   {
    "slug": "apify.actor_task_runs_last_key_value_store_records_get",
-   "name": "Download last task run's default store's records",
-   "description": "Downloads all records from the default key-value store of the last Actor task run as a ZIP archive. This endpoint is a shortcut for getting the last task run's `defaultKeyValueStoreId` and then using the [Download records](/api/v2/key-value-store-records-get) endpoint.",
+   "name": "Download records from the default key value store of an actor task's last run",
+   "description": "Downloads all records from the default key-value store of the last Actor task run as a ZIP archive. This endpoint is a shortcut for getting the last task run's `defaultKeyValueStoreId` and then using the [Download key-value store records](/api/v2/key-value-store-records-get) endpoint.",
    "input": {
     "type": "object",
     "properties": {
@@ -7227,7 +7231,7 @@
   },
   {
    "slug": "apify.actor_task_runs_last_metamorph_post",
-   "name": "Metamorph actor task's last run",
+   "name": "Metamorph last run of an actor task",
    "description": "Transforms the last run of the specified Actor task into a run of another Actor with a new input. This endpoint is a shortcut for [Metamorph run](#/reference/actor-runs/metamorph-run/metamorph-run) on the Actor task's last run.",
    "input": {
     "type": "object",
@@ -7290,7 +7294,7 @@
   },
   {
    "slug": "apify.actor_task_runs_last_reboot_post",
-   "name": "Reboot actor task's last run",
+   "name": "Reboot last run of an actor task",
    "description": "Reboots the last run of the specified Actor task and returns an object that contains all the details about the rebooted run. This endpoint is a shortcut for [Reboot run](#/reference/actor-runs/reboot-run/reboot-run) on the Actor task's last run. Only runs with status `RUNNING` can be rebooted. The run's container will be restarted, so any data not persisted in the key-value store, dataset, or requ",
    "input": {
     "type": "object",
@@ -7342,7 +7346,7 @@
   },
   {
    "slug": "apify.actor_task_runs_last_request_queue_delete",
-   "name": "Delete last task run's default request queue",
+   "name": "Delete the default request queue of an actor task's last run",
    "description": "Deletes the default request queue associated with the last Actor task run. This endpoint is a shortcut for getting the last task run's `defaultRequestQueueId` and then using the [Delete request queue](/api/v2/request-queue-delete) endpoint.",
    "input": {
     "type": "object",
@@ -7394,7 +7398,7 @@
   },
   {
    "slug": "apify.actor_task_runs_last_request_queue_get",
-   "name": "Get last task run's default request queue",
+   "name": "Get the default request queue of an actor task's last run",
    "description": "Returns the default request queue associated with the last Actor task run. This endpoint is a shortcut for getting the last task run's `defaultRequestQueueId` and then using the [Get request queue](/api/v2/request-queue-get) endpoint.",
    "input": {
     "type": "object",
@@ -7446,8 +7450,8 @@
   },
   {
    "slug": "apify.actor_task_runs_last_request_queue_head_get",
-   "name": "Get last task run's default request queue head",
-   "description": "Returns the given number of first requests from the default request queue of the last Actor task run. This endpoint is a shortcut for getting the last task run's `defaultRequestQueueId` and then using the [Get head](/api/v2/request-queue-head-get) endpoint.",
+   "name": "Get the default request queue head for an actor task's last run",
+   "description": "Returns the given number of first requests from the default request queue of the last Actor task run. This endpoint is a shortcut for getting the last task run's `defaultRequestQueueId` and then using the [Get request queue head](/api/v2/request-queue-head-get) endpoint.",
    "input": {
     "type": "object",
     "properties": {
@@ -7508,8 +7512,8 @@
   },
   {
    "slug": "apify.actor_task_runs_last_request_queue_head_lock_post",
-   "name": "Get and lock last task run's default request queue head",
-   "description": "Returns the given number of first requests from the default request queue of the last Actor task run and locks them for the given time. This endpoint is a shortcut for getting the last task run's `defaultRequestQueueId` and then using the [Get head and lock](/api/v2/request-queue-head-lock-post) endpoint.",
+   "name": "Get and lock the default request queue head for an actor task's last run",
+   "description": "Returns the given number of first requests from the default request queue of the last Actor task run and locks them for the given time. This endpoint is a shortcut for getting the last task run's `defaultRequestQueueId` and then using the [Get and lock request queue head](/api/v2/request-queue-head-lock-post) endpoint.",
    "input": {
     "type": "object",
     "properties": {
@@ -7576,7 +7580,7 @@
   },
   {
    "slug": "apify.actor_task_runs_last_request_queue_put",
-   "name": "Update last task run's default request queue",
+   "name": "Update the default request queue of an actor task's last run",
    "description": "Updates the default request queue associated with the last Actor task run. This endpoint is a shortcut for getting the last task run's `defaultRequestQueueId` and then using the [Update request queue](/api/v2/request-queue-put) endpoint.",
    "input": {
     "type": "object",
@@ -7648,8 +7652,8 @@
   },
   {
    "slug": "apify.actor_task_runs_last_request_queue_request_delete",
-   "name": "Delete request from last task run's default request queue",
-   "description": "Deletes a request from the default request queue of the last Actor task run. This endpoint is a shortcut for getting the last task run's `defaultRequestQueueId` and then using the [Delete request](/api/v2/request-queue-request-delete) endpoint.",
+   "name": "Delete request from the default request queue of an actor task's last run",
+   "description": "Deletes a request from the default request queue of the last Actor task run. This endpoint is a shortcut for getting the last task run's `defaultRequestQueueId` and then using the [Delete request from request queue](/api/v2/request-queue-request-delete) endpoint.",
    "input": {
     "type": "object",
     "properties": {
@@ -7711,8 +7715,8 @@
   },
   {
    "slug": "apify.actor_task_runs_last_request_queue_request_get",
-   "name": "Get request from last task run's default request queue",
-   "description": "Returns a request from the default request queue of the last Actor task run. This endpoint is a shortcut for getting the last task run's `defaultRequestQueueId` and then using the [Get request](/api/v2/request-queue-request-get) endpoint.",
+   "name": "Get request from the default request queue of an actor task's last run",
+   "description": "Returns a request from the default request queue of the last Actor task run. This endpoint is a shortcut for getting the last task run's `defaultRequestQueueId` and then using the [Get request from request queue](/api/v2/request-queue-request-get) endpoint.",
    "input": {
     "type": "object",
     "properties": {
@@ -7769,8 +7773,8 @@
   },
   {
    "slug": "apify.actor_task_runs_last_request_queue_request_lock_delete",
-   "name": "Delete lock on request in last task run's default request queue",
-   "description": "Deletes a request lock in the default request queue of the last Actor task run. This endpoint is a shortcut for getting the last task run's `defaultRequestQueueId` and then using the [Delete request lock](/api/v2/request-queue-request-lock-delete) endpoint.",
+   "name": "Delete lock on request in the default request queue of an actor task's last run",
+   "description": "Deletes a request lock in the default request queue of the last Actor task run. This endpoint is a shortcut for getting the last task run's `defaultRequestQueueId` and then using the [Delete lock on request in request queue](/api/v2/request-queue-request-lock-delete) endpoint.",
    "input": {
     "type": "object",
     "properties": {
@@ -7837,8 +7841,8 @@
   },
   {
    "slug": "apify.actor_task_runs_last_request_queue_request_lock_put",
-   "name": "Prolong lock on request in last task run's default request queue",
-   "description": "Prolongs a request lock in the default request queue of the last Actor task run. This endpoint is a shortcut for getting the last task run's `defaultRequestQueueId` and then using the [Prolong request lock](/api/v2/request-queue-request-lock-put) endpoint.",
+   "name": "Prolong lock on request in the default request queue of an actor task's last run",
+   "description": "Prolongs a request lock in the default request queue of the last Actor task run. This endpoint is a shortcut for getting the last task run's `defaultRequestQueueId` and then using the [Prolong lock on request in request queue](/api/v2/request-queue-request-lock-put) endpoint.",
    "input": {
     "type": "object",
     "properties": {
@@ -7911,8 +7915,8 @@
   },
   {
    "slug": "apify.actor_task_runs_last_request_queue_request_put",
-   "name": "Update request in last task run's default request queue",
-   "description": "Updates a request in the default request queue of the last Actor task run. This endpoint is a shortcut for getting the last task run's `defaultRequestQueueId` and then using the [Update request](/api/v2/request-queue-request-put) endpoint.",
+   "name": "Update request in the default request queue of an actor task's last run",
+   "description": "Updates a request in the default request queue of the last Actor task run. This endpoint is a shortcut for getting the last task run's `defaultRequestQueueId` and then using the [Update request in request queue](/api/v2/request-queue-request-put) endpoint.",
    "input": {
     "type": "object",
     "properties": {
@@ -8067,8 +8071,8 @@
   },
   {
    "slug": "apify.actor_task_runs_last_request_queue_requests_batch_delete",
-   "name": "Batch delete requests from last task run's default request queue",
-   "description": "Batch-deletes requests from the default request queue of the last Actor task run. This endpoint is a shortcut for getting the last task run's `defaultRequestQueueId` and then using the [Delete requests](/api/v2/request-queue-requests-batch-delete) endpoint.",
+   "name": "Batch delete requests from the default request queue of an actor task's last run",
+   "description": "Batch-deletes requests from the default request queue of the last Actor task run. This endpoint is a shortcut for getting the last task run's `defaultRequestQueueId` and then using the [Batch delete requests from request queue](/api/v2/request-queue-requests-batch-delete) endpoint.",
    "input": {
     "type": "object",
     "properties": {
@@ -8131,8 +8135,8 @@
   },
   {
    "slug": "apify.actor_task_runs_last_request_queue_requests_batch_post",
-   "name": "Batch add requests to last task run's default request queue",
-   "description": "Adds requests to the default request queue of the last Actor task run in batch. This endpoint is a shortcut for getting the last task run's `defaultRequestQueueId` and then using the [Add requests](/api/v2/request-queue-requests-batch-post) endpoint.",
+   "name": "Batch add requests to the default request queue of an actor task's last run",
+   "description": "Adds requests to the default request queue of the last Actor task run in batch. This endpoint is a shortcut for getting the last task run's `defaultRequestQueueId` and then using the [Batch add requests to request queue](/api/v2/request-queue-requests-batch-post) endpoint.",
    "input": {
     "type": "object",
     "properties": {
@@ -8193,8 +8197,8 @@
   },
   {
    "slug": "apify.actor_task_runs_last_request_queue_requests_get",
-   "name": "List last task run's default request queue's requests",
-   "description": "Returns a list of requests from the default request queue of the last Actor task run. This endpoint is a shortcut for getting the last task run's `defaultRequestQueueId` and then using the [List requests](/api/v2/request-queue-requests-get) endpoint.",
+   "name": "List requests in the default request queue of an actor task's last run",
+   "description": "Returns a list of requests from the default request queue of the last Actor task run. This endpoint is a shortcut for getting the last task run's `defaultRequestQueueId` and then using the [List requests in request queue](/api/v2/request-queue-requests-get) endpoint.",
    "input": {
     "type": "object",
     "properties": {
@@ -8270,8 +8274,8 @@
   },
   {
    "slug": "apify.actor_task_runs_last_request_queue_requests_post",
-   "name": "Add request to last task run's default request queue",
-   "description": "Adds a request to the default request queue of the last Actor task run. This endpoint is a shortcut for getting the last task run's `defaultRequestQueueId` and then using the [Add request](/api/v2/request-queue-requests-post) endpoint.",
+   "name": "Add request to the default request queue of an actor task's last run",
+   "description": "Adds a request to the default request queue of the last Actor task run. This endpoint is a shortcut for getting the last task run's `defaultRequestQueueId` and then using the [Add request to request queue](/api/v2/request-queue-requests-post) endpoint.",
    "input": {
     "type": "object",
     "properties": {
@@ -8420,8 +8424,8 @@
   },
   {
    "slug": "apify.actor_task_runs_last_request_queue_requests_unlock_post",
-   "name": "Unlock requests in last task run's default request queue",
-   "description": "Unlocks requests in the default request queue of the last Actor task run that are currently locked by the client. This endpoint is a shortcut for getting the last task run's `defaultRequestQueueId` and then using the [Unlock requests](/api/v2/request-queue-requests-unlock-post) endpoint.",
+   "name": "Unlock requests in the default request queue of an actor task's last run",
+   "description": "Unlocks requests in the default request queue of the last Actor task run that are currently locked by the client. This endpoint is a shortcut for getting the last task run's `defaultRequestQueueId` and then using the [Unlock requests in request queue](/api/v2/request-queue-requests-unlock-post) endpoint.",
    "input": {
     "type": "object",
     "properties": {
@@ -8477,7 +8481,7 @@
   },
   {
    "slug": "apify.actor_task_runs_post",
-   "name": "Run task",
+   "name": "Run actor task",
    "description": "Runs an Actor task and immediately returns without waiting for the run to finish. Optionally, you can override the Actor input configuration by passing a JSON object as the POST payload and setting the `Content-Type: application/json` HTTP header. Note that if the object in the POST payload does not define a particular input property, the Actor run uses the default value defined by the task (or Ac",
    "input": {
     "type": "object",
@@ -8546,7 +8550,7 @@
   },
   {
    "slug": "apify.actor_task_webhooks_get",
-   "name": "Get list of webhooks",
+   "name": "Get list of actor task's webhooks",
    "description": "Gets the list of webhooks of a specific Actor task. The response is a JSON with the list of objects, where each object contains basic information about a single webhook. The endpoint supports pagination using the `limit` and `offset` parameters and it will not return more than 1000 records. By default, the records are sorted by the `createdAt` field in ascending order, to sort the records in desce",
    "input": {
     "type": "object",
@@ -8590,7 +8594,7 @@
   },
   {
    "slug": "apify.actor_tasks_get",
-   "name": "Get list of tasks",
+   "name": "Get list of actor tasks",
    "description": "Gets the complete list of tasks that a user has created or used. The response is a list of objects in which each object contains essential information about a single task. The endpoint supports pagination using the `limit` and `offset` parameters, and it does not return more than a 1000 records. By default, the records are sorted by the `createdAt` field in ascending order; therefore you can use p",
    "input": {
     "type": "object",
@@ -8626,8 +8630,8 @@
   },
   {
    "slug": "apify.actor_tasks_post",
-   "name": "Create task",
-   "description": "Create a new task with settings specified by the object passed as JSON in the POST payload. The response is the full task object as returned by the [Get task](/api/v2/actor-task-get) endpoint. The request needs to specify the `Content-Type: application/json` HTTP header! When providing your API authentication token, we recommend using the request's `Authorization` header, rather than the URL.",
+   "name": "Create actor task",
+   "description": "Create a new task with settings specified by the object passed as JSON in the POST payload. The response is the full task object as returned by the [Get Actor task](/api/v2/actor-task-get) endpoint. The request needs to specify the `Content-Type: application/json` HTTP header! When providing your API authentication token, we recommend using the request's `Authorization` header, rather than the URL",
    "input": {
     "type": "object",
     "properties": {
@@ -8729,7 +8733,7 @@
   },
   {
    "slug": "apify.actor_version_delete",
-   "name": "Delete version",
+   "name": "Delete actor version",
    "description": "Deletes a specific version of Actor's source code.",
    "input": {
     "type": "object",
@@ -8763,7 +8767,7 @@
   },
   {
    "slug": "apify.actor_version_env_var_delete",
-   "name": "Delete environment variable",
+   "name": "Delete environment variable from actor version",
    "description": "Deletes a specific environment variable.",
    "input": {
     "type": "object",
@@ -8803,7 +8807,7 @@
   },
   {
    "slug": "apify.actor_version_env_var_get",
-   "name": "Get environment variable",
+   "name": "Get environment variable of actor version",
    "description": "Gets a [EnvVar object](#/reference/actors/environment-variable-object) that contains all the details about a specific environment variable of an Actor. If `isSecret` is set to `true`, then `value` will never be returned.",
    "input": {
     "type": "object",
@@ -8843,7 +8847,7 @@
   },
   {
    "slug": "apify.actor_version_env_var_post",
-   "name": "Update environment variable (post)",
+   "name": "Update environment variable in actor version (post)",
    "description": "Updates Actor environment variable using values specified by a [EnvVar object](#/reference/actors/environment-variable-object) passed as JSON in the POST payload. This endpoint is an alias for the [`PUT` update environment variable](#tag/ActorsEnvironment-variable-object/operation/act_version_envVar_put) method and behaves identically.",
    "input": {
     "type": "object",
@@ -8862,11 +8866,11 @@
      },
      "name": {
       "type": "string",
-      "description": "The name of the environment variable."
+      "description": "The name of the environment variable. Can't contain `=`."
      },
      "value": {
       "type": "string",
-      "description": "The value of the environment variable. If `isSecret` is `true`, this value isn't returned by the API."
+      "description": "The value of the environment variable."
      },
      "isSecret": {
       "type": [
@@ -8880,6 +8884,7 @@
      "actorId",
      "envVarName",
      "name",
+     "value",
      "versionNumber"
     ]
    },
@@ -8903,7 +8908,7 @@
   },
   {
    "slug": "apify.actor_version_env_var_put",
-   "name": "Update environment variable",
+   "name": "Update environment variable in actor version",
    "description": "Updates Actor environment variable using values specified by a [EnvVar object](#/reference/actors/environment-variable-object) passed as JSON in the POST payload. If the object does not define a specific property, its value will not be updated. The request needs to specify the `Content-Type: application/json` HTTP header! When providing your API authentication token, we recommend using the request",
    "input": {
     "type": "object",
@@ -8922,11 +8927,11 @@
      },
      "name": {
       "type": "string",
-      "description": "The name of the environment variable."
+      "description": "The name of the environment variable. Can't contain `=`."
      },
      "value": {
       "type": "string",
-      "description": "The value of the environment variable. If `isSecret` is `true`, this value isn't returned by the API."
+      "description": "The value of the environment variable."
      },
      "isSecret": {
       "type": [
@@ -8940,6 +8945,7 @@
      "actorId",
      "envVarName",
      "name",
+     "value",
      "versionNumber"
     ]
    },
@@ -8963,7 +8969,7 @@
   },
   {
    "slug": "apify.actor_version_env_vars_get",
-   "name": "Get list of environment variables",
+   "name": "Get list of environment variables of actor version",
    "description": "Gets the list of environment variables for a specific version of an Actor. The response is a JSON object with the list of [EnvVar objects](#/reference/actors/environment-variable-object), where each contains basic information about a single environment variable.",
    "input": {
     "type": "object",
@@ -8997,7 +9003,7 @@
   },
   {
    "slug": "apify.actor_version_env_vars_post",
-   "name": "Create environment variable",
+   "name": "Create environment variable in actor version",
    "description": "Creates an environment variable of an Actor using values specified in a [EnvVar object](#/reference/actors/environment-variable-object) passed as JSON in the POST payload. The request must specify `name` and `value` parameters (as strings) in the JSON payload and a `Content-Type: application/json` HTTP header. ``` { \"name\": \"ENV_VAR_NAME\", \"value\": \"my-env-var\" } ``` The response is the [EnvVar ob",
    "input": {
     "type": "object",
@@ -9012,11 +9018,11 @@
      },
      "name": {
       "type": "string",
-      "description": "The name of the environment variable."
+      "description": "The name of the environment variable. Can't contain `=`."
      },
      "value": {
       "type": "string",
-      "description": "The value of the environment variable. If `isSecret` is `true`, this value isn't returned by the API."
+      "description": "The value of the environment variable."
      },
      "isSecret": {
       "type": [
@@ -9029,6 +9035,7 @@
     "required": [
      "actorId",
      "name",
+     "value",
      "versionNumber"
     ]
    },
@@ -9051,7 +9058,7 @@
   },
   {
    "slug": "apify.actor_version_get",
-   "name": "Get version",
+   "name": "Get actor version",
    "description": "Gets a [Version object](#/reference/actors/version-object) that contains all the details about a specific version of an Actor.",
    "input": {
     "type": "object",
@@ -9085,7 +9092,7 @@
   },
   {
    "slug": "apify.actor_version_post",
-   "name": "Update version (post)",
+   "name": "Update actor version (post)",
    "description": "Updates Actor version using values specified by a [Version object](#/reference/actors/version-object) passed as JSON in the POST payload. This endpoint is an alias for the [`PUT` update version](#tag/ActorsVersion-object/operation/act_version_put) method and behaves identically.",
    "input": {
     "type": "object",
@@ -9095,18 +9102,21 @@
       "description": "Actor ID or the username of the Actor owner and the Actor name, separated by a tilde (`~`)."
      },
      "versionNumber": {
-      "type": [
-       "string",
-       "null"
-      ],
+      "type": "string",
       "description": "The version number of the Actor. Two numbers separated by a dot, that represent the `MAJOR.MINOR` part of the semantic versioning."
      },
      "sourceType": {
       "type": "string",
-      "description": "Where the source code of the version lives."
+      "description": "The version source types accepted in request bodies. Same as `VersionSourceType`, without `SOURCE_CODE`.",
+      "enum": [
+       "SOURCE_FILES",
+       "GIT_REPO",
+       "TARBALL",
+       "GITHUB_GIST"
+      ]
      },
      "envVars": {
-      "type": "string",
+      "type": "array",
       "description": "Environment variables for the version."
      },
      "applyEnvVarsToBuild": {
@@ -9128,24 +9138,15 @@
       "description": ""
      },
      "gitRepoUrl": {
-      "type": [
-       "string",
-       "null"
-      ],
+      "type": "string",
       "description": "URL of the Git repository to clone the source code from. Applies when the `sourceType` is `GIT_REPO`."
      },
      "tarballUrl": {
-      "type": [
-       "string",
-       "null"
-      ],
+      "type": "string",
       "description": "URL of the tarball to download the source code from. Applies when the `sourceType` is `TARBALL`."
      },
      "gitHubGistUrl": {
-      "type": [
-       "string",
-       "null"
-      ],
+      "type": "string",
       "description": "URL of the GitHub Gist to clone the source code from. Applies when the `sourceType` is `GITHUB_GIST`."
      }
     },
@@ -9179,7 +9180,7 @@
   },
   {
    "slug": "apify.actor_version_put",
-   "name": "Update version",
+   "name": "Update actor version",
    "description": "Updates Actor version using values specified by a [Version object](#/reference/actors/version-object) passed as JSON in the POST payload. If the object does not define a specific property, its value will not be updated. The request needs to specify the `Content-Type: application/json` HTTP header! When providing your API authentication token, we recommend using the request's `Authorization` header",
    "input": {
     "type": "object",
@@ -9189,18 +9190,21 @@
       "description": "Actor ID or the username of the Actor owner and the Actor name, separated by a tilde (`~`)."
      },
      "versionNumber": {
-      "type": [
-       "string",
-       "null"
-      ],
+      "type": "string",
       "description": "The version number of the Actor. Two numbers separated by a dot, that represent the `MAJOR.MINOR` part of the semantic versioning."
      },
      "sourceType": {
       "type": "string",
-      "description": "Where the source code of the version lives."
+      "description": "The version source types accepted in request bodies. Same as `VersionSourceType`, without `SOURCE_CODE`.",
+      "enum": [
+       "SOURCE_FILES",
+       "GIT_REPO",
+       "TARBALL",
+       "GITHUB_GIST"
+      ]
      },
      "envVars": {
-      "type": "string",
+      "type": "array",
       "description": "Environment variables for the version."
      },
      "applyEnvVarsToBuild": {
@@ -9222,24 +9226,15 @@
       "description": ""
      },
      "gitRepoUrl": {
-      "type": [
-       "string",
-       "null"
-      ],
+      "type": "string",
       "description": "URL of the Git repository to clone the source code from. Applies when the `sourceType` is `GIT_REPO`."
      },
      "tarballUrl": {
-      "type": [
-       "string",
-       "null"
-      ],
+      "type": "string",
       "description": "URL of the tarball to download the source code from. Applies when the `sourceType` is `TARBALL`."
      },
      "gitHubGistUrl": {
-      "type": [
-       "string",
-       "null"
-      ],
+      "type": "string",
       "description": "URL of the GitHub Gist to clone the source code from. Applies when the `sourceType` is `GITHUB_GIST`."
      }
     },
@@ -9273,7 +9268,7 @@
   },
   {
    "slug": "apify.actor_versions_get",
-   "name": "Get list of versions",
+   "name": "Get list of actor versions",
    "description": "Gets the list of versions of a specific Actor. The response is a JSON object with the list of [Version objects](#/reference/actors/version-object), where each contains basic information about a single version.",
    "input": {
     "type": "object",
@@ -9301,7 +9296,7 @@
   },
   {
    "slug": "apify.actor_versions_post",
-   "name": "Create version",
+   "name": "Create actor version",
    "description": "Creates a version of an Actor using values specified in a [Version object](#/reference/actors/version-object) passed as JSON in the POST payload. The request must specify `versionNumber` and `sourceType` parameters (as strings) in the JSON payload and a `Content-Type: application/json` HTTP header. Each `sourceType` requires its own additional properties to be passed to the JSON payload object. Th",
    "input": {
     "type": "object",
@@ -9311,18 +9306,21 @@
       "description": "Actor ID or the username of the Actor owner and the Actor name, separated by a tilde (`~`)."
      },
      "versionNumber": {
-      "type": [
-       "string",
-       "null"
-      ],
+      "type": "string",
       "description": "The version number of the Actor. Two numbers separated by a dot, that represent the `MAJOR.MINOR` part of the semantic versioning."
      },
      "sourceType": {
       "type": "string",
-      "description": "Where the source code of the version lives."
+      "description": "The version source types accepted in request bodies. Same as `VersionSourceType`, without `SOURCE_CODE`.",
+      "enum": [
+       "SOURCE_FILES",
+       "GIT_REPO",
+       "TARBALL",
+       "GITHUB_GIST"
+      ]
      },
      "envVars": {
-      "type": "string",
+      "type": "array",
       "description": "Environment variables for the version."
      },
      "applyEnvVarsToBuild": {
@@ -9344,29 +9342,22 @@
       "description": ""
      },
      "gitRepoUrl": {
-      "type": [
-       "string",
-       "null"
-      ],
+      "type": "string",
       "description": "URL of the Git repository to clone the source code from. Applies when the `sourceType` is `GIT_REPO`."
      },
      "tarballUrl": {
-      "type": [
-       "string",
-       "null"
-      ],
+      "type": "string",
       "description": "URL of the tarball to download the source code from. Applies when the `sourceType` is `TARBALL`."
      },
      "gitHubGistUrl": {
-      "type": [
-       "string",
-       "null"
-      ],
+      "type": "string",
       "description": "URL of the GitHub Gist to clone the source code from. Applies when the `sourceType` is `GITHUB_GIST`."
      }
     },
     "required": [
-     "actorId"
+     "actorId",
+     "sourceType",
+     "versionNumber"
     ]
    },
    "request": {
@@ -9393,7 +9384,7 @@
   },
   {
    "slug": "apify.actor_webhooks_get",
-   "name": "Get list of webhooks",
+   "name": "Get list of actor's webhooks",
    "description": "Gets the list of webhooks of a specific Actor. The response is a JSON with the list of objects, where each object contains basic information about a single webhook. The endpoint supports pagination using the `limit` and `offset` parameters and it will not return more than 1000 records. By default, the records are sorted by the `createdAt` field in ascending order, to sort the records in descending",
    "input": {
     "type": "object",
@@ -9437,7 +9428,7 @@
   },
   {
    "slug": "apify.actors_builds_get",
-   "name": "Get list of builds",
+   "name": "Get list of actor's builds",
    "description": "Gets the list of builds of a specific Actor. The response is a JSON with the list of objects, where each object contains basic information about a single build. The endpoint supports pagination using the `limit` and `offset` parameters and it will not return more than 1000 records. By default, the records are sorted by the `startedAt` field in ascending order, therefore you can use pagination to i",
    "input": {
     "type": "object",
@@ -9496,7 +9487,7 @@
      },
      "useCache": {
       "type": "boolean",
-      "description": "If `true` or `1`, the system will use a cache to speed up the build process. By default, cache is not used."
+      "description": "If `true` or `1`, the system will use a cache to speed up the build process. Pass `false` or `0` to build without the cache. By default, cache is used."
      },
      "betaPackages": {
       "type": "boolean",
@@ -9613,11 +9604,16 @@
       "description": "Human-readable name of the Actor, displayed in Apify Store and Console. Can contain spaces and capital letters. Recommended length is 40-50 characters. You can change this title without affecting the Actor's URL or SEO."
      },
      "isPublic": {
-      "type": [
-       "boolean",
-       "null"
-      ],
-      "description": "Whether the Actor is available to users in Apify Store. If `false`, the Actor is private and only visible to you."
+      "type": "boolean",
+      "description": "Whether the Actor is available to users in Apify Store. A new Actor is always private. To publish it, build it first, then update it with `isPublic` set to `true`."
+     },
+     "actorPermissionLevel": {
+      "type": "string",
+      "description": "Determines the permission level that the Actor requires to run. For details, see [Actor permissions](https://docs.apify.com/platform/actors/development/permissions).",
+      "enum": [
+       "LIMITED_PERMISSIONS",
+       "FULL_PERMISSIONS"
+      ]
      },
      "seoTitle": {
       "type": [
@@ -9638,7 +9634,7 @@
       "description": ""
      },
      "versions": {
-      "type": "string",
+      "type": "array",
       "description": "An array of `Version` objects. Each object represents a specific version of the Actor's source code: its location, builds, and environment configuration."
      },
      "categories": {
@@ -9681,6 +9677,7 @@
      "description",
      "title",
      "isPublic",
+     "actorPermissionLevel",
      "seoTitle",
      "seoDescription",
      "restartOnError",
@@ -9696,7 +9693,7 @@
   },
   {
    "slug": "apify.actors_runs_get",
-   "name": "Get list of runs",
+   "name": "Get list of actor's runs",
    "description": "Gets the list of runs of a specific Actor. The response is a list of objects, where each object contains basic information about a single Actor run. The endpoint supports pagination using the `limit` and `offset` parameters and it will not return more than 1000 array elements. By default, the records are sorted by the `startedAt` field in ascending order, therefore you can use pagination to increm",
    "input": {
     "type": "object",
@@ -10038,7 +10035,7 @@
   },
   {
    "slug": "apify.dataset_items_post",
-   "name": "Store items",
+   "name": "Store items in dataset",
    "description": "Appends an item or an array of items to the end of the dataset. The POST payload is a JSON object or a JSON array of objects to save into the dataset. If the data you attempt to store in the dataset is invalid (meaning any of the items received by the API fails the validation), the whole request is discarded and the API will return a response with status code 400. For more information about datase",
    "input": {
     "type": "object",
@@ -10230,7 +10227,7 @@
   },
   {
    "slug": "apify.key_value_store_delete",
-   "name": "Delete store",
+   "name": "Delete key value store",
    "description": "Deletes a key-value store.",
    "input": {
     "type": "object",
@@ -10258,7 +10255,7 @@
   },
   {
    "slug": "apify.key_value_store_get",
-   "name": "Get store",
+   "name": "Get key value store",
    "description": "Gets an object that contains all the details about a specific key-value store.",
    "input": {
     "type": "object",
@@ -10286,7 +10283,7 @@
   },
   {
    "slug": "apify.key_value_store_keys_get",
-   "name": "Get list of keys",
+   "name": "Get list of key value store keys",
    "description": "Returns a list of objects describing keys of a given key-value store, as well as some information about the values (e.g. size). This endpoint is paginated using `exclusiveStartKey` and `limit` parameters - see [Pagination](/api/v2#using-key) for more details.",
    "input": {
     "type": "object",
@@ -10340,7 +10337,7 @@
   },
   {
    "slug": "apify.key_value_store_put",
-   "name": "Update store",
+   "name": "Update key value store",
    "description": "Updates a key-value store's name and general resource access level using a value specified by a JSON object passed in the PUT payload. The response is the updated key-value store object, as returned by the [Get store](#/reference/key-value-stores/store-object/get-store) API endpoint.",
    "input": {
     "type": "object",
@@ -10388,7 +10385,7 @@
   },
   {
    "slug": "apify.key_value_store_record_delete",
-   "name": "Delete record",
+   "name": "Delete key value store record",
    "description": "Removes a record specified by a key from the key-value store.",
    "input": {
     "type": "object",
@@ -10422,7 +10419,7 @@
   },
   {
    "slug": "apify.key_value_store_record_get",
-   "name": "Get record",
+   "name": "Get key value store record",
    "description": "Gets a value stored in the key-value store under a specific key. The response body has the same `Content-Encoding` header as it was set in [Put record](#tag/Key-value-storesRecord/operation/keyValueStore_record_put). If the request does not define the `Accept-Encoding` HTTP header with the right encoding, the record will be decompressed. Most HTTP clients support decompression by default. After us",
    "input": {
     "type": "object",
@@ -10467,7 +10464,7 @@
   },
   {
    "slug": "apify.key_value_store_record_post",
-   "name": "Store record (post)",
+   "name": "Set key value store record (post)",
    "description": "Stores a value under a specific key to the key-value store. This endpoint is an alias for the [`PUT` record](#tag/Key-value-storesRecord/operation/keyValueStore_record_put) method and behaves identically.",
    "input": {
     "type": "object",
@@ -10513,7 +10510,7 @@
   },
   {
    "slug": "apify.key_value_store_record_put",
-   "name": "Store record",
+   "name": "Set key value store record",
    "description": "Stores a value under a specific key to the key-value store. The value is passed as the PUT payload and it is stored with a MIME content type defined by the `Content-Type` header and with encoding defined by the `Content-Encoding` header. To save bandwidth, storage, and speed up your upload, send the request payload compressed with Gzip compression and add the `Content-Encoding: gzip` header. It is",
    "input": {
     "type": "object",
@@ -10559,7 +10556,7 @@
   },
   {
    "slug": "apify.key_value_store_records_get",
-   "name": "Download records",
+   "name": "Download key value store records",
    "description": "Downloads all records from the key-value store as a ZIP archive. Each record is stored as a separate file in the archive, with the filename equal to the record key. You can optionally filter the records by `collection` or `prefix` to download only a subset of the store.",
    "input": {
     "type": "object",
@@ -10654,7 +10651,7 @@
   {
    "slug": "apify.key_value_stores_post",
    "name": "Create key value store",
-   "description": "Creates a key-value store and returns its object. The response is the same object as returned by the [Get store](#/reference/key-value-stores/store-object/get-store) endpoint. Keep in mind that data stored under unnamed store follows [data retention period](https://docs.apify.com/platform/storage#data-retention). It creates a store with the given name if the parameter name is used. If there is ano",
+   "description": "Creates a key-value store and returns its object. The response is the same object as returned by the [Get key-value store](/api/v2/key-value-store-get) endpoint. Keep in mind that data stored under unnamed store follows [data retention period](https://docs.apify.com/platform/storage#data-retention). It creates a store with the given name if the parameter name is used. If there is another store wit",
    "input": {
     "type": "object",
     "properties": {
@@ -10679,7 +10676,7 @@
   },
   {
    "slug": "apify.log_get",
-   "name": "Get log",
+   "name": "Get actor build or run log",
    "description": "Retrieves logs for a specific Actor build or run.",
    "input": {
     "type": "object",
@@ -10723,8 +10720,8 @@
   },
   {
    "slug": "apify.post_charge_run",
-   "name": "Charge events in run",
-   "description": "Charge for events in the run of your [pay per event Actor](https://docs.apify.com/platform/actors/running/actors-in-store#pay-per-event). The event you are charging for must be one of the configured events in your Actor. If the Actor is not set up as pay per event, or if the event is not configured, the endpoint will return an error. The endpoint must be called from the Actor run itself, with the ",
+   "name": "Charge events in actor run",
+   "description": "Charge for events in the run of your [pay-per-event Actor](/actors/monetize/pay-per-event). The event you are charging for must be one of the configured events in your Actor. If the Actor is not set up as pay per event, or if the event is not configured, the endpoint will return an error. The endpoint must be called from the Actor run itself, with the same API token that the run was started with.",
    "input": {
     "type": "object",
     "properties": {
@@ -10734,7 +10731,7 @@
      },
      "idempotency-key": {
       "type": "string",
-      "description": "Always pass a unique idempotency key (any unique string) for each charge to avoid double charging in case of retries or network errors."
+      "description": "Always pass a unique idempotency key (any unique string) for each charge to avoid double charging in case of retries or network errors. The key expires 3 minutes after the charge, so a later request with the same key creates a new charge."
      },
      "eventName": {
       "type": "string",
@@ -10743,11 +10740,16 @@
      "count": {
       "type": "integer",
       "description": ""
+     },
+     "requestId": {
+      "type": "string",
+      "description": "ID of the Server Actor request being charged, from the `X-Actor-Request-ID` header of the incoming request. Required for multi-tenant Server Actor runs, where it identifies the request the charge belongs to."
      }
     },
     "required": [
      "count",
      "eventName",
+     "idempotency-key",
      "runId"
     ]
    },
@@ -10763,15 +10765,16 @@
     ],
     "body": [
      "eventName",
-     "count"
+     "count",
+     "requestId"
     ],
     "body_format": "json"
    }
   },
   {
    "slug": "apify.post_resurrect_run",
-   "name": "Resurrect run",
-   "description": "Resurrects a finished Actor run and returns an object that contains all the details about the resurrected run. Only finished runs, i.e. runs with status `FINISHED`, `FAILED`, `ABORTED` and `TIMED-OUT` can be resurrected. Run status will be updated to RUNNING and its container will be restarted with the same storages (the same behaviour as when the run gets migrated to the new server). For more inf",
+   "name": "Resurrect actor run",
+   "description": "Resurrects a finished Actor run and returns an object that contains all the details about the resurrected run. Only finished runs, that is, runs with status `SUCCEEDED`, `FAILED`, `ABORTED` and `TIMED-OUT` can be resurrected. Run status will be updated to RUNNING and its container will be restarted with the same storages (the same behaviour as when the run gets migrated to the new server). For mor",
    "input": {
     "type": "object",
     "properties": {
@@ -10885,7 +10888,7 @@
   },
   {
    "slug": "apify.request_queue_head_get",
-   "name": "Get head",
+   "name": "Get request queue head",
    "description": "Returns given number of first requests from the queue. The response contains the `hadMultipleClients` boolean field which indicates that the queue was accessed by more than one client (with unique or empty `clientKey`). This field is used by [Apify SDK](https://sdk.apify.com) to determine whether the local cache is consistent with the request queue, and thus optimize performance of certain operati",
    "input": {
     "type": "object",
@@ -10924,7 +10927,7 @@
   },
   {
    "slug": "apify.request_queue_head_lock_post",
-   "name": "Get head and lock",
+   "name": "Get and lock request queue head",
    "description": "Returns the given number of first requests from the queue and locks them for the given time. If this endpoint locks the request, no other client or run will be able to get and lock these requests. The response contains the `hadMultipleClients` boolean field which indicates that the queue was accessed by more than one client (with unique or empty `clientKey`).",
    "input": {
     "type": "object",
@@ -11017,7 +11020,7 @@
   },
   {
    "slug": "apify.request_queue_request_delete",
-   "name": "Delete request",
+   "name": "Delete request from request queue",
    "description": "Deletes given request from queue.",
    "input": {
     "type": "object",
@@ -11057,7 +11060,7 @@
   },
   {
    "slug": "apify.request_queue_request_get",
-   "name": "Get request",
+   "name": "Get request from request queue",
    "description": "Returns request from queue.",
    "input": {
     "type": "object",
@@ -11091,7 +11094,7 @@
   },
   {
    "slug": "apify.request_queue_request_lock_delete",
-   "name": "Delete request lock",
+   "name": "Delete lock on request in request queue",
    "description": "Deletes a request lock. The request lock can be deleted only by the client that has locked it using [Get and lock head operation](#/request-queue-head-lock-post). The clientKey identifier is used for locking and unlocking requests. You can delete or prolong the lock only for requests that were locked by the same client key or from the same Actor run.",
    "input": {
     "type": "object",
@@ -11136,7 +11139,7 @@
   },
   {
    "slug": "apify.request_queue_request_lock_put",
-   "name": "Prolong request lock",
+   "name": "Prolong lock on request in request queue",
    "description": "Prolongs request lock. The request lock can be prolonged only by the client that has locked it using [Get and lock head operation](#/request-queue-head-lock-post). The clientKey identifier is used for locking and unlocking requests. You can delete or prolong the lock only for requests that were locked by the same client key or from the same Actor run.",
    "input": {
     "type": "object",
@@ -11187,7 +11190,7 @@
   },
   {
    "slug": "apify.request_queue_request_put",
-   "name": "Update request",
+   "name": "Update request in request queue",
    "description": "Updates a request in a queue. Mark request as handled by setting `request.handledAt = new Date()`. If `handledAt` is set, the request will be removed from head of the queue (and unlocked, if applicable).",
    "input": {
     "type": "object",
@@ -11320,7 +11323,7 @@
   },
   {
    "slug": "apify.request_queue_requests_batch_delete",
-   "name": "Delete requests",
+   "name": "Batch delete requests from request queue",
    "description": "Batch-deletes given requests from the queue. The number of requests in a batch is limited to 25. The response contains an array of unprocessed and processed requests. If any delete operation fails because the request queue rate limit is exceeded or an internal failure occurs, the failed request is returned in the `unprocessedRequests` response parameter. You can re-send these delete requests. It i",
    "input": {
     "type": "object",
@@ -11361,7 +11364,7 @@
   },
   {
    "slug": "apify.request_queue_requests_batch_post",
-   "name": "Add requests",
+   "name": "Batch add requests to request queue",
    "description": "Adds requests to the queue in batch. The maximum requests in batch is limited to 25. The response contains an array of unprocessed and processed requests. If any add operation fails because the request queue rate limit is exceeded or an internal failure occurs, the failed request is returned in the unprocessedRequests response parameter. You can resend these requests to add. It is recommended to u",
    "input": {
     "type": "object",
@@ -11400,7 +11403,7 @@
   },
   {
    "slug": "apify.request_queue_requests_get",
-   "name": "List requests",
+   "name": "List requests in request queue",
    "description": "Returns a list of requests. This endpoint is paginated using cursor (pagination by `exclusiveStartId` is deprecated) and limit parameters.",
    "input": {
     "type": "object",
@@ -11454,7 +11457,7 @@
   },
   {
    "slug": "apify.request_queue_requests_post",
-   "name": "Add request",
+   "name": "Add request to request queue",
    "description": "Adds request to the queue. Response contains ID of the request and info if request was already present in the queue or handled. If request with same `uniqueKey` was already present in the queue then returns an ID of existing request.",
    "input": {
     "type": "object",
@@ -11581,7 +11584,7 @@
   },
   {
    "slug": "apify.request_queue_requests_unlock_post",
-   "name": "Unlock requests",
+   "name": "Unlock requests in request queue",
    "description": "Unlocks requests in the queue that are currently locked by the client. * If the client is within an Actor run, it unlocks all requests locked by that specific run plus all requests locked by the same clientKey. * If the client is outside of an Actor run, it unlocks all requests locked using the same clientKey.",
    "input": {
     "type": "object",
@@ -11833,6 +11836,10 @@
       ],
       "description": ""
      },
+     "notifications": {
+      "type": "object",
+      "description": "Notification settings for this schedule."
+     },
      "actions": {
       "type": [
        "array",
@@ -11861,6 +11868,7 @@
      "timezone",
      "description",
      "title",
+     "notifications",
      "actions"
     ],
     "body_format": "json"
@@ -11958,6 +11966,10 @@
       ],
       "description": ""
      },
+     "notifications": {
+      "type": "object",
+      "description": "Notification settings for this schedule."
+     },
      "actions": {
       "type": [
        "array",
@@ -11982,6 +11994,7 @@
      "timezone",
      "description",
      "title",
+     "notifications",
      "actions"
     ],
     "body_format": "json"
@@ -12023,7 +12036,6 @@
       "description": "Only return Actors with the specified pricing model.",
       "enum": [
        "FREE",
-       "FLAT_PRICE_PER_MONTH",
        "PRICE_PER_DATASET_ITEM",
        "PAY_PER_EVENT"
       ]
@@ -12070,7 +12082,7 @@
   },
   {
    "slug": "apify.tools_browser_info_delete",
-   "name": "Get browser info",
+   "name": "Get browser info (delete)",
    "description": "Returns information about the HTTP request, including the client IP address, country code, request headers, and body length. This endpoint is designed for proxy testing. It accepts any HTTP method so you can verify that your proxy correctly forwards requests of any type and that client IP addresses are anonymized.",
    "input": {
     "type": "object",
@@ -12132,7 +12144,7 @@
   },
   {
    "slug": "apify.tools_browser_info_post",
-   "name": "Get browser info",
+   "name": "Get browser info (post)",
    "description": "Returns information about the HTTP request, including the client IP address, country code, request headers, and body length. This endpoint is designed for proxy testing. It accepts any HTTP method so you can verify that your proxy correctly forwards requests of any type and that client IP addresses are anonymized.",
    "input": {
     "type": "object",
@@ -12163,7 +12175,7 @@
   },
   {
    "slug": "apify.tools_browser_info_put",
-   "name": "Get browser info",
+   "name": "Get browser info (put)",
    "description": "Returns information about the HTTP request, including the client IP address, country code, request headers, and body length. This endpoint is designed for proxy testing. It accepts any HTTP method so you can verify that your proxy correctly forwards requests of any type and that client IP addresses are anonymized.",
    "input": {
     "type": "object",
@@ -12288,7 +12300,7 @@
   },
   {
    "slug": "apify.users_me_limits_get",
-   "name": "Get limits",
+   "name": "Get user's limits",
    "description": "Returns a complete summary of your account's limits. It is the same information you will see on your account's [Limits page](https://console.apify.com/billing#/limits). The returned data includes the current usage cycle, a summary of your limits, and your current usage.",
    "input": {
     "type": "object",
@@ -12307,7 +12319,7 @@
   },
   {
    "slug": "apify.users_me_limits_put",
-   "name": "Update limits",
+   "name": "Update user's limits",
    "description": "Updates the account's limits manageable on your account's [Limits page](https://console.apify.com/billing#/limits). Specifically the: `maxMonthlyUsageUsd` and `dataRetentionDays` limits (see request body schema for more details).",
    "input": {
     "type": "object",
@@ -12338,7 +12350,7 @@
   },
   {
    "slug": "apify.users_me_usage_monthly_get",
-   "name": "Get monthly usage",
+   "name": "Get user's monthly usage",
    "description": "Returns a complete summary of your usage for the current monthly usage cycle, an overall sum, as well as a daily breakdown of usage. It is the same information you will see on your account's [Billing > Historical usage page](https://console.apify.com/billing/historical-usage). The information includes your use of Actors, compute, data transfer, and storage. Using the `date` parameter will show you",
    "input": {
     "type": "object",
@@ -12618,7 +12630,7 @@
   },
   {
    "slug": "apify.webhook_webhook_dispatches_get",
-   "name": "Get collection",
+   "name": "Get list of webhook's dispatches",
    "description": "Gets a given webhook's list of dispatches.",
    "input": {
     "type": "object",

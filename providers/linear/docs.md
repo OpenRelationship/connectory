@@ -24,42 +24,32 @@ Get an overview of Linear's features, integrations, and how to use them.
 
 - [Start Guide](https://linear.app/docs/start-guide.md)
 
-### Account
+### Intake
 
-### AI
+### Projects and initiatives
 
-### Your sidebar
+### Issues and cycles
 
-### Teams
+### Coding and review
 
-### Issues
+### Agents and automation
 
-### Issue properties
+### Insights and outcomes
 
-### Projects
-
-### Initiatives
-
-### Cycles
-
-### Views
-
-### Find and filter
-
-### Linear Asks
+### Working in Linear
 
 ### Integrations
 
 - [Integration Directory](https://linear.app/docs/integration-directory.md)
 - [GitHub](https://linear.app/docs/github-integration.md)
 
-### Analytics
-
 ### Administration
 
 - [API and Webhooks](https://linear.app/docs/api-and-webhooks.md)
 
 ### Importers
+
+- [Import Guide](https://linear.app/docs/import-issues.md)
 
 ## Developers
 

@@ -2541,6 +2541,68 @@
    }
   },
   {
+   "slug": "shortcut.create_agent_activity",
+   "name": "Create agent activity",
+   "description": "Publish a typed activity as the agent owning the session.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace-slug": {
+      "type": "string",
+      "description": "The slug for the Workspace."
+     },
+     "agent-session-id": {
+      "type": "string",
+      "description": "The ID of the Agent Session."
+     }
+    },
+    "required": [
+     "agent-session-id",
+     "workspace-slug"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.app.shortcut.com/api/v4/{workspace-slug}/agent-sessions/{agent-session-id}/activities",
+    "path": [
+     "workspace-slug",
+     "agent-session-id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "shortcut.create_agent_session",
+   "name": "Create agent session",
+   "description": "Create work owned by the authenticated agent on a Story or Epic. Repeated identical idempotency keys return the same session.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace-slug": {
+      "type": "string",
+      "description": "The slug for the Workspace."
+     }
+    },
+    "required": [
+     "workspace-slug"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.app.shortcut.com/api/v4/{workspace-slug}/agent-sessions",
+    "path": [
+     "workspace-slug"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "shortcut.create_category",
    "name": "Create category",
    "description": "Create Category allows you to create a new Category in Shortcut.",
@@ -3833,6 +3895,74 @@
    }
   },
   {
+   "slug": "shortcut.get_agent_session",
+   "name": "Get agent session",
+   "description": "Get a session visible to the current member.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace-slug": {
+      "type": "string",
+      "description": "The slug for the Workspace."
+     },
+     "agent-session-id": {
+      "type": "string",
+      "description": "The ID of the Agent Session."
+     }
+    },
+    "required": [
+     "agent-session-id",
+     "workspace-slug"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.app.shortcut.com/api/v4/{workspace-slug}/agent-sessions/{agent-session-id}",
+    "path": [
+     "workspace-slug",
+     "agent-session-id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "shortcut.get_agent_session_context",
+   "name": "Get agent session context",
+   "description": "Get current authorized entity context for a session.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace-slug": {
+      "type": "string",
+      "description": "The slug for the Workspace."
+     },
+     "agent-session-id": {
+      "type": "string",
+      "description": "The ID of the Agent Session."
+     }
+    },
+    "required": [
+     "agent-session-id",
+     "workspace-slug"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.app.shortcut.com/api/v4/{workspace-slug}/agent-sessions/{agent-session-id}/context",
+    "path": [
+     "workspace-slug",
+     "agent-session-id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "shortcut.get_branch",
    "name": "Get branch",
    "description": "Get Branch returns information about a chosen Branch.",
@@ -4625,7 +4755,7 @@
   {
    "slug": "shortcut.get_multiple_stories_history",
    "name": "Get multiple stories history",
-   "description": "Returns history of changes for multiple Stories in chronological order (oldest first by default; newest first with order_dir=desc), across all attributes, with a deterministic tie-break for changes at the same instant. Ordering is stable across pages. Requires ?ids= parameter. Supports cursor-based pagination. History is currently tracked for these attributes: archived, completed, custom_field_val",
+   "description": "Returns history of changes for multiple Stories in chronological order (oldest first by default; newest first with order_dir=desc), across all attributes, with a deterministic tie-break for changes at the same instant. Ordering is stable across pages. Requires ?ids= parameter. Supports cursor-based pagination. History is currently tracked for these attributes: archived, blocked, blocker, branches,",
    "input": {
     "type": "object",
     "properties": {
@@ -5009,7 +5139,7 @@
   {
    "slug": "shortcut.get_story_history",
    "name": "Get story history",
-   "description": "Returns history of changes for a Story in chronological order (oldest first by default; newest first with order_dir=desc), across all attributes, with a deterministic tie-break for changes at the same instant. Ordering is stable across pages. Supports cursor-based pagination and optional field filtering. History is currently tracked for these attributes: archived, completed, custom_field_values, d",
+   "description": "Returns history of changes for a Story in chronological order (oldest first by default; newest first with order_dir=desc), across all attributes, with a deterministic tie-break for changes at the same instant. Ordering is stable across pages. Supports cursor-based pagination and optional field filtering. History is currently tracked for these attributes: archived, blocked, blocker, branches, check",
    "input": {
     "type": "object",
     "properties": {
@@ -5232,6 +5362,106 @@
     ],
     "query": [
      "fields"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "shortcut.list_agent_activities",
+   "name": "List agent activities",
+   "description": "Read session activities in stable sequence order.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace-slug": {
+      "type": "string",
+      "description": "The slug for the Workspace."
+     },
+     "agent-session-id": {
+      "type": "string",
+      "description": "The ID of the Agent Session."
+     },
+     "after": {
+      "type": "integer",
+      "description": "Return activities with a sequence greater than this value. Defaults to 0."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Maximum number of activities to return, 1-100. Defaults to 100."
+     }
+    },
+    "required": [
+     "agent-session-id",
+     "workspace-slug"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.app.shortcut.com/api/v4/{workspace-slug}/agent-sessions/{agent-session-id}/activities",
+    "path": [
+     "workspace-slug",
+     "agent-session-id"
+    ],
+    "query": [
+     "after",
+     "limit"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "shortcut.list_agent_sessions",
+   "name": "List agent sessions",
+   "description": "List sessions on a Story or Epic, newest first.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace-slug": {
+      "type": "string",
+      "description": "The slug for the Workspace."
+     },
+     "entity_type": {
+      "type": "string",
+      "description": "The type of entity the sessions belong to.",
+      "enum": [
+       "story",
+       "epic"
+      ]
+     },
+     "entity_id": {
+      "type": "integer",
+      "description": "The public ID of the Story or Epic."
+     },
+     "cursor": {
+      "type": "integer",
+      "description": "The next_cursor value from the previous page."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Maximum number of sessions to return, 1-100. Defaults to 50."
+     }
+    },
+    "required": [
+     "entity_id",
+     "entity_type",
+     "workspace-slug"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.app.shortcut.com/api/v4/{workspace-slug}/agent-sessions",
+    "path": [
+     "workspace-slug"
+    ],
+    "query": [
+     "entity_type",
+     "entity_id",
+     "cursor",
+     "limit"
     ],
     "header": [],
     "body": [],
@@ -12889,6 +13119,40 @@
    }
   },
   {
+   "slug": "shortcut.prompt_agent_session",
+   "name": "Prompt agent session",
+   "description": "Continue an explicitly selected session or request that its agent stop.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace-slug": {
+      "type": "string",
+      "description": "The slug for the Workspace."
+     },
+     "agent-session-id": {
+      "type": "string",
+      "description": "The ID of the Agent Session."
+     }
+    },
+    "required": [
+     "agent-session-id",
+     "workspace-slug"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.app.shortcut.com/api/v4/{workspace-slug}/agent-sessions/{agent-session-id}/prompts",
+    "path": [
+     "workspace-slug",
+     "agent-session-id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "shortcut.remove_doc_from_collection",
    "name": "Remove doc from collection",
    "description": "Remove Doc from Collection removes the Doc from the chosen Collection, preserving its other Collection memberships. Requires write access to the Doc.",
@@ -13238,6 +13502,34 @@
    }
   },
   {
+   "slug": "shortcut.subscribe_to_agent_sessions",
+   "name": "Subscribe to agent sessions",
+   "description": "Opt the authenticated agent installation into session events instead of legacy interaction webhooks.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace-slug": {
+      "type": "string",
+      "description": "The slug for the Workspace."
+     }
+    },
+    "required": [
+     "workspace-slug"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.app.shortcut.com/api/v4/{workspace-slug}/agent-sessions/subscription",
+    "path": [
+     "workspace-slug"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "shortcut.unfavorite_collection",
    "name": "Unfavorite collection",
    "description": "Unfavorite Collection removes the Collection from the current Member's favorites.",
@@ -13272,6 +13564,40 @@
     "query": [
      "fields"
     ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "shortcut.update_agent_session",
+   "name": "Update agent session",
+   "description": "Replace a session plan or external links using its current version.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workspace-slug": {
+      "type": "string",
+      "description": "The slug for the Workspace."
+     },
+     "agent-session-id": {
+      "type": "string",
+      "description": "The ID of the Agent Session."
+     }
+    },
+    "required": [
+     "agent-session-id",
+     "workspace-slug"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.app.shortcut.com/api/v4/{workspace-slug}/agent-sessions/{agent-session-id}",
+    "path": [
+     "workspace-slug",
+     "agent-session-id"
+    ],
+    "query": [],
     "header": [],
     "body": [],
     "body_format": "json"

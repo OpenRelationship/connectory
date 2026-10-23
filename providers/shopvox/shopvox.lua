@@ -53,7 +53,7 @@ return {
     ["shopvox.list_orders"] = { method = "GET", url = "https://api.shopvox.com/v1/orders" },
     ["shopvox.list_payments"] = { method = "GET", url = "https://api.shopvox.com/v1/payments", query = {"page", "per_page"} },
     ["shopvox.list_quotes"] = { method = "GET", url = "https://api.shopvox.com/v1/quotes", query = {"page", "per_page"} },
-    ["shopvox.list_sales_leads"] = { method = "GET", url = "https://api.shopvox.com/v1/sales_leads", query = {"page", "per_page"} },
+    ["shopvox.list_sales_leads"] = { method = "GET", url = "https://api.shopvox.com/v1/sales_leads", query = {"active", "page", "per_page"} },
     ["shopvox.list_sales_orders"] = { method = "GET", url = "https://api.shopvox.com/v1/sales_orders", query = {"page", "per_page", "txn_date_from", "txn_date_to"} },
     ["shopvox.login"] = { method = "POST", url = "https://api.shopvox.com/v1/login", body = {"user", "password"} },
     ["shopvox.sign_invoice"] = { method = "POST", url = "https://api.shopvox.com/v1/invoices/{id}/signature", path = {"id"}, body = {"name", "location", "file"} },

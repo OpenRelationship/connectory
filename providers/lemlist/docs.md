@@ -30,6 +30,7 @@ vouches for**: read it, then read their reference.
 - [Get Team Credits](https://developer.lemlist.com/api-reference/endpoints/team/get-team-credits.md): Retrieves the remaining credits balance for your team's account.
 - [Get User](https://developer.lemlist.com/api-reference/endpoints/users/get-user.md): Retrieves all information for a specific user by their ID.
 - [Get User Channels](https://developer.lemlist.com/api-reference/endpoints/users/get-user-channels.md): Retrieves the connected channels (email, LinkedIn, WhatsApp) and their availability for the authenticated user.
+- [Update User LinkedIn Limits](https://developer.lemlist.com/api-reference/endpoints/users/update-user-linkedin-limits.md): Updates the daily LinkedIn limits (invitations, messages, profile visits, InMails, endorsements and more) and the invite ramp-up of a team member.
 - [Connect Email Account](https://developer.lemlist.com/api-reference/endpoints/email-accounts/connect-email-account.md): Connects a new SMTP/IMAP email account to your team.
 - [Disconnect Email Account](https://developer.lemlist.com/api-reference/endpoints/email-accounts/disconnect-email-account.md): Disconnects an email account from your team.
 - [Test Email Account](https://developer.lemlist.com/api-reference/endpoints/email-accounts/test-email-account.md): Tests the SMTP and IMAP connection of an email account.
@@ -41,6 +42,9 @@ vouches for**: read it, then read their reference.
 - [Start Campaign](https://developer.lemlist.com/api-reference/endpoints/campaigns/start-campaign.md): Starts or resumes a paused campaign.
 - [Pause Campaign](https://developer.lemlist.com/api-reference/endpoints/campaigns/pause-campaign.md): Pauses a running campaign without affecting scheduled leads.
 - [Skip Step for Everyone](https://developer.lemlist.com/api-reference/endpoints/campaigns/skip-step-for-everyone.md): Skips one step of a running campaign for every lead.
+- [Skip Step for Leads](https://developer.lemlist.com/api-reference/endpoints/campaigns/skip-step-for-leads.md): Skips one step of a running campaign for a list of leads.
+- [Add Signal Agent Trigger](https://developer.lemlist.com/api-reference/endpoints/campaigns/add-watch-list-trigger.md): Links a Signal Agent to a campaign as its signal trigger.
+- [Remove Signal Agent Trigger](https://developer.lemlist.com/api-reference/endpoints/campaigns/remove-watch-list-trigger.md): Detaches a Signal Agent from a campaign's signal triggers.
 - [Duplicate Campaign](https://developer.lemlist.com/api-reference/endpoints/campaigns/duplicate-campaign.md): Duplicates an existing campaign with all its sequences, schedules, and templates.
 - [Get Campaign Stats](https://developer.lemlist.com/api-reference/endpoints/campaigns/get-campaign-stats.md): Retrieves performance statistics for a specific campaign.
 - [Get Batch Campaign Stats](https://developer.lemlist.com/api-reference/endpoints/campaigns/get-batch-campaign-stats.md): Retrieves performance statistics for multiple campaigns in a single request.
@@ -50,10 +54,19 @@ vouches for**: read it, then read their reference.
 - [Export Campaign Leads](https://developer.lemlist.com/api-reference/endpoints/campaigns/export-campaign-leads-v2.md): Exports leads from a campaign with flexible filtering and format options.
 - [Export Campaign Leads (legacy)](https://developer.lemlist.com/api-reference/endpoints/campaigns/export-campaign-leads.md): Exports leads from a campaign with flexible filtering and format options.
 - [Get Campaign Reports](https://developer.lemlist.com/api-reference/endpoints/campaigns/get-campaign-reports.md): Retrieves aggregated reports and statistics for one or multiple campaigns.
+- [List Senders](https://developer.lemlist.com/api-reference/endpoints/senders/list-senders.md): Lists the team members who can send, with their channels and the health of each channel.
+- [Get Campaign Senders](https://developer.lemlist.com/api-reference/endpoints/senders/get-campaign-senders.md): Returns the sender pool of a campaign, as the campaign editor shows it.
+- [Add Campaign Senders](https://developer.lemlist.com/api-reference/endpoints/senders/add-campaign-senders.md): Adds senders, or channels of senders, to the sender pool of a campaign.
+- [Replace Campaign Senders](https://developer.lemlist.com/api-reference/endpoints/senders/replace-campaign-senders.md): Replaces the sender pool of a campaign.
+- [Update Campaign Sender Channels](https://developer.lemlist.com/api-reference/endpoints/senders/update-campaign-sender-channels.md): Enables or disables channels of one sender, or changes the alias of a mailbox.
+- [Remove Campaign Sender](https://developer.lemlist.com/api-reference/endpoints/senders/remove-campaign-sender.md): Removes one sender from the sender pool of a campaign.
 - [Get Campaign Sequences](https://developer.lemlist.com/api-reference/endpoints/sequences/get-campaign-sequences.md): Retrieves all sequences and their steps for a specific campaign.
 - [Add Step to Sequence](https://developer.lemlist.com/api-reference/endpoints/sequences/add-step-to-sequence.md): Creates a step or condition within a campaign sequence.
 - [Update Sequence Step](https://developer.lemlist.com/api-reference/endpoints/sequences/update-sequence-step.md): Updates an existing step within a sequence.
 - [Delete Sequence Step](https://developer.lemlist.com/api-reference/endpoints/sequences/delete-sequence-step.md): Deletes a specific step from a sequence.
+- [Get Step Sender](https://developer.lemlist.com/api-reference/endpoints/sequences/get-step-sender.md): Returns the forced sender of a step.
+- [Set Step Sender](https://developer.lemlist.com/api-reference/endpoints/sequences/set-step-sender.md): Forces a team member, and one of their accounts, as the sender of a step.
+- [Remove Step Sender](https://developer.lemlist.com/api-reference/endpoints/sequences/remove-step-sender.md): Removes the forced sender of a step.
 - [List Condition Branches](https://developer.lemlist.com/api-reference/endpoints/sequences/list-condition-branches.md): Lists the branches of a condition step, in execution order.
 - [Add Condition Branch](https://developer.lemlist.com/api-reference/endpoints/sequences/add-condition-branch.md): Adds a branch to a condition step and returns it.
 - [Reorder Condition Branches](https://developer.lemlist.com/api-reference/endpoints/sequences/reorder-condition-branches.md): Rewrites the execution priority of a condition step's branches.
@@ -99,20 +112,30 @@ vouches for**: read it, then read their reference.
 - [Import Leads from CRM](https://developer.lemlist.com/api-reference/endpoints/leads/import-leads-from-crm.md): Links a campaign to a filter of your connected CRM and imports its records as leads, now and as the filter picks up new ones.
 - [Upload Audio for Voice Message Step](https://developer.lemlist.com/api-reference/endpoints/leads/upload-audio-for-voice-message-step.md): Uploads an audio file for voice message steps in campaign sequences.
 - [Add and update company](https://developer.lemlist.com/api-reference/endpoints/companies/upsert-company.md): Creates a new company or updates an existing one based on domain or LinkedIn URL.
-- [Get Many Companies](https://developer.lemlist.com/api-reference/endpoints/companies/get-many-companies.md): Retrieves companies from your CRM. Use `idsOrDomains` to fetch specific companies by ID or domain in a single request (max 100), or omit it to get a paginated list of all companies.
+- [Get Company](https://developer.lemlist.com/api-reference/endpoints/companies/get-company.md): Retrieves one company by its lemlist id (`cpn_xxx`), as a bare object. Answers 404 when no company of your team carries this id.
+- [Get Many Companies](https://developer.lemlist.com/api-reference/endpoints/companies/get-many-companies.md): Retrieves companies from your CRM. Use `idsOrDomains` to fetch specific companies by ID or domain in a single request (max 100), `crmIds` to find them from their record id in your connected CRM, or omit them to get a paginated list of all companies.
 - [Delete Company](https://developer.lemlist.com/api-reference/endpoints/companies/delete-company.md): Deletes a lemlist company. Use `force=true` to detach attached contacts before deletion.
 - [Merge Companies](https://developer.lemlist.com/api-reference/endpoints/companies/merge-companies.md): Merges up to 10 lemlist companies into one survivor, moving everything attached to the deleted companies onto it.
+- [Search & Connect Companies in the CRM](https://developer.lemlist.com/api-reference/endpoints/companies/search-and-connect-companies.md): Searches your connected CRM for companies and links each one to the CRM record found, without creating any CRM record.
+- [Create Companies in the CRM](https://developer.lemlist.com/api-reference/endpoints/companies/create-companies-in-crm.md): Pushes companies to your connected CRM, linking each one to the CRM record found and creating it there when none matches.
+- [Get Company Lists](https://developer.lemlist.com/api-reference/endpoints/companies/get-company-lists.md): Retrieves all company lists for the team, with optional name filtering.
+- [Create Company List](https://developer.lemlist.com/api-reference/endpoints/companies/create-company-list.md): Creates a new static company list.
+- [Add or Remove Companies in a List](https://developer.lemlist.com/api-reference/endpoints/companies/manage-company-list-entities.md): Add companies to a static company list, or remove them with ?action=remove.
 - [Create Company Note](https://developer.lemlist.com/api-reference/endpoints/companies/create-company-note.md): Creates a new note attached to a specific company.
 - [Get Company Notes](https://developer.lemlist.com/api-reference/endpoints/companies/get-company-notes.md): Retrieves all notes associated with a specific company.
 - [Add and update contact](https://developer.lemlist.com/api-reference/endpoints/contacts/upsert-contact.md): Creates a new contact or updates an existing one based on email or LinkedIn URL.
 - [Get Contact](https://developer.lemlist.com/api-reference/endpoints/contacts/get-contact.md): Retrieves a specific contact by their ID or email address.
-- [Get Many Contacts](https://developer.lemlist.com/api-reference/endpoints/contacts/get-many-contacts.md): Retrieves contacts from your CRM. Use `idsOrEmails` to fetch specific contacts by ID or email in a single request (max 100), or omit it to search/list contacts by name, email, contact list, or campaign membership.
+- [Get Many Contacts](https://developer.lemlist.com/api-reference/endpoints/contacts/get-many-contacts.md): Retrieves contacts from your CRM. Use `idsOrEmails` to fetch specific contacts by ID or email in a single request (max 100), `crmIds` to find them from their record id in your connected CRM, or omit them to search/list contacts by name, email, contact list, or campaign membership.
 - [Delete Contact](https://developer.lemlist.com/api-reference/endpoints/contacts/delete-contact.md): Deletes a lemlist contact by id or email. Cascades to leads, opportunities, lists, inbox and activities.
 - [Merge Contacts](https://developer.lemlist.com/api-reference/endpoints/contacts/merge-contacts.md): Merges up to 10 lemlist contacts into one survivor, moving everything attached to the deleted contacts onto it.
+- [Search & Connect Contacts in the CRM](https://developer.lemlist.com/api-reference/endpoints/contacts/search-and-connect-contacts.md): Searches your connected CRM for contacts and links each one to the CRM record found, without creating any CRM record.
+- [Create Contacts in the CRM](https://developer.lemlist.com/api-reference/endpoints/contacts/create-contacts-in-crm.md): Pushes contacts to your connected CRM, linking each one to the CRM record found and creating it there when none matches.
 - [Get Contact Lists](https://developer.lemlist.com/api-reference/endpoints/contacts/get-contact-lists.md): Retrieves all contact lists for the team, with optional name filtering.
 - [Create Contact List](https://developer.lemlist.com/api-reference/endpoints/contacts/create-contact-list.md): Creates a new static contact list.
 - [Add or Remove Contacts in a List](https://developer.lemlist.com/api-reference/endpoints/contacts/manage-contact-list-entities.md): Add contacts to a static contact list, or remove them with ?action=remove.
 - [Export Contact List](https://developer.lemlist.com/api-reference/endpoints/contacts/export-contact-list.md): Exports contacts or companies from a CRM list as a CSV file.
+- [Create Contact Note](https://developer.lemlist.com/api-reference/endpoints/contacts/create-contact-note.md): Writes a note on a specific contact, as a note written in the lemlist app, pushed to your connected CRM.
+- [Get Contact Notes](https://developer.lemlist.com/api-reference/endpoints/contacts/get-contact-notes.md): Retrieves the notes attached to a specific contact, resolved by its ID or email address.
 - [Get Many Inboxes](https://developer.lemlist.com/api-reference/endpoints/inbox/get-many-inboxes.md): Retrieves all inbox conversations for your team.
 - [Get Contact Messages](https://developer.lemlist.com/api-reference/endpoints/inbox/get-contact-messages.md): Retrieves all messages exchanged with a specific contact.
 - [Send Email](https://developer.lemlist.com/api-reference/endpoints/inbox/send-email.md): Sends an email to a contact through the lemlist inbox. Set replyToActivityId to reply within an existing thread (reuses the thread's subject and CC).
@@ -130,6 +153,8 @@ vouches for**: read it, then read their reference.
 - [Update Draft](https://developer.lemlist.com/api-reference/endpoints/inbox/update-draft.md): Partially updates an existing draft. Only the provided fields will be updated.
 - [Delete Draft](https://developer.lemlist.com/api-reference/endpoints/inbox/delete-draft.md): Soft-deletes a draft by setting its deletedAt timestamp.
 - [Create Task](https://developer.lemlist.com/api-reference/endpoints/tasks/create-task.md): Create a manual task (opportunity) associated with a contact/company or lead.
+- [Search Tasks](https://developer.lemlist.com/api-reference/endpoints/tasks/get-many-tasks-v2.md): Searches your team's tasks with the filters of the Tasks page, and returns every status.
+- [List Task Filters](https://developer.lemlist.com/api-reference/endpoints/tasks/get-task-filters.md): Lists every field you can use in the advancedFilters tree of Search Tasks.
 - [Get Many Tasks](https://developer.lemlist.com/api-reference/endpoints/tasks/get-many-tasks.md): Retrieves all pending tasks assigned to your team members.
 - [Update Task](https://developer.lemlist.com/api-reference/endpoints/tasks/update-task.md): Modifies aspects of an existing task including assignment, scheduling, and status.
 - [Ignore Tasks](https://developer.lemlist.com/api-reference/endpoints/tasks/ignore-tasks.md): Marks one or more tasks as ignored.
@@ -137,16 +162,17 @@ vouches for**: read it, then read their reference.
 - [Delete Activity Recording & Transcript](https://developer.lemlist.com/api-reference/endpoints/activities/delete-activity-recording-transcript.md): Deletes the call recording and transcript associated with an activity.
 - [Get Team CRM Users](https://developer.lemlist.com/api-reference/endpoints/crm/get-team-crm-users.md): Retrieves the team members whose CRM account is connected to lemlist.
 - [Get CRM Filters](https://developer.lemlist.com/api-reference/endpoints/crm/get-crm-filters.md): Retrieves the filters of your team's connected CRM that leads can be imported from.
+- [Get CRM Logs](https://developer.lemlist.com/api-reference/endpoints/crm/get-crm-logs.md): Retrieves the CRM sync history of your team, a contact or a company.
 - [List Unsubscribed Variables](https://developer.lemlist.com/api-reference/endpoints/unsubscribes/list-unsubscribed-variables.md): Retrieves a paginated list of all unsubscribed variables (emails, domains, LinkedIn URLs, phone numbers).
 - [Get Unsubscribed Variable](https://developer.lemlist.com/api-reference/endpoints/unsubscribes/get-unsubscribed-variable.md): Retrieves a specific unsubscribed variable by its value.
 - [Unsubscribe Variable](https://developer.lemlist.com/api-reference/endpoints/unsubscribes/unsubscribe-variable.md): Unsubscribes a single variable. Idempotent — returns the existing record if already unsubscribed.
 - [Bulk Unsubscribe Variables](https://developer.lemlist.com/api-reference/endpoints/unsubscribes/bulk-unsubscribe-variables.md): Unsubscribes up to 10,000 variables in a single request.
 - [Re-subscribe Variable](https://developer.lemlist.com/api-reference/endpoints/unsubscribes/resubscribe-variable.md): Re-subscribes a variable, removing it from the unsubscribe list.
-- [Export Unsubscribed Variables](https://developer.lemlist.com/api-reference/endpoints/unsubscribes/export-unsubscribed-variables.md): Exports all unsubscribed variables to a CSV file.
+- [Export Unsubscribed Variables](https://developer.lemlist.com/api-reference/endpoints/unsubscribes/export-unsubscribed-variables.md): Exports all unsubscribed variables as CSV (default) or JSON.
 - [Get Contact Subscription Status](https://developer.lemlist.com/api-reference/endpoints/unsubscribes/get-contact-subscription-status.md): Checks whether a contact is unsubscribed (do-not-contact).
 - [Unsubscribe Contact](https://developer.lemlist.com/api-reference/endpoints/unsubscribes/unsubscribe-contact.md): Marks a contact as unsubscribed (do-not-contact).
 - [Re-subscribe Contact](https://developer.lemlist.com/api-reference/endpoints/unsubscribes/resubscribe-contact.md): Re-subscribes a contact, removing the do-not-contact flag.
-- [Export Unsubscribed Contacts](https://developer.lemlist.com/api-reference/endpoints/unsubscribes/export-unsubscribed-contacts.md): Exports all contacts with their subscription status to a CSV file.
+- [Export Unsubscribed Contacts](https://developer.lemlist.com/api-reference/endpoints/unsubscribes/export-unsubscribed-contacts.md): Exports all contacts with their subscription status as CSV (default) or JSON.
 - [Add Unsubscribe Email or Domain](https://developer.lemlist.com/api-reference/endpoints/unsubscribes/add-unsubscribe-email-or-domain.md): Adds an email address or domain to your unsubscribe list.
 - [Get Unsubscribe by Email](https://developer.lemlist.com/api-reference/endpoints/unsubscribes/get-unsubscribe-by-email.md): Retrieves unsubscribe information for a specific email address.
 - [Get Many Unsubscribes](https://developer.lemlist.com/api-reference/endpoints/unsubscribes/get-many-unsubscribes.md): Retrieves a list of all unsubscribed emails and domains.
@@ -157,10 +183,17 @@ vouches for**: read it, then read their reference.
 - [Get Many Webhooks](https://developer.lemlist.com/api-reference/endpoints/webhooks/get-many-webhooks.md): Retrieves all webhooks configured for your team.
 - [Search People database](https://developer.lemlist.com/api-reference/endpoints/people-database/search-people-database.md): Searches the people database using filters, keywords, and pagination.
 - [Search Companies Database](https://developer.lemlist.com/api-reference/endpoints/people-database/search-companies-database.md): Searches the companies database using filters, keywords, and pagination.
+- [Export People database](https://developer.lemlist.com/api-reference/endpoints/people-database/export-people-database.md): Exports the People Database leads matching a search as a CSV file.
+- [Export Companies database](https://developer.lemlist.com/api-reference/endpoints/people-database/export-companies-database.md): Exports the companies matching a search as a CSV file.
 - [Get Database Filters](https://developer.lemlist.com/api-reference/endpoints/people-database/get-database-filters.md): Retrieves available filters for searching the people and companies database.
 - [List Personas](https://developer.lemlist.com/api-reference/endpoints/people-database/list-personas.md): Retrieves the People Database personas saved by your team.
 - [Create Persona](https://developer.lemlist.com/api-reference/endpoints/people-database/create-persona.md): Creates a People Database persona for your team.
 - [Delete Persona](https://developer.lemlist.com/api-reference/endpoints/people-database/delete-persona.md): Deletes a People Database persona.
+- [List Saved Searches](https://developer.lemlist.com/api-reference/endpoints/people-database/list-saved-searches.md): Retrieves the People Database saved searches of your team.
+- [Create Saved Search](https://developer.lemlist.com/api-reference/endpoints/people-database/create-saved-search.md): Creates a People Database saved search for your team.
+- [Get Saved Search](https://developer.lemlist.com/api-reference/endpoints/people-database/get-saved-search.md): Retrieves one People Database saved search of your team.
+- [Update Saved Search](https://developer.lemlist.com/api-reference/endpoints/people-database/update-saved-search.md): Renames a People Database saved search and/or replaces its filters.
+- [Delete Saved Search](https://developer.lemlist.com/api-reference/endpoints/people-database/delete-saved-search.md): Deletes a People Database saved search.
 - [Run Contact Sourcing](https://developer.lemlist.com/api-reference/endpoints/contact-sourcing/run-contact-sourcing.md): Starts an AI contact-sourcing run for one or more accounts.
 - [Get Contact Sourcing Run](https://developer.lemlist.com/api-reference/endpoints/contact-sourcing/get-contact-sourcing-run.md): Reads a contact-sourcing run by ID, or the latest run of an account.
 - [Add a Sourced Contact](https://developer.lemlist.com/api-reference/endpoints/contact-sourcing/add-sourced-contact.md): Turns one contact-sourcing recommendation into a lemlist contact.
@@ -168,16 +201,26 @@ vouches for**: read it, then read their reference.
 - [Bulk Enrich Data](https://developer.lemlist.com/api-reference/endpoints/enrich/bulk-enrich-data.md): Performs batch enrichment for up to 500 entities to find emails, phone numbers, or LinkedIn data.
 - [Enrich Lead](https://developer.lemlist.com/api-reference/endpoints/enrich/enrich-lead.md): Enriches an existing lead in lemlist with additional data.
 - [Get Enrichment Result](https://developer.lemlist.com/api-reference/endpoints/enrich/get-enrichment-result.md): Retrieves the results of a completed enrichment request.
+- [List Enrichment Providers](https://developer.lemlist.com/api-reference/endpoints/enrichment-providers/list-enrichment-providers.md): Lists the enrichment providers your team can place in a waterfall, for one enrichment type.
+- [Connect Provider](https://developer.lemlist.com/api-reference/endpoints/enrichment-providers/connect-provider.md): Saves your own API key for an external enrichment provider, connecting it for your waterfalls.
+- [Disconnect Provider](https://developer.lemlist.com/api-reference/endpoints/enrichment-providers/disconnect-provider.md): Removes the API key of an external enrichment provider; lemlist stops calling it on your account.
+- [List Enrichment Waterfalls](https://developer.lemlist.com/api-reference/endpoints/enrichment-waterfalls/list-enrichment-waterfalls.md): Lists your team's enrichment waterfalls — the default waterfall of each type, plus every custom waterfall.
+- [Get Enrichment Waterfall](https://developer.lemlist.com/api-reference/endpoints/enrichment-waterfalls/get-enrichment-waterfall.md): Returns one enrichment waterfall of your team, default or custom.
+- [Update Enrichment Waterfall](https://developer.lemlist.com/api-reference/endpoints/enrichment-waterfalls/update-enrichment-waterfall.md): Updates the name or provider order of an enrichment waterfall.
+- [Reset Enrichment Waterfall](https://developer.lemlist.com/api-reference/endpoints/enrichment-waterfalls/reset-enrichment-waterfall.md): Hands a default enrichment waterfall back to lemlist, restoring its random provider order.
 - [Start lemwarm](https://developer.lemlist.com/api-reference/endpoints/lemwarm/start-lemwarm.md): Starts lemwarm email deliverability improvement for a specific user mailbox.
 - [Pause lemwarm](https://developer.lemlist.com/api-reference/endpoints/lemwarm/pause-lemwarm.md): Pauses lemwarm email deliverability improvement for a specific user mailbox.
 - [Get lemwarm Settings](https://developer.lemlist.com/api-reference/endpoints/lemwarm/get-lemwarm-settings.md): Retrieves lemwarm email deliverability settings for a specific user mailbox.
 - [Update lemwarm Settings](https://developer.lemlist.com/api-reference/endpoints/lemwarm/update-lemwarm-settings.md): Updates lemwarm email deliverability settings for a specific user mailbox.
+- [Get warmup errors](https://developer.lemlist.com/api-reference/endpoints/lemwarm/get-warmup-errors.md): Lists the mailboxes lemwarm keeps out of warmup, with the cause and the fix for each one.
 - [List Signal Agents](https://developer.lemlist.com/api-reference/endpoints/watch-list/list-watch-lists.md): Retrieves your Signal Agents (watch lists) with pagination and optional filtering by signal type and status.
 - [Create Signal Agent](https://developer.lemlist.com/api-reference/endpoints/watch-list/create-watch-list.md): Creates a new Signal Agent (watch list).
 - [Update Signal Agent](https://developer.lemlist.com/api-reference/endpoints/watch-list/update-watch-list.md): Updates an existing Signal Agent (watch list).
+- [Monitor CRM Lists with a Signal Agent](https://developer.lemlist.com/api-reference/endpoints/watch-list/associate-crm-lists.md): Monitors the companies or contacts of one or several CRM lists with a Signal Agent.
 - [Delete Signal Agent](https://developer.lemlist.com/api-reference/endpoints/watch-list/delete-watch-list.md): Deletes a Signal Agent (watch list).
 - [Get Signal Agent configuration history](https://developer.lemlist.com/api-reference/endpoints/watch-list/get-history.md): Retrieves the configuration history of a Signal Agent — each past config version with its active period and stats.
 - [Get Signal Agent signals](https://developer.lemlist.com/api-reference/endpoints/watch-list/get-signals.md): Retrieves paginated signals detected by your Signal Agents with filtering and sorting capabilities.
+- [Mark signals handled or ignored](https://developer.lemlist.com/api-reference/endpoints/watch-list/mark-signals.md): Marks one or several signals as handled or ignored.
 - [Push external signals](https://developer.lemlist.com/api-reference/endpoints/watch-list/push-external-signals.md): Pushes a contact- or company-level external signal into a Signal Agent.
 - [List available signal types](https://developer.lemlist.com/api-reference/endpoints/watch-list/get-library.md): Lists the signal types available to your team, each with a title and description.
 - [List allowed filters per signal type](https://developer.lemlist.com/api-reference/endpoints/watch-list/get-filters.md): Lists, per signal type, the filters you can set on a Signal Agent.
@@ -187,7 +230,12 @@ vouches for**: read it, then read their reference.
 - [Get Deliverability Alert](https://developer.lemlist.com/api-reference/endpoints/deliverability-alerts/get-alert.md): Retrieves a single deliverability alert configuration by its ID.
 - [Update Deliverability Alert](https://developer.lemlist.com/api-reference/endpoints/deliverability-alerts/update-alert.md): Updates a deliverability alert's threshold, evaluation window, notification channels, scope filter, or enabled state.
 - [Delete Deliverability Alert](https://developer.lemlist.com/api-reference/endpoints/deliverability-alerts/delete-alert.md): Permanently deletes a deliverability alert configuration. The historical alert occurrences this configuration produced are not removed.
+- [List Deliverability Incidents](https://developer.lemlist.com/api-reference/endpoints/deliverability-alerts/list-incidents.md): Lists your team's deliverability incidents, newest first, active and resolved.
+- [Get Sender Picture Status](https://developer.lemlist.com/api-reference/endpoints/sender-picture/get-sender-picture-status.md): Lists the mailboxes a user bought through lemlist in your team, with whether their lemlist profile picture has been pushed to each one.
+- [Sync Sender Picture](https://developer.lemlist.com/api-reference/endpoints/sender-picture/sync-sender-picture.md): Queues a push of a user's lemlist profile picture onto the mailboxes they bought through lemlist.
 - [List Fields](https://developer.lemlist.com/api-reference/endpoints/fields/list-fields.md): Lists all available fields for contacts and companies.
+- [Create or Update Field](https://developer.lemlist.com/api-reference/endpoints/fields/create-field.md): Creates a custom field on contacts or companies, or updates the one of that name, under the rules of the lemlist app.
+- [Delete Field](https://developer.lemlist.com/api-reference/endpoints/fields/delete-field.md): Deletes a custom field on contacts or companies, as the app does, with the same permission and the same campaign guard.
 - [Team](https://developer.lemlist.com/api-reference/objects-definitions/team.md)
 - [Credits](https://developer.lemlist.com/api-reference/objects-definitions/credits.md)
 - [User](https://developer.lemlist.com/api-reference/objects-definitions/user.md)
@@ -204,9 +252,11 @@ vouches for**: read it, then read their reference.
 - [People](https://developer.lemlist.com/api-reference/objects-definitions/people-database.md)
 - [Company](https://developer.lemlist.com/api-reference/objects-definitions/company-database.md)
 - [Persona](https://developer.lemlist.com/api-reference/objects-definitions/persona.md)
+- [Saved search](https://developer.lemlist.com/api-reference/objects-definitions/saved-search.md)
 - [CRM Filter](https://developer.lemlist.com/api-reference/objects-definitions/crm-filter.md)
 - [Company](https://developer.lemlist.com/api-reference/objects-definitions/company.md)
 - [Lemwarm Settings](https://developer.lemlist.com/api-reference/objects-definitions/lemwarm.md)
+- [Warmup Error](https://developer.lemlist.com/api-reference/objects-definitions/warmup-error.md)
 - [Campaign Status](https://developer.lemlist.com/api-reference/objects-definitions/campaign-status.md)
 - [Channel](https://developer.lemlist.com/api-reference/objects-definitions/channel.md)
 - [Sequence](https://developer.lemlist.com/api-reference/objects-definitions/sequence.md)
@@ -219,10 +269,14 @@ vouches for**: read it, then read their reference.
 - [Webhook](https://developer.lemlist.com/api-reference/objects-definitions/webhook.md)
 - [Mailbox](https://developer.lemlist.com/api-reference/objects-definitions/mailbox.md)
 - [Company Note](https://developer.lemlist.com/api-reference/objects-definitions/company-note.md)
+- [Contact Note](https://developer.lemlist.com/api-reference/objects-definitions/contact-note.md)
+- [CRM Log](https://developer.lemlist.com/api-reference/objects-definitions/crm-log.md)
 - [Signal Agents / Signal](https://developer.lemlist.com/api-reference/objects-definitions/signal.md)
 - [Signal Agents / Watch List](https://developer.lemlist.com/api-reference/objects-definitions/watch-list.md)
 - [Deliverability alert](https://developer.lemlist.com/api-reference/objects-definitions/deliverability-alert.md)
-- [MCP Server Setup](https://developer.lemlist.com/mcp/setup.md): Connect lemlist to your AI assistant (Claude, Cursor, and more) using the Model Context Protocol
+- [Deliverability incident](https://developer.lemlist.com/api-reference/objects-definitions/deliverability-incident.md)
+- [Sender picture](https://developer.lemlist.com/api-reference/objects-definitions/sender-picture.md)
+- [MCP Server Setup](https://developer.lemlist.com/mcp/setup.md): Connect lemlist to your AI assistant (Claude, ChatGPT, Grok, Cursor, and more) using the Model Context Protocol
 - [lemlist Agent for Claude Code](https://developer.lemlist.com/mcp/lemlist-agent.md): Add a specialized /lemlist-agent command to Claude Code for expert outreach assistance
 - [CLI Overview](https://developer.lemlist.com/cli/overview.md): The lemlist command-line interface — the whole API in one command, built for scripts and AI agents.
 - [CLI Authentication](https://developer.lemlist.com/cli/authentication.md): Log in with OAuth or an API key, and manage several lemlist accounts as named profiles.
@@ -247,3 +301,5 @@ vouches for**: read it, then read their reference.
 ## Optional
 
 - [v2](https://developer.lemlist.com/)
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.
