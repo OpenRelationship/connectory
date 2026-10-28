@@ -1,9 +1,9 @@
 -- connectory.lua.connect over a directory of two services held in memory: one described (calls, a header token and an
 -- address part), one only listed. Nothing touches the network or the keychain.
--- Run from the folder above connectory, with Tablua's core on the path (its ports.json):
---   luajit -e 'package.path = "./?.lua;TABLUA/core/?.lua;" .. package.path' connectory/lua/connect_test.lua
+-- Run from the folder above connectory, with pi-lua's core on the path (its pi.json):
+--   luajit -e 'package.path = "./?.lua;PI_LUA/core/?.lua;" .. package.path' connectory/lua/connect_test.lua
 local connect = require("connectory.lua.connect")
-local json = require("ports.json")
+local json = require("pi.json")
 
 local files = {
   ["index.json"] = json.encode({ index = {

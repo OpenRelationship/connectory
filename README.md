@@ -7,7 +7,7 @@ and whether it runs an MCP server of its own.
 Every API is also one Lua file. GitHub's entire REST API is 1,201 operations in 249 KB that
 stock Lua loads in under two milliseconds. With the port in `lua/`, that file is a complete
 client for an agent: no SDK, no service in the middle, no C modules. The port is built for
-[Tablua](https://github.com/OpenRelationship/tablua)'s harness, and any Lua host can give it
+[pi-lua](https://github.com/OpenRelationship/pi-lua), the pi harness in Lua, and any Lua host can give it
 the three things it needs.
 
 ```lua
@@ -104,10 +104,10 @@ provider's pack says (`auth`: a header in the vendor's own format, a bearer toke
 password) with values it asks the host for by name, and refuses a call whose credential is missing before anything
 is sent. `lua/library.md` is the card an agent reads.
 
-The tests run from the folder above this one, with Tablua's `core/` on the path for its JSON:
+The tests run from the folder above this one, with pi-lua's `core/` on the path for its JSON:
 
-    luajit -e 'package.path = "./?.lua;TABLUA/core/?.lua;" .. package.path' connectory/lua/http_test.lua
-    luajit -e 'package.path = "./?.lua;TABLUA/core/?.lua;" .. package.path' connectory/lua/connect_test.lua
+    luajit -e 'package.path = "./?.lua;PI_LUA/core/?.lua;" .. package.path' connectory/lua/http_test.lua
+    luajit -e 'package.path = "./?.lua;PI_LUA/core/?.lua;" .. package.path' connectory/lua/connect_test.lua
 
 [Moonsplice](https://github.com/OpenRelationship/moonsplice) attaches this repository as a submodule, and its
 agent, Tablua, reaches services through it: it finds a service, reads its calls, asks before any call that changes

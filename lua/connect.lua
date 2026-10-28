@@ -1,5 +1,5 @@
 -- The port an agent reaches other people's apps through: connectory's directory of 853 services and, for the ones
--- whose makers describe their API, every call it accepts as data. Built for Tablua's harness (its ports.json, its
+-- whose makers describe their API, every call it accepts as data. Built for the pi harness (pi-lua's pi.json, its
 -- host = { fetch, now? }); lua/library.md is the card an agent reads. This port finds a service,
 -- shows the calls it has, and makes one, signed with the person's own credential for that service. It never
 -- holds a credential: the host's `secret(name)` reads it when a call is signed (the desktop keeps them in the
@@ -21,7 +21,7 @@
 --   c:check(service)                -> true, record    or nil, err      (the directory's own test call, if any)
 --
 -- The record is what the log may keep: never the address (a query credential rides in it) nor any header.
-local json = require("ports.json")
+local json = require("pi.json")
 local http = require("connectory.lua.http")
 
 local M = {}

@@ -10,12 +10,12 @@ lua_library(
 )
 
 # The agent's port onto the directory (`connectory.lua.connect`): find a service, list its calls, make one signed
-# with the person's own credential. Its JSON is Tablua's (`ports.json`).
+# with the person's own credential. Its JSON is pi-lua's (`pi.json`).
 lua_library(
     name = "connect",
     srcs = ["lua/connect.lua"],
     prefix = "connectory",
-    deps = [":http", "//submodules/tablua/core/ports:ports"],
+    deps = [":http", "//submodules/pi-lua/core/pi:pi"],
     visibility = ["PUBLIC"],
 )
 
