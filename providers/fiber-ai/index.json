@@ -287,6 +287,40 @@
    }
   },
   {
+   "slug": "fiber-ai.basic_work_email_reveal",
+   "name": "Find work email by name and company",
+   "description": "Finds a work email from a person's name and company information without requiring a LinkedIn profile. Useful when the person is not on LinkedIn. \u26a1 Rate limit: 30 requests per 1 minute \ud83d\udcb0 Cost: 1 credit per lite email reveal&nbsp;\u24d8 \u23f1 Recommended timeout: 4 minutes&nbsp;\u24d8",
+   "input": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": "string",
+      "description": "Person name. Provide a full name, or first and last name separately."
+     },
+     "company": {
+      "type": "string",
+      "description": "Company to search. Provide a domain, or a company identifier."
+     }
+    },
+    "required": [
+     "company",
+     "name"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.fiber.ai/v1/contact-details/basic-work-email",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "company"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "fiber-ai.blue_collar_jobs_search",
    "name": "Search blue collar job listings",
    "description": "Search blue collar and trade job postings. Ideal for finding service, manufacturing, trades, and other non-desk positions. Currently US-only. Supports search by company, job title/keyword, and location. Supports pagination via nextPageToken. \u26a1 Rate limit: 300 requests per 1 minute \ud83d\udcb0 Cost: 2 credits per search&nbsp;\u24d8 \u23f1 Recommended timeout: 1 minute&nbsp;\u24d8",
@@ -377,6 +411,146 @@
    }
   },
   {
+   "slug": "fiber-ai.booking_property",
+   "name": "Get booking com property details",
+   "description": "Retrieves full details for a single Booking.com property, including amenities, photos, scores, and house rules. \u26a1 Rate limit: 120 requests per 1 minute \ud83d\udcb0 Cost: 2 credits per property lookup&nbsp;\u24d8",
+   "input": {
+    "type": "object",
+    "properties": {
+     "propertyUrl": {
+      "type": "string",
+      "description": "Full Booking.com property URL (e.g. 'https://www.booking.com/hotel/hr/sumratin-dubrovnik.html'). Obtain it from a result returned by POST /v1/booking/search \u2014 pass the `propertyUrl`, not the `propertyId`."
+     },
+     "languageCode": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Language for property names, descriptions, and labels. Pass a BCP-47 language tag such as 'en', 'en-US', 'fr', 'de', or 'es'. Omit for English."
+     }
+    },
+    "required": [
+     "propertyUrl"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.fiber.ai/v1/booking/property",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "propertyUrl",
+     "languageCode"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fiber-ai.booking_search",
+   "name": "Search booking com properties",
+   "description": "Searches Booking.com stays for a destination and returns matching properties with rates, ratings, and availability. \u26a1 Rate limit: 120 requests per 1 minute \ud83d\udcb0 Cost: 2 credits per search&nbsp;\u24d8",
+   "input": {
+    "type": "object",
+    "properties": {
+     "query": {
+      "type": "string",
+      "description": "Destination to search (city, region, or landmark). For example, 'Dubrovnik' or 'Rome, Italy'."
+     },
+     "checkInDate": {
+      "type": "string",
+      "description": "Check-in date for the stay."
+     },
+     "checkOutDate": {
+      "type": "string",
+      "description": "Check-out date for the stay. Must be at least one calendar day after `checkInDate`."
+     },
+     "hotelStarClasses": {
+      "type": [
+       "array",
+       "null"
+      ],
+      "description": "Filter to specific hotel star classes. This is a list of exact classes, not a range: [3, 5] returns only 3- and 5-star properties and excludes 4-star, so list every class you want (e.g. [3, 4, 5])."
+     },
+     "sortBy": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Sort criterion for results. 'relevance' ranks by overall match. 'lowestPrice' sorts cheapest first. 'highestRating' sorts by guest review score. 'mostReviewed' uses Booking.com's top-reviewed ranking, which weighs review score by review volume. Omit to sort by relevance.",
+      "enum": [
+       "relevance",
+       "lowestPrice",
+       "highestRating",
+       "mostReviewed",
+       null
+      ]
+     },
+     "nextPageToken": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Opaque pagination token from a prior search response's `nextPageToken`. Send it with the same search parameters that produced it. Omit (or pass null) to fetch the first page."
+     },
+     "adults": {
+      "type": "integer",
+      "description": "Number of adult guests (at least 1). Total guests (`adults` + `children`) must not exceed 30."
+     },
+     "children": {
+      "type": "integer",
+      "description": "Number of child guests. Total guests (`adults` + `children`) must not exceed 30."
+     },
+     "childrenAges": {
+      "type": "array",
+      "description": "Ages of each child guest. Must contain exactly `children` entries when `children` is greater than zero."
+     },
+     "rooms": {
+      "type": "integer",
+      "description": "Number of rooms to search for. Defaults to 1."
+     },
+     "currencyCode": {
+      "type": "string",
+      "description": "ISO 4217 currency code for prices in the response (e.g. 'EUR', 'GBP', 'CAD'). Case-insensitive. Defaults to USD."
+     },
+     "languageCode": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Language for property names, descriptions, and labels. Pass a BCP-47 language tag such as 'en', 'en-US', 'fr', 'de', or 'es'. Omit for English."
+     }
+    },
+    "required": [
+     "checkInDate",
+     "checkOutDate",
+     "query"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.fiber.ai/v1/booking/search",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "query",
+     "checkInDate",
+     "checkOutDate",
+     "hotelStarClasses",
+     "sortBy",
+     "nextPageToken",
+     "adults",
+     "children",
+     "childrenAges",
+     "rooms",
+     "currencyCode",
+     "languageCode"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "fiber-ai.build_audience",
    "name": "Build audience from search parameters",
    "description": "Triggers the audience building process. This runs a company and prospect search based on the configured search parameters and saves results to the database. The build runs asynchronously - use the get-audience-status endpoint to poll for completion. Status transitions: DRAFT \u2192 BUILDING \u2192 NORMAL (success) or FAILED (error). \u26a1 Rate limit: 30 requests per 1 minute \ud83d\udcb0 Cost: Credits are charged after th",
@@ -407,7 +581,7 @@
   {
    "slug": "fiber-ai.bulk_company_logos",
    "name": "Bulk company logos",
-   "description": "Get logo URLs for a list of companies. Max 10,000 companies can be looked up at a time. \u26a1 Rate limit: 30 requests per 1 minute \ud83d\udcb0 Cost: 0.33 credits per company logo lookup&nbsp;\u24d8",
+   "description": "Get logo URLs for a list of companies. Max 10,000 companies can be looked up at a time. You are charged only for logos found. \u26a1 Rate limit: 30 requests per 1 minute \ud83d\udcb0 Cost: 0.33 credits per company logo found&nbsp;\u24d8",
    "input": {
     "type": "object",
     "properties": {
@@ -435,7 +609,7 @@
   {
    "slug": "fiber-ai.bulk_profile_pic",
    "name": "Bulk profile pics",
-   "description": "Get profile pics for a list of profiles. Max 10,000 profiles can be looked up at a time. \u26a1 Rate limit: 30 requests per 1 minute \ud83d\udcb0 Cost: 0.33 credits per profile pic lookup&nbsp;\u24d8",
+   "description": "Get profile pics for a list of profiles. Max 10,000 profiles can be looked up at a time. You are charged only for profile pics found. \u26a1 Rate limit: 30 requests per 1 minute \ud83d\udcb0 Cost: 0.33 credits per profile pic found&nbsp;\u24d8",
    "input": {
     "type": "object",
     "properties": {
@@ -515,7 +689,7 @@
   {
    "slug": "fiber-ai.cancel_batch_contact_details",
    "name": "Cancel batch contact details",
-   "description": "Cancels a batch contact details job that is in progress. Only unclaimed profiles will be cancelled. Profiles already processed will be charged for. Credits are refunded for cancelled profiles. \u26a1 Rate limit: 60 requests per 1 minute",
+   "description": "Cancels a batch contact details job that is in progress. Profiles not yet delivered \u2014 queued or in-flight \u2014 are cancelled and refunded immediately at the requested bundle price. Profiles already delivered before the cancel are charged for and remain available via the poll endpoint. \u26a1 Rate limit: 60 requests per 1 minute",
    "input": {
     "type": "object",
     "properties": {
@@ -730,7 +904,7 @@
   {
    "slug": "fiber-ai.company_logo",
    "name": "Company logo",
-   "description": "Get the logo for a single company. Accepts a LinkedIn company URL, slug, numeric organization ID, or domain \u2014 the format is auto-detected. \u26a1 Rate limit: 600 requests per 1 minute \ud83d\udcb0 Cost: 0.33 credits per company logo lookup&nbsp;\u24d8 \u23f1 Recommended timeout: 1 minute&nbsp;\u24d8",
+   "description": "Get the logo for a single company. Accepts a LinkedIn company URL, slug, numeric organization ID, or domain \u2014 the format is auto-detected. You are charged only when a logo is found. \u26a1 Rate limit: 600 requests per 1 minute \ud83d\udcb0 Cost: 0.33 credits per company logo found&nbsp;\u24d8 \u23f1 Recommended timeout: 1 minute&nbsp;\u24d8",
    "input": {
     "type": "object",
     "properties": {
@@ -1174,7 +1348,7 @@
   {
    "slug": "fiber-ai.create_tracker_company_list",
    "name": "Create company tracker list",
-   "description": "Create a new company tracker list. By default you add companies manually and we periodically check them for changes matching your tracking rules. Provide `companySearchParams` to instead create a DYNAMIC list that auto-populates with companies matching a query and refreshes over time. Credits are charged per entity per refresh cycle (see your plan's pricing for exact rates). Creating the list itse",
+   "description": "Create a new company tracker list. By default you add companies manually and we periodically check them for changes matching your tracking rules. Provide `companySearchParams` to instead create a DYNAMIC list that auto-populates with companies matching a query and refreshes over time. Credits are charged per entity per refresh cycle; lists containing premium rules (marked `isPremium` in GET /track",
    "input": {
     "type": "object",
     "properties": {
@@ -1191,7 +1365,7 @@
        "array",
        "null"
       ],
-      "description": "Tracking rules to evaluate against this list's entities. Multiple rules can be active simultaneously."
+      "description": "Tracking rules to evaluate against this list's entities. Multiple rules can be active simultaneously. Rules marked `isPremium` in GET /tracker/rules make the list bill at a minimum per-entity rate \u2014 see your plan's pricing for rates."
      },
      "companySearchParams": {
       "type": [
@@ -1232,7 +1406,7 @@
   {
    "slug": "fiber-ai.create_tracker_person_list",
    "name": "Create person tracker list",
-   "description": "Create a new person tracker list. By default you add people manually and we periodically check them for changes matching your tracking rules. Provide `prospectSearchParams` to instead create a DYNAMIC list that auto-populates with people matching a query and refreshes over time. Credits are charged per entity per refresh cycle (see your plan's pricing for exact rates). Creating the list itself is ",
+   "description": "Create a new person tracker list. By default you add people manually and we periodically check them for changes matching your tracking rules. Provide `prospectSearchParams` to instead create a DYNAMIC list that auto-populates with people matching a query and refreshes over time. Credits are charged per entity per refresh cycle; lists containing premium rules (marked `isPremium` in GET /tracker/rul",
    "input": {
     "type": "object",
     "properties": {
@@ -1249,7 +1423,7 @@
        "array",
        "null"
       ],
-      "description": "Tracking rules to evaluate against this list's entities. Multiple rules can be active simultaneously."
+      "description": "Tracking rules to evaluate against this list's entities. Multiple rules can be active simultaneously. Rules marked `isPremium` in GET /tracker/rules make the list bill at a minimum per-entity rate \u2014 see your plan's pricing for rates."
      },
      "prospectSearchParams": {
       "type": [
@@ -1643,6 +1817,75 @@
    }
   },
   {
+   "slug": "fiber-ai.download_api_requests",
+   "name": "Download your past api requests",
+   "description": "Download the API requests your organization has made, newest first, with the parameters you sent and how each call turned out. Up to 5000 matching requests are returned in one call; if more exist, `truncated` is true \u2014 narrow `from`/`to` and retry. History is retained for 14 days. Response bodies are not returned. \u26a1 Rate limit: 30 requests per 1 minute \ud83d\udcb0 Cost: FREE! No credits are charged for this",
+   "input": {
+    "type": "object",
+    "properties": {
+     "from": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Only return requests received at or after this ISO 8601 timestamp. Logs are retained for 14 days, so earlier timestamps simply return nothing."
+     },
+     "to": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Only return requests received strictly before this ISO 8601 timestamp."
+     },
+     "routePath": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Only return requests to this exact route template, e.g. \"/v1/person/search\"."
+     },
+     "method": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Only return requests using this HTTP method, e.g. \"POST\"."
+     },
+     "statusCode": {
+      "type": [
+       "integer",
+       "null"
+      ],
+      "description": "Only return requests that returned this exact status code."
+     },
+     "errorCode": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Only return the request carrying this error correlation code."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.fiber.ai/v1/api-requests/download",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "from",
+     "to",
+     "routePath",
+     "method",
+     "statusCode",
+     "errorCode"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "fiber-ai.email_bounce_detection",
    "name": "Validate a single email",
    "description": "Checks if a given email is likely to bounce using a waterfall of strategies. Works for catch-all email addresses, which are increasingly common yet hard for other APIs to validate. \u26a1 Rate limit: 300 requests per 1 minute \ud83d\udcb0 Cost: 1 credit per email validation&nbsp;\u24d8",
@@ -1764,7 +2007,7 @@
        "integer",
        "null"
       ],
-      "description": "Maximum number of rows to export. Defaults to remaining export quota."
+      "description": "Maximum number of rows to export. Defaults to your remaining export quota for the usage period; an export never exceeds 1,000,000 rows. Large exports are split across several files."
      },
      "excludeFields": {
       "type": "array",
@@ -1833,7 +2076,7 @@
        "integer",
        "null"
       ],
-      "description": "Maximum number of rows to export. Defaults to remaining export quota."
+      "description": "Maximum number of rows to export. Defaults to your remaining export quota for the usage period; an export never exceeds 1,000,000 rows. Large exports are split across several files."
      },
      "excludeFields": {
       "type": "array",
@@ -2154,6 +2397,49 @@
      "currencyCode",
      "searchMarketCountryCode",
      "languageCode"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fiber-ai.flight_deals",
+   "name": "Search flight deals",
+   "description": "Returns cheap round-trip flight deals from a given departure location, ranked by how much cheaper they are than usual. Dates and destinations are chosen per deal; use flight search when you already know the route and dates. \u26a1 Rate limit: 120 requests per 1 minute \ud83d\udcb0 Cost: 2 credits per request&nbsp;\u24d8",
+   "input": {
+    "type": "object",
+    "properties": {
+     "departureAirports": {
+      "type": "string",
+      "description": "Where to find deals from. Accepts a single 3-letter IATA airport code (e.g. 'JFK'), an X- metro alias that covers every airport in a metro area (e.g. 'X-NYC' \u2014 call GET /v1/enums/flight-regions for the full list), or a Freebase ID \u2014 a stable location identifier beginning with '/m/' or '/g/' (e.g. '/m/02_286' for New York City), listed as `freebaseId` in GET /v1/enums/flight-regions. Comma-separate"
+     },
+     "currencyCode": {
+      "type": "string",
+      "description": "ISO 4217 currency code for prices in the response (e.g. 'EUR', 'GBP', 'CAD'). Case-insensitive. Defaults to USD."
+     },
+     "languageCode": {
+      "type": "string",
+      "description": "Language for destination names and descriptions. Pass a BCP-47 language tag such as 'en', 'en-US', 'pt-BR', 'zh-CN', 'ja', 'ko', 'fr', 'de', 'es'. Does not change which deals are returned. Defaults to en."
+     },
+     "discovery": {
+      "type": "string",
+      "description": "How to narrow the deals. Omit to return the cheapest round-trip deals from the departure location. Use the `freeText` mode to describe the kind of destinations you want in plain language (e.g. 'beaches and islands'); use the `filters` mode for precise constraints on price, stops, cabin class, or airline. Provide exactly one mode \u2014 they cannot be combined."
+     }
+    },
+    "required": [
+     "departureAirports"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.fiber.ai/v1/flights/deals",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "departureAirports",
+     "currencyCode",
+     "languageCode",
+     "discovery"
     ],
     "body_format": "json"
    }
@@ -2554,7 +2840,7 @@
   {
    "slug": "fiber-ai.get_company_revenue",
    "name": "Get company revenue estimate",
-   "description": "Fetches the most recent annual revenue estimate for a company. Pass a LinkedIn company URL, domain, and/or company name. \u26a1 Rate limit: 120 requests per 1 minute \ud83d\udcb0 Cost: 4 credits per company lookup&nbsp;\u24d8",
+   "description": "Fetches the most recent annual revenue estimate for a company. Identify the company by its LinkedIn company URL or organization ID; at least one is required. You aren't charged when the company or its revenue estimate isn't found. \u26a1 Rate limit: 120 requests per 1 minute \ud83d\udcb0 Cost: 4 credits per company lookup&nbsp;\u24d8",
    "input": {
     "type": "object",
     "properties": {
@@ -2947,6 +3233,25 @@
    "request": {
     "method": "GET",
     "url": "https://api.fiber.ai/v1/enums/industries",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fiber-ai.get_job_categories",
+   "name": "List job functions, specialties, and seniorities",
+   "description": "Get the job-function and specialty taxonomy behind the `jobCategories` people-search filter, plus every value the `seniority` filter accepts. Each function lists the specialties nested under it, and either tier can be used in `jobCategories.anyOf` and `jobCategories.noneOf`. \u26a1 Rate limit: 120 requests per 1 minute \ud83d\udcb0 Cost: FREE! No credits are charged for this API.&nbsp;\u24d8",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.fiber.ai/v1/enums/job-categories",
     "path": [],
     "query": [],
     "header": [],
@@ -3460,7 +3765,7 @@
   {
    "slug": "fiber-ai.get_talent_flow",
    "name": "Get talent flow analysis for a company",
-   "description": "Visualizes talent movement at a company. Use 'joiners' to see where a company is hiring from \u2014 which competitors, universities, and regions it pulls talent from during the time window. Use 'leavers' to see where a company's alumni are going \u2014 which companies or startups are attracting its former employees. Processes up to 10,000 profiles per request. Large companies may take up to two minutes to a",
+   "description": "Visualizes talent movement at a company. Use 'joiners' to see where a company is hiring from \u2014 which competitors, universities, and regions it pulls talent from during the time window. Use 'leavers' to see where a company's alumni are going \u2014 which companies or startups are attracting its former employees. Set renderImage.enabled to also generate a shareable talent-flow graphic image covering both",
    "input": {
     "type": "object",
     "properties": {
@@ -3479,6 +3784,10 @@
      "dateRange": {
       "type": "object",
       "description": ""
+     },
+     "renderImage": {
+      "type": "string",
+      "description": "Options for generating a shareable talent-flow graphic image. Omit to skip graphic generation."
      }
     },
     "required": [
@@ -3496,7 +3805,8 @@
     "body": [
      "company",
      "direction",
-     "dateRange"
+     "dateRange",
+     "renderImage"
     ],
     "body_format": "json"
    }
@@ -3654,6 +3964,25 @@
    }
   },
   {
+   "slug": "fiber-ai.get_tracker_pricing_tiers",
+   "name": "Explain your tracker pricing tiers",
+   "description": "Returns the pricing tier each of your tracker lists will be billed at on its next scheduled refresh, with the per-entity cost, the two criteria that decided the tier, and the one change that would move each list to a cheaper tier. Tiers depend on how many companies and people your organization tracks in total and on each list's refresh cadence. \u26a1 Rate limit: 120 requests per 1 minute \ud83d\udcb0 Cost: FREE!",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.fiber.ai/v1/tracker/pricing-tiers",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "fiber-ai.get_webhook_endpoint",
    "name": "Get webhook endpoint",
    "description": "Return a single webhook endpoint's configuration: its delivery URL, the event types it is subscribed to, and whether delivery is currently paused. Reading webhook endpoints is free. \u26a1 Rate limit: 120 requests per 1 minute \ud83d\udcb0 Cost: FREE! No credits are charged for this API.&nbsp;\u24d8",
@@ -3744,6 +4073,150 @@
    }
   },
   {
+   "slug": "fiber-ai.github_org_contributors",
+   "name": "Start an organization contributor scan",
+   "description": "Scans an organization's public repositories and collects their contributors. Forks are skipped. At most 500 repositories are scanned, and at most the top 500 contributors of each repository are kept. Poll with the returned run id. \u26a1 Rate limit: 10 requests per 1 minute \ud83d\udcb0 Cost: 1 credit per repository scanned&nbsp;\u24d8 \u23f1 Recommended timeout: 1 minute&nbsp;\u24d8",
+   "input": {
+    "type": "object",
+    "properties": {
+     "orgUrl": {
+      "type": "string",
+      "description": "Organization to scan. Accepts a URL (for example 'https://github.com/tenstorrent' or 'https://github.com/orgs/tenstorrent') or a login."
+     },
+     "maxRepos": {
+      "type": [
+       "integer",
+       "null"
+      ],
+      "description": "How many public repositories to scan, most recently pushed first. Defaults to 100. Forks are skipped and do not count toward this limit."
+     }
+    },
+    "required": [
+     "orgUrl"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.fiber.ai/v1/github/org-contributors/trigger",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "orgUrl",
+     "maxRepos"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fiber-ai.github_org_contributors_poll",
+   "name": "Poll an organization contributor scan",
+   "description": "Returns the status of an organization contributor scan, the contributors found so far, and repositories that could not be scanned. \u26a1 Rate limit: 120 requests per 1 minute \ud83d\udcb0 Cost: FREE! No credits are charged for this API.&nbsp;\u24d8",
+   "input": {
+    "type": "object",
+    "properties": {
+     "runId": {
+      "type": "string",
+      "description": "Identifier returned by the trigger."
+     },
+     "nextPageToken": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Pagination token from a prior response's `nextPageToken`. Omit (or pass null) to fetch the first page."
+     }
+    },
+    "required": [
+     "runId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.fiber.ai/v1/github/org-contributors/poll",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "runId",
+     "nextPageToken"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fiber-ai.github_repo_contributors",
+   "name": "List contributors to a repository",
+   "description": "Returns one page of contributors for a repository, up to 100 per page. Only the top 500 contributors are available. Bot accounts are omitted. A repository whose contributor list cannot be retrieved responds with 422. \u26a1 Rate limit: 120 requests per 1 minute \ud83d\udcb0 Cost: 2 credits per page of contributors&nbsp;\u24d8 \u23f1 Recommended timeout: 30 seconds&nbsp;\u24d8",
+   "input": {
+    "type": "object",
+    "properties": {
+     "repoUrl": {
+      "type": "string",
+      "description": "Repository to list contributors for. Accepts a URL (for example 'https://github.com/tenstorrent/tt-metal') or 'owner/repo'."
+     },
+     "nextPageToken": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Pagination token from a prior response's `nextPageToken`. Omit (or pass null) to fetch the first page. At most the top 500 contributors are available."
+     }
+    },
+    "required": [
+     "repoUrl"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.fiber.ai/v1/github/repo-contributors",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "repoUrl",
+     "nextPageToken"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fiber-ai.github_repo_search",
+   "name": "Search repositories",
+   "description": "Returns one page of repositories matching a search query, up to 100 per page. At most 1,000 results can be paged through. \u26a1 Rate limit: 30 requests per 1 minute \ud83d\udcb0 Cost: 2 credits per page of results&nbsp;\u24d8 \u23f1 Recommended timeout: 30 seconds&nbsp;\u24d8",
+   "input": {
+    "type": "object",
+    "properties": {
+     "query": {
+      "type": "string",
+      "description": "Repository search query, for example 'org:tenstorrent language:rust'. At most 1,000 results are available."
+     },
+     "nextPageToken": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Pagination token from a prior response's `nextPageToken`. Omit (or pass null) to fetch the first page."
+     }
+    },
+    "required": [
+     "query"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.fiber.ai/v1/github/repo-search",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "query",
+     "nextPageToken"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "fiber-ai.github_to_linked_in_polling",
    "name": "Poll git hub to linked in lookup",
    "description": "Poll for the results of a GitHub to LinkedIn lookup task. \u26a1 Rate limit: 60 requests per 1 minute",
@@ -3787,7 +4260,7 @@
   {
    "slug": "fiber-ai.github_to_linked_in_trigger",
    "name": "Start git hub to linked in lookup",
-   "description": "Convert GitHub usernames to LinkedIn profiles or get emailIds. Use outputType flag to specify what to retrieve. \u26a1 Rate limit: 30 requests per 1 minute \ud83d\udcb0 Cost: 1 credit per person for LinkedIn lookup OR email extraction. 2 credits per person if outputType='both'.&nbsp;\u24d8",
+   "description": "Convert GitHub usernames to LinkedIn profiles or get emailIds. Use outputType flag to specify what to retrieve. \u26a1 Rate limit: 30 requests per 1 minute \ud83d\udcb0 Cost: Charged per person, based on outputType:\u2022 5 credits for outputType='linkedin'\u2022 3 credits for outputType='email'\u2022 8 credits for outputType='both'&nbsp;\u24d8",
    "input": {
     "type": "object",
     "properties": {
@@ -3885,9 +4358,152 @@
    }
   },
   {
+   "slug": "fiber-ai.github_user_profile",
+   "name": "Get a git hub user profile and language breakdown",
+   "description": "Returns a user's public profile plus the languages used in their own non-fork repositories (the 100 most recently pushed). Organization and bot accounts are not returned. \u26a1 Rate limit: 120 requests per 1 minute \ud83d\udcb0 Cost: 2 credits per request&nbsp;\u24d8 \u23f1 Recommended timeout: 30 seconds&nbsp;\u24d8",
+   "input": {
+    "type": "object",
+    "properties": {
+     "profileUrl": {
+      "type": "string",
+      "description": "User to look up. Accepts a profile URL (for example 'https://github.com/torvalds') or a username. Organization and bot accounts are not returned."
+     }
+    },
+    "required": [
+     "profileUrl"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.fiber.ai/v1/github/user-profile",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "profileUrl"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fiber-ai.github_user_repo_activity",
+   "name": "Get a user's activity in a repository",
+   "description": "Returns recent commits, pull requests, and issues by one user in one repository. A list that cannot be loaded is named in unavailableSections; the other lists are still returned. \u26a1 Rate limit: 15 requests per 1 minute \ud83d\udcb0 Cost: 2 credits per request&nbsp;\u24d8 \u23f1 Recommended timeout: 30 seconds&nbsp;\u24d8",
+   "input": {
+    "type": "object",
+    "properties": {
+     "profileUrl": {
+      "type": "string",
+      "description": "User whose activity to return. Accepts a profile URL or a username."
+     },
+     "repoUrl": {
+      "type": "string",
+      "description": "Repository to look in. Accepts a repository URL or 'owner/repo'."
+     },
+     "limit": {
+      "type": [
+       "integer",
+       "null"
+      ],
+      "description": "How many commits, pull requests, and issues to return for each list. Defaults to 10. Maximum 30."
+     }
+    },
+    "required": [
+     "profileUrl",
+     "repoUrl"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.fiber.ai/v1/github/user-repo-activity",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "profileUrl",
+     "repoUrl",
+     "limit"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fiber-ai.google_maps_place",
+   "name": "Get a google maps place",
+   "description": "Get detailed information about a Google Maps place, including hours, contact details, ratings, and attributes. Search for places via `POST /v1/google-maps/search`. \u26a1 Rate limit: 120 requests per 1 minute \ud83d\udcb0 Cost: 2 credits per place lookup&nbsp;\u24d8",
+   "input": {
+    "type": "object",
+    "properties": {
+     "placeId": {
+      "type": "string",
+      "description": "Google Maps place ID (e.g. 'ChIJN1t_tDeuEmsRUsoyG83frY4'). Obtain it from the `placeId` of a result returned by the Google Maps search endpoint (`POST /v1/google-maps/search`)."
+     }
+    },
+    "required": [
+     "placeId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.fiber.ai/v1/google-maps/place",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "placeId"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fiber-ai.google_maps_reviews",
+   "name": "Get google maps place reviews",
+   "description": "Get reviews of a Google Maps place, paginated, with reviewer details, ratings, and full review text. Obtain the place ID via `POST /v1/google-maps/search`. \u26a1 Rate limit: 120 requests per 1 minute \ud83d\udcb0 Cost: 2 credits per reviews page&nbsp;\u24d8",
+   "input": {
+    "type": "object",
+    "properties": {
+     "placeId": {
+      "type": "string",
+      "description": "Google Maps place ID (e.g. 'ChIJN1t_tDeuEmsRUsoyG83frY4'). Obtain it from the `placeId` of a result returned by the Google Maps search endpoint (`POST /v1/google-maps/search`)."
+     },
+     "sortBy": {
+      "type": "string",
+      "description": "Sort criterion for reviews. Applies to the first page only: later pages keep the sort the first page used, so changing it mid-pagination has no effect.",
+      "enum": [
+       "relevance",
+       "newest"
+      ]
+     },
+     "nextPageToken": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Pagination token from a prior response's `nextPageToken`. Omit (or pass null) to fetch the first page."
+     }
+    },
+    "required": [
+     "placeId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.fiber.ai/v1/google-maps/reviews",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "placeId",
+     "sortBy",
+     "nextPageToken"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "fiber-ai.google_maps_search",
    "name": "Start a search on google maps",
-   "description": "Start a search for local businesses or other places of interest on Google Maps \u26a1 Rate limit: 30 requests per 1 minute \ud83d\udcb0 Cost: 3 credits per business found&nbsp;\u24d8",
+   "description": "Start a background search for local businesses or other places of interest on Google Maps, polled for results and able to collect far more than one page. Describe the search either with 'query' plus 'strategy', or with a 'googleMapsUrl' copied from the address bar of a Google Maps search. For a single page of results returned immediately, use POST /v1/google-maps/search instead. \u26a1 Rate limit: 30 r",
    "input": {
     "type": "object",
     "properties": {
@@ -3899,8 +4515,18 @@
       "description": "An optional name for the project for reference purposes."
      },
      "query": {
-      "type": "string",
-      "description": "The search query to run on Google Maps. Do not include a location info here. Examples: 'dominos pizza', 'real estate agent'."
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "The search query to run on Google Maps. Do not include a location info here. Examples: 'dominos pizza', 'real estate agent'. Omit this when you pass a Google Maps URL instead."
+     },
+     "googleMapsUrl": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "A link to a Google Maps search, taken from the address bar after searching. The search term and the area to search are read from the link. The term is used exactly as it appears in the link, so it may name a location even though you should leave locations out of 'query' \u2014 the area to search comes from the link, not from the term. Omit this when you pass a query and strategy instead."
      },
      "maxResults": {
       "type": "integer",
@@ -3908,13 +4534,10 @@
      },
      "strategy": {
       "type": "string",
-      "description": "The strategy for searching places."
+      "description": "The strategy for searching places. Omit this when you pass a Google Maps URL instead."
      }
     },
-    "required": [
-     "query",
-     "strategy"
-    ]
+    "required": []
    },
    "request": {
     "method": "POST",
@@ -3925,8 +4548,53 @@
     "body": [
      "name",
      "query",
+     "googleMapsUrl",
      "maxResults",
      "strategy"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fiber-ai.google_maps_search",
+   "name": "Search google maps places",
+   "description": "Searches Google Maps for places matching a query, and returns them with ratings, review counts, and contact details. Responds synchronously with one page of up to 20 results. For bulk collection across a region, use POST /v1/google-maps-search/start instead, which runs in the background and is polled for results. \u26a1 Rate limit: 120 requests per 1 minute \ud83d\udcb0 Cost: 2 credits per search&nbsp;\u24d8",
+   "input": {
+    "type": "object",
+    "properties": {
+     "query": {
+      "type": "string",
+      "description": "What to search for (e.g. 'coffee shop' or 'The Modern'). A business name also works."
+     },
+     "location": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Where to search. Accepts a city and state ('Brooklyn, NY'), a full address, or a ZIP code. Omit to search without a location bias."
+     },
+     "nextPageToken": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Pagination token from a prior response's `nextPageToken`. Omit (or pass null) to fetch the first page."
+     }
+    },
+    "required": [
+     "query"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.fiber.ai/v1/google-maps/search",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "query",
+     "location",
+     "nextPageToken"
     ],
     "body_format": "json"
    }
@@ -3947,6 +4615,34 @@
     "query": [],
     "header": [],
     "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fiber-ai.hem_lookup",
+   "name": "Find person by hashed email (hem)",
+   "description": "Given up to 100 hashed email addresses (HEMs), return the address each one belongs to, plus the LinkedIn identifiers we have for that person. The response is one result per supplied hash, in the same order, each tagged `found`, `not_found`, or `rejected`. \u26a1 Rate limit: 600 requests per 1 minute \ud83d\udcb0 Cost: 2 credits per resolved hash&nbsp;\u24d8",
+   "input": {
+    "type": "object",
+    "properties": {
+     "hashedEmails": {
+      "type": "array",
+      "description": "Up to 100 SHA-256, MD5, or SHA-1 digests of lowercased, trimmed email addresses. Each hash must be a hexadecimal digest, upper or lower case, of the lowercased and trimmed address \u2014 SHA-256 is 64 characters, MD5 is 32, and SHA-1 is 40. A hash that is not a valid digest is returned as a `rejected` result rather than failing the request."
+     }
+    },
+    "required": [
+     "hashedEmails"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.fiber.ai/v1/email-to-person/hashed",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "hashedEmails"
+    ],
     "body_format": "json"
    }
   },
@@ -4318,6 +5014,10 @@
      "enrichmentType": {
       "type": "object",
       "description": "Which email and phone types to look for."
+     },
+     "company": {
+      "type": "string",
+      "description": "Optional current company of the person. When provided, work emails whose domain does not match this company are returned in unmatchedWorkEmails instead of emails. Set identifier to 'linkedinUrl', 'linkedinSlug', 'linkedinOrgId', or 'domain' and provide the corresponding value."
      }
     },
     "required": [
@@ -4332,7 +5032,8 @@
     "header": [],
     "body": [
      "input",
-     "enrichmentType"
+     "enrichmentType",
+     "company"
     ],
     "body_format": "json"
    }
@@ -4504,7 +5205,7 @@
        "string",
        "null"
       ],
-      "description": "Controls how thoroughly to search across all profiles in the batch. Higher values recover more matches at the cost of additional per-row latency; lower values return faster. Omit to use the recommended default.",
+      "description": "Controls how thoroughly to search. Higher values spend more time searching to recover more matches; lower values return faster. Omit to use the recommended default.",
       "enum": [
        "low",
        "high",
@@ -4523,7 +5224,7 @@
        "boolean",
        "null"
       ],
-      "description": "When true, returns detailed_work_experiences[] with company_details (domains, preferred_name, linkedin_primary_slug, li_org_id) for each work experience. Use this to get company domains for a person."
+      "description": "When true, returns detailed_work_experiences[] with company_details (domains, preferred_name, linkedin_primary_slug, li_org_id, employee_count_consensus, revenue_estimate) for each work experience. Use this to get company domains, size, and revenue for a person."
      }
     },
     "required": [
@@ -4715,7 +5416,7 @@
        "string",
        "null"
       ],
-      "description": "Controls how thoroughly to search. Higher values recover more matches at the cost of additional latency; lower values return faster. Omit to use the recommended default.",
+      "description": "Controls how thoroughly to search. Higher values spend more time searching to recover more matches; lower values return faster. Omit to use the recommended default.",
       "enum": [
        "low",
        "high",
@@ -4734,7 +5435,7 @@
        "boolean",
        "null"
       ],
-      "description": "When true, returns detailed_work_experiences[] with company_details (domains, preferred_name, linkedin_primary_slug, li_org_id) for each work experience. Use this to get company domains for a person."
+      "description": "When true, returns detailed_work_experiences[] with company_details (domains, preferred_name, linkedin_primary_slug, li_org_id, employee_count_consensus, revenue_estimate) for each work experience. Use this to get company domains, size, and revenue for a person."
      }
     },
     "required": []
@@ -4855,7 +5556,7 @@
   {
    "slug": "fiber-ai.list_api_requests",
    "name": "List your past api requests",
-   "description": "List the API requests your organization has made, newest first, with the parameters you sent and how each call turned out. Use it to answer 'what did my agent actually run?' \u2014 debugging a failed run, auditing usage, or quoting an `errorCode` in a support request. Filter by time range, route, method, status code, or error code, and page through results with `cursor`. History is retained for 7 days;",
+   "description": "List the API requests your organization has made, newest first, with the parameters you sent and how each call turned out. Use it to answer 'what did my agent actually run?' \u2014 debugging a failed run, auditing usage, or quoting an `errorCode` in a support request. Filter by time range, route, method, status code, or error code, and page through results with `cursor`. History is retained for 14 days",
    "input": {
     "type": "object",
     "properties": {
@@ -4864,7 +5565,7 @@
        "string",
        "null"
       ],
-      "description": "Only return requests received at or after this ISO 8601 timestamp. Logs are retained for 7 days, so earlier timestamps simply return nothing."
+      "description": "Only return requests received at or after this ISO 8601 timestamp. Logs are retained for 14 days, so earlier timestamps simply return nothing."
      },
      "to": {
       "type": [
@@ -4956,7 +5657,7 @@
   {
    "slug": "fiber-ai.list_available_tracker_rules",
    "name": "List available tracker rules",
-   "description": "Returns all available tracker rule types with descriptions, configuration schemas, example configs, and example signal payloads. Use this to discover what rules exist before creating tracker lists. The response is deterministic \u2014 same output on every call. \u26a1 Rate limit: 120 requests per 1 minute \ud83d\udcb0 Cost: FREE! No credits are charged for this API.&nbsp;\u24d8",
+   "description": "Returns the tracker rule types available to your organization, with descriptions, configuration schemas, example configs, and example signal payloads. Use this to discover what rules exist before creating tracker lists. Rules flagged `isPremium` monitor additional sources (news coverage and LinkedIn activity) \u2014 a list containing at least one bills at a minimum per-entity rate per refresh. \u26a1 Rate l",
    "input": {
     "type": "object",
     "properties": {},
@@ -5226,6 +5927,10 @@
       "type": "object",
       "description": "Which email and phone types to look for."
      },
+     "company": {
+      "type": "string",
+      "description": "Optional current company of the person. When provided, work emails whose domain does not match this company are returned in unmatchedWorkEmails instead of emails. Set identifier to 'linkedinUrl', 'linkedinSlug', 'linkedinOrgId', or 'domain' and provide the corresponding value."
+     },
      "patience": {
       "type": [
        "string",
@@ -5256,6 +5961,7 @@
     "body": [
      "input",
      "enrichmentType",
+     "company",
      "patience"
     ],
     "body_format": "json"
@@ -5313,6 +6019,111 @@
     "header": [],
     "body": [
      "query"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fiber-ai.lookalikes_export_csv",
+   "name": "Export lookalike results csv",
+   "description": "Export a finished lookalike run's graded target list as CSV text, ready to save as a file and share with a sales team. The run must have finished \u2014 poll until its status is 'done'. \u26a1 Rate limit: 30 requests per 1 minute \ud83d\udcb0 Cost: FREE! No credits are charged for this API.&nbsp;\u24d8",
+   "input": {
+    "type": "object",
+    "properties": {
+     "lookalikeRunId": {
+      "type": "string",
+      "description": "Identifier of a lookalike run, returned when the run started."
+     }
+    },
+    "required": [
+     "lookalikeRunId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.fiber.ai/v1/lookalikes/export-csv",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "lookalikeRunId"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fiber-ai.lookalikes_poll",
+   "name": "Poll lookalike run",
+   "description": "Poll a lookalike run for progress. Graded results appear when the run completes; poll until status is 'done' or 'failed'. \u26a1 Rate limit: 120 requests per 1 minute \ud83d\udcb0 Cost: FREE! No credits are charged for this API.&nbsp;\u24d8",
+   "input": {
+    "type": "object",
+    "properties": {
+     "lookalikeRunId": {
+      "type": "string",
+      "description": "Identifier of a lookalike run, returned when the run started."
+     }
+    },
+    "required": [
+     "lookalikeRunId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.fiber.ai/v1/lookalikes/poll",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "lookalikeRunId"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fiber-ai.lookalikes_trigger",
+   "name": "Start lookalike run",
+   "description": "Start an AI lookalike run: give it companies you like (by domain), and it finds and grades similar companies, grouped by the patterns in your list. Runs take a few minutes \u2014 poll for progress and results. \u26a1 Rate limit: 10 requests per 1 minute \ud83d\udcb0 Cost: 0.2 credits per lookalike found&nbsp;\u24d8",
+   "input": {
+    "type": "object",
+    "properties": {
+     "companies": {
+      "type": "array",
+      "description": "The companies to find lookalikes for, identified by domain. Lists longer than 100 companies are grouped from a 100-company sample (your highest-importance companies first); every company you submit is still excluded from the results."
+     },
+     "maxBuckets": {
+      "type": "integer",
+      "description": "Maximum number of company groupings (buckets) to build from your list."
+     },
+     "companyExclusionListIDs": {
+      "type": [
+       "array",
+       "null"
+      ],
+      "description": "IDs of your company exclusion lists, up to 20. Companies in these lists, and in your organization-wide exclusion lists, are never returned \u2014 for example your existing customers. Create and fill lists with the company exclusion list endpoints."
+     },
+     "filters": {
+      "type": [
+       "object",
+       "null"
+      ],
+      "description": "Only return lookalikes that match these company search filters \u2014 the same object company search takes, so you can reuse your company search filters as-is. Filters that pick specific companies and employee-based filters are not accepted; use exclusion lists to leave companies out. A filter you set replaces that part of each grouping's own search (lists you exclude are added to it). Omit to return l"
+     }
+    },
+    "required": [
+     "companies"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.fiber.ai/v1/lookalikes/trigger",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "companies",
+     "maxBuckets",
+     "companyExclusionListIDs",
+     "filters"
     ],
     "body_format": "json"
    }
@@ -5465,7 +6276,7 @@
        "array",
        "null"
       ],
-      "description": "Filter people by the companies they are currently working for. If you want to search over many companies, we suggest using the Combined Search API, which is optimized for this use case."
+      "description": "Filter people by the companies they are currently working for. Results include people at every company that can be matched; companies that can't be matched are skipped. If none of the companies can be matched, the search returns no results and no credits are charged. If a company can't be looked up right now, the request fails with a 503 and no credits are charged, so it is safe to retry. A Linked"
      },
      "prospectExclusionListIDs": {
       "type": [
@@ -5525,7 +6336,7 @@
        "array",
        "null"
       ],
-      "description": "Filter people by the companies they are currently working for. If you want to search over many companies, we suggest using the Combined Search API, which is optimized for this use case."
+      "description": "Filter people by the companies they are currently working for. Results include people at every company that can be matched; companies that can't be matched are skipped. If none of the companies can be matched, the search returns no results and no credits are charged. If a company can't be looked up right now, the request fails with a 503 and no credits are charged, so it is safe to retry. A Linked"
      },
      "prospectExclusionListIDs": {
       "type": [
@@ -5611,7 +6422,7 @@
   {
    "slug": "fiber-ai.poll_batch_live_enrich",
    "name": "Poll batch live enrichment",
-   "description": "Polls a batch live enrichment task for progress and results. Returns paginated enrichment results as they complete. Call repeatedly until status is 'completed' or 'failed'. \u26a1 Rate limit: 360 requests per 1 minute",
+   "description": "Polls a batch live enrichment task for progress and results. Returns paginated enrichment results as they complete. Call repeatedly until status is 'completed' or 'failed'. For profile batches, pass `getDetailedEducation`/`getDetailedWorkExperience` on a given poll call to include deep education/work-experience details in that page's results; this slows the call down, so only enable it if you need",
    "input": {
     "type": "object",
     "properties": {
@@ -5629,6 +6440,20 @@
      "take": {
       "type": "integer",
       "description": "Number of results per page. Defaults to 100."
+     },
+     "getDetailedEducation": {
+      "type": [
+       "boolean",
+       "null"
+      ],
+      "description": "Whether to include deep details about each educational item, like the school's LinkedIn URL, website, location, etc. That'll be put in the detailedEducation array. This slows down the API call, so only enable this if you need it."
+     },
+     "getDetailedWorkExperience": {
+      "type": [
+       "boolean",
+       "null"
+      ],
+      "description": "Whether to include deep details about each work experience item, like the company's LinkedIn URL, website, location, etc. That'll be put in the detailedWorkExperience array. This slows down the API call, so only enable this if you need it."
      }
     },
     "required": [
@@ -5644,7 +6469,9 @@
     "body": [
      "taskId",
      "cursor",
-     "take"
+     "take",
+     "getDetailedEducation",
+     "getDetailedWorkExperience"
     ],
     "body_format": "json"
    }
@@ -5680,7 +6507,7 @@
   {
    "slug": "fiber-ai.poll_exhaustive_contact_enrichment_result",
    "name": "Poll exhaustive contact details reveal result",
-   "description": "Polls the status of an exhaustive contact reveal task. Pass the task ID returned by /contact-details/exhaustive/start. This is intentionally slow (completion typically takes approximately 4\u20138 minutes), as we run multiple enrichment sources in parallel to maximize yield. Do NOT use this in time-sensitive applications -- try any of our other contact detail grabbing endpoints instead. Returns the cur",
+   "description": "Polls the status of an exhaustive contact reveal task. Pass the task ID returned by /contact-details/exhaustive/start. Exhaustive reveal is our slowest, maximum-coverage endpoint \u2014 expect the full run to take roughly 2\u20133 minutes (most tasks finish sooner). Poll every 15\u201330 seconds until done is true. If you need fast results, use /contact-details/turbo/sync, /contact-details/single, or /contact-de",
    "input": {
     "type": "object",
     "properties": {
@@ -5883,6 +6710,7 @@
        "CELEBRATE",
        "SUPPORT",
        "FUNNY",
+       "CURIOUS",
        null
       ]
      },
@@ -5915,20 +6743,20 @@
   {
    "slug": "fiber-ai.post_search_by_keywords",
    "name": "Search linked in posts by keywords",
-   "description": "Search LinkedIn posts using keyword-based queries. Returns a paginated list of posts matching the search criteria, up to 50 per page. **Keyword Search Syntax:** - **Exact phrase:** Wrap keywords in quotes for exact phrase matching. \"head of sales\" matches the exact phrase, not the individual words. - **AND:** Use **AND** between keywords to require both terms. sales **AND** engineering matches pos",
+   "description": "Search LinkedIn posts using keyword-based queries. Returns a paginated list of matching posts. A page contains at most 50 posts and may contain fewer. **Keyword Search Syntax:** - **Quoted phrase:** Wrap keywords in quotes to search for a phrase rather than the individual words, e.g. \"head of sales\". - **AND:** Use **AND** between keywords to look for both terms. sales **AND** engineering looks fo",
    "input": {
     "type": "object",
     "properties": {
      "keywords": {
       "type": "string",
-      "description": "Keywords to search for in LinkedIn posts (comma-separated)"
+      "description": "Boolean keyword query for LinkedIn posts. Use at most 5 AND/OR/NOT operators in total; operators inside quoted phrases don't count. See the endpoint description for syntax."
      },
      "recency": {
       "type": [
        "string",
        "null"
       ],
-      "description": "Filter by post age. Options: Day, Week, Month, Quarter, HalfYear, Year. Defaults to all time if omitted.",
+      "description": "Filter posts by how recently they were published. Omit to search posts from any time. Windows longer than a month can return fewer posts per page.",
       "enum": [
        "Day",
        "Week",
@@ -5981,7 +6809,7 @@
        "string",
        "null"
       ],
-      "description": "How long to wait for phone-number verification after a number is found. Higher patience increases average response time but improves identity and reachability accuracy. MINIMUM is the least thorough verification option.",
+      "description": "How long to wait for phone-number verification after a number is found: LOW waits up to 15 seconds, MEDIUM 30 seconds, HIGH 60 seconds, EXTREME 2 minutes, and MAXIMUM 10 minutes. Higher patience increases average response time but improves identity and reachability accuracy. MINIMUM is the least thorough verification option.",
       "enum": [
        "MINIMUM",
        "LOW",
@@ -6077,7 +6905,7 @@
   {
    "slug": "fiber-ai.profile_live_enrich",
    "name": "Live fetch linked in profile",
-   "description": "Returns an enriched profile with details (work experience, education, skills, location, etc.) for a given LinkedIn profile identifier. **Note:** This endpoint does NOT return emails or phone numbers. To retrieve a person's contact details (emails and phone numbers), use the `POST /contact-details/single` endpoint (synchronous, recommended) or the `POST /individual-reveal/start` + `POST /individual",
+   "description": "Returns an enriched profile with details (work experience, education, skills, location, etc.) for a given LinkedIn profile identifier. **Note:** This endpoint does NOT return emails or phone numbers. To retrieve a person's contact details (emails and phone numbers), use the `POST /contact-details/single` endpoint (synchronous). These can be found under the **Contact details** section. \u26a1 Rate limit",
    "input": {
     "type": "object",
     "properties": {
@@ -6285,7 +7113,7 @@
   {
    "slug": "fiber-ai.reddit_search",
    "name": "Search reddit posts",
-   "description": "Search Reddit posts across all subreddits by query, optionally filtered by sort order and timeframe. Returns a paginated list of posts. Use the `nextPageToken` field from the response to retrieve subsequent pages. Queries with no matching posts return an empty list and are not charged credits. \u26a1 Rate limit: 300 requests per 1 minute \ud83d\udcb0 Cost: 2 credits per page of results&nbsp;\u24d8",
+   "description": "Search Reddit posts across all subreddits by query, optionally filtered by sort order and timeframe. Returns a paginated list of posts. Use the `nextPageToken` field from the response to retrieve subsequent pages. A query with no matching posts returns an empty list and is still charged. \u26a1 Rate limit: 300 requests per 1 minute \ud83d\udcb0 Cost: 2 credits per page of results&nbsp;\u24d8",
    "input": {
     "type": "object",
     "properties": {
@@ -6295,7 +7123,7 @@
      },
      "sort": {
       "type": "string",
-      "description": "Sort order for global Reddit post search.",
+      "description": "Sort order for global Reddit post search. Use `relevance` for research queries and `new` for monitoring a topic. `new` can include off-topic posts and posts outside `timeframe`, so check `publishedAt`.",
       "enum": [
        "relevance",
        "new",
@@ -6470,7 +7298,7 @@
   {
    "slug": "fiber-ai.refresh_tracker_company_list",
    "name": "Refresh company tracker list",
-   "description": "Initiate an immediate refresh of all tracked companies in this list. Each entity is checked for changes against its current monitoring rules. Credits are charged per entity processed. \u26a1 Rate limit: 120 requests per 1 minute \ud83d\udcb0 Cost: Credits charged per entity processed (silver/gold tier based on org volume).&nbsp;\u24d8",
+   "description": "Initiate an immediate refresh of all tracked companies in this list. Each entity is checked for changes against its current monitoring rules. Credits are charged per entity processed. \u26a1 Rate limit: 120 requests per 1 minute \ud83d\udcb0 Cost: Credits charged per entity processed, tiered by organization volume. Lists containing premium rules bill at a minimum per-entity rate \u2014 see your plan's pricing for rate",
    "input": {
     "type": "object",
     "properties": {
@@ -6498,7 +7326,7 @@
   {
    "slug": "fiber-ai.refresh_tracker_person_list",
    "name": "Refresh person tracker list",
-   "description": "Initiate an immediate refresh of all tracked people in this list. Each entity is checked for changes against its current monitoring rules. Credits are charged per entity processed. \u26a1 Rate limit: 120 requests per 1 minute \ud83d\udcb0 Cost: Credits charged per entity processed (silver/gold tier based on org volume).&nbsp;\u24d8",
+   "description": "Initiate an immediate refresh of all tracked people in this list. Each entity is checked for changes against its current monitoring rules. Credits are charged per entity processed. \u26a1 Rate limit: 120 requests per 1 minute \ud83d\udcb0 Cost: Credits charged per entity processed, tiered by organization volume. Lists containing premium rules bill at a minimum per-entity rate \u2014 see your plan's pricing for rates.&",
    "input": {
     "type": "object",
     "properties": {
@@ -6662,6 +7490,76 @@
    }
   },
   {
+   "slug": "fiber-ai.reschedule_tracker_company_list",
+   "name": "Reschedule company tracker list refresh",
+   "description": "Move this list's next scheduled refresh to a chosen date (UTC) \u2014 later (for example to skip a cycle or align with a billing period) or earlier, as long as the date is tomorrow or later. The refresh runs on the chosen date and checks all tracked companies in the list, with credits charged per entity as usual. Future refreshes continue at the list's regular interval, counted from the rescheduled run",
+   "input": {
+    "type": "object",
+    "properties": {
+     "listId": {
+      "type": "string",
+      "description": "The unique ID of the tracker list."
+     },
+     "nextRefreshDate": {
+      "type": "string",
+      "description": "The date (YYYY-MM-DD, UTC) on which the next scheduled refresh should run. Must be tomorrow (UTC) or later, and at most 90 days ahead. To refresh a list immediately, use the refresh endpoint instead. Subsequent refreshes continue at the list's regular interval, counted from this run."
+     }
+    },
+    "required": [
+     "listId",
+     "nextRefreshDate"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.fiber.ai/v1/tracker/company-lists/{listId}/reschedule",
+    "path": [
+     "listId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "nextRefreshDate"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fiber-ai.reschedule_tracker_person_list",
+   "name": "Reschedule person tracker list refresh",
+   "description": "Move this list's next scheduled refresh to a chosen date (UTC) \u2014 later (for example to skip a cycle or align with a billing period) or earlier, as long as the date is tomorrow or later. The refresh runs on the chosen date and checks all tracked people in the list, with credits charged per entity as usual. Future refreshes continue at the list's regular interval, counted from the rescheduled run. C",
+   "input": {
+    "type": "object",
+    "properties": {
+     "listId": {
+      "type": "string",
+      "description": "The unique ID of the tracker list."
+     },
+     "nextRefreshDate": {
+      "type": "string",
+      "description": "The date (YYYY-MM-DD, UTC) on which the next scheduled refresh should run. Must be tomorrow (UTC) or later, and at most 90 days ahead. To refresh a list immediately, use the refresh endpoint instead. Subsequent refreshes continue at the list's regular interval, counted from this run."
+     }
+    },
+    "required": [
+     "listId",
+     "nextRefreshDate"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.fiber.ai/v1/tracker/person-lists/{listId}/reschedule",
+    "path": [
+     "listId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "nextRefreshDate"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "fiber-ai.reset_api_key_usage",
    "name": "Reset api key usage",
    "description": "Reset an API key's lifetime usage back to zero. Acts on the key that authenticates this request unless target is OTHER. Use this after raising a key's limit, or to give a key a fresh allowance without changing its ceiling. First-time users: create your initial API key at https://app.fiber.ai or via POST /v1/account/send-otp + verify-otp. This endpoint manages keys once you have one. \u26a1 Rate limit: ",
@@ -6730,7 +7628,7 @@
   {
    "slug": "fiber-ai.reverse_phone_lookup",
    "name": "Find person or company by phone (single)",
-   "description": "Given a phone number, find the associated LinkedIn profile or company. Mobile and home phones typically resolve to people, while front desk or business phones may resolve to companies. Only charges 1 credit when a result is found. No charge for invalid numbers or misses. If you have additional identifiers (name, company, email) beyond just the phone number, use the Kitchen Sink endpoint instead fo",
+   "description": "Given a phone number, find the associated LinkedIn profile or company. Mobile and home phones typically resolve to people, while front desk or business phones may resolve to companies. Credits are charged only when a result is found. No charge for invalid numbers or misses. If you have additional identifiers (name, company, email) beyond just the phone number, use the Kitchen Sink endpoint instead",
    "input": {
     "type": "object",
     "properties": {
@@ -6845,9 +7743,9 @@
        "batch_contact_enrich_v1.completed",
        "github_to_linkedin.completed",
        "github_lookup.completed",
+       "github_org_contributors.completed",
        "domain_lookup.completed",
-       "social_media_lookup.completed",
-       "google_maps_search.completed"
+       "social_media_lookup.completed"
       ]
      }
     },
@@ -6942,7 +7840,7 @@
      },
      "pageSize": {
       "type": "integer",
-      "description": "Number of results per page (1-1000). Applied to whichever result type is returned."
+      "description": "Number of results per page. Applied to whichever result type is returned."
      },
      "companyExclusionListIDs": {
       "type": [
@@ -7525,6 +8423,25 @@
    }
   },
   {
+   "slug": "fiber-ai.sync_budgeted_contact_reveal",
+   "name": "Reveal contact details (time budgeted)",
+   "description": "Return a person's work email, personal email, and/or phone number, guaranteed to finish within your specified time window. You can pick how deep in our 'waterfall' we go; higher depths increase yield but will cost more. This is a beta endpoint, but we recommend trying it over the other contact reveal endpoints. \u26a1 Rate limit: 120 requests per 1 minute \ud83d\udcb0 Cost: Only delivered items are billed \u2014 nothi",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.fiber.ai/v1/contact-details/reveal",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "fiber-ai.sync_quick_contact_reveal",
    "name": "Reveal contact details (standard)",
    "description": "Standard synchronous contact reveal \u2014 the best balance of speed, cost, and coverage. Accepts a LinkedIn profile URL, slug, Sales Navigator URN, or numeric LinkedIn user ID; profile details are resolved automatically. For faster results at a higher credit cost, use the /contact-details/turbo/sync endpoint. For maximum coverage (async, slower, higher cost), use the /contact-details/exhaustive/start ",
@@ -7561,6 +8478,10 @@
        "null"
       ],
       "description": "Deprecated \u2014 use `patience` instead. When false, maps to patience: MINIMUM. Ignored if `patience` is also provided."
+     },
+     "company": {
+      "type": "string",
+      "description": "Optional current company of the person. When provided, work emails whose domain does not match this company are returned in unmatchedWorkEmails instead of emails. Set identifier to 'linkedinUrl', 'linkedinSlug', 'linkedinOrgId', or 'domain' and provide the corresponding value."
      }
     },
     "required": [
@@ -7577,7 +8498,8 @@
      "linkedinUrl",
      "enrichmentType",
      "patience",
-     "validateEmails"
+     "validateEmails",
+     "company"
     ],
     "body_format": "json"
    }
@@ -7612,6 +8534,10 @@
        "MAXIMUM",
        null
       ]
+     },
+     "company": {
+      "type": "string",
+      "description": "Optional current company of the person. When provided, work emails whose domain does not match this company are returned in unmatchedWorkEmails instead of emails. Set identifier to 'linkedinUrl', 'linkedinSlug', 'linkedinOrgId', or 'domain' and provide the corresponding value."
      }
     },
     "required": [
@@ -7627,7 +8553,8 @@
     "body": [
      "linkedinUrl",
      "enrichmentType",
-     "patience"
+     "patience",
+     "company"
     ],
     "body_format": "json"
    }
@@ -8230,7 +9157,7 @@
   {
    "slug": "fiber-ai.trigger_exhaustive_contact_enrichment",
    "name": "Start exhaustive contact details reveal",
-   "description": "Maximum-coverage contact reveal \u2014 runs all parallel enrichment branches to get the most comprehensive results. This is asynchronous: call this endpoint to start the task, then poll /contact-details/exhaustive/poll with the returned task ID. Results typically arrive within seconds to a few minutes; worst case can take up to about 4\u20138 minutes. Slower and more expensive than the synchronous endpoints",
+   "description": "Maximum-coverage contact reveal \u2014 runs multiple enrichment sources in parallel for the highest yield. This is our SLOWEST endpoint by design: expect to wait roughly 2\u20133 minutes for results. This is an asynchronous operation \u2014 call it to start the task, then poll /contact-details/exhaustive/poll with the returned task ID every 15\u201330 seconds. Do NOT use this endpoint in time-sensitive flows. If spee",
    "input": {
     "type": "object",
     "properties": {
@@ -8299,7 +9226,7 @@
   {
    "slug": "fiber-ai.twitter_profile",
    "name": "Fetch twitter x user profile",
-   "description": "Fetches the public profile for a Twitter/X user by handle. Returns follower/following counts, bio, verification status, and account metadata. \u26a1 Rate limit: 300 requests per 1 minute \ud83d\udcb0 Cost: 2 credits per request&nbsp;\u24d8",
+   "description": "Fetches the public profile for a Twitter/X user by handle. Returns follower/following counts, bio, verification status, and account metadata. \u26a1 Rate limit: 500 requests per 1 minute \ud83d\udcb0 Cost: 2 credits per request&nbsp;\u24d8",
    "input": {
     "type": "object",
     "properties": {
@@ -8327,7 +9254,7 @@
   {
    "slug": "fiber-ai.twitter_search",
    "name": "Search twitter x tweets",
-   "description": "Searches for tweets matching a query. Supports standard Twitter search operators (e.g. 'TypeScript from:elonmusk lang:en'). Returns a paginated list of matching tweets. Use the `cursor` field from the response to retrieve subsequent pages. \u26a1 Rate limit: 300 requests per 1 minute \ud83d\udcb0 Cost: 2 credits per page of results&nbsp;\u24d8",
+   "description": "Searches for tweets matching a query. Returns a paginated list of matching tweets. Use the `cursor` field from the response to retrieve subsequent pages. **Query behavior:** - The query is run as written and supports X search operators, e.g. `lang:en`, `from:handle`, `since:2026-01-01`, `-filter:retweets`. - A broad OR term matches any tweet that contains it, so prefer specific phrases. - Very lon",
    "input": {
     "type": "object",
     "properties": {
@@ -8363,7 +9290,7 @@
   {
    "slug": "fiber-ai.twitter_tweet_details",
    "name": "Fetch twitter x tweet details",
-   "description": "Fetches details for a single tweet by its numeric ID. Returns full text, engagement metrics (likes, retweets, replies, views), and metadata. \u26a1 Rate limit: 300 requests per 1 minute \ud83d\udcb0 Cost: 2 credits per request&nbsp;\u24d8",
+   "description": "Fetches details for a single tweet by its numeric ID. Returns full text, engagement metrics (likes, retweets, replies, views), and metadata. \u26a1 Rate limit: 500 requests per 1 minute \ud83d\udcb0 Cost: 2 credits per request&nbsp;\u24d8",
    "input": {
     "type": "object",
     "properties": {
@@ -8391,7 +9318,7 @@
   {
    "slug": "fiber-ai.twitter_tweet_quotes",
    "name": "Fetch twitter x tweet quote tweets",
-   "description": "Fetches a page of quote tweets for a tweet. Use the `cursor` field from the response to retrieve subsequent pages. \u26a1 Rate limit: 300 requests per 1 minute \ud83d\udcb0 Cost: 2 credits per page of results&nbsp;\u24d8",
+   "description": "Fetches a page of quote tweets for a tweet. Use the `cursor` field from the response to retrieve subsequent pages. \u26a1 Rate limit: 500 requests per 1 minute \ud83d\udcb0 Cost: 2 credits per page of results&nbsp;\u24d8",
    "input": {
     "type": "object",
     "properties": {
@@ -8427,7 +9354,7 @@
   {
    "slug": "fiber-ai.twitter_tweet_replies",
    "name": "Fetch twitter x tweet replies",
-   "description": "Fetches a page of replies to a tweet. Use the `cursor` field from the response to retrieve subsequent pages. \u26a1 Rate limit: 300 requests per 1 minute \ud83d\udcb0 Cost: 2 credits per page of results&nbsp;\u24d8",
+   "description": "Fetches a page of replies to a tweet. Use the `cursor` field from the response to retrieve subsequent pages. \u26a1 Rate limit: 500 requests per 1 minute \ud83d\udcb0 Cost: 2 credits per page of results&nbsp;\u24d8",
    "input": {
     "type": "object",
     "properties": {
@@ -8463,7 +9390,7 @@
   {
    "slug": "fiber-ai.twitter_tweet_retweeters",
    "name": "Fetch twitter x tweet retweeters",
-   "description": "Fetches a page of users who retweeted a tweet. Use the `cursor` field from the response to retrieve subsequent pages. \u26a1 Rate limit: 300 requests per 1 minute \ud83d\udcb0 Cost: 2 credits per page of results&nbsp;\u24d8",
+   "description": "Fetches a page of users who retweeted a tweet. Use the `cursor` field from the response to retrieve subsequent pages. \u26a1 Rate limit: 500 requests per 1 minute \ud83d\udcb0 Cost: 2 credits per page of results&nbsp;\u24d8",
    "input": {
     "type": "object",
     "properties": {
@@ -8499,7 +9426,7 @@
   {
    "slug": "fiber-ai.twitter_user_followers",
    "name": "Fetch twitter x user followers",
-   "description": "Fetches a page of followers for a Twitter/X user. Use the `cursor` field from the response to retrieve subsequent pages. \u26a1 Rate limit: 300 requests per 1 minute \ud83d\udcb0 Cost: 2 credits per page of results&nbsp;\u24d8",
+   "description": "Fetches a page of followers for a Twitter/X user. Use the `cursor` field from the response to retrieve subsequent pages. \u26a1 Rate limit: 500 requests per 1 minute \ud83d\udcb0 Cost: 2 credits per page of results&nbsp;\u24d8",
    "input": {
     "type": "object",
     "properties": {
@@ -8535,7 +9462,7 @@
   {
    "slug": "fiber-ai.twitter_user_following",
    "name": "Fetch twitter x user following",
-   "description": "Fetches a page of accounts a Twitter/X user follows. Use the `cursor` field from the response to retrieve subsequent pages. \u26a1 Rate limit: 300 requests per 1 minute \ud83d\udcb0 Cost: 2 credits per page of results&nbsp;\u24d8",
+   "description": "Fetches a page of accounts a Twitter/X user follows. Use the `cursor` field from the response to retrieve subsequent pages. \u26a1 Rate limit: 500 requests per 1 minute \ud83d\udcb0 Cost: 2 credits per page of results&nbsp;\u24d8",
    "input": {
     "type": "object",
     "properties": {
@@ -8571,7 +9498,7 @@
   {
    "slug": "fiber-ai.twitter_user_mentions",
    "name": "Fetch twitter x user mentions",
-   "description": "Fetches a page of tweets that mention a Twitter/X user. Use the `cursor` field from the response to retrieve subsequent pages. \u26a1 Rate limit: 300 requests per 1 minute \ud83d\udcb0 Cost: 2 credits per page of results&nbsp;\u24d8",
+   "description": "Fetches a page of tweets that mention a Twitter/X user. Use the `cursor` field from the response to retrieve subsequent pages. \u26a1 Rate limit: 500 requests per 1 minute \ud83d\udcb0 Cost: 2 credits per page of results&nbsp;\u24d8",
    "input": {
     "type": "object",
     "properties": {
@@ -8607,7 +9534,7 @@
   {
    "slug": "fiber-ai.twitter_user_tweets",
    "name": "Fetch twitter x user tweets",
-   "description": "Fetches the latest tweets for a Twitter/X user. Returns a paginated list of tweets with engagement metrics. Use the `cursor` field from the response to retrieve subsequent pages. \u26a1 Rate limit: 300 requests per 1 minute \ud83d\udcb0 Cost: 2 credits per page of results&nbsp;\u24d8",
+   "description": "Fetches the latest tweets for a Twitter/X user. Returns a paginated list of tweets with engagement metrics. Use the `cursor` field from the response to retrieve subsequent pages. \u26a1 Rate limit: 500 requests per 1 minute \ud83d\udcb0 Cost: 2 credits per page of results&nbsp;\u24d8",
    "input": {
     "type": "object",
     "properties": {
@@ -8737,8 +9664,8 @@
   },
   {
    "slug": "fiber-ai.update_api_key_limit",
-   "name": "Update api key credit limit",
-   "description": "Change the lifetime credit ceiling of an API key. Acts on the key that authenticates this request unless target is OTHER. Use set to pin an absolute limit, increase or decrease to adjust it by a number of credits, multiply or divide to scale it, or remove to make the key unlimited. Once a key's usage reaches its limit it can no longer authenticate until the limit is raised or removed. First-time u",
+   "name": "Update api key credit limits",
+   "description": "Change a credit limit of an API key: its lifetime limit (default), its daily limit (resets at midnight UTC), or its weekly limit (resets Monday at midnight UTC), chosen with window. Acts on the key that authenticates this request unless target is OTHER. Use set to pin an absolute limit, increase or decrease to adjust it by a number of credits, multiply or divide to scale it, or remove to drop the ",
    "input": {
     "type": "object",
     "properties": {
@@ -8757,9 +9684,18 @@
       ],
       "description": "The key to act on when target is OTHER. Must belong to your organization. You can pass prefix, id, or the raw key. Omit when target is SELF."
      },
+     "window": {
+      "type": "string",
+      "description": "Which limit to change. lifetime: the key's total ceiling, which never resets. day: a daily limit that resets at midnight UTC. week: a weekly limit that resets Monday at midnight UTC. Each is independent; a request is blocked once any of them is reached. Defaults to lifetime.",
+      "enum": [
+       "lifetime",
+       "day",
+       "week"
+      ]
+     },
      "operation": {
       "type": "string",
-      "description": "set: pin an absolute credit ceiling. increase/decrease: adjust the current ceiling by a number of credits. multiply/divide: scale the current ceiling by a factor. remove: make the key unlimited. increase, decrease, multiply, and divide have no effect on an already-unlimited key; use set to establish a ceiling first.",
+      "description": "set: pin an absolute credit limit. increase/decrease: adjust the current limit by a number of credits. multiply/divide: scale the current limit by a factor. remove: remove the limit. increase, decrease, multiply, and divide have no effect when there is no limit; use set to establish one first. Applies to the limit chosen by window.",
       "enum": [
        "set",
        "increase",
@@ -8797,6 +9733,7 @@
     "body": [
      "target",
      "targetApiKey",
+     "window",
      "operation",
      "credits",
      "factor"
@@ -9030,7 +9967,7 @@
   {
    "slug": "fiber-ai.update_tracker_company_list",
    "name": "Update company tracker list",
-   "description": "Update a company tracker list. Supports replace-all (`trackingRules`) or granular (`addRules`/`removeRuleIds`) rule management \u2014 but not both in one request. \u26a1 Rate limit: 120 requests per 1 minute \ud83d\udcb0 Cost: FREE! No credits are charged for this API.&nbsp;\u24d8",
+   "description": "Update a company tracker list. Supports replace-all (`trackingRules`) or granular (`addRules`/`removeRuleIds`) rule management \u2014 but not both in one request. Adding a premium rule (marked `isPremium` in GET /tracker/rules) makes the list bill at a minimum per-entity rate \u2014 see your plan's pricing for rates. \u26a1 Rate limit: 120 requests per 1 minute \ud83d\udcb0 Cost: FREE! No credits are charged for this API.&",
    "input": {
     "type": "object",
     "properties": {
@@ -9071,7 +10008,7 @@
        "array",
        "null"
       ],
-      "description": "Replace ALL existing rules with this set. Pass empty array to clear all rules. Omit to leave unchanged. Cannot be used with `addRules`/`removeRuleIds`."
+      "description": "Replace ALL existing rules with this set. Pass empty array to clear all rules. Omit to leave unchanged. Cannot be used with `addRules`/`removeRuleIds`. Rules marked `isPremium` in GET /tracker/rules make the list bill at a minimum per-entity rate."
      },
      "addRules": {
       "type": [
@@ -9131,7 +10068,7 @@
   {
    "slug": "fiber-ai.update_tracker_person_list",
    "name": "Update person tracker list",
-   "description": "Update a person tracker list. Supports replace-all (`trackingRules`) or granular (`addRules`/`removeRuleIds`) rule management \u2014 but not both in one request. \u26a1 Rate limit: 120 requests per 1 minute \ud83d\udcb0 Cost: FREE! No credits are charged for this API.&nbsp;\u24d8",
+   "description": "Update a person tracker list. Supports replace-all (`trackingRules`) or granular (`addRules`/`removeRuleIds`) rule management \u2014 but not both in one request. Adding a premium rule (marked `isPremium` in GET /tracker/rules) makes the list bill at a minimum per-entity rate \u2014 see your plan's pricing for rates. \u26a1 Rate limit: 120 requests per 1 minute \ud83d\udcb0 Cost: FREE! No credits are charged for this API.&n",
    "input": {
     "type": "object",
     "properties": {
@@ -9172,7 +10109,7 @@
        "array",
        "null"
       ],
-      "description": "Replace ALL existing rules with this set. Pass empty array to clear all rules. Omit to leave unchanged. Cannot be used with `addRules`/`removeRuleIds`."
+      "description": "Replace ALL existing rules with this set. Pass empty array to clear all rules. Omit to leave unchanged. Cannot be used with `addRules`/`removeRuleIds`. Rules marked `isPremium` in GET /tracker/rules make the list bill at a minimum per-entity rate."
      },
      "addRules": {
       "type": [
@@ -9306,7 +10243,7 @@
        "string",
        "null"
       ],
-      "description": "How long to wait for phone-number verification after a number is found. Higher patience increases average response time but improves identity and reachability accuracy. MINIMUM is the least thorough verification option.",
+      "description": "How long to wait for phone-number verification after a number is found: LOW waits up to 15 seconds, MEDIUM 30 seconds, HIGH 60 seconds, EXTREME 2 minutes, and MAXIMUM 10 minutes. Higher patience increases average response time but improves identity and reachability accuracy. MINIMUM is the least thorough verification option.",
       "enum": [
        "MINIMUM",
        "LOW",
@@ -9388,7 +10325,7 @@
   {
    "slug": "fiber-ai.yelp_place",
    "name": "Get a yelp business page",
-   "description": "Get detailed information about a Yelp Place. Search for Yelp places via /yelp/search endpoint. \u26a1 Rate limit: 120 requests per 1 minute \ud83d\udcb0 Cost: 2 credits per business page&nbsp;\u24d8",
+   "description": "Get detailed information about a Yelp Place. Search for Yelp places via /yelp/search endpoint. Business details can be up to 7 days old. \u26a1 Rate limit: 120 requests per 1 minute \ud83d\udcb0 Cost: 2 credits per business page&nbsp;\u24d8",
    "input": {
     "type": "object",
     "properties": {
@@ -9416,7 +10353,7 @@
   {
    "slug": "fiber-ai.yelp_reviews",
    "name": "Get yelp business reviews",
-   "description": "Get reviews of a Yelp business, paginated, with reviewer details, ratings, and full review text. Obtain the business ID via the /yelp/search endpoint. \u26a1 Rate limit: 120 requests per 1 minute \ud83d\udcb0 Cost: 2 credits per reviews page&nbsp;\u24d8",
+   "description": "Get reviews of a Yelp business, paginated, with reviewer details, ratings, and full review text. Obtain the business ID via the /yelp/search endpoint. Reviews can be up to 7 days old. \u26a1 Rate limit: 120 requests per 1 minute \ud83d\udcb0 Cost: 2 credits per reviews page&nbsp;\u24d8",
    "input": {
     "type": "object",
     "properties": {

@@ -14,201 +14,178 @@ vouches for**: read it, then read their reference.
 ---
 # Lightfield
 
-> Lightfield is an agent-native CRM platform. It captures customer interactions as unstructured data, organizes them in a context graph of CRM objects, and uses AI agents to automate updates, prep, and follow-ups. The API provides read/write access to every CRM entity.
+> Product help, technical integration guides and generated API reference for Lightfield.
 
-> Every page below has a Markdown endpoint — append `.md` to any documentation URL to get LLM-friendly content.
+> Every link below points to the page’s Markdown endpoint.
 
-## Getting Started
+## Help center
 
-## Objects in Lightfield
+- [API keys](https://docs.lightfield.app/help/settings/api-keys/index.md)
+- [Formula function reference](https://docs.lightfield.app/help/settings/data-model/formula-functions/index.md)
 
-## Automations
+## API guides
 
-## Sequences
-
-## Workflows
-
-## Using the API
-
-- [API keys](https://docs.lightfield.app/using-the-api/api-keys/index.md)
+- [API guides](https://docs.lightfield.app/api-guides/index.md)
+- [Authenticate API requests](https://docs.lightfield.app/using-the-api/api-keys/index.md)
+- [Create lists and manage membership](https://docs.lightfield.app/using-the-api/curated-lists/index.md)
 - [Emails and attachments](https://docs.lightfield.app/using-the-api/emails-and-attachments/index.md)
+- [Enrich accounts and contacts](https://docs.lightfield.app/using-the-api/enrichment/index.md)
 - [Errors](https://docs.lightfield.app/using-the-api/errors/index.md)
 - [Fields and relationships](https://docs.lightfield.app/using-the-api/fields-and-relationships/index.md)
 - [Uploading files](https://docs.lightfield.app/using-the-api/file-uploads/index.md)
 - [Idempotency](https://docs.lightfield.app/using-the-api/idempotency/index.md)
 - [Leaked API key remediation](https://docs.lightfield.app/using-the-api/leaked-api-key-remediation/index.md)
 - [List methods](https://docs.lightfield.app/using-the-api/list-endpoints/index.md)
+- [Create and maintain meeting records](https://docs.lightfield.app/using-the-api/manage-meetings/index.md)
+- [Create, update and restore records](https://docs.lightfield.app/using-the-api/manage-records/index.md)
+- [Inspect senders and change pacing](https://docs.lightfield.app/using-the-api/manage-senders/index.md)
+- [Find members for assignments](https://docs.lightfield.app/using-the-api/members/index.md)
+- [Merge duplicate records with the API](https://docs.lightfield.app/using-the-api/merge-records/index.md)
+- [Read messages and manage channels](https://docs.lightfield.app/using-the-api/messages-and-channels/index.md)
+- [Object types](https://docs.lightfield.app/using-the-api/object-types/index.md)
 - [Rate limits](https://docs.lightfield.app/using-the-api/rate-limits/index.md)
 - [Retrieving meeting transcripts](https://docs.lightfield.app/using-the-api/retrieving-meeting-transcripts/index.md)
 - [Scopes](https://docs.lightfield.app/using-the-api/scopes/index.md)
+- [Using sequences with the API](https://docs.lightfield.app/using-the-api/sequences/index.md)
+- [Uploading contact avatars](https://docs.lightfield.app/using-the-api/uploading-contact-avatars/index.md)
 - [Uploading knowledge files](https://docs.lightfield.app/using-the-api/uploading-knowledge-files/index.md)
 - [Uploading meeting transcripts](https://docs.lightfield.app/using-the-api/uploading-meeting-transcripts/index.md)
+- [Check a workflow run](https://docs.lightfield.app/using-the-api/workflow-runs/index.md)
 
-## API Reference
+## API reference
 
-Available in HTTP.
+Endpoint links use the language-neutral HTTP reference. The reference language switcher provides SDK and CLI versions.
 
-### Account
-
-Overview: [HTTP](https://docs.lightfield.app/api/resources/(resource) account/index.md)
-
-- Create: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) account > (method) create/index.md)
-- Definitions: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) account > (method) definitions/index.md)
-- Delete: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) account > (method) delete/index.md)
-- Field History: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) account > (method) fieldHistory/index.md)
-- List: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) account > (method) list/index.md)
-- Retrieve: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) account > (method) retrieve/index.md)
-- Update: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) account > (method) update/index.md)
-
-### Auth
-
-Overview: [HTTP](https://docs.lightfield.app/api/resources/(resource) auth/index.md)
-
-- Validate: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) auth > (method) validate/index.md)
-
-### Channel
-
-Overview: [HTTP](https://docs.lightfield.app/api/resources/(resource) channel/index.md)
-
-- List: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) channel > (method) list/index.md)
-- Retrieve: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) channel > (method) retrieve/index.md)
-
-### Contact
-
-Overview: [HTTP](https://docs.lightfield.app/api/resources/(resource) contact/index.md)
-
-- Create: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) contact > (method) create/index.md)
-- Definitions: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) contact > (method) definitions/index.md)
-- Delete: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) contact > (method) delete/index.md)
-- Field History: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) contact > (method) fieldHistory/index.md)
-- List: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) contact > (method) list/index.md)
-- Retrieve: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) contact > (method) retrieve/index.md)
-- Update: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) contact > (method) update/index.md)
-
-### Email
-
-Overview: [HTTP](https://docs.lightfield.app/api/resources/(resource) email/index.md)
-
-- Draft: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) email > (method) draft/index.md)
-- List: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) email > (method) list/index.md)
-- Retrieve: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) email > (method) retrieve/index.md)
-- Send: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) email > (method) send/index.md)
-
-### Enrichment Run
-
-Overview: [HTTP](https://docs.lightfield.app/api/resources/(resource) enrichmentRun/index.md)
-
-- Enrich: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) enrichmentRun > (method) enrich/index.md)
-- Get Enrichment Run: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) enrichmentRun > (method) getEnrichmentRun/index.md)
-
-### File
-
-Overview: [HTTP](https://docs.lightfield.app/api/resources/(resource) file/index.md)
-
-- Cancel: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) file > (method) cancel/index.md)
-- Complete: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) file > (method) complete/index.md)
-- Create: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) file > (method) create/index.md)
-- List: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) file > (method) list/index.md)
-- Retrieve: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) file > (method) retrieve/index.md)
-- URL: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) file > (method) url/index.md)
-
-### List
-
-Overview: [HTTP](https://docs.lightfield.app/api/resources/(resource) list/index.md)
-
-- Create: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) list > (method) create/index.md)
-- Delete: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) list > (method) delete/index.md)
-- List: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) list > (method) list/index.md)
-- List Accounts: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) list > (method) listAccounts/index.md)
-- List Contacts: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) list > (method) listContacts/index.md)
-- List Opportunities: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) list > (method) listOpportunities/index.md)
-- Retrieve: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) list > (method) retrieve/index.md)
-- Update: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) list > (method) update/index.md)
-
-### Meeting
-
-Overview: [HTTP](https://docs.lightfield.app/api/resources/(resource) meeting/index.md)
-
-- Create: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) meeting > (method) create/index.md)
-- Definitions: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) meeting > (method) definitions/index.md)
-- Delete: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) meeting > (method) delete/index.md)
-- List: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) meeting > (method) list/index.md)
-- Retrieve: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) meeting > (method) retrieve/index.md)
-- Update: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) meeting > (method) update/index.md)
-
-### Member
-
-Overview: [HTTP](https://docs.lightfield.app/api/resources/(resource) member/index.md)
-
-- List: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) member > (method) list/index.md)
-- Retrieve: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) member > (method) retrieve/index.md)
-
-### Merge
-
-Overview: [HTTP](https://docs.lightfield.app/api/resources/(resource) merge/index.md)
-
-- Get Merge: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) merge > (method) getMerge/index.md)
-- Merge Accounts: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) merge > (method) mergeAccounts/index.md)
-- Merge Contacts: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) merge > (method) mergeContacts/index.md)
-- Merge Object Values: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) merge > (method) mergeObjectValues/index.md)
-- Merge Opportunities: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) merge > (method) mergeOpportunities/index.md)
-
-### Message
-
-Overview: [HTTP](https://docs.lightfield.app/api/resources/(resource) message/index.md)
-
-- List: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) message > (method) list/index.md)
-- Retrieve: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) message > (method) retrieve/index.md)
-
-### Note
-
-Overview: [HTTP](https://docs.lightfield.app/api/resources/(resource) note/index.md)
-
-- Create: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) note > (method) create/index.md)
-- Definitions: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) note > (method) definitions/index.md)
-- Delete: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) note > (method) delete/index.md)
-- List: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) note > (method) list/index.md)
-- Retrieve: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) note > (method) retrieve/index.md)
-- Update: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) note > (method) update/index.md)
-
-### Object
-
-Overview: [HTTP](https://docs.lightfield.app/api/resources/(resource) object/index.md)
-
-- Create: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) object > (method) create/index.md)
-- Definitions: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) object > (method) definitions/index.md)
-- Delete: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) object > (method) delete/index.md)
-- Field History: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) object > (method) fieldHistory/index.md)
-- List: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) object > (method) list/index.md)
-- List Definitions: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) object > (method) listDefinitions/index.md)
-- Retrieve: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) object > (method) retrieve/index.md)
-- Update: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) object > (method) update/index.md)
-
-### Opportunity
-
-Overview: [HTTP](https://docs.lightfield.app/api/resources/(resource) opportunity/index.md)
-
-- Create: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) opportunity > (method) create/index.md)
-- Definitions: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) opportunity > (method) definitions/index.md)
-- Delete: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) opportunity > (method) delete/index.md)
-- Field History: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) opportunity > (method) fieldHistory/index.md)
-- List: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) opportunity > (method) list/index.md)
-- Retrieve: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) opportunity > (method) retrieve/index.md)
-- Update: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) opportunity > (method) update/index.md)
-
-### Task
-
-Overview: [HTTP](https://docs.lightfield.app/api/resources/(resource) task/index.md)
-
-- Create: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) task > (method) create/index.md)
-- Definitions: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) task > (method) definitions/index.md)
-- Delete: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) task > (method) delete/index.md)
-- List: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) task > (method) list/index.md)
-- Retrieve: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) task > (method) retrieve/index.md)
-- Update: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) task > (method) update/index.md)
-
-### Workflow Run
-
-Overview: [HTTP](https://docs.lightfield.app/api/resources/(resource) workflowRun/index.md)
-
-- Status: [HTTP](https://docs.lightfield.app/api/resources//methods/(resource) workflowRun > (method) status/index.md)
+- [Client](https://docs.lightfield.app/api/resources/$client/index.md)
+- [Account](https://docs.lightfield.app/api/resources/account/index.md)
+- [Create](https://docs.lightfield.app/api/resources/account/methods/create/index.md)
+- [Definitions](https://docs.lightfield.app/api/resources/account/methods/definitions/index.md)
+- [Delete](https://docs.lightfield.app/api/resources/account/methods/delete/index.md)
+- [Field History](https://docs.lightfield.app/api/resources/account/methods/fieldHistory/index.md)
+- [List](https://docs.lightfield.app/api/resources/account/methods/list/index.md)
+- [Restore](https://docs.lightfield.app/api/resources/account/methods/restore/index.md)
+- [Retrieve](https://docs.lightfield.app/api/resources/account/methods/retrieve/index.md)
+- [Update](https://docs.lightfield.app/api/resources/account/methods/update/index.md)
+- [Auth](https://docs.lightfield.app/api/resources/auth/index.md)
+- [Validate](https://docs.lightfield.app/api/resources/auth/methods/validate/index.md)
+- [Channel](https://docs.lightfield.app/api/resources/channel/index.md)
+- [List](https://docs.lightfield.app/api/resources/channel/methods/list/index.md)
+- [Retrieve](https://docs.lightfield.app/api/resources/channel/methods/retrieve/index.md)
+- [Update](https://docs.lightfield.app/api/resources/channel/methods/update/index.md)
+- [Contact](https://docs.lightfield.app/api/resources/contact/index.md)
+- [Create](https://docs.lightfield.app/api/resources/contact/methods/create/index.md)
+- [Definitions](https://docs.lightfield.app/api/resources/contact/methods/definitions/index.md)
+- [Delete](https://docs.lightfield.app/api/resources/contact/methods/delete/index.md)
+- [Field History](https://docs.lightfield.app/api/resources/contact/methods/fieldHistory/index.md)
+- [List](https://docs.lightfield.app/api/resources/contact/methods/list/index.md)
+- [Restore](https://docs.lightfield.app/api/resources/contact/methods/restore/index.md)
+- [Retrieve](https://docs.lightfield.app/api/resources/contact/methods/retrieve/index.md)
+- [Update](https://docs.lightfield.app/api/resources/contact/methods/update/index.md)
+- [Email](https://docs.lightfield.app/api/resources/email/index.md)
+- [Delete](https://docs.lightfield.app/api/resources/email/methods/delete/index.md)
+- [Draft](https://docs.lightfield.app/api/resources/email/methods/draft/index.md)
+- [List](https://docs.lightfield.app/api/resources/email/methods/list/index.md)
+- [Log](https://docs.lightfield.app/api/resources/email/methods/log/index.md)
+- [Restore](https://docs.lightfield.app/api/resources/email/methods/restore/index.md)
+- [Retrieve](https://docs.lightfield.app/api/resources/email/methods/retrieve/index.md)
+- [Send](https://docs.lightfield.app/api/resources/email/methods/send/index.md)
+- [Enrichment Run](https://docs.lightfield.app/api/resources/enrichmentRun/index.md)
+- [Enrich](https://docs.lightfield.app/api/resources/enrichmentRun/methods/enrich/index.md)
+- [Get Enrichment Run](https://docs.lightfield.app/api/resources/enrichmentRun/methods/getEnrichmentRun/index.md)
+- [File](https://docs.lightfield.app/api/resources/file/index.md)
+- [Cancel](https://docs.lightfield.app/api/resources/file/methods/cancel/index.md)
+- [Complete](https://docs.lightfield.app/api/resources/file/methods/complete/index.md)
+- [Create](https://docs.lightfield.app/api/resources/file/methods/create/index.md)
+- [List](https://docs.lightfield.app/api/resources/file/methods/list/index.md)
+- [Retrieve](https://docs.lightfield.app/api/resources/file/methods/retrieve/index.md)
+- [URL](https://docs.lightfield.app/api/resources/file/methods/url/index.md)
+- [List](https://docs.lightfield.app/api/resources/list/index.md)
+- [Create](https://docs.lightfield.app/api/resources/list/methods/create/index.md)
+- [Delete](https://docs.lightfield.app/api/resources/list/methods/delete/index.md)
+- [List](https://docs.lightfield.app/api/resources/list/methods/list/index.md)
+- [List Accounts](https://docs.lightfield.app/api/resources/list/methods/listAccounts/index.md)
+- [List Contacts](https://docs.lightfield.app/api/resources/list/methods/listContacts/index.md)
+- [List Opportunities](https://docs.lightfield.app/api/resources/list/methods/listOpportunities/index.md)
+- [Retrieve](https://docs.lightfield.app/api/resources/list/methods/retrieve/index.md)
+- [Update](https://docs.lightfield.app/api/resources/list/methods/update/index.md)
+- [Meeting](https://docs.lightfield.app/api/resources/meeting/index.md)
+- [Create](https://docs.lightfield.app/api/resources/meeting/methods/create/index.md)
+- [Definitions](https://docs.lightfield.app/api/resources/meeting/methods/definitions/index.md)
+- [Delete](https://docs.lightfield.app/api/resources/meeting/methods/delete/index.md)
+- [List](https://docs.lightfield.app/api/resources/meeting/methods/list/index.md)
+- [Restore](https://docs.lightfield.app/api/resources/meeting/methods/restore/index.md)
+- [Retrieve](https://docs.lightfield.app/api/resources/meeting/methods/retrieve/index.md)
+- [Update](https://docs.lightfield.app/api/resources/meeting/methods/update/index.md)
+- [Member](https://docs.lightfield.app/api/resources/member/index.md)
+- [List](https://docs.lightfield.app/api/resources/member/methods/list/index.md)
+- [Retrieve](https://docs.lightfield.app/api/resources/member/methods/retrieve/index.md)
+- [Merge](https://docs.lightfield.app/api/resources/merge/index.md)
+- [Get Merge](https://docs.lightfield.app/api/resources/merge/methods/getMerge/index.md)
+- [Merge Accounts](https://docs.lightfield.app/api/resources/merge/methods/mergeAccounts/index.md)
+- [Merge Contacts](https://docs.lightfield.app/api/resources/merge/methods/mergeContacts/index.md)
+- [Merge Object Values](https://docs.lightfield.app/api/resources/merge/methods/mergeObjectValues/index.md)
+- [Merge Opportunities](https://docs.lightfield.app/api/resources/merge/methods/mergeOpportunities/index.md)
+- [Message](https://docs.lightfield.app/api/resources/message/index.md)
+- [List](https://docs.lightfield.app/api/resources/message/methods/list/index.md)
+- [Retrieve](https://docs.lightfield.app/api/resources/message/methods/retrieve/index.md)
+- [Note](https://docs.lightfield.app/api/resources/note/index.md)
+- [Create](https://docs.lightfield.app/api/resources/note/methods/create/index.md)
+- [Definitions](https://docs.lightfield.app/api/resources/note/methods/definitions/index.md)
+- [Delete](https://docs.lightfield.app/api/resources/note/methods/delete/index.md)
+- [List](https://docs.lightfield.app/api/resources/note/methods/list/index.md)
+- [Restore](https://docs.lightfield.app/api/resources/note/methods/restore/index.md)
+- [Retrieve](https://docs.lightfield.app/api/resources/note/methods/retrieve/index.md)
+- [Update](https://docs.lightfield.app/api/resources/note/methods/update/index.md)
+- [Object](https://docs.lightfield.app/api/resources/object/index.md)
+- [Create](https://docs.lightfield.app/api/resources/object/methods/create/index.md)
+- [Definitions](https://docs.lightfield.app/api/resources/object/methods/definitions/index.md)
+- [Delete](https://docs.lightfield.app/api/resources/object/methods/delete/index.md)
+- [Field History](https://docs.lightfield.app/api/resources/object/methods/fieldHistory/index.md)
+- [List](https://docs.lightfield.app/api/resources/object/methods/list/index.md)
+- [List Definitions](https://docs.lightfield.app/api/resources/object/methods/listDefinitions/index.md)
+- [Restore](https://docs.lightfield.app/api/resources/object/methods/restore/index.md)
+- [Retrieve](https://docs.lightfield.app/api/resources/object/methods/retrieve/index.md)
+- [Update](https://docs.lightfield.app/api/resources/object/methods/update/index.md)
+- [Opportunity](https://docs.lightfield.app/api/resources/opportunity/index.md)
+- [Create](https://docs.lightfield.app/api/resources/opportunity/methods/create/index.md)
+- [Definitions](https://docs.lightfield.app/api/resources/opportunity/methods/definitions/index.md)
+- [Delete](https://docs.lightfield.app/api/resources/opportunity/methods/delete/index.md)
+- [Field History](https://docs.lightfield.app/api/resources/opportunity/methods/fieldHistory/index.md)
+- [List](https://docs.lightfield.app/api/resources/opportunity/methods/list/index.md)
+- [Restore](https://docs.lightfield.app/api/resources/opportunity/methods/restore/index.md)
+- [Retrieve](https://docs.lightfield.app/api/resources/opportunity/methods/retrieve/index.md)
+- [Update](https://docs.lightfield.app/api/resources/opportunity/methods/update/index.md)
+- [Sender](https://docs.lightfield.app/api/resources/sender/index.md)
+- [List](https://docs.lightfield.app/api/resources/sender/methods/list/index.md)
+- [Mark Healthy](https://docs.lightfield.app/api/resources/sender/methods/markHealthy/index.md)
+- [Retrieve](https://docs.lightfield.app/api/resources/sender/methods/retrieve/index.md)
+- [Update](https://docs.lightfield.app/api/resources/sender/methods/update/index.md)
+- [Sequence](https://docs.lightfield.app/api/resources/sequence/index.md)
+- [Activate](https://docs.lightfield.app/api/resources/sequence/methods/activate/index.md)
+- [Create](https://docs.lightfield.app/api/resources/sequence/methods/create/index.md)
+- [Deactivate](https://docs.lightfield.app/api/resources/sequence/methods/deactivate/index.md)
+- [Discard Draft](https://docs.lightfield.app/api/resources/sequence/methods/discardDraft/index.md)
+- [List](https://docs.lightfield.app/api/resources/sequence/methods/list/index.md)
+- [List Enrollments](https://docs.lightfield.app/api/resources/sequence/methods/listEnrollments/index.md)
+- [List Messages](https://docs.lightfield.app/api/resources/sequence/methods/listMessages/index.md)
+- [List Template Variables](https://docs.lightfield.app/api/resources/sequence/methods/listTemplateVariables/index.md)
+- [Publish Draft](https://docs.lightfield.app/api/resources/sequence/methods/publishDraft/index.md)
+- [Retrieve](https://docs.lightfield.app/api/resources/sequence/methods/retrieve/index.md)
+- [Retrieve Draft](https://docs.lightfield.app/api/resources/sequence/methods/retrieveDraft/index.md)
+- [Retrieve Enrollment](https://docs.lightfield.app/api/resources/sequence/methods/retrieveEnrollment/index.md)
+- [Retrieve Message](https://docs.lightfield.app/api/resources/sequence/methods/retrieveMessage/index.md)
+- [Retrieve Performance](https://docs.lightfield.app/api/resources/sequence/methods/retrievePerformance/index.md)
+- [Retrieve Test](https://docs.lightfield.app/api/resources/sequence/methods/retrieveTest/index.md)
+- [Start Test](https://docs.lightfield.app/api/resources/sequence/methods/startTest/index.md)
+- [Update Draft](https://docs.lightfield.app/api/resources/sequence/methods/updateDraft/index.md)
+- [Update Enrollments](https://docs.lightfield.app/api/resources/sequence/methods/updateEnrollments/index.md)
+- [Task](https://docs.lightfield.app/api/resources/task/index.md)
+- [Create](https://docs.lightfield.app/api/resources/task/methods/create/index.md)
+- [Definitions](https://docs.lightfield.app/api/resources/task/methods/definitions/index.md)
+- [Delete](https://docs.lightfield.app/api/resources/task/methods/delete/index.md)
+- [List](https://docs.lightfield.app/api/resources/task/methods/list/index.md)
+- [Restore](https://docs.lightfield.app/api/resources/task/methods/restore/index.md)
+- [Retrieve](https://docs.lightfield.app/api/resources/task/methods/retrieve/index.md)
+- [Update](https://docs.lightfield.app/api/resources/task/methods/update/index.md)
+- [Workflow Run](https://docs.lightfield.app/api/resources/workflowRun/index.md)
+- [Status](https://docs.lightfield.app/api/resources/workflowRun/methods/status/index.md)

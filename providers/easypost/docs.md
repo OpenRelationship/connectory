@@ -25,8 +25,10 @@ the HTML page: it carries the same prose and the same code samples in all 8 supp
 languages, and is a median of 18x smaller. The Carrier Guides, Libraries and Releases
 index pages have no twin; use their HTML pages.
 
-- Markdown for any page: prefix the path with `/markdown` and append `.md`
-  `https://docs.easypost.com/docs/pagination` -> `https://docs.easypost.com/markdown/docs/pagination.md`
+- Markdown for any page: append `.md` to the path
+  `https://docs.easypost.com/docs/pagination` -> `https://docs.easypost.com/docs/pagination.md`
+  Sending `Accept: text/markdown` to the normal page URL returns the same file.
+- Every page in one file: https://docs.easypost.com/llms-full.txt
 - Full page index (JSON): https://docs.easypost.com/doc-index.json
   One entry per page with `url`, `markdownUrl`, `category`, `keywords`, `audience`,
   and a `notes` field describing when that page is the right one to read.
@@ -48,135 +50,146 @@ The complete index of pages, grouped by category, is appended at the end of this
 ## Start here
 
 - Getting started: https://docs.easypost.com/guides/getting-started
-- Authentication: https://docs.easypost.com/markdown/docs/authentication.md
-- Create a shipment and buy a label: https://docs.easypost.com/markdown/docs/shipments.md
-- Track a package: https://docs.easypost.com/markdown/docs/trackers.md
-- Webhooks: https://docs.easypost.com/markdown/docs/webhooks.md
-- Errors and error codes: https://docs.easypost.com/markdown/docs/errors.md
+- Authentication: https://docs.easypost.com/docs/authentication.md
+- Create a shipment and buy a label: https://docs.easypost.com/docs/shipments.md
+- Track a package: https://docs.easypost.com/docs/trackers.md
+- Webhooks: https://docs.easypost.com/docs/webhooks.md
+- Errors and error codes: https://docs.easypost.com/docs/errors.md
 - Carrier integrations: https://docs.easypost.com/carriers
 
 # Page index
 
 ## API Docs
 
-- [API Keys](https://docs.easypost.com/markdown/docs/api-keys.md): Use when discussing API authentication, test keys, production keys, or key management.
-- [Authentication](https://docs.easypost.com/markdown/docs/authentication.md): Use when discussing API authentication, API keys, Basic Auth, or securing access to the EasyPost API.
-- [Child Users](https://docs.easypost.com/markdown/docs/users/child-users.md): Docs for the EasyPost Shipping API with access to the UPS API, USPS API, FedEx API, DHL API, and more.
-- [EasyPost Objects](https://docs.easypost.com/markdown/docs/easypost-objects.md): Use when discussing the EasyPost ojbect model, API objects, or how resources are structured within the API.
-- [Errors](https://docs.easypost.com/markdown/docs/errors.md): Use when discussing API errors, error responses, troubleshooting, or error handling best practices.
-- [Event](https://docs.easypost.com/markdown/docs/events.md): Use when discussing shipment events, tracking updates, webhook events, or event-driven workflows.
-- [Payloads](https://docs.easypost.com/markdown/docs/events/payloads.md): Use when discussing webhook payloads, event data structures, or payload examples.
-- [ReadyDocs](https://docs.easypost.com/markdown/docs/readydocs.md): Generate standardized logistics documents such as Packing Slips, using the ReadyDocs API.
-- [Webhook](https://docs.easypost.com/markdown/docs/webhooks.md): Use when discussing webhook configuration, event notifications, or callback integrations.
+- [API Keys](https://docs.easypost.com/docs/api-keys.md): Use when discussing API authentication, test keys, production keys, or key management.
+- [Authentication](https://docs.easypost.com/docs/authentication.md): Use when discussing API authentication, API keys, Basic Auth, or securing access to the EasyPost API.
+- [Child Users](https://docs.easypost.com/docs/users/child-users.md): Docs for the EasyPost Shipping API with access to the UPS API, USPS API, FedEx API, DHL API, and more.
+- [EasyPost Objects](https://docs.easypost.com/docs/easypost-objects.md): Use when discussing the EasyPost ojbect model, API objects, or how resources are structured within the API.
+- [Errors](https://docs.easypost.com/docs/errors.md): Use when discussing API errors, error responses, troubleshooting, or error handling best practices.
+- [Event](https://docs.easypost.com/docs/events.md): Use when discussing shipment events, tracking updates, webhook events, or event-driven workflows.
+- [Payloads](https://docs.easypost.com/docs/events/payloads.md): Use when discussing webhook payloads, event data structures, or payload examples.
+- [ReadyDocs](https://docs.easypost.com/docs/readydocs.md): Generate standardized logistics documents such as Packing Slips, using the ReadyDocs API.
+- [Webhook](https://docs.easypost.com/docs/webhooks.md): Use when discussing webhook configuration, event notifications, or callback integrations.
 
 ## Guides
 
-- [Batch Guide](https://docs.easypost.com/markdown/guides/batches-guide.md): Use when discussing batch shipments, bulk label creation, or high-volume shipping workflows.
-- [Carrier Claims Program Guide](https://docs.easypost.com/markdown/guides/carrier-claims-guide.md): Use for advanced EasyPost workflow guidance related to carrier claims.
-- [Centralized (Self-Managed Billing) Implementation Guide](https://docs.easypost.com/markdown/guides/get-started-with-forge/self-managed-billing-guide.md): A quick start guide for Forge Centralized Implementation.
-- [Commercial Invoice Guide](https://docs.easypost.com/markdown/guides/commercial-invoice-guide.md): Use for advanced EasyPost workflow guidance related to commercial invoice.
-- [Decentralized (EasyPost-Managed Billing) Guide](https://docs.easypost.com/markdown/guides/get-started-with-forge/easypost-managed-billing-guide.md): A quick start guide for the Forge Decentralized Implementation.
-- [Decentralized (with Stripe Connect)](https://docs.easypost.com/markdown/guides/get-started-with-forge/decentralized-with-stripe-connect.md): A guide to establishing billing methods and wallets for decentralized sub accounts using Stripe Connect.
-- [Dependency Pinning Guide](https://docs.easypost.com/markdown/guides/dependency-pinning-guide.md): Guide to pin specific versions or version types of dependencies.
-- [EasyPost Tracking Guide](https://docs.easypost.com/markdown/guides/tracking-guide.md): A complete guide to tracking using EasyPost.
-- [Embeddable Components Guide](https://docs.easypost.com/markdown/guides/embeddables-guide.md): Learn how to integrate EasyPost's Embeddable Components to embed Forge dashboard functionality directly within external applications.
-- [Endshipper Guide](https://docs.easypost.com/markdown/guides/endshipper-guide.md): Use for advanced EasyPost workflow guidance related to endshipper.
-- [Errors Guide](https://docs.easypost.com/markdown/guides/errors-guide.md): A full guide on how to catch errors thrown by EasyPost objects.
-- [Forge Overview](https://docs.easypost.com/markdown/guides/forge-overview.md): An overview of building a white label shipping integration with Forge.
-- [Form Guide](https://docs.easypost.com/markdown/guides/form-guide.md): Use for advanced EasyPost workflow guidance related to form.
-- [Get Started with Forge](https://docs.easypost.com/markdown/guides/get-started-with-forge.md): A guide on getting started with Forge.
-- [Getting Started with EasyPost Core](https://docs.easypost.com/markdown/guides/getting-started.md): Use when discussing initial EasyPost setup, onboarding, API fundamentals, or creating a first shipment.
-- [How to Add Customs Information](https://docs.easypost.com/markdown/guides/customs-guide.md): Use for advanced EasyPost workflow guidance related to customs.
-- [How to Insure Your Packages](https://docs.easypost.com/markdown/guides/shipping-insurance-guide.md): Use for advanced EasyPost workflow guidance related to shipping insurance.
-- [How to Use EasyPost's Address Verification Service](https://docs.easypost.com/markdown/guides/address-verification-guide.md): Use for customer-facing address verification implementation guidance.
-- [Landed Cost Guide](https://docs.easypost.com/markdown/guides/landed-cost-guide.md): Use when discussing duties, taxes, landed cost calculations, or landed cost guarantees for international shipments.
-- [Luma Guide](https://docs.easypost.com/markdown/guides/luma-guide.md): Use for advanced EasyPost workflow guidance related to luma.
-- [Manifest Guide](https://docs.easypost.com/markdown/guides/manifest-guide.md): Use for advanced EasyPost workflow guidance related to manifest.
-- [Organize Sets of Users With the EasyPost API](https://docs.easypost.com/markdown/guides/child-users-guide.md): Use for advanced EasyPost workflow guidance related to child users.
-- [Rate Limiting Guide](https://docs.easypost.com/markdown/guides/rate-limiting-guide.md): Use when discussing API rate limits, 429 responses, throttling, or strategies for managing request volume.
-- [SmartRate Guide](https://docs.easypost.com/markdown/guides/smartrate-guide.md): Use for advanced EasyPost workflow guidance related to SmartRate.
-- [Use VCR for test integrations](https://docs.easypost.com/markdown/guides/vcr-guide.md): Guide to why you should use VCR for testing against the EasyPost API.
-- [Webhooks Guide](https://docs.easypost.com/markdown/guides/webhooks-guide.md): Use for customer-facing webhooks implementation guidance.
+- [Batch Guide](https://docs.easypost.com/guides/batches-guide.md): Use when discussing batch shipments, bulk label creation, or high-volume shipping workflows.
+- [Centralized (Self-Managed Billing) Implementation Guide](https://docs.easypost.com/guides/get-started-with-forge/self-managed-billing-guide.md): A quick start guide for Forge Centralized Implementation.
+- [Claim Messages](https://docs.easypost.com/guides/claim-messages-guide.md): Use when a customer wants claim questions, replies, approval, and denial in their own system.
+- [Commercial Invoice Guide](https://docs.easypost.com/guides/commercial-invoice-guide.md): Use for advanced EasyPost workflow guidance related to commercial invoice.
+- [CPSC Regulatory Updates](https://docs.easypost.com/guides/cpsc-regulatory-updates-guide.md): Use for guidance on US CPSC customs-documentation requirements and the EasyPost fields that satisfy them.
+- [Decentralized (EasyPost-Managed Billing) Guide](https://docs.easypost.com/guides/get-started-with-forge/easypost-managed-billing-guide.md): A quick start guide for the Forge Decentralized Implementation.
+- [Decentralized (with Stripe Connect)](https://docs.easypost.com/guides/get-started-with-forge/decentralized-with-stripe-connect.md): A guide to establishing billing methods and wallets for decentralized sub accounts using Stripe Connect.
+- [Dependency Pinning Guide](https://docs.easypost.com/guides/dependency-pinning-guide.md): Guide to pin specific versions or version types of dependencies.
+- [EasyPost MCP Guide](https://docs.easypost.com/guides/mcp-guide.md): Use to connect an AI assistant or agent to EasyPost MCP, from the ChatGPT or Claude app or with a production API key, and to see which tools read data and which ones buy, refund, or bill.
+- [EasyPost Tracking Guide](https://docs.easypost.com/guides/tracking-guide.md): A complete guide to tracking using EasyPost.
+- [Embeddable Components Guide](https://docs.easypost.com/guides/embeddables-guide.md): Learn how to integrate EasyPost's Embeddable Components to embed Forge dashboard functionality directly within external applications.
+- [Endshipper Guide](https://docs.easypost.com/guides/endshipper-guide.md): Use for advanced EasyPost workflow guidance related to endshipper.
+- [Errors Guide](https://docs.easypost.com/guides/errors-guide.md): A full guide on how to catch errors thrown by EasyPost objects.
+- [EU Regulatory Updates](https://docs.easypost.com/guides/eu-regulatory-updates-guide.md): Use for guidance on EU customs regulatory requirements and the EasyPost fields that satisfy them.
+- [FedEx — EU Regulatory Updates](https://docs.easypost.com/guides/fedex-eu-regulatory-updates-guide.md): Use for guidance on how FedEx renders VAT/IOSS on the commercial invoice for EU-bound shipments.
+- [Forge Overview](https://docs.easypost.com/guides/forge-overview.md): An overview of building a white label shipping integration with Forge.
+- [Form Guide](https://docs.easypost.com/guides/form-guide.md): Use for advanced EasyPost workflow guidance related to form.
+- [Get Started with Forge](https://docs.easypost.com/guides/get-started-with-forge.md): A guide on getting started with Forge.
+- [Getting Started with EasyPost Core](https://docs.easypost.com/guides/getting-started.md): Use when discussing initial EasyPost setup, onboarding, API fundamentals, or creating a first shipment.
+- [How to Add Customs Information](https://docs.easypost.com/guides/customs-guide.md): Use for advanced EasyPost workflow guidance related to customs.
+- [How to Insure Your Packages](https://docs.easypost.com/guides/shipping-insurance-guide.md): Use for advanced EasyPost workflow guidance related to shipping insurance.
+- [How to Use EasyPost's Address Verification Service](https://docs.easypost.com/guides/address-verification-guide.md): Use for customer-facing address verification implementation guidance.
+- [Landed Cost Guide](https://docs.easypost.com/guides/landed-cost-guide.md): Use when discussing duties, taxes, landed cost calculations, or landed cost guarantees for international shipments.
+- [Luma Guide](https://docs.easypost.com/guides/luma-guide.md): Use for advanced EasyPost workflow guidance related to luma.
+- [Manifest Guide](https://docs.easypost.com/guides/manifest-guide.md): Use for advanced EasyPost workflow guidance related to manifest.
+- [Organize Sets of Users With the EasyPost API](https://docs.easypost.com/guides/child-users-guide.md): Use for advanced EasyPost workflow guidance related to child users.
+- [Rate Limiting Guide](https://docs.easypost.com/guides/rate-limiting-guide.md): Use when discussing API rate limits, 429 responses, throttling, or strategies for managing request volume.
+- [SmartRate Guide](https://docs.easypost.com/guides/smartrate-guide.md): Use for advanced EasyPost workflow guidance related to SmartRate.
+- [UPS — EU Regulatory Updates](https://docs.easypost.com/guides/ups-eu-regulatory-updates-guide.md): Use for guidance on UPS-specific EU regulatory requirements and the EasyPost fields that satisfy them.
+- [Use VCR for test integrations](https://docs.easypost.com/guides/vcr-guide.md): Guide to why you should use VCR for testing against the EasyPost API.
+- [USPS Claims Guide](https://docs.easypost.com/guides/carrier-claims-guide.md): USPS labels purchased through EasyPost. Not insurance claims and not BYO tracker registrations.
+- [Webhooks Guide](https://docs.easypost.com/guides/webhooks-guide.md): Use for customer-facing webhooks implementation guidance.
 
 ## Carrier Guides
 
-- [1st Choice Delivery](https://docs.easypost.com/markdown/carriers/first-choice-delivery-guide.md): A complete guide to using 1st Choice Delivery with EasyPost.
-- [Accurate Courier Express](https://docs.easypost.com/markdown/carriers/accurate-courier-express-guide.md): A complete guide to using Accurate Courier Express with EasyPost.
-- [Amazon Shipping](https://docs.easypost.com/markdown/carriers/amazon-shipping-guide.md): A complete guide to using Amazon Shipping with EasyPost.
-- [APC Postal Logistics Guide](https://docs.easypost.com/markdown/carriers/apc-guide.md): A complete guide to using APC Postal Logistics with EasyPost.
-- [Asendia USA](https://docs.easypost.com/markdown/carriers/asendia-guide.md): A complete guide to using Asendia USA with EasyPost.
-- [Australia Post Guide](https://docs.easypost.com/markdown/carriers/australia-post-guide.md): A full guide to using Australia Post with EasyPost.
-- [Better Trucks](https://docs.easypost.com/markdown/carriers/better-trucks-guide.md): A complete guide to using Better Trucks with EasyPost.
-- [Blue Streak Guide](https://docs.easypost.com/markdown/carriers/blue-streak-guide.md): A complete guide to using Blue Streak with EasyPost.
-- [Canada Post BYOCA Guide](https://docs.easypost.com/markdown/carriers/canada-post-byoa-guide.md): A complete guide to using Canada Post BYOCA with EasyPost.
-- [Canada Post Wallet Guide](https://docs.easypost.com/markdown/carriers/canada-post-wallet-guide.md): A complete guide to using the Canada Post Wallet carrier account with EasyPost.
-- [Canpar Guide](https://docs.easypost.com/markdown/carriers/canpar-guide.md): A complete guide to using Canpar with EasyPost.
-- [CDL Last Mile Solutions](https://docs.easypost.com/markdown/carriers/cdl-guide.md): A complete guide to using CDL with EasyPost.
-- [Courier Express](https://docs.easypost.com/markdown/carriers/courier-express-guide.md): A complete guide to using Courier Express with EasyPost.
-- [CouriersPlease](https://docs.easypost.com/markdown/carriers/couriersplease-guide.md): A complete guide to using CouriersPlease with EasyPost.
-- [CS Logistics Guide](https://docs.easypost.com/markdown/carriers/cs-logistics-guide.md): A complete guide to using CS Logistics with EasyPost.
-- [CTT Express Guide](https://docs.easypost.com/markdown/carriers/ctt-express-guide.md): A complete guide to using CTT Express with EasyPost.
-- [DAI Post Guide](https://docs.easypost.com/markdown/carriers/dai-post-guide.md): A complete guide to using DAI Post with EasyPost.
-- [Deutsche Post UK Guide](https://docs.easypost.com/markdown/carriers/deutsche-post-uk-guide.md): A complete guide to using Deutsche Post UK with EasyPost.
-- [DHL eCommerce BYOCA Guide](https://docs.easypost.com/markdown/carriers/dhl-ecommerce-byoca-guide.md): A complete guide to using DHL eCommerce BYOCA with EasyPost.
-- [DHL eCommerce Wallet Guide](https://docs.easypost.com/markdown/carriers/dhl-ecommerce-wallet-guide.md): A complete guide to using the DHL eCommerce Wallet carrier account with EasyPost.
-- [DHL Express](https://docs.easypost.com/markdown/carriers/dhl-express-guide.md): A complete guide to using DHL Express with EasyPost.
-- [DoorDash Guide](https://docs.easypost.com/markdown/carriers/doordash-guide.md): A complete guide to using DoorDash with EasyPost.
-- [Douglas Express Delivery Guide](https://docs.easypost.com/markdown/carriers/douglas-express-delivery-guide.md): A complete guide to using Douglas Express Delivery with EasyPost.
-- [DPD NL](https://docs.easypost.com/markdown/carriers/dpdnl-guide.md): A complete guide to using DPD with EasyPost.
-- [DPD UK](https://docs.easypost.com/markdown/carriers/dpduk-guide.md): A complete guide to using DPD UK with EasyPost.
-- [DPD](https://docs.easypost.com/markdown/carriers/dpd-guide.md): A complete guide to using DPD with EasyPost.
-- [eHub Guide](https://docs.easypost.com/markdown/carriers/ehub-guide.md): A complete guide to using eHub with EasyPost.
-- [ePost Global Guide](https://docs.easypost.com/markdown/carriers/epost-global-guide.md): A complete guide to using ePost Global with EasyPost.
-- [Estafeta Guide](https://docs.easypost.com/markdown/carriers/estafeta-guide.md): A complete guide to using Estafeta with EasyPost.
-- [EVRi](https://docs.easypost.com/markdown/carriers/evri-guide.md): A complete guide to using EVRi with EasyPost.
-- [FedEx Guide](https://docs.easypost.com/markdown/carriers/fedex-guide.md): A complete guide to using FedEx with EasyPost.
-- [FirstMile Guide](https://docs.easypost.com/markdown/carriers/firstmile-guide.md): A complete guide to using FirstMile with EasyPost.
-- [Flexport Parcel](https://docs.easypost.com/markdown/carriers/flexport-parcel-guide.md): A complete guide to using Flexport Parcel with EasyPost.
-- [GIO Express Guide](https://docs.easypost.com/markdown/carriers/gio-express-guide.md): A complete guide to using GIO Express with EasyPost.
-- [GLS US](https://docs.easypost.com/markdown/carriers/gls-guide.md): A complete guide to using GLS US with EasyPost.
-- [GOFO BYOCA Guide](https://docs.easypost.com/markdown/carriers/gofo-byoca-guide.md): A complete guide to using GOFO BYOCA with EasyPost.
-- [GOFO Wallet Guide](https://docs.easypost.com/markdown/carriers/gofo-wallet-guide.md): A complete guide to using GOFO Wallet with EasyPost.
-- [GOFO/CIRRO E-Commerce Guide](https://docs.easypost.com/markdown/carriers/cirro-e-commerce-guide.md): A complete guide to using GOFO/CIRRO E-Commerce with EasyPost.
-- [Gori Company dba ShipBae Guide](https://docs.easypost.com/markdown/carriers/gori-guide.md): A complete guide to using Gori with EasyPost.
-- [Hailify Guide](https://docs.easypost.com/markdown/carriers/hailify-guide.md): A complete guide to using Hailify with EasyPost.
-- [Henry Industries](https://docs.easypost.com/markdown/carriers/henry-industries-guide.md): A complete guide to using Henry Industries with EasyPost.
-- [Interlink Express](https://docs.easypost.com/markdown/carriers/interlink-express-guide.md): A complete guide to using Interlink Express with EasyPost.
-- [Jet Transportation](https://docs.easypost.com/markdown/carriers/jet-transportation-guide.md): A complete guide to using Jet Transportation with EasyPost.
-- [Jitsu Guide](https://docs.easypost.com/markdown/carriers/jitsu-guide.md): A complete guide to using Jitsu with EasyPost.
-- [Loomis Express Guide](https://docs.easypost.com/markdown/carriers/loomis-express-guide.md): A complete guide to using Loomis Express with EasyPost.
-- [LSO Guide](https://docs.easypost.com/markdown/carriers/lso-guide.md): A complete guide to using LSO with EasyPost.
-- [Maersk Parcel](https://docs.easypost.com/markdown/carriers/maersk-guide.md): A complete guide to using Maersk Parcel with EasyPost.
-- [OnTrac Guide](https://docs.easypost.com/markdown/carriers/ontrac-guide.md): A complete guide to using OnTrac with EasyPost.
-- [Optima](https://docs.easypost.com/markdown/carriers/optima-guide.md): A complete guide to using Optima with EasyPost.
-- [OSM Worldwide Guide](https://docs.easypost.com/markdown/carriers/osm-guide.md): A full guide to using OSM with EasyPost.
-- [OSM Worldwide v2](https://docs.easypost.com/markdown/carriers/osm-v2-guide.md): A complete guide to using OSM v2 with EasyPost.
-- [P2P Guide](https://docs.easypost.com/markdown/carriers/p2p-guide.md): A complete guide to using P2P with EasyPost.
-- [Parcelforce](https://docs.easypost.com/markdown/carriers/parcelforce-guide.md): A complete guide to using Parcelforce with EasyPost.
-- [Passport Global Guide](https://docs.easypost.com/markdown/carriers/passport-global-guide.md): A complete guide to using Passport Global with EasyPost.
-- [Purolator](https://docs.easypost.com/markdown/carriers/purolator-guide.md): A complete guide to using Purolator with EasyPost.
-- [Quick Courier Guide](https://docs.easypost.com/markdown/carriers/quick-courier-guide.md): A complete guide to using Quick Courier with EasyPost.
-- [Roadie Guide](https://docs.easypost.com/markdown/carriers/roadie-guide.md): A complete guide to using Roadie with EasyPost.
-- [Rover Guide](https://docs.easypost.com/markdown/carriers/rover-guide.md): A complete guide to using Rover with EasyPost.
-- [Royal Mail v3](https://docs.easypost.com/markdown/carriers/royal-mail-v3-guide.md): A complete guide to using Royal Mail v3 with EasyPost.
-- [Royal Mail](https://docs.easypost.com/markdown/carriers/royal-mail-guide.md): A complete guide to using Royal Mail with EasyPost.
-- [SEKO OmniParcel Guide](https://docs.easypost.com/markdown/carriers/seko-omniparcel-guide.md): A complete guide to using SEKO OmniParcel with EasyPost.
-- [SF Express Guide](https://docs.easypost.com/markdown/carriers/sf-express-guide.md): A complete guide to using SF Express with EasyPost.
-- [SmartKargo](https://docs.easypost.com/markdown/carriers/smartkargo-guide.md): A complete guide to using SmartKargo with EasyPost.
-- [Sonic Guide](https://docs.easypost.com/markdown/carriers/sonic-guide.md): A complete guide to using Sonic with EasyPost.
-- [Spee-Dee](https://docs.easypost.com/markdown/carriers/speedee-guide.md): A complete guide to using Spee-Dee with EasyPost.
-- [SpeedX Guide](https://docs.easypost.com/markdown/carriers/speedx-guide.md): A complete guide to using SpeedX with EasyPost.
-- [Sway](https://docs.easypost.com/markdown/carriers/sway-guide.md): A complete guide to using Sway with EasyPost.
-- [Swyft Guide](https://docs.easypost.com/markdown/carriers/swyft-guide.md): A full guide to using Swyft with EasyPost: Swyft is a last-mile solution for next-day delivery and is now available through the EasyPost API.
-- [TCC Guide](https://docs.easypost.com/markdown/carriers/tcc-guide.md): A complete guide to using TCC with EasyPost.
-- [TForce Logistics](https://docs.easypost.com/markdown/carriers/tforce-logistics-guide.md): A complete guide to using TForce Logistics with EasyPost.
-- [UDS Guide](https://docs.easypost.com/markdown/carriers/uds-guide.md): A complete guide to using UDS with EasyPost.
-- [UniUni Guide](https://docs.easypost.com/markdown/carriers/uniuni-guide.md): A complete guide to using UniUni with EasyPost.
-- [UPS Guide](https://docs.easypost.com/markdown/carriers/ups-guide.md): A complete guide to using UPS Wallet accounts.
-- [USA Export - Powered by Asendia](https://docs.easypost.com/markdown/carriers/usa-export-pba-guide.md): A complete guide to using USA Export - Powered by Asendia with EasyPost.
-- [USPS Guide](https://docs.easypost.com/markdown/carriers/usps-guide.md): A complete guide to using USPS with EasyPost.
-- [USPS Ship Guide](https://docs.easypost.com/markdown/carriers/usps-ship-guide.md): A complete guide to using USPS Ship with EasyPost.
-- [Veho Guide](https://docs.easypost.com/markdown/carriers/veho-guide.md): A complete guide to using Veho with EasyPost.
+- [1st Choice Delivery](https://docs.easypost.com/carriers/first-choice-delivery-guide.md): A complete guide to using 1st Choice Delivery with EasyPost.
+- [Accurate Courier Express](https://docs.easypost.com/carriers/accurate-courier-express-guide.md): A complete guide to using Accurate Courier Express with EasyPost.
+- [Amazon Shipping](https://docs.easypost.com/carriers/amazon-shipping-guide.md): A complete guide to using Amazon Shipping with EasyPost.
+- [APC Postal Logistics Guide](https://docs.easypost.com/carriers/apc-guide.md): A complete guide to using APC Postal Logistics with EasyPost.
+- [Asendia USA](https://docs.easypost.com/carriers/asendia-guide.md): A complete guide to using Asendia USA with EasyPost.
+- [Australia Post Guide](https://docs.easypost.com/carriers/australia-post-guide.md): A full guide to using Australia Post with EasyPost.
+- [Better Trucks](https://docs.easypost.com/carriers/better-trucks-guide.md): A complete guide to using Better Trucks with EasyPost.
+- [Blue Streak Guide](https://docs.easypost.com/carriers/blue-streak-guide.md): A complete guide to using Blue Streak with EasyPost.
+- [Canada Post BYOCA Guide](https://docs.easypost.com/carriers/canada-post-byoa-guide.md): A complete guide to using Canada Post BYOCA with EasyPost.
+- [Canada Post Wallet Guide](https://docs.easypost.com/carriers/canada-post-wallet-guide.md): A complete guide to using the Canada Post Wallet carrier account with EasyPost.
+- [Canpar Guide](https://docs.easypost.com/carriers/canpar-guide.md): A complete guide to using Canpar with EasyPost.
+- [CDL Last Mile Solutions](https://docs.easypost.com/carriers/cdl-guide.md): A complete guide to using CDL with EasyPost.
+- [Courier Express](https://docs.easypost.com/carriers/courier-express-guide.md): A complete guide to using Courier Express with EasyPost.
+- [CouriersPlease](https://docs.easypost.com/carriers/couriersplease-guide.md): A complete guide to using CouriersPlease with EasyPost.
+- [CS Logistics Guide](https://docs.easypost.com/carriers/cs-logistics-guide.md): A complete guide to using CS Logistics with EasyPost.
+- [CTT Express Guide](https://docs.easypost.com/carriers/ctt-express-guide.md): A complete guide to using CTT Express with EasyPost.
+- [CTT Express Spain Guide](https://docs.easypost.com/carriers/ctt-express-spain-guide.md): A complete guide to using CTT Express Spain with EasyPost.
+- [DAI Post Guide](https://docs.easypost.com/carriers/dai-post-guide.md): A complete guide to using DAI Post with EasyPost.
+- [Deutsche Post UK Guide](https://docs.easypost.com/carriers/deutsche-post-uk-guide.md): A complete guide to using Deutsche Post UK with EasyPost.
+- [DHL eCommerce BYOCA Guide](https://docs.easypost.com/carriers/dhl-ecommerce-byoca-guide.md): A complete guide to using DHL eCommerce BYOCA with EasyPost.
+- [DHL eCommerce Wallet Guide](https://docs.easypost.com/carriers/dhl-ecommerce-wallet-guide.md): A complete guide to using the DHL eCommerce Wallet carrier account with EasyPost.
+- [DHL Express BYOCA Guide](https://docs.easypost.com/carriers/dhl-express-byoca-guide.md): A complete guide to using DHL Express BYOCA with EasyPost.
+- [DHL Express Wallet Guide](https://docs.easypost.com/carriers/dhl-express-wallet-guide.md): A complete guide to using DHL Express Wallet with EasyPost.
+- [DoorDash Guide](https://docs.easypost.com/carriers/doordash-guide.md): A complete guide to using DoorDash with EasyPost.
+- [Douglas Express Delivery Guide](https://docs.easypost.com/carriers/douglas-express-delivery-guide.md): A complete guide to using Douglas Express Delivery with EasyPost.
+- [DPD NL](https://docs.easypost.com/carriers/dpdnl-guide.md): A complete guide to using DPD with EasyPost.
+- [DPD UK](https://docs.easypost.com/carriers/dpduk-guide.md): A complete guide to using DPD UK with EasyPost.
+- [DPD](https://docs.easypost.com/carriers/dpd-guide.md): A complete guide to using DPD with EasyPost.
+- [eHub Guide](https://docs.easypost.com/carriers/ehub-guide.md): A complete guide to using eHub with EasyPost.
+- [ePost Global Guide](https://docs.easypost.com/carriers/epost-global-guide.md): A complete guide to using ePost Global with EasyPost.
+- [Estafeta Guide](https://docs.easypost.com/carriers/estafeta-guide.md): A complete guide to using Estafeta with EasyPost.
+- [EVRi](https://docs.easypost.com/carriers/evri-guide.md): A complete guide to using EVRi with EasyPost.
+- [FedEx BYOCA Guide](https://docs.easypost.com/carriers/fedex-byoca-guide.md): A complete guide to using FedEx BYOCA with EasyPost.
+- [FedEx Wallet Guide](https://docs.easypost.com/carriers/fedex-wallet-guide.md): A complete guide to using FedEx Wallet with EasyPost.
+- [Flexport Parcel](https://docs.easypost.com/carriers/flexport-parcel-guide.md): A complete guide to using Flexport Parcel with EasyPost.
+- [GIO Express Guide](https://docs.easypost.com/carriers/gio-express-guide.md): A complete guide to using GIO Express with EasyPost.
+- [GLS US](https://docs.easypost.com/carriers/gls-guide.md): A complete guide to using GLS US with EasyPost.
+- [GOFO BYOCA Guide](https://docs.easypost.com/carriers/gofo-byoca-guide.md): A complete guide to using GOFO BYOCA with EasyPost.
+- [GOFO Wallet Guide](https://docs.easypost.com/carriers/gofo-wallet-guide.md): A complete guide to using GOFO Wallet with EasyPost.
+- [GOFO/CIRRO E-Commerce Guide](https://docs.easypost.com/carriers/cirro-e-commerce-guide.md): A complete guide to using GOFO/CIRRO E-Commerce with EasyPost.
+- [Gori Company dba ShipBae Guide](https://docs.easypost.com/carriers/gori-guide.md): A complete guide to using Gori with EasyPost.
+- [Hailify Guide](https://docs.easypost.com/carriers/hailify-guide.md): A complete guide to using Hailify with EasyPost.
+- [Henry Industries](https://docs.easypost.com/carriers/henry-industries-guide.md): A complete guide to using Henry Industries with EasyPost.
+- [Interlink Express](https://docs.easypost.com/carriers/interlink-express-guide.md): A complete guide to using Interlink Express with EasyPost.
+- [Jet Transportation](https://docs.easypost.com/carriers/jet-transportation-guide.md): A complete guide to using Jet Transportation with EasyPost.
+- [Jitsu Guide](https://docs.easypost.com/carriers/jitsu-guide.md): A complete guide to using Jitsu with EasyPost.
+- [Loomis Express Guide](https://docs.easypost.com/carriers/loomis-express-guide.md): A complete guide to using Loomis Express with EasyPost.
+- [LSO Guide](https://docs.easypost.com/carriers/lso-guide.md): A complete guide to using LSO with EasyPost.
+- [Maersk Parcel](https://docs.easypost.com/carriers/maersk-guide.md): A complete guide to using Maersk Parcel with EasyPost.
+- [MRW Guide](https://docs.easypost.com/carriers/mrw-guide.md): A complete guide to using MRW with EasyPost.
+- [OnTrac Guide](https://docs.easypost.com/carriers/ontrac-guide.md): A complete guide to using OnTrac with EasyPost.
+- [Optima](https://docs.easypost.com/carriers/optima-guide.md): A complete guide to using Optima with EasyPost.
+- [OSM Worldwide Guide](https://docs.easypost.com/carriers/osm-guide.md): A full guide to using OSM with EasyPost.
+- [OSM Worldwide v2](https://docs.easypost.com/carriers/osm-v2-guide.md): A complete guide to using OSM v2 with EasyPost.
+- [P2P Guide](https://docs.easypost.com/carriers/p2p-guide.md): A complete guide to using P2P with EasyPost.
+- [Passport Global Guide](https://docs.easypost.com/carriers/passport-global-guide.md): A complete guide to using Passport Global with EasyPost.
+- [Purolator](https://docs.easypost.com/carriers/purolator-guide.md): A complete guide to using Purolator with EasyPost.
+- [Quick Courier Guide](https://docs.easypost.com/carriers/quick-courier-guide.md): A complete guide to using Quick Courier with EasyPost.
+- [Roadie Guide](https://docs.easypost.com/carriers/roadie-guide.md): A complete guide to using Roadie with EasyPost.
+- [Rover Guide](https://docs.easypost.com/carriers/rover-guide.md): A complete guide to using Rover with EasyPost.
+- [Royal Mail v3](https://docs.easypost.com/carriers/royal-mail-v3-guide.md): A complete guide to using Royal Mail v3 with EasyPost.
+- [Royal Mail](https://docs.easypost.com/carriers/royal-mail-guide.md): A complete guide to using Royal Mail with EasyPost.
+- [SEKO OmniParcel Guide](https://docs.easypost.com/carriers/seko-omniparcel-guide.md): A complete guide to using SEKO OmniParcel with EasyPost.
+- [SF Express Guide](https://docs.easypost.com/carriers/sf-express-guide.md): A complete guide to using SF Express with EasyPost.
+- [SmartKargo](https://docs.easypost.com/carriers/smartkargo-guide.md): A complete guide to using SmartKargo with EasyPost.
+- [Sonic Guide](https://docs.easypost.com/carriers/sonic-guide.md): A complete guide to using Sonic with EasyPost.
+- [Spee-Dee](https://docs.easypost.com/carriers/speedee-guide.md): A complete guide to using Spee-Dee with EasyPost.
+- [SpeedX Guide](https://docs.easypost.com/carriers/speedx-guide.md): A complete guide to using SpeedX with EasyPost.
+- [Sway](https://docs.easypost.com/carriers/sway-guide.md): A complete guide to using Sway with EasyPost.
+- [Swyft Guide](https://docs.easypost.com/carriers/swyft-guide.md): A full guide to using Swyft with EasyPost: Swyft is a last-mile solution for next-day delivery and is now available through the EasyPost API.
+- [TCC Guide](https://docs.easypost.com/carriers/tcc-guide.md): A complete guide to using TCC with EasyPost.
+- [TForce Logistics](https://docs.easypost.com/carriers/tforce-logistics-guide.md): A complete guide to using TForce Logistics with EasyPost.
+- [UDS Guide](https://docs.easypost.com/carriers/uds-guide.md): A complete guide to using UDS with EasyPost.
+- [UniUni Guide](https://docs.easypost.com/carriers/uniuni-guide.md): A complete guide to using UniUni with EasyPost.
+- [UPS BYOCA Guide](https://docs.easypost.com/carriers/ups-byoca-guide.md): A complete guide to using UPS BYOCA with EasyPost.
+- [UPS Wallet Guide](https://docs.easypost.com/carriers/ups-wallet-guide.md): A complete guide to using UPS Wallet with EasyPost.
+- [USA Export - Powered by Asendia](https://docs.easypost.com/carriers/usa-export-pba-guide.md): A complete guide to using USA Export - Powered by Asendia with EasyPost.
+- [USPS BYOCA Guide](https://docs.easypost.com/carriers/usps-byoca-guide.md): A complete guide to using USPS BYOCA with EasyPost.
+- [USPS Ship Guide](https://docs.easypost.com/carriers/usps-ship-guide.md): A complete guide to using USPS Ship with EasyPost.
+- [USPS Wallet Guide](https://docs.easypost.com/carriers/usps-wallet-guide.md): A complete guide to using USPS Wallet with EasyPost.
+- [Veho Guide](https://docs.easypost.com/carriers/veho-guide.md): A complete guide to using Veho with EasyPost.
+- [Veho Wallet Guide](https://docs.easypost.com/carriers/veho-wallet-guide.md): A complete guide to using Veho Wallet with EasyPost.
 
 ## Dashboard Links
 

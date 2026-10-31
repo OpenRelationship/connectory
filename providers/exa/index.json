@@ -43,6 +43,10 @@
      "outputSchema": {
       "type": "object",
       "description": "A [JSON Schema Draft 7](https://json-schema.org/draft-07) specification for the desired answer structure. When provided, the answer is returned as a structured object matching the schema instead of a plain string."
+     },
+     "userIdentifier": {
+      "type": "string",
+      "description": "An opaque ID your platform assigns to the end user this request is made for, such as a UUID. Lets Exa attribute usage to that end user rather than your whole team. Must not contain personal information such as an email address, phone number, username, or name. Hash such values before sending them. 1 to 64 characters: letters, digits, underscores, and hyphens. Retained even when your team has Zero "
      }
     },
     "required": [
@@ -62,7 +66,8 @@
      "model",
      "systemPrompt",
      "userLocation",
-     "outputSchema"
+     "outputSchema",
+     "userIdentifier"
     ],
     "body_format": "json"
    }
@@ -70,7 +75,7 @@
   {
    "slug": "exa.batch_monitors",
    "name": "Batch action on monitors",
-   "description": "Perform a batch action on monitors matching the provided filters. Supported actions: - **delete**: Permanently remove matching monitors - **pause**: Pause matching monitors - **unpause**: Unpause matching monitors Use `dry_run: true` (the default) to preview which monitors would be affected before performing the action. Results are paginated via the `limit` parameter; loop until `has_more` is `fal",
+   "description": "Deletes, pauses, or unpauses the monitors that match the filter. Deletion is permanent. `dry_run` defaults to `true`, so a request only previews the affected monitors unless you set it to `false`. Repeat the request until `has_more` is `false` to process all matches.",
    "input": {
     "type": "object",
     "properties": {
@@ -211,7 +216,7 @@
      },
      "effort": {
       "type": "string",
-      "description": "Cost and reasoning effort preference for the run. `auto` lets Exa choose the appropriate effort. `max` is the highest-effort public beta tier for work where completeness and thoroughness matter more than latency or cost, including large list building, deep multi-source research, and criteria that are hard to verify.",
+      "description": "Cost and reasoning effort preference for the run. `auto` lets Exa choose the appropriate effort. `ultra` is the highest-effort tier for work where completeness and thoroughness matter more than latency or cost, including large list building, deep multi-source research, and criteria that are hard to verify.",
       "enum": [
        "minimal",
        "low",
@@ -219,7 +224,7 @@
        "high",
        "xhigh",
        "auto",
-       "max"
+       "ultra"
       ]
      },
      "input": {
@@ -244,7 +249,11 @@
      },
      "budget": {
       "type": "object",
-      "description": "Optional per-run spending limit for the metered `auto` and `max` efforts. Runs that finish early may cost less than the limit."
+      "description": "Optional per-run spending and duration limits for the metered `auto` and `ultra` efforts. Runs that finish early may cost less than the limit."
+     },
+     "userIdentifier": {
+      "type": "string",
+      "description": "An opaque ID your platform assigns to the end user this request is made for, such as a UUID. Lets Exa attribute usage to that end user rather than your whole team. Must not contain personal information such as an email address, phone number, username, or name. Hash such values before sending them. 1 to 64 characters: letters, digits, underscores, and hyphens. Retained even when your team has Zero "
      }
     },
     "required": [
@@ -269,7 +278,8 @@
      "previousRunId",
      "metadata",
      "dataSources",
-     "budget"
+     "budget",
+     "userIdentifier"
     ],
     "body_format": "json"
    }
@@ -320,7 +330,7 @@
   {
    "slug": "exa.create_monitor",
    "name": "Create a monitor",
-   "description": "Creates a new Monitor to run recurring Exa searches on a schedule. Monitors automatically execute your search query on a recurring schedule and deliver results to your webhook endpoint with automatic deduplication: - **Date-based filtering** only fetches content since the last run - **Semantic deduplication** tracks previous outputs to surface only new developments The response includes a `webhook",
+   "description": "Creates a Monitor that runs an Exa search on a schedule and sends new results to your webhook. Each run searches recent content and drops results that match what earlier runs already returned, so your webhook receives only new developments. The response includes a `webhookSecret` for verifying webhook signatures. It is returned only once, so store it securely.",
    "input": {
     "type": "object",
     "properties": {
@@ -624,6 +634,10 @@
       "type": "string",
       "description": ""
      },
+     "userIdentifier": {
+      "type": "string",
+      "description": "An opaque ID your platform assigns to the end user this request is made for, such as a UUID. Lets Exa attribute usage to that end user rather than your whole team. Must not contain personal information such as an email address, phone number, username, or name. Hash such values before sending them. 1 to 64 characters: letters, digits, underscores, and hyphens. Retained even when your team has Zero "
+     },
      "text": {
       "type": "string",
       "description": ""
@@ -637,14 +651,6 @@
       "description": ""
      },
      "extras": {
-      "type": "string",
-      "description": ""
-     },
-     "context": {
-      "type": "string",
-      "description": ""
-     },
-     "livecrawl": {
       "type": "string",
       "description": ""
      },
@@ -667,6 +673,18 @@
      "subpageTarget": {
       "type": "string",
       "description": ""
+     },
+     "context": {
+      "type": "string",
+      "description": ""
+     },
+     "livecrawl": {
+      "type": "string",
+      "description": ""
+     },
+     "crawledBeforeDate": {
+      "type": "string",
+      "description": "Deprecated. Use `snapshotAsOf` instead. Alias of snapshotAsOf with identical behavior."
      }
     },
     "required": []
@@ -681,17 +699,19 @@
      "ids",
      "urls",
      "compliance",
+     "userIdentifier",
      "text",
      "highlights",
      "summary",
      "extras",
-     "context",
-     "livecrawl",
      "livecrawlTimeout",
      "maxAgeHours",
      "snapshotAsOf",
      "subpages",
-     "subpageTarget"
+     "subpageTarget",
+     "context",
+     "livecrawl",
+     "crawledBeforeDate"
     ],
     "body_format": "json"
    }
@@ -761,7 +781,7 @@
   {
    "slug": "exa.imports_create",
    "name": "Create an import",
-   "description": "Creates a new import to upload your data into Websets. Imports can be used to: - **Enrich**: Enhance your data with additional information using our AI-powered enrichment engine - **Search**: Query your data using Websets' agentic search with natural language filters - **Exclude**: Prevent duplicate or already known results from appearing in your searches Once the import is created, you can upload",
+   "description": "Creates an Import for your own data. Upload the file to the returned `uploadUrl` before `uploadValidUntil`, 1 hour after creation. Use an Import to enrich its records, to search within them with `scope`, or to leave them out of searches with `exclude`.",
    "input": {
     "type": "object",
     "properties": {},
@@ -1005,7 +1025,7 @@
      },
      "status": {
       "type": "string",
-      "description": "Filter the listing to completed batches. `completed` is the only supported value; any other value returns a 400. Completed listings are ordered by expiry and use a distinct cursor, so keep sending `status=completed` on every cursor-paginated request."
+      "description": "Return only completed batches, ordered by expiry. Send it on every page request when paginating."
      },
      "Exa-Beta": {
       "type": "string",
@@ -1128,7 +1148,7 @@
   {
    "slug": "exa.monitors_create",
    "name": "Create a monitor",
-   "description": "Creates a new `Monitor` to continuously keep your Websets updated with fresh data. Monitors automatically run on your defined schedule to ensure your Websets stay current without manual intervention: - **Find new content**: Execute `search` operations to discover fresh items matching your criteria - **Update existing content**: Run `refresh` operations to update items contents and enrichments - **",
+   "description": "To run a recurring Exa search and send new results to your webhook, use the [Monitors API](https://exa.ai/docs/reference/monitors/create-a-monitor). This endpoint creates a Monitor that searches for new Items for a Webset on a `cron` schedule in the given `timezone`.",
    "input": {
     "type": "object",
     "properties": {
@@ -1138,11 +1158,11 @@
      },
      "cadence": {
       "type": "object",
-      "description": "How often the monitor will run"
+      "description": ""
      },
      "behavior": {
       "type": "object",
-      "description": "Behavior to perform when monitor runs"
+      "description": ""
      },
      "metadata": {
       "type": "object",
@@ -1392,14 +1412,6 @@
       "type": "string",
       "description": ""
      },
-     "startCrawlDate": {
-      "type": "string",
-      "description": ""
-     },
-     "endCrawlDate": {
-      "type": "string",
-      "description": ""
-     },
      "startPublishedDate": {
       "type": "string",
       "description": ""
@@ -1409,10 +1421,6 @@
       "description": ""
      },
      "numResults": {
-      "type": "string",
-      "description": ""
-     },
-     "context": {
       "type": "string",
       "description": ""
      },
@@ -1434,7 +1442,7 @@
      },
      "type": {
       "type": "string",
-      "description": ""
+      "description": "The search mode to use. Defaults to `auto`, a balanced mode recommended for most applications."
      },
      "category": {
       "type": "string",
@@ -1452,11 +1460,39 @@
       "type": "string",
       "description": ""
      },
+     "objective": {
+      "type": "string",
+      "description": "The broader goal this search serves: the task the caller is working on, beyond the query itself. When exposing this field to an agent as a tool parameter, describe it as: \"Goal for this search turn; say which documents should rank first, which should be excluded, and what specific facts or figures to pull from them.\""
+     },
+     "userIdentifier": {
+      "type": "string",
+      "description": "An opaque ID your platform assigns to the end user this request is made for, such as a UUID. Lets Exa attribute usage to that end user rather than your whole team. Must not contain personal information such as an email address, phone number, username, or name. Hash such values before sending them. 1 to 64 characters: letters, digits, underscores, and hyphens. Retained even when your team has Zero "
+     },
      "systemPrompt": {
       "type": "string",
       "description": ""
      },
      "stream": {
+      "type": "string",
+      "description": ""
+     },
+     "startCrawlDate": {
+      "type": "string",
+      "description": ""
+     },
+     "endCrawlDate": {
+      "type": "string",
+      "description": ""
+     },
+     "includeText": {
+      "type": "string",
+      "description": "Deprecated. List of strings that must be present in the webpage text of results. Matching is approximate (word-level rather than exact phrase), so a multi-word entry can match pages where its words appear separately. Up to 50 strings, each up to 4096 characters."
+     },
+     "excludeText": {
+      "type": "string",
+      "description": "Deprecated. List of strings that must not be present in the webpage text of results. Matching is approximate (word-level rather than exact phrase). Up to 50 strings, each up to 4096 characters."
+     },
+     "context": {
       "type": "string",
       "description": ""
      }
@@ -1474,12 +1510,9 @@
     "body": [
      "includeDomains",
      "excludeDomains",
-     "startCrawlDate",
-     "endCrawlDate",
      "startPublishedDate",
      "endPublishedDate",
      "numResults",
-     "context",
      "moderation",
      "contents",
      "query",
@@ -1489,8 +1522,15 @@
      "userLocation",
      "compliance",
      "outputSchema",
+     "objective",
+     "userIdentifier",
      "systemPrompt",
-     "stream"
+     "stream",
+     "startCrawlDate",
+     "endCrawlDate",
+     "includeText",
+     "excludeText",
+     "context"
     ],
     "body_format": "json"
    }
@@ -1498,17 +1538,13 @@
   {
    "slug": "exa.stop_agent_run",
    "name": "Stop a run",
-   "description": "Complete a running Agent run early, returning the results gathered so far. You are billed for usage accrued before the stop. Currently supported only for `max` effort runs and requires the `Exa-Beta: agent-max-effort-2026-07-27` header. If the run has already reached a terminal status, the API returns the existing run.",
+   "description": "Complete a running Agent run early, returning the results gathered so far. You are billed for usage accrued before the stop. Currently supported only for `ultra` effort runs. If the run has already reached a terminal status, the API returns the existing run.",
    "input": {
     "type": "object",
     "properties": {
      "id": {
       "type": "string",
       "description": "Agent run ID."
-     },
-     "Exa-Beta": {
-      "type": "string",
-      "description": "Comma-separated beta feature tokens for opting into experimental features."
      }
     },
     "required": [
@@ -1522,9 +1558,7 @@
      "id"
     ],
     "query": [],
-    "header": [
-     "Exa-Beta"
-    ],
+    "header": [],
     "body": [],
     "body_format": "json"
    }
@@ -1926,7 +1960,7 @@
      },
      "enrichments": {
       "type": "array",
-      "description": "Add enrichments to extract additional data from found items. Enrichments automatically search for and extract specific information (like contact details, funding data, employee counts, etc.) from each item added to your Webset."
+      "description": "Enrichments that extract additional data from each Item added to the Webset."
      },
      "exclude": {
       "type": "array",
@@ -2040,7 +2074,7 @@
      },
      "format": {
       "type": "string",
-      "description": "Format of the enrichment response. We automatically select the best format based on the description. If you want to explicitly specify the format, you can do so here.",
+      "description": "",
       "enum": [
        "text",
        "date",
@@ -2171,7 +2205,7 @@
      },
      "format": {
       "type": "string",
-      "description": "Format of the enrichment response. We automatically select the best format based on the description. If you want to explicitly specify the format, you can do so here.",
+      "description": "",
       "enum": [
        "text",
        "date",
@@ -2399,7 +2433,7 @@
   {
    "slug": "exa.websets_preview",
    "name": "Preview a webset",
-   "description": "Preview how a search query will be decomposed before creating a webset. This endpoint performs the same query analysis that happens during webset creation, allowing you to see the detected entity type, generated search criteria, and available enrichment columns in advance. Use this to help users understand how their search will be interpreted before committing to a full webset creation.",
+   "description": "Returns how a search query will be interpreted before you create a Webset, including the detected entity, generated criteria, and suggested enrichments.",
    "input": {
     "type": "object",
     "properties": {
@@ -2485,7 +2519,7 @@
      },
      "criteria": {
       "type": "array",
-      "description": "Criteria every item is evaluated against. It's not required to provide your own criteria, we automatically detect the criteria from all the information provided in the query. Only use this when you need more fine control."
+      "description": "Criteria every Item is evaluated against. Generated from the query when omitted."
      },
      "maxPeoplePerCompany": {
       "type": "integer",
@@ -2493,7 +2527,7 @@
      },
      "exclude": {
       "type": "array",
-      "description": "Sources (existing imports or websets) to exclude from search results. Any results found within these sources will be omitted to prevent finding them during search."
+      "description": "Imports or Websets whose items are left out of this search's results."
      },
      "scope": {
       "type": "array",
@@ -2501,7 +2535,7 @@
      },
      "recall": {
       "type": "boolean",
-      "description": "Whether to provide an estimate of how many total relevant results could exist for this search. Result of the analysis will be available in the `recall` field within the search request."
+      "description": "Whether to estimate how many relevant results exist for this search. The estimate is returned in the search's `recall` field."
      },
      "behavior": {
       "type": "string",

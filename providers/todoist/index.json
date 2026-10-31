@@ -270,6 +270,42 @@
    }
   },
   {
+   "slug": "todoist.categories_api_v1_templates_categories_get",
+   "name": "Categories",
+   "description": "List curated template categories. Authentication is not required.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "template_type": {
+      "type": "string",
+      "description": "Template type to categorize.",
+      "enum": [
+       "setup",
+       "project",
+       "all"
+      ]
+     },
+     "locale": {
+      "type": "string",
+      "description": "Locale for category names and descriptions. Unsupported locales fall back to English."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.todoist.com/api/v1/templates/categories",
+    "path": [],
+    "query": [
+     "template_type",
+     "locale"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "todoist.close_task_api_v1_tasks_task_id_close_post",
    "name": "Close task",
    "description": "Closes a task. The command performs in the same way as our official clients: Regular tasks are marked complete and moved to history, along with their subtasks. Tasks with [recurring due dates](https://todoist.com/help/articles/introduction-to-recurring-dates-YUYVJJAV) will be scheduled to their next occurrence.",
@@ -466,6 +502,10 @@
      "radius": {
       "type": "integer",
       "description": "Radius in meters (default 100, max 255)"
+     },
+     "notify_uid": {
+      "type": "string",
+      "description": "String ID of the user who receives the reminder. Must be a collaborator of the task's project. Defaults to the user creating the reminder. To find User IDs, use [Get user](#operation/user_info_api_v1_user_get) for your own ID or [Get all collaborators](#operation/get_project_collaborators_api_v1_projects__project_id__collaborators_get) for project members."
      }
     },
     "required": [
@@ -488,7 +528,8 @@
      "loc_lat",
      "loc_long",
      "loc_trigger",
-     "radius"
+     "radius",
+     "notify_uid"
     ],
     "body_format": "json"
    }
@@ -515,6 +556,10 @@
      "color": {
       "type": "string",
       "description": ""
+     },
+     "icon": {
+      "type": "string",
+      "description": "Project icon name. Pass null or omit it for the default icon."
      },
      "is_favorite": {
       "type": "boolean",
@@ -544,9 +589,52 @@
      "description",
      "parent_id",
      "color",
+     "icon",
      "is_favorite",
      "view_style",
      "workspace_id"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "todoist.create_project_from_csv_api_v1_projects_import_post",
+   "name": "Create project from csv",
+   "description": "Create a project from CSV and return its ID and imported objects. Send a multipart file upload or raw CSV request body. For raw CSV, pass name and optional workspace_id as query parameters. Invalid UTF-8 bytes are replaced.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": "string",
+      "description": "Name of the new project."
+     },
+     "workspace_id": {
+      "type": "string",
+      "description": "Workspace ID for the new project. Omit to create a personal project."
+     },
+     "file": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "file",
+     "name"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.todoist.com/api/v1/projects/import",
+    "path": [],
+    "query": [
+     "name",
+     "workspace_id"
+    ],
+    "header": [],
+    "body": [
+     "name",
+     "workspace_id",
+     "file"
     ],
     "body_format": "json"
    }
@@ -591,6 +679,54 @@
    }
   },
   {
+   "slug": "todoist.create_project_from_template_api_v1_projects_from_template_post",
+   "name": "Create project from template",
+   "description": "Create a project from a template, returning only its ID and success status. Requires `data:read_write`. Setup templates are not supported. Workspace templates can only be imported into their associated workspace. Calendar defaults are applied to the project according to the destination plan.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "template_id": {
+      "type": "string",
+      "description": "Curated template slug or saved template ID with a `UT_` prefix."
+     },
+     "name": {
+      "type": "string",
+      "description": "Project name. Empty or omitted uses the localized template name."
+     },
+     "locale": {
+      "type": "string",
+      "description": "Locale for curated template content, with the template's English fallback."
+     },
+     "workspace_id": {
+      "type": "string",
+      "description": "Destination workspace ID. Omit to create a personal project."
+     },
+     "folder_id": {
+      "type": "string",
+      "description": "Destination folder ID. Requires workspace_id and a folder in that workspace."
+     }
+    },
+    "required": [
+     "template_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.todoist.com/api/v1/projects/from_template",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "template_id",
+     "name",
+     "locale",
+     "workspace_id",
+     "folder_id"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "todoist.create_reminder_api_v1_reminders_post",
    "name": "Create reminder",
    "description": "Create a new reminder for a task. For **relative** reminders, provide `minute_offset` (minutes before the task's due time). For **absolute** reminders, provide a `due` dictionary with a specific date/time. Supported `due` keys are `date` or `string`, with optional `lang`, `timezone`, and `is_recurring`.",
@@ -628,6 +764,10 @@
      "is_urgent": {
       "type": "boolean",
       "description": "Whether the reminder is an urgent reminder. Urgent reminders trigger an alarm notification on the user's designated urgent reminder device."
+     },
+     "notify_uid": {
+      "type": "string",
+      "description": "String ID of the user who receives the reminder. Must be a collaborator of the task's project. Defaults to the user creating the reminder. To find User IDs, use [Get user](#operation/user_info_api_v1_user_get) for your own ID or [Get all collaborators](#operation/get_project_collaborators_api_v1_projects__project_id__collaborators_get) for project members."
      }
     },
     "required": [
@@ -646,7 +786,8 @@
      "minute_offset",
      "due",
      "service",
-     "is_urgent"
+     "is_urgent",
+     "notify_uid"
     ],
     "body_format": "json"
    }
@@ -756,7 +897,7 @@
      },
      "duration": {
       "type": "string",
-      "description": "Task duration, in either minutes or days. Only used if `duration_unit` is also provided."
+      "description": "Task duration, as a positive whole number of minutes or days. The API accepts durations longer than 24 hours, but the Todoist web and desktop date picker limits duration edits to 24 hours. Only used if `duration_unit` is also provided."
      },
      "duration_unit": {
       "type": "string",
@@ -794,6 +935,68 @@
      "duration",
      "duration_unit",
      "deadline_date"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "todoist.create_user_template_api_v1_templates_user_post",
+   "name": "Create user template",
+   "description": "Creates a template from a project or a content graph. Requires `data:read_write`. `project_id` is always required. With `content` unset, its content is exported as-is. With `content` set, project_id is only used to check access, set the template's source project, and (with `for_workspace`) derive the workspace to associate the template with - the content graph is used for the template's content in",
+   "input": {
+    "type": "object",
+    "properties": {
+     "template_type": {
+      "type": "string",
+      "description": "Saved templates support project content only."
+     },
+     "name": {
+      "type": "string",
+      "description": "Saved template name, up to 255 characters."
+     },
+     "description": {
+      "type": "string",
+      "description": "Saved template description, up to 1,000 characters."
+     },
+     "project_id": {
+      "type": "string",
+      "description": "Source project. Required even with content, for access and provenance."
+     },
+     "color": {
+      "type": "string",
+      "description": ""
+     },
+     "for_workspace": {
+      "type": "boolean",
+      "description": "Associate with the source project workspace as a restricted template. Defaults to a personal template."
+     },
+     "content": {
+      "type": "string",
+      "description": "Full replacement graph instead of exporting the source project. Uses the supported writable fields of a raw preview, including optional calendar defaults. IDs refer only to nodes in this payload. project_id is still required for access and provenance."
+     }
+    },
+    "required": [
+     "color",
+     "description",
+     "name",
+     "project_id",
+     "template_type"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.todoist.com/api/v1/templates/user",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "template_type",
+     "name",
+     "description",
+     "project_id",
+     "color",
+     "for_workspace",
+     "content"
     ],
     "body_format": "json"
    }
@@ -885,6 +1088,34 @@
     "url": "https://api.todoist.com/api/v1/comments/{comment_id}",
     "path": [
      "comment_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "todoist.delete_filter_api_v1_filters_filter_id_delete",
+   "name": "Delete filter",
+   "description": "Delete a personal filter. Only available on plans that include filters. Returns a not found error if the filter doesn't exist, was already deleted, or belongs to another user. Workspace filters can't be deleted with this endpoint.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "filter_id": {
+      "type": "integer",
+      "description": "String ID of the filter"
+     }
+    },
+    "required": [
+     "filter_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.todoist.com/api/v1/filters/{filter_id}",
+    "path": [
+     "filter_id"
     ],
     "query": [],
     "header": [],
@@ -1179,6 +1410,112 @@
    }
   },
   {
+   "slug": "todoist.discover_template_api_v1_templates_template_id_get",
+   "name": "Discover template",
+   "description": "Get one template. A `UT_` ID requires `data:read`; invisible or missing IDs return 404.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "template_id": {
+      "type": "string",
+      "description": "A curated template slug or a saved template ID prefixed with `UT_`."
+     },
+     "locale": {
+      "type": "string",
+      "description": "Content locale. Unsupported locales fall back to English."
+     }
+    },
+    "required": [
+     "template_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.todoist.com/api/v1/templates/{template_id}",
+    "path": [
+     "template_id"
+    ],
+    "query": [
+     "locale"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "todoist.discover_templates_api_v1_templates_get",
+   "name": "Discover templates",
+   "description": "Discover templates or look up a bounded batch of IDs. Curated templates are anonymous. Personal/workspace sources and any `UT_` ID require `data:read`. Pages prioritize personal, workspace, then curated templates, and rank each page by the query. Keep all filters when continuing.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "template_type": {
+      "type": "string",
+      "description": "Template type to list.",
+      "enum": [
+       "setup",
+       "project",
+       "all"
+      ]
+     },
+     "template_source": {
+      "type": "string",
+      "description": "Curated (`todoist`), personal (`user`), workspace, or all accessible templates.",
+      "enum": [
+       "todoist",
+       "user",
+       "workspace",
+       "all"
+      ]
+     },
+     "locale": {
+      "type": "string",
+      "description": "Content locale. Unsupported locales fall back to English."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "The number of objects to return in a page"
+     },
+     "cursor": {
+      "type": "string",
+      "description": ""
+     },
+     "query": {
+      "type": "string",
+      "description": "Search template text and, without category_id, matching curated categories."
+     },
+     "category_id": {
+      "type": "string",
+      "description": "Curated category slug. Personal and workspace templates retain their own search filtering."
+     },
+     "ids": {
+      "type": "string",
+      "description": "Up to 100 comma-separated ID entries. Repeated IDs are deduplicated in request order. Missing or invisible IDs are omitted. May be combined with locale and pagination, but not listing filters."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.todoist.com/api/v1/templates",
+    "path": [],
+    "query": [
+     "template_type",
+     "template_source",
+     "locale",
+     "limit",
+     "cursor",
+     "query",
+     "category_id",
+     "ids"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "todoist.download_backup_api_v1_backups_download_get",
    "name": "Download backup",
    "description": "Download a backup archive. This endpoint requires the `data:read_write` scope. The `backups:read` scope only grants access to `GET /api/v1/backups`. Validates that the requested backup belongs to the authenticated user and redirects to a signed CloudFront URL that expires after one minute.",
@@ -1219,8 +1556,7 @@
       "enum": [
        "project",
        "project_comments",
-       "task",
-       "item"
+       "task"
       ]
      },
      "obj_id": {
@@ -1259,8 +1595,7 @@
       "enum": [
        "project",
        "project_comments",
-       "task",
-       "item"
+       "task"
       ]
      },
      "obj_id": {
@@ -1289,7 +1624,7 @@
   {
    "slug": "todoist.export_as_file_api_v1_templates_file_get",
    "name": "Export as file",
-   "description": "Get a template for a project as a CSV file",
+   "description": "Download a project as UTF-8 CSV. Requires `data:read` and project export permission. On v1.6+, dated tasks also get `DATE_TYPE` and `DATE_TIME` columns, and `TIMEZONE` holds the task's own timezone only for `fixed_datetime` dues. Older versions write the exporting user's timezone on every row. With `use_relative_dates=false`, non-recurring dues are ISO 8601 values.",
    "input": {
     "type": "object",
     "properties": {
@@ -1322,7 +1657,7 @@
   {
    "slug": "todoist.export_as_url_api_v1_templates_url_get",
    "name": "Export as url",
-   "description": "Get a template for a project as a shareable URL. The URL can then be passed to `https://todoist.com/api/v1/import/project_from_url?t_url=` to make a shareable template.",
+   "description": "Publish a project as a shareable template URL. Requires `data:read_write` and project export permission. This stores a publicly accessible CSV artifact. No expiry is set on this URL. Pass it to `https://todoist.com/api/v1/import/project_from_url?t_url=` to share the template. On v1.6+, dated tasks also get `DATE_TYPE` and `DATE_TIME` columns, and `TIMEZONE` holds the task's own timezone only for `",
    "input": {
     "type": "object",
     "properties": {
@@ -1349,6 +1684,42 @@
     ],
     "header": [],
     "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "todoist.generate_description_api_v1_templates_generate_description_post",
+   "name": "Generate description",
+   "description": "Generates an AI description from a project or saved template. Supply `project_id` or `template_id`. Requires `data:read_write`, access to the source and the AI template descriptions feature.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "project_id": {
+      "type": "string",
+      "description": "Project to summarize. Takes precedence when template_id is also supplied."
+     },
+     "template_id": {
+      "type": "string",
+      "description": "Saved template to summarize."
+     },
+     "locale": {
+      "type": "string",
+      "description": "Language for the generated description."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.todoist.com/api/v1/templates/generate_description",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "project_id",
+     "template_id",
+     "locale"
+    ],
     "body_format": "json"
    }
   },
@@ -2419,6 +2790,143 @@
    }
   },
   {
+   "slug": "todoist.import_project_csv_api_v1_projects_project_id_import_post",
+   "name": "Import project csv",
+   "description": "Import CSV into an existing project and return the imported objects. Send a multipart file upload or raw CSV request body. CSV is decoded as UTF-8, replacing invalid bytes, and must include TYPE and CONTENT header columns.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "project_id": {
+      "type": "string",
+      "description": "ID of the project to import the CSV into."
+     },
+     "file": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "file",
+     "project_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.todoist.com/api/v1/projects/{project_id}/import",
+    "path": [
+     "project_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "file"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "todoist.import_project_template_api_v1_projects_project_id_import_template_post",
+   "name": "Import project template",
+   "description": "Import a project template, returning tasks, comments, reminders and applied defaults. Requires `data:read_write` and permission to apply templates to the project. The project must be active and unfrozen. Workspace templates can only be imported into their associated workspace. Setup templates are rejected; use `/templates/{template_id}/use`. The `projects` array is empty.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "project_id": {
+      "type": "string",
+      "description": "ID of the project to import into."
+     },
+     "template_id": {
+      "type": "string",
+      "description": "Curated template slug or saved template ID with a `UT_` prefix."
+     },
+     "locale": {
+      "type": "string",
+      "description": "Locale for curated template content, with the template's English fallback."
+     }
+    },
+    "required": [
+     "project_id",
+     "template_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.todoist.com/api/v1/projects/{project_id}/import_template",
+    "path": [
+     "project_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "template_id",
+     "locale"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "todoist.import_user_template_from_file_api_v1_templates_user_import_post",
+   "name": "Import user template from file",
+   "description": "Creates a personal template from CSV or a content graph. Requires `data:read_write`. With `content` unset, the request's file (either a multipart `file` or a previously-uploaded `uploaded_file_name`, or a raw CSV body) becomes the template's content. Send content graphs in an `application/json` body. With `content` set, an uploaded file is ignored and `uploaded_file_name` must be unset. Import cre",
+   "input": {
+    "type": "object",
+    "properties": {
+     "template_type": {
+      "type": "string",
+      "description": "Saved templates support project content only."
+     },
+     "name": {
+      "type": "string",
+      "description": "Saved template name, up to 255 characters."
+     },
+     "description": {
+      "type": "string",
+      "description": "Saved template description, up to 1,000 characters."
+     },
+     "color": {
+      "type": "string",
+      "description": ""
+     },
+     "uploaded_file_name": {
+      "type": "string",
+      "description": "Staged filename from /templates/user/preview, owned by the caller. Mutually exclusive with content."
+     },
+     "content": {
+      "type": "string",
+      "description": "Full replacement graph. Uses the supported writable fields of a raw preview, including optional calendar defaults. IDs refer only to nodes in this payload. Mutually exclusive with uploaded_file_name. When content and a multipart file are supplied, content takes precedence and the file is ignored."
+     }
+    },
+    "required": [
+     "color",
+     "description",
+     "name",
+     "template_type"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.todoist.com/api/v1/templates/user/import",
+    "path": [],
+    "query": [
+     "template_type",
+     "name",
+     "description",
+     "color",
+     "uploaded_file_name"
+    ],
+    "header": [],
+    "body": [
+     "template_type",
+     "name",
+     "description",
+     "color",
+     "uploaded_file_name",
+     "content"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "todoist.invitations_api_v1_workspaces_invitations_get",
    "name": "Invitations",
    "description": "Return a list of user emails who have a pending invitation to a workspace. The list is not paginated. All workspace members can access this list.",
@@ -2464,6 +2972,15 @@
      "role": {
       "type": "string",
       "description": "Role assigned to invited users."
+     },
+     "app": {
+      "type": "string",
+      "description": "Product name as first-party clients spell it on the wire.",
+      "enum": [
+       "todoist",
+       "comms",
+       "automations"
+      ]
      }
     },
     "required": [
@@ -2480,7 +2997,8 @@
     "header": [],
     "body": [
      "email_list",
-     "role"
+     "role",
+     "app"
     ],
     "body_format": "json"
    }
@@ -2678,6 +3196,118 @@
     ],
     "header": [],
     "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "todoist.preview_project_api_v1_templates_preview_get",
+   "name": "Preview project",
+   "description": "Preview a project's template graph. Requires `data:read` and project export permission. Set `resolve_dates=false` to preserve raw date strings for a template editor.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "project_id": {
+      "type": "string",
+      "description": "ID of the project to preview as a template."
+     },
+     "resolve_dates": {
+      "type": "boolean",
+      "description": "Resolve date strings to concrete dates. Set to false to preserve raw due, deadline and absolute-reminder date strings when editing a project template."
+     }
+    },
+    "required": [
+     "project_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.todoist.com/api/v1/templates/preview",
+    "path": [],
+    "query": [
+     "project_id",
+     "resolve_dates"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "todoist.preview_template_api_v1_templates_template_id_preview_get",
+   "name": "Preview template",
+   "description": "Preview a project or setup template without importing it. Curated templates support anonymous access and use a valid `data:read` actor when available. Any `UT_` ID requires `data:read` and the saved template's existing visibility permissions. Raw date strings are supported only for project templates.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "template_id": {
+      "type": "string",
+      "description": "Curated template slug or saved template ID with a `UT_` prefix."
+     },
+     "locale": {
+      "type": "string",
+      "description": "Locale for curated template content, with the template's English fallback."
+     },
+     "for_workspace": {
+      "type": "boolean",
+      "description": "Preview a setup as workspace projects and folders, rather than personal projects."
+     },
+     "resolve_dates": {
+      "type": "boolean",
+      "description": "Resolve date strings to concrete dates. Set to false to preserve raw due, deadline and absolute-reminder date strings when editing a project template."
+     }
+    },
+    "required": [
+     "template_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.todoist.com/api/v1/templates/{template_id}/preview",
+    "path": [
+     "template_id"
+    ],
+    "query": [
+     "locale",
+     "for_workspace",
+     "resolve_dates"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "todoist.preview_user_template_api_v1_templates_user_preview_post",
+   "name": "Preview user template",
+   "description": "Stages and previews a project CSV sent as multipart `file` or a raw CSV body. Requires `data:read_write` because the upload is stored. The response includes the filename for a subsequent import and the graph for editing; project names come from the filename or the `X-File-Name` header for raw bodies.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "resolve_dates": {
+      "type": "boolean",
+      "description": "Resolve due dates and deadlines. Use false for an editor to receive raw date strings for the supported content graph projection. On v1.6+, raw typed dues also include date_type, time and timezone to preserve their meaning when saved."
+     },
+     "file": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "file"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.todoist.com/api/v1/templates/user/preview",
+    "path": [],
+    "query": [
+     "resolve_dates"
+    ],
+    "header": [],
+    "body": [
+     "resolve_dates",
+     "file"
+    ],
     "body_format": "json"
    }
   },
@@ -3517,6 +4147,10 @@
      "radius": {
       "type": "string",
       "description": "Radius in meters. If not provided (or null), the value remains unchanged."
+     },
+     "notify_uid": {
+      "type": "string",
+      "description": "String ID of the user who receives the reminder. Must be a collaborator of the task's project. To find User IDs, use [Get user](#operation/user_info_api_v1_user_get) for your own ID or [Get all collaborators](#operation/get_project_collaborators_api_v1_projects__project_id__collaborators_get) for project members. Passing null or omitting this field will leave it unchanged."
      }
     },
     "required": [
@@ -3536,7 +4170,8 @@
      "loc_lat",
      "loc_long",
      "loc_trigger",
-     "radius"
+     "radius",
+     "notify_uid"
     ],
     "body_format": "json"
    }
@@ -3660,6 +4295,10 @@
       "type": "string",
       "description": "Updated project color. Passing null or omitting this field will leave it unchanged."
      },
+     "icon": {
+      "type": "string",
+      "description": "Updated project icon name. Pass null to reset to the default icon. Omit this field to keep it unchanged."
+     },
      "is_favorite": {
       "type": "string",
       "description": "Whether the project is marked as a favorite. Passing null or omitting this field will leave it unchanged."
@@ -3697,6 +4336,7 @@
      "name",
      "description",
      "color",
+     "icon",
      "is_favorite",
      "view_style",
      "child_order",
@@ -3736,6 +4376,10 @@
      "is_urgent": {
       "type": "boolean",
       "description": "Whether the reminder is an urgent reminder. Urgent reminders trigger an alarm notification on the user's designated urgent reminder device. Omit this field to keep it unchanged."
+     },
+     "notify_uid": {
+      "type": "string",
+      "description": "String ID of the user who receives the reminder. Must be a collaborator of the task's project. To find User IDs, use [Get user](#operation/user_info_api_v1_user_get) for your own ID or [Get all collaborators](#operation/get_project_collaborators_api_v1_projects__project_id__collaborators_get) for project members. Passing null or omitting this field will leave it unchanged."
      }
     },
     "required": [
@@ -3754,7 +4398,8 @@
      "minute_offset",
      "due",
      "service",
-     "is_urgent"
+     "is_urgent",
+     "notify_uid"
     ],
     "body_format": "json"
    }
@@ -3857,7 +4502,7 @@
      },
      "duration": {
       "type": "string",
-      "description": "Updated task duration, in either minutes or days. Only used if `duration_unit` is also provided. Pass null to clear the value. Omit this field to keep it unchanged."
+      "description": "Updated task duration, as a positive whole number of minutes or days. The API accepts durations longer than 24 hours, but the Todoist web and desktop date picker limits duration edits to 24 hours. Only used if `duration_unit` is also provided. Pass null to clear the value. Omit this field to keep it unchanged."
      },
      "duration_unit": {
       "type": "string",
@@ -3908,6 +4553,70 @@
      "child_order",
      "is_collapsed",
      "day_order"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "todoist.update_user_template_api_v1_templates_user_template_id_put",
+   "name": "Update user template",
+   "description": "Updates a template's metadata and, optionally, its content. Requires `data:read_write` and template edit permission. Omitted metadata stays unchanged. Supply `content` or `project_id` to replace the graph. A shared workspace template can be edited by its author or a workspace admin; restricted templates remain author-only, and only the author may change sharing. If workspace membership repeatedly ",
+   "input": {
+    "type": "object",
+    "properties": {
+     "template_id": {
+      "type": "string",
+      "description": "ID of a saved personal or workspace template."
+     },
+     "name": {
+      "type": "string",
+      "description": ""
+     },
+     "description": {
+      "type": "string",
+      "description": ""
+     },
+     "project_id": {
+      "type": "string",
+      "description": "Replace content by exporting this project. Mutually exclusive with content."
+     },
+     "color": {
+      "type": "string",
+      "description": "Template color. Omit to keep it unchanged."
+     },
+     "workspace_id": {
+      "type": "string",
+      "description": "Associate a personal template with this workspace, keeping its ID. Workspace templates cannot move to another workspace."
+     },
+     "shared_with_workspace_members": {
+      "type": "string",
+      "description": "Share or unshare with workspace members. Only the author can change this setting. Omit to keep it unchanged."
+     },
+     "content": {
+      "type": "string",
+      "description": "Full replacement graph. Uses the supported writable fields of a raw preview, including optional calendar defaults. IDs refer only to nodes in this payload. Mutually exclusive with project_id. Omit to keep the content unchanged."
+     }
+    },
+    "required": [
+     "template_id"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.todoist.com/api/v1/templates/user/{template_id}",
+    "path": [
+     "template_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "description",
+     "project_id",
+     "color",
+     "workspace_id",
+     "shared_with_workspace_members",
+     "content"
     ],
     "body_format": "json"
    }
@@ -4051,11 +4760,11 @@
     "properties": {
      "file_name": {
       "type": "string",
-      "description": ""
+      "description": "Name for the uploaded file. If not provided, will be extracted from Content-Disposition header (multipart) or X-File-Name header (raw binary)."
      },
      "project_id": {
       "type": "string",
-      "description": ""
+      "description": "Project ID to apply workspace-specific upload limits when uploading to a workspace project."
      },
      "file": {
       "type": "string",
@@ -4124,7 +4833,7 @@
   {
    "slug": "todoist.usage_billing_state_api_v1_usage_billing_state_get",
    "name": "Usage billing state",
-   "description": "Read the caller's usage-billing credit state for a product. A user who has never topped up reads as an empty wallet: `available_units` and `available_amount` are 0, and `usage_allowed` is false. There is no separate \"no account\" answer, because both states send the user to the same top-up screen.",
+   "description": "Read the caller's usage-billing credit state for a product. A user who has never topped up reads as an empty wallet: `available_units` and `available_amount` are 0, `is_settled_low_balance` is true, and `usage_block_reason` is `insufficient_credit`. There is no separate \"no account\" answer, because both states send the user to the same top-up screen.",
    "input": {
     "type": "object",
     "properties": {
@@ -4150,7 +4859,7 @@
   {
    "slug": "todoist.usage_billing_top_up_api_v1_usage_billing_top_up_post",
    "name": "Usage billing top up",
-   "description": "In V1, create a hosted Stripe Checkout session to top up the authenticated user's personal Automations wallet. The user must have a personal Stripe customer and an active personal Todoist Pro subscription. A Business or workspace subscription alone does not qualify. A Business member who also has personal Todoist Pro tops up their personal wallet. If the personal Stripe customer or personal Todois",
+   "description": "In V1, create a hosted Stripe Checkout session to top up the authenticated user's personal Automations wallet. A wallet whose usage is billed on the user's Pro subscription needs a personal Stripe customer and an active personal Todoist Pro subscription. A wallet on its own compute subscription needs Pro of any kind, including Pro gifted by a Business workspace, but not Pro paid only through an ap",
    "input": {
     "type": "object",
     "properties": {
@@ -4209,6 +4918,10 @@
      "until": {
       "type": "string",
       "description": "End of the window, exclusive. Omit to run to now. A value with no offset is read as UTC."
+     },
+     "group_by": {
+      "type": "string",
+      "description": "Split the total by the automation that ran, in `groups`. Send `category=automation_run` with it: chat messages carry no automation, so without the filter each chat label becomes a group of its own."
      }
     },
     "required": []
@@ -4221,10 +4934,55 @@
      "product",
      "category",
      "since",
-     "until"
+     "until",
+     "group_by"
     ],
     "header": [],
     "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "todoist.use_template_api_v1_templates_template_id_use_post",
+   "name": "Use template",
+   "description": "Create a project or a complete setup from a template. Requires `data:read_write`. Saved workspace templates can only be used in their associated workspace. Returns the created sync-style graph, with tasks in `items` and comments in `notes`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "template_id": {
+      "type": "string",
+      "description": "Curated template slug or saved template ID with a `UT_` prefix."
+     },
+     "locale": {
+      "type": "string",
+      "description": "Locale for curated template content, with the template's English fallback."
+     },
+     "workspace_id": {
+      "type": "string",
+      "description": "Destination workspace ID. Omit to create personal projects."
+     },
+     "folder_id": {
+      "type": "string",
+      "description": "Destination folder for a project template. Requires workspace_id. Unsupported for setups."
+     }
+    },
+    "required": [
+     "template_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.todoist.com/api/v1/templates/{template_id}/use",
+    "path": [
+     "template_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "locale",
+     "workspace_id",
+     "folder_id"
+    ],
     "body_format": "json"
    }
   },

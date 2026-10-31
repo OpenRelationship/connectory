@@ -2,7 +2,7 @@
 --
 -- GENERATED from https://shortcut.com/openapi.json
 -- Published on the vendor's own documentation site (https://shortcut.com).
--- 239 operations · do not edit
+-- 249 operations · do not edit
 --
 -- The credential is never in here. `auth.env` names an environment variable; the value
 -- stays in the environment, which is what makes this file safe to publish.
@@ -67,6 +67,8 @@ return {
     ["shortcut.bulk_update_story_comments"] = { method = "PATCH", url = "https://api.app.shortcut.com/api/v4/{workspace-slug}/stories/{story-public-id}/comments/bulk", path = {"workspace-slug", "story-public-id"}, query = {"fields", "order_dir", "limit", "order_by", "filter", "cursor"} },
     ["shortcut.bulk_update_story_links"] = { method = "PATCH", url = "https://api.app.shortcut.com/api/v4/{workspace-slug}/story-links/bulk", path = {"workspace-slug"}, query = {"limit", "cursor", "order_by", "order_dir", "filter", "fields"} },
     ["shortcut.bulk_update_teams"] = { method = "PATCH", url = "https://api.app.shortcut.com/api/v4/{workspace-slug}/teams/bulk", path = {"workspace-slug"}, query = {"limit", "cursor", "order_by", "order_dir", "filter", "fields"} },
+    ["shortcut.create_agent_activity"] = { method = "POST", url = "https://api.app.shortcut.com/api/v4/{workspace-slug}/agent-sessions/{agent-session-id}/activities", path = {"workspace-slug", "agent-session-id"} },
+    ["shortcut.create_agent_session"] = { method = "POST", url = "https://api.app.shortcut.com/api/v4/{workspace-slug}/agent-sessions", path = {"workspace-slug"} },
     ["shortcut.create_category"] = { method = "POST", url = "https://api.app.shortcut.com/api/v4/{workspace-slug}/categories", path = {"workspace-slug"}, query = {"fields"} },
     ["shortcut.create_collection"] = { method = "POST", url = "https://api.app.shortcut.com/api/v4/{workspace-slug}/collections", path = {"workspace-slug"}, query = {"fields"} },
     ["shortcut.create_doc"] = { method = "POST", url = "https://api.app.shortcut.com/api/v4/{workspace-slug}/documents", path = {"workspace-slug"}, query = {"fields"} },
@@ -102,13 +104,15 @@ return {
     ["shortcut.delete_story_link"] = { method = "DELETE", url = "https://api.app.shortcut.com/api/v4/{workspace-slug}/story-links/{story-link-public-id}", path = {"workspace-slug", "story-link-public-id"} },
     ["shortcut.delete_workspace_token"] = { method = "DELETE", url = "https://api.app.shortcut.com/api/v4/{workspace-slug}/admin/tokens/{token-public-id}", path = {"workspace-slug", "token-public-id"} },
     ["shortcut.favorite_collection"] = { method = "PUT", url = "https://api.app.shortcut.com/api/v4/{workspace-slug}/collections/{collection-public-id}/favorite", path = {"workspace-slug", "collection-public-id"}, query = {"fields"} },
+    ["shortcut.get_agent_session"] = { method = "GET", url = "https://api.app.shortcut.com/api/v4/{workspace-slug}/agent-sessions/{agent-session-id}", path = {"workspace-slug", "agent-session-id"} },
+    ["shortcut.get_agent_session_context"] = { method = "GET", url = "https://api.app.shortcut.com/api/v4/{workspace-slug}/agent-sessions/{agent-session-id}/context", path = {"workspace-slug", "agent-session-id"} },
     ["shortcut.get_branch"] = { method = "GET", url = "https://api.app.shortcut.com/api/v4/{workspace-slug}/branches/{branch-public-id}", path = {"workspace-slug", "branch-public-id"}, query = {"fields"} },
     ["shortcut.get_category"] = { method = "GET", url = "https://api.app.shortcut.com/api/v4/{workspace-slug}/categories/{category-public-id}", path = {"workspace-slug", "category-public-id"}, query = {"fields"} },
     ["shortcut.get_collection"] = { method = "GET", url = "https://api.app.shortcut.com/api/v4/{workspace-slug}/collections/{collection-public-id}", path = {"workspace-slug", "collection-public-id"}, query = {"fields"} },
     ["shortcut.get_commit"] = { method = "GET", url = "https://api.app.shortcut.com/api/v4/{workspace-slug}/commits/{commit-public-id}", path = {"workspace-slug", "commit-public-id"}, query = {"fields"} },
     ["shortcut.get_current_iterations"] = { method = "GET", url = "https://api.app.shortcut.com/api/v4/{workspace-slug}/iterations/current", path = {"workspace-slug"}, query = {"limit", "cursor", "order_by", "order_dir", "filter", "fields"} },
     ["shortcut.get_custom_field"] = { method = "GET", url = "https://api.app.shortcut.com/api/v4/{workspace-slug}/custom-fields/{custom-field-public-id}", path = {"workspace-slug", "custom-field-public-id"}, query = {"fields"} },
-    ["shortcut.get_doc"] = { method = "GET", url = "https://api.app.shortcut.com/api/v4/{workspace-slug}/documents/{doc-public-id}", path = {"workspace-slug", "doc-public-id"}, query = {"fields"} },
+    ["shortcut.get_doc"] = { method = "GET", url = "https://api.app.shortcut.com/api/v4/{workspace-slug}/documents/{doc-public-id}", path = {"workspace-slug", "doc-public-id"}, query = {"content_format", "fields"} },
     ["shortcut.get_entity_template"] = { method = "GET", url = "https://api.app.shortcut.com/api/v4/{workspace-slug}/entity-templates/{entity-template-public-id}", path = {"workspace-slug", "entity-template-public-id"}, query = {"fields"} },
     ["shortcut.get_epic"] = { method = "GET", url = "https://api.app.shortcut.com/api/v4/{workspace-slug}/epics/{epic-public-id}", path = {"workspace-slug", "epic-public-id"}, query = {"fields"} },
     ["shortcut.get_epic_comment"] = { method = "GET", url = "https://api.app.shortcut.com/api/v4/{workspace-slug}/epics/{epic-public-id}/comments/{comment-public-id}", path = {"workspace-slug", "epic-public-id", "comment-public-id"}, query = {"fields"} },
@@ -136,6 +140,8 @@ return {
     ["shortcut.get_whoami"] = { method = "GET", url = "https://api.app.shortcut.com/api/v4/whoami" },
     ["shortcut.get_workflow"] = { method = "GET", url = "https://api.app.shortcut.com/api/v4/{workspace-slug}/workflows/{workflow-public-id}", path = {"workspace-slug", "workflow-public-id"}, query = {"fields"} },
     ["shortcut.get_workflow_state"] = { method = "GET", url = "https://api.app.shortcut.com/api/v4/{workspace-slug}/workflow-states/{workflow-state-public-id}", path = {"workspace-slug", "workflow-state-public-id"}, query = {"fields"} },
+    ["shortcut.list_agent_activities"] = { method = "GET", url = "https://api.app.shortcut.com/api/v4/{workspace-slug}/agent-sessions/{agent-session-id}/activities", path = {"workspace-slug", "agent-session-id"}, query = {"after", "limit"} },
+    ["shortcut.list_agent_sessions"] = { method = "GET", url = "https://api.app.shortcut.com/api/v4/{workspace-slug}/agent-sessions", path = {"workspace-slug"}, query = {"entity_type", "entity_id", "cursor", "limit"} },
     ["shortcut.list_branch_pull_requests"] = { method = "GET", url = "https://api.app.shortcut.com/api/v4/{workspace-slug}/branches/{branch-public-id}/pull-requests", path = {"workspace-slug", "branch-public-id"}, query = {"limit", "cursor", "order_by", "order_dir", "filter", "fields"} },
     ["shortcut.list_branch_stories"] = { method = "GET", url = "https://api.app.shortcut.com/api/v4/{workspace-slug}/branches/{branch-public-id}/stories", path = {"workspace-slug", "branch-public-id"}, query = {"limit", "cursor", "order_by", "order_dir", "filter", "fields"} },
     ["shortcut.list_branches"] = { method = "GET", url = "https://api.app.shortcut.com/api/v4/{workspace-slug}/branches", path = {"workspace-slug"}, query = {"limit", "cursor", "order_by", "order_dir", "filter", "fields"} },
@@ -237,6 +243,7 @@ return {
     ["shortcut.list_workflow_teams"] = { method = "GET", url = "https://api.app.shortcut.com/api/v4/{workspace-slug}/workflows/{workflow-public-id}/teams", path = {"workspace-slug", "workflow-public-id"}, query = {"limit", "cursor", "order_by", "order_dir", "filter", "fields"} },
     ["shortcut.list_workflows"] = { method = "GET", url = "https://api.app.shortcut.com/api/v4/{workspace-slug}/workflows", path = {"workspace-slug"}, query = {"limit", "cursor", "order_by", "order_dir", "filter", "fields"} },
     ["shortcut.list_workspace_tokens"] = { method = "GET", url = "https://api.app.shortcut.com/api/v4/{workspace-slug}/admin/tokens", path = {"workspace-slug"}, query = {"limit", "cursor", "order_by", "order_dir", "filter", "fields"} },
+    ["shortcut.prompt_agent_session"] = { method = "POST", url = "https://api.app.shortcut.com/api/v4/{workspace-slug}/agent-sessions/{agent-session-id}/prompts", path = {"workspace-slug", "agent-session-id"} },
     ["shortcut.remove_doc_from_collection"] = { method = "DELETE", url = "https://api.app.shortcut.com/api/v4/{workspace-slug}/documents/{doc-public-id}/collections/{collection-public-id}", path = {"workspace-slug", "doc-public-id", "collection-public-id"} },
     ["shortcut.search"] = { method = "GET", url = "https://api.app.shortcut.com/api/v4/{workspace-slug}/search", path = {"workspace-slug"}, query = {"limit", "cursor", "query", "entity_types"} },
     ["shortcut.search_docs"] = { method = "GET", url = "https://api.app.shortcut.com/api/v4/{workspace-slug}/documents/search", path = {"workspace-slug"}, query = {"limit", "cursor", "query", "archived", "created_by_me", "followed_by_me", "fields"} },
@@ -244,9 +251,12 @@ return {
     ["shortcut.search_iterations"] = { method = "GET", url = "https://api.app.shortcut.com/api/v4/{workspace-slug}/iterations/search", path = {"workspace-slug"}, query = {"limit", "cursor", "query", "fields"} },
     ["shortcut.search_objectives"] = { method = "GET", url = "https://api.app.shortcut.com/api/v4/{workspace-slug}/objectives/search", path = {"workspace-slug"}, query = {"limit", "cursor", "query", "fields"} },
     ["shortcut.search_stories"] = { method = "GET", url = "https://api.app.shortcut.com/api/v4/{workspace-slug}/stories/search", path = {"workspace-slug"}, query = {"limit", "cursor", "query", "fields"} },
+    ["shortcut.subscribe_to_agent_sessions"] = { method = "PUT", url = "https://api.app.shortcut.com/api/v4/{workspace-slug}/agent-sessions/subscription", path = {"workspace-slug"} },
     ["shortcut.unfavorite_collection"] = { method = "DELETE", url = "https://api.app.shortcut.com/api/v4/{workspace-slug}/collections/{collection-public-id}/favorite", path = {"workspace-slug", "collection-public-id"}, query = {"fields"} },
+    ["shortcut.update_agent_session"] = { method = "PATCH", url = "https://api.app.shortcut.com/api/v4/{workspace-slug}/agent-sessions/{agent-session-id}", path = {"workspace-slug", "agent-session-id"} },
     ["shortcut.update_category"] = { method = "PATCH", url = "https://api.app.shortcut.com/api/v4/{workspace-slug}/categories/{category-public-id}", path = {"workspace-slug", "category-public-id"}, query = {"fields"} },
     ["shortcut.update_custom_field"] = { method = "PATCH", url = "https://api.app.shortcut.com/api/v4/{workspace-slug}/custom-fields/{custom-field-public-id}", path = {"workspace-slug", "custom-field-public-id"}, query = {"fields"} },
+    ["shortcut.update_doc"] = { method = "PATCH", url = "https://api.app.shortcut.com/api/v4/{workspace-slug}/documents/{doc-public-id}", path = {"workspace-slug", "doc-public-id"}, query = {"fields"} },
     ["shortcut.update_entity_template"] = { method = "PATCH", url = "https://api.app.shortcut.com/api/v4/{workspace-slug}/entity-templates/{entity-template-public-id}", path = {"workspace-slug", "entity-template-public-id"}, query = {"fields"} },
     ["shortcut.update_epic"] = { method = "PATCH", url = "https://api.app.shortcut.com/api/v4/{workspace-slug}/epics/{epic-public-id}", path = {"workspace-slug", "epic-public-id"}, query = {"fields"} },
     ["shortcut.update_epic_comment"] = { method = "PATCH", url = "https://api.app.shortcut.com/api/v4/{workspace-slug}/epics/{epic-public-id}/comments/{comment-public-id}", path = {"workspace-slug", "epic-public-id", "comment-public-id"}, query = {"fields"} },

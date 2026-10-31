@@ -124,13 +124,13 @@
   {
    "slug": "shopvox.create_note",
    "name": "Create a note",
-   "description": "Attach a note to a parent record. Provide **exactly one** parent reference param alongside the note - e.g. `company_id`, `contact_id`, `job_id`, `invoice_id`, `work_order_id` (sales order), `quote_id`, `sales_lead_id`. The parent model is derived from the `*_id` key name.",
+   "description": "**Plan: Pro.** Creates a note on a record. Send **exactly one** parent reference parameter with the note. Its name is the model name with `_id`, for example `company_id`, `contact_id`, `sales_lead_id`, `work_order_id` (a sales order), `invoice_id`, `quote_id` or `job_id`.",
    "input": {
     "type": "object",
     "properties": {
      "company_id": {
       "type": "string",
-      "description": "One example parent reference; any `_id` works."
+      "description": "A parent reference parameter. The description of the operation gives the other names."
      },
      "note": {
       "type": "object",
@@ -413,7 +413,7 @@
   {
    "slug": "shopvox.delete_note",
    "name": "Delete a note",
-   "description": "Delete a note",
+   "description": "**Plan: Paid API.** Deletes the note. After this, `GET /notes` does not list the note, and the API cannot restore it. A second `DELETE` of the same note returns `404`. A user can delete a note that another user wrote only if the role of the user has **Edit & Remove All Users' Notes**.",
    "input": {
     "type": "object",
     "properties": {
@@ -946,10 +946,18 @@
   {
    "slug": "shopvox.list_notes",
    "name": "List notes",
-   "description": "List notes",
+   "description": "**Plan: Pro.** Lists the notes of the account, oldest first. To get the notes of one record, send one parent reference parameter. Its name is the model name with `_id`, for example `company_id`, `contact_id`, `sales_lead_id`, `work_order_id` (a sales order), `invoice_id`, `quote_id` or `job_id`. `stats.totalCount` is the number of notes that match the request, on all pages. The list does not inclu",
    "input": {
     "type": "object",
     "properties": {
+     "company_id": {
+      "type": "string",
+      "description": "A parent reference parameter. The description of the operation gives the other names."
+     },
+     "content": {
+      "type": "string",
+      "description": "Only notes whose text contains this value. The match ignores case. In the value, `%` matches any text and `_` matches any one character."
+     },
      "page": {
       "type": "integer",
       "description": ""
@@ -966,6 +974,8 @@
     "url": "https://api.shopvox.com/v1/notes",
     "path": [],
     "query": [
+     "company_id",
+     "content",
      "page",
      "per_page"
     ],
@@ -1062,6 +1072,10 @@
    "input": {
     "type": "object",
     "properties": {
+     "active": {
+      "type": "boolean",
+      "description": "Active flag."
+     },
      "page": {
       "type": "integer",
       "description": ""
@@ -1078,6 +1092,7 @@
     "url": "https://api.shopvox.com/v1/sales_leads",
     "path": [],
     "query": [
+     "active",
      "page",
      "per_page"
     ],
@@ -1343,7 +1358,7 @@
     ]
    },
    "request": {
-    "method": "PATCH",
+    "method": "PUT",
     "url": "https://api.shopvox.com/v1/companies/{id}",
     "path": [
      "id"
@@ -1378,7 +1393,7 @@
     ]
    },
    "request": {
-    "method": "PATCH",
+    "method": "PUT",
     "url": "https://api.shopvox.com/v1/contacts/{id}",
     "path": [
      "id"
@@ -1394,7 +1409,7 @@
   {
    "slug": "shopvox.update_note",
    "name": "Update a note",
-   "description": "Update a note",
+   "description": "**Plan: Paid API.** Updates the note. Send the new `content`. The other fields are optional. The note stays on the same record. The request finds the note by its `id` and ignores parent reference parameters. A user can update a note that another user wrote only if the role of the user has **Edit & Remove All Users' Notes**.",
    "input": {
     "type": "object",
     "properties": {
@@ -1413,7 +1428,7 @@
     ]
    },
    "request": {
-    "method": "PATCH",
+    "method": "PUT",
     "url": "https://api.shopvox.com/v1/notes/{id}",
     "path": [
      "id"
@@ -1540,7 +1555,7 @@
     ]
    },
    "request": {
-    "method": "PATCH",
+    "method": "PUT",
     "url": "https://api.shopvox.com/v1/sales_leads/{id}",
     "path": [
      "id"
@@ -1598,7 +1613,7 @@
     ]
    },
    "request": {
-    "method": "PATCH",
+    "method": "PUT",
     "url": "https://api.shopvox.com/v1/sales_orders/{id}",
     "path": [
      "id"

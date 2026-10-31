@@ -10,7 +10,7 @@ return {
   provider = "webflow",
   name = "Webflow",
   base = "https://api.webflow.com",
-  docs = "https://nango.dev/docs/integrations/all/webflow",
+  docs = "https://nango.dev/docs/api-integrations/webflow",
   auth = {
     kind = "oauth",
     header = "authorization",

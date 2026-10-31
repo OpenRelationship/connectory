@@ -18,6 +18,8 @@ vouches for**: read it, then read their reference.
 - [Send your first Company Enrichment API request](https://docs.peopledatalabs.com/docs/send-your-first-company-enrichment-api-request.md)
 - [API Dashboard Quickstart](https://docs.peopledatalabs.com/links/api-dashboard-quickstart.md)
 - [API Structure & Access](https://docs.peopledatalabs.com/docs/introduction.md)
+- [User management](https://docs.peopledatalabs.com/docs/user-management.md): Invite teammates to your PDL account, manage pending invitations, and remove users in the API Dashboard.
+- [Redeem a promo code](https://docs.peopledatalabs.com/docs/redeem-a-promo-code.md): Find out whether your PDL promo code adds credits or a checkout discount, then apply it in the API Dashboard.
 - [IP Endpoint](https://docs.peopledatalabs.com/docs/ip-endpoint.md)
 - [Developer Stats](https://docs.peopledatalabs.com/docs/developer-stats.md)
 - [Person Enrichment API](https://docs.peopledatalabs.com/docs/person-enrichment-api.md)
@@ -101,7 +103,9 @@ vouches for**: read it, then read their reference.
 - [Examples - Person Changelog API](https://docs.peopledatalabs.com/docs/examples-person-changelog-api.md)
 - [FAQs - Person Changelog API](https://docs.peopledatalabs.com/docs/person-changelog-api-faqs.md)
 - [Subject Request API](https://docs.peopledatalabs.com/docs/subject-request-api.md)
-- [Salesforce Integration](https://docs.peopledatalabs.com/docs/salesforce-integration.md)
+- [Use People Data Labs in Clay](https://docs.peopledatalabs.com/docs/clay-integration.md): Use People Data Labs enrichments inside Clay, with Clay's managed connection or your own PDL account.
+- [Connect Your PDL API Key to Clay](https://docs.peopledatalabs.com/docs/clay-byok.md): Add your People Data Labs API key to Clay and reuse it across your Clay workflows.
+- [Salesforce](https://docs.peopledatalabs.com/docs/salesforce-integration.md)
 - [Mappings](https://docs.peopledatalabs.com/docs/salesforce-integration-mappings.md)
 - [Enrichment Settings](https://docs.peopledatalabs.com/docs/salesforce-integration-enrichment-settings.md)
 - [App Settings](https://docs.peopledatalabs.com/docs/salesforce-integration-app-settings.md)
@@ -110,10 +114,10 @@ vouches for**: read it, then read their reference.
 - [API Dashboard Setup](https://docs.peopledatalabs.com/docs/salesforce-integration-setup-api-dashboard-setup.md)
 - [Verify Enrichment Workflows](https://docs.peopledatalabs.com/docs/salesforce-integration-setup-verify-enrichment-workflows.md)
 - [Troubleshooting](https://docs.peopledatalabs.com/docs/salesforce-integration-setup-troubleshooting.md)
-- [Make.com Integration](https://docs.peopledatalabs.com/docs/makecom-integration.md)
-- [Zapier Integration](https://docs.peopledatalabs.com/docs/zapier.md)
+- [Make.com](https://docs.peopledatalabs.com/docs/makecom-integration.md)
 - [Product Integration Guides](https://docs.peopledatalabs.com/docs/product-integration-guides.md)
 - [Use Cases - Job Posting Search API](https://docs.peopledatalabs.com/docs/use-cases-job-posting-search-api.md): _Copy-pasteable workflows for common Job Posting Search API use cases_
+- [Building API workflows with an AI assistant](https://docs.peopledatalabs.com/docs/api-workflows-with-an-ai-assistant.md): How to use ChatGPT, Claude, or another AI assistant to build Person and Company Enrichment and Search workflows, and how to catch common mistakes before they cost you credits.
 - [Searching by job_title](https://docs.peopledatalabs.com/docs/searching-by-job-title.md): How to search PDL's job_title field effectively, using exact matches, wildcards, the role/subrole taxonomy, and the Job Title Enrichment API.
 - [Generate a Lead List](https://docs.peopledatalabs.com/recipes/generate-a-lead-list.md): This recipe shows you how to generate a lead list through the use of both the Company Search API and the Person Search API
 - [Enrich a List of LinkedIn Profiles](https://docs.peopledatalabs.com/recipes/enrich-a-list-of-linkedin-profiles.md): This recipe shows you how to enrich a list of LinkedIn profile IDs through the use of the Bulk Person Enrichment API

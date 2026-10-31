@@ -68,8 +68,8 @@ vouches for**: read it, then read their reference.
 - [Overview](https://developer.swoogo.com/api-reference/overviews/registrant-types.md): Manage registration type categories for event attendees
 - [Get All Types](https://developer.swoogo.com/api-reference/registrant-types/get-all-types.md): Retrieves all registration types for a specific event. Registration types (e.g., Attendee, Exhibitor, Speaker) categorize registrants and can have different pricing, capacity limits, and group size constraints. Requires the `event_id` query parameter.
 - [Get One Type](https://developer.swoogo.com/api-reference/registrant-types/get-one-type.md): Retrieves a single registration type by its ID, including name, capacity, group size limits, and sold-out message. Use the `expand` parameter to include related `earlyBirds` pricing tiers. <details>   <summary><b>Extra Fields</b></summary>
-- [Create Type](https://developer.swoogo.com/api-reference/registrant-types/create-type.md): Creates a new registration type for an event. Requires `event_id` and `name` in the request body. Optionally set `capacity` to limit how many registrants can select this type.
-- [Update Type](https://developer.swoogo.com/api-reference/registrant-types/update-type.md): Updates an existing registration type by its ID. You can modify the name, capacity, group size limits, display names, and sold-out message. Only the fields included in the request body will be updated.
+- [Create Type](https://developer.swoogo.com/api-reference/registrant-types/create-type.md): Creates a new registration type for an event. Requires `event_id` and `name` in the request body. Optionally set `capacity` to limit how many registrants can select this type, and `exclude_from_event_capacity` to ignore the type when calculating event capacity.
+- [Update Type](https://developer.swoogo.com/api-reference/registrant-types/update-type.md): Updates an existing registration type by its ID. You can modify the name, capacity, whether it counts towards event capacity (`exclude_from_event_capacity`), group size limits, display names, and sold-out message. Only the fields included in the request body will be updated.
 - [Delete Type](https://developer.swoogo.com/api-reference/registrant-types/delete-type.md): Permanently deletes a registration type by its ID. The type will no longer be available as a selection for new registrations. Existing registrants already assigned to this type are not affected.
 - [Overview](https://developer.swoogo.com/api-reference/overviews/sessions.md): Individual agenda items within an event — talks, workshops, panels, and breaks
 - [Get All Sessions](https://developer.swoogo.com/api-reference/sessions/get-all-sessions.md): Retrieves a paginated list of sessions for a specific event. Returns session scheduling, capacity, track, and configuration details.
@@ -156,8 +156,8 @@ vouches for**: read it, then read their reference.
 - [Get One Discount Code](https://developer.swoogo.com/api-reference/discount-codes/get-one-discount-code.md): Retrieves a single discount code by its ID, including discount type (`percentage`, `absolute`, or `specific`), applicable line items, capacity limits, line-item-specific fees (`custom_fees`), and group registration settings.
 - [Create Discount Code](https://developer.swoogo.com/api-reference/discount-codes/create-discount-code.md): Creates a new discount code for an event. Requires `event_id`, `code`, and `type` (`percentage`, `absolute`, or `specific`). Set `capacity` to limit total usage, `apply_to_all` to apply across every line item, or list specific items in `applicable_line_items` for targeted discounts. For `specific`-t…
 - [Clone Discount Code](https://developer.swoogo.com/api-reference/discount-codes/clone-discount-code.md): Creates a duplicate of an existing discount code, copying all settings (type, amount, capacity, line item rules, and group constraints). Optionally provide a new `code` value via the `code` query parameter; if omitted, the original code is used with "(Clone)" appended. Alternate discount codes canno…
-- [Update Discount Code](https://developer.swoogo.com/api-reference/discount-codes/update-discount-code.md): Updates an existing discount code by its ID. All body fields are optional; only the fields included in the request body will be updated. `event_id` cannot be changed — discounts are bound to their original event. To create alternate codes for an existing discount, use the clone endpoint.
-- [Delete Discount Code](https://developer.swoogo.com/api-reference/discount-codes/delete-discount-code.md): Permanently deletes a discount code by its ID. The code will no longer be usable for future registrations. Existing registrants who already applied this discount are not affected.
+- [Update Discount Code](https://developer.swoogo.com/api-reference/discount-codes/update-discount-code.md): Updates an existing discount code by its ID. All body fields are optional; only the fields included in the request body will be updated. `event_id` cannot be changed — discounts are bound to their original event. To create an alternate code under an existing discount, pass `parent_id` to the create…
+- [Delete Discount Code](https://developer.swoogo.com/api-reference/discount-codes/delete-discount-code.md): Permanently deletes a discount code by its ID. The code will no longer be usable for future registrations. Existing registrants who already applied this discount are not affected. Deleting a primary code also deletes its alternate codes. A code cannot be deleted while any registrant has selected it…
 - [Overview](https://developer.swoogo.com/api-reference/overviews/transactions.md): Financial activity for registrants — payments, refunds, and credits
 - [Get All Transactions](https://developer.swoogo.com/api-reference/transactions/get-all-transactions.md): Retrieves all financial transaction records for a specific event. Transactions include payments, refunds, and credits linked to registrants. Requires the `event_id` query parameter. Each record contains the amount, type (e.g., credit_card_payment, wire_transfer_refund), status, and associated regist…
 - [Get One Transaction](https://developer.swoogo.com/api-reference/transactions/get-one-transaction.md): Retrieves a single transaction by its ID, including payment details (amount, type, status), card information (last 4 digits, card type), associated registrant, and payment gateway used.
@@ -225,19 +225,24 @@ vouches for**: read it, then read their reference.
 - [Get Registrant Audit Sessions](https://developer.swoogo.com/api-reference/registration-audit/get-registrant-audit-sessions.md): Returns a time-bounded audit log of session attendance changes for a specific registrant. Each record captures the registrant's session selections and attendance type at a point in time. Requires both `event_id` and `start_time` query parameters. Supports up to 1,000 results per page.
 - [Introduction](https://developer.swoogo.com/mcp/introduction.md): Connect AI assistants to your Swoogo data with the Model Context Protocol
 - [Setup](https://developer.swoogo.com/mcp/setup.md): Connect your AI assistant to Swoogo via the MCP server
-- [Events](https://developer.swoogo.com/mcp/tools/events.md): Query events, fuzzy-match by name, and fetch complete event bundles
+- [Events](https://developer.swoogo.com/mcp/tools/events.md): Query events, fuzzy-match by name, fetch complete event bundles, and update events
 - [Sessions](https://developer.swoogo.com/mcp/tools/sessions.md): List, create, and update event sessions
-- [Registrants](https://developer.swoogo.com/mcp/tools/registrants.md): Query registrants, create registrations, manage session assignments, and add registrant types
-- [Speakers](https://developer.swoogo.com/mcp/tools/speakers.md): Query and update event speakers
+- [Registrants](https://developer.swoogo.com/mcp/tools/registrants.md): Query registrants, create registrations, manage session assignments, add registrant types, get registration stats, and send emails
+- [Speakers](https://developer.swoogo.com/mcp/tools/speakers.md): Query, create, and update event speakers
 - [Sponsors](https://developer.swoogo.com/mcp/tools/sponsors.md): Query, create, and update event sponsors
 - [Contacts](https://developer.swoogo.com/mcp/tools/contacts.md): Query and create account-level CRM contacts
 - [Packages](https://developer.swoogo.com/mcp/tools/packages.md): Query registration packages and pricing
+- [Registration types](https://developer.swoogo.com/mcp/tools/registration-types.md): Query registrant type IDs, names, capacities, and pricing
 - [Discount codes](https://developer.swoogo.com/mcp/tools/discount-codes.md): Query, create, and update event discount codes
 - [Transactions](https://developer.swoogo.com/mcp/tools/transactions.md): List payment transactions, refunds, and offline entries for an event
 - [Line items](https://developer.swoogo.com/mcp/tools/line-items.md): Query registrant invoice lines and their change history
-- [Attendance](https://developer.swoogo.com/mcp/tools/attendance.md): Track session attendance and get aggregated statistics
+- [Attendance](https://developer.swoogo.com/mcp/tools/attendance.md): Track session attendance, check registrants in and out, and get aggregated statistics
 - [Registration forms](https://developer.swoogo.com/mcp/tools/forms.md): Retrieve form configuration and display interactive registration forms
+- [Audits & schemas](https://developer.swoogo.com/mcp/tools/audits.md): Field definitions, registration audits, call-for-speakers, and invitation list management
+- [Account users](https://developer.swoogo.com/mcp/tools/account-users.md): Review who can access your account, when they last logged in, and which event folders they can open
 
 ## OpenAPI Specs
 
 - [openapi](/api-reference/openapi.yaml)
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation p

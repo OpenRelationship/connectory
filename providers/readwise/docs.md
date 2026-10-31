@@ -12,972 +12,1037 @@ vouches for**: read it, then read their reference.
 - Source: https://docs.readwise.io/llms.txt
 
 ---
-What is Readwise Reader?
+What is Readwise Highlights?
 
-Readwise Reader is a powerful extension of the Readwise platform designed to enhance your digital reading experience. Reader brings together all your reading materials—articles, newsletters, EPUBs, PDFs, videos, tweets, and more—into one unified, customizable platform and seamlessly integrates with Readwise.
-
-With Reader, you can highlight and annotate text as you read, and all your highlights and notes will automatically sync to your Readwise library for easy organization and review.
-
-## Where should I start? 
-
-Great question! With so many options for importing, exporting, and customizing, getting set up with Reader can feel daunting. To help ease the mental load of a new system, here are some ideas:
-
-1. [Import existing content](/reader/docs/faqs/importing-content) from Pocket, Instapaper, Feedly, or other platforms.
-2. [Add new content](/reader/docs/faqs/adding-new-content) using the browser extension, mobile share sheet, or drag-and-drop file upload.
-3. [Subscribe to RSS feeds](/reader/docs/faqs/feed) to get new content in your account every day.
-4. [Customize Reader's appearance](/reader/docs/faqs/appearance) to suit your reading preferences—make the text bigger, turn on paged scroll, switch to dark mode, and more.
-5. Start reading and annotate as you go with simple [highlighting and note-taking](/reader/docs/faqs/highlights-tags-notes) functionality.
-
-## What else can I do with Reader?
-
-An even better question! To learn more about the deep cuts of Reader's feature set, check out these resources:
-
-What is Readwise Reader?
-
-Readwise Reader is an all-in-one reading app designed to enhance your digital reading experience. Reader brings together all your reading materials—articles, newsletters, EPUBs, PDFs, videos, tweets, and more—into one unified, customizable platform and seamlessly integrates with Readwise.
-
-With Reader, you can highlight and annotate text as you read, and all your highlights and notes will automatically sync to your Readwise library for easy organization and review.
+Readwise Highlights is a digital tool designed to help you retain and organize the most valuable insights from your reading. Highlights leverages powerful techniques like spaced repetition and active recall to supercharge your memory. Through Daily Reviews, Highlights ensures you regularly revisit key insights from your reading material, perfectly timed to enhance retention. This prevents knowledge from slipping away and keeps your memory sharp.
 
 ## Where should I start?
 
-Great question! With so many options for importing, exporting, and customizing, it can be nice to have a jumping off point. To help you get started, here are some ideas:
+Great question! With so many options for importing, exporting, and customizing, getting set up with Highlights can feel daunting. To help ease the mental load of a new system, here are some ideas:
 
-1. [Import existing content](/reader/docs/faqs/importing-content) from Pocket, Instapaper, Feedly, or other platforms.
-2. [Add new content](/reader/docs/faqs/adding-new-content) using the browser extension, mobile share sheet, or drag-and-drop file upload.
-3. [Subscribe to RSS feeds](/reader/docs/faqs/feed) to get new content in your account every day.
-4. [Customize Reader's appearance](/reader/docs/faqs/appearance) to suit your reading preferences—make the text bigger, turn on paged scroll, switch to dark mode, and more.
-5. Start reading and annotate as you go with simple [highlighting and note-taking](/reader/docs/faqs/highlights-tags-notes) functionality. 
+1. [Import existing highlights](/highlights/docs/importing-highlights) from Kindle, Apple Books, Kobo, Pocket, and more.
+2. Add some [Supplemental Books](/highlights/docs/faqs#how-do-i-use-the-highlights-app-if-i-dont-have-that-many-highlights-yet) to get started even without an existing library of highlights.
+3. [Customize your Daily Review](/highlights/docs/faqs/reviewing-highlights#can-i-customize-how-often-books-and-articles-appear-in-my-daily-review) to show you more of the documents you care about.
+4. [Export your highlights](/highlights/docs/exporting-highlights) to your note-taking app(s) of choice, including Notion, Evernote, Obsidian, and more.
 
-## What else can I do with Reader?
+## Where should I start?
 
-To learn more about some of Reader's more advanced features, check out these resources:
+Great question! With so many options for importing, exporting, and customizing, getting set up with Highlights can feel daunting. To help ease the mental load of a new system, here are some ideas:
 
-Basics
+1. [Import existing highlights](/highlights/docs/importing-highlights) from Kindle, Apple Books, Kobo, Pocket, and more.
+2. Add some [Supplemental Books](/highlights/docs/faqs#how-do-i-use-the-highlights-app-if-i-dont-have-that-many-highlights-yet) to get started even without an existing library of highlights.
+3. [Customize your Daily Review](/highlights/docs/faqs/reviewing-highlights#can-i-customize-how-often-books-and-articles-appear-in-my-daily-review) to show you more of the documents you care about.
+4. [Export your highlights](/highlights/docs/exporting-highlights) to your note-taking app(s) of choice, including Notion, Evernote, Obsidian, and more.
 
-## How do I get started with Reader?
+## Import integrations
 
-Reader is a cross-platform reading application with a web app ([read.readwise.io](https://read.readwise.io/)), mobile apps for iOS and Android, [desktop apps](https://readwise.io/read/download/) for Mac and Windows, and browser extensions for Chrome, Chromium-based browsers (Edge, Brave, Arc, etc.), Firefox, and Safari.
+Bring highlights from the platforms you read on into your Highlights library. You can set up any of these from the [Import section](https://readwise.io/welcome/sync) of your Readwise account.
 
-The best way to get started using Reader is to navigate to [read.readwise.io](https://read.readwise.io/) and read the _Getting Started with Reader_ article inserted into your Library by default. From there, we recommend you navigate to different sections of the app based on the type of content you read. For example, if you read PDFs, click on the PDF section and you'll see instructions in the right sidebar for how to upload those files.
+## Export integrations
 
-(On mobile, you can find these sections by tapping the **Views** icon in the bottom navigation bar.)
+Send your highlights to your note-taking app so they're available wherever you think and write. You can set up any of these from the [Export page](https://readwise.io/export) of your Readwise account.
 
-Alternatively, you can also watch our community manager Erin's [short walkthrough video](https://readwise.io/reader101) to get up and running with Reader as quickly as possible.
+We're constantly adding more integrations! To request a new source or destination, feel free to reach out to us at [hello@readwise.io](mailto:hello@readwise.io).
 
-## How do I log into Reader?
+📤 Exporting Highlights
 
-Reader uses your Readwise account for authentication. If you're not redirected automatically, make sure you're logged into [Readwise](https://readwise.io/dashboard) on any browser you're using with Reader.
+You can export your highlights to a variety of popular note-taking apps, as well as basic text exports, including:
 
-## What is the pricing of Reader?
+To see all the export options, visit the [export page](https://readwise.io/export) of your Readwise account.
 
-The annual subscription cost of Reader (plus Readwise!) is $9.99/month (USD). For monthly subscribers, it's $12.99/month (USD). You can learn more about Reader's pricing and what's included on our [pricing page](https://readwise.io/pricing).
+## Configuring the sync
 
-Note that if you subscribed prior to **February 18, 2024**, you're locked into our legacy pricing for as long as you maintain your subscription.
+Once you've connected your Readwise account and granted the tool permission to access your Apple Notes folder, you'll be taken to the tool's configuration screen.
 
-## Can I use Reader offline?
+1. **Initiate Sync**: Click this button to begin syncing your highlights to Apple Notes.
+2. **Customize formatting options**: This will take you to the Readwise website where you can customize the formatting options for your highlights.
+3. **Customize base folder**: By default, the tool will export to a folder called "Readwise". You can change this to anything you'd like.
+4. **Pick an account**: If you have multiple Apple Notes accounts, you can select which one you'd like to export to.
+5. **Configure resync frequency**: This allows you to set how often the tool should check for new highlights and sync them to Apple Notes. By default, it's set to *Manual*, so it will never run automatically.
+6. **Sync automatically on app open**: Turning this toggle on will cause the tool to sync your highlights to Apple Notes whenever you open the Mac tool.
+7. **Disconnect**: This will disconnect your Readwise account from the tool.
 
-Reader works offline on both web and mobile. On web, so long as you have [read.readwise.io](https://read.readwise.io/) open before you go offline, Reader will continue to work and any changes you make (e.g. new highlights) will sync once you come back online. Alternatively, you can install the Reader [desktop app](https://readwise.io/read/download/), which will open and work offline.
+## Customizing the formatting
 
-On mobile, so long as you open the app for at least a few moments before you go offline, the full text of your documents will be cached and Reader will work offline. 
+You can customize the formatting of your highlights in Apple Notes by clicking the **Customize formatting options** button in the tool's configuration screen. This will take you to the Readwise website where you can customize the formatting options for your highlights.
 
-## Does Reader have a Command Palette?
+You can also navigate directly to the [Apple Notes customization](https://readwise.io/apple_notes) page from the Export page in the Highlights web app.
 
-Reader has a Command Palette on web (`Cmd/Ctrl + K`) which contains virtually any action you can take in the application. The Command Palette is a great way to find out if actions you're looking to take exist and, if so, what keyboard shortcut you can use to access them.
+1. **Include Highlight Locations**: Keep this on to include the location or page information of each highlight in the export.
 
-## Can I undo an accidental action?
+2. **Include Book Cover Images**: This will include the book cover image at the top of each note, which will also display as a thumbnail in the document list.
 
-You can use the undo feature to restore a deleted highlight or note, undo bulk actions, and much more.
+3. **Select Items to be Exported**: Turning this option on will allow you to manually select which documents will be exported to Apple Notes. When this option is turned off, all documents in your account will sync when an export is triggered.
 
-On web, you can trigger the undo function by pressing `Z` on your keyboard. Pressing multiple times will step back through the last few actions you've taken.
+## FAQs
 
-On mobile, when using an iOS device, you can use the operating system's built-in "shake to undo" feature. If shaking to undo isn't working for you, check that the feature is turned on in your device's **Settings** > **Accessibility** > **Touch**.
+### What happens when I add new highlights?
+Any highlights you’ve made in existing documents since the last sync will be appended to the end of the existing note for that document in Apple Notes.
 
-Additionally, many actions will be followed by a pop-up "toast" dialog to confirm what's been done, and that dialog will often include an undo button. Clicking or tapping it will immediately revert the action.
+## How to set up the integration
 
-## How can I delete unwanted documents?
+To begin exporting your highlights to Capacities, go to your Capacities app (web or desktop) and open the **Settings** panel from the cog icon in the lower left corner.
 
-On web, there are two ways to delete a document. You can either click into the **More actions** (...) menu and select **Delete document**, or you can use the keyboard shortcut `D`.
+In the **Settings** panel, locate the **Readwise Integration** option in the left menu. Click the **Connect to Readwise** button to open the authorization page, then click the blue **Authorize** button to allow the connection.
 
-On mobile, tap into the **More actions** (...) menu and select **Delete document** at the bottom of the sheet.
+The Readwise integration is limited to Capacities Pro users. If you're not seeing the Readwise integration option in your **Settings** panel, you may need to [upgrade your account](https://capacities.io/pricing).
 
-## What is an Action Tag?
-Action tags are highlight notes that use a specific syntax to perform actions on the associated highlight. All action tags begin with a `.` character, and their functionality effects how the highlights appear in Readwise.
+### Add a tag in Highlights
 
-### My Chrome extension is asking for an API token. What do I do?
-This is not actually the official Chrome extension made by Readwise, but rather an extension made by someone in the community. You should not use this extension with Reader. Instead, install the official extension [from the Chrome web store](https://chrome.google.com/webstore/detail/jjhefcfhmnkfeepcpnilbbkaadhngkbi).
+You can add a tag to the document in Highlights that will cause it to sync to Capacities. Note that this method works with *document tags*, not *highlight tags*. Individually tagged highlights will not be synced unless their parent document is also synced.
 
-### How do I install the Reader iOS app?
-You can install the Reader iOS app [from the App Store](https://apps.apple.com/us/app/readwise-reader/id1567599761). This will work on any device that can run iOS 13.0 or later (iPhone, iPad, etc).
+By default, the sync tag is `capacities`, but you can change that in the **Readwise Integration** settings in the Capacities app by clicking the "Edit" button that appears on hover.
 
-## How do I upload files to Reader?
-You can upload a variety of different file types to Reader, including PDFs, EPUBs, Markdown, and OPML files. To upload a file, drag it on top of the web app, or open the Upload dialog (keyboard shortcut: `U`) and select the file.
+You can add a document tag from the [Highlights library page](https://readwise.io/library) by clicking into the dropdown settings a particular document.
 
-On mobile, you can upload a file from inside the app. Tap the `+` icon in the top right of your Library view, then select **Upload a file**.
+You can also do this from the top of the document page itself.
 
-You can also share a file to Reader from your device's Files app using the option in the share sheet labeled **Save File to Reader**.
+If you're only syncing your Highlights content to one Capacities space, you can check the **Sync all new items** option. 
 
-Note that most uploads are limited to 500 MB, and Markdown files are limited to 10 MB.
+This will automatically sync any *newly added documents* from Highlights to Capacities, but it will *not* sync any documents that already existed in your Highlights library before authorizing the integration.
 
-When you upload a file from your device, Reader will try to use whatever metadata exists for that file type. For example, EPUB files usually contain quite a lot of baked in metadata such as the author, cover image, publish date, etc.
+## Capacities integration FAQs
 
-Since Markdown files don't carry that same kind of inherent metadata, the document's title in Reader will be pulled from the filename, and the first web-hosted image in the file becomes the document's cover. Any other metadata will need to be added manually. You can do this via the **Edit metadata** button at the bottom of the **Info** panel in the right sidebar (keyboard shortcut `shift + M` on web or desktop).
+### Can I edit my highlights in Capacities? 
 
-## How do I add podcasts to Reader?
-You can share a podcast link to Reader to save a high-quality transcript of the content in your Reader Library, which you can then [highlight](/reader/docs/faqs/highlights-tags-notes), [chat with](/reader/guides/ghostreader/chat), or use with any of Reader's other features.
+Yes! You can edit the text of a highlight as you wish and the Readwise integration will not overwrite any changes you've made in Capacities. 
 
-To save a podcast on mobile, find an episode in your podcast player of choice (we currently support Spotify, Overcast, and Apple Podcasts) and use that app's share option to share the episode to Reader.
+Check out the Capacities help documentation for [more information and ideas about how you can work with your highlights](https://docs.capacities.io/reference/integrations/readwise#working-with-highlights).
 
-On web, you can add podcasts by copying the link and pasting it into Reader via the **Add URL** option (keyboard shortcut `A`).
+### How can I remove the Readwise integration?
 
-If you subscribe to any podcasts [using RSS](/reader/docs/faqs/feed), you can manually trigger the transcription for each episode. To do so, use the **Load transcript** button at the top of the episode's content.
+To remove the integration, navigate to the **Readwise Integration** settings panel in Capacities. Under the **Active connection** section, click the **Delete** button to remove the sync with Highlights.
 
-Podcasts are a distinct content type, and you can find all of the podcasts you've saved in the **Podcasts** section of your Library.
+This integration was developed by the Capacities team using the Readwise API, so our ability to troubleshoot it will be limited. If you encounter any issues with the export, please [reach out to their team](https://capacities.io/contact) for help.
 
-You can also use `category:podcast` or `type:podcast` in any [filtered view query](/reader/guides/filtering/syntax-guide) to include podcasts in that view.
+How does the Readwise Highlights to Craft export integration work?
 
-We intentionally built this feature to allow Reader to be a *podcast companion*, rather than a full *podcast player*. You can read more about why we chose to build it this way in [this Reader update email](https://readwise.io/reader/update-dec2025#%F0%9F%8E%99%EF%B8%8F-podcast-transcripts-beta).
+## Setting up your Evernote export
 
-### How do I add Twitter lists to Reader?
-You can subscribe to public Twitter Lists in Reader as if they were an RSS feed. It's a great way to separate the good parts of Twitter (high signal information/entertainment) from the bad parts (phone addiction?). Once you're subscribed to a Twitter List, you'll start receiving two digests per day in the AM and the PM containing all the new tweets over the past 12 hours. To subscribe to a Twitter List, find the URL of a public list and [subscribe to it](https://read.readwise.io/add-to-feed) in the Feed section of Reader.
+You can connect your Evernote account from the [Readwise Highlights dashboard](https://readwise.io/dashboard) > [Export](https://readwise.io/export) > [Evernote preferences page](https://readwise.io/export/evernote/preferences).
 
-## Does Reader have dark mode?
-Reader has both light mode and dark mode, as well as an "auto" setting to detect the theme of the operating system. You can change the mode at any time from the **Appearance** menu, or you can use the keyboard shortcut `Cmd/Ctrl + Option + T`.
+![](https://lh3.googleusercontent.com/OeUv-zmzDjGUY1gPwCP5sHx71idhbFKP6biTMAI-3ZYXrywdvsRUUOun1RfCl9\_dCVPflyKKzDcumgoceK5xutjLRSW4L0WYgLHTVv5sMu2hmg\_oIii\_G1LDDcmVk\_EYBpfvR40qSVcqFzVQ6W8w0BQ)
 
-## Can I change the app icon?
-If you're using Reader on iOS, you can customize the app icon. To change which icon the app uses, go to **Account settings** > **Change app icon** and select the icon that you prefer.
+1. Export Automatically: Keep this on if you would like Evernote to sync daily. You can turn it off if you would prefer to only update Evernote when you manually trigger an export from this page.
+2. Include Highlight Locations: Keep this on to include the location or page information of each highlight in the export.
+3. Use Compact Layout: This will display the location information inline with the highlight text and won’t add any dividers between highlights.
+4. Select Items to be Exported: Turning this option on will allow you to manually select which documents will be exported to Evernote. When this option is turned off, all documents in your account will sync when an export is triggered.
 
-## What is the Daily Digest?
-The Daily Digest collects an assortment of documents from your Feed and your Saved for Later and presents them to you in an easily-scrollable format to help you triage your feed and rediscover documents you might have forgotten about.
+## Where do my highlights go in Evernote?
 
-## Where can I find the Daily Digest?
-On mobile, you can find the Daily Digest at the top of your `Home` section. Currently the web version of the app doesn't have the same scrollable format for reviewing your Daily Digest, but you can add a section to your `Home` screen by clicking into the `Configure` dropdown in the top right corner and selecting "Today's Daily Digest." This will display all the same documents that you would see when scrolling through the Digest on your mobile device.
+The integration will create a “Readwise” notebook in your Evernote account and each document (e.g. book, article, etc.) will be imported as a note under that notebook. Each document’s note will contain all of its highlights and notes.
 
-## How do I disable the Daily Digest?
-You can disable the Daily Digest and its emails by navigating to your `Account Settings` and toggling off `Enable Daily Digest`.
+## What happens when I add new highlights?
 
-## What is the "1" badge on my app icon?
-The Reader badge on iOS appears when you haven't viewed your Daily Digest for the day. Once you've viewed the Digest, the icon badge should disappear. Since it only represents the current day's Digest, it will never be a number larger than one.
+Any highlights you’ve made in existing documents since the last sync will be appended to the end of the existing note for that document in Evernote.
 
-If you'd like to keep the Daily Digest as an option in the app but you don't want to see the badge, you can disable badge notifications for Reader in the system settings of your device.
+## How do notes work with the Evernote integration?
 
-Using Reader on e-ink devices
+Any notes and tags attached to a highlight will export to Evernote with the highlight. However, if you edit the notes or tags of a highlight after it has already been exported to Evernote, you’ll need to re-export the documents to see those updates in your Evernote account.
 
-## Can I use Reader on my e-ink device?
-You can use Reader on any e-ink device that runs Android and has access to the Google Play Store. This includes devices such as the Daylight Computer or any of the BOOX tablets, as well as a variety of others.
+### Page Title
 
-To install Reader on your device, navigate to the Google Play Store and search for [Readwise Reader](https://play.google.com/store/apps/details?id=com.readermobile).
-
-## How do I forward emails to Reader?
-Once you have your custom Reader email address, you can send any email to that address to have it appear in your Reader Feed or Library, respectively. This includes one-off emails, subscribing directly to newsletters with the custom address, or subscribing to newsletters using your personal address and auto-forwarding. Because it's a random string of characters, you don't need to whitelist any sending addresses.
-
-## What are Filtered Views?
-The core organizational concept in Reader is what we call a Filtered View. A Filtered View is similar to a query-based search in Gmail like `title:Getting Started` or `author:Paul Graham`. Basically, you can think of your Reader account as one flat database of documents and Filtered Views enable you to "filter" those documents based on a variety of different parameters. Every time you click an author name or tag or RSS source in the Reader user interface to see all documents by that author or with that tag or from that RSS source, you are just creating a Filtered View on that parameter.
-
-The best way to learn how to use Filtered Views is to watch our [Reader 202 walkthrough video on Filtered Views](https://readwise.io/reader202).
-
-You can reference all the different parameters that can be used with Filtered Views (including examples) from this [Filtered View guide](/reader/guides/filtering/syntax-guide).
-
-## How do I create groups of documents?
-You can create groups of documents using Filtered Views. Filtered Views enable all kinds of powerful filtering of your documents, but the simplest way to group documents is to tag each document with your desired group name. You can then click this tag to generate a Filtered View for all documents having that tag. You can then save the Filtered View and optionally pin it to the sidebar.
-
-## How do I create a custom filtered view?
-Reader comes with a few default filtered views—like “Recently added” and “Quick reads”, but you can also make your own to better fit your personal needs or preferences.
-
-### Filter by tag or feed source
-On your [Manage feeds](https://read.readwise.io/feed/sources) and [Manage tags](https://read.readwise.io/tags) pages, you can use the Views column to assign tags and feeds to specific views.
-
-On mobile, you can create a new filtered view from a tag by tapping the **Save** button in the top right of the tag view.
-
-### Filter by author
-In the Info tab of any document, you can click the name of the author to bring up a filtered view of all the documents by that author in your library. You can then name and save the view for easier future access.
-
-### Filter by query
-You can create filtered views within Reader that will automatically group various sources together based on the query. To do so, click into `Manage filtered views`, then click the `Add filtered view` button in the top right.
-
-Filtered view queries can use a variety of different properties (you can view a full list in our [Reader Filtering Guide](/reader/guides/filtering/syntax-guide)), including tags and source domains. For example, if you had a tag called "football" and a blog feed from footballnews.com, you could use the following query to group them together in a single saved view:
-
-`tag:football OR (feed:true AND domain:footballnews)`
-
-This would include any articles, videos, or other documents saved to your library which you've tagged "football," as well as any new documents that come into your feed from footballnews.com.
-
-## How do I use filtered views?
-The best way to learn how to use Filtered Views is to watch our [Reader 202 walkthrough video on Filtered Views](https://readwise.io/reader202). You can reference all the different parameters that can be used with Filtered Views (including examples) from this [Filtered View guide](/reader/guides/filtering/syntax-guide).
-
-## How can I see all my tags?
-You can see all your tags from the [Manage tags section](https://read.readwise.io/tags) visible in the top header of the `Library` section of Reader.
-
-## What does it mean to "split" a view?
-Splitting a view will add tabs within the view that automatically sort documents based on their status. Splitting by **Location** will use the Inbox/Later/Archive tabs from the main Library view (or Later/Shortlist/Archive, depending on your library configuration). Splitting by **Seen** will use the Unseen/Seen tabs from the main Feed view.
-
-On web, you can change the split of any filtered view by clicking into the caret dropdown beside the title of the view, or by pressing `\` on your keyboard.
-
-On mobile, you can do this from the actions menu (`...`) of the view page.
-
-## What is Global Ghostreader?
-
-Global Ghostreader is Reader's library-wide AI experience on web and desktop. Instead of chatting with one document at a time, it searches across your entire library, answers with citations that link to the source, and adds skills and tools you can put to work on your reading. See the [Global Ghostreader guide](/reader/guides/ghostreader/global) for how to turn it on and use it.
-
-## How can I use a different GPT model?
-The default AI model (included with your Readwise subscription) is . However, if you've entered your own OpenAI API key, you can change the AI model on any [custom Ghostreader prompts](https://read.readwise.io/preferences/ghostreader) to GPT-5, GPT-4.1, o3, or o4-mini. You can find the AI model dropdown in the bottom left corner:
-
-## Do I need an OpenAI API key to enable auto-summarization of documents?
-No. Auto-summarization of documents saved to your library is included as part of your Readwise subscription. However, if you would like to enable auto-summarization of feed documents or use a better AI model than , you will need to add your own key.
-
-## What happens if I add my own OpenAI API key?
-If you have your OpenAI key set up in the integration settings, it will automatically summarize all the docs coming into your feed (newsletters, RSS subscriptions, etc) in addition to the automatic summarizing of documents saved to your library.
-
-By default, the auto-summarization of library items will use  and will not use your OpenAI key. To change this, you can set the model per prompt on the [Ghostreader customization page](https://read.readwise.io/preferences/ghostreader). If you choose a higher-tier model, it will then use your OpenAI key.
-
-## Can I turn off Ghostreader entirely?
-
-Yes! If you'd prefer not to use any of Reader's AI features, you can disable Ghostreader globally from your account settings.
-
-On web, go to [Account Preferences](https://read.readwise.io/preferences) and turn off the toggle next to **Ghostreader Enabled**.
-
-On mobile, open the **Account** tab, scroll down to the **General** section, and toggle off **Enable Ghostreader**.
-
-## What is auto-highlighting?
-Auto-highlighting is a feature that converts any selected text into a highlight immediately. It's a great way to spare yourself an extra click every time you want to make a highlight, and to better simulate the experience of highlighting analog documents with a marker or pen.
-
-That said, if you often select text with the purpose of copying it or just generally prefer to select text first and then decide if you want to save it as a highlight, you can disable auto-highlighting. On web, you can press `Shift + H` on your keyboard or use the Command Palette (`Cmd/Ctrl + K`) to search for `Toggle auto-highlighting`. On mobile, tap into the `...` menu in the bottom right turn off the `Toggle autohighlighting` option.
-
-## How do I highlight images in Reader?
-Reader enables you to highlight images while reading. These images will carry over into Readwise and even into your note-taking app if you export your highlights. To highlight images, simply focus the image and use the keyboard shortcut `H` or select it with the mouse (plus any desired text) on web, or select it plus any desired text on mobile.
-
-## How do I highlight in multiple colors?
-Reader doesn't support multitple colors of highlights. If you use highlight colors as a kind of workflow or system (as opposed to as a visual affordance), you might try using highlight tags instead.
-
-## How do I find my tagged documents?
-
-You can find a list of all the tags you’ve used for documents on the [Manage Tags](https://read.readwise.io/tags) page, which can be accessed from top of the **Library** view or via the `Manage tags` option in the sidebar on web. Clicking a tag will open a [filtered view](/reader/docs/faqs/filtered-views) for that tag.
-
-On mobile, you can find your tags by tapping the three horizontal lines in the top left of the **Library** view to open the **Browse** side panel. Under the **Tags** heading, you'll find a search bar to search your tags, followed by an alphabetical list of all the tags you've used in Reader.
-
-## How do I find my tagged highlights?
-
-How to find your tagged highlights varies slightly between the web or desktop apps versus the mobile app.
-
-### On web or in the desktop app
-
-You can find a list of all the tags you've applied to highlights on the [Highlights tab of the Manage Tags page](https://read.readwise.io/highlights-tags).
-
-Clicking a tag's name will open a notebook view displaying all of the highlights with that tag. You can use the up and down arrow keys to navigate between highlights, and the focused highlight will display information about its parent document in the right sidebar.
-
-You can also navigate between highlights using the table of contents in the left sidebar, which will display the parent document's title as a top-level heading, with each of the highlights from that document nested underneath.
-
-From this view, you can also [copy, export, or print](/reader/docs/faqs/exporting#can-i-export-all-of-the-highlights-with-a-specific-tag-at-once) all of the displayed highlights by clicking into the `...` in the top right.
-
-The export option will download an `.md` file to your device with all of the highlights. You can customize the format of the file via the **Edit export template** option.
-
-### In the mobile app
-
-Tap the three horizontal lines in the top left of the **Library** view to open the **Browse** side panel, then scroll down to the **Tags** section. Below **Document Tags**, you'll find a **Highlight Tags** list with the number of highlights for each tag. Tap a tag to see all the highlights with that tag, grouped by their parent document.
-
-To see a highlight in its original context, tap the document icon that appears in the annotation bar to jump to the highlight's location in its parent document.
-
-## How do I bulk import articles?
-To bulk import documents to Reader, you’ll need to have a CSV file containing all of the URLs you want to add. To ensure they import correctly, the CSV should have a column titled "URL" (or "Url" or "url") that contains all of the links. Optionally, you can also include a "Title" column that contains the title of each document.
-
-Upload the CSV file by going to the [import page](https://read.readwise.io/add-to-library) and using the `Upload file` option, pressing `U` on your keyboard, or dragging and dropping the file from your computer onto the Reader window.
-
-Miscellaneous
-
-## How do I find out about the Reader public API?
-You can find the Reader public API documentation at [readwise.io/reader_api](https://readwise.io/reader_api). If you have a use case or endpoint you'd like us to support, please don't hesitate to reach out!
-
-## How do I save articles behind paywalls?
-If you save documents using the browser extensions on web or using the Safari browser and share sheet on iOS, paywalled document should be saved without issue.
-
-## How do I edit metadata on mobile?
-While viewing a document, tap the `i` icon in the top right to open the `Info` sidebar. Then tap the `Edit metadata` button at the bottom.
-
-## How do I zoom in or out on a PDF?
-On web, you can zoom in or out by using the `+` and `-` icons in the top of a PDF or the keyboard shortcuts `Ctrl/Cmd + -` `Ctrl/Cmd + +`. On mobile, you can pinch.
-
-# 👻 Pro Tip
-
-## Use Ghostreader to ask a question
-
-One of the coolest features of Reader is an AI reading assistant called _Ghostreader_. Ghostreader enables you to define terms, look up encyclopedia entries, simplify complex language, and much more, but one of its most powerful functions is asking a document a question. You can ask this FAQ your question using Ghostreader and likely find the answer you're looking for.
-
-Try it for yourself:
-
-* **On web**: Hit `Shift + G` to invoke Ghostreader at the document-level, select "Ask the document question", and input a specific question such as "How do I upload an OPML file?" or "Where do I find the Safari extension?" Nine times out of ten it should return what you're looking for!
-* **On mobile**: Tap the "..." icon in the lower right, tap the Ghostreader icon, and input a specific question such as "How do I save articles to Reader on iOS?"
-
-Searching
-
-## What is Better Search?
-Since Reader was developed to be offline first, the original search function needed to be on-device so that it could work without an internet connection. But this came with some functionality trade-offs, and the larger the Library, the more noticeable those trade-offs became.
-
-Better Search is a faster, more accurate search that runs on Readwise's servers and looks across your entire Library, not just the documents synced to the device you're using. It's turned on by default, and you can switch between it and the original on-device search using the **Better Search (beta)** toggle on the Search page.
-
-On web or in the desktop app, the toggle is at the right end of the search bar.
-
-On mobile, the toggle is just below the search field in the **Search** tab. It's only visible when the search field is empty.
-
-Because Better Search runs on Readwise's servers, it requires an internet connection. If you're offline, Reader automatically uses on-device search until you're back online, even if the toggle is on.
-
-## How do I filter my full-text searches?
-Currently, filtered views and full-text search are distinct features. That said, it's on our roadmap to merge the two features and allow you to sort your search results or search within filtered views.
-
-## How can I search my Feed documents?
-
-To cut down on noisy results and improve performance, documents in the Feed aren't indexed for search. However, you can include a text search of the title field within a filtered view. So, to search for a document in your Feed, you could use a query like this:
+By default, Highlights will insert the title of each document as an H1 (# in Markdown) in the default template:&#x20;
 
 ```
-feed:true AND title__contains:"search term"
+# 
 ```
 
-This won't search the full content of the article, but it can still be a useful way to find specific documents in your Feed.
+Notice the `` variable. As your highlights are exported to Logseq, the `` variable is replaced with the document's actual title.
 
-You can use this same tactic to search your Feed based on any other available query parameter, such as the document's author or source domain. Check out the [query syntax guide](/reader/guides/filtering/syntax-guide) for a full list of available parameters!
+Let's say you wanted the first line of your export to be the document's title _plus_ the word "Highlights" in parentheses. All you would have to do is append the text " (Highlights)" to the template as follows:
 
-Sharing
+```
+#  (Highlights)
+```
 
-### On web or in the desktop app
+You can customize this much more using [inline-if statements](https://stackoverflow.com/a/14215034/1522443), [Jinja2 filters](https://jinja.palletsprojects.com/en/2.11.x/templates/#filters), and [much more](https://jinja.palletsprojects.com/en/2.11.x/templates/). The templating language is quite powerful!
 
-1. Open the actions menu (`...`) in the top right.
-2. Select **Enable public link**, or press `Option/Alt + S`.
+### Metadata
 
-Once the link is enabled, a blue link icon appears in the top bar. Click it and choose **Copy link** to grab the URL to share.
+One of the nicest aspects of the Readwise plugin is that each document can be enhanced with additional metadata such as author name, document URL, document tags, category, full title, cover image, and more.
 
-### In the mobile app
+In the special metadata first block of Logseq, the default template below will insert the author name with double brackets, full title with double brackets, document category (e.g. Book, Article, or Tweet) with a hashtag, URL (if there is one), and document tags in Highlights (if any) with double brackets. In the second block, the template will insert the cover image, if there is one.
 
-1. Open the actions menu (`...`) and tap **Share document**.
-2. Select **Share with annotations**, then tap **Share link to public version**.
+```
+author:: [[]]\
+full-title:: \
+category:: #\
+url:: \
+tags:: #[[]]  
+![]()
+```
 
-To find all the documents you've shared a public link for, [create a filtered view](/reader/docs/faqs/filtered-views) using the query `shared:true`.
+Below is an example of how you'd modify the category line if you wanted to append an emoji to each category tag:
 
-## How do I turn off a public link?
+```
+Category: #
+```
 
-You can disable a public link at any time. Once you do, anyone who already has the link will no longer be able to open the shared version, so Reader will ask you to confirm before removing it.
+Again, this templating language is quite powerful! You go much deeper with the customization using inline-if statements, Jinja2 filters, and more.
 
-### On web or in the desktop app
+### Highlight Header
 
-When a document has a public link, a blue link icon appears in the top bar.
+Another component of the template is the header text that appears above each set of synced highlights. The first time a document is exported to Logseq, the Highlight section will be delineated by a header reading "Highlights first synced by \[\[Readwise]] \[\[date]]". Any new highlights taken in this document will be appended beneath with a new header.
 
-1. Click the blue link icon.
-2. Click **Disable public link**, then confirm in the popup.
+```
 
-### In the mobile app
+Highlights first synced by [[Readwise]] [[]]
 
-1. Open the actions menu (`...`) and tap **Share document**.
-2. Tap **Disable link to public version**, then confirm in the popup.
+New highlights added [[]] at 
 
-## How do I share highlights?
-You can share a beautified image of any highlight by clicking the `...` icon while hovering over the highlight in the Notebook panel, then selecting `Share highlight as image`.
+```
 
-On mobile, you can do this by tapping the `i` icon in the top right, tapping into the Notebook tab, tapping the `...` beside a highlight, and selecting `Share as image`.
+A common use case in tools for thought such as Roam Research and Obsidian is to backlink the date in this header to your Daily Notes page. To make this work for yourself, you'll need to format the `` variable to match your Daily Notes formatting. For example, if your Daily Note uses the format of YYYY-MM-DD, you could match that format by adding a date filter to the variable like so: ``
 
-## What is text-to-speech?
-Text-to-speech enables you to listen to virtually any document using the highest quality AI voices the big tech companies have to offer. Note that text-to-speech only works on PDFs in **text view**. You can still start TTS playback while in original PDF view, but doing so will automatically switch the document to text view.
+### Highlights
 
-## How do I use text-to-speech offline?
-Since the speech is generated on request to allow for quicker playback and better performance, text-to-speech can't be used while your device is offline.
+Of course, you can also format the export of the highlights themselves. By default, each highlight is inserted as a bullet (using a dash), followed by a hyperlink to the original highlight and then sub-bullets for any tags and notes attached to the highlight.
 
-## July 3, 2025
-- Add "bump to top" instructions to Navigation section
-- Explain how to change the iOS app icon
-- Add section for E-ink Devices
-- Add long-form reading mode to Appearance section
-- Update Ghostreader models
+```
 
-## March 6, 2025
-- Expanded the "Ghostreader" section of the FAQs to include:
-  - How to turn off automatic prompts
-  - Our policy on sharing data with OpenAI
-  - Troubleshooting for automatic prompts turning off or failing
-  - Automatic prompt behavior for previously saved documents
+ ([]()) ()
 
-## February 28, 2025
-- Added instructions to export a document's highlights on mobile
-- Added instructions for sending documents to Kindle
+    **Tags**: #[[]] 
 
-## February 19, 2025
-- Added "Videos" section
-- Moved "how to add YouTube videos" question from the Adding Content section to the new Videos section
-- Added FAQs for enhanced transcripts, changing the captions language, resizing video player, and other video options
+    **Note**: 
 
-## January 2, 2025
+```
 
-- Updated TTS instructions to match current app UI
-- Moved Substack instructions to Email Newsletters section
+As mentioned above, there is much more you can do using [inline-if statements](https://stackoverflow.com/a/14215034/1522443), [Jinja2 filters](https://jinja.palletsprojects.com/en/2.11.x/templates/#filters), and so on.
 
-## October 10, 2024
+### Sync Notifications
 
-- Updated all mentions of GPT 3.5 to GPT 4o Mini
-- Minor tweaks to reflect updated UI
+Finally, you can configure the Readwise plugin to append an entry to your Daily Note each time the sync runs. This notification is particularly useful in tools such as Roam Research where the backlink appears more front and center in the Daily Note.
 
-## April 11, 2024
+How do I export my highlights to CSV or Markdown?
 
-- Added instructions for TTS on web
-- Added paged scroll to Appearance section
+## Export all documents
 
-## March 25, 2024
+To export all the highlights from all your documents as CSV or Markdown, go to the [Export page](https://readwise.io/export) and select the desired format at the bottom of the page:
 
-- Updated instructions for bulk importing via CSV
+![](https://d33v4339jhl8k0.cloudfront.net/docs/assets/5eb8cc86042863474d1a75fd/images/65d533a3e3adc6007de13c12/file-CQwQgoD2Ja.png)
 
-## March 21, 2024
+The CSV option will immediately generate a download containing all of your highlights. Selecting the Markdown option will take you to a [customization page](https://readwise.io/export/markdown/preferences) where you can edit the formatting.
 
-- Updated all mentions of GPT 3 to GPT 3.5
-- Added instructions on how to print annotated documents
-- Clarified stopping vs pausing for TTS
-- Added instructions on creating Bundles from filtered views
+## Export per document
 
-## March 13, 2024
+You can export highlights from a single document to Markdown from your [Library](http://readwise.io/library). First, click the down arrow on the right side of the document.
 
-- Fixed the Twitter configuration instructions to correctly link to the integrations settings instead of the import settings
+![](https://d33v4339jhl8k0.cloudfront.net/docs/assets/5eb8cc86042863474d1a75fd/images/65d534996d2feb00a37ec56c/file-NVVnqoyX2z.png)
 
-## February 23, 2024
+Then click **Export Highlights**.
 
-- Updated pricing information
+![](https://d33v4339jhl8k0.cloudfront.net/docs/assets/5eb8cc86042863474d1a75fd/images/65d5345dffd8f112ebce5638/file-RNRlB17w8s.png)
 
-## January 31, 2024
+This will start a download of a Markdown file containing the highlights and notes from the selected document.
 
-- Fixed a typo in the paragraph about personalizing the custom Reader email
-- Fixed incorrect information about saving Twitter threads on mobile
+### Page Title
 
-## January 5, 2024
+By default, "(highlights)" is appended to each page so you can differentiate an exported page from your own. Here's the default template:
 
-- Broke out importing instructions to a new section and added CSV format and Raindrop.io info
-- Added new section explaining action tags (headings, concatenation, etc)
-- Expanded Appearance 🕶️ section
-- Explained Reader's de-duping logic
-- Added best practices for subscribing to Substack newsletters
-- Explained document tags vs highlight tags
-- Explained Instapaper private content
-- Added information about how to personalize your custom email address
-- Explained how Reader stores docs and why they don't update with the original
-- Expanded Exporting 📤 section
+```
+ (Updated )
+```
 
-## December 19, 2023
+Notice the `` variable. When a note is exported, that `` will be replaced with the book/article/tweet's actual title and `` with the current date.
 
-- Added section about the Daily Digest
-- Explained limitations of Kindle/Google/etc books
-- Explained link between Reader docs and Readwise highlights
-- Updated info about auto-highlighting feature
-- Expanded section about PDF highlights
-- Added browser extension hot key (`alt+R`)
+You also have some other variables available to you. For example, here's how you can prepend each title with the category (i.e. is this a book, article, or tweet?)
 
-## December 7, 2023
+```
+/
+```
 
-- Added more context for a variety of actions on mobile
-- Updated instructions for saving Twitter threads
-- Added instructions for customizing keyboard shortcuts
-- Added instructions for switching to text view on PDFs
-- Added information about PDF color inverting and how to disable it
-- Updated TTS section to reflect new functionality (start midway through document, headphone gestures, etc)
-- Various punctuation, semantics, and phrasing tweaks
+This would result in something like Book/Atomic Habits.
 
-## October 27, 2023
+If you want all of your highlights to just show up in one page (though we don't recommend this), you could set the template to a non-variable string such as this:
 
-- Updated instructions for adding document notes to include mobile and browser extension
-- Updated mobile directions for customizing appearance
+```
 
-YouTube Videos
+```
 
-## Migrate from Matter
-You can import your Matter articles to Reader by generating an export [inside the Matter app](https://web.getmatter.com/settings), which will send you an email with a link to download your data. 
+Of course, you can customize the title significantly further, using inline-if statements, Jinja2 filters, and much more. The templating language is quite powerful!
 
-Forward this email to [read@readwise.io](mailto:read@readwise.io) from the same email associated with your Reader account, and Reader will automatically follow the link and import the documents you saved to Matter.
+### Page metadata
 
-At this time, the Matter import does not support tags or document locations (e.g. inbox, archive). This is something we hope to be able to support in the future!
+From the Markdown Export Preferences page, you can also edit your page metadata, including the author, URL, category, title, image, and anything else you want to show up when each new document is imported.
 
-If you'd like to see all of your imported Matter documents in one place, you can [create a filtered view](/reader/docs/organizing-content#filtered-views) using the query `saved_using:matter`.
+Here's the default template:
 
-## Migrate from Instapaper
-To import your data from Instapaper, navigate to the [Integrations preferences](https://read.readwise.io/integrations) of your Reader account. Next to the Instapaper option, click **Connect**. 
+```
 
-This will prompt you to log in to your Instapaper account. Once you've done so, your Instapaper articles should begin syncing to Reader. (Note that if you have a large Instapaper library, the initial import may take some time.)
+![]()
 
-Once you've connected your accounts, any new documents you save to Instapaper will also be saved to Reader.
+## Metadata
+- Author: 
+- Full Title: 
+- Category: #
+- URL: 
+```
 
-The ten most recently saved and unarchived documents in your Instapaper account will go to the Inbox in Reader. The rest of your unarchived content will go to the Later tab. Any documents that were archived in Instapaper will go to the Archive.
+### Highlights Header
 
-If you'd like to see all of your imported Instapaper documents in one place, you can [create a filtered view](/reader/docs/organizing-content#filtered-views) using the query `saved_using:instapaper`.
+You can customize how the Header text above each set of synced highlights is formatted. By default, each time your highlights are synced they will be sub-bullets of this default header:
 
-## Migrate from Pocket
+```
+ Highlights first synced by #Readwise [[]]  New highlights added [[]] at  
+<br>
+Highlights
 
-Pocket [shut down](https://support.mozilla.org/en-US/kb/future-of-pocket) on July 8, 2025. As of November 12, 2025, the API has been disabled and users can no longer export their data. 
+New highlights added  at 
 
-If you still have a ZIP file with your Pocket content, you can upload that to Reader using the instructions below, but the direct integration will no longer work.
+<br>
+```
 
-If you exported your user data from Pocket before the shutdown, you can upload the `.zip` file to import that content to Reader. 
+Note the if statement used above. By default, the header is formatted differently when the highlights are for a newly synced page versus new highlights on a previously synced page.
 
-To do so, upload the `pocket.zip` file on the [Integrations preferences page](https://read.readwise.io/integrations) of your Reader account.
+A common use case may be that you don't want the highlights backlinked to the date (the day they are synced). If that's the case, you can simply remove the [[]] wrapping the date, e.g:
 
-If you downloaded your Pocket data while using Safari, note that Safari may have *automatically unpacked* the file. Trying to upload the unzipped file or recompressing it yourself can cause a partial or failed import.
+```
+Highlights synced by #Readwise:  at 
+```
 
-To ensure a full and correct import, make sure to upload the original `.zip` file.
+### Sync Notification
 
-If you'd like to see all of your imported Pocket documents in one place, you can [create a filtered view](/reader/docs/organizing-content#filtered-views) using the query `saved_using:pocket`.
+Finally, every time you export your Markdown highlights, we can optionally generate a special markdown file which summarizes which files were added/updated.
 
-Organizing Content
+This setting is off by default, but it can be especially useful in note-taking apps that create a page for the date the highlights were exported and can be linked to that.
 
-Once you've [saved a lot of content](/reader/docs/saving-content) to your Reader account, you might find yourself struggling to stay organized. Luckily, Reader has a few different ways to make sense of the chaos.
+How does the Readwise Highlights to NotebookLM integration work?
 
-## Tags
+## Export your highlights to NotebookLM
 
-Tags come in two flavors: *document tags* and *highlight tags*. As the names imply, document tags are applied to the full document, while highlight tags are applied to individual highlights.
+The Readwise Highlights integration with NotebookLM is powered by Google Docs, so the export will create a new document or documents in your Google Drive that contain your highlights and notes.
 
-You can click a tag wherever it appears to display a [filtered view](#filtered-views) of the documents it contains.
+To get started with the sync, select the NotebookLM Export link from your [Highlights export page](https://readwise.io/export).
 
-### Add tags on web
+This will prompt you to log in with your Google account. Once you've logged in, use the "Select all" button (1) to grant Readwise full access, then click "Continue" (2).
 
-On web, adding document tags is slightly different depending on how you're viewing the document.
+On the [export configuration page](https://readwise.io/export/google-docs/preferences), you'll find a few options:
 
-- **From the list view:** Focus the document you'd like to tag (by using the arrow keys or hovering the document with your mouse) and press `T` on your keyboard. You can select the tag from the dropdown or begin typing to search. Use `enter` to apply to the tag and close the menu, or use `cmd/ctrl + enter` to apply the tag and keep the menu open.
-- **From the document view:** Press `shift + T` on your keyboard to open the tagging menu. You can select the tag from the dropdown or begin typing to search. Use `enter` to apply to the tag and close the menu, or use `cmd/ctrl + enter` to apply the tag and keep the menu open.
+1. **Export Automatically**: Keep this on if you would like NotebookLM to sync daily. You can turn it off if you would prefer to only update your Google Docs when you manually trigger an export from this page.
+2. **Include Highlight Locations**: Turn this on to include the location or page information of each highlight in the export.
+3. **Send a single document to your drive**: Turn this on to send all highlights in a single document. Turn it off to create a Google Doc for each document. *Note that creating a single Google Doc will make it much easier to add all of your highlights to a single notebook and allow you to chat and interact with your highlights and notes.*
+4. **Select Items to be Exported**: Turning this option on will allow you to manually select which documents will be exported to Google Docs. When this option is turned off, all documents in your account will sync when an export is triggered.
 
-You can add *highlight tags* by selecting the highlight and pressing `T`, or by clicking the tag icon in the annotation menu that appears.
+To switch between exporting a single document and individual documents after you've set up the integration, you'll need to disconnect and reconnect NotebookLM. From the [export configuration page](https://readwise.io/export/google-docs/preferences), select **...**, then **Remove connection**. Then reconnect with your preferred option selected.
 
-### Add tags on mobile
+### Chat with your highlights
 
-On mobile, you can add *document tags* in a couple of ways:
+Using the text field at the bottom of the page, you can ask questions, search for information and quotes, and explore your library of notes and highlights.
 
-- **From the list view:** Tap the three dot (...) menu in the right-hand corner of the listing card, tap Notes and tags, then select the tag you'd like to apply to the document. (If the tag doesn't already exist, just type it into the search bar and then tap the dropdown option that appears to create the tag and apply it to the current doc.)
-- **From the document view:** Tap the icon to the left of the three dot (...) menu in the bottom bar (it looks like a comment bubble and a tag next to each other), then select the tag to apply to the document.
+How does the Readwise Highlights to Notion export integration work?
 
-You can add *highlight tags* by tapping the highlight, then tapping the tag icon in the menu that pops up:
+To get started with the Notion sync, select the Notion option on your [Highlights Export page](https://readwise.io/export).
 
-If the tag you'd like to add doesn't already exist, you can simply type it in and then tap where it appears right below the text field to create it:
+Readwise will ask for authorization to connect with your Notion account. (If you're not already logged into Notion, you'll be prompted to do so.) 
 
-## Filtered Views
+On the first authorization screen, click **Next**. On the second, select the first option ("Use a template provided by the developer"), then click **Allow access**.
 
-Filtered views allow you to organize the content in your library based on a multitude of parameters, such as the date saved, reading length, number of highlights, and more. 
+Once you configure the Notion integration, all your highlighted documents will automatically synchronize to a database in Notion.
 
-For a list of all the available filtering parameters, check out our [query syntax guide](/reader/guides/filtering/syntax-guide). Or, if you need some help getting started, explore some of our [query examples](/reader/guides/filtering/query-examples)!
+The first time Highlights syncs with Notion, a new table called "Readwise" will be created in a private page of your selected Notion workspace. The process may take several minutes depending on how many books, articles, tweets, and highlights you have in your library. Feel free to close the export browser and move on to something else—the export will continue in the background. Also, once you're initially caught up, new highlights will automatically be synced to Notion periodically throughout the day.
 
-### Create a filtered view on web
+By default, the Readwise table in Notion is separated into filtered views of Book, Article, Tweet, and Podcast pages, each of which contains all your highlights for that category of document. You can filter, sort, and search this table using all the power of Notion databases.
 
-Navigate to the [Manage views page](https://read.readwise.io/views) by clicking **Manage views** below the **Pinned** section of the left sidebar, then click **Add filtered view** in the top right. 
+## How can I configure the Highlights to Notion integration?
 
-Alternatively, you can use the keyboard shortcut `shift + F`.
+There are a few options you can change on the [Notion integration settings page](https://readwise.io/export/notion-api/preferences). Here's a breakdown of what each setting does.
 
-Type in your [filter query](/reader/guides/filtering/query-examples) and click **Filter by query**. Then, to keep the view for later, click **Save view** and give it a name.
+1. **Start Export:** Use this button to manually trigger an immediate export to Notion.
+2. **Export Automatically:** Keep this on if you would like Notion to sync daily. You can turn it off if you would prefer to only update Notion when you manually trigger an export from this page.
+3. **Include Highlight Locations:** Keep this on to include the location or page information of each highlight in the export.
+4. **Use Compact Layout:** This will display the location information inline with the highlight text and won’t add any dividers between highlights. Toggling it off will separate the location information to a different line and will add dividers to the page between each highlight.
+5. **Select Items to be Exported:** Turning this option on will allow you to manually select which documents will be exported to Notion. When this option is turned off, all documents in your account will sync when an export is triggered.
+6. **Documents to be exported:** If the *Select Items to be Exported* option (4) is toggled on, you'll see a list of all your documents. To select which ones are included in the export, use the checkboxes on the left side of the title.
 
-You can use the [Tags](https://read.readwise.io/tags) page to quickly add tags to new or existing views.
+### Page Title
 
-### Create a filtered view on mobile
+By default, Highlights will insert the title of each document as an H1 (# in Markdown) in the default template:
+```
+# 
+```
 
-Tap into the **Search** tab of the Reader app and then tap the `+` icon in the top right corner of the views list.
+Notice the `` variable. As your highlights are exported to Obsidian, the `` variable is replaced with the document's actual title.
 
-Type in your [filter query](/reader/guides/filtering/query-examples) and then tap **Show** to see the filter. To save it for future use, tap **Save** and give it a name.
+Let's say you wanted the first line of your export to be the document's title, plus the word "Highlights" in parentheses. All you would have to do is append the text " (Highlights)" to the template as follows:
 
-## RSS Folders
+```
+#  (Highlights)
+```
 
-RSS folders (or "feed folders") allow you to easily group feed sources into manageable categories, which you can then explore without the extra noise of other feeds getting in the way.
+You can customize this much more using inline-if statements, Jinja2 filters, and much more. The templating language is quite powerful!
 
-### Create RSS folders on web
+### Metadata
 
-To create an RSS folder on web, navigate to the [Manage feeds page](https://read.readwise.io/feed/sources) and use the "Manage folders" dropdown to add a feed to a new or existing folder.
+One of the nicest aspects of the Readwise plugin is that each document can be enhanced with additional metadata such as author name, document URL, document tags, category, full title, cover image, and more.
 
-Once the folder has been created, you can drag and drop feeds from the list into the new folder in the left sidebar. 
+The default template below will insert the cover image, if there is one, followed by H2 Metadata, followed by the author's name with double brackets, full title, document category (i.e. Book, Article, or Tweet) with a hashtag, followed by document tags in Highlights, if any.
 
-Use `shift + X` to open or close all folders in the sidebar at once!
+```
 
-### Create RSS folders on mobile
+![rw-book-cover]()
+<br>
+## Metadata
+- Author: [[]]
+- Full Title: 
+- Category: #
 
-On mobile, you can create folders in your Feed by tapping the `+` icon in the top right, then selecting **Add new folder**. Enter a name for your new folder, then tap **Next**.
+- Document Tags: [[]] 
 
-You can add feeds by tapping them in the list so that they show a blue checkmark. Once you've added the feeds you'd like to have in this folder, tap **Next** again to create the folder.
+- URL: 
 
-To access your folders, tap the three horizontal lines in the top left of the Feed page to open the sidebar.
+```
 
-Once you've created an RSS folder, you can add or remove feeds to or from the folder in a couple of ways.
+Below is an example of how you'd modify the category line if you wanted to append an emoji to each category tag:
 
-1. **From the folder:** From the Feed sidebar, tap into the folder you've like to add the new feed to. Tap the `+` button in the top right, use the search field or scroll until you see the feed you're looking for, then tap the item to add it to the folder. Tap **Done** in the top right to confirm.
+```
+Category: #
+```
 
-2. **From the individual feed view:** From the Feed sidebar, tap the name of the feed you want to put in a folder. Tap the `+` button in the top right, then tap the name(s) of the folder you'd like to put the feed into. Tap **Done** in the top right to confirm.
+Again, this templating language is quite powerful! You go much deeper with the customization using inline-if statements, Jinja2 filters, and more.
 
-Saving Content to Reader
+### Highlight Header
+Another component of the template is the Header text that appears above each set of synced highlights. The first time a document is exported to Obsidian, the Highlight section will be delineated by an H2 Header. Any new highlights taken in this document will be appended beneath a new H2 header including date and time stamp.
 
-Your Reader library is only as good as the content it holds, so how can you make sure it's full of things you want to read? By saving cool things as soon as you find them!
+```
 
-### Browser extension features
+## Highlights
 
-1. **Open in Reader:** Go to the current article in your Reader Library.
+## New highlights added  at 
 
-2. **Number of highlights:** Displays the number of highlights you've taken on the current document.
-3. **Toggle auto-highlighting:** By default, this option is on and selected text on the page will automatically become a highlight in Reader. If turned off, selections will need to be manually converted to highlights via the annotation menu bar.
+```
 
-4. **Add tags:** Open the tagging menu to categorize the document.
+A common use case in tools for thought such as Roam Research and Obsidian is to backlink the date in this header to your Daily Notes page. To make this work for yourself, you'll need to format the `` variable to match your Daily Notes formatting. For example, if your Daily Note uses the format of `YYYY-MM-DD`, you could match that format by modifying the filter on the date variable like so: ``
 
-5. **Add a document note:** Open the document note field. Good for adding context about why you're saving a document, or who recommended it.
+### Highlights
+Of course, you can also format the export of the highlights themselves. By default, each highlight is inserted as a bullet (using a dash), followed by a hyperlink to the original highlight and then sub-bullets for any tags and notes attached to the highlight.
 
-6. **Move the document:** By default, the extension saves documents to the first section of your Library (either Inbox or Later, depending on your configuration). Use this dropdown menu to move the document to another section. For example, you can move it straight to the archive if you read it on-site.
+```
+    - Tags: [[]] 
+    - Note: 
+```
 
-7. **Hide the extension bar:** Click the upward arrow to hide the extension's options. 
+As mentioned above, there is much more you can do using inline-if statements, Jinja2 filters, and so on.
 
-### Mobile share menu features
+### Summary
+The `` variable can be used in the Page Metadata or Properties (YAML Front Matter) sections of the export template. You can use this variable to add the summary of documents highlighted in Reader, which can be entered into a document's data manually or generated by Ghostreader, Reader's AI reading copilot.
 
-1. **Read Now:** Open the shared article in the Reader app.
-2. **Delete:** Remove the shared article from your Reader Library.
-3. **Add tags:** Open the tagging menu to categorize the document.
-4. **Add a document note:** Open the document note field. Good for adding context about why you're saving a document, or who recommended it.
-5. **Move to Later:** Move the shared article to the Later section of your Library. *Note: If your Library is using the "Shortlist" configuration, this will be a star icon that will move the document to your Shortlist.*
+### Properties (a.k.a. YAML Front Matter)
+Many power users of Obsidian use the Dataview plugin to accomplish database-like queries from within Obsidian. This requires a special header at the beginning of the Markdown using YAML. By default, this section of the template is off, but if you're a power user of Dataview/YAML, you can insert the front matter as desired.
 
-6. **Move to Archive:** Move the shared article to the Archive section of your Library. This is useful for articles you've read in your browser and simply want to save for posterity.
+### Sync Notifications
+Finally, you can configure the Readwise plugin to append an entry to a special file each time the sync runs. This notification is particularly useful in tools such as Roam Research where the backlink appears more front and center in the Daily Note, but is off by default in Obsidian.
 
-Reader Feature Guides
+### File and Folder Names
+To edit the format of the exported file names, toggle the "Use Custom File Name" setting to ON from the Obsidian export page. This can be useful if you have a specific way you'd like to organize your files in your Obsidian vault. For example, to prepend the file name with the last name of the document's author, you could use this template:
 
-Get in-depth information and walkthroughs about specific feeatures and use cases inside of Reader.
+```
+ -- 
+```
 
-Default Filtered Views
+If "Group Files in Category Folders" is toggled ON, you can customize folder names for each category of document (i.e. Books, Articles, Tweets, and Podcasts).
 
-Reader comes with a few preset filtered views. If you've deleted one of them—either intentionally or by mistake—you can recreate it by referencing the queries below.
+### Full Documents
 
-## Library Sub-Categories
+If "Export All Reader Documents" is toggled ON, a few more customizable options become available.
 
-Reader comes with some default sub-categories that are nested under the Library section of your account. These have custom icons and can be hidden by toggling the arrow to the left of the Library heading.
+**Full Document Text Link** controls the link added to each highlights file pointing to its full document file. The default template inserts a "Full Document" header followed by a link to the full text. Leave the template blank to turn the link off entirely.
 
-If you've deleted one of these default views, you can add it back to the list by [creating a new filtered view](/reader/docs/organizing-content#filtered-views), then entering the appropriate query from the list below.
+```
+## Full Document
+[[|See full document content →]]
+```
 
-- **Articles:** `category:article`
-- **Books:** `category:epub`
-- **Emails:** `category:email`
-- **PDFs:** `category:pdf`
-- **Tweets:** `category:tweet`
-- **Videos:** `category:video`
-- **Podcasts:** `category:podcast`
+**Full Document Text** controls the contents of the full document file itself, using the `` variable to insert the document's text. Leave the template blank to turn off full document text rendering.
 
-To properly recreate a Library view that's been deleted, the query needs to be *exactly* the same as it appears above, with no space between the `:` and the category name.
+```
+## Full Document
 
-Once the view has been recreated, it will re-adopt the default icon and will display in the Library section of the sidebar when Pinned.
+```
 
-## Default Filtered Views
+**Full Document Text file name** lets you customize the file names of the exported full documents, just like the file name template above. This option appears when "Use Custom File Name" is also toggled ON. By default, the file name is the document's ``.
 
-These views can be accessed from the [Manage views page](https://read.readwise.io/views), and they can be Pinned to the sidebar by clicking the pin icon in the list view or by selecting **Pin to sidebar** from the view's dropdown menu.
+How does the Readwise Highlights to OneNote export integration work?
 
-Many of these default views use `(in:inbox OR in:later)`. If you use the Shortlist Library configuration, you may want to edit these to use `(in:later OR in:shortlist)` instead.
+## Setting up your OneNote export
 
+To get started with the OneNote sync, select the OneNote option on your [Highlights Export page](https://readwise.io/export).
+
+Clicking the **Connect** button will prompt you to log in to your Microsoft account. Once you've done so, you'll be asked to grant Readwise permission to access your notes. Click **Accept** to proceed with the sync.
+
+Once you've given Readwise access, you can configure the export from the [export preferences page](https://readwise.io/export/onenote/preferences).
+
+1. **Start Export:** Use this button to manually trigger an immediate export to OneNote.
+2. **Export Automatically:** Keep this on if you would like OneNote to sync daily. You can turn it off if you would prefer to only update OneNote when you manually trigger an export from this page.
+3. **Include Highlight Locations:** Keep this on to include the location or page information of each highlight in the export.
+4. **Include Document Metadata:** Keep this on to include each document's metadata (its author, title, URL, summary, and tags) at the top of its note in OneNote.
+5. **Select Items to be Exported:** Turning this option on will allow you to manually select which documents will be exported to OneNote. When this option is turned off, all documents in your account will sync when an export is triggered.
+6. **Documents to be exported:** If the *Select Items to be Exported* option (5) is toggled on, you'll see a list of all your documents. To select which ones are included in the export, use the checkboxes on the left side of the title.
+
+## OneNote Export FAQs
+
+### Where do my highlights go in OneNote?
+
+The integration will create a “Readwise” notebook in your OneNote account with subsections for Articles, Books, Tweets, etc. Each document will be imported as a note under its respective notebook section and will contain all of the document's highlights and notes.
+
+When you first import your Highlights documents into OneNote, you may see that some of them don't have their proper title in the list of notes and just say "Untitled." As far as we can tell, this is a loading issue on Microsoft's end, but it doesn't mean the import is broken!
+
+To fix the issue, just click into the document. After the initial load, the title will appear and should stick around.
+
+<!-- ## Can I change the notebook destination of my highlights?
+
+Unfortunately, there isn’t currently a way to change the destination of the Highlights export. However, once the integration has created the Readwise notebook, you can move that notebook into a notebook stack and the sync will still work as expected.
+
+Note that you can rename the Readwise notebook and everything will still work. You can also move individual document notes into a different notebook, and new highlights made to the document will still sync to them when the integration is triggered. -->
+
+### What happens when I add new highlights?
+
+Any highlights you’ve made in existing documents since the last sync will be appended to the end of the existing note for that document in OneNote.
+
+### How do highlight notes work with the OneNote integration?
+
+Any notes and tags attached to a highlight will export to OneNote with the highlight. However, if you edit the notes or tags of a highlight after it has already been exported to OneNote, you’ll need to re-export the documents to see those updates in your OneNote account.
+
+## How do I reset the integration so I can start over fresh?
+
+If you ever want to "reset" the Highlights integration to Roam and perform a fresh resync, then all you need to do is delete any reference to #Readwise from your database. The easiest way to do this is to:
+
+* Go to the All Pages view in Roam (from your side bar)
+* Search for #Readwise
+* Select All
+* Double check that only pages you want to reset and resync are selected
+* Delete
+
+On the next sync attempt, Highlights will detect that the notes were deleted within Roam and run a fresh sync of all of your selected books/articles!
+
+### Page Title
+
+By default, Highlights will append "(highlights)" to each page so you can tell which pages it created from your own. Here's the default template:
+
+```django
+ (highlights)
+```
+
+Notice the `` variable. When a note comes into Roam, that `` will be replaced with the book/article/tweet's actual title.
+
+You also have some other variables available to you. For example, here's how you can prepend each title with the category (i.e. is this a book, article, or tweet?)
+
+```django
+/
+```
+
+This would result in something like Book/Atomic Habits.
+
+If you want all of your highlights to just show up in one page (though we don't recommend this), you could set the template to a non-variable string such as this:
+
+```django
+
+```
+
+Of course, you can customize the title significantly further, using [inline-if statements](https://stackoverflow.com/a/14215034/1522443), [Jinja2 filters](https://jinja.palletsprojects.com/en/2.11.x/templates/#filters), and [much more](https://jinja.palletsprojects.com/en/2.11.x/templates/). The templating language is quite powerful!
+
+### Page Metadata
+
+From the [Roam Preferences](http://readwise.io/magicaltrashpanda) page, you can also edit your Roam page metadata, including the author, URL, category, title, image, and anything else you want to show up when each new book/article/tweet is imported.
+
+Here's the default template:
+
+```django 
+Author:: [[]]
+Full Title:: 
+Category:: #
+Document Tags:: #  
+URL:: 
+![]()
+```
+
+Here's an example of some modifications you can make to, e.g. create a TODO for each new highlight, add custom backlinks, and customize formatting based on the category of book/article/tweet.
+
+```django 
+
+#twitter 🐦
+
+[[TODO]]"}} #toprocess process & summarize the highlights from this book
+
+This is a podcast/article
+
+Author:: [[]]
+Full Title:: 
+Category:: #
+Document Tags:: #  
+URL:: 
+![]()
+```
+
+### Highlight Header
+
+You can customize how the Header text above each set of synced highlights is formatted. By default, each time your highlights are synced they will be sub-bullets of this default header:
+
+```django 
+
+Highlights first synced by #Readwise [[]]
+
+New highlights added [[]] at 
+
+```
+
+Note the `if` statement used above. By default, the header is formatted differently when the highlights are for a newly synced page versus new highlights on a previously synced page.
+
+A common use case may be that you don't want the highlights backlinked to the date (the day they are synced). If that's the case, you can simply remove the \[\[]] wrapping the date, e.g:
+
+```django
+Highlights synced by #Readwise:  at 
+```
+
+### Highlight Content
+
+Customizing the highlight itself is a little more complex, but can support some insane workflows. Here's the default template:
+
+```django 
+
+ ([]()) ()
+
+    **Tags**: #[[]] 
+
+    **Note**: 
+
+```
+
+Note the indentation above. The highlight text is shown at the top level, with the location information (e.g. page number, link back to article/tweet, etc.) inline with it. Nested under the highlight text are any notes and tags attached to that highlight, if they exist.
+
+Why might you want to customize the highlight text? For one, maybe you'd just like to tweak the default formatting, e.g. putting notes inline or at the parent level.
+
+Here's an example of how you can embed saved tweets directly into Roam, rather than having just their text sync:
+
+```
+ ([]()) ()
+
+    **Tags**: #[[]] 
+
+    **Note**: 
+
+```
+
+You might also want to enable a more complex workflow, like having all of your highlights synced to the same page, regardless of books. Here's how you might do that:
+
+```
+
+ ([]()) ()
+    Category: [[]]
+    Title: [[]]
+    Author: [[]]
+
+    **Tags**: #[[]] 
+
+    **Note**: 
+
+```
+
+In this case, you would also change the Page Title template to something like:
+
+```
+
+```
+
+(Note that because this example uses no variables, all highlights will have the same page title and thus write to the same page.)
+
+There is, of course, much more you can do with this.
+
+## Sync Notification
+
+Finally, every time new highlights you've made sync into your Roam account, a message is appended to your #Readwise page in Roam to notify you of the updates. This links to your daily note as well, so you can see all the highlights you made in one day. Here's the default template:
+
+```
+On [[]] at  Readwise synced  highlight from  book.
+```
+
+Note the use of the pluralize filter from Jinja2, which makes the note read more naturally. In the case that you **don't** want these notifications in your daily note, you can simply unlink the date reference like so:
+
+```
+On  at  Readwise synced  highlight from  book.
+```
+
+If you don't want these sync notifications _at all_, you can delete the entire template for sync notifications.
+
+How does the Readwise Highlights to Tana export integration work?
+
+Before you can export your highlights to Tana, you'll need to create an [API token](https://help.tana.inc/tana-input-api.html) for your Tana workspace:
+
+1. In the Settings panel of Tana (represented by a gear icon), click API Tokens.
+2. Select the Workspace you want your Readwise Highlights exports to appear in.
+3. Click the + Create button.
+4. Once the token is created, click Copy to save it to your clipboard.
+5. In your Readwise account, go to the [Tana setup page](https://readwise.io/export/tana/token) and paste the token into the API field.
+6. Click Save.
+
+You'll then be directed to the integration options page.
+
+The export has a variety of customization options (outlined in [the customization section below](#how-can-i-customize-the-highlights-to-tana-integration)), but the default format will create a node for each document and tag it with the Supertag #Readwise. The highlights from the document will be nested underneath the document node and tagged with #highlights.
+
+Note: If you plan to customize your formatting, we recommend doing a test export by enabling the "Select Items to Be Exported" option and choosing a few documents with a variety of metadata, to ensure that the export works as you expect. Once you've tweaked the options to your liking, you can re-export those few documents using the "refresh" icon on the far right of the document.
+
+![](https://d33v4339jhl8k0.cloudfront.net/docs/assets/5eb8cc86042863474d1a75fd/images/64d2d74b9d8cf153a015db83/file-gdmHFmr3PN.png)
+
+This interactive tutorial will guide you through the process of generating your API key and configuring the Highlights integration:
+
+## How do I trigger a new sync to Tana?
+
+By default, the Tana integration will export any new highlights as soon as they appear in your Highlights library. (Note that it may still take a few minutes for them to appear in your Tana account.) If you've disabled that option or simply want to force a fresh sync, you can click the "Start export to Tana" button on the [Tana Export settings page](https://readwise.io/export/tana/preferences).
+
+## How do I reset the integration so I can start over fresh?
+
+You can reset the integration by creating a new API token in your Tana workspace and replacing the previous one in your Readwise account. (You can access the token setup page from the link at the bottom of the [export options page](https://readwise.io/export/tana/preferences).)
+
+This will prompt a fresh export the next time you sync, ignoring any previously exported content. This is also useful if you want to sync your Highlights library to a different Tana workspace.
+
+## Why is my export to Tana failing?
+
+Tana limits workspaces to 500,000 nodes, so if the workspace you're exporting to has more than 500,000 nodes, the export may fail. If so, you may need to export to a new workspace and/or clean up the original workspace.
+
+As far as we're aware, there's no way to check the number of nodes in a workspace from the front end. If you'd like help checking your node count to determine the underlying issue with your export, you can reach out to their team on either Slack or [via email](mailto:hey@tana.inc).
+
+## How can I customize the Highlights to Tana integration?
+
+One of the most powerful features of the Highlights to Tana integration is the ability to customize exactly how you would like the formatting of your notes to appear in Tana.
+
+The customizable elements include:
+
+* Note title
+* Highlight formatting (links to original, tags, notes, etc)
+* Metadata (such as author, URL, category)
+
+You can customize your export by going to the [Tana export preferences page](https://readwise.io/export/tana/preferences) and turning on the "Use Custom Formatting" toggle.
+
+Each component of the export customization has a "template" using the [Jinja2 templating language](https://jinja.palletsprojects.com/en/2.11.x/). You can customize each of these templates to achieve your desired format in Tana.
+
+### Title
+
+By default, Highlights will append "(highlights)" to each node so you can tell which nodes it created from your own. Here's the default template:
+
+```
+ (highlights) #
+```
+
+Notice the `` variable. When a note comes into Tana, that `` will be replaced with the document's actual title.
+
+The `#` variable is also included here so that Tana will recognize the document categories (books, articles, etc.) as tags. This will allow you to view your notes by category and to add or edit the Supertag properties for them.
+
+Note: All documents exported from Highlights will also be appended with the #Readwise tag. This is not a customizable part of the template because it is part of the integration's core functionality and shouldn't be removed.
+
+You also have some other variables available to you. For example, here's how you can prepend each title with the name of the author:
+
+```
+ -  #
+```
+
+Of course, you can customize the title significantly further, using [inline-if statements](https://stackoverflow.com/a/14215034/1522443), [Jinja2 filters](https://jinja.palletsprojects.com/en/2.11.x/templates/#filters), and [much more](https://jinja.palletsprojects.com/en/2.11.x/templates/). The templating language is quite powerful!
+
+### Highlight
+
+This section is a little more complex, but can support some powerful workflows. Here's the default template:
+
+```
+ #highlight
+
+    Readwise Location:: 
+
+    Topics::  
+
+    Notes:: 
+
+```
+
+Note the indentation above. The highlight text is shown at the top level, with the default #highlight tag inline with it. Nested under the highlight text are the location information (e.g. page number, link back to article/tweet, etc.) and any notes or tags attached to that highlight, if they exist.
+
+Why might you want to customize the highlight text? For one, if you'd just prefer to change the default formatting, for example by putting notes inline or at the parent level.
+
+Here's an example of how you might add the highlight date as a new field:
+
+```
+ #highlight
+
+    Readwise Location:: 
+
+    Topics::  
+
+    Notes:: 
+
+    Date Highlighted:: 
+
+```
+
+There is, of course, much more you can do with this by using the [Jinja2 templating language](https://jinja.palletsprojects.com/en/2.11.x/).
+
+### Metadata
+
+Below the highlights template, you'll find a series of toggles that allow you to enable/disable and rename the fields that Highlights will create for each document node. (Note that these are the _document_-level properties, not the _highlight_-level properties.)
+
+The default settings look like this:
+
+![image](https://d33v4339jhl8k0.cloudfront.net/docs/assets/5eb8cc86042863474d1a75fd/images/64d40d00dd84587802e5d71d/file-W5Yf1wcgQI.png)
+
+You can enable or disable any of these fields simply by clicking the corresponding toggle on or off. In the fields to the right, you can customize what the titles of the fields will be when exported to Tana. For example, if you already have a field called "Title" that you use as a different part of your Tana workflow, you could change "Title" here to be "Document Title" instead.
+
+How does the Readwise Highlights to Workflowy export integration work?
+
+## Setting up the Workflowy integration
+
+To get started with syncing your highlights to Workflowy, click **Connect** on the Workflowy option from the [Highlights export page](https://readwise.io/export).
+
+If you're not already signed in to Workflowy, this will prompt you to log in to your account. You'll then be directed to the [Readwise integration settings inside of Workflowy](https://workflowy.com/integrations/readwise/). 
+
+Follow the provided link to copy your [Readwise access token](https://readwise.io/access_token), then paste it into the field in the Workflowy settings. Click **Connect to Readwise**.
+
+Your highlights will now begin syncing to your Workflowy account, and will continue to do so automatically once per hour. If you'd like to prompt an immediate sync, click **Sync now**.
+
+Once the sync is complete, you'll find your highlights under a "Readwise" bullet on your Workflowy Home page. Each document will be listed below that bullet, with nested bullets for each individual highlight.
+
+Documents will be tagged with their respective types (e.g. article, book, etc), allowing you to filter and organize your highlights.
+
+## Workflowy integration FAQs
+
+### How do I reset the integration so I can start over fresh?
+
+If you ever want to "reset" the Highlights integration to Workflowy and start from scratch, you can do so by deleting the Readwise bullet in Workflowy. Then trigger a new sync to Workflowy by clicking **Sync now** on the [Readwise integration settings page in Workflowy](https://workflowy.com/integrations/readwise/).
+
+All of your content will be freshly synced to a brand new Readwise bullet on your Workflowy Home page.
+
+This integration was developed by the Workflowy team using the Readwise API, so our ability to troubleshoot it will be limited. If you encounter any issues with the export, please reach out to [support@workflowy.com](mailto:support@workflowy.com) for help.
+
+General
+
+## Why are my highlights out of order?
+
+Certain reading platforms such as Pocket do not have a "location" identifier. Accordingly, those highlights are sorted by the date and time that they were created. If having the highlights in the right order is important to you, be mindful to highlight in the order of top to bottom (i.e. no jumping back to highlight earlier in the article).
+
+## Does Readwise Highlights have an API?
+
+Yes! You can find our documentation on writing highlights to a user's Highlights library using the following link: [http://readwise.io/api\_deets](http://readwise.io/api\_deets).
+
+If you have any questions about the API or its documentation, please don't hesitate to shoot them over to [hello@readwise.io](mailto:hello@readwise.io)!
+
+Readwise Discord Bot
+
+### Installing the Bot in Your Server
+
+Head to [readwise.gg](https://readwise.gg/) to install the Readwise bot on your server.  Follow the setup instructions via Discord DMs to get started.
+
+### Setting Up Your Server's RSS Feed
+
+By default, the Readwise bot will index the past 50 links per _public_ channel and add them to your RSS feed. If you want links shared in private channels to be indexed in your RSS feed, you can add the bot to those channels either by assigning the bot an additional server role with access to those private channels OR right-clicking on the private channel, clicking Edit Channel, navigating to Permissions, and adding the bot as a member.
+
+### Rejecting Links
+
+The Readwise bot will automatically create two new channels in your server called #accepted-links and #rejected-links.
+
+If you spot a link in your server that you don't want indexed in your RSS feed, simply navigate to #accepted-links, locate the link, and react ❌ to reject it one time from the feed.
+
+![](https://d33v4339jhl8k0.cloudfront.net/docs/assets/5eb8cc86042863474d1a75fd/images/646bb5a124137d3ed8ea6fbd/file-S6wUzdAwKl.gif)
+
+### Save messages inside Discord
+
+To save a message to your private DMs for easy future reference, simply react with a bookmark emoji 🔖 in a server where the Readwise bot is installed. It will automatically DM you a copy of the message for safekeeping. This is completely free.
+
+### Save messages to Highlights
+
+You can also optionally save any message to your Highlights library by using the floppy disk emoji 💾 instead of the bookmark.
+
+![](https://d33v4339jhl8k0.cloudfront.net/docs/assets/5eb8cc86042863474d1a75fd/images/646cf7474089fa4863e22b63/file-EHhtbaxc3L.gif)
+
+### Add tags to saved messages
+
+If you want to add a tag (in Highlights) to a saved message, you can reply to that message with a word beginning with a period `.` (the same as an [inline tag](https://blog.readwise.io/tag-your-highlights-while-you-read/) with any service that Highlights supports). For example, `.ai` will be turned into an AI tag.
+
+![](https://d33v4339jhl8k0.cloudfront.net/docs/assets/5eb8cc86042863474d1a75fd/images/646cf53624137d3ed8ea70bf/file-GlH9qBQJzE.png)
+
+![](https://d33v4339jhl8k0.cloudfront.net/docs/assets/5eb8cc86042863474d1a75fd/images/646cf53dc13b725657191547/file-nTo2lplkmU.png)
+
+### Add notes to saved messages
+
+If you want to add a note in Highlights to a saved message, you can reply to that message via DM with your note.
+
+### Take notes with Quick Passages
+
+If you want to jot down a quick passage that will be resurfaced in your Highlights library like any other highlight, you can send a DM to the Readwise bot. The message will be added to your default Quick Passages “book” in Highlights.
+
+![](https://d33v4339jhl8k0.cloudfront.net/docs/assets/5eb8cc86042863474d1a75fd/images/646cf69c24137d3ed8ea70c3/file-Ia3hIGVjqR.png)
+
+![](https://d33v4339jhl8k0.cloudfront.net/docs/assets/5eb8cc86042863474d1a75fd/images/646cf6b124137d3ed8ea70c4/file-OPwPMVLuNW.png)
+
+### Find your server’s RSS feed link
+
+Use the slash command `/rss`  in any server where the Readwise bot is installed to find the link to that server's RSS feed. When opened in a browser, this won't look like much, but if you add that RSS link to your favorite feed aggregator, you'll see your favorite Discord links come through.&#x20;
+
+### Use the Readwise Bot in other servers
+
+You can click the bot's name in a server where it's installed and select `Add to Server`,  or you can install the Readwise Bot via [https://readwise.gg/](https://readwise.gg/).
+
+## Browse by source
+
+Maybe you can't remember any of the words in the quote, but you know it was in the book you finished last week. Maybe you don't even have a specific quote in mind, you just know that an article you read the other day had some really good ideas about a certain topic.
+
+To find a specific source on web, click into the **Browse** tab and select the appropriate category. (Or choose "Everything" to see all of your source documents in one place.)
+
+On mobile, go to the **Search** tab and select the appropriate category under the *Browse your content* section.
+
+## Search by keyword
+
+If you've got a word or two that you know are in the passage you're looking for, a keyword search can get you to the quote even faster.
+
+On web, click the magnifying glass icon in the top right to open the search field. Type your keywords and hit `enter` to access the search results page.
+
+Much like Google, search results in Highlights can be accessed using a **URL parameter** to query the page: `readwise.io/search?q={query}`
+
+For example: [readwise.io/search?q=never+gonna+give+you+up](https://readwise.io/search?q=never+gonna+give+you+up). (Your browser should convert any spaces to `+`, so you don't need to type those into your query.)
+
+You can use this knowledge to set up a site search shortcut in browsers like [Google Chrome](https://support.google.com/chrome/answer/95426) or [Arc](https://resources.arc.net/hc/en-us/articles/20855018192791-Site-Search-Directly-Search-any-Website), a [Quick Link in Raycast](https://www.raycast.com/core-features/quicklinks), and more!
+
+On mobile, go to the **Search** tab and use the text field at the top of the page to enter your keywords.
+
+Highlight text and document metadata are both queried for search keywords, and results with matches in both places will be ranked above results that only match one. 
+
+An example: `taleb harvard` will return highlights that have "Taleb" in the author field and include the word “Harvard” in the highlight text before highlights that just mention one of those terms.
+
+## Chat with your highlights
+
+If your memory of the passage you're looking for is just too vague to search, [try the **Chat** feature instead](/highlights/guides/chat-with-highlights)! You might be surprised how quickly you can surface a specific piece of text from a psychology book with an obscure question like, "Have I ever taken a highlight about how the brain works?"
+
+Mobile Apps
+
+## Does Highlights have an iOS mobile app?
+
+Yes! Highlights has an iOS app [available in the App Store](https://readwise.app.link/6VY4GcGnIgb).
+
+## Does Highlights have an Android App?
+
+Yes! Highlights has an Android app [available in the Google Play Store](https://readwise.app.link/jRPHsdEnIgb).
+
+### How does the widget work?
+
+If you've already completed your Daily Review, the widget displays a random highlight that rotates every 5 minutes throughout the day. If you haven't yet finished your Daily Review, it shows the first review highlight alongside a helpful prompt.
+
+### From your account settings
+
+You can customize how often any document (or document type) appears in your Daily Review by editing your [Frequency Tuning](https://readwise.io/configure/tune/books) (Account > Configure Reviews > Frequency Tuning).
+
+1. Select a source type to adjust, e.g. books, articles, podcasts, supplemental books, etc.
+2. Edit the frequency of all documents from that source type.
+3. Edit the frequency of individual documents.
+
+### From your Library
+
+You can adjust the frequency of any individual document from your [Library](https://readwise.io/library) by clicking the down arrow to the far right of the item in the list.
+
+### From your Daily Review
+
+You can adjust the frequency of a document when it appears in your Daily Review by clicking into the down arrow menu in the top right of the card.
+
+If you have 500 total highlights in your account and a single document contains 100 highlights, there's a 20% chance your Daily Review will contain a highlight from that book. Meanwhile, a document with only 5 highlights would have a 1% chance of appearing. For this reason, you may want to tune _down_ a document with many highlights and/or tune _up_ a document with only a few. It’s not uncommon for users to need to tweak their settings a few times before getting it to suit their preference.
+
+Each time a highlight is shown, its probability of resurfacing is significantly decreased. So, while it's possible that you might see the same highlight twice in rapid succession before having seen all your highlights at least once, it would be fairly unlikely!
+
+### Review Mode
+
+Review Mode displays the highlights one at a time, so you can review them individually before clicking through to the next. 
+
+This is the default for your Daily Review, or for any Themed Reviews, but you can switch to this view while viewing a single document's highlights by clicking the grid icon in the top right corner.
+
+Review Mode prioritizes highlights that haven't been processed, so if you've already used Review Mode to view some of the highlights or if they've appeared in your Daily Review, those will be skipped until you review the rest of the document's highlights.
+
+Note that using the arrow icons (or the left and right arrows on your keyboard) to navigate will count as "skipping" the highlight, so it won't be processed. To process the highlight, use either the **Discard** or **Keep** button.
+
+### Scroll Mode
+
+Scroll Mode displays all of the collection's highlights on a single page. 
+
+This is the default when viewing highlights from a single document (book, article, etc), but you can switch to this view during your Daily Review by clicking the list icon in the top right to see the full contents of your review on one page.
+
+When using this mode for your Daily Review or a Themed Review, each highlight will still allow you to perform all the usual actions: Discard, Master, Feedback, and Keep.
+
+### Markdown syntax reference
+
+* Markdown Syntax
+* Text Effect
+* Visual Example
 ---
-
-### ⭐ Shortlist
-Tagged `shortlist` and not yet archived
-
-```
-tag:shortlist AND (in:inbox OR in:later)
-```
-
-This default view is also associated with a keyboard shortcut: you can add the `shortlist` tag to documents using the `S` key.
-
-The `shortlist` tag is meant for when your Library is in the default Triage configuration. If you switch to the [Shortlist configuration](/reader/guides/workflows/library-configuration#shortlist), you should use `in:shortlist`.
-
+* `__text__`
+* Highlight the text
+*  
 ---
-
-### 📥 Recently added
-Saved in the past week and not yet archived
-
-```
-saved__gt:"1 week ago" AND (in:inbox OR in:later)
-```
-
+* `*text*`
+* Italicize the text
+*  
 ---
+* `**text**`
+* Bold the text
+*  
 
-### ✨ New in Feed
-Unseen in the Feed section
+### CSV Upload
 
-```
-feed:true
-```
+To import highlights in bulk, you can upload a CSV file. For instructions and information on how the file should be formatted, see the [import page](https://readwise.io/import_bulk).
 
-Just looking at the query, you might think that this view simply shows everything in the Feed. While technically true, this view is also [split](/reader/docs/faqs/filtered-views#what-does-it-mean-to-split-a-view) by the Seen status of its documents. When [featured on the home page](/reader/docs/faqs/filtered-views#how-do-i-add-a-filtered-view-to-my-home-page), only documents in the first tab of a split view will display on home. The view is also sorted in reverse chronological order by *Date saved*. 
+If your file is in another format—such as a TXT, Numbers file, etc.—you'll have to convert the file to CSV before uploading.
 
-This means that, in practice, the home page version of this view will display *unseen documents with the most recent first*.
+### Freeform Input
 
----
+You can add highlights individually using the [Freeform Input tool](https://readwise.io/import_freeform). This is great for collecting highlights that might be scattered across various sources, or even for capturing the witticisms of any particularly erudite friends.
 
-### 📖 Continue reading
-Started in the past week and not yet archived
+### Scan via App (OCR)
 
-```
-progress__gt:5 AND last_opened__after:"1 week ago" AND (in:inbox OR in:later)
-```
+If you've highlighted physical sources—such as books, magazines, newspapers, etc.—you can use the mobile app to take a picture of the page and scan in the highlight. You can learn more about the feature here: [How do I import highlights from physical or paper books?](/highlights/docs/importing-highlights/ocr)
 
-The default query for the "Continue reading" view specifies that only documents with progress beyond 5% of the document are displayed. This is meant to prevent any recently opened document from appearing if all you did was open it and then close it again, but if you often read longer documents, you might stop reading less than 5% of the way through the document. To adjust for this, you can change the 5 to a smaller number or even delete that section of the query entirely.
+Import from Apple Books
 
----
+### Persistent spinning wheel or error
 
-### ⏱️ Quick reads
-Short than 10 minutes and not yet archived
+If this happens, there are a couple of possible ways to resolve the error.
 
-```
-minutes__lt:10 AND (in:inbox OR in:later)
-```
+- **Resync the Mac tool**
+   - *Log out* of the Mac tool.
 
----
+   - Select *Resync* to log back in and to run the sync again.
 
-### ⏳ Long reads
-Longer than 30 minutes and not yet archived
+- **Open Apple Books on your computer**
+   - If you've never opened the Apple Books app on your computer (e.g. you only read on your phone or tablet), the database may not be synced and thus the Mac tool won't be able to find any of your highlights.
+   - Launch the Mac app at least once to force a sync, wait for your most recent data to appear, then try the Mac tool again.
 
-```
-minutes__gt:30 AND (in:inbox OR in:later)
-```
+### Mac tool caveats
 
----
+- The Mac tool only works for Big Sur and newer at this time. If you can't or don't want to upgrade the OS, then you can use the instructions above to import highlights from iPhone or iPad.
+- The Mac tool cannot import highlights made on PDFs as Apple Books doesn't follow the PDF spec to create "real" highlights. You can use the instructions above to import highlights from PDFs.
 
-### 💎 Recently highlighted
-Highlighted in the past week
+Import from Email
 
-```
-has:highlights AND last_opened__gt:"1 week ago"
-```
+## How do I import highlights by email?
 
-Despite the name, this view *technically* will display any document that has any highlights and that has been opened recently, even if the none of the document's highlights were made within the last week.
+You can import highlights from various sources by emailing them as attachments to **add@readwise.io**.
 
-If you want to see your individual highlights in reverse chronological order, you can check out your [Readwise "Latest" view](https://readwise.io/latest).
+At the moment, we support the following sources:
 
-Filtered View Examples
+Whenever you email a supported file above from [an email address associated with your Readwise account](https://readwise.io/import/email), it'll be automatically imported into your account.
 
-## Short reads
+Import from Everand (Scribd)
 
-Display all documents in the Later section of the Library that have an estimated read time of less than 10 minutes.
+Scribd doesn't currently offer a native option to export highlights, but here's a workaround that allows you to export highlights from a single book at a time to import into your Highlights library.
 
-```
-minutes__lt:10 AND in:later
-```
+Note: This method requires the Google Chrome web browser and may result in some highlights being truncated. This is a limitation of how the Scribd reading interface is formatted.
 
-## Currently reading
+1. Go to [Scribd](https://www.scribd.com/) or [Everand](https://www.everand.com/) and open the book that you'd like to get the highlights from.
+2. Click the **kebab icon (3 vertical dots)** in the right-hand corner, then click into **Notes & Bookmarks**:
+![](https://d33v4339jhl8k0.cloudfront.net/docs/assets/5eb8cc86042863474d1a75fd/images/617af0030332cb5b9e9b8bd7/file-wkqx0fMZ8G.png)
+3. With the pop-up open, select **View** > **Developer** > **Developer Tools**:&#x20;
+![](https://d33v4339jhl8k0.cloudfront.net/docs/assets/5eb8cc86042863474d1a75fd/images/617af15f9ccf62287e5f0dcd/file-eL9uj8o4m1.png)
+4. Select **Console** from the developer view and input the following script next to the `>` symbol, then press **Enter**. (You may need to type "allow paste" before it will allow you to paste the script in.)
 
-Display all documents started in the last week and not yet archived.
+```javascript
+var annotations = document.querySelector('.annotations');
 
-```
-progress__gt:5 AND last_opened__after:"1 week ago" AND in__not:archive
-```
+var notesParagraphs = Array.from(annotations.querySelectorAll('p'));
 
-This query specifies that only documents with progress beyond 5% of the document are displayed (`progress__gt:5`). This is meant to prevent any recently opened document from appearing if all you did was open it and then close it again, but it's possible that—perhaps for exceptionally long documents—you might have stopped reading less than 5% of the way through the document, which would mean that it won't appear in this view
+var notesText = notesParagraphs.map((paragraph) => `<p>${paragraph.innerHTML}</p>`).join('');var win = window.open("", "Title", "toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=780,height=200,top="+(screen.height-400)+",left="+(screen.width-840));
 
-To solve for this, you can edit the query and change the 5 to a smaller number or even delete that section of the query entirely.
-
-## Untagged documents view
-
-If you’re trying to clean up your account and want to find all of the documents that you haven’t tagged, you can use a custom filtered view with the following query:
-
-```
-has__not:tags
+win.document.body.innerHTML = `<div>${notesText}</div>`;
 ```
 
-This will create a new filtered view showing any documents without a tag. If you'd like to keep the view handy for periodic housecleaning, you can click **Save view** and give it a fun, broom- or vacuum-related name.
-
-## View all email subscriptions
-
-Email subscriptions don't currently appear in the Manage Feeds view, but you can create a custom filtered view to see only feed items added via email. To do this, you can use the following query:
-
-```
-feed:true AND type:email
-```
-
-To make this view act like the Feed, you can use the caret dropdown menu to select **Split view** (or press `\` on your keyboard) and split by **Seen** to get the same Unseen and Seen tabs.
-
-Additionally, if you'd like to see only the newsletters from a specific source or author, you can click the author name in the **Info** tab of the right-hand sidebar to see a filtered view, which you can then save to your account.
-
-## Clean out old Feed documents
-
-If your Feed is getting cluttered up with old documents you never looked at, you can create a new filtered view showing any documents from your feed older than a week to easily clean out your backlog using the following query:
-
-```
-feed:true AND saved__lt:"1 week ago"
-```
-
-Once you've saved the view, you can use the caret dropdown menu to select **Split view** (or press `\` on your keyboard) and split by **Seen**.
-
-Once you've split the view, you'll see the same options you have on your general **Feeds** view: **Mark all as seen** in the bottom left of the **Unseen** tab, and **Delete all** in the bottom left of the **Seen** tab. By clicking **Mark all as seen** and then **Delete all**, you can quickly delete all of your old feed items at once.
-
-## Filter out YouTube Shorts
-
-Subscribing to a YouTube channel [via RSS](https://tips.slaw.ca/2019/technology/rss-feed-for-a-youtube-channel-or-playlist/) is great, until your feed starts getting clogged with YouTube Shorts. To lose the junk food and focus on the meatier videos, try this filter:
-
-```
-category:video AND minutes__gt:2
-```
-
-## Unfinished long reads
-
-This acts like a "Continue Reading" but only for documents with a read time over 20 minutes. It also reduces the progress requirement, since the progress data is a percentage and longer documents will have a smaller percentage after more reading.
-
-```
-progress__gt:3 AND minutes__gt:20 AND (in:inbox OR in:later OR in:shortlist)
-```
-
-Filtering Syntax Guide
-
-Filtered views are powerful tools for organizing your Reader documents. The power behind them comes from **queries**, which can be customized with a variety of parameters.
-
-## Query Structure
-
-Creating a query from a single parameter is relatively straightforward: enter the parameter and the desired input.
-
-To create a query that uses multiple parameters, you'll need a bit more structure. This structure is added using three core concepts: `AND`, `OR`, and nesting via parentheses.
-
-### AND 
-
-This is used to link parameters that should *all* apply to each filter result. For example, `tag:news AND published__after:"1 week ago"` will return documents that are tagged with "news" and were published within the last week.
-
-### OR 
-
-This is used to link parameters where only *one* of them should apply to each result. For example, `tag:news OR tag:tech` will return documents that are tagged with "news" or are tagged with "tech". 
-
-### Nesting
-
-What do you do if you want to mix and match your ANDs and ORs? Parentheses! 
-
-To separate the parameters from each other, you can group them into shorter statements with parentheses. For example, to display recent documents from two different tags, you could use `(tag:one OR tag:two) AND saved__after:"2 weeks ago"`.
-
-## Date Parameters
-
-These parameters filter results based on the date of a particular aspect of the document. You can use dates in two formats: absolute (e.g. `2024-09-15`) or relative (e.g. `"1 week ago"`).
-
-Date parameters are often most useful when combined with the `__before` and `__after` [operators](#operators).
-
-### saved
-
-Filters by the date the document was saved to your Reader library.
-
-### last_opened
-
-Filters by the date that the document was most recently opened.
-
-### published
-
-Filters by the date that the document was published.
-
-### last_status
-
-Filters results by the date of the most recent action taken on the document, such as moving it from the inbox to the archive.
-
-## Text Parameters
-
-These parameters filter results by text-based metadata, such as title, author, or category. 
-
-If the text input contains more than one word, it should be placed inside of quotation marks, e.g. `title__contains:"keyword or search term"`.
-
-### tag 
-
-Filters by tag(s) applied to the document.
-
-### domain 
-
-Filters by the domain the document originated from, e.g. `nytimes.com` or `youtube.com`.
-
-### url 
-
-Filters by the full URL of the document's original page.
-
-### category or type
-
-Filters by the document's type. These types are set by Reader when the document is saved, so the valid options are limited to the following list:
-
-- `article`
-- `epub`
-- `email`
-- `pdf`
-- `tweet`
-- `rss`
-- `video`
-- `podcast`
-
-If you've deleted one of the [default category views](/reader/guides/filtering/default-views) that lives under the Library in your Reader sidebar and decide you want to restore it, you can do so by creating a filtered view with the query `category:[name]`.
-
-For example, to recreate the "Books" view, you would want to use the query `category:epub`. (Make sure there's no space after the colon!)
-
-Once the view is recreated, it will re-adopt the default icon and display in the Library section of the sidebar.
-
-### rss_source or rssSource
-
-Filters by the source RSS feed. This parameter takes the feed's source ID, not the feed's display name, and only works on documents added via an RSS feed (not manually saved documents or documents sent via email).
-
-Finding a feed's source ID is only possible on web or desktop, not on mobile. To find it:
-
-1. Open any document from the feed, then click **Source** in the metadata panel on the right side of the screen. This opens a filtered view containing only the articles from that source.
-
-2. Press **shift + F** to open the filtered view's editing dialog.
-3. You'll see a query like `rssSource:"01hgtw5y55damt0gjn4pw5ghwz"`. Copy the whole query, or just the source ID between the quotes, to reuse in other filtered views.
-
-### author 
-
-Filters by the name of the document's author.
-
-### location or in 
-
-Filters by the document's current location within your Library. 
-
-If you're using the default Triage Library configuration, the Library locations are `inbox`, `later`, and `archive`. 
-
-If you're using the Shortlist configuration, the options are `later`, `shortlist`, and `archive`.
-
-### title 
-
-Filters by the title of the document.
-
-### saved_using 
-
-Filters by how the document was saved to Reader, whether that was through the [browser extension](/reader/docs/saving-content#save-from-the-web-with-the-browser-extension), a [mobile share sheet](/reader/docs/saving-content#save-on-mobile-with-your-devices-share-menu), a file upload, an RSS feed, or an [import from another read-it-later app](/reader/docs/migrating-content).
-
-This parameter matches any value that *contains* your text and ignores capitalization, so `saved_using:share` returns documents saved from both the iOS and Android share sheets. To match a full value only, use the `__exact` [operator](#operators) and wrap the value in quotation marks, e.g. `saved_using__exact:"Reader Share Sheet iOS"`. Exact matches are case-sensitive.
-
-*Options for documents saved directly to Reader:*
-
-- `Readwise web highlighter`: Saved with the browser extension.
-- `Reader Share Sheet iOS`: Saved with the iOS share sheet.
-- `Reader Share Sheet Android`: Saved with the Android share sheet.
-- `Reader add from import URL`: Saved by adding a URL in the web or desktop app.
-- `Reader add from clipboard`: Saved by adding a URL in the mobile app.
-- `Reader in app link save`: Saved by tapping a link inside a document in the mobile app.
-- `File Upload`: Uploaded files, such as PDFs, EPUBs, and Markdown files.
-- `Reader RSS`: Added by an RSS feed subscription, including podcast episodes.
-- `api`: Saved through the [Reader API](https://readwise.io/reader_api).
-
-*Options for documents imported from another service:*
-
-- `pocket`: Imported from Pocket, either via direct integration or a Pocket export file.
-- `instapaper`: Imported by connecting your Instapaper account.
-- `instapaper_csv`: Imported from an Instapaper CSV file.
-- `matter_csv`: Imported from a Matter CSV file.
-- `omnivore_zip`: Imported from an Omnivore export file.
-- `custom_csv`: Imported from a custom CSV file.
-
-Since the parameter only needs a partial match, shorter queries like `saved_using:matter` or `saved_using:instapaper` work too.
-
-Documents that arrive by email, such as newsletters and forwarded emails, don't record a `saved_using` value. To find those, use `type:email` instead.
-
-If you save documents with the [Reader API](https://readwise.io/reader_api), you can include a `saved_using` value of your choosing with each save, such as the name of your script or tool. You can then filter for exactly those documents later with a query like `saved_using:"my tool"`.
-
-If you don't provide a value here, then it will use the default `api` value as listed above.
-
-## Binary Parameters
-
-These parameters filter results by parameters that can either be `true` or `false`. 
-
-### feed 
-
-Filters by whether or not the document is in the feed. 
-
-### seen 
-
-Filters by whether the document has been opened or marked as seen.
-
-### shared 
-
-Filters by whether the document has a public link enabled. 
-
-## Numerical Parameters
-
-These parameters filter results based on parameters that accept numbers.
-
-Numerical parameters are most often useful when combined with the `__lt` or `__gt` [operators](#operators).
-
-### words 
-
-Filters by the number of words in the document.
-
-### progress 
-
-Filters by the reading progress percentage.
-
-### highlights 
-
-Filters by the number of highlights made in the document.
-
-To display all documents with at least one highlight, you can also use `h
+![](https://d33v4339jhl8k0.cloudfront.net/docs/assets/5eb8cc86042863474d1a75fd/images/617af2710332cb5b9e9b8bf1/file-e1VKontNRJ.png)

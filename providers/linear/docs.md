@@ -16,6 +16,16 @@ vouches for**: read it, then read their reference.
 
 > Linear is a purpose-built tool for planning and building products. Meet the system for modern software development. Streamline issues, projects, and product roadmaps.
 
+> For agents: connect to the Linear MCP server at https://mcp.linear.app/mcp to read and change issues, projects, and documents. Setup guide: https://linear.app/docs/mcp.md. Index of all docs: https://linear.app/llms.txt.
+
+Each page on linear.app is also available as Markdown. Add `.md` to the URL (use `/index.md` for the homepage), or send the `Accept: text/markdown` header.
+
+## Website
+
+- [/switch/migration-guide](https://linear.app/switch/migration-guide.md)
+- [/switch/pilot-guide](https://linear.app/switch/pilot-guide.md)
+- [/switch/pitch-guide](https://linear.app/switch/pitch-guide.md)
+
 ## Documentation
 
 Get an overview of Linear's features, integrations, and how to use them.
@@ -24,42 +34,32 @@ Get an overview of Linear's features, integrations, and how to use them.
 
 - [Start Guide](https://linear.app/docs/start-guide.md)
 
-### Account
+### Intake
 
-### AI
+### Projects and initiatives
 
-### Your sidebar
+### Issues and cycles
 
-### Teams
+### Coding and review
 
-### Issues
+### Agents and automation
 
-### Issue properties
+### Insights and outcomes
 
-### Projects
-
-### Initiatives
-
-### Cycles
-
-### Views
-
-### Find and filter
-
-### Linear Asks
+### Working in Linear
 
 ### Integrations
 
 - [Integration Directory](https://linear.app/docs/integration-directory.md)
 - [GitHub](https://linear.app/docs/github-integration.md)
 
-### Analytics
-
 ### Administration
 
 - [API and Webhooks](https://linear.app/docs/api-and-webhooks.md)
 
 ### Importers
+
+- [Import Guide](https://linear.app/docs/import-issues.md)
 
 ## Developers
 

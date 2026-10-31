@@ -4649,6 +4649,68 @@
    }
   },
   {
+   "slug": "close.advanced_filtering_search",
+   "name": "Search objects with filters",
+   "description": "Find Leads, Contacts, Opportunities, Activities, Tasks and other objects matching any combination of filters. This is the API behind the filters on the Leads, Contacts and Opportunities pages in Close, and the query language used by Smart Views (`s_query`) and bulk actions. Searching doesn't change any data. ### Building a query A query is a tree of objects, each with a `type`: 1. Start with an `a",
+   "input": {
+    "type": "object",
+    "properties": {
+     "_fields": {
+      "type": "object",
+      "description": "Fields to return for each object type. The field names are the same as in the object type's own endpoint, e.g. `{\"lead\": [\"id\", \"display_name\"]}`. Custom fields use `custom.cf_abc123`. Without it, results only contain `id` and `__object_type`."
+     },
+     "_limit": {
+      "type": "integer",
+      "description": "Number of results per page."
+     },
+     "cursor": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "The `cursor` from the previous page's response. Cursors expire after 30 seconds."
+     },
+     "include_counts": {
+      "type": "boolean",
+      "description": "Whether to include the number of matches in `count`."
+     },
+     "query": {
+      "type": "string",
+      "description": "A search query. Queries are distinguished by their `type`. Combine queries with `and` and `or`, and use `negate` on any query to exclude what it matches."
+     },
+     "results_limit": {
+      "type": [
+       "integer",
+       "null"
+      ],
+      "description": "Maximum number of results across all pages, e.g. to act only on the first 100 matches. Use `0` with `include_counts` to only count matches."
+     },
+     "sort": {
+      "type": "array",
+      "description": "Fields to sort results by. When paginating, sort by a field that rarely changes, like `date_created`, so no results are skipped."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.close.com/api/v1/data/search/",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "_fields",
+     "_limit",
+     "cursor",
+     "include_counts",
+     "query",
+     "results_limit",
+     "sort"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "close.blocked_phone_numbers_create",
    "name": "Create a blocked phone number",
    "description": "Once this record is created, the phone number you have specified will no longer work for outbound nor inbound calls. That means: * Nobody in your organization will be able to call that phone number. * That phone number will not be able to call anybody in your organization.",
@@ -4657,7 +4719,7 @@
     "properties": {
      "phone": {
       "type": "string",
-      "description": "The phone number (in E.164 format) that you wish to block."
+      "description": "The phone number that you wish to block."
      },
      "reason": {
       "type": "string",
@@ -9007,7 +9069,7 @@
        "string",
        "null"
       ],
-      "description": "URL of the audio file used as this member's voicemail drop recording."
+      "description": "URL of the audio file used as this member's Voicemail Drop recording."
      },
      "may_workflows_impersonate": {
       "type": "boolean",
@@ -9172,7 +9234,7 @@
        "string",
        "null"
       ],
-      "description": "URL of the audio file used as this member's voicemail drop recording."
+      "description": "URL of the audio file used as this member's Voicemail Drop recording."
      },
      "may_workflows_impersonate": {
       "type": "boolean",
@@ -9342,7 +9404,7 @@
        "integer",
        "null"
       ],
-      "description": ""
+      "description": "Monetary value of the opportunity in cents, e.g. `340000` for $3,400.00. The currency is the organization's currency."
      },
      "value_period": {
       "type": "string",
@@ -9815,7 +9877,7 @@
      },
      "value": {
       "type": "integer",
-      "description": ""
+      "description": "Monetary value of the opportunity in cents, e.g. `340000` for $3,400.00. The currency is the organization's currency."
      },
      "value_period": {
       "type": "string",
@@ -10350,7 +10412,7 @@
   {
    "slug": "close.phone_numbers_create",
    "name": "Request an internal phone number",
-   "description": "Renting a phone number incurs a cost. You need the \"Manage Team Phone Numbers\" permission to rent group numbers. If a number was rented, a 201 response is returned with the new number. If no number was rented (4xx response code), the response contains a `status` field which may contain one of the values below. New statuses may be added in the future. * `has-voice-only`: This country/prefix combina",
+   "description": "Renting a phone number incurs a cost. The new number is assigned to you unless you name other users via `assign_to`, which requires the \"Manage Team Phone Numbers\" permission. If a number was rented, a 201 response is returned with the new number. If no number was rented (4xx response code), the response contains a `status` field which may contain one of the values below. New statuses may be added",
    "input": {
     "type": "object",
     "properties": {
@@ -10429,7 +10491,7 @@
   {
    "slug": "close.phone_numbers_delete",
    "name": "Delete a phone number",
-   "description": "You need the \"Manage Team Phone Numbers\" permission to delete a group number. You can only delete your own personal numbers.",
+   "description": "If you're the only member of a number and no Group is assigned to it, you can delete it. Deleting any other number requires the \"Manage Team Phone Numbers\" permission.",
    "input": {
     "type": "object",
     "properties": {
@@ -10533,7 +10595,7 @@
        "string",
        "null"
       ],
-      "description": "Return numbers the given user participates in, including both personal and group numbers they belong to."
+      "description": "Return numbers the given user is a member of, directly or through an assigned Group."
      }
     },
     "required": []
@@ -10559,7 +10621,7 @@
   {
    "slug": "close.phone_numbers_update",
    "name": "Update a phone number",
-   "description": "You need the \"Manage Team Phone Numbers\" permission to update a group number. You can only update your own personal numbers. You can: - Change a `label` of your number. - Set up call forwarding via `forward_to` and `forward_to_enabled`. - Set up a voicemail greeting by including a URL of an mp3 recording in `voicemail_greeting_url`. We require the URL to be secure (i.e. starting with https://). - ",
+   "description": "You need the \"Manage Team Phone Numbers\" permission to change most settings. If you're the only member of a number and no Group is assigned to it, you can change its `label`, voicemail greeting, and call forwarding without that permission. You can: - Change the `label` of the number. - Set up call forwarding via `forward_to` and `forward_to_enabled`. - Set up a voicemail greeting by including a UR",
    "input": {
     "type": "object",
     "properties": {
@@ -10583,6 +10645,18 @@
       "type": "string",
       "description": ""
      },
+     "local_presence_enabled": {
+      "type": "boolean",
+      "description": "Whether Local Presence can pick this phone number by proximity for a call or SMS made as a user."
+     },
+     "non_member_caller_id_enabled": {
+      "type": "boolean",
+      "description": "Whether users who are not members of this phone number can use it as their outbound caller ID."
+     },
+     "participant_groups": {
+      "type": "array",
+      "description": ""
+     },
      "participants": {
       "type": "array",
       "description": ""
@@ -10594,6 +10668,14 @@
      "press_1_to_accept": {
       "type": "boolean",
       "description": ""
+     },
+     "voice_agent_caller_id_enabled": {
+      "type": "boolean",
+      "description": "Deprecated. Use `voice_agents_local_presence_enabled`. This field is an alias of `voice_agents_local_presence_enabled`, and it will be removed in a future update. If you send both fields, they must have the same value."
+     },
+     "voice_agents_local_presence_enabled": {
+      "type": "boolean",
+      "description": "Whether Local Presence can pick this phone number for calls and SMS that voice agents make in Auto caller ID mode."
      },
      "voicemail_greeting_url": {
       "type": [
@@ -10620,9 +10702,14 @@
      "forward_to_enabled",
      "inbound_ring_duration",
      "label",
+     "local_presence_enabled",
+     "non_member_caller_id_enabled",
+     "participant_groups",
      "participants",
      "phone_numbers",
      "press_1_to_accept",
+     "voice_agent_caller_id_enabled",
+     "voice_agents_local_presence_enabled",
      "voicemail_greeting_url"
     ],
     "body_format": "json"
@@ -12236,7 +12323,7 @@
   {
    "slug": "close.sequences_update_subscription",
    "name": "Update a specific subscription",
-   "description": "Update a specific Subscription",
+   "description": "Setting `status` to `active` restarts the Subscription, so it requires a plan that includes Workflow runs and otherwise returns a 400. Setting it to `paused` works on every plan.",
    "input": {
     "type": "object",
     "properties": {

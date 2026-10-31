@@ -8,10 +8,10 @@
   "`env` lists the NAMES of environment variables. This repository contains no",
   "credentials, and a pull request that adds one should be closed."
  ],
- "providers": 853,
- "described": 197,
- "with_mcp": 79,
- "with_context": 152,
+ "providers": 923,
+ "described": 213,
+ "with_mcp": 101,
+ "with_context": 207,
  "index": [
   {
    "slug": "1password-events",
@@ -140,7 +140,7 @@
    "operations": 0,
    "operations_from": null,
    "logo": true,
-   "context": false,
+   "context": true,
    "mcp": 0,
    "verify": null
   },
@@ -457,7 +457,7 @@
     "AFFINITY_PASS"
    ],
    "spec": "docs",
-   "operations": 103,
+   "operations": 115,
    "operations_from": null,
    "logo": true,
    "context": false,
@@ -480,7 +480,7 @@
     "AFFINITY_V2_API_KEY"
    ],
    "spec": "docs",
-   "operations": 103,
+   "operations": 115,
    "operations_from": "affinity",
    "logo": true,
    "context": false,
@@ -523,7 +523,7 @@
     "AGENTCARD_TOKEN"
    ],
    "spec": "docs",
-   "operations": 43,
+   "operations": 18,
    "operations_from": null,
    "logo": true,
    "context": false,
@@ -543,7 +543,7 @@
     "AGENTLINE_API_KEY"
    ],
    "spec": "docs",
-   "operations": 33,
+   "operations": 34,
    "operations_from": null,
    "logo": true,
    "context": false,
@@ -575,6 +575,27 @@
    "verify": null
   },
   {
+   "slug": "aha",
+   "name": "Aha!",
+   "categories": [
+    "productivity"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/aha",
+   "base": "https://{subdomain}.aha.io",
+   "auth": "oauth",
+   "env": [
+    "AHA_TOKEN",
+    "AHA_SUBDOMAIN"
+   ],
+   "spec": null,
+   "operations": 0,
+   "operations_from": null,
+   "logo": true,
+   "context": false,
+   "mcp": 0,
+   "verify": null
+  },
+  {
    "slug": "ahrefs",
    "name": "Ahrefs",
    "categories": [
@@ -588,7 +609,7 @@
     "AHREFS_TOKEN"
    ],
    "spec": "docs",
-   "operations": 151,
+   "operations": 160,
    "operations_from": null,
    "logo": true,
    "context": false,
@@ -806,7 +827,7 @@
     "AMPLITUDE_PASS"
    ],
    "spec": "docs",
-   "operations": 34,
+   "operations": 38,
    "operations_from": null,
    "logo": true,
    "context": false,
@@ -830,7 +851,7 @@
     "AMPLITUDE_MCP_TOKEN"
    ],
    "spec": "docs",
-   "operations": 34,
+   "operations": 38,
    "operations_from": "amplitude",
    "logo": true,
    "context": false,
@@ -851,11 +872,31 @@
     "AMPLITUDE_MCP_EU_TOKEN"
    ],
    "spec": "docs",
-   "operations": 34,
+   "operations": 38,
    "operations_from": "amplitude",
    "logo": true,
    "context": false,
    "mcp": 1,
+   "verify": null
+  },
+  {
+   "slug": "anarlog-mcp",
+   "name": "Anarlog",
+   "categories": [
+    "mcp"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/anarlog-mcp",
+   "base": "https://api.anarlog.so/mcp",
+   "auth": "manual",
+   "env": [
+    "ANARLOG_MCP_TOKEN"
+   ],
+   "spec": "docs",
+   "operations": 112,
+   "operations_from": null,
+   "logo": true,
+   "context": false,
+   "mcp": 0,
    "verify": null
   },
   {
@@ -896,7 +937,7 @@
    "operations": 0,
    "operations_from": null,
    "logo": true,
-   "context": false,
+   "context": true,
    "mcp": 0,
    "verify": {
     "method": "GET",
@@ -920,7 +961,7 @@
    "operations": 0,
    "operations_from": null,
    "logo": true,
-   "context": false,
+   "context": true,
    "mcp": 0,
    "verify": {
     "method": "GET",
@@ -945,7 +986,7 @@
    "operations": 0,
    "operations_from": null,
    "logo": true,
-   "context": false,
+   "context": true,
    "mcp": 0,
    "verify": null
   },
@@ -984,7 +1025,7 @@
     "APIFY_API_KEY"
    ],
    "spec": "docs",
-   "operations": 224,
+   "operations": 235,
    "operations_from": null,
    "logo": true,
    "context": false,
@@ -1043,9 +1084,30 @@
    "env": [
     "APPLE_BUSINESS_MANAGER_TOKEN"
    ],
-   "spec": "apis.guru",
+   "spec": null,
    "operations": 251,
    "operations_from": "apple-app-store",
+   "logo": true,
+   "context": false,
+   "mcp": 0,
+   "verify": null
+  },
+  {
+   "slug": "apple-calendar",
+   "name": "Apple Calendar",
+   "categories": [
+    "productivity"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/apple-calendar",
+   "base": "https://caldav.icloud.com",
+   "auth": "basic",
+   "env": [
+    "APPLE_CALENDAR_USER",
+    "APPLE_CALENDAR_PASS"
+   ],
+   "spec": null,
+   "operations": 0,
+   "operations_from": null,
    "logo": true,
    "context": false,
    "mcp": 0,
@@ -1070,6 +1132,30 @@
    "context": false,
    "mcp": 0,
    "verify": null
+  },
+  {
+   "slug": "arcsite",
+   "name": "ArcSite",
+   "categories": [
+    "design",
+    "productivity"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/arcsite",
+   "base": "https://api.arcsite.com",
+   "auth": "key",
+   "env": [
+    "ARCSITE_API_KEY"
+   ],
+   "spec": null,
+   "operations": 0,
+   "operations_from": null,
+   "logo": true,
+   "context": false,
+   "mcp": 0,
+   "verify": {
+    "method": "GET",
+    "path": "/v1/projects?per_page=1"
+   }
   },
   {
    "slug": "asana",
@@ -1185,6 +1271,27 @@
    "verify": null
   },
   {
+   "slug": "astro-mcp",
+   "name": "Astro",
+   "categories": [
+    "dev-tools",
+    "mcp"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/astro-mcp",
+   "base": "https://api.astronomer.io",
+   "auth": "oauth",
+   "env": [
+    "ASTRO_MCP_TOKEN"
+   ],
+   "spec": null,
+   "operations": 0,
+   "operations_from": null,
+   "logo": true,
+   "context": true,
+   "mcp": 0,
+   "verify": null
+  },
+  {
    "slug": "athenahealth",
    "name": "athenahealth",
    "categories": [
@@ -1196,6 +1303,27 @@
    "env": [
     "ATHENAHEALTH_TOKEN",
     "ATHENAHEALTH_SUBDOMAIN"
+   ],
+   "spec": null,
+   "operations": 0,
+   "operations_from": null,
+   "logo": true,
+   "context": false,
+   "mcp": 0,
+   "verify": null
+  },
+  {
+   "slug": "athenahealth-jwks",
+   "name": "athenahealth",
+   "categories": [
+    "other"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/athenahealth-jwks",
+   "base": "https://{hostname}",
+   "auth": "manual",
+   "env": [
+    "ATHENAHEALTH_JWKS_TOKEN",
+    "ATHENAHEALTH_JWKS_HOSTNAME"
    ],
    "spec": null,
    "operations": 0,
@@ -1237,11 +1365,11 @@
    "env": [
     "ATLASSIAN_TOKEN"
    ],
-   "spec": "apis.guru",
+   "spec": null,
    "operations": 474,
    "operations_from": "jira",
    "logo": true,
-   "context": false,
+   "context": true,
    "mcp": 1,
    "verify": null
   },
@@ -1257,11 +1385,11 @@
    "env": [
     "ATLASSIAN_ADMIN_API_KEY"
    ],
-   "spec": "apis.guru",
+   "spec": null,
    "operations": 474,
    "operations_from": "jira",
    "logo": true,
-   "context": false,
+   "context": true,
    "mcp": 1,
    "verify": null
   },
@@ -1299,11 +1427,11 @@
     "ATLASSIAN_SERVICE_ACCOUNT_API_USER",
     "ATLASSIAN_SERVICE_ACCOUNT_API_PASS"
    ],
-   "spec": "apis.guru",
+   "spec": null,
    "operations": 474,
    "operations_from": "jira",
    "logo": true,
-   "context": false,
+   "context": true,
    "mcp": 1,
    "verify": null
   },
@@ -1319,16 +1447,61 @@
    "env": [
     "ATTENTION_API_KEY"
    ],
-   "spec": "docs",
+   "spec": null,
    "operations": 34,
    "operations_from": null,
    "logo": true,
-   "context": false,
+   "context": true,
    "mcp": 0,
    "verify": {
     "method": "GET",
     "path": "/v2/conversations?size=1"
    }
+  },
+  {
+   "slug": "attentive",
+   "name": "Attentive",
+   "categories": [
+    "marketing",
+    "communication"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/attentive-api-key",
+   "base": "https://api.attentivemobile.com",
+   "auth": "key",
+   "env": [
+    "ATTENTIVE_API_KEY"
+   ],
+   "spec": null,
+   "operations": 0,
+   "operations_from": null,
+   "logo": true,
+   "context": true,
+   "mcp": 1,
+   "verify": {
+    "method": "GET",
+    "path": "/v1/me"
+   }
+  },
+  {
+   "slug": "attentive-mcp",
+   "name": "Attentive",
+   "categories": [
+    "marketing",
+    "mcp"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/attentive-mcp",
+   "base": "https://attentive-ui-mcp.attentivemobile.com",
+   "auth": "oauth",
+   "env": [
+    "ATTENTIVE_MCP_TOKEN"
+   ],
+   "spec": null,
+   "operations": 0,
+   "operations_from": null,
+   "logo": false,
+   "context": true,
+   "mcp": 0,
+   "verify": null
   },
   {
    "slug": "attio",
@@ -1344,7 +1517,7 @@
     "ATTIO_TOKEN"
    ],
    "spec": "docs",
-   "operations": 94,
+   "operations": 97,
    "operations_from": null,
    "logo": true,
    "context": false,
@@ -1365,7 +1538,7 @@
     "ATTIO_MCP_TOKEN"
    ],
    "spec": "docs",
-   "operations": 94,
+   "operations": 97,
    "operations_from": "attio",
    "logo": true,
    "context": false,
@@ -1725,7 +1898,7 @@
     "AWS_SIGV4_SERVICE",
     "AWS_SIGV4_REGION"
    ],
-   "spec": "apis.guru",
+   "spec": null,
    "operations": 316,
    "operations_from": "aws-iam",
    "logo": true,
@@ -1768,7 +1941,7 @@
     "AZURE_BLOB_STORAGE_TOKEN",
     "AZURE_BLOB_STORAGE_ACCOUNTNAME"
    ],
-   "spec": "apis.guru",
+   "spec": null,
    "operations": 56,
    "operations_from": null,
    "logo": true,
@@ -1923,7 +2096,7 @@
    "operations": 0,
    "operations_from": null,
    "logo": true,
-   "context": false,
+   "context": true,
    "mcp": 0,
    "verify": {
     "method": "GET",
@@ -1965,16 +2138,37 @@
     "BEEHIIV_API_KEY",
     "BEEHIIV_PUBLICATIONID"
    ],
-   "spec": null,
-   "operations": 0,
+   "spec": "docs",
+   "operations": 12,
    "operations_from": null,
    "logo": true,
    "context": true,
-   "mcp": 0,
+   "mcp": 1,
    "verify": {
     "method": "GET",
     "path": "/posts"
    }
+  },
+  {
+   "slug": "beeline-vms",
+   "name": "Beeline VMS",
+   "categories": [
+    "hr"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/beeline-vms",
+   "base": "{audience}",
+   "auth": "oauth",
+   "env": [
+    "BEELINE_VMS_TOKEN",
+    "BEELINE_VMS_AUDIENCE"
+   ],
+   "spec": null,
+   "operations": 0,
+   "operations_from": null,
+   "logo": true,
+   "context": false,
+   "mcp": 0,
+   "verify": null
   },
   {
    "slug": "bettercontact",
@@ -2012,7 +2206,7 @@
     "BIGCHANGE_TOKEN"
    ],
    "spec": "docs",
-   "operations": 227,
+   "operations": 248,
    "operations_from": null,
    "logo": true,
    "context": false,
@@ -2061,6 +2255,31 @@
    "verify": null
   },
   {
+   "slug": "billit",
+   "name": "Billit",
+   "categories": [
+    "accounting",
+    "invoicing"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/billit",
+   "base": "https://{apiHost}",
+   "auth": "key",
+   "env": [
+    "BILLIT_API_KEY",
+    "BILLIT_APIHOST"
+   ],
+   "spec": null,
+   "operations": 0,
+   "operations_from": null,
+   "logo": true,
+   "context": false,
+   "mcp": 0,
+   "verify": {
+    "method": "GET",
+    "path": "/v1/einvoices/registrations"
+   }
+  },
+  {
    "slug": "bing-webmasters",
    "name": "Bing Webmasters",
    "categories": [
@@ -2094,7 +2313,7 @@
     "BIRD_SUBDOMAIN"
    ],
    "spec": "docs",
-   "operations": 282,
+   "operations": 514,
    "operations_from": null,
    "logo": true,
    "context": false,
@@ -2196,8 +2415,8 @@
    "env": [
     "BLANDAI_API_KEY"
    ],
-   "spec": null,
-   "operations": 0,
+   "spec": "docs",
+   "operations": 5,
    "operations_from": null,
    "logo": true,
    "context": true,
@@ -2218,6 +2437,28 @@
    "auth": "oauth",
    "env": [
     "BLIRO_TOKEN"
+   ],
+   "spec": null,
+   "operations": 0,
+   "operations_from": null,
+   "logo": true,
+   "context": false,
+   "mcp": 0,
+   "verify": null
+  },
+  {
+   "slug": "bluebeam",
+   "name": "Bluebeam",
+   "categories": [
+    "productivity",
+    "storage"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/bluebeam",
+   "base": "https://{apiHost}",
+   "auth": "oauth",
+   "env": [
+    "BLUEBEAM_TOKEN",
+    "BLUEBEAM_APIHOST"
    ],
    "spec": null,
    "operations": 0,
@@ -2370,6 +2611,30 @@
    "context": false,
    "mcp": 0,
    "verify": null
+  },
+  {
+   "slug": "breathehr",
+   "name": "Breathe HR",
+   "categories": [
+    "hr"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/breathehr",
+   "base": "https://{apiHost}",
+   "auth": "key",
+   "env": [
+    "BREATHEHR_API_KEY",
+    "BREATHEHR_APIHOST"
+   ],
+   "spec": null,
+   "operations": 0,
+   "operations_from": null,
+   "logo": true,
+   "context": false,
+   "mcp": 0,
+   "verify": {
+    "method": "GET",
+    "path": "/v1/account"
+   }
   },
   {
    "slug": "breezy-hr",
@@ -2552,6 +2817,49 @@
     "method": "GET",
     "path": "/v1/rentals"
    }
+  },
+  {
+   "slug": "buildkite",
+   "name": "Buildkite",
+   "categories": [
+    "dev-tools"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/buildkite",
+   "base": "https://api.buildkite.com",
+   "auth": "key",
+   "env": [
+    "BUILDKITE_API_KEY"
+   ],
+   "spec": null,
+   "operations": 0,
+   "operations_from": null,
+   "logo": true,
+   "context": true,
+   "mcp": 0,
+   "verify": {
+    "method": "GET",
+    "path": "/v2/access-token"
+   }
+  },
+  {
+   "slug": "buildkite-token-exchange",
+   "name": "Buildkite",
+   "categories": [
+    "dev-tools"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/buildkite-token-exchange",
+   "base": "https://api.buildkite.com",
+   "auth": "manual",
+   "env": [
+    "BUILDKITE_TOKEN_EXCHANGE_TOKEN"
+   ],
+   "spec": null,
+   "operations": 0,
+   "operations_from": null,
+   "logo": true,
+   "context": true,
+   "mcp": 0,
+   "verify": null
   },
   {
    "slug": "builtwith",
@@ -2792,7 +3100,7 @@
    "operations_from": null,
    "logo": true,
    "context": false,
-   "mcp": 0,
+   "mcp": 1,
    "verify": null
   },
   {
@@ -2831,6 +3139,26 @@
    "env": [
     "CANVAS_LMS_TOKEN",
     "CANVAS_LMS_HOSTNAME"
+   ],
+   "spec": null,
+   "operations": 0,
+   "operations_from": null,
+   "logo": true,
+   "context": false,
+   "mcp": 0,
+   "verify": null
+  },
+  {
+   "slug": "cch-axcess",
+   "name": "CCH Axcess",
+   "categories": [
+    "accounting"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/cch-axcess",
+   "base": "https://api.cchaxcess.com",
+   "auth": "oauth",
+   "env": [
+    "CCH_AXCESS_TOKEN"
    ],
    "spec": null,
    "operations": 0,
@@ -2930,6 +3258,30 @@
    }
   },
   {
+   "slug": "chameleoni",
+   "name": "Chameleon-i",
+   "categories": [
+    "ats",
+    "crm"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/chameleoni",
+   "base": "https://chiapi.chameleoni.com",
+   "auth": "key",
+   "env": [
+    "CHAMELEONI_API_KEY"
+   ],
+   "spec": null,
+   "operations": 0,
+   "operations_from": null,
+   "logo": true,
+   "context": false,
+   "mcp": 0,
+   "verify": {
+    "method": "GET",
+    "path": "/users/list"
+   }
+  },
+  {
    "slug": "chargebee",
    "name": "Chargebee",
    "categories": [
@@ -2952,6 +3304,30 @@
    "verify": {
     "method": "GET",
     "path": "/api/v2/business_entities"
+   }
+  },
+  {
+   "slug": "charliehr",
+   "name": "CharlieHR",
+   "categories": [
+    "hr"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/charliehr",
+   "base": "https://charliehr.com",
+   "auth": "basic",
+   "env": [
+    "CHARLIEHR_USER",
+    "CHARLIEHR_PASS"
+   ],
+   "spec": null,
+   "operations": 0,
+   "operations_from": null,
+   "logo": true,
+   "context": false,
+   "mcp": 0,
+   "verify": {
+    "method": "GET",
+    "path": "/api/v1/company"
    }
   },
   {
@@ -3046,6 +3422,31 @@
    "verify": {
     "method": "GET",
     "path": "/v1/projects"
+   }
+  },
+  {
+   "slug": "checkbox",
+   "name": "Checkbox",
+   "categories": [
+    "legal",
+    "ticketing"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/checkbox",
+   "base": "https://{hostname}",
+   "auth": "key",
+   "env": [
+    "CHECKBOX_API_KEY",
+    "CHECKBOX_HOSTNAME"
+   ],
+   "spec": null,
+   "operations": 0,
+   "operations_from": null,
+   "logo": true,
+   "context": false,
+   "mcp": 0,
+   "verify": {
+    "method": "GET",
+    "path": "/partner/api/v1/ticketing/boards?limit=1"
    }
   },
   {
@@ -3215,8 +3616,31 @@
    "operations_from": null,
    "logo": true,
    "context": true,
-   "mcp": 0,
+   "mcp": 1,
    "verify": null
+  },
+  {
+   "slug": "circleback",
+   "name": "Circleback",
+   "categories": [
+    "productivity"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/circleback",
+   "base": "https://circleback.ai/api",
+   "auth": "key",
+   "env": [
+    "CIRCLEBACK_API_KEY"
+   ],
+   "spec": null,
+   "operations": 0,
+   "operations_from": null,
+   "logo": false,
+   "context": true,
+   "mcp": 2,
+   "verify": {
+    "method": "GET",
+    "path": "/people?limit=1"
+   }
   },
   {
    "slug": "circleback-mcp",
@@ -3236,7 +3660,7 @@
    "operations_from": null,
    "logo": true,
    "context": true,
-   "mcp": 0,
+   "mcp": 1,
    "verify": null
   },
   {
@@ -3285,6 +3709,29 @@
    }
   },
   {
+   "slug": "clarify",
+   "name": "Clarify",
+   "categories": [
+    "crm"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/clarify",
+   "base": "https://api.clarify.ai",
+   "auth": "key",
+   "env": [
+    "CLARIFY_API_KEY"
+   ],
+   "spec": "docs",
+   "operations": 91,
+   "operations_from": null,
+   "logo": true,
+   "context": false,
+   "mcp": 0,
+   "verify": {
+    "method": "GET",
+    "path": "/v1/workspaces/{workspaceSlug}/lists?page[limit]=1"
+   }
+  },
+  {
    "slug": "clay",
    "name": "Clay",
    "categories": [
@@ -3302,11 +3749,33 @@
    "operations_from": null,
    "logo": true,
    "context": true,
-   "mcp": 0,
+   "mcp": 1,
    "verify": {
     "method": "GET",
     "path": "/v3/my-workspaces"
    }
+  },
+  {
+   "slug": "clay-mcp",
+   "name": "Clay",
+   "categories": [
+    "crm",
+    "marketing",
+    "mcp"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/clay-mcp",
+   "base": "https://api.clay.com",
+   "auth": "oauth",
+   "env": [
+    "CLAY_MCP_TOKEN"
+   ],
+   "spec": null,
+   "operations": 0,
+   "operations_from": null,
+   "logo": true,
+   "context": true,
+   "mcp": 0,
+   "verify": null
   },
   {
    "slug": "clerk",
@@ -3322,7 +3791,7 @@
     "CLERK_API_KEY"
    ],
    "spec": "docs",
-   "operations": 236,
+   "operations": 247,
    "operations_from": null,
    "logo": true,
    "context": false,
@@ -3455,7 +3924,7 @@
     "CLOSE_TOKEN"
    ],
    "spec": "docs",
-   "operations": 302,
+   "operations": 303,
    "operations_from": null,
    "logo": true,
    "context": false,
@@ -3475,7 +3944,7 @@
     "CLOUDBEDS_TOKEN"
    ],
    "spec": "vendor",
-   "operations": 115,
+   "operations": 116,
    "operations_from": null,
    "logo": true,
    "context": false,
@@ -3519,7 +3988,7 @@
     "CLOUDFLARE_API_KEY"
    ],
    "spec": "vendor",
-   "operations": 3232,
+   "operations": 3431,
    "operations_from": null,
    "logo": true,
    "context": false,
@@ -3541,7 +4010,7 @@
     "CLOUDFLARE_MCP_MCP_SERVER_URL"
    ],
    "spec": "vendor",
-   "operations": 3232,
+   "operations": 3431,
    "operations_from": "cloudflare",
    "logo": true,
    "context": false,
@@ -3562,7 +4031,7 @@
     "CLOUDTALK_PASS"
    ],
    "spec": "docs",
-   "operations": 84,
+   "operations": 107,
    "operations_from": null,
    "logo": true,
    "context": false,
@@ -3664,6 +4133,27 @@
     "method": "GET",
     "path": "/v1/organizations"
    }
+  },
+  {
+   "slug": "command-alkon",
+   "name": "Command Alkon",
+   "categories": [
+    "erp"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/command-alkon",
+   "base": "https://{hostname}",
+   "auth": "manual",
+   "env": [
+    "COMMAND_ALKON_TOKEN",
+    "COMMAND_ALKON_HOSTNAME"
+   ],
+   "spec": null,
+   "operations": 0,
+   "operations_from": null,
+   "logo": true,
+   "context": false,
+   "mcp": 0,
+   "verify": null
   },
   {
    "slug": "commercetools",
@@ -3860,7 +4350,7 @@
    "operations": 0,
    "operations_from": null,
    "logo": true,
-   "context": false,
+   "context": true,
    "mcp": 0,
    "verify": null
   },
@@ -4085,6 +4575,51 @@
     "method": "GET",
     "path": "/v4/data/autocompletes?query=instantly&limit=1"
    }
+  },
+  {
+   "slug": "crustdata",
+   "name": "Crustdata",
+   "categories": [
+    "crm",
+    "marketing"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/crustdata",
+   "base": "https://api.crustdata.com",
+   "auth": "key",
+   "env": [
+    "CRUSTDATA_API_KEY"
+   ],
+   "spec": null,
+   "operations": 0,
+   "operations_from": null,
+   "logo": true,
+   "context": true,
+   "mcp": 1,
+   "verify": {
+    "method": "GET",
+    "path": "/account/credits"
+   }
+  },
+  {
+   "slug": "crustdata-mcp",
+   "name": "Crustdata",
+   "categories": [
+    "crm",
+    "mcp"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/crustdata-mcp",
+   "base": "https://install.crustdata.com",
+   "auth": "oauth",
+   "env": [
+    "CRUSTDATA_MCP_TOKEN"
+   ],
+   "spec": null,
+   "operations": 0,
+   "operations_from": null,
+   "logo": true,
+   "context": true,
+   "mcp": 0,
+   "verify": null
   },
   {
    "slug": "cursor",
@@ -4389,7 +4924,7 @@
    "operations": 0,
    "operations_from": null,
    "logo": true,
-   "context": false,
+   "context": true,
    "mcp": 0,
    "verify": null
   },
@@ -4562,6 +5097,27 @@
    "verify": null
   },
   {
+   "slug": "discogs",
+   "name": "Discogs",
+   "categories": [
+    "e-commerce",
+    "other"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/discogs",
+   "base": "https://api.discogs.com",
+   "auth": "manual",
+   "env": [
+    "DISCOGS_TOKEN"
+   ],
+   "spec": null,
+   "operations": 0,
+   "operations_from": null,
+   "logo": true,
+   "context": false,
+   "mcp": 0,
+   "verify": null
+  },
+  {
    "slug": "discolike",
    "name": "DiscoLike",
    "categories": [
@@ -4574,7 +5130,7 @@
     "DISCOLIKE_API_KEY"
    ],
    "spec": "docs",
-   "operations": 57,
+   "operations": 66,
    "operations_from": null,
    "logo": true,
    "context": false,
@@ -4598,12 +5154,36 @@
     "DISCORD_TOKEN"
    ],
    "spec": "vendor",
-   "operations": 246,
+   "operations": 250,
    "operations_from": null,
    "logo": true,
    "context": false,
    "mcp": 0,
    "verify": null
+  },
+  {
+   "slug": "discord-bot",
+   "name": "Discord Bot",
+   "categories": [
+    "gaming",
+    "social"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/discord-bot",
+   "base": "https://discord.com",
+   "auth": "key",
+   "env": [
+    "DISCORD_BOT_API_KEY"
+   ],
+   "spec": "vendor",
+   "operations": 250,
+   "operations_from": null,
+   "logo": true,
+   "context": false,
+   "mcp": 0,
+   "verify": {
+    "method": "GET",
+    "path": "/api/v10/applications/@me"
+   }
   },
   {
    "slug": "discourse",
@@ -4826,7 +5406,7 @@
     "DROPBOX_SIGN_TOKEN"
    ],
    "spec": "vendor",
-   "operations": 73,
+   "operations": 74,
    "operations_from": null,
    "logo": true,
    "context": false,
@@ -4914,7 +5494,7 @@
     "DYNATRACE_ENVIRONMENTID"
    ],
    "spec": "docs",
-   "operations": 87,
+   "operations": 91,
    "operations_from": null,
    "logo": true,
    "context": false,
@@ -4975,8 +5555,29 @@
    "env": [
     "EBAY_TOKEN"
    ],
-   "spec": "apis.guru",
+   "spec": null,
    "operations": 36,
+   "operations_from": null,
+   "logo": true,
+   "context": false,
+   "mcp": 0,
+   "verify": null
+  },
+  {
+   "slug": "eclinicalworks",
+   "name": "eClinicalWorks",
+   "categories": [
+    "other"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/eclinicalworks",
+   "base": "https://{fhirBaseUrl}",
+   "auth": "manual",
+   "env": [
+    "ECLINICALWORKS_TOKEN",
+    "ECLINICALWORKS_FHIRBASEURL"
+   ],
+   "spec": null,
+   "operations": 0,
    "operations_from": null,
    "logo": true,
    "context": false,
@@ -5165,6 +5766,28 @@
     "ENTRATA_USER",
     "ENTRATA_PASS",
     "ENTRATA_SUBDOMAIN"
+   ],
+   "spec": null,
+   "operations": 0,
+   "operations_from": null,
+   "logo": true,
+   "context": false,
+   "mcp": 0,
+   "verify": null
+  },
+  {
+   "slug": "envoice",
+   "name": "Envoice",
+   "categories": [
+    "accounting",
+    "invoicing"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/envoice",
+   "base": "https://{environment}/partner",
+   "auth": "oauth",
+   "env": [
+    "ENVOICE_TOKEN",
+    "ENVOICE_ENVIRONMENT"
    ],
    "spec": null,
    "operations": 0,
@@ -5389,6 +6012,27 @@
    "verify": null
   },
   {
+   "slug": "eway-crm",
+   "name": "eWay-CRM",
+   "categories": [
+    "crm"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/eway-crm",
+   "base": "https://{serviceUrl}/API.svc",
+   "auth": "oauth",
+   "env": [
+    "EWAY_CRM_TOKEN",
+    "EWAY_CRM_SERVICEURL"
+   ],
+   "spec": null,
+   "operations": 0,
+   "operations_from": null,
+   "logo": true,
+   "context": false,
+   "mcp": 0,
+   "verify": null
+  },
+  {
    "slug": "exa",
    "name": "Exa",
    "categories": [
@@ -5462,6 +6106,27 @@
    "env": [
     "EXPENSIFY_USER",
     "EXPENSIFY_PASS"
+   ],
+   "spec": null,
+   "operations": 0,
+   "operations_from": null,
+   "logo": true,
+   "context": false,
+   "mcp": 0,
+   "verify": null
+  },
+  {
+   "slug": "extensiv",
+   "name": "Extensiv",
+   "categories": [
+    "e-commerce"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/extensiv",
+   "base": "https://api.cartrover.com",
+   "auth": "basic",
+   "env": [
+    "EXTENSIV_USER",
+    "EXTENSIV_PASS"
    ],
    "spec": null,
    "operations": 0,
@@ -5686,7 +6351,7 @@
     "FIBER_AI_API_KEY"
    ],
    "spec": "docs",
-   "operations": 247,
+   "operations": 270,
    "operations_from": null,
    "logo": true,
    "context": false,
@@ -5710,7 +6375,7 @@
     "FIGMA_TOKEN"
    ],
    "spec": "vendor",
-   "operations": 50,
+   "operations": 55,
    "operations_from": null,
    "logo": true,
    "context": false,
@@ -5733,7 +6398,7 @@
     "FIGMA_SCIM_TENANTID"
    ],
    "spec": "vendor",
-   "operations": 50,
+   "operations": 55,
    "operations_from": "figma",
    "logo": true,
    "context": false,
@@ -5742,6 +6407,28 @@
     "method": "GET",
     "path": "/Users"
    }
+  },
+  {
+   "slug": "fiix",
+   "name": "Fiix",
+   "categories": [
+    "erp"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/fiix",
+   "base": "https://{subdomain}.macmms.com",
+   "auth": "basic",
+   "env": [
+    "FIIX_USER",
+    "FIIX_PASS",
+    "FIIX_SUBDOMAIN"
+   ],
+   "spec": null,
+   "operations": 0,
+   "operations_from": null,
+   "logo": true,
+   "context": false,
+   "mcp": 0,
+   "verify": null
   },
   {
    "slug": "fillout",
@@ -5806,6 +6493,30 @@
    "verify": {
     "method": "GET",
     "path": "/v2/me"
+   }
+  },
+  {
+   "slug": "firecrawl",
+   "name": "Firecrawl",
+   "categories": [
+    "dev-tools",
+    "analytics"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/firecrawl",
+   "base": "https://api.firecrawl.dev",
+   "auth": "key",
+   "env": [
+    "FIRECRAWL_API_KEY"
+   ],
+   "spec": null,
+   "operations": 0,
+   "operations_from": null,
+   "logo": true,
+   "context": true,
+   "mcp": 0,
+   "verify": {
+    "method": "GET",
+    "path": "/v2/team/queue-status"
    }
   },
   {
@@ -5934,7 +6645,7 @@
    "operations": 0,
    "operations_from": null,
    "logo": true,
-   "context": false,
+   "context": true,
    "mcp": 0,
    "verify": {
     "method": "GET",
@@ -5983,6 +6694,30 @@
    "context": true,
    "mcp": 0,
    "verify": null
+  },
+  {
+   "slug": "formstack-documents",
+   "name": "Formstack Documents",
+   "categories": [
+    "productivity"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/formstack-documents",
+   "base": "https://www.webmerge.me/api",
+   "auth": "basic",
+   "env": [
+    "FORMSTACK_DOCUMENTS_USER",
+    "FORMSTACK_DOCUMENTS_PASS"
+   ],
+   "spec": null,
+   "operations": 0,
+   "operations_from": null,
+   "logo": true,
+   "context": false,
+   "mcp": 0,
+   "verify": {
+    "method": "GET",
+    "path": "/documents"
+   }
   },
   {
    "slug": "fortnox",
@@ -6088,10 +6823,35 @@
    "operations_from": null,
    "logo": true,
    "context": false,
-   "mcp": 0,
+   "mcp": 1,
    "verify": {
     "method": "GET",
     "path": "/api/v2/settings/helpdesk"
+   }
+  },
+  {
+   "slug": "freshdesk-mcp",
+   "name": "FreshDesk",
+   "categories": [
+    "support",
+    "mcp"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/freshdesk-mcp",
+   "base": "https://{subdomain}.freshdesk.com",
+   "auth": "key",
+   "env": [
+    "FRESHDESK_MCP_API_KEY",
+    "FRESHDESK_MCP_SUBDOMAIN"
+   ],
+   "spec": null,
+   "operations": 0,
+   "operations_from": null,
+   "logo": true,
+   "context": false,
+   "mcp": 0,
+   "verify": {
+    "method": "POST",
+    "path": "/mcp"
    }
   },
   {
@@ -6137,10 +6897,35 @@
    "operations_from": null,
    "logo": true,
    "context": false,
-   "mcp": 0,
+   "mcp": 1,
    "verify": {
     "method": "GET",
     "path": "/api/v2/tickets"
+   }
+  },
+  {
+   "slug": "freshservice-mcp",
+   "name": "Freshservice",
+   "categories": [
+    "support",
+    "mcp"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/freshservice-mcp",
+   "base": "https://{subdomain}.freshservice.com",
+   "auth": "key",
+   "env": [
+    "FRESHSERVICE_MCP_API_KEY",
+    "FRESHSERVICE_MCP_SUBDOMAIN"
+   ],
+   "spec": null,
+   "operations": 0,
+   "operations_from": null,
+   "logo": true,
+   "context": false,
+   "mcp": 0,
+   "verify": {
+    "method": "POST",
+    "path": "/mcp"
    }
   },
   {
@@ -6451,7 +7236,7 @@
     "GITHUB_TOKEN"
    ],
    "spec": "curated",
-   "operations": 1201,
+   "operations": 1216,
    "operations_from": null,
    "logo": true,
    "context": false,
@@ -6603,7 +7388,7 @@
    "env": [
     "GOOGLE_TOKEN"
    ],
-   "spec": "apis.guru",
+   "spec": null,
    "operations": 29,
    "operations_from": null,
    "logo": true,
@@ -6623,7 +7408,7 @@
    "env": [
     "GOOGLE_ADS_TOKEN"
    ],
-   "spec": "apis.guru",
+   "spec": null,
    "operations": 29,
    "operations_from": "google",
    "logo": true,
@@ -6787,7 +7572,7 @@
    "env": [
     "GOOGLE_GEMINI_API_KEY"
    ],
-   "spec": "apis.guru",
+   "spec": null,
    "operations": 29,
    "operations_from": "google",
    "logo": true,
@@ -6851,7 +7636,7 @@
    "env": [
     "GOOGLE_MAPS_API_KEY"
    ],
-   "spec": "apis.guru",
+   "spec": null,
    "operations": 29,
    "operations_from": "google",
    "logo": true,
@@ -6872,7 +7657,7 @@
    "env": [
     "GOOGLE_MEET_TOKEN"
    ],
-   "spec": "apis.guru",
+   "spec": null,
    "operations": 29,
    "operations_from": "google",
    "logo": true,
@@ -6922,7 +7707,7 @@
   },
   {
    "slug": "google-sheet",
-   "name": "Google Sheet",
+   "name": "Google Sheets",
    "categories": [
     "productivity"
    ],
@@ -7127,7 +7912,7 @@
     "GRANOLA_API_KEY"
    ],
    "spec": "docs",
-   "operations": 9,
+   "operations": 19,
    "operations_from": null,
    "logo": true,
    "context": false,
@@ -7152,7 +7937,7 @@
     "GRANOLA_MCP_TOKEN"
    ],
    "spec": "docs",
-   "operations": 9,
+   "operations": 19,
    "operations_from": "granola",
    "logo": true,
    "context": false,
@@ -7511,7 +8296,7 @@
     "HAIL_API_KEY"
    ],
    "spec": "docs",
-   "operations": 53,
+   "operations": 76,
    "operations_from": null,
    "logo": true,
    "context": false,
@@ -7537,7 +8322,7 @@
     "HAIL_MCP_TOKEN"
    ],
    "spec": "docs",
-   "operations": 53,
+   "operations": 76,
    "operations_from": "hail",
    "logo": true,
    "context": false,
@@ -7598,6 +8383,29 @@
    "auth": "oauth",
    "env": [
     "HARVEST_TOKEN"
+   ],
+   "spec": null,
+   "operations": 0,
+   "operations_from": null,
+   "logo": true,
+   "context": false,
+   "mcp": 0,
+   "verify": null
+  },
+  {
+   "slug": "haus",
+   "name": "Haus",
+   "categories": [
+    "analytics",
+    "e-commerce",
+    "marketing"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/haus",
+   "base": "https://geolift.apis.haus",
+   "auth": "basic",
+   "env": [
+    "HAUS_USER",
+    "HAUS_PASS"
    ],
    "spec": null,
    "operations": 0,
@@ -7709,7 +8517,7 @@
    "operations": 0,
    "operations_from": null,
    "logo": true,
-   "context": false,
+   "context": true,
    "mcp": 1,
    "verify": null
   },
@@ -7730,7 +8538,7 @@
    "operations": 0,
    "operations_from": null,
    "logo": true,
-   "context": false,
+   "context": true,
    "mcp": 0,
    "verify": null
   },
@@ -7796,7 +8604,7 @@
    "operations_from": null,
    "logo": true,
    "context": false,
-   "mcp": 0,
+   "mcp": 1,
    "verify": {
     "method": "GET",
     "path": "/public/auth/CheckApiKey"
@@ -7909,6 +8717,28 @@
    "verify": null
   },
   {
+   "slug": "hitpay",
+   "name": "HitPay App",
+   "categories": [
+    "payment",
+    "e-commerce"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/hitpay",
+   "base": "https://api.{environment}",
+   "auth": "oauth",
+   "env": [
+    "HITPAY_TOKEN",
+    "HITPAY_ENVIRONMENT"
+   ],
+   "spec": null,
+   "operations": 0,
+   "operations_from": null,
+   "logo": true,
+   "context": false,
+   "mcp": 0,
+   "verify": null
+  },
+  {
    "slug": "holded",
    "name": "Holded",
    "categories": [
@@ -7990,7 +8820,7 @@
    "env": [
     "HUBSPOT_TOKEN"
    ],
-   "spec": "apis.guru",
+   "spec": null,
    "operations": 2,
    "operations_from": null,
    "logo": true,
@@ -8131,6 +8961,28 @@
    "verify": null
   },
   {
+   "slug": "imanage",
+   "name": "iManage Work",
+   "categories": [
+    "legal",
+    "storage"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/imanage",
+   "base": "https://{hostname}",
+   "auth": "oauth",
+   "env": [
+    "IMANAGE_TOKEN",
+    "IMANAGE_HOSTNAME"
+   ],
+   "spec": null,
+   "operations": 0,
+   "operations_from": null,
+   "logo": true,
+   "context": false,
+   "mcp": 0,
+   "verify": null
+  },
+  {
    "slug": "immybot",
    "name": "ImmyBot",
    "categories": [
@@ -8215,7 +9067,7 @@
    "operations": 0,
    "operations_from": null,
    "logo": true,
-   "context": false,
+   "context": true,
    "mcp": 0,
    "verify": null
   },
@@ -8351,7 +9203,7 @@
    "operations": 0,
    "operations_from": null,
    "logo": true,
-   "context": false,
+   "context": true,
    "mcp": 0,
    "verify": null
   },
@@ -8599,6 +9451,29 @@
    "verify": null
   },
   {
+   "slug": "jobnimbus",
+   "name": "JobNimbus",
+   "categories": [
+    "crm"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/jobnimbus",
+   "base": "https://app.jobnimbus.com",
+   "auth": "key",
+   "env": [
+    "JOBNIMBUS_API_KEY"
+   ],
+   "spec": null,
+   "operations": 0,
+   "operations_from": null,
+   "logo": true,
+   "context": false,
+   "mcp": 0,
+   "verify": {
+    "method": "GET",
+    "path": "/api1/contacts"
+   }
+  },
+  {
    "slug": "jobvite",
    "name": "Jobvite",
    "categories": [
@@ -8812,7 +9687,7 @@
     "KINTONE_SUBDOMAIN"
    ],
    "spec": "vendor",
-   "operations": 0,
+   "operations": 204,
    "operations_from": null,
    "logo": true,
    "context": false,
@@ -8833,7 +9708,7 @@
     "KINTONE_USER_API_SUBDOMAIN"
    ],
    "spec": "vendor",
-   "operations": 0,
+   "operations": 204,
    "operations_from": "kintone",
    "logo": true,
    "context": false,
@@ -8856,7 +9731,7 @@
     "KLAVIYO_API_KEY"
    ],
    "spec": "vendor",
-   "operations": 345,
+   "operations": 436,
    "operations_from": null,
    "logo": true,
    "context": false,
@@ -9006,8 +9881,8 @@
    "env": [
     "LAGROWTHMACHINE_API_KEY"
    ],
-   "spec": null,
-   "operations": 0,
+   "spec": "docs",
+   "operations": 54,
    "operations_from": null,
    "logo": true,
    "context": true,
@@ -9041,7 +9916,7 @@
    "categories": [
     "hr"
    ],
-   "docs": "https://nango.dev/docs/integrations/all/lattice",
+   "docs": "https://nango.dev/docs/api-integrations/lattice",
    "base": "https://api.latticehq.com",
    "auth": "key",
    "env": [
@@ -9097,7 +9972,7 @@
    "operations_from": null,
    "logo": true,
    "context": false,
-   "mcp": 0,
+   "mcp": 2,
    "verify": {
     "method": "GET",
     "path": "/v1/credits"
@@ -9252,6 +10127,29 @@
    "operations_from": null,
    "logo": true,
    "context": true,
+   "mcp": 2,
+   "verify": null
+  },
+  {
+   "slug": "linear-mcp",
+   "name": "Linear",
+   "categories": [
+    "popular",
+    "productivity",
+    "ticketing",
+    "mcp"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/linear-mcp",
+   "base": "https://mcp.linear.app",
+   "auth": "oauth",
+   "env": [
+    "LINEAR_MCP_TOKEN"
+   ],
+   "spec": null,
+   "operations": 0,
+   "operations_from": null,
+   "logo": true,
+   "context": true,
    "mcp": 1,
    "verify": null
   },
@@ -9312,7 +10210,7 @@
    "operations": 0,
    "operations_from": null,
    "logo": true,
-   "context": false,
+   "context": true,
    "mcp": 1,
    "verify": {
     "method": "GET",
@@ -9365,6 +10263,30 @@
    "verify": null
   },
   {
+   "slug": "litmos",
+   "name": "Litmos",
+   "categories": [
+    "hr"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/litmos",
+   "base": "https://{apiDomain}",
+   "auth": "key",
+   "env": [
+    "LITMOS_API_KEY",
+    "LITMOS_APIDOMAIN"
+   ],
+   "spec": null,
+   "operations": 0,
+   "operations_from": null,
+   "logo": true,
+   "context": false,
+   "mcp": 0,
+   "verify": {
+    "method": "GET",
+    "path": "/v1.svc/users?limit=1"
+   }
+  },
+  {
    "slug": "liveswitch",
    "name": "LiveSwitch",
    "categories": [
@@ -9397,7 +10319,7 @@
     "LIVETENNISAPI_API_KEY"
    ],
    "spec": "vendor",
-   "operations": 43,
+   "operations": 49,
    "operations_from": null,
    "logo": true,
    "context": false,
@@ -9529,8 +10451,8 @@
    "env": [
     "LOOPS_SO_API_KEY"
    ],
-   "spec": null,
-   "operations": 0,
+   "spec": "docs",
+   "operations": 71,
    "operations_from": null,
    "logo": true,
    "context": true,
@@ -9559,6 +10481,27 @@
    "logo": true,
    "context": true,
    "mcp": 1,
+   "verify": null
+  },
+  {
+   "slug": "loyaltylion",
+   "name": "LoyaltyLion",
+   "categories": [
+    "e-commerce",
+    "marketing"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/loyaltylion",
+   "base": "https://api.loyaltylion.com",
+   "auth": "oauth",
+   "env": [
+    "LOYALTYLION_TOKEN"
+   ],
+   "spec": null,
+   "operations": 0,
+   "operations_from": null,
+   "logo": true,
+   "context": true,
+   "mcp": 0,
    "verify": null
   },
   {
@@ -9675,6 +10618,29 @@
    "verify": null
   },
   {
+   "slug": "mailerlite",
+   "name": "MailerLite",
+   "categories": [
+    "marketing"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/mailerlite",
+   "base": "https://connect.mailerlite.com/api",
+   "auth": "key",
+   "env": [
+    "MAILERLITE_API_KEY"
+   ],
+   "spec": "docs",
+   "operations": 6,
+   "operations_from": null,
+   "logo": true,
+   "context": false,
+   "mcp": 0,
+   "verify": {
+    "method": "GET",
+    "path": "/groups?limit=1"
+   }
+  },
+  {
    "slug": "mailgun",
    "name": "Mailgun",
    "categories": [
@@ -9722,6 +10688,28 @@
     "method": "GET",
     "path": "/v3/REST/myprofile"
    }
+  },
+  {
+   "slug": "mailtrap",
+   "name": "Mailtrap",
+   "categories": [
+    "communication",
+    "marketing"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/mailtrap",
+   "base": "https://{subdomain}.api.mailtrap.io",
+   "auth": "key",
+   "env": [
+    "MAILTRAP_API_KEY",
+    "MAILTRAP_SUBDOMAIN"
+   ],
+   "spec": "vendor",
+   "operations": 30,
+   "operations_from": null,
+   "logo": true,
+   "context": false,
+   "mcp": 1,
+   "verify": null
   },
   {
    "slug": "make",
@@ -9928,6 +10916,27 @@
    }
   },
   {
+   "slug": "mcp-generic",
+   "name": "MCP Server OAuth2",
+   "categories": [
+    "mcp"
+   ],
+   "docs": "https://nango.dev/docs/integrations/all/mcp-generic",
+   "base": "{mcp_server_url}",
+   "auth": "manual",
+   "env": [
+    "MCP_GENERIC_TOKEN",
+    "MCP_GENERIC_MCP_SERVER_URL"
+   ],
+   "spec": null,
+   "operations": 0,
+   "operations_from": null,
+   "logo": true,
+   "context": false,
+   "mcp": 0,
+   "verify": null
+  },
+  {
    "slug": "medallia",
    "name": "Medallia",
    "categories": [
@@ -10040,6 +11049,27 @@
    }
   },
   {
+   "slug": "metaview-mcp",
+   "name": "Metaview",
+   "categories": [
+    "ats",
+    "mcp"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/metaview-mcp",
+   "base": "https://mcp.metaview.ai",
+   "auth": "oauth",
+   "env": [
+    "METAVIEW_MCP_TOKEN"
+   ],
+   "spec": null,
+   "operations": 0,
+   "operations_from": null,
+   "logo": true,
+   "context": false,
+   "mcp": 0,
+   "verify": null
+  },
+  {
    "slug": "microsoft",
    "name": "Microsoft",
    "categories": [
@@ -10053,12 +11083,12 @@
    "env": [
     "MICROSOFT_TOKEN"
    ],
-   "spec": "apis.guru",
+   "spec": null,
    "operations": 11412,
    "operations_from": null,
    "logo": true,
    "context": false,
-   "mcp": 16,
+   "mcp": 19,
    "verify": null
   },
   {
@@ -10076,12 +11106,12 @@
    "env": [
     "MICROSOFT_ADMIN_TOKEN"
    ],
-   "spec": "apis.guru",
+   "spec": null,
    "operations": 11412,
    "operations_from": "microsoft",
    "logo": true,
    "context": false,
-   "mcp": 16,
+   "mcp": 19,
    "verify": null
   },
   {
@@ -10096,12 +11126,12 @@
    "env": [
     "MICROSOFT_ADS_TOKEN"
    ],
-   "spec": "apis.guru",
+   "spec": null,
    "operations": 11412,
    "operations_from": "microsoft",
    "logo": true,
    "context": false,
-   "mcp": 16,
+   "mcp": 19,
    "verify": null
   },
   {
@@ -10124,6 +11154,26 @@
    "logo": true,
    "context": false,
    "mcp": 0,
+   "verify": null
+  },
+  {
+   "slug": "microsoft-defender",
+   "name": "Microsoft Defender",
+   "categories": [
+    "iam"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/microsoft-defender-cc",
+   "base": "https://api.security.microsoft.com",
+   "auth": "oauth",
+   "env": [
+    "MICROSOFT_DEFENDER_TOKEN"
+   ],
+   "spec": null,
+   "operations": 0,
+   "operations_from": null,
+   "logo": true,
+   "context": false,
+   "mcp": 19,
    "verify": null
   },
   {
@@ -10161,12 +11211,12 @@
    "env": [
     "MICROSOFT_OAUTH2_CC_CERT_TOKEN"
    ],
-   "spec": "apis.guru",
+   "spec": null,
    "operations": 11412,
    "operations_from": "microsoft",
    "logo": true,
    "context": false,
-   "mcp": 16,
+   "mcp": 19,
    "verify": null
   },
   {
@@ -10221,12 +11271,12 @@
    "env": [
     "MICROSOFT_TENANT_SPECIFIC_TOKEN"
    ],
-   "spec": "apis.guru",
+   "spec": null,
    "operations": 11412,
    "operations_from": "microsoft",
    "logo": true,
    "context": false,
-   "mcp": 16,
+   "mcp": 19,
    "verify": null
   },
   {
@@ -10466,6 +11516,29 @@
    }
   },
   {
+   "slug": "modjo-ai-v2",
+   "name": "Modjo AI",
+   "categories": [
+    "crm"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/modjo-ai-v2",
+   "base": "https://api.modjo.ai",
+   "auth": "key",
+   "env": [
+    "MODJO_AI_V2_API_KEY"
+   ],
+   "spec": null,
+   "operations": 0,
+   "operations_from": null,
+   "logo": true,
+   "context": false,
+   "mcp": 0,
+   "verify": {
+    "method": "GET",
+    "path": "/v2/users?page=1&size=1"
+   }
+  },
+  {
    "slug": "modmed",
    "name": "ModMed",
    "categories": [
@@ -10478,6 +11551,27 @@
     "MODMED_TOKEN",
     "MODMED_ENVIRONMENT",
     "MODMED_FIRMURLPREFIX"
+   ],
+   "spec": null,
+   "operations": 0,
+   "operations_from": null,
+   "logo": true,
+   "context": false,
+   "mcp": 0,
+   "verify": null
+  },
+  {
+   "slug": "modmed-fhir",
+   "name": "ModMed",
+   "categories": [
+    "other"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/modmed-fhir",
+   "base": "https://{fhirHost}",
+   "auth": "manual",
+   "env": [
+    "MODMED_FHIR_TOKEN",
+    "MODMED_FHIR_FHIRHOST"
    ],
    "spec": null,
    "operations": 0,
@@ -10565,7 +11659,7 @@
     "MONEYBIRD_TOKEN"
    ],
    "spec": "vendor",
-   "operations": 291,
+   "operations": 294,
    "operations_from": null,
    "logo": true,
    "context": false,
@@ -10589,7 +11683,7 @@
    "operations_from": null,
    "logo": true,
    "context": false,
-   "mcp": 0,
+   "mcp": 1,
    "verify": null
   },
   {
@@ -10702,6 +11796,27 @@
    "verify": null
   },
   {
+   "slug": "navan",
+   "name": "Navan",
+   "categories": [
+    "erp"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/navan",
+   "base": "https://{hostname}",
+   "auth": "oauth",
+   "env": [
+    "NAVAN_TOKEN",
+    "NAVAN_HOSTNAME"
+   ],
+   "spec": null,
+   "operations": 0,
+   "operations_from": null,
+   "logo": true,
+   "context": false,
+   "mcp": 0,
+   "verify": null
+  },
+  {
    "slug": "neon",
    "name": "Neon",
    "categories": [
@@ -10713,8 +11828,8 @@
    "env": [
     "NEON_API_KEY"
    ],
-   "spec": null,
-   "operations": 0,
+   "spec": "docs",
+   "operations": 177,
    "operations_from": null,
    "logo": true,
    "context": false,
@@ -10737,8 +11852,8 @@
    "env": [
     "NEON_MCP_TOKEN"
    ],
-   "spec": null,
-   "operations": 0,
+   "spec": "docs",
+   "operations": 177,
    "operations_from": null,
    "logo": true,
    "context": false,
@@ -10757,6 +11872,27 @@
    "env": [
     "NERDIO_TOKEN",
     "NERDIO_HOSTNAME"
+   ],
+   "spec": null,
+   "operations": 0,
+   "operations_from": null,
+   "logo": true,
+   "context": false,
+   "mcp": 0,
+   "verify": null
+  },
+  {
+   "slug": "netdocuments",
+   "name": "NetDocuments",
+   "categories": [
+    "legal"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/netdocuments",
+   "base": "https://api.{hostname}",
+   "auth": "oauth",
+   "env": [
+    "NETDOCUMENTS_TOKEN",
+    "NETDOCUMENTS_HOSTNAME"
    ],
    "spec": null,
    "operations": 0,
@@ -11096,7 +12232,7 @@
     "OCEAN_IO_API_KEY"
    ],
    "spec": "docs",
-   "operations": 24,
+   "operations": 36,
    "operations_from": null,
    "logo": true,
    "context": false,
@@ -11194,6 +12330,27 @@
     "method": "GET",
     "path": "/v1/whoami"
    }
+  },
+  {
+   "slug": "omnisend",
+   "name": "Omnisend",
+   "categories": [
+    "marketing",
+    "e-commerce"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/omnisend",
+   "base": "https://api.omnisend.com",
+   "auth": "key",
+   "env": [
+    "OMNISEND_API_KEY"
+   ],
+   "spec": null,
+   "operations": 0,
+   "operations_from": null,
+   "logo": true,
+   "context": false,
+   "mcp": 0,
+   "verify": null
   },
   {
    "slug": "one-drive-personal",
@@ -11318,7 +12475,7 @@
    "operations": 0,
    "operations_from": null,
    "logo": true,
-   "context": false,
+   "context": true,
    "mcp": 0,
    "verify": {
     "method": "GET",
@@ -11340,7 +12497,7 @@
     "OPENAI_API_KEY"
    ],
    "spec": "vendor",
-   "operations": 337,
+   "operations": 359,
    "operations_from": null,
    "logo": true,
    "context": false,
@@ -11364,7 +12521,7 @@
     "OPENAI_ADMIN_API_KEY"
    ],
    "spec": "vendor",
-   "operations": 337,
+   "operations": 359,
    "operations_from": "openai",
    "logo": true,
    "context": false,
@@ -11372,6 +12529,30 @@
    "verify": {
     "method": "GET",
     "path": "/v1/organization/users"
+   }
+  },
+  {
+   "slug": "openrouter",
+   "name": "OpenRouter",
+   "categories": [
+    "dev-tools",
+    "productivity"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/openrouter",
+   "base": "https://openrouter.ai",
+   "auth": "key",
+   "env": [
+    "OPENROUTER_API_KEY"
+   ],
+   "spec": null,
+   "operations": 0,
+   "operations_from": null,
+   "logo": true,
+   "context": true,
+   "mcp": 0,
+   "verify": {
+    "method": "GET",
+    "path": "/api/v1/key"
    }
   },
   {
@@ -11386,6 +12567,27 @@
    "env": [
     "OPTUM_REAL_TOKEN",
     "OPTUM_REAL_DOMAIN"
+   ],
+   "spec": null,
+   "operations": 0,
+   "operations_from": null,
+   "logo": true,
+   "context": false,
+   "mcp": 0,
+   "verify": null
+  },
+  {
+   "slug": "oracle-aconex",
+   "name": "Oracle Aconex",
+   "categories": [
+    "productivity",
+    "storage"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/oracle-aconex",
+   "base": "https://api.aconex.com",
+   "auth": "oauth",
+   "env": [
+    "ORACLE_ACONEX_TOKEN"
    ],
    "spec": null,
    "operations": 0,
@@ -11472,11 +12674,11 @@
    "env": [
     "ORDINAL_API_KEY"
    ],
-   "spec": "docs",
+   "spec": null,
    "operations": 67,
    "operations_from": null,
    "logo": true,
-   "context": false,
+   "context": true,
    "mcp": 0,
    "verify": {
     "method": "GET",
@@ -11557,7 +12759,7 @@
     "OUTLINE_TOKEN"
    ],
    "spec": "vendor",
-   "operations": 154,
+   "operations": 153,
    "operations_from": null,
    "logo": true,
    "context": false,
@@ -11602,7 +12804,7 @@
    "operations_from": null,
    "logo": true,
    "context": true,
-   "mcp": 0,
+   "mcp": 2,
    "verify": null
   },
   {
@@ -11618,7 +12820,7 @@
     "PAGERDUTY_TOKEN"
    ],
    "spec": "vendor",
-   "operations": 451,
+   "operations": 459,
    "operations_from": null,
    "logo": true,
    "context": false,
@@ -11663,7 +12865,7 @@
     "PANDADOC_TOKEN"
    ],
    "spec": "vendor",
-   "operations": 128,
+   "operations": 133,
    "operations_from": null,
    "logo": true,
    "context": false,
@@ -11684,7 +12886,7 @@
     "PANDADOC_MCP_TOKEN"
    ],
    "spec": "vendor",
-   "operations": 128,
+   "operations": 133,
    "operations_from": "pandadoc",
    "logo": true,
    "context": false,
@@ -11705,7 +12907,7 @@
     "PANDADOC_MCP_EU_TOKEN"
    ],
    "spec": "vendor",
-   "operations": 128,
+   "operations": 133,
    "operations_from": "pandadoc",
    "logo": true,
    "context": false,
@@ -11857,7 +13059,7 @@
    "operations": 0,
    "operations_from": null,
    "logo": true,
-   "context": false,
+   "context": true,
    "mcp": 0,
    "verify": null
   },
@@ -12093,7 +13295,7 @@
     "PERPLEXITY_API_KEY"
    ],
    "spec": "docs",
-   "operations": 22,
+   "operations": 33,
    "operations_from": null,
    "logo": true,
    "context": false,
@@ -12112,11 +13314,11 @@
    "env": [
     "PERSONIO_TOKEN"
    ],
-   "spec": "apis.guru",
+   "spec": null,
    "operations": 13,
    "operations_from": null,
    "logo": true,
-   "context": false,
+   "context": true,
    "mcp": 0,
    "verify": null
   },
@@ -12133,11 +13335,11 @@
    "env": [
     "PERSONIO_RECRUITING_API_KEY"
    ],
-   "spec": "apis.guru",
+   "spec": null,
    "operations": 13,
    "operations_from": "personio",
    "logo": true,
-   "context": false,
+   "context": true,
    "mcp": 0,
    "verify": {
     "method": "GET",
@@ -12156,11 +13358,11 @@
    "env": [
     "PERSONIO_V2_TOKEN"
    ],
-   "spec": "apis.guru",
+   "spec": null,
    "operations": 13,
    "operations_from": "personio",
    "logo": true,
-   "context": false,
+   "context": true,
    "mcp": 0,
    "verify": null
   },
@@ -12357,7 +13559,7 @@
    "operations": 0,
    "operations_from": null,
    "logo": true,
-   "context": false,
+   "context": true,
    "mcp": 0,
    "verify": {
     "method": "GET",
@@ -12404,8 +13606,52 @@
    "operations_from": null,
    "logo": true,
    "context": false,
+   "mcp": 1,
+   "verify": null
+  },
+  {
+   "slug": "pleo-mcp",
+   "name": "Pleo",
+   "categories": [
+    "payment",
+    "mcp"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/pleo-mcp",
+   "base": "https://mcp.pleo.io",
+   "auth": "oauth",
+   "env": [
+    "PLEO_MCP_TOKEN"
+   ],
+   "spec": "docs",
+   "operations": 5,
+   "operations_from": null,
+   "logo": true,
+   "context": false,
    "mcp": 0,
    "verify": null
+  },
+  {
+   "slug": "pocket",
+   "name": "Pocket",
+   "categories": [
+    "productivity"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/pocket",
+   "base": "https://public.heypocketai.com/api",
+   "auth": "key",
+   "env": [
+    "POCKET_API_KEY"
+   ],
+   "spec": null,
+   "operations": 0,
+   "operations_from": null,
+   "logo": true,
+   "context": true,
+   "mcp": 0,
+   "verify": {
+    "method": "GET",
+    "path": "/v1/public/recordings?page=1&limit=1"
+   }
   },
   {
    "slug": "podium",
@@ -12463,7 +13709,28 @@
     "POSTHOG_SUBDOMAIN"
    ],
    "spec": "docs",
-   "operations": 2190,
+   "operations": 2523,
+   "operations_from": null,
+   "logo": true,
+   "context": false,
+   "mcp": 0,
+   "verify": null
+  },
+  {
+   "slug": "posthog-capture",
+   "name": "PostHog",
+   "categories": [
+    "dev-tools"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/posthog-capture",
+   "base": "https://{hostname}",
+   "auth": "key",
+   "env": [
+    "POSTHOG_CAPTURE_API_KEY",
+    "POSTHOG_CAPTURE_HOSTNAME"
+   ],
+   "spec": null,
+   "operations": 0,
    "operations_from": null,
    "logo": true,
    "context": false,
@@ -12750,6 +14017,30 @@
    }
   },
   {
+   "slug": "publora",
+   "name": "Publora",
+   "categories": [
+    "marketing",
+    "social"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/publora",
+   "base": "https://api.publora.com",
+   "auth": "key",
+   "env": [
+    "PUBLORA_API_KEY"
+   ],
+   "spec": "vendor",
+   "operations": 51,
+   "operations_from": null,
+   "logo": true,
+   "context": false,
+   "mcp": 1,
+   "verify": {
+    "method": "GET",
+    "path": "/api/v1/platform-connections"
+   }
+  },
+  {
    "slug": "pushpay-chms-v1",
    "name": "Pushpay ChMS",
    "categories": [
@@ -12941,7 +14232,7 @@
    "operations": 0,
    "operations_from": null,
    "logo": true,
-   "context": false,
+   "context": true,
    "mcp": 0,
    "verify": null
   },
@@ -13008,7 +14299,7 @@
    "operations": 0,
    "operations_from": null,
    "logo": true,
-   "context": false,
+   "context": true,
    "mcp": 0,
    "verify": null
   },
@@ -13025,12 +14316,36 @@
     "RAMP_TOKEN"
    ],
    "spec": "docs",
-   "operations": 2,
+   "operations": 6,
    "operations_from": null,
    "logo": true,
    "context": false,
    "mcp": 0,
    "verify": null
+  },
+  {
+   "slug": "rapid7",
+   "name": "Rapid7",
+   "categories": [
+    "iam"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/rapid7",
+   "base": "https://{region}.api.insight.rapid7.com",
+   "auth": "key",
+   "env": [
+    "RAPID7_API_KEY",
+    "RAPID7_REGION"
+   ],
+   "spec": null,
+   "operations": 0,
+   "operations_from": null,
+   "logo": true,
+   "context": false,
+   "mcp": 0,
+   "verify": {
+    "method": "GET",
+    "path": "/validate"
+   }
   },
   {
    "slug": "rapidapi",
@@ -13045,11 +14360,11 @@
     "RAPIDAPI_API_KEY",
     "RAPIDAPI_SUBDOMAIN"
    ],
-   "spec": "apis.guru",
+   "spec": null,
    "operations": 1,
    "operations_from": null,
    "logo": true,
-   "context": false,
+   "context": true,
    "mcp": 0,
    "verify": null
   },
@@ -13514,11 +14829,11 @@
    "env": [
     "RETELL_AI_API_KEY"
    ],
-   "spec": "docs",
+   "spec": null,
    "operations": 108,
    "operations_from": null,
    "logo": true,
-   "context": false,
+   "context": true,
    "mcp": 0,
    "verify": null
   },
@@ -13751,7 +15066,7 @@
    "operations_from": null,
    "logo": true,
    "context": false,
-   "mcp": 0,
+   "mcp": 1,
    "verify": null
   },
   {
@@ -14365,7 +15680,7 @@
     "SCROLLSTASH_MCP_TOKEN"
    ],
    "spec": "docs",
-   "operations": 58,
+   "operations": 172,
    "operations_from": null,
    "logo": true,
    "context": false,
@@ -14564,6 +15879,27 @@
    "operations_from": null,
    "logo": true,
    "context": false,
+   "mcp": 1,
+   "verify": null
+  },
+  {
+   "slug": "sentry-mcp",
+   "name": "Sentry",
+   "categories": [
+    "dev-tools",
+    "mcp"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/sentry-mcp",
+   "base": "https://mcp.sentry.dev",
+   "auth": "oauth",
+   "env": [
+    "SENTRY_MCP_TOKEN"
+   ],
+   "spec": null,
+   "operations": 0,
+   "operations_from": null,
+   "logo": true,
+   "context": true,
    "mcp": 0,
    "verify": null
   },
@@ -14687,11 +16023,11 @@
    "env": [
     "SHIPPO_API_KEY"
    ],
-   "spec": "docs",
+   "spec": null,
    "operations": 3,
    "operations_from": null,
    "logo": true,
-   "context": false,
+   "context": true,
    "mcp": 0,
    "verify": {
     "method": "GET",
@@ -14911,7 +16247,7 @@
     "SHORTCUT_API_KEY"
    ],
    "spec": "docs",
-   "operations": 239,
+   "operations": 249,
    "operations_from": null,
    "logo": true,
    "context": false,
@@ -14935,6 +16271,28 @@
    ],
    "spec": "docs",
    "operations": 353,
+   "operations_from": null,
+   "logo": true,
+   "context": false,
+   "mcp": 0,
+   "verify": null
+  },
+  {
+   "slug": "simpplr",
+   "name": "Simpplr",
+   "categories": [
+    "knowledge-base",
+    "productivity"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/simpplr",
+   "base": "https://platform.{region}.simpplr.com",
+   "auth": "oauth",
+   "env": [
+    "SIMPPLR_TOKEN",
+    "SIMPPLR_REGION"
+   ],
+   "spec": null,
+   "operations": 0,
    "operations_from": null,
    "logo": true,
    "context": false,
@@ -15023,6 +16381,26 @@
    "logo": true,
    "context": false,
    "mcp": 1,
+   "verify": null
+  },
+  {
+   "slug": "slack-app-configuration",
+   "name": "Slack",
+   "categories": [
+    "dev-tools"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/slack-app-configuration",
+   "base": "https://slack.com/api",
+   "auth": "manual",
+   "env": [
+    "SLACK_APP_CONFIGURATION_TOKEN"
+   ],
+   "spec": "apis.guru",
+   "operations": 174,
+   "operations_from": null,
+   "logo": true,
+   "context": false,
+   "mcp": 0,
    "verify": null
   },
   {
@@ -15153,7 +16531,7 @@
    "operations": 0,
    "operations_from": null,
    "logo": true,
-   "context": false,
+   "context": true,
    "mcp": 0,
    "verify": null
   },
@@ -15238,7 +16616,7 @@
    "operations": 0,
    "operations_from": null,
    "logo": true,
-   "context": false,
+   "context": true,
    "mcp": 0,
    "verify": null
   },
@@ -15472,7 +16850,7 @@
    "operations": 0,
    "operations_from": null,
    "logo": true,
-   "context": false,
+   "context": true,
    "mcp": 0,
    "verify": {
     "method": "GET",
@@ -15492,7 +16870,7 @@
    "env": [
     "STITCH_MCP_TOKEN"
    ],
-   "spec": "apis.guru",
+   "spec": null,
    "operations": 29,
    "operations_from": "google",
    "logo": true,
@@ -15600,7 +16978,7 @@
     "STREAK_PASS"
    ],
    "spec": "docs",
-   "operations": 58,
+   "operations": 102,
    "operations_from": null,
    "logo": true,
    "context": false,
@@ -15649,7 +17027,7 @@
     "STRIPE_SECRET_KEY"
    ],
    "spec": "curated",
-   "operations": 588,
+   "operations": 606,
    "operations_from": null,
    "logo": true,
    "context": false,
@@ -15670,7 +17048,7 @@
     "STRIPE_APP_TOKEN"
    ],
    "spec": "vendor",
-   "operations": 1015,
+   "operations": 1111,
    "operations_from": null,
    "logo": true,
    "context": false,
@@ -15690,7 +17068,7 @@
     "STRIPE_EXPRESS_TOKEN"
    ],
    "spec": "vendor",
-   "operations": 1015,
+   "operations": 1111,
    "operations_from": "stripe-app",
    "logo": true,
    "context": false,
@@ -15822,6 +17200,30 @@
    "operations_from": null,
    "logo": true,
    "context": true,
+   "mcp": 0,
+   "verify": null
+  },
+  {
+   "slug": "symplr-ctm",
+   "name": "symplr CTM",
+   "categories": [
+    "hr",
+    "ats"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/symplr-ctm",
+   "base": "https://{hostname}/{siteName}/clearConnect",
+   "auth": "basic",
+   "env": [
+    "SYMPLR_CTM_USER",
+    "SYMPLR_CTM_PASS",
+    "SYMPLR_CTM_HOSTNAME",
+    "SYMPLR_CTM_SITENAME"
+   ],
+   "spec": null,
+   "operations": 0,
+   "operations_from": null,
+   "logo": true,
+   "context": false,
    "mcp": 0,
    "verify": null
   },
@@ -16096,6 +17498,30 @@
    "verify": null
   },
   {
+   "slug": "tenable",
+   "name": "Tenable",
+   "categories": [
+    "other"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/tenable",
+   "base": "https://cloud.tenable.com",
+   "auth": "basic",
+   "env": [
+    "TENABLE_USER",
+    "TENABLE_PASS"
+   ],
+   "spec": null,
+   "operations": 0,
+   "operations_from": null,
+   "logo": true,
+   "context": false,
+   "mcp": 0,
+   "verify": {
+    "method": "GET",
+    "path": "/scans"
+   }
+  },
+  {
    "slug": "terraform",
    "name": "Terraform",
    "categories": [
@@ -16119,6 +17545,30 @@
    }
   },
   {
+   "slug": "textus",
+   "name": "TextUs",
+   "categories": [
+    "communication",
+    "marketing"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/textus",
+   "base": "https://next.textus.com",
+   "auth": "key",
+   "env": [
+    "TEXTUS_API_KEY"
+   ],
+   "spec": null,
+   "operations": 0,
+   "operations_from": null,
+   "logo": true,
+   "context": true,
+   "mcp": 0,
+   "verify": {
+    "method": "GET",
+    "path": "/accounts"
+   }
+  },
+  {
    "slug": "the-swarm",
    "name": "The Swarm",
    "categories": [
@@ -16131,7 +17581,7 @@
     "THE_SWARM_API_KEY"
    ],
    "spec": "docs",
-   "operations": 26,
+   "operations": 17,
    "operations_from": null,
    "logo": true,
    "context": false,
@@ -16243,7 +17693,7 @@
     "TICKTICK_TOKEN"
    ],
    "spec": "docs",
-   "operations": 24,
+   "operations": 26,
    "operations_from": null,
    "logo": true,
    "context": false,
@@ -16322,7 +17772,7 @@
    "env": [
     "TIMELY_TOKEN"
    ],
-   "spec": null,
+   "spec": "docs",
    "operations": 0,
    "operations_from": null,
    "logo": true,
@@ -16375,6 +17825,26 @@
    "verify": null
   },
   {
+   "slug": "timocom",
+   "name": "TIMOCOM",
+   "categories": [
+    "other"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/timocom",
+   "base": "https://api.timocom.com",
+   "auth": "oauth",
+   "env": [
+    "TIMOCOM_TOKEN"
+   ],
+   "spec": null,
+   "operations": 0,
+   "operations_from": null,
+   "logo": true,
+   "context": false,
+   "mcp": 0,
+   "verify": null
+  },
+  {
    "slug": "tldv",
    "name": "tl;dv",
    "categories": [
@@ -16390,7 +17860,7 @@
    "operations": 0,
    "operations_from": null,
    "logo": true,
-   "context": false,
+   "context": true,
    "mcp": 0,
    "verify": null
   },
@@ -16429,7 +17899,7 @@
     "TODOIST_TOKEN"
    ],
    "spec": "docs",
-   "operations": 108,
+   "operations": 124,
    "operations_from": null,
    "logo": true,
    "context": false,
@@ -16481,6 +17951,30 @@
    "verify": {
     "method": "GET",
     "path": "/v1.0/orgs/my"
+   }
+  },
+  {
+   "slug": "tracify",
+   "name": "Tracify",
+   "categories": [
+    "analytics",
+    "marketing"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/tracify",
+   "base": "https://tracify-api.tracify.ai",
+   "auth": "key",
+   "env": [
+    "TRACIFY_API_KEY"
+   ],
+   "spec": null,
+   "operations": 0,
+   "operations_from": null,
+   "logo": true,
+   "context": false,
+   "mcp": 0,
+   "verify": {
+    "method": "GET",
+    "path": "/analytics/api/v1/kpis/overview/?csids={siteId}&preset_id={presetId}&start_date=1970-01-01&end_date=1970-01-01&granularity=none&requested_metrics=customer_revenue"
    }
   },
   {
@@ -16940,7 +18434,7 @@
    "env": [
     "TWITTER_TOKEN"
    ],
-   "spec": "apis.guru",
+   "spec": null,
    "operations": 83,
    "operations_from": null,
    "logo": true,
@@ -16961,7 +18455,7 @@
    "env": [
     "TWITTER_V2_TOKEN"
    ],
-   "spec": "apis.guru",
+   "spec": null,
    "operations": 83,
    "operations_from": "twitter",
    "logo": true,
@@ -16986,7 +18480,7 @@
    "operations_from": null,
    "logo": true,
    "context": false,
-   "mcp": 0,
+   "mcp": 1,
    "verify": null
   },
   {
@@ -17477,6 +18971,30 @@
    "verify": null
   },
   {
+   "slug": "vwo",
+   "name": "Wingify",
+   "categories": [
+    "marketing",
+    "analytics"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/vwo",
+   "base": "https://app.wingify.com",
+   "auth": "key",
+   "env": [
+    "VWO_API_KEY"
+   ],
+   "spec": null,
+   "operations": 0,
+   "operations_from": null,
+   "logo": true,
+   "context": true,
+   "mcp": 0,
+   "verify": {
+    "method": "GET",
+    "path": "/api/v2/accounts/current"
+   }
+  },
+  {
    "slug": "wakatime",
    "name": "Wakatime",
    "categories": [
@@ -17609,7 +19127,7 @@
     "design",
     "cms"
    ],
-   "docs": "https://nango.dev/docs/integrations/all/webflow",
+   "docs": "https://nango.dev/docs/api-integrations/webflow",
    "base": "https://api.webflow.com",
    "auth": "oauth",
    "env": [
@@ -17644,6 +19162,31 @@
    "verify": {
     "method": "POST",
     "path": "/webinars"
+   }
+  },
+  {
+   "slug": "weflow",
+   "name": "Weflow",
+   "categories": [
+    "communication",
+    "crm",
+    "video"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/weflow",
+   "base": "https://api.getweflow.app",
+   "auth": "key",
+   "env": [
+    "WEFLOW_API_KEY"
+   ],
+   "spec": null,
+   "operations": 0,
+   "operations_from": null,
+   "logo": true,
+   "context": false,
+   "mcp": 0,
+   "verify": {
+    "method": "GET",
+    "path": "/api/v1/summary-templates"
    }
   },
   {
@@ -17990,7 +19533,7 @@
     "WORKOS_API_KEY"
    ],
    "spec": "vendor",
-   "operations": 261,
+   "operations": 269,
    "operations_from": null,
    "logo": true,
    "context": false,
@@ -18082,7 +19625,7 @@
     "XAI_API_KEY"
    ],
    "spec": "docs",
-   "operations": 43,
+   "operations": 44,
    "operations_from": null,
    "logo": true,
    "context": false,
@@ -18252,11 +19795,11 @@
    "env": [
     "ZAPIER_TOKEN"
    ],
-   "spec": "apis.guru",
+   "spec": null,
    "operations": 4,
    "operations_from": null,
    "logo": true,
-   "context": false,
+   "context": true,
    "mcp": 1,
    "verify": null
   },
@@ -18292,11 +19835,11 @@
    "env": [
     "ZAPIER_SCIM_API_KEY"
    ],
-   "spec": "apis.guru",
+   "spec": null,
    "operations": 4,
    "operations_from": "zapier",
    "logo": true,
-   "context": false,
+   "context": true,
    "mcp": 1,
    "verify": {
     "method": "GET",
@@ -18449,7 +19992,7 @@
    "operations": 0,
    "operations_from": null,
    "logo": true,
-   "context": false,
+   "context": true,
    "mcp": 0,
    "verify": null
   },
@@ -18470,7 +20013,7 @@
    "operations": 0,
    "operations_from": null,
    "logo": true,
-   "context": false,
+   "context": true,
    "mcp": 0,
    "verify": null
   },
@@ -18512,7 +20055,7 @@
    "operations": 0,
    "operations_from": null,
    "logo": true,
-   "context": false,
+   "context": true,
    "mcp": 0,
    "verify": null
   },
@@ -18600,6 +20143,27 @@
     "method": "POST",
     "path": "/api/customers/search"
    }
+  },
+  {
+   "slug": "zscaler",
+   "name": "Zscaler",
+   "categories": [
+    "iam"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/zscaler",
+   "base": "https://{apiHost}",
+   "auth": "oauth",
+   "env": [
+    "ZSCALER_TOKEN",
+    "ZSCALER_APIHOST"
+   ],
+   "spec": null,
+   "operations": 0,
+   "operations_from": null,
+   "logo": true,
+   "context": false,
+   "mcp": 0,
+   "verify": null
   },
   {
    "slug": "zuora",

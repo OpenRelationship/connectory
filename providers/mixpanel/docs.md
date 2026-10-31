@@ -14,6 +14,10 @@ vouches for**: read it, then read their reference.
 ---
 # Mixpanel
 
+- [mParticle](https://docs.mixpanel.com/docs/tracking-methods/integrations/mparticle.md): Send event and audience data from mParticle to Mixpanel with the native integration, including schema requirements and setup steps
+- [Segment](https://docs.mixpanel.com/docs/tracking-methods/integrations/segment.md): Route Segment event data into Mixpanel using the Segment destination integration
+- [Stripe](https://docs.mixpanel.com/docs/tracking-methods/integrations/stripe.md): Stream Stripe webhook events into Mixpanel through a Google Cloud Function that forwards them to the import API
+- [Identifying Users (Simplified)](https://docs.mixpanel.com/docs/tracking-methods/id-management/identifying-users-simplified.md): Identify users and link pre-login and post-login activity for projects on the Simplified ID Merge API, using $device_id and $user_id
 - [Data Structure](https://docs.mixpanel.com/docs/data-structure.md): Index of Mixpanel's data model: events, properties, user profiles, group analytics, lookup tables, and the property reference
 - [User Profile](https://docs.mixpanel.com/docs/data-structure/user-profiles.md): Store persistent attributes about your users, import profiles via the API or a CSV, backfill historical values, and delete profiles
 - [Group Analytics Implementation Guide](https://docs.mixpanel.com/docs/data-structure/group-analytics/group-analytics-implementation.md): Set up group keys, track events against a group, attribute one event to multiple groups, and update group profiles with the SDKs or Users report
@@ -23,207 +27,223 @@ vouches for**: read it, then read their reference.
 - [Supported Properties Data Type](https://docs.mixpanel.com/docs/data-structure/property-reference/data-type.md): The property data types Mixpanel supports (string, numeric, boolean, date, list, object, list of objects) and how each behaves in reports
 - [Default Properties](https://docs.mixpanel.com/docs/data-structure/property-reference/default-properties.md): Automatically collected properties
 - [Reserved Properties](https://docs.mixpanel.com/docs/data-structure/property-reference/reserved-properties.md): Properties used for system features
-- [Developer Environments](https://docs.mixpanel.com/docs/tracking-best-practices/developer-environments.md)
-- [Slack Integration](https://docs.mixpanel.com/docs/features/slack-integration.md)
+- [Developer Environments](https://docs.mixpanel.com/docs/tracking-best-practices/developer-environments.md): Keep development data out of production by using separate Mixpanel projects and switching tokens per environment
+- [Slack Integration](https://docs.mixpanel.com/docs/features/slack-integration.md): Connect Mixpanel to your Slack workspace to help share reports with your colleagues faster
+- [Mixpanel Headless](https://docs.mixpanel.com/docs/mixpanel-headless.md): Open-source SDK exposing the full Mixpanel platform through a headless API
 - [Audit Log Reference](https://docs.mixpanel.com/docs/access-security/audit-log-reference.md)
+- [Export All Your Data](https://docs.mixpanel.com/docs/export-methods/export-all-data.md): Take a full copy of your Mixpanel events and profiles at any time. Covers the Raw Event Export API, the Engage API, Data Pipelines, plan availability, rate limits, and retention.
 - [Real-Time Event Streams](https://docs.mixpanel.com/docs/real-time-event-streams.md): Stream Mixpanel events to a custom webhook within seconds of ingestion to power activation, personalization, and downstream data workflows.
 - [Real-Time Event Streams Overview](https://docs.mixpanel.com/docs/real-time-event-streams/overview.md): Stream Mixpanel events to a custom webhook within seconds of ingestion to power activation, personalization, and downstream data workflows.
 - [Set Up a Webhook Sync](https://docs.mixpanel.com/docs/real-time-event-streams/setup.md): Configure a Destination, filter events, authenticate outbound requests, and shape the payload with a Liquid template.
 - [States and Monitoring](https://docs.mixpanel.com/docs/real-time-event-streams/states-and-monitoring.md): Reference for Destination and Sync states, audit logging, and the observability panel for Real-Time Event Streams.
-- [Syncing cohorts to a custom webhook](https://docs.mixpanel.com/docs/cohort-sync/webhooks.md)
-- [Partners: Build a Cohort Sync Integration with Mixpanel](https://docs.mixpanel.com/docs/cohort-sync/build-an-integration.md)
-- [Mixpanel Guide to Data Privacy & PII Best Practices](https://docs.mixpanel.com/guides/guides-by-workflow/data-privacy.md)
-- [MCP Integration Pairings](https://docs.mixpanel.com/guides/mcp/integrations.md)
-- [The Guide to Product Analytics](https://docs.mixpanel.com/guides/strategic-playbooks/guide-to-product-analytics/intro.md)
+- [Snowflake](https://docs.mixpanel.com/docs/data-pipelines/integrations/snowflake.md): Export Mixpanel data into a Snowflake dataset with JSON Pipelines, including role setup, storage integration, and IP restrictions
+- [Data Pipelines](https://docs.mixpanel.com/docs/data-pipelines/old-pipelines.md): Deprecated API-managed Data Pipelines that continuously export Mixpanel events to a cloud storage bucket or data warehouse
+- [Raw GCS Pipeline](https://docs.mixpanel.com/docs/data-pipelines/old-pipelines/integrations/raw-gcs-pipeline.md): Set up a raw export pipeline from Mixpanel to a Google Cloud Storage bucket, with permissions and an example API request
+- [Schematized GCS Pipeline](https://docs.mixpanel.com/docs/data-pipelines/old-pipelines/integrations/schematized-gcs-pipeline.md): Export schematized, transformed Mixpanel data to a Google Cloud Storage bucket via the Data Pipelines API
+- [Schematized Snowflake Pipeline](https://docs.mixpanel.com/docs/data-pipelines/old-pipelines/integrations/schematized-snowflake-pipeline.md): Export schematized Mixpanel data into a Snowflake dataset, with role, storage integration, and user setup steps
+- [Syncing cohorts to a custom webhook](https://docs.mixpanel.com/docs/cohort-sync/webhooks.md): Mixpanel lets you sync cohorts to a custom webhook URL that you provide through the Destinations page
+- [Partners: Build a Cohort Sync Integration with Mixpanel](https://docs.mixpanel.com/docs/cohort-sync/build-an-integration.md): Partner guide to building a cohort sync integration with Mixpanel, covering sandbox setup, integration IDs, and API usage
+- [Airship](https://docs.mixpanel.com/docs/cohort-sync/integrations/airship.md): The Airship integration with Mixpanel allows users to export Mixpanel cohorts into Airship
+- [Braze](https://docs.mixpanel.com/docs/cohort-sync/integrations/braze.md): The Mixpanel Braze integration exports Mixpanel Cohorts into Braze
+- [Intercom](https://docs.mixpanel.com/links/intercom.md): Import your Mixpanel contacts into Intercom by following Intercom's help center guide
+- [Mixpanel Guide to Data Privacy & PII Best Practices](https://docs.mixpanel.com/guides/guides-by-workflow/data-privacy.md): Best practices for handling PII and sensitive data in Mixpanel: collect only what you need and reduce risk without losing analytics quality
+- [MCP Integration Pairings](https://docs.mixpanel.com/guides/mcp/integrations.md): Questions answerable by pairing Mixpanel MCP with other MCP servers
+- [The Guide to Product Analytics](https://docs.mixpanel.com/guides/strategic-playbooks/guide-to-product-analytics/intro.md): Introduction to the guide to product analytics, written with product leaders to help teams build products customers value
 - [Measure Value](https://docs.mixpanel.com/guides/strategic-playbooks/guide-to-product-analytics/measure-value.md): The Foundation of Product Analytics
-- [Get to Know Your Users](https://docs.mixpanel.com/guides/strategic-playbooks/guide-to-product-analytics/get-to-know-your-users.md)
+- [Get to Know Your Users](https://docs.mixpanel.com/guides/strategic-playbooks/guide-to-product-analytics/get-to-know-your-users.md): User segmentation in product analytics, what DAU, WAU, and MAU measure, when to use each, and how to count active users in Mixpanel
 - [Analyze User Engagement](https://docs.mixpanel.com/guides/strategic-playbooks/guide-to-product-analytics/analyze-user-engagement.md): Understand product usage intervals, identify power/core/casual users, and track user lifecycle patterns for better engagement insights.
-- [Retain Your Users](https://docs.mixpanel.com/guides/strategic-playbooks/guide-to-product-analytics/retain-your-users.md)
-- [Grow and Scale](https://docs.mixpanel.com/guides/strategic-playbooks/guide-to-product-analytics/grow-and-scale.md)
-- [Conclusion](https://docs.mixpanel.com/guides/strategic-playbooks/guide-to-product-analytics/conclusion.md)
-- [Overview](https://docs.mixpanel.com/reference/overview.md)
-- [Authentication Methods](https://docs.mixpanel.com/reference/authentication.md)
-- [Service Accounts](https://docs.mixpanel.com/reference/service-accounts.md)
-- [Project Token](https://docs.mixpanel.com/reference/project-token.md)
-- [Project Secret [Deprecated]](https://docs.mixpanel.com/reference/project-secret.md)
-- [Request Signature [Deprecated]](https://docs.mixpanel.com/reference/request-signature.md)
-- [Segmentation Expressions](https://docs.mixpanel.com/reference/segmentation-expressions.md)
-- [Rate Limits](https://docs.mixpanel.com/reference/rate-limits.md)
-- [Import Events](https://docs.mixpanel.com/reference/import-events.md)
-- [Import Events](https://docs.mixpanel.com/reference/import-events.md)
-- [Track Events](https://docs.mixpanel.com/reference/track-event.md)
-- [Event Deduplication](https://docs.mixpanel.com/reference/event-deduplication.md)
-- [Overview](https://docs.mixpanel.com/reference/ingestion-api.md)
-- [Authentication](https://docs.mixpanel.com/reference/ingestion-api-authentication.md)
-- [Update Group Profile Property](https://docs.mixpanel.com/reference/group-set-property.md): Updates or adds properties to a group profile. The profile is created if it does not exist.
-- [Update Group Profile Property](https://docs.mixpanel.com/reference/group-set-property.md): Updates or adds properties to a group profile. The profile is created if it does not exist.
-- [Set Group Profile Property Once](https://docs.mixpanel.com/reference/group-set-property-once.md): Adds properties to a group only if the property is not already set. The profile is created if it does not exist.
-- [Delete Group Profile Property](https://docs.mixpanel.com/reference/group-delete-property.md): Unsets specific properties on the group profile.
-- [Remove from Group Profile List Property](https://docs.mixpanel.com/reference/group-remove-from-list-property.md): Removes a specific value in a list property.
-- [Union to Group Profile List Property](https://docs.mixpanel.com/reference/group-union.md): Adds the specified values to a list property on a group profile and ensures that those values only appear once. The profile is created if it does not exist.
-- [Batch Update Group Profiles](https://docs.mixpanel.com/reference/group-batch-update.md): Send a batch of group profile updates. Instead of sending a single JSON object as the data query parameter, send a JSON list of objects as the data parameter of an application/x-www-form-urlencoded POST or GET request body.
-- [Delete Group](https://docs.mixpanel.com/reference/delete-group.md): Deletes a group profile from Mixpanel.
-- [Limits](https://docs.mixpanel.com/reference/limits-1.md)
-- [Lookup Tables](https://docs.mixpanel.com/reference/lookup-tables.md)
-- [List Lookup Tables](https://docs.mixpanel.com/reference/list-lookup-tables.md): Get a list of Lookup Tables defined in the project.
-- [Replace a Lookup Table](https://docs.mixpanel.com/reference/replace-lookup-table.md)
-- [Set User Profile Property](https://docs.mixpanel.com/reference/profile-set.md): Takes a JSON object containing names and values of profile properties. If the profile does not exist, it creates it with these properties. If it does exist, it sets the properties to these values, overwriting existing values.
-- [Set User Profile Property](https://docs.mixpanel.com/reference/profile-set.md): Takes a JSON object containing names and values of profile properties. If the profile does not exist, it creates it with these properties. If it does exist, it sets the properties to these values, overwriting existing values.
-- [Set User Profile Property Once](https://docs.mixpanel.com/reference/profile-set-property-once.md): Works just like "$set", except it will not overwrite existing property values. This is useful for properties like "First login date".
-- [Increment Numerical Property](https://docs.mixpanel.com/reference/profile-numerical-add.md): Takes a JSON object containing keys and numerical values. \$add will increment the value of a user profile property. When processed, the property values are added to the existing values of the properties on the profile. If the property is not present on the profile, the value will be added to 0. It…
-- [Union to User Profile List Property](https://docs.mixpanel.com/reference/user-profile-union.md): Adds the specified values to a list property on a user profile and ensures that those values only appear once. The profile is created if it does not exist.
-- [Append to List Property](https://docs.mixpanel.com/reference/profile-append-to-list-property.md): Takes a JSON object containing keys and values, and appends each to a list associated with the corresponding property name. Appending to a property that doesn't exist will result in assigning a list with one element to that property.
-- [Remove from User Profile List Property](https://docs.mixpanel.com/reference/profile-remove-from-list-property.md): Takes a JSON object containing keys and values. The value in the request is removed from the existing list on the user profile. If it does not exist, no updates are made.
-- [Delete User Profile Property](https://docs.mixpanel.com/reference/profile-delete-property.md): Takes a JSON list of string property names, and permanently removes the properties and their values from a profile.
-- [Update Multiple Profiles](https://docs.mixpanel.com/reference/profile-batch-update.md): Send a batch of profile updates. Instead of sending a single JSON object as the data query parameter, send a JSON list of objects as the data parameter of an application/json POST or GET request body.
-- [Delete User Profile](https://docs.mixpanel.com/reference/delete-profile.md): Permanently delete the profile from Mixpanel, along with all of its properties. The \$delete object value is ignored - the profile is determined by the \$distinct_id from the request itself.
-- [Limits](https://docs.mixpanel.com/reference/user-profile-limits.md)
-- [Create Identity](https://docs.mixpanel.com/reference/create-identity.md)
-- [Create Identity](https://docs.mixpanel.com/reference/create-identity.md)
-- [Create Alias](https://docs.mixpanel.com/reference/identity-create-alias.md)
-- [Merge Identities](https://docs.mixpanel.com/reference/identity-merge.md)
-- [Overview](https://docs.mixpanel.com/reference/query-api.md)
-- [List Saved Cohorts](https://docs.mixpanel.com/reference/cohorts-list.md): The list endpoint returns all of the cohorts in a given project. The JSON formatted return contains the cohort name, id, count, description, creation date, and visibility for every cohort in the project.
-- [List Saved Cohorts](https://docs.mixpanel.com/reference/cohorts-list.md): The list endpoint returns all of the cohorts in a given project. The JSON formatted return contains the cohort name, id, count, description, creation date, and visibility for every cohort in the project.
-- [Query Profiles](https://docs.mixpanel.com/reference/engage-query.md)
-- [Query Profiles](https://docs.mixpanel.com/reference/engage-query.md)
-- [Authentication](https://docs.mixpanel.com/reference/query-api-authentication.md)
-- [Query Saved Report](https://docs.mixpanel.com/reference/funnels-query.md): Get data for a funnel. The Query API has a rate limit of 60 queries per hour and a maximum of 5 concurrent queries.
-- [Query Saved Report](https://docs.mixpanel.com/reference/funnels-query.md): Get data for a funnel. The Query API has a rate limit of 60 queries per hour and a maximum of 5 concurrent queries.
-- [List Saved Funnels](https://docs.mixpanel.com/reference/funnels-list-saved.md): Get the names and funnel_ids of your funnels.
-- [Query Saved Report](https://docs.mixpanel.com/reference/insights-query.md): Get data from your Insights reports. The Query API has a rate limit of 60 queries per hour and a maximum of 5 concurrent queries.
-- [Query Saved Report](https://docs.mixpanel.com/reference/insights-query.md): Get data from your Insights reports. The Query API has a rate limit of 60 queries per hour and a maximum of 5 concurrent queries.
-- [Custom JQL Query](https://docs.mixpanel.com/reference/query-jql.md)
-- [Custom JQL Query](https://docs.mixpanel.com/reference/query-jql.md)
-- [Query Retention Report](https://docs.mixpanel.com/reference/retention-query.md)
-- [Query Retention Report](https://docs.mixpanel.com/reference/retention-query.md)
-- [Query Frequency Report](https://docs.mixpanel.com/reference/retention-frequency-query.md)
-- [Query Segmentation Report](https://docs.mixpanel.com/reference/segmentation-query.md): Get data for an event, segmented and filtered by properties. The Query API has a rate limit of 60 queries per hour and a maximum of 5 concurrent queries.
-- [Query Segmentation Report](https://docs.mixpanel.com/reference/segmentation-query.md): Get data for an event, segmented and filtered by properties. The Query API has a rate limit of 60 queries per hour and a maximum of 5 concurrent queries.
-- [Numerically Bucket](https://docs.mixpanel.com/reference/segmentation-numeric-query.md): Get data for an event, segmented and filtered by properties, with values placed into numeric buckets. The Query API has a rate limit of 60 queries per hour and a maximum of 5 concurrent queries.
-- [Numerically Sum](https://docs.mixpanel.com/reference/segmentation-sum-query.md): Sums an expression for events per unit time. The Query API has a rate limit of 60 queries per hour and a maximum of 5 concurrent queries.
-- [Numerically Average](https://docs.mixpanel.com/reference/segmentation-query-average.md): Averages an expression for events per unit time. The Query API has a rate limit of 60 queries per hour and a maximum of 5 concurrent queries.
-- [Profile Event Activity](https://docs.mixpanel.com/reference/activity-stream-query.md): > ❗️stream/query is currently in maintenance mode.
-- [Profile Event Activity](https://docs.mixpanel.com/reference/activity-stream-query.md): > ❗️stream/query is currently in maintenance mode.
-- [Aggregate Event Counts](https://docs.mixpanel.com/reference/list-recent-events.md): Get unique, total, or average data for a set of events over N days, weeks, or months. The Query API has a rate limit of 60 queries per hour and a maximum of 5 concurrent queries.
-- [Aggregate Event Counts](https://docs.mixpanel.com/reference/list-recent-events.md): Get unique, total, or average data for a set of events over N days, weeks, or months. The Query API has a rate limit of 60 queries per hour and a maximum of 5 concurrent queries.
-- [Today's Top Events](https://docs.mixpanel.com/reference/query-top-events.md): Get the top events for today, with their counts and the normalized percent change from yesterday. The Query API has a rate limit of 60 queries per hour and a maximum of 5 concurrent queries.
-- [Top Events](https://docs.mixpanel.com/reference/query-months-top-event-names.md): Get a list of the most common events over the last 31 days. The Query API has a rate limit of 60 queries per hour and a maximum of 5 concurrent queries.
-- [Aggregrated Event Property Values](https://docs.mixpanel.com/reference/query-event-properties.md): Get unique, total, or average data for of a single event and property over days, weeks, or months. The Query API has a rate limit of 60 queries per hour and a maximum of 5 concurrent queries.
-- [Top Event Properties](https://docs.mixpanel.com/reference/query-events-top-properties.md): Get the top property names for an event. The Query API has a rate limit of 60 queries per hour and a maximum of 5 concurrent queries.
-- [Top Event Property Values](https://docs.mixpanel.com/reference/query-events-top-property-values.md): Get the top values for a property. The Query API has a rate limit of 60 queries per hour and a maximum of 5 concurrent queries.
-- [Download Data](https://docs.mixpanel.com/reference/raw-event-export.md): Every data point sent to Mixpanel is stored as JSON in our data store. The raw export API allows you to download your event data as it is received and stored within Mixpanel, complete with all event properties (including distinct_id) and the exact timestamp the event was fired. The raw export API ha…
-- [Download Data](https://docs.mixpanel.com/reference/raw-event-export.md): Every data point sent to Mixpanel is stored as JSON in our data store. The raw export API allows you to download your event data as it is received and stored within Mixpanel, complete with all event properties (including distinct_id) and the exact timestamp the event was fired. The raw export API ha…
-- [Overview](https://docs.mixpanel.com/reference/raw-data-export-api.md)
-- [Authentication](https://docs.mixpanel.com/reference/raw-data-export-api-authentication.md)
-- [Overview](https://docs.mixpanel.com/reference/lexicon-schemas-api.md)
-- [Authentication](https://docs.mixpanel.com/reference/lexicon-schemas-api-authentication.md)
-- [Create/Replace Multiple](https://docs.mixpanel.com/reference/upload-schemas-for-project.md)
-- [Create/Replace Multiple](https://docs.mixpanel.com/reference/upload-schemas-for-project.md)
-- [Create/Replace One](https://docs.mixpanel.com/reference/upload-schema-by-entity-and-name.md)
-- [Delete all Schemas](https://docs.mixpanel.com/reference/delete-all-schemas-in-project.md): Delete all schemas in a project
-- [Delete all Schemas](https://docs.mixpanel.com/reference/delete-all-schemas-in-project.md): Delete all schemas in a project
-- [Delete for Entity](https://docs.mixpanel.com/reference/delete-schemas-for-entity.md): Delete all schemas of a specific entity type
-- [Delete for Entity and Name](https://docs.mixpanel.com/reference/delete-schema-by-entity-and-name.md): Delete schema for an entity type and entity name
-- [List Schemas](https://docs.mixpanel.com/reference/list-all-schemas-for-project.md): List all schemas in a project
-- [List Schemas](https://docs.mixpanel.com/reference/list-all-schemas-for-project.md): List all schemas in a project
-- [List for Entity](https://docs.mixpanel.com/reference/list-schemas-for-entity.md): Get all schemas for a specific entity type
-- [List for Entity and Name](https://docs.mixpanel.com/reference/list-schemas-by-entity-and-name.md): Get the schema for a specific entity type and entity name
-- [Limits](https://docs.mixpanel.com/reference/limits.md)
-- [Overview](https://docs.mixpanel.com/reference/overview-2.md)
-- [Authentication](https://docs.mixpanel.com/reference/authentication-2.md)
-- [Create Pipeline](https://docs.mixpanel.com/reference/create-warehouse-pipeline.md)
-- [Create Pipeline](https://docs.mixpanel.com/reference/create-warehouse-pipeline.md)
-- [Delete Pipeline](https://docs.mixpanel.com/reference/cancel-warehouse-pipeline.md): For a given pipeline name, this request deletes the pipeline and stops any future jobs to be scheduled for the pipeline.  Deleting the pipeline will result in the loss of all its historical data. If you wish to retain the history, it is recommended to pause the pipeline instead.
-- [Delete Pipeline](https://docs.mixpanel.com/reference/cancel-warehouse-pipeline.md): For a given pipeline name, this request deletes the pipeline and stops any future jobs to be scheduled for the pipeline.  Deleting the pipeline will result in the loss of all its historical data. If you wish to retain the history, it is recommended to pause the pipeline instead.
-- [Edit Pipeline](https://docs.mixpanel.com/reference/edit-warehouse-pipeline.md): This request edit the params for an export pipeline.
-- [Edit Pipeline](https://docs.mixpanel.com/reference/edit-warehouse-pipeline.md): This request edit the params for an export pipeline.
-- [Pause Pipeline](https://docs.mixpanel.com/reference/pause-warehouse-pipeline.md): For a given pipeline name, this request pauses the pipeline which stops the ongoing jobs and prevents any future jobs to be scheduled for the pipeline
-- [Pause Pipeline](https://docs.mixpanel.com/reference/pause-warehouse-pipeline.md): For a given pipeline name, this request pauses the pipeline which stops the ongoing jobs and prevents any future jobs to be scheduled for the pipeline
-- [Resume Pipeline](https://docs.mixpanel.com/reference/resume-warehouse-pipeline.md): For a given pipeline name, this request resumes the pipeline if it's paused
-- [Resume Pipeline](https://docs.mixpanel.com/reference/resume-warehouse-pipeline.md): For a given pipeline name, this request resumes the pipeline if it's paused
-- [List Pipelines](https://docs.mixpanel.com/reference/list-warehouse-pipeline-jobs.md): This API endpoint returns the list of all the pipelines scheduled for a project.
-- [List Pipelines](https://docs.mixpanel.com/reference/list-warehouse-pipeline-jobs.md): This API endpoint returns the list of all the pipelines scheduled for a project.
-- [Get Pipeline](https://docs.mixpanel.com/reference/get-warehouse-pipeline-status.md)
-- [List Pipeline Logs](https://docs.mixpanel.com/reference/list-warehouse-pipeline-sync-dates.md): This endpoint returns the timestamps of all syncs grouped by date.
-- [Overview](https://docs.mixpanel.com/reference/service-accounts-api.md)
-- [Authentication](https://docs.mixpanel.com/reference/service-accounts-api-authentication.md)
-- [Create Service Account](https://docs.mixpanel.com/reference/create-service-account.md): Create a new service account for your organization and optionally add it to one or more projects in your organization
-- [Create Service Account](https://docs.mixpanel.com/reference/create-service-account.md): Create a new service account for your organization and optionally add it to one or more projects in your organization
-- [Delete Service Account](https://docs.mixpanel.com/reference/delete-service-account.md): Removes the service account from all associated projects and deletes it from the organization
-- [Delete Service Account](https://docs.mixpanel.com/reference/delete-service-account.md): Removes the service account from all associated projects and deletes it from the organization
-- [List Service Accounts For Project](https://docs.mixpanel.com/reference/list-project-service-accounts.md): Retrieve a list of service accounts that are members of the specified project
-- [List Service Accounts For Project](https://docs.mixpanel.com/reference/list-project-service-accounts.md): Retrieve a list of service accounts that are members of the specified project
-- [Add Service Accounts To Projects](https://docs.mixpanel.com/reference/add-service-accounts-to-projects.md): Adds a list of service account ids to a list of project ids with the specified role
-- [Remove Service Accounts From Projects](https://docs.mixpanel.com/reference/remove-service-accounts-from-projects.md): Removes a list of service account ids from a list of project ids
-- [List Service Accounts](https://docs.mixpanel.com/reference/list-service-accounts.md): Return a list of all service accounts for your organization
-- [List Service Accounts](https://docs.mixpanel.com/reference/list-service-accounts.md): Return a list of all service accounts for your organization
-- [Get Service Account](https://docs.mixpanel.com/reference/get-service-account.md): Return service account details by id
-- [Overview](https://docs.mixpanel.com/reference/overview-1.md)
-- [Delete Annotation](https://docs.mixpanel.com/reference/delete-annotation-1.md): Delete an Annotation. Requires a role of at least Analyst.
-- [Delete Annotation](https://docs.mixpanel.com/reference/delete-annotation-1.md): Delete an Annotation. Requires a role of at least Analyst.
-- [List Annotations](https://docs.mixpanel.com/reference/list-all-annotations-for-project.md): List all annotations in a project.
-- [List Annotations](https://docs.mixpanel.com/reference/list-all-annotations-for-project.md): List all annotations in a project.
-- [Get Annotation](https://docs.mixpanel.com/reference/get-annotation-1.md): Get an Annotation
-- [Create Annotations](https://docs.mixpanel.com/reference/create-annotation.md): Create an Annotation. Requires a role of at least Analyst.
-- [Create Annotations](https://docs.mixpanel.com/reference/create-annotation.md): Create an Annotation. Requires a role of at least Analyst.
-- [Patch Annotation](https://docs.mixpanel.com/reference/patch-annotation-1.md): Patch an Annotation. Requires a role of at least Analyst.
-- [Patch Annotation](https://docs.mixpanel.com/reference/patch-annotation-1.md): Patch an Annotation. Requires a role of at least Analyst.
-- [Get Annotation Tags](https://docs.mixpanel.com/reference/get-annotation-tags-1.md): Get all tags that have been added to at least one annotation. Requires a role of at least Analyst
-- [Get Annotation Tags](https://docs.mixpanel.com/reference/get-annotation-tags-1.md): Get all tags that have been added to at least one annotation. Requires a role of at least Analyst
-- [Create Annotation Tag](https://docs.mixpanel.com/reference/create-annotation-tag-1.md): Creates a new tag using the provided name. Requires a role of at least Analyst
-- [Create Annotation Tag](https://docs.mixpanel.com/reference/create-annotation-tag-1.md): Creates a new tag using the provided name. Requires a role of at least Analyst
-- [Overview](https://docs.mixpanel.com/reference/gdpr-api.md)
-- [Create a Retrieval](https://docs.mixpanel.com/reference/create-retrieval-1.md): Creates a data retrieval job.
-- [Create a Retrieval](https://docs.mixpanel.com/reference/create-retrieval-1.md): Creates a data retrieval job.
-- [Check Status of Retrieval](https://docs.mixpanel.com/reference/get-retrieval.md): Checks the status of a data retrieval job
-- [Check Status of Retrieval](https://docs.mixpanel.com/reference/get-retrieval.md): Checks the status of a data retrieval job
-- [Create a Deletion](https://docs.mixpanel.com/reference/create-deletion.md): Creates a task that specifies a list of users in a project to delete
-- [Create a Deletion](https://docs.mixpanel.com/reference/create-deletion.md): Creates a task that specifies a list of users in a project to delete
-- [Check Status of Deletion](https://docs.mixpanel.com/reference/get-deletion.md): Checks the status of an existing deletion task
-- [Check Status of Deletion](https://docs.mixpanel.com/reference/get-deletion.md): Checks the status of an existing deletion task
-- [Cancel a Deletion](https://docs.mixpanel.com/reference/delete-deletion.md): Cancel a deletion task that is still in progress
-- [Cancel a Deletion](https://docs.mixpanel.com/reference/delete-deletion.md): Cancel a deletion task that is still in progress
-- [Overview](https://docs.mixpanel.com/reference/warehouse-connectors-api.md)
-- [Authentication](https://docs.mixpanel.com/reference/warehouse-connectors-api-authentication.md)
-- [Run an import](https://docs.mixpanel.com/reference/run-an-import-1.md): Triggers an immediate sync for a given warehouse import.
-- [Run an import](https://docs.mixpanel.com/reference/run-an-import-1.md): Triggers an immediate sync for a given warehouse import.
-- [List Warehouse Imports](https://docs.mixpanel.com/reference/list-warehouse-imports.md): Returns a list of all warehouse imports configured for the project. Each import includes metadata about the import configuration, sync status, and job scheduling information.
-- [Get Warehouse Import](https://docs.mixpanel.com/reference/get-warehouse-import.md): Retrieves detailed information about a specific warehouse import by ID. Returns the full configuration of the import including table parameters, column mappings, and sync settings.
-- [Update Warehouse Import](https://docs.mixpanel.com/reference/update-warehouse-import.md): Update an existing warehouse import's settings.
-- [Delete Warehouse Import](https://docs.mixpanel.com/reference/delete-warehouse-import.md): Deletes a warehouse import and optionally deletes the imported data.
-- [Create Event Stream Import](https://docs.mixpanel.com/reference/create-event-stream-import.md): Create a new warehouse import for event data.
-- [Create People Import](https://docs.mixpanel.com/reference/create-people-import.md): Create a new warehouse import for user profile data.
-- [Create Groups Import](https://docs.mixpanel.com/reference/create-groups-import.md): Create a new warehouse import for group profile data. Groups imports sync group properties from your warehouse to Mixpanel group profiles.
-- [Create Lookup Table Import](https://docs.mixpanel.com/reference/create-lookup-table-import.md): Create a new warehouse import for lookup table data.
-- [Get Import History](https://docs.mixpanel.com/reference/get-import-history.md): Returns the execution history for a warehouse import. Returns 30 most recent events.
-- [Run an Import](https://docs.mixpanel.com/reference/run-an-import.md)
-- [Overview](https://docs.mixpanel.com/reference/feature-flags-api.md)
-- [Get Flag Definitions](https://docs.mixpanel.com/reference/get-flag-definitions.md): Retrieve all enabled feature flag definitions for the authenticated project. Returns complete flag metadata including rulesets, variants, and rollout configurations.
-- [Get Flag Definitions](https://docs.mixpanel.com/reference/get-flag-definitions.md): Retrieve all enabled feature flag definitions for the authenticated project. Returns complete flag metadata including rulesets, variants, and rollout configurations.
-- [Get Variant Assignments](https://docs.mixpanel.com/reference/get-variant-assignments.md): Evaluate all enabled feature flags for a user with the provided context. Returns selected variants for flags the user is eligible for.
-- [Get Variant Assignments](https://docs.mixpanel.com/reference/get-variant-assignments.md): Evaluate all enabled feature flags for a user with the provided context. Returns selected variants for flags the user is eligible for.
-- [Overview](https://docs.mixpanel.com/reference/feature-flags-management-api.md)
-- [List Feature Flags](https://docs.mixpanel.com/reference/list-feature-flags-1.md)
-- [List Feature Flags](https://docs.mixpanel.com/reference/list-feature-flags-1.md)
-- [Create Feature Flag](https://docs.mixpanel.com/reference/create-feature-flag-1.md)
-- [Get Feature Flag](https://docs.mixpanel.com/reference/get-feature-flag-1.md)
-- [Delete Feature Flag](https://docs.mixpanel.com/reference/delete-feature-flag-1.md)
-- [Update Feature Flag](https://docs.mixpanel.com/reference/update-feature-flag-1.md)
-- [List Experiments](https://docs.mixpanel.com/reference/list-experiments.md)
-- [List Experiments](https://docs.mixpanel.com/reference/list-experiments.md)
-- [Create Experiment](https://docs.mixpanel.com/reference/create-experiment.md)
-- [Get Experiment](https://docs.mixpanel.com/reference/get-experiment.md)
-- [Update Experiment](https://docs.mixpanel.com/reference/update-experiment.md)
-- [Delete Experiment](https://docs.mixpanel.com/reference/delete-experiment.md)
-- [Archive Experiment](https://docs.mixpanel.com/reference/archive-experiment.md)
-- [Archive Experiment](https://docs.mixpanel.com/reference/archive-experiment.md)
-- [Unarchive Experiment](https://docs.mixpanel.com/reference/unarchive-experiment.md)
-- [Decide Experiment](https://docs.mixpanel.com/reference/decide-experiment.md)
-- [Force Conclude Experiment](https://docs.mixpanel.com/reference/force-conclude-experiment.md)
-- [Launch Experiment](https://docs.mixpanel.com/reference/launch-experiment.md)
-- [Overview](https://docs.mixpanel.com/reference/platform-api.md)
-- [Permissions Reference](https://docs.mixpanel.com/reference/permissions.md)
+- [Retain Your Users](https://docs.mixpanel.com/guides/strategic-playbooks/guide-to-product-analytics/retain-your-users.md): Identify drop-off points, measure retention, and focus on users who find value in your product
+- [Grow and Scale](https://docs.mixpanel.com/guides/strategic-playbooks/guide-to-product-analytics/grow-and-scale.md): How to measure growth, adapt your strategy as your company matures, and identify where your most valuable users come from
+- [Conclusion](https://docs.mixpanel.com/guides/strategic-playbooks/guide-to-product-analytics/conclusion.md): Wrap-up of the Guide to Product Analytics: combine data with intuition and empathy to build features that deliver value, plus a downloadable worksheet
+- [Error Troubleshooting](https://docs.mixpanel.com/troubleshooting/errors.md): Index of Mixpanel error pages: API status codes, ingestion failures, warehouse connector authentication, and identity problems
+- [400 Bad Request](https://docs.mixpanel.com/troubleshooting/errors/400-bad-request.md): Why Mixpanel's /import endpoint rejects events with a 400, how to read the failed_records response, and how to correct each validation error
+- [401 Unauthorized](https://docs.mixpanel.com/troubleshooting/errors/401-unauthorized.md): Why Mixpanel's ingestion API returns a 401, which credentials each endpoint accepts, and how regional data residency affects authentication
+- [Backfilled or historical events are not appearing](https://docs.mixpanel.com/troubleshooting/errors/historical-events-not-appearing.md): Why events older than 5 days sent to /track are never ingested, which endpoint accepts historical data, and the time range Mixpanel rejects
+- [Overview](https://docs.mixpanel.com/reference/overview.md): Overview of Mixpanel's APIs for ingesting, querying, and exporting data and managing metadata, with regional server URLs for each API
+- [Authentication Methods](https://docs.mixpanel.com/reference/authentication.md): Most of our APIs require authentication for which we recommend using Service Accounts to authenticate
+- [Service Accounts](https://docs.mixpanel.com/reference/service-accounts.md): Authenticate API requests with service accounts, non-human Mixpanel users for scripts and backend services, via HTTP basic auth
+- [Project Token](https://docs.mixpanel.com/reference/project-token.md): Every Mixpanel project has a unique alphanumerical token for collecting data
+- [Project Secret [Deprecated]](https://docs.mixpanel.com/reference/project-secret.md): Authenticate with a legacy Project Secret via HTTP Basic Auth and find it in project settings; deprecated and fully retired on March 3, 2027
+- [Request Signature [Deprecated]](https://docs.mixpanel.com/reference/request-signature.md): Deprecated request signature authentication for Mixpanel APIs and how to calculate a signature; migrate to service account authentication
+- [Segmentation Expressions](https://docs.mixpanel.com/reference/segmentation-expressions.md): Expression syntax for filtering events in the Query and Raw Data Export APIs
+- [Rate Limits](https://docs.mixpanel.com/reference/rate-limits.md): Per-project rate limits for the Ingestion, Query, Raw Data Export, and Lexicon Schemas APIs, and how to avoid 429 errors
+- [Import Events](https://docs.mixpanel.com/reference/import-events.md): Use this API to send batches of events from your servers to Mixpanel
+- [Import Events](https://docs.mixpanel.com/reference/import-events.md): Use this API to send batches of events from your servers to Mixpanel
+- [Track Events](https://docs.mixpanel.com/reference/track-event.md): Track events to Mixpanel from client devices
+- [Event Deduplication](https://docs.mixpanel.com/reference/event-deduplication.md): Mixpanel provides an event deduplication mechanism to ensure that duplicate events do not skew your analytics
+- [Overview](https://docs.mixpanel.com/reference/ingestion-api.md): Mixpanel's Ingestion APIs allow you to send event or profile data to Mixpanel, which can be analyzed in our reporting
+- [Authentication](https://docs.mixpanel.com/reference/ingestion-api-authentication.md): Which Ingestion API calls need only a project token, and which require a service account
+- [Update Group Profile Property](https://docs.mixpanel.com/reference/group-set-property.md): Update a property on a group profile
+- [Update Group Profile Property](https://docs.mixpanel.com/reference/group-set-property.md): Update a property on a group profile
+- [Set Group Profile Property Once](https://docs.mixpanel.com/reference/group-set-property-once.md): Set a group profile property only if it has not been set
+- [Delete Group Profile Property](https://docs.mixpanel.com/reference/group-delete-property.md): Delete a property from a group profile
+- [Remove from Group Profile List Property](https://docs.mixpanel.com/reference/group-remove-from-list-property.md): Remove a value from a group profile list property
+- [Union to Group Profile List Property](https://docs.mixpanel.com/reference/group-union.md): Union values into a group profile list property
+- [Batch Update Group Profiles](https://docs.mixpanel.com/reference/group-batch-update.md): Send a batch of group profile updates
+- [Delete Group](https://docs.mixpanel.com/reference/delete-group.md): Delete a group profile
+- [Limits](https://docs.mixpanel.com/reference/limits-1.md): Rate and size limits for the Groups Profile API
+- [Lookup Tables](https://docs.mixpanel.com/reference/lookup-tables.md): Lookup Tables are mutable tables that describe non-user entities like accounts, product SKUs, or geographies
+- [List Lookup Tables](https://docs.mixpanel.com/reference/list-lookup-tables.md): List all lookup tables for a project
+- [Replace a Lookup Table](https://docs.mixpanel.com/reference/replace-lookup-table.md): Lookup Tables must be created via our UI
+- [Set User Profile Property](https://docs.mixpanel.com/reference/profile-set.md): Set or overwrite properties on a user profile; the API returns 200 OK even on validation errors and does not support gzip encoding
+- [Set User Profile Property](https://docs.mixpanel.com/reference/profile-set.md): Set or overwrite properties on a user profile; the API returns 200 OK even on validation errors and does not support gzip encoding
+- [Set User Profile Property Once](https://docs.mixpanel.com/reference/profile-set-property-once.md): Set a user profile property only if it is not already set, without overwriting existing values
+- [Increment Numerical Property](https://docs.mixpanel.com/reference/profile-numerical-add.md): Increment a numerical user profile property
+- [Union to User Profile List Property](https://docs.mixpanel.com/reference/user-profile-union.md): Union values into a user profile list property
+- [Append to List Property](https://docs.mixpanel.com/reference/profile-append-to-list-property.md): Append a value to a user profile list property
+- [Remove from User Profile List Property](https://docs.mixpanel.com/reference/profile-remove-from-list-property.md): Remove a value from a user profile list property
+- [Delete User Profile Property](https://docs.mixpanel.com/reference/profile-delete-property.md): Delete a property from a user profile
+- [Update Multiple Profiles](https://docs.mixpanel.com/reference/profile-batch-update.md): Send a batch of user profile updates in one request; the API returns 200 OK even on validation errors, so check the response body
+- [Delete User Profile](https://docs.mixpanel.com/reference/delete-profile.md): Delete a user profile
+- [Limits](https://docs.mixpanel.com/reference/user-profile-limits.md): Rate and size limits for the User Profile API
+- [Create Identity](https://docs.mixpanel.com/reference/create-identity.md): Create an identity mapping for the Original ID Merge system
+- [Create Identity](https://docs.mixpanel.com/reference/create-identity.md): Create an identity mapping for the Original ID Merge system
+- [Create Alias](https://docs.mixpanel.com/reference/identity-create-alias.md): Create an alias for the Original ID Merge system
+- [Merge Identities](https://docs.mixpanel.com/reference/identity-merge.md): Merge two identities using the Original ID Merge system
+- [Overview](https://docs.mixpanel.com/reference/query-api.md): Query calculated report results programmatically from Mixpanel
+- [List Saved Cohorts](https://docs.mixpanel.com/reference/cohorts-list.md): List all saved cohorts for a project
+- [List Saved Cohorts](https://docs.mixpanel.com/reference/cohorts-list.md): List all saved cohorts for a project
+- [Query Profiles](https://docs.mixpanel.com/reference/engage-query.md): Query user (or group) profile data and return list of users (or groups) that fit specified parameters
+- [Query Profiles](https://docs.mixpanel.com/reference/engage-query.md): Query user (or group) profile data and return list of users (or groups) that fit specified parameters
+- [Authentication](https://docs.mixpanel.com/reference/query-api-authentication.md): Authenticate Query API requests with a service account, project ID, and workspace ID for projects with data views
+- [Query Saved Report](https://docs.mixpanel.com/reference/funnels-query.md): Query funnel data from a saved report via the legacy Funnels Query API, now in maintenance mode; use the Funnels report instead
+- [Query Saved Report](https://docs.mixpanel.com/reference/funnels-query.md): Query funnel data from a saved report via the legacy Funnels Query API, now in maintenance mode; use the Funnels report instead
+- [List Saved Funnels](https://docs.mixpanel.com/reference/funnels-list-saved.md): List saved funnels for a project via the legacy Funnels Query API, now in maintenance mode; use the Funnels report instead
+- [Query Saved Report](https://docs.mixpanel.com/reference/insights-query.md): Query a saved Insights report
+- [Query Saved Report](https://docs.mixpanel.com/reference/insights-query.md): Query a saved Insights report
+- [Custom Insights Query](https://docs.mixpanel.com/reference/insights-run-query.md): Beta: run an Insights query that you describe in the request body, without a saved report.
+- [Custom JQL Query](https://docs.mixpanel.com/reference/query-jql.md): Run a custom JQL script via the HTTP API; JQL is in maintenance mode, so prefer the Export API, Query API, or Data Pipelines
+- [Custom JQL Query](https://docs.mixpanel.com/reference/query-jql.md): Run a custom JQL script via the HTTP API; JQL is in maintenance mode, so prefer the Export API, Query API, or Data Pipelines
+- [Additional Information](https://docs.mixpanel.com/links/jql.md): Additional JQL reference material, linking to the JQL overview in the Mixpanel documentation
+- [Query Retention Report](https://docs.mixpanel.com/reference/retention-query.md): Query retention (cohort analysis) data for users who did a born event and then a return event, with interval and unit options
+- [Query Retention Report](https://docs.mixpanel.com/reference/retention-query.md): Query retention (cohort analysis) data for users who did a born event and then a return event, with interval and unit options
+- [Query Frequency Report](https://docs.mixpanel.com/reference/retention-frequency-query.md): Get data about how frequently users are performing events
+- [Query Segmentation Report](https://docs.mixpanel.com/reference/segmentation-query.md): Segment an event by property via the legacy Segmentation Query API, now in maintenance mode; use an Insights report instead
+- [Query Segmentation Report](https://docs.mixpanel.com/reference/segmentation-query.md): Segment an event by property via the legacy Segmentation Query API, now in maintenance mode; use an Insights report instead
+- [Numerically Bucket](https://docs.mixpanel.com/reference/segmentation-numeric-query.md): Bucket a numeric event property into ranges via the legacy Segmentation API, now in maintenance mode; use Insights instead
+- [Numerically Sum](https://docs.mixpanel.com/reference/segmentation-sum-query.md): Sum a numeric event expression per time unit via the legacy Segmentation API, now in maintenance mode; use Insights instead
+- [Numerically Average](https://docs.mixpanel.com/reference/segmentation-query-average.md): Average a numeric event expression per time unit via the legacy Segmentation API, now in maintenance mode; use Insights instead
+- [Profile Event Activity](https://docs.mixpanel.com/reference/activity-stream-query.md): Query the event activity stream for a user profile
+- [Profile Event Activity](https://docs.mixpanel.com/reference/activity-stream-query.md): Query the event activity stream for a user profile
+- [Aggregate Event Counts](https://docs.mixpanel.com/reference/list-recent-events.md): Aggregate event counts over a time period
+- [Aggregate Event Counts](https://docs.mixpanel.com/reference/list-recent-events.md): Aggregate event counts over a time period
+- [Today's Top Events](https://docs.mixpanel.com/reference/query-top-events.md): Get today's top events
+- [Top Events](https://docs.mixpanel.com/reference/query-months-top-event-names.md): Get the top event names for the current month
+- [Aggregrated Event Property Values](https://docs.mixpanel.com/reference/query-event-properties.md): Query aggregated event property values
+- [Top Event Properties](https://docs.mixpanel.com/reference/query-events-top-properties.md): Get the top properties for an event
+- [Top Event Property Values](https://docs.mixpanel.com/reference/query-events-top-property-values.md): Get the top values for an event property
+- [Download Data](https://docs.mixpanel.com/reference/raw-event-export.md): Export raw event data from a project
+- [Download Data](https://docs.mixpanel.com/reference/raw-event-export.md): Export raw event data from a project
+- [Overview](https://docs.mixpanel.com/reference/raw-data-export-api.md): The Mixpanel Export Data APIs allow you to export your raw data either manually or through a pipeline
+- [Authentication](https://docs.mixpanel.com/reference/raw-data-export-api-authentication.md): Authenticate raw data Export API requests with a service account or project secret, including project ID requirements
+- [Overview](https://docs.mixpanel.com/reference/lexicon-schemas-api.md): Sync your internal data dictionary or tracking plan with Mixpanel using Schemas
+- [Authentication](https://docs.mixpanel.com/reference/lexicon-schemas-api-authentication.md): Authenticate Lexicon Schemas API requests with an admin or owner service account, plus classified data access requirements
+- [Create/Replace Multiple](https://docs.mixpanel.com/reference/upload-schemas-for-project.md): Upload schemas in bulk to the specified project
+- [Create/Replace Multiple](https://docs.mixpanel.com/reference/upload-schemas-for-project.md): Upload schemas in bulk to the specified project
+- [Create/Replace One](https://docs.mixpanel.com/reference/upload-schema-by-entity-and-name.md): Upload a schema for a single entity
+- [Delete all Schemas](https://docs.mixpanel.com/reference/delete-all-schemas-in-project.md): Delete all Lexicon schemas in a project
+- [Delete all Schemas](https://docs.mixpanel.com/reference/delete-all-schemas-in-project.md): Delete all Lexicon schemas in a project
+- [Delete for Entity](https://docs.mixpanel.com/reference/delete-schemas-for-entity.md): Delete all Lexicon schemas for an entity
+- [Delete for Entity and Name](https://docs.mixpanel.com/reference/delete-schema-by-entity-and-name.md): Delete a Lexicon schema by entity and name
+- [List Schemas](https://docs.mixpanel.com/reference/list-all-schemas-for-project.md): List all Lexicon schemas for a project
+- [List Schemas](https://docs.mixpanel.com/reference/list-all-schemas-for-project.md): List all Lexicon schemas for a project
+- [List for Entity](https://docs.mixpanel.com/reference/list-schemas-for-entity.md): List all Lexicon schemas for an entity
+- [List for Entity and Name](https://docs.mixpanel.com/reference/list-schemas-by-entity-and-name.md): List Lexicon schemas by entity and name
+- [Limits](https://docs.mixpanel.com/reference/limits.md): Lexicon Schemas API limits: 5 requests per organization per minute, 4,000 events and properties updated per minute, and 3,000 deletions per request
+- [Overview](https://docs.mixpanel.com/reference/overview-2.md): Deprecated Data Pipelines API for creating and managing export pipelines programmatically; new pipelines should be managed in the Mixpanel UI
+- [Authentication](https://docs.mixpanel.com/reference/authentication-2.md): Authenticate Data Pipelines API requests with a service account that has the admin or owner role
+- [Create Pipeline](https://docs.mixpanel.com/reference/create-warehouse-pipeline.md): Create an export pipeline with the Data Pipelines API, with type, data source, and destination-specific parameters
+- [Create Pipeline](https://docs.mixpanel.com/reference/create-warehouse-pipeline.md): Create an export pipeline with the Data Pipelines API, with type, data source, and destination-specific parameters
+- [Delete Pipeline](https://docs.mixpanel.com/reference/cancel-warehouse-pipeline.md): Delete a warehouse pipeline by name
+- [Delete Pipeline](https://docs.mixpanel.com/reference/cancel-warehouse-pipeline.md): Delete a warehouse pipeline by name
+- [Edit Pipeline](https://docs.mixpanel.com/reference/edit-warehouse-pipeline.md): Update an existing warehouse pipeline
+- [Edit Pipeline](https://docs.mixpanel.com/reference/edit-warehouse-pipeline.md): Update an existing warehouse pipeline
+- [Pause Pipeline](https://docs.mixpanel.com/reference/pause-warehouse-pipeline.md): Pause a running warehouse pipeline
+- [Pause Pipeline](https://docs.mixpanel.com/reference/pause-warehouse-pipeline.md): Pause a running warehouse pipeline
+- [Resume Pipeline](https://docs.mixpanel.com/reference/resume-warehouse-pipeline.md): Resume a paused warehouse pipeline
+- [Resume Pipeline](https://docs.mixpanel.com/reference/resume-warehouse-pipeline.md): Resume a paused warehouse pipeline
+- [List Pipelines](https://docs.mixpanel.com/reference/list-warehouse-pipeline-jobs.md): List all warehouse pipeline jobs
+- [List Pipelines](https://docs.mixpanel.com/reference/list-warehouse-pipeline-jobs.md): List all warehouse pipeline jobs
+- [Get Pipeline](https://docs.mixpanel.com/reference/get-warehouse-pipeline-status.md): Get the status and summary of recent export jobs for a Data Pipelines pipeline by name
+- [List Pipeline Logs](https://docs.mixpanel.com/reference/list-warehouse-pipeline-sync-dates.md): List sync log entries for a warehouse pipeline
+- [Overview](https://docs.mixpanel.com/reference/service-accounts-api.md): The Service Accounts API lets you manage your service accounts programmatically
+- [Authentication](https://docs.mixpanel.com/reference/service-accounts-api-authentication.md): Authenticate Service Accounts API requests with a service account that has the admin or owner role, with an example request
+- [Create Service Account](https://docs.mixpanel.com/reference/create-service-account.md): Create a new service account
+- [Create Service Account](https://docs.mixpanel.com/reference/create-service-account.md): Create a new service account
+- [Delete Service Account](https://docs.mixpanel.com/reference/delete-service-account.md): Delete a service account by ID
+- [Delete Service Account](https://docs.mixpanel.com/reference/delete-service-account.md): Delete a service account by ID
+- [List Service Accounts For Project](https://docs.mixpanel.com/reference/list-project-service-accounts.md): List all service accounts for a project
+- [List Service Accounts For Project](https://docs.mixpanel.com/reference/list-project-service-accounts.md): List all service accounts for a project
+- [Add Service Accounts To Projects](https://docs.mixpanel.com/reference/add-service-accounts-to-projects.md): Add service accounts to one or more projects
+- [Remove Service Accounts From Projects](https://docs.mixpanel.com/reference/remove-service-accounts-from-projects.md): Remove service accounts from one or more projects
+- [List Service Accounts](https://docs.mixpanel.com/reference/list-service-accounts.md): List all service accounts for an organization
+- [List Service Accounts](https://docs.mixpanel.com/reference/list-service-accounts.md): List all service accounts for an organization
+- [Get Service Account](https://docs.mixpanel.com/reference/get-service-account.md): Retrieve a service account by ID
+- [Overview](https://docs.mixpanel.com/reference/overview-1.md): The Annotations API lets you manage your annotations programmatically
+- [Delete Annotation](https://docs.mixpanel.com/reference/delete-annotation-1.md): Delete an annotation by ID
+- [Delete Annotation](https://docs.mixpanel.com/reference/delete-annotation-1.md): Delete an annotation by ID
+- [List Annotations](https://docs.mixpanel.com/reference/list-all-annotations-for-project.md): List all annotations for a project
+- [List Annotations](https://docs.mixpanel.com/reference/list-all-annotations-for-project.md): List all annotations for a project
+- [Get Annotation](https://docs.mixpanel.com/reference/get-annotation-1.md): Retrieve an annotation by ID
+- [Create Annotations](https://docs.mixpanel.com/reference/create-annotation.md): Create a new annotation for a project
+- [Create Annotations](https://docs.mixpanel.com/reference/create-annotation.md): Create a new annotation for a project
+- [Patch Annotation](https://docs.mixpanel.com/reference/patch-annotation-1.md): Update an existing annotation
+- [Patch Annotation](https://docs.mixpanel.com/reference/patch-annotation-1.md): Update an existing annotation
+- [Get Annotation Tags](https://docs.mixpanel.com/reference/get-annotation-tags-1.md): List all annotation tags for a project
+- [Get Annotation Tags](https://docs.mixpanel.com/reference/get-annotation-tags-1.md): List all annotation tags for a project
+- [Create Annotation Tag](https://docs.mixpanel.com/reference/create-annotation-tag-1.md): Create a new annotation tag
+- [Create Annotation Tag](https://docs.mixpanel.com/reference/create-annotation-tag-1.md): Create a new annotation tag
+- [Overview](https://docs.mixpanel.com/reference/gdpr-api.md): GDPR and CCPA API (v3) for creating and checking data retrieval and deletion jobs for end-user personal data
+- [Create a Retrieval](https://docs.mixpanel.com/reference/create-retrieval-1.md): Create a GDPR data retrieval request
+- [Create a Retrieval](https://docs.mixpanel.com/reference/create-retrieval-1.md): Create a GDPR data retrieval request
+- [Check Status of Retrieval](https://docs.mixpanel.com/reference/get-retrieval.md): Check the status of a GDPR data retrieval request
+- [Check Status of Retrieval](https://docs.mixpanel.com/reference/get-retrieval.md): Check the status of a GDPR data retrieval request
+- [Create a Deletion](https://docs.mixpanel.com/reference/create-deletion.md): Create a GDPR deletion request
+- [Create a Deletion](https://docs.mixpanel.com/reference/create-deletion.md): Create a GDPR deletion request
+- [Check Status of Deletion](https://docs.mixpanel.com/reference/get-deletion.md): Check the status of a GDPR deletion request
+- [Check Status of Deletion](https://docs.mixpanel.com/reference/get-deletion.md): Check the status of a GDPR deletion request
+- [Cancel a Deletion](https://docs.mixpanel.com/reference/delete-deletion.md): Cancel a pending GDPR deletion request
+- [Cancel a Deletion](https://docs.mixpanel.com/reference/delete-deletion.md): Cancel a pending GDPR deletion request
+- [Overview](https://docs.mixpanel.com/reference/warehouse-connectors-api.md): Connect a data warehouse to import events, users, groups, and lookup tables into Mixpanel
+- [Authentication](https://docs.mixpanel.com/reference/warehouse-connectors-api-authentication.md): A service account is necessary to authenticate Warehouse Connectors API requests
+- [Run an import](https://docs.mixpanel.com/reference/run-an-import-1.md): Trigger a warehouse import run
+- [Run an import](https://docs.mixpanel.com/reference/run-an-import-1.md): Trigger a warehouse import run
+- [List Warehouse Imports](https://docs.mixpanel.com/reference/list-warehouse-imports.md): List all warehouse imports for a project
+- [Get Warehouse Import](https://docs.mixpanel.com/reference/get-warehouse-import.md): Retrieve a warehouse import by ID
+- [Update Warehouse Import](https://docs.mixpanel.com/reference/update-warehouse-import.md): Update an existing warehouse import
+- [Delete Warehouse Import](https://docs.mixpanel.com/reference/delete-warehouse-import.md): Delete a warehouse import by ID
+- [Create Event Stream Import](https://docs.mixpanel.com/reference/create-event-stream-import.md): Create a new event stream import
+- [Create People Import](https://docs.mixpanel.com/reference/create-people-import.md): Create a new people import
+- [Create Groups Import](https://docs.mixpanel.com/reference/create-groups-import.md): Create a new groups import
+- [Create Lookup Table Import](https://docs.mixpanel.com/reference/create-lookup-table-import.md): Create a new lookup table import
+- [Get Import History](https://docs.mixpanel.com/reference/get-import-history.md): Get the import history for a project
+- [Run an Import](https://docs.mixpanel.com/reference/run-an-import.md): Triggers an immediate sync for a given warehouse import
+- [Overview](https://docs.mixpanel.com/reference/feature-flags-api.md): API for assigning users to feature flag variants in Mixpanel
+- [Get Flag Definitions](https://docs.mixpanel.com/reference/get-flag-definitions.md): Get definitions for all enabled feature flags in a project, used by server-side SDKs that poll for flags during local evaluation
+- [Get Flag Definitions](https://docs.mixpanel.com/reference/get-flag-definitions.md): Get definitions for all enabled feature flags in a project, used by server-side SDKs that poll for flags during local evaluation
+- [Get Variant Assignments](https://docs.mixpanel.com/reference/get-variant-assignments.md): Get the variant the current user context is assigned for each enabled feature flag in a Mixpanel project
+- [Get Variant Assignments](https://docs.mixpanel.com/reference/get-variant-assignments.md): Get the variant the current user context is assigned for each enabled feature flag in a Mixpanel project
+- [Overview](https://docs.mixpanel.com/reference/feature-flags-management-api.md): Use the Feature Flags Management API to create, update, delete, and manage feature flags
+- [List Feature Flags](https://docs.mixpanel.com/reference/list-feature-flags-1.md): List all feature flags for a project
+- [List Feature Flags](https://docs.mixpanel.com/reference/list-feature-flags-1.md): List all feature flags for a project
+- [Create Feature Flag](https://docs.mixpanel.com/reference/create-feature-flag-1.md): Create a new feature flag
+- [Get Feature Flag](https://docs.mixpanel.com/reference/get-feature-flag-1.md): Retrieve a feature flag by ID
+- [Delete Feature Flag](https://docs.mixpanel.com/reference/delete-feature-flag-1.md): Delete a feature flag by ID
+- [Update Feature Flag](https://docs.mixpanel.com/reference/update-feature-flag-1.md): Update an existing feature flag
+- [List Experiments](https://docs.mixpanel.com/reference/list-experiments.md): List all experiments for a project
+- [List Experiments](https://docs.mixpanel.com/reference/list-experiments.md): List all experiments for a project
+- [Create Experiment](https://docs.mixpanel.com/reference/create-experiment.md): Create a new experiment
+- [Get Experiment](https://docs.mixpanel.com/reference/get-experiment.md): Retrieve an experiment by ID
+- [Update Experiment](https://docs.mixpanel.com/reference/update-experiment.md): Update an existing experiment
+- [Delete Experiment](https://docs.mixpanel.com/reference/delete-experiment.md): Delete an experiment by ID
+- [Archive Experiment](https://docs.mixpanel.com/reference/archive-experiment.md): Archive an experiment by ID
+- [Archive Experiment](https://docs.mixpanel.com/reference/archive-experiment.md): Archive an experiment by ID
+- [Unarchive Experiment](https://docs.mixpanel.com/reference/unarchive-experiment.md): Unarchive a previously archived experiment
+- [Decide Experiment](https://docs.mixpanel.com/reference/decide-experiment.md): Record an experiment's outcome, including success, variant, and message
+- [Force Conclude Experiment](https://docs.mixpanel.com/reference/force-conclude-experiment.md): Force conclude a running experiment
+- [Launch Experiment](https://docs.mixpanel.com/reference/launch-experiment.md): Launch an experiment by ID
+- [Overview](https://docs.mixpanel.com/reference/platform-api.md): Manage Mixpanel organizations, projects, and their resources programmatically with the Platform API: regional base URLs, service account auth, and pagination
+- [Permissions Reference](https://docs.mixpanel.com/reference/permissions.md): Every permission the Mixpanel API checks, its scope, and which built-in roles and custom role toggles grant it
 - [Query Organization Audit Logs](https://docs.mixpanel.com/api-reference/organizations/query-organization-audit-logs.md): Query an organization's audit logs.
 
 ## OpenAPI Specs

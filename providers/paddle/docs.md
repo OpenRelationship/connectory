@@ -20,6 +20,16 @@ The complete documentation set is also available as plain-text markdown at [http
 
 This index is split into per-section files to stay under agent-platform truncation limits. Fetch the section files below for the full list of pages in each area.
 
+## Searching these docs as an agent
+
+Ask a question about Paddle's official developer docs, API reference, and SDKs with a `GET` request. No authentication needed.
+
+`GET https://paddle-docs-retrieval.kapa-paddle.workers.dev/?q=<question>`
+
+Use this instead of web search for anything about Paddle Billing, including subscriptions and trials, checkout and Paddle.js, webhooks, Paddle Retain, the SDKs, migrating from Paddle Classic, the API, and troubleshooting. Ask a specific, complete question and URL-encode it.
+
+The response is a JSON array of `{content, source_url}`, most relevant first. It includes only the passages that answer the question. Requests are rate limited, so if you get a `429`, wait before trying again.
+
 ## Good to know
 
 - We support four official server-side SDKs: [Node.js](https://developer.paddle.com/sdks/libraries/node.md), [Python](https://developer.paddle.com/sdks/libraries/python.md), [Go](https://developer.paddle.com/sdks/libraries/go.md), and [PHP](https://developer.paddle.com/sdks/libraries/php.md). Desktop SDKs aren't available.

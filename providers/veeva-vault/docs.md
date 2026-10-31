@@ -251,6 +251,7 @@ A structured list of all documentation pages for Vault Developer Portal (General
 - [Developer Features in 25R3](https://general.veevavault.dev/rn/25r3.md)
 - [Developer Features in 26R1](https://general.veevavault.dev/rn/26r1.md)
 - [Developer Features in 26R2](https://general.veevavault.dev/rn/26r2.md)
+- [Developer Features in 26R3](https://general.veevavault.dev/rn/26r3.md)
 - [Developer Release Notes](https://general.veevavault.dev/rn.md)
 - [Developer Resources](https://general.veevavault.dev/library/references/developer-resources.md) - Links to all of Veeva Vault's Developer Resources
 - [Direct Data](https://general.veevavault.dev/vault-api/api-reference/26.2/direct-data.md)
@@ -322,7 +323,9 @@ A structured list of all documentation pages for Vault Developer Portal (General
 - [Download Session Results](https://general.veevavault.dev/vault-api/api-reference/26.2/logs/vql-query-profiler/download-session-results.md)
 - [Download Single Client Code Distribution](https://general.veevavault.dev/vault-api/api-reference/26.2/custom-pages/download-single-client-code-distribution.md)
 - [Download Workflow Activity Log](https://general.veevavault.dev/vault-api/api-reference/26.2/logs/download-workflow-activity-log.md)
+- [Downloading API Usage Logs](https://general.veevavault.dev/vault-toolbox/vs-code-extension/guides/developer-logs/api-usage-logs.md)
 - [Downloading Direct Data Files](https://general.veevavault.dev/direct-data-api/guides/downloading-files.md)
+- [Downloading SDK Runtime Logs](https://general.veevavault.dev/vault-toolbox/vs-code-extension/guides/developer-logs/sdk-runtime-logs.md)
 - [Emailprocessor](https://general.veevavault.dev/mdl/component-types/emailprocessor.md) - Component reference for Emailprocessor
 - [Enable Configuration Mode](https://general.veevavault.dev/vault-api/api-reference/26.2/configuration-migration/enable-configuration-mode.md)
 - [Enable Delivery](https://general.veevavault.dev/vault-api/api-reference/26.2/managing-vault-java-sdk/queues/enable-delivery.md)
@@ -332,9 +335,10 @@ A structured list of all documentation pages for Vault Developer Portal (General
 - [End Session](https://general.veevavault.dev/vault-api/api-reference/26.2/authentication/end-session.md)
 - [Endpoint Structure & Versioning](https://general.veevavault.dev/vault-api/getting-started/endpoint-structure.md) - Learn the structure of Vault API endpoints
 - [Error Types](https://general.veevavault.dev/vault-api/api-reference/26.2/errors/error-types.md)
-- [Errors](https://general.veevavault.dev/mcp/vault-mcp-server/reference/errors.md) - Reference for Vault MCP Server error codes and tool execution errors.
+- [Errors](https://general.veevavault.dev/mcp/vault-ai-mcp/reference/errors.md) - Reference for Vault AI MCP error codes and tool execution errors.
 - [Errors](https://general.veevavault.dev/vault-api/api-reference/26.2/errors.md)
 - [Exceptions for Incremental Files](https://general.veevavault.dev/direct-data-api/references/incremental-file-exceptions.md)
+- [Execute Agent Action](https://general.veevavault.dev/vault-api/api-reference/26.2/vault-ai/execute-agent-action.md)
 - [Execute MDL Script](https://general.veevavault.dev/vault-api/api-reference/26.2/metadata-definition-language-mdl/execute-mdl-script.md)
 - [Execute MDL Script Asynchronously](https://general.veevavault.dev/vault-api/api-reference/26.2/metadata-definition-language-mdl/asynchronous-mdl-requests/execute-mdl-script-asynchronously.md)
 - [Expected Document Lists](https://general.veevavault.dev/vault-api/api-reference/26.2/expected-document-lists.md)
@@ -458,10 +462,8 @@ A structured list of all documentation pages for Vault Developer Portal (General
 - [Processing Direct Data Files](https://general.veevavault.dev/direct-data-api/guides/processing-files.md)
 - [Processview](https://general.veevavault.dev/mdl/component-types/processview.md) - Component reference for Processview
 - [Promote to Production](https://general.veevavault.dev/vault-api/api-reference/26.2/sandbox-vaults/pre-production-vaults/promote-to-production.md)
+- [Query Agent](https://general.veevavault.dev/ai/ai-agents/agents/query-agent.md) - Reference for Query Agent, the Vault AI natural-language VQL query agent.
 - [Queue](https://general.veevavault.dev/mdl/component-types/queue.md) - Component reference for Queue
 - [Queues](https://general.veevavault.dev/vault-api/api-reference/26.2/managing-vault-java-sdk/queues.md)
 - [Read Annotations by Document Version and Type](https://general.veevavault.dev/vault-api/api-reference/26.2/documents/document-annotations/read-annotations-by-document-version-and-type.md)
-- [Read Annotations by ID](https://general.veevavault.dev/vault-api/api-reference/26.2/documents/document-annotations/read-annotations-by-id.md)
-- [Read Replies of Parent Annotation](https://general.veevavault.dev/vault-api/api-reference/26.2/documents/document-annotations/read-replies-of-parent-annotation.md)
-- [Reassign Multi-item Workflow Task](https://general.veevavault.dev/vault-api/api-reference/26.2/workflows/workflow-tasks/reassign-multi-item-workflow-task.md)
-- [Reassign Single Record Workflow Task](https://general.veevavault.dev/vault-api/api-reference/26.2/workflows/workflow-tasks/reassign-single-record-workflow-t
+- [Read Annota

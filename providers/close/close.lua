@@ -2,7 +2,7 @@
 --
 -- GENERATED from https://developer.close.com/openapi.json
 -- Published on the vendor's own documentation site (https://developer.close.com).
--- 302 operations · do not edit
+-- 303 operations · do not edit
 --
 -- The credential is never in here. `auth.env` names an environment variable; the value
 -- stays in the environment, which is what makes this file safe to publish.
@@ -83,6 +83,7 @@ return {
     ["close.activities_whatsapp_messages_get"] = { method = "GET", url = "https://api.close.com/api/v1/activity/whatsapp_message/{id}/", path = {"id"}, query = {"_fields"} },
     ["close.activities_whatsapp_messages_list"] = { method = "GET", url = "https://api.close.com/api/v1/activity/whatsapp_message/", query = {"_limit", "_skip", "id__in", "lead_id", "contact_id", "user_id", "organization_id", "_type", "date_created__gte", "date_created__lte", "date_created__gt", "date_created__lt", "activity_at__gte", "activity_at__lte", "activity_at__gt", "activity_at__lt", "external_whatsapp_message_id", "_fields"} },
     ["close.activities_whatsapp_messages_update"] = { method = "PUT", url = "https://api.close.com/api/v1/activity/whatsapp_message/{id}/", path = {"id"}, body = {"activity_at", "attachments", "contact_id", "direction", "integration_link", "local_phone", "message_markdown", "remote_phone", "response_to_id", "user_id"} },
+    ["close.advanced_filtering_search"] = { method = "POST", url = "https://api.close.com/api/v1/data/search/", body = {"_fields", "_limit", "cursor", "include_counts", "query", "results_limit", "sort"} },
     ["close.blocked_phone_numbers_create"] = { method = "POST", url = "https://api.close.com/api/v1/blocked_phone_number/", body = {"phone", "reason"} },
     ["close.blocked_phone_numbers_delete"] = { method = "DELETE", url = "https://api.close.com/api/v1/blocked_phone_number/{id}/", path = {"id"} },
     ["close.blocked_phone_numbers_get"] = { method = "GET", url = "https://api.close.com/api/v1/blocked_phone_number/{id}/", path = {"id"}, query = {"_fields"} },
@@ -241,7 +242,7 @@ return {
     ["close.phone_numbers_delete"] = { method = "DELETE", url = "https://api.close.com/api/v1/phone_number/{id}/", path = {"id"} },
     ["close.phone_numbers_get"] = { method = "GET", url = "https://api.close.com/api/v1/phone_number/{id}/", path = {"id"}, query = {"_fields"} },
     ["close.phone_numbers_list"] = { method = "GET", url = "https://api.close.com/api/v1/phone_number/", query = {"_limit", "_skip", "_fields", "number", "user_id", "is_group_number", "participant_user_id"} },
-    ["close.phone_numbers_update"] = { method = "PUT", url = "https://api.close.com/api/v1/phone_number/{id}/", path = {"id"}, body = {"forward_to", "forward_to_enabled", "inbound_ring_duration", "label", "participants", "phone_numbers", "press_1_to_accept", "voicemail_greeting_url"} },
+    ["close.phone_numbers_update"] = { method = "PUT", url = "https://api.close.com/api/v1/phone_number/{id}/", path = {"id"}, body = {"forward_to", "forward_to_enabled", "inbound_ring_duration", "label", "local_presence_enabled", "non_member_caller_id_enabled", "participant_groups", "participants", "phone_numbers", "press_1_to_accept", "voice_agent_caller_id_enabled", "voice_agents_local_presence_enabled", "voicemail_greeting_url"} },
     ["close.pipelines_create"] = { method = "POST", url = "https://api.close.com/api/v1/pipeline/", body = {"name", "statuses"} },
     ["close.pipelines_delete"] = { method = "DELETE", url = "https://api.close.com/api/v1/pipeline/{id}/", path = {"id"} },
     ["close.pipelines_get"] = { method = "GET", url = "https://api.close.com/api/v1/pipeline/{id}/", path = {"id"} },

@@ -363,7 +363,7 @@
   {
    "slug": "clerk.ban_user",
    "name": "Ban a user",
-   "description": "Marks the given user as banned, which means that all their sessions are revoked and they are not allowed to sign in again.",
+   "description": "Marks the given user as banned, which means that all their sessions and OAuth grants are revoked and they are not allowed to sign in again. Revoked OAuth grants are not restored if the user is unbanned.",
    "input": {
     "type": "object",
     "properties": {
@@ -1381,6 +1381,18 @@
       "type": "boolean",
       "description": "True to require the Proof Key of Code Exchange (PKCE) flow."
      },
+     "audience_uri": {
+      "type": "string",
+      "description": "An absolute resource URI for a confidential application (RFC 8707 section 2). Registers a resource with no accepted scopes, or adopts an unowned resource with confirmation. Every claimed URI remains permanently reserved to this app, including retirement and deletion, and counts toward the instance resource quota. Changing it stops new exchanges from the old audience immediately. Already-issued tok"
+     },
+     "token_exchange_enabled": {
+      "type": "boolean",
+      "description": "Enable exchanges from the active audience. Requires an audience URI. Disabling preserves target configuration."
+     },
+     "adopt_audience_resource": {
+      "type": "boolean",
+      "description": "Confirm adoption of an existing unowned resource, preserving its accepted scopes and target references. Does not override another application's reservation."
+     },
      "device_authorization_grant_enabled": {
       "type": "boolean",
       "description": "True to enable the OAuth Device Authorization Grant for this application. Enabling requires the new OAuth IdP and a reachable device verification page."
@@ -1407,6 +1419,9 @@
      "scopes",
      "consent_screen_enabled",
      "pkce_required",
+     "audience_uri",
+     "token_exchange_enabled",
+     "adopt_audience_resource",
      "device_authorization_grant_enabled",
      "public"
     ],
@@ -2097,7 +2112,15 @@
      },
      "expires_in_seconds": {
       "type": "integer",
-      "description": "Optional parameter to specify the life duration of the sign in token in seconds. By default, the duration is 30 days."
+      "description": "Optional parameter to specify the life duration of the sign in token in seconds. By default, the duration is 30 days, or 10 minutes when `second_factor_verification` is set."
+     },
+     "second_factor_verification": {
+      "type": "string",
+      "description": "Optional parameter that lets a user with a second factor enabled complete the sign in without being prompted for it. When omitted, redeeming the token completes only the first factor, and the user must still complete their second factor. `fresh`: the second factor is treated as verified at sign in. The session token's `fva` claim reports a second factor age of 0. `stale`: the second factor is trea",
+      "enum": [
+       "fresh",
+       "stale"
+      ]
      }
     },
     "required": [
@@ -2113,7 +2136,36 @@
     "body": [
      "user_id",
      "org_id",
-     "expires_in_seconds"
+     "expires_in_seconds",
+     "second_factor_verification"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clerk.create_ssobypass_allowlist_user",
+   "name": "Add a user to the sso bypass allowlist",
+   "description": "Puts a user on the allowlist. The request is rejected unless the user holds a verified email address on a domain one of the instance's enterprise connections serves.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "user_id": {
+      "type": "string",
+      "description": "The ID of the user to allowlist."
+     }
+    },
+    "required": [
+     "user_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.clerk.com/v1/sso_bypass_allowlist_users",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "user_id"
     ],
     "body_format": "json"
    }
@@ -2178,6 +2230,10 @@
      "locale": {
       "type": "string",
       "description": "The locale to assign to the user (e.g., \"en-US\", \"fr-FR\")"
+     },
+     "timezone": {
+      "type": "string",
+      "description": "The IANA timezone to assign to the user (e.g., \"America/New_York\", \"Europe/Paris\"). Set to null to clear it and allow automatic capture on a later trusted sign-in."
      },
      "email_address": {
       "type": "array",
@@ -2301,6 +2357,7 @@
      "first_name",
      "last_name",
      "locale",
+     "timezone",
      "email_address",
      "email_address_identification_status",
      "phone_number",
@@ -2542,7 +2599,7 @@
   {
    "slug": "clerk.delete_domain",
    "name": "Delete a domain",
-   "description": "Deletes a domain for the instance. The instance's active domain cannot be deleted.",
+   "description": "Deletes a domain for the instance. The instance's active domain cannot be deleted. Deleting a non-satellite domain returns 403 `domain_managed_by_integration` for applications in a Vercel-managed workspace; change the domain from the Vercel integration instead.",
    "input": {
     "type": "object",
     "properties": {
@@ -2650,6 +2707,34 @@
     "path": [
      "user_id",
      "external_account_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clerk.delete_invitation",
+   "name": "Delete an invitation",
+   "description": "Permanently deletes the given invitation and the copies of the invitation email Clerk stored for its recipient. Unlike revoking, deleting removes the invitation record itself, which helps honor a data erasure request from someone who was invited but never signed up. Other records that contain the same email address, such as users or organization invitations, are not affected. Invitations of any st",
+   "input": {
+    "type": "object",
+    "properties": {
+     "invitation_id": {
+      "type": "string",
+      "description": "The ID of the invitation to delete"
+     }
+    },
+    "required": [
+     "invitation_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.clerk.com/v1/invitations/{invitation_id}",
+    "path": [
+     "invitation_id"
     ],
     "query": [],
     "header": [],
@@ -3066,6 +3151,34 @@
     "path": [
      "scim_directory_id",
      "mapping_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clerk.delete_ssobypass_allowlist_user",
+   "name": "Remove a user from the sso bypass allowlist",
+   "description": "Removes the user from the allowlist, across every enterprise connection that serves them.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "userID": {
+      "type": "string",
+      "description": "The ID of the allowlisted user"
+     }
+    },
+    "required": [
+     "userID"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.clerk.com/v1/sso_bypass_allowlist_users/{userID}",
+    "path": [
+     "userID"
     ],
     "query": [],
     "header": [],
@@ -3722,6 +3835,40 @@
    }
   },
   {
+   "slug": "clerk.get_directory_group",
+   "name": "Retrieve a directory group",
+   "description": "Returns one group of the directory, as reported by the identity provider. Responds with 404 once the identity provider has deleted the group.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "directory_id": {
+      "type": "string",
+      "description": "The ID of the directory."
+     },
+     "group_id": {
+      "type": "string",
+      "description": "The ID of the group, as assigned by the directory."
+     }
+    },
+    "required": [
+     "directory_id",
+     "group_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.clerk.com/v1/directories/{directory_id}/groups/{group_id}",
+    "path": [
+     "directory_id",
+     "group_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "clerk.get_email_address",
    "name": "Retrieve an email address",
    "description": "Returns the details of an email address.",
@@ -3914,6 +4061,62 @@
      "template_id"
     ],
     "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clerk.get_log",
+   "name": "Retrieve a single log",
+   "description": "Returns a single log entry by its composite key ({event_time_ms}:{event_id}). Unlike the list endpoint, this returns the full payload for the event.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "event_time_and_id": {
+      "type": "string",
+      "description": "Composite identifier in the format `{event_time_ms}:{event_id}`, where `event_time_ms` is the event timestamp as a Unix timestamp in milliseconds and `event_id` is the UUID of the event."
+     }
+    },
+    "required": [
+     "event_time_and_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.clerk.com/v1/logs/{event_time_and_id}",
+    "path": [
+     "event_time_and_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clerk.get_log_schema",
+   "name": "Retrieve the payload schema of a log event type",
+   "description": "Returns the payload schema of a log event type: which fields its payload carries, addressed by the dot-paths that the `payload_filter` and `payload_fields` parameters of the list endpoint accept. `type` accepts a concrete event type (`sign_in.completed`), a trailing-`*` wildcard (`sign_in.*`), or a bare family name (`sign_in`, normalized to `sign_in.*` when no concrete type matches \u2014 the response'",
+   "input": {
+    "type": "object",
+    "properties": {
+     "type": {
+      "type": "string",
+      "description": "The event type to describe: concrete (`sign_in.completed`), trailing-`*` wildcard (`sign_in.*`), or bare family name (`sign_in`). Unknown types return a 422. A bare `*` is not accepted."
+     }
+    },
+    "required": [
+     "type"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.clerk.com/v1/logs/schemas",
+    "path": [],
+    "query": [
+     "type"
+    ],
     "header": [],
     "body": [],
     "body_format": "json"
@@ -5192,6 +5395,51 @@
    }
   },
   {
+   "slug": "clerk.list_directory_group_members",
+   "name": "List directory group members",
+   "description": "Returns the members of a group, as reported by the identity provider, using cursor-based pagination. Each member carries the Clerk user it is linked to, or null until that user has been provisioned.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "directory_id": {
+      "type": "string",
+      "description": "The ID of the directory."
+     },
+     "group_id": {
+      "type": "string",
+      "description": "The ID of the group, as assigned by the directory."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Applies a limit to the number of results returned. Can be used for paginating the results together with `starting_after`."
+     },
+     "starting_after": {
+      "type": "string",
+      "description": "A cursor for pagination. Provide the `starting_after` cursor from a previous response to fetch the next page."
+     }
+    },
+    "required": [
+     "directory_id",
+     "group_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.clerk.com/v1/directories/{directory_id}/groups/{group_id}/members",
+    "path": [
+     "directory_id",
+     "group_id"
+    ],
+    "query": [
+     "limit",
+     "starting_after"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "clerk.list_directory_group_role_mappings",
    "name": "List directory group role mappings",
    "description": "Returns the list of directory group to organization role mappings for a directory, ordered by precedence.",
@@ -5462,6 +5710,190 @@
      "paginated",
      "limit",
      "offset"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clerk.list_log_group_events",
+   "name": "List an event group's logs",
+   "description": "Returns the log entries of one event group past the ones a grouped page of `GET /logs` includes, oldest first, for loading more of a group. Accepts the same event filters as listing logs, so a filtered page keeps loading only matching events.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "group_id": {
+      "type": "string",
+      "description": "The ID of the event group, e.g. a sign-in ID."
+     },
+     "started_at": {
+      "type": "integer",
+      "description": "When the group started (Unix timestamp in milliseconds), the `started_at` of the group item. It bounds the time range searched."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Applies a limit to the number of results returned."
+     },
+     "starting_after": {
+      "type": "string",
+      "description": "The group's `events_cursor` from the grouped view, or the `starting_after` cursor this endpoint returned. Only forward pagination is supported."
+     }
+    },
+    "required": [
+     "group_id",
+     "started_at"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.clerk.com/v1/logs/groups/{group_id}/events",
+    "path": [
+     "group_id"
+    ],
+    "query": [
+     "started_at",
+     "limit",
+     "starting_after"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clerk.list_logs",
+   "name": "List all logs",
+   "description": "Returns a list of logs for the authenticated instance. Use it to find specific events, such as one user's failed sign-ins or every event in a trace. Narrow the search with filters and a time range (`event_time_after` and `event_time_before`), and stop paginating once you have what you need. Syncing or exporting logs through this endpoint isn't allowed; use log drains, part of the Enterprise plan, ",
+   "input": {
+    "type": "object",
+    "properties": {
+     "limit": {
+      "type": "integer",
+      "description": "Applies a limit to the number of results returned. Can be used for paginating the results together with `starting_after` or `ending_before`. At most 100 in the grouped view (the default), and up to 500 with `view=flat`."
+     },
+     "starting_after": {
+      "type": "string",
+      "description": "A cursor for pagination. Provide the starting_after cursor from a previous response to fetch the next page."
+     },
+     "ending_before": {
+      "type": "string",
+      "description": "A cursor for pagination. Provide the ending_before cursor from a previous response to fetch the previous page. Only with `view=flat`, since the grouped view only pages forward."
+     },
+     "subject": {
+      "type": "string",
+      "description": "Filter logs by subject."
+     },
+     "actor": {
+      "type": "string",
+      "description": "Filter logs by actor"
+     },
+     "user_id": {
+      "type": "string",
+      "description": "Filter logs to events involving one user, as either the actor or the subject. Takes the user's ID. Returns a 422 if the value is not a user ID (use `identifier` to filter by email address, phone number, username, or web3 wallet) or if `actor`, `subject`, or `identifier` is also set."
+     },
+     "identifier": {
+      "type": "string",
+      "description": "Filter logs to events where the user is the actor or the subject. Takes an identifier associated with a user: an email address, phone number, username, or web3 wallet. The value must exactly match an identifier stored on a user; it is not a partial or fuzzy match. Verification status is not considered, so an identifier associated with several users matches events for all of them. If it is associat"
+     },
+     "trace_id": {
+      "type": "string",
+      "description": "Filter logs by trace ID (32 hex characters)."
+     },
+     "type": {
+      "type": "string",
+      "description": "Filter logs by event type (e.g., `sign_in.completed`). A trailing `*` matches an event-type family by prefix (e.g. `sign_in.*` matches `sign_in.created`, `sign_in.completed`, ...); the wildcard is only allowed as the last character."
+     },
+     "client_id": {
+      "type": "string",
+      "description": "Filter logs by client ID."
+     },
+     "session_id": {
+      "type": "string",
+      "description": "Filter logs to events produced by one session: the session that was authenticated on the request behind the event. This is the acting session, not the session an event is about. A sign-in creates a session on a request that had none, so `session.created` carries no `session_id` and names the new session in its payload instead. Use `payload_filter[session_id]` with a `type` to filter on that. Event"
+     },
+     "impersonator_user_id": {
+      "type": "string",
+      "description": "Filter logs by impersonator user ID."
+     },
+     "ip_address": {
+      "type": "string",
+      "description": "Filter logs by the client IP address recorded on the event."
+     },
+     "payload_filter": {
+      "type": "object",
+      "description": "Exact-match filters on event payload fields, keyed by the field's dot-path: `payload_filter[user_id]=user_123` or `payload_filter[captcha_attempt_payload.provider]=turnstile`. Requires `type`. Fields are validated against the payload schema of that event type (discoverable via `GET /logs/schemas`); for a trailing-`*` type the valid fields are those common to every matching event type. An unknown f"
+     },
+     "payload_fields": {
+      "type": "string",
+      "description": "Comma-separated payload field dot-paths to include per returned log: `payload_fields=user_id,strategy`. Requires `type`, and the fields are validated against that event type's payload schema the same way as `payload_filter` (with the same caps). Each returned log gains a `payload` object containing only the requested fields, keyed by their dot-paths, with fields absent from an event's payload omit"
+     },
+     "filter_match": {
+      "type": "string",
+      "description": "Controls how `subject`, `type`, `actor`, `user_id`, `identifier`, `trace_id`, `client_id`, `session_id`, `impersonator_user_id`, `ip_address`, and `payload_filter` entries are combined: `all` (default) requires every supplied filter to match; `any` returns events that match at least one of the supplied filters. `event_time_after`, `event_time_before`, and `end_user_facing_only` are always ANDed wi",
+      "enum": [
+       "all",
+       "any"
+      ]
+     },
+     "event_time_after": {
+      "type": "integer",
+      "description": "Sets a lower time boundary for the query (Unix timestamp in milliseconds). Only events on or after this timestamp are eligible to be returned. This parameter constrains the search range but does not guarantee that every matching event within the range is returned in a single response. The server may use an internal time window smaller than the requested range to keep query latency predictable. Whe"
+     },
+     "event_time_before": {
+      "type": "integer",
+      "description": "Sets an upper time boundary for the query (Unix timestamp in milliseconds). Only events on or before this timestamp are eligible to be returned. This parameter constrains the search range but does not guarantee that every matching event within the range is returned in a single response. The server may use an internal time window smaller than the requested range to keep query latency predictable. W"
+     },
+     "end_user_facing_only": {
+      "type": "boolean",
+      "description": "When set to true, only returns events that are marked as end-user facing. When set to false or omitted, returns all events."
+     },
+     "view": {
+      "type": "string",
+      "description": "`grouped`, the default, lists each event group (a flow such as a sign-in) as a single item, next to the logs that belong to no group, newest first: a group sorts by when it started, a log by when it happened. Groups and logs are told apart by `object`. `flat` lists every log on its own. Parameters that only work in one view are rejected with a 422 rather than ignored: - The grouped view only pages",
+      "enum": [
+       "flat",
+       "grouped"
+      ]
+     },
+     "group_type": {
+      "type": "array",
+      "description": "Not allowed with `view=flat`. Group types to keep, e.g. `sign_in`, repeated for several (`group_type=sign_in&group_type=sign_up`). Drops the logs outside any group."
+     },
+     "status": {
+      "type": "array",
+      "description": "Not allowed with `view=flat`. Group statuses to keep, e.g. `failed`, repeated for several (`status=failed&status=completed`). Keeps only groups that concluded that way and drops the logs outside any group. A status is a conclusion (`completed`, `failed`), so groups that haven't concluded never match."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.clerk.com/v1/logs",
+    "path": [],
+    "query": [
+     "limit",
+     "starting_after",
+     "ending_before",
+     "subject",
+     "actor",
+     "user_id",
+     "identifier",
+     "trace_id",
+     "type",
+     "client_id",
+     "session_id",
+     "impersonator_user_id",
+     "ip_address",
+     "payload_filter",
+     "payload_fields",
+     "filter_match",
+     "event_time_after",
+     "event_time_before",
+     "end_user_facing_only",
+     "view",
+     "group_type",
+     "status"
     ],
     "header": [],
     "body": [],
@@ -6058,6 +6490,32 @@
    }
   },
   {
+   "slug": "clerk.list_ssobypass_allowlist_users",
+   "name": "List the sso bypass allowlist",
+   "description": "Returns the users who may verify an email code instead of reaching their identity provider when enterprise SSO is unreachable.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "enterprise_connection_id": {
+      "type": "string",
+      "description": "Restrict the list to the users this enterprise connection serves."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.clerk.com/v1/sso_bypass_allowlist_users",
+    "path": [],
+    "query": [
+     "enterprise_connection_id"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "clerk.list_user_biometric_credentials",
    "name": "List a user's biometric credentials",
    "description": "Returns the active biometric credentials enrolled by the user.",
@@ -6200,6 +6658,46 @@
     "body": [
      "public_metadata",
      "private_metadata"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "clerk.merge_user",
+   "name": "Merge another user into this user",
+   "description": "Moves the identifications, connected accounts, passkeys, TOTP, backup codes, organization memberships, membership requests, suggestions and metadata of the user in `from_user_id` onto the user in the path, then deletes the `from_user_id` user. Where both users have a value, the user in the path keeps its own. First and last name, profile image, `external_id`, and the password are taken from the `f",
+   "input": {
+    "type": "object",
+    "properties": {
+     "user_id": {
+      "type": "string",
+      "description": "The ID of the user that remains after the merge"
+     },
+     "from_user_id": {
+      "type": "string",
+      "description": "The ID of the user to merge into the user in the path. This user is deleted."
+     },
+     "dry_run": {
+      "type": "boolean",
+      "description": "Return the merged user without changing anything."
+     }
+    },
+    "required": [
+     "from_user_id",
+     "user_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.clerk.com/v1/users/{user_id}/merge",
+    "path": [
+     "user_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "from_user_id",
+     "dry_run"
     ],
     "body_format": "json"
    }
@@ -7473,6 +7971,10 @@
       "type": "boolean",
       "description": "Whether the directory is enabled."
      },
+     "paused": {
+      "type": "boolean",
+      "description": "Pause or resume syncing. Pausing rejects provisioning requests and skips scheduled syncs while keeping the organization memberships the directory granted, so sync picks up where it left off. Disabling removes them instead."
+     },
      "provider": {
       "type": "string",
       "description": "The identity provider for this directory."
@@ -7501,6 +8003,7 @@
     "body": [
      "name",
      "enabled",
+     "paused",
      "provider",
      "attribute_mapping",
      "group_role_mapping_enabled"
@@ -7704,7 +8207,7 @@
      },
      "allowed_origins": {
       "type": "array",
-      "description": "For browser-like stacks such as browser extensions, Electron (not officially supported), or Capacitor.js (not officially supported), the instance allowed origins need to be updated with the request origin value. For Chrome extensions popup, background, or service worker pages, the origin is chrome-extension://extension_uuid. For Electron apps the default origin is http://localhost:3000. For Capaci"
+      "description": "For browser-like stacks such as browser extensions, Electron, or Capacitor.js (not officially supported), the instance allowed origins need to be updated with the request origin value. For Chrome extensions popup, background, or service worker pages, the origin is chrome-extension://extension_uuid. For Electron apps using `@clerk/electron`, the origins are the custom renderer scheme registered wit"
      },
      "allowed_subdomains": {
       "type": "array",
@@ -7834,6 +8337,10 @@
       "type": "boolean",
       "description": "Whether dynamic OAuth client registration is enabled for the instance (RFC 7591)."
      },
+     "dynamic_client_allowed_scopes": {
+      "type": "array",
+      "description": "Administrator-selected scope ceiling for dynamically registered and automatically admitted CIMD clients. Null preserves registered client limits; defaults must be a subset. Fresh user consent is required for expansion."
+     },
      "default_scopes": {
       "type": "array",
       "description": "Default scopes assigned when a dynamically registered or first-contact CIMD client omits `scope`. Accepts built-in keys and current custom catalog keys. `advertised` does not affect eligibility. Duplicate keys, unknown keys, and `offline_access` are rejected. An empty array or null resets to Clerk-provided defaults."
@@ -7845,6 +8352,10 @@
      "aud_claim_enabled": {
       "type": "boolean",
       "description": "Whether OAuth access tokens can include an aud claim derived from the RFC 8707 resource parameter."
+     },
+     "aud_claim_refresh_backfill_enabled": {
+      "type": "boolean",
+      "description": "Whether refresh grants without a resource can adopt the requested resource when audience claims are enabled."
      },
      "pkce_required": {
       "type": "boolean",
@@ -7873,9 +8384,11 @@
     "header": [],
     "body": [
      "dynamic_oauth_client_registration",
+     "dynamic_client_allowed_scopes",
      "default_scopes",
      "oauth_jwt_access_tokens",
      "aud_claim_enabled",
+     "aud_claim_refresh_backfill_enabled",
      "pkce_required",
      "client_id_metadata_documents_advertised",
      "client_id_metadata_documents_only_allow_pre_registered_clients",
@@ -7955,10 +8468,6 @@
      "rules_enabled": {
       "type": "boolean",
       "description": "Set true to enforce Protect rules on this instance. Set false to stop enforcing and return the instance to its default posture, where traffic is still evaluated in shadow but nothing is blocked. This does not remove the instance from Protect."
-     },
-     "specter_enabled": {
-      "type": "boolean",
-      "description": ""
      }
     },
     "required": []
@@ -7970,8 +8479,7 @@
     "query": [],
     "header": [],
     "body": [
-     "rules_enabled",
-     "specter_enabled"
+     "rules_enabled"
     ],
     "body_format": "json"
    }
@@ -8162,6 +8670,18 @@
       "type": "boolean",
       "description": "True to require the Proof Key of Code Exchange (PKCE) flow."
      },
+     "audience_uri": {
+      "type": "string",
+      "description": "An absolute resource URI for a confidential application (RFC 8707 section 2). Registers a resource with no accepted scopes, or adopts an unowned resource with confirmation. Every claimed URI remains permanently reserved to this app, including retirement and deletion, and counts toward the instance resource quota. Changing it stops new exchanges from the old audience immediately. Already-issued tok"
+     },
+     "token_exchange_enabled": {
+      "type": "boolean",
+      "description": "Enable exchanges from the active audience. Requires an audience URI. Disabling preserves target configuration."
+     },
+     "adopt_audience_resource": {
+      "type": "boolean",
+      "description": "Confirm adoption of an existing unowned resource, preserving its accepted scopes and target references. Does not override another application's reservation."
+     },
      "device_authorization_grant_enabled": {
       "type": "boolean",
       "description": "True to enable the OAuth Device Authorization Grant for this application. Enabling requires the new OAuth IdP and a reachable device verification page. Omit this field to leave the setting unchanged."
@@ -8190,6 +8710,9 @@
      "scopes",
      "consent_screen_enabled",
      "pkce_required",
+     "audience_uri",
+     "token_exchange_enabled",
+     "adopt_audience_resource",
      "device_authorization_grant_enabled",
      "public"
     ],
@@ -8225,7 +8748,11 @@
      },
      "self_serve_sso_enabled": {
       "type": "boolean",
-      "description": "Whether this organization can configure self-serve enterprise SSO. Requires the instance to have the self-serve SSO entitlement enabled."
+      "description": "Whether this organization can configure self-serve enterprise SSO."
+     },
+     "self_serve_directory_sync_enabled": {
+      "type": "boolean",
+      "description": "Whether this organization can configure self-serve Directory Sync (SCIM)."
      },
      "created_at": {
       "type": "string",
@@ -8234,6 +8761,10 @@
      "role_set_key": {
       "type": "string",
       "description": "The key of the [role set](https://clerk.com/docs/guides/organizations/control-access/role-sets) to assign to this organization."
+     },
+     "reassignment_mappings": {
+      "type": "object",
+      "description": "Maps role keys in the organization's current role set to role keys in the new role set. Only applies when `role_set_key` changes the role set. Every role that a member holds and that the new role set does not include must be mapped, otherwise the request fails with a 422. Mapping a role that both role sets include moves its members to the destination role. Memberships are reassigned asynchronously"
      }
     },
     "required": [
@@ -8254,8 +8785,10 @@
      "max_allowed_memberships",
      "admin_delete_enabled",
      "self_serve_sso_enabled",
+     "self_serve_directory_sync_enabled",
      "created_at",
-     "role_set_key"
+     "role_set_key",
+     "reassignment_mappings"
     ],
     "body_format": "json"
    }
@@ -8594,6 +9127,10 @@
       "type": "boolean",
       "description": "Whether the directory is enabled."
      },
+     "paused": {
+      "type": "boolean",
+      "description": "Pause or resume syncing. Pausing rejects provisioning requests and skips scheduled syncs while keeping the organization memberships the directory granted, so sync picks up where it left off. Disabling removes them instead."
+     },
      "provider": {
       "type": "string",
       "description": "The identity provider for this directory."
@@ -8622,6 +9159,7 @@
     "body": [
      "name",
      "enabled",
+     "paused",
      "provider",
      "attribute_mapping",
      "group_role_mapping_enabled"
@@ -8694,6 +9232,10 @@
      "locale": {
       "type": "string",
       "description": "The locale to assign to the user (e.g., \"en-US\", \"fr-FR\")"
+     },
+     "timezone": {
+      "type": "string",
+      "description": "The IANA timezone to assign to the user (e.g., \"America/New_York\", \"Europe/Paris\"). Set to null to clear it and allow automatic capture on a later trusted sign-in."
      },
      "primary_email_address_id": {
       "type": "string",
@@ -8793,6 +9335,7 @@
      "first_name",
      "last_name",
      "locale",
+     "timezone",
      "primary_email_address_id",
      "notify_primary_email_address_changed",
      "primary_phone_number_id",

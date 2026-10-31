@@ -55,7 +55,7 @@ Our customers love what we do. We work hard to deliver the best results and user
 [Excellent Verification Service](https://www.millionverifier.com/why-millionverifier/excellent-email-verification-service)
 ### Email List Verification & Cleaning
 URL: https://www.millionverifier.com/email-list-verification/
-Last updated: 2026-06-05T12:38:10.000Z
+Last updated: 2026-10-26T10:03:33.000Z
 MillionVerifier aims to go above and beyond when it comes to **email list cleaning**; hence MillionVerifier is the only [email list verification service ](https://www.millionverifier.com/)with 40+ ready-to-use email marketing integrations to verify your email lists.
 
 We are simplifying email list verification for you. Once you connect your email service provider to our email list verifying software, you can import your email lists with one click to start email verification. You can remove bad emails without exporting a list and taking manual action in your email account.
@@ -104,14 +104,6 @@ You can also try our email list cleaning system for free. Create an account and 
 ### Email List Cleaning Reviews
 
 We have created the most accurate email list verifier and an intuitive user interface. We have been rated an [excellent email list cleaning service](https://www.millionverifier.com/why-millionverifier/excellent-email-verification-service) on Trustpilot because we always do our best to serve our customers.
-
-### Automated Email List Validation
-
-A clean email list is critical in email marketing. Using the same built-in or custom integrations, you can set up an automated email list cleaning as well. We will verify all your emails in your email list every day and remove any bad emails automatically from your account.
-
-[Automated email list cleaning](https://www.millionverifier.com/services/automated-email-verification-everclean) needs to be set up once, and your lists will be forever clean.
-
-MillionVerifier EverClean is available in a monthly subscription. You can compare the prices here: [email verification prices](https://www.millionverifier.com/#prices).
 
 ---
 
@@ -233,7 +225,6 @@ We have created MillionVerifier to provide the best email verification service p
 Our customers love what we do. We work hard to deliver the best results and user experience for our customers.
 
 [Excellent Verification Service](https://www.millionverifier.com/why-millionverifier/excellent-email-verification-service)
-
 ### Clean Old Email Lists
 URL: https://www.millionverifier.com/clean-old-email-lists/
 Last updated: 2026-06-05T12:39:28.000Z
@@ -377,7 +368,6 @@ We have created MillionVerifier to provide the best email verification service p
 Our customers love what we do. We work hard to deliver the best results and user experience for our customers.
 
 [Excellent Verification Service](https://www.millionverifier.com/why-millionverifier/excellent-email-verification-service)
-
 ### 99%+ Accuracy Rate
 URL: https://www.millionverifier.com/accuracy-rate/
 Last updated: 2026-06-05T12:40:26.000Z
@@ -730,6 +720,8 @@ Buy email verification credits and get up to 30% extra credits for free. Take th
 - 20% extra credits when buying at least 500k credits
 - 30% extra credits when buying at least 2 million credits
 
+![](https://www.millionverifier.com/content/images/video-thumbnails/e86791e52df92dfe8ed7bbdb6d83e584f8772155df97f8c74d199ab793d54fdb-1280.webp)
+
 Buy credits today: [https://app.millionverifier.com/topup](https://app.millionverifier.com/topup?ref=millionverifier.com)  
 
 Promotion dates:
@@ -749,50 +741,42 @@ Why Choose Millionverifier
 
 We have kept improving our email verification software for over six years now, and we are incredibly proud of our outstanding 99%+ email verification accuracy.
 
-[99%+ Accuracy Rate](https://www.millionverifier.com/why-millionverifier/accuracy-rate)
-
 ![Best Email Verification Prices](https://www.millionverifier.com/content/images/2026/06/best_email_verification_prices_hero-1.webp)
 
 We have created MillionVerifier to provide the best email verification service possible for email marketers with higher email verification needs.
 
-[Best Email Verification Prices](https://www.millionverifier.com/why-millionverifier/best-email-verification-prices)
-
 ![Excellent Verification Service](https://www.millionverifier.com/content/images/2026/06/excellent_email_verification_service_hero--2-.webp)
 
 Our customers love what we do. We work hard to deliver the best results and user experience for our customers.
-
-[Excellent Verification Service](https://www.millionverifier.com/why-millionverifier/excellent-email-verification-service)
 ### Terms of Service
 URL: https://www.millionverifier.com/terms-of-service/
-Last updated: 2026-07-20T03:07:38.000Z
-**Published: 20 July 2026**
+Last updated: 2026-10-19T10:41:03.000Z
+Published: 19 October 2026
 
-These Terms are a binding contract governing the use of MillionVerifier, including our website, application, API, email-verification tools and related services (the **Services**).
+These Terms are a binding contract governing the use of MillionVerifier, including our website, application, API, email-verification tools and related services (the Services).
 
-The service provider is **GBD Software as a Service Private Limited Company**, registered at 6065 Lakitelek, Szikra tanya 93., Hungary, company registration number **03-10-100682**, Hungarian tax number 27325162-2-03 and EU VAT number HU27325162 (**GBD**, **we**, **us** or **our**). The other party is the business customer identified in the Account or billing details (**Customer** or **you**).
+The service provider is Southern Vector Limited, registered at 26 Applefield Court, Northwood, Christchurch 8051, New Zealand, New Zealand company number 9333930, NZBN 9429052764448 and GST number 145-699-835 (Southern Vector, we, us or our). 
 
-MillionVerifier is available only for business, professional, trade, public-sector or organisational use. Personal, family, household and other consumer use is not allowed. A person who creates or uses an Account for a Customer is an **Authorized User** and confirms that they have authority to act for that Customer. Authorized Users must follow these Terms when using the Services, and the Customer is responsible for them.
+The other party is the business customer identified in the Account or billing details (Customer or you). Southern Vector acquired the MillionVerifier business assets from GBD Software as a Service Private Limited Company (GBD) and assumed the role of Successor Provider, including valid unused Credits, the Credit Ledger and Recovery Records, in accordance with section 10.
 
-A new Customer accepts these Terms by selecting the checkbox during Account creation. We may update the Terms when reasonably needed for legal, security, privacy, fraud-prevention, technical, operational or business reasons. An update takes effect when it is published with a new publication date. Existing Customers will see an in-app notice at their next login, and Customers that have purchased Paid Credits will also receive an email notice. These notices are informational and do not delay the effective date.
+MillionVerifier is available only for business, professional, trade, public-sector or organisational use. Personal, family, household and other consumer use is not allowed. A person who creates or uses an Account for a Customer is an Authorized User and confirms that they have authority to act for that Customer. Authorized Users must follow these Terms when using the Services, and the Customer is responsible for them.
 
-Any access to or use of the Services on or after the publication date—including through the Website, application, API, one-by-one tool, an integration or an automated process using Account credentials—constitutes the Customer’s acceptance of the current Terms. Use by an Authorized User or through the Customer’s API key, integration or other credentials is treated as use by the Customer. A Customer that does not agree with an update must stop all use of the Services and disable automated access.
-
-We may keep reasonable records of Account creation, checkbox acceptance, policy notices and use of the Services after publication, including the version, Account, user, date, time, IP address, user agent, API or integration activity and delivery status. An update will not retrospectively cancel, reduce, expire or reclassify valid unused Paid Credits, add a new charge to an existing prepaid entitlement, remove an accrued claim or reduce the protection already applying to Customer Personal Data.
+A new Customer accepts these Terms by selecting the checkbox during Account creation. We may update the Terms when reasonably needed for legal, security, privacy, fraud-prevention, technical, operational or business reasons. An update takes effect when it is published with a new publication date. Existing Customers will see an in-app notice at their next login, and Customers that have purchased Paid Credits will also receive an email notice. These notices are informational and do not delay the effective date.Any access to or use of the Services on or after the publication date—including through the Website, application, API, one-by-one tool, an integration or an automated process using Account credentials—constitutes the Customer’s acceptance of the current Terms. Use by an Authorized User or through the Customer’s API key, integration or other credentials is treated as use by the Customer. A Customer that does not agree with an update must stop all use of the Services and disable automated access.We may keep reasonable records of Account creation, checkbox acceptance, policy notices and use of the Services after publication, including the version, Account, user, date, time, IP address, user agent, API or integration activity and delivery status. An update will not retrospectively cancel, reduce, expire or reclassify valid unused Paid Credits, add a new charge to an existing prepaid entitlement, remove an accrued claim or reduce the protection already applying to Customer Personal Data.
 
 ## 1\. Key terms
 
-- **Account** means the business account used by the Customer and its Authorized Users.
-- **Credit** means a service-use unit recorded in an Account. Unless stated otherwise, one email-address verification uses one Credit.
-- **Paid Credits** are Credits purchased for money.
-- **Promotional Credits** are any Credits we choose to provide without a separate charge. If offered, they may include registration, email-confirmation, trial and integration Credits; promotional, bonus and Auto Top-Up extras; percentage-based or “+X%” extras; MillionEvergreen Credits; support and goodwill Credits; and Credits for eligible unknown, catch-all or other risky results. Listing a type of Promotional Credit does not promise that it is currently available or will be available in the future. Promotional Credits have no purchase price and a cash refund value of zero.
-- **Credit Ledger** means our record of Credit purchases, additions, use, refunds, corrections, classifications and balances, including the order of those entries.
-- **Inactivity** means a continuous period in which no Paid Credits are purchased and no Credits are used. Receiving Promotional Credits does not interrupt Inactivity.
-- **Recovery Record** means the limited record kept after an inactive Account is removed. It contains a cryptographically hashed email identifier, the remaining Paid and Promotional Credit balances and the minimum Credit Ledger information needed to restore their classification and FIFO order.
-- **Customer Content** means data and material submitted or configured by or for the Customer, including email lists, verification files and results, integrations and support communications.
-- **Personal Data** means information relating to an identified or identifiable natural person.
-- **Customer Personal Data** means Personal Data contained in Customer Content or otherwise processed by us for the Customer.
-- **Website** means millionverifier.com and its subdomains.
-- **Business Transfer** means a sale, merger, reorganisation or other transfer of all or substantially all of MillionVerifier or the business unit that provides it. The company or other legal entity that acquires and continues the business is the **Successor Provider**.
+- Account means the business account used by the Customer and its Authorized Users.
+- Credit means a service-use unit recorded in an Account. Unless stated otherwise, one email-address verification uses one Credit.
+- Paid Credits are Credits purchased for money.
+- Promotional Credits are any Credits we choose to provide without a separate charge. If offered, they may include registration, email-confirmation, trial and integration Credits; promotional, bonus and Auto Top-Up extras; percentage-based or “+X%” extras; MillionEvergreen Credits; support and goodwill Credits; and Credits for eligible unknown, catch-all or other risky results. Listing a type of Promotional Credit does not promise that it is currently available or will be available in the future. Promotional Credits have no purchase price and a cash refund value of zero.
+- Credit Ledger means our record of Credit purchases, additions, use, refunds, corrections, classifications and balances, including the order of those entries.
+- Inactivity means a continuous period in which no Paid Credits are purchased and no Credits are used. Receiving Promotional Credits does not interrupt Inactivity.
+- Recovery Record means the limited record kept after an inactive Account is removed. It contains a cryptographically hashed email identifier, the remaining Paid and Promotional Credit balances and the minimum Credit Ledger information needed to restore their classification and FIFO order.
+- Customer Content means data and material submitted or configured by or for the Customer, including email lists, verification files and results, integrations and support communications.
+- Personal Data means information relating to an identified or identifiable natural person (including "personal information" as defined in the New Zealand Privacy Act 2020).
+- Customer Personal Data means Personal Data contained in Customer Content or otherwise processed by us for the Customer.
+- Website means millionverifier.com and its subdomains.
+- Business Transfer means a sale, merger, reorganisation or other transfer of all or substantially all of MillionVerifier or the business unit that provides it. The company or other legal entity that acquires and continues the business is the Successor Provider.
 
 ## 3\. The Services
 
@@ -810,19 +794,17 @@ The Customer may upload files, use the API, connect its own website or applicati
 
 Credit packages, prices, taxes and payment terms are shown on the Website or at checkout. Paid Credits are normally purchased upfront on a pay-as-you-go basis unless checkout clearly says otherwise.
 
-Unless stated otherwise, prices exclude VAT, sales, use, withholding and similar taxes. The Customer must provide accurate billing-country, business and tax information. We may charge, collect or account for taxes as required by law. If materially false or incomplete information, or an incorrect exemption or reverse-charge claim, causes GBD to incur tax, interest, penalties or reasonable external costs, the Customer must reimburse the resulting amount. This does not apply to costs caused by our own error or legal non-compliance.
+Unless stated otherwise, prices exclude GST, VAT, sales, use, withholding and similar taxes. The Customer must provide accurate billing-country, business and tax information. We may charge, collect or account for GST and other taxes as required by law. If materially false or incomplete information, or an incorrect exemption, zero-rating or reverse-charge claim, causes Southern Vector to incur tax, interest, penalties or reasonable external costs, the Customer must reimburse the resulting amount. This does not apply to costs caused by our own error or legal non-compliance.
 
 Payments are handled by the payment processors offered at checkout, which may include Stripe or PayPal. Anyone using a payment method confirms that they are authorised to use it. We do not ordinarily receive full payment-card details from those processors.
 
 ### Credit rules
 
-Credits are contractual service-use units. They are not cash, legal tender, electronic money, a deposit or a withdrawable stored-value balance, and they do not earn interest. Except for restoration of an inactive Account or a Business Transfer, Credits may not be sold, assigned or transferred between Accounts. A displayed Credit balance does not by itself represent money owed by GBD.
+Credits are contractual service-use units. They are not cash, legal tender, electronic money, a deposit or a withdrawable stored-value balance, and they do not earn interest. Except for restoration of an inactive Account or a Business Transfer, Credits may not be sold, assigned or transferred between Accounts. A displayed Credit balance does not by itself represent money owed by Southern Vector.
 
-The quantity bought for payment is recorded as Paid Credits. Any free amount actually added with a purchase or otherwise is recorded as Promotional Credits. Promotion-specific terms may set eligibility, quantities, use restrictions, combination rules or a clearly disclosed expiry date. A promotional extra offered with one purchase does not create a right to receive it with any later purchase.
+The quantity bought for payment is recorded as Paid Credits. Any free amount actually added with a purchase or otherwise is recorded as Promotional Credits. Promotion-specific terms may set eligibility, quantities, use restrictions, combination rules or a clearly disclosed expiry date. A promotional extra offered with one purchase does not create a right to receive it with any later purchase.Paid Credits do not expire merely because time passes. Promotional Credits also do not expire merely because time passes unless an expiry date was clearly disclosed when they were granted. Account inactivity or administrative removal does not itself cause Credits to expire or be forfeited.
 
-Paid Credits do not expire merely because time passes. Promotional Credits also do not expire merely because time passes unless an expiry date was clearly disclosed when they were granted. Account inactivity or administrative removal does not itself cause Credits to expire or be forfeited.
-
-Credits are used globally on a first-in, first-out (**FIFO**) basis. The oldest Credit entry is used first, whether it is Paid or Promotional. If entries have the same timestamp, the order in the Credit Ledger applies. To identify the Paid and Promotional portions of the remaining balance, we may work backwards through the Credit Ledger from the most recent unconsumed entries.
+Credits are used globally on a first-in, first-out (FIFO) basis. The oldest Credit entry is used first, whether it is Paid or Promotional. If entries have the same timestamp, the order in the Credit Ledger applies. To identify the Paid and Promotional portions of the remaining balance, we may work backwards through the Credit Ledger from the most recent unconsumed entries.
 
 A goodwill Credit, including one issued for an eligible unknown or catch-all result, is a new Promotional Credit added when it is issued. It does not restore the type or original position of the Credit previously used.
 
@@ -834,20 +816,16 @@ If the Customer enables Auto Top-Up, it authorises us and our payment processor 
 
 ### Refunds
 
-Except for the Money Back Guarantee below and any mandatory legal right, Paid Credit purchases are final and non-refundable. Promotional Credits cannot be exchanged for money and do not increase any cash refund, statutory reimbursement, payment reversal or Money Back Guarantee payment.
-
-If we refund a Credit purchase, we may remove unused Paid Credits from that purchase and any Promotional Credits granted with it.
-
-A Customer in breach of these Terms is not eligible for a refund, repayment, redemption, reversal or other monetary value for any Credits, including under the Money Back Guarantee. No refund is due merely because an Account is restricted, suspended or closed. We may also cancel Promotional Credits and Credits obtained, retained or generated through the breach, fraud or abuse. These rules apply except where mandatory law requires otherwise.
+Except for the Money Back Guarantee below and any mandatory legal right, Paid Credit purchases are final and non-refundable. Promotional Credits cannot be exchanged for money and do not increase any cash refund, statutory reimbursement, payment reversal or Money Back Guarantee payment.If we refund a Credit purchase, we may remove unused Paid Credits from that purchase and any Promotional Credits granted with it.A Customer in breach of these Terms is not eligible for a refund, repayment, redemption, reversal or other monetary value for any Credits, including under the Money Back Guarantee. No refund is due merely because an Account is restricted, suspended or closed. We may also cancel Promotional Credits and Credits obtained, retained or generated through the breach, fraud or abuse. These rules apply except where mandatory law requires otherwise.
 
 ## 5\. Money Back Guarantee
 
 Our 100% Money Back Guarantee applies only if the Customer and Account comply with these Terms and all of the following conditions are met:
 
-1. The addresses were verified by uploading a file through https://app.millionverifier.com/email\_verify. API and one-by-one verifications are excluded where we do not retain enough information to verify the claim.
-2. The Customer sent an email to every qualifying address returned as **OK** within 7 days after verification.
+1. The addresses were verified by uploading a file through [https://app.millionverifier.com/email\_verify](https://app.millionverifier.com/email%5Fverify?ref=millionverifier.com). API and one-by-one verifications are excluded where we do not retain enough information to verify the claim.
+2. The Customer sent an email to every qualifying address returned as OK within 7 days after verification.
 3. More than 4% of those qualifying OK addresses hard bounced because the address did not exist. Soft bounces are excluded because they may result from sender reputation, configuration, content or other factors outside the verification result.
-4. The percentage is calculated as **qualifying hard bounces / qualifying OK addresses × 100**. The qualifying period begins with the most recent successful Paid Credit purchase made before the relevant verifications.
+4. The percentage is calculated as qualifying hard bounces / qualifying OK addresses × 100\. The qualifying period begins with the most recent successful Paid Credit purchase made before the relevant verifications.
 5. The Customer used a professional email sender that provides a detailed breakdown of hard and soft bounces.
 6. The Customer provides the reports, exports and reasonable access needed to review the claim. A password should not be shared where a secure export, delegated access or another reasonable method is available.
 7. The Customer and Account remain compliant while the emails are verified, the claim is reviewed and any refund is paid. We may reject or cancel a claim if a breach is identified before payment and recover a refund obtained through materially false, incomplete or misleading information.
@@ -872,16 +850,16 @@ We may keep the Recovery Record for as long as reasonably needed to honour the C
 
 ## 9\. Indemnity
 
-To the extent permitted by law, the Customer will indemnify GBD and its affiliates against third-party claims, reasonable costs, proceedings, losses, damages and liabilities arising directly from:
+To the extent permitted by law, the Customer will indemnify Southern Vector and its affiliates against third-party claims, reasonable costs, proceedings, losses, damages and liabilities arising directly from:
 
 - the Customer’s unlawful use of the Services or material breach of these Terms;
 - the Customer’s fault, negligence or breach of statutory duty; or
-- robots, spiders, crawlers or similar tools used by the Customer, or other Customer activity that places an unreasonable burden on infrastructure used by GBD or its affiliates.
+- robots, spiders, crawlers or similar tools used by the Customer, or other Customer activity that places an unreasonable burden on infrastructure used by Southern Vector or its affiliates.
 
-The Customer is not required to indemnify GBD for loss caused by GBD’s own breach, negligence or unlawful conduct, or where the obligation cannot lawfully apply.
+The Customer is not required to indemnify Southern Vector for loss caused by Southern Vector’s own breach, negligence or unlawful conduct, or where the obligation cannot lawfully apply.
 
 ## 10\. Business Transfer
 
-By agreeing to these Terms, the Customer gives prior and express consent to GBD transferring its entire contractual position to a Successor Provider as part of a Business Transfer. This consent is given for the purposes of section 6:209 of Act V of 2013 on the Hungarian Civil Code and any equivalent applicable rule.
+By agreeing to these Terms, the Customer gives prior and express consent to Southern Vector transferring its entire contractual position (by assignment and novation) to a Successor Provider as part of a Business Transfer. This consent is given for the purposes of New Zealand law and any equivalent applicable rule. (Where the Customer’s contract was transferred from GBD to Southern Vector as Successor Provider, the protections and allocation of pre-transfer and post-transfer responsibilities in this Clause 10 continue to apply to that transfer: GBD remains responsible for its breaches and unlawful acts before the transfer date stated in the Business Transfer notice, and Southern Vector is responsible for its own performance and assumed obligations from that transfer date.)
 
-This consent covers these Terms, the D
+This consent covers t

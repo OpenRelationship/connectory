@@ -1,0 +1,2471 @@
+{
+ "_": "GENERATED \u2014 what an authoring tool needs to FIND an operation. The calling table is the .lua beside it.",
+ "provider": "publora",
+ "source": "https://raw.githubusercontent.com/publora/publora-api-docs/main/schema/openapi.yaml",
+ "operations": [
+  {
+   "slug": "publora.add_linked_in_reaction",
+   "name": "Add a reaction to a linked in post",
+   "description": "React to a LinkedIn post with LIKE, PRAISE, EMPATHY, INTEREST, APPRECIATION, or ENTERTAINMENT.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "x-publora-client": {
+      "type": "string",
+      "description": "Optional client identifier accepted by every API-key-authenticated operation. Any non-empty value is preserved; `api` is used when absent. Setting `mcp` triggers the MCP access entitlement check."
+     },
+     "postedId": {
+      "type": "string",
+      "description": "LinkedIn URN (urn:li:share:*, urn:li:ugcPost:*, urn:li:activity:*)"
+     },
+     "reactionType": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "LIKE",
+       "PRAISE",
+       "EMPATHY",
+       "INTEREST",
+       "APPRECIATION",
+       "ENTERTAINMENT"
+      ]
+     },
+     "platformId": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "platformId",
+     "postedId",
+     "reactionType"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.publora.com/api/v1/linkedin-reactions",
+    "path": [],
+    "query": [],
+    "header": [
+     "x-publora-client"
+    ],
+    "body": [
+     "postedId",
+     "reactionType",
+     "platformId"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "publora.attach_managed_user",
+   "name": "Attach an existing user",
+   "description": "Attach an existing standalone Publora user to your workspace as a managed user. Because the target account already exists, this requires the target user's consent: a valid access token belonging to that user (the `accessToken` returned when they sign in), passed as `userAccessToken`. Re-attaching a user who is already in your workspace is idempotent and does not require a consent token. **Requires",
+   "input": {
+    "type": "object",
+    "properties": {
+     "x-publora-client": {
+      "type": "string",
+      "description": "Optional client identifier accepted by every API-key-authenticated operation. Any non-empty value is preserved; `api` is used when absent. Setting `mcp` triggers the MCP access entitlement check."
+     },
+     "email": {
+      "type": "string",
+      "description": "The existing user's email. Provide either email or userId (also accepted as `username`)."
+     },
+     "userId": {
+      "type": "string",
+      "description": "The existing user's ObjectId. Provide either email or userId."
+     },
+     "userAccessToken": {
+      "type": "string",
+      "description": "The target user's access token, proving consent. Required unless the user is already in your workspace. Also accepted as `attachToken` in the body or via the `x-publora-user-token` header."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.publora.com/api/v1/workspace/users/attach",
+    "path": [],
+    "query": [],
+    "header": [
+     "x-publora-client"
+    ],
+    "body": [
+     "email",
+     "userId",
+     "userAccessToken"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "publora.attach_media",
+   "name": "Attach a file to a post by reference",
+   "description": "Attach one image or video to an existing draft or scheduled post using a file reference: an HTTPS download URL plus a stable file ID, the shape ChatGPT supplies through `openai/fileParams` to the MCP `attach_media` tool. Publora downloads the file right away through the same guarded pipeline as `mediaUrls`, which detects the type from the bytes and probes the file. Accepted: JPEG, PNG, GIF, WebP, ",
+   "input": {
+    "type": "object",
+    "properties": {
+     "x-publora-client": {
+      "type": "string",
+      "description": "Optional client identifier accepted by every API-key-authenticated operation. Any non-empty value is preserved; `api` is used when absent. Setting `mcp` triggers the MCP access entitlement check."
+     },
+     "postGroupId": {
+      "type": "string",
+      "description": ""
+     },
+     "x-publora-user-id": {
+      "type": "string",
+      "description": ""
+     },
+     "Idempotency-Key": {
+      "type": "string",
+      "description": "Recommended. Publora recognises a retry by the post ID, `file.file_id` and the sanitized file name. `download_url` and `mime_type` are excluded, so a retry with a refreshed temporary URL replays the original response instead of attaching the file twice. Reusing the key with a different post, file ID or file name returns 422. A failed download frees the key for a retry with a fresh reference. Witho"
+     },
+     "file": {
+      "type": "object",
+      "description": "File reference. A string is rejected, including a local path, base64 data or a bare URL."
+     },
+     "fileName": {
+      "type": "string",
+      "description": "Descriptive file name with an extension. Takes precedence over `file.file_name`; if both are absent the name is `chatgpt-media`. Only the last path segment is kept; it is trimmed, each run of whitespace becomes `_`, and any character other than an ASCII letter, digit, `_`, `.` or `-` is removed. A name that ends up empty or only dots is rejected, including one taken from `file.file_name`. get-post"
+     }
+    },
+    "required": [
+     "file",
+     "postGroupId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.publora.com/api/v1/attach-media/{postGroupId}",
+    "path": [
+     "postGroupId"
+    ],
+    "query": [],
+    "header": [
+     "x-publora-client",
+     "x-publora-user-id",
+     "Idempotency-Key"
+    ],
+    "body": [
+     "file",
+     "fileName"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "publora.complete_company_post_media",
+   "name": "Verify a company media upload",
+   "description": "Agency/Company path. Discover available formats using Company /platforms. Uses the caller\u2019s current Company Workspace permissions.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "postGroupId": {
+      "type": "string",
+      "description": ""
+     },
+     "mediaFileId": {
+      "type": "string",
+      "description": ""
+     },
+     "x-publora-client": {
+      "type": "string",
+      "description": "Optional client identifier accepted by every API-key-authenticated operation. Any non-empty value is preserved; `api` is used when absent. Setting `mcp` triggers the MCP access entitlement check."
+     },
+     "X-Publora-Workspace-Id": {
+      "type": "string",
+      "description": "Exact accessible Company Workspace ID returned by Company context."
+     }
+    },
+    "required": [
+     "X-Publora-Workspace-Id",
+     "mediaFileId",
+     "postGroupId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.publora.com/api/v1/company/post-groups/{postGroupId}/media/{mediaFileId}/complete",
+    "path": [
+     "postGroupId",
+     "mediaFileId"
+    ],
+    "query": [],
+    "header": [
+     "x-publora-client",
+     "X-Publora-Workspace-Id"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "publora.complete_media",
+   "name": "Probe and finalize an uploaded media file",
+   "description": "Optionally run the server-side media probe immediately after uploading bytes to the pre-signed URL. This call is not required: scheduling also probes media that is still uploading.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "x-publora-client": {
+      "type": "string",
+      "description": "Optional client identifier accepted by every API-key-authenticated operation. Any non-empty value is preserved; `api` is used when absent. Setting `mcp` triggers the MCP access entitlement check."
+     },
+     "mediaFileId": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "mediaFileId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.publora.com/api/v1/complete-media/{mediaFileId}",
+    "path": [
+     "mediaFileId"
+    ],
+    "query": [],
+    "header": [
+     "x-publora-client"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "publora.create_company_draft",
+   "name": "Create an agency draft with platform settings",
+   "description": "Agency/Company path. Discover available formats using Company /platforms. Uses the caller\u2019s current Company Workspace permissions.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "x-publora-client": {
+      "type": "string",
+      "description": "Optional client identifier accepted by every API-key-authenticated operation. Any non-empty value is preserved; `api` is used when absent. Setting `mcp` triggers the MCP access entitlement check."
+     },
+     "X-Publora-Workspace-Id": {
+      "type": "string",
+      "description": "Exact accessible Company Workspace ID returned by Company context."
+     },
+     "Idempotency-Key": {
+      "type": "string",
+      "description": "Stable key. After an uncertain response retry the identical body and key; use a new key for a new intended operation."
+     },
+     "content": {
+      "type": "string",
+      "description": ""
+     },
+     "notes": {
+      "type": "string",
+      "description": ""
+     },
+     "topic": {
+      "type": "string",
+      "description": ""
+     },
+     "platforms": {
+      "type": "array",
+      "description": "Exact Company channel keys; [] permits a channel-less draft."
+     },
+     "platformContents": {
+      "type": "object",
+      "description": ""
+     },
+     "isPlatformSpecific": {
+      "type": "boolean",
+      "description": "If supplied, sameContent is also required and must have the opposite value."
+     },
+     "sameContent": {
+      "type": "boolean",
+      "description": ""
+     },
+     "platformSettings": {
+      "type": "object",
+      "description": "Agency platform settings; discover the available formats and settings through GET /company/platforms. This complete map replaces saved settings; only selected platforms may carry entries."
+     },
+     "threadingSettings": {
+      "type": "object",
+      "description": ""
+     },
+     "videoTimestamp": {
+      "type": "number",
+      "description": ""
+     },
+     "firstComment": {
+      "type": "object",
+      "description": "One first comment under supported own posts. null clears; firstComments arrays and delays remain personal-only."
+     }
+    },
+    "required": [
+     "Idempotency-Key",
+     "X-Publora-Workspace-Id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.publora.com/api/v1/company/post-groups",
+    "path": [],
+    "query": [],
+    "header": [
+     "x-publora-client",
+     "X-Publora-Workspace-Id",
+     "Idempotency-Key"
+    ],
+    "body": [
+     "content",
+     "notes",
+     "topic",
+     "platforms",
+     "platformContents",
+     "isPlatformSpecific",
+     "sameContent",
+     "platformSettings",
+     "threadingSettings",
+     "videoTimestamp",
+     "firstComment"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "publora.create_company_webhook",
+   "name": "Create a workspace post event subscription",
+   "description": "Agency Workspace settings managers only. Personal webhook endpoints do not access Company subscriptions.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "x-publora-client": {
+      "type": "string",
+      "description": "Optional client identifier accepted by every API-key-authenticated operation. Any non-empty value is preserved; `api` is used when absent. Setting `mcp` triggers the MCP access entitlement check."
+     },
+     "X-Publora-Workspace-Id": {
+      "type": "string",
+      "description": "Exact accessible Company Workspace ID returned by Company context."
+     },
+     "Idempotency-Key": {
+      "type": "string",
+      "description": "Stable key. After an uncertain response retry the identical body and key; use a new key for a new intended operation."
+     },
+     "name": {
+      "type": "string",
+      "description": "Trimmed, nonempty subscription name."
+     },
+     "url": {
+      "type": "string",
+      "description": "Trimmed public HTTP(S) URL. Private/local destinations are refused and DNS is checked again at delivery. Redirects are not followed."
+     },
+     "events": {
+      "type": "array",
+      "description": ""
+     },
+     "isActive": {
+      "type": "boolean",
+      "description": "Defaults to true on create; unchanged when omitted on update. Enabling resets the failure count."
+     }
+    },
+    "required": [
+     "Idempotency-Key",
+     "X-Publora-Workspace-Id",
+     "events",
+     "name",
+     "url"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.publora.com/api/v1/company/webhooks",
+    "path": [],
+    "query": [],
+    "header": [
+     "x-publora-client",
+     "X-Publora-Workspace-Id",
+     "Idempotency-Key"
+    ],
+    "body": [
+     "name",
+     "url",
+     "events",
+     "isActive"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "publora.create_linked_in_comment",
+   "name": "Add a comment to a linked in post",
+   "description": "Post a comment on a LinkedIn post. Supports replies to existing comments via the parentComment parameter. Raw input may be up to 10000 characters; after mention processing, the text sent to LinkedIn must be at most 1250 characters. The message string is required but may be empty with a non-blank imageUrl. Empty or whitespace-only text without an image returns HTTP 400. Supports @mentions using @{u",
+   "input": {
+    "type": "object",
+    "properties": {
+     "x-publora-client": {
+      "type": "string",
+      "description": "Optional client identifier accepted by every API-key-authenticated operation. Any non-empty value is preserved; `api` is used when absent. Setting `mcp` triggers the MCP access entitlement check."
+     },
+     "postedId": {
+      "type": "string",
+      "description": "LinkedIn post URN (urn:li:share:*, urn:li:ugcPost:*, or urn:li:activity:*). Activity URNs are attempted directly, with same-ID ugcPost/share fallbacks for retryable LinkedIn target errors."
+     },
+     "message": {
+      "type": "string",
+      "description": "Required string; may be empty with imageUrl. Raw comment input (max 10000 characters); after mention conversion, the sent text is limited to 1250 characters. Supports @{urn:li:person:ID|Name} and organization mentions."
+     },
+     "platformId": {
+      "type": "string",
+      "description": "LinkedIn connection ID"
+     },
+     "parentComment": {
+      "type": "string",
+      "description": "Optional parent comment URN for replies"
+     },
+     "imageUrl": {
+      "type": "string",
+      "description": "Public HTTPS URL of one JPEG, PNG or GIF image (max 10 MB, fewer than 36152320 pixels, at most 250 GIF frames). Required for empty or whitespace-only message text. Upload must succeed before the comment is created."
+     }
+    },
+    "required": [
+     "message",
+     "platformId",
+     "postedId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.publora.com/api/v1/linkedin-comments",
+    "path": [],
+    "query": [],
+    "header": [
+     "x-publora-client"
+    ],
+    "body": [
+     "postedId",
+     "message",
+     "platformId",
+     "parentComment",
+     "imageUrl"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "publora.create_linked_in_reshare",
+   "name": "Reshare an existing linked in post",
+   "description": "Reshare (repost) an existing LinkedIn post to your own feed with optional commentary. Works for personal and company-page connections (authored as the member or the organization automatically).",
+   "input": {
+    "type": "object",
+    "properties": {
+     "x-publora-client": {
+      "type": "string",
+      "description": "Optional client identifier accepted by every API-key-authenticated operation. Any non-empty value is preserved; `api` is used when absent. Setting `mcp` triggers the MCP access entitlement check."
+     },
+     "platformId": {
+      "type": "string",
+      "description": "LinkedIn connection ID"
+     },
+     "parent": {
+      "type": "string",
+      "description": "URN of the post to reshare (urn:li:share:* or urn:li:ugcPost:*)"
+     },
+     "commentary": {
+      "type": "string",
+      "description": "Optional text added above the reshare (max 3000 characters)"
+     },
+     "visibility": {
+      "type": "string",
+      "description": "Optional visibility (case-insensitive). Defaults to PUBLIC. CONNECTIONS is personal-profile-only; organization/company-page reshares must use PUBLIC.",
+      "enum": [
+       "PUBLIC",
+       "CONNECTIONS"
+      ]
+     }
+    },
+    "required": [
+     "parent",
+     "platformId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.publora.com/api/v1/linkedin-reshare",
+    "path": [],
+    "query": [],
+    "header": [
+     "x-publora-client"
+    ],
+    "body": [
+     "platformId",
+     "parent",
+     "commentary",
+     "visibility"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "publora.create_managed_user",
+   "name": "Create a managed user",
+   "description": "Create a new managed user under your workspace. The user can then connect their social accounts via a connection URL. **Requires Workspace access - contact serge@publora.com to enable.**",
+   "input": {
+    "type": "object",
+    "properties": {
+     "x-publora-client": {
+      "type": "string",
+      "description": "Optional client identifier accepted by every API-key-authenticated operation. Any non-empty value is preserved; `api` is used when absent. Setting `mcp` triggers the MCP access entitlement check."
+     },
+     "username": {
+      "type": "string",
+      "description": "User's email address (must be unique)"
+     },
+     "displayName": {
+      "type": "string",
+      "description": "Display name (defaults to email if not provided)"
+     }
+    },
+    "required": [
+     "username"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.publora.com/api/v1/workspace/users",
+    "path": [],
+    "query": [],
+    "header": [
+     "x-publora-client"
+    ],
+    "body": [
+     "username",
+     "displayName"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "publora.create_post",
+   "name": "Create and schedule a social media post",
+   "description": "Create a post to be published across one or more social media platforms. Supports text, images, and video (1 video per post). The image count per post is platform-specific: Twitter/X, Bluesky, and Mastodon allow up to 4; Instagram, LinkedIn, Facebook, and Telegram allow up to 10; Threads allows up to 20. There is no separate \"carousel\" field \u2014 a carousel is formed implicitly by attaching multiple ",
+   "input": {
+    "type": "object",
+    "properties": {
+     "x-publora-client": {
+      "type": "string",
+      "description": "Optional client identifier accepted by every API-key-authenticated operation. Any non-empty value is preserved; `api` is used when absent. Setting `mcp` triggers the MCP access entitlement check."
+     },
+     "x-publora-user-id": {
+      "type": "string",
+      "description": "Managed user ID (workspace only)"
+     },
+     "Idempotency-Key": {
+      "type": "string",
+      "description": "Opt-in idempotency. Omit the header for the previous behaviour \u2014 every call creates a new post. Send a unique value (a UUID is a good choice) per logical operation to make retries safe: - Same key + identical body, original request finished \u2192 the original status code and response body are replayed. No second post. - Same key + identical body, original request still in flight \u2192 `409` (`IDEMPOTENCY_"
+     },
+     "content": {
+      "type": "string",
+      "description": "Normally required and non-empty. May be omitted or empty only when a targeted LinkedIn connection has repost intent via platformSettings.linkedin.repostEnabled=true or a non-empty repostParentUrn; repost validation still requires a valid parent/setting combination."
+     },
+     "platforms": {
+      "type": "array",
+      "description": "Array of platform connection IDs (format: platform-platformId). Each ID must appear at most once; a repeated ID is rejected with 400 \"Platforms must not contain duplicates\"."
+     },
+     "scheduledTime": {
+      "type": "string",
+      "description": "ISO 8601 UTC datetime for scheduling. Omit for draft. If the time is in the past, it is clamped to the current server time and a `SCHEDULED_TIME_COERCED` warning is returned \u2014 the post is still created. Read the `scheduledTime` in the response for the time actually stored. Times less than 5 minutes in the past are always tolerated this way. Strict rejection for a time 5 or more minutes in the past"
+     },
+     "publishNow": {
+      "type": "boolean",
+      "description": "`true` publishes immediately. The server uses its current time as scheduledTime, stores the post as `scheduled` and starts delivery at once; the response does not wait for the platforms. The usual connection, plan, content, media and first-comment validation applies. Publish Now uses the monthly post allowance (`POST_LIMIT_REACHED`) but takes no slot in the scheduled-post queue and ignores the sch"
+     },
+     "platformSettings": {
+      "type": "object",
+      "description": "Per-platform settings for tiktok, instagram, youtube, threads, twitter, telegram, and linkedin. Unknown platform or nested paths are rejected with 400 PLATFORM_SETTING_UNKNOWN. Merged with defaults on create-post and with existing settings on update-post (omitted fields are preserved)."
+     },
+     "firstComment": {
+      "type": "object",
+      "description": "One text comment Publora posts under the account's own post. Supported platforms: LinkedIn (profiles and company Pages), X, Threads, Bluesky, Mastodon; other targets are skipped and reported in warnings[]. Length is validated per applicable platform with that platform's own counting. Best effort: attempted at most once, never retried; a failed comment never changes the published post."
+     },
+     "firstComments": {
+      "type": "array",
+      "description": "Up to three ordered first comments. Send this or legacy firstComment, never both. Null or [] clears them. Later comments run only after the preceding comment is posted; failure stops the sequence."
+     },
+     "mediaUrls": {
+      "type": "array",
+      "description": "Public https URLs downloaded server-side. Images: 25 MB each; videos: 150 MB each; aggregate: 300 MB. Ingestion is all-or-nothing."
+     }
+    },
+    "required": [
+     "platforms"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.publora.com/api/v1/create-post",
+    "path": [],
+    "query": [],
+    "header": [
+     "x-publora-client",
+     "x-publora-user-id",
+     "Idempotency-Key"
+    ],
+    "body": [
+     "content",
+     "platforms",
+     "scheduledTime",
+     "publishNow",
+     "platformSettings",
+     "firstComment",
+     "firstComments",
+     "mediaUrls"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "publora.create_webhook",
+   "name": "Create a webhook",
+   "description": "Create a new webhook endpoint. Maximum 10 webhooks per user. The webhook secret is only returned on creation - save it securely.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "x-publora-client": {
+      "type": "string",
+      "description": "Optional client identifier accepted by every API-key-authenticated operation. Any non-empty value is preserved; `api` is used when absent. Setting `mcp` triggers the MCP access entitlement check."
+     },
+     "name": {
+      "type": "string",
+      "description": "Friendly name for the webhook"
+     },
+     "url": {
+      "type": "string",
+      "description": "HTTPS URL to receive webhook events"
+     },
+     "events": {
+      "type": "array",
+      "description": "Events to subscribe to. token.expiring is defined but not currently dispatched; post.demoted fires when a scheduled group is returned to draft: reason media_changed (changeType attach, detach, prune_reference or reorder), media_backstop (changeType scheduler_media_backstop) or state_mismatch (changeType scheduler_state_repair). Tolerate unknown changeType and reason values."
+     }
+    },
+    "required": [
+     "events",
+     "name",
+     "url"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.publora.com/api/v1/webhooks",
+    "path": [],
+    "query": [],
+    "header": [
+     "x-publora-client"
+    ],
+    "body": [
+     "name",
+     "url",
+     "events"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "publora.delete_company_webhook",
+   "name": "Delete a workspace subscription",
+   "description": "Agency Workspace settings managers only. Personal webhook endpoints do not access Company subscriptions.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "webhookId": {
+      "type": "string",
+      "description": "Exact subscription ID from this Workspace webhook list."
+     },
+     "x-publora-client": {
+      "type": "string",
+      "description": "Optional client identifier accepted by every API-key-authenticated operation. Any non-empty value is preserved; `api` is used when absent. Setting `mcp` triggers the MCP access entitlement check."
+     },
+     "X-Publora-Workspace-Id": {
+      "type": "string",
+      "description": "Exact accessible Company Workspace ID returned by Company context."
+     },
+     "Idempotency-Key": {
+      "type": "string",
+      "description": "Stable key. After an uncertain response retry the identical body and key; use a new key for a new intended operation."
+     }
+    },
+    "required": [
+     "Idempotency-Key",
+     "X-Publora-Workspace-Id",
+     "webhookId"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.publora.com/api/v1/company/webhooks/{webhookId}",
+    "path": [
+     "webhookId"
+    ],
+    "query": [],
+    "header": [
+     "x-publora-client",
+     "X-Publora-Workspace-Id",
+     "Idempotency-Key"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "publora.delete_linked_in_comment",
+   "name": "Delete a comment from a linked in post",
+   "description": "Remove a comment from a LinkedIn post. Parameters can be provided as query parameters or in the request body.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "x-publora-client": {
+      "type": "string",
+      "description": "Optional client identifier accepted by every API-key-authenticated operation. Any non-empty value is preserved; `api` is used when absent. Setting `mcp` triggers the MCP access entitlement check."
+     },
+     "postedId": {
+      "type": "string",
+      "description": ""
+     },
+     "commentId": {
+      "type": "string",
+      "description": ""
+     },
+     "platformId": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.publora.com/api/v1/linkedin-comments",
+    "path": [],
+    "query": [
+     "postedId",
+     "commentId",
+     "platformId"
+    ],
+    "header": [
+     "x-publora-client"
+    ],
+    "body": [
+     "postedId",
+     "commentId",
+     "platformId"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "publora.delete_media",
+   "name": "Delete an uploaded media file",
+   "description": "Delete a media record and its stored object. If the media belonged to a scheduled post, the post is demoted to draft and must be scheduled again. Media cannot be removed while its post is publishing or after the group has reached published or failed status.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "x-publora-client": {
+      "type": "string",
+      "description": "Optional client identifier accepted by every API-key-authenticated operation. Any non-empty value is preserved; `api` is used when absent. Setting `mcp` triggers the MCP access entitlement check."
+     },
+     "mediaId": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "mediaId"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.publora.com/api/v1/media/{mediaId}",
+    "path": [
+     "mediaId"
+    ],
+    "query": [],
+    "header": [
+     "x-publora-client"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "publora.delete_post",
+   "name": "Delete a scheduled post",
+   "description": "Delete a post group and all associated data. This operation removes: - The post group record - All platform-specific posts (Twitter, LinkedIn, Instagram, etc.) - All media file records from the database - All media files from S3 storage The database deletion is atomic (uses MongoDB transaction). S3 deletion failures are logged but do not fail the request.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "x-publora-client": {
+      "type": "string",
+      "description": "Optional client identifier accepted by every API-key-authenticated operation. Any non-empty value is preserved; `api` is used when absent. Setting `mcp` triggers the MCP access entitlement check."
+     },
+     "postGroupId": {
+      "type": "string",
+      "description": ""
+     },
+     "x-publora-user-id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "postGroupId"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.publora.com/api/v1/delete-post/{postGroupId}",
+    "path": [
+     "postGroupId"
+    ],
+    "query": [],
+    "header": [
+     "x-publora-client",
+     "x-publora-user-id"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "publora.delete_webhook",
+   "name": "Delete a webhook",
+   "description": "Delete a webhook endpoint.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "x-publora-client": {
+      "type": "string",
+      "description": "Optional client identifier accepted by every API-key-authenticated operation. Any non-empty value is preserved; `api` is used when absent. Setting `mcp` triggers the MCP access entitlement check."
+     },
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.publora.com/api/v1/webhooks/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [
+     "x-publora-client"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "publora.detach_managed_user",
+   "name": "Detach a managed user",
+   "description": "Remove a user from your workspace. The user account is not deleted, but is no longer managed by your workspace. **Requires Workspace access - contact serge@publora.com to enable.**",
+   "input": {
+    "type": "object",
+    "properties": {
+     "x-publora-client": {
+      "type": "string",
+      "description": "Optional client identifier accepted by every API-key-authenticated operation. Any non-empty value is preserved; `api` is used when absent. Setting `mcp` triggers the MCP access entitlement check."
+     },
+     "userId": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "userId"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.publora.com/api/v1/workspace/users/{userId}",
+    "path": [
+     "userId"
+    ],
+    "query": [],
+    "header": [
+     "x-publora-client"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "publora.generate_managed_user_api_key",
+   "name": "Generate api key for managed user",
+   "description": "Generate a new API key for a managed user. This key can be used to make API calls on behalf of the managed user (e.g., create posts to their connected social accounts). **Requires Workspace access - contact serge@publora.com to enable.**",
+   "input": {
+    "type": "object",
+    "properties": {
+     "x-publora-client": {
+      "type": "string",
+      "description": "Optional client identifier accepted by every API-key-authenticated operation. Any non-empty value is preserved; `api` is used when absent. Setting `mcp` triggers the MCP access entitlement check."
+     },
+     "userId": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "userId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.publora.com/api/v1/workspace/users/{userId}/api-key",
+    "path": [
+     "userId"
+    ],
+    "query": [],
+    "header": [
+     "x-publora-client"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "publora.get_account_context",
+   "name": "Read plan, features and publishing quotas",
+   "description": "Read-only snapshot of the personal account behind the API key (or the managed user named by `x-publora-user-id`): plan, available features, publishing quotas, schedule horizon and allowed platforms. Call it before a batch of posts and after a quota or feature error. Quotas count platform posts; `limit: null` means unlimited. The snapshot is advisory (`advisory: true`): it reserves nothing, and eve",
+   "input": {
+    "type": "object",
+    "properties": {
+     "x-publora-client": {
+      "type": "string",
+      "description": "Optional client identifier accepted by every API-key-authenticated operation. Any non-empty value is preserved; `api` is used when absent. Setting `mcp` triggers the MCP access entitlement check."
+     },
+     "x-publora-user-id": {
+      "type": "string",
+      "description": "Managed user ID (workspace only)"
+     },
+     "scheduledTime": {
+      "type": "string",
+      "description": "ISO 8601 date-time with `Z` or an explicit offset. Selects the monthly quota period of a planned batch; omit it for the current period. A past time resolves to the current period (see `effectiveQuotaTime`)."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.publora.com/api/v1/account-context",
+    "path": [],
+    "query": [
+     "scheduledTime"
+    ],
+    "header": [
+     "x-publora-client",
+     "x-publora-user-id"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "publora.get_company_post_media",
+   "name": "Read ordinary media and selected auxiliary you tube thumbnail",
+   "description": "Agency/Company path. Discover available formats using Company /platforms. Uses the caller\u2019s current Company Workspace permissions.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "postGroupId": {
+      "type": "string",
+      "description": ""
+     },
+     "x-publora-client": {
+      "type": "string",
+      "description": "Optional client identifier accepted by every API-key-authenticated operation. Any non-empty value is preserved; `api` is used when absent. Setting `mcp` triggers the MCP access entitlement check."
+     },
+     "X-Publora-Workspace-Id": {
+      "type": "string",
+      "description": "Exact accessible Company Workspace ID returned by Company context."
+     }
+    },
+    "required": [
+     "X-Publora-Workspace-Id",
+     "postGroupId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.publora.com/api/v1/company/post-groups/{postGroupId}/media",
+    "path": [
+     "postGroupId"
+    ],
+    "query": [],
+    "header": [
+     "x-publora-client",
+     "X-Publora-Workspace-Id"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "publora.get_company_publishing_formats",
+   "name": "Discover available company publishing formats",
+   "description": "Discover available Company publishing formats",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.publora.com/api/v1/company/platforms",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "publora.get_connection_url",
+   "name": "Get connection url for managed user",
+   "description": "Get or generate a URL that allows a managed user to connect their social media accounts. The URL expires after a configurable period (default: 90 days). **Requires Workspace access - contact serge@publora.com to enable.**",
+   "input": {
+    "type": "object",
+    "properties": {
+     "x-publora-client": {
+      "type": "string",
+      "description": "Optional client identifier accepted by every API-key-authenticated operation. Any non-empty value is preserved; `api` is used when absent. Setting `mcp` triggers the MCP access entitlement check."
+     },
+     "userId": {
+      "type": "string",
+      "description": ""
+     },
+     "rotate": {
+      "type": "boolean",
+      "description": "Force generation of a new token even if current is valid"
+     },
+     "expiresInDays": {
+      "type": "integer",
+      "description": "Number of days until the token expires"
+     }
+    },
+    "required": [
+     "userId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.publora.com/api/v1/workspace/users/{userId}/connection-url",
+    "path": [
+     "userId"
+    ],
+    "query": [],
+    "header": [
+     "x-publora-client"
+    ],
+    "body": [
+     "rotate",
+     "expiresInDays"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "publora.get_linked_in_account_statistics",
+   "name": "Get aggregated linked in account analytics",
+   "description": "Get total metrics across all published LinkedIn posts for an account.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "x-publora-client": {
+      "type": "string",
+      "description": "Optional client identifier accepted by every API-key-authenticated operation. Any non-empty value is preserved; `api` is used when absent. Setting `mcp` triggers the MCP access entitlement check."
+     },
+     "platformId": {
+      "type": "string",
+      "description": ""
+     },
+     "queryType": {
+      "type": "string",
+      "description": "Single metric to fetch",
+      "enum": [
+       "IMPRESSION",
+       "MEMBERS_REACHED",
+       "RESHARE",
+       "REACTION",
+       "COMMENT"
+      ]
+     },
+     "queryTypes": {
+      "type": "string",
+      "description": "Multiple metrics or ALL"
+     },
+     "aggregation": {
+      "type": "string",
+      "description": "Aggregation type: TOTAL (default) or DAILY",
+      "enum": [
+       "TOTAL",
+       "DAILY"
+      ]
+     },
+     "dateRange": {
+      "type": "object",
+      "description": "Optional date range filter"
+     }
+    },
+    "required": [
+     "platformId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.publora.com/api/v1/linkedin-account-statistics",
+    "path": [],
+    "query": [],
+    "header": [
+     "x-publora-client"
+    ],
+    "body": [
+     "platformId",
+     "queryType",
+     "queryTypes",
+     "aggregation",
+     "dateRange"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "publora.get_linked_in_followers",
+   "name": "Get linked in follower statistics",
+   "description": "Retrieve follower statistics for your LinkedIn account. Use period=\"lifetime\" (default) for total follower count, or period=\"daily\" with a dateRange for daily growth data. Results are cached for improved performance.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "x-publora-client": {
+      "type": "string",
+      "description": "Optional client identifier accepted by every API-key-authenticated operation. Any non-empty value is preserved; `api` is used when absent. Setting `mcp` triggers the MCP access entitlement check."
+     },
+     "platformId": {
+      "type": "string",
+      "description": "LinkedIn connection ID"
+     },
+     "period": {
+      "type": "string",
+      "description": "Type of statistics to retrieve",
+      "enum": [
+       "lifetime",
+       "daily"
+      ]
+     },
+     "dateRange": {
+      "type": "object",
+      "description": "Required when period is 'daily'"
+     }
+    },
+    "required": [
+     "platformId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.publora.com/api/v1/linkedin-followers",
+    "path": [],
+    "query": [],
+    "header": [
+     "x-publora-client"
+    ],
+    "body": [
+     "platformId",
+     "period",
+     "dateRange"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "publora.get_linked_in_post_statistics",
+   "name": "Get linked in post analytics",
+   "description": "Retrieve analytics for a LinkedIn post: impressions, reach, reactions, comments, reshares. Results are cached for 2 hours. Use queryTypes: \"ALL\" to get all 5 metrics at once.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "x-publora-client": {
+      "type": "string",
+      "description": "Optional client identifier accepted by every API-key-authenticated operation. Any non-empty value is preserved; `api` is used when absent. Setting `mcp` triggers the MCP access entitlement check."
+     },
+     "postedId": {
+      "type": "string",
+      "description": "LinkedIn URN or share ID"
+     },
+     "platformId": {
+      "type": "string",
+      "description": "LinkedIn connection ID"
+     },
+     "queryType": {
+      "type": "string",
+      "description": "Single metric to fetch",
+      "enum": [
+       "IMPRESSION",
+       "MEMBERS_REACHED",
+       "RESHARE",
+       "REACTION",
+       "COMMENT"
+      ]
+     },
+     "queryTypes": {
+      "type": "string",
+      "description": "Multiple metrics or ALL"
+     }
+    },
+    "required": [
+     "platformId",
+     "postedId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.publora.com/api/v1/linkedin-post-statistics",
+    "path": [],
+    "query": [],
+    "header": [
+     "x-publora-client"
+    ],
+    "body": [
+     "postedId",
+     "platformId",
+     "queryType",
+     "queryTypes"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "publora.get_linked_in_profile_summary",
+   "name": "Get linked in profile summary",
+   "description": "Retrieve a summary of your LinkedIn profile analytics including follower counts and aggregated post engagement metrics. Optionally filter by date range to track follower growth over a specific period.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "x-publora-client": {
+      "type": "string",
+      "description": "Optional client identifier accepted by every API-key-authenticated operation. Any non-empty value is preserved; `api` is used when absent. Setting `mcp` triggers the MCP access entitlement check."
+     },
+     "platformId": {
+      "type": "string",
+      "description": "LinkedIn connection ID (format: linkedin-{id})"
+     },
+     "dateRange": {
+      "type": "object",
+      "description": "Optional date range for filtering metrics and calculating follower growth"
+     }
+    },
+    "required": [
+     "platformId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.publora.com/api/v1/linkedin-profile-summary",
+    "path": [],
+    "query": [],
+    "header": [
+     "x-publora-client"
+    ],
+    "body": [
+     "platformId",
+     "dateRange"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "publora.get_managed_users",
+   "name": "List managed users",
+   "description": "Retrieve all users managed under your workspace. **Requires Workspace access - contact serge@publora.com to enable.**",
+   "input": {
+    "type": "object",
+    "properties": {
+     "x-publora-client": {
+      "type": "string",
+      "description": "Optional client identifier accepted by every API-key-authenticated operation. Any non-empty value is preserved; `api` is used when absent. Setting `mcp` triggers the MCP access entitlement check."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.publora.com/api/v1/workspace/users",
+    "path": [],
+    "query": [],
+    "header": [
+     "x-publora-client"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "publora.get_platform_connections",
+   "name": "List connected social accounts",
+   "description": "Returns all social media accounts connected to your Publora account.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "x-publora-client": {
+      "type": "string",
+      "description": "Optional client identifier accepted by every API-key-authenticated operation. Any non-empty value is preserved; `api` is used when absent. Setting `mcp` triggers the MCP access entitlement check."
+     },
+     "x-publora-user-id": {
+      "type": "string",
+      "description": "Managed user ID (workspace only)"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.publora.com/api/v1/platform-connections",
+    "path": [],
+    "query": [],
+    "header": [
+     "x-publora-client",
+     "x-publora-user-id"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "publora.get_platform_limits",
+   "name": "Get live per platform posting limits",
+   "description": "Return Publora's per-platform limits (characters, images, videos, documents, GIFs, thumbnails, and requirements) as live JSON, sourced from the shared @publora/platform-limits package. These are the API-specific limits Publora validates against before scheduling \u2014 use them to drive client-side validation instead of hard-coding values. No parameters.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "x-publora-client": {
+      "type": "string",
+      "description": "Optional client identifier accepted by every API-key-authenticated operation. Any non-empty value is preserved; `api` is used when absent. Setting `mcp` triggers the MCP access entitlement check."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.publora.com/api/v1/platform-limits",
+    "path": [],
+    "query": [],
+    "header": [
+     "x-publora-client"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "publora.get_platform_post_statistics",
+   "name": "Get mastodon and bluesky post statistics",
+   "description": "Engagement counters for up to 50 published Mastodon or Bluesky posts. Values are read from the platform when requested and cached for about 2 hours; nothing is collected in the background, so there is no history. Only posts Publora published for the caller, and stored a `postedId` for, can be queried; any other id is answered `null` without contacting the platform. Publora began storing `postedId`",
+   "input": {
+    "type": "object",
+    "properties": {
+     "x-publora-client": {
+      "type": "string",
+      "description": "Optional client identifier accepted by every API-key-authenticated operation. Any non-empty value is preserved; `api` is used when absent. Setting `mcp` triggers the MCP access entitlement check."
+     },
+     "posts": {
+      "type": "array",
+      "description": "One entry per post. Platforms and connections may be mixed."
+     }
+    },
+    "required": [
+     "posts"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.publora.com/api/v1/post-statistics",
+    "path": [],
+    "query": [],
+    "header": [
+     "x-publora-client"
+    ],
+    "body": [
+     "posts"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "publora.get_platform_profile_statistics",
+   "name": "Get mastodon and bluesky profile statistics",
+   "description": "Followers, following and post count of one connected Mastodon or Bluesky account. Cached for about 2 hours. Requires a plan with analytics.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "x-publora-client": {
+      "type": "string",
+      "description": "Optional client identifier accepted by every API-key-authenticated operation. Any non-empty value is preserved; `api` is used when absent. Setting `mcp` triggers the MCP access entitlement check."
+     },
+     "platform": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "mastodon",
+       "bluesky"
+      ]
+     },
+     "platformId": {
+      "type": "string",
+      "description": "Connection ID, with or without the `-` prefix"
+     }
+    },
+    "required": [
+     "platform",
+     "platformId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.publora.com/api/v1/profile-statistics",
+    "path": [],
+    "query": [],
+    "header": [
+     "x-publora-client"
+    ],
+    "body": [
+     "platform",
+     "platformId"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "publora.get_post",
+   "name": "Get post details and status",
+   "description": "Retrieve the details, platform statuses, and posted IDs for a post group.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "x-publora-client": {
+      "type": "string",
+      "description": "Optional client identifier accepted by every API-key-authenticated operation. Any non-empty value is preserved; `api` is used when absent. Setting `mcp` triggers the MCP access entitlement check."
+     },
+     "postGroupId": {
+      "type": "string",
+      "description": ""
+     },
+     "x-publora-user-id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "postGroupId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.publora.com/api/v1/get-post/{postGroupId}",
+    "path": [
+     "postGroupId"
+    ],
+    "query": [],
+    "header": [
+     "x-publora-client",
+     "x-publora-user-id"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "publora.get_post_logs",
+   "name": "Get post publishing logs",
+   "description": "Retrieve detailed logs for a post group showing the publishing process, including scheduling, processing, success, and failure events. Returns only events from the last 90 days by event createdAt, oldest first, limited to 100 entries. An owned group without recent events returns HTTP 200 with success: true and logs: []. Diagnostic log expiry does not delete the post group or published post history",
+   "input": {
+    "type": "object",
+    "properties": {
+     "x-publora-client": {
+      "type": "string",
+      "description": "Optional client identifier accepted by every API-key-authenticated operation. Any non-empty value is preserved; `api` is used when absent. Setting `mcp` triggers the MCP access entitlement check."
+     },
+     "postGroupId": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "postGroupId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.publora.com/api/v1/post-logs/{postGroupId}",
+    "path": [
+     "postGroupId"
+    ],
+    "query": [],
+    "header": [
+     "x-publora-client"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "publora.get_upload_url",
+   "name": "Get pre signed url for media upload",
+   "description": "Get a pre-signed S3 URL to upload images, videos, or PDF documents. Upload the file directly to S3 via HTTP PUT, then create a post. Upload URLs expire in 1 hour. The image count per post is platform-specific (up to 4 for Twitter/X, Bluesky, Mastodon; up to 10 for Instagram, LinkedIn, Facebook, Telegram; up to 20 for Threads), or 1 video per post. Attach multiple images to the same postGroupId to ",
+   "input": {
+    "type": "object",
+    "properties": {
+     "x-publora-client": {
+      "type": "string",
+      "description": "Optional client identifier accepted by every API-key-authenticated operation. Any non-empty value is preserved; `api` is used when absent. Setting `mcp` triggers the MCP access entitlement check."
+     },
+     "x-publora-user-id": {
+      "type": "string",
+      "description": ""
+     },
+     "fileName": {
+      "type": "string",
+      "description": ""
+     },
+     "contentType": {
+      "type": "string",
+      "description": "MIME type. It must match an image/*, video/*, or application/pdf upload."
+     },
+     "type": {
+      "type": "string",
+      "description": "Optional media-type hint; inferred from contentType when omitted",
+      "enum": [
+       "image",
+       "video",
+       "document"
+      ]
+     },
+     "postGroupId": {
+      "type": "string",
+      "description": "Post group to attach media to"
+     }
+    },
+    "required": [
+     "contentType",
+     "fileName",
+     "postGroupId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.publora.com/api/v1/get-upload-url",
+    "path": [],
+    "query": [],
+    "header": [
+     "x-publora-client",
+     "x-publora-user-id"
+    ],
+    "body": [
+     "fileName",
+     "contentType",
+     "type",
+     "postGroupId"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "publora.list_company_webhooks",
+   "name": "List this workspace\u2019s webhook subscriptions",
+   "description": "Agency Workspace settings managers only. Personal webhook endpoints do not access Company subscriptions.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "x-publora-client": {
+      "type": "string",
+      "description": "Optional client identifier accepted by every API-key-authenticated operation. Any non-empty value is preserved; `api` is used when absent. Setting `mcp` triggers the MCP access entitlement check."
+     },
+     "X-Publora-Workspace-Id": {
+      "type": "string",
+      "description": "Exact accessible Company Workspace ID returned by Company context."
+     }
+    },
+    "required": [
+     "X-Publora-Workspace-Id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.publora.com/api/v1/company/webhooks",
+    "path": [],
+    "query": [],
+    "header": [
+     "x-publora-client",
+     "X-Publora-Workspace-Id"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "publora.list_linked_in_mentionables",
+   "name": "List mentionable linked in people",
+   "description": "List the LinkedIn members you can @mention \u2014 a per-user directory of native member ids captured automatically from engagement (comments and reactions) on connected company pages. Each entry includes a ready-to-paste mention token. Available on paid plans only.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "x-publora-client": {
+      "type": "string",
+      "description": "Optional client identifier accepted by every API-key-authenticated operation. Any non-empty value is preserved; `api` is used when absent. Setting `mcp` triggers the MCP access entitlement check."
+     },
+     "q": {
+      "type": "string",
+      "description": "Case-insensitive substring filter on the person's name (regex characters treated literally)"
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Maximum number of entries to return"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.publora.com/api/v1/linkedin-mentionables",
+    "path": [],
+    "query": [
+     "q",
+     "limit"
+    ],
+    "header": [
+     "x-publora-client"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "publora.list_posts",
+   "name": "List posts with pagination and filters",
+   "description": "Retrieve a paginated list of all your scheduled, draft, published, and failed posts. **Pagination behavior:** The `page` and `limit` parameters are silently clamped to valid ranges rather than returning errors. `page` is clamped to a minimum of 1, and `limit` is clamped to 1-100. **Platform filtering:** The `platform` filter uses case-insensitive prefix matching.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "x-publora-client": {
+      "type": "string",
+      "description": "Optional client identifier accepted by every API-key-authenticated operation. Any non-empty value is preserved; `api` is used when absent. Setting `mcp` triggers the MCP access entitlement check."
+     },
+     "x-publora-user-id": {
+      "type": "string",
+      "description": "Managed user ID (workspace only)"
+     },
+     "page": {
+      "type": "integer",
+      "description": "Page number (1-indexed). Values < 1 are silently clamped to 1."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Items per page. Values are silently clamped to range 1-100."
+     },
+     "status": {
+      "type": "string",
+      "description": "Filter by post status",
+      "enum": [
+       "draft",
+       "scheduled",
+       "published",
+       "failed",
+       "partially_published"
+      ]
+     },
+     "platform": {
+      "type": "string",
+      "description": "Filter by platform (case-insensitive prefix matching)",
+      "enum": [
+       "twitter",
+       "linkedin",
+       "instagram",
+       "threads",
+       "tiktok",
+       "youtube",
+       "facebook",
+       "bluesky",
+       "mastodon",
+       "telegram",
+       "pinterest"
+      ]
+     },
+     "sortBy": {
+      "type": "string",
+      "description": "Field to sort by",
+      "enum": [
+       "createdAt",
+       "updatedAt",
+       "scheduledTime"
+      ]
+     },
+     "sortOrder": {
+      "type": "string",
+      "description": "Sort order",
+      "enum": [
+       "asc",
+       "desc"
+      ]
+     },
+     "fromDate": {
+      "type": "string",
+      "description": "Filter posts scheduled after this ISO 8601 date"
+     },
+     "toDate": {
+      "type": "string",
+      "description": "Filter posts scheduled before this ISO 8601 date"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.publora.com/api/v1/list-posts",
+    "path": [],
+    "query": [
+     "page",
+     "limit",
+     "status",
+     "platform",
+     "sortBy",
+     "sortOrder",
+     "fromDate",
+     "toDate"
+    ],
+    "header": [
+     "x-publora-client",
+     "x-publora-user-id"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "publora.list_webhooks",
+   "name": "List all webhooks",
+   "description": "Retrieve all webhooks configured for your account.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "x-publora-client": {
+      "type": "string",
+      "description": "Optional client identifier accepted by every API-key-authenticated operation. Any non-empty value is preserved; `api` is used when absent. Setting `mcp` triggers the MCP access entitlement check."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.publora.com/api/v1/webhooks",
+    "path": [],
+    "query": [],
+    "header": [
+     "x-publora-client"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "publora.regenerate_company_webhook_secret",
+   "name": "Rotate the workspace subscription signing secret",
+   "description": "Agency Workspace settings managers only. Personal webhook endpoints do not access Company subscriptions.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "webhookId": {
+      "type": "string",
+      "description": "Exact subscription ID from this Workspace webhook list."
+     },
+     "x-publora-client": {
+      "type": "string",
+      "description": "Optional client identifier accepted by every API-key-authenticated operation. Any non-empty value is preserved; `api` is used when absent. Setting `mcp` triggers the MCP access entitlement check."
+     },
+     "X-Publora-Workspace-Id": {
+      "type": "string",
+      "description": "Exact accessible Company Workspace ID returned by Company context."
+     },
+     "Idempotency-Key": {
+      "type": "string",
+      "description": "Stable key. After an uncertain response retry the identical body and key; use a new key for a new intended operation."
+     }
+    },
+    "required": [
+     "Idempotency-Key",
+     "X-Publora-Workspace-Id",
+     "webhookId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.publora.com/api/v1/company/webhooks/{webhookId}/regenerate-secret",
+    "path": [
+     "webhookId"
+    ],
+    "query": [],
+    "header": [
+     "x-publora-client",
+     "X-Publora-Workspace-Id",
+     "Idempotency-Key"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "publora.regenerate_webhook_secret",
+   "name": "Regenerate webhook secret",
+   "description": "Generate a new secret for a webhook. The old secret will be invalidated. Make sure to update your webhook handler with the new secret.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "x-publora-client": {
+      "type": "string",
+      "description": "Optional client identifier accepted by every API-key-authenticated operation. Any non-empty value is preserved; `api` is used when absent. Setting `mcp` triggers the MCP access entitlement check."
+     },
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.publora.com/api/v1/webhooks/{id}/regenerate-secret",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [
+     "x-publora-client"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "publora.remove_company_post_media",
+   "name": "Detach media and accept delayed storage cleanup",
+   "description": "Agency/Company path. Discover available formats using Company /platforms. Uses the caller\u2019s current Company Workspace permissions.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "postGroupId": {
+      "type": "string",
+      "description": ""
+     },
+     "mediaFileId": {
+      "type": "string",
+      "description": ""
+     },
+     "x-publora-client": {
+      "type": "string",
+      "description": "Optional client identifier accepted by every API-key-authenticated operation. Any non-empty value is preserved; `api` is used when absent. Setting `mcp` triggers the MCP access entitlement check."
+     },
+     "X-Publora-Workspace-Id": {
+      "type": "string",
+      "description": "Exact accessible Company Workspace ID returned by Company context."
+     }
+    },
+    "required": [
+     "X-Publora-Workspace-Id",
+     "mediaFileId",
+     "postGroupId"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.publora.com/api/v1/company/post-groups/{postGroupId}/media/{mediaFileId}",
+    "path": [
+     "postGroupId",
+     "mediaFileId"
+    ],
+    "query": [],
+    "header": [
+     "x-publora-client",
+     "X-Publora-Workspace-Id"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "publora.remove_linked_in_reaction",
+   "name": "Remove a reaction from a linked in post",
+   "description": "Remove your reaction from a LinkedIn post. Parameters can be provided either as query parameters OR in the request body.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "x-publora-client": {
+      "type": "string",
+      "description": "Optional client identifier accepted by every API-key-authenticated operation. Any non-empty value is preserved; `api` is used when absent. Setting `mcp` triggers the MCP access entitlement check."
+     },
+     "postedId": {
+      "type": "string",
+      "description": "LinkedIn URN (urn:li:share:*, urn:li:ugcPost:*, urn:li:activity:*)"
+     },
+     "platformId": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.publora.com/api/v1/linkedin-reactions",
+    "path": [],
+    "query": [
+     "postedId",
+     "platformId"
+    ],
+    "header": [
+     "x-publora-client"
+    ],
+    "body": [
+     "postedId",
+     "platformId"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "publora.reserve_company_post_media",
+   "name": "Reserve ordinary media or an auxiliary you tube thumbnail",
+   "description": "Agency/Company path. Discover available formats using Company /platforms. Uses the caller\u2019s current Company Workspace permissions.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "postGroupId": {
+      "type": "string",
+      "description": ""
+     },
+     "x-publora-client": {
+      "type": "string",
+      "description": "Optional client identifier accepted by every API-key-authenticated operation. Any non-empty value is preserved; `api` is used when absent. Setting `mcp` triggers the MCP access entitlement check."
+     },
+     "X-Publora-Workspace-Id": {
+      "type": "string",
+      "description": "Exact accessible Company Workspace ID returned by Company context."
+     },
+     "Idempotency-Key": {
+      "type": "string",
+      "description": "Stable key. After an uncertain response retry the identical body and key; use a new key for a new intended operation."
+     },
+     "fileName": {
+      "type": "string",
+      "description": ""
+     },
+     "contentType": {
+      "type": "string",
+      "description": ""
+     },
+     "sizeBytes": {
+      "type": "integer",
+      "description": ""
+     },
+     "type": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "image",
+       "video",
+       "document"
+      ]
+     },
+     "purpose": {
+      "type": "string",
+      "description": "Omit for ordinary media. Auxiliary thumbnails require JPEG/PNG, type image, at most 2097152 bytes and at least 640x360 actual pixels.",
+      "enum": [
+       "youtube_thumbnail"
+      ]
+     }
+    },
+    "required": [
+     "Idempotency-Key",
+     "X-Publora-Workspace-Id",
+     "contentType",
+     "fileName",
+     "postGroupId",
+     "sizeBytes"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.publora.com/api/v1/company/post-groups/{postGroupId}/media/reservations",
+    "path": [
+     "postGroupId"
+    ],
+    "query": [],
+    "header": [
+     "x-publora-client",
+     "X-Publora-Workspace-Id",
+     "Idempotency-Key"
+    ],
+    "body": [
+     "fileName",
+     "contentType",
+     "sizeBytes",
+     "type",
+     "purpose"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "publora.test_connection",
+   "name": "Test platform connection health",
+   "description": "Validate that a platform connection is working correctly. Returns token status, permissions, and last error if any.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "x-publora-client": {
+      "type": "string",
+      "description": "Optional client identifier accepted by every API-key-authenticated operation. Any non-empty value is preserved; `api` is used when absent. Setting `mcp` triggers the MCP access entitlement check."
+     },
+     "platformId": {
+      "type": "string",
+      "description": "Platform connection ID (format: platform-id)"
+     }
+    },
+    "required": [
+     "platformId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.publora.com/api/v1/test-connection/{platformId}",
+    "path": [
+     "platformId"
+    ],
+    "query": [],
+    "header": [
+     "x-publora-client"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "publora.update_company_draft",
+   "name": "Update an agency draft",
+   "description": "Agency/Company path. Discover available formats using Company /platforms. Uses the caller\u2019s current Company Workspace permissions.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "postGroupId": {
+      "type": "string",
+      "description": ""
+     },
+     "x-publora-client": {
+      "type": "string",
+      "description": "Optional client identifier accepted by every API-key-authenticated operation. Any non-empty value is preserved; `api` is used when absent. Setting `mcp` triggers the MCP access entitlement check."
+     },
+     "X-Publora-Workspace-Id": {
+      "type": "string",
+      "description": "Exact accessible Company Workspace ID returned by Company context."
+     },
+     "Idempotency-Key": {
+      "type": "string",
+      "description": "Stable key. After an uncertain response retry the identical body and key; use a new key for a new intended operation."
+     },
+     "content": {
+      "type": "string",
+      "description": ""
+     },
+     "notes": {
+      "type": "string",
+      "description": ""
+     },
+     "topic": {
+      "type": "string",
+      "description": ""
+     },
+     "platforms": {
+      "type": "array",
+      "description": "Exact Company channel keys; [] permits a channel-less draft."
+     },
+     "platformContents": {
+      "type": "object",
+      "description": ""
+     },
+     "isPlatformSpecific": {
+      "type": "boolean",
+      "description": "If supplied, sameContent is also required and must have the opposite value."
+     },
+     "sameContent": {
+      "type": "boolean",
+      "description": ""
+     },
+     "platformSettings": {
+      "type": "object",
+      "description": "Agency platform settings; discover the available formats and settings through GET /company/platforms. This complete map replaces saved settings; only selected platforms may carry entries."
+     },
+     "threadingSettings": {
+      "type": "object",
+      "description": ""
+     },
+     "videoTimestamp": {
+      "type": "number",
+      "description": ""
+     },
+     "firstComment": {
+      "type": "object",
+      "description": "One first comment under supported own posts. null clears; firstComments arrays and delays remain personal-only."
+     }
+    },
+    "required": [
+     "Idempotency-Key",
+     "X-Publora-Workspace-Id",
+     "postGroupId"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.publora.com/api/v1/company/post-groups/{postGroupId}",
+    "path": [
+     "postGroupId"
+    ],
+    "query": [],
+    "header": [
+     "x-publora-client",
+     "X-Publora-Workspace-Id",
+     "Idempotency-Key"
+    ],
+    "body": [
+     "content",
+     "notes",
+     "topic",
+     "platforms",
+     "platformContents",
+     "isPlatformSpecific",
+     "sameContent",
+     "platformSettings",
+     "threadingSettings",
+     "videoTimestamp",
+     "firstComment"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "publora.update_company_webhook",
+   "name": "Edit, enable or disable a workspace subscription",
+   "description": "Agency Workspace settings managers only. Personal webhook endpoints do not access Company subscriptions.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "webhookId": {
+      "type": "string",
+      "description": "Exact subscription ID from this Workspace webhook list."
+     },
+     "x-publora-client": {
+      "type": "string",
+      "description": "Optional client identifier accepted by every API-key-authenticated operation. Any non-empty value is preserved; `api` is used when absent. Setting `mcp` triggers the MCP access entitlement check."
+     },
+     "X-Publora-Workspace-Id": {
+      "type": "string",
+      "description": "Exact accessible Company Workspace ID returned by Company context."
+     },
+     "Idempotency-Key": {
+      "type": "string",
+      "description": "Stable key. After an uncertain response retry the identical body and key; use a new key for a new intended operation."
+     },
+     "name": {
+      "type": "string",
+      "description": "Trimmed, nonempty subscription name."
+     },
+     "url": {
+      "type": "string",
+      "description": "Trimmed public HTTP(S) URL. Private/local destinations are refused and DNS is checked again at delivery. Redirects are not followed."
+     },
+     "events": {
+      "type": "array",
+      "description": ""
+     },
+     "isActive": {
+      "type": "boolean",
+      "description": "Defaults to true on create; unchanged when omitted on update. Enabling resets the failure count."
+     }
+    },
+    "required": [
+     "Idempotency-Key",
+     "X-Publora-Workspace-Id",
+     "webhookId"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.publora.com/api/v1/company/webhooks/{webhookId}",
+    "path": [
+     "webhookId"
+    ],
+    "query": [],
+    "header": [
+     "x-publora-client",
+     "X-Publora-Workspace-Id",
+     "Idempotency-Key"
+    ],
+    "body": [
+     "name",
+     "url",
+     "events",
+     "isActive"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "publora.update_post",
+   "name": "Edit a draft or scheduled post",
+   "description": "Modify the content, target platforms, scheduled time, status, platformSettings, or mediaUrls of an existing draft or scheduled post. Only post groups whose status is draft or scheduled can be updated. `pending` and `processing` belong to separate processing/per-platform state, not to the post-group status enum. At least one of publishNow, status, scheduledTime, content, platforms, platformSettings",
+   "input": {
+    "type": "object",
+    "properties": {
+     "x-publora-client": {
+      "type": "string",
+      "description": "Optional client identifier accepted by every API-key-authenticated operation. Any non-empty value is preserved; `api` is used when absent. Setting `mcp` triggers the MCP access entitlement check."
+     },
+     "postGroupId": {
+      "type": "string",
+      "description": ""
+     },
+     "x-publora-user-id": {
+      "type": "string",
+      "description": ""
+     },
+     "Idempotency-Key": {
+      "type": "string",
+      "description": "Opt-in idempotency. Omit the header for the previous behaviour \u2014 every call applies the update again. Send a unique value (a UUID is a good choice) per logical operation to make retries safe: - Same key + identical body, original request finished \u2192 the original status code and response body are replayed. The update is not re-applied. - Same key + identical body, original request still in flight \u2192 "
+     },
+     "content": {
+      "type": "string",
+      "description": "Replacement base post text. Every platform post without an explicit per-account override is rewritten to this text; overrides created in the web editor are preserved. Editing the text of a Twitter or Threads target clears its derived thread split so it is recomputed. An empty string is accepted while the post stays a draft. Scheduling still enforces each platform's content and media rules."
+     },
+     "platforms": {
+      "type": "array",
+      "description": "Replacement target set. The array REPLACES the stored one \u2014 it is not merged, so send the complete final list. Use the exact connection IDs returned by GET /platform-connections; duplicates are rejected with INVALID_PLATFORMS and unknown/foreign IDs with INVALID_PLATFORM_CONNECTION. IDs removed from the array have their platform posts deleted. An empty array is accepted only while the post remains"
+     },
+     "status": {
+      "type": "string",
+      "description": "New status",
+      "enum": [
+       "draft",
+       "scheduled"
+      ]
+     },
+     "scheduledTime": {
+      "type": "string",
+      "description": "New ISO 8601 UTC scheduled time. Send a future time. If the time is in the past, it is clamped to the current server time and a `SCHEDULED_TIME_COERCED` warning is returned \u2014 the update still succeeds. Read the `scheduledTime` in the response for the time actually stored. Times less than 5 minutes in the past are always tolerated this way. Strict rejection for a time 5 or more minutes in the past "
+     },
+     "publishNow": {
+      "type": "boolean",
+      "description": "`true` publishes this draft or scheduled post immediately at server time, with the same checks as create-post. A scheduled post moved to Publish Now frees its scheduled-queue slot and keeps its monthly reservation when the month and targets are unchanged. Combining it with a future scheduledTime or `status: \"draft\"` returns 400 `PUBLISH_NOW_CONFLICT`; a non-boolean value returns 400 `INVALID_PUBLI"
+     },
+     "platformSettings": {
+      "type": "object",
+      "description": "Per-platform settings for tiktok, instagram, youtube, threads, twitter, telegram, and linkedin. Unknown platform or nested paths are rejected with 400 PLATFORM_SETTING_UNKNOWN. Merged with defaults on create-post and with existing settings on update-post (omitted fields are preserved)."
+     },
+     "firstComment": {
+      "type": "object",
+      "description": "Legacy single-comment replacement, or null to remove it. Do not send with firstComments."
+     },
+     "firstComments": {
+      "type": "array",
+      "description": "Replace the ordered list; null or [] clears it. Do not send with firstComment."
+     },
+     "mediaUrls": {
+      "type": "array",
+      "description": "Public https URLs downloaded server-side and appended to existing media. Images: 25 MB each; videos: 150 MB each; aggregate: 300 MB. Ingestion is all-or-nothing."
+     }
+    },
+    "required": [
+     "postGroupId"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.publora.com/api/v1/update-post/{postGroupId}",
+    "path": [
+     "postGroupId"
+    ],
+    "query": [],
+    "header": [
+     "x-publora-client",
+     "x-publora-user-id",
+     "Idempotency-Key"
+    ],
+    "body": [
+     "content",
+     "platforms",
+     "status",
+     "scheduledTime",
+     "publishNow",
+     "platformSettings",
+     "firstComment",
+     "firstComments",
+     "mediaUrls"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "publora.update_webhook",
+   "name": "Update a webhook",
+   "description": "Update an existing webhook's name, URL, events, or active status.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "x-publora-client": {
+      "type": "string",
+      "description": "Optional client identifier accepted by every API-key-authenticated operation. Any non-empty value is preserved; `api` is used when absent. Setting `mcp` triggers the MCP access entitlement check."
+     },
+     "id": {
+      "type": "string",
+      "description": ""
+     },
+     "name": {
+      "type": "string",
+      "description": ""
+     },
+     "url": {
+      "type": "string",
+      "description": ""
+     },
+     "events": {
+      "type": "array",
+      "description": ""
+     },
+     "isActive": {
+      "type": "boolean",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.publora.com/api/v1/webhooks/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [
+     "x-publora-client"
+    ],
+    "body": [
+     "name",
+     "url",
+     "events",
+     "isActive"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "publora.upload_instagram_cover",
+   "name": "Upload a custom instagram reel cover image",
+   "description": "Upload a cover image for an Instagram Reel. The image is stored as a JPEG (PNG/WebP are transcoded server-side; transparency is flattened onto white) and a public URL is returned. Set that URL as platformSettings.instagram.coverUrl via update-post to use it as the Reel cover. The target post group must be an editable (draft or scheduled) post you own and not currently publishing. Covers apply to R",
+   "input": {
+    "type": "object",
+    "properties": {
+     "x-publora-client": {
+      "type": "string",
+      "description": "Optional client identifier accepted by every API-key-authenticated operation. Any non-empty value is preserved; `api` is used when absent. Setting `mcp` triggers the MCP access entitlement check."
+     },
+     "x-publora-user-id": {
+      "type": "string",
+      "description": "Managed user ID (workspace only)"
+     },
+     "cover": {
+      "type": "string",
+      "description": "Cover image (JPEG, PNG, or WebP; 8 MB max). PNG/WebP are converted to JPEG."
+     },
+     "postGroupId": {
+      "type": "string",
+      "description": "Editable post group (draft or scheduled) to attach the cover to"
+     }
+    },
+    "required": [
+     "cover",
+     "postGroupId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.publora.com/api/v1/upload-instagram-cover",
+    "path": [],
+    "query": [],
+    "header": [
+     "x-publora-client",
+     "x-publora-user-id"
+    ],
+    "body": [
+     "cover",
+     "postGroupId"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "publora.upload_you_tube_thumbnail",
+   "name": "Upload a custom you tube video thumbnail",
+   "description": "Upload a custom thumbnail for a YouTube video post. The image is stored as Publora-tracked media and a mediaId + url are returned; attach them via platformSettings.youtube.thumbnail on update-post. A thumbnail cannot be set on create-post \u2014 the upload requires an existing postGroupId (draft or scheduled) that is not currently publishing. JPEG or PNG, 2 MB max, minimum 640x360 px (1280x720 recommen",
+   "input": {
+    "type": "object",
+    "properties": {
+     "x-publora-client": {
+      "type": "string",
+      "description": "Optional client identifier accepted by every API-key-authenticated operation. Any non-empty value is preserved; `api` is used when absent. Setting `mcp` triggers the MCP access entitlement check."
+     },
+     "x-publora-user-id": {
+      "type": "string",
+      "description": "Managed user ID (workspace only)"
+     },
+     "thumbnail": {
+      "type": "string",
+      "description": "Thumbnail image (JPEG or PNG; 2 MB max; min 640x360 px, 1280x720 recommended)."
+     },
+     "postGroupId": {
+      "type": "string",
+      "description": "Editable post group (draft or scheduled) to attach the thumbnail to"
+     }
+    },
+    "required": [
+     "postGroupId",
+     "thumbnail"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.publora.com/api/v1/upload-youtube-thumbnail",
+    "path": [],
+    "query": [],
+    "header": [
+     "x-publora-client",
+     "x-publora-user-id"
+    ],
+    "body": [
+     "thumbnail",
+     "postGroupId"
+    ],
+    "body_format": "json"
+   }
+  }
+ ]
+}

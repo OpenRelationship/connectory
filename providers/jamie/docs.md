@@ -14,19 +14,78 @@ vouches for**: read it, then read their reference.
 ---
 # Jamie Docs
 
+## Documentation
+
+### Getting started
+
 - [Quickstart](https://docs.meetjamie.ai/getting-started/quickstart.md): Everything you need to know to start summarizing your meetings with Jamie. This quickstart guide will walk you through how to set up your account and start summarizing your meetings.
+
+#### Recording
+
+#### Calendar
+
+### Ask Jamie
+
+#### Connectors
+
+##### Apps
+
+### Integrations
+
+### Developers
+
+#### Webhooks
+
 - [Delivery & Retries](https://docs.meetjamie.ai/developers/webhooks/delivery-retries.md): How webhook deliveries work & how to test them
 - [Make.com Integration](https://docs.meetjamie.ai/developers/webhooks/make-com-integration.md): Step-by-step guide to integrate Jamie webhooks with Make.com
+
+#### API
+
 - [Overview](https://docs.meetjamie.ai/developers/api/api.md): Programmatic access to your Jamie meeting data
 - [Getting Started](https://docs.meetjamie.ai/developers/api/getting-started.md): Create an API key and make your first request
 - [Access & Security](https://docs.meetjamie.ai/developers/api/access-and-security.md): API key scopes, rate limits, and error handling
+
+##### Meetings
+
 - [List Meetings](https://docs.meetjamie.ai/developers/api/meetings/list-meetings.md): Retrieve a paginated list of meetings
 - [Get Meeting](https://docs.meetjamie.ai/developers/api/meetings/get-meeting.md): Retrieve full details for a single meeting
 - [Delete Meeting](https://docs.meetjamie.ai/developers/api/meetings/delete-meeting.md): Permanently delete a meeting and all its related data
 - [Search Meetings](https://docs.meetjamie.ai/developers/api/meetings/search-meetings.md): Semantic search across your meeting content
+
+##### Tags
+
 - [List Tags](https://docs.meetjamie.ai/developers/api/tags/list-tags.md): Retrieve all tags available to you
+
+##### Tasks
+
 - [List Tasks](https://docs.meetjamie.ai/developers/api/tasks/list-tasks.md): Retrieve action items extracted from your meetings
+- [Update Task](https://docs.meetjamie.ai/developers/api/tasks/update-task.md): Edit task text, mark a task as completed, or reopen it
+
+### Billing & Pricing
+
+### FAQs & Troubleshooting
+
+## Enterprise
+
+### Admin guide
+
 - [Integrations & Developers](https://docs.meetjamie.ai/enterprise/admins/integrations-and-developers.md): Connect Jamie to the tools your team already uses — CRMs, docs, and task tools — and build on top of it with the API, webhooks, and MCP.
+
+### User guide
+
+### Security & compliance
+
+## Other
+
 - [Intune MSI Deployment Guide](https://docs.meetjamie.ai/enterprise/admins/intune-deployment-guide.md): Deploy Jamie as a per-machine Line-of-Business MSI app through Microsoft Intune.
+- [macOS PKG Deployment Guide](https://docs.meetjamie.ai/enterprise/admins/macos-pkg-deployment-guide.md): Deploy Jamie as a per-machine PKG through Jamf, Iru, Intune, or any other macOS MDM.
 
 ## Optional
+
+> The links below point to documentation indexes. Follow each `/_llms/` index recursively until you reach documentation pages.
+
+## Indexes
+
+- [Enterprise / User guide / German (11 pages)](https://docs.meetjamie.ai/_llms/enterprise/user-guide/de.txt): Documentation for Enterprise / User guide / German.
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

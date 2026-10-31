@@ -1811,6 +1811,129 @@
    }
   },
   {
+   "slug": "stripe.get_apps_installs",
+   "name": "List all app installs",
+   "description": "Returns a list of app installs. An app developer or embedding platform filtering by its own app sees the installs across the accounts that installed it; other callers see the installs on their own account. The key selects the environment: a live key lists live installs, a sandbox API key lists the installs on that sandbox, and the key of an app\u2019s managed sandbox filtering by app lists that app\u2019s i",
+   "input": {
+    "type": "object",
+    "properties": {
+     "account": {
+      "type": "string",
+      "description": "Only return installs made by this account. Only useful to app developers and embedding platforms, whose lists span the accounts that installed their app."
+     },
+     "app": {
+      "type": "string",
+      "description": "Only return installs for the app specified by this app ID."
+     },
+     "approval_required": {
+      "type": "boolean",
+      "description": "Only return installs whose installer must authorize pending permissions, content security policy entries, or endpoints."
+     },
+     "channel": {
+      "type": "string",
+      "description": "Only return installs in the distribution channel specified by this channel name.",
+      "enum": [
+       "private_live",
+       "private_test",
+       "public",
+       "testing"
+      ]
+     },
+     "created": {
+      "type": "string",
+      "description": "Only return app installs that were created during the given date interval."
+     },
+     "created_by": {
+      "type": "string",
+      "description": "Only return installs created by the embedding platform specified by this account ID."
+     },
+     "ending_before": {
+      "type": "string",
+      "description": "A cursor for use in pagination. `ending_before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the previous page of the list."
+     },
+     "expand": {
+      "type": "array",
+      "description": "Specifies which fields in the response should be expanded."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 10."
+     },
+     "starting_after": {
+      "type": "string",
+      "description": "A cursor for use in pagination. `starting_after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the next page of the list."
+     },
+     "status": {
+      "type": "string",
+      "description": "Only return installs with the given status.",
+      "enum": [
+       "install_failed",
+       "installed",
+       "installing",
+       "uninstall_failed",
+       "uninstalling"
+      ]
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.stripe.com/v1/apps/installs",
+    "path": [],
+    "query": [
+     "account",
+     "app",
+     "approval_required",
+     "channel",
+     "created",
+     "created_by",
+     "ending_before",
+     "expand",
+     "limit",
+     "starting_after",
+     "status"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "form"
+   }
+  },
+  {
+   "slug": "stripe.get_apps_installs_id",
+   "name": "Retrieve an app install",
+   "description": "Retrieves an app install. The installing account, the app\u2019s developer (with the keys of the account that owns the app or of the app\u2019s managed sandbox), and the embedding platform that created the install can retrieve it.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "expand": {
+      "type": "array",
+      "description": "Specifies which fields in the response should be expanded."
+     },
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.stripe.com/v1/apps/installs/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [
+     "expand"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "form"
+   }
+  },
+  {
    "slug": "stripe.get_apps_secrets",
    "name": "List secrets",
    "description": "List all secrets stored on the given scope.",
@@ -2457,8 +2580,8 @@
   },
   {
    "slug": "stripe.get_billing_feedback_options",
-   "name": "Feedback options list api method",
-   "description": "An API method for listing the feedback options model",
+   "name": "List all feedback options",
+   "description": "Returns a list of your feedback options.",
    "input": {
     "type": "object",
     "properties": {
@@ -2508,7 +2631,7 @@
   {
    "slug": "stripe.get_billing_feedback_options_id",
    "name": "Retrieve a feedback option",
-   "description": "Retrieves a feedback options object given an ID.",
+   "description": "Retrieves a feedback option object given an ID.",
    "input": {
     "type": "object",
     "properties": {
@@ -2518,7 +2641,7 @@
      },
      "id": {
       "type": "string",
-      "description": ""
+      "description": "The ID of the feedback option to retrieve."
      }
     },
     "required": [
@@ -5484,7 +5607,7 @@
   {
    "slug": "stripe.get_financial_connections_accounts_account",
    "name": "Retrieve an account",
-   "description": "Retrieves the details of an Financial Connections Account.",
+   "description": "Retrieves the details of a Financial Connections Account.",
    "input": {
     "type": "object",
     "properties": {
@@ -7407,7 +7530,7 @@
   {
    "slug": "stripe.get_linked_accounts_account",
    "name": "Retrieve an account",
-   "description": "Retrieves the details of an Financial Connections Account.",
+   "description": "Retrieves the details of a Financial Connections Account.",
    "input": {
     "type": "object",
     "properties": {
@@ -8632,6 +8755,96 @@
    }
   },
   {
+   "slug": "stripe.get_product_catalog_trial_offers",
+   "name": "List trial offers",
+   "description": "Returns a list of trial offers.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "active": {
+      "type": "boolean",
+      "description": "Only return trial offers that are active (`true`) or archived (`false`). If omitted, both active and archived trial offers are returned."
+     },
+     "created": {
+      "type": "string",
+      "description": "Only return trial offers that were created during the given date interval."
+     },
+     "ending_before": {
+      "type": "string",
+      "description": "A cursor for use in pagination. `ending_before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the previous page of the list."
+     },
+     "expand": {
+      "type": "array",
+      "description": "Specifies which fields in the response should be expanded."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 10."
+     },
+     "prices": {
+      "type": "array",
+      "description": "Only return trial offers that reference these prices (during the trial period)."
+     },
+     "starting_after": {
+      "type": "string",
+      "description": "A cursor for use in pagination. `starting_after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the next page of the list."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.stripe.com/v1/product_catalog/trial_offers",
+    "path": [],
+    "query": [
+     "active",
+     "created",
+     "ending_before",
+     "expand",
+     "limit",
+     "prices",
+     "starting_after"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "form"
+   }
+  },
+  {
+   "slug": "stripe.get_product_catalog_trial_offers_id",
+   "name": "Retrieve a trial offer",
+   "description": "Retrieves the trial offer with the given ID.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "expand": {
+      "type": "array",
+      "description": "Specifies which fields in the response should be expanded."
+     },
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.stripe.com/v1/product_catalog/trial_offers/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [
+     "expand"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "form"
+   }
+  },
+  {
    "slug": "stripe.get_products",
    "name": "List all products",
    "description": "Returns a list of your products. The products are returned sorted by creation date, with the most recently created products appearing first.",
@@ -8656,7 +8869,7 @@
      },
      "ids": {
       "type": "array",
-      "description": "Only return products with the given IDs. Cannot be used with [starting_after](https://api.stripe.com#list_products-starting_after) or [ending_before](https://api.stripe.com#list_products-ending_before)."
+      "description": "Only return products with the given IDs. Cannot be used with [starting_after](https://docs.stripe.com/api#list_products-starting_after) or [ending_before](https://docs.stripe.com/api#list_products-ending_before)."
      },
      "limit": {
       "type": "integer",
@@ -10075,7 +10288,7 @@
   {
    "slug": "stripe.get_sigma_scheduled_query_runs_scheduled_query_run",
    "name": "Retrieve a scheduled query run",
-   "description": "Retrieves the details of an scheduled query run.",
+   "description": "Retrieves the details of a scheduled query run.",
    "input": {
     "type": "object",
     "properties": {
@@ -10922,6 +11135,91 @@
    }
   },
   {
+   "slug": "stripe.get_tax_locations",
+   "name": "List tax locations",
+   "description": "Retrieve a list of all tax locations. Tax locations can represent the venues for services, tickets, or other product types. The response includes detailed information for each tax location, such as its address, type, and description. You can paginate through the list by using the limit parameter to control the number of results returned in each request.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "ending_before": {
+      "type": "string",
+      "description": "A cursor for use in pagination. `ending_before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the previous page of the list."
+     },
+     "expand": {
+      "type": "array",
+      "description": "Specifies which fields in the response should be expanded."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 10."
+     },
+     "starting_after": {
+      "type": "string",
+      "description": "A cursor for use in pagination. `starting_after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the next page of the list."
+     },
+     "type": {
+      "type": "string",
+      "description": "Type of the tax location. Currently the only option is `performance`.",
+      "enum": [
+       "performance"
+      ]
+     }
+    },
+    "required": [
+     "type"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.stripe.com/v1/tax/locations",
+    "path": [],
+    "query": [
+     "ending_before",
+     "expand",
+     "limit",
+     "starting_after",
+     "type"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "form"
+   }
+  },
+  {
+   "slug": "stripe.get_tax_locations_location",
+   "name": "Retrieve a tax location",
+   "description": "Fetch the details of a specific tax location using its unique identifier. Use a tax location to calculate taxes based on the location of the end product, such as a performance, instead of the customer address. For more details, check the integration guide.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "expand": {
+      "type": "array",
+      "description": "Specifies which fields in the response should be expanded."
+     },
+     "location": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "location"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.stripe.com/v1/tax/locations/{location}",
+    "path": [
+     "location"
+    ],
+    "query": [
+     "expand"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "form"
+   }
+  },
+  {
    "slug": "stripe.get_tax_rates",
    "name": "List all tax rates",
    "description": "Returns a list of your tax rates. Tax rates are returned sorted by creation date, with the most recently created tax rates appearing first.",
@@ -11540,6 +11838,99 @@
     "url": "https://api.stripe.com/v1/test_helpers/test_clocks/{test_clock}",
     "path": [
      "test_clock"
+    ],
+    "query": [
+     "expand"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "form"
+   }
+  },
+  {
+   "slug": "stripe.get_three_dsecure_authentications",
+   "name": "List all 3 d secure authentications",
+   "description": "Returns a list of 3D Secure Authentications.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "created": {
+      "type": "string",
+      "description": "A filter on the list, based on the object `created` field. The value can be a string with an integer Unix timestamp or a dictionary with a number of different query options."
+     },
+     "ending_before": {
+      "type": "string",
+      "description": "A cursor for use in pagination. `ending_before` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the previous page of the list."
+     },
+     "expand": {
+      "type": "array",
+      "description": "Specifies which fields in the response should be expanded."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 10."
+     },
+     "starting_after": {
+      "type": "string",
+      "description": "A cursor for use in pagination. `starting_after` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the next page of the list."
+     },
+     "status": {
+      "type": "string",
+      "description": "Only return 3D Secure Authentications for specified status.",
+      "enum": [
+       "canceled",
+       "error",
+       "failed",
+       "requires_challenge",
+       "requires_submission",
+       "succeeded"
+      ]
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.stripe.com/v1/three_d_secure/authentications",
+    "path": [],
+    "query": [
+     "created",
+     "ending_before",
+     "expand",
+     "limit",
+     "starting_after",
+     "status"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "form"
+   }
+  },
+  {
+   "slug": "stripe.get_three_dsecure_authentications_authentication",
+   "name": "Retrieve a 3 ds authentication",
+   "description": "This endpoint retrieves a 3DS Authentication.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "authentication": {
+      "type": "string",
+      "description": ""
+     },
+     "expand": {
+      "type": "array",
+      "description": "Specifies which fields in the response should be expanded."
+     }
+    },
+    "required": [
+     "authentication"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.stripe.com/v1/three_d_secure/authentications/{authentication}",
+    "path": [
+     "authentication"
     ],
     "query": [
      "expand"
@@ -13016,7 +13407,7 @@
   {
    "slug": "stripe.post_account_sessions",
    "name": "Create an account session",
-   "description": "Creates a AccountSession object that includes a single-use token that the platform can use on their front-end to grant client-side API access.",
+   "description": "Creates an AccountSession object that includes a single-use token that the platform can use on their front-end to grant client-side API access.",
    "input": {
     "type": "object",
     "properties": {
@@ -13061,7 +13452,7 @@
     "properties": {
      "account_token": {
       "type": "string",
-      "description": "An [account token](https://api.stripe.com#create_account_token), used to securely provide details to the account."
+      "description": "An [account token](https://docs.stripe.com/api#create_account_token), used to securely provide details to the account."
      },
      "bank_account": {
       "type": "string",
@@ -13192,7 +13583,7 @@
      },
      "account_token": {
       "type": "string",
-      "description": "An [account token](https://api.stripe.com#create_account_token), used to securely provide details to the account."
+      "description": "An [account token](https://docs.stripe.com/api#create_account_token), used to securely provide details to the account."
      },
      "business_profile": {
       "type": "object",
@@ -14477,7 +14868,16 @@
      },
      "reason": {
       "type": "string",
-      "description": "The reason for rejecting the account. Can be `fraud`, `terms_of_service`, or `other`."
+      "description": "The reason for rejecting the account. Can be `fraud_payment_method_casher`, `fraud_payment_method_tester`, `fraud_no_intent_to_fulfill`, `fraud_other`, `credit`, `terms_of_service`, or `other`.",
+      "enum": [
+       "credit",
+       "fraud_no_intent_to_fulfill",
+       "fraud_other",
+       "fraud_payment_method_casher",
+       "fraud_payment_method_tester",
+       "other",
+       "terms_of_service"
+      ]
      }
     },
     "required": [
@@ -14698,6 +15098,128 @@
      "amount",
      "expand",
      "metadata"
+    ],
+    "body_format": "form"
+   }
+  },
+  {
+   "slug": "stripe.post_apps_installs",
+   "name": "Create an app install",
+   "description": "Creates an app install. An account installs its own private app with its own key; public and testing installs are made from the Dashboard. An app developer or embedding platform acting on a connected account through Stripe-Account installs or reinstalls its app there. For a private app, creating an install installs the newest completed upload; when that version is already installed with nothing pe",
+   "input": {
+    "type": "object",
+    "properties": {
+     "app": {
+      "type": "string",
+      "description": "The ID of the app to install."
+     },
+     "channel": {
+      "type": "string",
+      "description": "The distribution channel to install from. Defaults to `public`. A private app must be installed on `private_test` or `private_live`, matching the mode of the API key.",
+      "enum": [
+       "private_live",
+       "private_test",
+       "public",
+       "testing"
+      ]
+     },
+     "code_challenge": {
+      "type": "string",
+      "description": "For OAuth apps, the PKCE code challenge used to issue the `auth_code` returned on the install. Must be 43 to 128 characters and contain only letters, numbers, `-`, `.`, `_`, and `~`. Only applies to installs made by the app developer or an embedding platform; ignored when an account installs its own private app."
+     },
+     "code_challenge_method": {
+      "type": "string",
+      "description": "The method used to derive `code_challenge`. Required when `code_challenge` is provided, and must be `S256`."
+     },
+     "expand": {
+      "type": "array",
+      "description": "Specifies which fields in the response should be expanded."
+     }
+    },
+    "required": [
+     "app"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.stripe.com/v1/apps/installs",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "app",
+     "channel",
+     "code_challenge",
+     "code_challenge_method",
+     "expand"
+    ],
+    "body_format": "form"
+   }
+  },
+  {
+   "slug": "stripe.post_apps_installs_id",
+   "name": "Update an app install",
+   "description": "Reauthorizes an app install. The installer grants the permissions, content security policy entries, and endpoints that the version being installed requests. An account reauthorizes its own installs on any channel with its own key; app developers and embedding platforms reauthorize installs on connected accounts through Stripe-Account. For private apps, the version being installed is the newest com",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     },
+     "expand": {
+      "type": "array",
+      "description": "Specifies which fields in the response should be expanded."
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.stripe.com/v1/apps/installs/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "expand"
+    ],
+    "body_format": "form"
+   }
+  },
+  {
+   "slug": "stripe.post_apps_installs_id_uninstall",
+   "name": "Uninstall an app install",
+   "description": "Uninstalls an app from the account that installed it.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     },
+     "expand": {
+      "type": "array",
+      "description": "Specifies which fields in the response should be expanded."
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.stripe.com/v1/apps/installs/{id}/uninstall",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "expand"
     ],
     "body_format": "form"
    }
@@ -15175,7 +15697,7 @@
     "properties": {
      "description": {
       "type": "string",
-      "description": ""
+      "description": "The text of the feedback option, which customers see when canceling. Maximum 100 characters."
      },
      "expand": {
       "type": "array",
@@ -15208,11 +15730,11 @@
     "properties": {
      "id": {
       "type": "string",
-      "description": ""
+      "description": "The ID of the feedback option to update."
      },
      "description": {
       "type": "string",
-      "description": ""
+      "description": "The text of the feedback option, which customers see when canceling. Maximum 100 characters."
      },
      "expand": {
       "type": "array",
@@ -15247,7 +15769,7 @@
     "properties": {
      "id": {
       "type": "string",
-      "description": ""
+      "description": "The ID of the feedback option to deactivate."
      },
      "expand": {
       "type": "array",
@@ -15744,7 +16266,7 @@
   {
    "slug": "stripe.post_charges",
    "name": "Create a charge",
-   "description": "This method is no longer recommended\u2014use the Payment Intents API to initiate a new payment instead. Confirmation of the PaymentIntent creates the Charge object used to request payment.",
+   "description": "This method is deprecated and will be removed soon. If your integration uses it, you need to update it to use a different payment flow, such as the Payment Intents API.",
    "input": {
     "type": "object",
     "properties": {
@@ -15762,7 +16284,7 @@
      },
      "capture": {
       "type": "boolean",
-      "description": "Whether to immediately capture the charge. Defaults to `true`. When `false`, the charge issues an authorization (or pre-authorization), and will need to be [captured](https://api.stripe.com#capture_charge) later. Uncaptured charges expire after a set number of days (7 by default). For more information, see the [authorizing charges and settling later](https://docs.stripe.com/charges/placing-a-hold)"
+      "description": "Whether to immediately capture the charge. Defaults to `true`. When `false`, the charge issues an authorization (or pre-authorization), and will need to be [captured](https://docs.stripe.com/api#capture_charge) later. Uncaptured charges expire after a set number of days (7 by default). For more information, see the [authorizing charges and settling later](https://docs.stripe.com/charges/placing-a-"
      },
      "card": {
       "type": "string",
@@ -15934,7 +16456,7 @@
   {
    "slug": "stripe.post_charges_charge_capture",
    "name": "Capture a charge",
-   "description": "Capture the payment of an existing, uncaptured charge that was created with the capture option set to false. Uncaptured payments expire a set number of days after they are created (7 by default), after which they are marked as refunded and capture attempts will fail. Don\u2019t use this method to capture a PaymentIntent-initiated charge. Use Capture a PaymentIntent.",
+   "description": "This method is deprecated and will be removed soon. If your integration uses it, you need to update it to use a different payment flow, such as the Payment Intents API.",
    "input": {
     "type": "object",
     "properties": {
@@ -16320,6 +16842,10 @@
       "type": "boolean",
       "description": "Enables user redeemable promotion codes."
      },
+     "allowed_payment_method_types": {
+      "type": "array",
+      "description": "A list of the types of payment methods (e.g., `card`) this Checkout Session can accept. Unlike `payment_method_types`, this acts as a filter on the dynamically computed set of eligible payment methods rather than an explicit static list. Only payment methods that are both dynamically eligible and present in this list will be offered to the customer."
+     },
      "automatic_tax": {
       "type": "object",
       "description": "Settings for automatic tax lookup for this session and resulting payments, invoices, and subscriptions."
@@ -16354,11 +16880,11 @@
      },
      "custom_fields": {
       "type": "array",
-      "description": "Collect additional information from your customer using custom fields. Up to 3 fields are supported. You can't set this parameter if `ui_mode` is `custom`."
+      "description": "Collect additional information from your customer using custom fields. Up to 3 fields are supported. You can't set this parameter if `ui_mode` is `elements`."
      },
      "custom_text": {
       "type": "object",
-      "description": "Display additional text for your customers using custom text. You can't set this parameter if `ui_mode` is `custom`."
+      "description": "Display additional text for your customers using custom text. You can't set this parameter if `ui_mode` is `elements`."
      },
      "customer": {
       "type": "string",
@@ -16487,13 +17013,9 @@
       "type": "object",
       "description": "Payment-method-specific configuration."
      },
-     "payment_method_types": {
-      "type": "array",
-      "description": "A list of the types of payment methods (e.g., `card`) this Checkout Session can accept. You can omit this attribute to manage your payment methods from the [Stripe Dashboard](https://dashboard.stripe.com/settings/payment_methods). See [Dynamic Payment Methods](https://docs.stripe.com/payments/payment-methods/integration-options#using-dynamic-payment-methods) for more details. Read more about the s"
-     },
      "permissions": {
       "type": "object",
-      "description": "This property is used to set up permissions for various actions (e.g., update) on the CheckoutSession object. Can only be set when creating `embedded` or `custom` sessions. For specific permissions, please refer to their dedicated subsections, such as `permissions.update_shipping_details`."
+      "description": "This property is used to set up permissions for various actions (for example, update) on the CheckoutSession object. Can only be set when creating `embedded_page` or `elements` sessions. For specific permissions, please refer to their dedicated subsections, such as `permissions.update_shipping_details`."
      },
      "phone_number_collection": {
       "type": "object",
@@ -16557,6 +17079,7 @@
       "enum": [
        "elements",
        "embedded_page",
+       "form",
        "hosted_page"
       ]
      },
@@ -16577,6 +17100,7 @@
      "adaptive_pricing",
      "after_expiration",
      "allow_promotion_codes",
+     "allowed_payment_method_types",
      "automatic_tax",
      "billing_address_collection",
      "branding_settings",
@@ -16610,7 +17134,6 @@
      "payment_method_configuration",
      "payment_method_data",
      "payment_method_options",
-     "payment_method_types",
      "permissions",
      "phone_number_collection",
      "redirect_on_completion",
@@ -16642,7 +17165,7 @@
      },
      "collected_information": {
       "type": "object",
-      "description": "Information about the customer collected within the Checkout Session. Can only be set when updating `embedded` or `custom` sessions."
+      "description": "Information about the customer collected within the Checkout Session. Can only be set when updating `embedded_page` or `elements` sessions."
      },
      "expand": {
       "type": "array",
@@ -17258,7 +17781,7 @@
      },
      "invoice_prefix": {
       "type": "string",
-      "description": "The prefix for the customer used to generate unique invoice numbers. Must be 3\u201312 uppercase letters or numbers."
+      "description": "The prefix for the customer used to generate unique invoice numbers. Must be 1\u201312 uppercase letters or numbers."
      },
      "invoice_settings": {
       "type": "object",
@@ -17423,7 +17946,7 @@
      },
      "invoice_prefix": {
       "type": "string",
-      "description": "The prefix for the customer used to generate unique invoice numbers. Must be 3\u201312 uppercase letters or numbers."
+      "description": "The prefix for the customer used to generate unique invoice numbers. Must be 1\u201312 uppercase letters or numbers."
      },
      "invoice_settings": {
       "type": "object",
@@ -18440,11 +18963,11 @@
      },
      "trial_from_plan": {
       "type": "boolean",
-      "description": "Indicates if a plan's `trial_period_days` should be applied to the subscription. Setting `trial_end` per subscription is preferred, and this defaults to `false`. Setting this flag to `true` together with `trial_end` is not allowed. See [Using trial periods on subscriptions](https://docs.stripe.com/billing/subscriptions/trials) to learn more."
+      "description": "Indicates if a plan's `trial_period_days` should be applied to the subscription. Setting `trial_end` per subscription is preferred, and this defaults to `false`. Setting this flag to `true` together with `trial_end` is not allowed. See [Using trial periods on subscriptions](https://docs.stripe.com/billing/subscriptions/trials/free-trials) to learn more."
      },
      "trial_period_days": {
       "type": "integer",
-      "description": "Integer representing the number of trial period days before the customer is charged for the first time. This will always overwrite any trials that might apply via a subscribed plan. See [Using trial periods on subscriptions](https://docs.stripe.com/billing/subscriptions/trials) to learn more."
+      "description": "Integer representing the number of trial period days before the customer is charged for the first time. This will always overwrite any trials that might apply via a subscribed plan. See [Using trial periods on subscriptions](https://docs.stripe.com/billing/subscriptions/trials/free-trials) to learn more."
      },
      "trial_settings": {
       "type": "object",
@@ -18641,7 +19164,7 @@
      },
      "trial_from_plan": {
       "type": "boolean",
-      "description": "Indicates if a plan's `trial_period_days` should be applied to the subscription. Setting `trial_end` per subscription is preferred, and this defaults to `false`. Setting this flag to `true` together with `trial_end` is not allowed. See [Using trial periods on subscriptions](https://docs.stripe.com/billing/subscriptions/trials) to learn more."
+      "description": "Indicates if a plan's `trial_period_days` should be applied to the subscription. Setting `trial_end` per subscription is preferred, and this defaults to `false`. Setting this flag to `true` together with `trial_end` is not allowed. See [Using trial periods on subscriptions](https://docs.stripe.com/billing/subscriptions/trials/free-trials) to learn more."
      },
      "trial_settings": {
       "type": "object",
@@ -19202,7 +19725,7 @@
      },
      "file_link_data": {
       "type": "object",
-      "description": "Optional parameters that automatically create a [file link](https://api.stripe.com#file_links) for the newly created file."
+      "description": "Optional parameters that automatically create a [file link](https://docs.stripe.com/api#file_links) for the newly created file."
      },
      "purpose": {
       "type": "string",
@@ -19947,6 +20470,13 @@
       "type": "array",
       "description": "Specifies which fields in the response should be expanded."
      },
+     "invoicing_rules": {
+      "type": "string",
+      "description": "Pass an empty string to remove previously-defined invoicing rules. Setting invoicing rules is not supported.",
+      "enum": [
+       ""
+      ]
+     },
      "metadata": {
       "type": "string",
       "description": "Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to `metadata`."
@@ -20011,6 +20541,7 @@
      "discountable",
      "discounts",
      "expand",
+     "invoicing_rules",
      "metadata",
      "period",
      "price_data",
@@ -20150,7 +20681,7 @@
      },
      "rendering": {
       "type": "object",
-      "description": "The rendering-related settings that control how the invoice is displayed on customer-facing surfaces such as PDF and Hosted Invoice Page."
+      "description": "The rendering-related settings that control how invoices render in customer-facing interfaces such as the PDF or hosted invoice page."
      },
      "shipping_cost": {
       "type": "object",
@@ -20322,7 +20853,7 @@
   {
    "slug": "stripe.post_invoices_invoice",
    "name": "Update an invoice",
-   "description": "Draft invoices are fully editable. Once an invoice is finalized, monetary values, as well as collection_method, become uneditable. If you would like to stop the Stripe Billing engine from automatically finalizing, reattempting payments on, sending reminders for, or automatically reconciling invoices, pass auto_advance=false.",
+   "description": "Draft invoices are fully editable. Once an invoice is finalized, you can no longer change most of its details, including monetary values and collection_method. For most invoices, this also includes description. If you would like to stop the Stripe Billing engine from automatically finalizing, reattempting payments on, sending reminders for, or automatically reconciling invoices, pass auto_advance=",
    "input": {
     "type": "object",
     "properties": {
@@ -20424,7 +20955,7 @@
      },
      "rendering": {
       "type": "object",
-      "description": "The rendering-related settings that control how the invoice is displayed on customer-facing surfaces such as PDF and Hosted Invoice Page."
+      "description": "The rendering-related settings that control how invoices render in customer-facing interfaces such as the PDF or hosted invoice page."
      },
      "shipping_cost": {
       "type": "string",
@@ -21971,11 +22502,11 @@
      },
      "customer": {
       "type": "string",
-      "description": "ID of the Customer this PaymentIntent belongs to, if one exists. Payment methods attached to other Customers cannot be used with this PaymentIntent. If [setup_future_usage](https://api.stripe.com#payment_intent_object-setup_future_usage) is set and this PaymentIntent's payment method is not `card_present`, then the payment method attaches to the Customer after the PaymentIntent has been confirmed "
+      "description": "ID of the Customer this PaymentIntent belongs to, if one exists. Payment methods attached to other Customers cannot be used with this PaymentIntent. If [setup_future_usage](https://docs.stripe.com/api#payment_intent_object-setup_future_usage) is set and this PaymentIntent's payment method is not `card_present`, then the payment method attaches to the Customer after the PaymentIntent has been confi"
      },
      "customer_account": {
       "type": "string",
-      "description": "ID of the Account representing the customer that this PaymentIntent belongs to, if one exists. Payment methods attached to other Accounts cannot be used with this PaymentIntent. If [setup_future_usage](https://api.stripe.com#payment_intent_object-setup_future_usage) is set and this PaymentIntent's payment method is not `card_present`, then the payment method attaches to the Account after the Payme"
+      "description": "ID of the Account representing the customer that this PaymentIntent belongs to, if one exists. Payment methods attached to other Accounts cannot be used with this PaymentIntent. If [setup_future_usage](https://docs.stripe.com/api#payment_intent_object-setup_future_usage) is set and this PaymentIntent's payment method is not `card_present`, then the payment method attaches to the Account after the "
      },
      "description": {
       "type": "string",
@@ -22036,10 +22567,6 @@
      "payment_method_options": {
       "type": "object",
       "description": "Payment method-specific configuration for this PaymentIntent."
-     },
-     "payment_method_types": {
-      "type": "array",
-      "description": "The list of payment method types (for example, a card) that this PaymentIntent can use. If you don't provide this, Stripe will dynamically show relevant payment methods from your [payment method settings](https://dashboard.stripe.com/settings/payment_methods). A list of valid payment method types can be found [here](https://docs.stripe.com/api/payment_methods/object#payment_method_object-type)."
      },
      "radar_options": {
       "type": "object",
@@ -22125,7 +22652,6 @@
      "payment_method_configuration",
      "payment_method_data",
      "payment_method_options",
-     "payment_method_types",
      "radar_options",
      "receipt_email",
      "return_url",
@@ -22182,11 +22708,11 @@
      },
      "customer": {
       "type": "string",
-      "description": "ID of the Customer this PaymentIntent belongs to, if one exists. Payment methods attached to other Customers cannot be used with this PaymentIntent. If [setup_future_usage](https://api.stripe.com#payment_intent_object-setup_future_usage) is set and this PaymentIntent's payment method is not `card_present`, then the payment method attaches to the Customer after the PaymentIntent has been confirmed "
+      "description": "ID of the Customer this PaymentIntent belongs to, if one exists. Payment methods attached to other Customers cannot be used with this PaymentIntent. If [setup_future_usage](https://docs.stripe.com/api#payment_intent_object-setup_future_usage) is set and this PaymentIntent's payment method is not `card_present`, then the payment method attaches to the Customer after the PaymentIntent has been confi"
      },
      "customer_account": {
       "type": "string",
-      "description": "ID of the Account representing the customer that this PaymentIntent belongs to, if one exists. Payment methods attached to other Accounts cannot be used with this PaymentIntent. If [setup_future_usage](https://api.stripe.com#payment_intent_object-setup_future_usage) is set and this PaymentIntent's payment method is not `card_present`, then the payment method attaches to the Account after the Payme"
+      "description": "ID of the Account representing the customer that this PaymentIntent belongs to, if one exists. Payment methods attached to other Accounts cannot be used with this PaymentIntent. If [setup_future_usage](https://docs.stripe.com/api#payment_intent_object-setup_future_usage) is set and this PaymentIntent's payment method is not `card_present`, then the payment method attaches to the Account after the "
      },
      "description": {
       "type": "string",
@@ -22227,10 +22753,6 @@
      "payment_method_options": {
       "type": "object",
       "description": "Payment-method-specific configuration for this PaymentIntent."
-     },
-     "payment_method_types": {
-      "type": "array",
-      "description": "The list of payment method types (for example, card) that this PaymentIntent can use. Use `automatic_payment_methods` to manage payment methods from the [Stripe Dashboard](https://dashboard.stripe.com/settings/payment_methods). A list of valid payment method types can be found [here](https://docs.stripe.com/api/payment_methods/object#payment_method_object-type)."
      },
      "receipt_email": {
       "type": "string",
@@ -22297,7 +22819,6 @@
      "payment_method_configuration",
      "payment_method_data",
      "payment_method_options",
-     "payment_method_types",
      "receipt_email",
      "setup_future_usage",
      "shipping",
@@ -22556,7 +23077,7 @@
      },
      "payment_method": {
       "type": "string",
-      "description": "ID of the payment method (a PaymentMethod, Card, or [compatible Source](https://docs.stripe.com/payments/payment-methods/transitioning#compatibility) object) to attach to this PaymentIntent. If the payment method is attached to a Customer, it must match the [customer](https://api.stripe.com#create_payment_intent-customer) that is set on this PaymentIntent."
+      "description": "ID of the payment method (a PaymentMethod, Card, or [compatible Source](https://docs.stripe.com/payments/payment-methods/transitioning#compatibility) object) to attach to this PaymentIntent. If the payment method is attached to a Customer, it must match the [customer](https://docs.stripe.com/api#create_payment_intent-customer) that is set on this PaymentIntent."
      },
      "payment_method_data": {
       "type": "object",
@@ -22565,10 +23086,6 @@
      "payment_method_options": {
       "type": "object",
       "description": "Payment method-specific configuration for this PaymentIntent."
-     },
-     "payment_method_types": {
-      "type": "array",
-      "description": "The list of payment method types (for example, a card) that this PaymentIntent can use. If you don't provide this, Stripe will dynamically show relevant payment methods from your [payment method settings](https://dashboard.stripe.com/settings/payment_methods). A list of valid payment method types can be found [here](https://docs.stripe.com/api/payment_methods/object#payment_method_object-type)."
      },
      "radar_options": {
       "type": "object",
@@ -22630,7 +23147,6 @@
      "payment_method",
      "payment_method_data",
      "payment_method_options",
-     "payment_method_types",
      "radar_options",
      "receipt_email",
      "return_url",
@@ -22815,11 +23331,11 @@
      },
      "custom_fields": {
       "type": "array",
-      "description": "Collect additional information from your customer using custom fields. Up to 3 fields are supported. You can't set this parameter if `ui_mode` is `custom`."
+      "description": "Collect additional information from your customer using custom fields. Up to 3 fields are supported. You can't set this parameter if `ui_mode` is `elements`."
      },
      "custom_text": {
       "type": "object",
-      "description": "Display additional text for your customers using custom text. You can't set this parameter if `ui_mode` is `custom`."
+      "description": "Display additional text for your customers using custom text. You can't set this parameter if `ui_mode` is `elements`."
      },
      "customer_creation": {
       "type": "string",
@@ -23021,11 +23537,11 @@
      },
      "custom_fields": {
       "type": "string",
-      "description": "Collect additional information from your customer using custom fields. Up to 3 fields are supported. You can't set this parameter if `ui_mode` is `custom`."
+      "description": "Collect additional information from your customer using custom fields. Up to 3 fields are supported. You can't set this parameter if `ui_mode` is `elements`."
      },
      "custom_text": {
       "type": "object",
-      "description": "Display additional text for your customers using custom text. You can't set this parameter if `ui_mode` is `custom`."
+      "description": "Display additional text for your customers using custom text. You can't set this parameter if `ui_mode` is `elements`."
      },
      "customer_creation": {
       "type": "string",
@@ -23370,6 +23886,10 @@
       "type": "object",
       "description": "PayPal, a digital wallet popular with customers in Europe, allows your customers worldwide to pay using their PayPal account. Check this [page](https://docs.stripe.com/payments/paypal) for more details."
      },
+     "paypay": {
+      "type": "object",
+      "description": "Customers can pay with PayPay online or using the PayPay app."
+     },
      "payto": {
       "type": "object",
       "description": "PayTo is a [real-time](https://docs.stripe.com/payments/real-time) payment method that enables customers in Australia to pay by providing their bank account details. Customers must accept a mandate authorizing you to debit their account. Check this [page](https://docs.stripe.com/payments/payto) for more details."
@@ -23401,6 +23921,10 @@
      "sepa_debit": {
       "type": "object",
       "description": "The [Single Euro Payments Area (SEPA)](https://en.wikipedia.org/wiki/Single_Euro_Payments_Area) is an initiative of the European Union to simplify payments within and across member countries. SEPA established and enforced banking standards to allow for the direct debiting of every EUR-denominated bank account within the SEPA region, check this [page](https://docs.stripe.com/payments/sepa-debit) fo"
+     },
+     "sequra": {
+      "type": "object",
+      "description": "SeQura is a [single-use](https://docs.stripe.com/payments/payment-methods#usage) payment method that offers customers payment terms ranging from 7-120 days. Customers are redirected from your website or app, authorize the payment with SeQura, then return to your website or app. You get [immediate notification](https://docs.stripe.com/payments/payment-methods#payment-notification) of whether the pa"
      },
      "sofort": {
       "type": "object",
@@ -23491,6 +24015,7 @@
      "payco",
      "paynow",
      "paypal",
+     "paypay",
      "payto",
      "pix",
      "promptpay",
@@ -23499,6 +24024,7 @@
      "satispay",
      "scalapay",
      "sepa_debit",
+     "sequra",
      "sofort",
      "sunbit",
      "swish",
@@ -23710,6 +24236,10 @@
       "type": "object",
       "description": "PayPal, a digital wallet popular with customers in Europe, allows your customers worldwide to pay using their PayPal account. Check this [page](https://docs.stripe.com/payments/paypal) for more details."
      },
+     "paypay": {
+      "type": "object",
+      "description": "Customers can pay with PayPay online or using the PayPay app."
+     },
      "payto": {
       "type": "object",
       "description": "PayTo is a [real-time](https://docs.stripe.com/payments/real-time) payment method that enables customers in Australia to pay by providing their bank account details. Customers must accept a mandate authorizing you to debit their account. Check this [page](https://docs.stripe.com/payments/payto) for more details."
@@ -23741,6 +24271,10 @@
      "sepa_debit": {
       "type": "object",
       "description": "The [Single Euro Payments Area (SEPA)](https://en.wikipedia.org/wiki/Single_Euro_Payments_Area) is an initiative of the European Union to simplify payments within and across member countries. SEPA established and enforced banking standards to allow for the direct debiting of every EUR-denominated bank account within the SEPA region, check this [page](https://docs.stripe.com/payments/sepa-debit) fo"
+     },
+     "sequra": {
+      "type": "object",
+      "description": "SeQura is a [single-use](https://docs.stripe.com/payments/payment-methods#usage) payment method that offers customers payment terms ranging from 7-120 days. Customers are redirected from your website or app, authorize the payment with SeQura, then return to your website or app. You get [immediate notification](https://docs.stripe.com/payments/payment-methods#payment-notification) of whether the pa"
      },
      "sofort": {
       "type": "object",
@@ -23835,6 +24369,7 @@
      "payco",
      "paynow",
      "paypal",
+     "paypay",
      "payto",
      "pix",
      "promptpay",
@@ -23843,6 +24378,7 @@
      "satispay",
      "scalapay",
      "sepa_debit",
+     "sequra",
      "sofort",
      "sunbit",
      "swish",
@@ -24000,11 +24536,11 @@
      },
      "alma": {
       "type": "object",
-      "description": "If this is a Alma PaymentMethod, this hash contains details about the Alma payment method."
+      "description": "If this is an Alma PaymentMethod, this hash contains details about the Alma payment method."
      },
      "amazon_pay": {
       "type": "object",
-      "description": "If this is a AmazonPay PaymentMethod, this hash contains details about the AmazonPay payment method."
+      "description": "If this is an AmazonPay PaymentMethod, this hash contains details about the AmazonPay payment method."
      },
      "au_becs_debit": {
       "type": "object",
@@ -24162,6 +24698,10 @@
       "type": "object",
       "description": "If this is a `paypal` PaymentMethod, this hash contains details about the PayPal payment method."
      },
+     "paypay": {
+      "type": "object",
+      "description": "If this is a `paypay` PaymentMethod, this hash contains details about the PayPay payment method."
+     },
      "payto": {
       "type": "object",
       "description": "If this is a `payto` PaymentMethod, this hash contains details about the PayTo payment method."
@@ -24197,6 +24737,10 @@
      "sepa_debit": {
       "type": "object",
       "description": "If this is a `sepa_debit` PaymentMethod, this hash contains details about the SEPA debit bank account."
+     },
+     "sequra": {
+      "type": "object",
+      "description": "If this is a SeQura PaymentMethod, this hash contains details about the SeQura payment method."
      },
      "sofort": {
       "type": "object",
@@ -24304,6 +24848,7 @@
      "payment_method",
      "paynow",
      "paypal",
+     "paypay",
      "payto",
      "pix",
      "promptpay",
@@ -24313,6 +24858,7 @@
      "satispay",
      "scalapay",
      "sepa_debit",
+     "sequra",
      "sofort",
      "sunbit",
      "swish",
@@ -24362,10 +24908,6 @@
       "type": "string",
       "description": "Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to `metadata`."
      },
-     "payto": {
-      "type": "object",
-      "description": "If this is a `payto` PaymentMethod, this hash contains details about the PayTo payment method."
-     },
      "us_bank_account": {
       "type": "object",
       "description": "If this is an `us_bank_account` PaymentMethod, this hash contains details about the US bank account payment method."
@@ -24389,7 +24931,6 @@
      "card",
      "expand",
      "metadata",
-     "payto",
      "us_bank_account"
     ],
     "body_format": "form"
@@ -24484,6 +25025,10 @@
       "type": "string",
       "description": "The ID of the Payment Record."
      },
+     "canceled": {
+      "type": "object",
+      "description": "Information about the payment attempt cancelation."
+     },
      "description": {
       "type": "string",
       "description": "An arbitrary string attached to the object. Often useful for displaying to users."
@@ -24512,6 +25057,7 @@
       "type": "string",
       "description": "The outcome of the reported payment.",
       "enum": [
+       "canceled",
        "failed",
        "guaranteed"
       ]
@@ -24539,6 +25085,7 @@
     "query": [],
     "header": [],
     "body": [
+     "canceled",
      "description",
      "expand",
      "failed",
@@ -24821,6 +25368,10 @@
       "type": "object",
       "description": "The amount you initially requested for this payment."
      },
+     "canceled": {
+      "type": "object",
+      "description": "Information about the payment attempt cancelation."
+     },
      "customer_details": {
       "type": "object",
       "description": "Customer information for this payment."
@@ -24861,6 +25412,7 @@
       "type": "string",
       "description": "The outcome of the reported payment.",
       "enum": [
+       "canceled",
        "failed",
        "guaranteed"
       ]
@@ -24892,6 +25444,7 @@
     "header": [],
     "body": [
      "amount_requested",
+     "canceled",
      "customer_details",
      "customer_presence",
      "description",
@@ -24917,7 +25470,7 @@
     "properties": {
      "amount": {
       "type": "integer",
-      "description": "A positive integer in cents representing how much to payout."
+      "description": "A positive integer in cents representing how much to pay out."
      },
      "currency": {
       "type": "string",
@@ -25140,7 +25693,7 @@
      },
      "id": {
       "type": "string",
-      "description": "An identifier randomly generated by Stripe. Used to identify this plan when subscribing a customer. You can optionally override this ID, but the ID must be unique across all plans in your Stripe account. You can, however, use the same plan ID in both live and test modes."
+      "description": "An identifier randomly generated by Stripe. Used to identify this plan when subscribing a customer. You can optionally override this ID, but the ID must be unique across all plans in your Stripe account. You can use the same plan ID in live mode and in your sandboxes."
      },
      "interval": {
       "type": "string",
@@ -25500,6 +26053,100 @@
    }
   },
   {
+   "slug": "stripe.post_product_catalog_trial_offers",
+   "name": "Create a trial offer",
+   "description": "Creates a trial offer.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "active": {
+      "type": "boolean",
+      "description": "Whether the trial offer can be used for new subscriptions. Defaults to true."
+     },
+     "duration": {
+      "type": "object",
+      "description": "Duration of one service period of the trial."
+     },
+     "end_behavior": {
+      "type": "object",
+      "description": "Define behavior that occurs at the end of the trial."
+     },
+     "expand": {
+      "type": "array",
+      "description": "Specifies which fields in the response should be expanded."
+     },
+     "nickname": {
+      "type": "string",
+      "description": "A brief description of the trial offer, hidden from customers."
+     },
+     "price": {
+      "type": "string",
+      "description": "Price configuration during the trial period (amount, billing scheme, etc)."
+     }
+    },
+    "required": [
+     "duration",
+     "end_behavior",
+     "price"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.stripe.com/v1/product_catalog/trial_offers",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "active",
+     "duration",
+     "end_behavior",
+     "expand",
+     "nickname",
+     "price"
+    ],
+    "body_format": "form"
+   }
+  },
+  {
+   "slug": "stripe.post_product_catalog_trial_offers_id",
+   "name": "Update a trial offer",
+   "description": "Updates the specified trial offer by setting the values of the parameters passed. Any parameters not provided are left unchanged.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     },
+     "active": {
+      "type": "boolean",
+      "description": "Whether the trial offer can be used for new purchases."
+     },
+     "expand": {
+      "type": "array",
+      "description": "Specifies which fields in the response should be expanded."
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.stripe.com/v1/product_catalog/trial_offers/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "active",
+     "expand"
+    ],
+    "body_format": "form"
+   }
+  },
+  {
    "slug": "stripe.post_products",
    "name": "Create a product",
    "description": "Creates a new product object.",
@@ -25558,6 +26205,10 @@
       "type": "string",
       "description": "A [tax code](https://docs.stripe.com/tax/tax-categories) ID."
      },
+     "tax_details": {
+      "type": "object",
+      "description": "Tax details for this product, including the [tax code](/tax/tax-codes) and an optional performance location."
+     },
      "unit_label": {
       "type": "string",
       "description": "A label that represents units of this product. When set, this will be included in customers' receipts, invoices, Checkout, and the customer portal."
@@ -25591,6 +26242,7 @@
      "shippable",
      "statement_descriptor",
      "tax_code",
+     "tax_details",
      "unit_label",
      "url"
     ],
@@ -25656,6 +26308,10 @@
       "type": "string",
       "description": "A [tax code](https://docs.stripe.com/tax/tax-categories) ID."
      },
+     "tax_details": {
+      "type": "string",
+      "description": "Tax details for this product, including the [tax code](/tax/tax-codes) and an optional performance location."
+     },
      "unit_label": {
       "type": "string",
       "description": "A label that represents units of this product. When set, this will be included in customers' receipts, invoices, Checkout, and the customer portal. May only be set if `type=service`."
@@ -25690,6 +26346,7 @@
      "shippable",
      "statement_descriptor",
      "tax_code",
+     "tax_details",
      "unit_label",
      "url"
     ],
@@ -26736,10 +27393,6 @@
       "type": "object",
       "description": "Payment method-specific configuration for this SetupIntent."
      },
-     "payment_method_types": {
-      "type": "array",
-      "description": "The list of payment method types (for example, card) that this SetupIntent can use. If you don't provide this, Stripe will dynamically show relevant payment methods from your [payment method settings](https://dashboard.stripe.com/settings/payment_methods). A list of valid payment method types can be found [here](https://docs.stripe.com/api/payment_methods/object#payment_method_object-type)."
-     },
      "return_url": {
       "type": "string",
       "description": "The URL to redirect your customer back to after they authenticate or cancel their payment on the payment method's app or site. To redirect to a mobile application, you can alternatively supply an application URI scheme. This parameter can only be used with [`confirm=true`](https://docs.stripe.com/api/setup_intents/create#create_setup_intent-confirm)."
@@ -26788,7 +27441,6 @@
      "payment_method_configuration",
      "payment_method_data",
      "payment_method_options",
-     "payment_method_types",
      "return_url",
      "single_use",
      "usage",
@@ -26859,10 +27511,6 @@
      "payment_method_options": {
       "type": "object",
       "description": "Payment method-specific configuration for this SetupIntent."
-     },
-     "payment_method_types": {
-      "type": "array",
-      "description": "The list of payment method types (for example, card) that this SetupIntent can set up. If you don't provide this, Stripe will dynamically show relevant payment methods from your [payment method settings](https://dashboard.stripe.com/settings/payment_methods). A list of valid payment method types can be found [here](https://docs.stripe.com/api/payment_methods/object#payment_method_object-type)."
      }
     },
     "required": [
@@ -26890,8 +27538,7 @@
      "payment_method",
      "payment_method_configuration",
      "payment_method_data",
-     "payment_method_options",
-     "payment_method_types"
+     "payment_method_options"
     ],
     "body_format": "form"
    }
@@ -27219,7 +27866,7 @@
      },
      "sql": {
       "type": "string",
-      "description": "The sql statement to update the specified query statement with. This should be a valid Trino SQL statement that can be run in Sigma."
+      "description": "The sql statement to update the specified query statement with. This should be a valid ANSI SQL statement that can be run in Sigma."
      }
     },
     "required": [
@@ -27458,6 +28105,10 @@
       "type": "string",
       "description": "Define thresholds at which an invoice will be sent, and the subscription advanced to a new billing period. Pass an empty string to remove previously-defined thresholds."
      },
+     "current_trial": {
+      "type": "object",
+      "description": "The trial offer to apply to this subscription item."
+     },
      "discounts": {
       "type": "string",
       "description": "The coupons to redeem into discounts for the subscription item."
@@ -27526,6 +28177,7 @@
     "header": [],
     "body": [
      "billing_thresholds",
+     "current_trial",
      "discounts",
      "expand",
      "metadata",
@@ -27556,6 +28208,10 @@
       "type": "string",
       "description": "Define thresholds at which an invoice will be sent, and the subscription advanced to a new billing period. Pass an empty string to remove previously-defined thresholds."
      },
+     "current_trial": {
+      "type": "object",
+      "description": "The trial offer to apply to this subscription item."
+     },
      "discounts": {
       "type": "string",
       "description": "The coupons to redeem into discounts for the subscription item."
@@ -27584,11 +28240,11 @@
      },
      "price": {
       "type": "string",
-      "description": "The ID of the price object. One of `price` or `price_data` is required. When changing a subscription item's price, `quantity` is set to 1 unless a `quantity` parameter is provided."
+      "description": "The ID of the price object. You can use either `price` or `price_data`, but not both, to set or change this item's price. If you're updating an existing item without changing its price, omit both. When changing a subscription item's price, `quantity` is set to 1 unless a `quantity` parameter is provided."
      },
      "price_data": {
       "type": "object",
-      "description": "Data used to generate a new [Price](https://docs.stripe.com/api/prices) object inline. One of `price` or `price_data` is required."
+      "description": "Data used to generate a new [Price](https://docs.stripe.com/api/prices) object inline. You can use either `price` or `price_data`, but not both, to set or change this item's price. If you're updating an existing item without changing its price, omit both."
      },
      "proration_behavior": {
       "type": "string",
@@ -27626,6 +28282,7 @@
     "header": [],
     "body": [
      "billing_thresholds",
+     "current_trial",
      "discounts",
      "expand",
      "metadata",
@@ -27686,6 +28343,10 @@
       "type": "string",
       "description": "Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to `metadata`."
      },
+     "pause_schedules": {
+      "type": "array",
+      "description": "Configures the subscription's pause behavior and, optionally, its resume behavior. Only one entry is supported."
+     },
      "phases": {
       "type": "array",
       "description": "List representing phases of the subscription schedule. Each phase can be customized to have different durations, plans, and coupons. If there are multiple phases, the `end_date` of one phase will always equal the `start_date` of the next phase."
@@ -27712,6 +28373,7 @@
      "expand",
      "from_subscription",
      "metadata",
+     "pause_schedules",
      "phases",
      "start_date"
     ],
@@ -27751,6 +28413,10 @@
       "type": "string",
       "description": "Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to `metadata`."
      },
+     "pause_schedules": {
+      "type": "string",
+      "description": "Configures the subscription's pause behavior and, optionally, its resume behavior. Only one entry is supported. Include a key to update an existing entry. Omit to leave an existing pause schedule unchanged, or pass \"\" to clear it."
+     },
      "phases": {
       "type": "array",
       "description": "List representing phases of the subscription schedule. Each phase can be customized to have different durations, plans, and coupons. If there are multiple phases, the `end_date` of one phase will always equal the `start_date` of the next phase. Note that past phases can be omitted."
@@ -27782,6 +28448,7 @@
      "end_behavior",
      "expand",
      "metadata",
+     "pause_schedules",
      "phases",
      "proration_behavior"
     ],
@@ -28027,11 +28694,11 @@
      },
      "trial_from_plan": {
       "type": "boolean",
-      "description": "Indicates if a plan's `trial_period_days` should be applied to the subscription. Setting `trial_end` per subscription is preferred, and this defaults to `false`. Setting this flag to `true` together with `trial_end` is not allowed. See [Using trial periods on subscriptions](https://docs.stripe.com/billing/subscriptions/trials) to learn more."
+      "description": "Indicates if a plan's `trial_period_days` should be applied to the subscription. Setting `trial_end` per subscription is preferred, and this defaults to `false`. Setting this flag to `true` together with `trial_end` is not allowed. See [Using trial periods on subscriptions](https://docs.stripe.com/billing/subscriptions/trials/free-trials) to learn more."
      },
      "trial_period_days": {
       "type": "integer",
-      "description": "Integer representing the number of trial period days before the customer is charged for the first time. This will always overwrite any trials that might apply via a subscribed plan. See [Using trial periods on subscriptions](https://docs.stripe.com/billing/subscriptions/trials) to learn more."
+      "description": "Integer representing the number of trial period days before the customer is charged for the first time. This will always overwrite any trials that might apply via a subscribed plan. See [Using trial periods on subscriptions](https://docs.stripe.com/billing/subscriptions/trials/free-trials) to learn more."
      },
      "trial_settings": {
       "type": "object",
@@ -28111,12 +28778,8 @@
       "description": "Automatic tax settings for this subscription. We recommend you only include this parameter when the existing value is being changed."
      },
      "billing_cycle_anchor": {
-      "type": "string",
-      "description": "Either `now` or `unchanged`. Setting the value to `now` resets the subscription's billing cycle anchor to the current time (in UTC). For more information, see the billing cycle [documentation](https://docs.stripe.com/billing/subscriptions/billing-cycle).",
-      "enum": [
-       "now",
-       "unchanged"
-      ]
+      "type": "object",
+      "description": "Controls how the subscription's billing cycle anchor changes. Set `type` to `now` to reset the billing cycle anchor to the current time (in UTC), or `unchanged` to preserve it. For more information, see the billing cycle [documentation](https://docs.stripe.com/billing/subscriptions/billing-cycle)."
      },
      "billing_schedules": {
       "type": "string",
@@ -28239,7 +28902,7 @@
      },
      "trial_from_plan": {
       "type": "boolean",
-      "description": "Indicates if a plan's `trial_period_days` should be applied to the subscription. Setting `trial_end` per subscription is preferred, and this defaults to `false`. Setting this flag to `true` together with `trial_end` is not allowed. See [Using trial periods on subscriptions](https://docs.stripe.com/billing/subscriptions/trials) to learn more."
+      "description": "Indicates if a plan's `trial_period_days` should be applied to the subscription. Setting `trial_end` per subscription is preferred, and this defaults to `false`. Setting this flag to `true` together with `trial_end` is not allowed. See [Using trial periods on subscriptions](https://docs.stripe.com/billing/subscriptions/trials/free-trials) to learn more."
      },
      "trial_settings": {
       "type": "object",
@@ -28336,6 +28999,62 @@
    }
   },
   {
+   "slug": "stripe.post_subscriptions_subscription_pause",
+   "name": "Pause a subscription",
+   "description": "Pauses a subscription by transitioning it to the paused status. A paused subscription does not generate invoices and will not advance to new billing periods. The subscription can be resumed later using the resume endpoint. Cannot pause subscriptions with attached schedules.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "subscription": {
+      "type": "string",
+      "description": ""
+     },
+     "bill_for": {
+      "type": "object",
+      "description": "Controls what to bill for when pausing the subscription."
+     },
+     "expand": {
+      "type": "array",
+      "description": "Specifies which fields in the response should be expanded."
+     },
+     "invoicing_behavior": {
+      "type": "string",
+      "description": "Determines how to handle debits and credits when pausing. Defaults to `pending_invoice_item`.",
+      "enum": [
+       "invoice",
+       "pending_invoice_item"
+      ]
+     },
+     "type": {
+      "type": "string",
+      "description": "The type of pause to apply. Defaults to `subscription`.",
+      "enum": [
+       "subscription"
+      ]
+     }
+    },
+    "required": [
+     "subscription"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.stripe.com/v1/subscriptions/{subscription}/pause",
+    "path": [
+     "subscription"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "bill_for",
+     "expand",
+     "invoicing_behavior",
+     "type"
+    ],
+    "body_format": "form"
+   }
+  },
+  {
    "slug": "stripe.post_subscriptions_subscription_resume",
    "name": "Resume a subscription",
    "description": "Initiates resumption of a paused subscription, optionally resetting the billing cycle anchor and creating prorations. Resume is only available for subscriptions that use charge_automatically collection. If Stripe doesn\u2019t generate a resumption invoice, the subscription becomes active immediately. When a resumption invoice is generated, Stripe finalizes it immediately. If the invoice is paid or mark",
@@ -28347,16 +29066,20 @@
       "description": ""
      },
      "billing_cycle_anchor": {
-      "type": "string",
-      "description": "The billing cycle anchor that applies when the subscription is resumed. Either `now` or `unchanged`. The default is `now`. For more information, see the billing cycle [documentation](https://docs.stripe.com/billing/subscriptions/billing-cycle).",
-      "enum": [
-       "now",
-       "unchanged"
-      ]
+      "type": "object",
+      "description": "The billing cycle anchor that applies when the subscription is resumed. Either `now` or `unchanged`. The default is `now`. For more information, see the billing cycle [documentation](https://docs.stripe.com/billing/subscriptions/billing-cycle)."
      },
      "expand": {
       "type": "array",
       "description": "Specifies which fields in the response should be expanded."
+     },
+     "payment_behavior": {
+      "type": "string",
+      "description": "Controls whether Stripe attempts payment on the resumption invoice in the resume request, and how payment on that invoice affects the subscription's status. The default is `resume_on_payment_attempt`.",
+      "enum": [
+       "resume_on_payment_attempt",
+       "resume_on_payment_success"
+      ]
      },
      "proration_behavior": {
       "type": "string",
@@ -28387,6 +29110,7 @@
     "body": [
      "billing_cycle_anchor",
      "expand",
+     "payment_behavior",
      "proration_behavior",
      "proration_date"
     ],
@@ -28516,6 +29240,53 @@
    }
   },
   {
+   "slug": "stripe.post_tax_locations",
+   "name": "Create a tax location",
+   "description": "Create a tax location to use in calculating taxes for a service, ticket, or other type of product. The resulting object contains the ID, address, type, and description of the tax location.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "address": {
+      "type": "object",
+      "description": "The physical address of the tax location."
+     },
+     "description": {
+      "type": "string",
+      "description": "Details to identify the tax location by its venue, types of events held, or available services, such as \"A spacious auditorium suitable for large concerts and events.\"."
+     },
+     "expand": {
+      "type": "array",
+      "description": "Specifies which fields in the response should be expanded."
+     },
+     "type": {
+      "type": "string",
+      "description": "The type of tax location. The only supported value is \"performance\".",
+      "enum": [
+       "performance"
+      ]
+     }
+    },
+    "required": [
+     "address",
+     "type"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.stripe.com/v1/tax/locations",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "address",
+     "description",
+     "expand",
+     "type"
+    ],
+    "body_format": "form"
+   }
+  },
+  {
    "slug": "stripe.post_tax_rates",
    "name": "Create a tax rate",
    "description": "Creates a new tax rate.",
@@ -28568,6 +29339,7 @@
       "enum": [
        "amusement_tax",
        "communications_tax",
+       "digital_excise_tax",
        "gst",
        "hst",
        "igst",
@@ -28576,8 +29348,7 @@
        "mass_transit_parking_tax",
        "parking_tax",
        "pst",
-       "qst",
-       "retail_delivery_fee"
+       "qst"
       ]
      }
     },
@@ -28658,6 +29429,7 @@
       "enum": [
        "amusement_tax",
        "communications_tax",
+       "digital_excise_tax",
        "gst",
        "hst",
        "igst",
@@ -28666,8 +29438,7 @@
        "mass_transit_parking_tax",
        "parking_tax",
        "pst",
-       "qst",
-       "retail_delivery_fee"
+       "qst"
       ]
      }
     },
@@ -28794,7 +29565,7 @@
   {
    "slug": "stripe.post_tax_settings",
    "name": "Update settings",
-   "description": "Updates Tax Settings parameters used in tax calculations. All parameters are editable but none can be removed once set.",
+   "description": "Updates Tax Settings parameters used in tax calculations. All parameters are editable but none can be removed once set. Check the returned Tax Settings object and validate that its status is active.",
    "input": {
     "type": "object",
     "properties": {
@@ -31571,6 +32342,7 @@
       "description": "Specifies the network rails to be used. If not set, will default to the PaymentMethod's preferred network. See the [docs](https://docs.stripe.com/treasury/money-movement/timelines) to learn more about money movement timelines for each network type.",
       "enum": [
        "ach",
+       "rtp",
        "us_domestic_wire"
       ]
      }
@@ -31660,6 +32432,211 @@
      "financial_account",
      "initiating_payment_method_details",
      "network"
+    ],
+    "body_format": "form"
+   }
+  },
+  {
+   "slug": "stripe.post_three_dsecure_authentications",
+   "name": "Create a 3 ds authentication",
+   "description": "This endpoint creates a 3DS Authentication. Refer to the Create a 3DS Authentication object section of the Standalone 3DS guide for more information. You can pass the submit parameter to automatically submit the 3DS Authentication object when you create it. Refer to the Submit at creation section of the Standalone 3DS guide for more information.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "acquirer_details": {
+      "type": "object",
+      "description": "Contains additional details about the acquirer for this 3DS Authentication. Refer to the [Pass acquirer details and directory server section of the standalone 3DS guide](/payments/3d-secure/standalone-3d-secure#pass-acquirer-details-and-directory-server) for more information."
+     },
+     "amount": {
+      "type": "integer",
+      "description": "A non-negative integer representing the amount in the [smallest currency unit](/currencies#zero-decimal). You can't include this parameter if `message_category` is `non_payment_authentication`"
+     },
+     "channel": {
+      "type": "object",
+      "description": "Contains additional details on the channel used for this 3DS Authentication."
+     },
+     "currency": {
+      "type": "string",
+      "description": "Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in lowercase. Must be a [supported currency](https://stripe.com/docs/currencies)."
+     },
+     "directory_server": {
+      "type": "string",
+      "description": "The 3DS directory server with which this 3DS Authentication was processed.",
+      "enum": [
+       "american_express",
+       "cartes_bancaires",
+       "discover",
+       "mastercard",
+       "visa"
+      ]
+     },
+     "expand": {
+      "type": "array",
+      "description": "Specifies which fields in the response should be expanded."
+     },
+     "flow_preference": {
+      "type": "object",
+      "description": "Contains additional details on your flow preference for this 3DS Authentication. Refer to the [Specify a flow preference section of the standalone 3DS guide](/payments/3d-secure/standalone-3d-secure#specify-a-flow-preference) for more information."
+     },
+     "future_usage": {
+      "type": "object",
+      "description": "Contains information about future usage of this 3DS Authentication"
+     },
+     "message_category": {
+      "type": "string",
+      "description": "Indicates whether this 3DS Authentication is being performed for a payment or non-payment use case.",
+      "enum": [
+       "non_payment_authentication",
+       "payment_authentication"
+      ]
+     },
+     "metadata": {
+      "type": "string",
+      "description": "Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to `metadata`."
+     },
+     "payment_method": {
+      "type": "string",
+      "description": "ID of the payment method (a PaymentMethod object) to attach to this 3DS Authentication."
+     },
+     "payment_method_data": {
+      "type": "object",
+      "description": "Hash used to generate the PaymentMethod to be used for this Authentication. This is mutually exclusive with the `payment_method` parameter."
+     },
+     "reason": {
+      "type": "string",
+      "description": "The reason for invoking standalone 3DS. This is tailored specifically for cases when you want Stripe to help determine the standalone 3DS flow to fit your use case instead of needing to select a specific 3DS flow. This parameter is exclusive with `flow_preference`. You can either use `reason` for controlling 3DS according to your business requirements, or use `flow_preference` for having fine-grai",
+      "enum": [
+       "cardholder_authentication",
+       "issuer_requested",
+       "liability_shift",
+       "processing_costs",
+       "regulatory_compliance"
+      ]
+     },
+     "shipping_address": {
+      "type": "object",
+      "description": "The shipping address requested by the cardholder. You should try to include as complete address information as possible."
+     },
+     "submit": {
+      "type": "string",
+      "description": "Set to `always` to skip the fingerprinting step and submit this Authentication immediately or `if_fingerprinting_not_supported` to submit this Authentication only if fingerprinting is not available. This parameter defaults to `never`. Refer to the [Submit at creation section of the standalone 3DS guide](/payments/3d-secure/standalone-3d-secure#submit-at-creation) for more information.",
+      "enum": [
+       "always",
+       "if_fingerprinting_not_supported",
+       "never"
+      ]
+     }
+    },
+    "required": [
+     "channel",
+     "message_category"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.stripe.com/v1/three_d_secure/authentications",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "acquirer_details",
+     "amount",
+     "channel",
+     "currency",
+     "directory_server",
+     "expand",
+     "flow_preference",
+     "future_usage",
+     "message_category",
+     "metadata",
+     "payment_method",
+     "payment_method_data",
+     "reason",
+     "shipping_address",
+     "submit"
+    ],
+    "body_format": "form"
+   }
+  },
+  {
+   "slug": "stripe.post_three_dsecure_authentications_authentication_cancel",
+   "name": "Cancel a 3 ds authentication",
+   "description": "This endpoint cancels a 3DS Authentication. You can cancel a 3DS Authentication object when it\u2019s in a non-final status: requires_submission or requires_challenge.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "authentication": {
+      "type": "string",
+      "description": ""
+     },
+     "expand": {
+      "type": "array",
+      "description": "Specifies which fields in the response should be expanded."
+     },
+     "metadata": {
+      "type": "string",
+      "description": "Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to `metadata`."
+     }
+    },
+    "required": [
+     "authentication"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.stripe.com/v1/three_d_secure/authentications/{authentication}/cancel",
+    "path": [
+     "authentication"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "expand",
+     "metadata"
+    ],
+    "body_format": "form"
+   }
+  },
+  {
+   "slug": "stripe.post_three_dsecure_authentications_authentication_submit",
+   "name": "Submit a 3 ds authentication",
+   "description": "This endpoint submits a 3DS Authentication. You can submit a 3DS Authentication object when it has status requires_submission. Refer to the Submit the 3DS Authentication object section of the Standalone 3DS guide for more information.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "authentication": {
+      "type": "string",
+      "description": ""
+     },
+     "expand": {
+      "type": "array",
+      "description": "Specifies which fields in the response should be expanded."
+     },
+     "fingerprinting_result": {
+      "type": "string",
+      "description": "The fingerprinting result of the issuer fingerprinting step. Refer to the [Issuer fingerprinting section of the Standalone 3DS guide](/payments/3d-secure/standalone-3d-secure#issuer-fingerprinting) for more information."
+     },
+     "metadata": {
+      "type": "string",
+      "description": "Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to `metadata`."
+     }
+    },
+    "required": [
+     "authentication"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.stripe.com/v1/three_d_secure/authentications/{authentication}/submit",
+    "path": [
+     "authentication"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "expand",
+     "fingerprinting_result",
+     "metadata"
     ],
     "body_format": "form"
    }
@@ -31762,7 +32739,7 @@
      },
      "source": {
       "type": "string",
-      "description": "The ID of a source to transfer funds from. For most users, this should be left unspecified which will use the bank account that was set up in the dashboard for the specified currency. In test mode, this can be a test bank token (see [Testing Top-ups](https://docs.stripe.com/connect/testing#testing-top-ups))."
+      "description": "The ID of a source to transfer funds from. For most users, this should be left unspecified which will use the bank account that was set up in the dashboard for the specified currency. While testing, this can be a test bank token (see [Testing Top-ups](https://docs.stripe.com/connect/testing#testing-top-ups))."
      },
      "statement_descriptor": {
       "type": "string",

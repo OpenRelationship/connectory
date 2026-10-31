@@ -15,7 +15,7 @@ vouches for**: read it, then read their reference.
 # Scavio
 
 > Scavio is a real-time search API for AI agents. It gives LLMs and autonomous
-> agents structured JSON access to 50 platforms -- search, social, retail, real
+> agents structured JSON access to 50+ platforms -- search, social, retail, real
 > estate, travel, local, jobs, app stores, software reviews, ad libraries and
 > company filings -- plus Extract, which reads any URL as Markdown, plain text
 > or raw HTML. One REST API, one key: no HTML parsing, no browser automation,
@@ -43,12 +43,14 @@ below.
 
 <!-- BEGIN:endpoints -->
 
-Scavio serves 304 endpoints across 50 platforms, Extract included (39 platform families in the API, since Google's verticals share one).
-Every data endpoint is a POST returning structured JSON. Most cost 1 credit;
+Scavio serves 413 endpoints across 57 platforms, Extract included (54 platform families in the API, since Google's verticals share one).
+Every data endpoint is a POST returning structured JSON (crawl and batch job status is a GET, cancel a DELETE; the Google Custom Search compatible endpoint is a GET). Most cost 1 credit;
 the exceptions are stated per platform below.
 
 ### Search
 #### Google Search (v2)
+- `GET /api/v1/google/customsearch`
+- `POST /api/v1/google/customsearch`
 - `POST /api/v2/google`
 - `POST /api/v2/google/ai-mode`
 - `POST /api/v2/google/flights`
@@ -64,6 +66,10 @@ the exceptions are stated per platform below.
 - `POST /api/v2/google/shopping/product/stores`
 - `POST /api/v2/google/trending`
 - `POST /api/v2/google/trends`
+- `GET /customsearch/v1`
+- `GET /customsearch/v1/siterestrict`
+
+### AI assistants
 
 ### Social
 
@@ -73,33 +79,34 @@ the exceptions are stated per platform below.
 - `POST /api/v1/tiktok/ads/top`
 - `POST /api/v1/tiktok/hashtag`
 - `POST /api/v1/tiktok/hashtag/videos`
+- `POST /api/v1/tiktok/music`
+- `POST /api/v1/tiktok/music/chart`
+- `POST /api/v1/tiktok/music/videos`
+- `POST /api/v1/tiktok/playlist/videos`
 - `POST /api/v1/tiktok/profile`
+- `POST /api/v1/tiktok/search/music`
+- `POST /api/v1/tiktok/search/suggestions`
 - `POST /api/v1/tiktok/search/users`
 - `POST /api/v1/tiktok/search/videos`
+- `POST /api/v1/tiktok/trending/searches`
+- `POST /api/v1/tiktok/trending/videos`
 - `POST /api/v1/tiktok/user/followers`
 - `POST /api/v1/tiktok/user/followings`
+- `POST /api/v1/tiktok/user/live`
+- `POST /api/v1/tiktok/user/playlists`
 - `POST /api/v1/tiktok/user/posts`
+- `POST /api/v1/tiktok/user/region`
+- `POST /api/v1/tiktok/user/similar`
 - `POST /api/v1/tiktok/video`
 - `POST /api/v1/tiktok/video/comments`
 - `POST /api/v1/tiktok/video/comments/replies`
 - `POST /api/v1/tiktok/video/transcript`
 
-#### Instagram (priced per endpoint: 10, 8 or 2)
-- `POST /api/v1/instagram/post`
-- `POST /api/v1/instagram/post/comments`
-- `POST /api/v1/instagram/post/comments/replies`
-- `POST /api/v1/instagram/profile`
-- `POST /api/v1/instagram/search/hashtags`
-- `POST /api/v1/instagram/search/users`
-- `POST /api/v1/instagram/user/followers`
-- `POST /api/v1/instagram/user/followings`
-- `POST /api/v1/instagram/user/posts`
-- `POST /api/v1/instagram/user/reels`
-- `POST /api/v1/instagram/user/stories`
-- `POST /api/v1/instagram/user/tagged`
-
 #### X (Twitter)
+- `POST /api/v1/x/community`
+- `POST /api/v1/x/community/tweets`
 - `POST /api/v1/x/search`
+- `POST /api/v1/x/search/communities`
 - `POST /api/v1/x/trending`
 - `POST /api/v1/x/tweet`
 - `POST /api/v1/x/tweet/comments`
@@ -117,6 +124,8 @@ the exceptions are stated per platform below.
 - `POST /api/v1/reddit/post/comments`
 - `POST /api/v1/reddit/post/comments/replies`
 - `POST /api/v1/reddit/search`
+- `POST /api/v1/reddit/search/comments`
+- `POST /api/v1/reddit/search/subreddits`
 - `POST /api/v1/reddit/search/suggestions`
 - `POST /api/v1/reddit/subreddit`
 - `POST /api/v1/reddit/subreddit/posts`
@@ -140,7 +149,6 @@ the exceptions are stated per platform below.
 - `POST /api/v1/pinterest/user/boards`
 
 #### Weibo
-- `POST /api/v1/weibo/channel-feed`
 - `POST /api/v1/weibo/hot-search`
 - `POST /api/v1/weibo/hot-search/index`
 - `POST /api/v1/weibo/post`
@@ -173,6 +181,12 @@ the exceptions are stated per platform below.
 - `POST /api/v1/weibo/user/videos`
 
 ### Retail
+#### Etsy (2 credits)
+- `POST /api/v1/etsy/product`
+- `POST /api/v1/etsy/reviews`
+- `POST /api/v1/etsy/search`
+- `POST /api/v1/etsy/shop`
+- `POST /api/v1/etsy/shop/products`
 
 ### Social
 
@@ -195,7 +209,7 @@ the exceptions are stated per platform below.
 ### Retail
 #### Amazon
 - `POST /api/v1/amazon/offers`
-- `POST /api/v1/amazon/options`
+- `GET /api/v1/amazon/options`
 - `POST /api/v1/amazon/product`
 - `POST /api/v1/amazon/search`
 
@@ -205,15 +219,11 @@ the exceptions are stated per platform below.
 - `POST /api/v1/ebay/seller`
 
 #### Target
+- `POST /api/v1/target/availability`
 - `POST /api/v1/target/category`
 - `POST /api/v1/target/product`
 - `POST /api/v1/target/reviews`
 - `POST /api/v1/target/search`
-
-#### Home Depot (2 credits)
-- `POST /api/v1/homedepot/product`
-- `POST /api/v1/homedepot/reviews`
-- `POST /api/v1/homedepot/search`
 
 #### TikTok Shop
 - `POST /api/v1/tiktok-shop/categories`
@@ -266,7 +276,7 @@ the exceptions are stated per platform below.
 - `POST /api/v1/indeed/job`
 - `POST /api/v1/indeed/search`
 
-#### Glassdoor
+#### Glassdoor (2 credits)
 - `POST /api/v1/glassdoor/companies`
 - `POST /api/v1/glassdoor/company`
 - `POST /api/v1/glassdoor/reviews`
@@ -307,6 +317,8 @@ the exceptions are stated per platform below.
 - `POST /api/v1/capterra/reviews`
 - `POST /api/v1/capterra/search`
 
+### Reviews
+
 ### Ad libraries
 #### Google Ads Transparency
 - `POST /api/v1/googleads/advertisers`
@@ -342,6 +354,7 @@ the exceptions are stated per platform below.
 - [Search API for AI Agents](https://scavio.dev/search-api-for-ai-agents) -- category overview: one API for all platforms below
 - [Government & Public Data API](https://scavio.dev/government-data-api) -- municipal legislation, meetings, officials and committees from 1,800+ US cities via Legistar
 - [Screenshot API](https://scavio.dev/screenshot-api) -- full-page screenshot of any URL as a PNG data URI
+- [Website Crawler API](https://scavio.dev/website-crawler-api) -- crawl a site to Markdown, map sitemap URLs and batch extract URL lists
 - [Google Search API](https://scavio.dev/google-api)
 - [Google Maps API](https://scavio.dev/google-maps-api)
 - [Google Shopping API](https://scavio.dev/google-shopping-api)
@@ -350,6 +363,9 @@ the exceptions are stated per platform below.
 - [Google AI Mode API](https://scavio.dev/google-ai-mode-api)
 - [Google Flights API](https://scavio.dev/google-flights-api)
 - [Google Hotels API](https://scavio.dev/google-hotels-api)
+- [ChatGPT API](https://scavio.dev/chatgpt-api) -- the answer ChatGPT gives a prompt, with cited sources, web searches and recommended products
+- [Gemini API](https://scavio.dev/gemini-api) -- the answer Gemini gives a prompt, with cited URLs and recommended products
+- [AEO API](https://scavio.dev/aeo) -- ChatGPT, Google AI Mode and AI Overview answers with their citations, one key for AI visibility tracking
 - [Amazon API](https://scavio.dev/amazon-api)
 - [YouTube API](https://scavio.dev/youtube-api)
 - [Walmart API](https://scavio.dev/walmart-api)
@@ -369,6 +385,18 @@ the exceptions are stated per platform below.
 - [Etsy API](https://scavio.dev/etsy-api) -- listing search, product detail, shop data and reviews
 - [Target API](https://scavio.dev/target-api)
 - [Home Depot API](https://scavio.dev/homedepot-api)
+- [Costco API](https://scavio.dev/costco-api) -- warehouse prices and stock, gas prices, the coupon book, clearance and product data
+- [HEB API](https://scavio.dev/heb-api) -- grocery prices, SNAP eligibility, nutrition facts, ingredients and store locations for the Texas-based chain
+- [Kroger API](https://scavio.dev/kroger-api) -- grocery prices, promo deals, SNAP eligibility, dietary info, nutrition facts and rating distributions across 2,800+ Kroger-family stores
+- [Spec's API](https://scavio.dev/specs-api) -- liquor, wine and beer prices at every Spec's store in Texas in one call, plus search and a store locator
+- [Lowe's API](https://scavio.dev/lowes-api) -- store-level prices, deals with end dates, on-hand stock, aisle and bay, nearby-store stock, reviews and a store locator
+- [Sam's Club API](https://scavio.dev/samsclub-api) -- club shelf prices and stock, every Instant Savings offer, clearance, member limits, reviews and a club locator
+- [Canadian Tire API](https://scavio.dev/canadiantire-api) -- store-level prices in CAD, stock and aisles, 50 SKUs per call, every clearance item and flyer deals per store
+- [Dollar General API](https://scavio.dev/dollargeneral-api) -- store-level prices and units on hand, one product's stock at 25 nearby stores per call, sale and clearance items, digital coupons
+- [Decathlon API](https://scavio.dev/decathlon-api) -- product search, pricing and availability across 7 country stores (France, Spain, Italy, India, UK, Portugal, international)
+- [Mercado Libre API](https://scavio.dev/mercadolibre-api) -- listings, prices, products, reviews, questions and best sellers in Mexico, Brazil, Argentina and Colombia
+- [API de Mercado Libre](https://scavio.dev/api-mercado-libre) -- the Mercado Libre API page in Spanish (Mexico, Argentina, Colombia)
+- [API do Mercado Livre](https://scavio.dev/api-mercado-livre) -- the Mercado Libre API page in Brazilian Portuguese
 - [Kuaishou API](https://scavio.dev/kuaishou-api)
 - [Douyin API](https://scavio.dev/douyin-api) -- videos, creators, comments, sounds, hashtags, live and search
 - [Weibo API](https://scavio.dev/weibo-api) -- hot-search board, user profiles, posts, comments and search
@@ -380,10 +408,13 @@ the exceptions are stated per platform below.
 - [Airbnb API](https://scavio.dev/airbnb-api)
 - [Zillow API](https://scavio.dev/zillow-api)
 - [Redfin API](https://scavio.dev/redfin-api)
+- [Realtor.com API](https://scavio.dev/realtor-api) -- for-sale, rental and sold listings (200 per call), property detail, market stats and agents
+- [Rightmove API](https://scavio.dev/rightmove-api) -- UK listings for sale and to rent, England and Wales sold prices since 1995, and agents
 - [App Store API](https://scavio.dev/app-store-api)
 - [Google Play API](https://scavio.dev/google-play-api)
 - [G2 API](https://scavio.dev/g2-api)
 - [Capterra API](https://scavio.dev/capterra-api)
+- [Trustpilot API](https://scavio.dev/trustpilot-api) -- business search, profiles with reply rate, filtered reviews and category rankings
 - [Google Ads Transparency API](https://scavio.dev/google-ads-transparency-api)
 - [Meta Ad Library API](https://scavio.dev/meta-ads-api)
 - [TikTok Ad Library API](https://scavio.dev/tiktok-ads-api) -- search TikTok's Top Ads and creative by keyword, industry and country
@@ -397,9 +428,9 @@ the exceptions are stated per platform below.
 
 - Python: `pip install scavio` -- `ScavioClient` / `AsyncScavioClient`
 - JavaScript / TypeScript: `npm install scavio` -- `new Scavio({ apiKey })`
-- MCP server (191 tools across 31 platforms plus Extract, 106 by default): remote
-  at https://mcp.scavio.dev/mcp (sign in with OAuth, or send an x-api-key header),
-  or `npx -y @scavio/mcp-server`. Landing page: https://scavio.dev/mcp. In the
+- MCP server (255 tools across 36 platforms plus Extract, map, crawl and batch;
+  133 load by default): remote at https://mcp.scavio.dev/mcp (sign in with OAuth,
+  or send an x-api-key header), or `npx -y @scavio/mcp-server`. Landing page: https://scavio.dev/mcp. In the
   official MCP registry, Glama, PulseMCP.
 
 ## Framework Integrations
@@ -424,6 +455,7 @@ Arcade, Agno (in core), and OpenClaw skills.
 
 ### Google Search (v2)
 - https://scavio.dev/docs/search-api
+- https://scavio.dev/docs/google-custom-search-api
 - https://scavio.dev/docs/google-ai-mode
 - https://scavio.dev/docs/google-maps
 - https://scavio.dev/docs/google-maps-place
@@ -441,7 +473,20 @@ Arcade, Agno (in core), and OpenClaw skills.
 
 ### Extract (any URL)
 - https://scavio.dev/docs/extract
+- https://scavio.dev/docs/extract-map
+- https://scavio.dev/docs/extract-crawl
+- https://scavio.dev/docs/extract-crawl-status
+- https://scavio.dev/docs/extract-crawl-cancel
+- https://scavio.dev/docs/extract-batch
+- https://scavio.dev/docs/extract-batch-status
+- https://scavio.dev/docs/extract-batch-cancel
 - https://scavio.dev/docs/screenshot
+
+### ChatGPT
+- https://scavio.dev/docs/chatgpt-api
+
+### Gemini
+- https://scavio.dev/docs/gemini-api
 
 ### YouTube
 - https://scavio.dev/docs/youtube-api
@@ -457,6 +502,8 @@ Arcade, Agno (in core), and OpenClaw skills.
 - https://scavio.dev/docs/youtube-channel-videos
 - https://scavio.dev/docs/youtube-channel-shorts
 - https://scavio.dev/docs/youtube-channel-community
+- https://scavio.dev/docs/youtube-community-post
+- https://scavio.dev/docs/youtube-community-post-comments
 - https://scavio.dev/docs/youtube-channel-resolve
 - https://scavio.dev/docs/youtube-streams
 
@@ -476,6 +523,18 @@ Arcade, Agno (in core), and OpenClaw skills.
 - https://scavio.dev/docs/tiktok-hashtag-videos
 - https://scavio.dev/docs/tiktok-followers
 - https://scavio.dev/docs/tiktok-followings
+- https://scavio.dev/docs/tiktok-trending-searches
+- https://scavio.dev/docs/tiktok-trending-videos
+- https://scavio.dev/docs/tiktok-search-suggestions
+- https://scavio.dev/docs/tiktok-search-music
+- https://scavio.dev/docs/tiktok-music
+- https://scavio.dev/docs/tiktok-music-videos
+- https://scavio.dev/docs/tiktok-music-chart
+- https://scavio.dev/docs/tiktok-user-similar
+- https://scavio.dev/docs/tiktok-user-playlists
+- https://scavio.dev/docs/tiktok-playlist-videos
+- https://scavio.dev/docs/tiktok-user-live
+- https://scavio.dev/docs/tiktok-user-region
 
 ### Instagram
 - https://scavio.dev/docs/instagram-api
@@ -483,13 +542,21 @@ Arcade, Agno (in core), and OpenClaw skills.
 - https://scavio.dev/docs/instagram-user-reels
 - https://scavio.dev/docs/instagram-user-tagged
 - https://scavio.dev/docs/instagram-user-stories
+- https://scavio.dev/docs/instagram-user-highlights
+- https://scavio.dev/docs/instagram-highlight-stories
+- https://scavio.dev/docs/instagram-followers
+- https://scavio.dev/docs/instagram-followings
+- https://scavio.dev/docs/instagram-similar-accounts
 - https://scavio.dev/docs/instagram-post
 - https://scavio.dev/docs/instagram-post-comments
 - https://scavio.dev/docs/instagram-comment-replies
+- https://scavio.dev/docs/instagram-post-likers
 - https://scavio.dev/docs/instagram-user-search
 - https://scavio.dev/docs/instagram-hashtag-search
-- https://scavio.dev/docs/instagram-followers
-- https://scavio.dev/docs/instagram-followings
+- https://scavio.dev/docs/instagram-reels-search
+- https://scavio.dev/docs/instagram-music-search
+- https://scavio.dev/docs/instagram-music-posts
+- https://scavio.dev/docs/instagram-location-search
 
 ### X (Twitter)
 - https://scavio.dev/docs/x-search
@@ -502,10 +569,15 @@ Arcade, Agno (in core), and OpenClaw skills.
 - https://scavio.dev/docs/x-user-media
 - https://scavio.dev/docs/x-user-followers
 - https://scavio.dev/docs/x-user-followings
+- https://scavio.dev/docs/x-search-communities
+- https://scavio.dev/docs/x-community
+- https://scavio.dev/docs/x-community-tweets
 - https://scavio.dev/docs/x-trending
 
 ### Reddit
 - https://scavio.dev/docs/reddit-api
+- https://scavio.dev/docs/reddit-search-comments
+- https://scavio.dev/docs/reddit-search-subreddits
 - https://scavio.dev/docs/reddit-search-suggestions
 - https://scavio.dev/docs/reddit-post
 - https://scavio.dev/docs/reddit-post-comments
@@ -667,6 +739,7 @@ Arcade, Agno (in core), and OpenClaw skills.
 - https://scavio.dev/docs/walmart-offers
 - https://scavio.dev/docs/walmart-seller
 - https://scavio.dev/docs/walmart-seller-products
+- https://scavio.dev/docs/walmart-stores
 
 ### eBay
 - https://scavio.dev/docs/ebay-search
@@ -678,11 +751,84 @@ Arcade, Agno (in core), and OpenClaw skills.
 - https://scavio.dev/docs/target-category
 - https://scavio.dev/docs/target-product
 - https://scavio.dev/docs/target-reviews
+- https://scavio.dev/docs/target-availability
 
 ### Home Depot
 - https://scavio.dev/docs/home-depot-search
 - https://scavio.dev/docs/home-depot-product
 - https://scavio.dev/docs/home-depot-reviews
+- https://scavio.dev/docs/home-depot-stores
+- https://scavio.dev/docs/home-depot-availability
+- https://scavio.dev/docs/home-depot-shipping
+
+### Costco
+- https://scavio.dev/docs/costco-search
+- https://scavio.dev/docs/costco-category
+- https://scavio.dev/docs/costco-categories
+- https://scavio.dev/docs/costco-product
+- https://scavio.dev/docs/costco-prices
+- https://scavio.dev/docs/costco-availability
+- https://scavio.dev/docs/costco-reviews
+- https://scavio.dev/docs/costco-warehouses
+- https://scavio.dev/docs/costco-gas
+- https://scavio.dev/docs/costco-coupons
+- https://scavio.dev/docs/costco-deals
+- https://scavio.dev/docs/costco-clearance
+- https://scavio.dev/docs/costco-autocomplete
+
+### HEB
+- https://scavio.dev/docs/heb-search
+- https://scavio.dev/docs/heb-product
+- https://scavio.dev/docs/heb-stores
+
+### Kroger
+- https://scavio.dev/docs/kroger-search
+- https://scavio.dev/docs/kroger-product
+
+### Decathlon
+- https://scavio.dev/docs/decathlon-search
+- https://scavio.dev/docs/decathlon-product
+
+### Spec's
+- https://scavio.dev/docs/specs-search
+- https://scavio.dev/docs/specs-product
+- https://scavio.dev/docs/specs-stores
+
+### Lowe's
+- https://scavio.dev/docs/lowes-search
+- https://scavio.dev/docs/lowes-product
+- https://scavio.dev/docs/lowes-stores
+- https://scavio.dev/docs/lowes-reviews
+
+### Sam's Club
+- https://scavio.dev/docs/samsclub-search
+- https://scavio.dev/docs/samsclub-product
+- https://scavio.dev/docs/samsclub-clubs
+- https://scavio.dev/docs/samsclub-savings
+- https://scavio.dev/docs/samsclub-category
+- https://scavio.dev/docs/samsclub-reviews
+
+### Canadian Tire
+- https://scavio.dev/docs/canadiantire-search
+- https://scavio.dev/docs/canadiantire-product
+- https://scavio.dev/docs/canadiantire-stores
+- https://scavio.dev/docs/canadiantire-availability
+- https://scavio.dev/docs/canadiantire-clearance
+- https://scavio.dev/docs/canadiantire-deals
+
+### Dollar General
+- https://scavio.dev/docs/dollargeneral-search
+- https://scavio.dev/docs/dollargeneral-product
+- https://scavio.dev/docs/dollargeneral-stores
+- https://scavio.dev/docs/dollargeneral-deals
+- https://scavio.dev/docs/dollargeneral-coupons
+
+### Mercado Libre
+- https://scavio.dev/docs/mercadolibre-search
+- https://scavio.dev/docs/mercadolibre-product
+- https://scavio.dev/docs/mercadolibre-reviews
+- https://scavio.dev/docs/mercadolibre-questions
+- https://scavio.dev/docs/mercadolibre-best-sellers
 
 ### TikTok Shop
 - https://scavio.dev/docs/tiktok-shop-search
@@ -703,6 +849,23 @@ Arcade, Agno (in core), and OpenClaw skills.
 - https://scavio.dev/docs/redfin-search
 - https://scavio.dev/docs/redfin-property
 - https://scavio.dev/docs/redfin-market
+
+### Realtor.com
+- https://scavio.dev/docs/realtor-search
+- https://scavio.dev/docs/realtor-property
+- https://scavio.dev/docs/realtor-locations
+- https://scavio.dev/docs/realtor-market
+- https://scavio.dev/docs/realtor-agents
+- https://scavio.dev/docs/realtor-agent
+
+### Rightmove
+- https://scavio.dev/docs/rightmove-search
+- https://scavio.dev/docs/rightmove-property
+- https://scavio.dev/docs/rightmove-sold
+- https://scavio.dev/docs/rightmove-sold-property
+- https://scavio.dev/docs/rightmove-locations
+- https://scavio.dev/docs/rightmove-agents
+- https://scavio.dev/docs/rightmove-agent
 
 ### Booking.com
 - https://scavio.dev/docs/booking-search
@@ -775,6 +938,14 @@ Arcade, Agno (in core), and OpenClaw skills.
 - https://scavio.dev/docs/capterra-product
 - https://scavio.dev/docs/capterra-reviews
 
+### Trustpilot
+- https://scavio.dev/docs/trustpilot-search
+- https://scavio.dev/docs/trustpilot-business
+- https://scavio.dev/docs/trustpilot-reviews
+- https://scavio.dev/docs/trustpilot-categories
+- https://scavio.dev/docs/trustpilot-category
+- https://scavio.dev/docs/trustpilot-review
+
 ### Google Ads Transparency
 - https://scavio.dev/docs/google-ads-advertisers
 - https://scavio.dev/docs/google-ads-search
@@ -826,16 +997,6 @@ Browse all: https://scavio.dev/compare
 
 - [bing-web-search-api](https://scavio.dev/compare/bing-web-search-api)
 - ...and 21 more at https://scavio.dev/compare
-
-## Comparisons (tool vs tool)
-Browse all: https://scavio.dev/compare
-
-- [ahrefs-api-vs-raw-serp-api](https://scavio.dev/compare/ahrefs-api/vs-raw-serp-api)
-- [apify-tiktok-scraper-vs-scavio-tiktok-api](https://scavio.dev/compare/apify-tiktok-scraper/vs-scavio-tiktok-api)
-- [apify-vs-search-api](https://scavio.dev/compare/apify/vs-search-api)
-- [apollo-io-vs-search-api-scavio](https://scavio.dev/compare/apollo-io/vs-search-api-scavio)
-- [apollo-vs-api-first-enrichment](https://scavio.dev/compare/apollo/vs-api-first-enrichment)
-- ...and 135 more at https://scavio.dev/compare
 
 ## Best-of Rankings
 Browse all: https://scavio.dev/best
