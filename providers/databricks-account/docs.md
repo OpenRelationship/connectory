@@ -29,9 +29,10 @@ vouches for**: read it, then read their reference.
 - [Pipeline developer reference](https://docs.databricks.com/ldp/developer/) - Developer reference for Lakeflow pipelines: implement pipelines with the Python or SQL interface, manage dependencies, develop locally, and use metaprogramming.
 
 ## Machine learning and AI
-- [Concepts: Generative AI on Databricks](https://docs.databricks.com/agents/concepts/) - Learn about key concepts for generative AI on Databricks, including agent systems, the GenAI developer workflow, and Retrieval-Augmented Generation (RAG).
+- [What is Agent Bricks?](https://docs.databricks.com/agents/concepts/) - Agent Bricks is the Databricks agent developer platform. Learn the components of an agent and how Agent Bricks deploys, connects, observes, and governs them.
 - [Foundation model APIs](https://docs.databricks.com/machine-learning/foundation-model-apis) - Learn which options are available to write query requests for supported foundation model types and how to send those requests to a model serving endpoint.
-- [AI governance guide](https://docs.databricks.com/ai-gateway/ai-governance/) - Govern AI on Databricks: control access to AI assets, route and cost-control traffic through Unity AI Gateway, apply service policies, and monitor usage.
+- [Unity Gateway](https://docs.databricks.com/unity-gateway/) - Unity Gateway is the developer entry point on Databricks to discover, use, and observe foundation models, coding agents, skills, MCPs, and tools.
+- [AI governance guide](https://docs.databricks.com/ai-gateway/ai-governance/) - Govern AI on Databricks: control access to AI assets, route and cost-control traffic through Unity Gateway, apply service policies, and monitor usage.
 - [Ray on Databricks](https://docs.databricks.com/machine-learning/ray/) - Run Ray applications on Databricks to simplify scaling Python AI tasks. Benefit from seamless Apache Spark integration, robust data management, governance, and automated workflows.
 
 ## SQL and analytics
@@ -43,6 +44,7 @@ vouches for**: read it, then read their reference.
 - [Unity Catalog setup guide](https://docs.databricks.com/data-governance/unity-catalog/setup-uc/) - Learn how to set up Unity Catalog in a new Databricks workspace, including admin roles, users, compute, and permissions.
 - [Access control](https://docs.databricks.com/security/auth/) - Learn how to manage authentication and access control your Databricks account and workspaces.
 - [Configure SSO](https://docs.databricks.com/security/auth/single-sign-on/) - Learn how to set up single sign-on (SSO) for the Databricks account console.
+- [Role-based access control (RBAC)](https://docs.databricks.com/security/auth/rbac/) - Learn about role-based access control (RBAC) in Databricks, which lets users assume a role with scoped permissions for the duration of a session.
 - [Unity Catalog connections](https://docs.databricks.com/connect/uc-connections/) - Learn about Unity Catalog connections, the securable objects that store endpoint and credential information for accessing external systems from Databricks.
 - [Encryption](https://docs.databricks.com/security/keys/) - Protect your data with encryption at rest and in-transit. Configure customer-managed keys for more control over your data privacy.
 

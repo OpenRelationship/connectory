@@ -2,7 +2,7 @@
 --
 -- GENERATED from https://raw.githubusercontent.com/figma/rest-api-spec/main/openapi/openapi.yaml
 -- Published by figma, the vendor's own GitHub organisation.
--- 50 operations · do not edit
+-- 55 operations · do not edit
 --
 -- The credential is never in here. `auth.env` names an environment variable; the value
 -- stays in the environment, which is what makes this file safe to publish.
@@ -59,6 +59,7 @@ return {
     ["figma.get_payments"] = { method = "GET", url = "https://api.figma.com/v1/payments", query = {"plugin_payment_token", "user_id", "community_file_id", "plugin_id", "widget_id"} },
     ["figma.get_published_variables"] = { method = "GET", url = "https://api.figma.com/v1/files/{file_key}/variables/published", path = {"file_key"} },
     ["figma.get_style"] = { method = "GET", url = "https://api.figma.com/v1/styles/{key}" },
+    ["figma.get_team"] = { method = "GET", url = "https://api.figma.com/v1/teams/{team_id}", path = {"team_id"} },
     ["figma.get_team_component_sets"] = { method = "GET", url = "https://api.figma.com/v1/teams/{team_id}/component_sets", path = {"team_id"}, query = {"page_size", "after", "before"} },
     ["figma.get_team_components"] = { method = "GET", url = "https://api.figma.com/v1/teams/{team_id}/components", path = {"team_id"}, query = {"page_size", "after", "before"} },
     ["figma.get_team_folders"] = { method = "GET", url = "https://api.figma.com/v2/teams/{team_id}/folders", path = {"team_id"} },
@@ -69,6 +70,10 @@ return {
     ["figma.post_comment"] = { method = "POST", url = "https://api.figma.com/v1/files/{file_key}/comments", path = {"file_key"}, body = {"message", "comment_id", "client_meta"} },
     ["figma.post_comment_reaction"] = { method = "POST", url = "https://api.figma.com/v1/files/{file_key}/comments/{comment_id}/reactions", path = {"file_key", "comment_id"}, body = {"emoji"} },
     ["figma.post_dev_resources"] = { method = "POST", url = "https://api.figma.com/v1/dev_resources", body = {"dev_resources"} },
+    ["figma.post_file_duplicate"] = { method = "POST", url = "https://api.figma.com/v1/files/{file_key}/duplicate", path = {"file_key"}, body = {"folder_id"} },
+    ["figma.post_team"] = { method = "POST", url = "https://api.figma.com/v1/teams", body = {"name", "description", "sharing_audience_control", "org_discoverability", "workspace_id"} },
+    ["figma.post_team_folder"] = { method = "POST", url = "https://api.figma.com/v1/teams/{team_id}/folders", path = {"team_id"}, body = {"name", "sharing_audience_control"} },
+    ["figma.post_team_invites"] = { method = "POST", url = "https://api.figma.com/v1/teams/{team_id}/invites", path = {"team_id"}, body = {"emails", "role"} },
     ["figma.post_variables"] = { method = "POST", url = "https://api.figma.com/v1/files/{file_key}/variables", path = {"file_key"}, body = {"variableCollections", "variableModes", "variables", "variableModeValues"} },
     ["figma.post_webhook"] = { method = "POST", url = "https://api.figma.com/v2/webhooks", body = {"event_type", "team_id", "context", "context_id", "endpoint", "passcode", "status", "description"} },
     ["figma.put_dev_resources"] = { method = "PUT", url = "https://api.figma.com/v1/dev_resources", body = {"dev_resources"} },

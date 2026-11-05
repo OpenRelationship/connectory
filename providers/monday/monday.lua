@@ -1,7 +1,7 @@
 -- Monday — every call this API accepts, as data.
 --
--- GENERATED from https://monday.com/openapi.json
--- Published on the vendor's own documentation site (https://monday.com).
+-- GENERATED from https://developer.monday.com/.well-known/openapi.json
+-- Published on the vendor's own documentation site (https://developer.monday.com).
 -- 2 operations · do not edit
 --
 -- The credential is never in here. `auth.env` names an environment variable; the value

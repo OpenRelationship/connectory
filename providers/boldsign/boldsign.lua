@@ -2,7 +2,7 @@
 --
 -- GENERATED from https://api.boldsign.com/swagger/v1/swagger.json
 -- Published on the vendor's own documentation site (https://api.boldsign.com).
--- 87 operations · do not edit
+-- 86 operations · do not edit
 --
 -- The credential is never in here. `auth.env` names an environment variable; the value
 -- stays in the environment, which is what makes this file safe to publish.
@@ -26,7 +26,6 @@ return {
     ["boldsign.add_authentication"] = { method = "PATCH", url = "https://api.boldsign.com/v1/document/addAuthentication", query = {"documentId"}, body = {"emailId", "order", "accessCode", "authenticationType", "onBehalfOf", "phoneNumber", "identityVerificationSettings", "kbaSettings", "authenticationRetryCount", "authenticationSettings"} },
     ["boldsign.add_document_tag"] = { method = "PATCH", url = "https://api.boldsign.com/v1/document/addTags", body = {"documentId", "tags"} },
     ["boldsign.add_template_tag"] = { method = "PATCH", url = "https://api.boldsign.com/v1/template/addTags", body = {"templateId", "documentLabels", "templateLabels", "onBehalfOf"} },
-    ["boldsign.api_credits_count"] = { method = "GET", url = "https://api.boldsign.com/v1/plan/apiCreditsCount" },
     ["boldsign.behalf_documents"] = { method = "GET", url = "https://api.boldsign.com/v1/document/behalfList", query = {"PageType", "EmailAddress", "Signers", "PageSize", "Page", "StartDate", "Status", "EndDate", "SearchKey", "Labels", "NextCursor", "BrandIds"} },
     ["boldsign.brand_list"] = { method = "GET", url = "https://api.boldsign.com/v1/brand/list" },
     ["boldsign.cancel_editing"] = { method = "POST", url = "https://api.boldsign.com/v1/document/cancelEditing", query = {"documentId", "onBehalfOf"} },

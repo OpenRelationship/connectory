@@ -1402,6 +1402,124 @@
    }
   },
   {
+   "slug": "pagerduty.create_incident_review",
+   "name": "Create an incident review",
+   "description": "Create an Incident Review for the specified Incident. An Incident can have at most one Incident Review, so this returns `400` if the Incident already has one. A caller that wants create-or-fetch behaviour should fall back to `GET` on failure. The new Incident Review follows the account's default template, which determines its sections. When called with a User API token, the caller owns the new Inc",
+   "input": {
+    "type": "object",
+    "properties": {
+     "Accept": {
+      "type": "string",
+      "description": "The `Accept` header is used as a versioning header."
+     },
+     "Content-Type": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "application/json"
+      ]
+     },
+     "id": {
+      "type": "string",
+      "description": "The ID of the resource."
+     },
+     "title": {
+      "type": "string",
+      "description": "The title of the Incident Review."
+     },
+     "owner_user_id": {
+      "type": "string",
+      "description": "The ID of the User who should own the Incident Review. Only for account API keys, whose Incident Reviews would otherwise have no owner; with a User API token the caller is the owner, and naming anyone else is rejected with `400`. The User must belong to the account. Ignored unless the account has per-review permissions."
+     }
+    },
+    "required": [
+     "Accept",
+     "Content-Type",
+     "id",
+     "title"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.pagerduty.com/incidents/{id}/review",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [
+     "Accept",
+     "Content-Type"
+    ],
+    "body": [
+     "title",
+     "owner_user_id"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "pagerduty.create_incident_review_marker",
+   "name": "Add a marker to an incident review timeline",
+   "description": "Add a marker to the timeline of the Incident Review for the specified Incident. A marker highlights a point of interest on the timeline. Each entry in `notes` is added as its own event attached to the new marker. Returns `404` when the Incident has no Incident Review, or if the caller cannot see it, and `409` when the Incident Review is `completed` and must be reopened first. `409` is also returne",
+   "input": {
+    "type": "object",
+    "properties": {
+     "Accept": {
+      "type": "string",
+      "description": "The `Accept` header is used as a versioning header."
+     },
+     "Content-Type": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "application/json"
+      ]
+     },
+     "id": {
+      "type": "string",
+      "description": "The ID of the resource."
+     },
+     "title": {
+      "type": "string",
+      "description": "The title of the marker."
+     },
+     "type": {
+      "type": "string",
+      "description": "The name of an existing marker type. Defaults to `Key Moment` if omitted."
+     },
+     "notes": {
+      "type": "array",
+      "description": "One or more notes to attach to the marker as supporting evidence. Each note becomes its own event on the marker."
+     }
+    },
+    "required": [
+     "Accept",
+     "Content-Type",
+     "id",
+     "notes",
+     "title"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.pagerduty.com/incidents/{id}/review/markers",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [
+     "Accept",
+     "Content-Type"
+    ],
+    "body": [
+     "title",
+     "type",
+     "notes"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "pagerduty.create_incident_snooze",
    "name": "Snooze an incident",
    "description": "Snooze an incident. An incident represents a problem or an issue that needs to be addressed and resolved. For more information see the [API Concepts Document](../../api-reference/a47605517c19a-api-concepts#incidents) Scoped OAuth requires: `incidents.write`",
@@ -9004,14 +9122,6 @@
      "event_id": {
       "type": "string",
       "description": "The ID of the event."
-     },
-     "since": {
-      "type": "string",
-      "description": "Start of time range (ISO 8601)"
-     },
-     "until": {
-      "type": "string",
-      "description": "End of time range (ISO 8601)"
      }
     },
     "required": [
@@ -9028,10 +9138,7 @@
      "rotation_id",
      "event_id"
     ],
-    "query": [
-     "since",
-     "until"
-    ],
+    "query": [],
     "header": [],
     "body": [],
     "body_format": "json"
@@ -9518,6 +9625,104 @@
     "query": [],
     "header": [
      "Accept"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "pagerduty.get_incident_review",
+   "name": "Get an incident review",
+   "description": "Get the Incident Review for the specified Incident. An Incident Review is a structured, post-resolution record of what happened during an Incident. Each Incident has at most one Incident Review. Returns `404` if the Incident has no Incident Review, or if the caller cannot see it. Scoped OAuth requires: `incident_reviews.read`",
+   "input": {
+    "type": "object",
+    "properties": {
+     "Accept": {
+      "type": "string",
+      "description": "The `Accept` header is used as a versioning header."
+     },
+     "Content-Type": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "application/json"
+      ]
+     },
+     "id": {
+      "type": "string",
+      "description": "The ID of the resource."
+     }
+    },
+    "required": [
+     "Accept",
+     "Content-Type",
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.pagerduty.com/incidents/{id}/review",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [
+     "Accept",
+     "Content-Type"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "pagerduty.get_incident_scribe_transcripts",
+   "name": "Get scribe transcripts for an incident",
+   "description": "Get download links for the Scribe transcripts of the specified incident. Only Scribes that have completed are returned; a Scribe that is still in progress does not appear in the response. Each entry contains a presigned `download_url` for a single transcript format, selected with the `format` query parameter (`enhanced` by default, or `raw`). The `download_url` is time-limited and expires after on",
+   "input": {
+    "type": "object",
+    "properties": {
+     "Accept": {
+      "type": "string",
+      "description": "The `Accept` header is used as a versioning header."
+     },
+     "Content-Type": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "application/json"
+      ]
+     },
+     "id": {
+      "type": "string",
+      "description": "The ID of the resource."
+     },
+     "format": {
+      "type": "string",
+      "description": "The transcript format to return a download link for.",
+      "enum": [
+       "enhanced",
+       "raw"
+      ]
+     }
+    },
+    "required": [
+     "Accept",
+     "Content-Type",
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.pagerduty.com/incidents/{id}/scribe_transcripts",
+    "path": [
+     "id"
+    ],
+    "query": [
+     "format"
+    ],
+    "header": [
+     "Accept",
+     "Content-Type"
     ],
     "body": [],
     "body_format": "json"
@@ -10758,14 +10963,6 @@
      "rotation_id": {
       "type": "string",
       "description": "The ID of the rotation."
-     },
-     "since": {
-      "type": "string",
-      "description": "Start of time range (ISO 8601)"
-     },
-     "until": {
-      "type": "string",
-      "description": "End of time range (ISO 8601)"
      }
     },
     "required": [
@@ -10780,10 +10977,7 @@
      "id",
      "rotation_id"
     ],
-    "query": [
-     "since",
-     "until"
-    ],
+    "query": [],
     "header": [],
     "body": [],
     "body_format": "json"
@@ -10966,11 +11160,11 @@
      },
      "since": {
       "type": "string",
-      "description": "Start of time range (ISO 8601)"
+      "description": "Start of time range (ISO 8601). Send `since` and `until` together. `since` can be at most 3 years in the future."
      },
      "until": {
       "type": "string",
-      "description": "End of time range (ISO 8601)"
+      "description": "End of time range (ISO 8601). Send `since` and `until` together. `until` must be after `since`, and can be at most 3 years and 2 weeks in the future."
      },
      "time_zone": {
       "type": "string",
@@ -10982,7 +11176,7 @@
      },
      "include[]": {
       "type": "array",
-      "description": "Additional data to include in the schedule response: - `final_schedule`: computed on-call assignments for the time range"
+      "description": "Additional data to include in the schedule response: - `final_schedule`: computed on-call assignments for the time range - `users`: all users referenced in the schedule"
      }
     },
     "required": [
@@ -13021,6 +13215,94 @@
    }
   },
   {
+   "slug": "pagerduty.list_account_incident_review_action_items",
+   "name": "List action items across all incident reviews",
+   "description": "List the action items across every Incident Review on the account, oldest first by creation time. Only action items on Incident Reviews the caller can see are returned. Each action item's `incident_id` identifies the Incident Review it belongs to. This endpoint uses cursor pagination. Omit `cursor` for the first page, then pass the `next_cursor` from the previous response until it is `null`. Scope",
+   "input": {
+    "type": "object",
+    "properties": {
+     "Accept": {
+      "type": "string",
+      "description": "The `Accept` header is used as a versioning header."
+     },
+     "Content-Type": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "application/json"
+      ]
+     },
+     "limit": {
+      "type": "integer",
+      "description": "The number of results per page."
+     },
+     "cursor": {
+      "type": "string",
+      "description": "Optional parameter used to request the \"next\" set of results from an API. The value provided here is most commonly obtained from the `next_cursor` field of the previous request. When no value is provided, the request starts at the beginning of the result set."
+     },
+     "assignee": {
+      "type": "array",
+      "description": "Only return action items assigned to one of these Users. Repeat the parameter to pass more than one."
+     },
+     "assignee_not": {
+      "type": "array",
+      "description": "Exclude action items assigned to any of these Users. Repeat the parameter to pass more than one."
+     },
+     "assignee_not_empty": {
+      "type": "boolean",
+      "description": "When `true`, only return action items that are assigned to a User."
+     },
+     "status": {
+      "type": "array",
+      "description": "Only return action items with one of these statuses, for example `complete` or `incomplete`. Repeat the parameter to pass more than one."
+     },
+     "status_not": {
+      "type": "array",
+      "description": "Exclude action items with any of these statuses. Repeat the parameter to pass more than one."
+     },
+     "status_not_empty": {
+      "type": "boolean",
+      "description": "When `true`, only return action items that have a status set."
+     },
+     "created_since": {
+      "type": "string",
+      "description": "Only return results created on or after this time."
+     },
+     "created_until": {
+      "type": "string",
+      "description": "Only return results created on or before this time."
+     }
+    },
+    "required": [
+     "Accept",
+     "Content-Type"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.pagerduty.com/incidents/reviews/action_items",
+    "path": [],
+    "query": [
+     "limit",
+     "cursor",
+     "assignee",
+     "assignee_not",
+     "assignee_not_empty",
+     "status",
+     "status_not",
+     "status_not_empty",
+     "created_since",
+     "created_until"
+    ],
+    "header": [
+     "Accept",
+     "Content-Type"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "pagerduty.list_addon",
    "name": "List installed add ons",
    "description": "List all of the Add-ons installed on your account. Addon's are pieces of functionality that developers can write to insert new functionality into PagerDuty's UI. For more information see the [API Concepts Document](../../api-reference/a47605517c19a-api-concepts#add-ons) Scoped OAuth requires: `addons.read`",
@@ -13578,11 +13860,11 @@
      },
      "since": {
       "type": "string",
-      "description": "Start of time range (ISO 8601)"
+      "description": "Start of time range (ISO 8601). Can be at most 2 years in the future."
      },
      "until": {
       "type": "string",
-      "description": "End of time range (ISO 8601)"
+      "description": "End of time range (ISO 8601). Can be at most 2 years and 2 weeks in the future."
      },
      "time_zone": {
       "type": "string",
@@ -13591,14 +13873,6 @@
      "overflow": {
       "type": "boolean",
       "description": "Include shifts that extend beyond the requested time range boundaries"
-     },
-     "limit": {
-      "type": "integer",
-      "description": ""
-     },
-     "offset": {
-      "type": "integer",
-      "description": ""
      }
     },
     "required": [
@@ -13617,9 +13891,7 @@
      "since",
      "until",
      "time_zone",
-     "overflow",
-     "limit",
-     "offset"
+     "overflow"
     ],
     "header": [],
     "body": [],
@@ -13956,7 +14228,7 @@
   {
    "slug": "pagerduty.list_event_orchestration_feature_enablements",
    "name": "List enablements for an event orchestration",
-   "description": "List all feature enablement settings for an Event Orchestration. Currently, only the `aiops` enablement is supported. For any account with the AIOps product addon, every Event Orchestration will have AIOps features enabled by default. **Warning conditions**: - If the account is not entitled to use AIOps features, a warning will be returned alongside the enablement data. Scoped OAuth requires: `eve",
+   "description": "List all feature enablement settings for an Event Orchestration. Currently, only the `aiops` enablement is supported. For any account with the AIOps product addon, every Event Orchestration will have AIOps features enabled by default. **Warning conditions**: - If the account is not entitled to use AIOps features, a warning will be returned alongside the enablement data. For PDRP customers, this fe",
    "input": {
     "type": "object",
     "properties": {
@@ -14075,7 +14347,7 @@
      },
      "limit": {
       "type": "integer",
-      "description": ""
+      "description": "Maximum number of items to return"
      },
      "offset": {
       "type": "integer",
@@ -14506,6 +14778,139 @@
     ],
     "query": [
      "limit"
+    ],
+    "header": [
+     "Accept",
+     "Content-Type"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "pagerduty.list_incident_review_action_items",
+   "name": "List action items for an incident review",
+   "description": "List the action items on the Incident Review for the specified Incident, oldest first by creation time. Returns an empty list for an Incident Review that has no action items, and `404` when the Incident has no Incident Review, or if the caller cannot see it. This endpoint uses cursor pagination. Omit `cursor` for the first page, then pass the `next_cursor` from the previous response until it is `n",
+   "input": {
+    "type": "object",
+    "properties": {
+     "Accept": {
+      "type": "string",
+      "description": "The `Accept` header is used as a versioning header."
+     },
+     "Content-Type": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "application/json"
+      ]
+     },
+     "id": {
+      "type": "string",
+      "description": "The ID of the resource."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "The number of results per page."
+     },
+     "cursor": {
+      "type": "string",
+      "description": "Optional parameter used to request the \"next\" set of results from an API. The value provided here is most commonly obtained from the `next_cursor` field of the previous request. When no value is provided, the request starts at the beginning of the result set."
+     }
+    },
+    "required": [
+     "Accept",
+     "Content-Type",
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.pagerduty.com/incidents/{id}/review/action_items",
+    "path": [
+     "id"
+    ],
+    "query": [
+     "limit",
+     "cursor"
+    ],
+    "header": [
+     "Accept",
+     "Content-Type"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "pagerduty.list_incident_reviews",
+   "name": "List incident reviews",
+   "description": "List the Incident Reviews on the account, newest first by creation time. Only Incident Reviews on Incidents the caller can see are returned. Each entry is a summary; fetch the Incident Review by its Incident to get its sections. This endpoint uses cursor pagination. Omit `cursor` for the first page, then pass the `next_cursor` from the previous response until it is `null`. Scoped OAuth requires: `",
+   "input": {
+    "type": "object",
+    "properties": {
+     "Accept": {
+      "type": "string",
+      "description": "The `Accept` header is used as a versioning header."
+     },
+     "Content-Type": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "application/json"
+      ]
+     },
+     "limit": {
+      "type": "integer",
+      "description": "The number of results per page."
+     },
+     "cursor": {
+      "type": "string",
+      "description": "Optional parameter used to request the \"next\" set of results from an API. The value provided here is most commonly obtained from the `next_cursor` field of the previous request. When no value is provided, the request starts at the beginning of the result set."
+     },
+     "status": {
+      "type": "array",
+      "description": "Only return Incident Reviews with one of these statuses. Repeat the parameter to pass more than one."
+     },
+     "status_not": {
+      "type": "array",
+      "description": "Exclude Incident Reviews with any of these statuses. Repeat the parameter to pass more than one."
+     },
+     "status_not_empty": {
+      "type": "boolean",
+      "description": "When `true`, only return Incident Reviews that have a status set."
+     },
+     "created_since": {
+      "type": "string",
+      "description": "Only return results created on or after this time."
+     },
+     "created_until": {
+      "type": "string",
+      "description": "Only return results created on or before this time."
+     },
+     "has_open_action_items": {
+      "type": "boolean",
+      "description": "When `true`, only return Incident Reviews that have at least one action item that is not complete."
+     }
+    },
+    "required": [
+     "Accept",
+     "Content-Type"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.pagerduty.com/incidents/reviews",
+    "path": [],
+    "query": [
+     "limit",
+     "cursor",
+     "status",
+     "status_not",
+     "status_not_empty",
+     "created_since",
+     "created_until",
+     "has_open_action_items"
     ],
     "header": [
      "Accept",
@@ -15657,11 +16062,11 @@
      },
      "since": {
       "type": "string",
-      "description": "Start of time range (ISO 8601)"
+      "description": "Start of time range (ISO 8601). Can be at most 2 years in the future."
      },
      "until": {
       "type": "string",
-      "description": "End of time range (ISO 8601)"
+      "description": "End of time range (ISO 8601). Can be at most 2 years and 2 weeks in the future."
      },
      "time_zone": {
       "type": "string",
@@ -15670,14 +16075,6 @@
      "overflow": {
       "type": "boolean",
       "description": "Include shifts that extend beyond the requested time range boundaries"
-     },
-     "limit": {
-      "type": "integer",
-      "description": ""
-     },
-     "offset": {
-      "type": "integer",
-      "description": ""
      }
     },
     "required": [
@@ -15696,9 +16093,7 @@
      "since",
      "until",
      "time_zone",
-     "overflow",
-     "limit",
-     "offset"
+     "overflow"
     ],
     "header": [],
     "body": [],
@@ -15928,7 +16323,7 @@
      },
      "limit": {
       "type": "integer",
-      "description": ""
+      "description": "Maximum number of items to return"
      },
      "offset": {
       "type": "integer",
@@ -16438,6 +16833,10 @@
      "team_ids[]": {
       "type": "array",
       "description": "An array of team IDs. Only results related to these teams will be returned. Account must have the `teams` ability to use this parameter."
+     },
+     "user_id": {
+      "type": "string",
+      "description": "Return only schedules that include this user."
      }
     },
     "required": []
@@ -16451,7 +16850,8 @@
      "offset",
      "query",
      "total",
-     "team_ids[]"
+     "team_ids[]",
+     "user_id"
     ],
     "header": [],
     "body": [],
@@ -16764,7 +17164,7 @@
   {
    "slug": "pagerduty.list_service_feature_enablements",
    "name": "Get enablements for a service",
-   "description": "List all feature enablement settings for a service. Currently, only the `aiops` enablement is supported. For any account with the AIOps product addon, every service will have AIOps features enabled by default. **Warning conditions**: - If the account is not entitled to use AIOps features, a warning will be returned alongside the enablement data. Scoped OAuth requires: `services.read`",
+   "description": "List all feature enablement settings for a service. Currently, only the `aiops` enablement is supported. For any account with the AIOps product addon, every service will have AIOps features enabled by default. **Warning conditions**: - If the account is not entitled to use AIOps features, a warning will be returned alongside the enablement data. For PDRP customers, this feature is branded **Signal",
    "input": {
     "type": "object",
     "properties": {
@@ -17082,6 +17482,18 @@
        "incident",
        "maintenance"
       ]
+     },
+     "limit": {
+      "type": "integer",
+      "description": "The number of results per page."
+     },
+     "offset": {
+      "type": "integer",
+      "description": "Offset to start pagination search results."
+     },
+     "total": {
+      "type": "boolean",
+      "description": "By default the `total` field in pagination responses is set to `null` to provide the fastest possible response times. Set `total` to `true` for this field to be populated. See our [Pagination Docs](https://developer.pagerduty.com/docs/rest-api-v2/pagination/) for more information."
      }
     },
     "required": [
@@ -17096,7 +17508,10 @@
      "id"
     ],
     "query": [
-     "post_type"
+     "post_type",
+     "limit",
+     "offset",
+     "total"
     ],
     "header": [
      "Accept"
@@ -17131,6 +17546,18 @@
        "approved",
        "not_reviewed"
       ]
+     },
+     "limit": {
+      "type": "integer",
+      "description": "The number of results per page."
+     },
+     "offset": {
+      "type": "integer",
+      "description": "Offset to start pagination search results."
+     },
+     "total": {
+      "type": "boolean",
+      "description": "By default the `total` field in pagination responses is set to `null` to provide the fastest possible response times. Set `total` to `true` for this field to be populated. See our [Pagination Docs](https://developer.pagerduty.com/docs/rest-api-v2/pagination/) for more information."
      }
     },
     "required": [
@@ -17147,7 +17574,10 @@
      "post_id"
     ],
     "query": [
-     "reviewed_status"
+     "reviewed_status",
+     "limit",
+     "offset",
+     "total"
     ],
     "header": [
      "Accept"
@@ -17190,6 +17620,18 @@
      "status[]": {
       "type": "array",
       "description": "Filter by an array of Status identifiers."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "The number of results per page."
+     },
+     "offset": {
+      "type": "integer",
+      "description": "Offset to start pagination search results."
+     },
+     "total": {
+      "type": "boolean",
+      "description": "By default the `total` field in pagination responses is set to `null` to provide the fastest possible response times. Set `total` to `true` for this field to be populated. See our [Pagination Docs](https://developer.pagerduty.com/docs/rest-api-v2/pagination/) for more information."
      }
     },
     "required": [
@@ -17206,7 +17648,10 @@
     "query": [
      "post_type",
      "reviewed_status",
-     "status[]"
+     "status[]",
+     "limit",
+     "offset",
+     "total"
     ],
     "header": [
      "Accept"
@@ -17229,6 +17674,18 @@
      "id": {
       "type": "string",
       "description": "The ID of the resource."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "The number of results per page."
+     },
+     "offset": {
+      "type": "integer",
+      "description": "Offset to start pagination search results."
+     },
+     "total": {
+      "type": "boolean",
+      "description": "By default the `total` field in pagination responses is set to `null` to provide the fastest possible response times. Set `total` to `true` for this field to be populated. See our [Pagination Docs](https://developer.pagerduty.com/docs/rest-api-v2/pagination/) for more information."
      }
     },
     "required": [
@@ -17242,7 +17699,11 @@
     "path": [
      "id"
     ],
-    "query": [],
+    "query": [
+     "limit",
+     "offset",
+     "total"
+    ],
     "header": [
      "Accept"
     ],
@@ -17272,6 +17733,18 @@
        "incident",
        "maintenance"
       ]
+     },
+     "limit": {
+      "type": "integer",
+      "description": "The number of results per page."
+     },
+     "offset": {
+      "type": "integer",
+      "description": "Offset to start pagination search results."
+     },
+     "total": {
+      "type": "boolean",
+      "description": "By default the `total` field in pagination responses is set to `null` to provide the fastest possible response times. Set `total` to `true` for this field to be populated. See our [Pagination Docs](https://developer.pagerduty.com/docs/rest-api-v2/pagination/) for more information."
      }
     },
     "required": [
@@ -17286,7 +17759,10 @@
      "id"
     ],
     "query": [
-     "post_type"
+     "post_type",
+     "limit",
+     "offset",
+     "total"
     ],
     "header": [
      "Accept"
@@ -17317,6 +17793,18 @@
        "incident",
        "maintenance"
       ]
+     },
+     "limit": {
+      "type": "integer",
+      "description": "The number of results per page."
+     },
+     "offset": {
+      "type": "integer",
+      "description": "Offset to start pagination search results."
+     },
+     "total": {
+      "type": "boolean",
+      "description": "By default the `total` field in pagination responses is set to `null` to provide the fastest possible response times. Set `total` to `true` for this field to be populated. See our [Pagination Docs](https://developer.pagerduty.com/docs/rest-api-v2/pagination/) for more information."
      }
     },
     "required": [
@@ -17331,7 +17819,10 @@
      "id"
     ],
     "query": [
-     "post_type"
+     "post_type",
+     "limit",
+     "offset",
+     "total"
     ],
     "header": [
      "Accept"
@@ -17360,7 +17851,8 @@
       "description": "Filter by Subscription status.",
       "enum": [
        "active",
-       "pending"
+       "pending",
+       "suspended"
       ]
      },
      "channel": {
@@ -17371,6 +17863,18 @@
        "email",
        "slack"
       ]
+     },
+     "limit": {
+      "type": "integer",
+      "description": "The number of results per page."
+     },
+     "offset": {
+      "type": "integer",
+      "description": "Offset to start pagination search results."
+     },
+     "total": {
+      "type": "boolean",
+      "description": "By default the `total` field in pagination responses is set to `null` to provide the fastest possible response times. Set `total` to `true` for this field to be populated. See our [Pagination Docs](https://developer.pagerduty.com/docs/rest-api-v2/pagination/) for more information."
      }
     },
     "required": [
@@ -17386,7 +17890,10 @@
     ],
     "query": [
      "status",
-     "channel"
+     "channel",
+     "limit",
+     "offset",
+     "total"
     ],
     "header": [
      "Accept"
@@ -17411,8 +17918,21 @@
       "description": "The type of the Status Page.",
       "enum": [
        "public",
-       "private"
+       "private",
+       "audience_specific"
       ]
+     },
+     "limit": {
+      "type": "integer",
+      "description": "The number of results per page."
+     },
+     "offset": {
+      "type": "integer",
+      "description": "Offset to start pagination search results."
+     },
+     "total": {
+      "type": "boolean",
+      "description": "By default the `total` field in pagination responses is set to `null` to provide the fastest possible response times. Set `total` to `true` for this field to be populated. See our [Pagination Docs](https://developer.pagerduty.com/docs/rest-api-v2/pagination/) for more information."
      }
     },
     "required": [
@@ -17424,7 +17944,10 @@
     "url": "https://api.pagerduty.com/status_pages",
     "path": [],
     "query": [
-     "status_page_type"
+     "status_page_type",
+     "limit",
+     "offset",
+     "total"
     ],
     "header": [
      "Accept"
@@ -19472,7 +19995,7 @@
      },
      "custom_shift": {
       "type": "object",
-      "description": "If the shift has already started, only `end_time` can be modified."
+      "description": "The request replaces the full custom shift. Send every required field, even the fields that do not change. If the shift has already started, only `end_time` can be modified."
      }
     },
     "required": [
@@ -19729,7 +20252,7 @@
   {
    "slug": "pagerduty.update_event_orchestration_feature_enablements",
    "name": "Update an enablement for an event orchestration",
-   "description": "Update the feature enablement setting for a specific product addon on an Event Orchestration. This setting controls enabling or disabling the set of features contained within the addon. Currently, only `aiops` is supported as a valid feature enablement. **Warning conditions**: - If the account is not entitled to use AIOps features, the setting will be updated, but a warning will be returned. Scope",
+   "description": "Update the feature enablement setting for a specific product addon on an Event Orchestration. This setting controls enabling or disabling the set of features contained within the addon. Currently, only `aiops` is supported as a valid feature enablement. **Warning conditions**: - If the account is not entitled to use AIOps features, the setting will be updated, but a warning will be returned. For P",
    "input": {
     "type": "object",
     "properties": {
@@ -19750,7 +20273,7 @@
      },
      "feature_name": {
       "type": "string",
-      "description": "The feature enablement identifier, typically the name of the product addon. Currently only `aiops` is supported.",
+      "description": "The feature enablement identifier, typically the name of the product addon. Currently only `aiops` is supported. For PDRP customers, this feature is branded **Signal Intelligence** in the PagerDuty product UI. The API field names and values (e.g. `aiops`) are unchanged.",
       "enum": [
        "aiops"
       ]
@@ -20189,6 +20712,66 @@
     ],
     "body": [
      "note"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "pagerduty.update_incident_review",
+   "name": "Update an incident review",
+   "description": "Update the Incident Review for the specified Incident. This is a partial update: an omitted field leaves the current value unchanged. Moving `status` to `completed` is rejected with `409` while any required section is still unfilled. On accounts where completed Incident Reviews are read-only, any other change to a `completed` Incident Review is rejected with `409` until it is reopened by setting `",
+   "input": {
+    "type": "object",
+    "properties": {
+     "Accept": {
+      "type": "string",
+      "description": "The `Accept` header is used as a versioning header."
+     },
+     "Content-Type": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "application/json"
+      ]
+     },
+     "id": {
+      "type": "string",
+      "description": "The ID of the resource."
+     },
+     "title": {
+      "type": "string",
+      "description": "The updated title of the Incident Review."
+     },
+     "status": {
+      "type": "string",
+      "description": "The updated status of the Incident Review.",
+      "enum": [
+       "started",
+       "in_review",
+       "completed"
+      ]
+     }
+    },
+    "required": [
+     "Accept",
+     "Content-Type",
+     "id"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.pagerduty.com/incidents/{id}/review",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [
+     "Accept",
+     "Content-Type"
+    ],
+    "body": [
+     "title",
+     "status"
     ],
     "body_format": "json"
    }
@@ -21251,7 +21834,7 @@
      },
      "schedule": {
       "type": "object",
-      "description": ""
+      "description": "`time_zone` is required. `name` and `description` are optional; an omitted field keeps its current value."
      }
     },
     "required": [
@@ -21543,7 +22126,7 @@
   {
    "slug": "pagerduty.update_service_feature_enablement",
    "name": "Update an enablement for a service",
-   "description": "Update the feature enablement setting for a specific product addon on a service. This setting controls enabling or disabling the set of features contained within the addon. Currently, only `aiops` is supported as a valid feature enablement. **Warning conditions**: - If the account is not entitled to use AIOps features, the setting will be updated, but a warning will be returned. Scoped OAuth requi",
+   "description": "Update the feature enablement setting for a specific product addon on a service. This setting controls enabling or disabling the set of features contained within the addon. Currently, only `aiops` is supported as a valid feature enablement. **Warning conditions**: - If the account is not entitled to use AIOps features, the setting will be updated, but a warning will be returned. For PDRP customers",
    "input": {
     "type": "object",
     "properties": {
@@ -21553,7 +22136,7 @@
      },
      "feature_name": {
       "type": "string",
-      "description": "The feature enablement identifier, typically the name of the product addon. Currently only `aiops` is supported.",
+      "description": "The feature enablement identifier, typically the name of the product addon. Currently only `aiops` is supported. For PDRP customers, this feature is branded **Signal Intelligence** in the PagerDuty product UI. The API field names and values (e.g. `aiops`) are unchanged.",
       "enum": [
        "aiops"
       ]

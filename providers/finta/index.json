@@ -192,7 +192,7 @@
      },
      "cursor": {
       "type": "string",
-      "description": "Pagination cursor from the previous response's nextPage URL. For Stripe connections, this is a transaction ID. For Plaid/Mercury/GoCardless, this is a numeric offset."
+      "description": "Pagination cursor from the previous response's nextPage URL. For Stripe and Mercury connections, this is a transaction ID. For Plaid/GoCardless, this is a numeric offset. Mercury connections return a 400 for a numeric cursor; restart without a cursor."
      }
     },
     "required": [

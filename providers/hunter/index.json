@@ -1,0 +1,5614 @@
+{
+ "_": "GENERATED \u2014 what an authoring tool needs to FIND an operation. The calling table is the .lua beside it.",
+ "provider": "hunter",
+ "source": "https://api.hunter.io/openapi.json",
+ "operations": [
+  {
+   "slug": "hunter.add_campaign_recipients",
+   "name": "Add campaign recipients",
+   "description": "Add campaign recipients",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hunter.io/v2/campaigns/{id}/recipients",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.add_company_list_company",
+   "name": "Add a company to a company list",
+   "description": "Add a company to a company list",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hunter.io/v2/company-lists/{id}/companies",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.add_sequence_recipients",
+   "name": "Add sequence recipients",
+   "description": "Add sequence recipients",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hunter.io/v2/sequences/{id}/recipients",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.archive_sequence",
+   "name": "Archive a sequence",
+   "description": "Archive a sequence",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sequence_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "sequence_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hunter.io/v2/sequences/{sequence_id}/archive",
+    "path": [
+     "sequence_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.bulk_upsert_leads",
+   "name": "Upsert leads in bulk",
+   "description": "Create or update up to 100 leads in one call. Each lead is matched on `email` and written in its own transaction, so one invalid lead does not cancel the others. The team's lead limit is checked for each new lead using the current committed lead count. If an item would exceed that limit, earlier successful items remain saved and that item returns a `leads_limit_reached` error. If another request i",
+   "input": {
+    "type": "object",
+    "properties": {
+     "leads": {
+      "type": "array",
+      "description": "The leads to upsert, at most 100 per request. Each entry is matched on `email` against the leads of your team: a match is updated, anything else is created."
+     }
+    },
+    "required": [
+     "leads"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.hunter.io/v2/leads/bulk",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "leads"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.check_lead_exists",
+   "name": "Check whether a lead exists",
+   "description": "Check whether a lead exists",
+   "input": {
+    "type": "object",
+    "properties": {
+     "email": {
+      "type": "string",
+      "description": "Email address to look up."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hunter.io/v2/leads/exist",
+    "path": [],
+    "query": [
+     "email"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.check_leads_bulk_exist",
+   "name": "Check whether leads exist in bulk",
+   "description": "Check whether leads exist in bulk",
+   "input": {
+    "type": "object",
+    "properties": {
+     "emails": {
+      "type": "array",
+      "description": "Email addresses to look up in bulk. Send Rails-style bracket encoding (emails[]=a@example.com&emails[]=b@example.com): the comma-joined and repeated-key forms parse as a scalar and fail validation."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hunter.io/v2/leads/bulk/exist",
+    "path": [],
+    "query": [
+     "emails"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.copy_companies_bulk",
+   "name": "Copy companies to another list in bulk",
+   "description": "Copy companies to another list in bulk",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hunter.io/v2/companies/bulk/copy",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.count_domain_emails",
+   "name": "Count email addresses for a domain",
+   "description": "Return aggregate counts without revealing individual email addresses. This operation is free.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domain": {
+      "type": "string",
+      "description": "Domain name to count."
+     },
+     "company": {
+      "type": "string",
+      "description": "Company name to count when the domain is unknown."
+     },
+     "type": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "personal",
+       "generic"
+      ]
+     },
+     "include_job_titles": {
+      "type": "string",
+      "description": "Include job-title counts when set to any non-empty value. An empty value or omission disables it."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hunter.io/v2/email-count",
+    "path": [],
+    "query": [
+     "domain",
+     "company",
+     "type",
+     "include_job_titles"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.count_domains",
+   "name": "Count domains matching discovery filters",
+   "description": "Count domains matching discovery filters",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hunter.io/v2/domain-count",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.create_api_key",
+   "name": "Create an api key",
+   "description": "Create an API key",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hunter.io/v2/api-keys",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.create_campaign_follow_up",
+   "name": "Add a campaign follow up step",
+   "description": "Add a campaign follow-up step",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     },
+     "step": {
+      "type": "integer",
+      "description": "Step to create. Optional for a new step (the next step is used). Required with `variant`, where it names the existing step that gets a Variant B."
+     },
+     "variant": {
+      "type": "string",
+      "description": "Set to `B` to add Variant B to an existing `step`, which turns A/B testing on for the sequence. Omitted fields are copied from the step's Variant A. A Variant B whose subject and body both match Variant A is refused.",
+      "enum": [
+       "B"
+      ]
+     },
+     "wait_days": {
+      "type": "integer",
+      "description": ""
+     },
+     "subject": {
+      "type": "string",
+      "description": ""
+     },
+     "body": {
+      "type": "string",
+      "description": "Plain text or HTML. Line breaks and blank lines in plain text, and `` paragraphs in HTML, are kept. The body is stored as the editor's HTML (`` and ``), also when `message_format` is `text`."
+     },
+     "message_format": {
+      "type": "string",
+      "description": ""
+     },
+     "message_template_id": {
+      "type": "string",
+      "description": "ID of a message template whose subject, body, and format fill omitted fields."
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hunter.io/v2/campaigns/{id}/follow-ups",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "step",
+     "variant",
+     "wait_days",
+     "subject",
+     "body",
+     "message_format",
+     "message_template_id"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.create_company",
+   "name": "Save a company",
+   "description": "Save a company",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hunter.io/v2/companies",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.create_company_list",
+   "name": "Create a company list",
+   "description": "Create a company list",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hunter.io/v2/company-lists",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.create_company_list_folder",
+   "name": "Create a company list folder",
+   "description": "When `color` is omitted the folder gets a random color from the palette's vivid swatches.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hunter.io/v2/company-lists/folders",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.create_company_tag",
+   "name": "Create a company tag",
+   "description": "Create a company tag",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hunter.io/v2/company-tags",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.create_discover_view",
+   "name": "Create a saved discover view",
+   "description": "Create a saved discover view",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hunter.io/v2/discover/views",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.create_feedback",
+   "name": "Submit product feedback",
+   "description": "Submit product feedback",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hunter.io/v2/feedback",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.create_lead",
+   "name": "Create a lead",
+   "description": "A manually claimed phone number, or one covered by DROP, is returned as `phone_number: null`. The phone is also withheld when screening is unavailable; the lead and its other contact details remain. Creates a lead, or adds an existing lead to the requested lists. When an `email` matches a lead already on your team, the request is additive: it adds only the missing list memberships and returns 201 ",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hunter.io/v2/leads",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.create_lead_custom_attribute",
+   "name": "Create a lead custom attribute",
+   "description": "Create a lead custom attribute",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hunter.io/v2/leads_custom_attributes",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.create_lead_list",
+   "name": "Create a lead list",
+   "description": "An optional `leads_list_folder_id` creates the list inside that folder. A folder of another team returns a 422. The response includes `leads_list_folder_id` (HUN-24761). Creates a static list, or a dynamic list when `type` is `dynamic`. A dynamic list saves `filters` in the vocabulary of GET /v2/leads and holds every lead that matches them. Its `leads_count` in the response is already the number o",
+   "input": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": "string",
+      "description": "The name of the list, up to 255 characters. A longer name returns a 422."
+     },
+     "leads_list_folder_id": {
+      "type": "string",
+      "description": "The folder to put the list in. On update, null or an empty value removes the list from its folder. A form-encoded request sends the empty value as an empty string."
+     },
+     "type": {
+      "type": "string",
+      "description": "On create, `static` (the default) makes a list that keeps the leads you add to it. `dynamic` makes a list that holds every lead matching its `filters`, including leads saved later; leads can't be added to it or removed from it by hand. A list's type can't be changed: on update, a different type returns a 422.",
+      "enum": [
+       "static",
+       "dynamic"
+      ]
+     },
+     "filters": {
+      "type": "object",
+      "description": "The filters of a dynamic list, required when `type` is `dynamic` and accepted on update of a dynamic list only, where they replace the saved filters. Keys and values are the filters of GET /v2/leads, in JSON form: for example `position: [\"CEO\"]`, `verification_status: [\"valid\"]`, `created_at: \"last7d\"`, `location: { country: { include: [\"FR\"] } }`, or `custom_attributes: { : \"*\" }`. `leads_list_id"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hunter.io/v2/leads_lists",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "leads_list_folder_id",
+     "type",
+     "filters"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.create_lead_list_folder",
+   "name": "Create a lead list folder",
+   "description": "When `color` is omitted the folder gets a random color from the palette's vivid swatches.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hunter.io/v2/leads_lists/folders",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.create_lead_list_folder_hyphen",
+   "name": "Create a lead list folder (hyphen alias)",
+   "description": "When `color` is omitted the folder gets a random color from the palette's vivid swatches.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hunter.io/v2/leads-lists/folders",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.create_lead_list_hyphen",
+   "name": "Create a lead list (hyphen alias)",
+   "description": "An optional `leads_list_folder_id` creates the list inside that folder. A folder of another team returns a 422. The response includes `leads_list_folder_id` (HUN-24761). Creates a static list, or a dynamic list when `type` is `dynamic`. A dynamic list saves `filters` in the vocabulary of GET /v2/leads and holds every lead that matches them. Its `leads_count` in the response is already the number o",
+   "input": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": "string",
+      "description": "The name of the list, up to 255 characters. A longer name returns a 422."
+     },
+     "leads_list_folder_id": {
+      "type": "string",
+      "description": "The folder to put the list in. On update, null or an empty value removes the list from its folder. A form-encoded request sends the empty value as an empty string."
+     },
+     "type": {
+      "type": "string",
+      "description": "On create, `static` (the default) makes a list that keeps the leads you add to it. `dynamic` makes a list that holds every lead matching its `filters`, including leads saved later; leads can't be added to it or removed from it by hand. A list's type can't be changed: on update, a different type returns a 422.",
+      "enum": [
+       "static",
+       "dynamic"
+      ]
+     },
+     "filters": {
+      "type": "object",
+      "description": "The filters of a dynamic list, required when `type` is `dynamic` and accepted on update of a dynamic list only, where they replace the saved filters. Keys and values are the filters of GET /v2/leads, in JSON form: for example `position: [\"CEO\"]`, `verification_status: [\"valid\"]`, `created_at: \"last7d\"`, `location: { country: { include: [\"FR\"] } }`, or `custom_attributes: { : \"*\" }`. `leads_list_id"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hunter.io/v2/leads-lists",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "leads_list_folder_id",
+     "type",
+     "filters"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.create_leads_import",
+   "name": "Create a leads import from csv data",
+   "description": "Creates a draft leads import and returns its id, the guessed column matching, and a configuration_url. This call does not import anything: a person must open that URL in a browser and complete the mapping step before any lead is created. It is intended for clients that can hand off to a browser session, not for unattended automation. csv_data must be sent in the request body; it is rejected in the",
+   "input": {
+    "type": "object",
+    "properties": {
+     "csv_data": {
+      "type": "string",
+      "description": "The CSV content. Comma and semicolon separators are both detected. The server rejects anything over 10 MB once encoded, which is a byte limit and so cannot be expressed as maxLength. Over 100,000 rows is rejected. Send a large CSV as JSON: percent encoding can treble a form-encoded body, which the proxy rejects at 25 MB before the endpoint sees it."
+     },
+     "leads_list_id": {
+      "type": "integer",
+      "description": "Identifier of the static list the leads should land in. Must belong to your team. Omit it to pick a destination on the configuration page."
+     },
+     "file_name": {
+      "type": "string",
+      "description": "Name shown for this import in the imports history. A longer name is truncated rather than rejected, so no maxLength is declared."
+     }
+    },
+    "required": [
+     "csv_data"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hunter.io/v2/leads-imports",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "csv_data",
+     "leads_list_id",
+     "file_name"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.create_message",
+   "name": "Send a one off message",
+   "description": "The sender must be available for outreach to the authenticated user. On the Free plan, extra or SMTP accounts retained only for Inbox Protection cannot send one-off messages. Selecting one returns 422 with error ID email_account_not_found.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hunter.io/v2/messages",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.create_message_template",
+   "name": "Create a message template",
+   "description": "A `body` in plain text or HTML keeps its line breaks and paragraphs. It is stored as the editor's HTML (`` and ``), also when `message_format` is `text`, so a read after the write can differ from the submitted body.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hunter.io/v2/message-templates",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.create_sequence",
+   "name": "Create a sequence",
+   "description": "Sender IDs must be available for outreach to the sequence owner. On the Free plan, extra or SMTP accounts retained only for a paid Inbox Protection period cannot be selected as senders. Submitting one returns 422 with error ID unknown_email_account_ids. Enabling `ai_assistant_enabled` requires a plan that includes the AI writing assistant. A request that turns it on without that entitlement is rej",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hunter.io/v2/sequences",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.create_sequence_follow_up",
+   "name": "Add a sequence follow up step",
+   "description": "Add a sequence follow-up step",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     },
+     "step": {
+      "type": "integer",
+      "description": "Step to create. Optional for a new step (the next step is used). Required with `variant`, where it names the existing step that gets a Variant B."
+     },
+     "variant": {
+      "type": "string",
+      "description": "Set to `B` to add Variant B to an existing `step`, which turns A/B testing on for the sequence. Omitted fields are copied from the step's Variant A. A Variant B whose subject and body both match Variant A is refused.",
+      "enum": [
+       "B"
+      ]
+     },
+     "wait_days": {
+      "type": "integer",
+      "description": ""
+     },
+     "subject": {
+      "type": "string",
+      "description": ""
+     },
+     "body": {
+      "type": "string",
+      "description": "Plain text or HTML. Line breaks and blank lines in plain text, and `` paragraphs in HTML, are kept. The body is stored as the editor's HTML (`` and ``), also when `message_format` is `text`."
+     },
+     "message_format": {
+      "type": "string",
+      "description": ""
+     },
+     "message_template_id": {
+      "type": "string",
+      "description": "ID of a message template whose subject, body, and format fill omitted fields."
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hunter.io/v2/sequences/{id}/follow-ups",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "step",
+     "variant",
+     "wait_days",
+     "subject",
+     "body",
+     "message_format",
+     "message_template_id"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.create_tag",
+   "name": "Create a lead tag",
+   "description": "Create a lead tag",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hunter.io/v2/tags",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.create_webhook",
+   "name": "Create a webhook",
+   "description": "Create a webhook",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hunter.io/v2/webhooks",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.delete_api_key",
+   "name": "Delete an api key",
+   "description": "Delete an API key",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.hunter.io/v2/api-keys/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.delete_companies_bulk",
+   "name": "Delete companies in bulk",
+   "description": "Delete companies in bulk",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hunter.io/v2/companies/bulk/delete",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.delete_company",
+   "name": "Delete a saved company",
+   "description": "Delete a saved company",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.hunter.io/v2/companies/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.delete_company_list",
+   "name": "Delete a company list",
+   "description": "Delete a company list",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.hunter.io/v2/company-lists/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.delete_company_list_folder",
+   "name": "Delete a company list folder",
+   "description": "Delete a company list folder",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.hunter.io/v2/company-lists/folders/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.delete_company_tag",
+   "name": "Delete a company tag",
+   "description": "Delete a company tag",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.hunter.io/v2/company-tags/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.delete_discover_view",
+   "name": "Delete a saved discover view",
+   "description": "Delete a saved discover view",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.hunter.io/v2/discover/views/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.delete_lead",
+   "name": "Delete a lead",
+   "description": "Delete a lead",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.hunter.io/v2/leads/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.delete_lead_custom_attribute",
+   "name": "Delete a lead custom attribute",
+   "description": "Delete a lead custom attribute",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.hunter.io/v2/leads_custom_attributes/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.delete_lead_list",
+   "name": "Delete a lead list",
+   "description": "Delete a lead list",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.hunter.io/v2/leads_lists/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.delete_lead_list_folder",
+   "name": "Delete a lead list folder",
+   "description": "Delete a lead list folder",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.hunter.io/v2/leads_lists/folders/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.delete_lead_list_folder_hyphen",
+   "name": "Delete a lead list folder (hyphen alias)",
+   "description": "Delete a lead list folder (hyphen alias)",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.hunter.io/v2/leads-lists/folders/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.delete_lead_list_hyphen",
+   "name": "Delete a lead list (hyphen alias)",
+   "description": "Delete a lead list (hyphen alias)",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.hunter.io/v2/leads-lists/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.delete_leads_bulk",
+   "name": "Delete leads in bulk",
+   "description": "Delete leads in bulk",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hunter.io/v2/leads/bulk/delete",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.delete_message_template",
+   "name": "Delete a message template",
+   "description": "Delete a message template",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.hunter.io/v2/message-templates/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.delete_sequence",
+   "name": "Delete a sequence",
+   "description": "Removes a draft sequence from the sequence list immediately. Pending mail is canceled and recipients are deleted in the background. Repeating the request after the sequence is already deleted returns 204.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.hunter.io/v2/sequences/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.delete_sequence_follow_up",
+   "name": "Delete a sequence follow up step",
+   "description": "Delete a sequence follow-up step",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     },
+     "follow_up_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "follow_up_id",
+     "id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.hunter.io/v2/sequences/{id}/follow-ups/{follow_up_id}",
+    "path": [
+     "id",
+     "follow_up_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.delete_tag",
+   "name": "Delete a lead tag",
+   "description": "Delete a lead tag",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.hunter.io/v2/tags/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.delete_webhook",
+   "name": "Delete a webhook",
+   "description": "Delete a webhook",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.hunter.io/v2/webhooks/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.delete_webhooks_collection",
+   "name": "Delete webhooks by identifier (legacy)",
+   "description": "Delete webhooks by identifier (legacy)",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "integer",
+      "description": "Webhook identifier. The legacy collection delete takes it as a query or body param."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.hunter.io/v2/webhooks",
+    "path": [],
+    "query": [
+     "id"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.discover_companies",
+   "name": "Discover companies",
+   "description": "Find companies matching a structured filter set. This operation is free. A filter whose every supplied value cannot be applied returns a 400 `invalid_filter_values` error naming the filter. Filters that your plan does not include are ignored without this error. A natural-language `query` returns a 400 `query_failed` error when a filter it translates to cannot be applied.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "query": {
+      "type": "string",
+      "description": ""
+     },
+     "organization": {
+      "type": "object",
+      "description": ""
+     },
+     "similar_to": {
+      "type": "object",
+      "description": ""
+     },
+     "headquarters_location": {
+      "type": "object",
+      "description": ""
+     },
+     "industry": {
+      "type": "object",
+      "description": "Industry names to include or exclude."
+     },
+     "headcount": {
+      "type": "array",
+      "description": ""
+     },
+     "company_type": {
+      "type": "object",
+      "description": "Hunter company types to include or exclude."
+     },
+     "year_founded": {
+      "type": "object",
+      "description": ""
+     },
+     "keywords": {
+      "type": "object",
+      "description": ""
+     },
+     "technology": {
+      "type": "object",
+      "description": "Technology slugs to include or exclude."
+     },
+     "funding": {
+      "type": "object",
+      "description": ""
+     },
+     "job_openings": {
+      "type": "object",
+      "description": "Filter companies by LinkedIn job openings. Department values come from the jobs-index vocabulary (not a frozen enum). Unknown departments return 400."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Number of companies to return. Every plan can request up to 100 companies."
+     },
+     "offset": {
+      "type": "integer",
+      "description": "Number of companies to skip. Only plans with Discover paging can set an offset above 0."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hunter.io/v2/discover",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "query",
+     "organization",
+     "similar_to",
+     "headquarters_location",
+     "industry",
+     "headcount",
+     "company_type",
+     "year_founded",
+     "keywords",
+     "technology",
+     "funding",
+     "job_openings",
+     "limit",
+     "offset"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.discover_people",
+   "name": "Discover people matching filters",
+   "description": "Discover people matching filters",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hunter.io/v2/discover/people",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.discover_people_with_post",
+   "name": "Discover people using request body filters",
+   "description": "Discover people using request-body filters",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hunter.io/v2/discover/people",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.enrich_company",
+   "name": "Enrich a company",
+   "description": "Enrich a company",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domain": {
+      "type": "string",
+      "description": ""
+     },
+     "clearbit_format": {
+      "type": "string",
+      "description": "When set to any non-empty value, return the Clearbit-compatible response shape."
+     }
+    },
+    "required": [
+     "domain"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hunter.io/v2/companies/find",
+    "path": [],
+    "query": [
+     "domain",
+     "clearbit_format"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.enrich_lead",
+   "name": "Enrich a lead",
+   "description": "A manually claimed phone number, or one covered by DROP, is returned as `phone_number: null`. The phone is also withheld when screening is unavailable; the lead and its other contact details remain.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hunter.io/v2/leads/{id}/enrich",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.enrich_person",
+   "name": "Enrich a person",
+   "description": "Enrich a person",
+   "input": {
+    "type": "object",
+    "properties": {
+     "email": {
+      "type": "string",
+      "description": "Email address to enrich."
+     },
+     "linkedin_handle": {
+      "type": "string",
+      "description": "LinkedIn profile handle to enrich."
+     },
+     "clearbit_format": {
+      "type": "string",
+      "description": "When set to any non-empty value, return the Clearbit-compatible response shape."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hunter.io/v2/people/find",
+    "path": [],
+    "query": [
+     "email",
+     "linkedin_handle",
+     "clearbit_format"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.enrich_person_and_company",
+   "name": "Enrich a person and company",
+   "description": "Enrich a person and company",
+   "input": {
+    "type": "object",
+    "properties": {
+     "email": {
+      "type": "string",
+      "description": "Email address to enrich."
+     },
+     "linkedin_handle": {
+      "type": "string",
+      "description": "LinkedIn profile handle to enrich."
+     },
+     "clearbit_format": {
+      "type": "string",
+      "description": "When set to any non-empty value, return the Clearbit-compatible response shape."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hunter.io/v2/combined/find",
+    "path": [],
+    "query": [
+     "email",
+     "linkedin_handle",
+     "clearbit_format"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.favorite_company_list",
+   "name": "Favorite a company list",
+   "description": "Favorite a company list",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hunter.io/v2/company-lists/{id}/favorite",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.favorite_lead_list",
+   "name": "Favorite a lead list",
+   "description": "Favorite a lead list",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hunter.io/v2/leads_lists/{id}/favorite",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.favorite_lead_list_hyphen",
+   "name": "Favorite a lead list (hyphen alias)",
+   "description": "Favorite a lead list (hyphen alias)",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hunter.io/v2/leads-lists/{id}/favorite",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.find_domain",
+   "name": "Find the domain for a company",
+   "description": "Find the domain for a company",
+   "input": {
+    "type": "object",
+    "properties": {
+     "company": {
+      "type": "string",
+      "description": "Company name to resolve to a domain."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Maximum suggestions to return."
+     },
+     "perfect_match": {
+      "type": "boolean",
+      "description": "Only return an exact company-name match."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hunter.io/v2/domain-finder",
+    "path": [],
+    "query": [
+     "company",
+     "limit",
+     "perfect_match"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.find_domain_with_post",
+   "name": "Find the domain for a company via post",
+   "description": "Find the domain for a company via POST",
+   "input": {
+    "type": "object",
+    "properties": {
+     "company": {
+      "type": "string",
+      "description": "Company name to resolve to a domain."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Maximum suggestions to return."
+     },
+     "perfect_match": {
+      "type": "boolean",
+      "description": "Only return an exact company-name match."
+     }
+    },
+    "required": [
+     "company"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hunter.io/v2/domain-finder",
+    "path": [],
+    "query": [
+     "company",
+     "limit",
+     "perfect_match"
+    ],
+    "header": [],
+    "body": [
+     "company",
+     "limit",
+     "perfect_match"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.find_email",
+   "name": "Find a professional email address",
+   "description": "Supply a LinkedIn handle, or supply a domain/company plus either a full name or first and last name. A found email address is also saved automatically to your leads. This is enabled by default and can be disabled for your account. The saved lead keeps the verification status this response reports. It leaves out a phone number that is on a data broker deletion list, such as California's DROP.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domain": {
+      "type": "string",
+      "description": "Domain name of the company. A URL or a leading \"@\" is accepted and reduced to the domain name, so \"https://www.example.com/about\" and \"@example.com\" search example.com."
+     },
+     "company": {
+      "type": "string",
+      "description": ""
+     },
+     "first_name": {
+      "type": "string",
+      "description": ""
+     },
+     "last_name": {
+      "type": "string",
+      "description": ""
+     },
+     "full_name": {
+      "type": "string",
+      "description": ""
+     },
+     "linkedin_handle": {
+      "type": "string",
+      "description": ""
+     },
+     "max_duration": {
+      "type": "integer",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hunter.io/v2/email-finder",
+    "path": [],
+    "query": [
+     "domain",
+     "company",
+     "first_name",
+     "last_name",
+     "full_name",
+     "linkedin_handle",
+     "max_duration"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.find_email_found",
+   "name": "Get a previously found email address",
+   "description": "Found-only variant of email finder. Supply a LinkedIn handle, or supply a domain/company plus either a full name or first and last name.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domain": {
+      "type": "string",
+      "description": ""
+     },
+     "company": {
+      "type": "string",
+      "description": ""
+     },
+     "first_name": {
+      "type": "string",
+      "description": ""
+     },
+     "last_name": {
+      "type": "string",
+      "description": ""
+     },
+     "full_name": {
+      "type": "string",
+      "description": ""
+     },
+     "linkedin_handle": {
+      "type": "string",
+      "description": ""
+     },
+     "max_duration": {
+      "type": "integer",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hunter.io/v2/email-finder/found",
+    "path": [],
+    "query": [
+     "domain",
+     "company",
+     "first_name",
+     "last_name",
+     "full_name",
+     "linkedin_handle",
+     "max_duration"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.find_email_found_with_post",
+   "name": "Get a previously found email address via post",
+   "description": "Found-only variant of email finder using request-body parameters.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domain": {
+      "type": "string",
+      "description": ""
+     },
+     "company": {
+      "type": "string",
+      "description": ""
+     },
+     "first_name": {
+      "type": "string",
+      "description": ""
+     },
+     "last_name": {
+      "type": "string",
+      "description": ""
+     },
+     "full_name": {
+      "type": "string",
+      "description": ""
+     },
+     "linkedin_handle": {
+      "type": "string",
+      "description": ""
+     },
+     "max_duration": {
+      "type": "integer",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hunter.io/v2/email-finder/found",
+    "path": [],
+    "query": [
+     "domain",
+     "company",
+     "first_name",
+     "last_name",
+     "full_name",
+     "linkedin_handle",
+     "max_duration"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.get_account",
+   "name": "Get account details and usage",
+   "description": "When `data.requests.credits` is present, the team has a single credits pool: plan with `credits.remaining`. A search costs 1 credit and a verification 0.5 credit. `searches` and `verifications` are then approximate views of the same pool (rounded down, with request-pack usage counted per type), not separate quotas. Without `credits`, `searches` and `verifications` are separate quotas.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hunter.io/v2/account",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.get_account_stats",
+   "name": "Get account profile summary",
+   "description": "Get account profile summary",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hunter.io/v2/account-stats",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.get_briefing",
+   "name": "Get the briefing",
+   "description": "Return what needs attention in the team's Hunter account, in one call: the number of lead signal and Monitored Signal events after `since`, the number of opportunities of this week, and the plan and credits. Each item gives a `status` and the `next_call` that returns its details. An item that could not be read is `unavailable` and the call still succeeds. An item that the plan does not include is ",
+   "input": {
+    "type": "object",
+    "properties": {
+     "since": {
+      "type": "string",
+      "description": "ISO 8601 date-time, not in the future. Count only the events that occurred after it. Default: 7 days ago. A value older than 30 days reads as 30 days ago."
+     },
+     "leads_since": {
+      "type": "string",
+      "description": "Like `since`, for the lead signals item only. It overrides `since` for that item."
+     },
+     "monitored_since": {
+      "type": "string",
+      "description": "Like `since`, for the Monitored Signals item only. It overrides `since` for that item."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hunter.io/v2/briefing",
+    "path": [],
+    "query": [
+     "since",
+     "leads_since",
+     "monitored_since"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.get_campaign_follow_up",
+   "name": "Get a campaign follow up step",
+   "description": "Get a campaign follow-up step",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     },
+     "follow_up_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "follow_up_id",
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hunter.io/v2/campaigns/{id}/follow-ups/{follow_up_id}",
+    "path": [
+     "id",
+     "follow_up_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.get_company",
+   "name": "Get a saved company",
+   "description": "Get a saved company",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hunter.io/v2/companies/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.get_company_list",
+   "name": "Get a company list",
+   "description": "Get a company list",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hunter.io/v2/company-lists/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.get_company_list_folder",
+   "name": "Get a company list folder",
+   "description": "Get a company list folder",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hunter.io/v2/company-lists/folders/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.get_company_tag",
+   "name": "Get a company tag",
+   "description": "Get a company tag",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hunter.io/v2/company-tags/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.get_connected_app",
+   "name": "Get a connected app",
+   "description": "Get a connected app",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hunter.io/v2/connected-apps/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.get_discover_view",
+   "name": "Get a saved discover view",
+   "description": "Get a saved discover view",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hunter.io/v2/discover/views/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.get_email_account",
+   "name": "Get an email account",
+   "description": "The account's `signature` is returned HTML-sanitized (HUN-22571).",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hunter.io/v2/email-accounts/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.get_email_account_capacities",
+   "name": "Get email account sending capacities",
+   "description": "Get email account sending capacities",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hunter.io/v2/email-accounts/capacities",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.get_email_account_health_report",
+   "name": "Get an email account health report",
+   "description": "Get an email account health report",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hunter.io/v2/email-accounts/{id}/health-report",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.get_email_account_usage",
+   "name": "Get an email account usage report",
+   "description": "Get an email account usage report",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hunter.io/v2/email-accounts/{id}/usage",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.get_email_account_warmup_report",
+   "name": "Get an email account warmup report",
+   "description": "Get an email account warmup report",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hunter.io/v2/email-accounts/{id}/warmup-report",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.get_email_insight",
+   "name": "Get deliverability insight for an email address",
+   "description": "Get deliverability insight for an email address",
+   "input": {
+    "type": "object",
+    "properties": {
+     "email": {
+      "type": "string",
+      "description": "Email address to inspect."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hunter.io/v2/email-insight",
+    "path": [],
+    "query": [
+     "email"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.get_lead",
+   "name": "Get a lead",
+   "description": "Returns `department` since HUN-23171. It was filterable on the collection endpoint and settable by enrichment before that, but never emitted, so a caller could filter on a field it could not read back. When the person behind a lead has asked Hunter to delete their address, with a claim or a California DROP request, the lead is returned without it: `email`, `confidence_score`, `verification.date` a",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hunter.io/v2/leads/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.get_lead_custom_attribute",
+   "name": "Get a lead custom attribute",
+   "description": "Get a lead custom attribute",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hunter.io/v2/leads_custom_attributes/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.get_lead_list",
+   "name": "Get a lead list",
+   "description": "When the person behind a lead has asked Hunter to delete their address, with a claim or a California DROP request, the lead is returned without it: `email`, `confidence_score`, `verification.date` and `verification.status` are null (HUN-23599). The list includes `leads_list_folder_id`, or null when the list is unfiled (HUN-24761).",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hunter.io/v2/leads_lists/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.get_lead_list_folder",
+   "name": "Get a lead list folder",
+   "description": "Get a lead list folder",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hunter.io/v2/leads_lists/folders/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.get_lead_list_folder_hyphen",
+   "name": "Get a lead list folder (hyphen alias)",
+   "description": "Get a lead list folder (hyphen alias)",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hunter.io/v2/leads-lists/folders/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.get_lead_list_hyphen",
+   "name": "Get a lead list (hyphen alias)",
+   "description": "When the person behind a lead has asked Hunter to delete their address, with a claim or a California DROP request, the lead is returned without it: `email`, `confidence_score`, `verification.date` and `verification.status` are null (HUN-23599). The list includes `leads_list_folder_id`, or null when the list is unfiled (HUN-24761).",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hunter.io/v2/leads-lists/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.get_message_template",
+   "name": "Get a message template",
+   "description": "Get a message template",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hunter.io/v2/message-templates/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.get_sequence",
+   "name": "Get a sequence",
+   "description": "The `ab_testing` object reports the A/B test state: `enabled`, the split in `variant_a_percentage` and `variant_b_percentage`, and `winner_variant` with `winner_selected_at`. When `enabled` is false, the other fields are null. `settings.unsubscribe_sentence` and `settings.unsubscribe_sentence_plain_text` are the sequence's own unsubscribe sentences (HTML and plain text). Each is null when the sequ",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hunter.io/v2/sequences/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.get_sequence_follow_up",
+   "name": "Get a sequence follow up step",
+   "description": "Get a sequence follow-up step",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     },
+     "follow_up_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "follow_up_id",
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hunter.io/v2/sequences/{id}/follow-ups/{follow_up_id}",
+    "path": [
+     "id",
+     "follow_up_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.get_sequence_stats",
+   "name": "Get sequence performance stats",
+   "description": "Get sequence performance stats",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hunter.io/v2/sequences/{id}/stats",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.get_tag",
+   "name": "Get a lead tag",
+   "description": "Get a lead tag",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hunter.io/v2/tags/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.get_usage",
+   "name": "Get credit usage summary",
+   "description": "When `data.requests.credits` is present, the team has a single credits pool: plan with `credits.remaining`. A search costs 1 credit and a verification 0.5 credit. `searches` and `verifications` are then approximate views of the same pool (rounded down, with request-pack usage counted per type), not separate quotas. Without `credits`, `searches` and `verifications` are separate quotas.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hunter.io/v2/usage",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.get_usage_history",
+   "name": "Get credit usage history",
+   "description": "Get credit usage history",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hunter.io/v2/usage/history",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.get_webhook",
+   "name": "Get a webhook",
+   "description": "Get a webhook",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hunter.io/v2/webhooks/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.list_api_keys",
+   "name": "List api keys",
+   "description": "List API keys",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hunter.io/v2/api-keys",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.list_campaign_recipients",
+   "name": "List campaign recipients",
+   "description": "When a recipient has asked Hunter to delete their address, with a claim or a California DROP request, their `email` is null (HUN-23599).",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hunter.io/v2/campaigns/{id}/recipients",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.list_campaigns",
+   "name": "List campaigns",
+   "description": "Each campaign carries `editable`. It is true when the API key's user owns the campaign or is a team admin or owner, and only then can that user add recipients to it.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hunter.io/v2/campaigns",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.list_companies",
+   "name": "List saved companies",
+   "description": "List saved companies",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hunter.io/v2/companies",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.list_company_list_folders",
+   "name": "List company list folders",
+   "description": "List company list folders",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hunter.io/v2/company-lists/folders",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.list_company_lists",
+   "name": "List company lists",
+   "description": "List company lists",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hunter.io/v2/company-lists",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.list_company_tags",
+   "name": "List company tags",
+   "description": "List company tags",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hunter.io/v2/company-tags",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.list_connected_apps",
+   "name": "List connected apps",
+   "description": "List connected apps",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hunter.io/v2/connected-apps",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.list_discover_views",
+   "name": "List saved discover views",
+   "description": "List saved discover views",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hunter.io/v2/discover/views",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.list_email_account_sequences",
+   "name": "List sequences using an email account",
+   "description": "List sequences using an email account",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hunter.io/v2/email-accounts/{id}/sequences",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.list_email_accounts",
+   "name": "List email accounts",
+   "description": "List email accounts",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hunter.io/v2/email-accounts",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.list_lead_custom_attributes",
+   "name": "List lead custom attributes",
+   "description": "List lead custom attributes",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hunter.io/v2/leads_custom_attributes",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.list_lead_list_folders",
+   "name": "List lead list folders",
+   "description": "List lead list folders",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hunter.io/v2/leads_lists/folders",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.list_lead_list_folders_hyphen",
+   "name": "List lead list folders (hyphen alias)",
+   "description": "List lead list folders (hyphen alias)",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hunter.io/v2/leads-lists/folders",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.list_lead_lists",
+   "name": "List lead lists",
+   "description": "Each list includes `leads_list_folder_id`: the ID of the folder that holds the list, or null when the list is unfiled (HUN-24761).",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hunter.io/v2/leads_lists",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.list_lead_lists_hyphen",
+   "name": "List lead lists (hyphen alias)",
+   "description": "Each list includes `leads_list_folder_id`: the ID of the folder that holds the list, or null when the list is unfiled (HUN-24761).",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hunter.io/v2/leads-lists",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.list_leads",
+   "name": "List leads",
+   "description": "Each lead carries `department` since HUN-23171. It was already a filter on this endpoint, but was never emitted, so a caller could filter on a field it could not read back. When the person behind a lead has asked Hunter to delete their address, with a claim or a California DROP request, the lead is returned without it: `email`, `confidence_score`, `verification.date` and `verification.status` are ",
+   "input": {
+    "type": "object",
+    "properties": {
+     "query": {
+      "type": "string",
+      "description": "Free-text search over first_name, last_name, company, website and email. Every word must match one of these fields, so a query with more words can return fewer leads. An email address returns only the lead with that exact email. Use `sort=relevance` to get the best matches first (HUN-23628)."
+     },
+     "sort": {
+      "type": "string",
+      "description": "The order of the leads. `newest` returns the most recently created leads first, `oldest` the oldest first. `relevance` returns the best matches first for a `query` or `position` search, and the newest first otherwise; leads with the same relevance come newest first. Any other value returns 400 (HUN-23628).",
+      "enum": [
+       "newest",
+       "oldest",
+       "relevance"
+      ]
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hunter.io/v2/leads",
+    "path": [],
+    "query": [
+     "query",
+     "sort"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.list_lookalikes",
+   "name": "Find lookalike companies from a company list or a domain",
+   "description": "Finds companies that look like the ones in one of your company lists, or like one company given by its domain. The seed companies are excluded, and we return the most similar companies ranked by a similarity score. This endpoint is not paginated: it returns a single ranked page of the top limit results, so the offset parameter is not supported and returns 400 if supplied. This call is free.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "company_list_id": {
+      "type": "integer",
+      "description": "Identifier of the static company list to find lookalikes for. Provide exactly one of company_list_id or domain."
+     },
+     "domain": {
+      "type": "string",
+      "description": "Domain name of one company to find lookalikes for (e.g. stripe.com). A URL is accepted and cleaned to its domain. Provide exactly one of company_list_id or domain. An unknown domain returns an empty list."
+     },
+     "country": {
+      "type": "string",
+      "description": "Bias the ranking toward a given country (ISO 3166-1 alpha-2 code, e.g. us). This is a ranking signal, not a hard filter: companies from other countries may still appear."
+     },
+     "size": {
+      "type": "string",
+      "description": "Only return companies in the given size range (e.g. 51-200). To send several ranges, use Rails-style bracket encoding (size[]=51-200&size[]=11-50); a repeated plain key (size=51-200&size=11-50) keeps only the last value. Companies without a known size are excluded."
+     },
+     "industry": {
+      "type": "string",
+      "description": "Only return companies in the given industry (matched by name, case-insensitive). To send several industries, use Rails-style bracket encoding (industry[]=SaaS&industry[]=Fintech); a repeated plain key keeps only the last value. Companies without a known industry are excluded."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Maximum number of lookalikes to return. Because the size and industry filters are applied after ranking, a narrow filter can return fewer."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hunter.io/v2/lookalikes",
+    "path": [],
+    "query": [
+     "company_list_id",
+     "domain",
+     "country",
+     "size",
+     "industry",
+     "limit"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.list_message_templates",
+   "name": "List message templates",
+   "description": "List message templates",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hunter.io/v2/message-templates",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.list_messages",
+   "name": "List messages",
+   "description": "Each message embeds the lead at its contact address. When that person has asked Hunter to delete their address, with a claim or a California DROP request, the address is left out: an outgoing message's `to` is null, and so are the lead's `email`, `confidence_score`, `verification.date` and `verification.status` (HUN-23599). The `message.*` webhooks leave it out the same way.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hunter.io/v2/messages",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.list_monitored_signals",
+   "name": "List monitored signals",
+   "description": "Return the team's Monitored Signals that `GET /signals?source=monitored` can read: funding signals and company follows, newest first. Read the events of one signal with `GET /signals?source=monitored&signal_id=`. This operation is free.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "limit": {
+      "type": "integer",
+      "description": "Maximum number of signals in the page."
+     },
+     "offset": {
+      "type": "integer",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hunter.io/v2/monitored-signals",
+    "path": [],
+    "query": [
+     "limit",
+     "offset"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.list_opportunities",
+   "name": "List this week's opportunities",
+   "description": "Return the team's opportunities of the current week: groups of people or companies that look like the ones the team saved, which the dashboard shows as \"New leads for you\". Each opportunity's `next_call` names the call that returns its people or companies. People the team saved as leads since the opportunity was generated are not counted. For about a day after the weekly refresh, the list can hold",
+   "input": {
+    "type": "object",
+    "properties": {
+     "limit": {
+      "type": "integer",
+      "description": "Maximum number of opportunities in the page."
+     },
+     "offset": {
+      "type": "integer",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hunter.io/v2/opportunities",
+    "path": [],
+    "query": [
+     "limit",
+     "offset"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.list_opportunity_results",
+   "name": "List the people or companies of an opportunity",
+   "description": "Return the people or the companies of one opportunity, in the order of their similarity. People are masked, as in Multi Domain Search, and exclude the ones the team saved as leads. Send their `reveal_handle` to `POST /v2/multi-domain-search/reveal` to get their email addresses for credits. A handle is valid until the team's billing period ends. Contacts that Hunter does not serve are left out, so ",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "integer",
+      "description": "The `id` of an opportunity from `GET /v2/opportunities`."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Maximum number of results in the page."
+     },
+     "offset": {
+      "type": "integer",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hunter.io/v2/opportunities/{id}/results",
+    "path": [
+     "id"
+    ],
+    "query": [
+     "limit",
+     "offset"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.list_sequence_follow_ups",
+   "name": "List sequence follow up steps",
+   "description": "List sequence follow-up steps",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hunter.io/v2/sequences/{id}/follow-ups",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.list_sequence_recipients",
+   "name": "List sequence recipients",
+   "description": "When a recipient has asked Hunter to delete their address, with a claim or a California DROP request, their `email` is null (HUN-23599).",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hunter.io/v2/sequences/{id}/recipients",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.list_sequences",
+   "name": "List sequences",
+   "description": "Each sequence carries `editable`. It is true when the API key's user owns the sequence or is a team admin or owner, and only then can that user add recipients to it.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hunter.io/v2/sequences",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.list_signals",
+   "name": "List signal events",
+   "description": "Return single signal events, newest first, from the last 30 days. With `source=leads`, the events are on companies in the team's lists: funding rounds, technology changes, and new contacts. With `source=monitored`, the events come from the feeds of the team's Monitored Signals: one signal with `signal_id`, or else the 1,000 most recently created active company follows and the 25 most recently crea",
+   "input": {
+    "type": "object",
+    "properties": {
+     "source": {
+      "type": "string",
+      "description": "The feed to read.",
+      "enum": [
+       "leads",
+       "monitored"
+      ]
+     },
+     "signal_id": {
+      "type": "integer",
+      "description": "With `source=monitored` only. The Monitored Signal to read, active or paused. Without it, the response merges the team's active signals."
+     },
+     "since": {
+      "type": "string",
+      "description": "ISO 8601 date-time, not in the future. Return only events that occurred after it. A value older than 30 days reads as 30 days ago."
+     },
+     "types": {
+      "type": "string",
+      "description": "Event types to return. Default: all. Repeat the parameter (types=funding_round&types=new_contact) or use Rails-style bracket encoding (types[]=funding_round&types[]=new_contact)."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Maximum number of events in the page."
+     },
+     "cursor": {
+      "type": "string",
+      "description": "The `meta.next_cursor` of the previous page. It is valid only with the same `source`, `signal_id`, `since`, and `types`. This operation does not accept `offset`."
+     }
+    },
+    "required": [
+     "source"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hunter.io/v2/signals",
+    "path": [],
+    "query": [
+     "source",
+     "signal_id",
+     "since",
+     "types",
+     "limit",
+     "cursor"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.list_tags",
+   "name": "List lead tags",
+   "description": "List lead tags",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hunter.io/v2/tags",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.list_team_members",
+   "name": "List team members",
+   "description": "List team members",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hunter.io/v2/team/members",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.list_webhooks",
+   "name": "List webhooks",
+   "description": "List webhooks",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hunter.io/v2/webhooks",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.merge_lead_lists",
+   "name": "Merge lead lists",
+   "description": "Merge lead lists",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hunter.io/v2/leads_lists/{id}/merge",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.merge_lead_lists_hyphen",
+   "name": "Merge lead lists (hyphen alias)",
+   "description": "Merge lead lists (hyphen alias)",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hunter.io/v2/leads-lists/{id}/merge",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.move_companies_bulk",
+   "name": "Move companies to another list in bulk",
+   "description": "Move companies to another list in bulk",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hunter.io/v2/companies/bulk/move",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.move_leads_bulk",
+   "name": "Move leads to another list in bulk",
+   "description": "Move leads to another list in bulk",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hunter.io/v2/leads/bulk/move",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.multi_domain_search",
+   "name": "Multi domain search",
+   "description": "Search professional email addresses across many companies at once using a structured filter set. Returns masked rows \u2014 no email address or phone number; use the reveal endpoint to unmask. This masked survey operation is free. At least one filter is required. Filters may be sent in the request body (JSON or form-encoded) or as query-string parameters; the body is therefore optional.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domain": {
+      "type": "string",
+      "description": "Comma-separated domain names, 25 at most. A URL is cleaned to its domain. Hidden and unknown domains are dropped. With two or more remaining domains, the page spreads its rows across them (up to limit divided by the number of domains for each, never more than limit in total) and returns no next_search_after cursor."
+     },
+     "company_name": {
+      "type": "string",
+      "description": "Comma-separated company names."
+     },
+     "location": {
+      "type": "string",
+      "description": "Comma-separated ISO 3166-1 alpha-2 country codes."
+     },
+     "industry": {
+      "type": "string",
+      "description": "Comma-separated integer industry codes."
+     },
+     "headcount": {
+      "type": "string",
+      "description": "Comma-separated company-size buckets (e.g. 11-50, 51-200)."
+     },
+     "company_type": {
+      "type": "string",
+      "description": "Comma-separated Hunter company types."
+     },
+     "founded_year": {
+      "type": "string",
+      "description": "Comma-separated founding years."
+     },
+     "technology": {
+      "type": "string",
+      "description": "Comma-separated technology slugs."
+     },
+     "department": {
+      "type": "string",
+      "description": "Comma-separated departments (e.g. executive, sales, finance). Each value also matches the other names Hunter stores for that department, such as \"finance & accounting\" for finance."
+     },
+     "seniority": {
+      "type": "string",
+      "description": "Comma-separated seniority levels: junior, senior, executive."
+     },
+     "type": {
+      "type": "string",
+      "description": "Comma-separated email types: personal, generic."
+     },
+     "provenance": {
+      "type": "string",
+      "description": "Comma-separated provenance values: found, inferred."
+     },
+     "job_title": {
+      "type": "string",
+      "description": "Comma-separated free-text job titles. A person matches when their position matches any of the titles. Independent of department and seniority. Common abbreviations match their spelled-out forms, also inside a longer title: `VP Sales` also matches \"Vice President of Sales\", and `CTO` matches \"Chief Technology Officer\". This covers CEO, CTO, CFO, COO, CMO, CIO, CISO, CHRO, VP, SVP, EVP, HR, SDR, BDR"
+     },
+     "decision_maker": {
+      "type": "string",
+      "description": "When true, keep only decision-makers."
+     },
+     "verification_status": {
+      "type": "string",
+      "description": "Comma-separated verification statuses: valid, accept_all, unknown."
+     },
+     "required_field": {
+      "type": "string",
+      "description": "Comma-separated fields that every returned person must have (AND): full_name, position, phone_number."
+     },
+     "min_confidence": {
+      "type": "integer",
+      "description": "Minimum email confidence score."
+     },
+     "exclude_already_saved": {
+      "type": "string",
+      "description": "When true, omit people already saved as leads in your account. This refines a search but does not satisfy the at-least-one-filter requirement on its own."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Number of rows to return per page."
+     },
+     "search_after": {
+      "type": "string",
+      "description": "Opaque pagination cursor from meta.next_search_after. Omit for the first page."
+     },
+     "per_domain": {
+      "type": "string",
+      "description": "When true, include a per-domain result breakdown in meta."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hunter.io/v2/multi-domain-search",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "domain",
+     "company_name",
+     "location",
+     "industry",
+     "headcount",
+     "company_type",
+     "founded_year",
+     "technology",
+     "department",
+     "seniority",
+     "type",
+     "provenance",
+     "job_title",
+     "decision_maker",
+     "verification_status",
+     "required_field",
+     "min_confidence",
+     "exclude_already_saved",
+     "limit",
+     "search_after",
+     "per_domain"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.pause_sequence",
+   "name": "Pause a sequence",
+   "description": "Pause a sequence",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sequence_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "sequence_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hunter.io/v2/sequences/{sequence_id}/pause",
+    "path": [
+     "sequence_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.push_to_connected_app",
+   "name": "Push data to a connected app",
+   "description": "Push data to a connected app",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hunter.io/v2/connected-apps/{id}/push",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.remove_campaign_recipients",
+   "name": "Remove campaign recipients",
+   "description": "Remove campaign recipients",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.hunter.io/v2/campaigns/{id}/recipients",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.remove_company_list_company",
+   "name": "Remove a company from a company list",
+   "description": "Remove a company from a company list",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     },
+     "company_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "company_id",
+     "id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.hunter.io/v2/company-lists/{id}/companies/{company_id}",
+    "path": [
+     "id",
+     "company_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.remove_sequence_recipients",
+   "name": "Remove sequence recipients",
+   "description": "Remove sequence recipients",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.hunter.io/v2/sequences/{id}/recipients",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.replace_api_key",
+   "name": "Replace an api key",
+   "description": "Replace an API key",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.hunter.io/v2/api-keys/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.replace_company_list",
+   "name": "Replace a company list",
+   "description": "Replace a company list",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.hunter.io/v2/company-lists/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.replace_company_list_folder",
+   "name": "Replace a company list folder",
+   "description": "Replace a company list folder",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.hunter.io/v2/company-lists/folders/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.replace_company_tag",
+   "name": "Replace a company tag",
+   "description": "Replace a company tag",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.hunter.io/v2/company-tags/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.replace_email_account",
+   "name": "Replace an email account",
+   "description": "Replace an email account",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.hunter.io/v2/email-accounts/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.replace_lead",
+   "name": "Replace a lead",
+   "description": "Accepts `department` since HUN-23171. The value is normalized to its canonical key, so a localized display label (\"Sales\") is stored as `sales`. Lead attributes are not modelled field-by-field in this contract yet \u2014 the response uses the generic resource envelope \u2014 so this note is where the accepted set is recorded.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.hunter.io/v2/leads/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.replace_lead_custom_attribute",
+   "name": "Replace a lead custom attribute",
+   "description": "Replace a lead custom attribute",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.hunter.io/v2/leads_custom_attributes/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.replace_lead_list",
+   "name": "Replace a lead list",
+   "description": "`name` and `leads_list_folder_id` are both optional. A folder ID moves the list into that folder, and a blank `leads_list_folder_id` removes it from its folder. A folder of another team returns a 422 (HUN-24761). For a dynamic list, `filters` replaces the saved filters (HUN-24762).",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     },
+     "name": {
+      "type": "string",
+      "description": "The name of the list, up to 255 characters. A longer name returns a 422."
+     },
+     "leads_list_folder_id": {
+      "type": "string",
+      "description": "The folder to put the list in. On update, null or an empty value removes the list from its folder. A form-encoded request sends the empty value as an empty string."
+     },
+     "type": {
+      "type": "string",
+      "description": "On create, `static` (the default) makes a list that keeps the leads you add to it. `dynamic` makes a list that holds every lead matching its `filters`, including leads saved later; leads can't be added to it or removed from it by hand. A list's type can't be changed: on update, a different type returns a 422.",
+      "enum": [
+       "static",
+       "dynamic"
+      ]
+     },
+     "filters": {
+      "type": "object",
+      "description": "The filters of a dynamic list, required when `type` is `dynamic` and accepted on update of a dynamic list only, where they replace the saved filters. Keys and values are the filters of GET /v2/leads, in JSON form: for example `position: [\"CEO\"]`, `verification_status: [\"valid\"]`, `created_at: \"last7d\"`, `location: { country: { include: [\"FR\"] } }`, or `custom_attributes: { : \"*\" }`. `leads_list_id"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.hunter.io/v2/leads_lists/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "leads_list_folder_id",
+     "type",
+     "filters"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.replace_lead_list_folder",
+   "name": "Replace a lead list folder",
+   "description": "Replace a lead list folder",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.hunter.io/v2/leads_lists/folders/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.replace_lead_list_folder_hyphen",
+   "name": "Replace a lead list folder (hyphen alias)",
+   "description": "Replace a lead list folder (hyphen alias)",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.hunter.io/v2/leads-lists/folders/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.replace_lead_list_hyphen",
+   "name": "Replace a lead list (hyphen alias)",
+   "description": "`name` and `leads_list_folder_id` are both optional. A folder ID moves the list into that folder, and a blank `leads_list_folder_id` removes it from its folder. A folder of another team returns a 422 (HUN-24761). For a dynamic list, `filters` replaces the saved filters (HUN-24762).",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     },
+     "name": {
+      "type": "string",
+      "description": "The name of the list, up to 255 characters. A longer name returns a 422."
+     },
+     "leads_list_folder_id": {
+      "type": "string",
+      "description": "The folder to put the list in. On update, null or an empty value removes the list from its folder. A form-encoded request sends the empty value as an empty string."
+     },
+     "type": {
+      "type": "string",
+      "description": "On create, `static` (the default) makes a list that keeps the leads you add to it. `dynamic` makes a list that holds every lead matching its `filters`, including leads saved later; leads can't be added to it or removed from it by hand. A list's type can't be changed: on update, a different type returns a 422.",
+      "enum": [
+       "static",
+       "dynamic"
+      ]
+     },
+     "filters": {
+      "type": "object",
+      "description": "The filters of a dynamic list, required when `type` is `dynamic` and accepted on update of a dynamic list only, where they replace the saved filters. Keys and values are the filters of GET /v2/leads, in JSON form: for example `position: [\"CEO\"]`, `verification_status: [\"valid\"]`, `created_at: \"last7d\"`, `location: { country: { include: [\"FR\"] } }`, or `custom_attributes: { : \"*\" }`. `leads_list_id"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.hunter.io/v2/leads-lists/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "leads_list_folder_id",
+     "type",
+     "filters"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.replace_message_template",
+   "name": "Replace a message template",
+   "description": "A `body` in plain text or HTML keeps its line breaks and paragraphs. It is stored as the editor's HTML (`` and ``), also when `message_format` is `text`, so a read after the write can differ from the submitted body.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.hunter.io/v2/message-templates/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.replace_sequence",
+   "name": "Replace a sequence",
+   "description": "Sender IDs must be available for outreach to the sequence owner. On the Free plan, extra or SMTP accounts retained only for a paid Inbox Protection period cannot be selected as senders. Submitting one returns 422 with error ID unknown_email_account_ids. Enabling `ai_assistant_enabled` requires a plan that includes the AI writing assistant. A request that turns it on without that entitlement is rej",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.hunter.io/v2/sequences/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.replace_sequence_follow_up",
+   "name": "Replace a sequence follow up step",
+   "description": "A `body` in plain text or HTML keeps its line breaks and paragraphs. It is stored as the editor's HTML (`` and ``), also when `message_format` is `text`, so a read after the write can differ from the submitted body.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     },
+     "follow_up_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "follow_up_id",
+     "id"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.hunter.io/v2/sequences/{id}/follow-ups/{follow_up_id}",
+    "path": [
+     "id",
+     "follow_up_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.replace_tag",
+   "name": "Replace a lead tag",
+   "description": "Replace a lead tag",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.hunter.io/v2/tags/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.replace_webhook",
+   "name": "Replace a webhook",
+   "description": "Replace a webhook",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.hunter.io/v2/webhooks/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.resume_sequence",
+   "name": "Resume a paused sequence",
+   "description": "Resume a paused sequence",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sequence_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "sequence_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.hunter.io/v2/sequences/{sequence_id}/pause",
+    "path": [
+     "sequence_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.reveal_multi_domain_search",
+   "name": "Reveal emails from a multi domain search",
+   "description": "Reveal emails from a multi-domain search",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hunter.io/v2/multi-domain-search/reveal",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.search_domain",
+   "name": "Find email addresses by domain",
+   "description": "Find email addresses by domain",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domain": {
+      "type": "string",
+      "description": "Domain name to search."
+     },
+     "company": {
+      "type": "string",
+      "description": "Company name to search when the domain is unknown."
+     },
+     "type": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "personal",
+       "generic"
+      ]
+     },
+     "limit": {
+      "type": "integer",
+      "description": ""
+     },
+     "offset": {
+      "type": "integer",
+      "description": ""
+     },
+     "department": {
+      "type": "string",
+      "description": "Comma-separated department values from Hunter's live position taxonomy (not a frozen enum). `~` matches people with no department. Unknown values are ignored; a list with no remaining valid values returns 400 (`invalid_department`)."
+     },
+     "source_type": {
+      "type": "string",
+      "description": "Deprecated, use `provenance`. \"generated\" is the old name for \"inferred\".",
+      "enum": [
+       "found",
+       "generated"
+      ]
+     },
+     "provenance": {
+      "type": "string",
+      "description": "Keep only addresses with this provenance: found, inferred. Replaces `source_type`; when both are sent they must agree, otherwise the request returns 400 (`invalid_provenance`).",
+      "enum": [
+       "found",
+       "inferred"
+      ]
+     },
+     "job_titles": {
+      "type": "string",
+      "description": ""
+     },
+     "seniority": {
+      "type": "string",
+      "description": "Comma-separated seniority values from Hunter's live position taxonomy (not a frozen enum). Unknown values are ignored; a list with no remaining valid values returns 400 (`invalid_seniority`)."
+     },
+     "decision_maker": {
+      "type": "string",
+      "description": "A boolean filter. Query-string clients may use the documented case-insensitive aliases."
+     },
+     "required_field": {
+      "type": "string",
+      "description": ""
+     },
+     "verification_status": {
+      "type": "string",
+      "description": ""
+     },
+     "aggregations": {
+      "type": "boolean",
+      "description": ""
+     },
+     "saved_leads": {
+      "type": "boolean",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hunter.io/v2/domain-search",
+    "path": [],
+    "query": [
+     "domain",
+     "company",
+     "type",
+     "limit",
+     "offset",
+     "department",
+     "source_type",
+     "provenance",
+     "job_titles",
+     "seniority",
+     "decision_maker",
+     "required_field",
+     "verification_status",
+     "aggregations",
+     "saved_leads"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.search_domain_with_post",
+   "name": "Find email addresses by domain using request body parameters",
+   "description": "Use POST for nested location filters. The body can be JSON or URL-encoded form data.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domain": {
+      "type": "string",
+      "description": ""
+     },
+     "company": {
+      "type": "string",
+      "description": ""
+     },
+     "type": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "personal",
+       "generic"
+      ]
+     },
+     "limit": {
+      "type": "integer",
+      "description": ""
+     },
+     "offset": {
+      "type": "integer",
+      "description": ""
+     },
+     "department": {
+      "type": "string",
+      "description": "Comma-separated department values from Hunter's live position taxonomy (not a frozen enum). `~` matches people with no department. Unknown values are ignored; a list with no remaining valid values returns 400 (`invalid_department`)."
+     },
+     "source_type": {
+      "type": "string",
+      "description": "Deprecated, use `provenance`. \"generated\" is the old name for \"inferred\".",
+      "enum": [
+       "found",
+       "generated"
+      ]
+     },
+     "provenance": {
+      "type": "string",
+      "description": "Keep only addresses with this provenance: found, inferred. Replaces `source_type`; when both are sent they must agree, otherwise the request returns 400 (`invalid_provenance`).",
+      "enum": [
+       "found",
+       "inferred"
+      ]
+     },
+     "job_titles": {
+      "type": "string",
+      "description": ""
+     },
+     "seniority": {
+      "type": "string",
+      "description": "Comma-separated seniority values from Hunter's live position taxonomy (not a frozen enum). Unknown values are ignored; a list with no remaining valid values returns 400 (`invalid_seniority`)."
+     },
+     "decision_maker": {
+      "type": "string",
+      "description": "A boolean filter. Query-string clients may use the documented case-insensitive aliases."
+     },
+     "required_field": {
+      "type": "string",
+      "description": ""
+     },
+     "verification_status": {
+      "type": "string",
+      "description": ""
+     },
+     "aggregations": {
+      "type": "boolean",
+      "description": ""
+     },
+     "saved_leads": {
+      "type": "boolean",
+      "description": ""
+     },
+     "location": {
+      "type": "object",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hunter.io/v2/domain-search",
+    "path": [],
+    "query": [
+     "domain",
+     "company",
+     "type",
+     "limit",
+     "offset",
+     "department",
+     "source_type",
+     "provenance",
+     "job_titles",
+     "seniority",
+     "decision_maker",
+     "required_field",
+     "verification_status",
+     "aggregations",
+     "saved_leads"
+    ],
+    "header": [],
+    "body": [
+     "domain",
+     "company",
+     "type",
+     "limit",
+     "offset",
+     "department",
+     "source_type",
+     "provenance",
+     "job_titles",
+     "seniority",
+     "decision_maker",
+     "required_field",
+     "verification_status",
+     "aggregations",
+     "saved_leads",
+     "location"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.start_campaign",
+   "name": "Start a campaign",
+   "description": "Start a campaign",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hunter.io/v2/campaigns/{id}/start",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.start_sequence",
+   "name": "Start a sequence",
+   "description": "Start a sequence",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hunter.io/v2/sequences/{id}/start",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.suggest_domains",
+   "name": "Suggest domains for a company name",
+   "description": "Suggest domains for a company name",
+   "input": {
+    "type": "object",
+    "properties": {
+     "query": {
+      "type": "string",
+      "description": "Company name to suggest domains for."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Maximum suggestions to return."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hunter.io/v2/domains-suggestion",
+    "path": [],
+    "query": [
+     "query",
+     "limit"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.tag_companies_bulk",
+   "name": "Tag companies in bulk",
+   "description": "Tag companies in bulk",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hunter.io/v2/companies/bulk/tag",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.tag_lead",
+   "name": "Tag a lead",
+   "description": "Tag a lead",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hunter.io/v2/leads/{id}/tags",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.tag_saved_company",
+   "name": "Tag a saved company",
+   "description": "Tag a saved company",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hunter.io/v2/companies/{id}/tags",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.test_sequence",
+   "name": "Send a test email for every step of a sequence",
+   "description": "Queues one test message per follow-up of the sequence, in step order, to the supplied address. When A/B testing is enabled on a step, both variants are sent. Subjects are prefixed with [TEST]. Returns 422 when the sequence has no step, a step is missing its subject or body, the sequence has no email account, the account cannot send, or the recipient cannot be contacted. At most 30 test emails can ",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sequence_id": {
+      "type": "string",
+      "description": ""
+     },
+     "email": {
+      "type": "string",
+      "description": "The address the test messages are sent to."
+     }
+    },
+    "required": [
+     "email",
+     "sequence_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hunter.io/v2/sequences/{sequence_id}/test",
+    "path": [
+     "sequence_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "email"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.unfavorite_company_list",
+   "name": "Unfavorite a company list",
+   "description": "Unfavorite a company list",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.hunter.io/v2/company-lists/{id}/favorite",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.unfavorite_lead_list",
+   "name": "Unfavorite a lead list",
+   "description": "Unfavorite a lead list",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.hunter.io/v2/leads_lists/{id}/favorite",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.unfavorite_lead_list_hyphen",
+   "name": "Unfavorite a lead list (hyphen alias)",
+   "description": "Unfavorite a lead list (hyphen alias)",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.hunter.io/v2/leads-lists/{id}/favorite",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.untag_lead",
+   "name": "Remove a tag from a lead",
+   "description": "Remove a tag from a lead",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     },
+     "tag_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id",
+     "tag_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.hunter.io/v2/leads/{id}/tags/{tag_id}",
+    "path": [
+     "id",
+     "tag_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.untag_saved_company",
+   "name": "Remove a tag from a saved company",
+   "description": "Remove a tag from a saved company",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     },
+     "tag_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id",
+     "tag_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.hunter.io/v2/companies/{id}/tags/{tag_id}",
+    "path": [
+     "id",
+     "tag_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.update_account",
+   "name": "Update account details",
+   "description": "Update account details",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.hunter.io/v2/account",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.update_api_key",
+   "name": "Update an api key",
+   "description": "Update an API key",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.hunter.io/v2/api-keys/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.update_company_list",
+   "name": "Update a company list",
+   "description": "Update a company list",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.hunter.io/v2/company-lists/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.update_company_list_folder",
+   "name": "Update a company list folder",
+   "description": "Update a company list folder",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.hunter.io/v2/company-lists/folders/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.update_company_tag",
+   "name": "Update a company tag",
+   "description": "Update a company tag",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.hunter.io/v2/company-tags/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.update_email_account",
+   "name": "Update an email account",
+   "description": "Update an email account",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.hunter.io/v2/email-accounts/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.update_lead",
+   "name": "Update a lead",
+   "description": "Accepts `department` since HUN-23171. The value is normalized to its canonical key, so a localized display label (\"Sales\") is stored as `sales`. Lead attributes are not modelled field-by-field in this contract yet \u2014 the response uses the generic resource envelope \u2014 so this note is where the accepted set is recorded.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.hunter.io/v2/leads/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.update_lead_custom_attribute",
+   "name": "Update a lead custom attribute",
+   "description": "Update a lead custom attribute",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.hunter.io/v2/leads_custom_attributes/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.update_lead_list",
+   "name": "Update a lead list",
+   "description": "`name` and `leads_list_folder_id` are both optional. A folder ID moves the list into that folder, and a blank `leads_list_folder_id` removes it from its folder. A folder of another team returns a 422 (HUN-24761). For a dynamic list, `filters` replaces the saved filters (HUN-24762).",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     },
+     "name": {
+      "type": "string",
+      "description": "The name of the list, up to 255 characters. A longer name returns a 422."
+     },
+     "leads_list_folder_id": {
+      "type": "string",
+      "description": "The folder to put the list in. On update, null or an empty value removes the list from its folder. A form-encoded request sends the empty value as an empty string."
+     },
+     "type": {
+      "type": "string",
+      "description": "On create, `static` (the default) makes a list that keeps the leads you add to it. `dynamic` makes a list that holds every lead matching its `filters`, including leads saved later; leads can't be added to it or removed from it by hand. A list's type can't be changed: on update, a different type returns a 422.",
+      "enum": [
+       "static",
+       "dynamic"
+      ]
+     },
+     "filters": {
+      "type": "object",
+      "description": "The filters of a dynamic list, required when `type` is `dynamic` and accepted on update of a dynamic list only, where they replace the saved filters. Keys and values are the filters of GET /v2/leads, in JSON form: for example `position: [\"CEO\"]`, `verification_status: [\"valid\"]`, `created_at: \"last7d\"`, `location: { country: { include: [\"FR\"] } }`, or `custom_attributes: { : \"*\" }`. `leads_list_id"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.hunter.io/v2/leads_lists/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "leads_list_folder_id",
+     "type",
+     "filters"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.update_lead_list_folder",
+   "name": "Update a lead list folder",
+   "description": "Update a lead list folder",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.hunter.io/v2/leads_lists/folders/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.update_lead_list_folder_hyphen",
+   "name": "Update a lead list folder (hyphen alias)",
+   "description": "Update a lead list folder (hyphen alias)",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.hunter.io/v2/leads-lists/folders/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.update_lead_list_hyphen",
+   "name": "Update a lead list (hyphen alias)",
+   "description": "`name` and `leads_list_folder_id` are both optional. A folder ID moves the list into that folder, and a blank `leads_list_folder_id` removes it from its folder. A folder of another team returns a 422 (HUN-24761). For a dynamic list, `filters` replaces the saved filters (HUN-24762).",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     },
+     "name": {
+      "type": "string",
+      "description": "The name of the list, up to 255 characters. A longer name returns a 422."
+     },
+     "leads_list_folder_id": {
+      "type": "string",
+      "description": "The folder to put the list in. On update, null or an empty value removes the list from its folder. A form-encoded request sends the empty value as an empty string."
+     },
+     "type": {
+      "type": "string",
+      "description": "On create, `static` (the default) makes a list that keeps the leads you add to it. `dynamic` makes a list that holds every lead matching its `filters`, including leads saved later; leads can't be added to it or removed from it by hand. A list's type can't be changed: on update, a different type returns a 422.",
+      "enum": [
+       "static",
+       "dynamic"
+      ]
+     },
+     "filters": {
+      "type": "object",
+      "description": "The filters of a dynamic list, required when `type` is `dynamic` and accepted on update of a dynamic list only, where they replace the saved filters. Keys and values are the filters of GET /v2/leads, in JSON form: for example `position: [\"CEO\"]`, `verification_status: [\"valid\"]`, `created_at: \"last7d\"`, `location: { country: { include: [\"FR\"] } }`, or `custom_attributes: { : \"*\" }`. `leads_list_id"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.hunter.io/v2/leads-lists/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "leads_list_folder_id",
+     "type",
+     "filters"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.update_message_template",
+   "name": "Update a message template",
+   "description": "A `body` in plain text or HTML keeps its line breaks and paragraphs. It is stored as the editor's HTML (`` and ``), also when `message_format` is `text`, so a read after the write can differ from the submitted body.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.hunter.io/v2/message-templates/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.update_sequence",
+   "name": "Update a sequence",
+   "description": "Sender IDs must be available for outreach to the sequence owner. On the Free plan, extra or SMTP accounts retained only for a paid Inbox Protection period cannot be selected as senders. Submitting one returns 422 with error ID unknown_email_account_ids. Enabling `ai_assistant_enabled` requires a plan that includes the AI writing assistant. A request that turns it on without that entitlement is rej",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.hunter.io/v2/sequences/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.update_sequence_follow_up",
+   "name": "Update a sequence follow up step",
+   "description": "A `body` in plain text or HTML keeps its line breaks and paragraphs. It is stored as the editor's HTML (`` and ``), also when `message_format` is `text`, so a read after the write can differ from the submitted body.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     },
+     "follow_up_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "follow_up_id",
+     "id"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.hunter.io/v2/sequences/{id}/follow-ups/{follow_up_id}",
+    "path": [
+     "id",
+     "follow_up_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.update_tag",
+   "name": "Update a lead tag",
+   "description": "Update a lead tag",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.hunter.io/v2/tags/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.update_webhook",
+   "name": "Update a webhook",
+   "description": "Update a webhook",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.hunter.io/v2/webhooks/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.upsert_leads",
+   "name": "Upsert a lead",
+   "description": "A manually claimed phone number, or one covered by DROP, is returned as `phone_number: null`. The phone is also withheld when screening is unavailable; the lead and its other contact details remain. Accepts `department`, normalized to its canonical key so a localized display label (\"Sales\") is stored as `sales`. This operation keeps its own allowlist, separate from the one `createLead` uses, so th",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.hunter.io/v2/leads",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hunter.verify_email",
+   "name": "Verify an email address",
+   "description": "Check the deliverability of an email address. A `valid` or `accept_all` email address is also saved automatically to your leads, and a lead you already have gets the new verification result. This is enabled by default and can be disabled for your account. The saved lead leaves out a phone number that is on a data broker deletion list, such as California's DROP.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "email": {
+      "type": "string",
+      "description": ""
+     },
+     "domain_metadata": {
+      "type": "string",
+      "description": "Include metadata about the email domain when set to any non-empty value. An empty value or omission disables it."
+     }
+    },
+    "required": [
+     "email"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hunter.io/v2/email-verifier",
+    "path": [],
+    "query": [
+     "email",
+     "domain_metadata"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  }
+ ]
+}

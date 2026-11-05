@@ -36,6 +36,7 @@ vouches for**: read it, then read their reference.
 - [Webhooks - Hubstaff API](https://developer.hubstaff.com/webhooks/): Subscribe to Hubstaff API v2 webhooks to receive real-time events for activities, timers, and more.
 - [Manual time requests - Hubstaff API](https://developer.hubstaff.com/manual-time-requests/): List, approve, and deny manual time requests with the Hubstaff API v2, including member-limit handling.
 - [Time off sync - Hubstaff API](https://developer.hubstaff.com/time-off-sync/): Keep time off policies, balances, and requests in sync between Hubstaff and an external HRIS with the Hubstaff API v2.
+- [Time and activity export - Hubstaff API](https://developer.hubstaff.com/time-activity-export/): Export tracked time, activity, idle time, breaks, time off, and holidays from the Hubstaff API v2 to an external database.
 - [Changelog - Hubstaff API](https://developer.hubstaff.com/changelog/): Recent changes to the Hubstaff API v2 - new endpoints, parameters, and updates.
 
 ### Hubstaff API v2 - endpoint reference
@@ -84,7 +85,6 @@ vouches for**: read it, then read their reference.
 - [Time Off Policies - Hubstaff API](https://developer.hubstaff.com/reference/time_off_policies/): Time Off Policies endpoints in the Hubstaff API - parameters, request bodies, and responses.
 - [Time Off Requests - Hubstaff API](https://developer.hubstaff.com/reference/time_off_requests/): Time Off Requests endpoints in the Hubstaff API - parameters, request bodies, and responses.
 - [Timesheets - Hubstaff API](https://developer.hubstaff.com/reference/timesheets/): Timesheets endpoints in the Hubstaff API - parameters, request bodies, and responses.
-- [Tool Categories - Hubstaff API](https://developer.hubstaff.com/reference/tool_categories/): Tool Categories endpoints in the Hubstaff API - parameters, request bodies, and responses.
 - [Tool Classifications - Hubstaff API](https://developer.hubstaff.com/reference/tool_classifications/): Tool Classifications endpoints in the Hubstaff API - parameters, request bodies, and responses.
 - [Tool Usages - Hubstaff API](https://developer.hubstaff.com/reference/tool_usages/): Tool Usages endpoints in the Hubstaff API - parameters, request bodies, and responses.
 - [Tracking States - Hubstaff API](https://developer.hubstaff.com/reference/tracking_states/): Tracking States endpoints in the Hubstaff API - parameters, request bodies, and responses.

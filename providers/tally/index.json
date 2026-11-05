@@ -290,7 +290,7 @@
   {
    "slug": "tally.get_forms_formId_analytics_dimensions",
    "name": "Retrieve form dimensions",
-   "description": "Returns visitor breakdowns by source, browser, OS, device, and location.",
+   "description": "Returns visitor breakdowns by source, browser, OS, device, location, and form language.",
    "input": {
     "type": "object",
     "properties": {
@@ -585,7 +585,7 @@
       "description": "The ID of the form"
      },
      "page": {
-      "type": "number",
+      "type": "integer",
       "description": "Page number for pagination (default: 1)"
      },
      "filter": {
@@ -610,7 +610,7 @@
       "description": "Get submissions that came after a specific submission ID"
      },
      "limit": {
-      "type": "number",
+      "type": "integer",
       "description": "Number of submissions to return per page (default: 50, max: 500)"
      }
     },
@@ -743,11 +743,11 @@
     "type": "object",
     "properties": {
      "page": {
-      "type": "number",
+      "type": "integer",
       "description": "Page number for pagination (default: 1)"
      },
      "limit": {
-      "type": "number",
+      "type": "integer",
       "description": "Number of webhooks per page (default: 25, max: 100)"
      }
     },
@@ -778,7 +778,7 @@
       "description": "The ID of the webhook"
      },
      "page": {
-      "type": "number",
+      "type": "integer",
       "description": "Page number for pagination (default: 1)"
      }
     },
@@ -1027,10 +1027,6 @@
       "type": "string",
       "description": "The ID of the webhook to update"
      },
-     "formId": {
-      "type": "string",
-      "description": "The ID of the form the webhook is for"
-     },
      "url": {
       "type": "string",
       "description": "The URL to send webhook events to"
@@ -1054,7 +1050,6 @@
     },
     "required": [
      "eventTypes",
-     "formId",
      "isEnabled",
      "url",
      "webhookId"
@@ -1069,7 +1064,6 @@
     "query": [],
     "header": [],
     "body": [
-     "formId",
      "url",
      "signingSecret",
      "httpHeaders",

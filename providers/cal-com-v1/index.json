@@ -1,0 +1,133 @@
+{
+ "_": "GENERATED \u2014 what an authoring tool needs to FIND an operation. The calling table is the .lua beside it.",
+ "provider": "cal-com-v1",
+ "source": "https://cal.com/openapi.json",
+ "operations": [
+  {
+   "slug": "cal-com-v1.ask_faq",
+   "name": "Ask a question about cal com",
+   "description": "Answers from the Cal.com docs, streamed as plain text. Rate limited per IP.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "question": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "question"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.cal.com/v1/api/faq",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "question"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "cal-com-v1.join_waitlist",
+   "name": "Join a product waitlist",
+   "description": "Join a product waitlist",
+   "input": {
+    "type": "object",
+    "properties": {
+     "email": {
+      "type": "string",
+      "description": ""
+     },
+     "product": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "notes"
+      ]
+     }
+    },
+    "required": [
+     "email",
+     "product"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.cal.com/v1/api/waitlist",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "email",
+     "product"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "cal-com-v1.request_demo",
+   "name": "Ask the sales team for a demo",
+   "description": "A demo request for agents; people book on /talk-to-sales. The sales team replies by email.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": "string",
+      "description": ""
+     },
+     "email": {
+      "type": "string",
+      "description": ""
+     },
+     "users": {
+      "type": "string",
+      "description": "Seat count",
+      "enum": [
+       "2-15",
+       "16-25",
+       "26-50",
+       "51-100",
+       "101-250",
+       "251-500",
+       "500+"
+      ]
+     },
+     "source": {
+      "type": "string",
+      "description": "How you heard of Cal.com"
+     },
+     "notes": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "email",
+     "name",
+     "notes",
+     "source",
+     "users"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.cal.com/v1/api/talk-to-sales",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "email",
+     "users",
+     "source",
+     "notes"
+    ],
+    "body_format": "json"
+   }
+  }
+ ]
+}

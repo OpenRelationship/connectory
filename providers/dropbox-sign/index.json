@@ -422,6 +422,49 @@
    }
   },
   {
+   "slug": "dropbox-sign.document_detect_fields",
+   "name": "Detect document fields",
+   "description": "Detects form fields in a PDF document using either PDF form annotations or Dropbox Sign text tags.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "file": {
+      "type": "string",
+      "description": "The PDF file to analyze. This endpoint requires either `file` or `file_url`, but not both."
+     },
+     "file_url": {
+      "type": "string",
+      "description": "The URL of the PDF file to analyze. This endpoint requires either `file` or `file_url`, but not both."
+     },
+     "detection_mode": {
+      "type": "string",
+      "description": "The field detection method to use. Set to `annotations` to detect PDF form annotations or `text_tags` to detect Dropbox Sign text tags."
+     },
+     "page_range": {
+      "type": "string",
+      "description": "The zero-based page indexes to analyze. Accepts `all`, individual pages, inclusive ranges, or comma-separated combinations, such as `0-2,5,7-9`. Defaults to `all`."
+     }
+    },
+    "required": [
+     "detection_mode"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hellosign.com/v3/document/detect_fields",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "file",
+     "file_url",
+     "detection_mode",
+     "page_range"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "dropbox-sign.embedded_edit_url",
    "name": "Get embedded template edit url",
    "description": "Retrieves an embedded object containing a template url that can be opened in an iFrame. Note that only templates created via the embedded template process are available to be edited with this endpoint.",
@@ -1203,6 +1246,10 @@
      "title": {
       "type": "string",
       "description": "The title you want to assign to the SignatureRequest."
+     },
+     "expires_at": {
+      "type": "integer",
+      "description": "When the signature request will expire. Unsigned signatures will be moved to the expired status, and no longer signable. See [Signature Request Expiration Date](https://developers.hellosign.com/docs/signature-request/expiration/) for details."
      }
     },
     "required": [
@@ -1229,7 +1276,8 @@
      "signing_redirect_url",
      "subject",
      "test_mode",
-     "title"
+     "title",
+     "expires_at"
     ],
     "body_format": "json"
    }
@@ -1292,6 +1340,10 @@
      "title": {
       "type": "string",
       "description": "The title you want to assign to the SignatureRequest."
+     },
+     "expires_at": {
+      "type": "integer",
+      "description": "When the signature request will expire. Unsigned signatures will be moved to the expired status, and no longer signable. See [Signature Request Expiration Date](https://developers.hellosign.com/docs/signature-request/expiration/) for details."
      }
     },
     "required": [
@@ -1317,7 +1369,8 @@
      "signing_redirect_url",
      "subject",
      "test_mode",
-     "title"
+     "title",
+     "expires_at"
     ],
     "body_format": "json"
    }
@@ -1564,6 +1617,10 @@
      "populate_auto_fill_fields": {
       "type": "boolean",
       "description": "Controls whether [auto fill fields](https://faq.hellosign.com/hc/en-us/articles/360051467511-Auto-Fill-Fields) can automatically populate a signer's information during signing. **NOTE:** Keep your signer's information safe by ensuring that the _signer on your signature request is the intended party_ before using this feature."
+     },
+     "expires_at": {
+      "type": "integer",
+      "description": "When the signature request will expire. Unsigned signatures will be moved to the expired status, and no longer signable. See [Signature Request Expiration Date](https://developers.hellosign.com/docs/signature-request/expiration/) for details."
      }
     },
     "required": [
@@ -1593,7 +1650,8 @@
      "subject",
      "test_mode",
      "title",
-     "populate_auto_fill_fields"
+     "populate_auto_fill_fields",
+     "expires_at"
     ],
     "body_format": "json"
    }
@@ -2616,6 +2674,10 @@
      "title": {
       "type": "string",
       "description": "The title you want to assign to the SignatureRequest."
+     },
+     "expires_at": {
+      "type": "integer",
+      "description": "When the signature request will expire. Unsigned signatures will be moved to the expired status, and no longer signable. See [Signature Request Expiration Date](https://developers.hellosign.com/docs/signature-request/expiration/) for details."
      }
     },
     "required": [
@@ -2645,7 +2707,8 @@
      "signing_redirect_url",
      "subject",
      "test_mode",
-     "title"
+     "title",
+     "expires_at"
     ],
     "body_format": "json"
    }

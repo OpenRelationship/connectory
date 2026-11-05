@@ -29,6 +29,13 @@ The WordPress software project is distributed at https://wordpress.org/. WordPre
 - [WordPress.com CLI](https://developer.wordpress.com/docs/developer-tools/wp-cli/overview/)
 - [WordPress Studio - free and open source local development app](https://developer.wordpress.com/studio/)
 
+## Hosting for agent-built projects
+
+[Spacefast](https://spacefast.com/) is Automattic's publishing and hosting service for agent-built sites, apps, and artifacts.
+
+For hosting an agent-built project, explore [Spacefast for agents](https://spacefast.com/agents/).
+Agent-readable publishing instructions: https://spacefast.com/setup.md
+
 ## AI Capabilities
 
 WordPress.com includes built-in AI tools and secure AI integrations.

@@ -2,7 +2,7 @@
 --
 -- GENERATED from https://developer.close.com/openapi.json
 -- Published on the vendor's own documentation site (https://developer.close.com).
--- 302 operations · do not edit
+-- 307 operations · do not edit
 --
 -- The credential is never in here. `auth.env` names an environment variable; the value
 -- stays in the environment, which is what makes this file safe to publish.
@@ -83,6 +83,7 @@ return {
     ["close.activities_whatsapp_messages_get"] = { method = "GET", url = "https://api.close.com/api/v1/activity/whatsapp_message/{id}/", path = {"id"}, query = {"_fields"} },
     ["close.activities_whatsapp_messages_list"] = { method = "GET", url = "https://api.close.com/api/v1/activity/whatsapp_message/", query = {"_limit", "_skip", "id__in", "lead_id", "contact_id", "user_id", "organization_id", "_type", "date_created__gte", "date_created__lte", "date_created__gt", "date_created__lt", "activity_at__gte", "activity_at__lte", "activity_at__gt", "activity_at__lt", "external_whatsapp_message_id", "_fields"} },
     ["close.activities_whatsapp_messages_update"] = { method = "PUT", url = "https://api.close.com/api/v1/activity/whatsapp_message/{id}/", path = {"id"}, body = {"activity_at", "attachments", "contact_id", "direction", "integration_link", "local_phone", "message_markdown", "remote_phone", "response_to_id", "user_id"} },
+    ["close.advanced_filtering_search"] = { method = "POST", url = "https://api.close.com/api/v1/data/search/", body = {"_fields", "_limit", "cursor", "include_counts", "query", "results_limit", "sort"} },
     ["close.blocked_phone_numbers_create"] = { method = "POST", url = "https://api.close.com/api/v1/blocked_phone_number/", body = {"phone", "reason"} },
     ["close.blocked_phone_numbers_delete"] = { method = "DELETE", url = "https://api.close.com/api/v1/blocked_phone_number/{id}/", path = {"id"} },
     ["close.blocked_phone_numbers_get"] = { method = "GET", url = "https://api.close.com/api/v1/blocked_phone_number/{id}/", path = {"id"}, query = {"_fields"} },
@@ -168,7 +169,7 @@ return {
     ["close.custom_objects_list"] = { method = "GET", url = "https://api.close.com/api/v1/custom_object/", query = {"lead_id", "custom_object_type_id"} },
     ["close.custom_objects_update"] = { method = "PUT", url = "https://api.close.com/api/v1/custom_object/{id}/", path = {"id"} },
     ["close.dialers_get"] = { method = "GET", url = "https://api.close.com/api/v1/dialer/{id}/", path = {"id"}, query = {"organization_id"} },
-    ["close.dialers_list"] = { method = "GET", url = "https://api.close.com/api/v1/dialer/", query = {"organization_id", "source_type", "source_value", "status", "status__in", "user_id", "_limit", "_skip"} },
+    ["close.dialers_list"] = { method = "GET", url = "https://api.close.com/api/v1/dialer/", query = {"_limit", "_skip", "organization_id", "source_type", "source_value", "status", "status__in", "user_id"} },
     ["close.email_templates_create"] = { method = "POST", url = "https://api.close.com/api/v1/email_template/", query = {"_fields"} },
     ["close.email_templates_delete"] = { method = "DELETE", url = "https://api.close.com/api/v1/email_template/{id}/", path = {"id"} },
     ["close.email_templates_get"] = { method = "GET", url = "https://api.close.com/api/v1/email_template/{id}/", path = {"id"}, query = {"_fields", "include_embedded"} },
@@ -176,7 +177,7 @@ return {
     ["close.email_templates_render"] = { method = "GET", url = "https://api.close.com/api/v1/email_template/{id}/render/", path = {"id"}, query = {"email_account_id", "bulk_object_type", "contact_id", "contact_preference", "entry", "lead_id", "limit", "query", "results_limit", "s_query", "sender", "sort", "mode"} },
     ["close.email_templates_update"] = { method = "PUT", url = "https://api.close.com/api/v1/email_template/{id}/", path = {"id"}, query = {"_fields"} },
     ["close.events_get"] = { method = "GET", url = "https://api.close.com/api/v1/event/{id}/", path = {"id"} },
-    ["close.events_list"] = { method = "GET", url = "https://api.close.com/api/v1/event/", query = {"_limit", "_skip", "object_type", "object_id", "lead_id", "action", "user_id", "date_updated__gt", "date_updated__gte", "date_updated__lt", "date_updated__lte"} },
+    ["close.events_list"] = { method = "GET", url = "https://api.close.com/api/v1/event/", query = {"_limit", "object_type", "object_id", "lead_id", "action", "user_id", "date_updated__gt", "date_updated__gte", "date_updated__lt", "date_updated__lte"} },
     ["close.exports_create_lead"] = { method = "POST", url = "https://api.close.com/api/v1/export/lead/" },
     ["close.exports_create_opportunity"] = { method = "POST", url = "https://api.close.com/api/v1/export/opportunity/" },
     ["close.exports_get"] = { method = "GET", url = "https://api.close.com/api/v1/export/{id}/", path = {"id"}, query = {"_fields"} },
@@ -212,7 +213,7 @@ return {
     ["close.leads_files_list"] = { method = "GET", url = "https://api.close.com/api/v1/lead/{id}/files/", path = {"id"}, query = {"_limit", "_skip", "_fields"} },
     ["close.leads_get"] = { method = "GET", url = "https://api.close.com/api/v1/lead/{id}/", path = {"id"}, query = {"_fields"} },
     ["close.leads_list"] = { method = "GET", url = "https://api.close.com/api/v1/lead/", query = {"_limit", "_skip", "_fields"} },
-    ["close.leads_merge"] = { method = "POST", url = "https://api.close.com/api/v1/lead/merge/" },
+    ["close.leads_merge"] = { method = "POST", url = "https://api.close.com/api/v1/lead/merge/", body = {"destination", "source"} },
     ["close.leads_update"] = { method = "PUT", url = "https://api.close.com/api/v1/lead/{id}/", path = {"id"} },
     ["close.memberships_bulk_update"] = { method = "PUT", url = "https://api.close.com/api/v1/membership/", body = {"auto_record_calls", "default_caller_id", "default_caller_id_mode", "hangup_recording_url", "may_workflows_impersonate", "role_id", "track_email_opens"} },
     ["close.memberships_create"] = { method = "POST", url = "https://api.close.com/api/v1/membership/", body = {"email", "role_id"} },
@@ -223,7 +224,7 @@ return {
     ["close.opportunities_create"] = { method = "POST", url = "https://api.close.com/api/v1/opportunity/", body = {"attachments", "confidence", "contact_id", "created_by", "date_created", "date_won", "lead_id", "note", "note_html", "pipeline_id", "status_id", "user_id", "value", "value_period"} },
     ["close.opportunities_delete"] = { method = "DELETE", url = "https://api.close.com/api/v1/opportunity/{id}/", path = {"id"} },
     ["close.opportunities_get"] = { method = "GET", url = "https://api.close.com/api/v1/opportunity/{id}/", path = {"id"}, query = {"_fields"} },
-    ["close.opportunities_list"] = { method = "GET", url = "https://api.close.com/api/v1/opportunity/", query = {"_limit", "_skip", "_fields", "lead_id", "organization_id", "user_id", "user_id__in", "status_id", "status_id__in", "status_type", "status_type__in", "status_label", "status_label__in", "status", "status__in", "date_won", "date_won__gte", "date_won__gt", "date_won__lte", "date_won__lt", "date_created", "date_created__gte", "date_created__gt", "date_created__lte", "date_created__lt", "date_updated", "date_updated__gte", "date_updated__gt", "date_updated__lte", "date_updated__lt", "value_period", "value_period__in", "query", "lead_query", "lead_saved_search_id", "is_stalled", "_order_by", "_group_by"} },
+    ["close.opportunities_list"] = { method = "GET", url = "https://api.close.com/api/v1/opportunity/", query = {"_limit", "_skip", "_fields", "lead_id", "user_id", "user_id__in", "status_id", "status_id__in", "status_type", "status_type__in", "status_label", "status_label__in", "status", "status__in", "date_won__gte", "date_won__gt", "date_won__lte", "date_won__lt", "date_created__gte", "date_created__gt", "date_created__lte", "date_created__lt", "date_updated__gte", "date_updated__gt", "date_updated__lte", "date_updated__lt", "value_period", "value_period__in", "query", "lead_query", "lead_saved_search_id", "is_stalled", "_order_by", "_group_by"} },
     ["close.opportunities_update"] = { method = "PUT", url = "https://api.close.com/api/v1/opportunity/{id}/", path = {"id"}, body = {"attachments", "confidence", "contact_id", "date_won", "note", "note_html", "status", "status_id", "user_id", "value", "value_period"} },
     ["close.opportunity_statuses_create"] = { method = "POST", url = "https://api.close.com/api/v1/status/opportunity/", query = {"_fields"}, body = {"label", "pipeline_id", "type"} },
     ["close.opportunity_statuses_delete"] = { method = "DELETE", url = "https://api.close.com/api/v1/status/opportunity/{id}/", path = {"id"} },
@@ -241,7 +242,7 @@ return {
     ["close.phone_numbers_delete"] = { method = "DELETE", url = "https://api.close.com/api/v1/phone_number/{id}/", path = {"id"} },
     ["close.phone_numbers_get"] = { method = "GET", url = "https://api.close.com/api/v1/phone_number/{id}/", path = {"id"}, query = {"_fields"} },
     ["close.phone_numbers_list"] = { method = "GET", url = "https://api.close.com/api/v1/phone_number/", query = {"_limit", "_skip", "_fields", "number", "user_id", "is_group_number", "participant_user_id"} },
-    ["close.phone_numbers_update"] = { method = "PUT", url = "https://api.close.com/api/v1/phone_number/{id}/", path = {"id"}, body = {"forward_to", "forward_to_enabled", "inbound_ring_duration", "label", "participants", "phone_numbers", "press_1_to_accept", "voicemail_greeting_url"} },
+    ["close.phone_numbers_update"] = { method = "PUT", url = "https://api.close.com/api/v1/phone_number/{id}/", path = {"id"}, body = {"forward_to", "forward_to_enabled", "inbound_ring_duration", "label", "local_presence_enabled", "non_member_caller_id_enabled", "participant_groups", "participants", "phone_numbers", "press_1_to_accept", "voice_agent_caller_id_enabled", "voice_agents_local_presence_enabled", "voicemail_greeting_url"} },
     ["close.pipelines_create"] = { method = "POST", url = "https://api.close.com/api/v1/pipeline/", body = {"name", "statuses"} },
     ["close.pipelines_delete"] = { method = "DELETE", url = "https://api.close.com/api/v1/pipeline/{id}/", path = {"id"} },
     ["close.pipelines_get"] = { method = "GET", url = "https://api.close.com/api/v1/pipeline/{id}/", path = {"id"} },
@@ -291,7 +292,7 @@ return {
     ["close.sequences_create_subscription"] = { method = "POST", url = "https://api.close.com/api/v1/sequence_subscription/" },
     ["close.sequences_delete"] = { method = "DELETE", url = "https://api.close.com/api/v1/sequence/{id}/", path = {"id"} },
     ["close.sequences_delete_subscription"] = { method = "DELETE", url = "https://api.close.com/api/v1/sequence_subscription/{id}/", path = {"id"} },
-    ["close.sequences_get"] = { method = "GET", url = "https://api.close.com/api/v1/sequence/{id}/", path = {"id"}, query = {"_limit", "_skip"} },
+    ["close.sequences_get"] = { method = "GET", url = "https://api.close.com/api/v1/sequence/{id}/", path = {"id"} },
     ["close.sequences_get_subscription"] = { method = "GET", url = "https://api.close.com/api/v1/sequence_subscription/{id}/", path = {"id"} },
     ["close.sequences_list"] = { method = "GET", url = "https://api.close.com/api/v1/sequence/", query = {"_limit", "_skip"} },
     ["close.sequences_list_subscriptions"] = { method = "GET", url = "https://api.close.com/api/v1/sequence_subscription/", query = {"_limit", "_skip", "contact_id", "lead_id", "sequence_id"} },
@@ -307,6 +308,10 @@ return {
     ["close.sms_templates_get"] = { method = "GET", url = "https://api.close.com/api/v1/sms_template/{id}/", path = {"id"}, query = {"include_attachments", "include_embedded"} },
     ["close.sms_templates_list"] = { method = "GET", url = "https://api.close.com/api/v1/sms_template/", query = {"_limit", "_skip"} },
     ["close.sms_templates_update"] = { method = "PUT", url = "https://api.close.com/api/v1/sms_template/{id}/", path = {"id"}, body = {"attachments", "is_shared", "name", "status", "text"} },
+    ["close.standard_object_labels_delete"] = { method = "DELETE", url = "https://api.close.com/api/v1/standard_object_label/{label_type}/", path = {"label_type"} },
+    ["close.standard_object_labels_get"] = { method = "GET", url = "https://api.close.com/api/v1/standard_object_label/{label_type}/", path = {"label_type"} },
+    ["close.standard_object_labels_list"] = { method = "GET", url = "https://api.close.com/api/v1/standard_object_label/" },
+    ["close.standard_object_labels_update"] = { method = "PUT", url = "https://api.close.com/api/v1/standard_object_label/{label_type}/", path = {"label_type"}, body = {"plural", "singular"} },
     ["close.tasks_bulk_update"] = { method = "PUT", url = "https://api.close.com/api/v1/task/", query = {"assigned_to", "format", "id", "id__in", "is_complete", "lead_id", "_order_by", "organization_id", "_type", "_type__in", "view", "date", "date__lt", "date__lte", "date__gt", "date__gte", "due_date", "due_date__lt", "due_date__lte", "due_date__gt", "due_date__gte", "date_created__lt", "date_created__lte", "date_created__gt", "date_created__gte", "date_updated__lt", "date_updated__lte", "date_updated__gt", "date_updated__gte", "_fields"}, body = {"assigned_to", "date", "is_complete", "organization_id", "priority", "resolution", "text"} },
     ["close.tasks_create"] = { method = "POST", url = "https://api.close.com/api/v1/task/", query = {"_fields"} },
     ["close.tasks_delete"] = { method = "DELETE", url = "https://api.close.com/api/v1/task/{id}/", path = {"id"} },
@@ -316,9 +321,9 @@ return {
     ["close.unsubscribed_emails_create"] = { method = "POST", url = "https://api.close.com/api/v1/unsubscribe/email/", body = {"email"} },
     ["close.unsubscribed_emails_delete"] = { method = "DELETE", url = "https://api.close.com/api/v1/unsubscribe/email/{email_address}/", path = {"email_address"} },
     ["close.unsubscribed_emails_list"] = { method = "GET", url = "https://api.close.com/api/v1/unsubscribe/email/" },
-    ["close.users_get"] = { method = "GET", url = "https://api.close.com/api/v1/user/{id}/", path = {"id"}, query = {"_order_by", "_limit", "_skip"} },
+    ["close.users_get"] = { method = "GET", url = "https://api.close.com/api/v1/user/{id}/", path = {"id"}, query = {"_order_by"} },
     ["close.users_get_me"] = { method = "GET", url = "https://api.close.com/api/v1/me/", query = {"_fields"} },
-    ["close.users_list"] = { method = "GET", url = "https://api.close.com/api/v1/user/", query = {"_order_by", "_limit", "_skip"} },
+    ["close.users_list"] = { method = "GET", url = "https://api.close.com/api/v1/user/", query = {"_limit", "_skip", "_order_by"} },
     ["close.users_list_availabilities"] = { method = "GET", url = "https://api.close.com/api/v1/user/availability/", query = {"organization_id"} },
     ["close.webhooks_create"] = { method = "POST", url = "https://api.close.com/api/v1/webhook/", body = {"events", "url", "verify_ssl"} },
     ["close.webhooks_delete"] = { method = "DELETE", url = "https://api.close.com/api/v1/webhook/{id}/", path = {"id"} },

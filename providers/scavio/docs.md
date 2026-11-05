@@ -15,7 +15,7 @@ vouches for**: read it, then read their reference.
 # Scavio
 
 > Scavio is a real-time search API for AI agents. It gives LLMs and autonomous
-> agents structured JSON access to 50 platforms -- search, social, retail, real
+> agents structured JSON access to 50+ platforms -- search, social, retail, real
 > estate, travel, local, jobs, app stores, software reviews, ad libraries and
 > company filings -- plus Extract, which reads any URL as Markdown, plain text
 > or raw HTML. One REST API, one key: no HTML parsing, no browser automation,
@@ -43,12 +43,14 @@ below.
 
 <!-- BEGIN:endpoints -->
 
-Scavio serves 304 endpoints across 50 platforms, Extract included (39 platform families in the API, since Google's verticals share one).
-Every data endpoint is a POST returning structured JSON. Most cost 1 credit;
+Scavio serves 467 endpoints across 77 platforms, Extract included (67 platform families in the API, since Google's verticals share one).
+Every data endpoint is a POST returning structured JSON (crawl and batch job status is a GET, cancel a DELETE; the Google Custom Search compatible endpoint is a GET). Most cost 1 credit;
 the exceptions are stated per platform below.
 
 ### Search
 #### Google Search (v2)
+- `GET /api/v1/google/customsearch`
+- `POST /api/v1/google/customsearch`
 - `POST /api/v2/google`
 - `POST /api/v2/google/ai-mode`
 - `POST /api/v2/google/flights`
@@ -64,6 +66,10 @@ the exceptions are stated per platform below.
 - `POST /api/v2/google/shopping/product/stores`
 - `POST /api/v2/google/trending`
 - `POST /api/v2/google/trends`
+- `GET /customsearch/v1`
+- `GET /customsearch/v1/siterestrict`
+
+### AI assistants
 
 ### Social
 
@@ -73,33 +79,34 @@ the exceptions are stated per platform below.
 - `POST /api/v1/tiktok/ads/top`
 - `POST /api/v1/tiktok/hashtag`
 - `POST /api/v1/tiktok/hashtag/videos`
+- `POST /api/v1/tiktok/music`
+- `POST /api/v1/tiktok/music/chart`
+- `POST /api/v1/tiktok/music/videos`
+- `POST /api/v1/tiktok/playlist/videos`
 - `POST /api/v1/tiktok/profile`
+- `POST /api/v1/tiktok/search/music`
+- `POST /api/v1/tiktok/search/suggestions`
 - `POST /api/v1/tiktok/search/users`
 - `POST /api/v1/tiktok/search/videos`
+- `POST /api/v1/tiktok/trending/searches`
+- `POST /api/v1/tiktok/trending/videos`
 - `POST /api/v1/tiktok/user/followers`
 - `POST /api/v1/tiktok/user/followings`
+- `POST /api/v1/tiktok/user/live`
+- `POST /api/v1/tiktok/user/playlists`
 - `POST /api/v1/tiktok/user/posts`
+- `POST /api/v1/tiktok/user/region`
+- `POST /api/v1/tiktok/user/similar`
 - `POST /api/v1/tiktok/video`
 - `POST /api/v1/tiktok/video/comments`
 - `POST /api/v1/tiktok/video/comments/replies`
 - `POST /api/v1/tiktok/video/transcript`
 
-#### Instagram (priced per endpoint: 10, 8 or 2)
-- `POST /api/v1/instagram/post`
-- `POST /api/v1/instagram/post/comments`
-- `POST /api/v1/instagram/post/comments/replies`
-- `POST /api/v1/instagram/profile`
-- `POST /api/v1/instagram/search/hashtags`
-- `POST /api/v1/instagram/search/users`
-- `POST /api/v1/instagram/user/followers`
-- `POST /api/v1/instagram/user/followings`
-- `POST /api/v1/instagram/user/posts`
-- `POST /api/v1/instagram/user/reels`
-- `POST /api/v1/instagram/user/stories`
-- `POST /api/v1/instagram/user/tagged`
-
 #### X (Twitter)
+- `POST /api/v1/x/community`
+- `POST /api/v1/x/community/tweets`
 - `POST /api/v1/x/search`
+- `POST /api/v1/x/search/communities`
 - `POST /api/v1/x/trending`
 - `POST /api/v1/x/tweet`
 - `POST /api/v1/x/tweet/comments`
@@ -117,6 +124,8 @@ the exceptions are stated per platform below.
 - `POST /api/v1/reddit/post/comments`
 - `POST /api/v1/reddit/post/comments/replies`
 - `POST /api/v1/reddit/search`
+- `POST /api/v1/reddit/search/comments`
+- `POST /api/v1/reddit/search/subreddits`
 - `POST /api/v1/reddit/search/suggestions`
 - `POST /api/v1/reddit/subreddit`
 - `POST /api/v1/reddit/subreddit/posts`
@@ -140,7 +149,6 @@ the exceptions are stated per platform below.
 - `POST /api/v1/pinterest/user/boards`
 
 #### Weibo
-- `POST /api/v1/weibo/channel-feed`
 - `POST /api/v1/weibo/hot-search`
 - `POST /api/v1/weibo/hot-search/index`
 - `POST /api/v1/weibo/post`
@@ -173,6 +181,12 @@ the exceptions are stated per platform below.
 - `POST /api/v1/weibo/user/videos`
 
 ### Retail
+#### Etsy (2 credits)
+- `POST /api/v1/etsy/product`
+- `POST /api/v1/etsy/reviews`
+- `POST /api/v1/etsy/search`
+- `POST /api/v1/etsy/shop`
+- `POST /api/v1/etsy/shop/products`
 
 ### Social
 
@@ -195,7 +209,7 @@ the exceptions are stated per platform below.
 ### Retail
 #### Amazon
 - `POST /api/v1/amazon/offers`
-- `POST /api/v1/amazon/options`
+- `GET /api/v1/amazon/options`
 - `POST /api/v1/amazon/product`
 - `POST /api/v1/amazon/search`
 
@@ -205,15 +219,11 @@ the exceptions are stated per platform below.
 - `POST /api/v1/ebay/seller`
 
 #### Target
+- `POST /api/v1/target/availability`
 - `POST /api/v1/target/category`
 - `POST /api/v1/target/product`
 - `POST /api/v1/target/reviews`
 - `POST /api/v1/target/search`
-
-#### Home Depot (2 credits)
-- `POST /api/v1/homedepot/product`
-- `POST /api/v1/homedepot/reviews`
-- `POST /api/v1/homedepot/search`
 
 #### TikTok Shop
 - `POST /api/v1/tiktok-shop/categories`
@@ -266,7 +276,7 @@ the exceptions are stated per platform below.
 - `POST /api/v1/indeed/job`
 - `POST /api/v1/indeed/search`
 
-#### Glassdoor
+#### Glassdoor (2 credits)
 - `POST /api/v1/glassdoor/companies`
 - `POST /api/v1/glassdoor/company`
 - `POST /api/v1/glassdoor/reviews`
@@ -307,6 +317,8 @@ the exceptions are stated per platform below.
 - `POST /api/v1/capterra/reviews`
 - `POST /api/v1/capterra/search`
 
+### Reviews
+
 ### Ad libraries
 #### Google Ads Transparency
 - `POST /api/v1/googleads/advertisers`
@@ -342,6 +354,7 @@ the exceptions are stated per platform below.
 - [Search API for AI Agents](https://scavio.dev/search-api-for-ai-agents) -- category overview: one API for all platforms below
 - [Government & Public Data API](https://scavio.dev/government-data-api) -- municipal legislation, meetings, officials and committees from 1,800+ US cities via Legistar
 - [Screenshot API](https://scavio.dev/screenshot-api) -- full-page screenshot of any URL as a PNG data URI
+- [Website Crawler API](https://scavio.dev/website-crawler-api) -- crawl a site to Markdown, map sitemap URLs and batch extract URL lists
 - [Google Search API](https://scavio.dev/google-api)
 - [Google Maps API](https://scavio.dev/google-maps-api)
 - [Google Shopping API](https://scavio.dev/google-shopping-api)
@@ -350,6 +363,9 @@ the exceptions are stated per platform below.
 - [Google AI Mode API](https://scavio.dev/google-ai-mode-api)
 - [Google Flights API](https://scavio.dev/google-flights-api)
 - [Google Hotels API](https://scavio.dev/google-hotels-api)
+- [ChatGPT API](https://scavio.dev/chatgpt-api) -- the answer ChatGPT gives a prompt, with cited sources, web searches and recommended products
+- [Gemini API](https://scavio.dev/gemini-api) -- the answer Gemini gives a prompt, with cited URLs and recommended products
+- [AEO API](https://scavio.dev/aeo) -- ChatGPT, Google AI Mode and AI Overview answers with their citations, one key for AI visibility tracking
 - [Amazon API](https://scavio.dev/amazon-api)
 - [YouTube API](https://scavio.dev/youtube-api)
 - [Walmart API](https://scavio.dev/walmart-api)
@@ -369,6 +385,58 @@ the exceptions are stated per platform below.
 - [Etsy API](https://scavio.dev/etsy-api) -- listing search, product detail, shop data and reviews
 - [Target API](https://scavio.dev/target-api)
 - [Home Depot API](https://scavio.dev/homedepot-api)
+- [Costco API](https://scavio.dev/costco-api) -- warehouse prices and stock, gas prices, the coupon book, clearance and product data
+- [HEB API](https://scavio.dev/heb-api) -- grocery prices, SNAP eligibility, nutrition facts, ingredients and store locations for the Texas-based chain, plus HEB Mexico prices, stock and promotions
+- [API de HEB México](https://scavio.dev/es/heb-api) -- the HEB Mexico API page in Spanish: heb.com.mx prices in pesos, units in stock and promotions
+- [Kroger API](https://scavio.dev/kroger-api) -- grocery prices, promo deals, SNAP eligibility, dietary info, nutrition facts and rating distributions across 2,800+ Kroger-family stores
+- [Spec's API](https://scavio.dev/specs-api) -- liquor, wine and beer prices at every Spec's store in Texas in one call, plus search and a store locator
+- [Lowe's API](https://scavio.dev/lowes-api) -- store-level prices, deals with end dates, on-hand stock, aisle and bay, nearby-store stock, reviews and a store locator
+- [Sam's Club API](https://scavio.dev/samsclub-api) -- club shelf prices and stock, every Instant Savings offer, clearance, member limits, reviews and a club locator
+- [Canadian Tire API](https://scavio.dev/canadiantire-api) -- store-level prices in CAD, stock and aisles, 50 SKUs per call, every clearance item and flyer deals per store
+- [Dollar General API](https://scavio.dev/dollargeneral-api) -- store-level prices and units on hand, one product's stock at 25 nearby stores per call, sale and clearance items, digital coupons
+- [Sephora API](https://scavio.dev/sephora-api) -- sephora.com search and category listings with sale and bestseller flags, and product detail with every shade and size priced, ingredients, rating and review themes
+- [Ulta Beauty API](https://scavio.dev/ulta-api) -- beauty product search and category listings with sale prices, every shade with GTIN and ingredients, and shade-level in-store stock at the 10 nearest stores
+- [ALDI API](https://scavio.dev/aldi-api) -- ALDI US store-level prices and stock, in-store vs pickup and delivery prices, aisle locations, ingredients and allergens, and a store locator
+- [Micro Center API](https://scavio.dev/microcenter-api) -- per-store stock counts (shown up to 25+), prices, open-box units and lowest open-box price, specs and recent reviews, in-stock flag for all 31 stores
+- [Walgreens API](https://scavio.dev/walgreens-api) -- retail product search with sale prices, promotions and coupons, product detail, a store locator, and one product's live stock at 20 stores per call
+- [CVS API](https://scavio.dev/cvs-api) -- front-store prices and sale prices, ExtraBucks and manufacturer coupons, product detail, and in-store and pickup stock for 20 SKUs per call
+- [Whole Foods API](https://scavio.dev/wholefoods-api) -- store-level regular, sale and Prime member prices, every sale item and the weekly sales flyer per store, nutrition facts, shelf vs online price, and a store locator
+- [Harbor Freight API](https://scavio.dev/harborfreight-api) -- national sale, clearance, coupon and Inside Track member prices for 50 items per call, store stock status and aisle, clearance list, search and first-party reviews
+- [PetSmart API](https://scavio.dev/petsmart-api) -- national prices for every size with Autoship pricing, unit counts at the 12 nearest stores per call, stock for 20 SKUs per store, and the Sale section with real markdowns flagged
+- [Petco API](https://scavio.dev/petco-api) -- pet product prices with Repeat Delivery autoship and first-autoship prices, ingredients and guaranteed analysis, a store locator, and units on hand for 10 products per store call
+- [iHerb API](https://scavio.dev/iherb-api) -- iHerb US supplement search with prices, discounts, ratings and stock, product detail with supplement facts and expiration dates, prices and stock for 50 products per call, and review summaries
+- [Chewy API](https://scavio.dev/chewy-api) -- pet product search and category browse with one-time, Autoship and first-Autoship prices, MAP price and enforced flag, star distribution and every variant
+- [Menards API](https://scavio.dev/menards-api) -- keyword search at a store with price after rebate and stock, product data by item id or URL with everyday price, sale price, mail-in rebates and final price, a store's stock quantity and aisle, and a store locator
+- [Decathlon API](https://scavio.dev/decathlon-api) -- product search, pricing and availability across 7 country stores (France, Spain, Italy, India, UK, Portugal, international)
+- [Mercado Libre API](https://scavio.dev/mercadolibre-api) -- listings, prices, products, reviews, questions and best sellers in Mexico, Brazil, Argentina and Colombia
+- [API de Mercado Libre](https://scavio.dev/es/mercadolibre-api) -- the Mercado Libre API page in Spanish (Mexico, Argentina, Colombia)
+- [API do Mercado Livre](https://scavio.dev/pt/mercadolibre-api) -- the Mercado Libre API page in Brazilian Portuguese
+- [API de Amazon](https://scavio.dev/es/amazon-api) -- the Amazon API page in Spanish: Amazon Mexico and Spain, prices in MXN and EUR
+- [API da Amazon](https://scavio.dev/pt/amazon-api) -- the Amazon API page in Brazilian Portuguese: Amazon Brasil, prices in BRL
+- [API Amazon](https://scavio.dev/fr/amazon-api) -- the Amazon API page in French: Amazon France, Belgium and Canada
+- [API de Walmart México](https://scavio.dev/es/walmart-api) -- the Walmart API page in Spanish: walmart.com.mx search and categories, prices in MXN
+- [API Walmart Canada](https://scavio.dev/fr/walmart-api) -- the Walmart API page in Canadian French: walmart.ca search, product, categories and stores
+- [API de Costco México](https://scavio.dev/es/costco-api) -- the Costco API page in Spanish: costco.com.mx search, product and warehouses
+- [API Costco Canada](https://scavio.dev/fr/costco-api) -- the Costco API page in Canadian French: costco.ca prices, stock, warehouses, gas, deals and clearance
+- [API Canadian Tire](https://scavio.dev/fr/canadiantire-api) -- the Canadian Tire API page in Canadian French: store prices, stock, clearance and deals
+- [API de Decathlon España](https://scavio.dev/es/decathlon-api) -- the Decathlon API page in Spanish: decathlon.es search and product
+- [API da Decathlon Portugal](https://scavio.dev/pt/decathlon-api) -- the Decathlon API page in European Portuguese: decathlon.pt search and product
+- [API Decathlon France](https://scavio.dev/fr/decathlon-api) -- the Decathlon API page in French: decathlon.fr search and product
+- [Amazon API (Deutsch)](https://scavio.dev/de/amazon-api) -- the Amazon API page in German: Amazon.de, prices in EUR
+- [API Amazon (Italiano)](https://scavio.dev/it/amazon-api) -- the Amazon API page in Italian: Amazon.it, prices in EUR
+- [Amazon API (日本語)](https://scavio.dev/ja/amazon-api) -- the Amazon API page in Japanese: Amazon.co.jp, prices in JPY
+- [Amazon API (Nederlands)](https://scavio.dev/nl/amazon-api) -- the Amazon API page in Dutch: Amazon.nl and Amazon.com.be, prices in EUR
+- [API Amazon (Polski)](https://scavio.dev/pl/amazon-api) -- the Amazon API page in Polish: Amazon.pl, prices in PLN
+- [Amazon API (Svenska)](https://scavio.dev/sv/amazon-api) -- the Amazon API page in Swedish: Amazon.se, prices in SEK
+- [Amazon API (Türkçe)](https://scavio.dev/tr/amazon-api) -- the Amazon API page in Turkish: Amazon.com.tr, prices in TRY
+- [API Decathlon Italia](https://scavio.dev/it/decathlon-api) -- the Decathlon API page in Italian: decathlon.it search and product
+- [Costco API (日本語)](https://scavio.dev/ja/costco-api) -- the Costco API page in Japanese: costco.co.jp search, product and warehouses
+- [Costco API (한국어)](https://scavio.dev/ko/costco-api) -- the Costco API page in Korean: costco.co.kr search, product and warehouses
+- [Costco API (繁體中文)](https://scavio.dev/zh-tw/costco-api) -- the Costco API page in Traditional Chinese: costco.com.tw search, product and warehouses
+- [抖音 API (简体中文)](https://scavio.dev/zh/douyin-api) -- the Douyin API page in Simplified Chinese: videos, users, comments, live, hot search and search
+- [微博 API (简体中文)](https://scavio.dev/zh/weibo-api) -- the Weibo API page in Simplified Chinese: users, posts, comments, search, hot search and rankings
+- [快手 API (简体中文)](https://scavio.dev/zh/kuaishou-api) -- the Kuaishou API page in Simplified Chinese: profiles, videos, comments, live, search and trending
+- [Amazon API (العربية)](https://scavio.dev/ar/amazon-api) -- the Amazon API page in Arabic: Amazon UAE, Saudi Arabia and Egypt
 - [Kuaishou API](https://scavio.dev/kuaishou-api)
 - [Douyin API](https://scavio.dev/douyin-api) -- videos, creators, comments, sounds, hashtags, live and search
 - [Weibo API](https://scavio.dev/weibo-api) -- hot-search board, user profiles, posts, comments and search
@@ -380,10 +448,13 @@ the exceptions are stated per platform below.
 - [Airbnb API](https://scavio.dev/airbnb-api)
 - [Zillow API](https://scavio.dev/zillow-api)
 - [Redfin API](https://scavio.dev/redfin-api)
+- [Realtor.com API](https://scavio.dev/realtor-api) -- for-sale, rental and sold listings (200 per call), property detail, market stats and agents
+- [Rightmove API](https://scavio.dev/rightmove-api) -- UK listings for sale and to rent, England and Wales sold prices since 1995, and agents
 - [App Store API](https://scavio.dev/app-store-api)
 - [Google Play API](https://scavio.dev/google-play-api)
 - [G2 API](https://scavio.dev/g2-api)
 - [Capterra API](https://scavio.dev/capterra-api)
+- [Trustpilot API](https://scavio.dev/trustpilot-api) -- business search, profiles with reply rate, filtered reviews and category rankings
 - [Google Ads Transparency API](https://scavio.dev/google-ads-transparency-api)
 - [Meta Ad Library API](https://scavio.dev/meta-ads-api)
 - [TikTok Ad Library API](https://scavio.dev/tiktok-ads-api) -- search TikTok's Top Ads and creative by keyword, industry and country
@@ -397,9 +468,9 @@ the exceptions are stated per platform below.
 
 - Python: `pip install scavio` -- `ScavioClient` / `AsyncScavioClient`
 - JavaScript / TypeScript: `npm install scavio` -- `new Scavio({ apiKey })`
-- MCP server (191 tools across 31 platforms plus Extract, 106 by default): remote
-  at https://mcp.scavio.dev/mcp (sign in with OAuth, or send an x-api-key header),
-  or `npx -y @scavio/mcp-server`. Landing page: https://scavio.dev/mcp. In the
+- MCP server (255 tools across 36 platforms plus Extract, map, crawl and batch;
+  133 load by default): remote at https://mcp.scavio.dev/mcp (sign in with OAuth,
+  or send an x-api-key header), or `npx -y @scavio/mcp-server`. Landing page: https://scavio.dev/mcp. In the
   official MCP registry, Glama, PulseMCP.
 
 ## Framework Integrations
@@ -424,6 +495,7 @@ Arcade, Agno (in core), and OpenClaw skills.
 
 ### Google Search (v2)
 - https://scavio.dev/docs/search-api
+- https://scavio.dev/docs/google-custom-search-api
 - https://scavio.dev/docs/google-ai-mode
 - https://scavio.dev/docs/google-maps
 - https://scavio.dev/docs/google-maps-place
@@ -441,7 +513,20 @@ Arcade, Agno (in core), and OpenClaw skills.
 
 ### Extract (any URL)
 - https://scavio.dev/docs/extract
+- https://scavio.dev/docs/extract-map
+- https://scavio.dev/docs/extract-crawl
+- https://scavio.dev/docs/extract-crawl-status
+- https://scavio.dev/docs/extract-crawl-cancel
+- https://scavio.dev/docs/extract-batch
+- https://scavio.dev/docs/extract-batch-status
+- https://scavio.dev/docs/extract-batch-cancel
 - https://scavio.dev/docs/screenshot
+
+### ChatGPT
+- https://scavio.dev/docs/chatgpt-api
+
+### Gemini
+- https://scavio.dev/docs/gemini-api
 
 ### YouTube
 - https://scavio.dev/docs/youtube-api
@@ -457,6 +542,8 @@ Arcade, Agno (in core), and OpenClaw skills.
 - https://scavio.dev/docs/youtube-channel-videos
 - https://scavio.dev/docs/youtube-channel-shorts
 - https://scavio.dev/docs/youtube-channel-community
+- https://scavio.dev/docs/youtube-community-post
+- https://scavio.dev/docs/youtube-community-post-comments
 - https://scavio.dev/docs/youtube-channel-resolve
 - https://scavio.dev/docs/youtube-streams
 
@@ -476,6 +563,18 @@ Arcade, Agno (in core), and OpenClaw skills.
 - https://scavio.dev/docs/tiktok-hashtag-videos
 - https://scavio.dev/docs/tiktok-followers
 - https://scavio.dev/docs/tiktok-followings
+- https://scavio.dev/docs/tiktok-trending-searches
+- https://scavio.dev/docs/tiktok-trending-videos
+- https://scavio.dev/docs/tiktok-search-suggestions
+- https://scavio.dev/docs/tiktok-search-music
+- https://scavio.dev/docs/tiktok-music
+- https://scavio.dev/docs/tiktok-music-videos
+- https://scavio.dev/docs/tiktok-music-chart
+- https://scavio.dev/docs/tiktok-user-similar
+- https://scavio.dev/docs/tiktok-user-playlists
+- https://scavio.dev/docs/tiktok-playlist-videos
+- https://scavio.dev/docs/tiktok-user-live
+- https://scavio.dev/docs/tiktok-user-region
 
 ### Instagram
 - https://scavio.dev/docs/instagram-api
@@ -483,13 +582,21 @@ Arcade, Agno (in core), and OpenClaw skills.
 - https://scavio.dev/docs/instagram-user-reels
 - https://scavio.dev/docs/instagram-user-tagged
 - https://scavio.dev/docs/instagram-user-stories
+- https://scavio.dev/docs/instagram-user-highlights
+- https://scavio.dev/docs/instagram-highlight-stories
+- https://scavio.dev/docs/instagram-followers
+- https://scavio.dev/docs/instagram-followings
+- https://scavio.dev/docs/instagram-similar-accounts
 - https://scavio.dev/docs/instagram-post
 - https://scavio.dev/docs/instagram-post-comments
 - https://scavio.dev/docs/instagram-comment-replies
+- https://scavio.dev/docs/instagram-post-likers
 - https://scavio.dev/docs/instagram-user-search
 - https://scavio.dev/docs/instagram-hashtag-search
-- https://scavio.dev/docs/instagram-followers
-- https://scavio.dev/docs/instagram-followings
+- https://scavio.dev/docs/instagram-reels-search
+- https://scavio.dev/docs/instagram-music-search
+- https://scavio.dev/docs/instagram-music-posts
+- https://scavio.dev/docs/instagram-location-search
 
 ### X (Twitter)
 - https://scavio.dev/docs/x-search
@@ -502,10 +609,15 @@ Arcade, Agno (in core), and OpenClaw skills.
 - https://scavio.dev/docs/x-user-media
 - https://scavio.dev/docs/x-user-followers
 - https://scavio.dev/docs/x-user-followings
+- https://scavio.dev/docs/x-search-communities
+- https://scavio.dev/docs/x-community
+- https://scavio.dev/docs/x-community-tweets
 - https://scavio.dev/docs/x-trending
 
 ### Reddit
 - https://scavio.dev/docs/reddit-api
+- https://scavio.dev/docs/reddit-search-comments
+- https://scavio.dev/docs/reddit-search-subreddits
 - https://scavio.dev/docs/reddit-search-suggestions
 - https://scavio.dev/docs/reddit-post
 - https://scavio.dev/docs/reddit-post-comments
@@ -573,6 +685,34 @@ Arcade, Agno (in core), and OpenClaw skills.
 - https://scavio.dev/docs/douyin-search-music
 - https://scavio.dev/docs/douyin-search-live
 - https://scavio.dev/docs/douyin-search-hashtags
+- 简体中文 (zh):
+  - https://scavio.dev/zh/docs/douyin-video
+  - https://scavio.dev/zh/docs/douyin-video-by-share-url
+  - https://scavio.dev/zh/docs/douyin-video-statistics
+  - https://scavio.dev/zh/docs/douyin-video-comments
+  - https://scavio.dev/zh/docs/douyin-video-comment-replies
+  - https://scavio.dev/zh/docs/douyin-related
+  - https://scavio.dev/zh/docs/douyin-user-profile
+  - https://scavio.dev/zh/docs/douyin-user-posts
+  - https://scavio.dev/zh/docs/douyin-user-likes
+  - https://scavio.dev/zh/docs/douyin-user-followers
+  - https://scavio.dev/zh/docs/douyin-user-following
+  - https://scavio.dev/zh/docs/douyin-user-live
+  - https://scavio.dev/zh/docs/douyin-hashtag
+  - https://scavio.dev/zh/docs/douyin-hashtag-videos
+  - https://scavio.dev/zh/docs/douyin-music
+  - https://scavio.dev/zh/docs/douyin-music-videos
+  - https://scavio.dev/zh/docs/douyin-live-room
+  - https://scavio.dev/zh/docs/douyin-trending
+  - https://scavio.dev/zh/docs/douyin-home-feed
+  - https://scavio.dev/zh/docs/douyin-resolve-video-id
+  - https://scavio.dev/zh/docs/douyin-resolve-user-id
+  - https://scavio.dev/zh/docs/douyin-search
+  - https://scavio.dev/zh/docs/douyin-search-videos
+  - https://scavio.dev/zh/docs/douyin-search-users
+  - https://scavio.dev/zh/docs/douyin-search-music
+  - https://scavio.dev/zh/docs/douyin-search-live
+  - https://scavio.dev/zh/docs/douyin-search-hashtags
 
 ### Weibo
 - https://scavio.dev/docs/weibo-user-info
@@ -606,6 +746,38 @@ Arcade, Agno (in core), and OpenClaw skills.
 - https://scavio.dev/docs/weibo-rankings-life
 - https://scavio.dev/docs/weibo-rankings-social
 - https://scavio.dev/docs/weibo-channel-feed
+- 简体中文 (zh):
+  - https://scavio.dev/zh/docs/weibo-user-info
+  - https://scavio.dev/zh/docs/weibo-user-info-detail
+  - https://scavio.dev/zh/docs/weibo-user-posts
+  - https://scavio.dev/zh/docs/weibo-user-original-posts
+  - https://scavio.dev/zh/docs/weibo-user-fans
+  - https://scavio.dev/zh/docs/weibo-user-following
+  - https://scavio.dev/zh/docs/weibo-user-videos
+  - https://scavio.dev/zh/docs/weibo-user-video-collections
+  - https://scavio.dev/zh/docs/weibo-user-video-collection
+  - https://scavio.dev/zh/docs/weibo-user-search-posts
+  - https://scavio.dev/zh/docs/weibo-user-recommend-timeline
+  - https://scavio.dev/zh/docs/weibo-post
+  - https://scavio.dev/zh/docs/weibo-post-comments
+  - https://scavio.dev/zh/docs/weibo-post-sub-comments
+  - https://scavio.dev/zh/docs/weibo-post-likes
+  - https://scavio.dev/zh/docs/weibo-post-reposts
+  - https://scavio.dev/zh/docs/weibo-search-advanced
+  - https://scavio.dev/zh/docs/weibo-search-realtime
+  - https://scavio.dev/zh/docs/weibo-search-videos
+  - https://scavio.dev/zh/docs/weibo-search-users
+  - https://scavio.dev/zh/docs/weibo-search-topics
+  - https://scavio.dev/zh/docs/weibo-search-pics
+  - https://scavio.dev/zh/docs/weibo-search-similar
+  - https://scavio.dev/zh/docs/weibo-search-ai
+  - https://scavio.dev/zh/docs/weibo-hot-search
+  - https://scavio.dev/zh/docs/weibo-hot-search-index
+  - https://scavio.dev/zh/docs/weibo-rankings-hot-timeline
+  - https://scavio.dev/zh/docs/weibo-rankings-entertainment
+  - https://scavio.dev/zh/docs/weibo-rankings-life
+  - https://scavio.dev/zh/docs/weibo-rankings-social
+  - https://scavio.dev/zh/docs/weibo-channel-feed
 
 ### Etsy
 - https://scavio.dev/docs/etsy-search
@@ -652,12 +824,82 @@ Arcade, Agno (in core), and OpenClaw skills.
 - https://scavio.dev/docs/kuaishou-live-search
 - https://scavio.dev/docs/kuaishou-tag-feed
 - https://scavio.dev/docs/kuaishou-trending
+- 简体中文 (zh):
+  - https://scavio.dev/zh/docs/kuaishou-profile
+  - https://scavio.dev/zh/docs/kuaishou-user-posts
+  - https://scavio.dev/zh/docs/kuaishou-user-live
+  - https://scavio.dev/zh/docs/kuaishou-user-resolve
+  - https://scavio.dev/zh/docs/kuaishou-video
+  - https://scavio.dev/zh/docs/kuaishou-video-comments
+  - https://scavio.dev/zh/docs/kuaishou-comment-replies
+  - https://scavio.dev/zh/docs/kuaishou-videos-batch
+  - https://scavio.dev/zh/docs/kuaishou-search
+  - https://scavio.dev/zh/docs/kuaishou-video-search
+  - https://scavio.dev/zh/docs/kuaishou-user-search
+  - https://scavio.dev/zh/docs/kuaishou-live-search
+  - https://scavio.dev/zh/docs/kuaishou-tag-feed
+  - https://scavio.dev/zh/docs/kuaishou-trending
 
 ### Amazon
 - https://scavio.dev/docs/amazon-api
 - https://scavio.dev/docs/amazon-product
 - https://scavio.dev/docs/amazon-offers
 - https://scavio.dev/docs/amazon-options
+- Español (es):
+  - https://scavio.dev/es/docs/amazon-api
+  - https://scavio.dev/es/docs/amazon-product
+  - https://scavio.dev/es/docs/amazon-offers
+  - https://scavio.dev/es/docs/amazon-options
+- Português (pt):
+  - https://scavio.dev/pt/docs/amazon-api
+  - https://scavio.dev/pt/docs/amazon-product
+  - https://scavio.dev/pt/docs/amazon-offers
+  - https://scavio.dev/pt/docs/amazon-options
+- Français (fr):
+  - https://scavio.dev/fr/docs/amazon-api
+  - https://scavio.dev/fr/docs/amazon-product
+  - https://scavio.dev/fr/docs/amazon-offers
+  - https://scavio.dev/fr/docs/amazon-options
+- Deutsch (de):
+  - https://scavio.dev/de/docs/amazon-api
+  - https://scavio.dev/de/docs/amazon-product
+  - https://scavio.dev/de/docs/amazon-offers
+  - https://scavio.dev/de/docs/amazon-options
+- Italiano (it):
+  - https://scavio.dev/it/docs/amazon-api
+  - https://scavio.dev/it/docs/amazon-product
+  - https://scavio.dev/it/docs/amazon-offers
+  - https://scavio.dev/it/docs/amazon-options
+- 日本語 (ja):
+  - https://scavio.dev/ja/docs/amazon-api
+  - https://scavio.dev/ja/docs/amazon-product
+  - https://scavio.dev/ja/docs/amazon-offers
+  - https://scavio.dev/ja/docs/amazon-options
+- Nederlands (nl):
+  - https://scavio.dev/nl/docs/amazon-api
+  - https://scavio.dev/nl/docs/amazon-product
+  - https://scavio.dev/nl/docs/amazon-offers
+  - https://scavio.dev/nl/docs/amazon-options
+- Polski (pl):
+  - https://scavio.dev/pl/docs/amazon-api
+  - https://scavio.dev/pl/docs/amazon-product
+  - https://scavio.dev/pl/docs/amazon-offers
+  - https://scavio.dev/pl/docs/amazon-options
+- Svenska (sv):
+  - https://scavio.dev/sv/docs/amazon-api
+  - https://scavio.dev/sv/docs/amazon-product
+  - https://scavio.dev/sv/docs/amazon-offers
+  - https://scavio.dev/sv/docs/amazon-options
+- Türkçe (tr):
+  - https://scavio.dev/tr/docs/amazon-api
+  - https://scavio.dev/tr/docs/amazon-product
+  - https://scavio.dev/tr/docs/amazon-offers
+  - https://scavio.dev/tr/docs/amazon-options
+- العربية (ar):
+  - https://scavio.dev/ar/docs/amazon-api
+  - https://scavio.dev/ar/docs/amazon-product
+  - https://scavio.dev/ar/docs/amazon-offers
+  - https://scavio.dev/ar/docs/amazon-options
 
 ### Walmart
 - https://scavio.dev/docs/walmart-api
@@ -667,6 +909,15 @@ Arcade, Agno (in core), and OpenClaw skills.
 - https://scavio.dev/docs/walmart-offers
 - https://scavio.dev/docs/walmart-seller
 - https://scavio.dev/docs/walmart-seller-products
+- https://scavio.dev/docs/walmart-stores
+- Español (es):
+  - https://scavio.dev/es/docs/walmart-api
+  - https://scavio.dev/es/docs/walmart-category
+- Français (fr):
+  - https://scavio.dev/fr/docs/walmart-api
+  - https://scavio.dev/fr/docs/walmart-product
+  - https://scavio.dev/fr/docs/walmart-category
+  - https://scavio.dev/fr/docs/walmart-stores
 
 ### eBay
 - https://scavio.dev/docs/ebay-search
@@ -678,11 +929,225 @@ Arcade, Agno (in core), and OpenClaw skills.
 - https://scavio.dev/docs/target-category
 - https://scavio.dev/docs/target-product
 - https://scavio.dev/docs/target-reviews
+- https://scavio.dev/docs/target-availability
 
 ### Home Depot
 - https://scavio.dev/docs/home-depot-search
 - https://scavio.dev/docs/home-depot-product
 - https://scavio.dev/docs/home-depot-reviews
+- https://scavio.dev/docs/home-depot-stores
+- https://scavio.dev/docs/home-depot-availability
+- https://scavio.dev/docs/home-depot-shipping
+
+### Costco
+- https://scavio.dev/docs/costco-search
+- https://scavio.dev/docs/costco-category
+- https://scavio.dev/docs/costco-categories
+- https://scavio.dev/docs/costco-product
+- https://scavio.dev/docs/costco-prices
+- https://scavio.dev/docs/costco-availability
+- https://scavio.dev/docs/costco-reviews
+- https://scavio.dev/docs/costco-warehouses
+- https://scavio.dev/docs/costco-gas
+- https://scavio.dev/docs/costco-coupons
+- https://scavio.dev/docs/costco-deals
+- https://scavio.dev/docs/costco-clearance
+- https://scavio.dev/docs/costco-autocomplete
+- Español (es):
+  - https://scavio.dev/es/docs/costco-search
+  - https://scavio.dev/es/docs/costco-product
+  - https://scavio.dev/es/docs/costco-warehouses
+- Français (fr):
+  - https://scavio.dev/fr/docs/costco-search
+  - https://scavio.dev/fr/docs/costco-category
+  - https://scavio.dev/fr/docs/costco-categories
+  - https://scavio.dev/fr/docs/costco-product
+  - https://scavio.dev/fr/docs/costco-prices
+  - https://scavio.dev/fr/docs/costco-availability
+  - https://scavio.dev/fr/docs/costco-warehouses
+  - https://scavio.dev/fr/docs/costco-gas
+  - https://scavio.dev/fr/docs/costco-deals
+  - https://scavio.dev/fr/docs/costco-clearance
+  - https://scavio.dev/fr/docs/costco-autocomplete
+- 日本語 (ja):
+  - https://scavio.dev/ja/docs/costco-search
+  - https://scavio.dev/ja/docs/costco-product
+  - https://scavio.dev/ja/docs/costco-warehouses
+- 한국어 (ko):
+  - https://scavio.dev/ko/docs/costco-search
+  - https://scavio.dev/ko/docs/costco-product
+  - https://scavio.dev/ko/docs/costco-warehouses
+- 繁體中文 (zh-tw):
+  - https://scavio.dev/zh-tw/docs/costco-search
+  - https://scavio.dev/zh-tw/docs/costco-product
+  - https://scavio.dev/zh-tw/docs/costco-warehouses
+
+### HEB
+- https://scavio.dev/docs/heb-search
+- https://scavio.dev/docs/heb-product
+- https://scavio.dev/docs/heb-stores
+- Español (es):
+  - https://scavio.dev/es/docs/heb-search
+  - https://scavio.dev/es/docs/heb-product
+
+### Kroger
+- https://scavio.dev/docs/kroger-search
+- https://scavio.dev/docs/kroger-product
+
+### Decathlon
+- https://scavio.dev/docs/decathlon-search
+- https://scavio.dev/docs/decathlon-product
+- Español (es):
+  - https://scavio.dev/es/docs/decathlon-search
+  - https://scavio.dev/es/docs/decathlon-product
+- Português (pt):
+  - https://scavio.dev/pt/docs/decathlon-search
+  - https://scavio.dev/pt/docs/decathlon-product
+- Français (fr):
+  - https://scavio.dev/fr/docs/decathlon-search
+  - https://scavio.dev/fr/docs/decathlon-product
+- Italiano (it):
+  - https://scavio.dev/it/docs/decathlon-search
+  - https://scavio.dev/it/docs/decathlon-product
+
+### Spec's
+- https://scavio.dev/docs/specs-search
+- https://scavio.dev/docs/specs-product
+- https://scavio.dev/docs/specs-stores
+
+### Lowe's
+- https://scavio.dev/docs/lowes-search
+- https://scavio.dev/docs/lowes-product
+- https://scavio.dev/docs/lowes-stores
+- https://scavio.dev/docs/lowes-reviews
+
+### Sam's Club
+- https://scavio.dev/docs/samsclub-search
+- https://scavio.dev/docs/samsclub-product
+- https://scavio.dev/docs/samsclub-clubs
+- https://scavio.dev/docs/samsclub-savings
+- https://scavio.dev/docs/samsclub-category
+- https://scavio.dev/docs/samsclub-reviews
+
+### Canadian Tire
+- https://scavio.dev/docs/canadiantire-search
+- https://scavio.dev/docs/canadiantire-product
+- https://scavio.dev/docs/canadiantire-stores
+- https://scavio.dev/docs/canadiantire-availability
+- https://scavio.dev/docs/canadiantire-clearance
+- https://scavio.dev/docs/canadiantire-deals
+- Français (fr):
+  - https://scavio.dev/fr/docs/canadiantire-search
+  - https://scavio.dev/fr/docs/canadiantire-product
+  - https://scavio.dev/fr/docs/canadiantire-stores
+  - https://scavio.dev/fr/docs/canadiantire-availability
+  - https://scavio.dev/fr/docs/canadiantire-clearance
+  - https://scavio.dev/fr/docs/canadiantire-deals
+
+### Dollar General
+- https://scavio.dev/docs/dollargeneral-search
+- https://scavio.dev/docs/dollargeneral-product
+- https://scavio.dev/docs/dollargeneral-stores
+- https://scavio.dev/docs/dollargeneral-deals
+- https://scavio.dev/docs/dollargeneral-coupons
+
+### Sephora
+- https://scavio.dev/docs/sephora-search
+- https://scavio.dev/docs/sephora-category
+- https://scavio.dev/docs/sephora-product
+
+### Ulta Beauty
+- https://scavio.dev/docs/ulta-search
+- https://scavio.dev/docs/ulta-category
+- https://scavio.dev/docs/ulta-product
+- https://scavio.dev/docs/ulta-stores
+
+### ALDI
+- https://scavio.dev/docs/aldi-search
+- https://scavio.dev/docs/aldi-product
+- https://scavio.dev/docs/aldi-stores
+
+### Micro Center
+- https://scavio.dev/docs/microcenter-search
+- https://scavio.dev/docs/microcenter-product
+- https://scavio.dev/docs/microcenter-stores
+
+### Walgreens
+- https://scavio.dev/docs/walgreens-search
+- https://scavio.dev/docs/walgreens-product
+- https://scavio.dev/docs/walgreens-stores
+- https://scavio.dev/docs/walgreens-stock
+
+### CVS
+- https://scavio.dev/docs/cvs-search
+- https://scavio.dev/docs/cvs-product
+- https://scavio.dev/docs/cvs-stock
+
+### Whole Foods
+- https://scavio.dev/docs/wholefoods-search
+- https://scavio.dev/docs/wholefoods-category
+- https://scavio.dev/docs/wholefoods-deals
+- https://scavio.dev/docs/wholefoods-product
+- https://scavio.dev/docs/wholefoods-stores
+- https://scavio.dev/docs/wholefoods-store
+- https://scavio.dev/docs/wholefoods-sales-flyer
+
+### Harbor Freight
+- https://scavio.dev/docs/harborfreight-search
+- https://scavio.dev/docs/harborfreight-clearance
+- https://scavio.dev/docs/harborfreight-product
+- https://scavio.dev/docs/harborfreight-prices
+- https://scavio.dev/docs/harborfreight-stores
+- https://scavio.dev/docs/harborfreight-availability
+- https://scavio.dev/docs/harborfreight-reviews
+
+### PetSmart
+- https://scavio.dev/docs/petsmart-search
+- https://scavio.dev/docs/petsmart-product
+- https://scavio.dev/docs/petsmart-stores
+- https://scavio.dev/docs/petsmart-store-stock
+- https://scavio.dev/docs/petsmart-availability
+- https://scavio.dev/docs/petsmart-deals
+
+### Petco
+- https://scavio.dev/docs/petco-search
+- https://scavio.dev/docs/petco-category
+- https://scavio.dev/docs/petco-product
+- https://scavio.dev/docs/petco-stores
+- https://scavio.dev/docs/petco-store-inventory
+
+### iHerb
+- https://scavio.dev/docs/iherb-search
+- https://scavio.dev/docs/iherb-product
+- https://scavio.dev/docs/iherb-prices
+- https://scavio.dev/docs/iherb-reviews
+
+### Chewy
+- https://scavio.dev/docs/chewy-search
+- https://scavio.dev/docs/chewy-product
+
+### Menards
+- https://scavio.dev/docs/menards-search
+- https://scavio.dev/docs/menards-product
+- https://scavio.dev/docs/menards-stores
+
+### Mercado Libre
+- https://scavio.dev/docs/mercadolibre-search
+- https://scavio.dev/docs/mercadolibre-product
+- https://scavio.dev/docs/mercadolibre-reviews
+- https://scavio.dev/docs/mercadolibre-questions
+- https://scavio.dev/docs/mercadolibre-best-sellers
+- Español (es):
+  - https://scavio.dev/es/docs/mercadolibre-search
+  - https://scavio.dev/es/docs/mercadolibre-product
+  - https://scavio.dev/es/docs/mercadolibre-reviews
+  - https://scavio.dev/es/docs/mercadolibre-questions
+  - https://scavio.dev/es/docs/mercadolibre-best-sellers
+- Português (pt):
+  - https://scavio.dev/pt/docs/mercadolibre-search
+  - https://scavio.dev/pt/docs/mercadolibre-product
+  - https://scavio.dev/pt/docs/mercadolibre-reviews
+  - https://scavio.dev/pt/docs/mercadolibre-questions
 
 ### TikTok Shop
 - https://scavio.dev/docs/tiktok-shop-search
@@ -703,6 +1168,23 @@ Arcade, Agno (in core), and OpenClaw skills.
 - https://scavio.dev/docs/redfin-search
 - https://scavio.dev/docs/redfin-property
 - https://scavio.dev/docs/redfin-market
+
+### Realtor.com
+- https://scavio.dev/docs/realtor-search
+- https://scavio.dev/docs/realtor-property
+- https://scavio.dev/docs/realtor-locations
+- https://scavio.dev/docs/realtor-market
+- https://scavio.dev/docs/realtor-agents
+- https://scavio.dev/docs/realtor-agent
+
+### Rightmove
+- https://scavio.dev/docs/rightmove-search
+- https://scavio.dev/docs/rightmove-property
+- https://scavio.dev/docs/rightmove-sold
+- https://scavio.dev/docs/rightmove-sold-property
+- https://scavio.dev/docs/rightmove-locations
+- https://scavio.dev/docs/rightmove-agents
+- https://scavio.dev/docs/rightmove-agent
 
 ### Booking.com
 - https://scavio.dev/docs/booking-search
@@ -775,6 +1257,14 @@ Arcade, Agno (in core), and OpenClaw skills.
 - https://scavio.dev/docs/capterra-product
 - https://scavio.dev/docs/capterra-reviews
 
+### Trustpilot
+- https://scavio.dev/docs/trustpilot-search
+- https://scavio.dev/docs/trustpilot-business
+- https://scavio.dev/docs/trustpilot-reviews
+- https://scavio.dev/docs/trustpilot-categories
+- https://scavio.dev/docs/trustpilot-category
+- https://scavio.dev/docs/trustpilot-review
+
 ### Google Ads Transparency
 - https://scavio.dev/docs/google-ads-advertisers
 - https://scavio.dev/docs/google-ads-search
@@ -826,16 +1316,6 @@ Browse all: https://scavio.dev/compare
 
 - [bing-web-search-api](https://scavio.dev/compare/bing-web-search-api)
 - ...and 21 more at https://scavio.dev/compare
-
-## Comparisons (tool vs tool)
-Browse all: https://scavio.dev/compare
-
-- [ahrefs-api-vs-raw-serp-api](https://scavio.dev/compare/ahrefs-api/vs-raw-serp-api)
-- [apify-tiktok-scraper-vs-scavio-tiktok-api](https://scavio.dev/compare/apify-tiktok-scraper/vs-scavio-tiktok-api)
-- [apify-vs-search-api](https://scavio.dev/compare/apify/vs-search-api)
-- [apollo-io-vs-search-api-scavio](https://scavio.dev/compare/apollo-io/vs-search-api-scavio)
-- [apollo-vs-api-first-enrichment](https://scavio.dev/compare/apollo/vs-api-first-enrichment)
-- ...and 135 more at https://scavio.dev/compare
 
 ## Best-of Rankings
 Browse all: https://scavio.dev/best

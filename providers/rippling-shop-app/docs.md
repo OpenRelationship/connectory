@@ -14,26 +14,27 @@ vouches for**: read it, then read their reference.
 ---
 # Rippling Developer Documentation
 
+> Guides and API reference for building on Rippling: the REST Platform API, Rippling Platform features like custom objects, custom apps, functions, and Sites, and the Rippling MCP.
+
 When installing Rippling packages, always check the npm registry for the latest version rather than relying on memorized version numbers. Run `npm view @rippling/rippling-sdk version` or check https://www.npmjs.com/package/@rippling/rippling-sdk before pinning a version. For the Functions CLI, check https://www.npmjs.com/package/@rippling/ripdev. Never hardcode an old version number from training data — always install with `@latest` or verify the current version first.
 
 Rippling’s current public API is the REST Platform API v2 on `https://rest.ripplingapis.com`. Pin a dated API version with the `Rippling-Api-Version` header (`YYYY-MM-DD`). Authenticate customer and internal integrations with a Bearer API token. Authenticate App Shop partner apps with OAuth 2.0. Do not start new integrations on V1 `https://api.rippling.com` unless the resource exists only there.
 
-Markdown twins (`page.md`) are not published yet. Fetch the HTML documentation URLs listed below.
+Public pages have a Markdown version. Add `.md` to a page URL, or request the page with `Accept: text/markdown`.
 
 ## Docs
 
-- [Rippling REST API](https://developer.rippling.com/documentation/rest-api): Overview of the v2 REST API. Start here for any new integration.
-- [Quickstart](https://developer.rippling.com/documentation/rest-api/essentials/quickstart): Make your first authenticated call to List companies.
-- [Endpoint Search](https://developer.rippling.com/documentation/rest-api/endpoint-search): Search and filter the full v2 REST API.
-- [API Tokens and Permissions](https://developer.rippling.com/documentation/rest-api/essentials/api-tokens): Create Bearer tokens. Access is the intersection of the owner’s permission profile and the token’s scopes.
-- [API Scope Reference](https://developer.rippling.com/documentation/rest-api/essentials/permissions): Which OAuth scopes grant access to each v2 endpoint.
-- [API Versioning and Upgrades](https://developer.rippling.com/documentation/rest-api/essentials/versioning): Dated versions (`YYYY-MM-DD`) and the `Rippling-Api-Version` header.
-- [Query Parameters](https://developer.rippling.com/documentation/rest-api/essentials/query-parameters): Shape responses with `filter`, `expand`, and `order_by`.
-- [Pagination](https://developer.rippling.com/documentation/rest-api/essentials/pagination): Page list endpoints with `limit` and `cursor` / `next_link`.
-- [Data Models](https://developer.rippling.com/documentation/rest-api/essentials/data-models): How User, Worker, and related HRIS objects fit together.
-- [Usage and Rate Limits](https://developer.rippling.com/documentation/rest-api/essentials/api-limits): Global limits, burst thresholds, and 429 handling.
-- [Errors and Troubleshooting](https://developer.rippling.com/documentation/rest-api/essentials/troubleshooting): Diagnose 401, 403, redacted fields, and failed requests.
-- [Changelog](https://developer.rippling.com/documentation/rest-api/essentials/changelog): Track changes to the v2 REST API.
+- [Rippling REST API](https://developer.rippling.com/documentation/rest-api.md): Overview of the v2 REST API. Start here for any new integration.
+- [Quickstart](https://developer.rippling.com/documentation/rest-api/essentials/quickstart.md): Make your first authenticated call to List companies.
+- [API Tokens and Permissions](https://developer.rippling.com/documentation/rest-api/essentials/api-tokens.md): Create Bearer tokens. Access is the intersection of the owner’s permission profile and the token’s scopes.
+- [API Scope Reference](https://developer.rippling.com/documentation/rest-api/essentials/permissions.md): Which OAuth scopes grant access to each v2 endpoint.
+- [API Versioning and Upgrades](https://developer.rippling.com/documentation/rest-api/essentials/versioning.md): Dated versions (`YYYY-MM-DD`) and the `Rippling-Api-Version` header.
+- [Query Parameters](https://developer.rippling.com/documentation/rest-api/essentials/query-parameters.md): Shape responses with `filter`, `expand`, and `order_by`.
+- [Pagination](https://developer.rippling.com/documentation/rest-api/essentials/pagination.md): Page list endpoints with `limit` and `cursor` / `next_link`.
+- [Data Models](https://developer.rippling.com/documentation/rest-api/essentials/data-models.md): How User, Worker, and related HRIS objects fit together.
+- [Usage and Rate Limits](https://developer.rippling.com/documentation/rest-api/essentials/api-limits.md): Global limits, burst thresholds, and 429 handling.
+- [Errors and Troubleshooting](https://developer.rippling.com/documentation/rest-api/essentials/troubleshooting.md): Diagnose 401, 403, redacted fields, and failed requests.
+- [Changelog](https://developer.rippling.com/documentation/rest-api/essentials/changelog.md): Track changes to the v2 REST API.
 
 ## Authentication
 
@@ -43,170 +44,204 @@ Rippling has three authentication paths. Pick one and do not mix them.
 - App Shop partner apps: OAuth 2.0. Rippling is the authorization server. Exchange `code` at `https://api.rippling.com/api/o/token/`. One access token maps to one customer company. It is a Terms of Service violation to use an API key on behalf of another organization.
 - Rippling MCP: The connected employee’s Rippling identity, gated by MCP Gateway policy. Do not give MCP clients a company-wide API token.
 
-- [API Tokens and Permissions](https://developer.rippling.com/documentation/rest-api/essentials/api-tokens): Bearer tokens for customer and internal integrations.
-- [Installation (OAuth)](https://developer.rippling.com/documentation/developer-portal/v2-guides/installation): App Shop install flow, authorization codes, refresh tokens, and mark-app-installed.
-- [OAuth Credentials](https://developer.rippling.com/documentation/developer-portal/v2-guides/oauth): Client ID, client secret, and token exchange.
-- [App Shop Scopes](https://developer.rippling.com/documentation/developer-portal/v2-guides/scopes): Scopes customers grant when installing a partner app.
-- [Redirect URLs](https://developer.rippling.com/documentation/developer-portal/v2-guides/redirect): Allowed redirect URIs for OAuth.
-- [Overview of the Rippling MCP](https://developer.rippling.com/documentation/rippling-platform/rippling-mcp/overview): User-identity MCP connection. Not an API-key integration path.
+- [API Tokens and Permissions](https://developer.rippling.com/documentation/rest-api/essentials/api-tokens.md): Bearer tokens for customer and internal integrations.
+- [Installation (OAuth)](https://developer.rippling.com/documentation/developer-portal/v2-guides/installation.md): App Shop install flow, authorization codes, refresh tokens, and mark-app-installed.
+- [OAuth Credentials](https://developer.rippling.com/documentation/developer-portal/v2-guides/oauth.md): Client ID, client secret, and token exchange.
+- [App Shop Scopes](https://developer.rippling.com/documentation/developer-portal/v2-guides/scopes.md): Scopes customers grant when installing a partner app.
+- [Redirect URLs](https://developer.rippling.com/documentation/developer-portal/v2-guides/redirect.md): Allowed redirect URIs for OAuth.
+- [Overview of the Rippling MCP](https://developer.rippling.com/documentation/rippling-platform/rippling-mcp/overview.md): User-identity MCP connection. Not an API-key integration path.
 
 ## HRIS
 
 Foundational employee data used across Rippling products: users, workers, compensation, entitlements, and draft hires.
 
-- [HRIS API - Getting Started](https://developer.rippling.com/documentation/rest-api/guides/hris-getting-started): Workers, users, compensations, entitlements, SSO me, and draft hires.
-- [Create and Bulk Hire Draft Hires](https://developer.rippling.com/documentation/rest-api/guides/drafthires): Create draft hires that follow Rippling’s review and approval policies.
-- [View Worker Changes](https://developer.rippling.com/documentation/rest-api/guides/worker-changes): Detect and consume worker field changes.
-- [File Uploads](https://developer.rippling.com/documentation/rest-api/guides/file-uploads): Upload files for use with REST APIs.
-- [List workers](https://developer.rippling.com/documentation/rest-api/reference/list-workers)
-- [Retrieve a worker](https://developer.rippling.com/documentation/rest-api/reference/get-workers)
-- [List users](https://developer.rippling.com/documentation/rest-api/reference/list-users)
-- [Retrieve a user](https://developer.rippling.com/documentation/rest-api/reference/get-users)
-- [List compensations](https://developer.rippling.com/documentation/rest-api/reference/list-compensations)
-- [Create draft hires](https://developer.rippling.com/documentation/rest-api/reference/create-draft-hires)
+- [HRIS API - Getting Started](https://developer.rippling.com/documentation/rest-api/guides/hris-getting-started.md): Workers, users, compensations, entitlements, SSO me, and draft hires.
+- [Create and Bulk Hire Draft Hires](https://developer.rippling.com/documentation/rest-api/guides/drafthires.md): Create draft hires that follow Rippling’s review and approval policies.
+- [View Worker Changes](https://developer.rippling.com/documentation/rest-api/guides/worker-changes.md): Detect and consume worker field changes.
+- [File Uploads](https://developer.rippling.com/documentation/rest-api/guides/file-uploads.md): Upload files for use with REST APIs.
+- [List workers](https://developer.rippling.com/documentation/rest-api/reference/list-workers.md)
+- [Retrieve a worker](https://developer.rippling.com/documentation/rest-api/reference/get-workers.md)
+- [List users](https://developer.rippling.com/documentation/rest-api/reference/list-users.md)
+- [Retrieve a user](https://developer.rippling.com/documentation/rest-api/reference/get-users.md)
+- [List compensations](https://developer.rippling.com/documentation/rest-api/reference/list-compensations.md)
+- [Create draft hires](https://developer.rippling.com/documentation/rest-api/reference/create-draft-hires.md)
 
 ## Organizational Data
 
 Company structure: departments, titles, legal entities, work locations, and related org objects.
 
-- [Organizational Data - Getting Started](https://developer.rippling.com/documentation/rest-api/guides/org-data-getting-started): Departments, entities, work locations, and org structure.
-- [List companies](https://developer.rippling.com/documentation/rest-api/reference/list-companies): Verify auth and bind a token to the current company.
-- [List departments](https://developer.rippling.com/documentation/rest-api/reference/list-departments)
-- [Create a department](https://developer.rippling.com/documentation/rest-api/reference/create-departments)
-- [List work locations](https://developer.rippling.com/documentation/rest-api/reference/list-work-locations)
-- [Create a work location](https://developer.rippling.com/documentation/rest-api/reference/create-work-locations)
-- [Update a work location](https://developer.rippling.com/documentation/rest-api/reference/update-work-locations)
+- [Organizational Data - Getting Started](https://developer.rippling.com/documentation/rest-api/guides/org-data-getting-started.md): Departments, entities, work locations, and org structure.
+- [List companies](https://developer.rippling.com/documentation/rest-api/reference/list-companies.md): Verify auth and bind a token to the current company.
+- [List departments](https://developer.rippling.com/documentation/rest-api/reference/list-departments.md)
+- [Create a department](https://developer.rippling.com/documentation/rest-api/reference/create-departments.md)
+- [List work locations](https://developer.rippling.com/documentation/rest-api/reference/list-work-locations.md)
+- [Create a work location](https://developer.rippling.com/documentation/rest-api/reference/create-work-locations.md)
+- [Update a work location](https://developer.rippling.com/documentation/rest-api/reference/update-work-locations.md)
 
 ## Data and Custom Objects
 
 Store structured data on the employee graph. Custom objects, fields, records, and categories behave like native Rippling objects once defined.
 
-- [Data - Getting Started](https://developer.rippling.com/documentation/rest-api/guides/data-getting-started): Custom objects, custom fields, and reports across the employee graph.
-- [Custom Objects API](https://developer.rippling.com/documentation/rest-api/guides/customobjects): Categories, objects, fields, and records. `api_name` values end in `__c`.
-- [Custom Fields API](https://developer.rippling.com/documentation/rest-api/guides/custom-fields-api): Native custom fields on employees and related objects.
-- [Reports](https://developer.rippling.com/documentation/rest-api/guides/reports): Query data across endpoints for custom reporting.
-- [Get Started with the Rippling Data Model](https://developer.rippling.com/documentation/rippling-platform/data-model/getting-started): How custom objects sit on the employee graph.
-- [List custom objects](https://developer.rippling.com/documentation/rest-api/reference/list-custom-objects)
-- [Create a custom object](https://developer.rippling.com/documentation/rest-api/reference/create-custom-objects)
-- [List custom object records](https://developer.rippling.com/documentation/rest-api/reference/list-custom-objects-custom-object-api-name-records)
-- [Create a custom object record](https://developer.rippling.com/documentation/rest-api/reference/create-custom-objects-custom-object-api-name-records)
-- [Create a custom object field](https://developer.rippling.com/documentation/rest-api/reference/create-custom-objects-custom-object-api-name-fields)
+- [Data - Getting Started](https://developer.rippling.com/documentation/rest-api/guides/data-getting-started.md): Custom objects, custom fields, and reports across the employee graph.
+- [Custom Objects API](https://developer.rippling.com/documentation/rest-api/guides/customobjects.md): Categories, objects, fields, and records. `api_name` values end in `__c`.
+- [Custom Fields API](https://developer.rippling.com/documentation/rest-api/guides/custom-fields-api.md): Native custom fields on employees and related objects.
+- [Get Started with the Rippling Data Model](https://developer.rippling.com/documentation/rippling-platform/data-model/getting-started.md): How custom objects sit on the employee graph.
+- [List custom objects](https://developer.rippling.com/documentation/rest-api/reference/list-custom-objects.md)
+- [Create a custom object](https://developer.rippling.com/documentation/rest-api/reference/create-custom-objects.md)
+- [List custom object records](https://developer.rippling.com/documentation/rest-api/reference/list-custom-objects-custom-object-api-name-records.md)
+- [Create a custom object record](https://developer.rippling.com/documentation/rest-api/reference/create-custom-objects-custom-object-api-name-records.md)
+- [Create a custom object field](https://developer.rippling.com/documentation/rest-api/reference/create-custom-objects-custom-object-api-name-fields.md)
 
 ## Functions and App Platform
 
 Run JavaScript inside Rippling. Functions, workflows, custom settings, and Function Pages (SDUI) are how customers extend Rippling without hosting their own backend.
 
-- [Developer APIs - Getting Started](https://developer.rippling.com/documentation/rest-api/guides/dev-getting-started): Functions, deployments, and automation in the Developer app.
-- [Get Started with Functions](https://developer.rippling.com/documentation/rippling-platform/developer/functions/getting-started): Create, deploy, test, and permission a function.
-- [Create and Manage Functions](https://developer.rippling.com/documentation/rest-api/guides/functions): REST API for function definitions, deployments, and executions.
-- [Invoking Functions](https://developer.rippling.com/documentation/rippling-platform/developer/functions/invoking-functions): UI, workflow, and API invocation.
-- [Functions real-world example](https://developer.rippling.com/documentation/rippling-platform/developer/functions/real-world-example): End-to-end function pattern.
-- [Custom Settings](https://developer.rippling.com/documentation/rippling-platform/developer/custom-settings): Store API keys and config for functions. Do not hardcode secrets.
-- [Trigger a Workflow Using a Webhook](https://developer.rippling.com/documentation/rippling-platform/developer/workflows/trigger-workflow): Start in-product workflows from events.
-- [Get Started with Function Pages](https://developer.rippling.com/documentation/rippling-platform/sdui/getting-started): SDUI pages backed by functions.
-- [Function Pages hello world](https://developer.rippling.com/documentation/rippling-platform/sdui/hello-world)
-- [Function Pages components](https://developer.rippling.com/documentation/rippling-platform/sdui/components)
-- [App Studio](https://developer.rippling.com/documentation/rippling-platform/app-studio): Build and package in-Rippling apps.
-- [List functions](https://developer.rippling.com/documentation/rest-api/reference/list-functions)
-- [Create a function](https://developer.rippling.com/documentation/rest-api/reference/create-functions)
-- [Create a function execution](https://developer.rippling.com/documentation/rest-api/reference/create-functions-function-api-name-executions)
+- [Developer APIs - Getting Started](https://developer.rippling.com/documentation/rest-api/guides/dev-getting-started.md): Functions, deployments, and automation in the Developer app.
+- [Get Started with Functions](https://developer.rippling.com/documentation/rippling-platform/developer/functions/getting-started.md): Create, deploy, test, and permission a function.
+- [Create and Manage Functions](https://developer.rippling.com/documentation/rest-api/guides/functions.md): REST API for function definitions, deployments, and executions.
+- [Invoking Functions](https://developer.rippling.com/documentation/rippling-platform/developer/functions/invoking-functions.md): UI, workflow, and API invocation.
+- [Functions real-world example](https://developer.rippling.com/documentation/rippling-platform/developer/functions/real-world-example.md): End-to-end function pattern.
+- [Custom Settings](https://developer.rippling.com/documentation/rippling-platform/developer/custom-settings.md): Store API keys and config for functions. Do not hardcode secrets.
+- [Create and manage settings](https://developer.rippling.com/documentation/rest-api/guides/custom-settings.md): Use the Settings API to create, retrieve, update, and delete settings.
+- [Trigger a Workflow Using a Webhook](https://developer.rippling.com/documentation/rippling-platform/developer/workflows/trigger-workflow.md): Start in-product workflows from events.
+- [Get Started with Function Pages](https://developer.rippling.com/documentation/rippling-platform/sdui/getting-started.md): SDUI pages backed by functions.
+- [Function Pages hello world](https://developer.rippling.com/documentation/rippling-platform/sdui/hello-world.md)
+- [Function Pages components](https://developer.rippling.com/documentation/rippling-platform/sdui/components.md)
+- [Custom Apps](https://developer.rippling.com/documentation/rippling-platform/custom-apps/get-started.md): Build and package in-Rippling apps with App Studio.
+- [List functions](https://developer.rippling.com/documentation/rest-api/reference/list-functions.md)
+- [Create a function](https://developer.rippling.com/documentation/rest-api/reference/create-functions.md)
+- [Create a function execution](https://developer.rippling.com/documentation/rest-api/reference/create-functions-function-api-name-executions.md)
 
 ## Time
 
 Schedules, time entries, time off, leave balances, and timeclock data.
 
-- [Time API - Getting Started](https://developer.rippling.com/documentation/rest-api/guides/time-getting-started): Schedules, time entries, time off, and timeclock.
-- [Create a Time Entry](https://developer.rippling.com/documentation/rest-api/guides/create-time-entry): Write time entries through the v2 API.
-- [Scheduling](https://developer.rippling.com/documentation/rest-api/guides/scheduling): Worker schedules.
-- [List leave types](https://developer.rippling.com/documentation/rest-api/reference/list-leave-types)
-- [List leave balances](https://developer.rippling.com/documentation/rest-api/reference/list-leave-balances)
-- [List leave requests](https://developer.rippling.com/documentation/rest-api/reference/list-leave-requests)
-- [Create a leave request](https://developer.rippling.com/documentation/rest-api/reference/create-leave-requests)
-
-## Payroll
-
-Payroll runs, earning types, and worker payroll records.
-
-- [Payroll API - Getting Started](https://developer.rippling.com/documentation/rest-api/guides/payroll-getting-started): Payroll runs and worker payroll records.
-- [Manage Payroll](https://developer.rippling.com/documentation/rest-api/guides/manage-payroll): Operate payroll through the v2 API.
+- [Time API - Getting Started](https://developer.rippling.com/documentation/rest-api/guides/time-getting-started.md): Schedules, time entries, time off, and timeclock.
+- [Create a Time Entry](https://developer.rippling.com/documentation/rest-api/guides/create-time-entry.md): Write time entries through the v2 API.
+- [Scheduling](https://developer.rippling.com/documentation/rest-api/guides/scheduling.md): Worker schedules.
+- [List leave types](https://developer.rippling.com/documentation/rest-api/reference/list-leave-types.md)
+- [List leave balances](https://developer.rippling.com/documentation/rest-api/reference/list-leave-balances.md)
+- [List leave requests](https://developer.rippling.com/documentation/rest-api/reference/list-leave-requests.md)
+- [Create a leave request](https://developer.rippling.com/documentation/rest-api/reference/create-leave-requests.md)
 
 ## Talent
 
 Recruiting, headcount planning, performance, compensation bands, jobs, and draft hires.
 
-- [Talent API - Getting Started](https://developer.rippling.com/documentation/rest-api/guides/talent-getting-started): Recruiting, headcount, performance, and bands.
-- [Job Assignments](https://developer.rippling.com/documentation/rest-api/guides/job-assignments): Assign jobs to workers.
-- [Managing Job Rosters](https://developer.rippling.com/documentation/rest-api/guides/managing-job-rosters): Maintain job rosters.
+- [Talent API - Getting Started](https://developer.rippling.com/documentation/rest-api/guides/talent-getting-started.md): Recruiting, headcount, performance, and bands.
+- [Job Assignments](https://developer.rippling.com/documentation/rest-api/guides/job-assignments.md): Assign jobs to workers.
+- [Managing Job Rosters](https://developer.rippling.com/documentation/rest-api/guides/managing-job-rosters.md): Maintain job rosters.
 
 ## Supergroups
 
 Reusable groups for workflows, integrations, permissions, and policies.
 
-- [Supergroups - Getting Started](https://developer.rippling.com/documentation/rest-api/guides/supergroups-getting-started): Attribute-based groups used by functions, workflows, and MCP Gateway policies.
+- [Supergroups - Getting Started](https://developer.rippling.com/documentation/rest-api/guides/supergroups-getting-started.md): Attribute-based groups used by functions, workflows, and MCP Gateway policies.
 
 ## Webhooks
 
 There are two webhook surfaces. Partner App Shop webhooks notify a third-party URL. In-product webhooks trigger Rippling workflows and functions.
 
-- [App Shop webhooks](https://developer.rippling.com/documentation/developer-portal/v2-guides/webhooks): Partner-only. `employee.created`, `employee.updated`, `employee.hired`, `employee.terminated`, leave requests, and company events. ~5 minute lag. Bearer token auth only (no Basic).
-- [Get Started with Webhooks](https://developer.rippling.com/documentation/rippling-platform/developer/webhooks/gettingstarted): In-product webhooks for customer automation.
-- [Trigger a Workflow Using a Webhook](https://developer.rippling.com/documentation/rippling-platform/developer/workflows/trigger-workflow): Connect incoming events to Rippling workflows.
+- [App Shop webhooks](https://developer.rippling.com/documentation/developer-portal/v2-guides/webhooks.md): Partner-only. `employee.created`, `employee.updated`, `employee.hired`, `employee.terminated`, leave requests, and company events. ~5 minute lag. Bearer token auth only (no Basic).
+- [Get Started with Webhooks](https://developer.rippling.com/documentation/rippling-platform/developer/webhooks/gettingstarted.md): In-product webhooks for customer automation.
+- [Trigger a Workflow Using a Webhook](https://developer.rippling.com/documentation/rippling-platform/developer/workflows/trigger-workflow.md): Connect incoming events to Rippling workflows.
 
 ## App Shop Integrations
 
 For organizations building an integration listed in the Rippling App Shop for all Rippling customers. Not for a customer building an internal integration — those use API tokens.
 
-- [Developer Portal](https://developer.rippling.com/documentation/developer-portal): Partner company, test company, listing, and App Shop.
-- [Partner Requirements](https://developer.rippling.com/documentation/developer-portal/getting-started/requirements): What App Shop apps must implement.
-- [Integration process](https://developer.rippling.com/documentation/developer-portal/getting-started/process): Review and launch process.
-- [Create an app listing](https://developer.rippling.com/documentation/developer-portal/creating-publishing/create)
-- [Deploy](https://developer.rippling.com/documentation/developer-portal/creating-publishing/deploy)
-- [Install](https://developer.rippling.com/documentation/developer-portal/creating-publishing/install)
-- [Testing](https://developer.rippling.com/documentation/developer-portal/creating-publishing/testing)
-- [Publish](https://developer.rippling.com/documentation/developer-portal/creating-publishing/publish)
-- [User management](https://developer.rippling.com/documentation/developer-portal/v2-guides/user-management): Provision and deprovision users into the partner app.
-- [SAML](https://developer.rippling.com/documentation/developer-portal/v2-guides/saml)
-- [OpenID](https://developer.rippling.com/documentation/developer-portal/v2-guides/openid)
-- [Errors](https://developer.rippling.com/documentation/developer-portal/v2-guides/errors)
-- [Best practices](https://developer.rippling.com/documentation/developer-portal/v2-guides/bestpractices)
-- [Installation (OAuth)](https://developer.rippling.com/documentation/developer-portal/v2-guides/installation)
+- [Developer Portal](https://developer.rippling.com/documentation/developer-portal.md): Partner company, test company, listing, and App Shop.
+- [Partner Requirements](https://developer.rippling.com/documentation/developer-portal/getting-started/requirements.md): What App Shop apps must implement.
+- [Integration process](https://developer.rippling.com/documentation/developer-portal/getting-started/process.md): Review and launch process.
+- [Create an app listing](https://developer.rippling.com/documentation/developer-portal/creating-publishing/create.md)
+- [Deploy](https://developer.rippling.com/documentation/developer-portal/creating-publishing/deploy.md)
+- [Install](https://developer.rippling.com/documentation/developer-portal/creating-publishing/install.md)
+- [Testing](https://developer.rippling.com/documentation/developer-portal/creating-publishing/testing.md)
+- [Publish](https://developer.rippling.com/documentation/developer-portal/creating-publishing/publish.md)
+- [User management](https://developer.rippling.com/documentation/developer-portal/v2-guides/user-management.md): Provision and deprovision users into the partner app.
+- [SAML](https://developer.rippling.com/documentation/developer-portal/v2-guides/saml.md)
+- [OpenID](https://developer.rippling.com/documentation/developer-portal/v2-guides/openid.md)
+- [Errors](https://developer.rippling.com/documentation/developer-portal/v2-guides/errors.md)
+- [Best practices](https://developer.rippling.com/documentation/developer-portal/v2-guides/bestpractices.md)
+- [Installation (OAuth)](https://developer.rippling.com/documentation/developer-portal/v2-guides/installation.md)
 
 ## Rippling MCP
 
 First-party Model Context Protocol connection for AI clients. Runs as the connected employee. Requires an MCP Gateway policy and a Rippling AI trial or subscription. Not a replacement for the REST API.
 
-- [Overview of the Rippling MCP](https://developer.rippling.com/documentation/rippling-platform/rippling-mcp/overview): Gateway, identity, sandboxing, and what is never exposed.
-- [Set up the Rippling MCP](https://developer.rippling.com/documentation/rippling-platform/rippling-mcp/setup): Connect an MCP client.
-- [Rippling MCP Tools](https://developer.rippling.com/documentation/rippling-platform/rippling-mcp/tools): `ask_ai`, people/org, time off, draft hire, and custom objects.
-- [MCP Troubleshooting](https://developer.rippling.com/documentation/rippling-platform/rippling-mcp/troubleshooting)
-
-## JavaScript SDK and CLI
-
-- [Rippling JavaScript SDK](https://developer.rippling.com/documentation/js-sdk): Official SDK (`npm install @rippling/rippling-sdk`) for the v2 REST API.
-- [SDK API Reference](https://developer.rippling.com/documentation/js-sdk/api)
-- [SDK Functions helpers](https://developer.rippling.com/documentation/js-sdk/functions)
-- [Ripdev CLI](https://developer.rippling.com/documentation/js-sdk/ripdev): `ripdev` for local Functions development, deploy, and execute (`npm install -g @rippling/ripdev`).
+- [Overview of the Rippling MCP](https://developer.rippling.com/documentation/rippling-platform/rippling-mcp/overview.md): Gateway, identity, sandboxing, and what is never exposed.
+- [Set up the Rippling MCP](https://developer.rippling.com/documentation/rippling-platform/rippling-mcp/setup.md): Connect an MCP client.
+- [Rippling MCP Tools](https://developer.rippling.com/documentation/rippling-platform/rippling-mcp/tools.md): `ask_ai`, people/org, time off, draft hire, and custom objects.
+- [MCP Troubleshooting](https://developer.rippling.com/documentation/rippling-platform/rippling-mcp/troubleshooting.md)
 
 ## Pipelines and Transformations
 
-- [Pipelines getting started](https://developer.rippling.com/documentation/rippling-platform/pipelines/getting-started): In-Rippling data pipelines.
-- [Custom pipeline setup](https://developer.rippling.com/documentation/rippling-platform/pipelines/custom-pipeline-setup)
-- [Transformations](https://developer.rippling.com/documentation/rippling-platform/transformations/getting-started): SQL transformations over Rippling data.
+- [Get started with pipelines](https://developer.rippling.com/documentation/rippling-platform/pipelines/getting-started.md): In-Rippling data pipelines.
+- [Set up a custom pipeline](https://developer.rippling.com/documentation/rippling-platform/pipelines/custom-pipeline-setup.md)
+- [Permissions for pipelines](https://developer.rippling.com/documentation/rippling-platform/pipelines/permissions.md)
+- [Pipeline sync management guide](https://developer.rippling.com/documentation/rippling-platform/pipelines/sync-management.md)
+- [Pipeline FAQs](https://developer.rippling.com/documentation/rippling-platform/pipelines/faqs.md)
+- [Transformations](https://developer.rippling.com/documentation/rippling-platform/transformations/getting-started.md): SQL transformations over Rippling data.
+
+## Reports and Dashboards
+
+- [Get started with reports](https://developer.rippling.com/documentation/rippling-platform/reports/getting-started.md): In-product reports, time frames, and data refresh behavior.
+- [Joins in reports](https://developer.rippling.com/documentation/rippling-platform/reports/joins.md)
+- [Filters and time frames in reports](https://developer.rippling.com/documentation/rippling-platform/reports/filters.md)
+- [Charts, grouping, and formatting in reports](https://developer.rippling.com/documentation/rippling-platform/reports/visualization.md)
+- [Report permissions](https://developer.rippling.com/documentation/rippling-platform/reports/permissions.md)
+- [Share and download reports](https://developer.rippling.com/documentation/rippling-platform/reports/sharing.md)
+- [Get started with dashboards](https://developer.rippling.com/documentation/rippling-platform/dashboards/getting-started.md)
+- [Overview of dashboard filters](https://developer.rippling.com/documentation/rippling-platform/dashboards/filters.md)
+- [Dashboard sharing and permissions](https://developer.rippling.com/documentation/rippling-platform/dashboards/sharing.md)
 
 ## Optional
 
 Secondary surfaces. Skip these unless the user is on a legacy V1 integration, App Shop legal/process, or a V1-only resource.
 
-- [API V1 Archive](https://developer.rippling.com/documentation/v1-archive-api): Legacy V1 APIs. Do not use for new work.
-- [Employee API (V1)](https://developer.rippling.com/documentation/employee-api): Legacy employee resource. Prefer v2 Workers and Users.
-- [Base API (V1)](https://developer.rippling.com/documentation/base-api)
-- [Company API (V1)](https://developer.rippling.com/documentation/company-api)
-- [Payroll API (V1)](https://developer.rippling.com/documentation/payroll-api)
-- [Global Payroll API (V1)](https://developer.rippling.com/documentation/global-payroll-api)
-- [Recruiting API (V1)](https://developer.rippling.com/documentation/recruiting-api)
-- [Reports API (V1)](https://developer.rippling.com/documentation/reports-api)
-- [Time and Attendance API (V1)](https://developer.rippling.com/documentation/t-and-a-api)
-- [Job Board API](https://developer.rippling.com/documentation/job-board-api)
-- [GraphQL API (V1)](https://developer.rippling.com/documentation/graphql-api): Truework / verification GraphQL. Not a general Rippling query API. Do not use for new HRIS, payroll, or app integrations.
-- [V1 App Shop guides](https://developer.rippling.com/documentation/developer-portal/v1-guides/installation): Legacy partner installation. Use v2 guides instead.
-- [Developer Terms](https://developer.rippling.com/documentation/developer-portal/legal/terms)
+- [V1 App Shop guides](https://developer.rippling.com/documentation/developer-portal/v1-guides/installation.md): Legacy partner installation. Use v2 guides instead.
+- [Developer Terms](https://developer.rippling.com/documentation/developer-portal/legal/terms.md)
+
+## Optional
+
+Every public page, grouped by section. Each link is a smaller llms.txt that lists the pages in that section. The full text of every page is at https://developer.rippling.com/llms-full.txt.
+
+- [documentation](https://developer.rippling.com/documentation/llms.txt)
+- [documentation / developer portal / creating publishing](https://developer.rippling.com/documentation/developer-portal/creating-publishing/llms.txt)
+- [documentation / developer portal / getting started](https://developer.rippling.com/documentation/developer-portal/getting-started/llms.txt)
+- [documentation / developer portal / legacy api](https://developer.rippling.com/documentation/developer-portal/legacy-api/llms.txt)
+- [documentation / developer portal / legal](https://developer.rippling.com/documentation/developer-portal/legal/llms.txt)
+- [documentation / developer portal / partner company](https://developer.rippling.com/documentation/developer-portal/partner-company/llms.txt)
+- [documentation / developer portal / reference](https://developer.rippling.com/documentation/developer-portal/reference/llms.txt)
+- [documentation / developer portal / reference / schemas](https://developer.rippling.com/documentation/developer-portal/reference/schemas/llms.txt)
+- [documentation / developer portal / rest api](https://developer.rippling.com/documentation/developer-portal/rest-api/llms.txt)
+- [documentation / developer portal / test company](https://developer.rippling.com/documentation/developer-portal/test-company/llms.txt)
+- [documentation / developer portal / updating](https://developer.rippling.com/documentation/developer-portal/updating/llms.txt)
+- [documentation / developer portal / v1 guides](https://developer.rippling.com/documentation/developer-portal/v1-guides/llms.txt)
+- [documentation / developer portal / v2 guides](https://developer.rippling.com/documentation/developer-portal/v2-guides/llms.txt)
+- [documentation / developer portal / video library](https://developer.rippling.com/documentation/developer-portal/video-library/llms.txt)
+- [documentation / rest api / essentials](https://developer.rippling.com/documentation/rest-api/essentials/llms.txt)
+- [documentation / rest api / guides](https://developer.rippling.com/documentation/rest-api/guides/llms.txt)
+- [documentation / rest api / reference](https://developer.rippling.com/documentation/rest-api/reference/llms.txt)
+- [documentation / rest api / reference / schemas](https://developer.rippling.com/documentation/rest-api/reference/schemas/llms.txt)
+- [documentation / rippling platform](https://developer.rippling.com/documentation/rippling-platform/llms.txt)
+- [documentation / rippling platform / approvals](https://developer.rippling.com/documentation/rippling-platform/approvals/llms.txt)
+- [documentation / rippling platform / custom apps](https://developer.rippling.com/documentation/rippling-platform/custom-apps/llms.txt)
+- [documentation / rippling platform / custom objects](https://developer.rippling.com/documentation/rippling-platform/custom-objects/llms.txt)
+- [documentation / rippling platform / custom solutions](https://developer.rippling.com/documentation/rippling-platform/custom-solutions/llms.txt)
+- [documentation / rippling platform / dashboards](https://developer.rippling.com/documentation/rippling-platform/dashboards/llms.txt)
+- [documentation / rippling platform / data model](https://developer.rippling.com/documentation/rippling-platform/data-model/llms.txt)
+- [documentation / rippling platform / developer](https://developer.rippling.com/documentation/rippling-platform/developer/llms.txt)
+- [documentation / rippling platform / developer / functions](https://developer.rippling.com/documentation/rippling-platform/developer/functions/llms.txt)
+- [documentation / rippling platform / developer / webhooks](https://developer.rippling.com/documentation/rippling-platform/developer/webhooks/llms.txt)
+- [documentation / rippling platform / developer / workflows](https://developer.rippling.com/documentation/rippling-platform/developer/workflows/llms.txt)
+- [documentation / rippling platform / pipelines](https://developer.rippling.com/documentation/rippling-platform/pipelines/llms.txt)
+- [documentation / rippling platform / reports](https://developer.rippling.com/documentation/rippling-platform/reports/llms.txt)
+- [documentation / rippling platform / rippling cli](https://developer.rippling.com/documentation/rippling-platform/rippling-cli/llms.txt)
+- [documentation / rippling platform / rippling mcp](https://developer.rippling.com/documentation/rippling-platform/rippling-mcp/llms.txt)
+- [documentation / rippling platform / sdui](https://developer.rippling.com/documentation/rippling-platform/sdui/llms.txt)
+- [documentation / rippling platform / solution guides](https://developer.rippling.com/documentation/rippling-platform/solution-guides/llms.txt)
+- [documentation / rippling platform / supergroups](https://developer.rippling.com/documentation/rippling-platform/supergroups/llms.txt)
+- [documentation / rippling platform / transformations](https://developer.rippling.com/documentation/rippling-platform/transformations/llms.txt)
+- [documentation / rippling platform / transformations / sql reference](https://developer.rippling.com/documentation/rippling-platform/transformations/sql-reference/llms.txt)
+- [documentation / rippling platform / users](https://developer.rippling.com/documentation/rippling-platform/users/llms.txt)

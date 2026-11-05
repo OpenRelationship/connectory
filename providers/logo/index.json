@@ -1,0 +1,1309 @@
+{
+ "_": "GENERATED \u2014 what an authoring tool needs to FIND an operation. The calling table is the .lua beside it.",
+ "provider": "logo",
+ "source": "https://docs.logo.dev/openapi.json",
+ "operations": [
+  {
+   "slug": "logo.get_logo",
+   "name": "Get a logo",
+   "description": "Get a logo image by domain, brand name, stock ticker, ISIN, crypto symbol, stock exchange, or market index.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domain": {
+      "type": "string",
+      "description": "The company's domain, such as `stripe.com`. For another lookup, replace `/{domain}` with a path from the table."
+     },
+     "size": {
+      "type": "integer",
+      "description": "Width and height in pixels. Aspect ratio is preserved. Max 800: a larger value is clipped to 800. `retina=true` doubles the result after the clip. Keep raster formats at or below 600."
+     },
+     "height": {
+      "type": "integer",
+      "description": "Height in pixels (short form: `h`). Overrides the height taken from `size` when set; the image is fit within width \u00d7 height with aspect ratio preserved. Max 800 (larger is clipped)."
+     },
+     "width": {
+      "type": "integer",
+      "description": "Width in pixels (short form: `w`). Overrides the width taken from `size` when set; the image is fit within width \u00d7 height with aspect ratio preserved. Max 800 (larger is clipped)."
+     },
+     "format": {
+      "type": "string",
+      "description": "Image format.",
+      "enum": [
+       "jpg",
+       "png",
+       "webp"
+      ]
+     },
+     "theme": {
+      "type": "string",
+      "description": "Adjusts logo colors for a light or a dark background. `auto` is the same as `light`. Works on logos with transparency, so set `format=png` or `format=webp` with it. Do not send `theme=dark` with `jpg`, the default format: the request can return `404`.",
+      "enum": [
+       "auto",
+       "light",
+       "dark"
+      ]
+     },
+     "greyscale": {
+      "type": "boolean",
+      "description": "Return a black-and-white version of the logo. The American spelling `grayscale` is also accepted."
+     },
+     "retina": {
+      "type": "boolean",
+      "description": "Render at 2x the requested size for high-density displays."
+     },
+     "fallback": {
+      "type": "string",
+      "description": "Behavior when no logo is found. `monogram` returns a generated monogram with HTTP 200; `404` returns HTTP 404 instead.",
+      "enum": [
+       "monogram",
+       "404"
+      ]
+     },
+     "redirect": {
+      "type": "string",
+      "description": "What to return when the domain reaches a brand only through a redirect to another domain, such as an old domain that now points to a new company. `follow` returns the logo of the domain it redirects to. `404` returns `404` instead, whatever `fallback` is set to. See [skip domains that redirect](/logo-images/introduction#skip-domains-that-redirect).",
+      "enum": [
+       "follow",
+       "404"
+      ]
+     }
+    },
+    "required": [
+     "domain"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.logo.dev/{domain}",
+    "path": [
+     "domain"
+    ],
+    "query": [
+     "size",
+     "height",
+     "width",
+     "format",
+     "theme",
+     "greyscale",
+     "retina",
+     "fallback",
+     "redirect"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "logo.get_logo_by_crypto",
+   "name": "Get a cryptocurrency logo by symbol",
+   "description": "Returns a cryptocurrency logo for a coin symbol such as `btc` or `eth`. See [Get a logo](/api-reference/logo-cdn/get-a-logo) for every lookup.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "symbol": {
+      "type": "string",
+      "description": "Cryptocurrency symbol."
+     },
+     "size": {
+      "type": "integer",
+      "description": "Width and height in pixels. Aspect ratio is preserved. Max 800: a larger value is clipped to 800. `retina=true` doubles the result after the clip. Keep raster formats at or below 600."
+     },
+     "height": {
+      "type": "integer",
+      "description": "Height in pixels (short form: `h`). Overrides the height taken from `size` when set; the image is fit within width \u00d7 height with aspect ratio preserved. Max 800 (larger is clipped)."
+     },
+     "width": {
+      "type": "integer",
+      "description": "Width in pixels (short form: `w`). Overrides the width taken from `size` when set; the image is fit within width \u00d7 height with aspect ratio preserved. Max 800 (larger is clipped)."
+     },
+     "format": {
+      "type": "string",
+      "description": "Image format.",
+      "enum": [
+       "jpg",
+       "png",
+       "webp"
+      ]
+     },
+     "theme": {
+      "type": "string",
+      "description": "Adjusts logo colors for a light or a dark background. `auto` is the same as `light`. Works on logos with transparency, so set `format=png` or `format=webp` with it. Do not send `theme=dark` with `jpg`, the default format: the request can return `404`.",
+      "enum": [
+       "auto",
+       "light",
+       "dark"
+      ]
+     },
+     "greyscale": {
+      "type": "boolean",
+      "description": "Return a black-and-white version of the logo. The American spelling `grayscale` is also accepted."
+     },
+     "retina": {
+      "type": "boolean",
+      "description": "Render at 2x the requested size for high-density displays."
+     },
+     "fallback": {
+      "type": "string",
+      "description": "Behavior when no logo is found. `monogram` returns a generated monogram with HTTP 200; `404` returns HTTP 404 instead.",
+      "enum": [
+       "monogram",
+       "404"
+      ]
+     },
+     "redirect": {
+      "type": "string",
+      "description": "What to return when the domain reaches a brand only through a redirect to another domain, such as an old domain that now points to a new company. `follow` returns the logo of the domain it redirects to. `404` returns `404` instead, whatever `fallback` is set to. See [skip domains that redirect](/logo-images/introduction#skip-domains-that-redirect).",
+      "enum": [
+       "follow",
+       "404"
+      ]
+     }
+    },
+    "required": [
+     "symbol"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.logo.dev/crypto/{symbol}",
+    "path": [
+     "symbol"
+    ],
+    "query": [
+     "size",
+     "height",
+     "width",
+     "format",
+     "theme",
+     "greyscale",
+     "retina",
+     "fallback",
+     "redirect"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "logo.get_logo_by_exchange",
+   "name": "Get a logo by stock exchange",
+   "description": "Returns the logo for a stock exchange by its code, e.g. `NYSE`, `NASDAQ`, or `LSE`. See [Get a logo](/api-reference/logo-cdn/get-a-logo) for every lookup.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "exchange": {
+      "type": "string",
+      "description": "Stock exchange code."
+     },
+     "size": {
+      "type": "integer",
+      "description": "Width and height in pixels. Aspect ratio is preserved. Max 800: a larger value is clipped to 800. `retina=true` doubles the result after the clip. Keep raster formats at or below 600."
+     },
+     "height": {
+      "type": "integer",
+      "description": "Height in pixels (short form: `h`). Overrides the height taken from `size` when set; the image is fit within width \u00d7 height with aspect ratio preserved. Max 800 (larger is clipped)."
+     },
+     "width": {
+      "type": "integer",
+      "description": "Width in pixels (short form: `w`). Overrides the width taken from `size` when set; the image is fit within width \u00d7 height with aspect ratio preserved. Max 800 (larger is clipped)."
+     },
+     "format": {
+      "type": "string",
+      "description": "Image format.",
+      "enum": [
+       "jpg",
+       "png",
+       "webp"
+      ]
+     },
+     "theme": {
+      "type": "string",
+      "description": "Adjusts logo colors for a light or a dark background. `auto` is the same as `light`. Works on logos with transparency, so set `format=png` or `format=webp` with it. Do not send `theme=dark` with `jpg`, the default format: the request can return `404`.",
+      "enum": [
+       "auto",
+       "light",
+       "dark"
+      ]
+     },
+     "greyscale": {
+      "type": "boolean",
+      "description": "Return a black-and-white version of the logo. The American spelling `grayscale` is also accepted."
+     },
+     "retina": {
+      "type": "boolean",
+      "description": "Render at 2x the requested size for high-density displays."
+     },
+     "fallback": {
+      "type": "string",
+      "description": "Behavior when no logo is found. `monogram` returns a generated monogram with HTTP 200; `404` returns HTTP 404 instead.",
+      "enum": [
+       "monogram",
+       "404"
+      ]
+     },
+     "redirect": {
+      "type": "string",
+      "description": "What to return when the domain reaches a brand only through a redirect to another domain, such as an old domain that now points to a new company. `follow` returns the logo of the domain it redirects to. `404` returns `404` instead, whatever `fallback` is set to. See [skip domains that redirect](/logo-images/introduction#skip-domains-that-redirect).",
+      "enum": [
+       "follow",
+       "404"
+      ]
+     }
+    },
+    "required": [
+     "exchange"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.logo.dev/exchange/{exchange}",
+    "path": [
+     "exchange"
+    ],
+    "query": [
+     "size",
+     "height",
+     "width",
+     "format",
+     "theme",
+     "greyscale",
+     "retina",
+     "fallback",
+     "redirect"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "logo.get_logo_by_index",
+   "name": "Get a logo by market index",
+   "description": "Returns the logo for a market index by its symbol, e.g. `SPX`, `DJI`, or `IXIC`. See [Get a logo](/api-reference/logo-cdn/get-a-logo) for every lookup.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "symbol": {
+      "type": "string",
+      "description": "Market index symbol."
+     },
+     "size": {
+      "type": "integer",
+      "description": "Width and height in pixels. Aspect ratio is preserved. Max 800: a larger value is clipped to 800. `retina=true` doubles the result after the clip. Keep raster formats at or below 600."
+     },
+     "height": {
+      "type": "integer",
+      "description": "Height in pixels (short form: `h`). Overrides the height taken from `size` when set; the image is fit within width \u00d7 height with aspect ratio preserved. Max 800 (larger is clipped)."
+     },
+     "width": {
+      "type": "integer",
+      "description": "Width in pixels (short form: `w`). Overrides the width taken from `size` when set; the image is fit within width \u00d7 height with aspect ratio preserved. Max 800 (larger is clipped)."
+     },
+     "format": {
+      "type": "string",
+      "description": "Image format.",
+      "enum": [
+       "jpg",
+       "png",
+       "webp"
+      ]
+     },
+     "theme": {
+      "type": "string",
+      "description": "Adjusts logo colors for a light or a dark background. `auto` is the same as `light`. Works on logos with transparency, so set `format=png` or `format=webp` with it. Do not send `theme=dark` with `jpg`, the default format: the request can return `404`.",
+      "enum": [
+       "auto",
+       "light",
+       "dark"
+      ]
+     },
+     "greyscale": {
+      "type": "boolean",
+      "description": "Return a black-and-white version of the logo. The American spelling `grayscale` is also accepted."
+     },
+     "retina": {
+      "type": "boolean",
+      "description": "Render at 2x the requested size for high-density displays."
+     },
+     "fallback": {
+      "type": "string",
+      "description": "Behavior when no logo is found. `monogram` returns a generated monogram with HTTP 200; `404` returns HTTP 404 instead.",
+      "enum": [
+       "monogram",
+       "404"
+      ]
+     },
+     "redirect": {
+      "type": "string",
+      "description": "What to return when the domain reaches a brand only through a redirect to another domain, such as an old domain that now points to a new company. `follow` returns the logo of the domain it redirects to. `404` returns `404` instead, whatever `fallback` is set to. See [skip domains that redirect](/logo-images/introduction#skip-domains-that-redirect).",
+      "enum": [
+       "follow",
+       "404"
+      ]
+     }
+    },
+    "required": [
+     "symbol"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.logo.dev/index/{symbol}",
+    "path": [
+     "symbol"
+    ],
+    "query": [
+     "size",
+     "height",
+     "width",
+     "format",
+     "theme",
+     "greyscale",
+     "retina",
+     "fallback",
+     "redirect"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "logo.get_logo_by_isin",
+   "name": "Get a logo by isin",
+   "description": "Returns a company's logo for an ISIN (International Securities Identification Number). See [Get a logo](/api-reference/logo-cdn/get-a-logo) for every lookup.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "isin": {
+      "type": "string",
+      "description": "ISIN code."
+     },
+     "size": {
+      "type": "integer",
+      "description": "Width and height in pixels. Aspect ratio is preserved. Max 800: a larger value is clipped to 800. `retina=true` doubles the result after the clip. Keep raster formats at or below 600."
+     },
+     "height": {
+      "type": "integer",
+      "description": "Height in pixels (short form: `h`). Overrides the height taken from `size` when set; the image is fit within width \u00d7 height with aspect ratio preserved. Max 800 (larger is clipped)."
+     },
+     "width": {
+      "type": "integer",
+      "description": "Width in pixels (short form: `w`). Overrides the width taken from `size` when set; the image is fit within width \u00d7 height with aspect ratio preserved. Max 800 (larger is clipped)."
+     },
+     "format": {
+      "type": "string",
+      "description": "Image format.",
+      "enum": [
+       "jpg",
+       "png",
+       "webp"
+      ]
+     },
+     "theme": {
+      "type": "string",
+      "description": "Adjusts logo colors for a light or a dark background. `auto` is the same as `light`. Works on logos with transparency, so set `format=png` or `format=webp` with it. Do not send `theme=dark` with `jpg`, the default format: the request can return `404`.",
+      "enum": [
+       "auto",
+       "light",
+       "dark"
+      ]
+     },
+     "greyscale": {
+      "type": "boolean",
+      "description": "Return a black-and-white version of the logo. The American spelling `grayscale` is also accepted."
+     },
+     "retina": {
+      "type": "boolean",
+      "description": "Render at 2x the requested size for high-density displays."
+     },
+     "fallback": {
+      "type": "string",
+      "description": "Behavior when no logo is found. `monogram` returns a generated monogram with HTTP 200; `404` returns HTTP 404 instead.",
+      "enum": [
+       "monogram",
+       "404"
+      ]
+     },
+     "redirect": {
+      "type": "string",
+      "description": "What to return when the domain reaches a brand only through a redirect to another domain, such as an old domain that now points to a new company. `follow` returns the logo of the domain it redirects to. `404` returns `404` instead, whatever `fallback` is set to. See [skip domains that redirect](/logo-images/introduction#skip-domains-that-redirect).",
+      "enum": [
+       "follow",
+       "404"
+      ]
+     }
+    },
+    "required": [
+     "isin"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.logo.dev/isin/{isin}",
+    "path": [
+     "isin"
+    ],
+    "query": [
+     "size",
+     "height",
+     "width",
+     "format",
+     "theme",
+     "greyscale",
+     "retina",
+     "fallback",
+     "redirect"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "logo.get_logo_by_name",
+   "name": "Get a logo by brand name",
+   "description": "Returns the best-match logo for a brand name. URL-encode names with spaces or special characters. This is a convenience wrapper over Search that returns the top result's logo. See [Get a logo](/api-reference/logo-cdn/get-a-logo) for every lookup.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "brand": {
+      "type": "string",
+      "description": "URL-encoded brand name."
+     },
+     "strategy": {
+      "type": "string",
+      "description": "`match` returns the closest name. `suggest` returns the most popular prefix match.",
+      "enum": [
+       "match",
+       "suggest"
+      ]
+     },
+     "size": {
+      "type": "integer",
+      "description": "Width and height in pixels. Aspect ratio is preserved. Max 800: a larger value is clipped to 800. `retina=true` doubles the result after the clip. Keep raster formats at or below 600."
+     },
+     "height": {
+      "type": "integer",
+      "description": "Height in pixels (short form: `h`). Overrides the height taken from `size` when set; the image is fit within width \u00d7 height with aspect ratio preserved. Max 800 (larger is clipped)."
+     },
+     "width": {
+      "type": "integer",
+      "description": "Width in pixels (short form: `w`). Overrides the width taken from `size` when set; the image is fit within width \u00d7 height with aspect ratio preserved. Max 800 (larger is clipped)."
+     },
+     "format": {
+      "type": "string",
+      "description": "Image format.",
+      "enum": [
+       "jpg",
+       "png",
+       "webp"
+      ]
+     },
+     "theme": {
+      "type": "string",
+      "description": "Adjusts logo colors for a light or a dark background. `auto` is the same as `light`. Works on logos with transparency, so set `format=png` or `format=webp` with it. Do not send `theme=dark` with `jpg`, the default format: the request can return `404`.",
+      "enum": [
+       "auto",
+       "light",
+       "dark"
+      ]
+     },
+     "greyscale": {
+      "type": "boolean",
+      "description": "Return a black-and-white version of the logo. The American spelling `grayscale` is also accepted."
+     },
+     "retina": {
+      "type": "boolean",
+      "description": "Render at 2x the requested size for high-density displays."
+     },
+     "fallback": {
+      "type": "string",
+      "description": "Behavior when no logo is found. `monogram` returns a generated monogram with HTTP 200; `404` returns HTTP 404 instead.",
+      "enum": [
+       "monogram",
+       "404"
+      ]
+     },
+     "redirect": {
+      "type": "string",
+      "description": "What to return when the domain reaches a brand only through a redirect to another domain, such as an old domain that now points to a new company. `follow` returns the logo of the domain it redirects to. `404` returns `404` instead, whatever `fallback` is set to. See [skip domains that redirect](/logo-images/introduction#skip-domains-that-redirect).",
+      "enum": [
+       "follow",
+       "404"
+      ]
+     }
+    },
+    "required": [
+     "brand"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.logo.dev/name/{brand}",
+    "path": [
+     "brand"
+    ],
+    "query": [
+     "strategy",
+     "size",
+     "height",
+     "width",
+     "format",
+     "theme",
+     "greyscale",
+     "retina",
+     "fallback",
+     "redirect"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "logo.get_logo_by_ticker",
+   "name": "Get a logo by stock ticker",
+   "description": "Returns a company's logo for a stock ticker symbol. Defaults to US exchanges; append an exchange suffix for others (e.g. `AAPL.L`, `7203.T`). See [Get a logo](/api-reference/logo-cdn/get-a-logo) for every lookup.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "ticker": {
+      "type": "string",
+      "description": "Stock ticker symbol, optionally with an exchange suffix."
+     },
+     "size": {
+      "type": "integer",
+      "description": "Width and height in pixels. Aspect ratio is preserved. Max 800: a larger value is clipped to 800. `retina=true` doubles the result after the clip. Keep raster formats at or below 600."
+     },
+     "height": {
+      "type": "integer",
+      "description": "Height in pixels (short form: `h`). Overrides the height taken from `size` when set; the image is fit within width \u00d7 height with aspect ratio preserved. Max 800 (larger is clipped)."
+     },
+     "width": {
+      "type": "integer",
+      "description": "Width in pixels (short form: `w`). Overrides the width taken from `size` when set; the image is fit within width \u00d7 height with aspect ratio preserved. Max 800 (larger is clipped)."
+     },
+     "format": {
+      "type": "string",
+      "description": "Image format.",
+      "enum": [
+       "jpg",
+       "png",
+       "webp"
+      ]
+     },
+     "theme": {
+      "type": "string",
+      "description": "Adjusts logo colors for a light or a dark background. `auto` is the same as `light`. Works on logos with transparency, so set `format=png` or `format=webp` with it. Do not send `theme=dark` with `jpg`, the default format: the request can return `404`.",
+      "enum": [
+       "auto",
+       "light",
+       "dark"
+      ]
+     },
+     "greyscale": {
+      "type": "boolean",
+      "description": "Return a black-and-white version of the logo. The American spelling `grayscale` is also accepted."
+     },
+     "retina": {
+      "type": "boolean",
+      "description": "Render at 2x the requested size for high-density displays."
+     },
+     "fallback": {
+      "type": "string",
+      "description": "Behavior when no logo is found. `monogram` returns a generated monogram with HTTP 200; `404` returns HTTP 404 instead.",
+      "enum": [
+       "monogram",
+       "404"
+      ]
+     },
+     "redirect": {
+      "type": "string",
+      "description": "What to return when the domain reaches a brand only through a redirect to another domain, such as an old domain that now points to a new company. `follow` returns the logo of the domain it redirects to. `404` returns `404` instead, whatever `fallback` is set to. See [skip domains that redirect](/logo-images/introduction#skip-domains-that-redirect).",
+      "enum": [
+       "follow",
+       "404"
+      ]
+     }
+    },
+    "required": [
+     "ticker"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.logo.dev/ticker/{ticker}",
+    "path": [
+     "ticker"
+    ],
+    "query": [
+     "size",
+     "height",
+     "width",
+     "format",
+     "theme",
+     "greyscale",
+     "retina",
+     "fallback",
+     "redirect"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "logo.identify_merchant",
+   "name": "Identify a merchant",
+   "description": "Identify the merchant behind a merchant name or card descriptor. Every non-empty `transaction` returns one row: `matched` with a merchant domain, or `cleaned` with a display name and no domain. Transaction is a private beta with its own host and its own `tx_beta_` key. Errors use a single `error` string, not the Logo.dev API error object. Read the [Transaction guide](/transaction/introduction) for",
+   "input": {
+    "type": "object",
+    "properties": {
+     "transaction": {
+      "type": "string",
+      "description": "The merchant name or card descriptor. The API trims surrounding whitespace, then the value must be 1 to 1,024 characters."
+     },
+     "country_code": {
+      "type": "string",
+      "description": "ISO 3166-1 alpha-2 country code, such as `US` or `GB`. Lowercase is accepted. The code is a hint for ambiguous names. It does not restrict results to that country. An unknown code returns `400`. With `transaction_context`, the codes `AQ`, `AX`, `TF`, and `VA` return `400`."
+     },
+     "transaction_context": {
+      "type": "object",
+      "description": "The real transaction values. Send them to identify the other party as a person or an organization, and to name the platform the purchase ran through. With context, the response adds `entity_type`. When you send the object, `date`, `amount`, `currency`, and `entry_type` are required. The API fills in no placeholder values. Incomplete context returns `400` and does not count against the daily allowa"
+     }
+    },
+    "required": [
+     "transaction"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.logo.dev/transaction",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "transaction",
+     "country_code",
+     "transaction_context"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "logo.v2_create_webhook_endpoint",
+   "name": "Create a webhook endpoint",
+   "description": "Registers a URL to receive webhook events. Needs a paid plan and the owner or admin role. See [Who can use webhooks](/webhooks#who-can-use-webhooks).",
+   "input": {
+    "type": "object",
+    "properties": {
+     "url": {
+      "type": "string",
+      "description": "Where deliveries are sent."
+     },
+     "description": {
+      "type": "string",
+      "description": ""
+     },
+     "filter_types": {
+      "type": "array",
+      "description": "Event types to receive. Omit or send `[]` for all of them."
+     },
+     "disabled": {
+      "type": "boolean",
+      "description": "Send `true` to create or keep the endpoint switched off."
+     }
+    },
+    "required": [
+     "url"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.logo.dev/v2/webhook_endpoints",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "url",
+     "description",
+     "filter_types",
+     "disabled"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "logo.v2_delete_webhook_endpoint",
+   "name": "Delete a webhook endpoint",
+   "description": "Deletes an endpoint. Deliveries to it stop. Needs a paid plan and the owner or admin role. See [Who can use webhooks](/webhooks#who-can-use-webhooks).",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "A webhook endpoint id."
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.logo.dev/v2/webhook_endpoints/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "logo.v2_flag",
+   "name": "Flag domains for review",
+   "description": "Submits domains with incorrect or outdated brand data for review. Nothing changes on a brand until a reviewer acts, and flagging never creates a webhook subscription. Not billed. Needs the Pro plan or above.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domains": {
+      "type": "array",
+      "description": "The domains to submit for review. Each is normalized the way domain lookups are, so `https://www.acme.com` becomes `acme.com`, and duplicates are removed. One invalid domain rejects the whole request."
+     },
+     "reason": {
+      "type": "string",
+      "description": "Why the domains need review. Applies to every domain in the request.",
+      "enum": [
+       "incorrect_logo",
+       "incorrect_brand",
+       "outdated_data",
+       "other"
+      ]
+     },
+     "comment": {
+      "type": "string",
+      "description": "Details for the reviewers. Leading and trailing whitespace is trimmed, and text past 2,000 characters is cut off."
+     }
+    },
+    "required": [
+     "domains",
+     "reason"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.logo.dev/v2/flag",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "domains",
+     "reason",
+     "comment"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "logo.v2_get_account",
+   "name": "Get your account",
+   "description": "Returns your plan and API credit balances. Not billed.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.logo.dev/v2/account",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "logo.v2_get_brand",
+   "name": "Look up a brand",
+   "description": "Returns a brand's profile from one identifier: a domain, ticker, ISIN, crypto symbol, or name. Send exactly one. A brand Logo.dev has not indexed yet returns `202` while it is fetched; retry after 30 seconds. Costs API credits at the rate in [API credits](/platform/credits#what-each-request-costs). Billed once per brand domain per 24 hours, and only when the brand is ready. Merchant descriptors ar",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domain": {
+      "type": "string",
+      "description": "A company domain. Reduced to its registrable domain, so `www.stripe.com` looks up `stripe.com`. Send exactly one identifier."
+     },
+     "ticker": {
+      "type": "string",
+      "description": "The stock or ETF symbol, in any case, with no exchange prefix: `aapl` and `AAPL` return the same brand. A bare symbol resolves against US exchanges. For a listing on another exchange, add the [exchange suffix](/logo-images/ticker#exchange-suffixes), such as `7203.T`. Send exactly one identifier."
+     },
+     "isin": {
+      "type": "string",
+      "description": "An ISIN. Case-insensitive. Send exactly one identifier."
+     },
+     "crypto": {
+      "type": "string",
+      "description": "A crypto token symbol. Case-insensitive. Send exactly one identifier."
+     },
+     "name": {
+      "type": "string",
+      "description": "A brand name. Resolved to the top search match. Send exactly one identifier."
+     },
+     "nosubscribe": {
+      "type": "string",
+      "description": "Send `true` to skip the automatic subscription to this brand. Only matters when webhooks are enabled on your account.",
+      "enum": [
+       "true"
+      ]
+     },
+     "merchant": {
+      "type": "string",
+      "description": "A card-statement merchant descriptor. Announced but not yet enabled for any account, so it currently answers `403`. Send exactly one identifier."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.logo.dev/v2/brands",
+    "path": [],
+    "query": [
+     "domain",
+     "ticker",
+     "isin",
+     "crypto",
+     "name",
+     "nosubscribe",
+     "merchant"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "logo.v2_get_brand_brandmark",
+   "name": "Get a brandmark",
+   "description": "Returns the brand's brandmark, the wide logo lockup, as JSON with a temporary download `url`, the source dimensions, and a placeholder blurhash. It does not return image bytes. Send exactly one identifier. Costs API credits at the rate in [API credits](/platform/credits#what-each-request-costs). Billed once per brand domain per 24 hours. A ready brand with no brandmark is still billed.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domain": {
+      "type": "string",
+      "description": "A company domain. Reduced to its registrable domain, so `www.stripe.com` looks up `stripe.com`. Send exactly one identifier."
+     },
+     "ticker": {
+      "type": "string",
+      "description": "The stock or ETF symbol, in any case, with no exchange prefix: `aapl` and `AAPL` return the same brand. A bare symbol resolves against US exchanges. For a listing on another exchange, add the [exchange suffix](/logo-images/ticker#exchange-suffixes), such as `7203.T`. Send exactly one identifier."
+     },
+     "isin": {
+      "type": "string",
+      "description": "An ISIN. Case-insensitive. Send exactly one identifier."
+     },
+     "crypto": {
+      "type": "string",
+      "description": "A crypto token symbol. Case-insensitive. Send exactly one identifier."
+     },
+     "name": {
+      "type": "string",
+      "description": "A brand name. Resolved to the top search match. Send exactly one identifier."
+     },
+     "merchant": {
+      "type": "string",
+      "description": "A card-statement merchant descriptor. Announced but not yet enabled for any account, so it currently answers `403`. Send exactly one identifier."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.logo.dev/v2/brands/brandmark",
+    "path": [],
+    "query": [
+     "domain",
+     "ticker",
+     "isin",
+     "crypto",
+     "name",
+     "merchant"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "logo.v2_get_brand_by_id",
+   "name": "Get a brand by id",
+   "description": "Returns a brand's profile by its id, the `data.id` from an earlier response. The response is the same as looking the brand up by domain, and it is billed the same way.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "A brand id, as returned in `data.id`."
+     },
+     "nosubscribe": {
+      "type": "string",
+      "description": "Send `true` to skip the automatic subscription to this brand. Only matters when webhooks are enabled on your account.",
+      "enum": [
+       "true"
+      ]
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.logo.dev/v2/brands/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [
+     "nosubscribe"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "logo.v2_get_brand_logo",
+   "name": "Get a logo",
+   "description": "Returns the brand's square logo as JSON with a temporary download `url`, the source dimensions, and a placeholder blurhash. It does not return image bytes. Send exactly one identifier. Costs API credits at the rate in [API credits](/platform/credits#what-each-request-costs). Billed once per brand domain per 24 hours. A ready brand with no logo is still billed.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domain": {
+      "type": "string",
+      "description": "A company domain. Reduced to its registrable domain, so `www.stripe.com` looks up `stripe.com`. Send exactly one identifier."
+     },
+     "ticker": {
+      "type": "string",
+      "description": "The stock or ETF symbol, in any case, with no exchange prefix: `aapl` and `AAPL` return the same brand. A bare symbol resolves against US exchanges. For a listing on another exchange, add the [exchange suffix](/logo-images/ticker#exchange-suffixes), such as `7203.T`. Send exactly one identifier."
+     },
+     "isin": {
+      "type": "string",
+      "description": "An ISIN. Case-insensitive. Send exactly one identifier."
+     },
+     "crypto": {
+      "type": "string",
+      "description": "A crypto token symbol. Case-insensitive. Send exactly one identifier."
+     },
+     "name": {
+      "type": "string",
+      "description": "A brand name. Resolved to the top search match. Send exactly one identifier."
+     },
+     "merchant": {
+      "type": "string",
+      "description": "A card-statement merchant descriptor. Announced but not yet enabled for any account, so it currently answers `403`. Send exactly one identifier."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.logo.dev/v2/brands/logo",
+    "path": [],
+    "query": [
+     "domain",
+     "ticker",
+     "isin",
+     "crypto",
+     "name",
+     "merchant"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "logo.v2_get_brand_subscription",
+   "name": "Get a brand subscription",
+   "description": "Returns your account's subscription to this brand, if there is one. Subscriptions decide which brands send you `brand.updated` events.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "A brand id, as returned in `data.id`."
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.logo.dev/v2/brands/{id}/subscription",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "logo.v2_get_webhook_endpoint",
+   "name": "Get a webhook endpoint",
+   "description": "Returns one webhook endpoint. Needs a paid plan. See [Who can use webhooks](/webhooks#who-can-use-webhooks).",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "A webhook endpoint id."
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.logo.dev/v2/webhook_endpoints/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "logo.v2_get_webhook_endpoint_secret",
+   "name": "Get a webhook signing secret",
+   "description": "Returns the endpoint's signing secret, used to verify deliveries. Any team member can read it. Needs a paid plan. See [Who can use webhooks](/webhooks#who-can-use-webhooks).",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "A webhook endpoint id."
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.logo.dev/v2/webhook_endpoints/{id}/secret",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "logo.v2_list_webhook_endpoints",
+   "name": "List webhook endpoints",
+   "description": "Returns every webhook endpoint on your team. Not paginated. Needs a paid plan. See [Who can use webhooks](/webhooks#who-can-use-webhooks).",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.logo.dev/v2/webhook_endpoints",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "logo.v2_rotate_webhook_endpoint_secret",
+   "name": "Rotate a webhook signing secret",
+   "description": "Replaces the endpoint's signing secret and returns the new one. Update your verification code with it. Needs a paid plan and the owner or admin role. See [Who can use webhooks](/webhooks#who-can-use-webhooks).",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "A webhook endpoint id."
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.logo.dev/v2/webhook_endpoints/{id}/secret",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "logo.v2_search_brands",
+   "name": "Search brands",
+   "description": "Finds brands by name and returns candidates with their domain and logo URL. `match` searches full names and aliases; `typeahead` completes a prefix as someone types. Costs API credits on every request, at the rate in [API credits](/platform/credits#what-each-request-costs). Follow up with [Look up a brand](/api-reference/brands/look-up-a-brand) for the full profile.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "q": {
+      "type": "string",
+      "description": "The name to search for."
+     },
+     "method": {
+      "type": "string",
+      "description": "`match` for full names, `typeahead` for partial input.",
+      "enum": [
+       "match",
+       "typeahead"
+      ]
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Results to return."
+     }
+    },
+    "required": [
+     "q"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.logo.dev/v2/search",
+    "path": [],
+    "query": [
+     "q",
+     "method",
+     "limit"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "logo.v2_subscribe_to_brand",
+   "name": "Subscribe to a brand",
+   "description": "Subscribes your account to `brand.updated` events for this brand. Safe to repeat: it returns `201` the first time and `200` after that, with the same body. Needs a paid plan. See [Who can use webhooks](/webhooks#who-can-use-webhooks).",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "A brand id, as returned in `data.id`."
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.logo.dev/v2/brands/{id}/subscription",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "logo.v2_unsubscribe_from_brand",
+   "name": "Unsubscribe from a brand",
+   "description": "Stops `brand.updated` events for this brand. Returns `204` whether or not a subscription existed. Needs a paid plan. See [Who can use webhooks](/webhooks#who-can-use-webhooks).",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "A brand id, as returned in `data.id`."
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.logo.dev/v2/brands/{id}/subscription",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "logo.v2_update_webhook_endpoint",
+   "name": "Update a webhook endpoint",
+   "description": "Changes an endpoint. Send only the fields to change; omitted fields keep their value. Send `filter_types: []` to receive every event type. Needs a paid plan and the owner or admin role. See [Who can use webhooks](/webhooks#who-can-use-webhooks).",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "A webhook endpoint id."
+     },
+     "url": {
+      "type": "string",
+      "description": "Where deliveries are sent."
+     },
+     "description": {
+      "type": "string",
+      "description": ""
+     },
+     "filter_types": {
+      "type": "array",
+      "description": "Event types to receive. Omit or send `[]` for all of them."
+     },
+     "disabled": {
+      "type": "boolean",
+      "description": "Send `true` to create or keep the endpoint switched off."
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.logo.dev/v2/webhook_endpoints/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "url",
+     "description",
+     "filter_types",
+     "disabled"
+    ],
+    "body_format": "json"
+   }
+  }
+ ]
+}

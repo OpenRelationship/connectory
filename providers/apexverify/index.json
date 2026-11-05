@@ -1,0 +1,761 @@
+{
+ "_": "GENERATED \u2014 what an authoring tool needs to FIND an operation. The calling table is the .lua beside it.",
+ "provider": "apexverify",
+ "source": "https://api.apexverify.com/openapi.json",
+ "operations": [
+  {
+   "slug": "apexverify.batch_details_v1_batch_batch_uuid_details_get",
+   "name": "Batch details",
+   "description": "Retrieve detailed information about a batch file for the account, including its UUID, status, name, description, parameters, uploaded content, and related metadata.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "batch_uuid": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "batch_uuid"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.apexverify.com/v1/batch/{batch_uuid}/details",
+    "path": [
+     "batch_uuid"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "apexverify.batch_export_v1_batch_batch_uuid_export_get",
+   "name": "Batch result export",
+   "description": "Export batch results in XLSX format, consistent with the frontend output, or as a JSON dump including data and result content, with optional additional sections such as statistics and details.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "batch_uuid": {
+      "type": "string",
+      "description": ""
+     },
+     "format": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "xlsx",
+       "json"
+      ]
+     },
+     "include_details": {
+      "type": "boolean",
+      "description": ""
+     },
+     "include_statistics": {
+      "type": "boolean",
+      "description": ""
+     }
+    },
+    "required": [
+     "batch_uuid",
+     "format"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.apexverify.com/v1/batch/{batch_uuid}/export",
+    "path": [
+     "batch_uuid"
+    ],
+    "query": [
+     "format",
+     "include_details",
+     "include_statistics"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "apexverify.batch_list_v1_batch_get",
+   "name": "Batch list",
+   "description": "List all batch files for the account, including each batch UUID, status, name, and creation date.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "limit": {
+      "type": "integer",
+      "description": ""
+     },
+     "offset": {
+      "type": "integer",
+      "description": ""
+     },
+     "from_date": {
+      "type": "string",
+      "description": ""
+     },
+     "to_date": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.apexverify.com/v1/batch",
+    "path": [],
+    "query": [
+     "limit",
+     "offset",
+     "from_date",
+     "to_date"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "apexverify.batch_upload_v1_batch_post",
+   "name": "Batch upload",
+   "description": "Upload a batch file for verification. Accepts a TXT file containing line-return delimited content.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "file": {
+      "type": "string",
+      "description": "Batch file content to upload for verification."
+     },
+     "name": {
+      "type": "string",
+      "description": "Display name of the batch."
+     },
+     "description": {
+      "type": "string",
+      "description": "Optional description of the batch"
+     },
+     "type": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "email",
+       "phone"
+      ]
+     },
+     "target_country": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "AD",
+       "AE",
+       "AF",
+       "AG",
+       "AI",
+       "AL",
+       "AM",
+       "AO",
+       "AR",
+       "AS",
+       "AT",
+       "AU"
+      ]
+     },
+     "target_audience": {
+      "type": "string",
+      "description": "1 = Agency / Consultants2 = Creators & Influencers3 = Customer Support & Success4 = Developers & Technical Leads5 = E-commerce & Retail Managers6 = Enterprise Decision-Makers7 = Finance & Operations Professionals8 = Founders & C-Level Executives9 = Freelancers & Solopreneurs10 = Government & Public Sector Employees11 = HR & Talent Acquisition12 = Healthcare Professionals13 = Hobbyists & Enthusiast",
+      "enum": [
+       1,
+       2,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11,
+       12
+      ]
+     },
+     "target_market_industry": {
+      "type": "string",
+      "description": "1 = Accommodation2 = Accommodation and Food Services3 = Administrative and Support Services4 = Administrative and Support and Waste Management and Remediation Services5 = Agriculture, Forestry, Fishing and Hunting6 = Air Transportation7 = Ambulatory Health Care Services8 = Amusement, Gambling, and Recreation Industries9 = Animal Production10 = Apparel Manufacturing11 = Arts, Entertainment, and Rec",
+      "enum": [
+       1,
+       2,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11,
+       12
+      ]
+     },
+     "target_objective": {
+      "type": "string",
+      "description": "1 = App Installs / Downloads2 = Audience Building (Email/Community)3 = Brand Awareness & Recall4 = Customer Acquisition / Sales5 = Free Trial or Freemium Signups6 = Lead Generation (Top/Mid-Funnel)7 = Loyalty & Referral Program Growth8 = Market & Customer Research9 = New Market Entry10 = Partner & Affiliate Recruitment11 = Product Engagement & Feature Adoption12 = Sales-Ready Leads (Bottom-Funnel)",
+      "enum": [
+       1,
+       2,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11,
+       12
+      ]
+     },
+     "remove_duplicate": {
+      "type": "boolean",
+      "description": "Whether duplicate rows should be removed during batch preparation."
+     },
+     "remove_wrong_email_format": {
+      "type": "boolean",
+      "description": "Whether rows with invalid email formatting should be removed during batch preparation."
+     },
+     "remove_wrong_phone_format": {
+      "type": "boolean",
+      "description": "Whether rows with invalid phone formatting should be removed during batch preparation."
+     },
+     "use_account_cache": {
+      "type": "boolean",
+      "description": "You can choose to enable or disable your account cache. If enabled, we may reuse your previous verification results to speed up processing and improve efficiency. When your account cache is used, you\u2019ll receive a 50% credit refund for those verifications. You can enable both the account cache and the global cache, or disable both. Our system will always check your account cache first, then the glo"
+     },
+     "max_account_cache_backoff": {
+      "type": "integer",
+      "description": "Set the maximum number of days our system should look back to find matching verification results for this file. Min: 1 (only today) - Max: 180 days."
+     },
+     "use_global_cache": {
+      "type": "boolean",
+      "description": "You can choose to enable or disable the global cache. When the global cache is used, you\u2019ll receive a 50% credit refund for the related verifications. If enabled, your verification results will be shared anonymously with other users, and you'll also gain access to anonymized results from other companies. This shared data is fully abstracted and anonymized, no personal or identifiable information i"
+     },
+     "max_global_cache_backoff": {
+      "type": "integer",
+      "description": "Set the maximum number of days our system should look back to find matching verification results for this file. Min: 1 (only today) - Max: 180 days."
+     }
+    },
+    "required": [
+     "file",
+     "name",
+     "target_country",
+     "type"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.apexverify.com/v1/batch",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "file",
+     "name",
+     "description",
+     "type",
+     "target_country",
+     "target_audience",
+     "target_market_industry",
+     "target_objective",
+     "remove_duplicate",
+     "remove_wrong_email_format",
+     "remove_wrong_phone_format",
+     "use_account_cache",
+     "max_account_cache_backoff",
+     "use_global_cache",
+     "max_global_cache_backoff"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "apexverify.delete_v1_batch_batch_uuid_delete",
+   "name": "Batch deletion",
+   "description": "Delete the corresponding batch before or after verification, but not while processing is in progress.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "batch_uuid": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "batch_uuid"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.apexverify.com/v1/batch/{batch_uuid}",
+    "path": [
+     "batch_uuid"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "apexverify.format_normalization_v1_format_post",
+   "name": "Data format normalization",
+   "description": "Normalize Data Format. Accepts a TXT file containing line-return delimited content.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "file": {
+      "type": "string",
+      "description": "Data Format file content to upload for normalization."
+     },
+     "type": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "email",
+       "phone"
+      ]
+     },
+     "target_country": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "AD",
+       "AE",
+       "AF",
+       "AG",
+       "AI",
+       "AL",
+       "AM",
+       "AO",
+       "AR",
+       "AS",
+       "AT",
+       "AU"
+      ]
+     }
+    },
+    "required": [
+     "file",
+     "target_country",
+     "type"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.apexverify.com/v1/format",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "file",
+     "type",
+     "target_country"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "apexverify.get_credits_v1_account_credits_get",
+   "name": "Account credits",
+   "description": "Retrieve the current credit balance for the account.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.apexverify.com/v1/account/credits",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "apexverify.patch_v1_batch_batch_uuid_patch",
+   "name": "Batch preparation & content reprocessing",
+   "description": "Start parsing and preparing the batch for verification once upload done & all parameters are correctly configured. This operation can be triggered as much as required until parameters match requirements.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "batch_uuid": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "batch_uuid"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.apexverify.com/v1/batch/{batch_uuid}",
+    "path": [
+     "batch_uuid"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "apexverify.post_v1_batch_batch_uuid_post",
+   "name": "Batch verification launch",
+   "description": "Start batch verification if the batch status reached ready_for_verification.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "batch_uuid": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "batch_uuid"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.apexverify.com/v1/batch/{batch_uuid}",
+    "path": [
+     "batch_uuid"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "apexverify.post_v1_unit_post",
+   "name": "Unit verification",
+   "description": "Start unit verification to get real-time verification results for a given unit. The verification process can take up to 5 seconds to complete, depending on the complexity of the unit...",
+   "input": {
+    "type": "object",
+    "properties": {
+     "type": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "email",
+       "phone"
+      ]
+     },
+     "target_country": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "AD",
+       "AE",
+       "AF",
+       "AG",
+       "AI",
+       "AL",
+       "AM",
+       "AO",
+       "AR",
+       "AS",
+       "AT",
+       "AU"
+      ]
+     },
+     "target_audience": {
+      "type": "string",
+      "description": "1 = Agency / Consultants2 = Creators & Influencers3 = Customer Support & Success4 = Developers & Technical Leads5 = E-commerce & Retail Managers6 = Enterprise Decision-Makers7 = Finance & Operations Professionals8 = Founders & C-Level Executives9 = Freelancers & Solopreneurs10 = Government & Public Sector Employees11 = HR & Talent Acquisition12 = Healthcare Professionals13 = Hobbyists & Enthusiast",
+      "enum": [
+       1,
+       2,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11,
+       12
+      ]
+     },
+     "target_market_industry": {
+      "type": "string",
+      "description": "1 = Accommodation2 = Accommodation and Food Services3 = Administrative and Support Services4 = Administrative and Support and Waste Management and Remediation Services5 = Agriculture, Forestry, Fishing and Hunting6 = Air Transportation7 = Ambulatory Health Care Services8 = Amusement, Gambling, and Recreation Industries9 = Animal Production10 = Apparel Manufacturing11 = Arts, Entertainment, and Rec",
+      "enum": [
+       1,
+       2,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11,
+       12
+      ]
+     },
+     "target_objective": {
+      "type": "string",
+      "description": "1 = App Installs / Downloads2 = Audience Building (Email/Community)3 = Brand Awareness & Recall4 = Customer Acquisition / Sales5 = Free Trial or Freemium Signups6 = Lead Generation (Top/Mid-Funnel)7 = Loyalty & Referral Program Growth8 = Market & Customer Research9 = New Market Entry10 = Partner & Affiliate Recruitment11 = Product Engagement & Feature Adoption12 = Sales-Ready Leads (Bottom-Funnel)",
+      "enum": [
+       1,
+       2,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11,
+       12
+      ]
+     },
+     "use_account_cache": {
+      "type": "boolean",
+      "description": "You can choose to enable or disable your account cache. If enabled, we may reuse your previous verification results to speed up processing and improve efficiency. When your account cache is used, you\u2019ll receive a 50% credit refund for those verifications. You can enable both the account cache and the global cache, or disable both. Our system will always check your account cache first, then the glo"
+     },
+     "max_account_cache_backoff": {
+      "type": "integer",
+      "description": "Set the maximum number of days our system should look back to find matching verification results for this file. Min: 1 (only today) - Max: 180 days."
+     },
+     "use_global_cache": {
+      "type": "boolean",
+      "description": "You can choose to enable or disable the global cache. When the global cache is used, you\u2019ll receive a 50% credit refund for the related verifications. If enabled, your verification results will be shared anonymously with other users, and you'll also gain access to anonymized results from other companies. This shared data is fully abstracted and anonymized, no personal or identifiable information i"
+     },
+     "max_global_cache_backoff": {
+      "type": "integer",
+      "description": "Set the maximum number of days our system should look back to find matching verification results for this file. Min: 1 (only today) - Max: 180 days."
+     },
+     "unit": {
+      "type": "string",
+      "description": "Email, Phone or Address to Verify."
+     }
+    },
+    "required": [
+     "target_country",
+     "type",
+     "unit"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.apexverify.com/v1/unit",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "type",
+     "target_country",
+     "target_audience",
+     "target_market_industry",
+     "target_objective",
+     "use_account_cache",
+     "max_account_cache_backoff",
+     "use_global_cache",
+     "max_global_cache_backoff",
+     "unit"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "apexverify.put_v1_batch_batch_uuid_put",
+   "name": "Batch parameters update",
+   "description": "Update the batch verification parameters before launch, including country, settings, cache options, and other related configuration.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "batch_uuid": {
+      "type": "string",
+      "description": ""
+     },
+     "type": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "email",
+       "phone"
+      ]
+     },
+     "target_country": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "AD",
+       "AE",
+       "AF",
+       "AG",
+       "AI",
+       "AL",
+       "AM",
+       "AO",
+       "AR",
+       "AS",
+       "AT",
+       "AU"
+      ]
+     },
+     "target_audience": {
+      "type": "string",
+      "description": "1 = Agency / Consultants2 = Creators & Influencers3 = Customer Support & Success4 = Developers & Technical Leads5 = E-commerce & Retail Managers6 = Enterprise Decision-Makers7 = Finance & Operations Professionals8 = Founders & C-Level Executives9 = Freelancers & Solopreneurs10 = Government & Public Sector Employees11 = HR & Talent Acquisition12 = Healthcare Professionals13 = Hobbyists & Enthusiast",
+      "enum": [
+       1,
+       2,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11,
+       12
+      ]
+     },
+     "target_market_industry": {
+      "type": "string",
+      "description": "1 = Accommodation2 = Accommodation and Food Services3 = Administrative and Support Services4 = Administrative and Support and Waste Management and Remediation Services5 = Agriculture, Forestry, Fishing and Hunting6 = Air Transportation7 = Ambulatory Health Care Services8 = Amusement, Gambling, and Recreation Industries9 = Animal Production10 = Apparel Manufacturing11 = Arts, Entertainment, and Rec",
+      "enum": [
+       1,
+       2,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11,
+       12
+      ]
+     },
+     "target_objective": {
+      "type": "string",
+      "description": "1 = App Installs / Downloads2 = Audience Building (Email/Community)3 = Brand Awareness & Recall4 = Customer Acquisition / Sales5 = Free Trial or Freemium Signups6 = Lead Generation (Top/Mid-Funnel)7 = Loyalty & Referral Program Growth8 = Market & Customer Research9 = New Market Entry10 = Partner & Affiliate Recruitment11 = Product Engagement & Feature Adoption12 = Sales-Ready Leads (Bottom-Funnel)",
+      "enum": [
+       1,
+       2,
+       3,
+       4,
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11,
+       12
+      ]
+     },
+     "use_account_cache": {
+      "type": "boolean",
+      "description": "You can choose to enable or disable your account cache. If enabled, we may reuse your previous verification results to speed up processing and improve efficiency. When your account cache is used, you\u2019ll receive a 50% credit refund for those verifications. You can enable both the account cache and the global cache, or disable both. Our system will always check your account cache first, then the glo"
+     },
+     "max_account_cache_backoff": {
+      "type": "integer",
+      "description": "Set the maximum number of days our system should look back to find matching verification results for this file. Min: 1 (only today) - Max: 180 days."
+     },
+     "use_global_cache": {
+      "type": "boolean",
+      "description": "You can choose to enable or disable the global cache. When the global cache is used, you\u2019ll receive a 50% credit refund for the related verifications. If enabled, your verification results will be shared anonymously with other users, and you'll also gain access to anonymized results from other companies. This shared data is fully abstracted and anonymized, no personal or identifiable information i"
+     },
+     "max_global_cache_backoff": {
+      "type": "integer",
+      "description": "Set the maximum number of days our system should look back to find matching verification results for this file. Min: 1 (only today) - Max: 180 days."
+     },
+     "remove_duplicate": {
+      "type": "boolean",
+      "description": "Whether duplicate rows should be removed during batch preparation."
+     },
+     "remove_wrong_email_format": {
+      "type": "boolean",
+      "description": "Whether rows with invalid email formatting should be removed during batch preparation."
+     },
+     "remove_wrong_phone_format": {
+      "type": "boolean",
+      "description": "Whether rows with invalid phone formatting should be removed during batch preparation."
+     }
+    },
+    "required": [
+     "batch_uuid",
+     "target_country",
+     "type"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.apexverify.com/v1/batch/{batch_uuid}",
+    "path": [
+     "batch_uuid"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "type",
+     "target_country",
+     "target_audience",
+     "target_market_industry",
+     "target_objective",
+     "use_account_cache",
+     "max_account_cache_backoff",
+     "use_global_cache",
+     "max_global_cache_backoff",
+     "remove_duplicate",
+     "remove_wrong_email_format",
+     "remove_wrong_phone_format"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "apexverify.status_v1_batch_batch_uuid_get",
+   "name": "Batch status",
+   "description": "Retrieve the current status of the batch. Once available, the response also includes execution costs, results, and refund information.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "batch_uuid": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "batch_uuid"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.apexverify.com/v1/batch/{batch_uuid}",
+    "path": [
+     "batch_uuid"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  }
+ ]
+}

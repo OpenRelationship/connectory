@@ -29,7 +29,7 @@ vouches for**: read it, then read their reference.
   - [Quick Start](https://docs.dropboxapi.com/dropbox-api/docs/get-started/quick-start.md)
   - [Authorization](https://docs.dropboxapi.com/dropbox-api/docs/get-started/authorization.md)
   - [Overview](https://docs.dropboxapi.com/dropbox-api/docs/get-started/tutorial/overview.md)
-  - [App Console](https://docs.dropboxapi.com/dropbox-api/docs/get-started/tutorial/app-console.md)
+  - [Developer Console](https://docs.dropboxapi.com/dropbox-api/docs/get-started/tutorial/app-console.md)
   - [API Compatibility](https://docs.dropboxapi.com/object-storage/docs/api-compatibility.md)
   - [OAuth](https://docs.dropboxapi.com/riviera/docs/guides/o-auth.md)
 - [Dropbox Sign](https://developers.hellosign.com/docs/overview/llms.txt): eSignature API docs

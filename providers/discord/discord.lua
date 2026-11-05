@@ -2,7 +2,7 @@
 --
 -- GENERATED from https://raw.githubusercontent.com/discord/discord-api-spec/main/specs/openapi_preview.json
 -- Published by discord, the vendor's own GitHub organisation.
--- 246 operations · do not edit
+-- 250 operations · do not edit
 --
 -- The credential is never in here. `auth.env` names an environment variable; the value
 -- stays in the environment, which is what makes this file safe to publish.
@@ -64,10 +64,10 @@ return {
     ["discord.create_interaction_response"] = { method = "POST", url = "https://discord.com/api/v10/interactions/{interaction_id}/{interaction_token}/callback", path = {"interaction_id", "interaction_token"}, query = {"with_response"} },
     ["discord.create_linked_lobby_guild_invite_for_self"] = { method = "POST", url = "https://discord.com/api/v10/lobbies/{lobby_id}/members/@me/invites", path = {"lobby_id"} },
     ["discord.create_linked_lobby_guild_invite_for_user"] = { method = "POST", url = "https://discord.com/api/v10/lobbies/{lobby_id}/members/{user_id}/invites", path = {"lobby_id", "user_id"} },
-    ["discord.create_lobby"] = { method = "POST", url = "https://discord.com/api/v10/lobbies", body = {"idle_timeout_seconds", "members", "metadata", "flags", "override_event_webhooks_url"} },
+    ["discord.create_lobby"] = { method = "POST", url = "https://discord.com/api/v10/lobbies", body = {"idle_timeout_seconds", "members", "metadata", "flags", "override_event_webhooks_url", "name"} },
     ["discord.create_lobby_message"] = { method = "POST", url = "https://discord.com/api/v10/lobbies/{lobby_id}/messages", path = {"lobby_id"}, body = {"content", "embeds", "allowed_mentions", "sticker_ids", "components", "flags", "attachments", "poll", "shared_client_theme", "message_reference", "nonce", "enforce_nonce", "tts"} },
     ["discord.create_message"] = { method = "POST", url = "https://discord.com/api/v10/channels/{channel_id}/messages", path = {"channel_id"}, body = {"content", "embeds", "allowed_mentions", "sticker_ids", "components", "flags", "attachments", "poll", "shared_client_theme", "message_reference", "nonce", "enforce_nonce", "tts"} },
-    ["discord.create_or_join_lobby"] = { method = "PUT", url = "https://discord.com/api/v10/lobbies", body = {"idle_timeout_seconds", "lobby_metadata", "member_metadata", "flags"} },
+    ["discord.create_or_join_lobby"] = { method = "PUT", url = "https://discord.com/api/v10/lobbies", body = {"idle_timeout_seconds", "lobby_metadata", "member_metadata", "flags", "name"} },
     ["discord.create_pin"] = { method = "PUT", url = "https://discord.com/api/v10/channels/{channel_id}/messages/pins/{message_id}", path = {"channel_id", "message_id"} },
     ["discord.create_stage_instance"] = { method = "POST", url = "https://discord.com/api/v10/stage-instances", body = {"topic", "channel_id", "privacy_level", "guild_scheduled_event_id", "send_start_notification"} },
     ["discord.create_thread"] = { method = "POST", url = "https://discord.com/api/v10/channels/{channel_id}/threads", path = {"channel_id"} },
@@ -110,7 +110,7 @@ return {
     ["discord.deprecated_create_pin"] = { method = "PUT", url = "https://discord.com/api/v10/channels/{channel_id}/pins/{message_id}", path = {"channel_id", "message_id"} },
     ["discord.deprecated_delete_pin"] = { method = "DELETE", url = "https://discord.com/api/v10/channels/{channel_id}/pins/{message_id}", path = {"channel_id", "message_id"} },
     ["discord.deprecated_list_pins"] = { method = "GET", url = "https://discord.com/api/v10/channels/{channel_id}/pins", path = {"channel_id"} },
-    ["discord.edit_lobby"] = { method = "PATCH", url = "https://discord.com/api/v10/lobbies/{lobby_id}", path = {"lobby_id"}, body = {"idle_timeout_seconds", "metadata", "members", "flags", "override_event_webhooks_url"} },
+    ["discord.edit_lobby"] = { method = "PATCH", url = "https://discord.com/api/v10/lobbies/{lobby_id}", path = {"lobby_id"}, body = {"idle_timeout_seconds", "metadata", "members", "flags", "override_event_webhooks_url", "name"} },
     ["discord.edit_lobby_channel_link"] = { method = "PATCH", url = "https://discord.com/api/v10/lobbies/{lobby_id}/channel-linking", path = {"lobby_id"}, body = {"channel_id"} },
     ["discord.execute_github_compatible_webhook"] = { method = "POST", url = "https://discord.com/api/v10/webhooks/{webhook_id}/{webhook_token}/github", path = {"webhook_id", "webhook_token"}, query = {"wait", "thread_id"}, body = {"action", "ref", "ref_type", "comment", "issue", "pull_request", "repository", "forkee", "sender", "member", "release", "head_commit", "commits", "forced", "compare", "review", "check_run", "check_suite", "discussion", "answer"} },
     ["discord.execute_slack_compatible_webhook"] = { method = "POST", url = "https://discord.com/api/v10/webhooks/{webhook_id}/{webhook_token}/slack", path = {"webhook_id", "webhook_token"}, query = {"wait", "thread_id"}, body = {"text", "username", "icon_url", "attachments"} },
@@ -126,6 +126,8 @@ return {
     ["discord.get_auto_moderation_rule"] = { method = "GET", url = "https://discord.com/api/v10/guilds/{guild_id}/auto-moderation/rules/{rule_id}", path = {"guild_id", "rule_id"} },
     ["discord.get_bot_gateway"] = { method = "GET", url = "https://discord.com/api/v10/gateway/bot" },
     ["discord.get_channel"] = { method = "GET", url = "https://discord.com/api/v10/channels/{channel_id}", path = {"channel_id"} },
+    ["discord.get_channel_member_permissions"] = { method = "GET", url = "https://discord.com/api/v10/channels/{channel_id}/permissions/member/{user_id}", path = {"channel_id", "user_id"}, query = {"implicit"} },
+    ["discord.get_channel_role_permissions"] = { method = "GET", url = "https://discord.com/api/v10/channels/{channel_id}/permissions/role/{role_id}", path = {"channel_id", "role_id"}, query = {"implicit"} },
     ["discord.get_current_user_application_entitlements"] = { method = "GET", url = "https://discord.com/api/v10/users/@me/applications/{application_id}/entitlements", path = {"application_id"}, query = {"sku_ids", "exclude_consumed"} },
     ["discord.get_entitlement"] = { method = "GET", url = "https://discord.com/api/v10/applications/{application_id}/entitlements/{entitlement_id}", path = {"application_id", "entitlement_id"} },
     ["discord.get_entitlements"] = { method = "GET", url = "https://discord.com/api/v10/applications/{application_id}/entitlements", path = {"application_id"}, query = {"user_id", "sku_ids", "guild_id", "before", "after", "limit", "exclude_ended", "exclude_deleted", "only_active"} },
@@ -137,9 +139,11 @@ return {
     ["discord.get_guild_emoji"] = { method = "GET", url = "https://discord.com/api/v10/guilds/{guild_id}/emojis/{emoji_id}", path = {"guild_id", "emoji_id"} },
     ["discord.get_guild_join_requests"] = { method = "GET", url = "https://discord.com/api/v10/guilds/{guild_id}/requests", path = {"guild_id"}, query = {"status", "limit", "before", "after"} },
     ["discord.get_guild_member"] = { method = "GET", url = "https://discord.com/api/v10/guilds/{guild_id}/members/{user_id}", path = {"guild_id", "user_id"} },
+    ["discord.get_guild_member_permissions"] = { method = "GET", url = "https://discord.com/api/v10/guilds/{guild_id}/permissions/member/{user_id}", path = {"guild_id", "user_id"} },
     ["discord.get_guild_new_member_welcome"] = { method = "GET", url = "https://discord.com/api/v10/guilds/{guild_id}/new-member-welcome", path = {"guild_id"} },
     ["discord.get_guild_preview"] = { method = "GET", url = "https://discord.com/api/v10/guilds/{guild_id}/preview", path = {"guild_id"} },
     ["discord.get_guild_role"] = { method = "GET", url = "https://discord.com/api/v10/guilds/{guild_id}/roles/{role_id}", path = {"guild_id", "role_id"} },
+    ["discord.get_guild_role_permissions"] = { method = "GET", url = "https://discord.com/api/v10/guilds/{guild_id}/permissions/role/{role_id}", path = {"guild_id", "role_id"} },
     ["discord.get_guild_scheduled_event"] = { method = "GET", url = "https://discord.com/api/v10/guilds/{guild_id}/scheduled-events/{guild_scheduled_event_id}", path = {"guild_id", "guild_scheduled_event_id"}, query = {"with_user_count"} },
     ["discord.get_guild_soundboard_sound"] = { method = "GET", url = "https://discord.com/api/v10/guilds/{guild_id}/soundboard-sounds/{sound_id}", path = {"guild_id", "sound_id"} },
     ["discord.get_guild_sticker"] = { method = "GET", url = "https://discord.com/api/v10/guilds/{guild_id}/stickers/{sticker_id}", path = {"guild_id", "sticker_id"} },

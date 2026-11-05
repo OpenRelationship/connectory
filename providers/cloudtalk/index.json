@@ -6,7 +6,7 @@
   {
    "slug": "cloudtalk.create_voice_agent_call",
    "name": "Initiate voice agent call",
-   "description": "Creates a new VoiceAgent call with specified parameters and properties. Call properties are optional and can be used to configure the call.",
+   "description": "Creates a new VoiceAgent call with specified parameters and properties. Call properties are optional and can be used to configure the call. The call is queued and dialed shortly after; a `200` means it was queued, not that it was answered. **The contact being called.** Without `contact_id`, CloudTalk looks up the dialed `call_number` among the company's contacts and uses the first match; when none",
    "input": {
     "type": "object",
     "properties": {
@@ -17,6 +17,10 @@
      "voice_agent_id": {
       "type": "string",
       "description": "ID of the VoiceAgent to use for the call"
+     },
+     "contact_id": {
+      "type": "string",
+      "description": "Optional. ID of the CloudTalk contact (or lead) being called, as a string of digits or as an integer; `\"123\"` and `123` are the same contact. The call then uses exactly this contact instead of the one matched by `call_number`, and goes ahead even when the contact's phone numbers do not include `call_number`. The contact fills the `{{contact.*}}` variables and appears in the post-call analysis as `"
      },
      "call_properties": {
       "type": "object",
@@ -37,6 +41,7 @@
     "body": [
      "call_number",
      "voice_agent_id",
+     "contact_id",
      "call_properties"
     ],
     "body_format": "json"
@@ -129,7 +134,7 @@
   {
    "slug": "cloudtalk.delete_campaigns_delete_id_json",
    "name": "Delete campaign",
-   "description": "Deletes the campaign identified by `id`. Returns `404` if no campaign has that ID.",
+   "description": "**LEGACY.** This endpoint keeps working unchanged. For new integrations, use [Delete a dialer campaign](/api-reference/dialer/delete-a-dialer-campaign) on `https://api.cloudtalk.io/v1`. The AI Sales Dialer is a different product from this dialer. Deletes the campaign identified by `id`. Returns `404` if no campaign has that ID.",
    "input": {
     "type": "object",
     "properties": {
@@ -157,7 +162,7 @@
   {
    "slug": "cloudtalk.delete_contacts_delete_contactId_json",
    "name": "Delete contact",
-   "description": "Deletes the contact identified by `contactId`. Returns `404` if no contact has that ID.",
+   "description": "**LEGACY.** This endpoint keeps working unchanged. For new integrations, use [Delete a contact](/api-reference/contacts/delete-a-contact) on `https://api.cloudtalk.io/v1`. Deletes the contact identified by `contactId`. Returns `404` if no contact has that ID.",
    "input": {
     "type": "object",
     "properties": {
@@ -185,7 +190,7 @@
   {
    "slug": "cloudtalk.delete_contacts_removeTags_contactId_json",
    "name": "Unassign contact tags",
-   "description": "Unassign contact tags from a contact.",
+   "description": "**LEGACY.** This endpoint keeps working unchanged. For new integrations, use [Remove tags from a contact](/api-reference/contacts/remove-tags-from-a-contact) on `https://api.cloudtalk.io/v1`. Unassign contact tags from a contact. If a removed tag is one an AI Sales Dialer campaign uses to add contacts, the contact is taken out of that campaign's queue within about 5 minutes. A call already in prog",
    "input": {
     "type": "object",
     "properties": {
@@ -339,7 +344,7 @@
   {
    "slug": "cloudtalk.delete_tags_delete_id_json",
    "name": "Delete a contact tag",
-   "description": "Deletes the contact tag identified by `id`. Returns `404` if no tag has that ID.",
+   "description": "**LEGACY.** This endpoint keeps working unchanged. For new integrations, use [Delete a contact tag](/api-reference/contacts/delete-a-contact-tag) on `https://api.cloudtalk.io/v1`. Deletes the contact tag identified by `id`. Returns `404` if no tag has that ID.",
    "input": {
     "type": "object",
     "properties": {
@@ -765,11 +770,11 @@
      },
      "date_from": {
       "type": "string",
-      "description": "Filter by date from, e.g. 2017-12-24 12:22:00"
+      "description": "Returns calls that started at or after this time, e.g. 2017-12-24 12:22:00. The filter uses the call start time, so a call that started earlier isn't returned even if it ended inside the range."
      },
      "date_to": {
       "type": "string",
-      "description": "Filter by date to, napr\u00edklad 2017-12-24 12:22:00"
+      "description": "Returns calls that started at or before this time, e.g. 2017-12-24 12:22:00."
      },
      "contact_id": {
       "type": "integer",
@@ -874,7 +879,7 @@
   {
    "slug": "cloudtalk.get_campaigns_index_json",
    "name": "List campaigns",
-   "description": "Returns the account's campaigns. Pass `id` to fetch a single campaign, or page through them with `limit` and `page`. These are the campaigns of the original CloudTalk dialer. The newer sales dialer is a separate surface with its own host, authentication and response shape \u2014 see the Dialer endpoints.",
+   "description": "**LEGACY.** This endpoint keeps working unchanged. For new integrations, use [List dialer campaigns](/api-reference/dialer/list-dialer-campaigns), or [Get a dialer campaign](/api-reference/dialer/get-a-dialer-campaign) for one campaign, on `https://api.cloudtalk.io/v1`. The AI Sales Dialer is a different product from this dialer. Returns the account's campaigns. Pass `id` to fetch a single campaig",
    "input": {
     "type": "object",
     "properties": {
@@ -910,7 +915,7 @@
   {
    "slug": "cloudtalk.get_contacts_attributes_json",
    "name": "Attributes",
-   "description": "List all attributes which can be assigned to a contact.",
+   "description": "**LEGACY.** This endpoint keeps working unchanged. For new integrations, use [List contact fields](/api-reference/contacts/list-contact-fields) on `https://api.cloudtalk.io/v1`. List all attributes which can be assigned to a contact.",
    "input": {
     "type": "object",
     "properties": {},
@@ -929,7 +934,7 @@
   {
    "slug": "cloudtalk.get_contacts_index_json",
    "name": "List contacts",
-   "description": "Returns contacts together with their phone numbers, email addresses and custom attributes. Narrow the result with `country_id`, `tag_id`, `industry` or a free-text `keyword`, and page through it with `limit` and `page`.",
+   "description": "**LEGACY.** This endpoint keeps working unchanged. For new integrations, use [List and search contacts](/api-reference/contacts/list-and-search-contacts) on `https://api.cloudtalk.io/v1`. Returns contacts together with their phone numbers, email addresses and custom attributes. Narrow the result with `country_id`, `tag_id`, `industry` or a free-text `keyword`, and page through it with `limit` and ",
    "input": {
     "type": "object",
     "properties": {
@@ -980,7 +985,7 @@
   {
    "slug": "cloudtalk.get_contacts_show_contactId_json",
    "name": "Inspect a contact",
-   "description": "Returns one contact in full \u2014 the contact record plus its phone numbers, email addresses, tags, custom attributes and external URLs. Use this when you already have the contact's ID; use List contacts to search for one.",
+   "description": "**LEGACY.** This endpoint keeps working unchanged. For new integrations, use [Get a contact](/api-reference/contacts/get-a-contact) on `https://api.cloudtalk.io/v1`. Returns one contact in full: the contact record plus its phone numbers, email addresses, tags, custom attributes and external URLs. Use this when you already have the contact's ID. To search for one, use [List contacts](/api-reference",
    "input": {
     "type": "object",
     "properties": {
@@ -1189,7 +1194,7 @@
   {
    "slug": "cloudtalk.get_tags_index_json",
    "name": "List contact tags",
-   "description": "Returns the contact tags defined in the account. Pass `id` to fetch a single tag, or page through them with `limit` and `page`.",
+   "description": "**LEGACY.** This endpoint keeps working unchanged. For new integrations, use [List contact tags](/api-reference/contacts/list-contact-tags) on `https://api.cloudtalk.io/v1`. Returns the contact tags defined in the account. Pass `id` to fetch a single tag, or page through them with `limit` and `page`.",
    "input": {
     "type": "object",
     "properties": {
@@ -1452,7 +1457,7 @@
   {
    "slug": "cloudtalk.post_bulk_contacts_json",
    "name": "Contact actions",
-   "description": "Max 10 actions are available in one request. Only sent parameters/values will be updated. If you want to clear the value, just set empty string for that attribute. After sending empty string for properties of `ContactNumber`, `ContactEmail`, `ContactsTag` or `ContactAttribute` all data from these properties will be cleared. When you send values for properties of `ContactNumber`, `ContactEmail`, `C",
+   "description": "**LEGACY.** This endpoint keeps working unchanged. For new integrations, use [Bulk upsert contacts](/api-reference/contacts/bulk-upsert-contacts) on `https://api.cloudtalk.io/v1`, which creates and updates up to 100 contacts in one request. Bulk delete has no v1 equivalent yet: the v1 API deletes one contact at a time, with [Delete a contact](/api-reference/contacts/delete-a-contact). Max 10 actio",
    "input": {
     "type": "object",
     "properties": {},
@@ -1505,7 +1510,7 @@
   {
    "slug": "cloudtalk.post_campaigns_edit_id_json",
    "name": "Edit campaign",
-   "description": "Edit a campaign",
+   "description": "**LEGACY.** This endpoint keeps working unchanged. For new integrations, use [Update a dialer campaign](/api-reference/dialer/update-a-dialer-campaign) on `https://api.cloudtalk.io/v1`. The AI Sales Dialer is a different product from this dialer. Edit a campaign",
    "input": {
     "type": "object",
     "properties": {
@@ -1636,7 +1641,7 @@
   {
    "slug": "cloudtalk.post_contacts_edit_contactId_json",
    "name": "Edit contact",
-   "description": "Only sent parameters/values will be updated. If you want to clear the value, just set empty string for that attribute. After sending empty string for properties of `ContactNumber`, `ContactEmail`, `ContactsTag` or `ContactAttribute` all data from these properties will be cleared. When you send values for properties of `ContactNumber`, `ContactEmail`, `ContactsTag` or `ContactAttribute` only these ",
+   "description": "**LEGACY.** This endpoint keeps working unchanged. For new integrations, use [Update a contact](/api-reference/contacts/update-a-contact) on `https://api.cloudtalk.io/v1`. Only sent parameters/values will be updated. If you want to clear the value, just set empty string for that attribute. After sending empty string for properties of `ContactNumber`, `ContactEmail`, `ContactsTag` or `ContactAttrib",
    "input": {
     "type": "object",
     "properties": {
@@ -1891,7 +1896,7 @@
   {
    "slug": "cloudtalk.post_sms_send_json",
    "name": "Send sms",
-   "description": "The success response for sms/send.json may include false success attribute, where attribute data is populated with the provider error message",
+   "description": "The success response for sms/send.json may include false success attribute, where attribute data is populated with the provider error message There is no bulk SMS endpoint: each request sends one message to one recipient. To message many recipients, send one request per message and stay within your [rate limits](/guides/rate-limiting).",
    "input": {
     "type": "object",
     "properties": {
@@ -1956,7 +1961,7 @@
   {
    "slug": "cloudtalk.post_tags_edit_id_json",
    "name": "Edit a contact tag",
-   "description": "Renames the contact tag identified by `id`. `name` is required. Returns `404` if no tag has that ID. Note the core API updates with `POST`, not `PUT`.",
+   "description": "**LEGACY.** This endpoint keeps working unchanged. For new integrations, use [Rename a contact tag](/api-reference/contacts/rename-a-contact-tag) on `https://api.cloudtalk.io/v1`. Renames the contact tag identified by `id`. `name` is required. Returns `404` if no tag has that ID. Note the core API updates with `POST`, not `PUT`.",
    "input": {
     "type": "object",
     "properties": {
@@ -2369,7 +2374,7 @@
   {
    "slug": "cloudtalk.public_get_campaign_disposition_buttons",
    "name": "Get a campaign's disposition buttons",
-   "description": "Returns the campaign's disposition buttons as a plain array ordered by `display_order`, with each button's name, colour and outcome resolved from its referenced call tag.",
+   "description": "Returns the campaign's disposition buttons as a plain array ordered by `display_order`, with each button's name, colour and outcome resolved from its referenced call tag. A button whose call tag has since been deleted or archived on your account is left out of the response \u2014 removing a disposition removes it from every campaign. If the call tags cannot be read at that moment, every button is retur",
    "input": {
     "type": "object",
     "properties": {
@@ -2631,7 +2636,7 @@
   {
    "slug": "cloudtalk.public_list_disposition_tags",
    "name": "List disposition tags",
-   "description": "Lists the call tags the company can wire onto a campaign's disposition buttons. Use the returned `id` as `tag_id` when replacing a campaign's buttons. The catalogue is returned whole, so `meta.nextCursor` is always null. Tags are created and edited in the CloudTalk dashboard, not through this API.",
+   "description": "Lists the call tags the company can wire onto a campaign's disposition buttons. Use the returned `id` as `tag_id` when replacing a campaign's buttons. The catalogue is returned whole, so `meta.nextCursor` is always null. Archived dispositions are not listed, because they can no longer be used on a call. Tags are created and edited in the CloudTalk dashboard, not through this API. Plain call tags, ",
    "input": {
     "type": "object",
     "properties": {},
@@ -3051,6 +3056,2165 @@
    }
   },
   {
+   "slug": "cloudtalk.public_v1_add_call_tags",
+   "name": "Add tags to a call",
+   "description": "Adds 1 to 100 plain tags from [List call tags](/api-reference/call-tags/list-call-tags) to a call and returns all tags on the call after the change. Tags already on the call are skipped, so a repeated request is safe. If any id cannot be added, nothing is added and the error lists each refused id in `details`. Dispositions and system tags cannot be added: a Dialer disposition is recorded by the Di",
+   "input": {
+    "type": "object",
+    "properties": {
+     "callId": {
+      "type": "string",
+      "description": "The numeric call id or the call uuid."
+     },
+     "tagIds": {
+      "type": "array",
+      "description": "1 to 100 call tag ids from List call tags. Duplicates are ignored."
+     }
+    },
+    "required": [
+     "callId",
+     "tagIds"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://my.cloudtalk.io/api/calls/{callId}/tags",
+    "path": [
+     "callId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "tagIds"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "cloudtalk.public_v1_add_contact_tags",
+   "name": "Add tags to a contact",
+   "description": "Adds contact tags to the contact and returns the updated contact. Tags the contact already has are ignored, so a repeated request is safe and changes nothing. Only the tags you send are written: a request running at the same time that adds or removes other tags is not undone by this one. When at least one tag changed, `updatedAt` moves forward and [`contact.updated`](/guides/webhooks/events/contac",
+   "input": {
+    "type": "object",
+    "properties": {
+     "contactId": {
+      "type": "string",
+      "description": "The contact id."
+     },
+     "tagIds": {
+      "type": "array",
+      "description": "1 to 50 contact tag ids from List contact tags."
+     }
+    },
+    "required": [
+     "contactId",
+     "tagIds"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://my.cloudtalk.io/api/contacts/{contactId}/tags",
+    "path": [
+     "contactId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "tagIds"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "cloudtalk.public_v1_attach_voice_agent_knowledge_base",
+   "name": "Attach a knowledge base to a voice agent",
+   "description": "Links the knowledge base to the agent. Repeating the call changes nothing.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "voiceAgentId": {
+      "type": "string",
+      "description": "Voice agent identifier"
+     },
+     "knowledgeBaseId": {
+      "type": "string",
+      "description": "Knowledge base identifier"
+     }
+    },
+    "required": [
+     "knowledgeBaseId",
+     "voiceAgentId"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://my.cloudtalk.io/api/voice-agents/{voiceAgentId}/knowledge-bases/{knowledgeBaseId}",
+    "path": [
+     "voiceAgentId",
+     "knowledgeBaseId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "cloudtalk.public_v1_bulk_upsert_contacts",
+   "name": "Bulk upsert contacts",
+   "description": "Creates or updates 1 to 100 contacts in one call and returns one result per row, in request order. Each row is matched on `matchBy`: a row that matches an existing contact updates it, and any other row creates a contact. When a row matches several contacts, the most recently created one is updated and the others stay as they are, as on [Create a contact](/api-reference/contacts/create-a-contact). ",
+   "input": {
+    "type": "object",
+    "properties": {
+     "matchBy": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "phone",
+       "email",
+       "emailOrPhone"
+      ]
+     },
+     "contacts": {
+      "type": "array",
+      "description": ""
+     }
+    },
+    "required": [
+     "contacts",
+     "matchBy"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://my.cloudtalk.io/api/contacts/bulk",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "matchBy",
+     "contacts"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "cloudtalk.public_v1_create_contact",
+   "name": "Create a contact",
+   "description": "Creates a contact and returns it with `201`. Invalid numbers and emails are rejected, not dropped. Text fields are cleaned up before their length is checked and they are stored, as in the CloudTalk Dashboard and the existing API: emojis and other characters that take 4 bytes in UTF-8, and control characters such as line breaks and tabs, become a space; repeated whitespace becomes one space; and sp",
+   "input": {
+    "type": "object",
+    "properties": {
+     "Idempotency-Key": {
+      "type": "string",
+      "description": "Up to 255 characters naming this create. See Retries in the operation description."
+     },
+     "name": {
+      "type": "string",
+      "description": ""
+     },
+     "type": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "contact",
+       "lead"
+      ]
+     },
+     "title": {
+      "type": "string",
+      "description": ""
+     },
+     "company": {
+      "type": "string",
+      "description": ""
+     },
+     "industry": {
+      "type": "string",
+      "description": ""
+     },
+     "website": {
+      "type": "string",
+      "description": ""
+     },
+     "address": {
+      "type": "string",
+      "description": ""
+     },
+     "city": {
+      "type": "string",
+      "description": ""
+     },
+     "state": {
+      "type": "string",
+      "description": ""
+     },
+     "zip": {
+      "type": "string",
+      "description": ""
+     },
+     "countryCode": {
+      "type": "string",
+      "description": "ISO 3166-1 alpha-2."
+     },
+     "phones": {
+      "type": "array",
+      "description": "Up to 20 numbers in E.164. An invalid number is rejected, not dropped."
+     },
+     "emails": {
+      "type": "array",
+      "description": "Up to 20 valid addresses. An invalid address is rejected, not dropped."
+     },
+     "tagIds": {
+      "type": "array",
+      "description": "Up to 50 existing contact tag ids from List contact tags. Read-only tags are refused. To use a new tag, create it first with Create a contact tag."
+     },
+     "customFields": {
+      "type": "object",
+      "description": "Keys are field `name`s from List contact fields. Values are strings of up to 255 characters. At most 100 keys."
+     },
+     "favoriteUserId": {
+      "type": "string",
+      "description": "A user in your account who owns the contact."
+     },
+     "matchBy": {
+      "type": "string",
+      "description": "`none` creates a new contact without a duplicate check. `phone`, `email` or `emailOrPhone` updates a matching contact instead (see the operation description).",
+      "enum": [
+       "none",
+       "phone",
+       "email",
+       "emailOrPhone"
+      ]
+     }
+    },
+    "required": [
+     "name"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://my.cloudtalk.io/api/contacts",
+    "path": [],
+    "query": [],
+    "header": [
+     "Idempotency-Key"
+    ],
+    "body": [
+     "name",
+     "type",
+     "title",
+     "company",
+     "industry",
+     "website",
+     "address",
+     "city",
+     "state",
+     "zip",
+     "countryCode",
+     "phones",
+     "emails",
+     "tagIds",
+     "customFields",
+     "favoriteUserId",
+     "matchBy"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "cloudtalk.public_v1_create_contact_tag",
+   "name": "Create a contact tag",
+   "description": "Creates a contact tag. Names are unique in your account, ignoring case. The name is cleaned up before it is checked and stored, as contact text fields are: emojis and other characters that take 4 bytes in UTF-8, and control characters such as line breaks and tabs, become a space; repeated whitespace becomes one space; and spaces at the start and end are removed. So `\" vip team \"` is stored as `vip",
+   "input": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": "string",
+      "description": "1 to 60 characters once cleaned up: emojis and other characters that take 4 bytes in UTF-8, and control characters such as line breaks and tabs, become a space; repeated whitespace becomes one space; and spaces at the start and end are removed."
+     }
+    },
+    "required": [
+     "name"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://my.cloudtalk.io/api/contact-tags",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "name"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "cloudtalk.public_v1_create_knowledge_base",
+   "name": "Create a knowledge base",
+   "description": "Creates a knowledge base from an address or from inline text. A URL source starts SYNCHRONIZING and turns ACTIVE once it has been read. A company may hold at most 100 knowledge bases; at the cap the request answers 409 KNOWLEDGE_BASE_LIMIT_REACHED.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": "string",
+      "description": "Name of the knowledge base"
+     },
+     "sourceType": {
+      "type": "string",
+      "description": "Where the content comes from; upload a file through POST /knowledge-bases/files",
+      "enum": [
+       "URL",
+       "CUSTOM"
+      ]
+     },
+     "text": {
+      "type": "string",
+      "description": "Content of the knowledge base; required when sourceType is CUSTOM, rejected otherwise"
+     },
+     "url": {
+      "type": "string",
+      "description": "Address to read the content from; required when sourceType is URL, rejected otherwise"
+     }
+    },
+    "required": [
+     "name",
+     "sourceType"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://my.cloudtalk.io/api/knowledge-bases",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "sourceType",
+     "text",
+     "url"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "cloudtalk.public_v1_create_voice_agent",
+   "name": "Create a voice agent",
+   "description": "Creates a voice agent from the attributes object.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "agentName": {
+      "type": "string",
+      "description": "Name of the agent"
+     },
+     "createdAt": {
+      "type": "string",
+      "description": "When the agent was created"
+     },
+     "defaultOutboundNumberId": {
+      "type": "integer",
+      "description": "Outbound caller id; null selects Automatic Outbound and then requires failoverOutboundNumberId"
+     },
+     "dialTimeoutSeconds": {
+      "type": "integer",
+      "description": "Ring timeout; null uses the provider default"
+     },
+     "direction": {
+      "type": "string",
+      "description": "Call direction the agent serves",
+      "enum": [
+       "inbound",
+       "outbound"
+      ]
+     },
+     "elevenLabsSettings": {
+      "type": "object",
+      "description": "Provider turn-taking and audio tuning"
+     },
+     "failoverOutboundNumberId": {
+      "type": "integer",
+      "description": "Number used when Automatic Outbound cannot pick one; required with, and only allowed with, Automatic Outbound (defaultOutboundNumberId null)"
+     },
+     "goalPrompt": {
+      "type": "string",
+      "description": "What the agent is supposed to achieve"
+     },
+     "greeting": {
+      "type": "string",
+      "description": "Opening line; required for inbound agents"
+     },
+     "guardrails": {
+      "type": "array",
+      "description": "Topics the agent must avoid"
+     },
+     "isAgentSpeakingFirst": {
+      "type": "boolean",
+      "description": "Whether the agent speaks first; omitted means true for inbound and false for outbound"
+     },
+     "knowledgeBaseIds": {
+      "type": "array",
+      "description": "Knowledge bases the agent answers from"
+     },
+     "language": {
+      "type": "string",
+      "description": "Primary language code; rejected with 422 and the detail code LANGUAGE_NOT_SUPPORTED when no provider serves it or the agent's provider (the sent one, or the stored one on replace) does not"
+     },
+     "llm": {
+      "type": "string",
+      "description": "Model the agent runs on, by canonical id; null on a read when the agent has none set. Omitted on create means the optimized one; omitted on replace keeps the stored value. A model the provider does not offer is rejected with 422 and the detail code LLM_OVERRIDE_NOT_AVAILABLE_FOR_PROVIDER at target llm",
+      "enum": [
+       "openai - gpt-4o-mini",
+       "openai - gpt-4o",
+       "openai - gpt-4.1",
+       "openai - gpt-4.1-mini",
+       "openai - gpt-4.1-nano",
+       "openai - gpt-5",
+       "openai - gpt-5-mini",
+       "openai - gpt-5-nano",
+       "openai - gpt-5.1",
+       "openai - gpt-5.2",
+       "openai - gpt-5.4",
+       "openai - gpt-5.4-mini"
+      ]
+     },
+     "llmOverride": {
+      "type": "string",
+      "description": "Deprecated alias of llm. On a read, the agent's legacy pinned model until its next save moves it into llm, else null. On a write it wins over llm when both are sent",
+      "enum": [
+       "openai - gpt-4o-mini",
+       "openai - gpt-4o",
+       "openai - gpt-4.1",
+       "openai - gpt-4.1-mini",
+       "openai - gpt-4.1-nano",
+       "openai - gpt-5",
+       "openai - gpt-5-mini",
+       "openai - gpt-5-nano",
+       "openai - gpt-5.1",
+       "openai - gpt-5.2",
+       "openai - gpt-5.4",
+       "openai - gpt-5.4-mini"
+      ]
+     },
+     "maxCallDurationMinutes": {
+      "type": "integer",
+      "description": "Hard cap on one call"
+     },
+     "minorVersion": {
+      "type": "integer",
+      "description": "Generation of the agent's tuned defaults. Omitted on create means the latest; omitted on replace keeps the stored value. A create takes 0 to the latest (send the source's value when duplicating an agent); a replace takes the stored value or the latest, and any other value is rejected with 422. Moving it to the latest applies the minorVersion change optimizedSettings lists"
+     },
+     "optimizeStreamingLatency": {
+      "type": "integer",
+      "description": "Latency optimisation level"
+     },
+     "optimizedSettings": {
+      "type": "object",
+      "description": "What applying the platform's optimized values for the agent's current setup would change. The server never applies them on its own; set each change's path to its to value and replace the agent"
+     },
+     "provider": {
+      "type": "string",
+      "description": "Speech provider the agent runs on; null on a read when the agent has none set. Omitted on create means the optimized one; omitted on replace keeps the stored value",
+      "enum": [
+       "elevenlabs",
+       "deepgram",
+       null
+      ]
+     },
+     "providerOverride": {
+      "type": "string",
+      "description": "Deprecated alias of provider. On a read, the agent's legacy pinned provider until its next save moves it into provider, else null. On a write it wins over provider when both are sent",
+      "enum": [
+       "elevenlabs",
+       "deepgram",
+       null
+      ]
+     },
+     "scenarios": {
+      "type": "array",
+      "description": "Situational instructions"
+     },
+     "secondaryLanguages": {
+      "type": "array",
+      "description": "Additional languages; the write is rejected with 422 and the detail code LANGUAGE_NOT_SUPPORTED, never trimmed, when the agent's provider does not serve a code, Deepgram included. A blank or repeated code is dropped. A Deepgram agent with secondary languages Deepgram serves is saved, and optimizedSettings then proposes ElevenLabs"
+     },
+     "similarity": {
+      "type": "number",
+      "description": "Voice similarity boost"
+     },
+     "skills": {
+      "type": "object",
+      "description": "Capabilities the agent may use"
+     },
+     "stability": {
+      "type": "number",
+      "description": "Voice stability"
+     },
+     "status": {
+      "type": "string",
+      "description": "Whether the agent may run; omitted on write means enabled",
+      "enum": [
+       "enabled",
+       "disabled"
+      ]
+     },
+     "temperature": {
+      "type": "number",
+      "description": "Creativity of the agent's replies"
+     },
+     "tone": {
+      "type": "array",
+      "description": "Tone presets the agent blends"
+     },
+     "updatedAt": {
+      "type": "string",
+      "description": "When the agent was last saved"
+     },
+     "verbosity": {
+      "type": "string",
+      "description": "How much the agent elaborates; omitted means standard",
+      "enum": [
+       "concise",
+       "standard",
+       "thorough"
+      ]
+     },
+     "voiceId": {
+      "type": "string",
+      "description": "Voice the agent speaks with"
+     }
+    },
+    "required": [
+     "agentName",
+     "defaultOutboundNumberId",
+     "direction",
+     "goalPrompt",
+     "language",
+     "maxCallDurationMinutes",
+     "optimizeStreamingLatency",
+     "similarity",
+     "stability",
+     "temperature",
+     "voiceId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://my.cloudtalk.io/api/voice-agents",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "agentName",
+     "createdAt",
+     "defaultOutboundNumberId",
+     "dialTimeoutSeconds",
+     "direction",
+     "elevenLabsSettings",
+     "failoverOutboundNumberId",
+     "goalPrompt",
+     "greeting",
+     "guardrails",
+     "isAgentSpeakingFirst",
+     "knowledgeBaseIds",
+     "language",
+     "llm",
+     "llmOverride",
+     "maxCallDurationMinutes",
+     "minorVersion",
+     "optimizeStreamingLatency",
+     "optimizedSettings",
+     "provider",
+     "providerOverride",
+     "scenarios",
+     "secondaryLanguages",
+     "similarity",
+     "skills",
+     "stability",
+     "status",
+     "temperature",
+     "tone",
+     "updatedAt",
+     "verbosity",
+     "voiceId"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "cloudtalk.public_v1_create_webhook_endpoint",
+   "name": "Create a webhook endpoint",
+   "description": "Creates an endpoint and returns it with its signing secret. This response is the only time the secret is part of the resource; read it again with `GET /webhooks/endpoints/{endpointId}/secret`. The URL must be `https://` and point at a public host: private, loopback and other non-public addresses, internal names and non-ASCII hosts are rejected. A company can have at most 50 endpoints, Dashboard-cr",
+   "input": {
+    "type": "object",
+    "properties": {
+     "Idempotency-Key": {
+      "type": "string",
+      "description": "Free text up to 255 characters naming this create. See the operation description."
+     },
+     "url": {
+      "type": "string",
+      "description": "`https://` URL on a public host whose name ends in a public top-level domain."
+     },
+     "description": {
+      "type": "string",
+      "description": ""
+     },
+     "eventTypes": {
+      "type": "array",
+      "description": "Event types to receive (see List webhook event types). Omit or send null for every event type. An empty list is rejected."
+     }
+    },
+    "required": [
+     "url"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://my.cloudtalk.io/api/webhooks/endpoints",
+    "path": [],
+    "query": [],
+    "header": [
+     "Idempotency-Key"
+    ],
+    "body": [
+     "url",
+     "description",
+     "eventTypes"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "cloudtalk.public_v1_delete_contact",
+   "name": "Delete a contact",
+   "description": "Permanently deletes the contact with its numbers, emails, tags and custom field values. This cannot be undone. - Calls with this contact stay in your call history, but they are no longer linked to the contact. - Dialer campaigns that selected the contact by tag drop it at the next Dialer reconcile (every 5 minutes by default). - A [`contact.deleted`](/guides/webhooks/events/contacts#contact-delete",
+   "input": {
+    "type": "object",
+    "properties": {
+     "contactId": {
+      "type": "string",
+      "description": "The contact id."
+     }
+    },
+    "required": [
+     "contactId"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://my.cloudtalk.io/api/contacts/{contactId}",
+    "path": [
+     "contactId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "cloudtalk.public_v1_delete_contact_tag",
+   "name": "Delete a contact tag",
+   "description": "Deletes a contact tag and removes it from every contact. This cannot be undone. Read-only tags cannot be deleted (see [List contact tags](/api-reference/contacts/list-contact-tags)). Deleting a tag that is in use is allowed, as in the Dashboard: - Dialer campaigns, VIP queues and call flow conditions that use the tag lose it. A campaign that targets only this tag ends up with no contacts. - Workfl",
+   "input": {
+    "type": "object",
+    "properties": {
+     "tagId": {
+      "type": "string",
+      "description": "The contact tag id."
+     }
+    },
+    "required": [
+     "tagId"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://my.cloudtalk.io/api/contact-tags/{tagId}",
+    "path": [
+     "tagId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "cloudtalk.public_v1_delete_knowledge_base",
+   "name": "Delete a knowledge base",
+   "description": "Deletes the knowledge base. A knowledge base attached to a voice agent must be detached first.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "knowledgeBaseId": {
+      "type": "string",
+      "description": "Knowledge base identifier"
+     }
+    },
+    "required": [
+     "knowledgeBaseId"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://my.cloudtalk.io/api/knowledge-bases/{knowledgeBaseId}",
+    "path": [
+     "knowledgeBaseId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "cloudtalk.public_v1_delete_voice_agent",
+   "name": "Delete a voice agent",
+   "description": "Deletes the voice agent. Attached knowledge bases and tools are unlinked, not deleted.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "voiceAgentId": {
+      "type": "string",
+      "description": "Voice agent identifier"
+     }
+    },
+    "required": [
+     "voiceAgentId"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://my.cloudtalk.io/api/voice-agents/{voiceAgentId}",
+    "path": [
+     "voiceAgentId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "cloudtalk.public_v1_delete_webhook_endpoint",
+   "name": "Delete a webhook endpoint",
+   "description": "Deletes the endpoint and stops delivery to it. This cannot be undone: the endpoint, its signing secret and its delivery history are gone.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "endpointId": {
+      "type": "string",
+      "description": "Webhook endpoint id (`ep_...`)."
+     }
+    },
+    "required": [
+     "endpointId"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://my.cloudtalk.io/api/webhooks/endpoints/{endpointId}",
+    "path": [
+     "endpointId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "cloudtalk.public_v1_detach_voice_agent_knowledge_base",
+   "name": "Detach a knowledge base from a voice agent",
+   "description": "Unlinks the knowledge base from the agent; the knowledge base itself is kept.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "voiceAgentId": {
+      "type": "string",
+      "description": "Voice agent identifier"
+     },
+     "knowledgeBaseId": {
+      "type": "string",
+      "description": "Knowledge base identifier"
+     }
+    },
+    "required": [
+     "knowledgeBaseId",
+     "voiceAgentId"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://my.cloudtalk.io/api/voice-agents/{voiceAgentId}/knowledge-bases/{knowledgeBaseId}",
+    "path": [
+     "voiceAgentId",
+     "knowledgeBaseId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "cloudtalk.public_v1_get_contact",
+   "name": "Get a contact",
+   "description": "Returns one contact with every number, email, tag and custom field. Integration tags are not listed in `tags`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "contactId": {
+      "type": "string",
+      "description": "The contact id."
+     }
+    },
+    "required": [
+     "contactId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://my.cloudtalk.io/api/contacts/{contactId}",
+    "path": [
+     "contactId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "cloudtalk.public_v1_get_user_status",
+   "name": "Get a user's status",
+   "description": "Returns one user's current status, worked out exactly like [List user statuses](/api-reference/user-status/list-user-statuses), so the two always agree.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "userId": {
+      "type": "string",
+      "description": "The user's id."
+     }
+    },
+    "required": [
+     "userId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://my.cloudtalk.io/api/user-statuses/{userId}",
+    "path": [
+     "userId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "cloudtalk.public_v1_get_voice_agent",
+   "name": "Get a voice agent",
+   "description": "Returns one voice agent of the company.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "voiceAgentId": {
+      "type": "string",
+      "description": "Voice agent identifier"
+     }
+    },
+    "required": [
+     "voiceAgentId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://my.cloudtalk.io/api/voice-agents/{voiceAgentId}",
+    "path": [
+     "voiceAgentId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "cloudtalk.public_v1_get_webhook_delivery",
+   "name": "Get a delivery",
+   "description": "Returns one delivery with the payload that was sent and every attempt on this endpoint, newest first, including the HTTP status your server answered and the first 4 KB of its response body. After 30 days the payload is no longer kept and `payload` is null.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "endpointId": {
+      "type": "string",
+      "description": "Webhook endpoint id (`ep_...`)."
+     },
+     "deliveryId": {
+      "type": "string",
+      "description": "Delivery id (`msg_...`). It is the same value as the `svix-id` header of the delivered request."
+     }
+    },
+    "required": [
+     "deliveryId",
+     "endpointId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://my.cloudtalk.io/api/webhooks/endpoints/{endpointId}/deliveries/{deliveryId}",
+    "path": [
+     "endpointId",
+     "deliveryId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "cloudtalk.public_v1_get_webhook_endpoint",
+   "name": "Get a webhook endpoint",
+   "description": "Returns one endpoint. The signing secret is not included.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "endpointId": {
+      "type": "string",
+      "description": "Webhook endpoint id (`ep_...`)."
+     }
+    },
+    "required": [
+     "endpointId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://my.cloudtalk.io/api/webhooks/endpoints/{endpointId}",
+    "path": [
+     "endpointId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "cloudtalk.public_v1_get_webhook_endpoint_secret",
+   "name": "Get the signing secret",
+   "description": "Returns the endpoint's current signing secret, used to verify webhook signatures.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "endpointId": {
+      "type": "string",
+      "description": "Webhook endpoint id (`ep_...`)."
+     }
+    },
+    "required": [
+     "endpointId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://my.cloudtalk.io/api/webhooks/endpoints/{endpointId}/secret",
+    "path": [
+     "endpointId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "cloudtalk.public_v1_list_call_tags",
+   "name": "List call tags",
+   "description": "Lists the active plain call tags of your company, in Dashboard order. These are the only tags [Add tags to a call](/api-reference/call-tags/add-tags-to-a-call) accepts. Dispositions are not in this list: [List disposition tags](/api-reference/dialer/list-disposition-tags) lists those, and the two lists never overlap. Tags are created and edited in the CloudTalk Dashboard. A full page always carrie",
+   "input": {
+    "type": "object",
+    "properties": {
+     "callType": {
+      "type": "string",
+      "description": "Returns the tags meant for this direction plus the tags meant for both. Leave it out to skip the direction filter.",
+      "enum": [
+       "incoming",
+       "outgoing"
+      ]
+     },
+     "groupId": {
+      "type": "string",
+      "description": "Only tags visible to this group, plus tags visible to every group. Cannot be combined with `userId`."
+     },
+     "userId": {
+      "type": "string",
+      "description": "Only tags visible to one of this user's groups, plus tags visible to every group. Cannot be combined with `groupId`."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Page size, 1 to 100. Out-of-range values are clamped and the value used is echoed in `pagination.limit`. A value that is not a whole number, such as `abc` or `1.5`, is rejected with `400 VALIDATION.INVALID_PARAMETER`."
+     },
+     "cursor": {
+      "type": "string",
+      "description": "Opaque cursor from a previous page's `pagination.next`. Pass it back unchanged. Send it with the same filters. A malformed cursor is rejected with `400 PAGINATION.INVALID_CURSOR`."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://my.cloudtalk.io/api/call-tags",
+    "path": [],
+    "query": [
+     "callType",
+     "groupId",
+     "userId",
+     "limit",
+     "cursor"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "cloudtalk.public_v1_list_call_tags_for_call",
+   "name": "List a call's tags",
+   "description": "Returns every tag on one call, of every type (plain tags, dispositions and system tags), with when each was added and by which user, in Dashboard catalogue order. Use it to read a call's current tags after a [`call.tags_modified`](/guides/webhooks/events/calls#call-tags_modified) webhook, which carries only the change. **Which calls.** `callId` is the numeric call id from call history or the call ",
+   "input": {
+    "type": "object",
+    "properties": {
+     "callId": {
+      "type": "string",
+      "description": "The numeric call id or the call uuid."
+     }
+    },
+    "required": [
+     "callId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://my.cloudtalk.io/api/calls/{callId}/tags",
+    "path": [
+     "callId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "cloudtalk.public_v1_list_contact_fields",
+   "name": "List contact fields",
+   "description": "Returns your custom field definitions. Use each field's `name` as the key in a contact's `customFields`. Renaming a field in the Dashboard changes its key. `updatedAt` always equals `createdAt`: a rename does not change it.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "limit": {
+      "type": "integer",
+      "description": "Page size, 1 to 100. Out-of-range values are clamped and the value used is echoed in `pagination.limit`. A value that is not a whole number, such as `abc` or `1.5`, is rejected with `400 VALIDATION.INVALID_PARAMETER`."
+     },
+     "cursor": {
+      "type": "string",
+      "description": "Opaque cursor from a previous page's `pagination.next`. Pass it back unchanged. A cursor this API did not issue is rejected with `400 PAGINATION.INVALID_CURSOR`."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://my.cloudtalk.io/api/contact-fields",
+    "path": [],
+    "query": [
+     "limit",
+     "cursor"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "cloudtalk.public_v1_list_contact_tags",
+   "name": "List contact tags",
+   "description": "Returns your contact tag catalogue, sorted by name in character code order. The order is case-sensitive: uppercase letters come before lowercase ones, so `Beta` comes before `alpha`. Use each tag's `id` wherever this API takes `tagIds`. Call tags are a separate catalogue: see [List call tags](/api-reference/call-tags/list-call-tags). **Read-only tags.** A tag with `readOnly: true` cannot be added ",
+   "input": {
+    "type": "object",
+    "properties": {
+     "limit": {
+      "type": "integer",
+      "description": "Page size, 1 to 100. Out-of-range values are clamped and the value used is echoed in `pagination.limit`. A value that is not a whole number, such as `abc` or `1.5`, is rejected with `400 VALIDATION.INVALID_PARAMETER`."
+     },
+     "cursor": {
+      "type": "string",
+      "description": "Opaque cursor from a previous page's `pagination.next`. Pass it back unchanged. A cursor this API did not issue, or one from a request with a different `search`, is rejected with `400 PAGINATION.INVALID_CURSOR`."
+     },
+     "search": {
+      "type": "string",
+      "description": "1 to 60 characters. Returns tags whose name contains this text, ignoring case. The results keep the same order."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://my.cloudtalk.io/api/contact-tags",
+    "path": [],
+    "query": [
+     "limit",
+     "cursor",
+     "search"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "cloudtalk.public_v1_list_contacts",
+   "name": "List and search contacts",
+   "description": "Returns your contacts and leads one page at a time, with every number, email, tag and custom field on each row. Narrow the list with `search`, `tagIds`, `type` and `updatedSince`. For an exact phone or email match, use [Look up contacts](/api-reference/contacts/look-up-contacts). To follow changes as they happen, subscribe to the [`contact.created`, `contact.updated` and `contact.deleted`](/guides",
+   "input": {
+    "type": "object",
+    "properties": {
+     "limit": {
+      "type": "integer",
+      "description": "Page size, 1 to 100. Out-of-range values are clamped and the value used is echoed in `pagination.limit`. A value that is not a whole number, such as `abc` or `1.5`, is rejected with `400 VALIDATION.INVALID_PARAMETER`."
+     },
+     "cursor": {
+      "type": "string",
+      "description": "Opaque cursor from a previous page's `pagination.next`. Pass it back unchanged. Send it with the same filters: a cursor from a list with `updatedSince` (ordered by update time) is rejected on a list without it, and the other way round. A cursor this API did not issue, or one sent with different filters, is rejected with `400 PAGINATION.INVALID_CURSOR`."
+     },
+     "search": {
+      "type": "string",
+      "description": "Full-text search, 2 to 200 characters. See How `search` matches above."
+     },
+     "tagIds": {
+      "type": "string",
+      "description": "1 to 20 comma-separated contact tag ids from List contact tags. A contact matches when it has any of them. Integration tag ids match nothing."
+     },
+     "type": {
+      "type": "string",
+      "description": "`contact` or `lead`. Default: both.",
+      "enum": [
+       "contact",
+       "lead"
+      ]
+     },
+     "updatedSince": {
+      "type": "string",
+      "description": "RFC 3339 time. Only contacts whose `updatedAt` is at or after it. Without `search`, the list is then ordered by `updatedAt`, most recently updated first. A contact updated while you page moves to the top of that order, so the next run with a later `updatedSince` picks it up."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://my.cloudtalk.io/api/contacts",
+    "path": [],
+    "query": [
+     "limit",
+     "cursor",
+     "search",
+     "tagIds",
+     "type",
+     "updatedSince"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "cloudtalk.public_v1_list_knowledge_bases",
+   "name": "List knowledge bases",
+   "description": "Returns one page of the company's knowledge bases. Pages are ordered by identifier and walked with limit and cursor.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "limit": {
+      "type": "integer",
+      "description": "Page size, 1-100; out-of-range values are clamped and the effective value echoed in pagination.limit"
+     },
+     "cursor": {
+      "type": "string",
+      "description": "Opaque cursor from a previous page's pagination.next"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://my.cloudtalk.io/api/knowledge-bases",
+    "path": [],
+    "query": [
+     "limit",
+     "cursor"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "cloudtalk.public_v1_list_user_status_types",
+   "name": "List user status types",
+   "description": "Returns every status type a user in your company can pick: CloudTalk's built-in types first, then your custom types, each group ordered by id. Use `id` to set a status and `actAs` to know how it affects routing. The list is short and comes in one response, without pagination. Built-in types keep their long-standing ids: Online `7`, Idle `9`, Offline `11`, Busy `17`, Break `18`, Lunch `19`, Meeting",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://my.cloudtalk.io/api/user-status-types",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "cloudtalk.public_v1_list_user_statuses",
+   "name": "List user statuses",
+   "description": "Returns the current status of users in your company, ordered by user id. Filter by live `status`, or pass `updatedSince` to get only users whose status changed since your last poll. For live updates, subscribe to the [`user.status_changed`](/guides/webhooks/events/users#user-status_changed) webhook instead. **How `status` is worked out.** Three inputs are checked in this order: whether the user is",
+   "input": {
+    "type": "object",
+    "properties": {
+     "limit": {
+      "type": "integer",
+      "description": "Page size, 1 to 100. Out-of-range values are clamped and the value used is echoed in `pagination.limit`. A value that is not a whole number, such as `abc` or `1.5`, is rejected with `400 VALIDATION.INVALID_PARAMETER`. An empty value gives the default."
+     },
+     "cursor": {
+      "type": "string",
+      "description": "Opaque cursor from a previous page's `pagination.next`. Pass it back unchanged. An empty value starts at the first page. Keep the same filters across pages. A cursor this API did not issue is rejected with `400 PAGINATION.INVALID_CURSOR`."
+     },
+     "status": {
+      "type": "string",
+      "description": "Only users with this live status.",
+      "enum": [
+       "online",
+       "idle",
+       "offline",
+       "on_call",
+       "after_call_work"
+      ]
+     },
+     "updatedSince": {
+      "type": "string",
+      "description": "RFC 3339 time. Only users whose `updatedAt` is strictly after it."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://my.cloudtalk.io/api/user-statuses",
+    "path": [],
+    "query": [
+     "limit",
+     "cursor",
+     "status",
+     "updatedSince"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "cloudtalk.public_v1_list_voice_agents",
+   "name": "List voice agents",
+   "description": "Returns one page of the company's voice agents. Pages are ordered by creation and walked with limit and cursor.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "limit": {
+      "type": "integer",
+      "description": "Page size, 1-100; out-of-range values are clamped and the effective value echoed in pagination.limit"
+     },
+     "cursor": {
+      "type": "string",
+      "description": "Opaque cursor from a previous page's pagination.next"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://my.cloudtalk.io/api/voice-agents",
+    "path": [],
+    "query": [
+     "limit",
+     "cursor"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "cloudtalk.public_v1_list_webhook_deliveries",
+   "name": "List deliveries",
+   "description": "Returns one page of the events sent to the endpoint, newest first, without payloads. A delivery is listed from its first attempt. Payloads are kept for 30 days.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "endpointId": {
+      "type": "string",
+      "description": "Webhook endpoint id (`ep_...`)."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Page size, 1-100. Out-of-range values are clamped and the effective value is echoed in `pagination.limit`."
+     },
+     "cursor": {
+      "type": "string",
+      "description": "Opaque cursor from a previous page's `pagination.next`. Pass it back unchanged. A cursor this API cannot use is rejected with `400 PAGINATION.INVALID_CURSOR`."
+     },
+     "status": {
+      "type": "string",
+      "description": "Only deliveries with this final outcome. `failed` excludes deliveries that are still retrying.",
+      "enum": [
+       "succeeded",
+       "failed"
+      ]
+     },
+     "eventType": {
+      "type": "string",
+      "description": "Comma-separated event types to include."
+     },
+     "since": {
+      "type": "string",
+      "description": "Only deliveries created after this time (RFC 3339)."
+     },
+     "until": {
+      "type": "string",
+      "description": "Only deliveries created before this time (RFC 3339). Must be later than `since`."
+     }
+    },
+    "required": [
+     "endpointId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://my.cloudtalk.io/api/webhooks/endpoints/{endpointId}/deliveries",
+    "path": [
+     "endpointId"
+    ],
+    "query": [
+     "limit",
+     "cursor",
+     "status",
+     "eventType",
+     "since",
+     "until"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "cloudtalk.public_v1_list_webhook_endpoints",
+   "name": "List webhook endpoints",
+   "description": "Returns one page of the company's webhook endpoints, newest first, including endpoints created in the Dashboard.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "limit": {
+      "type": "integer",
+      "description": "Page size, 1-100. Out-of-range values are clamped and the effective value is echoed in `pagination.limit`."
+     },
+     "cursor": {
+      "type": "string",
+      "description": "Opaque cursor from a previous page's `pagination.next`. Pass it back unchanged. A cursor this API cannot use is rejected with `400 PAGINATION.INVALID_CURSOR`."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://my.cloudtalk.io/api/webhooks/endpoints",
+    "path": [],
+    "query": [
+     "limit",
+     "cursor"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "cloudtalk.public_v1_list_webhook_event_types",
+   "name": "List webhook event types",
+   "description": "Returns every event type an endpoint can subscribe to. Deprecated and internal types are not listed. Readable without a webhooks-enabled plan, so you can see what you would receive before enabling it.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "include": {
+      "type": "string",
+      "description": "`schema` adds the JSON Schema of the full webhook body for every version of each type.",
+      "enum": [
+       "schema"
+      ]
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://my.cloudtalk.io/api/webhooks/event-types",
+    "path": [],
+    "query": [
+     "include"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "cloudtalk.public_v1_lookup_contacts",
+   "name": "Look up contacts",
+   "description": "Finds contacts by exact phone number or email. Send up to 50 of each. A contact matches when any value you sent matches it. The values travel in the request body, so they never appear in a URL or an access log. Error messages name the position of a bad value (`phones[2]`), never the value itself. Results are paged like [List and search contacts](/api-reference/contacts/list-and-search-contacts). D",
+   "input": {
+    "type": "object",
+    "properties": {
+     "limit": {
+      "type": "integer",
+      "description": "Page size, 1 to 100. Out-of-range values are clamped and the value used is echoed in `pagination.limit`. A value that is not a whole number, such as `abc` or `1.5`, is rejected with `400 VALIDATION.INVALID_PARAMETER`."
+     },
+     "cursor": {
+      "type": "string",
+      "description": "Opaque cursor from a previous page's `pagination.next`. Pass it back unchanged. Send the same body as the request that returned it. A cursor this API did not issue, or one sent with a different body, is rejected with `400 PAGINATION.INVALID_CURSOR`."
+     },
+     "phones": {
+      "type": "array",
+      "description": "Up to 50 numbers in E.164."
+     },
+     "emails": {
+      "type": "array",
+      "description": "Up to 50 addresses. Matched without regard to case."
+     },
+     "type": {
+      "type": "string",
+      "description": "Default: both.",
+      "enum": [
+       "contact",
+       "lead"
+      ]
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://my.cloudtalk.io/api/contacts/lookup",
+    "path": [],
+    "query": [
+     "limit",
+     "cursor"
+    ],
+    "header": [],
+    "body": [
+     "phones",
+     "emails",
+     "type"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "cloudtalk.public_v1_remove_call_tags",
+   "name": "Remove tags from a call",
+   "description": "Removes 1 to 100 plain call tags from a call and returns the tags left on it. Removing a plain tag that is not on the call does nothing, so a repeated request is safe. A plain tag that was archived after it was added can still be removed. If any id cannot be removed, nothing is removed and the error lists each refused id in `details`. Only plain call tags can be removed through the API: dispositio",
+   "input": {
+    "type": "object",
+    "properties": {
+     "callId": {
+      "type": "string",
+      "description": "The numeric call id or the call uuid."
+     },
+     "tagIds": {
+      "type": "string",
+      "description": "1 to 100 comma-separated call tag ids. Duplicates are ignored."
+     }
+    },
+    "required": [
+     "callId",
+     "tagIds"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://my.cloudtalk.io/api/calls/{callId}/tags",
+    "path": [
+     "callId"
+    ],
+    "query": [
+     "tagIds"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "cloudtalk.public_v1_remove_contact_tags",
+   "name": "Remove tags from a contact",
+   "description": "Removes the listed tags from the contact and returns the updated contact. Tags the contact does not have are ignored, so a repeated request is safe and changes nothing. Only the tags you list are removed: a request running at the same time that adds other tags is not undone by this one. When at least one tag changed, `updatedAt` moves forward and [`contact.updated`](/guides/webhooks/events/contact",
+   "input": {
+    "type": "object",
+    "properties": {
+     "contactId": {
+      "type": "string",
+      "description": "The contact id."
+     },
+     "tagIds": {
+      "type": "string",
+      "description": "1 to 50 comma-separated contact tag ids."
+     }
+    },
+    "required": [
+     "contactId",
+     "tagIds"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://my.cloudtalk.io/api/contacts/{contactId}/tags",
+    "path": [
+     "contactId"
+    ],
+    "query": [
+     "tagIds"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "cloudtalk.public_v1_rename_contact_tag",
+   "name": "Rename a contact tag",
+   "description": "Renames a contact tag. The new name is cleaned up before it is checked and stored, as on [Create a contact tag](/api-reference/contacts/create-a-contact-tag). The tag keeps its id, and every contact that has it shows the new name. Read-only tags cannot be renamed (see [List contact tags](/api-reference/contacts/list-contact-tags)). - Dialer campaigns, VIP queues, call flows and webhooks refer to t",
+   "input": {
+    "type": "object",
+    "properties": {
+     "tagId": {
+      "type": "string",
+      "description": "The contact tag id."
+     },
+     "name": {
+      "type": "string",
+      "description": "1 to 60 characters once cleaned up: emojis and other characters that take 4 bytes in UTF-8, and control characters such as line breaks and tabs, become a space; repeated whitespace becomes one space; and spaces at the start and end are removed."
+     }
+    },
+    "required": [
+     "name",
+     "tagId"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://my.cloudtalk.io/api/contact-tags/{tagId}",
+    "path": [
+     "tagId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "name"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "cloudtalk.public_v1_replace_voice_agent",
+   "name": "Replace a voice agent",
+   "description": "Replaces the voice agent with the attributes object. An omitted optional attribute is reset to its default, never preserved, except provider, llm and minorVersion, which keep their stored values.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "voiceAgentId": {
+      "type": "string",
+      "description": "Voice agent identifier"
+     },
+     "agentName": {
+      "type": "string",
+      "description": "Name of the agent"
+     },
+     "createdAt": {
+      "type": "string",
+      "description": "When the agent was created"
+     },
+     "defaultOutboundNumberId": {
+      "type": "integer",
+      "description": "Outbound caller id; null selects Automatic Outbound and then requires failoverOutboundNumberId"
+     },
+     "dialTimeoutSeconds": {
+      "type": "integer",
+      "description": "Ring timeout; null uses the provider default"
+     },
+     "direction": {
+      "type": "string",
+      "description": "Call direction the agent serves",
+      "enum": [
+       "inbound",
+       "outbound"
+      ]
+     },
+     "elevenLabsSettings": {
+      "type": "object",
+      "description": "Provider turn-taking and audio tuning"
+     },
+     "failoverOutboundNumberId": {
+      "type": "integer",
+      "description": "Number used when Automatic Outbound cannot pick one; required with, and only allowed with, Automatic Outbound (defaultOutboundNumberId null)"
+     },
+     "goalPrompt": {
+      "type": "string",
+      "description": "What the agent is supposed to achieve"
+     },
+     "greeting": {
+      "type": "string",
+      "description": "Opening line; required for inbound agents"
+     },
+     "guardrails": {
+      "type": "array",
+      "description": "Topics the agent must avoid"
+     },
+     "isAgentSpeakingFirst": {
+      "type": "boolean",
+      "description": "Whether the agent speaks first; omitted means true for inbound and false for outbound"
+     },
+     "knowledgeBaseIds": {
+      "type": "array",
+      "description": "Knowledge bases the agent answers from"
+     },
+     "language": {
+      "type": "string",
+      "description": "Primary language code; rejected with 422 and the detail code LANGUAGE_NOT_SUPPORTED when no provider serves it or the agent's provider (the sent one, or the stored one on replace) does not"
+     },
+     "llm": {
+      "type": "string",
+      "description": "Model the agent runs on, by canonical id; null on a read when the agent has none set. Omitted on create means the optimized one; omitted on replace keeps the stored value. A model the provider does not offer is rejected with 422 and the detail code LLM_OVERRIDE_NOT_AVAILABLE_FOR_PROVIDER at target llm",
+      "enum": [
+       "openai - gpt-4o-mini",
+       "openai - gpt-4o",
+       "openai - gpt-4.1",
+       "openai - gpt-4.1-mini",
+       "openai - gpt-4.1-nano",
+       "openai - gpt-5",
+       "openai - gpt-5-mini",
+       "openai - gpt-5-nano",
+       "openai - gpt-5.1",
+       "openai - gpt-5.2",
+       "openai - gpt-5.4",
+       "openai - gpt-5.4-mini"
+      ]
+     },
+     "llmOverride": {
+      "type": "string",
+      "description": "Deprecated alias of llm. On a read, the agent's legacy pinned model until its next save moves it into llm, else null. On a write it wins over llm when both are sent",
+      "enum": [
+       "openai - gpt-4o-mini",
+       "openai - gpt-4o",
+       "openai - gpt-4.1",
+       "openai - gpt-4.1-mini",
+       "openai - gpt-4.1-nano",
+       "openai - gpt-5",
+       "openai - gpt-5-mini",
+       "openai - gpt-5-nano",
+       "openai - gpt-5.1",
+       "openai - gpt-5.2",
+       "openai - gpt-5.4",
+       "openai - gpt-5.4-mini"
+      ]
+     },
+     "maxCallDurationMinutes": {
+      "type": "integer",
+      "description": "Hard cap on one call"
+     },
+     "minorVersion": {
+      "type": "integer",
+      "description": "Generation of the agent's tuned defaults. Omitted on create means the latest; omitted on replace keeps the stored value. A create takes 0 to the latest (send the source's value when duplicating an agent); a replace takes the stored value or the latest, and any other value is rejected with 422. Moving it to the latest applies the minorVersion change optimizedSettings lists"
+     },
+     "optimizeStreamingLatency": {
+      "type": "integer",
+      "description": "Latency optimisation level"
+     },
+     "optimizedSettings": {
+      "type": "object",
+      "description": "What applying the platform's optimized values for the agent's current setup would change. The server never applies them on its own; set each change's path to its to value and replace the agent"
+     },
+     "provider": {
+      "type": "string",
+      "description": "Speech provider the agent runs on; null on a read when the agent has none set. Omitted on create means the optimized one; omitted on replace keeps the stored value",
+      "enum": [
+       "elevenlabs",
+       "deepgram",
+       null
+      ]
+     },
+     "providerOverride": {
+      "type": "string",
+      "description": "Deprecated alias of provider. On a read, the agent's legacy pinned provider until its next save moves it into provider, else null. On a write it wins over provider when both are sent",
+      "enum": [
+       "elevenlabs",
+       "deepgram",
+       null
+      ]
+     },
+     "scenarios": {
+      "type": "array",
+      "description": "Situational instructions"
+     },
+     "secondaryLanguages": {
+      "type": "array",
+      "description": "Additional languages; the write is rejected with 422 and the detail code LANGUAGE_NOT_SUPPORTED, never trimmed, when the agent's provider does not serve a code, Deepgram included. A blank or repeated code is dropped. A Deepgram agent with secondary languages Deepgram serves is saved, and optimizedSettings then proposes ElevenLabs"
+     },
+     "similarity": {
+      "type": "number",
+      "description": "Voice similarity boost"
+     },
+     "skills": {
+      "type": "object",
+      "description": "Capabilities the agent may use"
+     },
+     "stability": {
+      "type": "number",
+      "description": "Voice stability"
+     },
+     "status": {
+      "type": "string",
+      "description": "Whether the agent may run; omitted on write means enabled",
+      "enum": [
+       "enabled",
+       "disabled"
+      ]
+     },
+     "temperature": {
+      "type": "number",
+      "description": "Creativity of the agent's replies"
+     },
+     "tone": {
+      "type": "array",
+      "description": "Tone presets the agent blends"
+     },
+     "updatedAt": {
+      "type": "string",
+      "description": "When the agent was last saved"
+     },
+     "verbosity": {
+      "type": "string",
+      "description": "How much the agent elaborates; omitted means standard",
+      "enum": [
+       "concise",
+       "standard",
+       "thorough"
+      ]
+     },
+     "voiceId": {
+      "type": "string",
+      "description": "Voice the agent speaks with"
+     }
+    },
+    "required": [
+     "agentName",
+     "defaultOutboundNumberId",
+     "direction",
+     "goalPrompt",
+     "language",
+     "maxCallDurationMinutes",
+     "optimizeStreamingLatency",
+     "similarity",
+     "stability",
+     "temperature",
+     "voiceAgentId",
+     "voiceId"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://my.cloudtalk.io/api/voice-agents/{voiceAgentId}",
+    "path": [
+     "voiceAgentId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "agentName",
+     "createdAt",
+     "defaultOutboundNumberId",
+     "dialTimeoutSeconds",
+     "direction",
+     "elevenLabsSettings",
+     "failoverOutboundNumberId",
+     "goalPrompt",
+     "greeting",
+     "guardrails",
+     "isAgentSpeakingFirst",
+     "knowledgeBaseIds",
+     "language",
+     "llm",
+     "llmOverride",
+     "maxCallDurationMinutes",
+     "minorVersion",
+     "optimizeStreamingLatency",
+     "optimizedSettings",
+     "provider",
+     "providerOverride",
+     "scenarios",
+     "secondaryLanguages",
+     "similarity",
+     "skills",
+     "stability",
+     "status",
+     "temperature",
+     "tone",
+     "updatedAt",
+     "verbosity",
+     "voiceId"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "cloudtalk.public_v1_retry_webhook_delivery",
+   "name": "Retry a delivery",
+   "description": "Queues a new attempt of the delivery to this endpoint. Only a delivery this endpoint received can be retried on it. Test events and retries share a limit of 10 per minute per company.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "endpointId": {
+      "type": "string",
+      "description": "Webhook endpoint id (`ep_...`)."
+     },
+     "deliveryId": {
+      "type": "string",
+      "description": "Delivery id (`msg_...`). It is the same value as the `svix-id` header of the delivered request."
+     }
+    },
+    "required": [
+     "deliveryId",
+     "endpointId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://my.cloudtalk.io/api/webhooks/endpoints/{endpointId}/deliveries/{deliveryId}/retry",
+    "path": [
+     "endpointId",
+     "deliveryId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "cloudtalk.public_v1_rotate_webhook_endpoint_secret",
+   "name": "Rotate the signing secret",
+   "description": "Replaces the signing secret and returns the new one. For the next 24 hours deliveries are signed with both the old and the new secret, so you can roll the new one out without dropping events.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "endpointId": {
+      "type": "string",
+      "description": "Webhook endpoint id (`ep_...`)."
+     }
+    },
+    "required": [
+     "endpointId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://my.cloudtalk.io/api/webhooks/endpoints/{endpointId}/secret/rotate",
+    "path": [
+     "endpointId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "cloudtalk.public_v1_send_webhook_test_event",
+   "name": "Send a test event",
+   "description": "Sends a sample payload of one event type to the endpoint. The payload has the real structure of that event with placeholder values. Delivery is asynchronous: use the returned `deliveryId` with the delivery endpoints; it appears there from the first delivery attempt, usually within seconds. The event type must be one the endpoint is subscribed to (an endpoint subscribed to every type accepts any), ",
+   "input": {
+    "type": "object",
+    "properties": {
+     "endpointId": {
+      "type": "string",
+      "description": "Webhook endpoint id (`ep_...`)."
+     },
+     "eventType": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "endpointId",
+     "eventType"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://my.cloudtalk.io/api/webhooks/endpoints/{endpointId}/test",
+    "path": [
+     "endpointId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "eventType"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "cloudtalk.public_v1_set_user_status",
+   "name": "Set a user's status",
+   "description": "Sets the status type a user has picked: an Online type, or an Idle type with an optional note. Offline cannot be set: it follows the user's real connection. The user must be signed in on at least one device. `PUT` replaces the whole picked status, so leaving `customText` out or sending `null` clears the note. - The Phone and the mobile app show the change at once. App versions that support it show",
+   "input": {
+    "type": "object",
+    "properties": {
+     "userId": {
+      "type": "string",
+      "description": "The user's id."
+     },
+     "statusTypeId": {
+      "type": "string",
+      "description": "A status type id from List user status types. Its `actAs` must be `online` or `idle`."
+     },
+     "customText": {
+      "type": "string",
+      "description": "Note, 1 to 30 characters after trimming. Allowed with any status type you can set. Leaving it out or sending `null` clears the note."
+     }
+    },
+    "required": [
+     "statusTypeId",
+     "userId"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://my.cloudtalk.io/api/user-statuses/{userId}",
+    "path": [
+     "userId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "statusTypeId",
+     "customText"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "cloudtalk.public_v1_update_contact",
+   "name": "Update a contact",
+   "description": "Updates only the fields you send. Fields you leave out stay unchanged, and `null` clears a field that can be null. - `phones` and `emails` replace the whole list when sent. - `customFields` merges by key: keys you send are set, a key sent as `null` is removed, and other keys stay. Two requests that change different keys at the same time both apply. - Tags change only through [Add tags to a contact",
+   "input": {
+    "type": "object",
+    "properties": {
+     "contactId": {
+      "type": "string",
+      "description": "The contact id."
+     },
+     "name": {
+      "type": "string",
+      "description": "Cannot be null."
+     },
+     "type": {
+      "type": "string",
+      "description": "Only `contact`, which turns a lead into a contact. A contact cannot become a lead. Cannot be null.",
+      "enum": [
+       "contact"
+      ]
+     },
+     "title": {
+      "type": "string",
+      "description": "`null` clears the field."
+     },
+     "company": {
+      "type": "string",
+      "description": "`null` clears the field."
+     },
+     "industry": {
+      "type": "string",
+      "description": "`null` clears the field."
+     },
+     "website": {
+      "type": "string",
+      "description": "`null` clears the field."
+     },
+     "address": {
+      "type": "string",
+      "description": "`null` clears the field."
+     },
+     "city": {
+      "type": "string",
+      "description": "`null` clears the field."
+     },
+     "state": {
+      "type": "string",
+      "description": "`null` clears the field."
+     },
+     "zip": {
+      "type": "string",
+      "description": "`null` clears the field."
+     },
+     "countryCode": {
+      "type": "string",
+      "description": "ISO 3166-1 alpha-2. Cannot be null."
+     },
+     "phones": {
+      "type": "array",
+      "description": "Replaces the whole list. Up to 20, in E.164."
+     },
+     "emails": {
+      "type": "array",
+      "description": "Replaces the whole list. Up to 20."
+     },
+     "customFields": {
+      "type": "object",
+      "description": "Merged by key: keys you send are set, a key sent as `null` is removed, and other keys stay. At most 100 keys, removals included."
+     },
+     "favoriteUserId": {
+      "type": "string",
+      "description": "`null` clears the owner."
+     }
+    },
+    "required": [
+     "contactId"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://my.cloudtalk.io/api/contacts/{contactId}",
+    "path": [
+     "contactId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "type",
+     "title",
+     "company",
+     "industry",
+     "website",
+     "address",
+     "city",
+     "state",
+     "zip",
+     "countryCode",
+     "phones",
+     "emails",
+     "customFields",
+     "favoriteUserId"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "cloudtalk.public_v1_update_webhook_endpoint",
+   "name": "Update a webhook endpoint",
+   "description": "Changes any of `url`, `description`, `eventTypes` and `enabled`; fields you omit stay as they are. `eventTypes: null` subscribes the endpoint to every event type, including future ones. `url`, `description` and `enabled` cannot be null. `enabled: false` turns the endpoint off and its `status` becomes `disabled`; CloudTalk will not re-enable it automatically. `enabled: true` turns it back on, inclu",
+   "input": {
+    "type": "object",
+    "properties": {
+     "endpointId": {
+      "type": "string",
+      "description": "Webhook endpoint id (`ep_...`)."
+     },
+     "url": {
+      "type": "string",
+      "description": ""
+     },
+     "description": {
+      "type": "string",
+      "description": ""
+     },
+     "eventTypes": {
+      "type": "array",
+      "description": "Replaces the subscription. `null` subscribes to every event type."
+     },
+     "enabled": {
+      "type": "boolean",
+      "description": ""
+     }
+    },
+    "required": [
+     "endpointId"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://my.cloudtalk.io/api/webhooks/endpoints/{endpointId}",
+    "path": [
+     "endpointId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "url",
+     "description",
+     "eventTypes",
+     "enabled"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "cloudtalk.public_v1_upload_knowledge_base_file",
+   "name": "Upload a knowledge base file",
+   "description": "Creates a knowledge base from one uploaded file. The name is derived from the filename. A company may hold at most 100 knowledge bases; at the cap the request answers 409 KNOWLEDGE_BASE_LIMIT_REACHED.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "file": {
+      "type": "string",
+      "description": "The file to ingest as a knowledge base"
+     }
+    },
+    "required": [
+     "file"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://my.cloudtalk.io/api/knowledge-bases/files",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "file"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "cloudtalk.put_activity_add_contactId_json",
    "name": "Add activity",
    "description": "Assign an activity to existing contact.",
@@ -3235,7 +5399,7 @@
   {
    "slug": "cloudtalk.put_campaigns_add_json",
    "name": "Add campaign",
-   "description": "Creates a campaign. `name` and the `Button` array are required; everything else is optional and configures scheduling (`has_schedule_date`, `schedule_start_date`, `schedule_start_time`), dialing behaviour (`answer_wait_time`, `after_call_dialing_auto`, `after_call_time`, `attempts`, `attempts_interval`), predictive mode (`is_predictive`, `calls_percentage`), call recording, and which contacts, age",
+   "description": "**LEGACY.** This endpoint keeps working unchanged. For new integrations, use [Create a dialer campaign](/api-reference/dialer/create-a-dialer-campaign) on `https://api.cloudtalk.io/v1`. The AI Sales Dialer is a different product from this dialer. Creates a campaign. `name` and the `Button` array are required; everything else is optional and configures scheduling (`has_schedule_date`, `schedule_sta",
    "input": {
     "type": "object",
     "properties": {
@@ -3359,7 +5523,7 @@
   {
    "slug": "cloudtalk.put_contacts_addTags_contactId_json",
    "name": "Assign contact tags",
-   "description": "Assign contact tags to a contact.",
+   "description": "**LEGACY.** This endpoint keeps working unchanged. For new integrations, use [Add tags to a contact](/api-reference/contacts/add-tags-to-a-contact) on `https://api.cloudtalk.io/v1`. Assign contact tags to a contact.",
    "input": {
     "type": "object",
     "properties": {
@@ -3394,7 +5558,7 @@
   {
    "slug": "cloudtalk.put_contacts_add_json",
    "name": "Add contact",
-   "description": "Creates a contact. Only `name` is required. The remaining scalar fields describe the company and postal address, and the `ContactNumber`, `ContactEmail`, `ContactsTag`, `ContactAttribute` and `ExternalUrl` arrays attach phone numbers, email addresses, tags, custom attribute values and links to external systems in the same request. Returns `201` with the new contact's ID. Note the core API creates ",
+   "description": "**LEGACY.** This endpoint keeps working unchanged. For new integrations, use [Create a contact](/api-reference/contacts/create-a-contact) on `https://api.cloudtalk.io/v1`. Creates a contact. Only `name` is required. The remaining scalar fields describe the company and postal address, and the `ContactNumber`, `ContactEmail`, `ContactsTag`, `ContactAttribute` and `ExternalUrl` arrays attach phone nu",
    "input": {
     "type": "object",
     "properties": {
@@ -3571,7 +5735,7 @@
   {
    "slug": "cloudtalk.put_tags_add_json",
    "name": "Add a contact tag",
-   "description": "Creates a contact tag with the given `name`. Returns `201` with the new tag's ID. Note the core API creates with `PUT`, not `POST`.",
+   "description": "**LEGACY.** This endpoint keeps working unchanged. For new integrations, use [Create a contact tag](/api-reference/contacts/create-a-contact-tag) on `https://api.cloudtalk.io/v1`. Creates a contact tag with the given `name`. Returns `201` with the new tag's ID. Note the core API creates with `PUT`, not `POST`.",
    "input": {
     "type": "object",
     "properties": {

@@ -1,0 +1,177 @@
+{
+ "_": "GENERATED \u2014 what an authoring tool needs to FIND an operation. The calling table is the .lua beside it.",
+ "provider": "mailerlite",
+ "source": "https://api.mailerlite.com/swagger.json",
+ "operations": [
+  {
+   "slug": "mailerlite.create_webhook",
+   "name": "Get the list of webhooks",
+   "description": "Get the list of webhooks",
+   "input": {
+    "type": "object",
+    "properties": {
+     "limit": {
+      "type": "integer",
+      "description": "max records to return"
+     },
+     "offset": {
+      "type": "integer",
+      "description": "number of items to skip"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://connect.mailerlite.com/api/api/v2/webhooks",
+    "path": [],
+    "query": [
+     "limit",
+     "offset"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "mailerlite.create_webhook",
+   "name": "Create a webhook",
+   "description": "Create a webhook",
+   "input": {
+    "type": "object",
+    "properties": {
+     "event": {
+      "type": "string",
+      "description": "Event"
+     },
+     "url": {
+      "type": "string",
+      "description": "URL for a webhook"
+     },
+     "body": {
+      "type": "string",
+      "description": "Created webhook object"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://connect.mailerlite.com/api/api/v2/webhooks",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "event",
+     "url",
+     "body"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "mailerlite.delete_webhook",
+   "name": "Delete a webhook",
+   "description": "Delete a webhook",
+   "input": {
+    "type": "object",
+    "properties": {
+     "webhookId": {
+      "type": "integer",
+      "description": "The id of the webhook to delete"
+     }
+    },
+    "required": [
+     "webhookId"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://connect.mailerlite.com/api/api/v2/webhooks/{webhookId}",
+    "path": [
+     "webhookId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "mailerlite.get_count_of_webhooks",
+   "name": "Get the count of webhooks",
+   "description": "Get the count of webhooks",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://connect.mailerlite.com/api/api/v2/webhooks/count",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "mailerlite.show_webhook_by_id",
+   "name": "Info for a specific webhook",
+   "description": "Info for a specific webhook",
+   "input": {
+    "type": "object",
+    "properties": {
+     "webhookId": {
+      "type": "integer",
+      "description": "The id of the webhook to retrieve"
+     }
+    },
+    "required": [
+     "webhookId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://connect.mailerlite.com/api/api/v2/webhooks/{webhookId}",
+    "path": [
+     "webhookId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "mailerlite.update_webhook",
+   "name": "Update the specific webhook",
+   "description": "Update the specific webhook",
+   "input": {
+    "type": "object",
+    "properties": {
+     "webhookId": {
+      "type": "integer",
+      "description": "The id of the webhook to update"
+     }
+    },
+    "required": [
+     "webhookId"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://connect.mailerlite.com/api/api/v2/webhooks/{webhookId}",
+    "path": [
+     "webhookId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  }
+ ]
+}

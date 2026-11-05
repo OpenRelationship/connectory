@@ -511,6 +511,34 @@
    }
   },
   {
+   "slug": "affinity.v2_companies_fields_field_id_delete",
+   "name": "Delete a company field",
+   "description": "| \u26a0\ufe0f This endpoint is currently in BETA | |--| Deletes a Company Field. **Warning:** This permanently removes the field and clears every field value set on it across all companies. The cleared values cannot be recovered. Requires the Manage global fields permission. Accepts the Field ID of a custom field (`field-`), of an enriched field (for example, `affinity-data-location`), or of a native field",
+   "input": {
+    "type": "object",
+    "properties": {
+     "fieldId": {
+      "type": "string",
+      "description": "Field ID"
+     }
+    },
+    "required": [
+     "fieldId"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.affinity.co/v2/companies/fields/{fieldId}",
+    "path": [
+     "fieldId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "affinity.v2_companies_fields_field_id_dropdown_options_get",
    "name": "Get dropdown options for a company field",
    "description": "Returns the dropdown options for a specific dropdown or ranked-dropdown field on a Company. Use the returned dropdown option IDs when writing dropdown field values via the field update endpoints.",
@@ -546,6 +574,81 @@
     ],
     "header": [],
     "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "affinity.v2_companies_fields_field_id_get",
+   "name": "Get metadata on a company field",
+   "description": "| \u26a0\ufe0f This endpoint is currently in BETA | |--| Returns metadata on a single non-list-specific Company Field. Accepts any Field ID from GET `/v2/companies/fields`, including enriched and native fields. List-specific fields and fields of other entity types return 404.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "fieldId": {
+      "type": "string",
+      "description": "Field ID"
+     }
+    },
+    "required": [
+     "fieldId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.affinity.co/v2/companies/fields/{fieldId}",
+    "path": [
+     "fieldId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "affinity.v2_companies_fields_field_id_post",
+   "name": "Update a company field",
+   "description": "| \u26a0\ufe0f This endpoint is currently in BETA | |--| Updates a Company Field. Only the provided properties are updated. Requires the Manage global fields permission. Accepts the Field ID of a custom field (`field-`), of an enriched field (for example, `affinity-data-location`), or of a native field (for example, `source-of-introduction`). An enriched or native field by its `field-` ID returns 404. A fie",
+   "input": {
+    "type": "object",
+    "properties": {
+     "fieldId": {
+      "type": "string",
+      "description": "Field ID"
+     },
+     "name": {
+      "type": "string",
+      "description": "The field's new name. Must be unique among the fields of the same entity type that are available in the same context."
+     },
+     "description": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "A description of the field's purpose. Pass `null` to clear an existing description."
+     },
+     "isRequired": {
+      "type": "boolean",
+      "description": "Whether a value for this field is required when creating an entity or List Entry."
+     }
+    },
+    "required": [
+     "fieldId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.affinity.co/v2/companies/fields/{fieldId}",
+    "path": [
+     "fieldId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "description",
+     "isRequired"
+    ],
     "body_format": "json"
    }
   },
@@ -587,6 +690,67 @@
     ],
     "header": [],
     "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "affinity.v2_companies_fields_post",
+   "name": "Create a company field",
+   "description": "| \u26a0\ufe0f This endpoint is currently in BETA | |--| Creates a Company Field. A Company Field is available on every company in the organization. Values for the new Field can be set on each company via `POST /v2/companies/{companyId}/fields/{fieldId}`. Requires the Manage global fields permission. Fields of value type `dropdown`, `dropdown-multi`, and `ranked-dropdown` are created without any dropdown op",
+   "input": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": "string",
+      "description": "The field's name. Must be unique among the fields of the same entity type that are available in the same context."
+     },
+     "description": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "A description of the field's purpose."
+     },
+     "valueType": {
+      "type": "string",
+      "description": "The type of the data in this Field. The `-multi` variants create a multi-value field. Multi-value `number` fields are not supported.",
+      "enum": [
+       "person",
+       "person-multi",
+       "company",
+       "company-multi",
+       "filterable-text",
+       "filterable-text-multi",
+       "number",
+       "datetime",
+       "location",
+       "location-multi",
+       "text",
+       "ranked-dropdown"
+      ]
+     },
+     "isRequired": {
+      "type": "boolean",
+      "description": "Whether values for this field are required when creating an entity or List Entry. Defaults to `false`."
+     }
+    },
+    "required": [
+     "name",
+     "valueType"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.affinity.co/v2/companies/fields",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "description",
+     "valueType",
+     "isRequired"
+    ],
     "body_format": "json"
    }
   },
@@ -1021,6 +1185,75 @@
    }
   },
   {
+   "slug": "affinity.v2_files_file_id_get",
+   "name": "Get a single file",
+   "description": "| This endpoint is currently in BETA | |--| Returns a single file's metadata and a temporary signed download URL.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "fileId": {
+      "type": "integer",
+      "description": "File ID"
+     }
+    },
+    "required": [
+     "fileId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.affinity.co/v2/files/{fileId}",
+    "path": [
+     "fileId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "affinity.v2_files_get",
+   "name": "Get all files",
+   "description": "| This endpoint is currently in BETA | |--| Returns a page of Files visible to the caller. You can filter files using the `filter` query parameter. The filter parameter is a string that you can specify conditions based on the following properties. | **Property Name** | **Type** | **Allowed Operators** | **Examples** | |---|---|---|---| | `createdAt` | `datetime` | `>`, `=`, `=2026-01-01T00:00:00Z`",
+   "input": {
+    "type": "object",
+    "properties": {
+     "totalCount": {
+      "type": "boolean",
+      "description": "Include total count of the collection in the pagination response"
+     },
+     "cursor": {
+      "type": "string",
+      "description": "Cursor for the next or previous page"
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Number of items to include in the page"
+     },
+     "filter": {
+      "type": "string",
+      "description": "Filter options"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.affinity.co/v2/files",
+    "path": [],
+    "query": [
+     "totalCount",
+     "cursor",
+     "limit",
+     "filter"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "affinity.v2_files_search_post",
    "name": "Search files by keyword",
    "description": "Search files by keyword. The scope of the search is controlled by the request body: - Provide `fileIds` to limit the search to specific files. - Provide `companyId` to limit the search to files associated with a specific company. - Omit both to search across your entire account. `fileIds` and `companyId` are mutually exclusive. Returns up to `limit` files ordered by relevance. Prompts with no stro",
@@ -1113,6 +1346,49 @@
    "request": {
     "method": "GET",
     "url": "https://api.affinity.co/v2/inferred-connections/investor-executive-connections",
+    "path": [],
+    "query": [
+     "filter",
+     "cursor",
+     "limit",
+     "totalCount"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "affinity.v2_intro_paths_get",
+   "name": "Get introduction paths",
+   "description": "| \u26a0\ufe0f This endpoint is currently in BETA | |--| Returns ranked introduction paths from an internal person to a target, strongest first. Each path is composed of one or two edges: a single edge is a direct relationship between an internal person and the target. Two edges represent an internal person reaching the target through a bridge person, where `edges[0].to` and `edges[1].from` are the same per",
+   "input": {
+    "type": "object",
+    "properties": {
+     "filter": {
+      "type": "string",
+      "description": "Filter options. Required; must contain exactly one of the `target.id` or `target.currentCompany.id` filter terms. See the Filters section above."
+     },
+     "cursor": {
+      "type": "string",
+      "description": "Cursor for the next or previous page."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Number of items to include in the page."
+     },
+     "totalCount": {
+      "type": "boolean",
+      "description": "Include total count of the collection in the pagination response."
+     }
+    },
+    "required": [
+     "filter"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.affinity.co/v2/intro-paths",
     "path": [],
     "query": [
      "filter",
@@ -1808,6 +2084,46 @@
    }
   },
   {
+   "slug": "affinity.v2_lists_list_id_list_entries_post",
+   "name": "Add a list entry to a list",
+   "description": "| \u26a0\ufe0f This endpoint is currently in BETA | |--| Adds a Company or Person to a List as a new List Entry. Opportunities cannot be added with this endpoint. The type of the entity referenced by `entity.id` is determined by the List's type: a Company ID for a company List, a Person ID for a person List. If no entity of the List's type exists with the given ID, the request is rejected with `400 Bad Requ",
+   "input": {
+    "type": "object",
+    "properties": {
+     "listId": {
+      "type": "integer",
+      "description": "List ID"
+     },
+     "entity": {
+      "type": "object",
+      "description": "The Company or Person to add to the List. Provide its `id`; the entity must exist and match the List's type (a Company ID for a company List, a Person ID for a person List)."
+     },
+     "creatorId": {
+      "type": "integer",
+      "description": "The internal Person ID to record as the List Entry's creator. Defaults to the authenticated user. Must be an internal Person in the same organization as the caller."
+     }
+    },
+    "required": [
+     "entity",
+     "listId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.affinity.co/v2/lists/{listId}/list-entries",
+    "path": [
+     "listId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "entity",
+     "creatorId"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "affinity.v2_lists_list_id_list_entries_search_post",
    "name": "Search list entries",
    "description": "| \u26a0\ufe0f This endpoint is currently in BETA | |--| Search for List Entries on a List matching the given criteria. Accepts an optional combination of filters, sorts, and a search term. All fields in the request body are optional. Omitting the body entirely is equivalent to `GET /v2/lists/{listId}/list-entries` with default pagination. Requires the \"Export data from Lists\" [permission](/pages/external-a",
@@ -1953,7 +2269,7 @@
   {
    "slug": "affinity.v2_lists_list_id_saved_views_view_id_list_entries_get",
    "name": "Get all list entries on a saved view",
-   "description": "Paginate through the List Entries (AKA rows) on a given Saved View. Use this endpoint when you need to filter entities or only want **some** field data to be returned: This endpoint respects the filters set on a Saved View via web app, and only returns field data corresponding to the columns that have been pulled into the Saved View via web app. Though this endpoint respects the Saved View's filte",
+   "description": "Paginate through the List Entries (AKA rows) on a given Saved View. Use this endpoint when you need to filter entities or only want **some** field data to be returned: This endpoint respects the filters set on a Saved View via web app, and only returns field data corresponding to the columns that have been pulled into the Saved View via web app. This endpoint preserves the Saved View's sort order ",
    "input": {
     "type": "object",
     "properties": {
@@ -2516,6 +2832,34 @@
    }
   },
   {
+   "slug": "affinity.v2_opportunities_opportunity_id_delete",
+   "name": "Delete an opportunity",
+   "description": "| This endpoint is currently in BETA | |--| Deletes an Opportunity. Requires the \"Export data from Lists\" [permission](/pages/external-api-v2/permissions) and manage access to the opportunity.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "opportunityId": {
+      "type": "integer",
+      "description": "Opportunity ID"
+     }
+    },
+    "required": [
+     "opportunityId"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.affinity.co/v2/opportunities/{opportunityId}",
+    "path": [
+     "opportunityId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "affinity.v2_opportunities_opportunity_id_get",
    "name": "Get a single opportunity",
    "description": "Returns basic information but **not** field data on the requested Opportunity. To access field data on Opportunities, use the `/lists/{list_id}/list-entries` or the `/v2/lists/{list_id}/saved-views/{view_id}/list-entries` GET endpoint.",
@@ -2589,6 +2933,40 @@
     ],
     "header": [],
     "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "affinity.v2_opportunities_opportunity_id_post",
+   "name": "Update an opportunity",
+   "description": "| This endpoint is currently in BETA | |--| Updates an Opportunity. Only provided properties are updated; properties omitted from the request keep their current value. Requires the \"Export data from Lists\" [permission](/pages/external-api-v2/permissions) and manage access to the opportunity.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "opportunityId": {
+      "type": "integer",
+      "description": "Opportunity ID"
+     },
+     "name": {
+      "type": "string",
+      "description": "The name of the opportunity."
+     }
+    },
+    "required": [
+     "opportunityId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.affinity.co/v2/opportunities/{opportunityId}",
+    "path": [
+     "opportunityId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "name"
+    ],
     "body_format": "json"
    }
   },
@@ -2691,6 +3069,34 @@
    }
   },
   {
+   "slug": "affinity.v2_persons_fields_field_id_delete",
+   "name": "Delete a person field",
+   "description": "| \u26a0\ufe0f This endpoint is currently in BETA | |--| Deletes a Person Field. **Warning:** This permanently removes the field and clears every field value set on it across all persons. The cleared values cannot be recovered. Requires the Manage global fields permission. Accepts the Field ID of a custom field (`field-`), of an enriched field (for example, `affinity-data-current-job-title`), or of a native",
+   "input": {
+    "type": "object",
+    "properties": {
+     "fieldId": {
+      "type": "string",
+      "description": "Field ID"
+     }
+    },
+    "required": [
+     "fieldId"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.affinity.co/v2/persons/fields/{fieldId}",
+    "path": [
+     "fieldId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "affinity.v2_persons_fields_field_id_dropdown_options_get",
    "name": "Get dropdown options for a person field",
    "description": "Returns the dropdown options for a specific dropdown or ranked-dropdown field on a Person. Use the returned dropdown option IDs when writing dropdown field values via the field update endpoints.",
@@ -2726,6 +3132,81 @@
     ],
     "header": [],
     "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "affinity.v2_persons_fields_field_id_get",
+   "name": "Get metadata on a person field",
+   "description": "| \u26a0\ufe0f This endpoint is currently in BETA | |--| Returns metadata on a single non-list-specific Person Field. Accepts any Field ID from GET `/v2/persons/fields`, including enriched and native fields. List-specific fields and fields of other entity types return 404.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "fieldId": {
+      "type": "string",
+      "description": "Field ID"
+     }
+    },
+    "required": [
+     "fieldId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.affinity.co/v2/persons/fields/{fieldId}",
+    "path": [
+     "fieldId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "affinity.v2_persons_fields_field_id_post",
+   "name": "Update a person field",
+   "description": "| \u26a0\ufe0f This endpoint is currently in BETA | |--| Updates a Person Field. Only the provided properties are updated. Requires the Manage global fields permission. Accepts the Field ID of a custom field (`field-`), of an enriched field (for example, `affinity-data-current-job-title`), or of a native field (for example, `source-of-introduction`). An enriched or native field by its `field-` ID returns 40",
+   "input": {
+    "type": "object",
+    "properties": {
+     "fieldId": {
+      "type": "string",
+      "description": "Field ID"
+     },
+     "name": {
+      "type": "string",
+      "description": "The field's new name. Must be unique among the fields of the same entity type that are available in the same context."
+     },
+     "description": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "A description of the field's purpose. Pass `null` to clear an existing description."
+     },
+     "isRequired": {
+      "type": "boolean",
+      "description": "Whether a value for this field is required when creating an entity or List Entry."
+     }
+    },
+    "required": [
+     "fieldId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.affinity.co/v2/persons/fields/{fieldId}",
+    "path": [
+     "fieldId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "description",
+     "isRequired"
+    ],
     "body_format": "json"
    }
   },
@@ -2767,6 +3248,67 @@
     ],
     "header": [],
     "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "affinity.v2_persons_fields_post",
+   "name": "Create a person field",
+   "description": "| \u26a0\ufe0f This endpoint is currently in BETA | |--| Creates a Person Field. A Person Field is available on every person in the organization. Values for the new Field can be set on each person via `POST /v2/persons/{personId}/fields/{fieldId}`. Requires the Manage global fields permission. Fields of value type `dropdown`, `dropdown-multi`, and `ranked-dropdown` are created without any dropdown options.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": "string",
+      "description": "The field's name. Must be unique among the fields of the same entity type that are available in the same context."
+     },
+     "description": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "A description of the field's purpose."
+     },
+     "valueType": {
+      "type": "string",
+      "description": "The type of the data in this Field. The `-multi` variants create a multi-value field. Multi-value `number` fields are not supported.",
+      "enum": [
+       "person",
+       "person-multi",
+       "company",
+       "company-multi",
+       "filterable-text",
+       "filterable-text-multi",
+       "number",
+       "datetime",
+       "location",
+       "location-multi",
+       "text",
+       "ranked-dropdown"
+      ]
+     },
+     "isRequired": {
+      "type": "boolean",
+      "description": "Whether values for this field are required when creating an entity or List Entry. Defaults to `false`."
+     }
+    },
+    "required": [
+     "name",
+     "valueType"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.affinity.co/v2/persons/fields",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "description",
+     "valueType",
+     "isRequired"
+    ],
     "body_format": "json"
    }
   },
@@ -3514,6 +4056,66 @@
    }
   },
   {
+   "slug": "affinity.v2_reminders_reminder_id_post",
+   "name": "Update a reminder",
+   "description": "| \u26a0\ufe0f This endpoint is currently in BETA | |--| Updates a Reminder. Only provided fields are changed; omitted fields keep their current value. Setting `completedAt` marks the reminder complete (for `recurring` reminders, this advances `dueDate` by `recurrence.periodDays` and `completedAt` remains `null` on the resource). Setting `completedAt` to `null` marks the reminder incomplete and is rejected ",
+   "input": {
+    "type": "object",
+    "properties": {
+     "reminderId": {
+      "type": "integer",
+      "description": "Reminder ID"
+     },
+     "content": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Free-form note attached to the reminder. Send `null` to clear."
+     },
+     "dueDate": {
+      "type": "string",
+      "description": "New due date for the reminder. Must be on or after 2000-01-01 and before 9999-01-01."
+     },
+     "owner": {
+      "type": "object",
+      "description": "The new owner of the reminder. Must reference an internal user."
+     },
+     "completedAt": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Set a value to mark the reminder complete. Send `null` to mark it incomplete (one-time reminders only). `completer` is populated from the API key's owning user."
+     },
+     "recurrence": {
+      "type": "object",
+      "description": "Update recurrence configuration. Only valid when the reminder's existing `type` is `recurring`. Send only the fields you want to change."
+     }
+    },
+    "required": [
+     "reminderId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.affinity.co/v2/reminders/{reminderId}",
+    "path": [
+     "reminderId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "content",
+     "dueDate",
+     "owner",
+     "completedAt",
+     "recurrence"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "affinity.v2_semantic_search_post",
    "name": "Semantic search",
    "description": "Perform an AI-powered semantic search. Use the `entityType` field in the request body to specify which entity type to search. Currently only supports companies. The `prompt` field accepts natural language describing the companies to find. Supported query dimensions include: - Industry or sector - Example: `climate tech companies in our pipeline` - Descriptive technology or business concepts - Exam",
@@ -3553,6 +4155,126 @@
      "entityType",
      "listIds"
     ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "affinity.v2_suggested_field_updates_get",
+   "name": "Get all suggested field update sets",
+   "description": "| \u26a0\ufe0f This endpoint is currently in BETA | |--| The endpoint returns 404 when AI agents access is not enabled for the organization. Paginate through your suggested field update sets, newest first. Items omit `suggestions`; retrieve a set to get them. Sets generated automatically for a new note belong to the note's creator. Sets whose subject is not accessible to you are not returned. Sets where the",
+   "input": {
+    "type": "object",
+    "properties": {
+     "cursor": {
+      "type": "string",
+      "description": "Cursor for the next or previous page"
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Number of items to include in the page"
+     },
+     "filter": {
+      "type": "string",
+      "description": "Filter sets using Affinity Filtering Language"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.affinity.co/v2/suggested-field-updates",
+    "path": [],
+    "query": [
+     "cursor",
+     "limit",
+     "filter"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "affinity.v2_suggested_field_updates_post",
+   "name": "Generate suggested field updates",
+   "description": "| \u26a0\ufe0f This endpoint is currently in BETA | |--| The endpoint returns 404 when AI agents access is not enabled for the organization. Generate suggested field updates from a note or a meeting. Generation runs asynchronously: poll the returned `taskUrl` until the task finishes, then retrieve the set. The set can also be retrieved while generation runs, with `status` `pending`. Sets belong to the user ",
+   "input": {
+    "type": "object",
+    "properties": {
+     "subject": {
+      "type": "object",
+      "description": "The record the suggestions are generated from"
+     }
+    },
+    "required": [
+     "subject"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.affinity.co/v2/suggested-field-updates",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "subject"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "affinity.v2_suggested_field_updates_suggested_field_update_id_get",
+   "name": "Get a suggested field update set",
+   "description": "| \u26a0\ufe0f This endpoint is currently in BETA | |--| The endpoint returns 404 when AI agents access is not enabled for the organization. Retrieve a set of suggested field updates with all of its suggestions. `suggestions` is empty while `status` is `pending`. Returns `404` when the set is not yours or its subject is not accessible to you.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "suggestedFieldUpdateId": {
+      "type": "string",
+      "description": "Suggested field update set ID"
+     }
+    },
+    "required": [
+     "suggestedFieldUpdateId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.affinity.co/v2/suggested-field-updates/{suggestedFieldUpdateId}",
+    "path": [
+     "suggestedFieldUpdateId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "affinity.v2_suggested_field_updates_suggested_field_update_id_suggestions_patch",
+   "name": "Perform batch operations on suggestions in a set",
+   "description": "| \u26a0\ufe0f This endpoint is currently in BETA | |--| The endpoint returns 404 when AI agents access is not enabled for the organization. Accept or reject suggestions in a set. Accepted values are written to the CRM. - `apply-suggested-field-updates`: decide every `pending` suggestion. `acceptedValue` overrides the suggested value. - `dismiss`: reject all `pending` suggestions. Writes are not atomic: one",
+   "input": {
+    "type": "object",
+    "properties": {
+     "suggestedFieldUpdateId": {
+      "type": "string",
+      "description": "Suggested field update set ID"
+     }
+    },
+    "required": [
+     "suggestedFieldUpdateId"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.affinity.co/v2/suggested-field-updates/{suggestedFieldUpdateId}/suggestions",
+    "path": [
+     "suggestedFieldUpdateId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
     "body_format": "json"
    }
   },
@@ -3685,6 +4407,243 @@
    }
   },
   {
+   "slug": "affinity.v2_tasks_suggested_field_updates_create_get",
+   "name": "Get all suggested field update tasks",
+   "description": "| \u26a0\ufe0f This endpoint is currently in BETA | |--| The endpoint returns 404 when AI agents access is not enabled for the organization. Paginate through your suggested field update generation tasks, newest first. You can filter tasks using the `filter` query parameter. | **Property Name** | **Type** | **Allowed Operators** | **Examples** | |---|---|---|---| | `status` | `enum` | `=` | `status=in-progre",
+   "input": {
+    "type": "object",
+    "properties": {
+     "cursor": {
+      "type": "string",
+      "description": "Cursor for the next or previous page"
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Number of items to include in the page"
+     },
+     "filter": {
+      "type": "string",
+      "description": "Filter tasks using Affinity Filtering Language"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.affinity.co/v2/tasks/suggested-field-updates/create",
+    "path": [],
+    "query": [
+     "cursor",
+     "limit",
+     "filter"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "affinity.v2_tasks_suggested_field_updates_create_task_id_get",
+   "name": "Get a suggested field update task",
+   "description": "| \u26a0\ufe0f This endpoint is currently in BETA | |--| The endpoint returns 404 when AI agents access is not enabled for the organization. Retrieve a suggested field update generation task. On `success`, retrieve the set named by `suggestedFieldUpdate`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "taskId": {
+      "type": "string",
+      "description": "Suggested field update task ID"
+     }
+    },
+    "required": [
+     "taskId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.affinity.co/v2/tasks/suggested-field-updates/create/{taskId}",
+    "path": [
+     "taskId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "affinity.v2_teams_get",
+   "name": "Get metadata on all teams",
+   "description": "| \u26a0\ufe0f This endpoint is currently in BETA | |--| Paginate through all Teams in your organization that you have access to view. Use the `includes` query parameter to add `membersPreview` and `accessibleListsPreview` to each team. Each preview carries a `totalCount` and a short `data` sample; the full collections are available at `GET /v2/teams/{teamId}/members` and `GET /v2/teams/{teamId}/accessible-",
+   "input": {
+    "type": "object",
+    "properties": {
+     "cursor": {
+      "type": "string",
+      "description": "Cursor for the next or previous page"
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Number of items to include in the page"
+     },
+     "totalCount": {
+      "type": "boolean",
+      "description": "Include total count of the collection in the pagination response"
+     },
+     "filter": {
+      "type": "string",
+      "description": "Affinity Filter Language expression. See description for filterable properties."
+     },
+     "orderBy": {
+      "type": "array",
+      "description": "Sort order. Prefix with `-` for descending. Defaults to `name` ascending."
+     },
+     "includes": {
+      "type": "array",
+      "description": "Additional properties to include in the response."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.affinity.co/v2/teams",
+    "path": [],
+    "query": [
+     "cursor",
+     "limit",
+     "totalCount",
+     "filter",
+     "orderBy",
+     "includes"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "affinity.v2_teams_team_id_accessible_lists_get",
+   "name": "Get all lists a team has access to",
+   "description": "| \u26a0\ufe0f This endpoint is currently in BETA | |--| Paginate through all Lists this Team has been granted access to. This endpoint backs the `accessibleListsPreview` returned by `GET /v2/teams/{teamId}?includes=accessibleListsPreview`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "teamId": {
+      "type": "integer",
+      "description": "Team ID"
+     },
+     "cursor": {
+      "type": "string",
+      "description": "Cursor for the next or previous page"
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Number of items to include in the page"
+     },
+     "totalCount": {
+      "type": "boolean",
+      "description": "Include total count of the collection in the pagination response"
+     }
+    },
+    "required": [
+     "teamId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.affinity.co/v2/teams/{teamId}/accessible-lists",
+    "path": [
+     "teamId"
+    ],
+    "query": [
+     "cursor",
+     "limit",
+     "totalCount"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "affinity.v2_teams_team_id_get",
+   "name": "Get metadata on a single team",
+   "description": "| \u26a0\ufe0f This endpoint is currently in BETA | |--| Retrieve detailed information about a specific Team. Optional opt-in properties can be requested via the `includes` query parameter.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "teamId": {
+      "type": "integer",
+      "description": "Team ID"
+     },
+     "includes": {
+      "type": "array",
+      "description": "Additional properties to include in the response."
+     }
+    },
+    "required": [
+     "teamId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.affinity.co/v2/teams/{teamId}",
+    "path": [
+     "teamId"
+    ],
+    "query": [
+     "includes"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "affinity.v2_teams_team_id_members_get",
+   "name": "Get all members of a team",
+   "description": "| \u26a0\ufe0f This endpoint is currently in BETA | |--| Paginate through all members of a specific Team. This endpoint backs the `membersPreview` returned by `GET /v2/teams/{teamId}?includes=membersPreview`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "teamId": {
+      "type": "integer",
+      "description": "Team ID"
+     },
+     "cursor": {
+      "type": "string",
+      "description": "Cursor for the next or previous page"
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Number of items to include in the page"
+     },
+     "totalCount": {
+      "type": "boolean",
+      "description": "Include total count of the collection in the pagination response"
+     }
+    },
+    "required": [
+     "teamId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.affinity.co/v2/teams/{teamId}/members",
+    "path": [
+     "teamId"
+    ],
+    "query": [
+     "cursor",
+     "limit",
+     "totalCount"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "affinity.v2_transcripts_get",
    "name": "Get all transcripts",
    "description": "Paginate through all transcripts and return basic metadata only. Use the single transcript endpoint to fetch the entire transcript data. Will only return transcripts that the current authenticated user has permission to see. You can filter transcripts using the `filter` query parameter. The filter parameter is a string that you can specify conditions based on the following properties. | **Property",
@@ -3720,6 +4679,34 @@
      "limit",
      "filter"
     ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "affinity.v2_transcripts_transcript_id_delete",
+   "name": "Delete a single transcript",
+   "description": "| \u26a0\ufe0f This endpoint is currently in BETA | |--| Delete a transcript. The AI Notetaker summary note the transcript belongs to is kept. You can only delete transcripts of notes you created.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "transcriptId": {
+      "type": "integer",
+      "description": "The id of the Transcript to delete"
+     }
+    },
+    "required": [
+     "transcriptId"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.affinity.co/v2/transcripts/{transcriptId}",
+    "path": [
+     "transcriptId"
+    ],
+    "query": [],
     "header": [],
     "body": [],
     "body_format": "json"

@@ -74,7 +74,8 @@ vouches for**: read it, then read their reference.
 
 ### Other Video Models
 - [LTX 2.0 Pro](/api-reference/text-to-video/ltx-2-pro): Text-to-video generation
-- [Seedance Pro](/api-reference/image-to-video/seedance-pro-1080p/post-seedance-pro-1080p): ByteDance video model
+- [Seedance 2.5 Pro](/api-reference/video/seedance-2-5-pro/overview): ByteDance video model
+- [Seedance 2.0 Pro](/api-reference/video/seedance-2-pro/overview): ByteDance video model, previous generation
 - [PixVerse V5](/api-reference/image-to-video/pixverse/overview): Creative video effects
 - [OmniHuman 1.5](/api-reference/video/omni-human-1-5): Audio-driven human animation
 - [VFX Video Effects](/api-reference/video/vfx/overview): AI-powered visual effects
@@ -116,7 +117,7 @@ vouches for**: read it, then read their reference.
 - [Team Credit Usage](/api-reference/analytics/team-credit-usage/overview): POST /v1/analytics/team-credit-usage - Query credit consumption over time
 - [Team Members](/api-reference/analytics/team-members): GET /v1/analytics/team-members - List members with user_id, email, role, status
 - [Team API Keys](/api-reference/analytics/team-api-keys): GET /v1/analytics/team-api-keys - List API keys with api_key_id, display_name, status
-- [Team Groups](/api-reference/analytics/team-groups): GET /v1/analytics/team-groups - List groups with group_id, name, member_count
+- [Team Groups](/api-reference/analytics/team-groups): GET /v1/analytics/team-groups - List groups with group_id, name, parent_group_id, member_count
 - [Team Projects](/api-reference/analytics/team-projects): GET /v1/analytics/team-projects - List projects with project_reference (UUID), name
 
 ## Stock Content APIs

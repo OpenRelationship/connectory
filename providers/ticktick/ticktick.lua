@@ -2,7 +2,7 @@
 --
 -- GENERATED from https://ticktick.com/openapi.yaml
 -- Published on the vendor's own documentation site (https://ticktick.com).
--- 24 operations · do not edit
+-- 26 operations · do not edit
 --
 -- The credential is never in here. `auth.env` names an environment variable; the value
 -- stays in the environment, which is what makes this file safe to publish.
@@ -32,6 +32,8 @@ return {
     ["ticktick.delete_tag"] = { method = "DELETE", url = "https://api.ticktick.com/open/v1/tag/delete", query = {"scope"}, body = {"name"} },
     ["ticktick.filter_tasks"] = { method = "POST", url = "https://api.ticktick.com/open/v1/task/filter", body = {"projectIds", "startDate", "endDate", "priority", "tag", "kind", "status"} },
     ["ticktick.get_all_projects"] = { method = "GET", url = "https://api.ticktick.com/open/v1/project" },
+    ["ticktick.get_calendar_accounts"] = { method = "GET", url = "https://api.ticktick.com/open/v1/calendar/account" },
+    ["ticktick.get_calendar_events"] = { method = "POST", url = "https://api.ticktick.com/open/v1/calendar/event/query", body = {"accountId", "begin", "end"} },
     ["ticktick.get_completed_tasks"] = { method = "POST", url = "https://api.ticktick.com/open/v1/task/completed", body = {"projectIds", "startDate", "endDate"} },
     ["ticktick.get_focus_by_id"] = { method = "GET", url = "https://api.ticktick.com/open/v1/focus/{focusId}", path = {"focusId"}, query = {"type"} },
     ["ticktick.get_habit_by_id"] = { method = "GET", url = "https://api.ticktick.com/open/v1/habit/{habitId}", path = {"habitId"} },

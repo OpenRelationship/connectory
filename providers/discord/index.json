@@ -2028,6 +2028,13 @@
        "null"
       ],
       "description": ""
+     },
+     "name": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": ""
      }
     },
     "required": []
@@ -2043,7 +2050,8 @@
      "members",
      "metadata",
      "flags",
-     "override_event_webhooks_url"
+     "override_event_webhooks_url",
+     "name"
     ],
     "body_format": "json"
    },
@@ -2318,6 +2326,13 @@
      "flags": {
       "type": "string",
       "description": ""
+     },
+     "name": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": ""
      }
     },
     "required": []
@@ -2332,7 +2347,8 @@
      "idle_timeout_seconds",
      "lobby_metadata",
      "member_metadata",
-     "flags"
+     "flags",
+     "name"
     ],
     "body_format": "json"
    },
@@ -3913,6 +3929,13 @@
        "null"
       ],
       "description": ""
+     },
+     "name": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": ""
      }
     },
     "required": [
@@ -3932,7 +3955,8 @@
      "metadata",
      "members",
      "flags",
-     "override_event_webhooks_url"
+     "override_event_webhooks_url",
+     "name"
     ],
     "body_format": "json"
    },
@@ -4628,6 +4652,86 @@
    "described": "derived"
   },
   {
+   "slug": "discord.get_channel_member_permissions",
+   "name": "Get channel member permissions",
+   "description": "Returns the fully cascaded permissions for a member in this channel, applying their roles and the channel's permission overwrites.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "channel_id": {
+      "type": "string",
+      "description": ""
+     },
+     "user_id": {
+      "type": "string",
+      "description": ""
+     },
+     "implicit": {
+      "type": "boolean",
+      "description": ""
+     }
+    },
+    "required": [
+     "channel_id",
+     "user_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://discord.com/api/v10/channels/{channel_id}/permissions/member/{user_id}",
+    "path": [
+     "channel_id",
+     "user_id"
+    ],
+    "query": [
+     "implicit"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "discord.get_channel_role_permissions",
+   "name": "Get channel role permissions",
+   "description": "Returns the permissions a role grants in this channel, applying the channel's permission overwrites on top of the role's guild-level permissions.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "channel_id": {
+      "type": "string",
+      "description": ""
+     },
+     "role_id": {
+      "type": "string",
+      "description": ""
+     },
+     "implicit": {
+      "type": "boolean",
+      "description": ""
+     }
+    },
+    "required": [
+     "channel_id",
+     "role_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://discord.com/api/v10/channels/{channel_id}/permissions/role/{role_id}",
+    "path": [
+     "channel_id",
+     "role_id"
+    ],
+    "query": [
+     "implicit"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "discord.get_current_user_application_entitlements",
    "name": "Get current user application entitlements",
    "description": "Lists entitlements.",
@@ -5070,6 +5174,40 @@
    "described": "derived"
   },
   {
+   "slug": "discord.get_guild_member_permissions",
+   "name": "Get guild member permissions",
+   "description": "Returns the fully cascaded guild-level permissions for a member, applying all of their roles including @everyone's",
+   "input": {
+    "type": "object",
+    "properties": {
+     "guild_id": {
+      "type": "string",
+      "description": ""
+     },
+     "user_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "guild_id",
+     "user_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://discord.com/api/v10/guilds/{guild_id}/permissions/member/{user_id}",
+    "path": [
+     "guild_id",
+     "user_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "discord.get_guild_new_member_welcome",
    "name": "Get guild new member welcome",
    "description": "Lists new member welcome.",
@@ -5161,6 +5299,40 @@
     "body_format": "json"
    },
    "described": "derived"
+  },
+  {
+   "slug": "discord.get_guild_role_permissions",
+   "name": "Get guild role permissions",
+   "description": "Returns the permissions a role grants at the guild level, combining the role's own permissions with @everyone's.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "guild_id": {
+      "type": "string",
+      "description": ""
+     },
+     "role_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "guild_id",
+     "role_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://discord.com/api/v10/guilds/{guild_id}/permissions/role/{role_id}",
+    "path": [
+     "guild_id",
+     "role_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
   },
   {
    "slug": "discord.get_guild_scheduled_event",

@@ -124,7 +124,7 @@ These are some of the most frequently asked questions from our users.
 
 ## See Factorial in Action
 
-**URL:** https://www.factorialhr.com/request-demo
+**URL:** https://factorial.com/request-demo
 
 ### Description
 Request a free demo of Factorial and see how to simplify business management. No commitment, easy setup, and tailored to your needs.
@@ -162,7 +162,7 @@ This is the rating our app has received from users in the App Store.
 
 ## All-in-one ally for managers
 
-**URL:** https://www.factorialhr.com/features
+**URL:** https://factorial.com/features
 
 ### Description
 Forget using the excel for managing employees on your business. Human Resources Software: Holidays, documents, reports, communications...
@@ -559,7 +559,7 @@ All information is stored on the contracts section. You can update it at any mom
 
 ## Time off management software
 
-**URL:** https://www.factorialhr.com/holidays-leaves-software
+**URL:** https://factorial.com/holidays-leaves-software
 
 ### Description
 Track PTO, employee vacations, manage time off, and gain insights with our comprehensive PTO tracking software. Try it free today!
@@ -651,7 +651,7 @@ Get in touch with a product specialist to understand how Factorial manages time 
 
 ## Performance Management Software
 
-**URL:** https://www.factorialhr.com/performance-management
+**URL:** https://factorial.com/performance-management
 
 ### Description
 Run your performance review cycles with Factorial, get a sense of your company's pulse, and make decisions based on qualitative data.
@@ -738,7 +738,7 @@ See what other users have asked below. Still have questions? We are here to help
 
 ## Teleworking & Remote Work Software
 
-**URL:** https://www.factorialhr.com/remote-work-software
+**URL:** https://factorial.com/remote-work-software
 
 ### Description
 Whether your employees are temporarily or permanently working remotely, using remote work software will be key to success, helping you improve worker productivity and so much more!
@@ -829,7 +829,7 @@ believe learning brings more purpose to their work.
 
 ## The payslip manager
 
-**URL:** https://www.factorialhr.com/same__payslip-manager-software
+**URL:** https://factorial.com/same__payslip-manager-software
 
 ### Description
 Save time while managing employee’s payslips on your company. Split and send automatically all the payslips from each employee.
@@ -1027,7 +1027,7 @@ These are some of the most frequently asked questions.
 
 ## Factorial vs. HiBob
 
-**URL:** https://www.factorialhr.com/hr-software-factorial-alternative-to-hibob
+**URL:** https://factorial.com/hr-software-factorial-alternative-to-hibob
 
 ### Description
 Factorial's a top-rated all-in-one human resources software. Save more than 30 hours of work managing attendance, time, payroll, talent, or expenses all in one place.
@@ -1049,7 +1049,7 @@ Managing employees in retail comes with a lot of administrative work. Factorial 
 
 ## HR software for Real Estate companies
 
-**URL:** https://www.factorialhr.com/real-estate-hr-management
+**URL:** https://factorial.com/real-estate-hr-management
 
 ### Description
 Factorial HR automates HR tasks required within the Real Estate Industry like Time-tracking, Leave Management, and, sending documents in bulk and many more.
@@ -1120,7 +1120,7 @@ A human resources (HR) software that helps CEOs and HR pros streamline employee 
 
 ## Discover Factorial in 2 minutes
 
-**URL:** https://www.factorialhr.com/discover-factorial-software
+**URL:** https://factorial.com/discover-factorial-software
 
 ### Description
 Track time, develop talent, control finances, streamline payroll - and breathe. Free up time to focus on your people, not paperwork.
@@ -1158,7 +1158,7 @@ Is our app’s rating in the App Store
 
 ## MDM that knows your employees
 
-**URL:** https://www.factorialhr.com/device-management-mdm
+**URL:** https://factorial.com/device-management-mdm
 
 ### Description
 Every hire, role change, or exit automatically updates device assignments, security settings, inventory, and remote lock—powered by your HR system as the source of truth.
@@ -1247,7 +1247,7 @@ Quick answers on setup, security, and scale.
 
 ## Control iD
 
-**URL:** https://www.factorialhr.com/apps/integration/control-id
+**URL:** https://factorial.com/apps/integration/control-id
 
 ### Description
 Manage employee attendance and security with Control iD. - A human resources (HR) software that helps CEOs and HR pros streamline employee time tracking, time off management, performance, and more - all in one place.
@@ -1271,7 +1271,7 @@ Control iD is a Brazilian technology firm that develops innovative hardware and 
 
 ## Security at Factorial
 
-**URL:** https://www.factorialhr.com/security
+**URL:** https://factorial.com/security
 
 ### Description
 We always take very seriously how we manage our customers’ information. We apply the best practices and comply with the GDPR.
@@ -1375,7 +1375,7 @@ If you’ve discovered a security vulnerability in our platform, we encourage yo
 
 ## Factorial Legal
 
-**URL:** https://www.factorialhr.com/hr-legal
+**URL:** https://factorial.com/hr-legal
 
 ### Description
 Add legal support from labor experts to all your previous plans. Includes HR, Pro and Payroll Factorial.
@@ -1402,7 +1402,7 @@ The Factorial Payroll program turns the payroll management of the payrolls with 
 
 ## Get your payslips always updated
 
-**URL:** https://www.factorialhr.com/payslips-updated
+**URL:** https://factorial.com/payslips-updated
 
 ### Description
 Payroll software works thanks to the intelligent use of the information. Actions that have an impact on compensation are synched with the payroll generator.
@@ -1426,7 +1426,7 @@ Any change in the employee's contracts will be reflected in the next payroll au
 
 ## Accessible & secure
 
-**URL:** https://www.factorialhr.com/accessible-secure
+**URL:** https://factorial.com/accessible-secure
 
 ### Description
 Factorial Payroll is an online software accessible from anywhere that meets the strictest security and privacy standards.
@@ -1452,7 +1452,7 @@ We comply with the new regulation of General Data Protection Regulation (GDPR) t
 
 ## HR Solutions for Technology companies
 
-**URL:** https://www.factorialhr.com/technology-companies-hr-solutions
+**URL:** https://factorial.com/technology-companies-hr-solutions
 
 ### Description
 A HR Software is essential to up-level Technology companies  HR. Above all, it needs to be simple to use, yet dynamic in function, and shouldn't cost you a fortune. 
@@ -1652,7 +1652,7 @@ Learn more about Document Management software →
 
 ## Factorial for Employees
 
-**URL:** https://www.factorialhr.com/for-employees
+**URL:** https://factorial.com/for-employees
 
 ### Description
 Inluded on the plan and separate from the admin view. Employees can manage: their contract, payslip, team calendar, holidays and +
@@ -1700,7 +1700,7 @@ Frequently asked questions about how Factorial's platform can benefit your emplo
 
 ## Internal Communication and Events
 
-**URL:** https://www.factorialhr.com/internal-communication-and-events
+**URL:** https://factorial.com/internal-communication-and-events
 
 ### Description
 The internal communication of a company is very important for its proper functioning. Improve your company's internal communication with our tools!
@@ -1789,7 +1789,7 @@ Frequently asked questions about the onboarding process with Factorial.
 
 ## Digital signature
 
-**URL:** https://www.factorialhr.com/digital-signature
+**URL:** https://factorial.com/digital-signature
 
 ### Description
 With Factorial you can send your employees contracts or other documents and sign digitally with the electronic signature, 100% legal.
@@ -1842,7 +1842,7 @@ Want to learn more about Factorial's ATS? Find your answer in our commonly asked
 
 ## Bet on people
 
-**URL:** https://www.factorialhr.com/what-is-factorial
+**URL:** https://factorial.com/what-is-factorial
 
 ### Description
 Factorial is an HR software that streamlines HR administration for small and medium-sized businesses.
@@ -1941,7 +1941,7 @@ Factorial numbers represent values ​​that we at Factorial identify with. In 
 
 ## Permission groups and user roles
 
-**URL:** https://www.factorialhr.com/permissions-system
+**URL:** https://factorial.com/permissions-system
 
 ### Description
 Factorial's human resources software allows you to configure various permission groups and user roles for employees.
@@ -1991,4 +1991,10 @@ Configure how to manage your employees' time tracking with permissions groups.
 ---
 
 ### Description
-Make smarter decisions with the HR reports and analytics generated by Factorial with all t
+Make smarter decisions with the HR reports and analytics generated by Factorial with all the data of the employees in your company.
+
+#### Main content
+
+## Reporting in HR has never been easier
+
+Draw conclusions at a 

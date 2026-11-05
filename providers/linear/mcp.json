@@ -6,11 +6,27 @@
    "source": "registry",
    "name": "app.linear/linear",
    "title": "Linear",
-   "description": "MCP server for Linear project management and issue tracking",
+   "description": "Find and manage issues, projects, and documents in your Linear workspace.",
    "endpoints": [
     {
      "transport": "streamable-http",
      "url": "https://mcp.linear.app/mcp"
+    },
+    {
+     "transport": "streamable-http",
+     "url": "https://mcp.linear.app/mcp/readonly"
+    }
+   ]
+  },
+  {
+   "source": "nango",
+   "name": "linear-mcp",
+   "title": "Linear",
+   "description": "Hosted by the vendor; authenticates like the rest of this provider.",
+   "endpoints": [
+    {
+     "transport": "streamable-http",
+     "url": "https://mcp.linear.app"
     }
    ]
   }

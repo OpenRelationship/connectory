@@ -2,7 +2,7 @@
 --
 -- GENERATED from https://attio.com/openapi.json
 -- Published on the vendor's own documentation site (https://attio.com).
--- 94 operations · do not edit
+-- 100 operations · do not edit
 --
 -- The credential is never in here. `auth.env` names an environment variable; the value
 -- stays in the environment, which is what makes this file safe to publish.
@@ -35,6 +35,7 @@ return {
     ["attio.delete_v2_objects_object_records_record_id"] = { method = "DELETE", url = "https://api.attio.com/v2/objects/{object}/records/{record_id}", path = {"object", "record_id"} },
     ["attio.delete_v2_tasks_task_id"] = { method = "DELETE", url = "https://api.attio.com/v2/tasks/{task_id}", path = {"task_id"} },
     ["attio.delete_v2_webhooks_webhook_id"] = { method = "DELETE", url = "https://api.attio.com/v2/webhooks/{webhook_id}", path = {"webhook_id"} },
+    ["attio.delete_v2_workspace_blocklist_addresses_address"] = { method = "DELETE", url = "https://api.attio.com/v2/workspace_blocklist_addresses/{address}", path = {"address"} },
     ["attio.get_v2_activities"] = { method = "GET", url = "https://api.attio.com/v2/activities", query = {"limit", "cursor"} },
     ["attio.get_v2_activities_activity"] = { method = "GET", url = "https://api.attio.com/v2/activities/{activity}", path = {"activity"} },
     ["attio.get_v2_activities_activity_records_record_id"] = { method = "GET", url = "https://api.attio.com/v2/activities/{activity}/records/{record_id}", path = {"activity", "record_id"} },
@@ -72,12 +73,14 @@ return {
     ["attio.get_v2_threads_thread_id"] = { method = "GET", url = "https://api.attio.com/v2/threads/{thread_id}", path = {"thread_id"}, query = {"limit", "cursor", "created_after"} },
     ["attio.get_v2_webhooks"] = { method = "GET", url = "https://api.attio.com/v2/webhooks", query = {"limit", "offset"} },
     ["attio.get_v2_webhooks_webhook_id"] = { method = "GET", url = "https://api.attio.com/v2/webhooks/{webhook_id}", path = {"webhook_id"} },
+    ["attio.get_v2_workspace_blocklist_addresses"] = { method = "GET", url = "https://api.attio.com/v2/workspace_blocklist_addresses", query = {"limit", "cursor"} },
     ["attio.get_v2_workspace_members"] = { method = "GET", url = "https://api.attio.com/v2/workspace_members" },
     ["attio.get_v2_workspace_members_workspace_member_id"] = { method = "GET", url = "https://api.attio.com/v2/workspace_members/{workspace_member_id}", path = {"workspace_member_id"} },
     ["attio.patch_v2_activities_activity"] = { method = "PATCH", url = "https://api.attio.com/v2/activities/{activity}", path = {"activity"}, body = {"data"} },
     ["attio.patch_v2_activities_activity_records_record_id"] = { method = "PATCH", url = "https://api.attio.com/v2/activities/{activity}/records/{record_id}", path = {"activity", "record_id"}, body = {"data"} },
     ["attio.patch_v2_lists_list"] = { method = "PATCH", url = "https://api.attio.com/v2/lists/{list}", path = {"list"}, body = {"data"} },
     ["attio.patch_v2_lists_list_entries_entry_id"] = { method = "PATCH", url = "https://api.attio.com/v2/lists/{list}/entries/{entry_id}", path = {"list", "entry_id"}, body = {"data"} },
+    ["attio.patch_v2_meetings_meeting_id"] = { method = "PATCH", url = "https://api.attio.com/v2/meetings/{meeting_id}", path = {"meeting_id"}, body = {"data"} },
     ["attio.patch_v2_notes_note_id"] = { method = "PATCH", url = "https://api.attio.com/v2/notes/{note_id}", path = {"note_id"}, body = {"data"} },
     ["attio.patch_v2_objects_object"] = { method = "PATCH", url = "https://api.attio.com/v2/objects/{object}", path = {"object"}, body = {"data"} },
     ["attio.patch_v2_objects_object_records_record_id"] = { method = "PATCH", url = "https://api.attio.com/v2/objects/{object}/records/{record_id}", path = {"object", "record_id"}, body = {"data"} },
@@ -104,18 +107,21 @@ return {
     ["attio.post_v2_objects_object_records_query"] = { method = "POST", url = "https://api.attio.com/v2/objects/{object}/records/query", path = {"object"}, body = {"filter", "filter_view_id", "sorts", "limit", "offset"} },
     ["attio.post_v2_objects_records_search"] = { method = "POST", url = "https://api.attio.com/v2/objects/records/search", body = {"query", "limit", "objects", "request_as"} },
     ["attio.post_v2_sequences_unsubscribed_emails"] = { method = "POST", url = "https://api.attio.com/v2/sequences/unsubscribed_emails", body = {"data"} },
-    ["attio.post_v2_sql"] = { method = "POST", url = "https://api.attio.com/v2/sql", body = {"sql"} },
+    ["attio.post_v2_sql"] = { method = "POST", url = "https://api.attio.com/v2/sql", body = {"sql", "parameters"} },
     ["attio.post_v2_target_identifier_attributes"] = { method = "POST", url = "https://api.attio.com/v2/{target}/{identifier}/attributes", path = {"target", "identifier"}, body = {"data"} },
     ["attio.post_v2_target_identifier_attributes_attribute_options"] = { method = "POST", url = "https://api.attio.com/v2/{target}/{identifier}/attributes/{attribute}/options", path = {"target", "identifier", "attribute"}, body = {"data"} },
     ["attio.post_v2_target_identifier_attributes_attribute_statuses"] = { method = "POST", url = "https://api.attio.com/v2/{target}/{identifier}/attributes/{attribute}/statuses", path = {"target", "identifier", "attribute"}, body = {"data"} },
     ["attio.post_v2_tasks"] = { method = "POST", url = "https://api.attio.com/v2/tasks", body = {"data"} },
     ["attio.post_v2_webhooks"] = { method = "POST", url = "https://api.attio.com/v2/webhooks", body = {"data"} },
+    ["attio.put_v2_activities_activity_records"] = { method = "PUT", url = "https://api.attio.com/v2/activities/{activity}/records", path = {"activity"}, query = {"matching_attribute"}, body = {"data"} },
     ["attio.put_v2_activities_activity_records_record_id"] = { method = "PUT", url = "https://api.attio.com/v2/activities/{activity}/records/{record_id}", path = {"activity", "record_id"}, body = {"data"} },
     ["attio.put_v2_lists_list_entries"] = { method = "PUT", url = "https://api.attio.com/v2/lists/{list}/entries", path = {"list"}, body = {"data"} },
     ["attio.put_v2_lists_list_entries_entry_id"] = { method = "PUT", url = "https://api.attio.com/v2/lists/{list}/entries/{entry_id}", path = {"list", "entry_id"}, body = {"data"} },
     ["attio.put_v2_lists_list_entries_entry_id_attributes_attribute_values"] = { method = "PUT", url = "https://api.attio.com/v2/lists/{list}/entries/{entry_id}/attributes/{attribute}/values", path = {"list", "entry_id", "attribute"}, body = {"data"} },
+    ["attio.put_v2_meetings_meeting_id"] = { method = "PUT", url = "https://api.attio.com/v2/meetings/{meeting_id}", path = {"meeting_id"}, body = {"data"} },
     ["attio.put_v2_objects_object_records"] = { method = "PUT", url = "https://api.attio.com/v2/objects/{object}/records", path = {"object"}, query = {"matching_attribute"}, body = {"data"} },
     ["attio.put_v2_objects_object_records_record_id"] = { method = "PUT", url = "https://api.attio.com/v2/objects/{object}/records/{record_id}", path = {"object", "record_id"}, body = {"data"} },
     ["attio.put_v2_objects_object_records_record_id_attributes_attribute_values"] = { method = "PUT", url = "https://api.attio.com/v2/objects/{object}/records/{record_id}/attributes/{attribute}/values", path = {"object", "record_id", "attribute"}, body = {"data"} },
+    ["attio.put_v2_workspace_blocklist_addresses"] = { method = "PUT", url = "https://api.attio.com/v2/workspace_blocklist_addresses", body = {"data"} },
   },
 }

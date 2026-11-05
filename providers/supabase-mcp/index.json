@@ -4800,6 +4800,51 @@
    }
   },
   {
+   "slug": "supabase-mcp.v1_review_network_restrictions",
+   "name": "Applies or rejects the change in review in a project's network restrictions",
+   "description": "This is an **experimental** endpoint. It is subject to change or removal in future versions. Use it with caution, as it may not remain supported or stable. This endpoint is currently in its **Alpha** stage.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "ref": {
+      "type": "string",
+      "description": "Project ref"
+     },
+     "action": {
+      "type": "string",
+      "description": "`apply` replaces the enforced list with the pending one and applies it. `reject` discards the pending one and keeps the enforced list.",
+      "enum": [
+       "apply",
+       "reject"
+      ]
+     },
+     "requested_at": {
+      "type": "string",
+      "description": "The `pending_requested_at` of the change being reviewed. Only that change is resolved: if another one has replaced it, the request gets a 409."
+     }
+    },
+    "required": [
+     "action",
+     "ref",
+     "requested_at"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://mcp.supabase.com/v1/projects/{ref}/network-restrictions/review",
+    "path": [
+     "ref"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "action",
+     "requested_at"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "supabase-mcp.v1_revoke_token",
    "name": "Revoke oauth app authorization and it's corresponding tokens",
    "description": "This is an **experimental** endpoint. It is subject to change or removal in future versions. Use it with caution, as it may not remain supported or stable. This endpoint is currently in its **Beta** stage.",
@@ -6993,6 +7038,22 @@
       "type": "string",
       "description": ""
      },
+     "pg_stat_statements.max": {
+      "type": "integer",
+      "description": ""
+     },
+     "pg_net.batch_size": {
+      "type": "integer",
+      "description": ""
+     },
+     "autovacuum_max_workers": {
+      "type": "integer",
+      "description": ""
+     },
+     "autovacuum_work_mem": {
+      "type": "string",
+      "description": ""
+     },
      "cron.log_statement": {
       "type": "boolean",
       "description": ""
@@ -7162,6 +7223,10 @@
     "body": [
      "effective_cache_size",
      "logical_decoding_work_mem",
+     "pg_stat_statements.max",
+     "pg_net.batch_size",
+     "autovacuum_max_workers",
+     "autovacuum_work_mem",
      "cron.log_statement",
      "log_autovacuum_min_duration",
      "log_checkpoints",
@@ -7233,6 +7298,14 @@
      "db_pool_acquisition_timeout": {
       "type": "integer",
       "description": ""
+     },
+     "db_pool_max_lifetime": {
+      "type": "integer",
+      "description": ""
+     },
+     "db_pool_max_idletime": {
+      "type": "integer",
+      "description": ""
      }
     },
     "required": [
@@ -7252,7 +7325,9 @@
      "db_schema",
      "max_rows",
      "db_pool",
-     "db_pool_acquisition_timeout"
+     "db_pool_acquisition_timeout",
+     "db_pool_max_lifetime",
+     "db_pool_max_idletime"
     ],
     "body_format": "json"
    }
