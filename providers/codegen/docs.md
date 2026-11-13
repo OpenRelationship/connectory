@@ -63,3 +63,5 @@ vouches for**: read it, then read their reference.
 
 - [openapi3](https://docs.codegen.com/api-reference/openapi3.json)
 - [openapi](https://docs.codegen.com/api-reference/openapi.json)
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

@@ -1,0 +1,2599 @@
+{
+ "_": "GENERATED \u2014 what an authoring tool needs to FIND an operation. The calling table is the .lua beside it.",
+ "provider": "firecrawl",
+ "source": "https://firecrawl.dev/openapi.json",
+ "operations": [
+  {
+   "slug": "firecrawl.ask_support_agent",
+   "name": "Ask the firecrawl support agent",
+   "description": "Diagnose Firecrawl job, account, and API usage issues with an AI support agent.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "question": {
+      "type": "string",
+      "description": "Question or issue for the support agent to diagnose."
+     },
+     "rationale": {
+      "type": "string",
+      "description": "Optional context about what the end user is trying to accomplish."
+     }
+    },
+    "required": [
+     "question"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.firecrawl.dev/v2/support/ask",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "question",
+     "rationale"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "firecrawl.cancel_agent",
+   "name": "Cancel an agent job",
+   "description": "Cancel an agent job",
+   "input": {
+    "type": "object",
+    "properties": {
+     "jobId": {
+      "type": "string",
+      "description": "The ID of the agent job"
+     }
+    },
+    "required": [
+     "jobId"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.firecrawl.dev/v2/agent/{jobId}",
+    "path": [
+     "jobId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "firecrawl.cancel_batch_scrape",
+   "name": "Cancel a batch scrape job",
+   "description": "Cancel a batch scrape job",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "The ID of the batch scrape job"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.firecrawl.dev/v2/batch/scrape/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "firecrawl.cancel_crawl",
+   "name": "Cancel a crawl job",
+   "description": "Cancel a crawl job",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "The ID of the crawl job"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.firecrawl.dev/v2/crawl/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "firecrawl.crawl_params_preview",
+   "name": "Preview crawl parameters generated from natural language prompt",
+   "description": "Preview crawl parameters generated from natural language prompt",
+   "input": {
+    "type": "object",
+    "properties": {
+     "url": {
+      "type": "string",
+      "description": "The URL to crawl"
+     },
+     "prompt": {
+      "type": "string",
+      "description": "Natural language prompt describing what you want to crawl"
+     }
+    },
+    "required": [
+     "prompt",
+     "url"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.firecrawl.dev/v2/crawl/params-preview",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "url",
+     "prompt"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "firecrawl.crawl_urls",
+   "name": "Crawl multiple urls based on options",
+   "description": "Crawl multiple URLs based on options",
+   "input": {
+    "type": "object",
+    "properties": {
+     "url": {
+      "type": "string",
+      "description": "The base URL to start crawling from"
+     },
+     "prompt": {
+      "type": "string",
+      "description": "A prompt to use to generate the crawler options (all the parameters below) from natural language. Explicitly set parameters will override the generated equivalents."
+     },
+     "excludePaths": {
+      "type": "array",
+      "description": "URL pathname regex patterns that exclude matching URLs from the crawl. For example, if you set \"excludePaths\": [\"blog/.*\"] for the base URL firecrawl.dev, any results matching that pattern will be excluded, such as https://www.firecrawl.dev/blog/firecrawl-launch-week-1-recap. Patterns use Rust regex (RE2-style) syntax: look-around and backreferences are not supported, and a pattern that does not c"
+     },
+     "includePaths": {
+      "type": "array",
+      "description": "URL pathname regex patterns that include matching URLs in the crawl. Only the paths that match the specified patterns will be included in the response. Note: the starting URL is also checked against these patterns \u2014 if it does not match, the crawl may return 0 pages. For example, if you set \"includePaths\": [\"blog/.*\"] for the base URL firecrawl.dev/blog, only pages under /blog/ will be included in"
+     },
+     "maxDiscoveryDepth": {
+      "type": "integer",
+      "description": "Maximum depth to crawl based on discovery order. The root site and sitemapped pages has a discovery depth of 0. For example, if you set it to 1, and you set `sitemap: 'skip'`, you will only crawl the entered URL and all URLs that are linked on that page."
+     },
+     "sitemap": {
+      "type": "string",
+      "description": "Sitemap mode when crawling. If you set it to 'skip', the crawler will ignore the website sitemap and only crawl the entered URL and discover pages from there onwards. If you set it to 'only', the crawler will only crawl URLs from the sitemap (plus the start URL) and will not discover links from HTML.",
+      "enum": [
+       "skip",
+       "include",
+       "only"
+      ]
+     },
+     "ignoreQueryParameters": {
+      "type": "boolean",
+      "description": "Do not re-scrape the same path with different (or none) query parameters"
+     },
+     "regexOnFullURL": {
+      "type": "boolean",
+      "description": "When true, includePaths and excludePaths regex patterns are matched against the full URL (including query parameters) instead of just the URL pathname. Useful when you need to filter URLs based on query strings."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Maximum number of pages to crawl. Default limit is 10000."
+     },
+     "crawlEntireDomain": {
+      "type": "boolean",
+      "description": "Allows the crawler to follow internal links to sibling or parent URLs, not just child paths. false: Only crawls deeper (child) URLs. \u2192 e.g. /features/feature-1 \u2192 /features/feature-1/tips \u2705 \u2192 Won't follow /pricing or / \u274c true: Crawls any internal links, including siblings and parents. \u2192 e.g. /features/feature-1 \u2192 /pricing, /, etc. \u2705 Use true for broader internal coverage beyond nested paths."
+     },
+     "allowExternalLinks": {
+      "type": "boolean",
+      "description": "Allows the crawler to follow links to external websites. External links are followed one hop (the links found on those external pages are not crawled). Links pointing to an external site's homepage (a root URL with no path) are skipped and reported in Get Crawl Errors with the code EXTERNAL_LINK; redirects to an external homepage are skipped for the same reason."
+     },
+     "allowSubdomains": {
+      "type": "boolean",
+      "description": "Allows the crawler to follow links to subdomains of the main domain."
+     },
+     "ignoreRobotsTxt": {
+      "type": "boolean",
+      "description": "Ignore the website's robots.txt rules. Enterprise only \u2014 contact support@firecrawl.com to enable."
+     },
+     "robotsUserAgent": {
+      "type": "string",
+      "description": "Custom User-Agent string for robots.txt evaluation. When set, robots.txt is fetched with this User-Agent and allow/disallow rules are matched against it instead of the default. Enterprise only \u2014 contact support@firecrawl.com to enable."
+     },
+     "delay": {
+      "type": "number",
+      "description": "Delay in seconds between scrapes. This helps respect website rate limits. Setting this forces concurrency to 1."
+     },
+     "maxConcurrency": {
+      "type": "integer",
+      "description": "Maximum number of concurrent scrapes. This parameter allows you to set a concurrency limit for this crawl. If not specified, the crawl adheres to your team's concurrency limit."
+     },
+     "webhook": {
+      "type": "object",
+      "description": "A webhook specification object."
+     },
+     "scrapeOptions": {
+      "type": "object",
+      "description": ""
+     },
+     "zeroDataRetention": {
+      "type": "boolean",
+      "description": "If true, this will enable zero data retention for this crawl. To enable this feature, please contact help@firecrawl.dev"
+     }
+    },
+    "required": [
+     "url"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.firecrawl.dev/v2/crawl",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "url",
+     "prompt",
+     "excludePaths",
+     "includePaths",
+     "maxDiscoveryDepth",
+     "sitemap",
+     "ignoreQueryParameters",
+     "regexOnFullURL",
+     "limit",
+     "crawlEntireDomain",
+     "allowExternalLinks",
+     "allowSubdomains",
+     "ignoreRobotsTxt",
+     "robotsUserAgent",
+     "delay",
+     "maxConcurrency",
+     "webhook",
+     "scrapeOptions",
+     "zeroDataRetention"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "firecrawl.create_browser_session",
+   "name": "Create an interact session",
+   "description": "Create an interact session",
+   "input": {
+    "type": "object",
+    "properties": {
+     "ttl": {
+      "type": "integer",
+      "description": "Total time-to-live in seconds for the interact session"
+     },
+     "activityTtl": {
+      "type": "integer",
+      "description": "Time in seconds before the session is destroyed due to inactivity"
+     },
+     "streamWebView": {
+      "type": "boolean",
+      "description": "Whether to stream a live view of the browser"
+     },
+     "blockAds": {
+      "type": "boolean",
+      "description": "Enable ad and cookie popup blocking, as in scrape. Sessions started from a scrape with interact use the scrape's blockAds."
+     },
+     "profile": {
+      "type": "object",
+      "description": "Enable persistent storage across interact sessions. Data saved in one session can be loaded in a later session using the same name."
+     },
+     "location": {
+      "type": "object",
+      "description": "Country the session browses from. Defaults to the US. Sessions started from a scrape with interact use the scrape's location."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.firecrawl.dev/v2/interact",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "ttl",
+     "activityTtl",
+     "streamWebView",
+     "blockAds",
+     "profile",
+     "location"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "firecrawl.create_monitor",
+   "name": "Create a monitor",
+   "description": "Create a monitor",
+   "input": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": "string",
+      "description": ""
+     },
+     "schedule": {
+      "type": "object",
+      "description": "Schedule for monitor checks. Provide either `cron` or `text`."
+     },
+     "webhook": {
+      "type": "object",
+      "description": "Webhook destination for monitor page and check completion events."
+     },
+     "notification": {
+      "type": "object",
+      "description": ""
+     },
+     "targets": {
+      "type": "array",
+      "description": ""
+     },
+     "retentionDays": {
+      "type": "integer",
+      "description": ""
+     },
+     "goal": {
+      "type": "string",
+      "description": "Plain-language goal used to judge whether changed pages are meaningful. If provided and `judgeEnabled` is omitted, judging is enabled automatically. Required (non-empty) when any target is a `search` target, unless `judgeEnabled` is `false`."
+     },
+     "judgeEnabled": {
+      "type": "boolean",
+      "description": "Whether to judge changed pages against `goal`. Requires a non-empty `goal` to run."
+     }
+    },
+    "required": [
+     "name",
+     "schedule",
+     "targets"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.firecrawl.dev/v2/monitor",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "schedule",
+     "webhook",
+     "notification",
+     "targets",
+     "retentionDays",
+     "goal",
+     "judgeEnabled"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "firecrawl.delete_browser_session",
+   "name": "Delete an interact session",
+   "description": "Delete an interact session",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sessionId": {
+      "type": "string",
+      "description": "The interact session ID"
+     }
+    },
+    "required": [
+     "sessionId"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.firecrawl.dev/v2/interact/{sessionId}",
+    "path": [
+     "sessionId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "firecrawl.delete_monitor",
+   "name": "Delete a monitor",
+   "description": "Delete a monitor",
+   "input": {
+    "type": "object",
+    "properties": {
+     "monitorId": {
+      "type": "string",
+      "description": "The monitor ID"
+     }
+    },
+    "required": [
+     "monitorId"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.firecrawl.dev/v2/monitor/{monitorId}",
+    "path": [
+     "monitorId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "firecrawl.developer_search",
+   "name": "Search the developer index",
+   "description": "Search the developer index",
+   "input": {
+    "type": "object",
+    "properties": {
+     "query": {
+      "type": "string",
+      "description": "Natural-language question or search phrase."
+     },
+     "k": {
+      "type": "integer",
+      "description": "Number of ranked results to return."
+     },
+     "types": {
+      "type": "array",
+      "description": "Result kinds to search. Defaults to all four. Accepts a repeated parameter (`types=issue&types=pull_request`) or one comma-separated value (`types=issue,pull_request`)."
+     },
+     "repos": {
+      "type": "array",
+      "description": "Repository slugs to scope the repository half of the index to, such as `firecrawl/firecrawl`. Applies to the `issue`, `pull_request`, and `readme` types only. Sent together with `sources`, the two halves are combined rather than intersected, so matching results come back from either. Returns 400 when no repository type is in `types`, reporting that `repos` cannot match any requested type and that "
+     },
+     "sources": {
+      "type": "array",
+      "description": "Documentation source ids to scope the documentation half to, at most 20. Applies to the `doc` type only. Not a fixed enum: ids reflect the documentation sites in the index and the set grows over time, so confirm an id resolves by sending it and reading the `sources` array on the response. Returns 400 with `sources cannot match any requested type; add doc or drop sources` when `doc` is not in `type"
+     },
+     "skills": {
+      "type": "string",
+      "description": "Set to `only` to limit the search to indexed agent-skill files.",
+      "enum": [
+       "only"
+      ]
+     },
+     "passages": {
+      "type": "integer",
+      "description": "Matched passages to return per result."
+     },
+     "language": {
+      "type": "string",
+      "description": "Repository primary language, such as `Rust`. Applies to repository results only; sending it with no `sources` scope returns no `doc` results. See [how the repository filters scope a search](/api-reference/endpoint/developer-search#how-the-repository-filters-scope-a-search)."
+     },
+     "topic": {
+      "type": "string",
+      "description": "Repository topic, such as `async`. Applies to repository results only; sending it with no `sources` scope returns no `doc` results."
+     },
+     "license": {
+      "type": "string",
+      "description": "Repository license, such as `MIT`. Applies to repository results only; sending it with no `sources` scope returns no `doc` results."
+     },
+     "min_stars": {
+      "type": "integer",
+      "description": "Lower bound on repository stars. Applies to repository results only; sending it with no `sources` scope returns no `doc` results."
+     },
+     "max_stars": {
+      "type": "integer",
+      "description": "Upper bound on repository stars. Applies to repository results only; sending it with no `sources` scope returns no `doc` results."
+     },
+     "archived": {
+      "type": "boolean",
+      "description": "Include or exclude archived repositories. Applies to repository results only; sending it with no `sources` scope returns no `doc` results."
+     },
+     "fork": {
+      "type": "boolean",
+      "description": "Include or exclude forks. Applies to repository results only; sending it with no `sources` scope returns no `doc` results."
+     }
+    },
+    "required": [
+     "query"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.firecrawl.dev/v2/search/developer",
+    "path": [],
+    "query": [
+     "query",
+     "k",
+     "types",
+     "repos",
+     "sources",
+     "skills",
+     "passages",
+     "language",
+     "topic",
+     "license",
+     "min_stars",
+     "max_stars",
+     "archived",
+     "fork"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "firecrawl.developer_search_post",
+   "name": "Search the developer index",
+   "description": "Search the developer index",
+   "input": {
+    "type": "object",
+    "properties": {
+     "query": {
+      "type": "string",
+      "description": ""
+     },
+     "k": {
+      "type": "integer",
+      "description": ""
+     },
+     "types": {
+      "type": "array",
+      "description": ""
+     },
+     "repos": {
+      "type": "array",
+      "description": "Repository slugs to scope the repository half of the index to. Applies to the `issue`, `pull_request`, and `readme` types only. Sent together with `sources`, the two halves are combined rather than intersected. Returns 400 when no repository type is in `types`, reporting that `repos` cannot match any requested type and that you should add repository types or drop `repos`."
+     },
+     "sources": {
+      "type": "array",
+      "description": "Documentation source ids to scope the documentation half to, at most 20. Applies to the `doc` type only. Not a fixed enum: ids reflect the documentation sites in the index and the set grows over time. Returns 400 with `sources cannot match any requested type; add doc or drop sources` when `doc` is not in `types`."
+     },
+     "skills": {
+      "type": "string",
+      "description": "Set to `only` to limit the search to indexed agent-skill files.",
+      "enum": [
+       "only"
+      ]
+     },
+     "passages": {
+      "type": "integer",
+      "description": ""
+     },
+     "language": {
+      "type": "string",
+      "description": "Repository primary language, such as `Rust`. Applies to repository results only; sending it with no `sources` scope returns no `doc` results. See [how the repository filters scope a search](/api-reference/endpoint/developer-search#how-the-repository-filters-scope-a-search)."
+     },
+     "topic": {
+      "type": "string",
+      "description": "Repository topic, such as `async`. Applies to repository results only; sending it with no `sources` scope returns no `doc` results."
+     },
+     "license": {
+      "type": "string",
+      "description": "Repository license, such as `MIT`. Applies to repository results only; sending it with no `sources` scope returns no `doc` results."
+     },
+     "min_stars": {
+      "type": "integer",
+      "description": "Lower bound on repository stars. Applies to repository results only; sending it with no `sources` scope returns no `doc` results."
+     },
+     "max_stars": {
+      "type": "integer",
+      "description": "Upper bound on repository stars. Applies to repository results only; sending it with no `sources` scope returns no `doc` results."
+     },
+     "archived": {
+      "type": "boolean",
+      "description": "Include or exclude archived repositories. Applies to repository results only; sending it with no `sources` scope returns no `doc` results."
+     },
+     "fork": {
+      "type": "boolean",
+      "description": "Include or exclude forks. Applies to repository results only; sending it with no `sources` scope returns no `doc` results."
+     }
+    },
+    "required": [
+     "query"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.firecrawl.dev/v2/search/developer",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "query",
+     "k",
+     "types",
+     "repos",
+     "sources",
+     "skills",
+     "passages",
+     "language",
+     "topic",
+     "license",
+     "min_stars",
+     "max_stars",
+     "archived",
+     "fork"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "firecrawl.execute_browser_code",
+   "name": "Execute code in an interact session",
+   "description": "Execute code in an interact session",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sessionId": {
+      "type": "string",
+      "description": "The interact session ID"
+     },
+     "code": {
+      "type": "string",
+      "description": "Code to execute in the browser sandbox"
+     },
+     "language": {
+      "type": "string",
+      "description": "Language of the code to execute. Use `node` for JavaScript or `bash` for agent-browser CLI commands.",
+      "enum": [
+       "python",
+       "node",
+       "bash"
+      ]
+     },
+     "timeout": {
+      "type": "integer",
+      "description": "Execution timeout in seconds"
+     }
+    },
+    "required": [
+     "code",
+     "sessionId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.firecrawl.dev/v2/interact/{sessionId}/execute",
+    "path": [
+     "sessionId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "code",
+     "language",
+     "timeout"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "firecrawl.extract_data",
+   "name": "Extract structured data from pages using llms",
+   "description": "Extract structured data from pages using LLMs",
+   "input": {
+    "type": "object",
+    "properties": {
+     "urls": {
+      "type": "array",
+      "description": ""
+     },
+     "prompt": {
+      "type": "string",
+      "description": "Prompt to guide the extraction process"
+     },
+     "schema": {
+      "type": "object",
+      "description": "Schema to define the structure of the extracted data. Must conform to [JSON Schema](https://json-schema.org/)."
+     },
+     "enableWebSearch": {
+      "type": "boolean",
+      "description": "When true, the extraction will use web search to find additional data"
+     },
+     "ignoreSitemap": {
+      "type": "boolean",
+      "description": "When true, sitemap.xml files will be ignored during website scanning"
+     },
+     "includeSubdomains": {
+      "type": "boolean",
+      "description": "When true, subdomains of the provided URLs will also be scanned"
+     },
+     "showSources": {
+      "type": "boolean",
+      "description": "When true, the sources used to extract the data will be included in the response as `sources` key"
+     },
+     "scrapeOptions": {
+      "type": "object",
+      "description": ""
+     },
+     "ignoreInvalidURLs": {
+      "type": "boolean",
+      "description": "If invalid URLs are specified in the urls array, they will be ignored. Instead of them failing the entire request, an extract using the remaining valid URLs will be performed, and the invalid URLs will be returned in the invalidURLs field of the response."
+     },
+     "threatProtection": {
+      "type": "object",
+      "description": "Per-request [Threat Protection](https://docs.firecrawl.dev/features/threat-protection) override. Fields you provide replace the corresponding fields of your organization's policy for this request only; omitted fields keep their organization-level values. Requires Threat Protection to be enabled for your team (enterprise feature) \u2014 otherwise the request is rejected with a 403. If your organization "
+     }
+    },
+    "required": [
+     "urls"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.firecrawl.dev/v2/extract",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "urls",
+     "prompt",
+     "schema",
+     "enableWebSearch",
+     "ignoreSitemap",
+     "includeSubdomains",
+     "showSources",
+     "scrapeOptions",
+     "ignoreInvalidURLs",
+     "threatProtection"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "firecrawl.get_active_crawls",
+   "name": "Get all active crawls for the authenticated team",
+   "description": "Get all active crawls for the authenticated team",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.firecrawl.dev/v2/crawl/active",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "firecrawl.get_activity",
+   "name": "List recent api activity",
+   "description": "Lists your team's recent API activity from the last 24 hours. Returns metadata about each job including the job ID, which can be used with the corresponding GET endpoint (e.g. GET /crawl/{id}) to retrieve full results. Supports cursor-based pagination and filtering by endpoint.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "endpoint": {
+      "type": "string",
+      "description": "Filter by endpoint",
+      "enum": [
+       "scrape",
+       "crawl",
+       "batch_scrape",
+       "search",
+       "extract",
+       "llmstxt",
+       "deep_research",
+       "map",
+       "agent",
+       "browser",
+       "interact"
+      ]
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Maximum number of results per page"
+     },
+     "cursor": {
+      "type": "string",
+      "description": "Cursor for pagination. Use the cursor value from the previous response."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.firecrawl.dev/v2/team/activity",
+    "path": [],
+    "query": [
+     "endpoint",
+     "limit",
+     "cursor"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "firecrawl.get_agent_snapshot",
+   "name": "Get an output snapshot of an agent job",
+   "description": "Get an output snapshot of an agent job",
+   "input": {
+    "type": "object",
+    "properties": {
+     "jobId": {
+      "type": "string",
+      "description": "The ID of the agent job"
+     },
+     "snapshotId": {
+      "type": "string",
+      "description": "The ID of the snapshot, from an artifact.updated trace event"
+     }
+    },
+    "required": [
+     "jobId",
+     "snapshotId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.firecrawl.dev/v2/agent/{jobId}/snapshots/{snapshotId}",
+    "path": [
+     "jobId",
+     "snapshotId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "firecrawl.get_agent_status",
+   "name": "Get the status of an agent job",
+   "description": "Get the status of an agent job",
+   "input": {
+    "type": "object",
+    "properties": {
+     "jobId": {
+      "type": "string",
+      "description": "The ID of the agent job"
+     }
+    },
+    "required": [
+     "jobId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.firecrawl.dev/v2/agent/{jobId}",
+    "path": [
+     "jobId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "firecrawl.get_agent_trace",
+   "name": "Get the execution trace of an agent job",
+   "description": "Get the execution trace of an agent job",
+   "input": {
+    "type": "object",
+    "properties": {
+     "jobId": {
+      "type": "string",
+      "description": "The ID of the agent job"
+     },
+     "liveView": {
+      "type": "string",
+      "description": "If \"true\", include the currently active browser sessions with live view URLs.",
+      "enum": [
+       "true",
+       "false"
+      ]
+     }
+    },
+    "required": [
+     "jobId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.firecrawl.dev/v2/agent/{jobId}/trace",
+    "path": [
+     "jobId"
+    ],
+    "query": [
+     "liveView"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "firecrawl.get_batch_scrape_errors",
+   "name": "Get the errors of a batch scrape job",
+   "description": "Get the errors of a batch scrape job",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "The ID of the batch scrape job"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.firecrawl.dev/v2/batch/scrape/{id}/errors",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "firecrawl.get_batch_scrape_status",
+   "name": "Get the status of a batch scrape job",
+   "description": "Get the status of a batch scrape job",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "The ID of the batch scrape job"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.firecrawl.dev/v2/batch/scrape/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "firecrawl.get_crawl_errors",
+   "name": "Get the errors of a crawl job",
+   "description": "Get the errors of a crawl job",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "The ID of the crawl job"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.firecrawl.dev/v2/crawl/{id}/errors",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "firecrawl.get_crawl_status",
+   "name": "Get the status of a crawl job",
+   "description": "Get the status of a crawl job",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "The ID of the crawl job"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.firecrawl.dev/v2/crawl/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "firecrawl.get_credit_usage",
+   "name": "Get remaining credits for the authenticated team",
+   "description": "Get remaining credits for the authenticated team",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.firecrawl.dev/v2/team/credit-usage",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "firecrawl.get_extract_status",
+   "name": "Get the status of an extract job",
+   "description": "Get the status of an extract job",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "The ID of the extract job"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.firecrawl.dev/v2/extract/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "firecrawl.get_historical_credit_usage",
+   "name": "Get historical credit usage for the authenticated team",
+   "description": "Get historical credit usage for the authenticated team",
+   "input": {
+    "type": "object",
+    "properties": {
+     "byApiKey": {
+      "type": "boolean",
+      "description": "Get historical credit usage by API key"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.firecrawl.dev/v2/team/credit-usage/historical",
+    "path": [],
+    "query": [
+     "byApiKey"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "firecrawl.get_historical_token_usage",
+   "name": "Get historical token usage for the authenticated team (extract only)",
+   "description": "Get historical token usage for the authenticated team (Extract only)",
+   "input": {
+    "type": "object",
+    "properties": {
+     "byApiKey": {
+      "type": "boolean",
+      "description": "Get historical token usage by API key"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.firecrawl.dev/v2/team/token-usage/historical",
+    "path": [],
+    "query": [
+     "byApiKey"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "firecrawl.get_monitor",
+   "name": "Get a monitor",
+   "description": "Get a monitor",
+   "input": {
+    "type": "object",
+    "properties": {
+     "monitorId": {
+      "type": "string",
+      "description": "The monitor ID"
+     }
+    },
+    "required": [
+     "monitorId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.firecrawl.dev/v2/monitor/{monitorId}",
+    "path": [
+     "monitorId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "firecrawl.get_monitor_check",
+   "name": "Get a monitor check",
+   "description": "Get a monitor check",
+   "input": {
+    "type": "object",
+    "properties": {
+     "monitorId": {
+      "type": "string",
+      "description": "The monitor ID"
+     },
+     "checkId": {
+      "type": "string",
+      "description": "The monitor check ID"
+     },
+     "limit": {
+      "type": "integer",
+      "description": ""
+     },
+     "skip": {
+      "type": "integer",
+      "description": "Number of page results to skip. Use the `next` URL from the previous response for pagination."
+     },
+     "status": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "same",
+       "new",
+       "changed",
+       "removed",
+       "error"
+      ]
+     }
+    },
+    "required": [
+     "checkId",
+     "monitorId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.firecrawl.dev/v2/monitor/{monitorId}/checks/{checkId}",
+    "path": [
+     "monitorId",
+     "checkId"
+    ],
+    "query": [
+     "limit",
+     "skip",
+     "status"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "firecrawl.get_parse_formats",
+   "name": "List file formats supported by  parse",
+   "description": "List file formats supported by /parse",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.firecrawl.dev/v2/parse/formats",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "firecrawl.get_queue_status",
+   "name": "Metrics about your team's scrape queue",
+   "description": "Metrics about your team's scrape queue",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.firecrawl.dev/v2/team/queue-status",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "firecrawl.get_scrape_status",
+   "name": "Get the status of a scrape job",
+   "description": "Get the status of a scrape job",
+   "input": {
+    "type": "object",
+    "properties": {
+     "jobId": {
+      "type": "string",
+      "description": "The ID of the job"
+     }
+    },
+    "required": [
+     "jobId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.firecrawl.dev/v2/scrape/{jobId}",
+    "path": [
+     "jobId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "firecrawl.get_threat_protection",
+   "name": "Get the team's threat protection policy",
+   "description": "Get the team's threat protection policy",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.firecrawl.dev/v2/team/threat-protection",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "firecrawl.get_token_usage",
+   "name": "Get remaining tokens for the authenticated team (extract only)",
+   "description": "Get remaining tokens for the authenticated team (Extract only)",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.firecrawl.dev/v2/team/token-usage",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "firecrawl.gov_search",
+   "name": "Search the government index",
+   "description": "Search the Government Index",
+   "input": {
+    "type": "object",
+    "properties": {
+     "query": {
+      "type": "string",
+      "description": "Natural-language question or search phrase."
+     },
+     "k": {
+      "type": "integer",
+      "description": "Number of results to return."
+     },
+     "jurisdiction": {
+      "type": "string",
+      "description": "Keep only pages of one jurisdiction: `us` for federal, or `us-` plus a two-letter state or territory code, such as `us-ca` or `us-dc`."
+     },
+     "court": {
+      "type": "string",
+      "description": "Keep only pages labeled for one court, by CourtListener court id, such as `scotus`, `ca9` or `nysd`."
+     },
+     "courtType": {
+      "type": "string",
+      "description": "Keep only pages from one type of court: `federal-supreme`, `federal-appellate`, `federal-district`, `federal-bankruptcy`, `federal-special`, `military`, `state-supreme`, `state-appellate`, `state-trial`, `state-special`, `state-attorney-general`.",
+      "enum": [
+       "federal-supreme",
+       "federal-appellate",
+       "federal-district",
+       "federal-bankruptcy",
+       "federal-special",
+       "military",
+       "state-supreme",
+       "state-appellate",
+       "state-trial",
+       "state-special",
+       "state-attorney-general"
+      ]
+     },
+     "cites": {
+      "type": "array",
+      "description": "Keep only pages that cite a law or case, as a printed citation such as `42 U.S.C. \u00a7 1983` or `5 U.S. 137`, or a citation id such as `us:usc:42:1983`. Pass up to 32 to keep pages citing any of them. Repeat the parameter to pass more than one."
+     },
+     "domain": {
+      "type": "string",
+      "description": "Keep only pages from one site, such as `irs.gov`."
+     },
+     "sources": {
+      "type": "array",
+      "description": "Result groups to return. `web` returns plain search results. `gov` returns the same results with the index's labels: `jurisdiction`, `court`, `courtType`, `cites`, `citedAs`, `lang` and `updatedAt`. Repeat the parameter to return both."
+     }
+    },
+    "required": [
+     "query"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.firecrawl.dev/v2/search/gov",
+    "path": [],
+    "query": [
+     "query",
+     "k",
+     "jurisdiction",
+     "court",
+     "courtType",
+     "cites",
+     "domain",
+     "sources"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "firecrawl.gov_search_post",
+   "name": "Search the government index",
+   "description": "Search the Government Index",
+   "input": {
+    "type": "object",
+    "properties": {
+     "query": {
+      "type": "string",
+      "description": "Natural-language question or search phrase."
+     },
+     "k": {
+      "type": "integer",
+      "description": "Number of results to return."
+     },
+     "jurisdiction": {
+      "type": "string",
+      "description": "Keep only pages of one jurisdiction: `us` for federal, or `us-` plus a two-letter state or territory code, such as `us-ca` or `us-dc`."
+     },
+     "court": {
+      "type": "string",
+      "description": "Keep only pages labeled for one court, by CourtListener court id, such as `scotus`, `ca9` or `nysd`."
+     },
+     "courtType": {
+      "type": "string",
+      "description": "Keep only pages from one type of court: `federal-supreme`, `federal-appellate`, `federal-district`, `federal-bankruptcy`, `federal-special`, `military`, `state-supreme`, `state-appellate`, `state-trial`, `state-special`, `state-attorney-general`.",
+      "enum": [
+       "federal-supreme",
+       "federal-appellate",
+       "federal-district",
+       "federal-bankruptcy",
+       "federal-special",
+       "military",
+       "state-supreme",
+       "state-appellate",
+       "state-trial",
+       "state-special",
+       "state-attorney-general"
+      ]
+     },
+     "cites": {
+      "type": "string",
+      "description": "Keep only pages that cite a law or case, as a printed citation such as `42 U.S.C. \u00a7 1983` or `5 U.S. 137`, or a citation id such as `us:usc:42:1983`. Pass up to 32 to keep pages citing any of them."
+     },
+     "domain": {
+      "type": "string",
+      "description": "Keep only pages from one site, such as `irs.gov`."
+     },
+     "sources": {
+      "type": "string",
+      "description": "Result groups to return, as one name or a list. `web` returns plain search results. `gov` returns the same results with the index's labels: `jurisdiction`, `court`, `courtType`, `cites`, `citedAs`, `lang` and `updatedAt`."
+     }
+    },
+    "required": [
+     "query"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.firecrawl.dev/v2/search/gov",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "query",
+     "k",
+     "jurisdiction",
+     "court",
+     "courtType",
+     "cites",
+     "domain",
+     "sources"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "firecrawl.interact_with_scrape_browser_session",
+   "name": "Interact with the browser session associated with a scrape job",
+   "description": "Interact with the browser session associated with a scrape job",
+   "input": {
+    "type": "object",
+    "properties": {
+     "jobId": {
+      "type": "string",
+      "description": "The scrape job ID"
+     },
+     "code": {
+      "type": "string",
+      "description": "Code to execute in the scrape-bound browser sandbox"
+     },
+     "language": {
+      "type": "string",
+      "description": "Language of the code to execute. Use `node` for JavaScript or `bash` for agent-browser CLI commands.",
+      "enum": [
+       "python",
+       "node",
+       "bash"
+      ]
+     },
+     "timeout": {
+      "type": "integer",
+      "description": "Execution timeout in seconds"
+     },
+     "origin": {
+      "type": "string",
+      "description": "Optional origin label used for execution telemetry"
+     }
+    },
+    "required": [
+     "code",
+     "jobId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.firecrawl.dev/v2/scrape/{jobId}/interact",
+    "path": [
+     "jobId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "code",
+     "language",
+     "timeout",
+     "origin"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "firecrawl.list_agents",
+   "name": "List agent runs",
+   "description": "List agent runs",
+   "input": {
+    "type": "object",
+    "properties": {
+     "before": {
+      "type": "integer",
+      "description": "Only return agent runs created before this unix millisecond timestamp. Pages are fixed at 20 runs; use the `before` value from the previous page's `next` URL to fetch the next page."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.firecrawl.dev/v2/agent",
+    "path": [],
+    "query": [
+     "before"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "firecrawl.list_browser_sessions",
+   "name": "List interact sessions",
+   "description": "List interact sessions",
+   "input": {
+    "type": "object",
+    "properties": {
+     "status": {
+      "type": "string",
+      "description": "Filter sessions by status",
+      "enum": [
+       "active",
+       "destroyed"
+      ]
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.firecrawl.dev/v2/interact",
+    "path": [],
+    "query": [
+     "status"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "firecrawl.list_monitor_checks",
+   "name": "List monitor checks",
+   "description": "List monitor checks",
+   "input": {
+    "type": "object",
+    "properties": {
+     "monitorId": {
+      "type": "string",
+      "description": "The monitor ID"
+     },
+     "limit": {
+      "type": "integer",
+      "description": ""
+     },
+     "offset": {
+      "type": "integer",
+      "description": ""
+     },
+     "status": {
+      "type": "string",
+      "description": "Filter checks by status.",
+      "enum": [
+       "queued",
+       "running",
+       "completed",
+       "failed",
+       "partial",
+       "skipped_overlap",
+       "skipped_no_credits"
+      ]
+     }
+    },
+    "required": [
+     "monitorId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.firecrawl.dev/v2/monitor/{monitorId}/checks",
+    "path": [
+     "monitorId"
+    ],
+    "query": [
+     "limit",
+     "offset",
+     "status"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "firecrawl.list_monitors",
+   "name": "List monitors",
+   "description": "List monitors",
+   "input": {
+    "type": "object",
+    "properties": {
+     "limit": {
+      "type": "integer",
+      "description": ""
+     },
+     "offset": {
+      "type": "integer",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.firecrawl.dev/v2/monitor",
+    "path": [],
+    "query": [
+     "limit",
+     "offset"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "firecrawl.map_urls",
+   "name": "Map multiple urls based on options",
+   "description": "Map multiple URLs based on options",
+   "input": {
+    "type": "object",
+    "properties": {
+     "url": {
+      "type": "string",
+      "description": "The base URL to start crawling from"
+     },
+     "search": {
+      "type": "string",
+      "description": "Specify a search query to order the results by relevance. Example: 'blog' will return URLs that contain the word 'blog' in the URL ordered by relevance."
+     },
+     "sitemap": {
+      "type": "string",
+      "description": "Sitemap mode when mapping. If you set it to `skip`, the sitemap won't be used to find URLs. If you set it to `only`, only URLs that are in the sitemap will be returned. By default (`include`), the sitemap and other methods will be used together to find URLs.",
+      "enum": [
+       "skip",
+       "include",
+       "only"
+      ]
+     },
+     "includeSubdomains": {
+      "type": "boolean",
+      "description": "Include subdomains of the website"
+     },
+     "ignoreQueryParameters": {
+      "type": "boolean",
+      "description": "Do not return URLs with query parameters"
+     },
+     "ignoreCache": {
+      "type": "boolean",
+      "description": "Bypass the sitemap cache to retrieve fresh URLs. Sitemap data is cached for up to 7 days; use this parameter when your sitemap has been recently updated."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Maximum number of links to return"
+     },
+     "timeout": {
+      "type": "integer",
+      "description": "Timeout in milliseconds. There is no timeout by default."
+     },
+     "location": {
+      "type": "object",
+      "description": "Location settings for the request. When specified, this will use an appropriate proxy if available and emulate the corresponding language and timezone settings. Defaults to 'US' if not specified."
+     },
+     "auditMetadata": {
+      "type": "object",
+      "description": "User attribution included with SIEM logging events when SIEM Logging is enabled for the organization."
+     },
+     "threatProtection": {
+      "type": "object",
+      "description": "Per-request [Threat Protection](https://docs.firecrawl.dev/features/threat-protection) override. Fields you provide replace the corresponding fields of your organization's policy for this request only; omitted fields keep their organization-level values. Requires Threat Protection to be enabled for your team (enterprise feature) \u2014 otherwise the request is rejected with a 403. If your organization "
+     }
+    },
+    "required": [
+     "url"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.firecrawl.dev/v2/map",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "url",
+     "search",
+     "sitemap",
+     "includeSubdomains",
+     "ignoreQueryParameters",
+     "ignoreCache",
+     "limit",
+     "timeout",
+     "location",
+     "auditMetadata",
+     "threatProtection"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "firecrawl.parse_file",
+   "name": "Upload and parse a file",
+   "description": "Upload and parse a file",
+   "input": {
+    "type": "object",
+    "properties": {
+     "file": {
+      "type": "string",
+      "description": "The file bytes to parse. Supported extensions: .html, .htm, .xhtml, .pdf, .docx, .doc, .docm, .odt, .ods, .odp, .rtf, .xlsx, .xls, .xlsm, .xlsb, .pptx, .ppt, .pptm, .epub, .csv."
+     },
+     "options": {
+      "type": "object",
+      "description": "Optional parse options sent as JSON in the multipart `options` field."
+     }
+    },
+    "required": [
+     "file"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.firecrawl.dev/v2/parse",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "file",
+     "options"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "firecrawl.research_get_paper",
+   "name": "Inspect or read a paper",
+   "description": "Inspect or read a paper",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "Paper reference: a canonical paperId or source-specific primaryId."
+     },
+     "query": {
+      "type": "string",
+      "description": "When present, returns the top matching full-text passages for this question. Omit it to inspect metadata only."
+     },
+     "k": {
+      "type": "integer",
+      "description": "Passage count for read mode. Only valid when query is present."
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.firecrawl.dev/v2/search/research/papers/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [
+     "query",
+     "k"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "firecrawl.research_related_papers",
+   "name": "Find related papers",
+   "description": "Find related papers",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "Primary seed paper reference."
+     },
+     "intent": {
+      "type": "string",
+      "description": "Natural-language ranking/filtering intent used for semantic ranking."
+     },
+     "mode": {
+      "type": "string",
+      "description": "Structural expansion mode.",
+      "enum": [
+       "similar",
+       "citers",
+       "references"
+      ]
+     },
+     "k": {
+      "type": "integer",
+      "description": "Maximum number of related papers to return."
+     },
+     "rerank": {
+      "type": "boolean",
+      "description": "Apply an additional rerank over fused candidates."
+     },
+     "anchor": {
+      "type": "string",
+      "description": "Additional seed paper reference. Repeat this parameter for multiple anchors."
+     }
+    },
+    "required": [
+     "id",
+     "intent"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.firecrawl.dev/v2/search/research/papers/{id}/similar",
+    "path": [
+     "id"
+    ],
+    "query": [
+     "intent",
+     "mode",
+     "k",
+     "rerank",
+     "anchor"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "firecrawl.research_search_papers",
+   "name": "Search papers",
+   "description": "Search papers",
+   "input": {
+    "type": "object",
+    "properties": {
+     "query": {
+      "type": "string",
+      "description": "Natural-language paper search query."
+     },
+     "k": {
+      "type": "integer",
+      "description": "Maximum number of ranked papers to return."
+     },
+     "authors": {
+      "type": "string",
+      "description": "Author substring filter. Repeat or pass a comma-separated value; all filters must match."
+     },
+     "categories": {
+      "type": "string",
+      "description": "Paper category filter. Repeat or pass a comma-separated value; all filters must match."
+     },
+     "from": {
+      "type": "string",
+      "description": "Inclusive lower bound on created/updated date."
+     },
+     "to": {
+      "type": "string",
+      "description": "Inclusive upper bound on created/updated date."
+     },
+     "sort": {
+      "type": "string",
+      "description": "Result order. `relevance` (default) returns the most relevant papers first. `date_desc` returns the newest papers among the most relevant matches, newest first by created date, with undated papers last. It does not list every paper in a date range; use `from` and `to` for that.",
+      "enum": [
+       "relevance",
+       "date_desc"
+      ]
+     }
+    },
+    "required": [
+     "query"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.firecrawl.dev/v2/search/research/papers",
+    "path": [],
+    "query": [
+     "query",
+     "k",
+     "authors",
+     "categories",
+     "from",
+     "to",
+     "sort"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "firecrawl.run_monitor",
+   "name": "Run a monitor",
+   "description": "Run a monitor",
+   "input": {
+    "type": "object",
+    "properties": {
+     "monitorId": {
+      "type": "string",
+      "description": "The monitor ID"
+     }
+    },
+    "required": [
+     "monitorId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.firecrawl.dev/v2/monitor/{monitorId}/run",
+    "path": [
+     "monitorId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "firecrawl.scrape_and_extract_from_url",
+   "name": "Scrape a single url and optionally extract information using an llm",
+   "description": "Scrape a single URL and optionally extract information using an LLM",
+   "input": {
+    "type": "object",
+    "properties": {
+     "url": {
+      "type": "string",
+      "description": "The URL to scrape"
+     }
+    },
+    "required": [
+     "url"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.firecrawl.dev/v2/scrape",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "url"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "firecrawl.scrape_and_extract_from_urls",
+   "name": "Scrape multiple urls and optionally extract information using an llm",
+   "description": "Scrape multiple URLs and optionally extract information using an LLM",
+   "input": {
+    "type": "object",
+    "properties": {
+     "urls": {
+      "type": "array",
+      "description": ""
+     },
+     "webhook": {
+      "type": "object",
+      "description": "A webhook specification object."
+     },
+     "maxConcurrency": {
+      "type": "integer",
+      "description": "Maximum number of concurrent scrapes. This parameter allows you to set a concurrency limit for this batch scrape. If not specified, the batch scrape adheres to your team's concurrency limit."
+     },
+     "ignoreInvalidURLs": {
+      "type": "boolean",
+      "description": "If invalid URLs are specified in the urls array, they will be ignored. Instead of them failing the entire request, a batch scrape using the remaining valid URLs will be created, and the invalid URLs will be returned in the invalidURLs field of the response."
+     }
+    },
+    "required": [
+     "urls"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.firecrawl.dev/v2/batch/scrape",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "urls",
+     "webhook",
+     "maxConcurrency",
+     "ignoreInvalidURLs"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "firecrawl.search_and_scrape",
+   "name": "Search and optionally scrape search results",
+   "description": "Search and optionally scrape search results",
+   "input": {
+    "type": "object",
+    "properties": {
+     "query": {
+      "type": "string",
+      "description": "The search query"
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Maximum number of results to return (per source type when using multiple sources)"
+     },
+     "sources": {
+      "type": "array",
+      "description": "Sources to search. Will determine the arrays available in the response. Defaults to ['web']. The plain string form (e.g. `[\"web\", \"alexandria\"]`) is also accepted. The `alexandria` source returns tool contracts discovered from the Alexandria catalogue in `data.tools` instead of search results; it is free and is never counted in `creditsUsed`. Requires the team's Alexandria access to be enabled (40"
+     },
+     "domainTools": {
+      "type": "boolean",
+      "description": "Include tool contracts whose provider matches the domains of the returned web results. Defaults to on when `alexandria` is among the sources; set `false` to disable, or `true` alone to add domain-matched tools beside ordinary web results. Free."
+     },
+     "toolDetail": {
+      "type": "string",
+      "description": "How much of each tool contract to return in `data.tools`. `compact` returns only `provider`, `capability`, and `description`. `summary` returns the full tool entry without `options` and `response`. `full` also returns `options`, `response`, and `examples`.",
+      "enum": [
+       "compact",
+       "summary",
+       "full"
+      ]
+     },
+     "categories": {
+      "type": "string",
+      "description": "Categories to filter results by. Pass either an array of category names, such as `[\"research\", \"pdf\"]`, or an array of objects, such as `[{\"type\": \"research\"}]`; one array cannot mix the two forms. `developer` and `gov` must be the only entry in the array, and combining either with another category returns `400`. `research` restricts web results to academic and research websites and returns them i"
+     },
+     "includeDomains": {
+      "type": "array",
+      "description": "Restricts search results to the specified domains. Domains should be hostnames only, without protocol or path. Cannot be used with excludeDomains."
+     },
+     "excludeDomains": {
+      "type": "array",
+      "description": "Excludes search results from the specified domains. Domains should be hostnames only, without protocol or path. Cannot be used with includeDomains."
+     },
+     "tbs": {
+      "type": "string",
+      "description": "Time-based search parameter. Supports predefined time ranges (`qdr:h`, `qdr:d`, `qdr:w`, `qdr:m`, `qdr:y`), custom date ranges (`cdr:1,cd_min:MM/DD/YYYY,cd_max:MM/DD/YYYY`), and sort by date (`sbd:1`). Values can be combined, e.g. `sbd:1,qdr:w`."
+     },
+     "location": {
+      "type": "string",
+      "description": "Location parameter for search results (e.g. `San Francisco,California,United States`). For best results, set both this and the `country` parameter."
+     },
+     "country": {
+      "type": "string",
+      "description": "ISO country code for geo-targeting search results (e.g. `US`). For best results, set both this and the `location` parameter."
+     },
+     "safe": {
+      "type": "boolean",
+      "description": "When `true`, filters explicit content from search results (SafeSearch). Omit to keep the default behavior, which does not apply the filter."
+     },
+     "timeout": {
+      "type": "integer",
+      "description": "Timeout in milliseconds"
+     },
+     "ignoreInvalidURLs": {
+      "type": "boolean",
+      "description": "Excludes URLs from the search results that are invalid for other Firecrawl endpoints. This helps reduce errors if you are piping data from search into other Firecrawl API endpoints."
+     },
+     "highlights": {
+      "type": "boolean",
+      "description": "Generate query-relevant highlights for search results. Set to false to return provider descriptions or snippets without highlighting."
+     },
+     "enterprise": {
+      "type": "array",
+      "description": "Enterprise search options for Zero Data Retention (ZDR). Use `[\"zdr\"]` for end-to-end ZDR (10 credits / 10 results) or `[\"anon\"]` for anonymized ZDR (2 credits / 10 results). Must be enabled for your team."
+     },
+     "scrapeOptions": {
+      "type": "object",
+      "description": "Options for scraping search results"
+     },
+     "threatProtection": {
+      "type": "object",
+      "description": "Per-request [Threat Protection](https://docs.firecrawl.dev/features/threat-protection) override. Fields you provide replace the corresponding fields of your organization's policy for this request only; omitted fields keep their organization-level values. Requires Threat Protection to be enabled for your team (enterprise feature) \u2014 otherwise the request is rejected with a 403. If your organization "
+     }
+    },
+    "required": [
+     "query"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.firecrawl.dev/v2/search",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "query",
+     "limit",
+     "sources",
+     "domainTools",
+     "toolDetail",
+     "categories",
+     "includeDomains",
+     "excludeDomains",
+     "tbs",
+     "location",
+     "country",
+     "safe",
+     "timeout",
+     "ignoreInvalidURLs",
+     "highlights",
+     "enterprise",
+     "scrapeOptions",
+     "threatProtection"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "firecrawl.start_agent",
+   "name": "Start an agent task for agentic data extraction",
+   "description": "Start an agent task for agentic data extraction",
+   "input": {
+    "type": "object",
+    "properties": {
+     "urls": {
+      "type": "array",
+      "description": "Optional list of URLs to constrain the agent to"
+     },
+     "prompt": {
+      "type": "string",
+      "description": "The prompt describing what data to extract"
+     },
+     "schema": {
+      "type": "object",
+      "description": "Optional JSON schema to structure the extracted data"
+     },
+     "maxCredits": {
+      "type": "number",
+      "description": "Maximum credits to spend on this agent task. Defaults to 2500 if not set. Values above 2,500 are always billed as paid requests."
+     },
+     "strictConstrainToURLs": {
+      "type": "boolean",
+      "description": "If true, agent will only visit URLs provided in the urls array"
+     },
+     "model": {
+      "type": "string",
+      "description": "The model to use for the agent task. spark-2 is the default and the model every run executes on. The Spark 1 model names remain accepted for backwards compatibility but are deprecated and route to spark-2.",
+      "enum": [
+       "spark-2",
+       "spark-1-mini",
+       "spark-1-pro"
+      ]
+     },
+     "effort": {
+      "type": "string",
+      "description": "Reasoning budget for the agent task. Every run executes on spark-2, so effort can be sent with or without model.",
+      "enum": [
+       "low",
+       "medium",
+       "high"
+      ]
+     },
+     "webhook": {
+      "type": "object",
+      "description": "A webhook specification object. Subscribes to agent lifecycle events (agent.started, agent.action, agent.completed, agent.failed, agent.cancelled)."
+     },
+     "auditMetadata": {
+      "type": "object",
+      "description": "User attribution included with SIEM logging events when SIEM Logging is enabled for the organization."
+     },
+     "threatProtection": {
+      "type": "object",
+      "description": "Per-request [Threat Protection](https://docs.firecrawl.dev/features/threat-protection) override. Fields you provide replace the corresponding fields of your organization's policy for this request only; omitted fields keep their organization-level values. Requires Threat Protection to be enabled for your team (enterprise feature) \u2014 otherwise the request is rejected with a 403. If your organization "
+     },
+     "threadId": {
+      "type": "string",
+      "description": "Continue an existing thread: pass the `threadId` an earlier run returned, and this request runs as that thread's next turn. Omitted `urls`, `schema`, `effort`, `mode` and `exchange` settings carry over from the previous turn. Omit `threadId` to start a new thread."
+     },
+     "mode": {
+      "type": "string",
+      "description": "`extract` returns the complete structured result in `data` every turn. `chat` lets a follow-up that asks for no new data get a short reply in `message` instead of a re-run. `exchange.requireApproval` needs `chat` on the same request. Omitted on a follow-up turn keeps the thread's mode.",
+      "enum": [
+       "extract",
+       "chat"
+      ]
+     },
+     "zeroDataRetention": {
+      "type": "boolean",
+      "description": "Run the agent with Zero Data Retention: Firecrawl keeps no prompt, result or step content in logs or storage, only billing and status metadata. The result is kept for 24 hours for retrieval, then deleted. Requires Scrape ZDR and Search ZDR to be enabled for your team, otherwise the request returns 400 `zdr_not_enabled`. Cannot be combined with `threadId`. With `exchange`, only capabilities that su"
+     },
+     "location": {
+      "type": "object",
+      "description": "Proxy country for every request the agent makes during the run: scrapes, batch scrapes and browser sessions go out from this country, and the agent cannot change it. Search results are localized to the country. Omitted on a follow-up turn keeps the thread's country. See [Choosing a location](https://docs.firecrawl.dev/features/agent#choosing-a-location)."
+     },
+     "safe": {
+      "type": "boolean",
+      "description": "When `true`, every web search the agent makes during the run filters explicit content, the same filter as the search endpoint's `safe` option. Pages the agent scrapes or opens in a browser are not filtered. Omit to keep the default behavior, which does not apply the filter. Omitted on a follow-up turn keeps the thread's setting; `false` turns it off."
+     },
+     "exchange": {
+      "type": "object",
+      "description": "Let the agent call your team's [Alexandria](https://docs.firecrawl.dev/features/alexandria) data providers during the run. Without this object the run uses the web only (a follow-up turn inherits the previous turn's settings). See [Use your connected Alexandria tools](https://docs.firecrawl.dev/features/agent#use-your-connected-alexandria-tools)."
+     }
+    },
+    "required": [
+     "prompt"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.firecrawl.dev/v2/agent",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "urls",
+     "prompt",
+     "schema",
+     "maxCredits",
+     "strictConstrainToURLs",
+     "model",
+     "effort",
+     "webhook",
+     "auditMetadata",
+     "threatProtection",
+     "threadId",
+     "mode",
+     "zeroDataRetention",
+     "location",
+     "safe",
+     "exchange"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "firecrawl.stop_interactive_scrape_browser_session",
+   "name": "Stop the interactive browser session associated with a scrape job",
+   "description": "Stop the interactive browser session associated with a scrape job",
+   "input": {
+    "type": "object",
+    "properties": {
+     "jobId": {
+      "type": "string",
+      "description": "The scrape job ID"
+     }
+    },
+    "required": [
+     "jobId"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.firecrawl.dev/v2/scrape/{jobId}/interact",
+    "path": [
+     "jobId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "firecrawl.submit_endpoint_feedback",
+   "name": "Submit feedback for a v2 job",
+   "description": "Submit feedback for a v2 job",
+   "input": {
+    "type": "object",
+    "properties": {
+     "rating": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "good",
+       "partial",
+       "bad"
+      ]
+     },
+     "valuableSources": {
+      "type": "array",
+      "description": ""
+     },
+     "valuableResults": {
+      "type": "array",
+      "description": "Results that were useful, each addressed by the `data` group it appears in and its 1-indexed position within that group. Results are returned grouped (`data.web`, `data.images`, `data.news`) and each group is numbered from 1 independently, so `source` is required. List every useful result; unlisted results are treated as not useful. Positions beyond what the group actually returned are ignored."
+     },
+     "missingContent": {
+      "type": "array",
+      "description": ""
+     },
+     "querySuggestions": {
+      "type": "string",
+      "description": ""
+     },
+     "origin": {
+      "type": "string",
+      "description": ""
+     },
+     "integration": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "rating"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.firecrawl.dev/v2/feedback",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "rating",
+     "valuableSources",
+     "valuableResults",
+     "missingContent",
+     "querySuggestions",
+     "origin",
+     "integration"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "firecrawl.submit_search_feedback",
+   "name": "Submit feedback for a search job",
+   "description": "Submit feedback for a search job",
+   "input": {
+    "type": "object",
+    "properties": {
+     "jobId": {
+      "type": "string",
+      "description": "Search job id returned by /search."
+     },
+     "rating": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "good",
+       "partial",
+       "bad"
+      ]
+     },
+     "valuableSources": {
+      "type": "array",
+      "description": ""
+     },
+     "valuableResults": {
+      "type": "array",
+      "description": "Results that were useful, each addressed by the `data` group it appears in and its 1-indexed position within that group. Results are returned grouped (`data.web`, `data.images`, `data.news`) and each group is numbered from 1 independently, so `source` is required. List every useful result; unlisted results are treated as not useful. Positions beyond what the group actually returned are ignored."
+     },
+     "missingContent": {
+      "type": "array",
+      "description": ""
+     },
+     "querySuggestions": {
+      "type": "string",
+      "description": ""
+     },
+     "origin": {
+      "type": "string",
+      "description": ""
+     },
+     "integration": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "jobId",
+     "rating"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.firecrawl.dev/v2/search/{jobId}/feedback",
+    "path": [
+     "jobId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "rating",
+     "valuableSources",
+     "valuableResults",
+     "missingContent",
+     "querySuggestions",
+     "origin",
+     "integration"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "firecrawl.update_monitor",
+   "name": "Update a monitor",
+   "description": "Update a monitor",
+   "input": {
+    "type": "object",
+    "properties": {
+     "monitorId": {
+      "type": "string",
+      "description": "The monitor ID"
+     },
+     "name": {
+      "type": "string",
+      "description": ""
+     },
+     "schedule": {
+      "type": "object",
+      "description": "Schedule for monitor checks. Provide either `cron` or `text`."
+     },
+     "webhook": {
+      "type": "object",
+      "description": "Webhook destination for monitor page and check completion events."
+     },
+     "notification": {
+      "type": "object",
+      "description": ""
+     },
+     "targets": {
+      "type": "array",
+      "description": ""
+     },
+     "retentionDays": {
+      "type": "integer",
+      "description": ""
+     },
+     "goal": {
+      "type": "string",
+      "description": "Plain-language goal used to judge whether changed pages are meaningful. If provided and `judgeEnabled` is omitted, judging is enabled automatically. Required (non-empty) when any target is a `search` target, unless `judgeEnabled` is `false`."
+     },
+     "judgeEnabled": {
+      "type": "boolean",
+      "description": "Whether to judge changed pages against `goal`. Requires a non-empty `goal` to run."
+     },
+     "status": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "active",
+       "paused"
+      ]
+     }
+    },
+    "required": [
+     "monitorId"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.firecrawl.dev/v2/monitor/{monitorId}",
+    "path": [
+     "monitorId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "schedule",
+     "webhook",
+     "notification",
+     "targets",
+     "retentionDays",
+     "goal",
+     "judgeEnabled",
+     "status"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "firecrawl.update_threat_protection",
+   "name": "Update the team's threat protection policy",
+   "description": "Full-document update. Unspecified fields reset to defaults. Enterprise feature, team admins only.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "mode": {
+      "type": "string",
+      "description": "Threat protection mode. `off` disables checks; `normal` checks URLs against Google Web Risk (+2 credits per URL scanned).",
+      "enum": [
+       "off",
+       "normal"
+      ]
+     },
+     "riskScoreThreshold": {
+      "type": "integer",
+      "description": "Normalized score (0-100) at or above which a classifier verdict is blocked. Lower is stricter."
+     },
+     "blacklist": {
+      "type": "array",
+      "description": "Exact domains or globs (e.g. `*.example.com`) always blocked, without a classifier call."
+     },
+     "whitelist": {
+      "type": "array",
+      "description": "Exact domains or globs always allowed. Wins over every other rule."
+     },
+     "blockedTlds": {
+      "type": "array",
+      "description": "Top-level domains to block outright, lowercase without a leading dot."
+     },
+     "failurePolicy": {
+      "type": "string",
+      "description": "Behavior when the classifier is unreachable: `closed` blocks (default), `open` allows.",
+      "enum": [
+       "open",
+       "closed"
+      ]
+     },
+     "allowRequestOverrides": {
+      "type": "boolean",
+      "description": "Whether individual requests may pass a `threatProtection` object. When false, such requests are rejected with 403."
+     }
+    },
+    "required": [
+     "mode"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.firecrawl.dev/v2/team/threat-protection",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "mode",
+     "riskScoreThreshold",
+     "blacklist",
+     "whitelist",
+     "blockedTlds",
+     "failurePolicy",
+     "allowRequestOverrides"
+    ],
+    "body_format": "json"
+   }
+  }
+ ]
+}

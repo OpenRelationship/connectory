@@ -226,7 +226,7 @@
      },
      "user_id": {
       "type": "string",
-      "description": ""
+      "description": "The ID of the user to target"
      }
     },
     "required": [
@@ -883,15 +883,15 @@
     "properties": {
      "guild_id": {
       "type": "string",
-      "description": ""
+      "description": "The ID of the guild"
      },
      "guild_scheduled_event_id": {
       "type": "string",
-      "description": ""
+      "description": "The ID of the scheduled event"
      },
      "guild_scheduled_event_exception_ids": {
       "type": "array",
-      "description": ""
+      "description": "List of scheduled event exception ids to get user counts for"
      }
     },
     "required": [
@@ -1666,11 +1666,11 @@
     "properties": {
      "guild_id": {
       "type": "string",
-      "description": ""
+      "description": "The ID of the guild"
      },
      "guild_scheduled_event_id": {
       "type": "string",
-      "description": ""
+      "description": "The ID of the scheduled event"
      },
      "scheduled_start_time": {
       "type": [
@@ -2028,6 +2028,13 @@
        "null"
       ],
       "description": ""
+     },
+     "name": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": ""
      }
     },
     "required": []
@@ -2043,7 +2050,8 @@
      "members",
      "metadata",
      "flags",
-     "override_event_webhooks_url"
+     "override_event_webhooks_url",
+     "name"
     ],
     "body_format": "json"
    },
@@ -2318,6 +2326,13 @@
      "flags": {
       "type": "string",
       "description": ""
+     },
+     "name": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": ""
      }
     },
     "required": []
@@ -2332,7 +2347,8 @@
      "idle_timeout_seconds",
      "lobby_metadata",
      "member_metadata",
-     "flags"
+     "flags",
+     "name"
     ],
     "body_format": "json"
    },
@@ -3199,15 +3215,15 @@
     "properties": {
      "guild_id": {
       "type": "string",
-      "description": ""
+      "description": "The ID of the guild"
      },
      "guild_scheduled_event_id": {
       "type": "string",
-      "description": ""
+      "description": "The ID of the scheduled event"
      },
      "exception_id": {
       "type": "string",
-      "description": ""
+      "description": "The ID of the event exception"
      }
     },
     "required": [
@@ -3913,6 +3929,13 @@
        "null"
       ],
       "description": ""
+     },
+     "name": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": ""
      }
     },
     "required": [
@@ -3932,7 +3955,8 @@
      "metadata",
      "members",
      "flags",
-     "override_event_webhooks_url"
+     "override_event_webhooks_url",
+     "name"
     ],
     "body_format": "json"
    },
@@ -4351,7 +4375,7 @@
      },
      "answer_id": {
       "type": "integer",
-      "description": ""
+      "description": "The ID of the answer"
      },
      "after": {
       "type": "string",
@@ -4626,6 +4650,86 @@
     "body_format": "json"
    },
    "described": "derived"
+  },
+  {
+   "slug": "discord.get_channel_member_permissions",
+   "name": "Get channel member permissions",
+   "description": "Returns the fully cascaded permissions for a member in this channel, applying their roles and the channel's permission overwrites.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "channel_id": {
+      "type": "string",
+      "description": "The ID of the channel"
+     },
+     "user_id": {
+      "type": "string",
+      "description": "The ID of the member"
+     },
+     "implicit": {
+      "type": "boolean",
+      "description": "Whether to apply implicit-permission computations. Defaults to true; pass false for the raw explicit permissions."
+     }
+    },
+    "required": [
+     "channel_id",
+     "user_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://discord.com/api/v10/channels/{channel_id}/permissions/member/{user_id}",
+    "path": [
+     "channel_id",
+     "user_id"
+    ],
+    "query": [
+     "implicit"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "discord.get_channel_role_permissions",
+   "name": "Get channel role permissions",
+   "description": "Returns the permissions a role grants in this channel, applying the channel's permission overwrites on top of the role's guild-level permissions.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "channel_id": {
+      "type": "string",
+      "description": "The ID of the channel"
+     },
+     "role_id": {
+      "type": "string",
+      "description": "The ID of the role"
+     },
+     "implicit": {
+      "type": "boolean",
+      "description": "Whether to apply implicit-permission computations. Defaults to true. Pass false for the raw explicit permissions."
+     }
+    },
+    "required": [
+     "channel_id",
+     "role_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://discord.com/api/v10/channels/{channel_id}/permissions/role/{role_id}",
+    "path": [
+     "channel_id",
+     "role_id"
+    ],
+    "query": [
+     "implicit"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
   },
   {
    "slug": "discord.get_current_user_application_entitlements",
@@ -4997,12 +5101,12 @@
      },
      "status": {
       "type": "string",
-      "description": "",
+      "description": "Filter by application status. Defaults to SUBMITTED if omitted",
       "enum": []
      },
      "limit": {
       "type": "integer",
-      "description": ""
+      "description": "Maximum number of join requests to return"
      },
      "before": {
       "type": "string",
@@ -5068,6 +5172,40 @@
     "body_format": "json"
    },
    "described": "derived"
+  },
+  {
+   "slug": "discord.get_guild_member_permissions",
+   "name": "Get guild member permissions",
+   "description": "Returns the fully cascaded guild-level permissions for a member, applying all of their roles including @everyone's",
+   "input": {
+    "type": "object",
+    "properties": {
+     "guild_id": {
+      "type": "string",
+      "description": "The ID of the guild"
+     },
+     "user_id": {
+      "type": "string",
+      "description": "The ID of the member"
+     }
+    },
+    "required": [
+     "guild_id",
+     "user_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://discord.com/api/v10/guilds/{guild_id}/permissions/member/{user_id}",
+    "path": [
+     "guild_id",
+     "user_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
   },
   {
    "slug": "discord.get_guild_new_member_welcome",
@@ -5161,6 +5299,40 @@
     "body_format": "json"
    },
    "described": "derived"
+  },
+  {
+   "slug": "discord.get_guild_role_permissions",
+   "name": "Get guild role permissions",
+   "description": "Returns the permissions a role grants at the guild level, combining the role's own permissions with @everyone's.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "guild_id": {
+      "type": "string",
+      "description": "The ID of the guild"
+     },
+     "role_id": {
+      "type": "string",
+      "description": "The ID of the role"
+     }
+    },
+    "required": [
+     "guild_id",
+     "role_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://discord.com/api/v10/guilds/{guild_id}/permissions/role/{role_id}",
+    "path": [
+     "guild_id",
+     "role_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
   },
   {
    "slug": "discord.get_guild_scheduled_event",
@@ -5894,15 +6066,15 @@
     "properties": {
      "sku_id": {
       "type": "string",
-      "description": ""
+      "description": "ID of SKU"
      },
      "subscription_id": {
       "type": "string",
-      "description": ""
+      "description": "ID of the subscription"
      },
      "user_id": {
       "type": "string",
-      "description": ""
+      "description": "User ID for which to return the subscription. Required except for OAuth queries."
      }
     },
     "required": [
@@ -5934,23 +6106,23 @@
     "properties": {
      "sku_id": {
       "type": "string",
-      "description": ""
+      "description": "ID of SKU"
      },
      "before": {
       "type": "string",
-      "description": ""
+      "description": "List subscriptions before this ID"
      },
      "after": {
       "type": "string",
-      "description": ""
+      "description": "List subscriptions after this ID"
      },
      "limit": {
       "type": "integer",
-      "description": ""
+      "description": "Number of results to return (1-100)"
      },
      "user_id": {
       "type": "string",
-      "description": ""
+      "description": "User ID for which to return subscriptions. Required except for OAuth queries."
      }
     },
     "required": [
@@ -6347,15 +6519,11 @@
      },
      "content": {
       "type": "string",
-      "description": ""
+      "description": "Text to search for. Matches messages containing these words within slop positions of each other."
      },
      "slop": {
       "type": "integer",
-      "description": ""
-     },
-     "contents": {
-      "type": "array",
-      "description": ""
+      "description": "How many positions apart or out of order the words in content can be and still match. 0 matches the exact phrase; higher values, up to 100, match words further apart."
      },
      "author_id": {
       "type": "array",
@@ -6453,7 +6621,6 @@
      "sort_order",
      "content",
      "slop",
-     "contents",
      "author_id",
      "author_type",
      "mentions",
@@ -7202,31 +7369,31 @@
     "properties": {
      "guild_id": {
       "type": "string",
-      "description": ""
+      "description": "The ID of the guild"
      },
      "guild_scheduled_event_id": {
       "type": "string",
-      "description": ""
+      "description": "The ID of the scheduled event"
      },
      "guild_scheduled_event_exception_id": {
       "type": "string",
-      "description": ""
+      "description": "The ID of the event exception"
      },
      "with_member": {
       "type": "boolean",
-      "description": ""
+      "description": "Include guild member data if it exists"
      },
      "limit": {
       "type": "integer",
-      "description": ""
+      "description": "Number of users to return (up to maximum 100)"
      },
      "before": {
       "type": "string",
-      "description": ""
+      "description": "Consider only users before given user id"
      },
      "after": {
       "type": "string",
-      "description": ""
+      "description": "Consider only users after given user id"
      }
     },
     "required": [
@@ -7271,19 +7438,19 @@
      },
      "with_member": {
       "type": "boolean",
-      "description": ""
+      "description": "Include guild member data if it exists"
      },
      "limit": {
       "type": "integer",
-      "description": ""
+      "description": "Number of users to return (up to maximum 100)"
      },
      "before": {
       "type": "string",
-      "description": ""
+      "description": "Consider only users before given user id"
      },
      "after": {
       "type": "string",
-      "description": ""
+      "description": "Consider only users after given user id"
      }
     },
     "required": [
@@ -7609,7 +7776,7 @@
      },
      "shard": {
       "type": "integer",
-      "description": ""
+      "description": "Return the guilds contained within the specified shard. Required for applications that are sharded. Valid values are 0 to session_start_limit.max_concurrency - 1. Not the same as Gateway shard ids."
      },
      "with_counts": {
       "type": "boolean",
@@ -8176,7 +8343,7 @@
      },
      "user_id": {
       "type": "string",
-      "description": ""
+      "description": "The ID of the user to stop targeting"
      }
     },
     "required": [
@@ -9358,7 +9525,7 @@
     "properties": {
      "guild_id": {
       "type": "string",
-      "description": ""
+      "description": "The ID of the guild"
      },
      "invites_disabled_until": {
       "type": [
@@ -9624,15 +9791,15 @@
     "properties": {
      "guild_id": {
       "type": "string",
-      "description": ""
+      "description": "The ID of the guild"
      },
      "guild_scheduled_event_id": {
       "type": "string",
-      "description": ""
+      "description": "The ID of the scheduled event"
      },
      "exception_id": {
       "type": "string",
-      "description": ""
+      "description": "The ID of the event exception"
      },
      "scheduled_start_time": {
       "type": [
@@ -9986,11 +10153,11 @@
     "properties": {
      "lobby_id": {
       "type": "string",
-      "description": ""
+      "description": "The ID of the lobby the message is in"
      },
      "message_id": {
       "type": "string",
-      "description": ""
+      "description": "The ID of the message to update"
      }
     },
     "required": [
@@ -10547,15 +10714,15 @@
     "properties": {
      "user_id_1": {
       "type": "string",
-      "description": ""
+      "description": "The ID of the first user in the DM"
      },
      "user_id_2": {
       "type": "string",
-      "description": ""
+      "description": "The ID of the second user in the DM"
      },
      "message_id": {
       "type": "string",
-      "description": ""
+      "description": "The ID of the message to update"
      }
     },
     "required": [

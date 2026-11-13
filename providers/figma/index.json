@@ -1407,6 +1407,34 @@
    }
   },
   {
+   "slug": "figma.get_team",
+   "name": "Get a team",
+   "description": "Returns metadata for a team the caller can access. Private OAuth apps can use this endpoint for Professional, Organization, and Enterprise plans. Plan access tokens can use it for Organization and Enterprise plans.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "team_id": {
+      "type": "string",
+      "description": "The ID of the team."
+     }
+    },
+    "required": [
+     "team_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.figma.com/v1/teams/{team_id}",
+    "path": [
+     "team_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "figma.get_team_component_sets",
    "name": "Get team component sets",
    "description": "Get a paginated list of published component sets within a team library.",
@@ -1773,6 +1801,205 @@
     "header": [],
     "body": [
      "dev_resources"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "figma.post_file_duplicate",
+   "name": "Duplicate a file",
+   "description": "Duplicates a main file or branch into the specified folder as a new standalone file. The source file and destination folder must belong to the Enterprise plan associated with the private OAuth app. The authenticated user must be able to export the source file, edit the destination folder, and create files of the source editor type. The copy uses the source's latest saved checkpoint and may not inc",
+   "input": {
+    "type": "object",
+    "properties": {
+     "file_key": {
+      "type": "string",
+      "description": "The key of the main file or branch to duplicate."
+     },
+     "folder_id": {
+      "type": "string",
+      "description": "The ID of the folder to create the duplicated file in."
+     }
+    },
+    "required": [
+     "file_key",
+     "folder_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.figma.com/v1/files/{file_key}/duplicate",
+    "path": [
+     "file_key"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "folder_id"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "figma.post_team",
+   "name": "Create a team",
+   "description": "Creates a team in the Enterprise plan associated with a private OAuth app. The app uses the authenticated user's permissions, and that user becomes the team owner. The request is subject to the same team-creation controls and permissions as team creation in Figma.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": "string",
+      "description": "The name of the team."
+     },
+     "description": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "A description of the team."
+     },
+     "sharing_audience_control": {
+      "type": "string",
+      "description": "The audience that can discover and join the team. Workspace audiences require a workspace_id.",
+      "enum": [
+       "org_view",
+       "org_edit",
+       "invite_only",
+       "workspace_view",
+       "workspace_edit"
+      ]
+     },
+     "org_discoverability": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Whether organization members can discover an invite-only team. Required for invite_only and not accepted for other audiences.",
+      "enum": [
+       "hidden",
+       "discoverable",
+       null
+      ]
+     },
+     "workspace_id": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "The workspace in which to create the team. Required for workspace audiences."
+     }
+    },
+    "required": [
+     "name",
+     "sharing_audience_control"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.figma.com/v1/teams",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "description",
+     "sharing_audience_control",
+     "org_discoverability",
+     "workspace_id"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "figma.post_team_folder",
+   "name": "Create a folder",
+   "description": "Creates a top-level folder in a team. The team must belong to the Enterprise plan associated with the private OAuth app, and the authenticated user must be allowed to create a folder in the team.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "team_id": {
+      "type": "string",
+      "description": "The ID of the team in which to create the folder."
+     },
+     "name": {
+      "type": "string",
+      "description": "The name of the folder."
+     },
+     "sharing_audience_control": {
+      "type": "string",
+      "description": "The audience that can access the folder. Workspace audiences require the specified team to belong to a workspace.",
+      "enum": [
+       "plan_view",
+       "plan_edit",
+       "invite_only",
+       "workspace_view",
+       "workspace_edit"
+      ]
+     }
+    },
+    "required": [
+     "name",
+     "sharing_audience_control",
+     "team_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.figma.com/v1/teams/{team_id}/folders",
+    "path": [
+     "team_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "sharing_audience_control"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "figma.post_team_invites",
+   "name": "Invite users to a team",
+   "description": "Invites users to a team with the requested role. This endpoint is available only to private OAuth apps associated with an Enterprise plan, and the team must belong to that plan. The authenticated user must be allowed to grant the requested role on the team. Each email address is processed independently. Per-address failures are returned in `errors` with HTTP 200, even if `invites` is empty. Always",
+   "input": {
+    "type": "object",
+    "properties": {
+     "team_id": {
+      "type": "string",
+      "description": "The ID of the team to invite users to."
+     },
+     "emails": {
+      "type": "array",
+      "description": "The email addresses to invite."
+     },
+     "role": {
+      "type": "string",
+      "description": "The role to grant each invited member. Existing roles are never downgraded.",
+      "enum": [
+       "viewer",
+       "editor",
+       "admin"
+      ]
+     }
+    },
+    "required": [
+     "emails",
+     "role",
+     "team_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.figma.com/v1/teams/{team_id}/invites",
+    "path": [
+     "team_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "emails",
+     "role"
     ],
     "body_format": "json"
    }

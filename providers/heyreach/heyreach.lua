@@ -2,7 +2,7 @@
 --
 -- GENERATED from https://docs.heyreach.io/openapi.json
 -- Published on the vendor's own documentation site (https://docs.heyreach.io).
--- 88 operations · do not edit
+-- 106 operations · do not edit
 --
 -- The credential is never in here. `auth.env` names an environment variable; the value
 -- stays in the environment, which is what makes this file safe to publish.
@@ -37,9 +37,11 @@ return {
     ["heyreach.campaigns_add_linked_in_accounts_to_campaign"] = { method = "POST", url = "https://api.heyreach.io/api//api/public/campaign/AddLinkedInAccountsToCampaign", header = {"X-API-KEY"}, body = {"campaignId", "linkedInAccountIds"} },
     ["heyreach.campaigns_create"] = { method = "POST", url = "https://api.heyreach.io/api//api/public/campaign/Create", header = {"X-API-KEY"} },
     ["heyreach.campaigns_create_campaign_from_template"] = { method = "POST", url = "https://api.heyreach.io/api//api/public/campaign/CreateCampaignFromTemplate", header = {"X-API-KEY"}, body = {"campaignIdForTemplate", "name", "linkedInUserListId", "excludeContactedFromOtherCampaigns", "excludeHasOtherAccConversations", "excludeContactedFromSenderInOtherCampaign", "linkedInAcccountIdsForCampaign", "excludeListId"} },
+    ["heyreach.campaigns_create_v2"] = { method = "POST", url = "https://api.heyreach.io/api//api/public/campaign/CreateV2", header = {"X-API-KEY"}, body = {"name", "linkedInUserListId", "linkedInAccountIds", "excludeContactedFromOtherCampaigns", "excludeHasOtherAccConversations", "excludeContactedFromSenderInOtherCampaign", "excludeListId", "excludeFromLeadBlacklist", "excludeFromCompanyBlacklist", "schedule", "sequence"} },
     ["heyreach.campaigns_get_all"] = { method = "POST", url = "https://api.heyreach.io/api//api/public/campaign/GetAll", header = {"X-API-KEY"}, body = {"offset", "keyword", "statuses", "accountIds", "limit"} },
     ["heyreach.campaigns_get_by_id"] = { method = "GET", url = "https://api.heyreach.io/api//api/public/campaign/GetById?campaignId=<long>", query = {"campaignId"}, header = {"X-API-KEY"} },
     ["heyreach.campaigns_get_campaign_sequence"] = { method = "GET", url = "https://api.heyreach.io/api//api/public/campaign/GetCampaignSequence?campaignId=<long>", query = {"campaignId"}, header = {"X-API-KEY"} },
+    ["heyreach.campaigns_get_campaign_sequence_v2"] = { method = "GET", url = "https://api.heyreach.io/api//api/public/campaign/GetCampaignSequenceV2?campaignId=<long>", query = {"campaignId"}, header = {"X-API-KEY"} },
     ["heyreach.campaigns_get_campaigns_for_lead"] = { method = "POST", url = "https://api.heyreach.io/api//api/public/campaign/GetCampaignsForLead", header = {"X-API-KEY"}, body = {"email", "linkedinId", "profileUrl", "offset", "limit"} },
     ["heyreach.campaigns_get_leads_from_campaign"] = { method = "POST", url = "https://api.heyreach.io/api//api/public/campaign/GetLeadsFromCampaign", header = {"X-API-KEY"} },
     ["heyreach.campaigns_pause"] = { method = "POST", url = "https://api.heyreach.io/api//api/public/campaign/Pause?campaignId=<long>", query = {"campaignId"}, header = {"X-API-KEY"} },
@@ -51,12 +53,14 @@ return {
     ["heyreach.campaigns_update_lead_custom_fields"] = { method = "PATCH", url = "https://api.heyreach.io/api//api/public/campaign/UpdateLeadCustomFields/campaigns/{campaignId}/leads/custom-fields", path = {"campaignId"}, header = {"X-API-KEY"}, body = {"leadMemberIdOrUrl", "customFields"} },
     ["heyreach.campaigns_update_schedule"] = { method = "POST", url = "https://api.heyreach.io/api//api/public/campaign/UpdateSchedule", header = {"X-API-KEY"}, body = {"campaignId", "schedule"} },
     ["heyreach.campaigns_update_sequence"] = { method = "POST", url = "https://api.heyreach.io/api//api/public/campaign/UpdateSequence", header = {"X-API-KEY"} },
+    ["heyreach.campaigns_update_sequence_v2"] = { method = "POST", url = "https://api.heyreach.io/api//api/public/campaign/UpdateSequenceV2", header = {"X-API-KEY"}, body = {"campaignId", "sequence"} },
     ["heyreach.campaigns_update_settings"] = { method = "POST", url = "https://api.heyreach.io/api//api/public/campaign/UpdateSettings", header = {"X-API-KEY"}, body = {"campaignId", "name", "linkedInUserListId", "excludeContactedFromOtherCampaigns", "excludeHasOtherAccConversations", "excludeContactedFromSenderInOtherCampaign", "excludeListId"} },
     ["heyreach.enrichment_check_enrich_email_job"] = { method = "GET", url = "https://api.heyreach.io/api//api/public/enrichment/enrich-email/check-job/{jobId}", path = {"jobId"}, header = {"X-API-KEY"} },
     ["heyreach.enrichment_enrich_email"] = { method = "POST", url = "https://api.heyreach.io/api//api/public/enrichment/enrich-email", header = {"X-API-KEY"}, body = {"profileUrl", "leadMemberId"} },
     ["heyreach.inbox_get_chatroom"] = { method = "GET", url = "https://api.heyreach.io/api//api/public/inbox/GetChatroom/{accountId}/{conversationId}", path = {"accountId", "conversationId"}, header = {"X-API-KEY"} },
     ["heyreach.inbox_get_conversations_v2"] = { method = "POST", url = "https://api.heyreach.io/api//api/public/inbox/GetConversationsV2", header = {"X-API-KEY"}, body = {"filters", "offset", "limit"} },
     ["heyreach.inbox_get_conversations_v3"] = { method = "POST", url = "https://api.heyreach.io/api//api/public/inbox/GetConversationsV3", header = {"X-API-KEY"}, body = {"limit", "cursor", "from", "to", "filters"} },
+    ["heyreach.inbox_get_voice_message_audio"] = { method = "GET", url = "https://api.heyreach.io/api//api/public/inbox/GetVoiceMessageAudio/{accountId}/{conversationId}/{messageId}", path = {"accountId", "conversationId", "messageId"}, header = {"X-API-KEY"} },
     ["heyreach.inbox_send_message"] = { method = "POST", url = "https://api.heyreach.io/api//api/public/inbox/SendMessage", header = {"X-API-KEY"}, body = {"message", "subject", "conversationId", "linkedInAccountId"} },
     ["heyreach.inbox_set_seen_status"] = { method = "POST", url = "https://api.heyreach.io/api//api/public/inbox/SetSeenStatus", header = {"X-API-KEY"}, body = {"conversationId", "linkedInAccountId", "seen"} },
     ["heyreach.lead_tags_create_tags"] = { method = "POST", url = "https://api.heyreach.io/api//api/public/lead_tags/CreateTags", header = {"X-API-KEY"}, body = {"tags"} },
@@ -95,6 +99,20 @@ return {
     ["heyreach.lists_update_lead_custom_fields"] = { method = "PATCH", url = "https://api.heyreach.io/api//api/public/list/UpdateLeadCustomFields/lists/{listId}/leads/custom-fields", path = {"listId"}, header = {"X-API-KEY"}, body = {"leadMemberIdOrUrl", "customFields"} },
     ["heyreach.my_network_get_my_network_for_sender"] = { method = "POST", url = "https://api.heyreach.io/api//api/public/MyNetwork/GetMyNetworkForSender", header = {"X-API-KEY"}, body = {"pageNumber", "pageSize", "senderId"} },
     ["heyreach.my_network_is_connection"] = { method = "POST", url = "https://api.heyreach.io/api//api/public/MyNetwork/IsConnection", header = {"X-API-KEY"}, body = {"senderAccountId", "leadProfileUrl", "leadLinkedInId"} },
+    ["heyreach.voice_bulk_commit"] = { method = "POST", url = "https://api.heyreach.io/api//api/public/voice/BulkCommit", header = {"X-API-KEY"}, body = {"assignments"} },
+    ["heyreach.voice_create_custom_voice"] = { method = "POST", url = "https://api.heyreach.io/api//api/public/voice/CreateCustomVoice", header = {"X-API-KEY"}, body = {"file", "name", "gender", "source", "ignoreSoftWarnings", "clientRequestId", "consentConfirmed"} },
+    ["heyreach.voice_delete_custom_voice"] = { method = "DELETE", url = "https://api.heyreach.io/api//api/public/voice/DeleteCustomVoice/{id}", path = {"id"}, header = {"X-API-KEY"} },
+    ["heyreach.voice_get_eleven_labs_connection"] = { method = "GET", url = "https://api.heyreach.io/api//api/public/voice/GetElevenLabsConnection", header = {"X-API-KEY"} },
+    ["heyreach.voice_get_eleven_labs_voices"] = { method = "GET", url = "https://api.heyreach.io/api//api/public/voice/GetElevenLabsVoices", query = {"search", "offset", "limit"}, header = {"X-API-KEY"} },
+    ["heyreach.voice_get_sender_voice"] = { method = "GET", url = "https://api.heyreach.io/api//api/public/voice/GetSenderVoice/{accountId}", path = {"accountId"}, header = {"X-API-KEY"} },
+    ["heyreach.voice_get_static_clip"] = { method = "GET", url = "https://api.heyreach.io/api//api/public/voice/GetStaticClip/{clipId}", path = {"clipId"}, header = {"X-API-KEY"} },
+    ["heyreach.voice_get_static_clips"] = { method = "GET", url = "https://api.heyreach.io/api//api/public/voice/GetStaticClips", query = {"offset", "limit"}, header = {"X-API-KEY"} },
+    ["heyreach.voice_get_voice_usage"] = { method = "GET", url = "https://api.heyreach.io/api//api/public/voice/GetVoiceUsage/{id}", path = {"id"}, query = {"kind"}, header = {"X-API-KEY"} },
+    ["heyreach.voice_get_voices"] = { method = "GET", url = "https://api.heyreach.io/api//api/public/voice/GetVoices", query = {"gender"}, header = {"X-API-KEY"} },
+    ["heyreach.voice_refresh_eleven_labs_library"] = { method = "POST", url = "https://api.heyreach.io/api//api/public/voice/RefreshElevenLabsLibrary", header = {"X-API-KEY"} },
+    ["heyreach.voice_remove_sender_voice"] = { method = "DELETE", url = "https://api.heyreach.io/api//api/public/voice/RemoveSenderVoice/{accountId}", path = {"accountId"}, header = {"X-API-KEY"} },
+    ["heyreach.voice_set_sender_voice"] = { method = "PUT", url = "https://api.heyreach.io/api//api/public/voice/SetSenderVoice/{accountId}", path = {"accountId"}, header = {"X-API-KEY"}, body = {"predefinedVoiceId", "customVoiceId", "elevenLabsVoiceId"} },
+    ["heyreach.voice_upload_static_clip"] = { method = "POST", url = "https://api.heyreach.io/api//api/public/voice/UploadStaticClip", query = {"ignoreSoftWarnings"}, header = {"X-API-KEY"}, body = {"file", "name"} },
     ["heyreach.webhooks_create_webhook"] = { method = "POST", url = "https://api.heyreach.io/api//api/public/webhooks/CreateWebhook", header = {"X-API-KEY"} },
     ["heyreach.webhooks_delete_webhook"] = { method = "DELETE", url = "https://api.heyreach.io/api//api/public/webhooks/DeleteWebhook?webhookId=1234", query = {"webhookId"}, header = {"X-API-KEY"} },
     ["heyreach.webhooks_get_all_webhooks"] = { method = "POST", url = "https://api.heyreach.io/api//api/public/webhooks/GetAllWebhooks", header = {"X-API-KEY"}, body = {"offset", "limit", "includeCustomHeaders"} },

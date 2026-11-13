@@ -1037,13 +1037,8 @@
       "description": "UUID identifier of the bulk job."
      },
      "priority": {
-      "type": "string",
-      "description": "",
-      "enum": [
-       "low",
-       "normal",
-       "high"
-      ]
+      "type": "integer",
+      "description": "Integer priority from -1000 to 1000. Jobs start at 0. Strings such as `\"low\"` are rejected with 400."
      }
     },
     "required": [
@@ -1068,16 +1063,25 @@
   {
    "slug": "leadmagic.bulk_job_progress",
    "name": "Get lightweight bulk job progress",
-   "description": "Return a compact progress snapshot for frequent polling.",
+   "description": "Return a compact progress snapshot for frequent polling. This route authenticates with the signed `token`, `exp`, and `subject` query parameters from the submit response, not with `X-API-Key`. Call the `progressUrl` returned by `POST /bulk/submit` as-is. Until the first shard reports, the route returns 404; use `GET /bulk/jobs/{jobId}` with your API key for status in the meantime.",
    "input": {
     "type": "object",
     "properties": {
      "jobId": {
       "type": "string",
       "description": "UUID identifier of the bulk job."
+     },
+     "exp": {
+      "type": "integer",
+      "description": "Token expiry (Unix seconds) returned as `exp` when the job was submitted."
+     },
+     "subject": {
+      "type": "string",
+      "description": "Token subject embedded in the submitted `progressUrl`. Required for current tokens; omitted only by legacy web-app tokens."
      }
     },
     "required": [
+     "exp",
      "jobId"
     ]
    },
@@ -1086,7 +1090,9 @@
     "url": "https://api.leadmagic.io/bulk/progress",
     "path": [],
     "query": [
-     "jobId"
+     "jobId",
+     "exp",
+     "subject"
     ],
     "header": [],
     "body": [],
@@ -1313,25 +1319,29 @@
   {
    "slug": "leadmagic.bulk_local_leads",
    "name": "Submit a local leads search",
-   "description": "Submit long-running local-leads searches to the dedicated bulk queue.",
+   "description": "Find local businesses for keyword \u00d7 location combinations. Each unique combination is one search. Your balance must cover every search at submit time (otherwise 402); each search is then charged 200 credits only when it completes with at least one lead. US ZIP codes are resolved to their city first. Set `dryRun` to preview the resolved grid and cost without charging.",
    "input": {
     "type": "object",
     "properties": {
      "keywords": {
       "type": "array",
-      "description": "Search terms. Expanded against every city \u2014 one search row per keyword \u00d7 city pair."
+      "description": "Business types to search (max 25). Each keyword runs once per location; duplicates are charged once."
      },
      "cities": {
       "type": "array",
-      "description": "Cities to search. Expanded against every keyword."
+      "description": "Locations to search (max 100): city names (\"Austin\", \"Austin, TX\", \"Toronto\") or US ZIP codes (\"78704\"). ZIPs resolve to their city; unrecognized ZIPs and non-US postal codes return 400. Outside the US, use the city name and set the country with countryCodes."
      },
      "countryCodes": {
       "type": "array",
-      "description": "Two-letter country code per city, aligned by index. Defaults to `US` when omitted."
+      "description": "Two-letter country codes aligned by index with `cities`, or a single code applied to every city. Defaults to `US`."
      },
      "fileName": {
       "type": "string",
       "description": "Label for the resulting job, shown in the dashboard."
+     },
+     "dryRun": {
+      "type": "boolean",
+      "description": "Return the resolved searches, `creditsRequired`, and remaining daily capacity without charging or queueing."
      },
      "magicKey": {
       "type": "string",
@@ -1354,6 +1364,7 @@
      "cities",
      "countryCodes",
      "fileName",
+     "dryRun",
      "magicKey"
     ],
     "body_format": "json"
@@ -1662,7 +1673,7 @@
      },
      "offset": {
       "type": "integer",
-      "description": ""
+      "description": "Offset into the similarity ranking (100, 200, \u2026). Lookalike has no cursor. Deeper pages take longer."
      }
     },
     "required": []
@@ -1996,20 +2007,37 @@
       "description": "First name of the person (optional if full_name provided)"
      },
      "last_name": {
-      "type": "string",
+      "type": [
+       "string",
+       "null"
+      ],
       "description": "Last name of the person (optional)"
      },
      "full_name": {
-      "type": "string",
+      "type": [
+       "string",
+       "null"
+      ],
       "description": "Full name of the person (alternative to first_name + last_name)"
+     },
+     "profile_url": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "LinkedIn person profile URL (alternative to a name; CRM synonym keys like linkedin_url are accepted and normalized server-side)"
      },
      "domain": {
       "type": "string",
-      "description": "Company domain name (required if company_name not provided)"
+      "description": "Company domain name (required if company_name not provided; aliases company_domain, website, url accepted)"
      },
      "company_name": {
       "type": "string",
-      "description": "Company name (required if domain not provided)"
+      "description": "Company name (required if domain not provided; aliases company, organization, employer accepted)"
+     },
+     "allow_domain_mismatch": {
+      "type": "boolean",
+      "description": "By default, an email found on a domain unrelated to the requested one is returned as a free not-found (`domain_mismatch: true`, `credits_consumed: 0`). Set to `true` to return that email instead, flagged `domain_mismatch: true` and charged like any other valid find."
      }
     },
     "required": []
@@ -2024,8 +2052,10 @@
      "first_name",
      "last_name",
      "full_name",
+     "profile_url",
      "domain",
-     "company_name"
+     "company_name",
+     "allow_domain_mismatch"
     ],
     "body_format": "json"
    }
@@ -3168,7 +3198,7 @@
   {
    "slug": "leadmagic.people_search",
    "name": "People search",
-   "description": "Canonical V3 people lookup with all company, title, role, people, channel, and contact-detail filters.",
+   "description": "Find professional profiles by company, title, role, seniority, and recorded profile attributes. Search never returns email addresses or phone numbers; request Email Finder or Mobile Finder separately for the people you choose.",
    "input": {
     "type": "object",
     "properties": {
@@ -3212,45 +3242,9 @@
       "type": "string",
       "description": "Free-text people/title query."
      },
-     "required_email": {
-      "type": "boolean",
-      "description": "Only return people with email availability."
-     },
-     "required_mobile": {
-      "type": "boolean",
-      "description": "Only return people with mobile availability."
-     },
-     "channels": {
-      "type": "array",
-      "description": "Legacy alias for contactability requirements."
-     },
-     "channel_match": {
-      "type": "string",
-      "description": "",
-      "enum": [
-       "any",
-       "all"
-      ]
-     },
      "include_company": {
       "type": "boolean",
       "description": ""
-     },
-     "include_domain_intel": {
-      "type": "boolean",
-      "description": ""
-     },
-     "include_contact_details": {
-      "type": "boolean",
-      "description": "Opt in to paid raw email/mobile fields (alias \u2014 full_search). Bills 1 extra credit per returned email and 5 per returned mobile; base results are 1 credit per returned person. Search RPS / unmetered people-search plans cannot unlock email or mobile (403); unlocks require a credit-metered plan."
-     },
-     "include_email": {
-      "type": "boolean",
-      "description": "When contact details are on, return and bill raw emails (+1 credit each). If neither include_email nor include_mobile is set, both default to true. If either flag is set, the omitted flag defaults to false (include_email=true alone is email-only)."
-     },
-     "include_mobile": {
-      "type": "boolean",
-      "description": "When contact details are on, return and bill raw mobiles (+5 credits each). Same default rules as include_email."
      },
      "confirm_credit_charge": {
       "type": "boolean",
@@ -3288,15 +3282,7 @@
      "titles",
      "roles",
      "query",
-     "required_email",
-     "required_mobile",
-     "channels",
-     "channel_match",
      "include_company",
-     "include_domain_intel",
-     "include_contact_details",
-     "include_email",
-     "include_mobile",
      "confirm_credit_charge",
      "limit",
      "cursor",
@@ -3453,7 +3439,7 @@
     "properties": {
      "company_name": {
       "type": "string",
-      "description": "Business Profile URL (with url or public_identifier)"
+      "description": "Company name"
      },
      "company_domain": {
       "type": "string",
@@ -3464,7 +3450,9 @@
       "description": "Enter the job title you want to find in the company."
      }
     },
-    "required": []
+    "required": [
+     "job_title"
+    ]
    },
    "request": {
     "method": "POST",

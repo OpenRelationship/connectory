@@ -20,7 +20,11 @@ vouches for**: read it, then read their reference.
 
 ## Projects and languages
 
+- [Content integration project type](https://docs.lokalise.com/en/articles/8486609-content-integration-project-type.md): Connect your content platforms to localize landing pages, email, marketing campaigns, knowledge bases, and more!
+
 ## Keys and files
+
+- [HTML parsing and custom parsing rules](https://docs.lokalise.com/en/articles/8997307-html-parsing-and-custom-parsing-rules.md): Learn how HTML is parsed in "Content integration" projects and how to set up custom HTML parsing rules.
 
 ## Translate and collaborate
 

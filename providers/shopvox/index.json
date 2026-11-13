@@ -124,13 +124,13 @@
   {
    "slug": "shopvox.create_note",
    "name": "Create a note",
-   "description": "Attach a note to a parent record. Provide **exactly one** parent reference param alongside the note - e.g. `company_id`, `contact_id`, `job_id`, `invoice_id`, `work_order_id` (sales order), `quote_id`, `sales_lead_id`. The parent model is derived from the `*_id` key name.",
+   "description": "**Plan: Pro.** Creates a note on a record. Send **exactly one** parent reference parameter with the note. Its name is the model name with `_id`, for example `company_id`, `contact_id`, `sales_lead_id`, `work_order_id` (a sales order), `invoice_id`, `quote_id` or `job_id`.",
    "input": {
     "type": "object",
     "properties": {
      "company_id": {
       "type": "string",
-      "description": "One example parent reference; any `_id` works."
+      "description": "A parent reference parameter. The description of the operation gives the other names."
      },
      "note": {
       "type": "object",
@@ -413,7 +413,7 @@
   {
    "slug": "shopvox.delete_note",
    "name": "Delete a note",
-   "description": "Delete a note",
+   "description": "**Plan: Paid API.** Deletes the note. After this, `GET /notes` does not list the note, and the API cannot restore it. A second `DELETE` of the same note returns `404`. A user can delete a note that another user wrote only if the role of the user has **Edit & Remove All Users' Notes**.",
    "input": {
     "type": "object",
     "properties": {
@@ -604,6 +604,34 @@
    }
   },
   {
+   "slug": "shopvox.get_job_install_schedule",
+   "name": "Get the install schedule of a job",
+   "description": "**Plan: Paid API.** Returns the install date of the job and the Install step that the Installs calendar shows. `installStep` is null when the workflow has no Install step, the step is skipped, or the step is in an inactive stage. Dates and times are in the time zone of the account.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "job_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "job_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.shopvox.com/v1/jobs/{job_id}/install_schedule",
+    "path": [
+     "job_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "shopvox.get_quote",
    "name": "Get a quote",
    "description": "**Plan: Paid API.**",
@@ -771,6 +799,10 @@
    "input": {
     "type": "object",
     "properties": {
+     "tag": {
+      "type": "string",
+      "description": "Only records that carry an active tag with this name. The name must match the whole tag name. The match ignores letter case."
+     },
      "name": {
       "type": "string",
       "description": "Company name."
@@ -795,6 +827,7 @@
     "url": "https://api.shopvox.com/v1/companies",
     "path": [],
     "query": [
+     "tag",
      "name",
      "active",
      "page",
@@ -873,6 +906,10 @@
    "input": {
     "type": "object",
     "properties": {
+     "tag": {
+      "type": "string",
+      "description": "Only records that carry an active tag with this name. The name must match the whole tag name. The match ignores letter case."
+     },
      "page": {
       "type": "integer",
       "description": ""
@@ -889,6 +926,7 @@
     "url": "https://api.shopvox.com/v1/invoices",
     "path": [],
     "query": [
+     "tag",
      "page",
      "per_page"
     ],
@@ -946,10 +984,18 @@
   {
    "slug": "shopvox.list_notes",
    "name": "List notes",
-   "description": "List notes",
+   "description": "**Plan: Pro.** Lists the notes of the account, oldest first. To get the notes of one record, send one parent reference parameter. Its name is the model name with `_id`, for example `company_id`, `contact_id`, `sales_lead_id`, `work_order_id` (a sales order), `invoice_id`, `quote_id` or `job_id`. `stats.totalCount` is the number of notes that match the request, on all pages. The list does not inclu",
    "input": {
     "type": "object",
     "properties": {
+     "company_id": {
+      "type": "string",
+      "description": "A parent reference parameter. The description of the operation gives the other names."
+     },
+     "content": {
+      "type": "string",
+      "description": "Only notes whose text contains this value. The match ignores case. In the value, `%` matches any text and `_` matches any one character."
+     },
      "page": {
       "type": "integer",
       "description": ""
@@ -966,6 +1012,8 @@
     "url": "https://api.shopvox.com/v1/notes",
     "path": [],
     "query": [
+     "company_id",
+     "content",
      "page",
      "per_page"
     ],
@@ -1000,6 +1048,10 @@
    "input": {
     "type": "object",
     "properties": {
+     "tag": {
+      "type": "string",
+      "description": "Only records that carry an active tag with this name. The name must match the whole tag name. The match ignores letter case."
+     },
      "page": {
       "type": "integer",
       "description": ""
@@ -1016,6 +1068,7 @@
     "url": "https://api.shopvox.com/v1/payments",
     "path": [],
     "query": [
+     "tag",
      "page",
      "per_page"
     ],
@@ -1031,6 +1084,10 @@
    "input": {
     "type": "object",
     "properties": {
+     "tag": {
+      "type": "string",
+      "description": "Only records that carry an active tag with this name. The name must match the whole tag name. The match ignores letter case."
+     },
      "page": {
       "type": "integer",
       "description": ""
@@ -1047,6 +1104,7 @@
     "url": "https://api.shopvox.com/v1/quotes",
     "path": [],
     "query": [
+     "tag",
      "page",
      "per_page"
     ],
@@ -1062,6 +1120,14 @@
    "input": {
     "type": "object",
     "properties": {
+     "tag": {
+      "type": "string",
+      "description": "Only records that carry an active tag with this name. The name must match the whole tag name. The match ignores letter case."
+     },
+     "active": {
+      "type": "boolean",
+      "description": "Active flag."
+     },
      "page": {
       "type": "integer",
       "description": ""
@@ -1078,9 +1144,39 @@
     "url": "https://api.shopvox.com/v1/sales_leads",
     "path": [],
     "query": [
+     "tag",
+     "active",
      "page",
      "per_page"
     ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "shopvox.list_sales_order_jobs",
+   "name": "List the jobs of a sales order",
+   "description": "**Plan: Paid API.** Returns all jobs of the active line items of the sales order in one response, in line item order. The response has no pagination. Each job has the same fields as `GET /jobs/{id}`. A job that more than one line item shares occurs one time. A voided job is in the list with `active: false`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.shopvox.com/v1/sales_orders/{id}/jobs",
+    "path": [
+     "id"
+    ],
+    "query": [],
     "header": [],
     "body": [],
     "body_format": "json"
@@ -1093,6 +1189,10 @@
    "input": {
     "type": "object",
     "properties": {
+     "tag": {
+      "type": "string",
+      "description": "Only records that carry an active tag with this name. The name must match the whole tag name. The match ignores letter case."
+     },
      "page": {
       "type": "integer",
       "description": ""
@@ -1117,6 +1217,7 @@
     "url": "https://api.shopvox.com/v1/sales_orders",
     "path": [],
     "query": [
+     "tag",
      "page",
      "per_page",
      "txn_date_from",
@@ -1343,7 +1444,7 @@
     ]
    },
    "request": {
-    "method": "PATCH",
+    "method": "PUT",
     "url": "https://api.shopvox.com/v1/companies/{id}",
     "path": [
      "id"
@@ -1378,7 +1479,7 @@
     ]
    },
    "request": {
-    "method": "PATCH",
+    "method": "PUT",
     "url": "https://api.shopvox.com/v1/contacts/{id}",
     "path": [
      "id"
@@ -1392,9 +1493,44 @@
    }
   },
   {
+   "slug": "shopvox.update_job_install_schedule",
+   "name": "Set the install schedule of a job",
+   "description": "**Plan: Paid API.** Send at least one field. A field that you do not send keeps its value. A blank or null value gets a 422. `install_date` sets the install date of the job and the dates of the Install step. An install that takes more than one day keeps its length. `start_time` is the Start Time of the Install step, for example a vehicle drop-off. `confirmed` is the confirmed status of the install",
+   "input": {
+    "type": "object",
+    "properties": {
+     "job_id": {
+      "type": "string",
+      "description": ""
+     },
+     "install_schedule": {
+      "type": "object",
+      "description": ""
+     }
+    },
+    "required": [
+     "install_schedule",
+     "job_id"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.shopvox.com/v1/jobs/{job_id}/install_schedule",
+    "path": [
+     "job_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "install_schedule"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "shopvox.update_note",
    "name": "Update a note",
-   "description": "Update a note",
+   "description": "**Plan: Paid API.** Updates the note. Send the new `content`. The other fields are optional. The note stays on the same record. The request finds the note by its `id` and ignores parent reference parameters. A user can update a note that another user wrote only if the role of the user has **Edit & Remove All Users' Notes**.",
    "input": {
     "type": "object",
     "properties": {
@@ -1413,7 +1549,7 @@
     ]
    },
    "request": {
-    "method": "PATCH",
+    "method": "PUT",
     "url": "https://api.shopvox.com/v1/notes/{id}",
     "path": [
      "id"
@@ -1540,7 +1676,7 @@
     ]
    },
    "request": {
-    "method": "PATCH",
+    "method": "PUT",
     "url": "https://api.shopvox.com/v1/sales_leads/{id}",
     "path": [
      "id"
@@ -1598,7 +1734,7 @@
     ]
    },
    "request": {
-    "method": "PATCH",
+    "method": "PUT",
     "url": "https://api.shopvox.com/v1/sales_orders/{id}",
     "path": [
      "id"

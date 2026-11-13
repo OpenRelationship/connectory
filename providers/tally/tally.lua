@@ -52,7 +52,7 @@ return {
     ["tally.patch_forms_formId"] = { method = "PATCH", url = "https://api.tally.so/forms/{formId}", path = {"formId"}, body = {"name", "status", "blocks", "settings"} },
     ["tally.patch_forms_formId_blocks"] = { method = "PATCH", url = "https://api.tally.so/forms/{formId}/blocks", path = {"formId"}, body = {"blocks", "settings"} },
     ["tally.patch_forms_formId_questions_questionId"] = { method = "PATCH", url = "https://api.tally.so/forms/{formId}/questions/{questionId}", path = {"formId", "questionId"}, body = {"title"} },
-    ["tally.patch_webhooks_webhookId"] = { method = "PATCH", url = "https://api.tally.so/webhooks/{webhookId}", path = {"webhookId"}, body = {"formId", "url", "signingSecret", "httpHeaders", "eventTypes", "isEnabled"} },
+    ["tally.patch_webhooks_webhookId"] = { method = "PATCH", url = "https://api.tally.so/webhooks/{webhookId}", path = {"webhookId"}, body = {"url", "signingSecret", "httpHeaders", "eventTypes", "isEnabled"} },
     ["tally.patch_workspaces_workspaceId"] = { method = "PATCH", url = "https://api.tally.so/workspaces/{workspaceId}", path = {"workspaceId"}, body = {"name"} },
     ["tally.patch_workspaces_workspaceId_folders_id"] = { method = "PATCH", url = "https://api.tally.so/workspaces/{workspaceId}/folders/{id}", path = {"workspaceId", "id"}, body = {"name"} },
     ["tally.post_forms"] = { method = "POST", url = "https://api.tally.so/forms", body = {"workspaceId", "templateId", "folderId", "status", "blocks", "settings"} },

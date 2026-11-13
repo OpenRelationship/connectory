@@ -1,0 +1,423 @@
+{
+ "_": "GENERATED \u2014 what an authoring tool needs to FIND an operation. The calling table is the .lua beside it.",
+ "provider": "browseract",
+ "source": "https://docs.browseract.com/openapi.json",
+ "operations": [
+  {
+   "slug": "browseract.get_region_list",
+   "name": "List supported proxy regions",
+   "description": "Returns regions supported by BrowserAct. You can pass a region code from this list as `proxyRegion` when running a template task.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.browseract.com/v2/workflow/get-region-list",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "browseract.get_task",
+   "name": "Retrieve a task",
+   "description": "Returns comprehensive information about a task, including: - current `status` - step-level progress (`steps`) - output (if finished) - failure details (if failed) If you only need the current status, use `GET /v2/workflow/get-task-status`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "task_id": {
+      "type": "string",
+      "description": "Task ID returned by `run-task` or `run-task-by-template`."
+     }
+    },
+    "required": [
+     "task_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.browseract.com/v2/workflow/get-task",
+    "path": [],
+    "query": [
+     "task_id"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "browseract.get_task_status",
+   "name": "Retrieve a task status",
+   "description": "Returns just the current status of a task. This endpoint is more lightweight than `GET /v2/workflow/get-task`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "task_id": {
+      "type": "string",
+      "description": "Task ID returned by `run-task` or `run-task-by-template`."
+     }
+    },
+    "required": [
+     "task_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.browseract.com/v2/workflow/get-task-status",
+    "path": [],
+    "query": [
+     "task_id"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "browseract.get_workflow_config",
+   "name": "Retrieve a workflow",
+   "description": "Fetches a workflow's configuration, including the **input parameter definitions** needed to run it. If you only need a list of workflows, use `GET /v2/workflow/list-workflows`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workflow_id": {
+      "type": "string",
+      "description": "Workflow ID."
+     }
+    },
+    "required": [
+     "workflow_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.browseract.com/v2/workflow/get-workflow",
+    "path": [],
+    "query": [
+     "workflow_id"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "browseract.get_workflow_list",
+   "name": "List workflows",
+   "description": "Returns a paginated list of workflows in your workspace. ### Pagination This endpoint uses page-based pagination with `page` and `limit`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "page": {
+      "type": "integer",
+      "description": "Page number to retrieve (starts at 1)."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Number of workflows per page (max 500)."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.browseract.com/v2/workflow/list-workflows",
+    "path": [],
+    "query": [
+     "page",
+     "limit"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "browseract.get_workflow_template_config",
+   "name": "Retrieve an official workflow template",
+   "description": "Fetches the configuration for an official workflow template, including input parameter definitions.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workflow_template_id": {
+      "type": "string",
+      "description": "Workflow template ID."
+     }
+    },
+    "required": [
+     "workflow_template_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.browseract.com/v2/workflow/get-official-workflow-template",
+    "path": [],
+    "query": [
+     "workflow_template_id"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "browseract.get_workflow_templates",
+   "name": "List official workflow templates",
+   "description": "Returns BrowserAct's official workflow templates. Use `keyword` to search by name/description.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "keyword": {
+      "type": "string",
+      "description": "Search keyword (optional)."
+     },
+     "page": {
+      "type": "integer",
+      "description": "Page number to retrieve (starts at 1)."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Number of templates per page (max 500)."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.browseract.com/v2/workflow/list-official-workflow-templates",
+    "path": [],
+    "query": [
+     "keyword",
+     "page",
+     "limit"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "browseract.page_tasks",
+   "name": "List tasks",
+   "description": "Returns a paginated list of tasks (workflow executions). ### Filtering - Use `status` to filter by task status. - Use `workflow_id` to only list tasks created from a specific workflow. ### Pagination Use `page` and `limit`. The response includes `total_pages` and `total_count`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "status": {
+      "type": "string",
+      "description": "Filter tasks by status.",
+      "enum": [
+       "created",
+       "running",
+       "finished",
+       "canceled",
+       "pausing",
+       "paused",
+       "failed",
+       "unknown"
+      ]
+     },
+     "page": {
+      "type": "integer",
+      "description": "Page number to retrieve (starts at 1)."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Number of tasks per page (max 500)."
+     },
+     "workflow_id": {
+      "type": "string",
+      "description": "Only return tasks created from this workflow ID."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.browseract.com/v2/workflow/list-tasks",
+    "path": [],
+    "query": [
+     "status",
+     "page",
+     "limit",
+     "workflow_id"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "browseract.resume_task",
+   "name": "Resume a paused task",
+   "description": "Resumes execution of a previously paused task. - The task will continue from where it was paused. - You **can't** resume a task that is `finished`, `failed`, or `canceled`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "task_id": {
+      "type": "string",
+      "description": "The `task_id` to resume."
+     }
+    },
+    "required": [
+     "task_id"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.browseract.com/v2/workflow/resume-task",
+    "path": [],
+    "query": [
+     "task_id"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "browseract.run_task",
+   "name": "Run a workflow (create a task)",
+   "description": "Starts a new task execution for a workflow and returns a `task_id`. ### How it works 1) Choose a workflow in the Dashboard and copy its `workflow_id` 2) Provide any `input_parameters` required by the workflow 3) Optionally enable `save_browser_data` to receive a `profile_id` that can be reused later ### Webhooks You can provide `callback_url` and/or `status_change_callback_url` to receive POST not",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workflow_id": {
+      "type": "string",
+      "description": "The workflow ID to run."
+     },
+     "input_parameters": {
+      "type": "array",
+      "description": "Input parameters for this run."
+     },
+     "save_browser_data": {
+      "type": "boolean",
+      "description": "If `true`, the response will include a `profile_id`. You can reuse that `profile_id` in later runs to reuse browser data (e.g., cookies)."
+     },
+     "profile_id": {
+      "type": "string",
+      "description": "Reuse browser data from a previous run (e.g., cookies) by providing a `profile_id`."
+     },
+     "open_incognito_mode": {
+      "type": "boolean",
+      "description": "Deprecated. No longer required."
+     },
+     "callback_url": {
+      "type": "string",
+      "description": "Optional. HTTP/HTTPS URL to receive a POST notification when the task **finishes**, **fails**, or is **canceled**. Maximum length: 2048 characters. Must be publicly reachable (no private/local addresses)."
+     },
+     "status_change_callback_url": {
+      "type": "string",
+      "description": "Optional. HTTP/HTTPS URL to receive a POST notification whenever the task status changes (e.g., running, paused, finished, canceled, failed). Maximum length: 2048 characters. Must be publicly reachable (no private/local addresses)."
+     }
+    },
+    "required": [
+     "workflow_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.browseract.com/v2/workflow/run-task",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "workflow_id",
+     "input_parameters",
+     "save_browser_data",
+     "profile_id",
+     "open_incognito_mode",
+     "callback_url",
+     "status_change_callback_url"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "browseract.run_template_task",
+   "name": "Run an official workflow template (create a task)",
+   "description": "Starts a new task execution from an **official workflow template** and returns a `task_id`. Use `GET /v2/workflow/list-official-workflow-templates` to discover templates.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "proxyRegion": {
+      "type": "string",
+      "description": "Optional. Proxy region code. Defaults to `US`."
+     },
+     "workflow_template_id": {
+      "type": "string",
+      "description": "The official workflow template ID to run."
+     },
+     "input_parameters": {
+      "type": "array",
+      "description": "Input parameters for this run."
+     },
+     "callback_url": {
+      "type": "string",
+      "description": "Optional. See `RunWorkflowTaskRequest.callback_url`."
+     },
+     "status_change_callback_url": {
+      "type": "string",
+      "description": "Optional. See `RunWorkflowTaskRequest.status_change_callback_url`."
+     }
+    },
+    "required": [
+     "workflow_template_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.browseract.com/v2/workflow/run-task-by-template",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "proxyRegion",
+     "workflow_template_id",
+     "input_parameters",
+     "callback_url",
+     "status_change_callback_url"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "browseract.stop_task",
+   "name": "Cancel a running task",
+   "description": "Cancels a running task immediately. - Use this when you no longer need the result. - A canceled task **cannot** be resumed. **Tip:** If you only need to check progress, prefer `GET /v2/workflow/get-task-status`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "task_id": {
+      "type": "string",
+      "description": "The `task_id` returned by `run-task` or `run-task-by-template`."
+     },
+     "biz_code": {
+      "type": "integer",
+      "description": "Optional business cancellation code (for your own tracking/analytics)."
+     }
+    },
+    "required": [
+     "task_id"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.browseract.com/v2/workflow/stop-task",
+    "path": [],
+    "query": [
+     "task_id",
+     "biz_code"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  }
+ ]
+}

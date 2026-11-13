@@ -1,0 +1,943 @@
+{
+ "_": "GENERATED \u2014 what an authoring tool needs to FIND an operation. The calling table is the .lua beside it.",
+ "provider": "graphhopper",
+ "source": "https://api.apis.guru/v2/specs/graphhopper.com/1.0.0/openapi.json",
+ "operations": [
+  {
+   "slug": "graphhopper.async_clustering_problem",
+   "name": "Batch cluster endpoint",
+   "description": "Prefer the [synchronous endpoint](#operation/solveClusteringProblem) and use this Batch Cluster endpoint for long running problems only. The work flow is asynchronous: - send a POST request towards `https://graphhopper.com/api/1/cluster/calculate?key=` and fetch the job_id. - poll the solution every 500ms until it gives `status=finished`. Do this with a GET request towards `https://graphhopper.com",
+   "input": {
+    "type": "object",
+    "properties": {
+     "configuration": {
+      "type": "object",
+      "description": ""
+     },
+     "customers": {
+      "type": "array",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://graphhopper.com/api/1/cluster/calculate",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "configuration",
+     "customers"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "graphhopper.async_vrp",
+   "name": "Post route optimization problem (batch mode)",
+   "description": "To solve a vehicle routing problem, perform the following steps: 1.) Make a HTTP POST to this URL ``` https://graphhopper.com/api/1/vrp/optimize?key= ``` It returns a job id (job_id). 2.) Take the job id and fetch the solution for the vehicle routing problem from this URL: ``` https://graphhopper.com/api/1/vrp/solution/?key= ``` We recommend to query the solution every 500ms until it returns 'stat",
+   "input": {
+    "type": "object",
+    "properties": {
+     "algorithm": {
+      "type": "object",
+      "description": "Use `objectives` instead."
+     },
+     "configuration": {
+      "type": "object",
+      "description": "Specifies general configurations that are taken into account when solving the vehicle routing problem."
+     },
+     "cost_matrices": {
+      "type": "array",
+      "description": "Specifies your own tranport time and distance matrices."
+     },
+     "objectives": {
+      "type": "array",
+      "description": "Specifies an objective function. The vehicle routing problem is solved in such a way that this objective function is minimized."
+     },
+     "relations": {
+      "type": "array",
+      "description": "Defines additional relationships between orders."
+     },
+     "services": {
+      "type": "array",
+      "description": "Specifies the orders of the type \"service\". These are, for example, pick-ups, deliveries or other stops that are to be approached by the specified vehicles. Each of these orders contains only one location."
+     },
+     "shipments": {
+      "type": "array",
+      "description": "Specifies the available shipments. Each shipment contains a pickup and a delivery stop, which must be processed one after the other."
+     },
+     "vehicle_types": {
+      "type": "array",
+      "description": "Specifies the available vehicle types. These types can be assigned to vehicles."
+     },
+     "vehicles": {
+      "type": "array",
+      "description": "Specifies the available vehicles."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://graphhopper.com/api/1/vrp/optimize",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "algorithm",
+     "configuration",
+     "cost_matrices",
+     "objectives",
+     "relations",
+     "services",
+     "shipments",
+     "vehicle_types",
+     "vehicles"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "graphhopper.calculate_matrix",
+   "name": "Batch matrix endpoint",
+   "description": "Prefer the [synchronous endpoint](#operation/postMatrix) and use this Batch endpoint for long running problems only. The Batch Matrix endpoint allows using matrices with more locations and works asynchronously - similar to the [Batch Route Optimization endpoint](#operation/asyncVRP): * Create a HTTP POST request against `/matrix/calculate` and add the key in the URL: `/matrix/calculate?key=[YOUR_K",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://graphhopper.com/api/1/matrix/calculate",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "graphhopper.get_cluster_solution",
+   "name": "Get batch solution endpoint",
+   "description": "This endpoint returns the solution of the clustering problems submitted to the [Batch Cluster endpoint](#operation/asyncClusteringProblem). You can fetch it with the job_id, you have been sent.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "jobId": {
+      "type": "string",
+      "description": "Request solution with jobId"
+     }
+    },
+    "required": [
+     "jobId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://graphhopper.com/api/1/cluster/solution/{jobId}",
+    "path": [
+     "jobId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "graphhopper.get_geocode",
+   "name": "Geocoding endpoint",
+   "description": "### Introduction ![Geocoding Example](./img/geocoding-example.png) _Geocoding_ describes the process of transforming an textual address representation to a coordinate (`latitude,longitude`). For example the conversion from `Berlin` to `52.5170365,13.3888599`. _Reverse geocoding_ converts a coordinate to a textual address representation or place name. Find out more about Geocoding itself on [Wikipe",
+   "input": {
+    "type": "object",
+    "properties": {
+     "q": {
+      "type": "string",
+      "description": "If you do forward geocoding, this is `required` and is a textual description of the address you are looking for."
+     },
+     "locale": {
+      "type": "string",
+      "description": "Display the search results for the specified locale. Currently French (fr), English (en), German (de) and Italian (it) are supported. If the locale wasn't found the default (en) is used."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Specify the maximum number of results to return"
+     },
+     "reverse": {
+      "type": "boolean",
+      "description": "It is `required` to be `true` if you want to do a reverse geocoding request. If it is `true`, `point` must be defined as well, and `q` must not be used."
+     },
+     "debug": {
+      "type": "boolean",
+      "description": "If `true`, the output will be formatted."
+     },
+     "point": {
+      "type": "string",
+      "description": "_Forward geocoding_: The location bias in the format 'latitude,longitude' e.g. point=45.93272,11.58803. _Reverse geocoding_: The location to find amenities, cities."
+     },
+     "provider": {
+      "type": "string",
+      "description": "The provider parameter is currently under development and can fall back to `default` at any time. The intend is to provide alternatives to our default geocoder. Each provider has its own strenghts and might fit better for certain scenarios, so it's worth to compare the different providers. To try it append the `provider`parameter to the URL like `&provider=nominatim`, the result structure should b"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://graphhopper.com/api/1/geocode",
+    "path": [],
+    "query": [
+     "q",
+     "locale",
+     "limit",
+     "reverse",
+     "debug",
+     "point",
+     "provider"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "graphhopper.get_isochrone",
+   "name": "Isochrone endpoint",
+   "description": "### Example You can get an example response via: ``` curl \"https://graphhopper.com/api/1/isochrone?point=51.131108,12.414551&key=[YOUR_KEY]\" ``` Don't forget to replace the placeholder with your own key. ### Introduction ![Isochrone screenshot](./img/isochrone-example.png) An isochrone of a location is ''a line connecting points at which a vehicle arrives at the same time'', see Wikipedia. With th",
+   "input": {
+    "type": "object",
+    "properties": {
+     "point": {
+      "type": "string",
+      "description": "Specify the start coordinate"
+     },
+     "time_limit": {
+      "type": "integer",
+      "description": "Specify which time the vehicle should travel. In seconds."
+     },
+     "distance_limit": {
+      "type": "integer",
+      "description": "Specify which distance the vehicle should travel. In meters."
+     },
+     "vehicle": {
+      "type": "string",
+      "description": "The vehicle profile for which the route should be calculated.",
+      "enum": [
+       "car",
+       "bike",
+       "foot",
+       "hike",
+       "mtb",
+       "racingbike",
+       "scooter",
+       "truck",
+       "small_truck"
+      ]
+     },
+     "buckets": {
+      "type": "integer",
+      "description": "Number by which to divide the given `time_limit` to create `buckets` nested isochrones of time intervals `time_limit-n*time_limit/buckets`. Applies analogously to `distance_limit`."
+     },
+     "reverse_flow": {
+      "type": "boolean",
+      "description": "If `false` the flow goes from point to the polygon, if `true` the flow goes from the polygon \"inside\" to the point. Example use case for `false`&#58; *How many potential customer can be reached within 30min travel time from your store* vs. `true`&#58; *How many customers can reach your store within 30min travel time.*"
+     },
+     "weighting": {
+      "type": "string",
+      "description": "Use `\"shortest\"` to get an isodistance line instead of an isochrone.",
+      "enum": [
+       "fastest",
+       "shortest"
+      ]
+     }
+    },
+    "required": [
+     "point"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://graphhopper.com/api/1/isochrone",
+    "path": [],
+    "query": [
+     "point",
+     "time_limit",
+     "distance_limit",
+     "vehicle",
+     "buckets",
+     "reverse_flow",
+     "weighting"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "graphhopper.get_matrix",
+   "name": "Get matrix endpoint",
+   "description": "With this Matrix Endpoint you submit the points and parameters via URL parameters and is the most convenient as it works out-of-the-box in the browser. If possible you should prefer using the [POST Matrix Endpoint](#operation/postMatrix) that avoids problems with many locations and can also gzip the **request**. (Note, that all endpoints return gzipped responses).",
+   "input": {
+    "type": "object",
+    "properties": {
+     "point": {
+      "type": "array",
+      "description": "Specify multiple points in `latitude,longitude` for which the weight-, route-, time- or distance-matrix should be calculated. In this case the starts are identical to the destinations. If there are N points, then NxN entries will be calculated. The order of the point parameter is important. Specify at least three points. Cannot be used together with from_point or to_point."
+     },
+     "from_point": {
+      "type": "array",
+      "description": "The starting points for the routes in `latitude,longitude`. E.g. if you want to calculate the three routes A-&gt;1, A-&gt;2, A-&gt;3 then you have one from_point parameter and three to_point parameters."
+     },
+     "to_point": {
+      "type": "array",
+      "description": "The destination points for the routes in `latitude,longitude`."
+     },
+     "point_hint": {
+      "type": "array",
+      "description": "Optional parameter. Specifies a hint for each `point` parameter to prefer a certain street for the closest location lookup. E.g. if there is an address or house with two or more neighboring streets you can control for which street the closest location is looked up."
+     },
+     "from_point_hint": {
+      "type": "array",
+      "description": "For the from_point parameter. See point_hint"
+     },
+     "to_point_hint": {
+      "type": "array",
+      "description": "For the to_point parameter. See point_hint"
+     },
+     "snap_prevention": {
+      "type": "array",
+      "description": "Optional parameter to avoid snapping to a certain road class or road environment. Current supported values `motorway`, `trunk`, `ferry`, `tunnel`, `bridge` and `ford`. Multiple values are specified like `snap_prevention=ferry&snap_prevention=motorway`"
+     },
+     "curbside": {
+      "type": "array",
+      "description": "Optional parameter. It specifies on which side a point should be relative to the driver when she leaves/arrives at a start/target/via point. You need to specify this parameter for either none or all points. Only supported for motor vehicles and OpenStreetMap."
+     },
+     "from_curbside": {
+      "type": "array",
+      "description": "Curbside setting for the from_point parameter. See curbside."
+     },
+     "to_curbside": {
+      "type": "array",
+      "description": "Curbside setting for the to_point parameter. See curbside."
+     },
+     "out_array": {
+      "type": "array",
+      "description": "Specifies which arrays should be included in the response. Specify one or more of the following options 'weights', 'times', 'distances'. To specify more than one array use e.g. out_array=times&out_array=distances. The units of the entries of distances are meters, of times are seconds and of weights is arbitrary and it can differ for different vehicles or versions of this API."
+     },
+     "vehicle": {
+      "type": "string",
+      "description": "The vehicle profile for which the matrix should be calculated.",
+      "enum": [
+       "car",
+       "bike",
+       "foot",
+       "hike",
+       "mtb",
+       "racingbike",
+       "scooter",
+       "truck",
+       "small_truck"
+      ]
+     },
+     "fail_fast": {
+      "type": "boolean",
+      "description": "Specifies whether or not the matrix calculation should return with an error as soon as possible in case some points cannot be found or some points are not connected. If set to `false` the time/weight/distance matrix will be calculated for all valid points and contain the `null` value for all entries that could not be calculated. The `hint` field of the response will also contain additional informa"
+     },
+     "turn_costs": {
+      "type": "boolean",
+      "description": "Specifies if turn restrictions should be considered. Enabling this option increases the matrix computation time. Only supported for motor vehicles and OpenStreetMap."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://graphhopper.com/api/1/matrix",
+    "path": [],
+    "query": [
+     "point",
+     "from_point",
+     "to_point",
+     "point_hint",
+     "from_point_hint",
+     "to_point_hint",
+     "snap_prevention",
+     "curbside",
+     "from_curbside",
+     "to_curbside",
+     "out_array",
+     "vehicle",
+     "fail_fast",
+     "turn_costs"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "graphhopper.get_matrix_solution",
+   "name": "Get batch matrix endpoint",
+   "description": "This endpoint returns the solution of a JSON submitted to the Batch Matrix endpoint. You can fetch it with the job_id, you have been sent.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "jobId": {
+      "type": "string",
+      "description": "Request solution with jobId"
+     }
+    },
+    "required": [
+     "jobId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://graphhopper.com/api/1/matrix/solution/{jobId}",
+    "path": [
+     "jobId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "graphhopper.get_route",
+   "name": "Get route endpoint",
+   "description": "The GET request is the most simple one: just specify the parameter in the URL and you are done. Can be tried directly in every browser.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "point": {
+      "type": "array",
+      "description": "The points for which the route should be calculated. Format: `[latitude,longitude]`. Specify at least an origin and a destination. Via points are possible. The maximum number depends on your plan."
+     },
+     "point_hint": {
+      "type": "array",
+      "description": "The `point_hint` is typically a road name to which the associated `point` parameter should be snapped to. Specify no `point_hint` parameter or the same number as you have `point` parameters."
+     },
+     "snap_prevention": {
+      "type": "array",
+      "description": "Optional parameter to avoid snapping to a certain road class or road environment. Currently supported values are `motorway`, `trunk`, `ferry`, `tunnel`, `bridge` and `ford`. Multiple values are specified like `snap_prevention=ferry&snap_prevention=motorway`."
+     },
+     "vehicle": {
+      "type": "string",
+      "description": "The vehicle profile for which the route should be calculated.",
+      "enum": [
+       "car",
+       "bike",
+       "foot",
+       "hike",
+       "mtb",
+       "racingbike",
+       "scooter",
+       "truck",
+       "small_truck"
+      ]
+     },
+     "curbside": {
+      "type": "array",
+      "description": "Optional parameter. It specifies on which side a point should be relative to the driver when she leaves/arrives at a start/target/via point. You need to specify this parameter for either none or all points. Only supported for motor vehicles and OpenStreetMap."
+     },
+     "turn_costs": {
+      "type": "boolean",
+      "description": "Specifies if turn restrictions should be considered. Enabling this option increases the route computation time. Only supported for motor vehicles and OpenStreetMap."
+     },
+     "locale": {
+      "type": "string",
+      "description": "The locale of the resulting turn instructions. E.g. `pt_PT` for Portuguese or `de` for German."
+     },
+     "elevation": {
+      "type": "boolean",
+      "description": "If `true`, a third coordinate, the altitude, is included with all positions in the response. This changes the format of the `points` and `snapped_waypoints` fields of the response, in both their encodings. Unless you switch off the `points_encoded` parameter, you need special code on the client side that can handle three-dimensional coordinates. A request can fail if the vehicle profile does not s"
+     },
+     "details": {
+      "type": "array",
+      "description": "Optional parameter to retrieve path details. You can request additional details for the route: `street_name`, `time`, `distance`, `max_speed`, `toll`, `road_class`, `road_class_link`, `road_access`, `road_environment`, `lanes`, and `surface`. Read more about the usage of path details [here](https://discuss.graphhopper.com/t/2539)."
+     },
+     "optimize": {
+      "type": "string",
+      "description": "Normally, the calculated route will visit the points in the order you specified them. If you have more than two points, you can set this parameter to `\"true\"` and the points may be re-ordered to minimize the total travel time. Keep in mind that the limits on the number of locations of the Route Optimization API applies, and the request costs more credits."
+     },
+     "instructions": {
+      "type": "boolean",
+      "description": "If instructions should be calculated and returned"
+     },
+     "calc_points": {
+      "type": "boolean",
+      "description": "If the points for the route should be calculated at all."
+     },
+     "debug": {
+      "type": "boolean",
+      "description": "If `true`, the output will be formatted."
+     },
+     "points_encoded": {
+      "type": "boolean",
+      "description": "Allows changing the encoding of location data in the response. The default is polyline encoding, which is compact but requires special client code to unpack. (We provide it in our JavaScript client library!) Set this parameter to `false` to switch the encoding to simple coordinate pairs like `[lon,lat]`, or `[lon,lat,elevation]`. See the description of the response format for more information."
+     },
+     "ch.disable": {
+      "type": "boolean",
+      "description": "Use this parameter in combination with one or more parameters from below."
+     },
+     "weighting": {
+      "type": "string",
+      "description": "Determines the way the \"best\" route is calculated. Besides `fastest` you can use `short_fastest` which finds a reasonable balance between the distance influence (`shortest`) and the time (`fastest`). You could also use `shortest` but is deprecated and not recommended for motor vehicles. All except `fastest` require `ch.disable=true`."
+     },
+     "heading": {
+      "type": "array",
+      "description": "Favour a heading direction for a certain point. Specify either one heading for the start point or as many as there are points. In this case headings are associated by their order to the specific points. Headings are given as north based clockwise angle between 0 and 360 degree. This parameter also influences the tour generated with `algorithm=round_trip` and forces the initial direction. Requires "
+     },
+     "heading_penalty": {
+      "type": "integer",
+      "description": "Time penalty in seconds for not obeying a specified heading. Requires `ch.disable=true`."
+     },
+     "pass_through": {
+      "type": "boolean",
+      "description": "If `true`, u-turns are avoided at via-points with regard to the `heading_penalty`. Requires `ch.disable=true`."
+     },
+     "block_area": {
+      "type": "string",
+      "description": "Block road access by specifying a point close to the road segment to be blocked, with the format `lat,lon`. You can also block all road segments crossing a geometric shape. Specify a circle using the format `lat,lon,radius`, or a polygon using the format `lat1,lon1,lat2,lon2,...,latN,lonN`. You can specify several shapes, separating them with `;`. Requires `ch.disable=true`."
+     },
+     "avoid": {
+      "type": "string",
+      "description": "Specify which road classes and environments you would like to avoid. Possible values are `motorway`, `steps`, `track`, `toll`, `ferry`, `tunnel` and `bridge`. Separate several values with `;`. Obviously not all the values make sense for all vehicle profiles e.g. `bike` is already forbidden on a `motorway`. Requires `ch.disable=true`."
+     },
+     "algorithm": {
+      "type": "string",
+      "description": "Rather than looking for the shortest or fastest path, this parameter lets you solve two different problems related to routing: With `alternative_route`, we give you not one but several routes that are close to optimal, but not too similar to each other. With `round_trip`, the route will get you back to where you started. This is meant for fun (think of a bike trip), so we will add some randomness.",
+      "enum": [
+       "round_trip",
+       "alternative_route"
+      ]
+     },
+     "round_trip.distance": {
+      "type": "integer",
+      "description": "If `algorithm=round_trip`, this parameter configures approximative length of the resulting round trip. Requires `ch.disable=true`."
+     },
+     "round_trip.seed": {
+      "type": "integer",
+      "description": "If `algorithm=round_trip`, this sets the random seed. Change this to get a different tour for each value."
+     },
+     "alternative_route.max_paths": {
+      "type": "integer",
+      "description": "If `algorithm=alternative_route`, this parameter sets the number of maximum paths which should be calculated. Increasing can lead to worse alternatives."
+     },
+     "alternative_route.max_weight_factor": {
+      "type": "number",
+      "description": "If `algorithm=alternative_route`, this parameter sets the factor by which the alternatives routes can be longer than the optimal route. Increasing can lead to worse alternatives."
+     },
+     "alternative_route.max_share_factor": {
+      "type": "number",
+      "description": "If `algorithm=alternative_route`, this parameter specifies how similar an alternative route can be to the optimal route. Increasing can lead to worse alternatives."
+     }
+    },
+    "required": [
+     "point"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://graphhopper.com/api/1/route",
+    "path": [],
+    "query": [
+     "point",
+     "point_hint",
+     "snap_prevention",
+     "vehicle",
+     "curbside",
+     "turn_costs",
+     "locale",
+     "elevation",
+     "details",
+     "optimize",
+     "instructions",
+     "calc_points",
+     "debug",
+     "points_encoded",
+     "ch.disable",
+     "weighting",
+     "heading",
+     "heading_penalty",
+     "pass_through",
+     "block_area",
+     "avoid",
+     "algorithm",
+     "round_trip.distance",
+     "round_trip.seed",
+     "alternative_route.max_paths",
+     "alternative_route.max_weight_factor",
+     "alternative_route.max_share_factor"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "graphhopper.get_route_info",
+   "name": "Coverage information",
+   "description": "Use this to find out details about the supported vehicle profiles and features, or if you just need to ping the server.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://graphhopper.com/api/1/route/info",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "graphhopper.get_solution",
+   "name": "Get the solution (batch mode)",
+   "description": "Take the job id and fetch the solution for the vehicle routing problem from this URL: ``` https://graphhopper.com/api/1/vrp/solution/?key= ``` You get the job id by sending a vehicle routing problem to the [batch mode URL](#operation/asyncVRP).",
+   "input": {
+    "type": "object",
+    "properties": {
+     "jobId": {
+      "type": "string",
+      "description": "Request solution with jobId"
+     }
+    },
+    "required": [
+     "jobId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://graphhopper.com/api/1/vrp/solution/{jobId}",
+    "path": [
+     "jobId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "graphhopper.post_gpx",
+   "name": "Map match a gpx file",
+   "description": "### Example You get an example response for a GPX via: ``` curl -XPOST -H \"Content-Type: application/gpx+xml\" \"https://graphhopper.com/api/1/match?vehicle=car&key=[YOUR_KEY]\" --data @/path/to/some.gpx ``` A minimal working GPX file looks like ```gpx ``` ### Introduction ![Map Matching screenshot](./img/map-matching-example.gif) The Map Matching API is part of the GraphHopper Directions API and wit",
+   "input": {
+    "type": "object",
+    "properties": {
+     "gps_accuracy": {
+      "type": "integer",
+      "description": "Specify the precision of a point, in meter"
+     },
+     "vehicle": {
+      "type": "string",
+      "description": "Specify the vehicle profile like car"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://graphhopper.com/api/1/match",
+    "path": [],
+    "query": [
+     "gps_accuracy",
+     "vehicle"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "graphhopper.post_matrix",
+   "name": "Post matrix endpoint",
+   "description": "The [GET endpoint](#operation/getMatrix) has an URL length limitation, which hurts for many locations per request. In those cases use this POST endpoint with a JSON as input. The only parameter in the URL will be the key. Both request scenarios are identical except that all singular parameter names are named as their plural for a POST request. The effected parameters are: `points`, `from_points`, ",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://graphhopper.com/api/1/matrix",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "graphhopper.post_route",
+   "name": "Post route endpoint",
+   "description": "Please see the [GET endpoint](#operation/getRoute) for a simpler method on how to get started. If you are familiar with POST requests and JSON then do not hesitate to continue here. Especially when you use many locations you should get familiar with this POST endpoint as the GET endpoint has an URL length limitation. Additionally the request of this POST endpoint can be compressed and can slightly",
+   "input": {
+    "type": "object",
+    "properties": {
+     "algorithm": {
+      "type": "string",
+      "description": "Rather than looking for the shortest or fastest path, this lets you solve two different problems related to routing: With `round_trip`, the route will get you back to where you started. This is meant for fun (think of a bike trip), so we will add some randomness. This requires `ch.disable=true`. With `alternative_route`, we give you not one but several routes that are close to optimal, but not too",
+      "enum": [
+       "round_trip",
+       "alternative_route"
+      ]
+     },
+     "alternative_route.max_paths": {
+      "type": "integer",
+      "description": "If `algorithm=alternative_route`, this parameter sets the number of maximum paths which should be calculated. Increasing can lead to worse alternatives."
+     },
+     "alternative_route.max_share_factor": {
+      "type": "number",
+      "description": "If `algorithm=alternative_route`, this parameter specifies how similar an alternative route can be to the optimal route. Increasing can lead to worse alternatives."
+     },
+     "alternative_route.max_weight_factor": {
+      "type": "number",
+      "description": "If `algorithm=alternative_route`, this parameter sets the factor by which the alternatives routes can be longer than the optimal route. Increasing can lead to worse alternatives."
+     },
+     "avoid": {
+      "type": "string",
+      "description": "Specify which road classes and environments you would like to avoid. Possible values are `motorway`, `steps`, `track`, `toll`, `ferry`, `tunnel` and `bridge`. Separate several values with `;`. Obviously not all the values make sense for all vehicle profiles e.g. `bike` is already forbidden on a `motorway`. Requires `ch.disable=true`."
+     },
+     "block_area": {
+      "type": "string",
+      "description": "Block road access via a point with the format `latitude,longitude` or an area defined by a circle `lat,lon,radius` or a rectangle `lat1,lon1,lat2,lon2`. Separate several values with `;`. Requires `ch.disable=true`."
+     },
+     "calc_points": {
+      "type": "boolean",
+      "description": "If the points for the route should be calculated at all."
+     },
+     "ch.disable": {
+      "type": "boolean",
+      "description": "Use this parameter in combination with one or more parameters from below."
+     },
+     "curbsides": {
+      "type": "array",
+      "description": "Optional parameter. It specifies on which side a point should be relative to the driver when she leaves/arrives at a start/target/via point. You need to specify this parameter for either none or all points. Only supported for motor vehicles and OpenStreetMap."
+     },
+     "debug": {
+      "type": "boolean",
+      "description": "If `true`, the output will be formatted."
+     },
+     "details": {
+      "type": "array",
+      "description": "Optional parameter to retrieve path details. You can request additional details for the route: `street_name`, `time`, `distance`, `max_speed`, `toll`, `road_class`, `road_class_link`, `road_access`, `road_environment`, `lanes`, and `surface`. Read more about the usage of path details [here](https://discuss.graphhopper.com/t/2539)."
+     },
+     "elevation": {
+      "type": "boolean",
+      "description": "If `true`, a third coordinate, the altitude, is included with all positions in the response. This changes the format of the `points` and `snapped_waypoints` fields of the response, in both their encodings. Unless you switch off the `points_encoded` parameter, you need special code on the client side that can handle three-dimensional coordinates. A request can fail if the vehicle profile does not s"
+     },
+     "heading_penalty": {
+      "type": "integer",
+      "description": "Time penalty in seconds for not obeying a specified heading. Requires `ch.disable=true`."
+     },
+     "headings": {
+      "type": "array",
+      "description": "Favour a heading direction for a certain point. Specify either one heading for the start point or as many as there are points. In this case headings are associated by their order to the specific points. Headings are given as north based clockwise angle between 0 and 360 degree. This parameter also influences the tour generated with `algorithm=round_trip` and forces the initial direction. Requires "
+     },
+     "instructions": {
+      "type": "boolean",
+      "description": "If instructions should be calculated and returned"
+     },
+     "locale": {
+      "type": "string",
+      "description": "The locale of the resulting turn instructions. E.g. `pt_PT` for Portuguese or `de` for German."
+     },
+     "optimize": {
+      "type": "string",
+      "description": "Normally, the calculated route will visit the points in the order you specified them. If you have more than two points, you can set this parameter to `\"true\"` and the points may be re-ordered to minimize the total travel time. Keep in mind that the limits on the number of locations of the Route Optimization API applies, and the request costs more credits."
+     },
+     "pass_through": {
+      "type": "boolean",
+      "description": "If `true`, u-turns are avoided at via-points with regard to the `heading_penalty`. Requires `ch.disable=true`."
+     },
+     "point_hints": {
+      "type": "array",
+      "description": "Optional parameter. Specifies a hint for each point in the `points` array to prefer a certain street for the closest location lookup. E.g. if there is an address or house with two or more neighboring streets you can control for which street the closest location is looked up."
+     },
+     "points": {
+      "type": "array",
+      "description": "The points for the route in an array of `[longitude,latitude]`. For instance, if you want to calculate a route from point A to B to C then you specify `points: [ [A_longitude, A_latitude], [B_longitude, B_latitude], [C_longitude, C_latitude]]"
+     },
+     "points_encoded": {
+      "type": "boolean",
+      "description": "Allows changing the encoding of location data in the response. The default is polyline encoding, which is compact but requires special client code to unpack. (We provide it in our JavaScript client library!) Set this parameter to `false` to switch the encoding to simple coordinate pairs like `[lon,lat]`, or `[lon,lat,elevation]`. See the description of the response format for more information."
+     },
+     "round_trip.distance": {
+      "type": "integer",
+      "description": "If `algorithm=round_trip`, this parameter configures approximative length of the resulting round trip. Requires `ch.disable=true`."
+     },
+     "round_trip.seed": {
+      "type": "integer",
+      "description": "If `algorithm=round_trip`, this sets the random seed. Change this to get a different tour for each value."
+     },
+     "snap_preventions": {
+      "type": "array",
+      "description": "Optional parameter to avoid snapping to a certain road class or road environment. Current supported values `motorway`, `trunk`, `ferry`, `tunnel`, `bridge` and `ford`"
+     },
+     "vehicle": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "car",
+       "bike",
+       "foot",
+       "hike",
+       "mtb",
+       "racingbike",
+       "scooter",
+       "truck",
+       "small_truck"
+      ]
+     },
+     "weighting": {
+      "type": "string",
+      "description": "Determines the way the ''best'' route is calculated. Default is `fastest`. Other options are `shortest` (e.g. for `vehicle=foot` or `bike`) and `short_fastest` which finds a reasonable balance between `shortest` and `fastest`. Requires `ch.disable=true`."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://graphhopper.com/api/1/route",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "algorithm",
+     "alternative_route.max_paths",
+     "alternative_route.max_share_factor",
+     "alternative_route.max_weight_factor",
+     "avoid",
+     "block_area",
+     "calc_points",
+     "ch.disable",
+     "curbsides",
+     "debug",
+     "details",
+     "elevation",
+     "heading_penalty",
+     "headings",
+     "instructions",
+     "locale",
+     "optimize",
+     "pass_through",
+     "point_hints",
+     "points",
+     "points_encoded",
+     "round_trip.distance",
+     "round_trip.seed",
+     "snap_preventions",
+     "vehicle",
+     "weighting"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "graphhopper.solve_clustering_problem",
+   "name": "Post cluster endpoint",
+   "description": "The Cluster endpoint is used with a POST request towards `https://graphhopper.com/api/1/cluster?key=`. The solution will be provided in the JSON response. Please note that for problems that take longer than 10 seconds a bad request error is returned. In this case please use the asynchronous [Batch Cluster Endpoint](#operation/asyncClusteringProblem) instead.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "configuration": {
+      "type": "object",
+      "description": ""
+     },
+     "customers": {
+      "type": "array",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://graphhopper.com/api/1/cluster",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "configuration",
+     "customers"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "graphhopper.solve_vrp",
+   "name": "Post route optimization problem",
+   "description": "To get started with the Route Optimization API, please read the [introduction](#tag/Route-Optimization-API). To solve a new vehicle routing problem, make a HTTP POST to this URL ``` https://graphhopper.com/api/1/vrp?key= ``` It returns the solution to this problem in the JSON response. Please note that this URL is very well suited to solve minor problems. Larger vehicle routing problems, which tak",
+   "input": {
+    "type": "object",
+    "properties": {
+     "algorithm": {
+      "type": "object",
+      "description": "Use `objectives` instead."
+     },
+     "configuration": {
+      "type": "object",
+      "description": "Specifies general configurations that are taken into account when solving the vehicle routing problem."
+     },
+     "cost_matrices": {
+      "type": "array",
+      "description": "Specifies your own tranport time and distance matrices."
+     },
+     "objectives": {
+      "type": "array",
+      "description": "Specifies an objective function. The vehicle routing problem is solved in such a way that this objective function is minimized."
+     },
+     "relations": {
+      "type": "array",
+      "description": "Defines additional relationships between orders."
+     },
+     "services": {
+      "type": "array",
+      "description": "Specifies the orders of the type \"service\". These are, for example, pick-ups, deliveries or other stops that are to be approached by the specified vehicles. Each of these orders contains only one location."
+     },
+     "shipments": {
+      "type": "array",
+      "description": "Specifies the available shipments. Each shipment contains a pickup and a delivery stop, which must be processed one after the other."
+     },
+     "vehicle_types": {
+      "type": "array",
+      "description": "Specifies the available vehicle types. These types can be assigned to vehicles."
+     },
+     "vehicles": {
+      "type": "array",
+      "description": "Specifies the available vehicles."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://graphhopper.com/api/1/vrp",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "algorithm",
+     "configuration",
+     "cost_matrices",
+     "objectives",
+     "relations",
+     "services",
+     "shipments",
+     "vehicle_types",
+     "vehicles"
+    ],
+    "body_format": "json"
+   }
+  }
+ ]
+}

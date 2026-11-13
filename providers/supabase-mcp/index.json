@@ -297,6 +297,10 @@
       "type": "string",
       "description": "Organization slug"
      },
+     "project_ref": {
+      "type": "string",
+      "description": "Project ref"
+     },
      "target_flow": {
       "type": "string",
       "description": ""
@@ -326,6 +330,7 @@
      "code_challenge",
      "code_challenge_method",
      "organization_slug",
+     "project_ref",
      "target_flow",
      "resource"
     ],
@@ -4407,6 +4412,255 @@
    }
   },
   {
+   "slug": "supabase-mcp.v1_patch_postgres_config",
+   "name": "Partially updates project's postgres config",
+   "description": "Partially updates project's Postgres config",
+   "input": {
+    "type": "object",
+    "properties": {
+     "ref": {
+      "type": "string",
+      "description": "Project ref"
+     },
+     "effective_cache_size": {
+      "type": "string",
+      "description": ""
+     },
+     "logical_decoding_work_mem": {
+      "type": "string",
+      "description": ""
+     },
+     "pg_stat_statements.max": {
+      "type": "integer",
+      "description": ""
+     },
+     "pg_net.batch_size": {
+      "type": "integer",
+      "description": ""
+     },
+     "autovacuum_max_workers": {
+      "type": "integer",
+      "description": ""
+     },
+     "autovacuum_work_mem": {
+      "type": "string",
+      "description": ""
+     },
+     "cron.log_statement": {
+      "type": "boolean",
+      "description": ""
+     },
+     "log_autovacuum_min_duration": {
+      "type": "string",
+      "description": "Default unit: ms"
+     },
+     "log_checkpoints": {
+      "type": "boolean",
+      "description": ""
+     },
+     "log_connections": {
+      "type": "boolean",
+      "description": ""
+     },
+     "log_disconnections": {
+      "type": "boolean",
+      "description": ""
+     },
+     "log_duration": {
+      "type": "boolean",
+      "description": ""
+     },
+     "log_lock_waits": {
+      "type": "boolean",
+      "description": ""
+     },
+     "log_recovery_conflict_waits": {
+      "type": "boolean",
+      "description": ""
+     },
+     "log_replication_commands": {
+      "type": "boolean",
+      "description": ""
+     },
+     "log_startup_progress_interval": {
+      "type": "string",
+      "description": "Default unit: ms"
+     },
+     "log_temp_files": {
+      "type": "string",
+      "description": ""
+     },
+     "maintenance_work_mem": {
+      "type": "string",
+      "description": ""
+     },
+     "track_activity_query_size": {
+      "type": "string",
+      "description": ""
+     },
+     "max_connections": {
+      "type": "integer",
+      "description": ""
+     },
+     "max_locks_per_transaction": {
+      "type": "integer",
+      "description": ""
+     },
+     "max_logical_replication_workers": {
+      "type": "integer",
+      "description": ""
+     },
+     "max_parallel_maintenance_workers": {
+      "type": "integer",
+      "description": ""
+     },
+     "max_parallel_workers": {
+      "type": "integer",
+      "description": ""
+     },
+     "max_parallel_workers_per_gather": {
+      "type": "integer",
+      "description": ""
+     },
+     "max_replication_slots": {
+      "type": "integer",
+      "description": ""
+     },
+     "max_slot_wal_keep_size": {
+      "type": "string",
+      "description": ""
+     },
+     "max_standby_archive_delay": {
+      "type": "string",
+      "description": ""
+     },
+     "max_standby_streaming_delay": {
+      "type": "string",
+      "description": ""
+     },
+     "max_sync_workers_per_subscription": {
+      "type": "integer",
+      "description": ""
+     },
+     "max_wal_size": {
+      "type": "string",
+      "description": ""
+     },
+     "max_wal_senders": {
+      "type": "integer",
+      "description": ""
+     },
+     "max_worker_processes": {
+      "type": "integer",
+      "description": ""
+     },
+     "session_replication_role": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "origin",
+       "replica",
+       "local"
+      ]
+     },
+     "shared_buffers": {
+      "type": "string",
+      "description": ""
+     },
+     "statement_timeout": {
+      "type": "string",
+      "description": "Default unit: ms"
+     },
+     "track_commit_timestamp": {
+      "type": "boolean",
+      "description": ""
+     },
+     "wal_keep_size": {
+      "type": "string",
+      "description": ""
+     },
+     "wal_sender_timeout": {
+      "type": "string",
+      "description": "Default unit: ms"
+     },
+     "work_mem": {
+      "type": "string",
+      "description": ""
+     },
+     "checkpoint_timeout": {
+      "type": "string",
+      "description": "Default unit: s"
+     },
+     "hot_standby_feedback": {
+      "type": "boolean",
+      "description": ""
+     },
+     "restart_database": {
+      "type": "boolean",
+      "description": ""
+     }
+    },
+    "required": [
+     "ref"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://mcp.supabase.com/v1/projects/{ref}/config/database/postgres",
+    "path": [
+     "ref"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "effective_cache_size",
+     "logical_decoding_work_mem",
+     "pg_stat_statements.max",
+     "pg_net.batch_size",
+     "autovacuum_max_workers",
+     "autovacuum_work_mem",
+     "cron.log_statement",
+     "log_autovacuum_min_duration",
+     "log_checkpoints",
+     "log_connections",
+     "log_disconnections",
+     "log_duration",
+     "log_lock_waits",
+     "log_recovery_conflict_waits",
+     "log_replication_commands",
+     "log_startup_progress_interval",
+     "log_temp_files",
+     "maintenance_work_mem",
+     "track_activity_query_size",
+     "max_connections",
+     "max_locks_per_transaction",
+     "max_logical_replication_workers",
+     "max_parallel_maintenance_workers",
+     "max_parallel_workers",
+     "max_parallel_workers_per_gather",
+     "max_replication_slots",
+     "max_slot_wal_keep_size",
+     "max_standby_archive_delay",
+     "max_standby_streaming_delay",
+     "max_sync_workers_per_subscription",
+     "max_wal_size",
+     "max_wal_senders",
+     "max_worker_processes",
+     "session_replication_role",
+     "shared_buffers",
+     "statement_timeout",
+     "track_commit_timestamp",
+     "wal_keep_size",
+     "wal_sender_timeout",
+     "work_mem",
+     "checkpoint_timeout",
+     "hot_standby_feedback",
+     "restart_database"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "supabase-mcp.v1_pause_a_project",
    "name": "Pauses the given project",
    "description": "Pauses the given project",
@@ -4795,6 +5049,51 @@
     "header": [],
     "body": [
      "recovery_time_target_unix"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "supabase-mcp.v1_review_network_restrictions",
+   "name": "Applies or rejects the change in review in a project's network restrictions",
+   "description": "This is an **experimental** endpoint. It is subject to change or removal in future versions. Use it with caution, as it may not remain supported or stable. This endpoint is currently in its **Alpha** stage.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "ref": {
+      "type": "string",
+      "description": "Project ref"
+     },
+     "action": {
+      "type": "string",
+      "description": "`apply` replaces the enforced list with the pending one and applies it. `reject` discards the pending one and keeps the enforced list.",
+      "enum": [
+       "apply",
+       "reject"
+      ]
+     },
+     "requested_at": {
+      "type": "string",
+      "description": "The `pending_requested_at` of the change being reviewed. Only that change is resolved: if another one has replaced it, the request gets a 409."
+     }
+    },
+    "required": [
+     "action",
+     "ref",
+     "requested_at"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://mcp.supabase.com/v1/projects/{ref}/network-restrictions/review",
+    "path": [
+     "ref"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "action",
+     "requested_at"
     ],
     "body_format": "json"
    }
@@ -5666,6 +5965,10 @@
       "type": "boolean",
       "description": ""
      },
+     "external_email_magic_link_disabled": {
+      "type": "boolean",
+      "description": ""
+     },
      "security_captcha_enabled": {
       "type": "boolean",
       "description": ""
@@ -6486,6 +6789,7 @@
      "saml_enabled",
      "saml_external_url",
      "security_sb_forwarded_for_enabled",
+     "external_email_magic_link_disabled",
      "security_captcha_enabled",
      "security_captcha_provider",
      "security_captcha_secret",
@@ -6993,6 +7297,22 @@
       "type": "string",
       "description": ""
      },
+     "pg_stat_statements.max": {
+      "type": "integer",
+      "description": ""
+     },
+     "pg_net.batch_size": {
+      "type": "integer",
+      "description": ""
+     },
+     "autovacuum_max_workers": {
+      "type": "integer",
+      "description": ""
+     },
+     "autovacuum_work_mem": {
+      "type": "string",
+      "description": ""
+     },
      "cron.log_statement": {
       "type": "boolean",
       "description": ""
@@ -7162,6 +7482,10 @@
     "body": [
      "effective_cache_size",
      "logical_decoding_work_mem",
+     "pg_stat_statements.max",
+     "pg_net.batch_size",
+     "autovacuum_max_workers",
+     "autovacuum_work_mem",
      "cron.log_statement",
      "log_autovacuum_min_duration",
      "log_checkpoints",
@@ -7233,6 +7557,14 @@
      "db_pool_acquisition_timeout": {
       "type": "integer",
       "description": ""
+     },
+     "db_pool_max_lifetime": {
+      "type": "integer",
+      "description": ""
+     },
+     "db_pool_max_idletime": {
+      "type": "integer",
+      "description": ""
      }
     },
     "required": [
@@ -7252,7 +7584,9 @@
      "db_schema",
      "max_rows",
      "db_pool",
-     "db_pool_acquisition_timeout"
+     "db_pool_acquisition_timeout",
+     "db_pool_max_lifetime",
+     "db_pool_max_idletime"
     ],
     "body_format": "json"
    }

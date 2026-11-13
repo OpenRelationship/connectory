@@ -16,33 +16,45 @@ vouches for**: read it, then read their reference.
 
 > Apollo developer docs help customers, partners, and developers build with Apollo. Explore guides for Apollo API, Apollo MCP, Apollo CLI, and partner marketplace integrations, plus tutorials and testing tools.
 
-Append .md to any documentation page URL to get its markdown version.
-
-## Guides
+## Get Started: Get Started
 - [Create an API Key](https://docs.apollo.io/docs/create-api-key.md)
 - [Test an API Key](https://docs.apollo.io/docs/test-api-key.md)
 - [API Pricing and Credits](https://docs.apollo.io/docs/api-pricing.md)
+
+## Get Started: Tutorials
+
+## Get Started: Integrations Marketplace
 - [Feature Your Integration](https://docs.apollo.io/docs/add-your-integration-to-apollos-marketplace.md)
-- [Apollo CLI](https://docs.apollo.io/docs/apollo-cli-overview.md): Apollo CLI gives you shell-native access to the full Apollo API. Search 240M+ contacts, enrich people and companies, manage CRM records, and run sequences without leaving your terminal. It's pipeable with jq, supports multiple output formats, and works natively with AI coding agents like Claude Code and Cursor.
+
+## Get Started: Apollo MCP
+
+## Get Started: Apollo CLI
+- [Apollo CLI](https://docs.apollo.io/docs/apollo-cli-overview.md): Apollo CLI gives you shell-native access to the full Apollo API. Search 240M+ contacts, enrich people and companies, manage CRM records, and run sequences without leaving your terminal. It's pipeable…
+
+## Get Started: FAQs
 - [Developer FAQs](https://docs.apollo.io/docs/developer-faqs.md)
 
-## API Reference
-- [Apollo API](https://docs.apollo.io/reference/apollo-api.md): Search, enrich, create, and manage Apollo data programmatically.
+## API: API Setup
+- [Apollo API](https://docs.apollo.io/reference/apollo-api.md): Build Apollo integrations to search and enrich data, manage records, engage prospects, analyze performance, and monitor usage.
 - [Authentication](https://docs.apollo.io/reference/authentication.md)
 - [Rate Limits](https://docs.apollo.io/reference/rate-limits.md)
 - [OpenAPI Specification](https://docs.apollo.io/reference/openapi-specification.md): Import the full Apollo API into your tooling, generate client SDKs, or power AI agents.
 - [Status Codes and Errors](https://docs.apollo.io/reference/status-codes.md)
-- [How to Test Apollo API](https://docs.apollo.io/reference/how-to-test-api-endpoints.md)
+
+## API: Search and Enrich Data
 - [People API Search](https://docs.apollo.io/reference/people-api-search.md)
 - [Get Complete Person Info](https://docs.apollo.io/reference/get-complete-person-info.md)
 - [People Enrichment](https://docs.apollo.io/reference/people-enrichment.md)
 - [Bulk People Enrichment](https://docs.apollo.io/reference/bulk-people-enrichment.md)
+- [[BETA] Validate email addresses and phone numbers](https://docs.apollo.io/reference/validate-emails-and-phone-numbers.md)
 - [Organization Search](https://docs.apollo.io/reference/organization-search.md)
 - [Get Complete Organization Info](https://docs.apollo.io/reference/get-complete-organization-info.md)
 - [Organization Enrichment](https://docs.apollo.io/reference/organization-enrichment.md)
 - [Bulk Organization Enrichment](https://docs.apollo.io/reference/bulk-organization-enrichment.md)
 - [Organization Job Postings](https://docs.apollo.io/reference/organization-jobs-postings.md)
 - [News Articles Search](https://docs.apollo.io/reference/news-articles-search.md)
+
+## API: Manage Records
 - [Search for Accounts](https://docs.apollo.io/reference/search-for-accounts.md)
 - [View an Account](https://docs.apollo.io/reference/view-an-account.md)
 - [Create an Account](https://docs.apollo.io/reference/create-an-account.md)
@@ -60,6 +72,9 @@ Append .md to any documentation page URL to get its markdown version.
 - [Update Contact Stage for Multiple Contacts](https://docs.apollo.io/reference/update-contact-stage.md)
 - [Update Contact Owner for Multiple Contacts](https://docs.apollo.io/reference/update-contact-ownership.md)
 - [List Contact Stages](https://docs.apollo.io/reference/list-contact-stages.md)
+- [Find a potential duplicate contact](https://docs.apollo.io/reference/find-potential-duplicate-contact.md)
+- [[BETA] Merge duplicate contacts](https://docs.apollo.io/reference/merge-duplicate-contacts.md)
+- [[BETA] View a contact merge job](https://docs.apollo.io/reference/view-a-contact-merge-job.md)
 - [List All Deals](https://docs.apollo.io/reference/list-all-deals.md)
 - [View Deal](https://docs.apollo.io/reference/view-deal.md)
 - [Create Deal](https://docs.apollo.io/reference/create-deal.md)
@@ -72,6 +87,8 @@ Append .md to any documentation page URL to get its markdown version.
 - [Add Records to a List](https://docs.apollo.io/reference/add-records-to-a-list.md)
 - [Remove Records from a List](https://docs.apollo.io/reference/remove-records-from-a-list.md)
 - [Get a List of Notes](https://docs.apollo.io/reference/get-a-list-of-notes.md)
+
+## API: Engage with Prospects
 - [Create a Sequence](https://docs.apollo.io/reference/create-sequence.md)
 - [Update a Sequence](https://docs.apollo.io/reference/update-sequence.md)
 - [Search for Sequences](https://docs.apollo.io/reference/search-for-sequences.md)
@@ -102,6 +119,12 @@ Append .md to any documentation page URL to get its markdown version.
 - [Get Conversations Info](https://docs.apollo.io/reference/get-conversations-info.md)
 - [Export Conversations](https://docs.apollo.io/reference/export-conversations.md)
 - [Get Conversations Export](https://docs.apollo.io/reference/get-conversations-export.md)
+
+## API: AI Assistant
+- [Run an Assistant Task](https://docs.apollo.io/reference/run-an-assistant-task.md): <table>   <thead>     <tr style="background-color :#FEFFD9; color:#000000">       <th colspan="2" align="left">Endpoint essentials</th>     </tr>   </thead>   <tbody>     <tr>       <td><strong>API…
+- [Poll an Assistant Task](https://docs.apollo.io/reference/poll-an-assistant-task.md): <table>   <thead>     <tr style="background-color :#FEFFD9; color:#000000">       <th colspan="2" align="left">Endpoint essentials</th>     </tr>   </thead>   <tbody>     <tr>       <td><strong>API…
+
+## API: Manage Apollo Workspace
 - [Get a List of Users](https://docs.apollo.io/reference/get-a-list-of-users.md)
 - [Get Current User Profile](https://docs.apollo.io/reference/get-current-user-profile.md)
 - [Get a List of Email Accounts](https://docs.apollo.io/reference/get-a-list-of-email-accounts.md)
@@ -109,8 +132,12 @@ Append .md to any documentation page URL to get its markdown version.
 - [Create a Custom Field](https://docs.apollo.io/reference/create-a-custom-field.md)
 - [Update a Custom Field](https://docs.apollo.io/reference/update-a-custom-field.md)
 - [Get a List of All Custom Fields](https://docs.apollo.io/reference/get-a-list-of-all-custom-fields.md)
+
+## API: Analyze Performance
 - [Query Analytics Report](https://docs.apollo.io/reference/sync-report.md)
-- [Metrics and Dimensions Reference](https://docs.apollo.io/reference/sync-report-metrics.md): Reference for the metrics, group_by dimensions, and filters supported by the query analytics report endpoint. Last updated July 2026. Use this page to look up valid values for the <code>metrics[].value</code>, <code>group_by[].name</code>, and <code>filters</code> fields in your request payload.
+  - [Metrics and Dimensions Reference](https://docs.apollo.io/reference/sync-report-metrics.md): Reference for the metrics, group_by dimensions, and filters supported by the query analytics report endpoint. Last updated October 2026. Use this page to look up valid values for the…
+
+## API: Usage and Webhooks
 - [View API Usage Stats and Rate Limits](https://docs.apollo.io/reference/view-api-usage-stats.md)
 - [View Credit Usage Stats](https://docs.apollo.io/reference/view-credit-usage-stats.md)
 - [Poll Webhook Result](https://docs.apollo.io/reference/poll-webhook-result.md)

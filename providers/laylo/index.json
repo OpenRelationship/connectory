@@ -1,0 +1,757 @@
+{
+ "_": "GENERATED \u2014 what an authoring tool needs to FIND an operation. The calling table is the .lua beside it.",
+ "provider": "laylo",
+ "source": "https://developers.laylo.com/openapi.json",
+ "operations": [
+  {
+   "slug": "laylo.auth_token_create",
+   "name": "Create an integrator or enterprise access token",
+   "description": "Create an integrator or enterprise access token",
+   "input": {
+    "type": "object",
+    "properties": {
+     "client_id": {
+      "type": "string",
+      "description": "The client identifier Laylo issued to your integration. Treat it as opaque."
+     },
+     "client_secret": {
+      "type": "string",
+      "description": "The signing secret Laylo issued to your integration. Keep it on a trusted server."
+     },
+     "grant_type": {
+      "type": "string",
+      "description": "Not required, and not read. It is listed only so a standard OAuth client-credentials helper can post its usual body unchanged."
+     }
+    },
+    "required": [
+     "client_id",
+     "client_secret"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://laylo.com/api/api/v1/auth/token",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "client_id",
+     "client_secret",
+     "grant_type"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "laylo.billing_usage_get",
+   "name": "Get message credit usage",
+   "description": "Get message credit usage",
+   "input": {
+    "type": "object",
+    "properties": {
+     "startDate": {
+      "type": "string",
+      "description": "First UTC day of the window (inclusive), as YYYY-MM-DD. Defaults to the first day of endDate's month."
+     },
+     "endDate": {
+      "type": "string",
+      "description": "Last UTC day of the window (inclusive), as YYYY-MM-DD. Defaults to today. The window can span at most 366 days."
+     },
+     "interval": {
+      "type": "string",
+      "description": "How to bucket the series. Defaults to day.",
+      "enum": [
+       "day",
+       "week",
+       "month"
+      ]
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://laylo.com/api/api/v1/billing/credit-usage",
+    "path": [],
+    "query": [
+     "startDate",
+     "endDate",
+     "interval"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "laylo.billing_usage_products_get",
+   "name": "Get message credit usage for products",
+   "description": "Get message credit usage for products",
+   "input": {
+    "type": "object",
+    "properties": {
+     "productId": {
+      "type": "array",
+      "description": "Drops or messages to sum. Repeat the parameter for several, up to 50. Each must belong to the customer."
+     },
+     "startDate": {
+      "type": "string",
+      "description": "First UTC day of the window (inclusive), as YYYY-MM-DD. Defaults to the first day of endDate's month."
+     },
+     "endDate": {
+      "type": "string",
+      "description": "Last UTC day of the window (inclusive), as YYYY-MM-DD. Defaults to today. The window can span at most 366 days."
+     },
+     "interval": {
+      "type": "string",
+      "description": "How to bucket the series. Defaults to day.",
+      "enum": [
+       "day",
+       "week",
+       "month"
+      ]
+     }
+    },
+    "required": [
+     "productId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://laylo.com/api/api/v1/billing/credit-usage/products",
+    "path": [],
+    "query": [
+     "productId",
+     "startDate",
+     "endDate",
+     "interval"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "laylo.conversions_counts_list",
+   "name": "List conversion counts",
+   "description": "List conversion counts",
+   "input": {
+    "type": "object",
+    "properties": {
+     "action": {
+      "type": "array",
+      "description": "Only include these actions. Repeat the parameter for several values."
+     },
+     "startDate": {
+      "type": "string",
+      "description": "Start of the window (inclusive). Defaults to 28 days before endDate."
+     },
+     "endDate": {
+      "type": "string",
+      "description": "End of the window (inclusive). Defaults to now."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://laylo.com/api/api/v1/conversions/counts",
+    "path": [],
+    "query": [
+     "action",
+     "startDate",
+     "endDate"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "laylo.conversions_list",
+   "name": "List conversions",
+   "description": "List conversions",
+   "input": {
+    "type": "object",
+    "properties": {
+     "action": {
+      "type": "array",
+      "description": "Only return conversions with one of these actions."
+     },
+     "relatedProductId": {
+      "type": "string",
+      "description": "Only return conversions associated with this product ID."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://laylo.com/api/api/v1/conversions",
+    "path": [],
+    "query": [
+     "action",
+     "relatedProductId"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "laylo.conversions_track",
+   "name": "Track a conversion event",
+   "description": "Track a conversion event",
+   "input": {
+    "type": "object",
+    "properties": {
+     "action": {
+      "type": "string",
+      "description": "The action represented by the conversion.",
+      "enum": [
+       "PURCHASE",
+       "STORE_PURCHASE",
+       "TICKET_PURCHASE",
+       "CHECK_IN",
+       "ADD_TO_CART",
+       "LINK_CLICK",
+       "UPSELL_CLICK",
+       "UPSELL_REMINDER_CLICK",
+       "VIP_CLICK",
+       "OPT_OUT",
+       "DIRECT_MESSAGE",
+       "CALL"
+      ]
+     },
+     "consentGrantedAt": {
+      "type": "string",
+      "description": "When marketing consent was granted, in ISO 8601 with an explicit UTC offset."
+     },
+     "metadata": {
+      "type": "object",
+      "description": "Integration-defined event metadata. Additional fields are accepted but not displayed in the Laylo UI."
+     },
+     "name": {
+      "type": "string",
+      "description": "A non-empty, human-readable name for what the fan converted on, such as an event name (Summer Tour 2026 - Los Angeles) or a merch item name (Tour Hoodie)."
+     },
+     "sessionId": {
+      "type": "string",
+      "description": "Optional integration session identifier."
+     },
+     "source": {
+      "type": "string",
+      "description": "Optional name of the integration source. Defaults to the `X-Laylo-Source` header, then to the API key's label."
+     },
+     "timestamp": {
+      "type": "string",
+      "description": "When the event occurred, in ISO 8601 with an explicit UTC offset."
+     },
+     "user": {
+      "type": "object",
+      "description": "The event subject. Supply a valid email or E.164 phone number. Additional fields are accepted but not displayed in the Laylo UI or echoed in the response."
+     }
+    },
+    "required": [
+     "action",
+     "metadata",
+     "name",
+     "timestamp",
+     "user"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://laylo.com/api/api/v1/conversions/events",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "action",
+     "consentGrantedAt",
+     "metadata",
+     "name",
+     "sessionId",
+     "source",
+     "timestamp",
+     "user"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "laylo.customers_list",
+   "name": "List customers under my account",
+   "description": "List customers under my account",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://laylo.com/api/api/v1/customers",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "laylo.drops_list",
+   "name": "List public drops",
+   "description": "List public drops",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://laylo.com/api/api/v1/drops",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "laylo.fans_segments_list",
+   "name": "Count fans with query filters",
+   "description": "Count fans with query filters",
+   "input": {
+    "type": "object",
+    "properties": {
+     "dropIds": {
+      "type": "array",
+      "description": "Only include fans who purchased any of these drop IDs."
+     },
+     "excludedDropIds": {
+      "type": "array",
+      "description": "Exclude fans who purchased any of these drop IDs."
+     },
+     "conversionIds": {
+      "type": "array",
+      "description": "Only include fans associated with any of these conversion IDs."
+     },
+     "excludedConversionIds": {
+      "type": "array",
+      "description": "Exclude fans associated with any of these conversion IDs."
+     },
+     "locations": {
+      "type": "array",
+      "description": "Location filters as a JSON-encoded array of location objects."
+     },
+     "excludedLocations": {
+      "type": "array",
+      "description": "Excluded locations as a JSON-encoded array of location objects. A fan is left out when every location Laylo has for them is excluded, matching who a segment message reaches; a fan with no known location is always left out."
+     },
+     "signUpType": {
+      "type": "string",
+      "description": "The contact channel to count.",
+      "enum": [
+       "sms",
+       "email"
+      ]
+     },
+     "signedUpAfter": {
+      "type": "string",
+      "description": "Only include fans who signed up at or after this time, in ISO 8601 with an explicit UTC offset."
+     },
+     "signedUpBefore": {
+      "type": "string",
+      "description": "Only include fans who signed up before this time (exclusive), in ISO 8601 with an explicit UTC offset."
+     }
+    },
+    "required": [
+     "signUpType"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://laylo.com/api/api/v1/fans/segments",
+    "path": [],
+    "query": [
+     "dropIds",
+     "excludedDropIds",
+     "conversionIds",
+     "excludedConversionIds",
+     "locations",
+     "excludedLocations",
+     "signUpType",
+     "signedUpAfter",
+     "signedUpBefore"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "laylo.fans_subscribed_check",
+   "name": "Check whether a fan is subscribed",
+   "description": "Check whether a fan is subscribed",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://laylo.com/api/api/v1/fans/subscribed",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "laylo.fans_subscriptions_create",
+   "name": "Subscribe a fan",
+   "description": "Subscribe a fan",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://laylo.com/api/api/v1/fans/subscriptions",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "laylo.fans_unsubscribed_check",
+   "name": "Check whether a fan unsubscribed",
+   "description": "Check whether a fan unsubscribed",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://laylo.com/api/api/v1/fans/unsubscribed",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "laylo.keys_verify",
+   "name": "Verify customer api credentials",
+   "description": "Verify customer API credentials",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://laylo.com/api/api/v1/keys/verify",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "laylo.messages_segments_schedule",
+   "name": "Schedule a message to a fan segment",
+   "description": "Schedule a message to a fan segment",
+   "input": {
+    "type": "object",
+    "properties": {
+     "dryRun": {
+      "type": "boolean",
+      "description": "Defaults to false. When true, nothing is created or sent: the request is validated like a real one, and the response shows the cost estimate, with a null id. A dry run doesn't use the Idempotency-Key."
+     },
+     "email": {
+      "type": "object",
+      "description": "Required when segment.signUpType is email, and not allowed for sms. The email body is laid out from message the way the Laylo message composer's magic template does it: the text becomes headings and paragraphs and its links become buttons."
+     },
+     "message": {
+      "type": "string",
+      "description": "The text to send, up to 1600 characters. The first link gets https:// added when it has no scheme. For an email segment this is the content the email is built from."
+     },
+     "segment": {
+      "type": "object",
+      "description": "The same filters GET /v1/fans/segments counts with, as a JSON object. signedUpAfter and signedUpBefore can't both be sent, and at most 30 locations and excluded locations are allowed combined."
+     },
+     "sendAt": {
+      "type": "string",
+      "description": "When to send, as the local date and time in timezone with no offset, like 2026-11-20T19:00. Must be at least 5 minutes and at most 2 years from now, and is rounded up to the next five-minute mark."
+     },
+     "timezone": {
+      "type": "string",
+      "description": "The IANA time zone sendAt is written in. Daylight saving is applied for the date: a time skipped when clocks spring forward is rejected, and a time repeated when they fall back uses the first occurrence.",
+      "enum": [
+       "UTC",
+       "America/New_York",
+       "America/Chicago",
+       "America/Denver",
+       "America/Phoenix",
+       "America/Los_Angeles",
+       "America/Anchorage",
+       "Pacific/Honolulu",
+       "America/Halifax",
+       "America/St_Johns",
+       "America/Toronto",
+       "America/Vancouver"
+      ]
+     }
+    },
+    "required": [
+     "message",
+     "segment",
+     "sendAt",
+     "timezone"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://laylo.com/api/api/v1/messages/segments/scheduled",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "dryRun",
+     "email",
+     "message",
+     "segment",
+     "sendAt",
+     "timezone"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "laylo.messages_segments_send",
+   "name": "Message a fan segment",
+   "description": "Message a fan segment",
+   "input": {
+    "type": "object",
+    "properties": {
+     "dryRun": {
+      "type": "boolean",
+      "description": "Defaults to false. When true, nothing is created or sent: the request is validated like a real one, and the response shows the cost estimate, with a null id. A dry run doesn't use the Idempotency-Key."
+     },
+     "email": {
+      "type": "object",
+      "description": "Required when segment.signUpType is email, and not allowed for sms. The email body is laid out from message the way the Laylo message composer's magic template does it: the text becomes headings and paragraphs and its links become buttons."
+     },
+     "message": {
+      "type": "string",
+      "description": "The text to send, up to 1600 characters. The first link gets https:// added when it has no scheme. For an email segment this is the content the email is built from."
+     },
+     "segment": {
+      "type": "object",
+      "description": "The same filters GET /v1/fans/segments counts with, as a JSON object. signedUpAfter and signedUpBefore can't both be sent, and at most 30 locations and excluded locations are allowed combined."
+     },
+     "timezone": {
+      "type": "string",
+      "description": "The IANA time zone the message is written in, used to read a time it mentions, like tomorrow at 2pm.",
+      "enum": [
+       "UTC",
+       "America/New_York",
+       "America/Chicago",
+       "America/Denver",
+       "America/Phoenix",
+       "America/Los_Angeles",
+       "America/Anchorage",
+       "Pacific/Honolulu",
+       "America/Halifax",
+       "America/St_Johns",
+       "America/Toronto",
+       "America/Vancouver"
+      ]
+     }
+    },
+    "required": [
+     "message",
+     "segment",
+     "timezone"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://laylo.com/api/api/v1/messages/segments",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "dryRun",
+     "email",
+     "message",
+     "segment",
+     "timezone"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "laylo.messages_sms_conversations_get",
+   "name": "Get an sms conversation",
+   "description": "Get an SMS conversation",
+   "input": {
+    "type": "object",
+    "properties": {
+     "fanId": {
+      "type": "string",
+      "description": "The fan's Laylo ID, as returned in a conversation's fanId. No phone number is needed or returned."
+     },
+     "cursor": {
+      "type": "string",
+      "description": "An opaque pagination cursor from a prior response."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Items per page; defaults to 50 and caps at 200."
+     }
+    },
+    "required": [
+     "fanId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://laylo.com/api/api/v1/messages/sms/conversations/{fanId}",
+    "path": [
+     "fanId"
+    ],
+    "query": [
+     "cursor",
+     "limit"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "laylo.messages_sms_conversations_list",
+   "name": "List sms conversations",
+   "description": "List SMS conversations",
+   "input": {
+    "type": "object",
+    "properties": {
+     "awaitingReply": {
+      "type": "boolean",
+      "description": "Only return fans who texted after the customer's last reply."
+     },
+     "unreadOnly": {
+      "type": "boolean",
+      "description": "Only return fans whose newest text the customer hasn't opened in the Laylo dashboard."
+     },
+     "since": {
+      "type": "string",
+      "description": "Only return fans whose newest text was sent at or after this ISO 8601 date-time. The inbox only looks back 90 days, so an earlier date, or none, means 90 days ago."
+     },
+     "cursor": {
+      "type": "string",
+      "description": "An opaque pagination cursor from a prior response."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Items per page; defaults to 50 and caps at 200."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://laylo.com/api/api/v1/messages/sms/conversations",
+    "path": [],
+    "query": [
+     "awaitingReply",
+     "unreadOnly",
+     "since",
+     "cursor",
+     "limit"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "laylo.messages_sms_conversations_reply",
+   "name": "Reply to a fan's text",
+   "description": "Reply to a fan's text",
+   "input": {
+    "type": "object",
+    "properties": {
+     "fanId": {
+      "type": "string",
+      "description": "The fan's Laylo ID, as returned in a conversation's fanId. No phone number is needed or returned."
+     },
+     "message": {
+      "type": "string",
+      "description": "The SMS text, up to 1000 characters (the inbox's limit)."
+     }
+    },
+    "required": [
+     "fanId",
+     "message"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://laylo.com/api/api/v1/messages/sms/conversations/{fanId}/replies",
+    "path": [
+     "fanId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "message"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "laylo.messages_sms_send",
+   "name": "Send an sms message",
+   "description": "Send an SMS message",
+   "input": {
+    "type": "object",
+    "properties": {
+     "message": {
+      "type": "string",
+      "description": "The text to send, up to 1600 characters. Every recipient receives the same body."
+     },
+     "to": {
+      "type": "string",
+      "description": "One phone number, or an array of up to 200, in E.164 format. Numbers in countries Laylo does not send SMS to are rejected as invalid."
+     }
+    },
+    "required": [
+     "message",
+     "to"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://laylo.com/api/api/v1/messages/sms",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "message",
+     "to"
+    ],
+    "body_format": "json"
+   }
+  }
+ ]
+}

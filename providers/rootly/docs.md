@@ -20,7 +20,7 @@ vouches for**: read it, then read their reference.
 
 ### Quick Start
 - [Manage incidents in Slack with the Rootly integration](https://docs.rootly.com/integrating-with-slack.md): Connect Slack to Rootly to run incidents from Slack with channels, slash commands, message actions, notifications, and Workflow Builder connector controls.
-- [Microsoft Teams Integration](https://docs.rootly.com/integrating-with-microsoft-teams.md): Connect Microsoft Teams to Rootly to create incident channels, post real-time updates, and start Teams meetings directly from an incident.
+- [Microsoft Teams Integration](https://docs.rootly.com/integrating-with-microsoft-teams.md): Connect Microsoft Teams to Rootly to create incident channels, page and respond to on-call alerts, and start Teams meetings from an incident.
 - [Google Chat Integration](https://docs.rootly.com/integrating-with-google-chat.md): Connect Google Chat to Rootly to create incident spaces, send notifications, run slash commands, and manage on-call alerts directly from chat.
 - [Rootly quick start: sign up, connect Slack, run a demo](https://docs.rootly.com/quick-start-guide.md): Get up and running with Rootly in about 15 minutes, from signing up to connecting Slack, configuring teams, and creating your first incident end to end.
 
@@ -60,6 +60,7 @@ vouches for**: read it, then read their reference.
 ### Roles & Access
 
 ### Private Incidents
+- [Subscribers and Private Incident Access](https://docs.rootly.com/incidents/private-incidents/subscribers.md): How users become incident subscribers, why the subscriber list grants read access to a private incident, and how to manage it through the API.
 
 ### Timeline
 - [Adding Events to Timeline via Email](https://docs.rootly.com/incidents/incident-timeline/adding-events-to-timeline-via-email.md): Add events to incident timelines by responding to incident emails through the Rootly Email integration, capturing context from external stakeholders.
@@ -72,6 +73,31 @@ vouches for**: read it, then read their reference.
 - [Marking Incidents as Duplicate](https://docs.rootly.com/incidents/incident-operations/marking-as-duplicate.md): Mark incidents as duplicates in Rootly to consolidate response efforts via the web UI, Slack, or API, with auto-cancellation support and parent linking.
 - [Scheduling Maintenance Incidents](https://docs.rootly.com/incidents/incident-operations/scheduling-a-maintenance-incident.md): Learn how to schedule and manage maintenance incidents for planned service interruptions, including Slack channel creation and status page integration.
 
+## Atlas
+
+### AI Connectors
+- [Azure Resource Manager](https://docs.rootly.com/ai/connectors/azure-resource-manager.md): Connect Rootly AI to Microsoft's hosted Azure Resource Manager MCP endpoint for read-only resource inventory and deployment status.
+- [Datadog MCP Connector](https://docs.rootly.com/ai/connectors/datadog.md): Connect Rootly AI to Datadog through read-only OAuth, with API and application keys as a fallback, to query logs, metrics, monitors, and traces.
+- [New Relic AI Connector](https://docs.rootly.com/ai/connectors/new-relic.md): Connect Rootly AI to New Relic — entities, NRQL queries, alerts, incidents, logs, and golden metrics — with a New Relic user API key.
+
+### Private Agents (Early Preview)
+- [Private Agent for Internal HTTP APIs (Early Access)](https://docs.rootly.com/private-agent-http.md): Let AI SRE call internal REST and HTTP APIs through Rootly Private Agent, with a fixed origin, allowlisted methods and paths, and per-API credentials.
+- [Private Agent Limits (Early Access)](https://docs.rootly.com/private-agent-limits.md): Reference for Private Agent limits across Kubernetes, observability, Kafka, Redis, Valkey, GitLab, databases, internal MCP and HTTP providers, and AI context.
+
+## AI SRE
+- [Investigation Rules API](https://docs.rootly.com/ai/ai-sre/investigation-rules-api.md): Create, read, update, and delete team-scoped AI SRE investigation rules with the beta public REST API.
+- [AI Instructions API](https://docs.rootly.com/ai/ai-sre/instructions-api.md): Read, replace, and clear team-wide global and AI SRE Markdown instructions with the beta public REST API.
+
+## Rootly AI
+
+### AI Agent in Communication Channels
+
+### AI During Incidents
+
+### Instructions
+
+### AI Privacy & Security
+
 ## Retrospectives
 
 ### Collaborative Editor
@@ -82,22 +108,10 @@ vouches for**: read it, then read their reference.
 ### AI in Retrospectives
 
 ## Status Pages
+- [Driving a Status Page from the API](https://docs.rootly.com/configuration/status-page-write-api.md): Create, update, and delete status page events programmatically with the Rootly API — post an update, revise it, and remove one posted in error.
 - [Status Page Public API](https://docs.rootly.com/configuration/status-page-public-api.md): Access status and incident information programmatically through public JSON API endpoints exposed on your status page custom domain.
 
 ## Communications
-
-## Rootly AI
-
-### AI in Slack
-
-### AI During Incidents
-
-### AI Connectors
-- [Azure Resource Manager (MCP)](https://docs.rootly.com/ai/connectors/azure-resource-manager.md): Connect Rootly AI to Microsoft's hosted Azure Resource Manager MCP endpoint for read-only resource inventory and deployment status.
-- [Datadog MCP Connector](https://docs.rootly.com/ai/connectors/datadog.md): Connect Rootly AI to Datadog through read-only OAuth, with API and application keys available as a fallback.
-- [New Relic AI Connector](https://docs.rootly.com/ai/connectors/new-relic.md): Connect Rootly AI to New Relic — entities, NRQL queries, alerts, incidents, logs, and golden metrics — with OAuth or a user API key.
-
-### AI Privacy & Security
 
 ## Workflows & Automation
 
@@ -145,15 +159,13 @@ vouches for**: read it, then read their reference.
 ### Services & Functionalities
 
 ### Catalog
+- [Getting Data Into the Catalog](https://docs.rootly.com/catalog-getting-data-in.md): Compare the ways to populate a Rootly catalog — manual entry, the bulk API, and Catalog Sync — and choose the one that matches where your data already lives.
 
 ### Webhooks
 - [Outgoing Webhooks](https://docs.rootly.com/configuration/webhooks.md): Send real-time event notifications from Rootly to any external HTTP endpoint as incidents, alerts, pulses, and workflows progress through their lifecycles.
 - [Event Payloads](https://docs.rootly.com/configuration/event-payloads.md): Reference documentation for webhook event payload structures used in Rootly integrations and custom automations, including incident, alert, and pulse events.
 
 ### Edge Connectors
-
-### Private Agent
-- [Private Agent Limits (Early Access)](https://docs.rootly.com/private-agent-limits.md): Reference for Private Agent execution, Kubernetes, Prometheus, Loki, MCP, and AI context limits.
 
 ## Integrations
 
@@ -240,6 +252,11 @@ vouches for**: read it, then read their reference.
 - [OAuth 2.0 & OpenID Connect](https://docs.rootly.com/api-reference/oauth2.md): Authenticate with the Rootly API via OAuth 2.0 and OpenID Connect: browser login for CLIs, third-party app consent flows, and automation tokens.
 - [Official SDKs](https://docs.rootly.com/api-reference/sdks.md): Official Rootly API client libraries for TypeScript, Rust, Python, Go, Swift, Ruby, Java, and Terraform to automate incident management workflows.
 - [API Changelog](https://docs.rootly.com/api-reference/changelog.md): Track the latest changes, deprecations, and breaking updates to the Rootly API, including new endpoints, payload changes, and version release notes.
+
+## Problem Management
+- [Problems API](https://docs.rootly.com/api-reference/problem-management/problems.md): Create, update, transition, and delete problems with the Rootly API, and link the incidents a problem explains.
+- [Problem Action Items API](https://docs.rootly.com/api-reference/problem-management/action-items.md): Create, update, list, and delete the action items that track work on a Rootly problem, including partial updates and error responses.
+- [Problem Roles API](https://docs.rootly.com/api-reference/problem-management/roles.md): List your organization's problem roles and assign or unassign them on a Rootly problem with the API.
 
 ## Open Source
 

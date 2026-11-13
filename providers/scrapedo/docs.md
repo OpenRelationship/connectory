@@ -40,6 +40,26 @@ vouches for**: read it, then read their reference.
 
 - [n8n - Scrape.do Integration](https://scrape.do/documentation/integrations/n8n.md): Step-by-step guide to integrate Scrape.do with n8n for automated web scraping workflows
 - [Zapier - Scrape.do Integration](https://scrape.do/documentation/integrations/zapier.md): Step-by-step guide to integrate Scrape.do with Zapier for automated web scraping workflows
+- [Clay - Scrape.do Integration](https://scrape.do/documentation/integrations/clay.md): Step-by-step guide to scrape any URL into a Clay table with Scrape.do and extract the fields you need with AI
+- [Gumloop - Scrape.do Integration](https://scrape.do/documentation/integrations/gumloop.md): Step-by-step guide to add Scrape.do to Gumloop agents as a reusable web scraping skill
+- [Activepieces - Scrape.do Integration](https://scrape.do/documentation/integrations/activepieces.md): Step-by-step guide to integrate Scrape.do with Activepieces for scheduled bulk web scraping flows
+- [Tray.ai - Scrape.do Integration](https://scrape.do/documentation/integrations/tray-ai.md): Step-by-step guide to integrate Scrape.do with Tray.ai for bulk web scraping workflows from Google Sheets
+- [Power Automate - Scrape.do Integration](https://scrape.do/documentation/integrations/power-automate.md): Step-by-step guide to integrate Scrape.do with Power Automate through a custom connector for bulk web scraping flows
+- [UiPath - Scrape.do Integration](https://scrape.do/documentation/integrations/uipath.md): Step-by-step guide to integrate Scrape.do with UiPath Integration Service for bulk web scraping workflows
+- [Windmill - Scrape.do Integration](https://scrape.do/documentation/integrations/windmill.md): Step-by-step guide to integrate Scrape.do with Windmill for parallel web scraping flows in TypeScript
+- [Retool - Scrape.do Integration](https://scrape.do/documentation/integrations/retool.md): Step-by-step guide to integrate Scrape.do with Retool Workflows for bulk web scraping into Retool Database
+- [Airbyte - Scrape.do Integration](https://scrape.do/documentation/integrations/airbyte.md): Step-by-step guide to build a Scrape.do source connector in Airbyte Connector Builder and sync scraped pages to your warehouse
+- [Airflow - Scrape.do Integration](https://scrape.do/documentation/integrations/airflow.md): Step-by-step guide to integrate Scrape.do with Apache Airflow for scheduled web scraping pipelines
+- [Databricks - Scrape.do Integration](https://scrape.do/documentation/integrations/databricks.md): Step-by-step guide to integrate Scrape.do with Databricks and land scraped pages in a Delta table
+- [Alteryx - Scrape.do Integration](https://scrape.do/documentation/integrations/alteryx.md): Step-by-step guide to integrate Scrape.do with Alteryx Designer using a ready-made scraping macro
+- [KNIME - Scrape.do Integration](https://scrape.do/documentation/integrations/knime.md): Step-by-step guide to integrate Scrape.do with KNIME for no-code web scraping workflows
+- [Power BI - Scrape.do Integration](https://scrape.do/documentation/integrations/power-bi.md): Step-by-step guide to integrate Scrape.do with Power BI to pull live web data into your dashboards
+- [Salesforce - Scrape.do Integration](https://scrape.do/documentation/integrations/salesforce.md): Step-by-step guide to integrate Scrape.do with Salesforce and save scraped pages as CRM records
+- [Haystack - Scrape.do Integration](https://scrape.do/documentation/integrations/haystack.md): Step-by-step guide to integrate Scrape.do with Haystack for LLM pipelines and AI agents
+- [LangChain - Scrape.do Integration](https://scrape.do/documentation/integrations/langchain.md): Step-by-step guide to integrate Scrape.do with LangChain document loaders, RAG pipelines and agents
+- [LlamaIndex - Scrape.do Integration](https://scrape.do/documentation/integrations/llamaindex.md): Step-by-step guide to integrate Scrape.do with LlamaIndex to index and query live web pages
+- [CrewAI - Scrape.do Integration](https://scrape.do/documentation/integrations/crewai.md): Step-by-step guide to integrate Scrape.do with CrewAI as a custom tool for your agents
+- [Dify - Scrape.do Integration](https://scrape.do/documentation/integrations/dify.md): Step-by-step guide to integrate Scrape.do with Dify for bulk web scraping workflows
 
 ## Amazon Scraper API
 
@@ -61,6 +81,7 @@ vouches for**: read it, then read their reference.
 - [Google Search API](https://scrape.do/documentation/google-scraper-api/search.md): Scrape Google search results and extract organic listings, ads, knowledge graphs, local results, and more as structured JSON. No blocks, no CAPTCHAs.
 - [SERP API](https://scrape.do/documentation/google-scraper-api/search/search.md): Search Google and get structured SERP data as JSON
 - [AI Mode](https://scrape.do/documentation/google-scraper-api/search/ai-mode.md): Get AI-generated answers with references and shopping results from Google AI Mode
+- [Google Redirect (Goto) Link Resolver](https://scrape.do/documentation/google-scraper-api/goto.md): Resolve one Google redirect link to its destination URL
 
 ### Google Maps API
 
@@ -74,10 +95,12 @@ vouches for**: read it, then read their reference.
 - [Google Shopping API](https://scrape.do/documentation/google-scraper-api/shopping.md): Scrape Google Shopping as structured JSON. Search product listings with prices, retailers, and filters, then fetch full product pages with every seller offer, variants, specs, and reviews. No blocks, worldwide coverage.
 - [Google Shopping Search API](https://scrape.do/documentation/google-scraper-api/shopping/search.md): Scrape Google Shopping product listings and sponsored ads with prices, retailers, ratings, delivery info, filters, and categorized results. Structured JSON, no blocks, worldwide coverage.
 - [Google Shopping Product API](https://scrape.do/documentation/google-scraper-api/shopping/product.md): Scrape Google Shopping product details — sellers with prices, shipping, taxes and totals, variants, specs, reviews, videos, and forums. Companion endpoint to the Google Shopping search API.
+- [Google Lens API](https://scrape.do/documentation/google-scraper-api/lens.md): Search Google Lens with a public image URL. Get visually similar images, exact-image matches, product prices, ratings, stock status, and related searches as structured JSON.
 - [Google Flights API](https://scrape.do/documentation/google-scraper-api/flights.md): Scrape Google Flights with prices, durations, layovers, airlines, carbon emissions, and price insights. Structured JSON, 200+ countries and currencies, no JavaScript rendering.
 - [Google Hotels API](https://scrape.do/documentation/google-scraper-api/hotels.md): Scrape Google Hotels listings with names, ratings, star classes, amenities, coordinates, images, prices, and per-vendor booking sources. Filters for price, rating, hotel class, eco-certification, and free cancellation. Worldwide currency support.
 - [Google Food API](https://scrape.do/documentation/google-scraper-api/food.md): Scrape Google Food order-online provider lists for restaurants. Returns pickup and delivery ordering providers, deep links, ETAs, fees, logos, and preferred-by-business flags from a Google entity ID.
 - [Google Play Store API](https://scrape.do/documentation/google-scraper-api/play-store.md): Scrape Google Play Store for Android apps, app details, and user reviews. Returns titles, package IDs, ratings, developers, prices, screenshots, downloads, versions, release notes, and paginated reviews with developer responses. Category, chart, and device-type filters supported.
+- [YouTube Video API](https://scrape.do/documentation/google-scraper-api/youtube-video.md): Scrape a YouTube video for structured metadata, including exact view and like counts, stable channel IDs, UTC publication timestamps, comments, chapters, related videos, and continuation tokens.
 - [Google News API](https://scrape.do/documentation/google-scraper-api/news.md): Scrape Google News articles with bylines, ISO dates, thumbnails, and direct publisher URLs. Navigate by keyword, topic, story cluster, publication, or Knowledge Graph entity. No redirect chains, no pagination quirks.
 
 ### Google Trends API
@@ -92,10 +115,10 @@ vouches for**: read it, then read their reference.
 
 ## Walmart Scraper API
 
-- [Walmart Scraper API](https://scrape.do/documentation/walmart-scraper-api.md): Scrape Walmart search results, product details, and any Walmart page scoped to a specific store or ZIP code. Structured JSON with store-accurate pricing and availability.
+- [Walmart Scraper API](https://scrape.do/documentation/walmart-scraper-api.md): Scrape Walmart search results, product details, and Walmart US or Canada pages scoped to a specific store. Structured JSON with store-accurate pricing and availability.
 - [Search Results](https://scrape.do/documentation/walmart-scraper-api/search.md): Search a specific Walmart store's shelf and get structured results
 - [Product Details](https://scrape.do/documentation/walmart-scraper-api/product.md): Get one Walmart item's price, stock, and specifications at a specific store
-- [Store-Scoped Page Fetch](https://scrape.do/documentation/walmart-scraper-api/store.md): Fetch any Walmart URL through a session warmed for a specific store
+- [Store-Scoped Page Fetch](https://scrape.do/documentation/walmart-scraper-api/store.md): Fetch Walmart US or Canada URLs through a session warmed for a specific store
 - [Lowes Scraper API](https://scrape.do/documentation/lowes-api.md): Scrape Lowes with store-level pricing and availability. Pass a store ID and zip code to get product pages, search results, and category listings exactly as that store serves them.
 - [Home Depot Scraper API](https://scrape.do/documentation/homedepot-api.md): Scrape Home Depot product pages with store-level pricing and availability. Pass a store ID and zip code to get the page exactly as that store serves it, or search stores by zip code or lat/lng coordinates.
 - [YouTube Scraper API](https://scrape.do/documentation/youtube-api.md): Scrape YouTube search results with videos, channels, playlists, Shorts shelves, ads, and related searches. Up to 30 videos per request with the num parameter, structured JSON, no JavaScript rendering, full localization, sp filters for sort/type/duration/features/upload date.

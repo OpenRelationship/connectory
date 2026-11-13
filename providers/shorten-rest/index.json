@@ -1,0 +1,282 @@
+{
+ "_": "GENERATED \u2014 what an authoring tool needs to FIND an operation. The calling table is the .lua beside it.",
+ "provider": "shorten-rest",
+ "source": "https://api.apis.guru/v2/specs/shorten.rest/1.0.0/openapi.json",
+ "operations": [
+  {
+   "slug": "shorten-rest.create_alias",
+   "name": "Create alias",
+   "description": "This POST method creates a new alias under a specified domain. If no domain is specified in the request the alias will be attached to the default domain Short.fyi **NOTE:** You can override the domain level Meta Tags and Tracking Snippets by specifying them for each URL. Any variables you add to a specific URL will always override domain level settings.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domainName": {
+      "type": "string",
+      "description": "domain which alias will belong to (string without `http/https` or `/`)"
+     },
+     "aliasName": {
+      "type": "string",
+      "description": "alias (without `/` at the beginning)"
+     },
+     "destinations": {
+      "type": "array",
+      "description": ""
+     },
+     "metatags": {
+      "type": "array",
+      "description": ""
+     },
+     "snippets": {
+      "type": "array",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.shorten.rest/aliases",
+    "path": [],
+    "query": [
+     "domainName",
+     "aliasName"
+    ],
+    "header": [],
+    "body": [
+     "destinations",
+     "metatags",
+     "snippets"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "shorten-rest.delete_alias",
+   "name": "Delete alias",
+   "description": "Deletes a single alias by providing alias and domain. If no domain is provided the API will search for the matching alias within the Short.fyi domain",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domainName": {
+      "type": "string",
+      "description": "domain which alias belongs to (string without `http/https` or `/`)"
+     },
+     "aliasName": {
+      "type": "string",
+      "description": "alias (without `/` at the beginning)"
+     }
+    },
+    "required": [
+     "aliasName"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.shorten.rest/aliases",
+    "path": [],
+    "query": [
+     "domainName",
+     "aliasName"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "shorten-rest.get_alias",
+   "name": "Get alias",
+   "description": "Get detailed information for a single alias by providing its alias and domain name",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domainName": {
+      "type": "string",
+      "description": "domain which alias belongs to (string without `http/https` or `/`)"
+     },
+     "aliasName": {
+      "type": "string",
+      "description": "alias value (without `/` at the beginning)"
+     }
+    },
+    "required": [
+     "aliasName"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.shorten.rest/aliases",
+    "path": [],
+    "query": [
+     "domainName",
+     "aliasName"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "shorten-rest.get_aliases",
+   "name": "Get aliases by domain",
+   "description": "Obtain a list of all alias names associated with your account and given domain. Result array is in descending order by creation date. If no domain is specified you will receive a list of all the alias names you have created using the Short.fyi domain. If there are more results than the limit for the request the response will return you a value in lastId property you can specify it in the continueF",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domainName": {
+      "type": "string",
+      "description": "The domain name to get the aliases for (string without `http/https` or `/`)"
+     },
+     "continueFrom": {
+      "type": "string",
+      "description": "An ID returned by a previous query to continue aliases retrieval (see lastId in response)"
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Number of results to return per request"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.shorten.rest/aliases/all",
+    "path": [],
+    "query": [
+     "domainName",
+     "continueFrom",
+     "limit"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "shorten-rest.get_clicks",
+   "name": "Get clicks",
+   "description": "Retrieve the raw click data for your account. Clicks are retrieved by creation date in descending order. If there are more results than the limit for the request the response will return you a value in lastId property you can specify it in the continueFrom query parameter to get the next batch of records.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "continueFrom": {
+      "type": "string",
+      "description": "An ID returned by a previous query to continue clicks retrieval (see lastId in response)"
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Number of results to return per request"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.shorten.rest/clicks",
+    "path": [],
+    "query": [
+     "continueFrom",
+     "limit"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "shorten-rest.get_statistics",
+   "name": "Get clicks statistics",
+   "description": "Retrieve the raw click statistics for your account. Clicks are retrieved by creation date in descending order.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "aliasId": {
+      "type": "string",
+      "description": "Alias Id"
+     },
+     "dateFrom": {
+      "type": "string",
+      "description": "date From"
+     },
+     "dateTo": {
+      "type": "string",
+      "description": "date To"
+     },
+     "domain": {
+      "type": "string",
+      "description": "Domain name"
+     },
+     "lastId": {
+      "type": "integer",
+      "description": "last Id"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.shorten.rest/clicks/pg",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "aliasId",
+     "dateFrom",
+     "dateTo",
+     "domain",
+     "lastId"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "shorten-rest.update_alias",
+   "name": "Update alias",
+   "description": "Update a single short URL by providing its alias and domain as a parameter, and the data you wish to update in the body of the request. If no domain is provided you will receive the alias found attached to the Short.fyi domain (if it exists and is linked to your account!) ### NOTE: ( * )If you add a metatag or a snippet with a same name to an alias and the domain it's related to, the value will be",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domainName": {
+      "type": "string",
+      "description": "domain which alias belongs to (string without `http/https` or `/`)"
+     },
+     "aliasName": {
+      "type": "string",
+      "description": "alias (without `/` at the beginning)"
+     },
+     "destinations": {
+      "type": "array",
+      "description": ""
+     },
+     "metatags": {
+      "type": "array",
+      "description": ""
+     },
+     "snippets": {
+      "type": "array",
+      "description": ""
+     }
+    },
+    "required": [
+     "aliasName"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.shorten.rest/aliases",
+    "path": [],
+    "query": [
+     "domainName",
+     "aliasName"
+    ],
+    "header": [],
+    "body": [
+     "destinations",
+     "metatags",
+     "snippets"
+    ],
+    "body_format": "json"
+   }
+  }
+ ]
+}

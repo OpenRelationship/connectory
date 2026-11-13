@@ -23,6 +23,7 @@ vouches for**: read it, then read their reference.
 - [Web API](https://docs.zigpoll.com/web-api.md): Interact with your survey data using our api service
 - [n8n](https://docs.zigpoll.com/integrations/n8n.md): All you need to know about our n8n integration
 - [API Key](https://docs.zigpoll.com/integrations/api-key.md): Learn how to get your API key which you can use to connect Zigpoll to any workflow
+- [OAuth Apps](https://docs.zigpoll.com/integrations/oauth-apps.md): Let other Zigpoll accounts connect to your app with OAuth, read-only, without sharing an API key
 - [Connect to ChatGPT](https://docs.zigpoll.com/integrations/mcp/mcp-chatgpt.md): Connect Zigpoll to ChatGPT with a custom MCP connector in Developer Mode to analyze survey data and create surveys in natural language.
 - [Webhooks](https://docs.zigpoll.com/integrations/webhooks.md): Receive survey responses at your own endpoint, signed and retried
 - [How to Reduce Churn and Cancellations](https://docs.zigpoll.com/guides/how-to-reduce-churn-and-cancellations.md): Find out why customers cancel, save some of them on the spot, and fix the reasons the rest are leaving
@@ -34,11 +35,15 @@ vouches for**: read it, then read their reference.
 This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
 
 ## Querying This Documentation
-If you need additional information, you can query the documentation dynamically by asking a question.
-Perform an HTTP GET request on a page URL with the `ask` query parameter:
+This site has an agentic ask interface you may use to query the documentation dynamically by asking a question.
+
+Perform an HTTP GET request on the following URL with the `ask` and `goal` query parameters:
+
 ```
-GET https://docs.zigpoll.com/readme.md?ask=<question>
+GET https://docs.zigpoll.com/index.md?ask=<question>&goal=<user_goal>
 ```
-The question should be specific, self-contained, and written in natural language.
+
+`ask` is the immediate question: it should be specific, self-contained, and written in natural language.
+`goal` is what the user is ultimately trying to achieve, the reason they need the answer. Sharing it helps GitBook give you a better, more relevant answer. A goal is most helpful when it describes the outcome the user wants rather than restating the question. For example, with `ask=how do I create an API token`, a goal like `automate deployments from our CI pipeline` lets GitBook tailor the answer to that use case.
+
 The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
-Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

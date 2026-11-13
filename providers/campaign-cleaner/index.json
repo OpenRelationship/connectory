@@ -1,0 +1,87 @@
+{
+ "_": "GENERATED \u2014 what an authoring tool needs to FIND an operation. The calling table is the .lua beside it.",
+ "provider": "campaign-cleaner",
+ "source": "https://docs.campaigncleaner.com/api-reference/openapi.json",
+ "operations": [
+  {
+   "slug": "campaign-cleaner.get_api_v1_Credits",
+   "name": "Campaign cleaner get api v1 credits",
+   "description": "Lists credits.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "X-API-Key": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.campaigncleaner.com/api/v1/Credits",
+    "path": [],
+    "query": [],
+    "header": [
+     "X-API-Key"
+    ],
+    "body": [],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "campaign-cleaner.get_api_v1_verify",
+   "name": "Campaign cleaner get api v1 verify",
+   "description": "Lists verify.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "email": {
+      "type": "string",
+      "description": ""
+     },
+     "X-API-Key": {
+      "type": "string",
+      "description": ""
+     },
+     "firstName": {
+      "type": "string",
+      "description": ""
+     },
+     "lastName": {
+      "type": "string",
+      "description": ""
+     },
+     "linkedInProfileUrl": {
+      "type": "string",
+      "description": ""
+     },
+     "domain": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.campaigncleaner.com/api/v1/verify",
+    "path": [],
+    "query": [
+     "email",
+     "firstName",
+     "lastName",
+     "linkedInProfileUrl",
+     "domain"
+    ],
+    "header": [
+     "X-API-Key"
+    ],
+    "body": [],
+    "body_format": "json"
+   },
+   "described": "derived"
+  }
+ ]
+}

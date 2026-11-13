@@ -1,0 +1,444 @@
+{
+ "_": "GENERATED \u2014 what an authoring tool needs to FIND an operation. The calling table is the .lua beside it.",
+ "provider": "brandfetch",
+ "source": "https://docs.brandfetch.io/openapi.json",
+ "operations": [
+  {
+   "slug": "brandfetch.get_agent_access_offer",
+   "name": "Describe the agent access offer",
+   "description": "What an agent can buy and how to pay for it: standing API access \u2014 an organization, an API key preloaded with prepaid credits and an MCP token \u2014 sold for one x402 or MPP payment. Needs no credential. Written for an agent that will act on it. See https://docs.brandfetch.com/agents/overview.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.brandfetch.io/v2/agents/access",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "brandfetch.get_brand_batch",
+   "name": "Get up to 100 brands in one request",
+   "description": "Send up to 100 identifiers. Get one result per identifier, in the order you sent them. Each identifier is answered the way `GET /v2/brands/{identifier}` answers it. One difference: a batch never crawls while you wait. A brand that is not indexed yet is queued for indexing and answered `202`. Request it again later. Each identifier answered `200` uses one API credit. Every other result is free, `40",
+   "input": {
+    "type": "object",
+    "properties": {
+     "identifiers": {
+      "type": "array",
+      "description": "The brands to look up. A string is read as the `identifier` of `GET /v2/brands/{identifier}`: a domain, website URL, email address, brand ID, ticker or ISIN. An object names the identifier's type, as `GET /v2/brands/{type}/{identifier}` does. An exchange-suffixed ticker sent as a string, such as `bhp.ax`, is read as a domain: send it as `{ \"type\": \"ticker\", \"value\": \"BHP.AX\" }`."
+     },
+     "cachedOnly": {
+      "type": "boolean",
+      "description": "Answer from the index alone. A brand that is not indexed is answered `204` and is not queued, and a ticker, ISIN or crypto symbol that is not indexed is not resolved. A `204` is free."
+     },
+     "allowNsfw": {
+      "type": "boolean",
+      "description": "As `allowNsfw` on `GET /v2/brands/{identifier}`. Not set by default."
+     },
+     "palette": {
+      "type": "boolean",
+      "description": "As `palette` on `GET /v2/brands/{identifier}`: add each brand's `palette`."
+     }
+    },
+    "required": [
+     "identifiers"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.brandfetch.io/v2/brands/batch",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "identifiers",
+     "cachedOnly",
+     "allowNsfw",
+     "palette"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "brandfetch.get_brand_context",
+   "name": "Get brand context by domain",
+   "description": "Get a structured, narrative-rich brand context for a domain \u2014 including identity, positioning, products and services, voice, visual style, and competitors. Authenticate with an API key sent as `Authorization: Bearer `, or pay for the single request with x402 or MPP: https://docs.brandfetch.com/agents/pay-per-request.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domain": {
+      "type": "string",
+      "description": "Domain name (`brandfetch.com`), a website URL on the domain (`https://www.brandfetch.com/developers/pricing`), or an email address on the domain (`john@example.brandfetch.com`). The API resolves a website URL or an email address to its registrable domain before the lookup. It does not store the URL or the address. Your request logs show only the domain. A URL whose host is not a domain name return"
+     },
+     "cachedOnly": {
+      "type": "boolean",
+      "description": "When `true`, return a brand context only if one is already cached, responding instantly without crawling the domain. If no cached context exists, the API responds with `204 No Content` instead of resolving the domain live (which can take several seconds). Useful for latency-sensitive use cases. Any value other than `true` (including omitting the parameter) keeps the default behaviour of resolving "
+     }
+    },
+    "required": [
+     "domain"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.brandfetch.io/v2/context/{domain}",
+    "path": [
+     "domain"
+    ],
+    "query": [
+     "cachedOnly"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "brandfetch.get_brand_data",
+   "name": "Get brand data",
+   "description": "Get brand data using a Domain, Website URL, Email address, Brand ID, ISIN, Stock/ETF ticker, or Crypto symbol. Authenticate with an API key sent as `Authorization: Bearer `, or pay for the single request with x402 or MPP: https://docs.brandfetch.com/agents/pay-per-request.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "identifier": {
+      "type": "string",
+      "description": "Identifier to retrieve brand data. Accepted formats: - **Domain:** `nike.com` - **Email address:** `john@example.brandfetch.com` - **Website URL:** `https://www.brandfetch.com/developers/pricing` - **Brand ID:** `id_0dwKPKT` - **Stock or ETF ticker:** `NKE` - **ISIN:** `US6541061031` - **Crypto symbol:** `BTC`, `ETH` **Note:** When using this generic endpoint, the identifier is resolved in the fol"
+     },
+     "allowNsfw": {
+      "type": "boolean",
+      "description": "Brandfetch evaluates brands for NSFW content and reserves the right to not return inappropriate brands. Depending on the severity, a brand may either not be returned at all (`404`), or be returned with its `isNsfw` property set to `true`. The `allowNsfw` query parameter lets you control this behavior: - **Not set** (default) \u2014 Some NSFW brands are not returned (`404`), others are returned with `is"
+     },
+     "cachedOnly": {
+      "type": "boolean",
+      "description": "When `true`, the Brand API answers from its store alone. A brand that is already indexed is returned as usual, and a brand that is not is answered with `204 No Content` instead of being indexed live, which can take several seconds. Nothing is crawled, and a ticker, ISIN, or crypto symbol that is not yet indexed is not resolved either. A `204` does not count towards your quota. Any value other than"
+     },
+     "palette": {
+      "type": "boolean",
+      "description": "Opt in to the brand's color palette. Set `true` or `1` to add a `palette` object to the response. If you omit the parameter, or set another value, the response does not change and has no `palette` key. If the brand has no palette yet, this request builds one from the brand's last crawl and can take some seconds longer."
+     }
+    },
+    "required": [
+     "identifier"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.brandfetch.io/v2/brands/{identifier}",
+    "path": [
+     "identifier"
+    ],
+    "query": [
+     "allowNsfw",
+     "cachedOnly",
+     "palette"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "brandfetch.get_brand_data_by_crypto",
+   "name": "Get brand data by crypto symbol",
+   "description": "Get brand data using a crypto symbol. Authenticate with an API key sent as `Authorization: Bearer `, or pay for the single request with x402 or MPP: https://docs.brandfetch.com/agents/pay-per-request.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "symbol": {
+      "type": "string",
+      "description": "Crypto symbol (e.g., `BTC`, `ETH`). Uppercase preferred."
+     },
+     "allowNsfw": {
+      "type": "boolean",
+      "description": "Brandfetch evaluates brands for NSFW content and reserves the right to not return inappropriate brands. Depending on the severity, a brand may either not be returned at all (`404`), or be returned with its `isNsfw` property set to `true`. The `allowNsfw` query parameter lets you control this behavior: - **Not set** (default) \u2014 Some NSFW brands are not returned (`404`), others are returned with `is"
+     },
+     "cachedOnly": {
+      "type": "boolean",
+      "description": "When `true`, the Brand API answers from its store alone. A brand that is already indexed is returned as usual, and a brand that is not is answered with `204 No Content` instead of being indexed live, which can take several seconds. Nothing is crawled, and a ticker, ISIN, or crypto symbol that is not yet indexed is not resolved either. A `204` does not count towards your quota. Any value other than"
+     },
+     "palette": {
+      "type": "boolean",
+      "description": "Opt in to the brand's color palette. Set `true` or `1` to add a `palette` object to the response. If you omit the parameter, or set another value, the response does not change and has no `palette` key. If the brand has no palette yet, this request builds one from the brand's last crawl and can take some seconds longer."
+     }
+    },
+    "required": [
+     "symbol"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.brandfetch.io/v2/brands/crypto/{symbol}",
+    "path": [
+     "symbol"
+    ],
+    "query": [
+     "allowNsfw",
+     "cachedOnly",
+     "palette"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "brandfetch.get_brand_data_by_domain",
+   "name": "Get brand data by domain",
+   "description": "Get brand data using a domain name. Authenticate with an API key sent as `Authorization: Bearer `, or pay for the single request with x402 or MPP: https://docs.brandfetch.com/agents/pay-per-request.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domain": {
+      "type": "string",
+      "description": "Domain name (e.g., `nike.com`)"
+     },
+     "allowNsfw": {
+      "type": "boolean",
+      "description": "Brandfetch evaluates brands for NSFW content and reserves the right to not return inappropriate brands. Depending on the severity, a brand may either not be returned at all (`404`), or be returned with its `isNsfw` property set to `true`. The `allowNsfw` query parameter lets you control this behavior: - **Not set** (default) \u2014 Some NSFW brands are not returned (`404`), others are returned with `is"
+     },
+     "cachedOnly": {
+      "type": "boolean",
+      "description": "When `true`, the Brand API answers from its store alone. A brand that is already indexed is returned as usual, and a brand that is not is answered with `204 No Content` instead of being indexed live, which can take several seconds. Nothing is crawled, and a ticker, ISIN, or crypto symbol that is not yet indexed is not resolved either. A `204` does not count towards your quota. Any value other than"
+     },
+     "palette": {
+      "type": "boolean",
+      "description": "Opt in to the brand's color palette. Set `true` or `1` to add a `palette` object to the response. If you omit the parameter, or set another value, the response does not change and has no `palette` key. If the brand has no palette yet, this request builds one from the brand's last crawl and can take some seconds longer."
+     }
+    },
+    "required": [
+     "domain"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.brandfetch.io/v2/brands/domain/{domain}",
+    "path": [
+     "domain"
+    ],
+    "query": [
+     "allowNsfw",
+     "cachedOnly",
+     "palette"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "brandfetch.get_brand_data_by_isin",
+   "name": "Get brand data by isin",
+   "description": "Get brand data using an ISIN code. Authenticate with an API key sent as `Authorization: Bearer `, or pay for the single request with x402 or MPP: https://docs.brandfetch.com/agents/pay-per-request.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "isin": {
+      "type": "string",
+      "description": "ISIN code (e.g., `US6541061031`)"
+     },
+     "allowNsfw": {
+      "type": "boolean",
+      "description": "Brandfetch evaluates brands for NSFW content and reserves the right to not return inappropriate brands. Depending on the severity, a brand may either not be returned at all (`404`), or be returned with its `isNsfw` property set to `true`. The `allowNsfw` query parameter lets you control this behavior: - **Not set** (default) \u2014 Some NSFW brands are not returned (`404`), others are returned with `is"
+     },
+     "cachedOnly": {
+      "type": "boolean",
+      "description": "When `true`, the Brand API answers from its store alone. A brand that is already indexed is returned as usual, and a brand that is not is answered with `204 No Content` instead of being indexed live, which can take several seconds. Nothing is crawled, and a ticker, ISIN, or crypto symbol that is not yet indexed is not resolved either. A `204` does not count towards your quota. Any value other than"
+     },
+     "palette": {
+      "type": "boolean",
+      "description": "Opt in to the brand's color palette. Set `true` or `1` to add a `palette` object to the response. If you omit the parameter, or set another value, the response does not change and has no `palette` key. If the brand has no palette yet, this request builds one from the brand's last crawl and can take some seconds longer."
+     }
+    },
+    "required": [
+     "isin"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.brandfetch.io/v2/brands/isin/{isin}",
+    "path": [
+     "isin"
+    ],
+    "query": [
+     "allowNsfw",
+     "cachedOnly",
+     "palette"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "brandfetch.get_brand_data_by_ticker",
+   "name": "Get brand data by stock or etf ticker",
+   "description": "Get brand data using a Stock or ETF ticker. Authenticate with an API key sent as `Authorization: Bearer `, or pay for the single request with x402 or MPP: https://docs.brandfetch.com/agents/pay-per-request.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "ticker": {
+      "type": "string",
+      "description": "Stock or ETF ticker (e.g., `NKE`, `QQQ`)"
+     },
+     "allowNsfw": {
+      "type": "boolean",
+      "description": "Brandfetch evaluates brands for NSFW content and reserves the right to not return inappropriate brands. Depending on the severity, a brand may either not be returned at all (`404`), or be returned with its `isNsfw` property set to `true`. The `allowNsfw` query parameter lets you control this behavior: - **Not set** (default) \u2014 Some NSFW brands are not returned (`404`), others are returned with `is"
+     },
+     "cachedOnly": {
+      "type": "boolean",
+      "description": "When `true`, the Brand API answers from its store alone. A brand that is already indexed is returned as usual, and a brand that is not is answered with `204 No Content` instead of being indexed live, which can take several seconds. Nothing is crawled, and a ticker, ISIN, or crypto symbol that is not yet indexed is not resolved either. A `204` does not count towards your quota. Any value other than"
+     },
+     "palette": {
+      "type": "boolean",
+      "description": "Opt in to the brand's color palette. Set `true` or `1` to add a `palette` object to the response. If you omit the parameter, or set another value, the response does not change and has no `palette` key. If the brand has no palette yet, this request builds one from the brand's last crawl and can take some seconds longer."
+     }
+    },
+    "required": [
+     "ticker"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.brandfetch.io/v2/brands/ticker/{ticker}",
+    "path": [
+     "ticker"
+    ],
+    "query": [
+     "allowNsfw",
+     "cachedOnly",
+     "palette"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "brandfetch.get_brand_from_transaction",
+   "name": "Get brand data from a transaction",
+   "description": "Turn payment transactions into merchant data. Authenticate with an API key sent as `Authorization: Bearer `, or pay for the single request with x402 or MPP: https://docs.brandfetch.com/agents/pay-per-request.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "transactionLabel": {
+      "type": "string",
+      "description": "The raw transaction text."
+     },
+     "countryCode": {
+      "type": "string",
+      "description": "An ISO 3166-1 alpha-2 country code indicating the country where the transaction took place."
+     }
+    },
+    "required": [
+     "countryCode",
+     "transactionLabel"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.brandfetch.io/v2/brands/transaction",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "transactionLabel",
+     "countryCode"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "brandfetch.get_viewer",
+   "name": "Get the authenticated viewer",
+   "description": "Returns the identity of the credential used to authenticate the request: an API key or a user session token (JWT). Use it to verify a credential during integration setup (a `200` response means the credential is valid; `401`/`403` means it is missing, unknown, or revoked) and to display which API key and organization are connected. A key an [agent bought](/agents/overview) also says how it was pai",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.brandfetch.io/v2/viewer",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "brandfetch.purchase_agent_access",
+   "name": "Buy standing access with an x402 or mpp payment",
+   "description": "Pay a whole number of US dollars to receive a Brandfetch organization, an API key holding 20 prepaid API credits per dollar, and an MCP bearer token. One credit is one Brand API, Brand Context API or Transaction API request. Call once without a payment to receive the 402: its `PAYMENT-REQUIRED` header is the x402 challenge (USDC on Base), its `WWW-Authenticate` header the MPP challenges (USDC.e on",
+   "input": {
+    "type": "object",
+    "properties": {
+     "usd": {
+      "type": "integer",
+      "description": "Whole US dollars to pay, between 1 and 500. Buys `usd \u00d7 20` credits."
+     },
+     "rotateKey": {
+      "type": "boolean",
+      "description": "When `true` on a top-up, issues a new key holding the combined balance, returned once like any other. The wallet's earlier keys stop working once the new key has been returned, even if the client never receives that response. If the rotation is answered with an error instead of the new key, they keep working. A retry answered `409` `credential_already_delivered` means the rotation completed: pay a"
+     }
+    },
+    "required": [
+     "usd"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.brandfetch.io/v2/agents/access",
+    "path": [],
+    "query": [
+     "usd",
+     "rotateKey"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "brandfetch.search_brands",
+   "name": "Search brands",
+   "description": "Search for brands by name. Log in to get a clientId",
+   "input": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": "string",
+      "description": "The name of the company you are searching for."
+     },
+     "c": {
+      "type": "string",
+      "description": "A clientId is a unique identifier assigned to your application that allows it to authenticate and interact with our service. [Get your client ID here](https://developers.brandfetch.com)"
+     }
+    },
+    "required": [
+     "c",
+     "name"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.brandfetch.io/v2/search/{name}?c={clientId}",
+    "path": [
+     "name"
+    ],
+    "query": [
+     "c"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  }
+ ]
+}

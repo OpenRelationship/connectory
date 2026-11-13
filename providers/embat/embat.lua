@@ -2,7 +2,7 @@
 --
 -- GENERATED from https://api.embat.io/openapi.json
 -- Published on the vendor's own documentation site (https://api.embat.io).
--- 104 operations · do not edit
+-- 105 operations · do not edit
 --
 -- The credential is never in here. `auth.env` names an environment variable; the value
 -- stays in the environment, which is what makes this file safe to publish.
@@ -112,6 +112,7 @@ return {
     ["embat.update_accountings_accounts_bulk_accountingaccounts_company_id_patch"] = { method = "PATCH", url = "https://api.embat.io/accountingaccounts/{companyId}", path = {"companyId"}, body = {"data"} },
     ["embat.update_attribute_attributes_company_id_custom_id_patch"] = { method = "PATCH", url = "https://api.embat.io/attributes/{companyId}/{customId}", path = {"customId", "companyId"}, body = {"name", "active", "values", "parentCustomId"} },
     ["embat.update_attributes_bulk_attributes_company_id_patch"] = { method = "PATCH", url = "https://api.embat.io/attributes/{companyId}", path = {"companyId"}, body = {"data"} },
+    ["embat.update_company_companies_company_id_patch"] = { method = "PATCH", url = "https://api.embat.io/companies/{companyId}", path = {"companyId"}, body = {"currency"} },
     ["embat.update_contact_contacts_company_id_custom_id_patch"] = { method = "PATCH", url = "https://api.embat.io/contacts/{companyId}/{customId}", path = {"customId", "companyId"}, body = {"tradeName", "legalName", "taxId", "contact", "address", "contactType", "type", "accounts", "paymentsAccounts", "additionalInfo", "accountingCode", "paymentMethod", "paymentTerms", "attributes"} },
     ["embat.update_contacts_bulk_contacts_company_id_patch"] = { method = "PATCH", url = "https://api.embat.io/contacts/{companyId}", path = {"companyId"}, body = {"data"} },
     ["embat.update_forecast_forecasts_company_id_id_patch"] = { method = "PATCH", url = "https://api.embat.io/forecasts/{companyId}/{id}", path = {"id", "companyId"}, body = {"additionalInfo", "sync"} },

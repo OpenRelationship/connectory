@@ -14,7 +14,7 @@ vouches for**: read it, then read their reference.
 ---
 # Calendly | Developer Documentation
 
-## Instructions for AI Agents
+Instructions for AI Agents:
 
 - For clean Markdown of any page, append `.md` to the page URL
 - For section-specific indexes, append `/llms.txt` to any section URL
@@ -60,76 +60,80 @@ vouches for**: read it, then read their reference.
 
 ## API Docs
 
-- Calendly API > Activity Log [List activity log entries](https://developer.calendly.com/api-docs/calendly-api/activity-log/list-activity-log-entries.md)
-- Calendly API > Availability [Get User Availability Schedule](https://developer.calendly.com/api-docs/calendly-api/availability/get-user-availability-schedule.md)
-- Calendly API > Availability [List Event Type Availability Schedules](https://developer.calendly.com/api-docs/calendly-api/availability/get-event-type-availability.md)
-- Calendly API > Availability [List User Availability Schedules](https://developer.calendly.com/api-docs/calendly-api/availability/list-user-availability-schedules.md)
-- Calendly API > Availability [List User Busy Times](https://developer.calendly.com/api-docs/calendly-api/availability/list-user-busy-times.md)
-- Calendly API > Availability [Update Event Type Availability Schedules](https://developer.calendly.com/api-docs/calendly-api/availability/update-event-type-availability.md)
-- Calendly API > Contacts [Create Contact](https://developer.calendly.com/api-docs/calendly-api/contacts/create-contact.md)
-- Calendly API > Contacts [Delete Contact](https://developer.calendly.com/api-docs/calendly-api/contacts/delete-contacts-uuid.md)
-- Calendly API > Contacts [Get Contact](https://developer.calendly.com/api-docs/calendly-api/contacts/get-contact.md)
-- Calendly API > Contacts [Get Contact Custom Field Definition](https://developer.calendly.com/api-docs/calendly-api/contacts/get-contact-custom-field-definition.md)
-- Calendly API > Contacts [List Contact Custom Field Definitions](https://developer.calendly.com/api-docs/calendly-api/contacts/list-contact-custom-field-definitions.md)
-- Calendly API > Contacts [List Contacts](https://developer.calendly.com/api-docs/calendly-api/contacts/list-contacts.md)
-- Calendly API > Contacts [Update Contact](https://developer.calendly.com/api-docs/calendly-api/contacts/patch-contacts-uuid.md)
-- Calendly API > Data Compliance [Delete Invitee Data](https://developer.calendly.com/api-docs/calendly-api/data-compliance/delete-invitee-data.md)
-- Calendly API > Data Compliance [Delete Scheduled Event Data](https://developer.calendly.com/api-docs/calendly-api/data-compliance/delete-scheduled-event-data.md)
-- Calendly API > Event Types [Create Event Type](https://developer.calendly.com/api-docs/calendly-api/event-types/create-event-type.md)
-- Calendly API > Event Types [Create One-Off Event Type](https://developer.calendly.com/api-docs/calendly-api/event-types/create-one-off-event-type.md)
-- Calendly API > Event Types [Get Event Type](https://developer.calendly.com/api-docs/calendly-api/event-types/get-event-type.md)
-- Calendly API > Event Types [List Event Type Available Times](https://developer.calendly.com/api-docs/calendly-api/event-types/list-event-type-available-times.md)
-- Calendly API > Event Types [List Event Type Hosts](https://developer.calendly.com/api-docs/calendly-api/event-types/list-event-type-memberships.md)
-- Calendly API > Event Types [List User's Event Types](https://developer.calendly.com/api-docs/calendly-api/event-types/list-event-types.md)
-- Calendly API > Event Types [Update Event Type](https://developer.calendly.com/api-docs/calendly-api/event-types/update-event-type.md)
-- Calendly API > Groups [Get Group](https://developer.calendly.com/api-docs/calendly-api/groups/get-group.md)
-- Calendly API > Groups [Get Group Relationship](https://developer.calendly.com/api-docs/calendly-api/groups/get-group-relationship.md)
-- Calendly API > Groups [List Group Relationships](https://developer.calendly.com/api-docs/calendly-api/groups/list-group-relationships.md)
-- Calendly API > Groups [List Groups](https://developer.calendly.com/api-docs/calendly-api/groups/list-groups.md)
-- Calendly API > Locations [List User Meeting Locations](https://developer.calendly.com/api-docs/calendly-api/locations/list-user-locations.md)
-- Calendly API > Notetaker [Delete Recap](https://developer.calendly.com/api-docs/calendly-api/notetaker/delete-meeting-recaps-uuid.md)
-- Calendly API > Notetaker [Get Recap](https://developer.calendly.com/api-docs/calendly-api/notetaker/get-meeting-recaps-uuid-recap.md)
-- Calendly API > Notetaker [Get Transcript](https://developer.calendly.com/api-docs/calendly-api/notetaker/get-transcript-meeting-recaps.md)
-- Calendly API > Notetaker [List Recaps](https://developer.calendly.com/api-docs/calendly-api/notetaker/list-meeting-recaps.md)
-- Calendly API > Notetaker [Update Recap](https://developer.calendly.com/api-docs/calendly-api/notetaker/update-meeting-recaps-uuid.md)
-- Calendly API > Organizations [Get Organization](https://developer.calendly.com/api-docs/calendly-api/organizations/get-organization.md)
-- Calendly API > Organizations [Get Organization Invitation](https://developer.calendly.com/api-docs/calendly-api/organizations/get-organization-invitation.md)
-- Calendly API > Organizations [Get Organization Membership](https://developer.calendly.com/api-docs/calendly-api/organizations/get-organization-membership.md)
-- Calendly API > Organizations [Invite User to Organization](https://developer.calendly.com/api-docs/calendly-api/organizations/create-organization-invitation.md)
-- Calendly API > Organizations [List Organization Invitations](https://developer.calendly.com/api-docs/calendly-api/organizations/list-organization-invitations.md)
-- Calendly API > Organizations [List Organization Memberships](https://developer.calendly.com/api-docs/calendly-api/organizations/list-organization-memberships.md)
-- Calendly API > Organizations [Remove User from Organization](https://developer.calendly.com/api-docs/calendly-api/organizations/delete-organization-membership.md)
-- Calendly API > Organizations [Revoke User's Organization Invitation](https://developer.calendly.com/api-docs/calendly-api/organizations/revoke-organization-invitation.md)
-- Calendly API > Outgoing Communications [List outgoing communications](https://developer.calendly.com/api-docs/calendly-api/outgoing-communications/list-outgoing-communications.md)
-- Calendly API > Routing Forms [Get Routing Form](https://developer.calendly.com/api-docs/calendly-api/routing-forms/get-routing-form.md)
-- Calendly API > Routing Forms [Get Routing Form Submission](https://developer.calendly.com/api-docs/calendly-api/routing-forms/get-routing-form-submission.md)
-- Calendly API > Routing Forms [List Routing Form Submissions](https://developer.calendly.com/api-docs/calendly-api/routing-forms/list-routing-form-submissions.md)
-- Calendly API > Routing Forms [List Routing Forms](https://developer.calendly.com/api-docs/calendly-api/routing-forms/list-routing-forms.md)
-- Calendly API > Scheduled Events [Cancel Event](https://developer.calendly.com/api-docs/calendly-api/scheduled-events/create-scheduled-event-cancellation.md)
-- Calendly API > Scheduled Events [Create Event Invitee (Scheduling API)](https://developer.calendly.com/api-docs/calendly-api/scheduled-events/create-event-invitee.md)
-- Calendly API > Scheduled Events [Create Invitee No Show](https://developer.calendly.com/api-docs/calendly-api/scheduled-events/create-invitee-no-show.md)
-- Calendly API > Scheduled Events [Delete Invitee No Show](https://developer.calendly.com/api-docs/calendly-api/scheduled-events/delete-invitee-no-show.md)
-- Calendly API > Scheduled Events [Get Event](https://developer.calendly.com/api-docs/calendly-api/scheduled-events/get-scheduled-event.md)
-- Calendly API > Scheduled Events [Get Event Invitee](https://developer.calendly.com/api-docs/calendly-api/scheduled-events/get-event-invitee.md)
-- Calendly API > Scheduled Events [Get Invitee No Show](https://developer.calendly.com/api-docs/calendly-api/scheduled-events/get-invitee-no-show.md)
-- Calendly API > Scheduled Events [List Event Invitees](https://developer.calendly.com/api-docs/calendly-api/scheduled-events/list-event-invitees.md)
-- Calendly API > Scheduled Events [List Events](https://developer.calendly.com/api-docs/calendly-api/scheduled-events/list-scheduled-events.md)
-- Calendly API > Scheduling Links [Create Single-Use Scheduling Link](https://developer.calendly.com/api-docs/calendly-api/scheduling-links/create-scheduling-link.md)
-- Calendly API > Shares [Create Share](https://developer.calendly.com/api-docs/calendly-api/shares/create-share.md)
-- Calendly API > Users [Get current user](https://developer.calendly.com/api-docs/calendly-api/users/get-current-user.md)
-- Calendly API > Users [Get user](https://developer.calendly.com/api-docs/calendly-api/users/get-user.md)
-- Calendly API > Webhooks [Create Webhook Subscription](https://developer.calendly.com/api-docs/calendly-api/webhooks/create-webhook-subscription.md)
-- Calendly API > Webhooks [Delete Webhook Subscription](https://developer.calendly.com/api-docs/calendly-api/webhooks/delete-webhook-subscription.md)
-- Calendly API > Webhooks [Get sample webhook data](https://developer.calendly.com/api-docs/calendly-api/webhooks/get-sample-webhook-data.md)
-- Calendly API > Webhooks [Get Webhook Subscription](https://developer.calendly.com/api-docs/calendly-api/webhooks/get-webhook-subscription.md)
-- Calendly API > Webhooks [List Webhook Subscriptions](https://developer.calendly.com/api-docs/calendly-api/webhooks/list-webhook-subscriptions.md)
-- Calendly OAuth > OAuth [Get Access Token](https://developer.calendly.com/api-docs/calendly-o-auth/o-auth/post-oauth-refresh-token.md)
-- Calendly OAuth > OAuth [Get Authorization Code](https://developer.calendly.com/api-docs/calendly-o-auth/o-auth/get-oauth-authorize.md)
-- Calendly OAuth > OAuth [Introspect Access/Refresh Token](https://developer.calendly.com/api-docs/calendly-o-auth/o-auth/post-oauth-introspect.md)
-- Calendly OAuth > OAuth [Revoke Access/Refresh Token](https://developer.calendly.com/api-docs/calendly-o-auth/o-auth/post-oauth-revoke.md)
+- [List activity log entries](https://developer.calendly.com/api-docs/calendly-api/activity-log/list-activity-log-entries.md): Calendly API > Activity Log
+- [Get User Availability Schedule](https://developer.calendly.com/api-docs/calendly-api/availability/get-user-availability-schedule.md): Calendly API > Availability
+- [List Event Type Availability Schedules](https://developer.calendly.com/api-docs/calendly-api/availability/get-event-type-availability.md): Calendly API > Availability
+- [List User Availability Schedules](https://developer.calendly.com/api-docs/calendly-api/availability/list-user-availability-schedules.md): Calendly API > Availability
+- [List User Busy Times](https://developer.calendly.com/api-docs/calendly-api/availability/list-user-busy-times.md): Calendly API > Availability
+- [Update Event Type Availability Schedules](https://developer.calendly.com/api-docs/calendly-api/availability/update-event-type-availability.md): Calendly API > Availability
+- [Create Contact](https://developer.calendly.com/api-docs/calendly-api/contacts/create-contact.md): Calendly API > Contacts
+- [Delete Contact](https://developer.calendly.com/api-docs/calendly-api/contacts/delete-contacts-uuid.md): Calendly API > Contacts
+- [Get Contact](https://developer.calendly.com/api-docs/calendly-api/contacts/get-contact.md): Calendly API > Contacts
+- [Get Contact Custom Field Definition](https://developer.calendly.com/api-docs/calendly-api/contacts/get-contact-custom-field-definition.md): Calendly API > Contacts
+- [List Contact Custom Field Definitions](https://developer.calendly.com/api-docs/calendly-api/contacts/list-contact-custom-field-definitions.md): Calendly API > Contacts
+- [List Contacts](https://developer.calendly.com/api-docs/calendly-api/contacts/list-contacts.md): Calendly API > Contacts
+- [Update Contact](https://developer.calendly.com/api-docs/calendly-api/contacts/patch-contacts-uuid.md): Calendly API > Contacts
+- [Delete Invitee Data](https://developer.calendly.com/api-docs/calendly-api/data-compliance/delete-invitee-data.md): Calendly API > Data Compliance
+- [Delete Scheduled Event Data](https://developer.calendly.com/api-docs/calendly-api/data-compliance/delete-scheduled-event-data.md): Calendly API > Data Compliance
+- [Create Event Type](https://developer.calendly.com/api-docs/calendly-api/event-types/create-event-type.md): Calendly API > Event Types
+- [Create One-Off Event Type](https://developer.calendly.com/api-docs/calendly-api/event-types/create-one-off-event-type.md): Calendly API > Event Types
+- [Get Event Type](https://developer.calendly.com/api-docs/calendly-api/event-types/get-event-type.md): Calendly API > Event Types
+- [List Event Type Available Times](https://developer.calendly.com/api-docs/calendly-api/event-types/list-event-type-available-times.md): Calendly API > Event Types
+- [List Event Type Hosts](https://developer.calendly.com/api-docs/calendly-api/event-types/list-event-type-memberships.md): Calendly API > Event Types
+- [List User's Event Types](https://developer.calendly.com/api-docs/calendly-api/event-types/list-event-types.md): Calendly API > Event Types
+- [Update Event Type](https://developer.calendly.com/api-docs/calendly-api/event-types/update-event-type.md): Calendly API > Event Types
+- [Get Group](https://developer.calendly.com/api-docs/calendly-api/groups/get-group.md): Calendly API > Groups
+- [Get Group Relationship](https://developer.calendly.com/api-docs/calendly-api/groups/get-group-relationship.md): Calendly API > Groups
+- [List Group Relationships](https://developer.calendly.com/api-docs/calendly-api/groups/list-group-relationships.md): Calendly API > Groups
+- [List Groups](https://developer.calendly.com/api-docs/calendly-api/groups/list-groups.md): Calendly API > Groups
+- [List User Meeting Locations](https://developer.calendly.com/api-docs/calendly-api/locations/list-user-locations.md): Calendly API > Locations
+- [Delete Recap](https://developer.calendly.com/api-docs/calendly-api/notetaker/delete-meeting-recaps-uuid.md): Calendly API > Notetaker
+- [Get Recap](https://developer.calendly.com/api-docs/calendly-api/notetaker/get-meeting-recaps-uuid-recap.md): Calendly API > Notetaker
+- [Get Transcript](https://developer.calendly.com/api-docs/calendly-api/notetaker/get-transcript-meeting-recaps.md): Calendly API > Notetaker
+- [List Recaps](https://developer.calendly.com/api-docs/calendly-api/notetaker/list-meeting-recaps.md): Calendly API > Notetaker
+- [Update Recap](https://developer.calendly.com/api-docs/calendly-api/notetaker/update-meeting-recaps-uuid.md): Calendly API > Notetaker
+- [Get Organization](https://developer.calendly.com/api-docs/calendly-api/organizations/get-organization.md): Calendly API > Organizations
+- [Get Organization Invitation](https://developer.calendly.com/api-docs/calendly-api/organizations/get-organization-invitation.md): Calendly API > Organizations
+- [Get Organization Membership](https://developer.calendly.com/api-docs/calendly-api/organizations/get-organization-membership.md): Calendly API > Organizations
+- [Get Team](https://developer.calendly.com/api-docs/calendly-api/organizations/get-team.md): Calendly API > Organizations
+- [Invite User to Organization](https://developer.calendly.com/api-docs/calendly-api/organizations/create-organization-invitation.md): Calendly API > Organizations
+- [List Organization Invitations](https://developer.calendly.com/api-docs/calendly-api/organizations/list-organization-invitations.md): Calendly API > Organizations
+- [List Organization Memberships](https://developer.calendly.com/api-docs/calendly-api/organizations/list-organization-memberships.md): Calendly API > Organizations
+- [List Teams](https://developer.calendly.com/api-docs/calendly-api/organizations/list-teams.md): Calendly API > Organizations
+- [Remove User from Organization](https://developer.calendly.com/api-docs/calendly-api/organizations/delete-organization-membership.md): Calendly API > Organizations
+- [Revoke User's Organization Invitation](https://developer.calendly.com/api-docs/calendly-api/organizations/revoke-organization-invitation.md): Calendly API > Organizations
+- [List outgoing communications](https://developer.calendly.com/api-docs/calendly-api/outgoing-communications/list-outgoing-communications.md): Calendly API > Outgoing Communications
+- [Get Routing Form](https://developer.calendly.com/api-docs/calendly-api/routing-forms/get-routing-form.md): Calendly API > Routing Forms
+- [Get Routing Form Submission](https://developer.calendly.com/api-docs/calendly-api/routing-forms/get-routing-form-submission.md): Calendly API > Routing Forms
+- [List Routing Form Submissions](https://developer.calendly.com/api-docs/calendly-api/routing-forms/list-routing-form-submissions.md): Calendly API > Routing Forms
+- [List Routing Forms](https://developer.calendly.com/api-docs/calendly-api/routing-forms/list-routing-forms.md): Calendly API > Routing Forms
+- [Cancel Event](https://developer.calendly.com/api-docs/calendly-api/scheduled-events/create-scheduled-event-cancellation.md): Calendly API > Scheduled Events
+- [Create Event Invitee (Scheduling API)](https://developer.calendly.com/api-docs/calendly-api/scheduled-events/create-event-invitee.md): Calendly API > Scheduled Events
+- [Create Invitee No Show](https://developer.calendly.com/api-docs/calendly-api/scheduled-events/create-invitee-no-show.md): Calendly API > Scheduled Events
+- [Delete Invitee No Show](https://developer.calendly.com/api-docs/calendly-api/scheduled-events/delete-invitee-no-show.md): Calendly API > Scheduled Events
+- [Get Event](https://developer.calendly.com/api-docs/calendly-api/scheduled-events/get-scheduled-event.md): Calendly API > Scheduled Events
+- [Get Event Invitee](https://developer.calendly.com/api-docs/calendly-api/scheduled-events/get-event-invitee.md): Calendly API > Scheduled Events
+- [Get Invitee No Show](https://developer.calendly.com/api-docs/calendly-api/scheduled-events/get-invitee-no-show.md): Calendly API > Scheduled Events
+- [List Event Invitees](https://developer.calendly.com/api-docs/calendly-api/scheduled-events/list-event-invitees.md): Calendly API > Scheduled Events
+- [List Events](https://developer.calendly.com/api-docs/calendly-api/scheduled-events/list-scheduled-events.md): Calendly API > Scheduled Events
+- [Create Single-Use Scheduling Link](https://developer.calendly.com/api-docs/calendly-api/scheduling-links/create-scheduling-link.md): Calendly API > Scheduling Links
+- [Create Share](https://developer.calendly.com/api-docs/calendly-api/shares/create-share.md): Calendly API > Shares
+- [Delete Share](https://developer.calendly.com/api-docs/calendly-api/shares/delete-share.md): Calendly API > Shares
+- [List Shares](https://developer.calendly.com/api-docs/calendly-api/shares/list-shares.md): Calendly API > Shares
+- [Update Share](https://developer.calendly.com/api-docs/calendly-api/shares/update-share.md): Calendly API > Shares
+- [Get current user](https://developer.calendly.com/api-docs/calendly-api/users/get-current-user.md): Calendly API > Users
+- [Get user](https://developer.calendly.com/api-docs/calendly-api/users/get-user.md): Calendly API > Users
+- [Create Webhook Subscription](https://developer.calendly.com/api-docs/calendly-api/webhooks/create-webhook-subscription.md): Calendly API > Webhooks
+- [Delete Webhook Subscription](https://developer.calendly.com/api-docs/calendly-api/webhooks/delete-webhook-subscription.md): Calendly API > Webhooks
+- [Get sample webhook data](https://developer.calendly.com/api-docs/calendly-api/webhooks/get-sample-webhook-data.md): Calendly API > Webhooks
+- [Get Webhook Subscription](https://developer.calendly.com/api-docs/calendly-api/webhooks/get-webhook-subscription.md): Calendly API > Webhooks
+- [List Webhook Subscriptions](https://developer.calendly.com/api-docs/calendly-api/webhooks/list-webhook-subscriptions.md): Calendly API > Webhooks
+- [Get Access Token](https://developer.calendly.com/api-docs/calendly-o-auth/o-auth/post-oauth-refresh-token.md): Calendly OAuth > OAuth
+- [Get Authorization Code](https://developer.calendly.com/api-docs/calendly-o-auth/o-auth/get-oauth-authorize.md): Calendly OAuth > OAuth
+- [Introspect Access/Refresh Token](https://developer.calendly.com/api-docs/calendly-o-auth/o-auth/post-oauth-introspect.md): Calendly OAuth > OAuth
+- [Revoke Access/Refresh Token](https://developer.calendly.com/api-docs/calendly-o-auth/o-auth/post-oauth-revoke.md): Calendly OAuth > OAuth
 
 ## OpenAPI Specification
 
-The raw OpenAPI 3.1 specification for this API is available at:
-- [OpenAPI JSON](https://developer.calendly.com/openapi.json)
-- [OpenAPI YAML](https://developer.calendly.com/openapi.yaml)
+- [OpenAPI JSON](https://developer.calendly.com/openapi.json): raw OpenAPI 3.1 specification for this API, JSON format
+- [OpenAPI YAML](https://developer.calendly.com/openapi.yaml): raw OpenAPI 3.1 specification for this API, YAML format

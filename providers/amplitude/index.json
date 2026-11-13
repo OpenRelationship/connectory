@@ -4,6 +4,69 @@
  "source": "https://amplitude.com/openapi.json",
  "operations": [
   {
+   "slug": "amplitude.call_mcp_server",
+   "name": "Amplitude mcp server (streamable http)",
+   "description": "JSON-RPC 2.0 over Streamable HTTP, per the Model Context Protocol specification. Described here so the OAuth scopes an agent needs are discoverable from this document; the request and response bodies are defined by MCP, not by Amplitude. Do not hardcode tool names \u2014 call `tools/list` and read the definitions the server returns at runtime. `mcp:read` is sufficient for read-only tools. Tools that cr",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://amplitude.com/mcp",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "amplitude.create_dsar_request",
+   "name": "Request user data asynchronously",
+   "description": "Submit a data subject access request. HTTP 202 returns requestId; poll getDsarRequestStatus until status is done or failed. Jobs complete within three days and results expire after two days. Requests do not include Statsig data.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "userId": {
+      "type": "string",
+      "description": ""
+     },
+     "amplitudeId": {
+      "type": "integer",
+      "description": ""
+     },
+     "startDate": {
+      "type": "string",
+      "description": ""
+     },
+     "endDate": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "endDate",
+     "startDate"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://amplitude.com/api/2/dsar/requests",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "userId",
+     "amplitudeId",
+     "startDate",
+     "endDate"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "amplitude.create_event_property",
    "name": "Create an event property",
    "description": "Create an event property",
@@ -190,6 +253,40 @@
    }
   },
   {
+   "slug": "amplitude.download_dsar_output",
+   "name": "Download a completed dsar output",
+   "description": "Use an output URL returned by getDsarRequestStatus after status is done. outputId is the integer at the end of that URL. Links expire after two days. Clients may follow a redirect to the gzipped file; each file contains newline-delimited JSON events.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "requestId": {
+      "type": "integer",
+      "description": ""
+     },
+     "outputId": {
+      "type": "integer",
+      "description": ""
+     }
+    },
+    "required": [
+     "outputId",
+     "requestId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://amplitude.com/api/2/dsar/requests/{requestId}/outputs/{outputId}",
+    "path": [
+     "requestId",
+     "outputId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "amplitude.export_events",
    "name": "Export raw events",
    "description": "Export raw event data for a time range as a zipped archive of newline-delimited JSON files. Range is bounded by `server_upload_time`, maximum 365 days and 4 GB per request. Data is available roughly two hours after ingestion.",
@@ -307,7 +404,7 @@
   {
    "slug": "amplitude.get_cohort_export_status",
    "name": "Get cohort export status",
-   "description": "Get cohort export status",
+   "description": "Poll while HTTP 202 reports JOB INPROGRESS. Download only after HTTP 200 reports JOB COMPLETED.",
    "input": {
     "type": "object",
     "properties": {
@@ -323,6 +420,34 @@
    "request": {
     "method": "GET",
     "url": "https://amplitude.com/api/5/cohorts/request-status/{requestId}",
+    "path": [
+     "requestId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "amplitude.get_dsar_request_status",
+   "name": "Poll a data subject access request",
+   "description": "Poll staging/submitted jobs. Stop polling on failed and inspect failReason; on done download the returned URLs with the same credentials before they expire. The documented cost budget is 14,400/hour: each POST costs 8 and each GET costs 1.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "requestId": {
+      "type": "integer",
+      "description": ""
+     }
+    },
+    "required": [
+     "requestId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://amplitude.com/api/2/dsar/requests/{requestId}",
     "path": [
      "requestId"
     ],
@@ -1202,7 +1327,7 @@
   {
    "slug": "amplitude.upload_events",
    "name": "Upload events (http v2)",
-   "description": "Send events to Amplitude in real time. Requests are limited to 1 MB; send an `insert_id` per event and implement retry logic so failures do not lose or duplicate data.",
+   "description": "Send events to Amplitude in real time. Requests are limited to 1 MB. **Retrying safely.** Idempotency is per event, not per request, and is keyed on `insert_id` \u2014 Amplitude does not honour an `Idempotency-Key` header. Set a stable `insert_id` on every event before the first attempt and reuse it verbatim on retries; Amplitude discards an event whose `insert_id` matches one already seen for that `de",
    "input": {
     "type": "object",
     "properties": {
@@ -1235,7 +1360,7 @@
   {
    "slug": "amplitude.upload_events_batch",
    "name": "Upload events (batch)",
-   "description": "Upload large volumes of event data at once. Same payload shape as HTTP V2 with higher throughput limits and looser throttling. Use this for backfills and server-to-server pipelines.",
+   "description": "Upload large volumes of event data at once. Same payload shape as HTTP V2 with higher throughput limits and looser throttling. Use this for backfills and server-to-server pipelines. **Retrying safely.** As with HTTP V2, idempotency is keyed on each event\u2019s `insert_id` rather than an `Idempotency-Key` header. Backfills are the case where this matters most: a retried batch without stable `insert_id`",
    "input": {
     "type": "object",
     "properties": {

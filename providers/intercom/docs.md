@@ -22,11 +22,15 @@ vouches for**: read it, then read their reference.
 
 ### Primeiros passos
 
+### Operator
+
 ### Nosso agente de IA Fin
 
 - [Fin Agent API: Servidor MCP](https://www.intercom.com/help/pt-BR/articles/15481203-fin-agent-api-servidor-mcp.md): O que é o Fin Agent API MCP Server e como usá-lo.
 - [Como usar conectores de dados em Fin Procedures](https://www.intercom.com/help/pt-BR/articles/13459820-como-usar-conectores-de-dados-em-fin-procedures.md): Use conectores de dados para ler e agir sobre dados externos de API e realizar ações automatizadas durante conversas com clientes.
 - [Acionar um procedimento proativo a partir do seu site ou de uma API externa](https://www.intercom.com/help/pt-BR/articles/15645332-acionar-um-procedimento-proativo-a-partir-do-seu-site-ou-de-uma-api-externa.md): Como acionar procedimentos Fin a partir de um clique em botão no site ou chamada de API externa, incluindo configuração, experiência do cliente e roteamento.
+- [Aprovações Human in the Loop via API](https://www.intercom.com/help/pt-BR/articles/14782593-aprovacoes-human-in-the-loop-via-api.md): Como conectar etapas Human in the Loop em Fin Procedures aos seus próprios sistemas usando o canal Respond by API, webhooks e a API do Intercom.
+- [Criar um procedimento Fin complexo](https://www.intercom.com/help/pt-BR/articles/13685009-criar-um-procedimento-fin-complexo.md): Aprenda a criar um procedimento Fin em várias etapas que se conecta à sua API para gerenciar catálogos de produtos e pedidos de clientes.
 
 ### Canais
 
@@ -46,7 +50,6 @@ vouches for**: read it, then read their reference.
 
 ### Relatórios
 
-- [Escalation reporting metrics & attributes](https://www.intercom.com/help/pt-BR/articles/16202960-escalation-reporting-metrics-attributes.md): Reference guide for the Fin AI Agent escalation reporting attributes — escalated reason and escalated by — available in custom reports, filters, and groupings.
 - [Métricas de relatórios para REST API e exportações CSV](https://www.intercom.com/help/pt-BR/articles/6762778-metricas-de-relatorios-para-rest-api-e-exportacoes-csv.md): Métricas de relatórios que podem ser calculadas usando nossa REST API e exportações CSV.
 
 ### Saídas
@@ -55,10 +58,12 @@ vouches for**: read it, then read their reference.
 
 - [Rastreie alterações de contatos com a Contacts Activity API](https://www.intercom.com/help/pt-BR/articles/16258619-rastreie-alteracoes-de-contatos-com-a-contacts-activity-api.md): Rastreie todas as alterações dos seus contatos — criações, mudanças de função, exclusões e fusões — por meio de um único endpoint API paginado por cursor.
 
+### Gestão da força de trabalho
+
 ### Aplicativos e integrações
 
 - [Gerencie o uso da API do Salesforce pelo Intercom](https://www.intercom.com/help/pt-BR/articles/4998377-gerencie-o-uso-da-api-do-salesforce-pelo-intercom.md): Defina limites de API no app Salesforce do Intercom
-- [Como criar autenticação com Zendesk para Data connectors](https://www.intercom.com/help/pt-BR/articles/7733797-como-criar-autenticacao-com-zendesk-para-data-connectors.md): Aprenda a gerar um token API e codificá-lo no formato correto.
+- [Como criar autenticação com Zendesk para Data connectors](https://www.intercom.com/help/pt-BR/articles/7733797-como-criar-autenticacao-com-zendesk-para-data-connectors.md): Aprenda a gerar um token de API e codificá-lo no formato correto.
 
 ### SDKs móveis
 
@@ -71,7 +76,7 @@ vouches for**: read it, then read their reference.
 
 ### Segurança e privacidade
 
-- [Restringir acesso REST API por lista de permissões de IP](https://www.intercom.com/help/pt-BR/articles/13941009-restringir-acesso-rest-api-por-lista-de-permissoes-de-ip.md): Use a lista de permissões de IP da REST API para restringir quais endereços IP podem chamar sua REST API do Intercom.
+- [Restringir o acesso à REST API por lista de IPs permitidos](https://www.intercom.com/help/pt-BR/articles/13941009-restringir-o-acesso-a-rest-api-por-lista-de-ips-permitidos.md): Use a lista de IPs permitidos da REST API para restringir quais endereços IP podem chamar sua REST API do Intercom.
 
 ## English
 
@@ -85,13 +90,18 @@ vouches for**: read it, then read their reference.
 - [Create a developer workspace in Intercom](https://www.intercom.com/help/en/articles/9086429-create-a-developer-workspace-in-intercom.md)
 - [Set up custom roles with recommended permissions](https://www.intercom.com/help/en/articles/7054403-set-up-custom-roles-with-recommended-permissions.md): Not sure which permissions you teammates need? Follow this guide to create custom roles.
 
-### Fin AI Agent
+### Operator
 
 - [Run a weekly support performance review with Fin Operator](https://www.intercom.com/help/en/articles/16736503-run-a-weekly-support-performance-review-with-fin-operator.md): A step-by-step guide to using Fin Operator to run a structured weekly RCA, covering volume, handling time, CX score, topic breakdowns, and conversation-level investigation.
+
+### Fin AI Agent
+
 - [Data connectors quick start guide](https://www.intercom.com/help/en/articles/15970053-data-connectors-quick-start-guide.md): New to Fin Data connectors? This guide covers the full setup from connector creation to APIs, authentication, custom objects, testing, and troubleshooting.
 - [Fin Agent API: MCP Server](https://www.intercom.com/help/en/articles/15481203-fin-agent-api-mcp-server.md): What the Fin Agent API MCP Server is and how to use it.
 - [How to use data connectors in Fin Procedures](https://www.intercom.com/help/en/articles/13459820-how-to-use-data-connectors-in-fin-procedures.md): Use data connectors to read and act on external API data and perform automated actions during customer conversations.
 - [Trigger a proactive procedure from your website or an external API](https://www.intercom.com/help/en/articles/15645332-trigger-a-proactive-procedure-from-your-website-or-an-external-api.md): How to trigger Fin procedures from a website button click or external API call, including setup, customer experience, and routing behavior.
+- [Human in the Loop approvals via API](https://www.intercom.com/help/en/articles/14782593-human-in-the-loop-approvals-via-api.md): How to connect Human in the Loop steps in Fin Procedures to your own systems using the Respond by API channel, webhooks, and the Intercom API.
+- [Create a complex Fin procedure](https://www.intercom.com/help/en/articles/13685009-create-a-complex-fin-procedure.md): Learn how to build a multi-step Fin procedure that connects to your API to manage product catalogs and customer orders.
 - [Introduction to Deploy](https://www.intercom.com/help/en/articles/11769044-introduction-to-deploy.md): A strategic guide to launching Fin across your support channels for immediate and scalable impact.
 - [Deploy Fin Voice](https://www.intercom.com/help/en/articles/10697275-deploy-fin-voice.md): This guide shows you how to configure, test, deploy, and monitor Fin Voice - an AI agent for phone support.
 - [Integrating Fin Voice with your telephony system using call forwarding](https://www.intercom.com/help/en/articles/12878948-integrating-fin-voice-with-your-telephony-system-using-call-forwarding.md): Use this guide to connect Fin Voice with your existing telephony system using universal PSTN call forwarding.
@@ -102,6 +112,7 @@ vouches for**: read it, then read their reference.
 ### Channels
 
 - [Customizing, updating, or troubleshooting welcome messages in Intercom messenger](https://www.intercom.com/help/en/articles/11892770-customizing-updating-or-troubleshooting-welcome-messages-in-intercom-messenger.md): Intercom Messenger offers options to customize, update, and troubleshoot welcome messages. This guide helps you navigate these settings.
+- [New Messenger install experience in your mobile app](https://www.intercom.com/help/en/articles/16947979-new-messenger-install-experience-in-your-mobile-app.md): Step-by-step guide to installing the Intercom Messenger on iOS, Android, or React Native — from adding the SDK to authenticating signed-in users and testing.
 - [The Intercom JavaScript API](https://www.intercom.com/help/en/articles/172-the-intercom-javascript-api.md)
 - [Connect your Slack channel](https://www.intercom.com/help/en/articles/11534476-connect-your-slack-channel.md): View and respond to customer messages in Slack with seamless Intercom Inbox integration and AI-powered support.
 - [Connect your WhatsApp channel](https://www.intercom.com/help/en/articles/5454490-connect-your-whatsapp-channel.md): Use the WhatsApp integration to handle conversations from WhatsApp directly in your Intercom Inbox and send outbound WhatsApp messages.
@@ -153,6 +164,8 @@ vouches for**: read it, then read their reference.
 - [Track contact changes with the Contacts Activity API](https://www.intercom.com/help/en/articles/16258619-track-contact-changes-with-the-contacts-activity-api.md): Track every change to your contacts — creations, role changes, deletions, and merges — through a single cursor-paginated API endpoint.
 - [Country, browser, timezone, region and OS reference list](https://www.intercom.com/help/en/articles/9277608-country-browser-timezone-region-and-os-reference-list.md)
 
+### Workforce Management 
+
 ### Apps & Integrations
 
 - [Install Salesforce integration](https://www.intercom.com/help/en/articles/4497943-install-salesforce-integration.md): Install and configure the Salesforce integration to capture, nurture and convert leads in Intercom.
@@ -190,25 +203,10 @@ vouches for**: read it, then read their reference.
 - [Paramètres de votre espace de travail](https://www.intercom.com/help/fr/articles/15432088-parametres-de-votre-espace-de-travail.md): Un guide de chaque section de la page des paramètres Intercom — workspace, channels, integrations, data et paramètres personnels.
 - [Configurer des rôles personnalisés avec les autorisations recommandées](https://www.intercom.com/help/fr/articles/7054403-configurer-des-roles-personnalises-avec-les-autorisations-recommandees.md): Vous ne savez pas quelles autorisations vos coéquipiers doivent avoir ? Suivez ce guide pour créer des rôles personnalisés.
 
+### Fin Operator
+
+- [Effectuez une revue hebdomadaire des performances du support avec Fin Operator](https://www.intercom.com/help/fr/articles/16736503-effectuez-une-revue-hebdomadaire-des-performances-du-support-avec-fin-operator.md): Un guide étape par étape pour utiliser Fin Operator afin de réaliser un RCA hebdomadaire structuré, couvrant le volume, le temps de traitement, le score CX, la répartition des sujets et l'analyse d...
+
 ### Fin AI Agent
 
-- [Effectuez une revue hebdomadaire des performances du support avec Fin Operator](https://www.intercom.com/help/fr/articles/16736503-effectuez-une-revue-hebdomadaire-des-performances-du-support-avec-fin-operator.md): Un guide étape par étape pour utiliser Fin Operator afin de réaliser un RCA hebdomadaire structuré, couvrant le volume, le temps de traitement, le score CX, la répartition des sujets et l'investiga...
-- [Guide de démarrage rapide des connecteurs de données](https://www.intercom.com/help/fr/articles/15970053-guide-de-demarrage-rapide-des-connecteurs-de-donnees.md): Nouveau sur Fin Data connectors ? Ce guide couvre toute la configuration, de la création du connecteur aux API, authentification, objets personnalisés, tests et dépannage.
-- [Fin Agent API : Serveur MCP](https://www.intercom.com/help/fr/articles/15481203-fin-agent-api-serveur-mcp.md): Ce qu'est le Fin Agent API MCP Server et comment l'utiliser.
-- [Comment utiliser les connecteurs de données dans les procédures Fin](https://www.intercom.com/help/fr/articles/13459820-comment-utiliser-les-connecteurs-de-donnees-dans-les-procedures-fin.md): Utilisez les connecteurs de données pour lire et agir sur les données API externes et effectuer des actions automatisées lors des conversations avec les clients.
-- [Déclencher une procédure proactive depuis votre site web ou une API externe](https://www.intercom.com/help/fr/articles/15645332-declencher-une-procedure-proactive-depuis-votre-site-web-ou-une-api-externe.md): Comment déclencher les procédures Fin depuis un clic sur un bouton du site ou un appel API externe : configuration, expérience client et routage.
-- [Introduction à Deploy](https://www.intercom.com/help/fr/articles/11769044-introduction-a-deploy.md): Un guide stratégique pour lancer Fin sur vos canaux de support pour un impact immédiat et évolutif.
-- [Déployer Fin Voice](https://www.intercom.com/help/fr/articles/10697275-deployer-fin-voice.md): Ce guide vous montre comment configurer, tester, déployer et surveiller Fin Voice - un agent AI pour le support téléphonique.
-- [Intégration de Fin Voice avec votre système téléphonique via le transfert d'appel](https://www.intercom.com/help/fr/articles/12878948-integration-de-fin-voice-avec-votre-systeme-telephonique-via-le-transfert-d-appel.md): Utilisez ce guide pour connecter Fin Voice à votre système téléphonique existant via le transfert d'appel universel PSTN.
-- [Intégration de Fin Voice avec Talkdesk via le transfert d'appel](https://www.intercom.com/help/fr/articles/13186529-integration-de-fin-voice-avec-talkdesk-via-le-transfert-d-appel.md): Apprenez à connecter Fin Voice à Talkdesk en utilisant le transfert d'appel PSTN pour résoudre instantanément les questions clients avec l'IA.
-- [Intégration de Fin Voice avec Zoom Contact Center via le transfert d'appel](https://www.intercom.com/help/fr/articles/13223617-integration-de-fin-voice-avec-zoom-contact-center-via-le-transfert-d-appel.md): Apprenez à connecter Fin Voice à Zoom Contact Center pour acheminer les appels vers l'IA et les transférer aux agents humains avec tout le contexte.
-- [Intégration de Fin Voice avec Amazon Connect via le transfert d'appel](https://www.intercom.com/help/fr/articles/13343114-integration-de-fin-voice-avec-amazon-connect-via-le-transfert-d-appel.md): Apprenez à connecter Fin Voice à Amazon Connect en utilisant le transfert d'appel PSTN pour résoudre instantanément les questions clients avec l'IA.
-- [Intégration de Fin Voice avec Zendesk Talk via le transfert d'appel](https://www.intercom.com/help/fr/articles/13752386-integration-de-fin-voice-avec-zendesk-talk-via-le-transfert-d-appel.md): Utilisez ce guide pour connecter Fin Voice à votre système Zendesk Talk existant via le transfert d'appel universel PSTN.
-- [Intégration de Fin Voice avec Zoom Phone via le transfert d'appel](https://www.intercom.com/help/fr/articles/13752888-integration-de-fin-voice-avec-zoom-phone-via-le-transfert-d-appel.md): Utilisez ce guide pour connecter Fin Voice avec Zoom Phone en utilisant le transfert d'appel universel PSTN.
-- [Intégration de Fin Voice avec Aircall via le transfert d'appel](https://www.intercom.com/help/fr/articles/13845993-integration-de-fin-voice-avec-aircall-via-le-transfert-d-appel.md): Utilisez ce guide pour connecter Fin Voice avec Aircall en utilisant le transfert d'appel universel PSTN.
-- [Intégration de Fin Voice avec CXone via le transfert d'appel](https://www.intercom.com/help/fr/articles/13272720-integration-de-fin-voice-avec-cxone-via-le-transfert-d-appel.md): Apprenez comment connecter Fin Voice à CXone en utilisant le transfert d'appel PSTN pour résoudre instantanément les questions des clients avec l'IA.
-- [Intégration de Fin Voice avec le transfert d'appel Five9](https://www.intercom.com/help/fr/articles/14122381-integration-de-fin-voice-avec-le-transfert-d-appel-five9.md): Connectez Fin Voice à Five9 et dirigez les appels entrants via un script IVR.
-
-### Canaux
-
-- [Personnalisation, mise à jour ou dépannage des messages de bienvenue dans Intercom messenger](https://www.intercom.com/help/fr/articles/11892770-personnalisation-mise-a-jour-ou-depannage-des-messages-de-bienvenue-dans-intercom-messenger.md): Intercom Messenger offre des options pour personnaliser, mettre à jour et dépanner les messages de bienvenue. Ce guide vous aide à naviguer dans ces paramètres.
+- [Guide de démarrage rapide des

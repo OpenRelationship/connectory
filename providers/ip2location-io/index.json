@@ -1,0 +1,63 @@
+{
+ "_": "GENERATED \u2014 what an authoring tool needs to FIND an operation. The calling table is the .lua beside it.",
+ "provider": "ip2location-io",
+ "source": "https://api.apis.guru/v2/specs/ip2location.io/1.0/openapi.json",
+ "operations": [
+  {
+   "slug": "ip2location-io.get_",
+   "name": "Ip2location io get",
+   "description": "Geolocate user's location information via IP address",
+   "input": {
+    "type": "object",
+    "properties": {
+     "ip": {
+      "type": "string",
+      "description": "IP address (IPv4 or IPv6) for reverse IP location lookup purposes. If not present, the server IP address will be used for the location lookup."
+     },
+     "format": {
+      "type": "string",
+      "description": "Format of the response message.",
+      "enum": [
+       "json",
+       "xml"
+      ]
+     },
+     "lang": {
+      "type": "string",
+      "description": "Translation information. The translation only applicable for continent, country, region and city name. This parameter is only available for Plus and Security plan only.",
+      "enum": [
+       "ar",
+       "cs",
+       "da",
+       "de",
+       "en",
+       "es",
+       "et",
+       "fi",
+       "fr",
+       "ga",
+       "it",
+       "ja"
+      ]
+     }
+    },
+    "required": [
+     "ip"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.ip2location.io/",
+    "path": [],
+    "query": [
+     "ip",
+     "format",
+     "lang"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  }
+ ]
+}

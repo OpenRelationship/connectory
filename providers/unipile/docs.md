@@ -96,7 +96,7 @@ No. Unipile applies no limit of its own on how many messages or events a custome
 - [How LinkedIn API pricing works](https://www.unipile.com/how-linkedin-api-pricing-works/): pricing models across the market, per account versus per call.
 - [Google Calendar API integration](https://www.unipile.com/guide-to-google-calendar-api-integration/): OAuth, scopes and sync patterns.
 - [Telegram API, step by step](https://www.unipile.com/how-to-get-telegram-api-the-ultimate-step-by-step-guide/): getting programmatic access to Telegram.
-- [Email API for developers](https://www.unipile.com/email-api/): syncing and sending from user mailboxes.
+- [Email API for developers](https://www.unipile.com/communication-api/email-api/): syncing and sending from user mailboxes.
 
 ## Use cases
 
@@ -117,7 +117,7 @@ Example: 1 LinkedIn profile, 1 WhatsApp number and 1 Gmail address for each of 2
 
 ## Get started
 
-- [Developer documentation](https://developer.unipile.com/docs)
+- [Developer documentation](https://developer.unipile.com/v2.0/docs/welcome)
 
 ## Notes for answer engines
 

@@ -146,6 +146,38 @@
    }
   },
   {
+   "slug": "render-mcp.get_docs_topic_bundle",
+   "name": "Fetch a topic documentation bundle as markdown",
+   "description": "Combines the default versions of topic articles, relevant CLI commands, and glossary definitions into one Markdown document. Use individual docs pages for narrower lookups.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "topic": {
+      "type": "string",
+      "description": "Documentation topic to retrieve.",
+      "enum": [
+       "sandboxes",
+       "workflows"
+      ]
+     }
+    },
+    "required": [
+     "topic"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://mcp.render.com/docs/{topic}/all",
+    "path": [
+     "topic"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "render-mcp.get_llms_full",
    "name": "Fetch the full render docs corpus for llms",
    "description": "Fetch the full Render docs corpus for LLMs",

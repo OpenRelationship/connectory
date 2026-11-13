@@ -1,0 +1,699 @@
+{
+ "_": "GENERATED \u2014 what an authoring tool needs to FIND an operation. The calling table is the .lua beside it.",
+ "provider": "ollama",
+ "source": "https://docs.ollama.com/openapi.yaml",
+ "operations": [
+  {
+   "slug": "ollama.balance",
+   "name": "Balance",
+   "description": "Check your remaining usage credits.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://ollama.com/api/api/balance",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "ollama.chat",
+   "name": "Generate a chat message",
+   "description": "Generate the next chat message in a conversation between a user and an assistant.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "model": {
+      "type": "string",
+      "description": "Model name"
+     },
+     "messages": {
+      "type": "array",
+      "description": "Chat history as an array of message objects (each with a role and content)"
+     },
+     "tools": {
+      "type": "array",
+      "description": "Optional list of function tools the model may call during the chat"
+     },
+     "format": {
+      "type": "string",
+      "description": "Format to return a response in. Can be `json` or a JSON schema"
+     },
+     "options": {
+      "type": "object",
+      "description": "Runtime options that control text generation"
+     },
+     "stream": {
+      "type": "boolean",
+      "description": ""
+     },
+     "think": {
+      "type": "string",
+      "description": "Controls a model's thinking output. Use `/api/show` to discover the supported values and default for the selected model. `true` requests thinking, `false` requests no thinking output, and `null` uses the model default. String values are model-defined; supported names must match `/api/show` exactly. Numbers are not supported."
+     },
+     "keep_alive": {
+      "type": "string",
+      "description": "Model keep-alive duration (for example `5m` or `0` to unload immediately)"
+     },
+     "logprobs": {
+      "type": "boolean",
+      "description": "Whether to return log probabilities of the output tokens"
+     },
+     "top_logprobs": {
+      "type": "integer",
+      "description": "Number of most likely tokens to return at each token position when logprobs are enabled"
+     }
+    },
+    "required": [
+     "messages",
+     "model"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://ollama.com/api/api/chat",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "model",
+     "messages",
+     "tools",
+     "format",
+     "options",
+     "stream",
+     "think",
+     "keep_alive",
+     "logprobs",
+     "top_logprobs"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "ollama.copy",
+   "name": "Copy a model",
+   "description": "Copy a model",
+   "input": {
+    "type": "object",
+    "properties": {
+     "source": {
+      "type": "string",
+      "description": "Existing model name to copy from"
+     },
+     "destination": {
+      "type": "string",
+      "description": "New model name to create"
+     }
+    },
+    "required": [
+     "destination",
+     "source"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://ollama.com/api/api/copy",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "source",
+     "destination"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "ollama.create",
+   "name": "Create a model",
+   "description": "Create a model",
+   "input": {
+    "type": "object",
+    "properties": {
+     "model": {
+      "type": "string",
+      "description": "Name for the model to create"
+     },
+     "from": {
+      "type": "string",
+      "description": "Existing model to create from"
+     },
+     "template": {
+      "type": "string",
+      "description": "Prompt template to use for the model"
+     },
+     "renderer": {
+      "type": "string",
+      "description": "Name of the renderer for the model"
+     },
+     "parser": {
+      "type": "string",
+      "description": "Name of the parser for the model"
+     },
+     "files": {
+      "type": "object",
+      "description": "Source file names mapped to their SHA-256 digests. Split GGUF models must include each shard under its original split filename."
+     },
+     "draft_files": {
+      "type": "object",
+      "description": "Draft source file names mapped to their SHA-256 digests"
+     },
+     "license": {
+      "type": "string",
+      "description": "License string or list of licenses for the model"
+     },
+     "system": {
+      "type": "string",
+      "description": "System prompt to embed in the model"
+     },
+     "parameters": {
+      "type": "object",
+      "description": "Key-value parameters for the model"
+     },
+     "messages": {
+      "type": "array",
+      "description": "Message history to use for the model"
+     },
+     "quantize": {
+      "type": "string",
+      "description": "Quantization level to apply during import (e.g. `nvfp4`)"
+     },
+     "draft_quantize": {
+      "type": "string",
+      "description": "Quantization level to apply to draft weights during import"
+     },
+     "requires": {
+      "type": "string",
+      "description": "Minimum Ollama version required by the model"
+     },
+     "capabilities": {
+      "type": "array",
+      "description": "Capabilities to add without removing inherited or inferred capabilities (e.g. `decision` for compatible decision models)"
+     },
+     "stream": {
+      "type": "boolean",
+      "description": "Stream status updates"
+     }
+    },
+    "required": [
+     "model"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://ollama.com/api/api/create",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "model",
+     "from",
+     "template",
+     "renderer",
+     "parser",
+     "files",
+     "draft_files",
+     "license",
+     "system",
+     "parameters",
+     "messages",
+     "quantize",
+     "draft_quantize",
+     "requires",
+     "capabilities",
+     "stream"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "ollama.create_blob",
+   "name": "Push a blob",
+   "description": "Push a blob",
+   "input": {
+    "type": "object",
+    "properties": {
+     "digest": {
+      "type": "string",
+      "description": "SHA256 digest identifier, prefixed with `sha256:`"
+     }
+    },
+    "required": [
+     "digest"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://ollama.com/api/api/blobs/{digest}",
+    "path": [
+     "digest"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "ollama.delete",
+   "name": "Delete a model",
+   "description": "Delete a model",
+   "input": {
+    "type": "object",
+    "properties": {
+     "model": {
+      "type": "string",
+      "description": "Model name to delete"
+     }
+    },
+    "required": [
+     "model"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://ollama.com/api/api/delete",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "model"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "ollama.embed",
+   "name": "Generate embeddings",
+   "description": "Creates vector embeddings representing the input text",
+   "input": {
+    "type": "object",
+    "properties": {
+     "model": {
+      "type": "string",
+      "description": "Model name"
+     },
+     "input": {
+      "type": "string",
+      "description": "Text or array of texts to generate embeddings for"
+     },
+     "truncate": {
+      "type": "boolean",
+      "description": "If true, truncate inputs that exceed the context window. If false, returns an error."
+     },
+     "dimensions": {
+      "type": "integer",
+      "description": "Number of dimensions to generate embeddings for"
+     },
+     "keep_alive": {
+      "type": "string",
+      "description": "Model keep-alive duration"
+     },
+     "options": {
+      "type": "object",
+      "description": "Runtime options that control text generation"
+     }
+    },
+    "required": [
+     "input",
+     "model"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://ollama.com/api/api/embed",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "model",
+     "input",
+     "truncate",
+     "dimensions",
+     "keep_alive",
+     "options"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "ollama.generate",
+   "name": "Generate a response",
+   "description": "Generates a response for the provided prompt",
+   "input": {
+    "type": "object",
+    "properties": {
+     "model": {
+      "type": "string",
+      "description": "Model name"
+     },
+     "prompt": {
+      "type": "string",
+      "description": "Text for the model to generate a response from"
+     },
+     "suffix": {
+      "type": "string",
+      "description": "Used for fill-in-the-middle models, text that appears after the user prompt and before the model response"
+     },
+     "images": {
+      "type": "array",
+      "description": ""
+     },
+     "format": {
+      "type": "string",
+      "description": "Structured output format for the model to generate a response from. Supports either the string `\"json\"` or a JSON schema object."
+     },
+     "system": {
+      "type": "string",
+      "description": "System prompt for the model to generate a response from"
+     },
+     "stream": {
+      "type": "boolean",
+      "description": "When true, returns a stream of partial responses"
+     },
+     "think": {
+      "type": "string",
+      "description": "Controls a model's thinking output. Use `/api/show` to discover the supported values and default for the selected model. `true` requests thinking, `false` requests no thinking output, and `null` uses the model default. String values are model-defined; supported names must match `/api/show` exactly. Numbers are not supported."
+     },
+     "raw": {
+      "type": "boolean",
+      "description": "When true, returns the raw response from the model without any prompt templating"
+     },
+     "keep_alive": {
+      "type": "string",
+      "description": "Model keep-alive duration (for example `5m` or `0` to unload immediately)"
+     },
+     "options": {
+      "type": "object",
+      "description": "Runtime options that control text generation"
+     },
+     "logprobs": {
+      "type": "boolean",
+      "description": "Whether to return log probabilities of the output tokens"
+     },
+     "top_logprobs": {
+      "type": "integer",
+      "description": "Number of most likely tokens to return at each token position when logprobs are enabled"
+     }
+    },
+    "required": [
+     "model"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://ollama.com/api/api/generate",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "model",
+     "prompt",
+     "suffix",
+     "images",
+     "format",
+     "system",
+     "stream",
+     "think",
+     "raw",
+     "keep_alive",
+     "options",
+     "logprobs",
+     "top_logprobs"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "ollama.list",
+   "name": "List models",
+   "description": "Fetch a list of models and their details",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://ollama.com/api/api/tags",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "ollama.ps",
+   "name": "List running models",
+   "description": "Retrieve a list of models that are currently running",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://ollama.com/api/api/ps",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "ollama.pull",
+   "name": "Pull a model",
+   "description": "Pull a model",
+   "input": {
+    "type": "object",
+    "properties": {
+     "model": {
+      "type": "string",
+      "description": "Name of the model to download"
+     },
+     "insecure": {
+      "type": "boolean",
+      "description": "Allow downloading over insecure connections"
+     },
+     "stream": {
+      "type": "boolean",
+      "description": "Stream progress updates"
+     }
+    },
+    "required": [
+     "model"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://ollama.com/api/api/pull",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "model",
+     "insecure",
+     "stream"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "ollama.push",
+   "name": "Push a model",
+   "description": "Push a model",
+   "input": {
+    "type": "object",
+    "properties": {
+     "model": {
+      "type": "string",
+      "description": "Name of the model to publish"
+     },
+     "insecure": {
+      "type": "boolean",
+      "description": "Allow publishing over insecure connections"
+     },
+     "stream": {
+      "type": "boolean",
+      "description": "Stream progress updates"
+     }
+    },
+    "required": [
+     "model"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://ollama.com/api/api/push",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "model",
+     "insecure",
+     "stream"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "ollama.show",
+   "name": "Show model details",
+   "description": "Show model details",
+   "input": {
+    "type": "object",
+    "properties": {
+     "model": {
+      "type": "string",
+      "description": "Model name to show"
+     },
+     "verbose": {
+      "type": "boolean",
+      "description": "If true, includes large verbose fields in the response."
+     }
+    },
+    "required": [
+     "model"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://ollama.com/api/api/show",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "model",
+     "verbose"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "ollama.systemone",
+   "name": "Answer typed questions",
+   "description": "Answer choice, yes/no, and scoring questions with a System One model, locally or in Ollama's cloud. Requires Ollama v0.35.0 or later, or v0.40.5 or later for cloud models. See the [decision guide](/capabilities/decision) for examples.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "model": {
+      "type": "string",
+      "description": "Model trained for System One, such as nimble, or clef:cloud for Ollama's cloud."
+     },
+     "state": {
+      "type": "string",
+      "description": "A nonempty string, or an object or array serialized as JSON text. Not interpreted as chat messages or multimodal input."
+     },
+     "images": {
+      "type": "array",
+      "description": "Base64-encoded images shared by all questions, in request order. Requires a model with vision, such as Clef. Models with audio input also accept WAV clips here. URLs and data URLs are not supported."
+     },
+     "questions": {
+      "type": "object",
+      "description": "Named questions about the shared state. Answers are not passed to later questions. Cloud models accept names of up to 100 ASCII letters, digits, `_`, `.`, or `-`."
+     },
+     "keep_alive": {
+      "type": "string",
+      "description": "How long to keep the model loaded after the request, as a duration string (such as 5m) or seconds. Zero unloads after the request; a negative value keeps it loaded. Defaults to the server's keep-alive setting (5m unless configured otherwise)."
+     }
+    },
+    "required": [
+     "model",
+     "questions",
+     "state"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://ollama.com/api/v1/systemone",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "model",
+     "state",
+     "images",
+     "questions",
+     "keep_alive"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "ollama.usage",
+   "name": "Cloud usage",
+   "description": "Usage statistics for cloud inference, web search, and web fetch.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "range": {
+      "type": "string",
+      "description": "Completed UTC hours or days to include, plus the current partial hour or day.",
+      "enum": [
+       "24h",
+       "7d",
+       "30d"
+      ]
+     },
+     "scope": {
+      "type": "string",
+      "description": "Your requests, or your team's requests. Team scope requires being a team admin.",
+      "enum": [
+       "self",
+       "team"
+      ]
+     },
+     "group_by": {
+      "type": "string",
+      "description": "How to group usage within totals and buckets. Supported values: model.",
+      "enum": [
+       "model"
+      ]
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://ollama.com/api/api/usage",
+    "path": [],
+    "query": [
+     "range",
+     "scope",
+     "group_by"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "ollama.version",
+   "name": "Get version",
+   "description": "Retrieve the version of the Ollama",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://ollama.com/api/api/version",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  }
+ ]
+}

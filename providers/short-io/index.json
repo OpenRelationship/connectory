@@ -1,0 +1,5616 @@
+{
+ "_": "GENERATED \u2014 what an authoring tool needs to FIND an operation. The calling table is the .lua beside it.",
+ "provider": "short-io",
+ "source": "https://api.short.io/openapi.json",
+ "operations": [
+  {
+   "slug": "short-io.archive_link",
+   "name": "Archive link",
+   "description": "Archive link",
+   "input": {
+    "type": "object",
+    "properties": {
+     "link_id": {
+      "type": "string",
+      "description": "Numeric link ID or encoded link ID string"
+     },
+     "domain_id": {
+      "type": "string",
+      "description": "Domain ID, required only when using a legacy numeric link ID"
+     }
+    },
+    "required": [
+     "link_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.short.io/links/archive",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "link_id",
+     "domain_id"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.bulk_link",
+   "name": "Create up to 1000 links in one call",
+   "description": "Please use this method if you need to create big packs of links. It accepts up to 1000 links in one API call. It works almost the same as single link creation endpoint, but accepts an array of URLs and returns an array of responses. Returns list of Link objects. If any URL is failed to insert, it returns error object instead as array element. Method is not transactional \u2013 it can insert some links ",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domain": {
+      "type": "string",
+      "description": "Domain hostname"
+     },
+     "allowDuplicates": {
+      "type": "boolean",
+      "description": "Allow duplicate destinations across the batch"
+     },
+     "links": {
+      "type": "array",
+      "description": "Links to create (up to 1000)"
+     },
+     "folderId": {
+      "type": "string",
+      "description": "Folder ID"
+     }
+    },
+    "required": [
+     "domain",
+     "links"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.short.io/links/bulk",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "domain",
+     "allowDuplicates",
+     "links",
+     "folderId"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.bulk_qr",
+   "name": "Generate qr codes for the link in bulk",
+   "description": "Generate QR codes for the link in bulk. Rate limit - 1 request per minute",
+   "input": {
+    "type": "object",
+    "properties": {
+     "color": {
+      "type": "string",
+      "description": "6 or 8-character hex color without # prefix (RRGGBB or RRGGBBAA)"
+     },
+     "backgroundColor": {
+      "type": "string",
+      "description": "6 or 8-character hex color without # prefix (RRGGBB or RRGGBBAA)"
+     },
+     "size": {
+      "type": "number",
+      "description": "QR code size scale factor"
+     },
+     "type": {
+      "type": "string",
+      "description": "QR code image format",
+      "enum": [
+       "png",
+       "svg"
+      ]
+     },
+     "useDomainSettings": {
+      "type": "boolean",
+      "description": "Use QR code settings configured on the domain"
+     },
+     "borderRadius": {
+      "type": "number",
+      "description": "Dot border radius on the dashboard 0-5 scale, 5 = fully round"
+     },
+     "noExcavate": {
+      "type": "boolean",
+      "description": "Disable logo excavation (cutout) in the QR code"
+     },
+     "finderOuterShape": {
+      "type": "string",
+      "description": "Shape of the outer finder pattern",
+      "enum": [
+       "square",
+       "rounded",
+       "circle",
+       "drop"
+      ]
+     },
+     "finderInnerShape": {
+      "type": "string",
+      "description": "Shape of the inner finder pattern",
+      "enum": [
+       "square",
+       "rounded",
+       "circle",
+       "drop"
+      ]
+     },
+     "finderColor": {
+      "type": "string",
+      "description": "6 or 8-character hex color without # prefix (RRGGBB or RRGGBBAA)"
+     },
+     "cornerMode": {
+      "type": "string",
+      "description": "Corner module rendering mode",
+      "enum": [
+       "individual",
+       "merge"
+      ]
+     },
+     "labelText": {
+      "type": "string",
+      "description": "Optional text label rendered with the QR code"
+     },
+     "labelStyle": {
+      "type": "string",
+      "description": "Label visual style",
+      "enum": [
+       "below",
+       "pill",
+       "box"
+      ]
+     },
+     "labelColor": {
+      "type": "string",
+      "description": "6 or 8-character hex color without # prefix (RRGGBB or RRGGBBAA)"
+     },
+     "labelBgColor": {
+      "type": "string",
+      "description": "6 or 8-character hex color without # prefix (RRGGBB or RRGGBBAA)"
+     },
+     "labelFontSize": {
+      "type": "number",
+      "description": "Label font size in module units (rendered px = value * block size)"
+     },
+     "labelFontFamily": {
+      "type": "string",
+      "description": "Label font family name"
+     },
+     "linkIds": {
+      "type": "array",
+      "description": "List of link IDs to generate QR codes for"
+     },
+     "domainId": {
+      "type": "string",
+      "description": "Domain ID for legacy numeric link IDs"
+     }
+    },
+    "required": [
+     "linkIds",
+     "type",
+     "useDomainSettings"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.short.io/links/qr/bulk",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "color",
+     "backgroundColor",
+     "size",
+     "type",
+     "useDomainSettings",
+     "borderRadius",
+     "noExcavate",
+     "finderOuterShape",
+     "finderInnerShape",
+     "finderColor",
+     "cornerMode",
+     "labelText",
+     "labelStyle",
+     "labelColor",
+     "labelBgColor",
+     "labelFontSize",
+     "labelFontFamily",
+     "linkIds",
+     "domainId"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.bulk_tag",
+   "name": "Append a single tag to the links in bulk",
+   "description": "Append a single tag to the links in bulk",
+   "input": {
+    "type": "object",
+    "properties": {
+     "tag": {
+      "type": "string",
+      "description": "Tag to append to each link"
+     },
+     "link_ids": {
+      "type": "array",
+      "description": "Link id strings to tag"
+     }
+    },
+    "required": [
+     "link_ids",
+     "tag"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.short.io/tags/bulk",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "tag",
+     "link_ids"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.create_accept",
+   "name": "Accept a pending domain transfer",
+   "description": "Accept a pending domain transfer",
+   "input": {
+    "type": "object",
+    "properties": {
+     "transferId": {
+      "type": "string",
+      "description": "Transfer request id"
+     }
+    },
+    "required": [
+     "transferId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.short.io/domains/transfers/{transferId}/accept",
+    "path": [
+     "transferId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.create_actiontaken",
+   "name": "Confirm action taken on a forwarded abuse report",
+   "description": "Records that an organization admin took action on a forwarded abuse report and returns the report. Pressing it again keeps the first timestamp. A report that is not forwarded to this organization (or no longer is) answers 404.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "organizationId": {
+      "type": "string",
+      "description": ""
+     },
+     "reportId": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "organizationId",
+     "reportId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.short.io/organizations/{organizationId}/abuseReports/{reportId}/actionTaken",
+    "path": [
+     "organizationId",
+     "reportId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.create_ai",
+   "name": "Generate an ai qr code for the link",
+   "description": "Generate an AI QR code for the link",
+   "input": {
+    "type": "object",
+    "properties": {
+     "linkIdString": {
+      "type": "string",
+      "description": "Link ID"
+     },
+     "prompt": {
+      "type": "string",
+      "description": "Description of the artwork to generate"
+     },
+     "negativePrompt": {
+      "type": "string",
+      "description": "Extra things to avoid in the artwork"
+     },
+     "seed": {
+      "type": "integer",
+      "description": "Seed for a reproducible composition"
+     }
+    },
+    "required": [
+     "linkIdString",
+     "prompt"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.short.io/links/qr/{linkIdString}/ai",
+    "path": [
+     "linkIdString"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "prompt",
+     "negativePrompt",
+     "seed"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.create_allowedhostname",
+   "name": "Add allowed hostname",
+   "description": "Adds a hostname to the domain's allowed-hostnames list.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domainId": {
+      "type": "integer",
+      "description": "Domain ID"
+     },
+     "hostname": {
+      "type": "string",
+      "description": "Referrer hostname allowed to use this domain's links"
+     }
+    },
+    "required": [
+     "domainId",
+     "hostname"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.short.io/domains/allowedHostnames/{domainId}",
+    "path": [
+     "domainId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "hostname"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.create_archive_bulk",
+   "name": "Archive links in bulk",
+   "description": "Archive links in bulk",
+   "input": {
+    "type": "object",
+    "properties": {
+     "link_ids": {
+      "type": "array",
+      "description": "Link IDs to operate on"
+     },
+     "domain_id": {
+      "type": "string",
+      "description": "Domain ID, required only when using legacy numeric link IDs"
+     }
+    },
+    "required": [
+     "link_ids"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.short.io/links/archive_bulk",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "link_ids",
+     "domain_id"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.create_bulk",
+   "name": "Create link countries in bulk",
+   "description": "Create link countries in bulk",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domainId": {
+      "type": "string",
+      "description": "Domain ID, required only when using a legacy numeric link ID"
+     },
+     "linkId": {
+      "type": "string",
+      "description": "Numeric link ID or encoded link ID string"
+     }
+    },
+    "required": [
+     "linkId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.short.io/link_country/bulk/{linkId}",
+    "path": [
+     "linkId"
+    ],
+    "query": [
+     "domainId"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.create_bulk",
+   "name": "Create link regions in bulk",
+   "description": "Create link regions in bulk",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domainId": {
+      "type": "integer",
+      "description": "Domain ID, required only when using a legacy numeric link ID"
+     },
+     "linkId": {
+      "type": "string",
+      "description": "Numeric link ID or encoded link ID string"
+     }
+    },
+    "required": [
+     "linkId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.short.io/link_region/bulk/{linkId}",
+    "path": [
+     "linkId"
+    ],
+    "query": [
+     "domainId"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.create_bundle",
+   "name": "Create bundle",
+   "description": "Creates a new link bundle with customizable template, social media links, and branding",
+   "input": {
+    "type": "object",
+    "properties": {
+     "DomainId": {
+      "type": "number",
+      "description": "Domain ID where the bundle will be created"
+     },
+     "TemplateId": {
+      "type": "string",
+      "description": "Template ID from available templates"
+     }
+    },
+    "required": [
+     "DomainId",
+     "TemplateId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.short.io/links/bundle",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "DomainId",
+     "TemplateId"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.create_cancel",
+   "name": "Cancel a pending domain transfer",
+   "description": "Cancel a pending domain transfer",
+   "input": {
+    "type": "object",
+    "properties": {
+     "transferId": {
+      "type": "string",
+      "description": "Transfer request id"
+     }
+    },
+    "required": [
+     "transferId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.short.io/domains/transfers/{transferId}/cancel",
+    "path": [
+     "transferId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.create_cover",
+   "name": "Upload post cover image",
+   "description": "Accepts JPEG, PNG, WebP, AVIF or GIF up to 20 MB as the raw image body. It is stored as a JPEG that fits 1200x630 and is never enlarged. Replies with the stored url, width and height.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "Link id string"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.short.io/links/post/{id}/cover",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.create_debug",
+   "name": "Fetch and inspect open graph tags for a url (public, h captcha protected)",
+   "description": "Fetch and inspect OpenGraph tags for a URL (public, hCaptcha-protected)",
+   "input": {
+    "type": "object",
+    "properties": {
+     "hcaptchaToken": {
+      "type": "string",
+      "description": "hCaptcha verification token"
+     }
+    },
+    "required": [
+     "hcaptchaToken",
+     "url"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.short.io/links/opengraph/debug",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "hcaptchaToken"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.create_debug",
+   "name": "Fetch and inspect deep link configuration for a url (public, h captcha protected)",
+   "description": "Fetch and inspect deep link configuration for a URL (public, hCaptcha-protected)",
+   "input": {
+    "type": "object",
+    "properties": {
+     "hcaptchaToken": {
+      "type": "string",
+      "description": "hCaptcha verification token"
+     }
+    },
+    "required": [
+     "hcaptchaToken",
+     "url"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.short.io/links/deeplinks/debug",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "hcaptchaToken"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.create_decline",
+   "name": "Decline a pending domain transfer",
+   "description": "Decline a pending domain transfer",
+   "input": {
+    "type": "object",
+    "properties": {
+     "transferId": {
+      "type": "string",
+      "description": "Transfer request id"
+     }
+    },
+    "required": [
+     "transferId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.short.io/domains/transfers/{transferId}/decline",
+    "path": [
+     "transferId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.create_dnsrecord",
+   "name": "Create dns records",
+   "description": "Creates one or more DNS records for a domain registered through Short.io.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "hostname": {
+      "type": "string",
+      "description": "Domain hostname"
+     },
+     "records": {
+      "type": "array",
+      "description": "DNS records to create"
+     }
+    },
+    "required": [
+     "hostname",
+     "records"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.short.io/domains/dnsRecord",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "hostname",
+     "records"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.create_domain",
+   "name": "Create a domain",
+   "description": "Create a domain",
+   "input": {
+    "type": "object",
+    "properties": {
+     "hostname": {
+      "type": "string",
+      "description": "Domain hostname"
+     },
+     "hideReferer": {
+      "type": "boolean",
+      "description": "Strip referer header on redirect"
+     },
+     "linkType": {
+      "type": "string",
+      "description": "Default link type for the domain",
+      "enum": [
+       "increment",
+       "random",
+       "secure",
+       "four-char",
+       "eight-char",
+       "ten-char"
+      ]
+     },
+     "teamId": {
+      "type": "integer",
+      "description": "Team to create the domain in. Required for non-admin organization members; optional for organization admins."
+     }
+    },
+    "required": [
+     "hostname"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.short.io/domains",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "hostname",
+     "hideReferer",
+     "linkType",
+     "teamId"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.create_duplicate",
+   "name": "Duplicate an existing link",
+   "description": "Duplicates an existing link with all its properties, targeting rules, and settings. The duplicated link will have a new random path (or custom if provided) and be fully independent. **Rate limit**: 50/s",
+   "input": {
+    "type": "object",
+    "properties": {
+     "linkId": {
+      "type": "string",
+      "description": "Encoded link ID string of the source link"
+     },
+     "path": {
+      "type": "string",
+      "description": "Custom path for duplicated link"
+     }
+    },
+    "required": [
+     "linkId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.short.io/links/duplicate/{linkId}",
+    "path": [
+     "linkId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "path"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.create_example",
+   "name": "Generate example links for a domain",
+   "description": "Creates a set of demo/example links to showcase various features of the short link service. Example links include: - A/B testing with split URLs - Mobile targeting (different URLs for Android/iPhone) - Expiring links with time limits - File download links - Password-protected links Returns 404 if the domain does not exist in your organization. **Rate limit**: 5/10s",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domain": {
+      "type": "string",
+      "description": "Domain hostname to create examples for"
+     }
+    },
+    "required": [
+     "domain"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.short.io/links/examples",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "domain"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.create_favorite",
+   "name": "Mark domain as favorite",
+   "description": "Marks the domain as a favorite for the current user.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domainId": {
+      "type": "integer",
+      "description": "Domain ID"
+     }
+    },
+    "required": [
+     "domainId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.short.io/domains/favorite/{domainId}",
+    "path": [
+     "domainId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.create_folder",
+   "name": "Create folder",
+   "description": "Create a new folder",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domainId": {
+      "type": "integer",
+      "description": "Domain ID the folder belongs to"
+     },
+     "name": {
+      "type": "string",
+      "description": "Folder display name"
+     },
+     "color": {
+      "type": "string",
+      "description": "Folder display hex color"
+     },
+     "backgroundColor": {
+      "type": "string",
+      "description": "QR code background hex color"
+     },
+     "logoUrl": {
+      "type": "string",
+      "description": "URL of the QR code center logo"
+     },
+     "logoHeight": {
+      "type": "integer",
+      "description": "QR code logo height in pixels"
+     },
+     "logoWidth": {
+      "type": "integer",
+      "description": "QR code logo width in pixels"
+     },
+     "ecLevel": {
+      "type": "string",
+      "description": "QR code error correction level"
+     },
+     "borderRadius": {
+      "type": "integer",
+      "description": "QR code border radius in pixels"
+     },
+     "noExcavate": {
+      "type": "boolean",
+      "description": "Disable logo excavation (cutout)"
+     },
+     "finderOuterShape": {
+      "type": "string",
+      "description": "Shape of the outer finder pattern"
+     },
+     "finderInnerShape": {
+      "type": "string",
+      "description": "Shape of the inner finder pattern"
+     },
+     "finderColor": {
+      "type": "string",
+      "description": "Hex color for finder patterns"
+     },
+     "cornerMode": {
+      "type": "string",
+      "description": "Corner rendering mode"
+     },
+     "labelText": {
+      "type": "string",
+      "description": "QR code label text"
+     },
+     "labelStyle": {
+      "type": "string",
+      "description": "Label placement style"
+     },
+     "labelColor": {
+      "type": "string",
+      "description": "Label text hex color"
+     },
+     "labelBgColor": {
+      "type": "string",
+      "description": "Label background hex color"
+     },
+     "labelFontSize": {
+      "type": "integer",
+      "description": "Label font size in pixels"
+     },
+     "labelFontFamily": {
+      "type": "string",
+      "description": "Label font family"
+     },
+     "integrationFB": {
+      "type": "string",
+      "description": "Facebook Pixel ID"
+     },
+     "integrationTT": {
+      "type": "string",
+      "description": "TikTok Pixel ID"
+     },
+     "integrationGA": {
+      "type": "string",
+      "description": "Google Analytics ID"
+     },
+     "integrationGTM": {
+      "type": "string",
+      "description": "Google Tag Manager ID"
+     },
+     "integrationAdroll": {
+      "type": "string",
+      "description": "Adroll pixel ID"
+     },
+     "utmCampaign": {
+      "type": "string",
+      "description": "Default utm_campaign for folder links"
+     },
+     "utmMedium": {
+      "type": "string",
+      "description": "Default utm_medium for folder links"
+     },
+     "utmSource": {
+      "type": "string",
+      "description": "Default utm_source for folder links"
+     },
+     "utmTerm": {
+      "type": "string",
+      "description": "Default utm_term for folder links"
+     },
+     "utmContent": {
+      "type": "string",
+      "description": "Default utm_content for folder links"
+     },
+     "redirectType": {
+      "type": "integer",
+      "description": "Default HTTP redirect code for folder links"
+     },
+     "expiresAtDays": {
+      "type": "integer",
+      "description": "Default link lifetime in days"
+     },
+     "icon": {
+      "type": "string",
+      "description": "Folder icon identifier"
+     },
+     "prefix": {
+      "type": "string",
+      "description": "Slug prefix applied to folder links"
+     }
+    },
+    "required": [
+     "domainId",
+     "name"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.short.io/links/folders",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "domainId",
+     "name",
+     "color",
+     "backgroundColor",
+     "logoUrl",
+     "logoHeight",
+     "logoWidth",
+     "ecLevel",
+     "borderRadius",
+     "noExcavate",
+     "finderOuterShape",
+     "finderInnerShape",
+     "finderColor",
+     "cornerMode",
+     "labelText",
+     "labelStyle",
+     "labelColor",
+     "labelBgColor",
+     "labelFontSize",
+     "labelFontFamily",
+     "integrationFB",
+     "integrationTT",
+     "integrationGA",
+     "integrationGTM",
+     "integrationAdroll",
+     "utmCampaign",
+     "utmMedium",
+     "utmSource",
+     "utmTerm",
+     "utmContent",
+     "redirectType",
+     "expiresAtDays",
+     "icon",
+     "prefix"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.create_from_url",
+   "name": "Create bundle from urls",
+   "description": "Creates a link bundle from up to 10 destination URLs in one call: each URL is shortened on the domain, and a bundle page linking to all of them is created under its own short link. A URL that cannot be shortened is skipped and listed in `skipped`; the bundle is still created. Prefer this over creating links and a bundle separately.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domainId": {
+      "type": "number",
+      "description": "Domain the bundle and its links are created on"
+     },
+     "urls": {
+      "type": "array",
+      "description": "Destination URLs, in the order they appear in the bundle"
+     },
+     "path": {
+      "type": "string",
+      "description": "Path of the bundle's short link (auto-generated if omitted)"
+     }
+    },
+    "required": [
+     "domainId",
+     "urls"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.short.io/links/bundle/from-urls",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "domainId",
+     "urls",
+     "path"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.create_hosted",
+   "name": "Generate a hosted qr code for the link",
+   "description": "Generate a hosted QR code for the link",
+   "input": {
+    "type": "object",
+    "properties": {
+     "linkIdString": {
+      "type": "string",
+      "description": "Link ID"
+     },
+     "color": {
+      "type": "string",
+      "description": "6 or 8-character hex color without # prefix (RRGGBB or RRGGBBAA)"
+     },
+     "backgroundColor": {
+      "type": "string",
+      "description": "6 or 8-character hex color without # prefix (RRGGBB or RRGGBBAA)"
+     },
+     "size": {
+      "type": "number",
+      "description": "QR code size scale factor"
+     },
+     "type": {
+      "type": "string",
+      "description": "QR code image format",
+      "enum": [
+       "png",
+       "svg"
+      ]
+     },
+     "useDomainSettings": {
+      "type": "boolean",
+      "description": "Use QR code settings configured on the domain"
+     },
+     "borderRadius": {
+      "type": "number",
+      "description": "Dot border radius on the dashboard 0-5 scale, 5 = fully round"
+     },
+     "noExcavate": {
+      "type": "boolean",
+      "description": "Disable logo excavation (cutout) in the QR code"
+     },
+     "finderOuterShape": {
+      "type": "string",
+      "description": "Shape of the outer finder pattern",
+      "enum": [
+       "square",
+       "rounded",
+       "circle",
+       "drop"
+      ]
+     },
+     "finderInnerShape": {
+      "type": "string",
+      "description": "Shape of the inner finder pattern",
+      "enum": [
+       "square",
+       "rounded",
+       "circle",
+       "drop"
+      ]
+     },
+     "finderColor": {
+      "type": "string",
+      "description": "6 or 8-character hex color without # prefix (RRGGBB or RRGGBBAA)"
+     },
+     "cornerMode": {
+      "type": "string",
+      "description": "Corner module rendering mode",
+      "enum": [
+       "individual",
+       "merge"
+      ]
+     },
+     "labelText": {
+      "type": "string",
+      "description": "Optional text label rendered with the QR code"
+     },
+     "labelStyle": {
+      "type": "string",
+      "description": "Label visual style",
+      "enum": [
+       "below",
+       "pill",
+       "box"
+      ]
+     },
+     "labelColor": {
+      "type": "string",
+      "description": "6 or 8-character hex color without # prefix (RRGGBB or RRGGBBAA)"
+     },
+     "labelBgColor": {
+      "type": "string",
+      "description": "6 or 8-character hex color without # prefix (RRGGBB or RRGGBBAA)"
+     },
+     "labelFontSize": {
+      "type": "number",
+      "description": "Label font size in module units (rendered px = value * block size)"
+     },
+     "labelFontFamily": {
+      "type": "string",
+      "description": "Label font family name"
+     }
+    },
+    "required": [
+     "linkIdString",
+     "useDomainSettings"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.short.io/links/qr/{linkIdString}/hosted",
+    "path": [
+     "linkIdString"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "color",
+     "backgroundColor",
+     "size",
+     "type",
+     "useDomainSettings",
+     "borderRadius",
+     "noExcavate",
+     "finderOuterShape",
+     "finderInnerShape",
+     "finderColor",
+     "cornerMode",
+     "labelText",
+     "labelStyle",
+     "labelColor",
+     "labelBgColor",
+     "labelFontSize",
+     "labelFontFamily"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.create_ipexclusion",
+   "name": "Add ip exclusion",
+   "description": "Adds an IP address to the domain's exclusion list, so clicks from it are not counted.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domainId": {
+      "type": "integer",
+      "description": "Domain ID"
+     },
+     "ip": {
+      "type": "string",
+      "description": "IPv4 address to exclude from click tracking"
+     }
+    },
+    "required": [
+     "domainId",
+     "ip"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.short.io/domains/ipExclusions/{domainId}",
+    "path": [
+     "domainId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "ip"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.create_link",
+   "name": "Create a new link",
+   "description": "This method creates a new link. If parameter \"path\" is omitted, it generates path by algorithm, chosen in domain settings. Notes: 1. If URL with a given path already exists and originalURL of the URL in database is equal to originalURL argument, it returns information about existing URL 2. If URL with a given path already exists and originalURL is different from originalURL in database, it returns",
+   "input": {
+    "type": "object",
+    "properties": {
+     "originalURL": {
+      "type": "string",
+      "description": "Original URL"
+     },
+     "cloaking": {
+      "type": "boolean",
+      "description": "Cloaking"
+     },
+     "password": {
+      "type": "string",
+      "description": "Link password"
+     },
+     "redirectType": {
+      "type": "integer",
+      "description": "HTTP code for redirect",
+      "enum": [
+       301,
+       302,
+       307,
+       308
+      ]
+     },
+     "expiresAt": {
+      "type": "string",
+      "description": "Link expiration date in milliseconds or ISO string"
+     },
+     "expiredURL": {
+      "type": "string",
+      "description": "Expired URL"
+     },
+     "title": {
+      "type": "string",
+      "description": "Link title"
+     },
+     "tags": {
+      "type": "array",
+      "description": "Array of link tags"
+     },
+     "utmSource": {
+      "type": "string",
+      "description": "set utm_source parameter to destination link"
+     },
+     "utmMedium": {
+      "type": "string",
+      "description": "set utm_medium parameter to destination link"
+     },
+     "utmCampaign": {
+      "type": "string",
+      "description": "set utm_campaign parameter to destination link"
+     },
+     "utmTerm": {
+      "type": "string",
+      "description": "set utm_term parameter to destination link"
+     },
+     "utmContent": {
+      "type": "string",
+      "description": "set utm_content parameter to destination link"
+     },
+     "ttl": {
+      "type": "string",
+      "description": "Time to live in milliseconds or ISO string"
+     },
+     "path": {
+      "type": "string",
+      "description": "Link slug. For case-insensitive domains, the path is normalized to lowercase and the original value is preserved in displayPath."
+     },
+     "androidURL": {
+      "type": "string",
+      "description": "Android URL"
+     },
+     "iphoneURL": {
+      "type": "string",
+      "description": "iPhone URL"
+     },
+     "createdAt": {
+      "type": "string",
+      "description": "Link creation date in milliseconds"
+     },
+     "clicksLimit": {
+      "type": "integer",
+      "description": "disable link after specified number of clicks"
+     },
+     "passwordContact": {
+      "type": "boolean",
+      "description": "Provide your email to users to get a password"
+     },
+     "skipQS": {
+      "type": "boolean",
+      "description": "Skip query string merging"
+     },
+     "archived": {
+      "type": "boolean",
+      "description": "Link is archived"
+     },
+     "splitURL": {
+      "type": "string",
+      "description": "Split URL"
+     },
+     "splitPercent": {
+      "type": "integer",
+      "description": "Split URL percentage"
+     },
+     "splitURLV2": {
+      "type": "array",
+      "description": "Split URL configurations for multi-way A/B testing"
+     },
+     "integrationAdroll": {
+      "type": "string",
+      "description": "Adroll integration"
+     },
+     "integrationFB": {
+      "type": "string",
+      "description": "Facebook integration"
+     },
+     "integrationTT": {
+      "type": "string",
+      "description": "TikTok integration"
+     },
+     "integrationGA": {
+      "type": "string",
+      "description": "Google Analytics integration"
+     },
+     "integrationGTM": {
+      "type": "string",
+      "description": "Google Tag Manager integration"
+     },
+     "languages": {
+      "type": "string",
+      "description": "Destinations by visitor browser language (Accept-Language). Keys are a language (`en`) or a language and region (`en_US`, `en-us` is accepted); the most specific match wins. Replaced as a whole on update; `{}` or `null` removes every rule. Requires the Hobby plan."
+     }
+    },
+    "required": [
+     "originalURL"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.short.io/links",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "originalURL",
+     "cloaking",
+     "password",
+     "redirectType",
+     "expiresAt",
+     "expiredURL",
+     "title",
+     "tags",
+     "utmSource",
+     "utmMedium",
+     "utmCampaign",
+     "utmTerm",
+     "utmContent",
+     "ttl",
+     "path",
+     "androidURL",
+     "iphoneURL",
+     "createdAt",
+     "clicksLimit",
+     "passwordContact",
+     "skipQS",
+     "archived",
+     "splitURL",
+     "splitPercent",
+     "splitURLV2",
+     "integrationAdroll",
+     "integrationFB",
+     "integrationTT",
+     "integrationGA",
+     "integrationGTM",
+     "languages"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.create_link",
+   "name": "Update existing url",
+   "description": "Update original url, title or path for existing URL by id **Rate limit**: 20/s",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domain_id": {
+      "type": "string",
+      "description": "Domain ID, required only when using a legacy numeric link ID"
+     },
+     "linkId": {
+      "type": "string",
+      "description": "Numeric link ID or encoded link ID string"
+     },
+     "cloaking": {
+      "type": "boolean",
+      "description": "Cloaking"
+     },
+     "password": {
+      "type": "string",
+      "description": "Link password"
+     },
+     "redirectType": {
+      "type": "integer",
+      "description": "HTTP code for redirect",
+      "enum": [
+       301,
+       302,
+       307,
+       308
+      ]
+     },
+     "expiresAt": {
+      "type": "string",
+      "description": "Link expiration date in milliseconds or ISO string"
+     },
+     "expiredURL": {
+      "type": "string",
+      "description": "Expired URL"
+     },
+     "title": {
+      "type": "string",
+      "description": "Link title"
+     },
+     "tags": {
+      "type": "array",
+      "description": "Array of link tags"
+     },
+     "utmSource": {
+      "type": "string",
+      "description": "set utm_source parameter to destination link"
+     },
+     "utmMedium": {
+      "type": "string",
+      "description": "set utm_medium parameter to destination link"
+     },
+     "utmCampaign": {
+      "type": "string",
+      "description": "set utm_campaign parameter to destination link"
+     },
+     "utmTerm": {
+      "type": "string",
+      "description": "set utm_term parameter to destination link"
+     },
+     "utmContent": {
+      "type": "string",
+      "description": "set utm_content parameter to destination link"
+     },
+     "ttl": {
+      "type": "string",
+      "description": "Time to live in milliseconds or ISO string"
+     },
+     "path": {
+      "type": "string",
+      "description": "Link slug. For case-insensitive domains, the path is normalized to lowercase and the original value is preserved in displayPath."
+     },
+     "androidURL": {
+      "type": "string",
+      "description": "Android URL"
+     },
+     "iphoneURL": {
+      "type": "string",
+      "description": "iPhone URL"
+     },
+     "createdAt": {
+      "type": "string",
+      "description": "Link creation date in milliseconds"
+     },
+     "clicksLimit": {
+      "type": "integer",
+      "description": "disable link after specified number of clicks"
+     },
+     "passwordContact": {
+      "type": "boolean",
+      "description": "Provide your email to users to get a password"
+     },
+     "skipQS": {
+      "type": "boolean",
+      "description": "Skip query string merging"
+     },
+     "archived": {
+      "type": "boolean",
+      "description": "Link is archived"
+     },
+     "splitURL": {
+      "type": "string",
+      "description": "Split URL"
+     },
+     "splitPercent": {
+      "type": "integer",
+      "description": "Split URL percentage"
+     },
+     "splitURLV2": {
+      "type": "array",
+      "description": "Split URL configurations for multi-way A/B testing"
+     },
+     "integrationAdroll": {
+      "type": "string",
+      "description": "Adroll integration"
+     },
+     "integrationFB": {
+      "type": "string",
+      "description": "Facebook integration"
+     },
+     "integrationTT": {
+      "type": "string",
+      "description": "TikTok integration"
+     },
+     "integrationGA": {
+      "type": "string",
+      "description": "Google Analytics integration"
+     },
+     "integrationGTM": {
+      "type": "string",
+      "description": "Google Tag Manager integration"
+     },
+     "languages": {
+      "type": "string",
+      "description": "Destinations by visitor browser language (Accept-Language). Keys are a language (`en`) or a language and region (`en_US`, `en-us` is accepted); the most specific match wins. Replaced as a whole on update; `{}` or `null` removes every rule. Requires the Hobby plan."
+     },
+     "originalURL": {
+      "type": "string",
+      "description": "Original URL"
+     }
+    },
+    "required": [
+     "linkId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.short.io/links/{linkId}",
+    "path": [
+     "linkId"
+    ],
+    "query": [
+     "domain_id"
+    ],
+    "header": [],
+    "body": [
+     "cloaking",
+     "password",
+     "redirectType",
+     "expiresAt",
+     "expiredURL",
+     "title",
+     "tags",
+     "utmSource",
+     "utmMedium",
+     "utmCampaign",
+     "utmTerm",
+     "utmContent",
+     "ttl",
+     "path",
+     "androidURL",
+     "iphoneURL",
+     "createdAt",
+     "clicksLimit",
+     "passwordContact",
+     "skipQS",
+     "archived",
+     "splitURL",
+     "splitPercent",
+     "splitURLV2",
+     "integrationAdroll",
+     "integrationFB",
+     "integrationTT",
+     "integrationGA",
+     "integrationGTM",
+     "languages",
+     "originalURL"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.create_link",
+   "name": "Add link to bundle",
+   "description": "Adds a short link to a bundle. If the link doesn't exist, it will be created.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "Bundle ULID id"
+     },
+     "path": {
+      "type": "string",
+      "description": "Short link path or full URL"
+     },
+     "title": {
+      "type": "string",
+      "description": "Display title for the link"
+     }
+    },
+    "required": [
+     "id",
+     "path",
+     "title"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.short.io/links/bundle/{id}/links",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "path",
+     "title"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.create_link_country",
+   "name": "Create link country",
+   "description": "Create link country",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domainId": {
+      "type": "string",
+      "description": "Domain ID, required only when using a legacy numeric link ID"
+     },
+     "linkId": {
+      "type": "string",
+      "description": "Numeric link ID or encoded link ID string"
+     },
+     "country": {
+      "type": "string",
+      "description": "Country code",
+      "enum": [
+       "AD",
+       "AE",
+       "AF",
+       "AG",
+       "AI",
+       "AL",
+       "AM",
+       "AO",
+       "AQ",
+       "AR",
+       "AS",
+       "AT"
+      ]
+     },
+     "originalURL": {
+      "type": "string",
+      "description": "Destination URL for visitors from this country"
+     }
+    },
+    "required": [
+     "country",
+     "linkId",
+     "originalURL"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.short.io/link_country/{linkId}",
+    "path": [
+     "linkId"
+    ],
+    "query": [
+     "domainId"
+    ],
+    "header": [],
+    "body": [
+     "country",
+     "originalURL"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.create_link_region",
+   "name": "Add region targeting to link",
+   "description": "Add region targeting to link",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domainId": {
+      "type": "integer",
+      "description": "Domain ID"
+     },
+     "linkId": {
+      "type": "string",
+      "description": "Numeric link ID or encoded link ID string"
+     },
+     "country": {
+      "type": "string",
+      "description": "Country code",
+      "enum": [
+       "AD",
+       "AE",
+       "AF",
+       "AG",
+       "AI",
+       "AL",
+       "AM",
+       "AO",
+       "AQ",
+       "AR",
+       "AS",
+       "AT"
+      ]
+     },
+     "region": {
+      "type": "string",
+      "description": "ISO 3166-2 region code"
+     },
+     "originalURL": {
+      "type": "string",
+      "description": "Destination URL for visitors from this region"
+     }
+    },
+    "required": [
+     "country",
+     "linkId",
+     "originalURL",
+     "region"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.short.io/link_region/{linkId}",
+    "path": [
+     "linkId"
+    ],
+    "query": [
+     "domainId"
+    ],
+    "header": [],
+    "body": [
+     "country",
+     "region",
+     "originalURL"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.create_link_signature_key",
+   "name": "Rotate the domain link signature key",
+   "description": "Generates a new per-domain HMAC secret used by the redirector to sign redirect destination URLs, and returns it. Regenerating invalidates the previous key.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domainId": {
+      "type": "integer",
+      "description": "Domain ID"
+     }
+    },
+    "required": [
+     "domainId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.short.io/domains/link-signature-key/{domainId}",
+    "path": [
+     "domainId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.create_page",
+   "name": "Create ai page",
+   "description": "Generates a self-contained HTML page from a prompt and serves it at a new short link. Responds with an `application/x-ndjson` stream, one JSON event per line: `start` (`maxOutputTokens`), `heartbeat` (`elapsedMs`, `outputChars`) at least every 10 seconds while the page is generated, then exactly one terminal event - `done` (`page`) or `error` (`code`, `status`, `message`). `code` is `prompt_reject",
+   "input": {
+    "type": "object",
+    "properties": {
+     "DomainId": {
+      "type": "number",
+      "description": "Domain ID where the page will be created"
+     },
+     "path": {
+      "type": "string",
+      "description": "Short link path (auto-generated if omitted)"
+     },
+     "title": {
+      "type": "string",
+      "description": "Link title (taken from the generated page's if omitted)"
+     },
+     "prompt": {
+      "type": "string",
+      "description": "What the page should be. The HTML is generated from it and cannot be edited directly"
+     }
+    },
+    "required": [
+     "DomainId",
+     "prompt"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.short.io/links/page",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "DomainId",
+     "path",
+     "title",
+     "prompt"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.create_password",
+   "name": "Set password page css",
+   "description": "Sets the custom CSS applied to the domain's password prompt page.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domainId": {
+      "type": "integer",
+      "description": "Domain ID"
+     },
+     "css": {
+      "type": "string",
+      "description": "CSS stylesheet for the password-protected page"
+     }
+    },
+    "required": [
+     "css",
+     "domainId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.short.io/domains/password/{domainId}",
+    "path": [
+     "domainId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "css"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.create_permission",
+   "name": "Add link permission",
+   "description": "Add link permission",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domainId": {
+      "type": "string",
+      "description": "Domain ID the link belongs to"
+     },
+     "linkId": {
+      "type": "string",
+      "description": "Link ID"
+     },
+     "userId": {
+      "type": "string",
+      "description": "User ID to grant access to"
+     }
+    },
+    "required": [
+     "domainId",
+     "linkId",
+     "userId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.short.io/links/permissions/{domainId}/{linkId}/{userId}",
+    "path": [
+     "domainId",
+     "linkId",
+     "userId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.create_photo",
+   "name": "Upload bundle logo",
+   "description": "Uploads a logo image for a bundle. Accepts JPEG, PNG, WebP, AVIF or GIF up to 20 MB as the raw image body. It is stored as a WebP that fits 1024x1024 and is never enlarged. Replies with url, width and height.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "Bundle ULID id"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.short.io/links/bundle/{id}/photo",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.create_poll",
+   "name": "Create poll",
+   "description": "Creates a poll rendered at a short link",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domainId": {
+      "type": "number",
+      "description": "Domain ID where the poll will be created"
+     },
+     "path": {
+      "type": "string",
+      "description": "Short link path (auto-generated if omitted)"
+     },
+     "title": {
+      "type": "string",
+      "description": "The question"
+     },
+     "options": {
+      "type": "array",
+      "description": "Option labels in display order"
+     },
+     "maxChoices": {
+      "type": "integer",
+      "description": "How many options a voter may pick"
+     },
+     "resultsVisibility": {
+      "type": "string",
+      "description": "Who sees the results and when"
+     },
+     "expiresAt": {
+      "type": "integer",
+      "description": "End of the poll, epoch milliseconds. Omit for a poll that never ends"
+     }
+    },
+    "required": [
+     "domainId",
+     "options",
+     "title"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.short.io/links/poll",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "domainId",
+     "path",
+     "title",
+     "options",
+     "maxChoices",
+     "resultsVisibility",
+     "expiresAt"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.create_post",
+   "name": "Create post",
+   "description": "Creates a content page rendered at a short link",
+   "input": {
+    "type": "object",
+    "properties": {
+     "DomainId": {
+      "type": "number",
+      "description": "Domain ID where the post will be created"
+     },
+     "path": {
+      "type": "string",
+      "description": "Short link path (auto-generated if omitted)"
+     }
+    },
+    "required": [
+     "DomainId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.short.io/links/post",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "DomainId",
+     "path"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.create_public",
+   "name": "Create a new link using public api key",
+   "description": "This method creates a new link. Only this method should be used in client-side applications If parameter \"path\" is omitted, it generates path by algorithm, chosen in domain settings. You can use it with public API key in your frontend applications (client-side javascript, Android & iPhone apps) **Rate limit**: 50/s",
+   "input": {
+    "type": "object",
+    "properties": {
+     "type": {
+      "type": "string",
+      "description": ""
+     },
+     "description": {
+      "type": "string",
+      "description": ""
+     },
+     "additionalProperties": {
+      "type": "string",
+      "description": ""
+     },
+     "originalURL": {
+      "type": "string",
+      "description": "Original URL"
+     },
+     "cloaking": {
+      "type": "boolean",
+      "description": "Cloaking"
+     },
+     "password": {
+      "type": "string",
+      "description": "Link password"
+     },
+     "redirectType": {
+      "type": "integer",
+      "description": "HTTP code for redirect",
+      "enum": [
+       301,
+       302,
+       307,
+       308
+      ]
+     },
+     "expiresAt": {
+      "type": "string",
+      "description": "Link expiration date in milliseconds or ISO string"
+     },
+     "expiredURL": {
+      "type": "string",
+      "description": "Expired URL"
+     },
+     "title": {
+      "type": "string",
+      "description": "Link title"
+     },
+     "tags": {
+      "type": "array",
+      "description": "Array of link tags"
+     },
+     "utmSource": {
+      "type": "string",
+      "description": "set utm_source parameter to destination link"
+     },
+     "utmMedium": {
+      "type": "string",
+      "description": "set utm_medium parameter to destination link"
+     },
+     "utmCampaign": {
+      "type": "string",
+      "description": "set utm_campaign parameter to destination link"
+     },
+     "utmTerm": {
+      "type": "string",
+      "description": "set utm_term parameter to destination link"
+     },
+     "utmContent": {
+      "type": "string",
+      "description": "set utm_content parameter to destination link"
+     },
+     "ttl": {
+      "type": "string",
+      "description": "Time to live in milliseconds or ISO string"
+     },
+     "path": {
+      "type": "string",
+      "description": "Link slug. For case-insensitive domains, the path is normalized to lowercase and the original value is preserved in displayPath."
+     },
+     "androidURL": {
+      "type": "string",
+      "description": "Android URL"
+     },
+     "iphoneURL": {
+      "type": "string",
+      "description": "iPhone URL"
+     },
+     "createdAt": {
+      "type": "string",
+      "description": "Link creation date in milliseconds"
+     },
+     "clicksLimit": {
+      "type": "integer",
+      "description": "disable link after specified number of clicks"
+     },
+     "passwordContact": {
+      "type": "boolean",
+      "description": "Provide your email to users to get a password"
+     },
+     "skipQS": {
+      "type": "boolean",
+      "description": "Skip query string merging"
+     },
+     "archived": {
+      "type": "boolean",
+      "description": "Link is archived"
+     },
+     "splitURL": {
+      "type": "string",
+      "description": "Split URL"
+     },
+     "splitPercent": {
+      "type": "integer",
+      "description": "Split URL percentage"
+     },
+     "splitURLV2": {
+      "type": "array",
+      "description": "Split URL configurations for multi-way A/B testing"
+     },
+     "integrationAdroll": {
+      "type": "string",
+      "description": "Adroll integration"
+     },
+     "integrationFB": {
+      "type": "string",
+      "description": "Facebook integration"
+     },
+     "integrationTT": {
+      "type": "string",
+      "description": "TikTok integration"
+     },
+     "integrationGA": {
+      "type": "string",
+      "description": "Google Analytics integration"
+     },
+     "integrationGTM": {
+      "type": "string",
+      "description": "Google Tag Manager integration"
+     },
+     "languages": {
+      "type": "string",
+      "description": "Destinations by visitor browser language (Accept-Language). Keys are a language (`en`) or a language and region (`en_US`, `en-us` is accepted); the most specific match wins. Replaced as a whole on update; `{}` or `null` removes every rule. Requires the Hobby plan."
+     },
+     "domain": {
+      "type": "string",
+      "description": "Domain hostname"
+     },
+     "folderId": {
+      "type": "string",
+      "description": "Folder ID to place the link into"
+     }
+    },
+    "required": [
+     "domain",
+     "originalURL"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.short.io/links/public",
+    "path": [],
+    "query": [],
+    "header": [
+     "type",
+     "description",
+     "additionalProperties"
+    ],
+    "body": [
+     "originalURL",
+     "cloaking",
+     "password",
+     "redirectType",
+     "expiresAt",
+     "expiredURL",
+     "title",
+     "tags",
+     "utmSource",
+     "utmMedium",
+     "utmCampaign",
+     "utmTerm",
+     "utmContent",
+     "ttl",
+     "path",
+     "androidURL",
+     "iphoneURL",
+     "createdAt",
+     "clicksLimit",
+     "passwordContact",
+     "skipQS",
+     "archived",
+     "splitURL",
+     "splitPercent",
+     "splitURLV2",
+     "integrationAdroll",
+     "integrationFB",
+     "integrationTT",
+     "integrationGA",
+     "integrationGTM",
+     "languages",
+     "domain",
+     "folderId"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.create_qr",
+   "name": "Generate qr code for the link",
+   "description": "Generate QR code for the link",
+   "input": {
+    "type": "object",
+    "properties": {
+     "linkIdString": {
+      "type": "string",
+      "description": "Link ID"
+     },
+     "accept": {
+      "type": "string",
+      "description": "Accept header; use application/json to receive a hosted URL"
+     },
+     "color": {
+      "type": "string",
+      "description": "6 or 8-character hex color without # prefix (RRGGBB or RRGGBBAA)"
+     },
+     "backgroundColor": {
+      "type": "string",
+      "description": "6 or 8-character hex color without # prefix (RRGGBB or RRGGBBAA)"
+     },
+     "size": {
+      "type": "number",
+      "description": "QR code size scale factor"
+     },
+     "type": {
+      "type": "string",
+      "description": "QR code image format",
+      "enum": [
+       "png",
+       "svg"
+      ]
+     },
+     "useDomainSettings": {
+      "type": "boolean",
+      "description": "Use QR code settings configured on the domain"
+     },
+     "borderRadius": {
+      "type": "number",
+      "description": "Dot border radius on the dashboard 0-5 scale, 5 = fully round"
+     },
+     "noExcavate": {
+      "type": "boolean",
+      "description": "Disable logo excavation (cutout) in the QR code"
+     },
+     "finderOuterShape": {
+      "type": "string",
+      "description": "Shape of the outer finder pattern",
+      "enum": [
+       "square",
+       "rounded",
+       "circle",
+       "drop"
+      ]
+     },
+     "finderInnerShape": {
+      "type": "string",
+      "description": "Shape of the inner finder pattern",
+      "enum": [
+       "square",
+       "rounded",
+       "circle",
+       "drop"
+      ]
+     },
+     "finderColor": {
+      "type": "string",
+      "description": "6 or 8-character hex color without # prefix (RRGGBB or RRGGBBAA)"
+     },
+     "cornerMode": {
+      "type": "string",
+      "description": "Corner module rendering mode",
+      "enum": [
+       "individual",
+       "merge"
+      ]
+     },
+     "labelText": {
+      "type": "string",
+      "description": "Optional text label rendered with the QR code"
+     },
+     "labelStyle": {
+      "type": "string",
+      "description": "Label visual style",
+      "enum": [
+       "below",
+       "pill",
+       "box"
+      ]
+     },
+     "labelColor": {
+      "type": "string",
+      "description": "6 or 8-character hex color without # prefix (RRGGBB or RRGGBBAA)"
+     },
+     "labelBgColor": {
+      "type": "string",
+      "description": "6 or 8-character hex color without # prefix (RRGGBB or RRGGBBAA)"
+     },
+     "labelFontSize": {
+      "type": "number",
+      "description": "Label font size in module units (rendered px = value * block size)"
+     },
+     "labelFontFamily": {
+      "type": "string",
+      "description": "Label font family name"
+     }
+    },
+    "required": [
+     "linkIdString",
+     "useDomainSettings"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.short.io/links/qr/{linkIdString}",
+    "path": [
+     "linkIdString"
+    ],
+    "query": [],
+    "header": [
+     "accept"
+    ],
+    "body": [
+     "color",
+     "backgroundColor",
+     "size",
+     "type",
+     "useDomainSettings",
+     "borderRadius",
+     "noExcavate",
+     "finderOuterShape",
+     "finderInnerShape",
+     "finderColor",
+     "cornerMode",
+     "labelText",
+     "labelStyle",
+     "labelColor",
+     "labelBgColor",
+     "labelFontSize",
+     "labelFontFamily"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.create_qrcodesetting",
+   "name": "Create or update domain qr code settings",
+   "description": "Creates or updates the default QR code settings applied to the domain's links.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domainId": {
+      "type": "number",
+      "description": "Domain ID"
+     },
+     "color": {
+      "type": "string",
+      "description": "QR code foreground color as hex (RRGGBB or RRGGBBAA)"
+     },
+     "backgroundColor": {
+      "type": "string",
+      "description": "QR code background color as hex"
+     },
+     "logoUrl": {
+      "type": "string",
+      "description": "URL of the logo image embedded in the QR code"
+     },
+     "logoHeight": {
+      "type": "number",
+      "description": "Logo height in pixels"
+     },
+     "logoWidth": {
+      "type": "number",
+      "description": "Logo width in pixels"
+     },
+     "ecLevel": {
+      "type": "string",
+      "description": "QR code error correction level",
+      "enum": [
+       "L",
+       "M",
+       "Q",
+       "H"
+      ]
+     },
+     "borderRadius": {
+      "type": "number",
+      "description": "Module border radius in pixels"
+     },
+     "noExcavate": {
+      "type": "boolean",
+      "description": "Disable logo area excavation"
+     },
+     "finderOuterShape": {
+      "type": "string",
+      "description": "Shape of the outer finder pattern",
+      "enum": [
+       "square",
+       "rounded",
+       "circle",
+       "drop"
+      ]
+     },
+     "finderInnerShape": {
+      "type": "string",
+      "description": "Shape of the inner finder pattern",
+      "enum": [
+       "square",
+       "rounded",
+       "circle",
+       "drop"
+      ]
+     },
+     "finderColor": {
+      "type": "string",
+      "description": "Finder pattern color as hex"
+     },
+     "cornerMode": {
+      "type": "string",
+      "description": "Corner module rendering mode",
+      "enum": [
+       "individual",
+       "merge"
+      ]
+     },
+     "labelText": {
+      "type": "string",
+      "description": "Optional text label rendered with the QR code"
+     },
+     "labelStyle": {
+      "type": "string",
+      "description": "Label visual style",
+      "enum": [
+       "below",
+       "pill",
+       "box"
+      ]
+     },
+     "labelColor": {
+      "type": "string",
+      "description": "Label text color as hex"
+     },
+     "labelBgColor": {
+      "type": "string",
+      "description": "Label background color as hex"
+     },
+     "labelFontSize": {
+      "type": "number",
+      "description": "Label font size in pixels"
+     },
+     "labelFontFamily": {
+      "type": "string",
+      "description": "Label font family name"
+     }
+    },
+    "required": [
+     "domainId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.short.io/domains/qrCodeSettings/{domainId}",
+    "path": [
+     "domainId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "color",
+     "backgroundColor",
+     "logoUrl",
+     "logoHeight",
+     "logoWidth",
+     "ecLevel",
+     "borderRadius",
+     "noExcavate",
+     "finderOuterShape",
+     "finderInnerShape",
+     "finderColor",
+     "cornerMode",
+     "labelText",
+     "labelStyle",
+     "labelColor",
+     "labelBgColor",
+     "labelFontSize",
+     "labelFontFamily"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.create_s3export",
+   "name": "Enable s3 export",
+   "description": "Enables daily S3 click export for the domain.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domainId": {
+      "type": "integer",
+      "description": "Domain ID"
+     },
+     "timezone": {
+      "type": "string",
+      "description": "IANA timezone used for daily export windows"
+     }
+    },
+    "required": [
+     "domainId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.short.io/domains/s3exports/{domainId}",
+    "path": [
+     "domainId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "timezone"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.create_setting",
+   "name": "Create or update link qr code settings",
+   "description": "Saves the QR code settings for the link. Omitted fields are left untouched; send an empty string to clear a text field.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "linkIdString": {
+      "type": "string",
+      "description": "Link ID"
+     },
+     "logoUrl": {
+      "type": "string",
+      "description": "URL of the logo image embedded in the QR code"
+     },
+     "color": {
+      "type": "string",
+      "description": "6 or 8-character hex color without # prefix (RRGGBB or RRGGBBAA)"
+     },
+     "backgroundColor": {
+      "type": "string",
+      "description": "6 or 8-character hex color without # prefix (RRGGBB or RRGGBBAA)"
+     },
+     "logoHeight": {
+      "type": "integer",
+      "description": "Logo height in pixels"
+     },
+     "logoWidth": {
+      "type": "integer",
+      "description": "Logo width in pixels"
+     },
+     "ecLevel": {
+      "type": "string",
+      "description": "QR code error correction level",
+      "enum": [
+       "L",
+       "M",
+       "Q",
+       "H"
+      ]
+     },
+     "borderRadius": {
+      "type": "integer",
+      "description": "Dot border radius on the dashboard 0-5 scale, 5 = fully round"
+     },
+     "noExcavate": {
+      "type": "boolean",
+      "description": "Disable logo excavation (cutout) in the QR code"
+     },
+     "finderOuterShape": {
+      "type": "string",
+      "description": "Shape of the outer finder pattern",
+      "enum": [
+       "square",
+       "rounded",
+       "circle",
+       "drop"
+      ]
+     },
+     "finderInnerShape": {
+      "type": "string",
+      "description": "Shape of the inner finder pattern",
+      "enum": [
+       "square",
+       "rounded",
+       "circle",
+       "drop"
+      ]
+     },
+     "finderColor": {
+      "type": "string",
+      "description": "6 or 8-character hex color without # prefix (RRGGBB or RRGGBBAA)"
+     },
+     "cornerMode": {
+      "type": "string",
+      "description": "Corner module rendering mode",
+      "enum": [
+       "individual",
+       "merge"
+      ]
+     },
+     "labelText": {
+      "type": "string",
+      "description": "Optional text label rendered with the QR code"
+     },
+     "labelStyle": {
+      "type": "string",
+      "description": "Label visual style",
+      "enum": [
+       "below",
+       "pill",
+       "box"
+      ]
+     },
+     "labelColor": {
+      "type": "string",
+      "description": "6 or 8-character hex color without # prefix (RRGGBB or RRGGBBAA)"
+     },
+     "labelBgColor": {
+      "type": "string",
+      "description": "6 or 8-character hex color without # prefix (RRGGBB or RRGGBBAA)"
+     },
+     "labelFontSize": {
+      "type": "integer",
+      "description": "Label font size in module units (rendered px = value * block size)"
+     },
+     "labelFontFamily": {
+      "type": "string",
+      "description": "Label font family name"
+     }
+    },
+    "required": [
+     "linkIdString"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.short.io/links/qr/settings/{linkIdString}",
+    "path": [
+     "linkIdString"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "logoUrl",
+     "color",
+     "backgroundColor",
+     "logoHeight",
+     "logoWidth",
+     "ecLevel",
+     "borderRadius",
+     "noExcavate",
+     "finderOuterShape",
+     "finderInnerShape",
+     "finderColor",
+     "cornerMode",
+     "labelText",
+     "labelStyle",
+     "labelColor",
+     "labelBgColor",
+     "labelFontSize",
+     "labelFontFamily"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.create_setting",
+   "name": "Update domain settings",
+   "description": "Update domain settings",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domainId": {
+      "type": "integer",
+      "description": "Domain ID"
+     },
+     "httpsLevel": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "none",
+       "redirect",
+       "hsts"
+      ]
+     },
+     "hstsMaxAge": {
+      "type": "string",
+      "description": "Strict-Transport-Security max-age in seconds when httpsLevel is \"hsts\", from one year (31536000) to two years (63072000). Null means one year."
+     },
+     "hstsIncludeSubDomains": {
+      "type": "boolean",
+      "description": "Add includeSubDomains to the Strict-Transport-Security header when httpsLevel is \"hsts\""
+     },
+     "dedicatedCertificate": {
+      "type": "boolean",
+      "description": "Issue this domain its own SSL certificate instead of one shared with the organization's other domains. Turning it on reissues the domain's certificate."
+     },
+     "robots": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "allow",
+       "disallow",
+       "noindex"
+      ]
+     },
+     "segmentKey": {
+      "type": "string",
+      "description": ""
+     },
+     "posthogProjectApiKey": {
+      "type": "string",
+      "description": ""
+     },
+     "posthogHost": {
+      "type": "string",
+      "description": ""
+     },
+     "linkType": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "increment",
+       "random",
+       "secure",
+       "four-char",
+       "eight-char",
+       "ten-char"
+      ]
+     },
+     "cloaking": {
+      "type": "boolean",
+      "description": "Enable cloaking for all links on the domain"
+     },
+     "hideReferer": {
+      "type": "boolean",
+      "description": ""
+     },
+     "hideVisitorIp": {
+      "type": "boolean",
+      "description": "Don't store visitor IPs in our database"
+     },
+     "httpsLinks": {
+      "type": "boolean",
+      "description": "Set to null to reissue a certificate"
+     },
+     "webhookURL": {
+      "type": "string",
+      "description": ""
+     },
+     "integrationGA": {
+      "type": "string",
+      "description": ""
+     },
+     "integrationFB": {
+      "type": "string",
+      "description": ""
+     },
+     "integrationTT": {
+      "type": "string",
+      "description": ""
+     },
+     "integrationAdroll": {
+      "type": "string",
+      "description": ""
+     },
+     "enableConversionTracking": {
+      "type": "boolean",
+      "description": ""
+     },
+     "qrScanTracking": {
+      "type": "boolean",
+      "description": ""
+     },
+     "preventScraping": {
+      "type": "string",
+      "description": "\"all\" requires every visitor to pass a proof-of-work check before the link resolves. That blocks scrapers, and also link previews, crawlers and any other client that does not run JavaScript.",
+      "enum": [
+       "none",
+       "all"
+      ]
+     },
+     "integrationGTM": {
+      "type": "string",
+      "description": ""
+     },
+     "clientStorage": {
+      "type": "object",
+      "description": "For internal use"
+     },
+     "purgeExpiredLinks": {
+      "type": "boolean",
+      "description": "[DEPRECATED] do not use"
+     },
+     "enableAI": {
+      "type": "boolean",
+      "description": ""
+     },
+     "caseSensitive": {
+      "type": "boolean",
+      "description": "Enable case sensitivity for short links"
+     }
+    },
+    "required": [
+     "domainId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.short.io/domains/settings/{domainId}",
+    "path": [
+     "domainId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "httpsLevel",
+     "hstsMaxAge",
+     "hstsIncludeSubDomains",
+     "dedicatedCertificate",
+     "robots",
+     "segmentKey",
+     "posthogProjectApiKey",
+     "posthogHost",
+     "linkType",
+     "cloaking",
+     "hideReferer",
+     "hideVisitorIp",
+     "httpsLinks",
+     "webhookURL",
+     "integrationGA",
+     "integrationFB",
+     "integrationTT",
+     "integrationAdroll",
+     "enableConversionTracking",
+     "qrScanTracking",
+     "preventScraping",
+     "integrationGTM",
+     "clientStorage",
+     "purgeExpiredLinks",
+     "enableAI",
+     "caseSensitive"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.create_theme",
+   "name": "Create or update domain theme",
+   "description": "Creates or updates theme settings for the domain. Colors are 6- or 8-character hex strings without the leading `#` (RRGGBB, or RRGGBBAA for transparency).",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domainId": {
+      "type": "integer",
+      "description": "Domain ID"
+     },
+     "primaryColor": {
+      "type": "string",
+      "description": ""
+     },
+     "secondaryColor": {
+      "type": "string",
+      "description": ""
+     },
+     "backgroundColor": {
+      "type": "string",
+      "description": ""
+     },
+     "contentBgColor": {
+      "type": "string",
+      "description": ""
+     },
+     "textColor": {
+      "type": "string",
+      "description": ""
+     },
+     "headingColor": {
+      "type": "string",
+      "description": ""
+     },
+     "linkColor": {
+      "type": "string",
+      "description": ""
+     },
+     "buttonTextColor": {
+      "type": "string",
+      "description": ""
+     },
+     "fontFamily": {
+      "type": "string",
+      "description": "CSS font-family for themed pages"
+     },
+     "customProperties": {
+      "type": "string",
+      "description": "Custom CSS variable key/value pairs"
+     }
+    },
+    "required": [
+     "domainId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.short.io/domains/theme/{domainId}",
+    "path": [
+     "domainId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "primaryColor",
+     "secondaryColor",
+     "backgroundColor",
+     "contentBgColor",
+     "textColor",
+     "headingColor",
+     "linkColor",
+     "buttonTextColor",
+     "fontFamily",
+     "customProperties"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.create_transfer",
+   "name": "Transfer a domain to another organization",
+   "description": "Transfer a domain to another organization",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domainId": {
+      "type": "integer",
+      "description": "Domain ID to transfer"
+     },
+     "targetOrganizationId": {
+      "type": "string",
+      "description": "Target organization id"
+     }
+    },
+    "required": [
+     "domainId",
+     "targetOrganizationId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.short.io/domains/transfer/{domainId}",
+    "path": [
+     "domainId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "targetOrganizationId"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.create_unarchive_bulk",
+   "name": "Unarchive links in bulk",
+   "description": "Unarchive links in bulk",
+   "input": {
+    "type": "object",
+    "properties": {
+     "link_ids": {
+      "type": "array",
+      "description": "Link IDs to operate on"
+     },
+     "domain_id": {
+      "type": "string",
+      "description": "Domain ID, required only when using legacy numeric link IDs"
+     }
+    },
+    "required": [
+     "link_ids"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.short.io/links/unarchive_bulk",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "link_ids",
+     "domain_id"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.create_universallink",
+   "name": "Create or update universal links",
+   "description": "Creates or updates the iOS/Android universal-link (app association) configuration for the domain.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domainId": {
+      "type": "integer",
+      "description": "Domain ID"
+     },
+     "androidAppId": {
+      "type": "string",
+      "description": "Android application package ID"
+     },
+     "appleAppId": {
+      "type": "string",
+      "description": "Apple app ID including team prefix"
+     },
+     "appleClip": {
+      "type": "string",
+      "description": "Apple App Clip bundle ID"
+     },
+     "iosAssetslinks": {
+      "type": "string",
+      "description": "Raw apple-app-site-association JSON content"
+     },
+     "androidAssetslinks": {
+      "type": "string",
+      "description": "Raw assetlinks.json content for Android"
+     },
+     "androidKeyFingerPrint1": {
+      "type": "string",
+      "description": "Android signing cert SHA-256 fingerprint"
+     },
+     "androidKeyFingerPrint2": {
+      "type": "string",
+      "description": "Additional Android signing cert SHA-256 fingerprint"
+     },
+     "androidKeyFingerPrint3": {
+      "type": "string",
+      "description": "Additional Android signing cert SHA-256 fingerprint"
+     }
+    },
+    "required": [
+     "domainId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.short.io/domains/universalLinks/{domainId}",
+    "path": [
+     "domainId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "androidAppId",
+     "appleAppId",
+     "appleClip",
+     "iosAssetslinks",
+     "androidAssetslinks",
+     "androidKeyFingerPrint1",
+     "androidKeyFingerPrint2",
+     "androidKeyFingerPrint3"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.delete_allowedhostname",
+   "name": "Remove allowed hostname",
+   "description": "Removes a hostname from the domain's allowed-hostnames list.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "hostname": {
+      "type": "string",
+      "description": "Referrer hostname to remove from the allowlist"
+     },
+     "domainId": {
+      "type": "integer",
+      "description": "Domain ID"
+     }
+    },
+    "required": [
+     "domainId",
+     "hostname"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.short.io/domains/allowedHostnames/{domainId}",
+    "path": [
+     "domainId"
+    ],
+    "query": [
+     "hostname"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.delete_bundle",
+   "name": "Delete bundle",
+   "description": "Deletes a bundle by ULID id",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "Bundle ULID id"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.short.io/links/bundle/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.delete_delete_bulk",
+   "name": "Delete links in bulk",
+   "description": "Delete links in bulk by ids **Rate limit**: 1/s",
+   "input": {
+    "type": "object",
+    "properties": {
+     "link_ids": {
+      "type": "array",
+      "description": "Encoded link IDs to delete"
+     }
+    },
+    "required": [
+     "link_ids"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.short.io/links/delete_bulk",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "link_ids"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.delete_dnsrecord",
+   "name": "Delete dns records",
+   "description": "Deletes DNS records of the given name and type. Omit `value` to remove every matching record.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "hostname": {
+      "type": "string",
+      "description": "Domain hostname"
+     },
+     "name": {
+      "type": "string",
+      "description": "DNS record name"
+     },
+     "type": {
+      "type": "string",
+      "description": "DNS record type",
+      "enum": [
+       "MX",
+       "TXT"
+      ]
+     },
+     "value": {
+      "type": "string",
+      "description": "Specific value to delete, otherwise all matching are removed"
+     }
+    },
+    "required": [
+     "hostname",
+     "name",
+     "type"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.short.io/domains/dnsRecord",
+    "path": [],
+    "query": [
+     "hostname",
+     "name",
+     "type",
+     "value"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.delete_favicon",
+   "name": "Delete domain favicon",
+   "description": "Deletes the domain's favicon.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domainId": {
+      "type": "number",
+      "description": "Domain ID"
+     }
+    },
+    "required": [
+     "domainId"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.short.io/domains/favicon/{domainId}",
+    "path": [
+     "domainId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.delete_favorite",
+   "name": "Unmark domain as favorite",
+   "description": "Removes the domain from the current user's favorites.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domainId": {
+      "type": "integer",
+      "description": "Domain ID"
+     }
+    },
+    "required": [
+     "domainId"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.short.io/domains/favorite/{domainId}",
+    "path": [
+     "domainId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.delete_hosted",
+   "name": "Revoke a hosted qr code",
+   "description": "Revoke a hosted QR code",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "Hosted QR code ID"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.short.io/links/qr/hosted/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.delete_ipexclusion",
+   "name": "Remove ip exclusion",
+   "description": "Removes an IP address from the domain's exclusion list.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "ip": {
+      "type": "string",
+      "description": "IPv4 address to remove from exclusion list"
+     },
+     "domainId": {
+      "type": "integer",
+      "description": "Domain ID"
+     }
+    },
+    "required": [
+     "domainId",
+     "ip"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.short.io/domains/ipExclusions/{domainId}",
+    "path": [
+     "domainId"
+    ],
+    "query": [
+     "ip"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.delete_link",
+   "name": "Delete link",
+   "description": "Delete link by id **Rate limit**: 20/s",
+   "input": {
+    "type": "object",
+    "properties": {
+     "link_id": {
+      "type": "string",
+      "description": "Link ID"
+     }
+    },
+    "required": [
+     "link_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.short.io/links/{link_id}",
+    "path": [
+     "link_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.delete_link",
+   "name": "Delete links by date interval",
+   "description": "Delete links of a domain within a created-at date interval. Provide any combination of bounds (at least one is required): - `createdAfter` / `createdBefore`: Unix timestamps in milliseconds - `days`: relative upper bound (delete links older than N days) Optionally restrict deletion to links whose `conditionalColumn` matches `conditionalMatch`. Deletion runs asynchronously.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "days": {
+      "type": "integer",
+      "description": "Delete links older than this many days (relative upper bound)"
+     },
+     "createdBefore": {
+      "type": "integer",
+      "description": "Delete links created before this Unix timestamp in milliseconds (upper bound)"
+     },
+     "createdAfter": {
+      "type": "integer",
+      "description": "Delete links created after this Unix timestamp in milliseconds (lower bound)"
+     },
+     "domainId": {
+      "type": "string",
+      "description": "Domain ID whose links to prune"
+     },
+     "conditionalColumn": {
+      "type": "string",
+      "description": "Restrict deletion to links where this column matches"
+     },
+     "conditionalMatch": {
+      "type": "string",
+      "description": "Substring the conditional column must contain"
+     }
+    },
+    "required": [
+     "domainId"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.short.io/links",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "days",
+     "createdBefore",
+     "createdAfter",
+     "domainId",
+     "conditionalColumn",
+     "conditionalMatch"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.delete_link",
+   "name": "Remove link from bundle",
+   "description": "Removes a link from a bundle by its link template ID",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "Bundle ULID id"
+     },
+     "linkTemplateId": {
+      "type": "string",
+      "description": "Link template ID to remove"
+     }
+    },
+    "required": [
+     "id",
+     "linkTemplateId"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.short.io/links/bundle/{id}/links/{linkTemplateId}",
+    "path": [
+     "id",
+     "linkTemplateId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.delete_link_country",
+   "name": "Delete link country",
+   "description": "Delete link country",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domainId": {
+      "type": "string",
+      "description": "Domain ID, required only when using a legacy numeric link ID"
+     },
+     "linkId": {
+      "type": "string",
+      "description": "Numeric link ID or encoded link ID string"
+     },
+     "country": {
+      "type": "string",
+      "description": "Country code",
+      "enum": [
+       "AD",
+       "AE",
+       "AF",
+       "AG",
+       "AI",
+       "AL",
+       "AM",
+       "AO",
+       "AQ",
+       "AR",
+       "AS",
+       "AT"
+      ]
+     }
+    },
+    "required": [
+     "country",
+     "linkId"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.short.io/link_country/{linkId}/{country}",
+    "path": [
+     "linkId",
+     "country"
+    ],
+    "query": [
+     "domainId"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.delete_link_region",
+   "name": "Delete link region by country",
+   "description": "Delete link region by country",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domainId": {
+      "type": "string",
+      "description": "Domain ID, required only when using a legacy numeric link ID"
+     },
+     "linkId": {
+      "type": "string",
+      "description": "Numeric link ID or encoded link ID string"
+     },
+     "country": {
+      "type": "string",
+      "description": "Country code",
+      "enum": [
+       "AD",
+       "AE",
+       "AF",
+       "AG",
+       "AI",
+       "AL",
+       "AM",
+       "AO",
+       "AQ",
+       "AR",
+       "AS",
+       "AT"
+      ]
+     },
+     "region": {
+      "type": "string",
+      "description": "ISO 3166-2 region code"
+     }
+    },
+    "required": [
+     "country",
+     "linkId",
+     "region"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.short.io/link_region/{linkId}/{country}/{region}",
+    "path": [
+     "linkId",
+     "country",
+     "region"
+    ],
+    "query": [
+     "domainId"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.delete_link_signature_key",
+   "name": "Clear the domain link signature key",
+   "description": "Removes the domain's link-signature key (sets it to null), disabling redirect URL signing for the domain.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domainId": {
+      "type": "integer",
+      "description": "Domain ID"
+     }
+    },
+    "required": [
+     "domainId"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.short.io/domains/link-signature-key/{domainId}",
+    "path": [
+     "domainId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.delete_page",
+   "name": "Delete ai page",
+   "description": "Delete AI page",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "Link id string"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.short.io/links/page/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.delete_permission",
+   "name": "Delete link permissions",
+   "description": "Delete link permissions",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domainId": {
+      "type": "integer",
+      "description": "Domain ID the link belongs to"
+     },
+     "linkId": {
+      "type": "string",
+      "description": "Numeric link ID or encoded link ID string"
+     },
+     "userId": {
+      "type": "string",
+      "description": "User ID whose permission is being revoked"
+     }
+    },
+    "required": [
+     "domainId",
+     "linkId",
+     "userId"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.short.io/links/permissions/{domainId}/{linkId}/{userId}",
+    "path": [
+     "domainId",
+     "linkId",
+     "userId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.delete_poll",
+   "name": "Delete poll",
+   "description": "Delete poll",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "Link id string"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.short.io/links/poll/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.delete_post",
+   "name": "Delete post",
+   "description": "Delete post",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "Link id string"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.short.io/links/post/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.delete_qrcodesetting",
+   "name": "Delete domain qr code settings",
+   "description": "Deletes the domain's QR code settings, reverting to defaults.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domainId": {
+      "type": "number",
+      "description": "Domain ID"
+     }
+    },
+    "required": [
+     "domainId"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.short.io/domains/qrCodeSettings/{domainId}",
+    "path": [
+     "domainId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.delete_s3export",
+   "name": "Disable s3 export",
+   "description": "Disables daily S3 click export for the domain.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domainId": {
+      "type": "integer",
+      "description": "Domain ID"
+     }
+    },
+    "required": [
+     "domainId"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.short.io/domains/s3exports/{domainId}",
+    "path": [
+     "domainId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.delete_setting",
+   "name": "Delete link qr code settings",
+   "description": "Deletes the QR code settings saved for the link, reverting to the domain or folder settings.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "linkIdString": {
+      "type": "string",
+      "description": "Link ID"
+     }
+    },
+    "required": [
+     "linkIdString"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.short.io/links/qr/settings/{linkIdString}",
+    "path": [
+     "linkIdString"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.delete_theme",
+   "name": "Delete domain theme",
+   "description": "Deletes theme settings for the domain, reverting it to the default theme.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domainId": {
+      "type": "integer",
+      "description": "Domain ID"
+     }
+    },
+    "required": [
+     "domainId"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.short.io/domains/theme/{domainId}",
+    "path": [
+     "domainId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.expand_link",
+   "name": "Get link info by path",
+   "description": "Get link info by path. Returns 404 if the domain does not exist in your organization. Rate limit: 20/s",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domain": {
+      "type": "string",
+      "description": "Domain hostname"
+     },
+     "path": {
+      "type": "string",
+      "description": "Link path"
+     }
+    },
+    "required": [
+     "domain",
+     "path"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.short.io/links/expand",
+    "path": [],
+    "query": [
+     "domain",
+     "path"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.get_allowedhostname",
+   "name": "List allowed hostnames",
+   "description": "Returns the domain's allowed-hostnames list.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domainId": {
+      "type": "integer",
+      "description": "Domain ID"
+     }
+    },
+    "required": [
+     "domainId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.short.io/domains/allowedHostnames/{domainId}",
+    "path": [
+     "domainId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.get_bundle",
+   "name": "Get bundle by id",
+   "description": "Returns bundle details by ULID id",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "Bundle ULID id"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.short.io/links/bundle/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.get_domain",
+   "name": "Get domain details by id",
+   "description": "Get domain details by id",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domainId": {
+      "type": "integer",
+      "description": "Domain ID"
+     }
+    },
+    "required": [
+     "domainId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.short.io/domains/{domainId}",
+    "path": [
+     "domainId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.get_folder",
+   "name": "Get folder",
+   "description": "Get links folders for the specified domain id",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domainId": {
+      "type": "integer",
+      "description": "Domain ID to list folders for"
+     }
+    },
+    "required": [
+     "domainId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.short.io/links/folders/{domainId}",
+    "path": [
+     "domainId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.get_folder",
+   "name": "Get folder",
+   "description": "Get links folder for the specified domain id and user id",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domainId": {
+      "type": "integer",
+      "description": "Domain ID the folder belongs to"
+     },
+     "folderId": {
+      "type": "string",
+      "description": "Folder ID"
+     }
+    },
+    "required": [
+     "domainId",
+     "folderId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.short.io/links/folders/{domainId}/{folderId}",
+    "path": [
+     "domainId",
+     "folderId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.get_link",
+   "name": "Get link info by link id",
+   "description": "Get link info by link id. Rate limit: 20/s",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domainId": {
+      "type": "string",
+      "description": "[DEPRECATED] Domain ID"
+     },
+     "linkId": {
+      "type": "string",
+      "description": "Numeric link ID or encoded link ID string"
+     }
+    },
+    "required": [
+     "linkId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.short.io/links/{linkId}",
+    "path": [
+     "linkId"
+    ],
+    "query": [
+     "domainId"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.get_link_country",
+   "name": "Get link countries",
+   "description": "Get link countries",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domainId": {
+      "type": "string",
+      "description": "Domain ID, required only when using a legacy numeric link ID"
+     },
+     "linkId": {
+      "type": "string",
+      "description": "Numeric link ID or encoded link ID string"
+     }
+    },
+    "required": [
+     "linkId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.short.io/link_country/{linkId}",
+    "path": [
+     "linkId"
+    ],
+    "query": [
+     "domainId"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.get_link_region",
+   "name": "Get link regions",
+   "description": "Get link regions",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domainId": {
+      "type": "string",
+      "description": "Domain ID, required only when using a legacy numeric link ID"
+     },
+     "linkId": {
+      "type": "string",
+      "description": "Numeric link ID or encoded link ID string"
+     }
+    },
+    "required": [
+     "linkId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.short.io/link_region/{linkId}",
+    "path": [
+     "linkId"
+    ],
+    "query": [
+     "domainId"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.get_list",
+   "name": "Get all regions by country",
+   "description": "Get all regions by country",
+   "input": {
+    "type": "object",
+    "properties": {
+     "country": {
+      "type": "string",
+      "description": "Country code",
+      "enum": [
+       "AD",
+       "AE",
+       "AF",
+       "AG",
+       "AI",
+       "AL",
+       "AM",
+       "AO",
+       "AQ",
+       "AR",
+       "AS",
+       "AT"
+      ]
+     }
+    },
+    "required": [
+     "country"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.short.io/link_region/list/{country}",
+    "path": [
+     "country"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.get_opengraph",
+   "name": "Get link opengraph properties",
+   "description": "Get link opengraph properties",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domainId": {
+      "type": "number",
+      "description": "Domain ID the link belongs to"
+     },
+     "linkId": {
+      "type": "string",
+      "description": "Numeric link ID or encoded link ID string"
+     }
+    },
+    "required": [
+     "domainId",
+     "linkId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.short.io/links/opengraph/{domainId}/{linkId}",
+    "path": [
+     "domainId",
+     "linkId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.get_page",
+   "name": "Get ai page by id",
+   "description": "Get AI page by ID",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "Link id string"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.short.io/links/page/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.get_password",
+   "name": "Get password page css",
+   "description": "Returns the custom CSS applied to the domain's password prompt page.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domainId": {
+      "type": "integer",
+      "description": "Domain ID"
+     }
+    },
+    "required": [
+     "domainId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.short.io/domains/password/{domainId}",
+    "path": [
+     "domainId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.get_permission",
+   "name": "Get link permissions",
+   "description": "Get link permissions",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domainId": {
+      "type": "string",
+      "description": "Domain ID the link belongs to"
+     },
+     "linkId": {
+      "type": "string",
+      "description": "Numeric link ID or encoded link ID string"
+     }
+    },
+    "required": [
+     "domainId",
+     "linkId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.short.io/links/permissions/{domainId}/{linkId}",
+    "path": [
+     "domainId",
+     "linkId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.get_poll",
+   "name": "Get poll by id",
+   "description": "Get poll by ID",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "Link id string"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.short.io/links/poll/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.get_post",
+   "name": "Get post by id",
+   "description": "Get post by ID",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "Link id string"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.short.io/links/post/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.get_qrcodesetting",
+   "name": "Get domain qr code settings",
+   "description": "Returns the default QR code settings applied to the domain's links.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domainId": {
+      "type": "number",
+      "description": "Domain ID"
+     }
+    },
+    "required": [
+     "domainId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.short.io/domains/qrCodeSettings/{domainId}",
+    "path": [
+     "domainId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.get_s3export",
+   "name": "Get s3 export status",
+   "description": "Returns the S3 click-export configuration and status for the domain.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domainId": {
+      "type": "integer",
+      "description": "Domain ID"
+     }
+    },
+    "required": [
+     "domainId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.short.io/domains/s3exports/{domainId}",
+    "path": [
+     "domainId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.get_setting",
+   "name": "Get link qr code settings",
+   "description": "Returns the QR code settings saved for the link, applied on every generation instead of the domain or folder settings.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "linkIdString": {
+      "type": "string",
+      "description": "Link ID"
+     }
+    },
+    "required": [
+     "linkIdString"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.short.io/links/qr/settings/{linkIdString}",
+    "path": [
+     "linkIdString"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.get_tag",
+   "name": "List the tags used across a domain",
+   "description": "List the tags used across a domain",
+   "input": {
+    "type": "object",
+    "properties": {
+     "prefix": {
+      "type": "string",
+      "description": "Return only tags starting with this prefix"
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Max tags to return"
+     },
+     "pageToken": {
+      "type": "string",
+      "description": "Opaque cursor for the next page of tags"
+     },
+     "domainId": {
+      "type": "string",
+      "description": "Domain ID"
+     }
+    },
+    "required": [
+     "domainId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.short.io/tags/{domainId}",
+    "path": [
+     "domainId"
+    ],
+    "query": [
+     "prefix",
+     "limit",
+     "pageToken"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.get_theme",
+   "name": "Get domain theme",
+   "description": "Returns theme settings for the domain.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domainId": {
+      "type": "integer",
+      "description": "Domain ID"
+     }
+    },
+    "required": [
+     "domainId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.short.io/domains/theme/{domainId}",
+    "path": [
+     "domainId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.get_universallink",
+   "name": "Get universal links",
+   "description": "Returns the iOS/Android universal-link (app association) configuration for the domain.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domainId": {
+      "type": "integer",
+      "description": "Domain ID"
+     }
+    },
+    "required": [
+     "domainId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.short.io/domains/universalLinks/{domainId}",
+    "path": [
+     "domainId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.list_abusereport",
+   "name": "List abuse reports forwarded to the organization",
+   "description": "Returns the abuse reports Short.io forwarded to the organization for it to act on, newest forward first, at most 100. Organization admins only. The reporter's category, description, name and email are included only for a copyright (DMCA) report filed through the web form.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "organizationId": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "organizationId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.short.io/organizations/{organizationId}/abuseReports",
+    "path": [
+     "organizationId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.list_audit",
+   "name": "List audit log entries",
+   "description": "Lists audit log entries for a team or a domain.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domainId": {
+      "type": "number",
+      "description": "Domain to fetch audit records for"
+     },
+     "userId": {
+      "type": "integer",
+      "description": "Filter records by team member user id"
+     },
+     "teamId": {
+      "type": "integer",
+      "description": "Team scope; current user must be owner"
+     },
+     "actionType": {
+      "type": "string",
+      "description": "Filter records by operation type, e.g. \"create\", \"update\", \"delete\""
+     },
+     "linkId": {
+      "type": "string",
+      "description": "Filter records by link id, matched exactly as stored"
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Maximum number of records to return"
+     },
+     "pageToken": {
+      "type": "string",
+      "description": "Pagination cursor from previous response"
+     }
+    },
+    "required": [
+     "domainId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.short.io/audit",
+    "path": [],
+    "query": [
+     "domainId",
+     "userId",
+     "teamId",
+     "actionType",
+     "linkId",
+     "limit",
+     "pageToken"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.list_by_original_url",
+   "name": "Get link info by original url",
+   "description": "**DEPRECATED** Get link info by original URL. Returns 404 if the domain does not exist in your organization. Rate limit: 20/s",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domain": {
+      "type": "string",
+      "description": "Domain hostname"
+     },
+     "originalURL": {
+      "type": "string",
+      "description": "Link original URL"
+     }
+    },
+    "required": [
+     "domain",
+     "originalURL"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.short.io/links/by-original-url",
+    "path": [],
+    "query": [
+     "domain",
+     "originalURL"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.list_dnsrecord",
+   "name": "List dns records",
+   "description": "Returns the customer-managed DNS records for a domain registered through Short.io.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "hostname": {
+      "type": "string",
+      "description": "Domain hostname"
+     }
+    },
+    "required": [
+     "hostname"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.short.io/domains/dnsRecord",
+    "path": [],
+    "query": [
+     "hostname"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.list_domain",
+   "name": "List domains",
+   "description": "Shows all domains of current user",
+   "input": {
+    "type": "object",
+    "properties": {
+     "limit": {
+      "type": "integer",
+      "description": "Maximum number of domains to return"
+     },
+     "offset": {
+      "type": "integer",
+      "description": "Number of domains to skip for pagination"
+     },
+     "noTeamId": {
+      "type": "boolean",
+      "description": "Return only personal domains not assigned to a team"
+     },
+     "pattern": {
+      "type": "string",
+      "description": "Hostname substring filter"
+     },
+     "teamId": {
+      "type": "number",
+      "description": "Filter domains by team ID"
+     },
+     "type": {
+      "type": "string",
+      "description": ""
+     },
+     "additionalProperties": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.short.io/api/domains",
+    "path": [],
+    "query": [
+     "limit",
+     "offset",
+     "noTeamId",
+     "pattern",
+     "teamId"
+    ],
+    "header": [
+     "type",
+     "additionalProperties"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.list_hosted",
+   "name": "List hosted qr codes",
+   "description": "List hosted QR codes",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domainId": {
+      "type": "number",
+      "description": "Domain ID to list hosted QR codes for"
+     },
+     "linkIdString": {
+      "type": "string",
+      "description": "Link ID"
+     },
+     "limit": {
+      "type": "number",
+      "description": ""
+     },
+     "pageToken": {
+      "type": "string",
+      "description": "Cursor from the previous page's nextPageToken"
+     }
+    },
+    "required": [
+     "domainId",
+     "limit"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.short.io/links/qr/hosted",
+    "path": [],
+    "query": [
+     "domainId",
+     "linkIdString",
+     "limit",
+     "pageToken"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.list_link",
+   "name": "Link list",
+   "description": "Get domain links",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domain_id": {
+      "type": "integer",
+      "description": "Domain ID"
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Maximum number of links to return"
+     },
+     "idString": {
+      "type": "string",
+      "description": "Link ID string for pagination cursor"
+     },
+     "createdAt": {
+      "type": "string",
+      "description": "Pagination cursor by link creation date"
+     },
+     "beforeDate": {
+      "type": "string",
+      "description": "Return links created before this date"
+     },
+     "afterDate": {
+      "type": "string",
+      "description": "Return links created after this date"
+     },
+     "dateSortOrder": {
+      "type": "string",
+      "description": "Sort order by creation date",
+      "enum": [
+       "asc",
+       "desc"
+      ]
+     },
+     "pageToken": {
+      "type": "string",
+      "description": "Opaque cursor for paginating link results"
+     },
+     "folderId": {
+      "type": "string",
+      "description": "Restrict results to a specific folder"
+     }
+    },
+    "required": [
+     "domain_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.short.io/api/links",
+    "path": [],
+    "query": [
+     "domain_id",
+     "limit",
+     "idString",
+     "createdAt",
+     "beforeDate",
+     "afterDate",
+     "dateSortOrder",
+     "pageToken",
+     "folderId"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.list_link",
+   "name": "Get bundle links",
+   "description": "Returns all links in a bundle, ordered by sort order",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "Bundle ULID id"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.short.io/links/bundle/{id}/links",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.list_multiple_by_url",
+   "name": "Get links info by original url",
+   "description": "Returns all links with the same original URL. Returns 404 if the domain does not exist in your organization.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domain": {
+      "type": "string",
+      "description": "Domain hostname"
+     },
+     "originalURL": {
+      "type": "string",
+      "description": "Link original URL"
+     }
+    },
+    "required": [
+     "domain",
+     "originalURL"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.short.io/links/multiple-by-url",
+    "path": [],
+    "query": [
+     "domain",
+     "originalURL"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.list_planinfo",
+   "name": "Get organization plan and usage",
+   "description": "Returns the organization's plan tier and billing period alongside its current usage counters: domain and link counts, paid link count, AI spend in microdollars, stored bytes, remaining Pro/Team trial days, the plan's folder limit per domain (null when unlimited), and nextLinkLimitRecalculationAt: the date (YYYY-MM-DD) the yearly link limit is next recalculated, one year after the last recalculatio",
+   "input": {
+    "type": "object",
+    "properties": {
+     "organizationId": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "organizationId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.short.io/organizations/{organizationId}/planInfo",
+    "path": [
+     "organizationId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.list_popular",
+   "name": "Get the most popular tags in a domain",
+   "description": "Get the most popular tags in a domain",
+   "input": {
+    "type": "object",
+    "properties": {
+     "limit": {
+      "type": "integer",
+      "description": "Max tags to return"
+     },
+     "domainId": {
+      "type": "string",
+      "description": "Domain ID"
+     }
+    },
+    "required": [
+     "domainId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.short.io/tags/{domainId}/popular",
+    "path": [
+     "domainId"
+    ],
+    "query": [
+     "limit"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.list_template",
+   "name": "Get bundle templates",
+   "description": "Returns all available bundle templates",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.short.io/links/bundle/templates",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.list_transfer",
+   "name": "List pending domain transfers",
+   "description": "List pending domain transfers",
+   "input": {
+    "type": "object",
+    "properties": {
+     "direction": {
+      "type": "string",
+      "description": "incoming: offered to this organization; outgoing: offered by it"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.short.io/domains/transfers",
+    "path": [],
+    "query": [
+     "direction"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.list_tweetbot",
+   "name": "Create a new link (simple version)",
+   "description": "Simple version of link create endpoint. You can use it if you can not use POST method Returns 404 if the domain does not exist in your organization. **Rate limit**: 50/s",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domain": {
+      "type": "string",
+      "description": "Domain hostname"
+     },
+     "path": {
+      "type": "string",
+      "description": "Link path"
+     },
+     "originalURL": {
+      "type": "string",
+      "description": "Link original URL"
+     },
+     "title": {
+      "type": "string",
+      "description": "Link title"
+     },
+     "urlOnly": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "domain",
+     "originalURL"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.short.io/links/tweetbot",
+    "path": [],
+    "query": [
+     "domain",
+     "path",
+     "originalURL",
+     "title",
+     "urlOnly"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.unarchive_link",
+   "name": "Unarchive link",
+   "description": "Unarchive link",
+   "input": {
+    "type": "object",
+    "properties": {
+     "link_id": {
+      "type": "string",
+      "description": "Numeric link ID or encoded link ID string"
+     },
+     "domain_id": {
+      "type": "string",
+      "description": "Domain ID, required only when using a legacy numeric link ID"
+     }
+    },
+    "required": [
+     "link_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.short.io/links/unarchive",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "link_id",
+     "domain_id"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.update_background_image",
+   "name": "Upload bundle background image",
+   "description": "Uploads a background image for a bundle. Accepts JPEG, PNG, WebP, AVIF or GIF up to 20 MB as the raw image body. It is stored as a WebP that fits 2560x2560 and is never enlarged. Replies with url, width and height.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "Bundle ULID id"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.short.io/links/bundle/{id}/background-image",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.update_bundle",
+   "name": "Update bundle",
+   "description": "Updates bundle details, social media links, and branding",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "Bundle ULID id"
+     },
+     "DomainId": {
+      "type": "number",
+      "description": "Domain ID the bundle belongs to"
+     },
+     "TemplateId": {
+      "type": "string",
+      "description": "Template ID"
+     },
+     "title": {
+      "type": "string",
+      "description": "Bundle title"
+     },
+     "description": {
+      "type": "string",
+      "description": "Bundle description"
+     },
+     "logoURL": {
+      "type": "string",
+      "description": "Profile or logo URL"
+     },
+     "backgroundImageURL": {
+      "type": "string",
+      "description": "Background image URL"
+     },
+     "twitterUsername": {
+      "type": "string",
+      "description": "Twitter username (without @)"
+     },
+     "fbUsername": {
+      "type": "string",
+      "description": "Facebook username"
+     },
+     "linkedinCompanyname": {
+      "type": "string",
+      "description": "LinkedIn company name (mutually exclusive with linkedinUsername)"
+     },
+     "linkedinUsername": {
+      "type": "string",
+      "description": "LinkedIn username (mutually exclusive with linkedinCompanyname)"
+     },
+     "instagramUsername": {
+      "type": "string",
+      "description": "Instagram username (without @)"
+     },
+     "whatsappURL": {
+      "type": "string",
+      "description": "WhatsApp URL (must start with whatsapp:// or https://)"
+     },
+     "viberURL": {
+      "type": "string",
+      "description": "Viber URL (must start with viber:// or https://)"
+     },
+     "telegramURL": {
+      "type": "string",
+      "description": "Telegram URL"
+     },
+     "threadsUsername": {
+      "type": "string",
+      "description": "Threads username (without @)"
+     },
+     "mastodonUsername": {
+      "type": "string",
+      "description": "Mastodon username"
+     },
+     "blueskyUsername": {
+      "type": "string",
+      "description": "Bluesky username"
+     },
+     "email": {
+      "type": "string",
+      "description": "Contact email address"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.short.io/links/bundle/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "DomainId",
+     "TemplateId",
+     "title",
+     "description",
+     "logoURL",
+     "backgroundImageURL",
+     "twitterUsername",
+     "fbUsername",
+     "linkedinCompanyname",
+     "linkedinUsername",
+     "instagramUsername",
+     "whatsappURL",
+     "viberURL",
+     "telegramURL",
+     "threadsUsername",
+     "mastodonUsername",
+     "blueskyUsername",
+     "email"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.update_favicon",
+   "name": "Upload domain favicon",
+   "description": "Uploads a favicon for the domain as the raw image body (JPEG, PNG, WebP, AVIF or GIF), stored as a square PNG of at most 256x256. An existing favicon is replaced.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domainId": {
+      "type": "number",
+      "description": "Domain ID"
+     }
+    },
+    "required": [
+     "domainId"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.short.io/domains/favicon/{domainId}",
+    "path": [
+     "domainId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.update_link",
+   "name": "Update link sort order",
+   "description": "Updates the sort order of links in a bundle",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "Bundle ULID id"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.short.io/links/bundle/{id}/links",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.update_logo",
+   "name": "Upload link qr code logo",
+   "description": "Uploads the logo embedded in the link's QR code as the raw image body (JPEG, PNG, WebP, AVIF or GIF up to 20 MB), stored as a PNG that fits 512x512 and keeps its transparency. Save the returned URL as logoUrl in the link's QR code settings. Replies with url, width and height.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "linkIdString": {
+      "type": "string",
+      "description": "Link ID"
+     }
+    },
+    "required": [
+     "linkIdString"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.short.io/links/qr/settings/logo/{linkIdString}",
+    "path": [
+     "linkIdString"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.update_logo",
+   "name": "Upload qr code logo",
+   "description": "Uploads the logo embedded in the domain's QR codes as the raw image body, stored as a PNG of at most 512x512.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domainId": {
+      "type": "number",
+      "description": "Domain ID"
+     }
+    },
+    "required": [
+     "domainId"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.short.io/domains/qrCodeSettings/logo/{domainId}",
+    "path": [
+     "domainId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.update_opengraph",
+   "name": "Set link opengraph properties",
+   "description": "Set link opengraph properties",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domainId": {
+      "type": "number",
+      "description": "Domain ID the link belongs to"
+     },
+     "linkId": {
+      "type": "string",
+      "description": "Numeric link ID or encoded link ID string"
+     }
+    },
+    "required": [
+     "domainId",
+     "linkId"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.short.io/links/opengraph/{domainId}/{linkId}",
+    "path": [
+     "domainId",
+     "linkId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.update_page",
+   "name": "Regenerate ai page",
+   "description": "Generates a new HTML document from a new prompt and replaces the page with it. Responds with an `application/x-ndjson` stream, one JSON event per line: `start` (`maxOutputTokens`), `heartbeat` (`elapsedMs`, `outputChars`) at least every 10 seconds while the page is generated, then exactly one terminal event - `done` (`page`) or `error` (`code`, `status`, `message`). `code` is `prompt_rejected` (40",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "Link id string"
+     },
+     "prompt": {
+      "type": "string",
+      "description": "What the page should be. The HTML is generated from it and cannot be edited directly"
+     }
+    },
+    "required": [
+     "id",
+     "prompt"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.short.io/links/page/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "prompt"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.update_poll",
+   "name": "Update poll",
+   "description": "Replaces the poll definition. Existing options are sent as {id, label}, new ones as {label}. A change that removes or reorders options or changes maxChoices needs resetVotes, or is refused with 409 poll_breaking_edit_requires_reset; appending options needs none",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "Link id string"
+     },
+     "title": {
+      "type": "string",
+      "description": "The question"
+     },
+     "options": {
+      "type": "array",
+      "description": "Options in display order"
+     },
+     "maxChoices": {
+      "type": "integer",
+      "description": "How many options a voter may pick"
+     },
+     "resultsVisibility": {
+      "type": "string",
+      "description": "Who sees the results and when"
+     },
+     "expiresAt": {
+      "type": "string",
+      "description": "End of the poll, epoch milliseconds. null removes the end, omitted keeps it"
+     },
+     "resetVotes": {
+      "type": "boolean",
+      "description": "Delete the votes to apply a change that would invalidate them"
+     }
+    },
+    "required": [
+     "id",
+     "maxChoices",
+     "options",
+     "resultsVisibility",
+     "title"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.short.io/links/poll/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "title",
+     "options",
+     "maxChoices",
+     "resultsVisibility",
+     "expiresAt",
+     "resetVotes"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-io.update_post",
+   "name": "Update post",
+   "description": "Update post",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "Link id string"
+     },
+     "title": {
+      "type": "string",
+      "description": "Post title"
+     },
+     "description": {
+      "type": "string",
+      "description": "Short post description / meta"
+     },
+     "coverImageURL": {
+      "type": "string",
+      "description": "Cover image URL"
+     },
+     "body": {
+      "type": "string",
+      "description": "Post body (Markdown)"
+     }
+    },
+    "required": [
+     "body",
+     "id",
+     "title"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.short.io/links/post/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "title",
+     "description",
+     "coverImageURL",
+     "body"
+    ],
+    "body_format": "json"
+   }
+  }
+ ]
+}

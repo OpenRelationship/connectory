@@ -14,10 +14,7 @@ vouches for**: read it, then read their reference.
 ---
 # Chargebee
 
-> Agent-readable homepage: https://www.chargebee.com/?mode=agent
-> Agent-readable homepage (plain text): https://www.chargebee.com/agent/homepage.txt
-
-> Chargebee is the billing platform finance teams choose when monetization keeps changing and the financial record has to stay defensible. Meter tokens, agent runs, seats, or outcomes - ingest usage events in near-real time, convert them to revenue, recognize it under ASC 606 and IFRS 15, and close the books on one commercial record. A 2025 Gartner Magic Quadrant Leader for Recurring Billing Applications, placing furthest for Completeness of Vision - built for IPO, PE, and audit scrutiny, and reinventing the finance office with MCP-driven reporting and AI-native workflows. Trusted by 6,500+ businesses globally. For complete documentation, see [Full Documentation](https://www.chargebee.com/docs/).
+> Chargebee is the billing platform finance teams choose when monetization keeps changing and the financial record has to stay defensible. Meter tokens, agent runs, seats, or outcomes - ingest usage events in near-real time, convert them to revenue, recognize it under ASC 606 and IFRS 15, and close the books on one commercial record. A Gartner Magic Quadrant Leader for Recurring Billing Applications three years running, placing furthest for Completeness of Vision - built for IPO, PE, and audit scrutiny. A G2 Leader for 27 consecutive quarters. Reinventing the finance office with MCP-driven reporting and AI-native workflows. Trusted by 6,500+ businesses globally. For complete documentation, see [Full Documentation](https://www.chargebee.com/docs/).
 
 ## Billing
 
@@ -60,8 +57,7 @@ vouches for**: read it, then read their reference.
 - [API Reference](https://apidocs.chargebee.com/docs/api/): Complete API documentation for Chargebee's REST APIs.
 - [API Quickstart Tutorial](https://www.chargebee.com/tutorials/quickstart/): Learn the Chargebee API, best practices, and integration patterns.
 - [Client Libraries & SDKs](https://apidocs.chargebee.com/docs/api/#client_library): Official SDKs for Python, Ruby, Java, PHP, Node.js, .NET, and Go.
-- [Chargebee.js Reference](https://www.chargebee.com/checkout-portal-docs/): API reference for the Chargebee.js client-side library.
-- [Checkout Drop-in Script](https://www.chargebee.com/tutorials/drop-in-checkout/): Low-code checkout integration for your website.
+- [Checkout Drop-in Script](https://www.chargebee.com/checkout-portal-docs/drop-in-tutorial.html): Low-code checkout integration for your website.
 - [Hosted Checkout](https://www.chargebee.com/docs/billing/2.0/hosted-capabilities/hosted-checkout): Hosted checkout pages for quick integration.
 - [API Explorer](https://api-explorer.chargebee.com/): Explore and test Chargebee's APIs in real-time.
 - [Chargebee for Next.js](https://www.chargebee.com/tutorials/chargebee-init-nextjs-integration/): Integrate Chargebee with Next.js applications.

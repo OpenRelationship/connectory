@@ -1,0 +1,427 @@
+{
+ "_": "GENERATED \u2014 what an authoring tool needs to FIND an operation. The calling table is the .lua beside it.",
+ "provider": "beehiiv",
+ "source": "https://beehiiv.com/openapi.json",
+ "operations": [
+  {
+   "slug": "beehiiv.create_post",
+   "name": "Create a post",
+   "description": "Create a draft or scheduled post for a publication via the REST API. Available only to publications on the Pro and Enterprise plans. Supply content with either `blocks` or `body_content` \u2014 exactly one of the two. Creation is asynchronous: this returns 201 with a stable post ID immediately, but the post is still being built. A follow-up `getPost` may return 202 while creation is in flight (retry, h",
+   "input": {
+    "type": "object",
+    "properties": {
+     "publicationId": {
+      "type": "string",
+      "description": ""
+     },
+     "blocks": {
+      "type": "array",
+      "description": "Structured content blocks (paragraph, image, heading, button, html, table, list, columns, \u2026). Block schemas are documented in the full Fern reference."
+     },
+     "body_content": {
+      "type": "string",
+      "description": "Post content as a single raw HTML string, wrapped in an htmlSnippet block internally."
+     },
+     "title": {
+      "type": "string",
+      "description": ""
+     },
+     "subtitle": {
+      "type": "string",
+      "description": ""
+     },
+     "post_template_id": {
+      "type": "string",
+      "description": "Template to render the post with. Defaults to the publication's default template."
+     },
+     "status": {
+      "type": "string",
+      "description": "`confirmed` publishes immediately, or at `scheduled_at` when supplied. A draft post cannot be scheduled.",
+      "enum": [
+       "draft",
+       "confirmed"
+      ]
+     },
+     "scheduled_at": {
+      "type": "string",
+      "description": "Publish time. Requires `status: confirmed`."
+     },
+     "custom_link_tracking_enabled": {
+      "type": "boolean",
+      "description": ""
+     },
+     "thumbnail_image_url": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "publicationId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.beehiiv.com/v2/publications/{publicationId}/publications/{publicationId}/posts",
+    "path": [
+     "publicationId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "blocks",
+     "body_content",
+     "title",
+     "subtitle",
+     "post_template_id",
+     "status",
+     "scheduled_at",
+     "custom_link_tracking_enabled",
+     "thumbnail_image_url"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "beehiiv.create_subscription",
+   "name": "Create or upsert a subscriber",
+   "description": "Add a subscriber to a publication. Idempotent on email for the same publication when using matching upsert semantics \u2014 see developers.beehiiv.com for exact behavior.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "publicationId": {
+      "type": "string",
+      "description": ""
+     },
+     "email": {
+      "type": "string",
+      "description": ""
+     },
+     "reactivate_existing": {
+      "type": "boolean",
+      "description": ""
+     },
+     "send_welcome_email": {
+      "type": "boolean",
+      "description": ""
+     },
+     "utm_source": {
+      "type": "string",
+      "description": ""
+     },
+     "utm_medium": {
+      "type": "string",
+      "description": ""
+     },
+     "utm_campaign": {
+      "type": "string",
+      "description": ""
+     },
+     "referring_site": {
+      "type": "string",
+      "description": ""
+     },
+     "custom_fields": {
+      "type": "array",
+      "description": ""
+     }
+    },
+    "required": [
+     "email",
+     "publicationId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.beehiiv.com/v2/publications/{publicationId}/publications/{publicationId}/subscriptions",
+    "path": [
+     "publicationId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "email",
+     "reactivate_existing",
+     "send_welcome_email",
+     "utm_source",
+     "utm_medium",
+     "utm_campaign",
+     "referring_site",
+     "custom_fields"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "beehiiv.get_llms_txt",
+   "name": "Curated agent index (llms txt)",
+   "description": "Returns the curated markdown index of beehiiv pages, when-to-use guidance, MCP tips, and CLI pointers.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.beehiiv.com/v2/publications/{publicationId}/llms.txt",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "beehiiv.get_open_api_spec",
+   "name": "Download this open api document",
+   "description": "Returns the OpenAPI 3.1 JSON document describing public beehiiv agent endpoints and core REST operations. Prefer this file for function-calling tool generation.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.beehiiv.com/v2/publications/{publicationId}/openapi.json",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "beehiiv.get_page_markdown",
+   "name": "Fetch a marketing page as markdown",
+   "description": "Convert a live marketing HTML page into a clean markdown twin. Equivalent to requesting `/{path}.md` or sending `Accept: text/markdown` to the HTML URL. Homepage: omit path or use empty segments.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "path": {
+      "type": "string",
+      "description": "URL path without leading slash (e.g. `pricing`, `features/automations`). Use `index` for the homepage when calling this route directly."
+     }
+    },
+    "required": [
+     "path"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.beehiiv.com/v2/publications/{publicationId}/api/markdown/{path}",
+    "path": [
+     "path"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "beehiiv.get_publication",
+   "name": "Get a publication by id",
+   "description": "Fetch a single publication (`pub_\u2026` prefixed ID) from api.beehiiv.com/v2.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "publicationId": {
+      "type": "string",
+      "description": "Prefixed publication ID (e.g. pub_00000000-0000-0000-0000-000000000000)"
+     }
+    },
+    "required": [
+     "publicationId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.beehiiv.com/v2/publications/{publicationId}/publications/{publicationId}",
+    "path": [
+     "publicationId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "beehiiv.invoke_marketing_mcp",
+   "name": "Marketing mcp streamable http endpoint",
+   "description": "Model Context Protocol Streamable HTTP transport for marketing tools (`get_pricing`, `compare_with`, `get_company_facts`, `get_page_markdown`, `list_pages`, `pricing_faq`). Clients should send `Accept: application/json, text/event-stream`.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.beehiiv.com/v2/publications/{publicationId}/api/mcp",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "beehiiv.list_marketing_mcp_tools",
+   "name": "List public marketing mcp tools (no auth)",
+   "description": "Public JSON catalog of tools exposed by the www.beehiiv.com marketing MCP server at `/api/mcp`. Product workspace MCP at https://mcp.beehiiv.com/mcp requires OAuth.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.beehiiv.com/v2/publications/{publicationId}/api/mcp/tools",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "beehiiv.list_posts",
+   "name": "List posts for a publication",
+   "description": "List newsletter posts (drafts and published) for a publication.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "publicationId": {
+      "type": "string",
+      "description": ""
+     },
+     "limit": {
+      "type": "integer",
+      "description": ""
+     },
+     "cursor": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "publicationId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.beehiiv.com/v2/publications/{publicationId}/publications/{publicationId}/posts",
+    "path": [
+     "publicationId"
+    ],
+    "query": [
+     "limit",
+     "cursor"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "beehiiv.list_publications",
+   "name": "List publications for the authenticated account",
+   "description": "REST API on api.beehiiv.com/v2. Returns publications the API key can access. Authenticate with `Authorization: Bearer `.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.beehiiv.com/v2/publications/{publicationId}/publications",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "beehiiv.list_subscriptions",
+   "name": "List subscribers for a publication",
+   "description": "Paginated subscriber list for a publication. Filter by email, status, and expansion fields as documented on developers.beehiiv.com.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "publicationId": {
+      "type": "string",
+      "description": ""
+     },
+     "email": {
+      "type": "string",
+      "description": "Filter by subscriber email"
+     },
+     "limit": {
+      "type": "integer",
+      "description": ""
+     },
+     "cursor": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "publicationId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.beehiiv.com/v2/publications/{publicationId}/publications/{publicationId}/subscriptions",
+    "path": [
+     "publicationId"
+    ],
+    "query": [
+     "email",
+     "limit",
+     "cursor"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "beehiiv.search_support_content",
+   "name": "Search help center, blog, and product updates",
+   "description": "Public search across beehiiv support articles, blog posts, and product updates from product.beehiiv.com. Returns ranked JSON hits with URLs (markdown twins available for articles/posts). Product updates are point-in-time release notes; their description starts with the publish date.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "q": {
+      "type": "string",
+      "description": "Search query string"
+     },
+     "type": {
+      "type": "string",
+      "description": "Optional content type filter",
+      "enum": [
+       "article",
+       "blog",
+       "update"
+      ]
+     }
+    },
+    "required": [
+     "q"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.beehiiv.com/v2/publications/{publicationId}/api/support/search",
+    "path": [],
+    "query": [
+     "q",
+     "type"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  }
+ ]
+}

@@ -28,6 +28,8 @@ vouches for**: read it, then read their reference.
 - [List Accounts](https://docs.amplemarket.com/api-reference/accounts/get-accounts.md): List Accounts
 - [Retrieve Account](https://docs.amplemarket.com/api-reference/accounts/get-account.md): Retrieve Account
 - [List users](https://docs.amplemarket.com/api-reference/users/get-users.md): List users
+- [List personas](https://docs.amplemarket.com/api-reference/personas/get-personas.md): List personas
+- [List territories](https://docs.amplemarket.com/api-reference/territories/get-territories.md): List territories
 - [List Lead Lists](https://docs.amplemarket.com/api-reference/lead-list/get-lead-lists.md): List Lead Lists
 - [Create Lead List](https://docs.amplemarket.com/api-reference/lead-list/create-lead-list.md): Create Lead List
 - [Retrieve Lead List](https://docs.amplemarket.com/api-reference/lead-list/retrieve-lead-list.md): Retrieve Lead List
@@ -47,8 +49,8 @@ vouches for**: read it, then read their reference.
 - [Start batch of email validations](https://docs.amplemarket.com/api-reference/email-validation/start-batch-of-email-validations.md): Start batch of email validations
 - [Retrieve email validation results](https://docs.amplemarket.com/api-reference/email-validation/retrieve-email-validation-results.md): Retrieve email validation results
 - [Cancel batch of email validations](https://docs.amplemarket.com/api-reference/email-validation/cancel-batch-of-email-validations.md): Cancel batch of email validations
-- [Create email exclusions](https://docs.amplemarket.com/api-reference/exclusion-lists/create-excluded-emails.md): Create email exclusions
-- [Create domain exclusions](https://docs.amplemarket.com/api-reference/exclusion-lists/create-excluded_domains.md): Create domain exclusions
+- [Create email exclusions](https://docs.amplemarket.com/api-reference/exclusion-lists/create-excluded-emails.md): Add emails to the exclusion list. Returns the status of each email sent: `success` when it was added, `duplicated` when it was already on the list, and `error` when it isn't a valid email address. An email only excluded by a CRM sync is added alongside that entry and returns `success`.
+- [Create domain exclusions](https://docs.amplemarket.com/api-reference/exclusion-lists/create-excluded_domains.md): Add domains to the exclusion list. Domains are saved without the scheme, `www.`, port or path, so `https://www.example.com/about` is saved as `example.com`. Returns the status of each domain sent: `success` when it was added, `duplicated` when it was already on the list, and `error` when it isn't a…
 - [Delete email exclusions](https://docs.amplemarket.com/api-reference/exclusion-lists/delete-excluded-emails.md): Delete email exclusions
 - [Delete domain exclusions](https://docs.amplemarket.com/api-reference/exclusion-lists/delete-excluded_domains.md): Delete domain exclusions
 - [List excluded domains](https://docs.amplemarket.com/api-reference/exclusion-lists/get-excluded-domains.md): List excluded domains
@@ -78,3 +80,5 @@ vouches for**: read it, then read their reference.
 - [swagger](https://api.amplemarket.com/api-docs/v1/swagger.yaml)
 
 ## Optional
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

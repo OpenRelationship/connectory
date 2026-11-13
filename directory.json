@@ -10,7 +10,7 @@
   "file is a credential, and none ever should be."
  ],
  "source": "https://raw.githubusercontent.com/NangoHQ/nango/master/packages/providers/providers.yaml",
- "count": 852,
+ "count": 1103,
  "providers": [
   {
    "slug": "1password-events",
@@ -125,6 +125,34 @@
    ]
   },
   {
+   "slug": "2chat",
+   "name": "2Chat",
+   "icon": "2chat",
+   "categories": [
+    "communication"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/2chat",
+   "base": "https://api.p.2chat.io/open",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "x-user-api-key",
+    "format": "{token}",
+    "env": "2CHAT_API_KEY",
+    "about": "Your 2Chat API key.",
+    "title": "API Key",
+    "pattern": "^[A-Za-z0-9-]{20,}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "2chat"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/info"
+   }
+  },
+  {
    "slug": "3cx",
    "name": "3CX",
    "icon": "3cx",
@@ -236,6 +264,35 @@
    ]
   },
   {
+   "slug": "abyssale",
+   "name": "Abyssale",
+   "icon": "abyssale",
+   "categories": [
+    "design",
+    "marketing"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/abyssale",
+   "base": "https://api.abyssale.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "x-api-key",
+    "format": "{token}",
+    "env": "ABYSSALE_API_KEY",
+    "about": "Your Abyssale workspace API key.",
+    "title": "API Key",
+    "pattern": "^[A-Za-z0-9]{20,}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "abyssale"
+   },
+   "verify": {
+    "method": "POST",
+    "path": "/auth"
+   }
+  },
+  {
    "slug": "accelo",
    "name": "Accelo",
    "icon": "accelo",
@@ -267,6 +324,34 @@
      "example": "domain"
     }
    ]
+  },
+  {
+   "slug": "accuweather",
+   "name": "AccuWeather",
+   "icon": "accuweather",
+   "categories": [
+    "other"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/accuweather",
+   "base": "https://dataservice.accuweather.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "ACCUWEATHER_API_KEY",
+    "about": "Your AccuWeather API key.",
+    "title": "API Key",
+    "pattern": "^zpka_[A-Za-z0-9_]+$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "accuweather"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/locations/v1/regions"
+   }
   },
   {
    "slug": "active-campaign",
@@ -363,6 +448,34 @@
    ]
   },
   {
+   "slug": "adafruit-io",
+   "name": "Adafruit IO",
+   "icon": "adafruitio",
+   "categories": [
+    "other"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/adafruit-io",
+   "base": "https://io.adafruit.com/api",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "x-aio-key",
+    "format": "{token}",
+    "env": "ADAFRUIT_IO_API_KEY",
+    "about": "Your Adafruit IO Key.",
+    "title": "Adafruit IO Key",
+    "pattern": "^(aio_)?[A-Za-z0-9]+$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "adafruit-io"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/v2/user"
+   }
+  },
+  {
    "slug": "addepar",
    "name": "Addepar",
    "icon": "addepar",
@@ -383,6 +496,62 @@
    "source": {
     "registry": "nango",
     "provider": "addepar"
+   }
+  },
+  {
+   "slug": "addressfinder",
+   "name": "Addressfinder",
+   "icon": "addressfinder",
+   "categories": [
+    "other"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/addressfinder",
+   "base": "https://api.addressfinder.io",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "{token}",
+    "env": "ADDRESSFINDER_API_KEY",
+    "about": "The secret paired with your Addressfinder API key",
+    "title": "API Secret",
+    "pattern": "^[A-Za-z0-9]+$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "addressfinder"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/api/au/address/autocomplete?q=a&max=1"
+   }
+  },
+  {
+   "slug": "addresszen",
+   "name": "AddressZen",
+   "icon": "addresszen",
+   "categories": [
+    "other"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/addresszen",
+   "base": "https://api.addresszen.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "ADDRESSZEN_API_KEY",
+    "about": "An API key (ak_) or licensee key (sl_) from your AddressZen account",
+    "title": "API Key",
+    "pattern": "^(ak|sl)_[A-Za-z0-9_]+$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "addresszen"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/v1/keys/{apiKey}"
    }
   },
   {
@@ -559,6 +728,34 @@
    }
   },
   {
+   "slug": "adtraction",
+   "name": "Adtraction",
+   "icon": "adtraction",
+   "categories": [
+    "marketing"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/adtraction",
+   "base": "https://api.adtraction.net",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "x-token",
+    "format": "{token}",
+    "env": "ADTRACTION_API_KEY",
+    "about": "A partner or advertiser API key from Settings > API in Adtraction",
+    "title": "API Key",
+    "pattern": "^[A-Za-z0-9_-]+$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "adtraction"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/v2/partner/markets/"
+   }
+  },
+  {
    "slug": "adyen",
    "name": "Adyen",
    "icon": "adyen",
@@ -623,6 +820,44 @@
    "verify": {
     "method": "POST",
     "path": "/domain-keywords"
+   }
+  },
+  {
+   "slug": "affinda",
+   "name": "Affinda",
+   "icon": "affinda",
+   "categories": [
+    "hr",
+    "productivity"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/affinda",
+   "base": "https://{region}",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "AFFINDA_API_KEY",
+    "about": "Your Affinda API key.",
+    "title": "API Key",
+    "pattern": "^aff_[A-Za-z0-9]+$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "affinda"
+   },
+   "config": [
+    {
+     "name": "region",
+     "env": "AFFINDA_REGION",
+     "title": "Region",
+     "about": "The Affinda API host for your account's region.",
+     "example": ""
+    }
+   ],
+   "verify": {
+    "method": "GET",
+    "path": "/v3/documents?limit=1"
    }
   },
   {
@@ -753,6 +988,97 @@
    }
   },
   {
+   "slug": "agentql",
+   "name": "AgentQL",
+   "icon": "agentql",
+   "categories": [
+    "dev-tools"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/agentql",
+   "base": "https://api.agentql.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "x-api-key",
+    "format": "{token}",
+    "env": "AGENTQL_API_KEY",
+    "about": "Your AgentQL API key.",
+    "title": "API Key",
+    "pattern": "^[A-Za-z0-9_-]+$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "agentql"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/v1/usage"
+   }
+  },
+  {
+   "slug": "agile-crm",
+   "name": "Agile CRM",
+   "icon": "agilecrm",
+   "categories": [
+    "crm"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/agile-crm",
+   "base": "https://{subdomain}.agilecrm.com/dev",
+   "auth": {
+    "kind": "basic",
+    "mode": "BASIC",
+    "user_env": "AGILE_CRM_USER",
+    "pass_env": "AGILE_CRM_PASS",
+    "about": "Email and REST API Key"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "agile-crm"
+   },
+   "config": [
+    {
+     "name": "subdomain",
+     "env": "AGILE_CRM_SUBDOMAIN",
+     "title": "Agile CRM Domain",
+     "about": "The part of your Agile CRM URL before .agilecrm.com",
+     "example": "acme"
+    }
+   ],
+   "verify": {
+    "method": "GET",
+    "path": "/api/milestone/pipelines"
+   }
+  },
+  {
+   "slug": "agiled",
+   "name": "Agiled",
+   "icon": "agiled",
+   "categories": [
+    "crm",
+    "invoicing"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/agiled",
+   "base": "https://api.agiled.ai",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "AGILED_API_KEY",
+    "about": "An API key from Settings > API in Agiled",
+    "title": "API Key",
+    "pattern": "^[A-Za-z0-9_-]+\\|[A-Za-z0-9_-]+$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "agiled"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/public/v1/me"
+   }
+  },
+  {
    "slug": "agiloft",
    "name": "Agiloft",
    "icon": "agiloft",
@@ -781,6 +1107,38 @@
      "title": "Hostname",
      "about": "The hostname of your Agiloft instance.",
      "example": "example.agiloft.com"
+    }
+   ]
+  },
+  {
+   "slug": "aha",
+   "name": "Aha!",
+   "icon": "aha",
+   "categories": [
+    "productivity"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/aha",
+   "base": "https://{subdomain}.aha.io",
+   "auth": {
+    "kind": "oauth",
+    "mode": "OAUTH2",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "AHA_TOKEN",
+    "about": "An OAuth access token for the account. The vendor issues no static key, so it is refreshed outside connectory.",
+    "title": ""
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "aha"
+   },
+   "config": [
+    {
+     "name": "subdomain",
+     "env": "AHA_SUBDOMAIN",
+     "title": "Aha! Subdomain",
+     "about": "The subdomain of your Aha! account",
+     "example": "yourcompany"
     }
    ]
   },
@@ -836,6 +1194,35 @@
    }
   },
   {
+   "slug": "aimtell",
+   "name": "Aimtell",
+   "icon": "aimtell",
+   "categories": [
+    "marketing",
+    "communication"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/aimtell",
+   "base": "https://api.aimtell.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "x-authorization-api-key",
+    "format": "{token}",
+    "env": "AIMTELL_API_KEY",
+    "about": "Your Aimtell API key.",
+    "title": "API Key",
+    "pattern": "^[A-Za-z0-9]{20,}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "aimtell"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/prod/sites/?limit=1"
+   }
+  },
+  {
    "slug": "aircall",
    "name": "Aircall",
    "icon": "aircall",
@@ -856,6 +1243,34 @@
    "source": {
     "registry": "nango",
     "provider": "aircall"
+   }
+  },
+  {
+   "slug": "airparser",
+   "name": "Airparser",
+   "icon": "airparser",
+   "categories": [
+    "productivity"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/airparser",
+   "base": "https://api.airparser.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "x-api-key",
+    "format": "{token}",
+    "env": "AIRPARSER_API_KEY",
+    "about": "Your Airparser API key.",
+    "title": "API Key",
+    "pattern": "^[A-Za-z0-9_-]{16,}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "airparser"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/inboxes"
    }
   },
   {
@@ -907,6 +1322,89 @@
    }
   },
   {
+   "slug": "aivoov",
+   "name": "AiVOOV",
+   "icon": "aivoov",
+   "categories": [
+    "other"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/aivoov",
+   "base": "https://aivoov.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "x-api-key",
+    "format": "{token}",
+    "env": "AIVOOV_API_KEY",
+    "about": "The API key from your AiVOOV profile",
+    "title": "API Key"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "aivoov"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/api/v8/voices"
+   }
+  },
+  {
+   "slug": "alchemy",
+   "name": "Alchemy",
+   "icon": "alchemy",
+   "categories": [
+    "dev-tools"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/alchemy",
+   "base": "https://api.g.alchemy.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "ALCHEMY_API_KEY",
+    "about": "The API key of your Alchemy app.",
+    "title": "API Key",
+    "pattern": "^[A-Za-z0-9_-]+$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "alchemy"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/prices/v1/tokens/by-symbol?symbols=ETH"
+   }
+  },
+  {
+   "slug": "algodocs",
+   "name": "Algodocs",
+   "icon": "algodocs",
+   "categories": [
+    "productivity"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/algodocs",
+   "base": "https://api.algodocs.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "x-api-key",
+    "format": "{token}",
+    "env": "ALGODOCS_API_KEY",
+    "about": "Your Algodocs Secret API key.",
+    "title": "Secret API Key",
+    "pattern": "^[A-Za-z0-9]+$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "algodocs"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/v1/me"
+   }
+  },
+  {
    "slug": "algolia",
    "name": "Algolia",
    "icon": "algolia",
@@ -944,6 +1442,95 @@
    }
   },
   {
+   "slug": "all-images-ai",
+   "name": "All Images AI",
+   "icon": "allimagesai",
+   "categories": [
+    "design"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/all-images-ai",
+   "base": "https://api.all-images.ai",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "api-key",
+    "format": "{token}",
+    "env": "ALL_IMAGES_AI_API_KEY",
+    "about": "Your All Images AI API key.",
+    "title": "API Key",
+    "pattern": "^[A-Za-z0-9-]+$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "all-images-ai"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/v1/api-keys/check"
+   }
+  },
+  {
+   "slug": "altium-365",
+   "name": "Altium 365",
+   "icon": "altium365",
+   "categories": [
+    "dev-tools"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/altium-365",
+   "base": "https://{region}/api",
+   "auth": {
+    "kind": "manual",
+    "mode": "TWO_STEP",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "ALTIUM_365_TOKEN",
+    "about": "This provider authenticates with a handshake connectory does not do yet (TWO_STEP).",
+    "title": ""
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "altium-365"
+   },
+   "config": [
+    {
+     "name": "region",
+     "env": "ALTIUM_365_REGION",
+     "title": "Region",
+     "about": "The Altium 365 region your Workspace is hosted in.",
+     "example": ""
+    }
+   ]
+  },
+  {
+   "slug": "altoviz",
+   "name": "Altoviz",
+   "icon": "altoviz",
+   "categories": [
+    "invoicing",
+    "accounting"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/altoviz",
+   "base": "https://api.altoviz.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "x-api-key",
+    "format": "{token}",
+    "env": "ALTOVIZ_API_KEY",
+    "about": "Your Altoviz API key",
+    "title": "API Key",
+    "pattern": "^[A-Za-z0-9-]+$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "altoviz"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/hello"
+   }
+  },
+  {
    "slug": "altrata",
    "name": "Altrata",
    "icon": "altrata",
@@ -975,6 +1562,114 @@
      "example": "events.altrata.com"
     }
    ]
+  },
+  {
+   "slug": "alttext-ai",
+   "name": "AltText.ai",
+   "icon": "alttextai",
+   "categories": [
+    "other"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/alttext-ai",
+   "base": "https://alttext.ai/api",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "x-api-key",
+    "format": "{token}",
+    "env": "ALTTEXT_AI_API_KEY",
+    "about": "Your AltText.ai API key (site or full-access key).",
+    "title": "API Key",
+    "pattern": "^(atai_)?[A-Za-z0-9_-]+$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "alttext-ai"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/v1/account"
+   }
+  },
+  {
+   "slug": "alttextlab",
+   "name": "AltTextLab",
+   "icon": "alttextlab",
+   "categories": [
+    "other"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/alttextlab",
+   "base": "https://app.alttextlab.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "x-api-key",
+    "format": "{token}",
+    "env": "ALTTEXTLAB_API_KEY",
+    "about": "Your AltTextLab API key",
+    "title": "API Key",
+    "pattern": "^[A-Za-z0-9_-]+$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "alttextlab"
+   }
+  },
+  {
+   "slug": "amara",
+   "name": "Amara",
+   "icon": "amara",
+   "categories": [
+    "video"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/amara",
+   "base": "https://amara.org/api",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "x-api-key",
+    "format": "{token}",
+    "env": "AMARA_API_KEY",
+    "about": "Your Amara API key",
+    "title": "API Key",
+    "pattern": "^[A-Za-z0-9]{20,}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "amara"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/languages/"
+   }
+  },
+  {
+   "slug": "amazing-marvin",
+   "name": "Amazing Marvin",
+   "icon": "amazingmarvin",
+   "categories": [
+    "productivity"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/amazing-marvin",
+   "base": "https://serv.amazingmarvin.com/api",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "x-api-token",
+    "format": "{token}",
+    "env": "AMAZING_MARVIN_API_KEY",
+    "about": "Your Amazing Marvin API token",
+    "title": "API Token",
+    "pattern": "^[A-Za-z0-9+/=]{16,}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "amazing-marvin"
+   },
+   "verify": {
+    "method": "POST",
+    "path": "/test"
+   }
   },
   {
    "slug": "amazon",
@@ -1039,6 +1734,34 @@
      "example": ""
     }
    ]
+  },
+  {
+   "slug": "ambee",
+   "name": "Ambee",
+   "icon": "ambee",
+   "categories": [
+    "analytics"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/ambee",
+   "base": "https://api.ambeedata.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "x-api-key",
+    "format": "{token}",
+    "env": "AMBEE_API_KEY",
+    "about": "Your Ambee API key",
+    "title": "API Key",
+    "pattern": "^[A-Za-z0-9]{16,}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "ambee"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/geocode/by-place?place=london"
+   }
   },
   {
    "slug": "amplemarket",
@@ -1138,6 +1861,29 @@
    "source": {
     "registry": "nango",
     "provider": "amplitude-mcp-eu"
+   }
+  },
+  {
+   "slug": "anarlog-mcp",
+   "name": "Anarlog",
+   "icon": "anarlog",
+   "categories": [
+    "mcp"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/anarlog-mcp",
+   "base": "https://api.anarlog.so/mcp",
+   "auth": {
+    "kind": "manual",
+    "mode": "MCP_OAUTH2_GENERIC",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "ANARLOG_MCP_TOKEN",
+    "about": "This provider authenticates with a handshake connectory does not do yet (MCP_OAUTH2_GENERIC).",
+    "title": ""
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "anarlog-mcp"
    }
   },
   {
@@ -1243,6 +1989,63 @@
    }
   },
   {
+   "slug": "anydb",
+   "name": "AnyDB",
+   "icon": "anydb",
+   "categories": [
+    "productivity"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/anydb",
+   "base": "https://app.anydb.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "x-anydb-api-key",
+    "format": "{token}",
+    "env": "ANYDB_API_KEY",
+    "about": "The API key from Profile > Integrations in AnyDB",
+    "title": "API Key",
+    "pattern": "^[A-Za-z0-9-]+$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "anydb"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/api/integrations/ext/listteams"
+   }
+  },
+  {
+   "slug": "anymailfinder",
+   "name": "Anymail Finder",
+   "icon": "anymailfinder",
+   "categories": [
+    "marketing",
+    "crm"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/anymailfinder",
+   "base": "https://api.anymailfinder.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "{token}",
+    "env": "ANYMAILFINDER_API_KEY",
+    "about": "The API key for your Anymail Finder account",
+    "title": "API Key",
+    "pattern": "^[A-Za-z0-9]+$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "anymailfinder"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/v5.1/account"
+   }
+  },
+  {
    "slug": "apaleo",
    "name": "Apaleo",
    "icon": "apaleo",
@@ -1263,6 +2066,147 @@
    "source": {
     "registry": "nango",
     "provider": "apaleo"
+   }
+  },
+  {
+   "slug": "apexverify",
+   "name": "ApexVerify",
+   "icon": "apexverify",
+   "categories": [
+    "other"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/apexverify",
+   "base": "https://api.apexverify.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "x-api-key",
+    "format": "{token}",
+    "env": "APEXVERIFY_API_KEY",
+    "about": "Your ApexVerify API key.",
+    "title": "API Key",
+    "pattern": "^[A-Za-z0-9_-]+$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "apexverify"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/v1/account/credits"
+   }
+  },
+  {
+   "slug": "api-bible",
+   "name": "API.Bible",
+   "icon": "apibible",
+   "categories": [
+    "other"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/api-bible",
+   "base": "https://rest.api.bible",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "api-key",
+    "format": "{token}",
+    "env": "API_BIBLE_API_KEY",
+    "about": "Your API.Bible API key",
+    "title": "API Key",
+    "pattern": "^[A-Za-z0-9_-]{8,}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "api-bible"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/v1/bibles"
+   }
+  },
+  {
+   "slug": "api-ninjas",
+   "name": "API Ninjas",
+   "icon": "apininjas",
+   "categories": [
+    "dev-tools"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/api-ninjas",
+   "base": "https://api.api-ninjas.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "x-api-key",
+    "format": "{token}",
+    "env": "API_NINJAS_API_KEY",
+    "about": "Your API Ninjas API key.",
+    "title": "API Key",
+    "pattern": "^\\S+$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "api-ninjas"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/v1/dadjokes"
+   }
+  },
+  {
+   "slug": "apiflash",
+   "name": "ApiFlash",
+   "icon": "apiflash",
+   "categories": [
+    "dev-tools"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/apiflash",
+   "base": "https://api.apiflash.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "APIFLASH_API_KEY",
+    "about": "Your ApiFlash access key.",
+    "title": "Access Key",
+    "pattern": "^[A-Za-z0-9_-]+$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "apiflash"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/v1/urltoimage/quota"
+   }
+  },
+  {
+   "slug": "apiframe",
+   "name": "Apiframe",
+   "icon": "apiframe",
+   "categories": [
+    "dev-tools",
+    "other"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/apiframe",
+   "base": "https://api.apiframe.ai",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "x-api-key",
+    "format": "{token}",
+    "env": "APIFRAME_API_KEY",
+    "about": "Your Apiframe API key (starts with afk_).",
+    "title": "API Key",
+    "pattern": "^afk_[A-Za-z0-9_-]+$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "apiframe"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/v2/me"
    }
   },
   {
@@ -1289,6 +2233,61 @@
    "source": {
     "registry": "nango",
     "provider": "apify"
+   }
+  },
+  {
+   "slug": "apipie-ai",
+   "name": "APIpie AI",
+   "icon": "apipieai",
+   "categories": [
+    "dev-tools"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/apipie-ai",
+   "base": "https://apipie.ai",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "APIPIE_AI_API_KEY",
+    "about": "Your APIpie API key.",
+    "title": "API Key"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "apipie-ai"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/v1/queries/?limit=1"
+   }
+  },
+  {
+   "slug": "apiverve",
+   "name": "APIVerve",
+   "icon": "apiverve",
+   "categories": [
+    "dev-tools"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/apiverve",
+   "base": "https://api.apiverve.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "x-api-key",
+    "format": "{token}",
+    "env": "APIVERVE_API_KEY",
+    "about": "Your APIVerve primary key or scoped sub-key.",
+    "title": "API Key",
+    "pattern": "^[A-Za-z0-9_-]{16,}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "apiverve"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/v1/analytics"
    }
   },
   {
@@ -1361,6 +2360,54 @@
    }
   },
   {
+   "slug": "apple-calendar",
+   "name": "Apple Calendar",
+   "icon": "applecalendar",
+   "categories": [
+    "productivity"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/apple-calendar",
+   "base": "https://caldav.icloud.com",
+   "auth": {
+    "kind": "basic",
+    "mode": "BASIC",
+    "user_env": "APPLE_CALENDAR_USER",
+    "pass_env": "APPLE_CALENDAR_PASS",
+    "about": "Apple ID and App-Specific Password"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "apple-calendar"
+   }
+  },
+  {
+   "slug": "appointo",
+   "name": "Appointo",
+   "icon": "appointo",
+   "categories": [
+    "productivity"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/appointo",
+   "base": "https://app.appointo.me/api",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "appointo-token",
+    "format": "{token}",
+    "env": "APPOINTO_API_KEY",
+    "about": "Your Appointo API token.",
+    "title": "API Token"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "appointo"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/products?limit=1"
+   }
+  },
+  {
    "slug": "appstle-subscriptions",
    "name": "Appstle Subscriptions",
    "icon": "appstlesubscriptions",
@@ -1382,6 +2429,58 @@
    "source": {
     "registry": "nango",
     "provider": "appstle-subscriptions"
+   }
+  },
+  {
+   "slug": "appveyor",
+   "name": "AppVeyor",
+   "icon": "appveyor",
+   "categories": [
+    "dev-tools"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/appveyor",
+   "base": "https://ci.appveyor.com/api",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "APPVEYOR_API_KEY",
+    "about": "Your AppVeyor API key (account-level or user-level v2)",
+    "title": "API Key"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "appveyor"
+   }
+  },
+  {
+   "slug": "arcsite",
+   "name": "ArcSite",
+   "icon": "arcsite",
+   "categories": [
+    "design",
+    "productivity"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/arcsite",
+   "base": "https://api.arcsite.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "ARCSITE_API_KEY",
+    "about": "Your ArcSite API token",
+    "title": "API Token",
+    "pattern": "^[A-Za-z0-9_-]+$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "arcsite"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/v1/projects?per_page=1"
    }
   },
   {
@@ -1488,6 +2587,34 @@
    }
   },
   {
+   "slug": "asin-data-api",
+   "name": "ASIN Data API",
+   "icon": "asindataapi",
+   "categories": [
+    "e-commerce"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/asin-data-api",
+   "base": "https://api.asindataapi.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "ASIN_DATA_API_API_KEY",
+    "about": "Your ASIN Data API key",
+    "title": "API Key",
+    "pattern": "^[A-Za-z0-9]+$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "asin-data-api"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/account"
+   }
+  },
+  {
    "slug": "aspire",
    "name": "Aspire",
    "icon": "aspire",
@@ -1520,6 +2647,67 @@
    ]
   },
   {
+   "slug": "assemblyai",
+   "name": "AssemblyAI",
+   "icon": "assemblyai",
+   "categories": [
+    "other"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/assemblyai",
+   "base": "https://{region}",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "{token}",
+    "env": "ASSEMBLYAI_API_KEY",
+    "about": "Your AssemblyAI API key.",
+    "title": "API Key",
+    "pattern": "^[a-zA-Z0-9]+$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "assemblyai"
+   },
+   "config": [
+    {
+     "name": "region",
+     "env": "ASSEMBLYAI_REGION",
+     "title": "Region",
+     "about": "The AssemblyAI API endpoint for your data region.",
+     "example": ""
+    }
+   ],
+   "verify": {
+    "method": "GET",
+    "path": "/v2/transcript?limit=1"
+   }
+  },
+  {
+   "slug": "astro-mcp",
+   "name": "Astro",
+   "icon": "astro",
+   "categories": [
+    "dev-tools",
+    "mcp"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/astro-mcp",
+   "base": "https://api.astronomer.io",
+   "auth": {
+    "kind": "oauth",
+    "mode": "MCP_OAUTH2",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "ASTRO_MCP_TOKEN",
+    "about": "An OAuth access token for the account. The vendor issues no static key, so it is refreshed outside connectory.",
+    "title": ""
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "astro-mcp"
+   }
+  },
+  {
    "slug": "athenahealth",
    "name": "athenahealth",
    "icon": "athenahealth",
@@ -1550,6 +2738,61 @@
      "example": ""
     }
    ]
+  },
+  {
+   "slug": "athenahealth-jwks",
+   "name": "athenahealth",
+   "icon": "athenahealth",
+   "categories": [
+    "other"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/athenahealth-jwks",
+   "base": "https://{hostname}",
+   "auth": {
+    "kind": "manual",
+    "mode": "TWO_STEP",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "ATHENAHEALTH_JWKS_TOKEN",
+    "about": "This provider authenticates with a handshake connectory does not do yet (TWO_STEP).",
+    "title": ""
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "athenahealth-jwks"
+   },
+   "config": [
+    {
+     "name": "hostname",
+     "env": "ATHENAHEALTH_JWKS_HOSTNAME",
+     "title": "Hostname",
+     "about": "The athenahealth API hostname for your environment.",
+     "example": ""
+    }
+   ]
+  },
+  {
+   "slug": "atlar",
+   "name": "Atlar",
+   "icon": "atlar",
+   "categories": [
+    "banking"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/atlar",
+   "base": "https://api.atlar.com",
+   "auth": {
+    "kind": "oauth",
+    "mode": "OAUTH2_CC",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "ATLAR_TOKEN",
+    "about": "An OAuth access token for the account. The vendor issues no static key, so it is refreshed outside connectory.",
+    "title": ""
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "atlar"
+   }
   },
   {
    "slug": "atlas-so",
@@ -1695,6 +2938,58 @@
    }
   },
   {
+   "slug": "attentive",
+   "name": "Attentive",
+   "icon": "attentive",
+   "categories": [
+    "marketing",
+    "communication"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/attentive-api-key",
+   "base": "https://api.attentivemobile.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "ATTENTIVE_API_KEY",
+    "about": "Your Attentive custom app API key.",
+    "title": "API Key"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "attentive-api-key"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/v1/me"
+   }
+  },
+  {
+   "slug": "attentive-mcp",
+   "name": "Attentive",
+   "icon": "attentive",
+   "categories": [
+    "marketing",
+    "mcp"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/attentive-mcp",
+   "base": "https://attentive-ui-mcp.attentivemobile.com",
+   "auth": {
+    "kind": "oauth",
+    "mode": "MCP_OAUTH2",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "ATTENTIVE_MCP_TOKEN",
+    "about": "An OAuth access token for the account. The vendor issues no static key, so it is refreshed outside connectory.",
+    "title": ""
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "attentive-mcp"
+   }
+  },
+  {
    "slug": "attio",
    "name": "Attio",
    "icon": "attio",
@@ -1775,6 +3070,34 @@
    ]
   },
   {
+   "slug": "autobound",
+   "name": "Autobound",
+   "icon": "autobound",
+   "categories": [
+    "marketing"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/autobound",
+   "base": "https://signals.autobound.ai",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "x-api-key",
+    "format": "{token}",
+    "env": "AUTOBOUND_API_KEY",
+    "about": "Your Autobound Signal API key",
+    "title": "API Key",
+    "pattern": "^sk-[A-Za-z0-9]+$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "autobound"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/v1/account"
+   }
+  },
+  {
    "slug": "autodesk",
    "name": "Autodesk",
    "icon": "autodesk",
@@ -1795,6 +3118,34 @@
    "source": {
     "registry": "nango",
     "provider": "autodesk"
+   }
+  },
+  {
+   "slug": "autom",
+   "name": "Autom",
+   "icon": "autom",
+   "categories": [
+    "search"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/autom",
+   "base": "https://api.autom.dev",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "x-api-key",
+    "format": "{token}",
+    "env": "AUTOM_API_KEY",
+    "about": "Your Autom API key.",
+    "title": "API Key",
+    "pattern": "^[A-Za-z0-9_-]{20,}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "autom"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/v1/usage"
    }
   },
   {
@@ -2267,6 +3618,35 @@
    ]
   },
   {
+   "slug": "ayrshare",
+   "name": "Ayrshare",
+   "icon": "ayrshare",
+   "categories": [
+    "social",
+    "marketing"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/ayrshare",
+   "base": "https://api.ayrshare.com/api",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "AYRSHARE_API_KEY",
+    "about": "The API Key of your Ayrshare Primary Profile.",
+    "title": "API Key",
+    "pattern": "^[A-Za-z0-9-]{8,}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "ayrshare"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/user"
+   }
+  },
+  {
    "slug": "azure-blob-storage",
    "name": "Azure Blob Storage",
    "icon": "azureblobstorage",
@@ -2430,6 +3810,31 @@
    ]
   },
   {
+   "slug": "bannerbear",
+   "name": "Bannerbear",
+   "icon": "bannerbear",
+   "categories": [
+    "design",
+    "marketing"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/bannerbear",
+   "base": "https://api.bannerbear.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "BANNERBEAR_API_KEY",
+    "about": "Your Bannerbear V5 API key",
+    "title": "API Key",
+    "pattern": "^bb_[A-Za-z0-9_-]{20,}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "bannerbear"
+   }
+  },
+  {
    "slug": "basecamp",
    "name": "Basecamp",
    "icon": "basecamp",
@@ -2460,6 +3865,30 @@
      "example": "5899981"
     }
    ]
+  },
+  {
+   "slug": "baselinker",
+   "name": "BaseLinker",
+   "icon": "baselinker",
+   "categories": [
+    "e-commerce"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/baselinker",
+   "base": "https://api.baselinker.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "x-bltoken",
+    "format": "{token}",
+    "env": "BASELINKER_API_KEY",
+    "about": "Your BaseLinker API token",
+    "title": "API Token",
+    "pattern": "^[A-Za-z0-9-]+$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "baselinker"
+   }
   },
   {
    "slug": "baserow",
@@ -2557,6 +3986,34 @@
    ]
   },
   {
+   "slug": "beamer",
+   "name": "Beamer",
+   "icon": "beamer",
+   "categories": [
+    "marketing"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/beamer",
+   "base": "https://api.getbeamer.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "beamer-api-key",
+    "format": "{token}",
+    "env": "BEAMER_API_KEY",
+    "about": "Your Beamer API key.",
+    "title": "API Key",
+    "pattern": "^[A-Za-z0-9_+/=-]{20,}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "beamer"
+   },
+   "verify": {
+    "method": "POST",
+    "path": "/v0/ping"
+   }
+  },
+  {
    "slug": "beehiiv",
    "name": "Beehiiv",
    "icon": "beehiiv",
@@ -2595,6 +4052,79 @@
    }
   },
   {
+   "slug": "beeline-vms",
+   "name": "Beeline VMS",
+   "icon": "beelinevms",
+   "categories": [
+    "hr"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/beeline-vms",
+   "base": "{audience}",
+   "auth": {
+    "kind": "oauth",
+    "mode": "OAUTH2_CC",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "BEELINE_VMS_TOKEN",
+    "about": "An OAuth access token for the account. The vendor issues no static key, so it is refreshed outside connectory.",
+    "title": ""
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "beeline-vms"
+   },
+   "config": [
+    {
+     "name": "audience",
+     "env": "BEELINE_VMS_AUDIENCE",
+     "title": "Audience",
+     "about": "The audience Beeline granted your Client ID for. The full address, scheme and all \u2014 https://example.com.",
+     "example": "",
+     "origin": true
+    }
+   ]
+  },
+  {
+   "slug": "benchmark-email",
+   "name": "Benchmark Email",
+   "icon": "benchmarkemail",
+   "categories": [
+    "marketing"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/benchmark-email",
+   "base": "https://{hostname}/api",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "x-api-key",
+    "format": "{token}",
+    "env": "BENCHMARK_EMAIL_API_KEY",
+    "about": "Your Benchmark Email API key",
+    "title": "API Key",
+    "pattern": "^bme_[A-Za-z]{2}_[A-Za-z0-9_-]{20,}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "benchmark-email"
+   },
+   "config": [
+    {
+     "name": "hostname",
+     "env": "BENCHMARK_EMAIL_HOSTNAME",
+     "title": "API Host",
+     "about": "Your account's API host, from the Base URL under Integrations > API Keys",
+     "example": "api-us-west-2-a.benchmarkemail.io"
+    }
+   ],
+   "headers": {
+    "user-agent": "Nango"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/account"
+   }
+  },
+  {
    "slug": "bettercontact",
    "name": "BetterContact",
    "icon": "bettercontact",
@@ -2620,6 +4150,33 @@
    "verify": {
     "method": "GET",
     "path": "/api/v2/account"
+   }
+  },
+  {
+   "slug": "bidsketch",
+   "name": "Bidsketch",
+   "icon": "bidsketch",
+   "categories": [
+    "crm"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/bidsketch",
+   "base": "https://bidsketch.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Token token=\"{token}\"",
+    "env": "BIDSKETCH_API_KEY",
+    "about": "Your Bidsketch API token.",
+    "title": "API Token"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "bidsketch"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/api/v1/clients.json?per_page=1"
    }
   },
   {
@@ -2678,6 +4235,62 @@
    ]
   },
   {
+   "slug": "bigmailer",
+   "name": "BigMailer",
+   "icon": "bigmailer",
+   "categories": [
+    "marketing"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/bigmailer",
+   "base": "https://api.bigmailer.io",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "x-api-key",
+    "format": "{token}",
+    "env": "BIGMAILER_API_KEY",
+    "about": "Your BigMailer API key.",
+    "title": "API Key",
+    "pattern": "^[A-Za-z0-9-]{16,}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "bigmailer"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/v1/brands?limit=1"
+   }
+  },
+  {
+   "slug": "bika-ai",
+   "name": "Bika.ai",
+   "icon": "bikaai",
+   "categories": [
+    "productivity"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/bika-ai",
+   "base": "https://bika.ai/api/openapi/bika",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "BIKA_AI_API_KEY",
+    "about": "Your Bika.ai API token.",
+    "title": "API Token",
+    "pattern": "^[A-Za-z0-9]{20,}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "bika-ai"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/v1/spaces"
+   }
+  },
+  {
    "slug": "bill",
    "name": "Bill",
    "icon": "bill",
@@ -2698,6 +4311,44 @@
    "source": {
     "registry": "nango",
     "provider": "bill"
+   }
+  },
+  {
+   "slug": "billit",
+   "name": "Billit",
+   "icon": "billit",
+   "categories": [
+    "accounting",
+    "invoicing"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/billit",
+   "base": "https://{apiHost}",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "apikey",
+    "format": "{token}",
+    "env": "BILLIT_API_KEY",
+    "about": "The API key for a user with access to your Billit master account.",
+    "title": "API Key",
+    "pattern": "^(?!.*\\s).+$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "billit"
+   },
+   "config": [
+    {
+     "name": "apiHost",
+     "env": "BILLIT_APIHOST",
+     "title": "Environment",
+     "about": "The Billit API environment to connect to.",
+     "example": ""
+    }
+   ],
+   "verify": {
+    "method": "GET",
+    "path": "/v1/einvoices/registrations"
    }
   },
   {
@@ -2908,6 +4559,39 @@
    }
   },
   {
+   "slug": "bluebeam",
+   "name": "Bluebeam",
+   "icon": "bluebeam",
+   "categories": [
+    "productivity",
+    "storage"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/bluebeam",
+   "base": "https://{apiHost}",
+   "auth": {
+    "kind": "oauth",
+    "mode": "OAUTH2",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "BLUEBEAM_TOKEN",
+    "about": "An OAuth access token for the account. The vendor issues no static key, so it is refreshed outside connectory.",
+    "title": ""
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "bluebeam"
+   },
+   "config": [
+    {
+     "name": "apiHost",
+     "env": "BLUEBEAM_APIHOST",
+     "title": "API Host",
+     "about": "The Bluebeam API host for your account's region.",
+     "example": ""
+    }
+   ]
+  },
+  {
    "slug": "bol-com",
    "name": "bol.com",
    "icon": "bolcom",
@@ -2984,6 +4668,30 @@
    ]
   },
   {
+   "slug": "bookingmood",
+   "name": "Bookingmood",
+   "icon": "bookingmood",
+   "categories": [
+    "other"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/bookingmood",
+   "base": "https://api.bookingmood.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "BOOKINGMOOD_API_KEY",
+    "about": "Your Bookingmood API key",
+    "title": "API Key",
+    "pattern": "^bm_[A-Za-z0-9_-]+$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "bookingmood"
+   }
+  },
+  {
    "slug": "boondmanager",
    "name": "BoondManager",
    "icon": "boondmanager",
@@ -3004,6 +4712,71 @@
    "source": {
     "registry": "nango",
     "provider": "boondmanager"
+   }
+  },
+  {
+   "slug": "booqable",
+   "name": "Booqable",
+   "icon": "booqable",
+   "categories": [
+    "e-commerce"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/booqable",
+   "base": "https://{subdomain}.booqable.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "BOOQABLE_API_KEY",
+    "about": "Your Booqable access token",
+    "title": "Access Token",
+    "pattern": "^[A-Za-z0-9]+$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "booqable"
+   },
+   "config": [
+    {
+     "name": "subdomain",
+     "env": "BOOQABLE_SUBDOMAIN",
+     "title": "Company Slug",
+     "about": "The part of your Booqable account URL before .booqable.com",
+     "example": "example"
+    }
+   ],
+   "verify": {
+    "method": "GET",
+    "path": "/api/4/companies/current"
+   }
+  },
+  {
+   "slug": "bouncer",
+   "name": "Bouncer",
+   "icon": "bouncer",
+   "categories": [
+    "marketing"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/bouncer",
+   "base": "https://api.usebouncer.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "x-api-key",
+    "format": "{token}",
+    "env": "BOUNCER_API_KEY",
+    "about": "Your Bouncer API key.",
+    "title": "API Key",
+    "pattern": "^[A-Za-z0-9]+$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "bouncer"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/v1.1/credits"
    }
   },
   {
@@ -3054,6 +4827,35 @@
    }
   },
   {
+   "slug": "brandfetch",
+   "name": "Brandfetch",
+   "icon": "brandfetch",
+   "categories": [
+    "design",
+    "marketing"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/brandfetch",
+   "base": "https://api.brandfetch.io",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "BRANDFETCH_API_KEY",
+    "about": "Your Brandfetch API key.",
+    "title": "API Key",
+    "pattern": "^[A-Za-z0-9_-]+$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "brandfetch"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/v2/viewer"
+   }
+  },
+  {
    "slug": "braze",
    "name": "Braze",
    "icon": "braze",
@@ -3084,6 +4886,77 @@
      "example": "iad-02.braze.com"
     }
    ]
+  },
+  {
+   "slug": "braze-mcp",
+   "name": "Braze",
+   "icon": "braze",
+   "categories": [
+    "marketing",
+    "communication",
+    "mcp"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/braze-mcp",
+   "base": "https://{region}",
+   "auth": {
+    "kind": "oauth",
+    "mode": "MCP_OAUTH2",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "BRAZE_MCP_TOKEN",
+    "about": "An OAuth access token for the account. The vendor issues no static key, so it is refreshed outside connectory.",
+    "title": ""
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "braze-mcp"
+   },
+   "config": [
+    {
+     "name": "region",
+     "env": "BRAZE_MCP_REGION",
+     "title": "Region",
+     "about": "The Braze MCP endpoint for your region. Braze recommends the EU endpoint for EU customers.",
+     "example": ""
+    }
+   ]
+  },
+  {
+   "slug": "breathehr",
+   "name": "Breathe HR",
+   "icon": "breathehr",
+   "categories": [
+    "hr"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/breathehr",
+   "base": "https://{apiHost}",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "x-api-key",
+    "format": "{token}",
+    "env": "BREATHEHR_API_KEY",
+    "about": "Your Breathe HR API key.",
+    "title": "API Key",
+    "pattern": "^(prod|sandbox)-\\S+$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "breathehr"
+   },
+   "config": [
+    {
+     "name": "apiHost",
+     "env": "BREATHEHR_APIHOST",
+     "title": "Environment",
+     "about": "The Breathe HR environment to connect to.",
+     "example": ""
+    }
+   ],
+   "verify": {
+    "method": "GET",
+    "path": "/v1/account"
+   }
   },
   {
    "slug": "breezy-hr",
@@ -3180,6 +5053,127 @@
    "source": {
     "registry": "nango",
     "provider": "brightcrowd"
+   }
+  },
+  {
+   "slug": "browseai",
+   "name": "Browse AI",
+   "icon": "browseai",
+   "categories": [
+    "dev-tools"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/browseai",
+   "base": "https://api.browse.ai",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "BROWSEAI_API_KEY",
+    "about": "Your Browse AI API key.",
+    "title": "API Key",
+    "pattern": "^[A-Za-z0-9:_-]{20,}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "browseai"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/v2/robots"
+   }
+  },
+  {
+   "slug": "browseract",
+   "name": "BrowserAct",
+   "icon": "browseract",
+   "categories": [
+    "other"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/browseract",
+   "base": "https://api.browseract.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "BROWSERACT_API_KEY",
+    "about": "Your BrowserAct API key.",
+    "title": "API Key",
+    "pattern": "^app-[A-Za-z0-9_-]{16,}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "browseract"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/v3/bots/regions"
+   }
+  },
+  {
+   "slug": "browserbase",
+   "name": "Browserbase",
+   "icon": "browserbase",
+   "categories": [
+    "dev-tools"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/browserbase",
+   "base": "https://api.browserbase.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "x-bb-api-key",
+    "format": "{token}",
+    "env": "BROWSERBASE_API_KEY",
+    "about": "Your Browserbase API key.",
+    "title": "API Key",
+    "pattern": "^bb_[a-z]+_[A-Za-z0-9_-]+$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "browserbase"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/v1/projects"
+   }
+  },
+  {
+   "slug": "browserless",
+   "name": "Browserless",
+   "icon": "browserless",
+   "categories": [
+    "dev-tools"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/browserless",
+   "base": "https://{region}",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "BROWSERLESS_API_KEY",
+    "about": "Your Browserless API key.",
+    "title": "API Key",
+    "pattern": "^[A-Za-z0-9_-]{20,}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "browserless"
+   },
+   "config": [
+    {
+     "name": "region",
+     "env": "BROWSERLESS_REGION",
+     "title": "Region",
+     "about": "The Browserless regional endpoint to send requests to.",
+     "example": ""
+    }
+   ],
+   "verify": {
+    "method": "GET",
+    "path": "/meta"
    }
   },
   {
@@ -3303,7 +5297,7 @@
     "env": "BUILDIUM_API_KEY",
     "about": "The Secret for your Buildium account",
     "title": "Secret",
-    "pattern": "^[A-Za-z0-9+/]+$"
+    "pattern": "^[A-Za-z0-9+/=]+$"
    },
    "source": {
     "registry": "nango",
@@ -3312,6 +5306,57 @@
    "verify": {
     "method": "GET",
     "path": "/v1/rentals"
+   }
+  },
+  {
+   "slug": "buildkite",
+   "name": "Buildkite",
+   "icon": "buildkite",
+   "categories": [
+    "dev-tools"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/buildkite",
+   "base": "https://api.buildkite.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "BUILDKITE_API_KEY",
+    "about": "Your Buildkite API access token",
+    "title": "API Access Token",
+    "pattern": "^(bkua_[A-Za-z0-9._-]+|[a-f0-9]{40})$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "buildkite"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/v2/access-token"
+   }
+  },
+  {
+   "slug": "buildkite-token-exchange",
+   "name": "Buildkite",
+   "icon": "buildkite",
+   "categories": [
+    "dev-tools"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/buildkite-token-exchange",
+   "base": "https://api.buildkite.com",
+   "auth": {
+    "kind": "manual",
+    "mode": "TWO_STEP",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "BUILDKITE_TOKEN_EXCHANGE_TOKEN",
+    "about": "This provider authenticates with a handshake connectory does not do yet (TWO_STEP).",
+    "title": ""
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "buildkite-token-exchange"
    }
   },
   {
@@ -3374,6 +5419,62 @@
      "origin": true
     }
    ]
+  },
+  {
+   "slug": "byteforms",
+   "name": "Byteforms",
+   "icon": "byteforms",
+   "categories": [
+    "surveys"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/byteforms",
+   "base": "https://api.forms.bytesuite.io/api",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "{token}",
+    "env": "BYTEFORMS_API_KEY",
+    "about": "Your Byteforms API key",
+    "title": "API Key",
+    "pattern": "^[A-Za-z0-9_-]{16,}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "byteforms"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/form"
+   }
+  },
+  {
+   "slug": "cabinpanda",
+   "name": "CabinPanda",
+   "icon": "cabinpanda",
+   "categories": [
+    "surveys"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/cabinpanda",
+   "base": "https://api.cabinpanda.com/api",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "CABINPANDA_API_KEY",
+    "about": "Your CabinPanda API token",
+    "title": "API Token",
+    "pattern": "^[A-Za-z0-9._-]{20,}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "cabinpanda"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/v1/forms?per_page=1"
+   }
   },
   {
    "slug": "cal-com",
@@ -3478,6 +5579,91 @@
    }
   },
   {
+   "slug": "callerapi",
+   "name": "CallerAPI",
+   "icon": "callerapi",
+   "categories": [
+    "communication"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/callerapi",
+   "base": "https://api.callerapi.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "x-auth",
+    "format": "{token}",
+    "env": "CALLERAPI_API_KEY",
+    "about": "Your CallerAPI API key",
+    "title": "API Key",
+    "pattern": "^[A-Za-z0-9-]{32,}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "callerapi"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/api/me"
+   }
+  },
+  {
+   "slug": "callingly",
+   "name": "Callingly",
+   "icon": "callingly",
+   "categories": [
+    "communication",
+    "crm"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/callingly",
+   "base": "https://api.callingly.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "CALLINGLY_API_KEY",
+    "about": "Your Callingly API key",
+    "title": "API Key",
+    "pattern": "^[A-Za-z0-9._-]{20,}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "callingly"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/v1/teams"
+   }
+  },
+  {
+   "slug": "callpage",
+   "name": "CallPage",
+   "icon": "callpage",
+   "categories": [
+    "communication"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/callpage",
+   "base": "https://core.callpage.io",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "{token}",
+    "env": "CALLPAGE_API_KEY",
+    "about": "Your CallPage API key",
+    "title": "API Key",
+    "pattern": "^[A-Za-z0-9._-]{20,}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "callpage"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/api/v1/external/users/all?limit=1"
+   }
+  },
+  {
    "slug": "callrail",
    "name": "Callrail",
    "icon": "callrail",
@@ -3503,6 +5689,30 @@
    "verify": {
     "method": "GET",
     "path": "/v3/a.json"
+   }
+  },
+  {
+   "slug": "campaign-cleaner",
+   "name": "Campaign Cleaner",
+   "icon": "campaigncleaner",
+   "categories": [
+    "marketing"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/campaign-cleaner",
+   "base": "https://api.campaigncleaner.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "x-cc-api-key",
+    "format": "{token}",
+    "env": "CAMPAIGN_CLEANER_API_KEY",
+    "about": "Your Campaign Cleaner API key.",
+    "title": "API Key",
+    "pattern": "^[A-Za-z0-9_-]+$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "campaign-cleaner"
    }
   },
   {
@@ -3668,6 +5878,60 @@
    ]
   },
   {
+   "slug": "carbone",
+   "name": "Carbone",
+   "icon": "carbone",
+   "categories": [
+    "productivity"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/carbone",
+   "base": "https://api.carbone.io",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "CARBONE_API_KEY",
+    "about": "Your Carbone test or production API key.",
+    "title": "API Key",
+    "pattern": "^[A-Za-z0-9._-]{20,}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "carbone"
+   },
+   "headers": {
+    "carbone-version": "5"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/templates?limit=1"
+   }
+  },
+  {
+   "slug": "cch-axcess",
+   "name": "CCH Axcess",
+   "icon": "cchaxcess",
+   "categories": [
+    "accounting"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/cch-axcess",
+   "base": "https://api.cchaxcess.com",
+   "auth": {
+    "kind": "oauth",
+    "mode": "OAUTH2",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "CCH_AXCESS_TOKEN",
+    "about": "An OAuth access token for the account. The vendor issues no static key, so it is refreshed outside connectory.",
+    "title": ""
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "cch-axcess"
+   }
+  },
+  {
    "slug": "cdw",
    "name": "CDW",
    "icon": "cdw",
@@ -3734,6 +5998,34 @@
    ]
   },
   {
+   "slug": "certifier",
+   "name": "Certifier",
+   "icon": "certifier",
+   "categories": [
+    "other"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/certifier",
+   "base": "https://api.certifier.io",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "CERTIFIER_API_KEY",
+    "about": "Your Certifier access token.",
+    "title": "Access Token",
+    "pattern": "^[A-Za-z0-9_-]{20,}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "certifier"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/v1/credentials?limit=1"
+   }
+  },
+  {
    "slug": "certn",
    "name": "Certn",
    "icon": "certn",
@@ -3788,6 +6080,35 @@
    }
   },
   {
+   "slug": "chameleoni",
+   "name": "Chameleon-i",
+   "icon": "chameleoni",
+   "categories": [
+    "ats",
+    "crm"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/chameleoni",
+   "base": "https://chiapi.chameleoni.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "CHAMELEONI_API_KEY",
+    "about": "Your Chameleon-i API key.",
+    "title": "API Key",
+    "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}-[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "chameleoni"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/users/list"
+   }
+  },
+  {
    "slug": "chargebee",
    "name": "Chargebee",
    "icon": "chargebee",
@@ -3822,6 +6143,31 @@
    }
   },
   {
+   "slug": "charliehr",
+   "name": "CharlieHR",
+   "icon": "charliehr",
+   "categories": [
+    "hr"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/charliehr",
+   "base": "https://charliehr.com",
+   "auth": {
+    "kind": "basic",
+    "mode": "BASIC",
+    "user_env": "CHARLIEHR_USER",
+    "pass_env": "CHARLIEHR_PASS",
+    "about": "Client ID and Client Secret"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "charliehr"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/api/v1/company"
+   }
+  },
+  {
    "slug": "chartboost",
    "name": "Chartboost",
    "icon": "chartboost",
@@ -3843,6 +6189,32 @@
    "source": {
     "registry": "nango",
     "provider": "chartboost"
+   }
+  },
+  {
+   "slug": "chartmogul",
+   "name": "ChartMogul",
+   "icon": "chartmogul",
+   "categories": [
+    "analytics",
+    "crm"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/chartmogul",
+   "base": "https://api.chartmogul.com",
+   "auth": {
+    "kind": "basic",
+    "mode": "BASIC",
+    "user_env": "CHARTMOGUL_USER",
+    "pass_env": "CHARTMOGUL_PASS",
+    "about": "API Key and"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "chartmogul"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/v1/ping"
    }
   },
   {
@@ -3944,6 +6316,44 @@
    "verify": {
     "method": "GET",
     "path": "/v1/projects"
+   }
+  },
+  {
+   "slug": "checkbox",
+   "name": "Checkbox",
+   "icon": "checkbox",
+   "categories": [
+    "legal",
+    "ticketing"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/checkbox",
+   "base": "https://{hostname}",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "x-api-key",
+    "format": "{token}",
+    "env": "CHECKBOX_API_KEY",
+    "about": "A Checkbox API key.",
+    "title": "API Key",
+    "pattern": "^[A-Za-z0-9]+$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "checkbox"
+   },
+   "config": [
+    {
+     "name": "hostname",
+     "env": "CHECKBOX_HOSTNAME",
+     "title": "Environment",
+     "about": "The Checkbox environment to connect to. Production or sandbox.",
+     "example": ""
+    }
+   ],
+   "verify": {
+    "method": "GET",
+    "path": "/partner/api/v1/ticketing/boards?limit=1"
    }
   },
   {
@@ -4145,6 +6555,34 @@
    }
   },
   {
+   "slug": "circleback",
+   "name": "Circleback",
+   "icon": "circleback",
+   "categories": [
+    "productivity"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/circleback",
+   "base": "https://circleback.ai/api",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "CIRCLEBACK_API_KEY",
+    "about": "The API key for your Circleback account.",
+    "title": "API Key",
+    "pattern": "^cb_[A-Za-z0-9_-]+$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "circleback"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/people?limit=1"
+   }
+  },
+  {
    "slug": "circleback-mcp",
    "name": "Circleback",
    "icon": "circleback",
@@ -4199,6 +6637,30 @@
    ]
   },
   {
+   "slug": "claid-ai",
+   "name": "Claid.ai",
+   "icon": "claidai",
+   "categories": [
+    "design"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/claid-ai",
+   "base": "https://api.claid.ai",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "CLAID_AI_API_KEY",
+    "about": "Your Claid API key.",
+    "title": "API Key",
+    "pattern": "^[A-Za-z0-9_-]+$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "claid-ai"
+   }
+  },
+  {
    "slug": "clari-copilot",
    "name": "Clari Copilot",
    "icon": "claricopilot",
@@ -4223,6 +6685,34 @@
    "verify": {
     "method": "GET",
     "path": "/calls"
+   }
+  },
+  {
+   "slug": "clarify",
+   "name": "Clarify",
+   "icon": "clarify",
+   "categories": [
+    "crm"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/clarify",
+   "base": "https://api.clarify.ai",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "api-key {token}",
+    "env": "CLARIFY_API_KEY",
+    "about": "Your Clarify API key.",
+    "title": "API key",
+    "pattern": "^[A-Za-z0-9+/=_-]+$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "clarify"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/v1/workspaces/{workspaceSlug}/lists?page[limit]=1"
    }
   },
   {
@@ -4252,6 +6742,31 @@
    "verify": {
     "method": "GET",
     "path": "/v3/my-workspaces"
+   }
+  },
+  {
+   "slug": "clay-mcp",
+   "name": "Clay",
+   "icon": "clay",
+   "categories": [
+    "crm",
+    "marketing",
+    "mcp"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/clay-mcp",
+   "base": "https://api.clay.com",
+   "auth": {
+    "kind": "oauth",
+    "mode": "MCP_OAUTH2",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "CLAY_MCP_TOKEN",
+    "about": "An OAuth access token for the account. The vendor issues no static key, so it is refreshed outside connectory.",
+    "title": ""
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "clay-mcp"
    }
   },
   {
@@ -4570,6 +7085,68 @@
    ]
   },
   {
+   "slug": "cloudinary",
+   "name": "Cloudinary",
+   "icon": "cloudinary",
+   "categories": [
+    "storage"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/cloudinary",
+   "base": "https://{region}",
+   "auth": {
+    "kind": "basic",
+    "mode": "BASIC",
+    "user_env": "CLOUDINARY_USER",
+    "pass_env": "CLOUDINARY_PASS",
+    "about": "API Key and API Secret"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "cloudinary"
+   },
+   "config": [
+    {
+     "name": "region",
+     "env": "CLOUDINARY_REGION",
+     "title": "Region",
+     "about": "The API host of your Cloudinary data center.",
+     "example": ""
+    }
+   ],
+   "verify": {
+    "method": "GET",
+    "path": "/v1_1/{cloudName}/usage"
+   }
+  },
+  {
+   "slug": "cloudlayer",
+   "name": "cloudlayer.io",
+   "icon": "cloudlayerio",
+   "categories": [
+    "productivity"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/cloudlayer",
+   "base": "https://api.cloudlayer.io",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "x-api-key",
+    "format": "{token}",
+    "env": "CLOUDLAYER_API_KEY",
+    "about": "Your cloudlayer.io API key",
+    "title": "API Key",
+    "pattern": "^cl[-_][A-Za-z0-9_-]{16,}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "cloudlayer"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/v2/account"
+   }
+  },
+  {
    "slug": "cloudtalk",
    "name": "CloudTalk",
    "icon": "cloudtalk",
@@ -4718,6 +7295,199 @@
     "method": "GET",
     "path": "/v1/organizations"
    }
+  },
+  {
+   "slug": "cohere",
+   "name": "Cohere",
+   "icon": "cohere",
+   "categories": [
+    "dev-tools"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/cohere",
+   "base": "https://api.cohere.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "COHERE_API_KEY",
+    "about": "Your Cohere trial or production API key.",
+    "title": "API Key",
+    "pattern": "^[A-Za-z0-9_-]{20,}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "cohere"
+   }
+  },
+  {
+   "slug": "coinmarketcal",
+   "name": "CoinMarketCal",
+   "icon": "coinmarketcal",
+   "categories": [
+    "other"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/coinmarketcal",
+   "base": "https://api.coinmarketcal.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "x-api-key",
+    "format": "{token}",
+    "env": "COINMARKETCAL_API_KEY",
+    "about": "Your CoinMarketCal API key.",
+    "title": "API Key",
+    "pattern": "^cmc_[A-Za-z0-9_]{8,}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "coinmarketcal"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/v2/usage"
+   }
+  },
+  {
+   "slug": "coinmarketcap",
+   "name": "CoinMarketCap",
+   "icon": "coinmarketcap",
+   "categories": [
+    "other"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/coinmarketcap",
+   "base": "https://pro-api.coinmarketcap.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "x-cmc_pro_api_key",
+    "format": "{token}",
+    "env": "COINMARKETCAP_API_KEY",
+    "about": "Your CoinMarketCap API key.",
+    "title": "API Key",
+    "pattern": "^[A-Za-z0-9-]{20,}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "coinmarketcap"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/v1/key/info"
+   }
+  },
+  {
+   "slug": "coinranking",
+   "name": "Coinranking",
+   "icon": "coinranking",
+   "categories": [
+    "other"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/coinranking",
+   "base": "https://api.coinranking.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "x-access-token",
+    "format": "{token}",
+    "env": "COINRANKING_API_KEY",
+    "about": "Your Coinranking API key.",
+    "title": "API Key",
+    "pattern": "^[A-Za-z0-9]{20,}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "coinranking"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/v2/stats"
+   }
+  },
+  {
+   "slug": "college-football-data",
+   "name": "College Football Data",
+   "icon": "collegefootballdata",
+   "categories": [
+    "sports"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/college-football-data",
+   "base": "https://api.collegefootballdata.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "COLLEGE_FOOTBALL_DATA_API_KEY",
+    "about": "Your College Football Data API key",
+    "title": "API Key",
+    "pattern": "^[A-Za-z0-9+/=_-]{20,}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "college-football-data"
+   }
+  },
+  {
+   "slug": "cometapi",
+   "name": "CometAPI",
+   "icon": "cometapi",
+   "categories": [
+    "dev-tools"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/cometapi",
+   "base": "https://api.cometapi.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "COMETAPI_API_KEY",
+    "about": "Your CometAPI API key.",
+    "title": "API Key",
+    "pattern": "^(sk-)?[A-Za-z0-9_-]{20,}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "cometapi"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/api/usage/token"
+   }
+  },
+  {
+   "slug": "command-alkon",
+   "name": "Command Alkon",
+   "icon": "commandalkon",
+   "categories": [
+    "erp"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/command-alkon",
+   "base": "https://{hostname}",
+   "auth": {
+    "kind": "manual",
+    "mode": "TWO_STEP",
+    "header": "x-api-key",
+    "format": "{token}",
+    "env": "COMMAND_ALKON_TOKEN",
+    "about": "This provider authenticates with a handshake connectory does not do yet (TWO_STEP).",
+    "title": "API Key",
+    "pattern": "^[a-f0-9]{40}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "command-alkon"
+   },
+   "config": [
+    {
+     "name": "hostname",
+     "env": "COMMAND_ALKON_HOSTNAME",
+     "title": "API Hostname",
+     "about": "The API hostname of your CONNEX environment.",
+     "example": ""
+    }
+   ]
   },
   {
    "slug": "commercetools",
@@ -5095,6 +7865,90 @@
    ]
   },
   {
+   "slug": "control-d",
+   "name": "Control D",
+   "icon": "controld",
+   "categories": [
+    "other"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/control-d",
+   "base": "https://api.controld.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "CONTROL_D_API_KEY",
+    "about": "Your Control D API token.",
+    "title": "API Token",
+    "pattern": "^[A-Za-z0-9._-]+$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "control-d"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/users"
+   }
+  },
+  {
+   "slug": "convertapi",
+   "name": "ConvertAPI",
+   "icon": "convertapi",
+   "categories": [
+    "productivity"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/convertapi",
+   "base": "https://{region}",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "CONVERTAPI_API_KEY",
+    "about": "Your ConvertAPI API Token, JWT token or Master Token.",
+    "title": "API Token",
+    "pattern": "^[A-Za-z0-9._-]{20,}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "convertapi"
+   },
+   "config": [
+    {
+     "name": "region",
+     "env": "CONVERTAPI_REGION",
+     "title": "Region",
+     "about": "The ConvertAPI server location your requests go to.",
+     "example": "v2.convertapi.com"
+    }
+   ]
+  },
+  {
+   "slug": "conveyor",
+   "name": "Conveyor",
+   "icon": "conveyor",
+   "categories": [
+    "other"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/conveyor",
+   "base": "https://api.conveyor.com/api",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "x-api-key",
+    "format": "{token}",
+    "env": "CONVEYOR_API_KEY",
+    "about": "Your Conveyor API key",
+    "title": "API Key"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "conveyor"
+   }
+  },
+  {
    "slug": "copper",
    "name": "Copper",
    "icon": "copper",
@@ -5174,6 +8028,43 @@
    ]
   },
   {
+   "slug": "craftmypdf",
+   "name": "CraftMyPDF",
+   "icon": "craftmypdf",
+   "categories": [
+    "productivity"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/craftmypdf",
+   "base": "https://{region}",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "x-api-key",
+    "format": "{token}",
+    "env": "CRAFTMYPDF_API_KEY",
+    "about": "Your CraftMyPDF account or team API key",
+    "title": "API Key",
+    "pattern": "^[A-Za-z0-9+/=_-]{20,}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "craftmypdf"
+   },
+   "config": [
+    {
+     "name": "region",
+     "env": "CRAFTMYPDF_REGION",
+     "title": "Region",
+     "about": "The regional API host where your documents are processed and stored.",
+     "example": "api.craftmypdf.com"
+    }
+   ],
+   "verify": {
+    "method": "GET",
+    "path": "/v1/get-account-info"
+   }
+  },
+  {
    "slug": "crisp",
    "name": "Crisp",
    "icon": "crisp",
@@ -5234,6 +8125,30 @@
    }
   },
   {
+   "slug": "cronly",
+   "name": "Cronly",
+   "icon": "cronly",
+   "categories": [
+    "dev-tools"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/cronly",
+   "base": "https://cronly.app/api",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "CRONLY_API_KEY",
+    "about": "Your Cronly API token",
+    "title": "API Key",
+    "pattern": "^[A-Za-z0-9|]{20,}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "cronly"
+   }
+  },
+  {
    "slug": "crowdstrike",
    "name": "CrowdStrike",
    "icon": "crowdstrike",
@@ -5291,6 +8206,87 @@
    "verify": {
     "method": "GET",
     "path": "/v4/data/autocompletes?query=instantly&limit=1"
+   }
+  },
+  {
+   "slug": "crustdata",
+   "name": "Crustdata",
+   "icon": "crustdata",
+   "categories": [
+    "crm",
+    "marketing"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/crustdata",
+   "base": "https://api.crustdata.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "CRUSTDATA_API_KEY",
+    "about": "Your Crustdata API key.",
+    "title": "API Key",
+    "pattern": "^cd_[a-f0-9]+$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "crustdata"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/account/credits"
+   }
+  },
+  {
+   "slug": "crustdata-mcp",
+   "name": "Crustdata",
+   "icon": "crustdata",
+   "categories": [
+    "crm",
+    "mcp"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/crustdata-mcp",
+   "base": "https://install.crustdata.com",
+   "auth": {
+    "kind": "oauth",
+    "mode": "MCP_OAUTH2",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "CRUSTDATA_MCP_TOKEN",
+    "about": "An OAuth access token for the account. The vendor issues no static key, so it is refreshed outside connectory.",
+    "title": ""
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "crustdata-mcp"
+   }
+  },
+  {
+   "slug": "curated",
+   "name": "Curated",
+   "icon": "curated",
+   "categories": [
+    "marketing"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/curated",
+   "base": "https://api.curated.co/api",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Token token=\"{token}\"",
+    "env": "CURATED_API_KEY",
+    "about": "Your Curated Account API key.",
+    "title": "Account API Key",
+    "pattern": "^[A-Za-z0-9]{16,}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "curated"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/v3/publications"
    }
   },
   {
@@ -5403,6 +8399,58 @@
    "verify": {
     "method": "GET",
     "path": "/ping"
+   }
+  },
+  {
+   "slug": "dash",
+   "name": "Dash",
+   "icon": "dash",
+   "categories": [
+    "storage",
+    "marketing"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/dash",
+   "base": "https://api-v2.dash.app",
+   "auth": {
+    "kind": "oauth",
+    "mode": "OAUTH2",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "DASH_TOKEN",
+    "about": "An OAuth access token for the account. The vendor issues no static key, so it is refreshed outside connectory.",
+    "title": ""
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "dash"
+   }
+  },
+  {
+   "slug": "databox",
+   "name": "Databox",
+   "icon": "databox",
+   "categories": [
+    "analytics"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/databox",
+   "base": "https://api.databox.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "x-api-key",
+    "format": "{token}",
+    "env": "DATABOX_API_KEY",
+    "about": "Your Databox API key",
+    "title": "API Key",
+    "pattern": "^pak_[A-Za-z0-9_-]+$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "databox"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/v2/auth/validate-key"
    }
   },
   {
@@ -5675,6 +8723,70 @@
    }
   },
   {
+   "slug": "deepgram",
+   "name": "Deepgram",
+   "icon": "deepgram",
+   "categories": [
+    "other"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/deepgram",
+   "base": "https://{region}",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Token {token}",
+    "env": "DEEPGRAM_API_KEY",
+    "about": "Your Deepgram API key.",
+    "title": "API Key",
+    "pattern": "^[A-Za-z0-9_-]+$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "deepgram"
+   },
+   "config": [
+    {
+     "name": "region",
+     "env": "DEEPGRAM_REGION",
+     "title": "Region",
+     "about": "The Deepgram API host that processes your data.",
+     "example": "api.deepgram.com"
+    }
+   ],
+   "verify": {
+    "method": "GET",
+    "path": "/v1/auth/token"
+   }
+  },
+  {
+   "slug": "deepseek",
+   "name": "DeepSeek",
+   "icon": "deepseek",
+   "categories": [
+    "other"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/deepseek",
+   "base": "https://api.deepseek.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "DEEPSEEK_API_KEY",
+    "about": "Your DeepSeek API key.",
+    "title": "API Key"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "deepseek"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/user/balance"
+   }
+  },
+  {
    "slug": "demodesk",
    "name": "DemoDesk",
    "icon": "demodesk",
@@ -5902,6 +9014,30 @@
    }
   },
   {
+   "slug": "discogs",
+   "name": "Discogs",
+   "icon": "discogs",
+   "categories": [
+    "e-commerce",
+    "other"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/discogs",
+   "base": "https://api.discogs.com",
+   "auth": {
+    "kind": "manual",
+    "mode": "OAUTH1",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "DISCOGS_TOKEN",
+    "about": "This provider authenticates with a handshake connectory does not do yet (OAUTH1).",
+    "title": ""
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "discogs"
+   }
+  },
+  {
    "slug": "discolike",
    "name": "DiscoLike",
    "icon": "discolike",
@@ -5950,6 +9086,35 @@
    "source": {
     "registry": "nango",
     "provider": "discord"
+   }
+  },
+  {
+   "slug": "discord-bot",
+   "name": "Discord Bot",
+   "icon": "discordbot",
+   "categories": [
+    "gaming",
+    "social"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/discord-bot",
+   "base": "https://discord.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bot {token}",
+    "env": "DISCORD_BOT_API_KEY",
+    "about": "Your Discord bot token from the Discord Developer Portal.",
+    "title": "Bot Token",
+    "pattern": "^[A-Za-z0-9_-]+\\.[A-Za-z0-9_-]+\\.[A-Za-z0-9_-]+$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "discord-bot"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/api/v10/applications/@me"
    }
   },
   {
@@ -6021,6 +9186,132 @@
    }
   },
   {
+   "slug": "dock-certs",
+   "name": "Dock Certs",
+   "icon": "dockcerts",
+   "categories": [
+    "iam"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/dock-certs",
+   "base": "https://{environment}",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "DOCK_CERTS_API_KEY",
+    "about": "Your Truvera API key",
+    "title": "API Key",
+    "pattern": "^[A-Za-z0-9._-]{20,}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "dock-certs"
+   },
+   "config": [
+    {
+     "name": "environment",
+     "env": "DOCK_CERTS_ENVIRONMENT",
+     "title": "Environment",
+     "about": "The API host of the mode your API key was created in.",
+     "example": "api.truvera.io"
+    }
+   ],
+   "verify": {
+    "method": "GET",
+    "path": "/data/profile"
+   }
+  },
+  {
+   "slug": "docmosis",
+   "name": "Docmosis",
+   "icon": "docmosis",
+   "categories": [
+    "productivity"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/docmosis",
+   "base": "https://{region}/api",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "accesskey",
+    "format": "{token}",
+    "env": "DOCMOSIS_API_KEY",
+    "about": "Your Docmosis Cloud access key",
+    "title": "Access Key",
+    "pattern": "^[A-Za-z0-9]{60,}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "docmosis"
+   },
+   "config": [
+    {
+     "name": "region",
+     "env": "DOCMOSIS_REGION",
+     "title": "Region",
+     "about": "The Cloud API host of the processing location where your templates are stored.",
+     "example": "us1.dws4.docmosis.com"
+    }
+   ],
+   "verify": {
+    "method": "POST",
+    "path": "/listTemplates"
+   }
+  },
+  {
+   "slug": "docparser",
+   "name": "Docparser",
+   "icon": "docparser",
+   "categories": [
+    "productivity"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/docparser",
+   "base": "https://api.docparser.com",
+   "auth": {
+    "kind": "basic",
+    "mode": "BASIC",
+    "user_env": "DOCPARSER_USER",
+    "pass_env": "DOCPARSER_PASS",
+    "about": "API Key and"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "docparser"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/v1/ping"
+   }
+  },
+  {
+   "slug": "docsumo",
+   "name": "Docsumo",
+   "icon": "docsumo",
+   "categories": [
+    "productivity"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/docsumo",
+   "base": "https://app.docsumo.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "apikey",
+    "format": "{token}",
+    "env": "DOCSUMO_API_KEY",
+    "about": "Your Docsumo API key",
+    "title": "API Key"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "docsumo"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/api/v1/eevee/apikey/limit/"
+   }
+  },
+  {
    "slug": "document360",
    "name": "Document360",
    "icon": "document360",
@@ -6050,7 +9341,7 @@
    "categories": [
     "legal"
    ],
-   "docs": "https://nango.dev/docs/integrations/all/docusign",
+   "docs": "https://nango.dev/docs/api-integrations/docusign",
    "base": "https://www.docusign.net",
    "auth": {
     "kind": "oauth",
@@ -6324,6 +9615,35 @@
    }
   },
   {
+   "slug": "dynapictures",
+   "name": "DynaPictures",
+   "icon": "dynapictures",
+   "categories": [
+    "design",
+    "marketing"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/dynapictures",
+   "base": "https://api.dynapictures.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "DYNAPICTURES_API_KEY",
+    "about": "The API key from your DynaPictures account page.",
+    "title": "API Key",
+    "pattern": "^[A-Za-z0-9]{20,}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "dynapictures"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/workspaces"
+   }
+  },
+  {
    "slug": "dynatrace",
    "name": "Dynatrace",
    "icon": "dynatrace",
@@ -6379,6 +9699,34 @@
    }
   },
   {
+   "slug": "eagle-doc",
+   "name": "Eagle Doc",
+   "icon": "eagledoc",
+   "categories": [
+    "productivity"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/eagle-doc",
+   "base": "https://de.eagle-doc.com/api",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "api-key",
+    "format": "{token}",
+    "env": "EAGLE_DOC_API_KEY",
+    "about": "Your Eagle Doc personal (API-) or business (APIB-) API key.",
+    "title": "API Key",
+    "pattern": "^APIB?-[A-Za-z0-9-]+$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "eagle-doc"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/usage/v1/current"
+   }
+  },
+  {
    "slug": "easypost",
    "name": "EasyPost",
    "icon": "easypost",
@@ -6421,6 +9769,38 @@
     "registry": "nango",
     "provider": "ebay"
    }
+  },
+  {
+   "slug": "eclinicalworks",
+   "name": "eClinicalWorks",
+   "icon": "eclinicalworks",
+   "categories": [
+    "other"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/eclinicalworks",
+   "base": "https://{fhirBaseUrl}",
+   "auth": {
+    "kind": "manual",
+    "mode": "TWO_STEP",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "ECLINICALWORKS_TOKEN",
+    "about": "This provider authenticates with a handshake connectory does not do yet (TWO_STEP).",
+    "title": ""
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "eclinicalworks"
+   },
+   "config": [
+    {
+     "name": "fhirBaseUrl",
+     "env": "ECLINICALWORKS_FHIRBASEURL",
+     "title": "FHIR Base URL",
+     "about": "This practice's eClinicalWorks FHIR R4 base URL.",
+     "example": "fhir4.eclinicalworks.com/fhir/r4/SANDBOX"
+    }
+   ]
   },
   {
    "slug": "ecu360",
@@ -6501,6 +9881,31 @@
    ]
   },
   {
+   "slug": "elastic-email",
+   "name": "Elastic Email",
+   "icon": "elasticemail",
+   "categories": [
+    "marketing",
+    "communication"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/elastic-email",
+   "base": "https://api.elasticemail.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "x-elasticemail-apikey",
+    "format": "{token}",
+    "env": "ELASTIC_EMAIL_API_KEY",
+    "about": "Your Elastic Email API key",
+    "title": "API Key",
+    "pattern": "^[A-Za-z0-9-]{20,}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "elastic-email"
+   }
+  },
+  {
    "slug": "elevenlabs",
    "name": "Eleven Labs",
    "icon": "elevenlabs",
@@ -6550,6 +9955,34 @@
    "source": {
     "registry": "nango",
     "provider": "elevio"
+   }
+  },
+  {
+   "slug": "emailoctopus",
+   "name": "EmailOctopus",
+   "icon": "emailoctopus",
+   "categories": [
+    "marketing"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/emailoctopus",
+   "base": "https://api.emailoctopus.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "EMAILOCTOPUS_API_KEY",
+    "about": "Your EmailOctopus API key",
+    "title": "API Key",
+    "pattern": "^eo_[A-Za-z0-9]{20,}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "emailoctopus"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/lists?limit=1"
    }
   },
   {
@@ -6604,6 +10037,35 @@
    }
   },
   {
+   "slug": "emelia",
+   "name": "Emelia",
+   "icon": "emelia",
+   "categories": [
+    "marketing",
+    "crm"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/emelia",
+   "base": "https://api.emelia.io",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "{token}",
+    "env": "EMELIA_API_KEY",
+    "about": "Your Emelia API key.",
+    "title": "API Key",
+    "pattern": "^[A-Za-z0-9]{40,64}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "emelia"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/lists/list?limit=1"
+   }
+  },
+  {
    "slug": "employment-hero",
    "name": "Employment Hero",
    "icon": "employmenthero",
@@ -6624,6 +10086,30 @@
    "source": {
     "registry": "nango",
     "provider": "employment-hero"
+   }
+  },
+  {
+   "slug": "enginemailer",
+   "name": "Enginemailer",
+   "icon": "enginemailer",
+   "categories": [
+    "marketing"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/enginemailer",
+   "base": "https://api.enginemailer.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "apikey",
+    "format": "{token}",
+    "env": "ENGINEMAILER_API_KEY",
+    "about": "Your Enginemailer API key",
+    "title": "API Key",
+    "pattern": "^[A-Za-z0-9-]{16,}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "enginemailer"
    }
   },
   {
@@ -6657,6 +10143,39 @@
    ]
   },
   {
+   "slug": "envoice",
+   "name": "Envoice",
+   "icon": "envoice",
+   "categories": [
+    "accounting",
+    "invoicing"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/envoice",
+   "base": "https://{environment}/partner",
+   "auth": {
+    "kind": "oauth",
+    "mode": "OAUTH2",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "ENVOICE_TOKEN",
+    "about": "An OAuth access token for the account. The vendor issues no static key, so it is refreshed outside connectory.",
+    "title": ""
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "envoice"
+   },
+   "config": [
+    {
+     "name": "environment",
+     "env": "ENVOICE_ENVIRONMENT",
+     "title": "Environment",
+     "about": "The Envoice environment to connect to.",
+     "example": ""
+    }
+   ]
+  },
+  {
    "slug": "envoy",
    "name": "Envoy",
    "icon": "envoy",
@@ -6677,6 +10196,34 @@
    "source": {
     "registry": "nango",
     "provider": "envoy"
+   }
+  },
+  {
+   "slug": "eodhd-apis",
+   "name": "EODHD APIs",
+   "icon": "eodhdapis",
+   "categories": [
+    "other"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/eodhd-apis",
+   "base": "https://eodhd.com/api",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "EODHD_APIS_API_KEY",
+    "about": "Your EODHD API token",
+    "title": "API Token",
+    "pattern": "^[A-Za-z0-9.]+$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "eodhd-apis"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/user"
    }
   },
   {
@@ -6814,6 +10361,31 @@
    }
   },
   {
+   "slug": "ethena",
+   "name": "Ethena",
+   "icon": "ethena",
+   "categories": [
+    "other"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/ethena",
+   "base": "https://api.goethena.com",
+   "auth": {
+    "kind": "basic",
+    "mode": "BASIC",
+    "user_env": "ETHENA_USER",
+    "pass_env": "ETHENA_PASS",
+    "about": "Username and API Key"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "ethena"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/v1/training-campaigns?limit=1"
+   }
+  },
+  {
    "slug": "etsy",
    "name": "Etsy",
    "icon": "etsy",
@@ -6927,6 +10499,38 @@
    ]
   },
   {
+   "slug": "eway-crm",
+   "name": "eWay-CRM",
+   "icon": "ewaycrm",
+   "categories": [
+    "crm"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/eway-crm",
+   "base": "https://{serviceUrl}/API.svc",
+   "auth": {
+    "kind": "oauth",
+    "mode": "OAUTH2",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "EWAY_CRM_TOKEN",
+    "about": "An OAuth access token for the account. The vendor issues no static key, so it is refreshed outside connectory.",
+    "title": ""
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "eway-crm"
+   },
+   "config": [
+    {
+     "name": "serviceUrl",
+     "env": "EWAY_CRM_SERVICEURL",
+     "title": "Service URL",
+     "about": "Your eWay-CRM Web Service address.",
+     "example": "free.eway-crm.com/31994"
+    }
+   ]
+  },
+  {
    "slug": "exa",
    "name": "Exa",
    "icon": "exa",
@@ -7006,6 +10610,40 @@
    }
   },
   {
+   "slug": "exotel",
+   "name": "Exotel",
+   "icon": "exotel",
+   "categories": [
+    "communication"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/exotel",
+   "base": "https://{hostname}",
+   "auth": {
+    "kind": "basic",
+    "mode": "BASIC",
+    "user_env": "EXOTEL_USER",
+    "pass_env": "EXOTEL_PASS",
+    "about": "API Key and API Token"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "exotel"
+   },
+   "config": [
+    {
+     "name": "hostname",
+     "env": "EXOTEL_HOSTNAME",
+     "title": "API Hostname",
+     "about": "The Subdomain shown on your Exotel API Credentials page.",
+     "example": ""
+    }
+   ],
+   "verify": {
+    "method": "GET",
+    "path": "/v1/Accounts/{accountSid}/Balance.json"
+   }
+  },
+  {
    "slug": "expensify",
    "name": "Expensify",
    "icon": "expensify",
@@ -7024,6 +10662,55 @@
    "source": {
     "registry": "nango",
     "provider": "expensify"
+   }
+  },
+  {
+   "slug": "extensiv",
+   "name": "Extensiv",
+   "icon": "extensiv",
+   "categories": [
+    "e-commerce"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/extensiv",
+   "base": "https://api.cartrover.com",
+   "auth": {
+    "kind": "basic",
+    "mode": "BASIC",
+    "user_env": "EXTENSIV_USER",
+    "pass_env": "EXTENSIV_PASS",
+    "about": "API User and API Key"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "extensiv"
+   }
+  },
+  {
+   "slug": "extracta-ai",
+   "name": "Extracta.ai",
+   "icon": "extractaai",
+   "categories": [
+    "other"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/extracta-ai",
+   "base": "https://api.extracta.ai",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "EXTRACTA_AI_API_KEY",
+    "about": "Your Extracta.ai API key",
+    "title": "API Key",
+    "pattern": "^[A-Za-z0-9_=+/-]{20,}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "extracta-ai"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/api/v1/credits"
    }
   },
   {
@@ -7376,6 +11063,36 @@
    }
   },
   {
+   "slug": "fiix",
+   "name": "Fiix",
+   "icon": "fiix",
+   "categories": [
+    "erp"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/fiix",
+   "base": "https://{subdomain}.macmms.com",
+   "auth": {
+    "kind": "basic",
+    "mode": "BASIC",
+    "user_env": "FIIX_USER",
+    "pass_env": "FIIX_PASS",
+    "about": "Access Key and Secret Key"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "fiix"
+   },
+   "config": [
+    {
+     "name": "subdomain",
+     "env": "FIIX_SUBDOMAIN",
+     "title": "Subdomain",
+     "about": "The subdomain of your Fiix URL.",
+     "example": "acme"
+    }
+   ]
+  },
+  {
    "slug": "fillout",
    "name": "Fillout",
    "icon": "fillout",
@@ -7433,6 +11150,34 @@
    }
   },
   {
+   "slug": "finnhub",
+   "name": "Finnhub",
+   "icon": "finnhub",
+   "categories": [
+    "analytics"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/finnhub",
+   "base": "https://finnhub.io/api",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "x-finnhub-token",
+    "format": "{token}",
+    "env": "FINNHUB_API_KEY",
+    "about": "Your Finnhub API key.",
+    "title": "API Key",
+    "pattern": "^[A-Za-z0-9]{20,}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "finnhub"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/v1/country"
+   }
+  },
+  {
    "slug": "finta",
    "name": "Finta",
    "icon": "finta",
@@ -7458,6 +11203,35 @@
    "verify": {
     "method": "GET",
     "path": "/v2/me"
+   }
+  },
+  {
+   "slug": "firecrawl",
+   "name": "Firecrawl",
+   "icon": "firecrawl",
+   "categories": [
+    "dev-tools",
+    "analytics"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/firecrawl",
+   "base": "https://api.firecrawl.dev",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "FIRECRAWL_API_KEY",
+    "about": "Your Firecrawl API key.",
+    "title": "API Key",
+    "pattern": "^(fc-[0-9a-fA-F]{32}|[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "firecrawl"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/v2/team/queue-status"
    }
   },
   {
@@ -7624,6 +11398,66 @@
    }
   },
   {
+   "slug": "fluxguard",
+   "name": "Fluxguard",
+   "icon": "fluxguard",
+   "categories": [
+    "analytics"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/fluxguard",
+   "base": "https://api.fluxguard.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "x-api-key",
+    "format": "{token}",
+    "env": "FLUXGUARD_API_KEY",
+    "about": "Your Fluxguard API key.",
+    "title": "API Key",
+    "pattern": "^[A-Za-z0-9]{20,}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "fluxguard"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/account"
+   }
+  },
+  {
+   "slug": "flyte",
+   "name": "Flyte",
+   "icon": "flyte",
+   "categories": [
+    "dev-tools"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/flyte",
+   "base": "https://{hostname}",
+   "auth": {
+    "kind": "oauth",
+    "mode": "OAUTH2_CC",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "FLYTE_TOKEN",
+    "about": "An OAuth access token for the account. The vendor issues no static key, so it is refreshed outside connectory.",
+    "title": ""
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "flyte"
+   },
+   "config": [
+    {
+     "name": "hostname",
+     "env": "FLYTE_HOSTNAME",
+     "title": "Flyte Host",
+     "about": "The host of your Flyte instance.",
+     "example": "flyte.example.com"
+    }
+   ]
+  },
+  {
    "slug": "folk",
    "name": "Folk",
    "icon": "folk",
@@ -7672,6 +11506,87 @@
    "source": {
     "registry": "nango",
     "provider": "followupboss"
+   }
+  },
+  {
+   "slug": "formbricks",
+   "name": "Formbricks",
+   "icon": "formbricks",
+   "categories": [
+    "surveys"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/formbricks",
+   "base": "https://app.formbricks.com/api",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "x-api-key",
+    "format": "{token}",
+    "env": "FORMBRICKS_API_KEY",
+    "about": "Your Formbricks API key",
+    "title": "API Key",
+    "pattern": "^fbk_[A-Za-z0-9_-]+$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "formbricks"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/v1/management/me"
+   }
+  },
+  {
+   "slug": "formcarry",
+   "name": "Formcarry",
+   "icon": "formcarry",
+   "categories": [
+    "other"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/formcarry",
+   "base": "https://api.formcarry.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "FORMCARRY_API_KEY",
+    "about": "Your Formcarry API key (fc_live_) or legacy key.",
+    "title": "API Key",
+    "pattern": "^(fc_live_[A-Za-z0-9_-]+|[A-Za-z0-9_-]{16,})$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "formcarry"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/v1/me"
+   }
+  },
+  {
+   "slug": "formstack-documents",
+   "name": "Formstack Documents",
+   "icon": "formstackdocuments",
+   "categories": [
+    "productivity"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/formstack-documents",
+   "base": "https://www.webmerge.me/api",
+   "auth": {
+    "kind": "basic",
+    "mode": "BASIC",
+    "user_env": "FORMSTACK_DOCUMENTS_USER",
+    "pass_env": "FORMSTACK_DOCUMENTS_PASS",
+    "about": "API Key and API Secret"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "formstack-documents"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/documents"
    }
   },
   {
@@ -7808,6 +11723,44 @@
    }
   },
   {
+   "slug": "freshdesk-mcp",
+   "name": "FreshDesk",
+   "icon": "freshdesk",
+   "categories": [
+    "support",
+    "mcp"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/freshdesk-mcp",
+   "base": "https://{subdomain}.freshdesk.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "{token}",
+    "env": "FRESHDESK_MCP_API_KEY",
+    "about": "The API Key of your FreshDesk account",
+    "title": "API Key",
+    "pattern": "^[A-Za-z0-9_]+$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "freshdesk-mcp"
+   },
+   "config": [
+    {
+     "name": "subdomain",
+     "env": "FRESHDESK_MCP_SUBDOMAIN",
+     "title": "FreshDesk Domain",
+     "about": "The subdomain of your FreshDesk account",
+     "example": "domain"
+    }
+   ],
+   "verify": {
+    "method": "POST",
+    "path": "/mcp"
+   }
+  },
+  {
    "slug": "freshsales",
    "name": "Freshsales",
    "icon": "freshsales",
@@ -7876,6 +11829,44 @@
    "verify": {
     "method": "GET",
     "path": "/api/v2/tickets"
+   }
+  },
+  {
+   "slug": "freshservice-mcp",
+   "name": "Freshservice",
+   "icon": "freshservice",
+   "categories": [
+    "support",
+    "mcp"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/freshservice-mcp",
+   "base": "https://{subdomain}.freshservice.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "{token}",
+    "env": "FRESHSERVICE_MCP_API_KEY",
+    "about": "The API Key of your Freshservice account",
+    "title": "API Key",
+    "pattern": "^[A-Za-z0-9_]+$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "freshservice-mcp"
+   },
+   "config": [
+    {
+     "name": "subdomain",
+     "env": "FRESHSERVICE_MCP_SUBDOMAIN",
+     "title": "Freshservice subdomain",
+     "about": "The subdomain of your Freshservice account",
+     "example": "subdomain"
+    }
+   ],
+   "verify": {
+    "method": "POST",
+    "path": "/mcp"
    }
   },
   {
@@ -8135,6 +12126,43 @@
    }
   },
   {
+   "slug": "geoapify",
+   "name": "Geoapify",
+   "icon": "geoapify",
+   "categories": [
+    "other"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/geoapify",
+   "base": "https://{region}",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "x-api-key",
+    "format": "{token}",
+    "env": "GEOAPIFY_API_KEY",
+    "about": "The API key from your Geoapify project.",
+    "title": "API Key",
+    "pattern": "^[A-Za-z0-9]+$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "geoapify"
+   },
+   "config": [
+    {
+     "name": "region",
+     "env": "GEOAPIFY_REGION",
+     "title": "Region",
+     "about": "The Geoapify API endpoint to use.",
+     "example": ""
+    }
+   ],
+   "verify": {
+    "method": "POST",
+    "path": "/v1/mcp"
+   }
+  },
+  {
    "slug": "gerrit",
    "name": "Gerrit",
    "icon": "gerrit",
@@ -8269,6 +12297,34 @@
    }
   },
   {
+   "slug": "giphy",
+   "name": "GIPHY",
+   "icon": "giphy",
+   "categories": [
+    "social"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/giphy",
+   "base": "https://api.giphy.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "GIPHY_API_KEY",
+    "about": "Your GIPHY API key",
+    "title": "API Key",
+    "pattern": "^[A-Za-z0-9]+$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "giphy"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/v1/gifs/trending?limit=1"
+   }
+  },
+  {
    "slug": "github",
    "name": "GitHub",
    "icon": "github",
@@ -8353,6 +12409,34 @@
    }
   },
   {
+   "slug": "gladia",
+   "name": "Gladia",
+   "icon": "gladia",
+   "categories": [
+    "other"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/gladia",
+   "base": "https://api.gladia.io",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "x-gladia-key",
+    "format": "{token}",
+    "env": "GLADIA_API_KEY",
+    "about": "Your Gladia API key",
+    "title": "API Key",
+    "pattern": "^(sk_gladia_[A-Za-z0-9_-]+|[A-Za-z0-9-]{20,})$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "gladia"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/v2/pre-recorded?limit=1"
+   }
+  },
+  {
    "slug": "glean",
    "name": "Glean",
    "icon": "glean",
@@ -8384,6 +12468,34 @@
      "example": "acme-prod-be.glean.com"
     }
    ]
+  },
+  {
+   "slug": "globalping",
+   "name": "Globalping",
+   "icon": "globalping",
+   "categories": [
+    "dev-tools"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/globalping",
+   "base": "https://api.globalping.io",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "GLOBALPING_API_KEY",
+    "about": "Your Globalping API token.",
+    "title": "API Token",
+    "pattern": "^[A-Za-z0-9_-]{20,}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "globalping"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/v1/limits"
+   }
   },
   {
    "slug": "glyphic",
@@ -8821,8 +12933,8 @@
   },
   {
    "slug": "google-sheet",
-   "name": "Google Sheet",
-   "icon": "googlesheet",
+   "name": "Google Sheets",
+   "icon": "googlesheets",
    "categories": [
     "productivity"
    ],
@@ -9114,6 +13226,34 @@
    }
   },
   {
+   "slug": "graphhopper",
+   "name": "GraphHopper",
+   "icon": "graphhopper",
+   "categories": [
+    "other"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/graphhopper",
+   "base": "https://graphhopper.com/api",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "GRAPHHOPPER_API_KEY",
+    "about": "Your GraphHopper API key.",
+    "title": "API Key",
+    "pattern": "^[A-Za-z0-9-]{16,}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "graphhopper"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/1/geocode?q=berlin&limit=1"
+   }
+  },
+  {
    "slug": "greenfield-meditech",
    "name": "MEDITECH Greenfield",
    "icon": "meditechgreenfield",
@@ -9367,6 +13507,34 @@
    "verify": {
     "method": "GET",
     "path": "/api/orgs"
+   }
+  },
+  {
+   "slug": "groqcloud",
+   "name": "GroqCloud",
+   "icon": "groqcloud",
+   "categories": [
+    "other"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/groqcloud",
+   "base": "https://api.groq.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "GROQCLOUD_API_KEY",
+    "about": "Your GroqCloud API key.",
+    "title": "API Key",
+    "pattern": "^gsk_[A-Za-z0-9]+$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "groqcloud"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/openai/v1/models"
    }
   },
   {
@@ -9657,6 +13825,29 @@
    "source": {
     "registry": "nango",
     "provider": "harvest"
+   }
+  },
+  {
+   "slug": "haus",
+   "name": "Haus",
+   "icon": "haus",
+   "categories": [
+    "analytics",
+    "e-commerce",
+    "marketing"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/haus",
+   "base": "https://geolift.apis.haus",
+   "auth": {
+    "kind": "basic",
+    "mode": "BASIC",
+    "user_env": "HAUS_USER",
+    "pass_env": "HAUS_PASS",
+    "about": "Token ID and Token Secret"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "haus"
    }
   },
   {
@@ -10022,6 +14213,63 @@
    }
   },
   {
+   "slug": "hitpay",
+   "name": "HitPay App",
+   "icon": "hitpayapp",
+   "categories": [
+    "payment",
+    "e-commerce"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/hitpay",
+   "base": "https://api.{environment}",
+   "auth": {
+    "kind": "oauth",
+    "mode": "OAUTH2",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "HITPAY_TOKEN",
+    "about": "An OAuth access token for the account. The vendor issues no static key, so it is refreshed outside connectory.",
+    "title": ""
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "hitpay"
+   },
+   "config": [
+    {
+     "name": "environment",
+     "env": "HITPAY_ENVIRONMENT",
+     "title": "Environment",
+     "about": "The HitPay environment to connect to. Use sandbox.hit-pay.com with sandbox app credentials.",
+     "example": ""
+    }
+   ]
+  },
+  {
+   "slug": "hive",
+   "name": "Hive",
+   "icon": "hive",
+   "categories": [
+    "marketing",
+    "crm"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/hive",
+   "base": "https://api.hive.co",
+   "auth": {
+    "kind": "oauth",
+    "mode": "OAUTH2",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "HIVE_TOKEN",
+    "about": "An OAuth access token for the account. The vendor issues no static key, so it is refreshed outside connectory.",
+    "title": ""
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "hive"
+   }
+  },
+  {
    "slug": "holded",
    "name": "Holded",
    "icon": "holded",
@@ -10074,6 +14322,40 @@
    "source": {
     "registry": "nango",
     "provider": "holded-v2"
+   }
+  },
+  {
+   "slug": "honeybadger",
+   "name": "Honeybadger",
+   "icon": "honeybadger",
+   "categories": [
+    "dev-tools"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/honeybadger",
+   "base": "https://{region}",
+   "auth": {
+    "kind": "basic",
+    "mode": "BASIC",
+    "user_env": "HONEYBADGER_USER",
+    "pass_env": "HONEYBADGER_PASS",
+    "about": "Personal auth token and"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "honeybadger"
+   },
+   "config": [
+    {
+     "name": "region",
+     "env": "HONEYBADGER_REGION",
+     "title": "Region",
+     "about": "The Honeybadger region your account is in (US or EU).",
+     "example": ""
+    }
+   ],
+   "verify": {
+    "method": "GET",
+    "path": "/v2/accounts"
    }
   },
   {
@@ -10200,6 +14482,35 @@
    }
   },
   {
+   "slug": "hunter",
+   "name": "Hunter",
+   "icon": "hunter",
+   "categories": [
+    "marketing",
+    "crm"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/hunter",
+   "base": "https://api.hunter.io",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "x-api-key",
+    "format": "{token}",
+    "env": "HUNTER_API_KEY",
+    "about": "Your Hunter API key.",
+    "title": "API Key",
+    "pattern": "^[A-Za-z0-9]+$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "hunter"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/v2/account"
+   }
+  },
+  {
    "slug": "huntress",
    "name": "Huntress",
    "icon": "huntress",
@@ -10222,6 +14533,72 @@
    "verify": {
     "method": "GET",
     "path": "/v1/organizations"
+   }
+  },
+  {
+   "slug": "hydradb",
+   "name": "HydraDB",
+   "icon": "hydradb",
+   "categories": [
+    "knowledge-base"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/hydradb",
+   "base": "https://api.hydradb.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "HYDRADB_API_KEY",
+    "about": "The API key for your HydraDB account.",
+    "title": "API Key",
+    "pattern": "^sk_(live|test)_[A-Za-z0-9]+\\.[A-Za-z0-9]+$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "hydradb"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/databases"
+   }
+  },
+  {
+   "slug": "hyperline",
+   "name": "Hyperline",
+   "icon": "hyperline",
+   "categories": [
+    "invoicing",
+    "payment"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/hyperline",
+   "base": "https://{environment}",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "HYPERLINE_API_KEY",
+    "about": "Your Hyperline API key (prod_ for production, test_ for sandbox).",
+    "title": "API Key",
+    "pattern": "^(prod|test)_.+$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "hyperline"
+   },
+   "config": [
+    {
+     "name": "environment",
+     "env": "HYPERLINE_ENVIRONMENT",
+     "title": "Environment",
+     "about": "The Hyperline API host for production or sandbox (test mode).",
+     "example": ""
+    }
+   ],
+   "verify": {
+    "method": "GET",
+    "path": "/v1/companies"
    }
   },
   {
@@ -10275,6 +14652,39 @@
     "registry": "nango",
     "provider": "ids-fulfillment"
    }
+  },
+  {
+   "slug": "imanage",
+   "name": "iManage Work",
+   "icon": "imanagework",
+   "categories": [
+    "legal",
+    "storage"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/imanage",
+   "base": "https://{hostname}",
+   "auth": {
+    "kind": "oauth",
+    "mode": "OAUTH2",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "IMANAGE_TOKEN",
+    "about": "An OAuth access token for the account. The vendor issues no static key, so it is refreshed outside connectory.",
+    "title": ""
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "imanage"
+   },
+   "config": [
+    {
+     "name": "hostname",
+     "env": "IMANAGE_HOSTNAME",
+     "title": "Server Hostname",
+     "about": "Your iManage Work server hostname.",
+     "example": "cloudimanage.com"
+    }
+   ]
   },
   {
    "slug": "immybot",
@@ -10577,6 +14987,34 @@
    }
   },
   {
+   "slug": "ip2location-io",
+   "name": "IP2Location.io",
+   "icon": "ip2locationio",
+   "categories": [
+    "other"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/ip2location-io",
+   "base": "https://api.ip2location.io",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "IP2LOCATION_IO_API_KEY",
+    "about": "Your IP2Location.io API key.",
+    "title": "API Key",
+    "pattern": "^[A-Za-z0-9]{16,}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "ip2location-io"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/?ip=8.8.8.8"
+   }
+  },
+  {
    "slug": "ironclad",
    "name": "Ironclad",
    "icon": "ironclad",
@@ -10728,6 +15166,43 @@
    "verify": {
     "method": "GET",
     "path": "/v1/users?apikey={apiKey}"
+   }
+  },
+  {
+   "slug": "jfrog",
+   "name": "JFrog",
+   "icon": "jfrog",
+   "categories": [
+    "dev-tools"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/jfrog",
+   "base": "https://{hostname}",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "JFROG_API_KEY",
+    "about": "Your JFrog reference token or access token",
+    "title": "Access Token",
+    "pattern": "^[A-Za-z0-9._-]{32,}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "jfrog"
+   },
+   "config": [
+    {
+     "name": "hostname",
+     "env": "JFROG_HOSTNAME",
+     "title": "JFrog Platform Hostname",
+     "about": "Your JFrog Platform hostname, e.g. mycompany.jfrog.io",
+     "example": "mycompany.jfrog.io"
+    }
+   ],
+   "verify": {
+    "method": "GET",
+    "path": "/access/api/v1/tokens/me"
    }
   },
   {
@@ -10899,6 +15374,33 @@
    }
   },
   {
+   "slug": "jobnimbus",
+   "name": "JobNimbus",
+   "icon": "jobnimbus",
+   "categories": [
+    "crm"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/jobnimbus",
+   "base": "https://app.jobnimbus.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "JOBNIMBUS_API_KEY",
+    "about": "Your JobNimbus API Key.",
+    "title": "API Key"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "jobnimbus"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/api1/contacts"
+   }
+  },
+  {
    "slug": "jobvite",
    "name": "Jobvite",
    "icon": "jobvite",
@@ -11043,6 +15545,31 @@
    }
   },
   {
+   "slug": "justcall",
+   "name": "JustCall",
+   "icon": "justcall",
+   "categories": [
+    "communication"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/justcall",
+   "base": "https://api.justcall.io",
+   "auth": {
+    "kind": "basic",
+    "mode": "BASIC",
+    "user_env": "JUSTCALL_USER",
+    "pass_env": "JUSTCALL_PASS",
+    "about": "API Key and API Secret"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "justcall"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/v2.1/users?per_page=1"
+   }
+  },
+  {
    "slug": "justworks",
    "name": "Justworks",
    "icon": "justworks",
@@ -11159,6 +15686,39 @@
    }
   },
   {
+   "slug": "kickbox",
+   "name": "Kickbox",
+   "icon": "kickbox",
+   "categories": [
+    "marketing"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/kickbox",
+   "base": "https://{region}",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "KICKBOX_API_KEY",
+    "about": "Your Kickbox production (live_) or sandbox (test_) API key",
+    "title": "API Key",
+    "pattern": "^(live_|test_)[A-Za-z0-9]+$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "kickbox"
+   },
+   "config": [
+    {
+     "name": "region",
+     "env": "KICKBOX_REGION",
+     "title": "Region",
+     "about": "Your Kickbox API host. Use the EU host for EU-only accounts.",
+     "example": ""
+    }
+   ]
+  },
+  {
    "slug": "kintone",
    "name": "Kintone",
    "icon": "kintone",
@@ -11225,6 +15785,34 @@
    "verify": {
     "method": "GET",
     "path": "/v1/users.json"
+   }
+  },
+  {
+   "slug": "kit",
+   "name": "Kit",
+   "icon": "kit",
+   "categories": [
+    "marketing"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/kit",
+   "base": "https://api.kit.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "x-kit-api-key",
+    "format": "{token}",
+    "env": "KIT_API_KEY",
+    "about": "Your Kit V4 API key.",
+    "title": "API Key",
+    "pattern": "^kit_[A-Za-z0-9_-]+$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "kit"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/v4/account"
    }
   },
   {
@@ -11387,6 +15975,34 @@
    }
   },
   {
+   "slug": "krea-ai",
+   "name": "Krea",
+   "icon": "krea",
+   "categories": [
+    "design"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/krea-ai",
+   "base": "https://api.krea.ai",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "KREA_AI_API_KEY",
+    "about": "Your Krea personal or service API token (id:secret), or a legacy API key.",
+    "title": "API Token",
+    "pattern": "^[A-Za-z0-9._~+/=:-]+$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "krea-ai"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/jobs?limit=1"
+   }
+  },
+  {
    "slug": "kustomer",
    "name": "Kustomer",
    "icon": "kustomer",
@@ -11442,6 +16058,66 @@
    }
   },
   {
+   "slug": "langfuse",
+   "name": "Langfuse",
+   "icon": "langfuse",
+   "categories": [
+    "analytics",
+    "dev-tools"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/langfuse",
+   "base": "https://{region}/api/public",
+   "auth": {
+    "kind": "basic",
+    "mode": "BASIC",
+    "user_env": "LANGFUSE_USER",
+    "pass_env": "LANGFUSE_PASS",
+    "about": "Public Key and Secret Key"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "langfuse"
+   },
+   "config": [
+    {
+     "name": "region",
+     "env": "LANGFUSE_REGION",
+     "title": "Data Region",
+     "about": "The Langfuse Cloud host of your data region.",
+     "example": "cloud.langfuse.com"
+    }
+   ],
+   "verify": {
+    "method": "GET",
+    "path": "/projects"
+   }
+  },
+  {
+   "slug": "laposta",
+   "name": "Laposta",
+   "icon": "laposta",
+   "categories": [
+    "marketing"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/laposta",
+   "base": "https://api.laposta.nl",
+   "auth": {
+    "kind": "basic",
+    "mode": "BASIC",
+    "user_env": "LAPOSTA_USER",
+    "pass_env": "LAPOSTA_PASS",
+    "about": "API Key and"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "laposta"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/v2/list"
+   }
+  },
+  {
    "slug": "lastpass",
    "name": "LastPass",
    "icon": "lastpass",
@@ -11469,7 +16145,7 @@
    "categories": [
     "hr"
    ],
-   "docs": "https://nango.dev/docs/integrations/all/lattice",
+   "docs": "https://nango.dev/docs/api-integrations/lattice",
    "base": "https://api.latticehq.com",
    "auth": {
     "kind": "key",
@@ -11483,6 +16159,34 @@
    "source": {
     "registry": "nango",
     "provider": "lattice"
+   }
+  },
+  {
+   "slug": "laylo",
+   "name": "Laylo",
+   "icon": "laylo",
+   "categories": [
+    "marketing"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/laylo",
+   "base": "https://laylo.com/api",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "LAYLO_API_KEY",
+    "about": "Your Laylo API Keyring key.",
+    "title": "API Key",
+    "pattern": "^[A-Za-z0-9._-]{20,}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "laylo"
+   },
+   "verify": {
+    "method": "POST",
+    "path": "/graphql"
    }
   },
   {
@@ -11725,6 +16429,32 @@
    }
   },
   {
+   "slug": "linear-mcp",
+   "name": "Linear",
+   "icon": "linear",
+   "categories": [
+    "popular",
+    "productivity",
+    "ticketing",
+    "mcp"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/linear-mcp",
+   "base": "https://mcp.linear.app",
+   "auth": {
+    "kind": "oauth",
+    "mode": "MCP_OAUTH2",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "LINEAR_MCP_TOKEN",
+    "about": "An OAuth access token for the account. The vendor issues no static key, so it is refreshed outside connectory.",
+    "title": ""
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "linear-mcp"
+   }
+  },
+  {
    "slug": "linkedin",
    "name": "LinkedIn",
    "icon": "linkedin",
@@ -11800,6 +16530,62 @@
    }
   },
   {
+   "slug": "linkup",
+   "name": "Linkup",
+   "icon": "linkup",
+   "categories": [
+    "search"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/linkup",
+   "base": "https://api.linkup.so",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "LINKUP_API_KEY",
+    "about": "Your Linkup API key",
+    "title": "API Key",
+    "pattern": "^lk_[A-Za-z0-9]+$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "linkup"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/v1/credits/balance"
+   }
+  },
+  {
+   "slug": "listclean",
+   "name": "Listclean",
+   "icon": "listclean",
+   "categories": [
+    "marketing"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/listclean",
+   "base": "https://api.listclean.xyz",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "x-auth-token",
+    "format": "{token}",
+    "env": "LISTCLEAN_API_KEY",
+    "about": "Your Listclean API token",
+    "title": "API Token",
+    "pattern": "^[A-Za-z0-9]{16,}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "listclean"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/v1/credits"
+   }
+  },
+  {
    "slug": "listmonk",
    "name": "Listmonk",
    "icon": "listmonk",
@@ -11857,6 +16643,42 @@
    }
   },
   {
+   "slug": "litmos",
+   "name": "Litmos",
+   "icon": "litmos",
+   "categories": [
+    "hr"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/litmos",
+   "base": "https://{apiDomain}",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "apikey",
+    "format": "{token}",
+    "env": "LITMOS_API_KEY",
+    "about": "Your Litmos API key, found under My Profile & Settings.",
+    "title": "API Key"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "litmos"
+   },
+   "config": [
+    {
+     "name": "apiDomain",
+     "env": "LITMOS_APIDOMAIN",
+     "title": "API Domain",
+     "about": "The Litmos API domain for your account's region.",
+     "example": ""
+    }
+   ],
+   "verify": {
+    "method": "GET",
+    "path": "/v1.svc/users?limit=1"
+   }
+  },
+  {
    "slug": "liveswitch",
    "name": "LiveSwitch",
    "icon": "liveswitch",
@@ -11908,6 +16730,43 @@
    }
   },
   {
+   "slug": "llmwhisperer",
+   "name": "LLMWhisperer",
+   "icon": "llmwhisperer",
+   "categories": [
+    "other"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/llmwhisperer",
+   "base": "https://{region}/api",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "unstract-key",
+    "format": "{token}",
+    "env": "LLMWHISPERER_API_KEY",
+    "about": "Your LLMWhisperer API key.",
+    "title": "API Key",
+    "pattern": "^[A-Za-z0-9_-]+$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "llmwhisperer"
+   },
+   "config": [
+    {
+     "name": "region",
+     "env": "LLMWHISPERER_REGION",
+     "title": "Region",
+     "about": "The LLMWhisperer API host for your region.",
+     "example": ""
+    }
+   ],
+   "verify": {
+    "method": "GET",
+    "path": "/v2/get-usage-info"
+   }
+  },
+  {
    "slug": "lob",
    "name": "Lob",
    "icon": "lob",
@@ -11930,6 +16789,34 @@
    "verify": {
     "method": "GET",
     "path": "/v1/addresses"
+   }
+  },
+  {
+   "slug": "logo",
+   "name": "Logo.dev",
+   "icon": "logodev",
+   "categories": [
+    "other"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/logo-dev",
+   "base": "https://api.logo.dev",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "LOGO_API_KEY",
+    "about": "Your Logo.dev secret key. It starts with `sk_`.",
+    "title": "Secret Key",
+    "pattern": "^sk_[A-Za-z0-9_-]+$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "logo-dev"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/v2/account"
    }
   },
   {
@@ -12100,6 +16987,30 @@
    }
   },
   {
+   "slug": "loyaltylion",
+   "name": "LoyaltyLion",
+   "icon": "loyaltylion",
+   "categories": [
+    "e-commerce",
+    "marketing"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/loyaltylion",
+   "base": "https://api.loyaltylion.com",
+   "auth": {
+    "kind": "oauth",
+    "mode": "OAUTH2",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "LOYALTYLION_TOKEN",
+    "about": "An OAuth access token for the account. The vendor issues no static key, so it is refreshed outside connectory.",
+    "title": ""
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "loyaltylion"
+   }
+  },
+  {
    "slug": "lucid-scim",
    "name": "Lucid",
    "icon": "lucid",
@@ -12207,6 +17118,30 @@
    }
   },
   {
+   "slug": "mailboxlayer",
+   "name": "Mailboxlayer",
+   "icon": "mailboxlayer",
+   "categories": [
+    "other"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/mailboxlayer",
+   "base": "https://apilayer.net/api",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "MAILBOXLAYER_API_KEY",
+    "about": "Your Mailboxlayer API Access Key",
+    "title": "API Access Key",
+    "pattern": "^[A-Za-z0-9]+$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "mailboxlayer"
+   }
+  },
+  {
    "slug": "mailchimp",
    "name": "Mailchimp",
    "icon": "mailchimp",
@@ -12238,6 +17173,63 @@
      "example": "us6"
     }
    ]
+  },
+  {
+   "slug": "mailerlite",
+   "name": "MailerLite",
+   "icon": "mailerlite",
+   "categories": [
+    "marketing"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/mailerlite",
+   "base": "https://connect.mailerlite.com/api",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "MAILERLITE_API_KEY",
+    "about": "Your MailerLite API token.",
+    "title": "API Token",
+    "pattern": "^eyJ[A-Za-z0-9_-]+\\.[A-Za-z0-9_-]+\\.[A-Za-z0-9_-]+$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "mailerlite"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/groups?limit=1"
+   }
+  },
+  {
+   "slug": "mailersend",
+   "name": "MailerSend",
+   "icon": "mailersend",
+   "categories": [
+    "communication",
+    "marketing"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/mailersend",
+   "base": "https://api.mailersend.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "MAILERSEND_API_KEY",
+    "about": "Your MailerSend API token.",
+    "title": "API Token",
+    "pattern": "^[A-Za-z0-9._-]{20,}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "mailersend"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/v1/api-quota"
+   }
   },
   {
    "slug": "mailgun",
@@ -12297,6 +17289,40 @@
     "method": "GET",
     "path": "/v3/REST/myprofile"
    }
+  },
+  {
+   "slug": "mailtrap",
+   "name": "Mailtrap",
+   "icon": "mailtrap",
+   "categories": [
+    "communication",
+    "marketing"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/mailtrap",
+   "base": "https://{subdomain}.api.mailtrap.io",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "api-token",
+    "format": "{token}",
+    "env": "MAILTRAP_API_KEY",
+    "about": "Your Mailtrap API token.",
+    "title": "API Token",
+    "pattern": "^[a-f0-9]{32}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "mailtrap"
+   },
+   "config": [
+    {
+     "name": "subdomain",
+     "env": "MAILTRAP_SUBDOMAIN",
+     "title": "API Environment",
+     "about": "The Mailtrap API environment to connect to. Use 'send' for live or 'sandbox' for sandbox.",
+     "example": ""
+    }
+   ]
   },
   {
    "slug": "make",
@@ -12582,6 +17608,39 @@
    }
   },
   {
+   "slug": "mcp-generic",
+   "name": "MCP Server OAuth2",
+   "icon": "mcpserveroauth2",
+   "categories": [
+    "mcp"
+   ],
+   "docs": "https://nango.dev/docs/integrations/all/mcp-generic",
+   "base": "{mcp_server_url}",
+   "auth": {
+    "kind": "manual",
+    "mode": "MCP_OAUTH2_GENERIC",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "MCP_GENERIC_TOKEN",
+    "about": "This provider authenticates with a handshake connectory does not do yet (MCP_OAUTH2_GENERIC).",
+    "title": ""
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "mcp-generic"
+   },
+   "config": [
+    {
+     "name": "mcp_server_url",
+     "env": "MCP_GENERIC_MCP_SERVER_URL",
+     "title": "MCP Server URL",
+     "about": "The base URL of your MCP server The full address, scheme and all \u2014 https://example.com.",
+     "example": "https://mcp.notion.com/mcp",
+     "origin": true
+    }
+   ]
+  },
+  {
    "slug": "medallia",
    "name": "Medallia",
    "icon": "medallia",
@@ -12737,6 +17796,59 @@
    }
   },
   {
+   "slug": "metaview-mcp",
+   "name": "Metaview",
+   "icon": "metaview",
+   "categories": [
+    "ats",
+    "mcp"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/metaview-mcp",
+   "base": "https://mcp.metaview.ai",
+   "auth": {
+    "kind": "oauth",
+    "mode": "MCP_OAUTH2",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "METAVIEW_MCP_TOKEN",
+    "about": "An OAuth access token for the account. The vendor issues no static key, so it is refreshed outside connectory.",
+    "title": ""
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "metaview-mcp"
+   }
+  },
+  {
+   "slug": "mezmo",
+   "name": "Mezmo",
+   "icon": "mezmo",
+   "categories": [
+    "dev-tools",
+    "analytics"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/mezmo",
+   "base": "https://api.mezmo.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Token {token}",
+    "env": "MEZMO_API_KEY",
+    "about": "Your Mezmo service account key or personal access key.",
+    "title": "API Key",
+    "pattern": "^(sta|sts|ste)_[A-Za-z0-9]+$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "mezmo"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/v3/pipeline"
+   }
+  },
+  {
    "slug": "microsoft",
    "name": "Microsoft",
    "icon": "microsoft",
@@ -12848,6 +17960,53 @@
      "example": "production"
     }
    ]
+  },
+  {
+   "slug": "microsoft-clarity",
+   "name": "Microsoft Clarity",
+   "icon": "microsoftclarity",
+   "categories": [
+    "analytics"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/microsoft-clarity",
+   "base": "https://www.clarity.ms/export-data/api",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "MICROSOFT_CLARITY_API_KEY",
+    "about": "Your Clarity Data Export API token",
+    "title": "API Token",
+    "pattern": "^[A-Za-z0-9._-]+$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "microsoft-clarity"
+   }
+  },
+  {
+   "slug": "microsoft-defender",
+   "name": "Microsoft Defender",
+   "icon": "microsoftdefender",
+   "categories": [
+    "iam"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/microsoft-defender-cc",
+   "base": "https://api.security.microsoft.com",
+   "auth": {
+    "kind": "oauth",
+    "mode": "OAUTH2_CC",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "MICROSOFT_DEFENDER_TOKEN",
+    "about": "An OAuth access token for the account. The vendor issues no static key, so it is refreshed outside connectory.",
+    "title": ""
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "microsoft-defender-cc"
+   }
   },
   {
    "slug": "microsoft-dynamics-365-finance-and-operations",
@@ -13055,6 +18214,34 @@
    }
   },
   {
+   "slug": "minerstat",
+   "name": "Minerstat",
+   "icon": "minerstat",
+   "categories": [
+    "analytics"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/minerstat",
+   "base": "https://api.minerstat.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "x-api-key",
+    "format": "{token}",
+    "env": "MINERSTAT_API_KEY",
+    "about": "Your Minerstat API key.",
+    "title": "API Key",
+    "pattern": "^[A-Za-z0-9_-]+$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "minerstat"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/v3/coins?limit=1"
+   }
+  },
+  {
    "slug": "minimax",
    "name": "MiniMax",
    "icon": "minimax",
@@ -13221,6 +18408,34 @@
    }
   },
   {
+   "slug": "modernloop",
+   "name": "ModernLoop",
+   "icon": "modernloop",
+   "categories": [
+    "ats",
+    "productivity"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/modernloop",
+   "base": "https://api.modernloop.io",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "MODERNLOOP_API_KEY",
+    "about": "Your ModernLoop API key.",
+    "title": "API Key"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "modernloop"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/v1/me"
+   }
+  },
+  {
    "slug": "modjo-ai",
    "name": "Modjo AI",
    "icon": "modjoai",
@@ -13245,6 +18460,33 @@
    "verify": {
     "method": "GET",
     "path": "/v1/users?page=1&perPage=1"
+   }
+  },
+  {
+   "slug": "modjo-ai-v2",
+   "name": "Modjo AI",
+   "icon": "modjoai",
+   "categories": [
+    "crm"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/modjo-ai-v2",
+   "base": "https://api.modjo.ai",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "MODJO_AI_V2_API_KEY",
+    "about": "Your Modjo AI API key.",
+    "title": "API Key"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "modjo-ai-v2"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/v2/users?page=1&size=1"
    }
   },
   {
@@ -13283,6 +18525,38 @@
      "title": "Firm URL Prefix",
      "about": "The firm URL prefix for your practice",
      "example": "emapmsandbox01"
+    }
+   ]
+  },
+  {
+   "slug": "modmed-fhir",
+   "name": "ModMed",
+   "icon": "modmed",
+   "categories": [
+    "other"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/modmed-fhir",
+   "base": "https://{fhirHost}",
+   "auth": {
+    "kind": "manual",
+    "mode": "TWO_STEP",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "MODMED_FHIR_TOKEN",
+    "about": "This provider authenticates with a handshake connectory does not do yet (TWO_STEP).",
+    "title": ""
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "modmed-fhir"
+   },
+   "config": [
+    {
+     "name": "fhirHost",
+     "env": "MODMED_FHIR_FHIRHOST",
+     "title": "FHIR Host",
+     "about": "This practice's ModMed Certified FHIR host.",
+     "example": "fhirmp.mmi.prod.fhir.ema-api.com"
     }
    ]
   },
@@ -13405,6 +18679,34 @@
    "source": {
     "registry": "nango",
     "provider": "mural"
+   }
+  },
+  {
+   "slug": "mxtoolbox",
+   "name": "MxToolbox",
+   "icon": "mxtoolbox",
+   "categories": [
+    "dev-tools"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/mxtoolbox",
+   "base": "https://api.mxtoolbox.com/api",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "{token}",
+    "env": "MXTOOLBOX_API_KEY",
+    "about": "Your MxToolbox API key.",
+    "title": "API Key",
+    "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "mxtoolbox"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/v1/Usage"
    }
   },
   {
@@ -13545,6 +18847,31 @@
    ]
   },
   {
+   "slug": "nanonets",
+   "name": "Nanonets",
+   "icon": "nanonets",
+   "categories": [
+    "other"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/nanonets",
+   "base": "https://app.nanonets.com",
+   "auth": {
+    "kind": "basic",
+    "mode": "BASIC",
+    "user_env": "NANONETS_USER",
+    "pass_env": "NANONETS_PASS",
+    "about": "API Key and"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "nanonets"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/api/v2/externalIntegrations"
+   }
+  },
+  {
    "slug": "nationbuilder",
    "name": "NationBuilder",
    "icon": "nationbuilder",
@@ -13572,6 +18899,38 @@
      "env": "NATIONBUILDER_ACCOUNTID",
      "title": "Account ID",
      "about": "The account ID of your NationBuilder account",
+     "example": ""
+    }
+   ]
+  },
+  {
+   "slug": "navan",
+   "name": "Navan",
+   "icon": "navan",
+   "categories": [
+    "erp"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/navan",
+   "base": "https://{hostname}",
+   "auth": {
+    "kind": "oauth",
+    "mode": "OAUTH2_CC",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "NAVAN_TOKEN",
+    "about": "An OAuth access token for the account. The vendor issues no static key, so it is refreshed outside connectory.",
+    "title": ""
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "navan"
+   },
+   "config": [
+    {
+     "name": "hostname",
+     "env": "NAVAN_HOSTNAME",
+     "title": "Environment",
+     "about": "The Navan environment your API credentials were issued for.",
      "example": ""
     }
    ]
@@ -13661,6 +19020,38 @@
    ]
   },
   {
+   "slug": "netdocuments",
+   "name": "NetDocuments",
+   "icon": "netdocuments",
+   "categories": [
+    "legal"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/netdocuments",
+   "base": "https://api.{hostname}",
+   "auth": {
+    "kind": "oauth",
+    "mode": "OAUTH2",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "NETDOCUMENTS_TOKEN",
+    "about": "An OAuth access token for the account. The vendor issues no static key, so it is refreshed outside connectory.",
+    "title": ""
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "netdocuments"
+   },
+   "config": [
+    {
+     "name": "hostname",
+     "env": "NETDOCUMENTS_HOSTNAME",
+     "title": "Data center hostname",
+     "about": "The NetDocuments data center your repository lives in.",
+     "example": "vault.netvoyage.com"
+    }
+   ]
+  },
+  {
    "slug": "netsapiens",
    "name": "NetSapiens",
    "icon": "netsapiens",
@@ -13724,6 +19115,102 @@
      "example": "tstdrv231585"
     }
    ]
+  },
+  {
+   "slug": "new-relic",
+   "name": "New Relic",
+   "icon": "newrelic",
+   "categories": [
+    "analytics",
+    "dev-tools"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/new-relic",
+   "base": "https://{region}",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "api-key",
+    "format": "{token}",
+    "env": "NEW_RELIC_API_KEY",
+    "about": "Your New Relic User key",
+    "title": "User Key",
+    "pattern": "^NRAK-[A-Za-z0-9]+$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "new-relic"
+   },
+   "config": [
+    {
+     "name": "region",
+     "env": "NEW_RELIC_REGION",
+     "title": "Data Center Region",
+     "about": "The API host of your New Relic data center.",
+     "example": "api.newrelic.com"
+    }
+   ]
+  },
+  {
+   "slug": "new-relic-ingest",
+   "name": "New Relic Ingest",
+   "icon": "newrelicingest",
+   "categories": [
+    "analytics",
+    "dev-tools"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/new-relic-ingest",
+   "base": "https://{region}",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "api-key",
+    "format": "{token}",
+    "env": "NEW_RELIC_INGEST_API_KEY",
+    "about": "Your New Relic Ingest - License key",
+    "title": "License Key",
+    "pattern": "^[A-Za-z0-9]{32,}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "new-relic-ingest"
+   },
+   "config": [
+    {
+     "name": "region",
+     "env": "NEW_RELIC_INGEST_REGION",
+     "title": "Data Center Region",
+     "about": "The Metric API host of your New Relic data center.",
+     "example": "metric-api.newrelic.com"
+    }
+   ]
+  },
+  {
+   "slug": "newsapi",
+   "name": "NewsAPI",
+   "icon": "newsapi",
+   "categories": [
+    "other"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/newsapi",
+   "base": "https://newsapi.org",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "x-api-key",
+    "format": "{token}",
+    "env": "NEWSAPI_API_KEY",
+    "about": "Your NewsAPI API key.",
+    "title": "API Key",
+    "pattern": "^[A-Za-z0-9]{20,}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "newsapi"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/v2/top-headlines/sources"
+   }
   },
   {
    "slug": "next-cloud-ocs",
@@ -14066,6 +19553,43 @@
    }
   },
   {
+   "slug": "ntfy",
+   "name": "ntfy",
+   "icon": "ntfy",
+   "categories": [
+    "communication"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/ntfy",
+   "base": "https://{hostname}",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "NTFY_API_KEY",
+    "about": "Your ntfy access token.",
+    "title": "Access Token",
+    "pattern": "^tk_[A-Za-z0-9]+$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "ntfy"
+   },
+   "config": [
+    {
+     "name": "hostname",
+     "env": "NTFY_HOSTNAME",
+     "title": "Server Host",
+     "about": "Your ntfy server host, ntfy.sh or your self-hosted domain.",
+     "example": "ntfy.sh"
+    }
+   ],
+   "verify": {
+    "method": "GET",
+    "path": "/v1/account"
+   }
+  },
+  {
    "slug": "nyne-ai",
    "name": "Nyne AI",
    "icon": "nyneai",
@@ -14154,6 +19678,32 @@
    ]
   },
   {
+   "slug": "okendo",
+   "name": "Okendo",
+   "icon": "okendo",
+   "categories": [
+    "e-commerce",
+    "marketing"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/okendo",
+   "base": "https://api.okendo.io/enterprise",
+   "auth": {
+    "kind": "basic",
+    "mode": "BASIC",
+    "user_env": "OKENDO_USER",
+    "pass_env": "OKENDO_PASS",
+    "about": "User ID and API Key"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "okendo"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/reviews"
+   }
+  },
+  {
    "slug": "okta",
    "name": "Okta",
    "icon": "okta",
@@ -14220,6 +19770,34 @@
    ]
   },
   {
+   "slug": "ollama",
+   "name": "Ollama",
+   "icon": "ollama",
+   "categories": [
+    "other"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/ollama",
+   "base": "https://ollama.com/api",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "OLLAMA_API_KEY",
+    "about": "Your Ollama API key.",
+    "title": "API Key",
+    "pattern": "^[A-Za-z0-9._-]+$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "ollama"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/balance"
+   }
+  },
+  {
    "slug": "omni",
    "name": "Omni Analytics",
    "icon": "omnianalytics",
@@ -14254,6 +19832,31 @@
    "verify": {
     "method": "GET",
     "path": "/v1/whoami"
+   }
+  },
+  {
+   "slug": "omnisend",
+   "name": "Omnisend",
+   "icon": "omnisend",
+   "categories": [
+    "marketing",
+    "e-commerce"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/omnisend",
+   "base": "https://api.omnisend.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Omnisend-API-Key {token}",
+    "env": "OMNISEND_API_KEY",
+    "about": "Your Omnisend API key.",
+    "title": "API Key",
+    "pattern": "^[A-Za-z0-9_-]+$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "omnisend"
    }
   },
   {
@@ -14481,6 +20084,63 @@
    }
   },
   {
+   "slug": "opengraph-io",
+   "name": "OpenGraph.io",
+   "icon": "opengraphio",
+   "categories": [
+    "other"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/opengraph-io",
+   "base": "https://opengraph.io",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "OPENGRAPH_IO_API_KEY",
+    "about": "Your OpenGraph.io App ID.",
+    "title": "App ID",
+    "pattern": "^[A-Za-z0-9-]{20,}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "opengraph-io"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/api/3.0/site/https%3A%2F%2Fexample.com"
+   }
+  },
+  {
+   "slug": "openrouter",
+   "name": "OpenRouter",
+   "icon": "openrouter",
+   "categories": [
+    "dev-tools",
+    "productivity"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/openrouter",
+   "base": "https://openrouter.ai",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "OPENROUTER_API_KEY",
+    "about": "The API key for your OpenRouter account.",
+    "title": "API Key",
+    "pattern": "^sk-or-v1-[a-f0-9]{64}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "openrouter"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/api/v1/key"
+   }
+  },
+  {
    "slug": "optum-real",
    "name": "Optum Real",
    "icon": "optumreal",
@@ -14511,6 +20171,30 @@
      "example": ""
     }
    ]
+  },
+  {
+   "slug": "oracle-aconex",
+   "name": "Oracle Aconex",
+   "icon": "oracleaconex",
+   "categories": [
+    "productivity",
+    "storage"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/oracle-aconex",
+   "base": "https://api.aconex.com",
+   "auth": {
+    "kind": "oauth",
+    "mode": "OAUTH2",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "ORACLE_ACONEX_TOKEN",
+    "about": "An OAuth access token for the account. The vendor issues no static key, so it is refreshed outside connectory.",
+    "title": ""
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "oracle-aconex"
+   }
   },
   {
    "slug": "oracle-cloud-identity",
@@ -14920,6 +20604,58 @@
    }
   },
   {
+   "slug": "parseur",
+   "name": "Parseur",
+   "icon": "parseur",
+   "categories": [
+    "productivity"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/parseur",
+   "base": "https://api.parseur.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "{token}",
+    "env": "PARSEUR_API_KEY",
+    "about": "Your Parseur API key (standard, restricted or legacy).",
+    "title": "API Key",
+    "pattern": "^(sk_)?[A-Za-z0-9_-]{20,}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "parseur"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/parser?page_size=1"
+   }
+  },
+  {
+   "slug": "parsio-io",
+   "name": "Parsio",
+   "icon": "parsio",
+   "categories": [
+    "productivity"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/parsio-io",
+   "base": "https://api.parsio.io",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "x-api-key",
+    "format": "{token}",
+    "env": "PARSIO_IO_API_KEY",
+    "about": "Your Parsio API key.",
+    "title": "API Key",
+    "pattern": "^[A-Za-z0-9]{20,}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "parsio-io"
+   }
+  },
+  {
    "slug": "passportal",
    "name": "Passportal",
    "icon": "passportal",
@@ -15005,6 +20741,30 @@
    "source": {
     "registry": "nango",
     "provider": "pax8"
+   }
+  },
+  {
+   "slug": "paximal-mcp",
+   "name": "Paximal",
+   "icon": "paximal",
+   "categories": [
+    "legal",
+    "mcp"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/paximal-mcp",
+   "base": "https://next.paximal.com/api",
+   "auth": {
+    "kind": "oauth",
+    "mode": "MCP_OAUTH2",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "PAXIMAL_MCP_TOKEN",
+    "about": "An OAuth access token for the account. The vendor issues no static key, so it is refreshed outside connectory.",
+    "title": ""
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "paximal-mcp"
    }
   },
   {
@@ -15185,6 +20945,30 @@
    }
   },
   {
+   "slug": "pdf-vector",
+   "name": "PDF Vector",
+   "icon": "pdfvector",
+   "categories": [
+    "other"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/pdf-vector",
+   "base": "https://global.pdfvector.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "PDF_VECTOR_API_KEY",
+    "about": "Your PDF Vector API key",
+    "title": "API Key",
+    "pattern": "^[A-Za-z0-9._-]{20,}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "pdf-vector"
+   }
+  },
+  {
    "slug": "pendo",
    "name": "Pendo",
    "icon": "pendo",
@@ -15318,6 +21102,35 @@
    "verify": {
     "method": "GET",
     "path": "/user"
+   }
+  },
+  {
+   "slug": "perigon",
+   "name": "Perigon",
+   "icon": "perigon",
+   "categories": [
+    "analytics",
+    "search"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/perigon",
+   "base": "https://api.perigon.io",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "PERIGON_API_KEY",
+    "about": "Your Perigon API key",
+    "title": "API Key",
+    "pattern": "^[A-Za-z0-9-]{20,}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "perigon"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/v1/limits"
    }
   },
   {
@@ -15497,6 +21310,58 @@
      "example": ""
     }
    ]
+  },
+  {
+   "slug": "pigment",
+   "name": "Pigment",
+   "icon": "pigment",
+   "categories": [
+    "analytics"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/pigment",
+   "base": "https://pigment.app/api",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "PIGMENT_API_KEY",
+    "about": "A Pigment API key with the scopes your integration needs (Modeling metadata to list applications).",
+    "title": "API Key",
+    "pattern": "^[A-Za-z0-9_+/=-]{20,}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "pigment"
+   }
+  },
+  {
+   "slug": "piloterr",
+   "name": "Piloterr",
+   "icon": "piloterr",
+   "categories": [
+    "other"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/piloterr",
+   "base": "https://api.piloterr.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "x-api-key",
+    "format": "{token}",
+    "env": "PILOTERR_API_KEY",
+    "about": "Your Piloterr API key",
+    "title": "API Key",
+    "pattern": "^[A-Za-z0-9_-]{20,}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "piloterr"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/v2/usage"
+   }
   },
   {
    "slug": "pingboard",
@@ -15785,6 +21650,58 @@
    ]
   },
   {
+   "slug": "pleo-mcp",
+   "name": "Pleo",
+   "icon": "pleo",
+   "categories": [
+    "payment",
+    "mcp"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/pleo-mcp",
+   "base": "https://mcp.pleo.io",
+   "auth": {
+    "kind": "oauth",
+    "mode": "MCP_OAUTH2",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "PLEO_MCP_TOKEN",
+    "about": "An OAuth access token for the account. The vendor issues no static key, so it is refreshed outside connectory.",
+    "title": ""
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "pleo-mcp"
+   }
+  },
+  {
+   "slug": "pocket",
+   "name": "Pocket",
+   "icon": "pocket",
+   "categories": [
+    "productivity"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/pocket",
+   "base": "https://public.heypocketai.com/api",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "POCKET_API_KEY",
+    "about": "The API key for your Pocket account.",
+    "title": "API Key",
+    "pattern": "^pk_[A-Za-z0-9_-]+$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "pocket"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/v1/public/recordings?page=1&limit=1"
+   }
+  },
+  {
    "slug": "podium",
    "name": "Podium",
    "icon": "podium",
@@ -15865,6 +21782,67 @@
      "example": ""
     }
    ]
+  },
+  {
+   "slug": "posthog-capture",
+   "name": "PostHog",
+   "icon": "posthog",
+   "categories": [
+    "dev-tools"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/posthog-capture",
+   "base": "https://{hostname}",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "POSTHOG_CAPTURE_API_KEY",
+    "about": "Your PostHog project token, used to send events via the capture API.",
+    "title": "Project Token",
+    "pattern": "^phc_[A-Za-z0-9]+$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "posthog-capture"
+   },
+   "config": [
+    {
+     "name": "hostname",
+     "env": "POSTHOG_CAPTURE_HOSTNAME",
+     "title": "Hostname",
+     "about": "The hostname your PostHog capture API requests are sent to.",
+     "example": "us.i.posthog.com"
+    }
+   ]
+  },
+  {
+   "slug": "postmark",
+   "name": "Postmark",
+   "icon": "postmark",
+   "categories": [
+    "communication"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/postmark",
+   "base": "https://api.postmarkapp.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "x-postmark-server-token",
+    "format": "{token}",
+    "env": "POSTMARK_API_KEY",
+    "about": "The API token of your Postmark server.",
+    "title": "Server API Token",
+    "pattern": "^[A-Za-z0-9_-]{16,}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "postmark"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/server"
+   }
   },
   {
    "slug": "postscript",
@@ -15949,6 +21927,32 @@
    "source": {
     "registry": "nango",
     "provider": "precisefp"
+   }
+  },
+  {
+   "slug": "predictleads",
+   "name": "PredictLeads",
+   "icon": "predictleads",
+   "categories": [
+    "analytics",
+    "marketing"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/predictleads",
+   "base": "https://predictleads.com/api",
+   "auth": {
+    "kind": "basic",
+    "mode": "BASIC",
+    "user_env": "PREDICTLEADS_USER",
+    "pass_env": "PREDICTLEADS_PASS",
+    "about": "API Key and API Token"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "predictleads"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/v3/api_subscription"
    }
   },
   {
@@ -16114,6 +22118,31 @@
    }
   },
   {
+   "slug": "productnow-mcp",
+   "name": "ProductNow",
+   "icon": "productnow",
+   "categories": [
+    "productivity",
+    "knowledge-base",
+    "mcp"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/productnow-mcp",
+   "base": "https://api.productnow-prod.com",
+   "auth": {
+    "kind": "manual",
+    "mode": "MCP_OAUTH2_GENERIC",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "PRODUCTNOW_MCP_TOKEN",
+    "about": "This provider authenticates with a handshake connectory does not do yet (MCP_OAUTH2_GENERIC).",
+    "title": ""
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "productnow-mcp"
+   }
+  },
+  {
    "slug": "prospeo",
    "name": "Prospeo",
    "icon": "prospeo",
@@ -16202,6 +22231,111 @@
    "verify": {
     "method": "GET",
     "path": "/api/table.json?content=sensors&count=1"
+   }
+  },
+  {
+   "slug": "publora",
+   "name": "Publora",
+   "icon": "publora",
+   "categories": [
+    "marketing",
+    "social"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/publora",
+   "base": "https://api.publora.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "x-publora-key",
+    "format": "{token}",
+    "env": "PUBLORA_API_KEY",
+    "about": "Your Publora API key.",
+    "title": "API Key",
+    "pattern": "^sk_[a-z0-9]{8}(_[a-z0-9]{8})?\\.[a-f0-9]{52}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "publora"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/api/v1/platform-connections"
+   }
+  },
+  {
+   "slug": "push-by-techulus",
+   "name": "Push by Techulus",
+   "icon": "pushbytechulus",
+   "categories": [
+    "communication"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/push-by-techulus",
+   "base": "https://push.techulus.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "x-api-key",
+    "format": "{token}",
+    "env": "PUSH_BY_TECHULUS_API_KEY",
+    "about": "Your Push account API key or a team API key.",
+    "title": "API Key",
+    "pattern": "^[A-Za-z0-9_-]{8,}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "push-by-techulus"
+   }
+  },
+  {
+   "slug": "pushinator",
+   "name": "Pushinator",
+   "icon": "pushinator",
+   "categories": [
+    "communication"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/pushinator",
+   "base": "https://api.pushinator.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "PUSHINATOR_API_KEY",
+    "about": "Your Pushinator API token.",
+    "title": "API Token",
+    "pattern": "^[A-Za-z0-9_-]{20,}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "pushinator"
+   }
+  },
+  {
+   "slug": "pushover",
+   "name": "Pushover",
+   "icon": "pushover",
+   "categories": [
+    "communication"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/pushover",
+   "base": "https://api.pushover.net",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "PUSHOVER_API_KEY",
+    "about": "Your Pushover application API token or Team API token.",
+    "title": "API Token",
+    "pattern": "^[A-Za-z0-9]+$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "pushover"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/1/apps/limits.json"
    }
   },
   {
@@ -16493,6 +22627,34 @@
    }
   },
   {
+   "slug": "radar",
+   "name": "Radar",
+   "icon": "radar",
+   "categories": [
+    "other"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/radar",
+   "base": "https://api.radar.io",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "{token}",
+    "env": "RADAR_API_KEY",
+    "about": "Your Radar Secret or Publishable key, Live or Test.",
+    "title": "API Key",
+    "pattern": "^prj_(live|test)_(sk|pk)_\\S+$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "radar"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/v1/users?limit=1"
+   }
+  },
+  {
    "slug": "ragieai",
    "name": "Ragie AI",
    "icon": "ragieai",
@@ -16565,6 +22727,42 @@
    "source": {
     "registry": "nango",
     "provider": "ramp"
+   }
+  },
+  {
+   "slug": "rapid7",
+   "name": "Rapid7",
+   "icon": "rapid7",
+   "categories": [
+    "iam"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/rapid7",
+   "base": "https://{region}.api.insight.rapid7.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "x-api-key",
+    "format": "{token}",
+    "env": "RAPID7_API_KEY",
+    "about": "Your Rapid7 API key.",
+    "title": "API Key"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "rapid7"
+   },
+   "config": [
+    {
+     "name": "region",
+     "env": "RAPID7_REGION",
+     "title": "Region",
+     "about": "The region code of your Rapid7 data.",
+     "example": ""
+    }
+   ],
+   "verify": {
+    "method": "GET",
+    "path": "/validate"
    }
   },
   {
@@ -18285,6 +24483,34 @@
    }
   },
   {
+   "slug": "scrapingant",
+   "name": "ScrapingAnt",
+   "icon": "scrapingant",
+   "categories": [
+    "dev-tools"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/scrapingant",
+   "base": "https://api.scrapingant.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "x-api-key",
+    "format": "{token}",
+    "env": "SCRAPINGANT_API_KEY",
+    "about": "Your ScrapingAnt API token.",
+    "title": "API Token",
+    "pattern": "^[A-Za-z0-9]+$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "scrapingant"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/v2/usage"
+   }
+  },
+  {
    "slug": "scrollstash-mcp",
    "name": "ScrollStash",
    "icon": "scrollstash",
@@ -18305,6 +24531,34 @@
    "source": {
     "registry": "nango",
     "provider": "scrollstash-mcp"
+   }
+  },
+  {
+   "slug": "search-api",
+   "name": "SearchApi",
+   "icon": "searchapi",
+   "categories": [
+    "search"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/search-api",
+   "base": "https://www.searchapi.io/api",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "SEARCH_API_API_KEY",
+    "about": "Your SearchApi API key.",
+    "title": "API Key",
+    "pattern": "^[A-Za-z0-9]+$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "search-api"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/v1/me"
    }
   },
   {
@@ -18473,6 +24727,29 @@
    }
   },
   {
+   "slug": "sendcloud",
+   "name": "Sendcloud",
+   "icon": "sendcloud",
+   "categories": [
+    "e-commerce"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/sendcloud",
+   "base": "https://panel.sendcloud.sc",
+   "auth": {
+    "kind": "oauth",
+    "mode": "OAUTH2_CC",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "SENDCLOUD_TOKEN",
+    "about": "An OAuth access token for the account. The vendor issues no static key, so it is refreshed outside connectory.",
+    "title": ""
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "sendcloud"
+   }
+  },
+  {
    "slug": "sendgrid",
    "name": "SendGrid",
    "icon": "sendgrid",
@@ -18493,6 +24770,32 @@
    "source": {
     "registry": "nango",
     "provider": "sendgrid"
+   }
+  },
+  {
+   "slug": "sendspark",
+   "name": "Sendspark",
+   "icon": "sendspark",
+   "categories": [
+    "marketing",
+    "video"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/sendspark",
+   "base": "https://api-gw.sendspark.com",
+   "auth": {
+    "kind": "basic",
+    "mode": "BASIC",
+    "user_env": "SENDSPARK_USER",
+    "pass_env": "SENDSPARK_PASS",
+    "about": "API Key and API Secret"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "sendspark"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/v1/workspaces/identifier"
    }
   },
   {
@@ -18564,6 +24867,54 @@
      "example": ""
     }
    ]
+  },
+  {
+   "slug": "sentry-mcp",
+   "name": "Sentry",
+   "icon": "sentry",
+   "categories": [
+    "dev-tools",
+    "mcp"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/sentry-mcp",
+   "base": "https://mcp.sentry.dev",
+   "auth": {
+    "kind": "oauth",
+    "mode": "MCP_OAUTH2",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "SENTRY_MCP_TOKEN",
+    "about": "An OAuth access token for the account. The vendor issues no static key, so it is refreshed outside connectory.",
+    "title": ""
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "sentry-mcp"
+   }
+  },
+  {
+   "slug": "serpapi",
+   "name": "SerpApi",
+   "icon": "serpapi",
+   "categories": [
+    "search"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/serpapi",
+   "base": "https://serpapi.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "SERPAPI_API_KEY",
+    "about": "Your SerpApi private API key",
+    "title": "API Key",
+    "pattern": "^[A-Za-z0-9]{20,}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "serpapi"
+   }
   },
   {
    "slug": "servicem8",
@@ -18645,6 +24996,45 @@
    }
   },
   {
+   "slug": "sharefile",
+   "name": "ShareFile",
+   "icon": "sharefile",
+   "categories": [
+    "storage"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/sharefile",
+   "base": "https://{subdomain}.{apicp}",
+   "auth": {
+    "kind": "oauth",
+    "mode": "OAUTH2",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "SHAREFILE_TOKEN",
+    "about": "An OAuth access token for the account. The vendor issues no static key, so it is refreshed outside connectory.",
+    "title": ""
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "sharefile"
+   },
+   "config": [
+    {
+     "name": "subdomain",
+     "env": "SHAREFILE_SUBDOMAIN",
+     "title": "subdomain",
+     "about": "",
+     "example": ""
+    },
+    {
+     "name": "apicp",
+     "env": "SHAREFILE_APICP",
+     "title": "apicp",
+     "about": "",
+     "example": ""
+    }
+   ]
+  },
+  {
    "slug": "sharepoint-online-v1",
    "name": "SharePoint Online",
    "icon": "sharepointonline",
@@ -18712,6 +25102,34 @@
    "verify": {
     "method": "GET",
     "path": "/2026-01/channel"
+   }
+  },
+  {
+   "slug": "shipday",
+   "name": "Shipday",
+   "icon": "shipday",
+   "categories": [
+    "e-commerce"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/shipday",
+   "base": "https://api.shipday.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Basic {token}",
+    "env": "SHIPDAY_API_KEY",
+    "about": "Your Shipday API key",
+    "title": "API Key",
+    "pattern": "^[A-Za-z0-9._-]{20,}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "shipday"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/carriers"
    }
   },
   {
@@ -19012,6 +25430,34 @@
    ]
   },
   {
+   "slug": "short-io",
+   "name": "Short.io",
+   "icon": "shortio",
+   "categories": [
+    "marketing"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/short-io",
+   "base": "https://api.short.io",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "{token}",
+    "env": "SHORT_IO_API_KEY",
+    "about": "Your Short.io private API key.",
+    "title": "API Key",
+    "pattern": "^sk_[A-Za-z0-9]+$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "short-io"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/api/domains?limit=1"
+   }
+  },
+  {
    "slug": "shortcut",
    "name": "Shortcut",
    "icon": "shortcut",
@@ -19040,6 +25486,66 @@
    }
   },
   {
+   "slug": "shorten-rest",
+   "name": "Shorten.REST",
+   "icon": "shortenrest",
+   "categories": [
+    "marketing"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/shorten-rest",
+   "base": "https://api.shorten.rest",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "x-api-key",
+    "format": "{token}",
+    "env": "SHORTEN_REST_API_KEY",
+    "about": "Your Shorten.REST API key",
+    "title": "API Key",
+    "pattern": "^[A-Za-z0-9_-]{16,128}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "shorten-rest"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/aliases/all?limit=1"
+   }
+  },
+  {
+   "slug": "sigma-computing",
+   "name": "Sigma Computing",
+   "icon": "sigmacomputing",
+   "categories": [
+    "analytics"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/sigma-computing",
+   "base": "https://{hostname}",
+   "auth": {
+    "kind": "oauth",
+    "mode": "OAUTH2_CC",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "SIGMA_COMPUTING_TOKEN",
+    "about": "An OAuth access token for the account. The vendor issues no static key, so it is refreshed outside connectory.",
+    "title": ""
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "sigma-computing"
+   },
+   "config": [
+    {
+     "name": "hostname",
+     "env": "SIGMA_COMPUTING_HOSTNAME",
+     "title": "API URL",
+     "about": "Your API URL for the cloud you're hosted on.",
+     "example": ""
+    }
+   ]
+  },
+  {
    "slug": "signnow",
    "name": "SignNow",
    "icon": "signnow",
@@ -19061,6 +25567,39 @@
     "registry": "nango",
     "provider": "signnow"
    }
+  },
+  {
+   "slug": "simpplr",
+   "name": "Simpplr",
+   "icon": "simpplr",
+   "categories": [
+    "knowledge-base",
+    "productivity"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/simpplr",
+   "base": "https://platform.{region}.simpplr.com",
+   "auth": {
+    "kind": "oauth",
+    "mode": "OAUTH2_CC",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "SIMPPLR_TOKEN",
+    "about": "An OAuth access token for the account. The vendor issues no static key, so it is refreshed outside connectory.",
+    "title": ""
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "simpplr"
+   },
+   "config": [
+    {
+     "name": "region",
+     "env": "SIMPPLR_REGION",
+     "title": "Region",
+     "about": "The region your Simpplr tenant is hosted in. Choose app for the United States.",
+     "example": ""
+    }
+   ]
   },
   {
    "slug": "simpro",
@@ -19164,6 +25703,29 @@
    "source": {
     "registry": "nango",
     "provider": "slack"
+   }
+  },
+  {
+   "slug": "slack-app-configuration",
+   "name": "Slack",
+   "icon": "slack",
+   "categories": [
+    "dev-tools"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/slack-app-configuration",
+   "base": "https://slack.com/api",
+   "auth": {
+    "kind": "manual",
+    "mode": "TWO_STEP",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "SLACK_APP_CONFIGURATION_TOKEN",
+    "about": "This provider authenticates with a handshake connectory does not do yet (TWO_STEP).",
+    "title": ""
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "slack-app-configuration"
    }
   },
   {
@@ -19279,6 +25841,44 @@
      "example": ""
     }
    ]
+  },
+  {
+   "slug": "smtp2go",
+   "name": "SMTP2GO",
+   "icon": "smtp2go",
+   "categories": [
+    "communication",
+    "marketing"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/smtp2go",
+   "base": "https://{region}",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "x-smtp2go-api-key",
+    "format": "{token}",
+    "env": "SMTP2GO_API_KEY",
+    "about": "Your SMTP2GO API key.",
+    "title": "API Key",
+    "pattern": "^api-\\S{16,}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "smtp2go"
+   },
+   "config": [
+    {
+     "name": "region",
+     "env": "SMTP2GO_REGION",
+     "title": "Region",
+     "about": "The SMTP2GO API host to connect to.",
+     "example": ""
+    }
+   ],
+   "verify": {
+    "method": "POST",
+    "path": "/v3/api_keys/permissions"
+   }
   },
   {
    "slug": "smugmug",
@@ -19531,6 +26131,34 @@
    "source": {
     "registry": "nango",
     "provider": "spotify"
+   }
+  },
+  {
+   "slug": "spotlightr",
+   "name": "Spotlightr",
+   "icon": "spotlightr",
+   "categories": [
+    "video"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/spotlightr",
+   "base": "https://api.spotlightr.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "SPOTLIGHTR_API_KEY",
+    "about": "Your Spotlightr API key",
+    "title": "API Key",
+    "pattern": "^[A-Za-z0-9]{16,}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "spotlightr"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/groups"
    }
   },
   {
@@ -20067,6 +26695,56 @@
    }
   },
   {
+   "slug": "supadata",
+   "name": "Supadata",
+   "icon": "supadata",
+   "categories": [
+    "dev-tools"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/supadata",
+   "base": "https://api.supadata.ai",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "x-api-key",
+    "format": "{token}",
+    "env": "SUPADATA_API_KEY",
+    "about": "Your Supadata API key",
+    "title": "API Key",
+    "pattern": "^(sd_)?[A-Za-z0-9]{20,}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "supadata"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/v1/me"
+   }
+  },
+  {
+   "slug": "superfiliate",
+   "name": "Superfiliate",
+   "icon": "superfiliate",
+   "categories": [
+    "e-commerce",
+    "marketing"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/superfiliate",
+   "base": "https://api.superfiliate.com",
+   "auth": {
+    "kind": "basic",
+    "mode": "BASIC",
+    "user_env": "SUPERFILIATE_USER",
+    "pass_env": "SUPERFILIATE_PASS",
+    "about": "Client ID and Client Secret"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "superfiliate"
+   }
+  },
+  {
    "slug": "superhuman-mcp",
    "name": "Superhuman",
    "icon": "superhuman",
@@ -20089,6 +26767,31 @@
    "source": {
     "registry": "nango",
     "provider": "superhuman-mcp"
+   }
+  },
+  {
+   "slug": "supersaas",
+   "name": "SuperSaaS",
+   "icon": "supersaas",
+   "categories": [
+    "productivity"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/supersaas",
+   "base": "https://www.supersaas.com/api",
+   "auth": {
+    "kind": "basic",
+    "mode": "BASIC",
+    "user_env": "SUPERSAAS_USER",
+    "pass_env": "SUPERSAAS_PASS",
+    "about": "Account name and API key"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "supersaas"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/schedules.json"
    }
   },
   {
@@ -20160,6 +26863,44 @@
     "registry": "nango",
     "provider": "swoogo"
    }
+  },
+  {
+   "slug": "symplr-ctm",
+   "name": "symplr CTM",
+   "icon": "symplrctm",
+   "categories": [
+    "hr",
+    "ats"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/symplr-ctm",
+   "base": "https://{hostname}/{siteName}/clearConnect",
+   "auth": {
+    "kind": "basic",
+    "mode": "BASIC",
+    "user_env": "SYMPLR_CTM_USER",
+    "pass_env": "SYMPLR_CTM_PASS",
+    "about": "Username and Password"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "symplr-ctm"
+   },
+   "config": [
+    {
+     "name": "hostname",
+     "env": "SYMPLR_CTM_HOSTNAME",
+     "title": "Hostname",
+     "about": "Your CTM hostname.",
+     "example": ""
+    },
+    {
+     "name": "siteName",
+     "env": "SYMPLR_CTM_SITENAME",
+     "title": "Site Name",
+     "about": "Your CTM customer site name.",
+     "example": "myCTM"
+    }
+   ]
   },
   {
    "slug": "syncore",
@@ -20376,6 +27117,35 @@
    }
   },
   {
+   "slug": "tavily",
+   "name": "Tavily",
+   "icon": "tavily",
+   "categories": [
+    "search",
+    "dev-tools"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/tavily",
+   "base": "https://api.tavily.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "TAVILY_API_KEY",
+    "about": "Your Tavily API key.",
+    "title": "API Key",
+    "pattern": "^tvly-[A-Za-z0-9_-]+$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "tavily"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/usage"
+   }
+  },
+  {
    "slug": "teamleader",
    "name": "Teamleader Focus",
    "icon": "teamleaderfocus",
@@ -20510,6 +27280,43 @@
    }
   },
   {
+   "slug": "telnyx",
+   "name": "Telnyx",
+   "icon": "telnyx",
+   "categories": [
+    "communication"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/telnyx",
+   "base": "https://{region}",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "TELNYX_API_KEY",
+    "about": "Your Telnyx API key.",
+    "title": "API Key",
+    "pattern": "^[A-Za-z0-9_-]+$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "telnyx"
+   },
+   "config": [
+    {
+     "name": "region",
+     "env": "TELNYX_REGION",
+     "title": "Region",
+     "about": "The Telnyx regional API host to send requests to.",
+     "example": ""
+    }
+   ],
+   "verify": {
+    "method": "GET",
+    "path": "/v2/balance"
+   }
+  },
+  {
    "slug": "tempo",
    "name": "Tempo",
    "icon": "tempo",
@@ -20542,6 +27349,31 @@
    ]
   },
   {
+   "slug": "tenable",
+   "name": "Tenable",
+   "icon": "tenable",
+   "categories": [
+    "other"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/tenable",
+   "base": "https://cloud.tenable.com",
+   "auth": {
+    "kind": "basic",
+    "mode": "BASIC",
+    "user_env": "TENABLE_USER",
+    "pass_env": "TENABLE_PASS",
+    "about": "Access Key and Secret Key"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "tenable"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/scans"
+   }
+  },
+  {
    "slug": "terraform",
    "name": "Terraform",
    "icon": "terraform",
@@ -20567,6 +27399,34 @@
    "verify": {
     "method": "GET",
     "path": "/api/v2/organizations"
+   }
+  },
+  {
+   "slug": "textus",
+   "name": "TextUs",
+   "icon": "textus",
+   "categories": [
+    "communication",
+    "marketing"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/textus",
+   "base": "https://next.textus.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "TEXTUS_API_KEY",
+    "about": "Your TextUs API Token.",
+    "title": "API Token"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "textus"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/accounts"
    }
   },
   {
@@ -20885,6 +27745,57 @@
    ]
   },
   {
+   "slug": "timocom",
+   "name": "TIMOCOM",
+   "icon": "timocom",
+   "categories": [
+    "other"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/timocom",
+   "base": "https://api.timocom.com",
+   "auth": {
+    "kind": "oauth",
+    "mode": "OAUTH2",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "TIMOCOM_TOKEN",
+    "about": "An OAuth access token for the account. The vendor issues no static key, so it is refreshed outside connectory.",
+    "title": ""
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "timocom"
+   }
+  },
+  {
+   "slug": "tinyurl",
+   "name": "TinyURL",
+   "icon": "tinyurl",
+   "categories": [
+    "marketing"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/tinyurl",
+   "base": "https://api.tinyurl.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "TINYURL_API_KEY",
+    "about": "Your TinyURL API token.",
+    "title": "API Token",
+    "pattern": "^[A-Za-z0-9]+$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "tinyurl"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/urls/available"
+   }
+  },
+  {
    "slug": "tldv",
    "name": "tl;dv",
    "icon": "tldv",
@@ -21013,6 +27924,35 @@
    "verify": {
     "method": "GET",
     "path": "/v1.0/orgs/my"
+   }
+  },
+  {
+   "slug": "tracify",
+   "name": "Tracify",
+   "icon": "tracify",
+   "categories": [
+    "analytics",
+    "marketing"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/tracify",
+   "base": "https://tracify-api.tracify.ai",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "tracify-token",
+    "format": "{token}",
+    "env": "TRACIFY_API_KEY",
+    "about": "Your Tracify Analytics API token.",
+    "title": "Analytics API Token",
+    "pattern": "^[A-Za-z0-9_-]+$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "tracify"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/analytics/api/v1/kpis/overview/?csids={siteId}&preset_id={presetId}&start_date=1970-01-01&end_date=1970-01-01&granularity=none&requested_metrics=customer_revenue"
    }
   },
   {
@@ -21418,6 +28358,34 @@
    "source": {
     "registry": "nango",
     "provider": "tumblr"
+   }
+  },
+  {
+   "slug": "twelve-data",
+   "name": "Twelve Data",
+   "icon": "twelvedata",
+   "categories": [
+    "other"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/twelve-data",
+   "base": "https://api.twelvedata.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "apikey {token}",
+    "env": "TWELVE_DATA_API_KEY",
+    "about": "Your Twelve Data API key.",
+    "title": "API Key",
+    "pattern": "^[A-Za-z0-9_-]{16,}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "twelve-data"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/api_usage"
    }
   },
   {
@@ -21877,6 +28845,43 @@
    }
   },
   {
+   "slug": "unione",
+   "name": "UniOne",
+   "icon": "unione",
+   "categories": [
+    "communication"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/unione",
+   "base": "https://{region}/en/transactional/api",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "x-api-key",
+    "format": "{token}",
+    "env": "UNIONE_API_KEY",
+    "about": "Your UniOne account or project API key.",
+    "title": "API Key",
+    "pattern": "^[A-Za-z0-9_-]{20,}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "unione"
+   },
+   "config": [
+    {
+     "name": "region",
+     "env": "UNIONE_REGION",
+     "title": "Region",
+     "about": "The UniOne host your account was registered at.",
+     "example": ""
+    }
+   ],
+   "verify": {
+    "method": "POST",
+    "path": "/v1/system/ping.json"
+   }
+  },
+  {
    "slug": "unipile",
    "name": "Unipile",
    "icon": "unipile",
@@ -22013,6 +29018,43 @@
    "source": {
     "registry": "nango",
     "provider": "vantage-apparel"
+   }
+  },
+  {
+   "slug": "vapi",
+   "name": "Vapi",
+   "icon": "vapi",
+   "categories": [
+    "communication"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/vapi",
+   "base": "https://{region}",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "VAPI_API_KEY",
+    "about": "Your Vapi private API key.",
+    "title": "Private API Key",
+    "pattern": "^[A-Za-z0-9-]{20,}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "vapi"
+   },
+   "config": [
+    {
+     "name": "region",
+     "env": "VAPI_REGION",
+     "title": "Region",
+     "about": "The Vapi API host for your organization's region.",
+     "example": ""
+    }
+   ],
+   "verify": {
+    "method": "GET",
+    "path": "/assistant?limit=1"
    }
   },
   {
@@ -22239,6 +29281,29 @@
    ]
   },
   {
+   "slug": "visions-awards",
+   "name": "Visions Awards",
+   "icon": "visionsawards",
+   "categories": [
+    "erp"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/visions-awards",
+   "base": "https://webservices.visionsawards.com/proofs",
+   "auth": {
+    "kind": "manual",
+    "mode": "TWO_STEP",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "VISIONS_AWARDS_TOKEN",
+    "about": "This provider authenticates with a handshake connectory does not do yet (TWO_STEP).",
+    "title": ""
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "visions-awards"
+   }
+  },
+  {
    "slug": "vtex",
    "name": "VTEX",
    "icon": "vtex",
@@ -22270,6 +29335,35 @@
      "example": "mystore"
     }
    ]
+  },
+  {
+   "slug": "vwo",
+   "name": "Wingify",
+   "icon": "wingify",
+   "categories": [
+    "marketing",
+    "analytics"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/vwo",
+   "base": "https://app.wingify.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "token",
+    "format": "{token}",
+    "env": "VWO_API_KEY",
+    "about": "Your Wingify API token.",
+    "title": "API Token",
+    "pattern": "^[0-9a-f]{64}$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "vwo"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/api/v2/accounts/current"
+   }
   },
   {
    "slug": "wakatime",
@@ -22424,7 +29518,7 @@
     "design",
     "cms"
    ],
-   "docs": "https://nango.dev/docs/integrations/all/webflow",
+   "docs": "https://nango.dev/docs/api-integrations/webflow",
    "base": "https://api.webflow.com",
    "auth": {
     "kind": "oauth",
@@ -22465,6 +29559,35 @@
    "verify": {
     "method": "POST",
     "path": "/webinars"
+   }
+  },
+  {
+   "slug": "weflow",
+   "name": "Weflow",
+   "icon": "weflow",
+   "categories": [
+    "communication",
+    "crm",
+    "video"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/weflow",
+   "base": "https://api.getweflow.app",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "WEFLOW_API_KEY",
+    "about": "The API key from your Weflow workspace.",
+    "title": "API Key"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "weflow"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/api/v1/summary-templates"
    }
   },
   {
@@ -22625,6 +29748,58 @@
    "source": {
     "registry": "nango",
     "provider": "wiseagent"
+   }
+  },
+  {
+   "slug": "wispr-flow-mcp",
+   "name": "Wispr Flow",
+   "icon": "wisprflow",
+   "categories": [
+    "productivity",
+    "mcp"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/wispr-flow-mcp",
+   "base": "https://api.wisprflow.ai",
+   "auth": {
+    "kind": "oauth",
+    "mode": "MCP_OAUTH2",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "WISPR_FLOW_MCP_TOKEN",
+    "about": "An OAuth access token for the account. The vendor issues no static key, so it is refreshed outside connectory.",
+    "title": ""
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "wispr-flow-mcp"
+   }
+  },
+  {
+   "slug": "wistia",
+   "name": "Wistia",
+   "icon": "wistia",
+   "categories": [
+    "video"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/wistia",
+   "base": "https://api.wistia.com",
+   "auth": {
+    "kind": "key",
+    "mode": "API_KEY",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "WISTIA_API_KEY",
+    "about": "Your Wistia API token or expiring access token.",
+    "title": "API Token",
+    "pattern": "^[A-Za-z0-9._-]+$"
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "wistia"
+   },
+   "verify": {
+    "method": "GET",
+    "path": "/modern/token"
    }
   },
   {
@@ -23688,6 +30863,38 @@
     "method": "POST",
     "path": "/api/customers/search"
    }
+  },
+  {
+   "slug": "zscaler",
+   "name": "Zscaler",
+   "icon": "zscaler",
+   "categories": [
+    "iam"
+   ],
+   "docs": "https://nango.dev/docs/api-integrations/zscaler",
+   "base": "https://{apiHost}",
+   "auth": {
+    "kind": "oauth",
+    "mode": "OAUTH2_CC",
+    "header": "authorization",
+    "format": "Bearer {token}",
+    "env": "ZSCALER_TOKEN",
+    "about": "An OAuth access token for the account. The vendor issues no static key, so it is refreshed outside connectory.",
+    "title": ""
+   },
+   "source": {
+    "registry": "nango",
+    "provider": "zscaler"
+   },
+   "config": [
+    {
+     "name": "apiHost",
+     "env": "ZSCALER_APIHOST",
+     "title": "API Host",
+     "about": "The OneAPI host of your Zscaler cloud.",
+     "example": ""
+    }
+   ]
   },
   {
    "slug": "zuora",

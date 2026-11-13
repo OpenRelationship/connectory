@@ -1,0 +1,2509 @@
+{
+ "_": "GENERATED \u2014 what an authoring tool needs to FIND an operation. The calling table is the .lua beside it.",
+ "provider": "modernloop",
+ "source": "https://docs.modernloop.io/openapi.json",
+ "operations": [
+  {
+   "slug": "modernloop.aggregate_activities",
+   "name": "Aggregate activities",
+   "description": "Returns COUNT(*) buckets for externally visible activities over a required UTC window of at most 92 days. Values follow group_by order, followed by TIME_BUCKET when requested. Empty time buckets are not zero-filled; CARDINALITY and other measures are future extensions.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "group_by": {
+      "type": "array",
+      "description": "1-3 distinct dimensions in response order. This dimension enum may grow."
+     },
+     "time_bucket": {
+      "type": "string",
+      "description": "Optional UTC histogram. Empty time buckets are not zero-filled.",
+      "enum": [
+       "DAY",
+       "WEEK",
+       "MONTH"
+      ]
+     },
+     "start_at": {
+      "type": "string",
+      "description": "Inclusive window start; the window may not exceed 92 days."
+     },
+     "end_at": {
+      "type": "string",
+      "description": "Inclusive window end; the window may not exceed 92 days."
+     },
+     "activity_types": {
+      "type": "array",
+      "description": ""
+     },
+     "subject_types": {
+      "type": "array",
+      "description": ""
+     },
+     "actor_types": {
+      "type": "array",
+      "description": ""
+     },
+     "user_actor_ids": {
+      "type": "array",
+      "description": "Public user ids. Unknown or foreign-organization ids match no rows."
+     },
+     "limit": {
+      "type": "integer",
+      "description": ""
+     }
+    },
+    "required": [
+     "end_at",
+     "group_by",
+     "start_at"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.modernloop.io/v1/activities/aggregate",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "group_by",
+     "time_bucket",
+     "start_at",
+     "end_at",
+     "activity_types",
+     "subject_types",
+     "actor_types",
+     "user_actor_ids",
+     "limit"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "modernloop.cancel_scheduling_task",
+   "name": "Cancel a scheduling task",
+   "description": "Cancels a scheduling task, optionally recording a cancellation reason. Cancellation is rejected when the underlying scheduler reports a conflict. The returned task shows the resulting scheduling state. Inaccessible jobs return PERMISSION_DENIED.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "taskId": {
+      "type": "string",
+      "description": "a task ID. Accepts the canonical prefixed compact UUID, a prefixed dashed UUID, a bare dashed UUID, or a bare compact UUID; input is case-insensitive."
+     },
+     "reason": {
+      "type": "string",
+      "description": "Optional cancellation reason; omit to cancel without a reason."
+     }
+    },
+    "required": [
+     "taskId"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.modernloop.io/v1/tasks/{taskId}",
+    "path": [
+     "taskId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "reason"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "modernloop.create_interview_module",
+   "name": "Create an interview module",
+   "description": "Creates an interview module with its shadow and reverse-shadow requirements, graduation rules, and weekly interview limit. The create body supplies the complete training configuration; null weekly_interview_limit means unlimited. The response includes the new module and its initial member counts.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": "string",
+      "description": "Module name. Required on create; PATCH replaces it when supplied."
+     },
+     "shadows_required": {
+      "type": "integer",
+      "description": "Required shadow interviews. Required on create; PATCH replaces it when supplied."
+     },
+     "reverse_shadows_required": {
+      "type": "integer",
+      "description": "Required reverse-shadow interviews. Required on create; PATCH replaces it when supplied."
+     },
+     "graduate_from_shadow_approval_type": {
+      "type": "string",
+      "description": "Approval mode for graduating from shadow training. Required on create; PATCH replaces it when supplied.",
+      "enum": [
+       "AUTOMATIC",
+       "SCHEDULER",
+       "CUSTOM"
+      ]
+     },
+     "graduate_from_shadow_custom_approvers": {
+      "type": "array",
+      "description": "Complete approver-role list for shadow graduation. Required on create; PATCH replaces the list when supplied."
+     },
+     "graduate_from_reverse_shadow_approval_type": {
+      "type": "string",
+      "description": "Approval mode for graduating from reverse-shadow training. Required on create; PATCH replaces it when supplied.",
+      "enum": [
+       "AUTOMATIC",
+       "SCHEDULER",
+       "CUSTOM"
+      ]
+     },
+     "graduate_from_reverse_shadow_custom_approvers": {
+      "type": "array",
+      "description": "Complete approver-role list for reverse-shadow graduation. Required on create; PATCH replaces the list when supplied."
+     },
+     "weekly_interview_limit": {
+      "type": [
+       "integer",
+       "null"
+      ],
+      "description": "Maximum interviews per week; null means unlimited."
+     },
+     "should_fast_track_training": {
+      "type": "boolean",
+      "description": "Enables fast-track training when true. On PATCH, omission preserves the current value."
+     }
+    },
+    "required": [
+     "graduate_from_reverse_shadow_approval_type",
+     "graduate_from_reverse_shadow_custom_approvers",
+     "graduate_from_shadow_approval_type",
+     "graduate_from_shadow_custom_approvers",
+     "name",
+     "reverse_shadows_required",
+     "shadows_required",
+     "weekly_interview_limit"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.modernloop.io/v1/interview-modules",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "shadows_required",
+     "reverse_shadows_required",
+     "graduate_from_shadow_approval_type",
+     "graduate_from_shadow_custom_approvers",
+     "graduate_from_reverse_shadow_approval_type",
+     "graduate_from_reverse_shadow_custom_approvers",
+     "weekly_interview_limit",
+     "should_fast_track_training"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "modernloop.create_interview_module_member",
+   "name": "Add a member to an interview module",
+   "description": "Adds one employee as a member of an interview module with optional initial training status and per-member requirements. When supplied, the member weekly-limit override uses null to mean unlimited. The response returns the new membership and calculated training progress.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "moduleId": {
+      "type": "string",
+      "description": "an interview module ID. Accepts the canonical prefixed compact UUID, a prefixed dashed UUID, a bare dashed UUID, or a bare compact UUID; input is case-insensitive."
+     },
+     "user_id": {
+      "type": "string",
+      "description": "an user ID. Accepts the canonical prefixed compact UUID, a prefixed dashed UUID, a bare dashed UUID, or a bare compact UUID; input is case-insensitive."
+     },
+     "training_status": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "TRAINED",
+       "SHADOW",
+       "REVERSE_SHADOW"
+      ]
+     },
+     "shadows_required": {
+      "type": "integer",
+      "description": ""
+     },
+     "reverse_shadows_required": {
+      "type": "integer",
+      "description": ""
+     },
+     "weekly_interview_limit_override": {
+      "type": [
+       "integer",
+       "null"
+      ],
+      "description": "Maximum interviews per week; null means unlimited."
+     }
+    },
+    "required": [
+     "moduleId",
+     "user_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.modernloop.io/v1/interview-modules/{moduleId}/members",
+    "path": [
+     "moduleId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "user_id",
+     "training_status",
+     "shadows_required",
+     "reverse_shadows_required",
+     "weekly_interview_limit_override"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "modernloop.create_scheduling_task",
+   "name": "Create a scheduling task",
+   "description": "Creates a scheduling task for the supplied application and job stage. The task starts with the requested urgency and optional initial note; the server assigns the scheduling-task type. An idempotency key is required so retries return the original result instead of creating another task. Inaccessible jobs return PERMISSION_DENIED.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "application_id": {
+      "type": "string",
+      "description": "an application ID. Accepts the canonical prefixed compact UUID, a prefixed dashed UUID, a bare dashed UUID, or a bare compact UUID; input is case-insensitive."
+     },
+     "job_stage_id": {
+      "type": "string",
+      "description": "a job stage ID. Accepts the canonical prefixed compact UUID, a prefixed dashed UUID, a bare dashed UUID, or a bare compact UUID; input is case-insensitive."
+     },
+     "is_urgent": {
+      "type": "boolean",
+      "description": "Sets the task urgency. Defaults to false."
+     },
+     "note": {
+      "type": "string",
+      "description": "Optional initial internal task note; omit to create no note."
+     }
+    },
+    "required": [
+     "application_id",
+     "job_stage_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.modernloop.io/v1/tasks",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "application_id",
+     "job_stage_id",
+     "is_urgent",
+     "note"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "modernloop.delete_interview_module",
+   "name": "Permanently delete an interview module",
+   "description": "Permanently deletes the interview module and all member training history in it. This action cannot be undone. Unknown and cross-organization module IDs return not found.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "moduleId": {
+      "type": "string",
+      "description": "an interview module ID. Accepts the canonical prefixed compact UUID, a prefixed dashed UUID, a bare dashed UUID, or a bare compact UUID; input is case-insensitive."
+     }
+    },
+    "required": [
+     "moduleId"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.modernloop.io/v1/interview-modules/{moduleId}",
+    "path": [
+     "moduleId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "modernloop.delete_interview_module_member",
+   "name": "Remove a member from an interview module",
+   "description": "Removes a member from an interview module and deletes that member's training progress in the module. This does not delete the employee or the module itself. An unknown module or member returns not found.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "moduleId": {
+      "type": "string",
+      "description": "an interview module ID. Accepts the canonical prefixed compact UUID, a prefixed dashed UUID, a bare dashed UUID, or a bare compact UUID; input is case-insensitive."
+     },
+     "memberId": {
+      "type": "string",
+      "description": "an user ID. Accepts the canonical prefixed compact UUID, a prefixed dashed UUID, a bare dashed UUID, or a bare compact UUID; input is case-insensitive."
+     }
+    },
+    "required": [
+     "memberId",
+     "moduleId"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.modernloop.io/v1/interview-modules/{moduleId}/members/{memberId}",
+    "path": [
+     "moduleId",
+     "memberId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "modernloop.get_application",
+   "name": "Get an application",
+   "description": "Returns the application summary with its candidate, job, current stage, status, and hiring-team assignments. The application must belong to the authenticated organization or the request returns not found. Inaccessible applications return PERMISSION_DENIED.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "applicationId": {
+      "type": "string",
+      "description": "an application ID. Accepts the canonical prefixed compact UUID, a prefixed dashed UUID, a bare dashed UUID, or a bare compact UUID; input is case-insensitive."
+     }
+    },
+    "required": [
+     "applicationId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.modernloop.io/v1/applications/{applicationId}",
+    "path": [
+     "applicationId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "modernloop.get_candidate",
+   "name": "Get a candidate",
+   "description": "Returns the candidate's identity, contact details, hiring-team assignments, ATS metadata, and anonymization state. For anonymized candidates, PII fields may be redacted; an unknown or out-of-organization ID returns not found.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "candidateId": {
+      "type": "string",
+      "description": "a candidate ID. Accepts the canonical prefixed compact UUID, a prefixed dashed UUID, a bare dashed UUID, or a bare compact UUID; input is case-insensitive."
+     }
+    },
+    "required": [
+     "candidateId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.modernloop.io/v1/candidates/{candidateId}",
+    "path": [
+     "candidateId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "modernloop.get_interview_event",
+   "name": "Get an interview event",
+   "description": "Returns one scheduled interview event with its people, application, job, timing, and status details. The event must belong to the authenticated organization or the request returns not found.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "interviewEventId": {
+      "type": "string",
+      "description": "an interview event ID. Accepts the canonical prefixed compact UUID, a prefixed dashed UUID, a bare dashed UUID, or a bare compact UUID; input is case-insensitive."
+     }
+    },
+    "required": [
+     "interviewEventId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.modernloop.io/v1/interview-events/{interviewEventId}",
+    "path": [
+     "interviewEventId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "modernloop.get_interview_module",
+   "name": "Get an interview module",
+   "description": "Returns an interview module's training requirements, graduation configuration, weekly limit, and member counts. The module must belong to the authenticated organization or the request returns not found.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "moduleId": {
+      "type": "string",
+      "description": "an interview module ID. Accepts the canonical prefixed compact UUID, a prefixed dashed UUID, a bare dashed UUID, or a bare compact UUID; input is case-insensitive."
+     }
+    },
+    "required": [
+     "moduleId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.modernloop.io/v1/interview-modules/{moduleId}",
+    "path": [
+     "moduleId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "modernloop.get_interview_module_member",
+   "name": "Get an interview module member",
+   "description": "Returns one employee's membership in the module, including current training status, pause state, limits, and calculated training progress. The module and member must be in the authenticated organization or the request returns not found.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "moduleId": {
+      "type": "string",
+      "description": "an interview module ID. Accepts the canonical prefixed compact UUID, a prefixed dashed UUID, a bare dashed UUID, or a bare compact UUID; input is case-insensitive."
+     },
+     "memberId": {
+      "type": "string",
+      "description": "an user ID. Accepts the canonical prefixed compact UUID, a prefixed dashed UUID, a bare dashed UUID, or a bare compact UUID; input is case-insensitive."
+     }
+    },
+    "required": [
+     "memberId",
+     "moduleId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.modernloop.io/v1/interview-modules/{moduleId}/members/{memberId}",
+    "path": [
+     "moduleId",
+     "memberId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "modernloop.get_interview_module_member_stats",
+   "name": "Get interview module member stats",
+   "description": "Returns detailed training counts, remaining requirements, current session state, and pause state for one interview module member.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "moduleId": {
+      "type": "string",
+      "description": "an interview module ID. Accepts the canonical prefixed compact UUID, a prefixed dashed UUID, a bare dashed UUID, or a bare compact UUID; input is case-insensitive."
+     },
+     "memberId": {
+      "type": "string",
+      "description": "an user ID. Accepts the canonical prefixed compact UUID, a prefixed dashed UUID, a bare dashed UUID, or a bare compact UUID; input is case-insensitive."
+     }
+    },
+    "required": [
+     "memberId",
+     "moduleId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.modernloop.io/v1/interview-modules/{moduleId}/members/{memberId}/stats",
+    "path": [
+     "moduleId",
+     "memberId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "modernloop.get_interview_module_stats",
+   "name": "Get interview module statistics",
+   "description": "Returns member training counts for one interview module. Modules outside the authenticated organization are reported as not found.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "moduleId": {
+      "type": "string",
+      "description": "an interview module ID. Accepts the canonical prefixed compact UUID, a prefixed dashed UUID, a bare dashed UUID, or a bare compact UUID; input is case-insensitive."
+     }
+    },
+    "required": [
+     "moduleId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.modernloop.io/v1/interview-modules/{moduleId}/stats",
+    "path": [
+     "moduleId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "modernloop.get_job",
+   "name": "Get a job",
+   "description": "Returns one job with its resolved scheduling settings and job-stage information. The job must belong to the authenticated organization or the request returns not found. The request returns PERMISSION_DENIED when the caller cannot access the job.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "jobId": {
+      "type": "string",
+      "description": "a job ID. Accepts the canonical prefixed compact UUID, a prefixed dashed UUID, a bare dashed UUID, or a bare compact UUID; input is case-insensitive."
+     }
+    },
+    "required": [
+     "jobId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.modernloop.io/v1/jobs/{jobId}",
+    "path": [
+     "jobId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "modernloop.get_job_stage",
+   "name": "Get a job stage",
+   "description": "Returns a job stage with its job reference and resolved settings. An unknown or out-of-organization stage ID returns not found. The request returns PERMISSION_DENIED when the caller cannot access the job.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "jobStageId": {
+      "type": "string",
+      "description": "a job stage ID. Accepts the canonical prefixed compact UUID, a prefixed dashed UUID, a bare dashed UUID, or a bare compact UUID; input is case-insensitive."
+     }
+    },
+    "required": [
+     "jobStageId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.modernloop.io/v1/job-stages/{jobStageId}",
+    "path": [
+     "jobStageId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "modernloop.get_me",
+   "name": "Get current identity",
+   "description": "Returns the acting user, organization, granted scopes, and registry-level MCP tool access for the authenticated token. tool_access predicts whether each public tool can succeed with the granted scopes; endpoint variant and connection-level tool filtering can further restrict visibility. A tool can still appear in tools/list yet return INSUFFICIENT_SCOPE, so use tool_access to plan calls and tools/",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.modernloop.io/v1/me",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "modernloop.get_organization",
+   "name": "Get organization",
+   "description": "Returns the organization associated with the authenticated token, including its scheduling defaults. No organization ID is accepted because the caller's organization is determined from authentication.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.modernloop.io/v1/organization",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "modernloop.get_schedule",
+   "name": "Get a schedule",
+   "description": "Returns a schedule group and the interview events it contains, including their timing and participants. The schedule must belong to the authenticated organization or the request returns not found.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "scheduleId": {
+      "type": "string",
+      "description": "a schedule ID. Accepts the canonical prefixed compact UUID, a prefixed dashed UUID, a bare dashed UUID, or a bare compact UUID; input is case-insensitive."
+     }
+    },
+    "required": [
+     "scheduleId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.modernloop.io/v1/schedules/{scheduleId}",
+    "path": [
+     "scheduleId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "modernloop.get_scheduling_task",
+   "name": "Get a scheduling task",
+   "description": "Returns one scheduling task with its application, stage, assignee, queue, tags, flags, delegation, notes, and timing metadata. The task must belong to the authenticated organization or the request returns not found. Inaccessible jobs return PERMISSION_DENIED.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "taskId": {
+      "type": "string",
+      "description": "a task ID. Accepts the canonical prefixed compact UUID, a prefixed dashed UUID, a bare dashed UUID, or a bare compact UUID; input is case-insensitive."
+     }
+    },
+    "required": [
+     "taskId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.modernloop.io/v1/tasks/{taskId}",
+    "path": [
+     "taskId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "modernloop.get_task_queue",
+   "name": "Get a task queue",
+   "description": "Returns the name and timestamps for one active scheduling-task queue. Unknown, deleted, or out-of-organization queues return not found.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "taskQueueId": {
+      "type": "string",
+      "description": "a task queue ID. Accepts the canonical prefixed compact UUID, a prefixed dashed UUID, a bare dashed UUID, or a bare compact UUID; input is case-insensitive."
+     }
+    },
+    "required": [
+     "taskQueueId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.modernloop.io/v1/task-queues/{taskQueueId}",
+    "path": [
+     "taskQueueId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "modernloop.get_template",
+   "name": "Get a template",
+   "description": "Returns one organization email or calendar template, including its type, subject, HTML body, and send metadata. Bodies contain unexpanded {{TOKEN}} placeholders. The template must belong to the authenticated organization or the request returns not found.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "templateId": {
+      "type": "string",
+      "description": "a template ID. Accepts the canonical prefixed compact UUID, a prefixed dashed UUID, a bare dashed UUID, or a bare compact UUID; input is case-insensitive."
+     }
+    },
+    "required": [
+     "templateId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.modernloop.io/v1/templates/{templateId}",
+    "path": [
+     "templateId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "modernloop.get_user",
+   "name": "Get a user",
+   "description": "Returns a user profile with load limits, pause state, work hours, attributes, and interview-module memberships. The user must belong to the authenticated organization or the request returns not found.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "userId": {
+      "type": "string",
+      "description": "an user ID. Accepts the canonical prefixed compact UUID, a prefixed dashed UUID, a bare dashed UUID, or a bare compact UUID; input is case-insensitive."
+     }
+    },
+    "required": [
+     "userId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.modernloop.io/v1/users/{userId}",
+    "path": [
+     "userId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "modernloop.list_activities",
+   "name": "List activities",
+   "description": "Returns paginated scheduling activity log entries for the authenticated organization. Each entry is a flat object with a subject_type discriminant (TASK, APPLICATION, or CANDIDATE) and sparse, top-level relationship refs (task, application, candidate, job, job_stage) that are populated when the underlying rows hydrate and null otherwise. Requires a timestamp range and optionally filters by activit",
+   "input": {
+    "type": "object",
+    "properties": {
+     "cursor": {
+      "type": "string",
+      "description": "Opaque pagination cursor from the previous page's pagination.next_cursor, bound to the same query filters."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Page size. Must be between 1 and 100; defaults to 25."
+     },
+     "ids": {
+      "type": "array",
+      "description": "Comma-separated list of IDs; maximum 100 values."
+     },
+     "timestamp_gte": {
+      "type": "string",
+      "description": "Filters activities occurring at or after this timestamp."
+     },
+     "timestamp_lte": {
+      "type": "string",
+      "description": "Filters activities occurring at or before this timestamp."
+     },
+     "types": {
+      "type": "array",
+      "description": "Matches activities with any listed action type; combines with other filters using AND."
+     },
+     "sort": {
+      "type": "string",
+      "description": "Sorts activities by timestamp ascending or descending; defaults to ASC.",
+      "enum": [
+       "ASC",
+       "DESC"
+      ]
+     }
+    },
+    "required": [
+     "timestamp_gte",
+     "timestamp_lte"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.modernloop.io/v1/activities",
+    "path": [],
+    "query": [
+     "cursor",
+     "limit",
+     "ids",
+     "timestamp_gte",
+     "timestamp_lte",
+     "types",
+     "sort"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "modernloop.list_activity_types",
+   "name": "List activity types",
+   "description": "Lists the valid activity action types and their descriptions. The type enum is open and grows over time; clients must tolerate unknown values.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.modernloop.io/v1/activity-types",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "modernloop.list_api_audit_logs",
+   "name": "List api audit logs",
+   "description": "Returns paginated REST API request audit log entries for the authenticated organization, including method, path, status code, and captured request and response payloads. Requires the audit_logs:read scope and an acting user with the owner-only READ_AUDIT_LOGS permission; other callers receive PERMISSION_DENIED. Results are newest first. Requires a timestamp window of at most 366 days; use the curs",
+   "input": {
+    "type": "object",
+    "properties": {
+     "cursor": {
+      "type": "string",
+      "description": "Opaque pagination cursor from the previous page's pagination.next_cursor, bound to the same query filters."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Page size. Must be between 1 and 100; defaults to 25."
+     },
+     "ids": {
+      "type": "array",
+      "description": "Comma-separated list of IDs; maximum 100 values."
+     },
+     "timestamp_gte": {
+      "type": "string",
+      "description": "Includes entries recorded at or after this timestamp. Required."
+     },
+     "timestamp_lt": {
+      "type": "string",
+      "description": "Includes entries recorded before this timestamp. Required."
+     }
+    },
+    "required": [
+     "timestamp_gte",
+     "timestamp_lt"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.modernloop.io/v1/audit-logs/api-requests",
+    "path": [],
+    "query": [
+     "cursor",
+     "limit",
+     "ids",
+     "timestamp_gte",
+     "timestamp_lt"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "modernloop.list_applications",
+   "name": "List applications",
+   "description": "Returns paginated application summaries with the candidate, job, current stage, and hiring-team assignments. Combine IDs, candidate IDs, job IDs, statuses, ATS IDs, and record timestamps to narrow results; every supplied filter is applied together. Results are newest first, ordered by created_at descending. Use the cursor to continue the same filtered result set. Jobs the caller cannot access are ",
+   "input": {
+    "type": "object",
+    "properties": {
+     "cursor": {
+      "type": "string",
+      "description": "Opaque pagination cursor from the previous page's pagination.next_cursor, bound to the same query filters."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Page size. Must be between 1 and 100; defaults to 25."
+     },
+     "ids": {
+      "type": "array",
+      "description": "Comma-separated list of IDs; maximum 100 values."
+     },
+     "candidate_ids": {
+      "type": "array",
+      "description": "Matches applications whose candidate ID is one of these values; combines with other filters using AND."
+     },
+     "job_ids": {
+      "type": "array",
+      "description": "Matches applications whose job ID is one of these values; combines with other filters using AND."
+     },
+     "statuses": {
+      "type": "array",
+      "description": "Matches applications whose status is one of these values; combines with other filters using AND."
+     },
+     "ats_ids": {
+      "type": "array",
+      "description": "Matches applications whose ATS ID is one of these exact values; combines with other filters using AND."
+     },
+     "created_at_gte": {
+      "type": "string",
+      "description": "Filters records created at or after this timestamp."
+     },
+     "created_at_lte": {
+      "type": "string",
+      "description": "Filters records created at or before this timestamp."
+     },
+     "updated_at_gte": {
+      "type": "string",
+      "description": "Filters records updated at or after this timestamp."
+     },
+     "updated_at_lte": {
+      "type": "string",
+      "description": "Filters records updated at or before this timestamp."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.modernloop.io/v1/applications",
+    "path": [],
+    "query": [
+     "cursor",
+     "limit",
+     "ids",
+     "candidate_ids",
+     "job_ids",
+     "statuses",
+     "ats_ids",
+     "created_at_gte",
+     "created_at_lte",
+     "updated_at_gte",
+     "updated_at_lte"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "modernloop.list_candidates",
+   "name": "List candidates",
+   "description": "Returns paginated candidate summaries with contact details, hiring-team assignments, ATS metadata, and anonymization state. Combine IDs, email, name, ATS, and record-timestamp filters to narrow results; every supplied filter is applied together. Results are newest first, ordered by created_at descending. Anonymized candidates return redacted PII, and the returned cursor continues the same filtered",
+   "input": {
+    "type": "object",
+    "properties": {
+     "cursor": {
+      "type": "string",
+      "description": "Opaque pagination cursor from the previous page's pagination.next_cursor, bound to the same query filters."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Page size. Must be between 1 and 100; defaults to 25."
+     },
+     "ids": {
+      "type": "array",
+      "description": "Comma-separated list of IDs; maximum 100 values."
+     },
+     "email": {
+      "type": "string",
+      "description": "Case-insensitive exact match on candidate email; combines with other filters using AND."
+     },
+     "name": {
+      "type": "string",
+      "description": "Case-insensitive exact match on the candidate's full name, given name, or family name; combines with other filters using AND."
+     },
+     "ats_ids": {
+      "type": "array",
+      "description": "Matches candidates whose ATS ID is one of these exact values; combines with other filters using AND."
+     },
+     "ats_type": {
+      "type": "string",
+      "description": "Filters by ATS provider.",
+      "enum": [
+       "GREENHOUSE",
+       "ASHBY",
+       "LEVER",
+       "WORKDAY",
+       "SMARTRECRUITERS",
+       "GEM",
+       "KOMBO"
+      ]
+     },
+     "created_at_gte": {
+      "type": "string",
+      "description": "Filters records created at or after this timestamp."
+     },
+     "created_at_lte": {
+      "type": "string",
+      "description": "Filters records created at or before this timestamp."
+     },
+     "updated_at_gte": {
+      "type": "string",
+      "description": "Filters records updated at or after this timestamp."
+     },
+     "updated_at_lte": {
+      "type": "string",
+      "description": "Filters records updated at or before this timestamp."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.modernloop.io/v1/candidates",
+    "path": [],
+    "query": [
+     "cursor",
+     "limit",
+     "ids",
+     "email",
+     "name",
+     "ats_ids",
+     "ats_type",
+     "created_at_gte",
+     "created_at_lte",
+     "updated_at_gte",
+     "updated_at_lte"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "modernloop.list_interview_events",
+   "name": "List interview events",
+   "description": "Flat scheduled interview-event rows for BI exports and person/candidate/date filtering.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "cursor": {
+      "type": "string",
+      "description": "Opaque pagination cursor from the previous page's pagination.next_cursor, bound to the same query filters."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Page size. Must be between 1 and 100; defaults to 25."
+     },
+     "ids": {
+      "type": "array",
+      "description": "Comma-separated list of IDs; maximum 100 values."
+     },
+     "start_at_gte": {
+      "type": "string",
+      "description": "Matches interview events starting at or after this timestamp; combines with other filters using AND."
+     },
+     "start_at_lte": {
+      "type": "string",
+      "description": "Matches interview events starting before this timestamp; combines with other filters using AND."
+     },
+     "interviewer_ids": {
+      "type": "array",
+      "description": "Matches events with any listed interviewer; combines with other filters using AND."
+     },
+     "interview_module_ids": {
+      "type": "array",
+      "description": "Matches events with any listed interview module; combines with other filters using AND."
+     },
+     "candidate_ids": {
+      "type": "array",
+      "description": "Matches events for any listed candidate; combines with other filters using AND."
+     },
+     "application_ids": {
+      "type": "array",
+      "description": "Matches events for any listed application; combines with other filters using AND."
+     },
+     "job_ids": {
+      "type": "array",
+      "description": "Matches events for any listed job; combines with other filters using AND."
+     },
+     "statuses": {
+      "type": "array",
+      "description": "Matches events with any listed status; combines with other filters using AND."
+     },
+     "created_at_gte": {
+      "type": "string",
+      "description": "Filters records created at or after this timestamp."
+     },
+     "created_at_lte": {
+      "type": "string",
+      "description": "Filters records created at or before this timestamp."
+     },
+     "updated_at_gte": {
+      "type": "string",
+      "description": "Filters records updated at or after this timestamp."
+     },
+     "updated_at_lte": {
+      "type": "string",
+      "description": "Filters records updated at or before this timestamp."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.modernloop.io/v1/interview-events",
+    "path": [],
+    "query": [
+     "cursor",
+     "limit",
+     "ids",
+     "start_at_gte",
+     "start_at_lte",
+     "interviewer_ids",
+     "interview_module_ids",
+     "candidate_ids",
+     "application_ids",
+     "job_ids",
+     "statuses",
+     "created_at_gte",
+     "created_at_lte",
+     "updated_at_gte",
+     "updated_at_lte"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "modernloop.list_interview_module_members",
+   "name": "List interview module members",
+   "description": "Returns paginated module memberships with each employee's current training status, pause state, limits, and training progress. Filter by member IDs or training statuses; every supplied filter is applied together. Use the cursor to continue the same filtered result set.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "moduleId": {
+      "type": "string",
+      "description": "an interview module ID. Accepts the canonical prefixed compact UUID, a prefixed dashed UUID, a bare dashed UUID, or a bare compact UUID; input is case-insensitive."
+     },
+     "cursor": {
+      "type": "string",
+      "description": "Opaque pagination cursor from the previous page's pagination.next_cursor, bound to the same query filters."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Page size. Must be between 1 and 100; defaults to 25."
+     },
+     "ids": {
+      "type": "array",
+      "description": "Comma-separated list of IDs; maximum 100 values."
+     },
+     "statuses": {
+      "type": "array",
+      "description": "Matches members with any listed training status; combines with ids using AND."
+     }
+    },
+    "required": [
+     "moduleId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.modernloop.io/v1/interview-modules/{moduleId}/members",
+    "path": [
+     "moduleId"
+    ],
+    "query": [
+     "cursor",
+     "limit",
+     "ids",
+     "statuses"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "modernloop.list_interview_modules",
+   "name": "List interview modules",
+   "description": "Returns paginated interview modules with training requirements, weekly limits, and member counts. Combine IDs, an exact case-insensitive name, and record timestamps to narrow results; every supplied filter is applied together. Use the cursor to continue the same filtered result set.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "cursor": {
+      "type": "string",
+      "description": "Opaque pagination cursor from the previous page's pagination.next_cursor, bound to the same query filters."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Page size. Must be between 1 and 100; defaults to 25."
+     },
+     "ids": {
+      "type": "array",
+      "description": "Comma-separated list of IDs; maximum 100 values."
+     },
+     "name": {
+      "type": "string",
+      "description": "Case-insensitive exact match on the module name; combines with other filters using AND."
+     },
+     "created_at_gte": {
+      "type": "string",
+      "description": "Filters records created at or after this timestamp."
+     },
+     "created_at_lte": {
+      "type": "string",
+      "description": "Filters records created at or before this timestamp."
+     },
+     "updated_at_gte": {
+      "type": "string",
+      "description": "Filters records updated at or after this timestamp."
+     },
+     "updated_at_lte": {
+      "type": "string",
+      "description": "Filters records updated at or before this timestamp."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.modernloop.io/v1/interview-modules",
+    "path": [],
+    "query": [
+     "cursor",
+     "limit",
+     "ids",
+     "name",
+     "created_at_gte",
+     "created_at_lte",
+     "updated_at_gte",
+     "updated_at_lte"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "modernloop.list_job_stages",
+   "name": "List job stages",
+   "description": "Returns job-stage summaries and resolved settings for the requested stage IDs or a single job. At least one of ids or job_id is required; when both are supplied, only stages that satisfy both are returned. This operation returns a single unpaginated result page. Jobs the caller cannot access are omitted.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "cursor": {
+      "type": "string",
+      "description": "Opaque pagination cursor from the previous page's pagination.next_cursor, bound to the same query filters."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Page size. Must be between 1 and 100; defaults to 25."
+     },
+     "ids": {
+      "type": "array",
+      "description": "Comma-separated list of IDs; maximum 100 values."
+     },
+     "job_id": {
+      "type": "string",
+      "description": "Matches stages belonging to this exact job ID. When ids is also supplied, results must match both filters."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.modernloop.io/v1/job-stages",
+    "path": [],
+    "query": [
+     "cursor",
+     "limit",
+     "ids",
+     "job_id"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "modernloop.list_jobs",
+   "name": "List jobs",
+   "description": "Returns paginated job summaries with status and ATS information. Combine IDs, status, name, ATS ID, and record timestamps to narrow results; every supplied filter is applied together. Use the cursor to continue the same filtered result set. Jobs the caller cannot access are omitted.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "cursor": {
+      "type": "string",
+      "description": "Opaque pagination cursor from the previous page's pagination.next_cursor, bound to the same query filters."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Page size. Must be between 1 and 100; defaults to 25."
+     },
+     "ids": {
+      "type": "array",
+      "description": "Comma-separated list of IDs; maximum 100 values."
+     },
+     "statuses": {
+      "type": "array",
+      "description": "Matches jobs with any listed status; combines with other filters using AND."
+     },
+     "name": {
+      "type": "string",
+      "description": "Case-insensitive exact match on the job name; combines with other filters using AND."
+     },
+     "ats_ids": {
+      "type": "array",
+      "description": "Matches jobs whose ATS ID is one of these exact values; combines with other filters using AND."
+     },
+     "created_at_gte": {
+      "type": "string",
+      "description": "Filters records created at or after this timestamp."
+     },
+     "created_at_lte": {
+      "type": "string",
+      "description": "Filters records created at or before this timestamp."
+     },
+     "updated_at_gte": {
+      "type": "string",
+      "description": "Filters records updated at or after this timestamp."
+     },
+     "updated_at_lte": {
+      "type": "string",
+      "description": "Filters records updated at or before this timestamp."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.modernloop.io/v1/jobs",
+    "path": [],
+    "query": [
+     "cursor",
+     "limit",
+     "ids",
+     "statuses",
+     "name",
+     "ats_ids",
+     "created_at_gte",
+     "created_at_lte",
+     "updated_at_gte",
+     "updated_at_lte"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "modernloop.list_mcp_audit_logs",
+   "name": "List mcp audit logs",
+   "description": "Returns paginated MCP tool-call audit log entries for the authenticated organization, including tool name, caller intent, status, and captured tool input and output payloads. Requires the audit_logs:read scope and an acting user with the owner-only READ_AUDIT_LOGS permission; other callers receive PERMISSION_DENIED. Results are newest first. Requires a timestamp window of at most 366 days; use the",
+   "input": {
+    "type": "object",
+    "properties": {
+     "cursor": {
+      "type": "string",
+      "description": "Opaque pagination cursor from the previous page's pagination.next_cursor, bound to the same query filters."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Page size. Must be between 1 and 100; defaults to 25."
+     },
+     "ids": {
+      "type": "array",
+      "description": "Comma-separated list of IDs; maximum 100 values."
+     },
+     "timestamp_gte": {
+      "type": "string",
+      "description": "Includes entries recorded at or after this timestamp. Required."
+     },
+     "timestamp_lt": {
+      "type": "string",
+      "description": "Includes entries recorded before this timestamp. Required."
+     }
+    },
+    "required": [
+     "timestamp_gte",
+     "timestamp_lt"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.modernloop.io/v1/audit-logs/mcp-tool-calls",
+    "path": [],
+    "query": [
+     "cursor",
+     "limit",
+     "ids",
+     "timestamp_gte",
+     "timestamp_lt"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "modernloop.list_privacy_audit_logs",
+   "name": "List privacy audit logs",
+   "description": "Returns paginated privacy audit ledger entries for the authenticated organization: who accessed whose personal data, when, from which IP addresses, and through which product area. Reads of this ledger are themselves recorded in the API and MCP audit ledgers. Requires the audit_logs:read scope and an acting user with the owner-only READ_AUDIT_LOGS permission; other callers receive PERMISSION_DENIED",
+   "input": {
+    "type": "object",
+    "properties": {
+     "cursor": {
+      "type": "string",
+      "description": "Opaque pagination cursor from the previous page's pagination.next_cursor, bound to the same query filters."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Page size. Must be between 1 and 100; defaults to 25."
+     },
+     "ids": {
+      "type": "array",
+      "description": "Comma-separated list of IDs; maximum 100 values."
+     },
+     "timestamp_gte": {
+      "type": "string",
+      "description": "Includes entries recorded at or after this timestamp. Required."
+     },
+     "timestamp_lt": {
+      "type": "string",
+      "description": "Includes entries recorded before this timestamp. Required."
+     }
+    },
+    "required": [
+     "timestamp_gte",
+     "timestamp_lt"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.modernloop.io/v1/audit-logs/privacy",
+    "path": [],
+    "query": [
+     "cursor",
+     "limit",
+     "ids",
+     "timestamp_gte",
+     "timestamp_lt"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "modernloop.list_schedules",
+   "name": "List schedules",
+   "description": "Returns paginated schedule groups, each with its nested interview events. Record timestamp filters narrow the schedule records and are combined with IDs when supplied. Use the cursor to continue the same filtered result set.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "cursor": {
+      "type": "string",
+      "description": "Opaque pagination cursor from the previous page's pagination.next_cursor, bound to the same query filters."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Page size. Must be between 1 and 100; defaults to 25."
+     },
+     "ids": {
+      "type": "array",
+      "description": "Comma-separated list of IDs; maximum 100 values."
+     },
+     "created_at_gte": {
+      "type": "string",
+      "description": "Filters records created at or after this timestamp."
+     },
+     "created_at_lte": {
+      "type": "string",
+      "description": "Filters records created at or before this timestamp."
+     },
+     "updated_at_gte": {
+      "type": "string",
+      "description": "Filters records updated at or after this timestamp."
+     },
+     "updated_at_lte": {
+      "type": "string",
+      "description": "Filters records updated at or before this timestamp."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.modernloop.io/v1/schedules",
+    "path": [],
+    "query": [
+     "cursor",
+     "limit",
+     "ids",
+     "created_at_gte",
+     "created_at_lte",
+     "updated_at_gte",
+     "updated_at_lte"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "modernloop.list_scheduling_tasks",
+   "name": "List scheduling tasks",
+   "description": "Lists scheduling tasks with status, flag, urgent, queue, tag, delegation, assignee, job, application, and my_tasks filters. Results are newest first, ordered by created_at descending. Inaccessible jobs are omitted.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "cursor": {
+      "type": "string",
+      "description": "Opaque pagination cursor from the previous page's pagination.next_cursor, bound to the same query filters."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Page size. Must be between 1 and 100; defaults to 25."
+     },
+     "ids": {
+      "type": "array",
+      "description": "Comma-separated list of IDs; maximum 100 values."
+     },
+     "assignee_ids": {
+      "type": "array",
+      "description": "Matches tasks assigned to any listed employee; combines with other filters using AND."
+     },
+     "my_tasks": {
+      "type": "boolean",
+      "description": "When true, returns only tasks assigned to the acting user (the authenticated token's user) \u2014 shorthand for assignee_ids with your own user ID. Cannot be combined with assignee_ids."
+     },
+     "statuses": {
+      "type": "array",
+      "description": "Matches tasks with any listed status; combines with other filters using AND."
+     },
+     "is_urgent": {
+      "type": "boolean",
+      "description": "Matches the task urgency flag; combines with other filters using AND."
+     },
+     "queue_ids": {
+      "type": "array",
+      "description": "Matches tasks in any listed queue; combines with other filters using AND."
+     },
+     "flagged": {
+      "type": "boolean",
+      "description": "When true, returns tasks with at least one flag; when false, returns tasks with no flags. Combines with other filters using AND."
+     },
+     "tags": {
+      "type": "array",
+      "description": "Matches tasks carrying any listed tag; combines with other filters using AND."
+     },
+     "delegate_statuses": {
+      "type": "array",
+      "description": "Matches tasks with any listed delegation status; combines with other filters using AND."
+     },
+     "job_ids": {
+      "type": "array",
+      "description": "Matches tasks for applications on any listed job; combines with other filters using AND."
+     },
+     "application_ids": {
+      "type": "array",
+      "description": "Matches tasks for any listed application; combines with other filters using AND."
+     },
+     "created_at_gte": {
+      "type": "string",
+      "description": "Filters records created at or after this timestamp."
+     },
+     "created_at_lte": {
+      "type": "string",
+      "description": "Filters records created at or before this timestamp."
+     },
+     "updated_at_gte": {
+      "type": "string",
+      "description": "Filters records updated at or after this timestamp."
+     },
+     "updated_at_lte": {
+      "type": "string",
+      "description": "Filters records updated at or before this timestamp."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.modernloop.io/v1/tasks",
+    "path": [],
+    "query": [
+     "cursor",
+     "limit",
+     "ids",
+     "assignee_ids",
+     "my_tasks",
+     "statuses",
+     "is_urgent",
+     "queue_ids",
+     "flagged",
+     "tags",
+     "delegate_statuses",
+     "job_ids",
+     "application_ids",
+     "created_at_gte",
+     "created_at_lte",
+     "updated_at_gte",
+     "updated_at_lte"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "modernloop.list_task_queues",
+   "name": "List task queues",
+   "description": "Returns paginated active scheduling-task queues. IDs and a name filter can be combined to narrow results, and deleted queues are excluded. Use the cursor to continue the same filtered result set.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "cursor": {
+      "type": "string",
+      "description": "Opaque pagination cursor from the previous page's pagination.next_cursor, bound to the same query filters."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Page size. Must be between 1 and 100; defaults to 25."
+     },
+     "ids": {
+      "type": "array",
+      "description": "Comma-separated list of IDs; maximum 100 values."
+     },
+     "name": {
+      "type": "string",
+      "description": "Case-insensitive exact match on the queue name; combines with ids using AND."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.modernloop.io/v1/task-queues",
+    "path": [],
+    "query": [
+     "cursor",
+     "limit",
+     "ids",
+     "name"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "modernloop.list_templates",
+   "name": "List templates",
+   "description": "Returns paginated organization email and calendar templates with their subject, HTML body, and send metadata. Bodies contain unexpanded {{TOKEN}} placeholders. Combine IDs, template types, an exact case-insensitive name, and record timestamps to narrow results; every supplied filter is applied together. Use the cursor to continue the same filtered result set.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "cursor": {
+      "type": "string",
+      "description": "Opaque pagination cursor from the previous page's pagination.next_cursor, bound to the same query filters."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Page size. Must be between 1 and 100; defaults to 25."
+     },
+     "ids": {
+      "type": "array",
+      "description": "Comma-separated list of IDs; maximum 100 values."
+     },
+     "types": {
+      "type": "array",
+      "description": "Matches templates with any listed type; combines with other filters using AND."
+     },
+     "name": {
+      "type": "string",
+      "description": "Case-insensitive exact match on the template name; combines with other filters using AND."
+     },
+     "created_at_gte": {
+      "type": "string",
+      "description": "Filters records created at or after this timestamp."
+     },
+     "created_at_lte": {
+      "type": "string",
+      "description": "Filters records created at or before this timestamp."
+     },
+     "updated_at_gte": {
+      "type": "string",
+      "description": "Filters records updated at or after this timestamp."
+     },
+     "updated_at_lte": {
+      "type": "string",
+      "description": "Filters records updated at or before this timestamp."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.modernloop.io/v1/templates",
+    "path": [],
+    "query": [
+     "cursor",
+     "limit",
+     "ids",
+     "types",
+     "name",
+     "created_at_gte",
+     "created_at_lte",
+     "updated_at_gte",
+     "updated_at_lte"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "modernloop.list_users",
+   "name": "List users",
+   "description": "Lists users with interviewer load, pause state, work hours, and module training. Omit statuses for the default active-only view; pass statuses=ACTIVE,ARCHIVED to include both active and archived users.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "cursor": {
+      "type": "string",
+      "description": "Opaque pagination cursor from the previous page's pagination.next_cursor, bound to the same query filters."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Page size. Must be between 1 and 100; defaults to 25."
+     },
+     "ids": {
+      "type": "array",
+      "description": "Comma-separated list of IDs; maximum 100 values."
+     },
+     "search": {
+      "type": "string",
+      "description": "Case-insensitive substring search across user name and email; combines with other filters using AND."
+     },
+     "name": {
+      "type": "string",
+      "description": "Case-insensitive exact match on the user's full name, given name, or family name; combines with other filters using AND."
+     },
+     "email": {
+      "type": "string",
+      "description": "Case-insensitive exact match on user email; combines with other filters using AND."
+     },
+     "statuses": {
+      "type": "array",
+      "description": "Matches users with any listed status; combines with other filters using AND."
+     },
+     "module_ids": {
+      "type": "array",
+      "description": "Matches users assigned to any listed interview module; combines with other filters using AND."
+     },
+     "manager_ids": {
+      "type": "array",
+      "description": "Matches users managed by any listed manager; combines with other filters using AND."
+     },
+     "ats_ids": {
+      "type": "array",
+      "description": "Matches users whose ATS ID is one of these exact values; combines with other filters using AND."
+     },
+     "ats_type": {
+      "type": "string",
+      "description": "Filters by ATS provider.",
+      "enum": [
+       "GREENHOUSE",
+       "ASHBY",
+       "LEVER",
+       "WORKDAY",
+       "SMARTRECRUITERS",
+       "GEM",
+       "KOMBO"
+      ]
+     },
+     "created_at_gte": {
+      "type": "string",
+      "description": "Filters records created at or after this timestamp."
+     },
+     "created_at_lte": {
+      "type": "string",
+      "description": "Filters records created at or before this timestamp."
+     },
+     "updated_at_gte": {
+      "type": "string",
+      "description": "Filters records updated at or after this timestamp."
+     },
+     "updated_at_lte": {
+      "type": "string",
+      "description": "Filters records updated at or before this timestamp."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.modernloop.io/v1/users",
+    "path": [],
+    "query": [
+     "cursor",
+     "limit",
+     "ids",
+     "search",
+     "name",
+     "email",
+     "statuses",
+     "module_ids",
+     "manager_ids",
+     "ats_ids",
+     "ats_type",
+     "created_at_gte",
+     "created_at_lte",
+     "updated_at_gte",
+     "updated_at_lte"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "modernloop.update_application",
+   "name": "Update an application",
+   "description": "Updates the supplied hiring-team assignments. Omitted fields are preserved; nullable team IDs clear their assignment. The response is re-read after the update and contains the application summary. Inaccessible applications return PERMISSION_DENIED.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "applicationId": {
+      "type": "string",
+      "description": "an application ID. Accepts the canonical prefixed compact UUID, a prefixed dashed UUID, a bare dashed UUID, or a bare compact UUID; input is case-insensitive."
+     },
+     "hiring_manager_id": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "an user ID. Accepts the canonical prefixed compact UUID, a prefixed dashed UUID, a bare dashed UUID, or a bare compact UUID; input is case-insensitive."
+     },
+     "recruiter_id": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "an user ID. Accepts the canonical prefixed compact UUID, a prefixed dashed UUID, a bare dashed UUID, or a bare compact UUID; input is case-insensitive."
+     },
+     "coordinator_id": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "an user ID. Accepts the canonical prefixed compact UUID, a prefixed dashed UUID, a bare dashed UUID, or a bare compact UUID; input is case-insensitive."
+     },
+     "sourcer_id": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "an user ID. Accepts the canonical prefixed compact UUID, a prefixed dashed UUID, a bare dashed UUID, or a bare compact UUID; input is case-insensitive."
+     }
+    },
+    "required": [
+     "applicationId"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.modernloop.io/v1/applications/{applicationId}",
+    "path": [
+     "applicationId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "hiring_manager_id",
+     "recruiter_id",
+     "coordinator_id",
+     "sourcer_id"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "modernloop.update_candidate",
+   "name": "Update a candidate",
+   "description": "Updates the supplied hiring-team assignments and candidate profile fields. Omitted fields are preserved; nullable team IDs clear their assignment.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "candidateId": {
+      "type": "string",
+      "description": "a candidate ID. Accepts the canonical prefixed compact UUID, a prefixed dashed UUID, a bare dashed UUID, or a bare compact UUID; input is case-insensitive."
+     },
+     "recruiter_id": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "an user ID. Accepts the canonical prefixed compact UUID, a prefixed dashed UUID, a bare dashed UUID, or a bare compact UUID; input is case-insensitive."
+     },
+     "coordinator_id": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "an user ID. Accepts the canonical prefixed compact UUID, a prefixed dashed UUID, a bare dashed UUID, or a bare compact UUID; input is case-insensitive."
+     },
+     "timezone": {
+      "type": "string",
+      "description": "Replaces the timezone; omit to preserve."
+     }
+    },
+    "required": [
+     "candidateId"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.modernloop.io/v1/candidates/{candidateId}",
+    "path": [
+     "candidateId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "recruiter_id",
+     "coordinator_id",
+     "timezone"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "modernloop.update_interview_module",
+   "name": "Update an interview module",
+   "description": "Updates the supplied interview-module configuration, including training requirements, graduation rules, weekly limit, and fast-track setting. Omitted fields are preserved, while supplied approver lists replace the complete list for that graduation step. Null weekly_interview_limit means unlimited.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "moduleId": {
+      "type": "string",
+      "description": "an interview module ID. Accepts the canonical prefixed compact UUID, a prefixed dashed UUID, a bare dashed UUID, or a bare compact UUID; input is case-insensitive."
+     },
+     "name": {
+      "type": "string",
+      "description": "Module name. Required on create; PATCH replaces it when supplied."
+     },
+     "shadows_required": {
+      "type": "integer",
+      "description": "Required shadow interviews. Required on create; PATCH replaces it when supplied."
+     },
+     "reverse_shadows_required": {
+      "type": "integer",
+      "description": "Required reverse-shadow interviews. Required on create; PATCH replaces it when supplied."
+     },
+     "graduate_from_shadow_approval_type": {
+      "type": "string",
+      "description": "Approval mode for graduating from shadow training. Required on create; PATCH replaces it when supplied.",
+      "enum": [
+       "AUTOMATIC",
+       "SCHEDULER",
+       "CUSTOM"
+      ]
+     },
+     "graduate_from_shadow_custom_approvers": {
+      "type": "array",
+      "description": "Complete approver-role list for shadow graduation. Required on create; PATCH replaces the list when supplied."
+     },
+     "graduate_from_reverse_shadow_approval_type": {
+      "type": "string",
+      "description": "Approval mode for graduating from reverse-shadow training. Required on create; PATCH replaces it when supplied.",
+      "enum": [
+       "AUTOMATIC",
+       "SCHEDULER",
+       "CUSTOM"
+      ]
+     },
+     "graduate_from_reverse_shadow_custom_approvers": {
+      "type": "array",
+      "description": "Complete approver-role list for reverse-shadow graduation. Required on create; PATCH replaces the list when supplied."
+     },
+     "weekly_interview_limit": {
+      "type": [
+       "integer",
+       "null"
+      ],
+      "description": "Maximum interviews per week; null means unlimited."
+     },
+     "should_fast_track_training": {
+      "type": "boolean",
+      "description": "Enables fast-track training when true. On PATCH, omission preserves the current value."
+     }
+    },
+    "required": [
+     "moduleId"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.modernloop.io/v1/interview-modules/{moduleId}",
+    "path": [
+     "moduleId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "shadows_required",
+     "reverse_shadows_required",
+     "graduate_from_shadow_approval_type",
+     "graduate_from_shadow_custom_approvers",
+     "graduate_from_reverse_shadow_approval_type",
+     "graduate_from_reverse_shadow_custom_approvers",
+     "weekly_interview_limit",
+     "should_fast_track_training"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "modernloop.update_interview_module_member",
+   "name": "Update an interview module member",
+   "description": "Partially updates a member's training requirements, status, pause state, timestamps, and weekly limit. Changes to required counts can advance training through the module's configured approval rules; setting training_status to TRAINED marks the member trained directly.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "moduleId": {
+      "type": "string",
+      "description": "an interview module ID. Accepts the canonical prefixed compact UUID, a prefixed dashed UUID, a bare dashed UUID, or a bare compact UUID; input is case-insensitive."
+     },
+     "memberId": {
+      "type": "string",
+      "description": "an user ID. Accepts the canonical prefixed compact UUID, a prefixed dashed UUID, a bare dashed UUID, or a bare compact UUID; input is case-insensitive."
+     },
+     "training_status": {
+      "type": "string",
+      "description": "Administratively marks the member TRAINED. Earlier training phases can only change through the module's count-driven and approval-gated graduation rules.",
+      "enum": [
+       "TRAINED"
+      ]
+     },
+     "paused_until": {
+      "type": "string",
+      "description": "Pauses the member until this timestamp. Cannot be combined with another pause field."
+     },
+     "pause_indefinitely": {
+      "type": "boolean",
+      "description": "Pauses the member indefinitely. Cannot be combined with another pause field.",
+      "enum": [
+       true
+      ]
+     },
+     "clear_pause": {
+      "type": "boolean",
+      "description": "Clears the member's pause. Cannot be combined with another pause field.",
+      "enum": [
+       true
+      ]
+     },
+     "shadows_required": {
+      "type": "integer",
+      "description": "Sets the member-specific required shadow interview count from 0 through 20."
+     },
+     "reverse_shadows_required": {
+      "type": "integer",
+      "description": "Sets the member-specific required reverse-shadow interview count from 0 through 20."
+     },
+     "shadow_or_reverse_shadow_increment_by": {
+      "type": "integer",
+      "description": "Adjusts the required count for the member's current SHADOW or REVERSE_SHADOW phase. May be negative."
+     },
+     "weekly_interview_limit_override": {
+      "type": [
+       "integer",
+       "null"
+      ],
+      "description": "Sets the member-specific weekly interview limit override from 1 through 10; null means unlimited."
+     },
+     "trained_at": {
+      "type": "string",
+      "description": "Sets the member's trained timestamp. Cannot be combined with clear_trained_at."
+     },
+     "clear_trained_at": {
+      "type": "boolean",
+      "description": "Clears the member's trained timestamp. Cannot be combined with trained_at.",
+      "enum": [
+       true
+      ]
+     },
+     "added_to_module_at": {
+      "type": "string",
+      "description": "Overrides the timestamp when the interviewer was added to the module."
+     }
+    },
+    "required": [
+     "memberId",
+     "moduleId"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.modernloop.io/v1/interview-modules/{moduleId}/members/{memberId}",
+    "path": [
+     "moduleId",
+     "memberId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "training_status",
+     "paused_until",
+     "pause_indefinitely",
+     "clear_pause",
+     "shadows_required",
+     "reverse_shadows_required",
+     "shadow_or_reverse_shadow_increment_by",
+     "weekly_interview_limit_override",
+     "trained_at",
+     "clear_trained_at",
+     "added_to_module_at"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "modernloop.update_job",
+   "name": "Update a job",
+   "description": "Updates the supplied fallback name or internal note for a job. Omitted fields are preserved, and both fields are write-only because the current job summary RPC does not return them. An empty PATCH body is rejected. The request returns PERMISSION_DENIED when the caller cannot access the job.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "jobId": {
+      "type": "string",
+      "description": "a job ID. Accepts the canonical prefixed compact UUID, a prefixed dashed UUID, a bare dashed UUID, or a bare compact UUID; input is case-insensitive."
+     },
+     "fallback_name": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Candidate-facing fallback job name, shown when no job posting name is linked to the candidate's application (candidate portal, sourcing links, and job-name tokens). Set to null to fall back to the internal job name."
+     },
+     "internal_note": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Free-form internal note about the job; never shown to candidates."
+     }
+    },
+    "required": [
+     "jobId"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.modernloop.io/v1/jobs/{jobId}",
+    "path": [
+     "jobId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "fallback_name",
+     "internal_note"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "modernloop.update_job_stage",
+   "name": "Update a job stage",
+   "description": "Updates a job stage's settings. Targets the stage settings only; the base stage (name, index, ATS identity, schedulable) is ATS-sync-owned and read-only. Every supplied settings group merges per field, including `self_schedule_defaults` and `availability_request_defaults`; omitted fields are preserved. At least one group is required, each supplied group must contain at least one field, and unknown",
+   "input": {
+    "type": "object",
+    "properties": {
+     "jobStageId": {
+      "type": "string",
+      "description": "a job stage ID. Accepts the canonical prefixed compact UUID, a prefixed dashed UUID, a bare dashed UUID, or a bare compact UUID; input is case-insensitive."
+     },
+     "settings": {
+      "type": "object",
+      "description": "Job-stage settings patch. Include at least one settings group."
+     }
+    },
+    "required": [
+     "jobStageId",
+     "settings"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.modernloop.io/v1/job-stages/{jobStageId}",
+    "path": [
+     "jobStageId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "settings"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "modernloop.update_organization",
+   "name": "Update organization",
+   "description": "Partially updates the authenticated organization's scheduling defaults. Work hours and daily or weekly load-limit options replace atomically; scalar groups merge per field. Omitted settings are preserved and the response returns the updated organization representation.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "settings": {
+      "type": "object",
+      "description": ""
+     }
+    },
+    "required": [
+     "settings"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.modernloop.io/v1/organization",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "settings"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "modernloop.update_scheduling_task",
+   "name": "Update a scheduling task",
+   "description": "Updates the supplied assignee, urgency, queue, tags, debrief requirement, or meeting location for a scheduling task. Omitted fields are preserved; null clears the assignee, queue, or meeting location, while supplying tags replaces the task's tag list. An empty PATCH body is rejected.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "taskId": {
+      "type": "string",
+      "description": "a task ID. Accepts the canonical prefixed compact UUID, a prefixed dashed UUID, a bare dashed UUID, or a bare compact UUID; input is case-insensitive."
+     },
+     "assignee_id": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "an user ID. Accepts the canonical prefixed compact UUID, a prefixed dashed UUID, a bare dashed UUID, or a bare compact UUID; input is case-insensitive."
+     },
+     "is_urgent": {
+      "type": "boolean",
+      "description": "Replaces the urgency flag when supplied; omit to preserve it."
+     },
+     "queue_id": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "a task queue ID. Accepts the canonical prefixed compact UUID, a prefixed dashed UUID, a bare dashed UUID, or a bare compact UUID; input is case-insensitive."
+     },
+     "tags": {
+      "type": "array",
+      "description": "Tags must already exist in the organization; unknown tags are rejected."
+     },
+     "is_debrief_required": {
+      "type": "boolean",
+      "description": "Replaces whether a debrief is required when supplied; omit to preserve it."
+     },
+     "meeting_location": {
+      "type": "string",
+      "description": "Replaces the meeting location. Omit to preserve; null clears it."
+     }
+    },
+    "required": [
+     "taskId"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.modernloop.io/v1/tasks/{taskId}",
+    "path": [
+     "taskId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "assignee_id",
+     "is_urgent",
+     "queue_id",
+     "tags",
+     "is_debrief_required",
+     "meeting_location"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "modernloop.update_user",
+   "name": "Update a user",
+   "description": "Updates the admin-managed user profile, scheduling controls, load-limit overrides, and organization attributes. Example: `{\"title\":\"Principal Engineer\",\"timezone\":\"America/Chicago\",\"daily_load_limit\":{\"limit\":4,\"type\":\"NUMBER_OF_INTERVIEWS\"}}`. Set nullable overrides to `null` to clear them. Email and ATS identity are read-only. Requires a token with the `users:write` scope. Changes are attributed",
+   "input": {
+    "type": "object",
+    "properties": {
+     "userId": {
+      "type": "string",
+      "description": "an user ID. Accepts the canonical prefixed compact UUID, a prefixed dashed UUID, a bare dashed UUID, or a bare compact UUID; input is case-insensitive."
+     },
+     "interview_pause_dates": {
+      "type": "array",
+      "description": ""
+     },
+     "work_hours": {
+      "type": [
+       "array",
+       "null"
+      ],
+      "description": ""
+     },
+     "daily_load_limit": {
+      "type": [
+       "object",
+       "null"
+      ],
+      "description": ""
+     },
+     "weekly_load_limit": {
+      "type": [
+       "object",
+       "null"
+      ],
+      "description": ""
+     },
+     "title": {
+      "type": "string",
+      "description": "Use an empty string to clear the title; null is not supported by the backend."
+     },
+     "timezone": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": ""
+     },
+     "locale": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "",
+      "enum": [
+       "EN_US",
+       "FR_FR",
+       "DA_DK",
+       "KO_KR",
+       "JA_JP",
+       "ZH_CN",
+       "ZH_TW",
+       "ES_419",
+       "ES_ES",
+       "PT_BR",
+       "FR_CA"
+      ]
+     },
+     "phone_number": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": ""
+     },
+     "linkedin_url": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": ""
+     },
+     "manager_id": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "an user ID. Accepts the canonical prefixed compact UUID, a prefixed dashed UUID, a bare dashed UUID, or a bare compact UUID; input is case-insensitive."
+     },
+     "given_name": {
+      "type": "string",
+      "description": ""
+     },
+     "family_name": {
+      "type": "string",
+      "description": ""
+     },
+     "full_name": {
+      "type": "string",
+      "description": ""
+     },
+     "attributes": {
+      "type": "array",
+      "description": ""
+     }
+    },
+    "required": [
+     "userId"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.modernloop.io/v1/users/{userId}",
+    "path": [
+     "userId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "interview_pause_dates",
+     "work_hours",
+     "daily_load_limit",
+     "weekly_load_limit",
+     "title",
+     "timezone",
+     "locale",
+     "phone_number",
+     "linkedin_url",
+     "manager_id",
+     "given_name",
+     "family_name",
+     "full_name",
+     "attributes"
+    ],
+    "body_format": "json"
+   }
+  }
+ ]
+}

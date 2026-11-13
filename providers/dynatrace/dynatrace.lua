@@ -2,7 +2,7 @@
 --
 -- GENERATED from https://api.dynatrace.com/openapi.json
 -- Published on the vendor's own documentation site (https://api.dynatrace.com).
--- 87 operations · do not edit
+-- 91 operations · do not edit
 --
 -- The credential is never in here. `auth.env` names an environment variable; the value
 -- stays in the environment, which is what makes this file safe to publish.
@@ -36,7 +36,7 @@ return {
     ["dynatrace.audits_controller_list_audits_by_account"] = { method = "GET", url = "https://{environmentId}.live.dynatrace.com/audit/v1/accounts/{account-uuid}", path = {"account-uuid"}, query = {"startTime", "endTime", "addFields", "filter", "limit", "scanLimitGigabyte", "resultSizeLimitMegabyte"} },
     ["dynatrace.create_level_policy"] = { method = "POST", url = "https://{environmentId}.live.dynatrace.com/iam/v1/repo/{level-type}/{level-id}/policies", path = {"level-id", "level-type"}, body = {"name", "description", "tags", "statementQuery"} },
     ["dynatrace.create_wif_service_user_mapping"] = { method = "POST", url = "https://{environmentId}.live.dynatrace.com/iam/v1/accounts/{account-uuid}/wif/trust-policies/{trust-policy-uuid}/mappings", path = {"account-uuid", "trust-policy-uuid"}, body = {"serviceUserUuid", "environmentId", "scopes", "claimMappings"} },
-    ["dynatrace.create_wif_trust_policy"] = { method = "POST", url = "https://{environmentId}.live.dynatrace.com/iam/v1/accounts/{account-uuid}/wif/trust-policies", path = {"account-uuid"}, body = {"name", "issuerUrl", "jwksUri", "audience", "description"} },
+    ["dynatrace.create_wif_trust_policy"] = { method = "POST", url = "https://{environmentId}.live.dynatrace.com/iam/v1/accounts/{account-uuid}/wif/trust-policies", path = {"account-uuid"}, body = {"name", "jwksSource", "issuerUrl", "jwksJson", "audience", "description"} },
     ["dynatrace.delete_level_policy"] = { method = "DELETE", url = "https://{environmentId}.live.dynatrace.com/iam/v1/repo/{level-type}/{level-id}/policies/{policy-uuid}", path = {"policy-uuid", "level-id", "level-type"}, query = {"force"} },
     ["dynatrace.delete_level_policy_bindings"] = { method = "DELETE", url = "https://{environmentId}.live.dynatrace.com/iam/v1/repo/{level-type}/{level-id}/bindings", path = {"level-id", "level-type"} },
     ["dynatrace.delete_level_policy_bindings_for_policy"] = { method = "DELETE", url = "https://{environmentId}.live.dynatrace.com/iam/v1/repo/{level-type}/{level-id}/bindings/{policy-uuid}", path = {"policy-uuid", "level-id", "level-type"}, query = {"forceMultiple", "query-params"} },
@@ -80,6 +80,10 @@ return {
     ["dynatrace.list_wif_trust_policies"] = { method = "GET", url = "https://{environmentId}.live.dynatrace.com/iam/v1/accounts/{account-uuid}/wif/trust-policies", path = {"account-uuid"}, query = {"pageNumber", "pageSize"} },
     ["dynatrace.patch_wif_service_user_mapping_status"] = { method = "PATCH", url = "https://{environmentId}.live.dynatrace.com/iam/v1/accounts/{account-uuid}/wif/trust-policies/{trust-policy-uuid}/mappings/{mapping-uuid}", path = {"account-uuid", "trust-policy-uuid", "mapping-uuid"}, body = {"status"} },
     ["dynatrace.patch_wif_trust_policy_status"] = { method = "PATCH", url = "https://{environmentId}.live.dynatrace.com/iam/v1/accounts/{account-uuid}/wif/trust-policies/{trust-policy-uuid}", path = {"account-uuid", "trust-policy-uuid"}, body = {"status"} },
+    ["dynatrace.permissions_controller_add_group_permissions"] = { method = "POST", url = "https://{environmentId}.live.dynatrace.com/iam/v1/accounts/{account-uuid}/groups/{group-uuid}/permissions", path = {"account-uuid", "group-uuid"} },
+    ["dynatrace.permissions_controller_get_group_permissions"] = { method = "GET", url = "https://{environmentId}.live.dynatrace.com/iam/v1/accounts/{account-uuid}/groups/{group-uuid}/permissions", path = {"account-uuid", "group-uuid"} },
+    ["dynatrace.permissions_controller_overwrite_group_permissions"] = { method = "PUT", url = "https://{environmentId}.live.dynatrace.com/iam/v1/accounts/{account-uuid}/groups/{group-uuid}/permissions", path = {"account-uuid", "group-uuid"} },
+    ["dynatrace.permissions_controller_remove_group_permissions"] = { method = "DELETE", url = "https://{environmentId}.live.dynatrace.com/iam/v1/accounts/{account-uuid}/groups/{group-uuid}/permissions", path = {"account-uuid", "group-uuid"}, query = {"scope", "permission-name", "scope-type"} },
     ["dynatrace.post_policy_boundary"] = { method = "POST", url = "https://{environmentId}.live.dynatrace.com/iam/v1/repo/account/{account-id}/boundaries", path = {"account-id"}, body = {"name", "boundaryQuery", "metadata"} },
     ["dynatrace.put_policy_boundary"] = { method = "PUT", url = "https://{environmentId}.live.dynatrace.com/iam/v1/repo/account/{account-id}/boundaries/{policy-boundary-uuid}", path = {"policy-boundary-uuid", "account-id"}, body = {"name", "boundaryQuery", "metadata"} },
     ["dynatrace.reference_data_controller"] = { method = "GET", url = "https://{environmentId}.live.dynatrace.com/ref/v1/time-zones" },
@@ -102,7 +106,7 @@ return {
     ["dynatrace.update_platform_token_status"] = { method = "PUT", url = "https://{environmentId}.live.dynatrace.com/iam/v1/accounts/{account-uuid}/platform-tokens/{platform-token-id}/status", path = {"account-uuid", "platform-token-id"}, body = {"status"} },
     ["dynatrace.update_policy_bindings_to_group"] = { method = "PUT", url = "https://{environmentId}.live.dynatrace.com/iam/v1/repo/{level-type}/{level-id}/bindings/groups/{group-uuid}", path = {"group-uuid", "level-id", "level-type"}, body = {"policyUuids"} },
     ["dynatrace.update_wif_service_user_mapping"] = { method = "PUT", url = "https://{environmentId}.live.dynatrace.com/iam/v1/accounts/{account-uuid}/wif/trust-policies/{trust-policy-uuid}/mappings/{mapping-uuid}", path = {"account-uuid", "trust-policy-uuid", "mapping-uuid"}, body = {"serviceUserUuid", "environmentId", "scopes", "claimMappings"} },
-    ["dynatrace.update_wif_trust_policy"] = { method = "PUT", url = "https://{environmentId}.live.dynatrace.com/iam/v1/accounts/{account-uuid}/wif/trust-policies/{trust-policy-uuid}", path = {"account-uuid", "trust-policy-uuid"}, body = {"name", "issuerUrl", "jwksUri", "audience", "description"} },
+    ["dynatrace.update_wif_trust_policy"] = { method = "PUT", url = "https://{environmentId}.live.dynatrace.com/iam/v1/accounts/{account-uuid}/wif/trust-policies/{trust-policy-uuid}", path = {"account-uuid", "trust-policy-uuid"}, body = {"name", "jwksSource", "issuerUrl", "jwksJson", "audience", "description"} },
     ["dynatrace.users_controller_add_user_to_groups"] = { method = "POST", url = "https://{environmentId}.live.dynatrace.com/iam/v1/accounts/{account-uuid}/users/{email}", path = {"account-uuid", "email"} },
     ["dynatrace.users_controller_create_user_for_account"] = { method = "POST", url = "https://{environmentId}.live.dynatrace.com/iam/v1/accounts/{account-uuid}/users", path = {"account-uuid"}, body = {"email"} },
     ["dynatrace.users_controller_get_user_groups"] = { method = "GET", url = "https://{environmentId}.live.dynatrace.com/iam/v1/accounts/{account-uuid}/users/{email}", path = {"account-uuid", "email"} },

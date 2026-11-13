@@ -1,0 +1,1123 @@
+{
+ "_": "GENERATED \u2014 what an authoring tool needs to FIND an operation. The calling table is the .lua beside it.",
+ "provider": "hive",
+ "source": "https://developers.hive.co/openapi.json",
+ "operations": [
+  {
+   "slug": "hive.auth_oauth_whoami_retrieve",
+   "name": "Inspect the current token",
+   "description": "Return the application and brand an access token is scoped to, with its scopes and expiry. `tour_id` is the brand ID the JS SDK `init` command expects.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "X-Partner-Id": {
+      "type": "string",
+      "description": "Your OAuth application client ID."
+     }
+    },
+    "required": [
+     "X-Partner-Id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hive.co/v2/oauth/whoami/",
+    "path": [],
+    "query": [],
+    "header": [
+     "X-Partner-Id"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hive.campaigns_ads_aggregate_stats_retrieve",
+   "name": "Get aggregate ad campaign stats",
+   "description": "One set of stats totalled across published ad campaigns. Spend and counts are summed; derived metrics (cost per click, CTR, frequency, ROAS) are recalculated from the sums. Reach is a sum of per-campaign reach, so audience overlap across campaigns is counted once per campaign. `created_after` is inclusive and `created_before` exclusive.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "campaign_ids": {
+      "type": "string",
+      "description": "Comma-separated campaign IDs, max 100."
+     },
+     "created_after": {
+      "type": "string",
+      "description": ""
+     },
+     "created_before": {
+      "type": "string",
+      "description": ""
+     },
+     "X-Partner-Id": {
+      "type": "string",
+      "description": "Your OAuth application client ID."
+     }
+    },
+    "required": [
+     "X-Partner-Id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hive.co/v2/campaigns/ads/stats/",
+    "path": [],
+    "query": [
+     "campaign_ids",
+     "created_after",
+     "created_before"
+    ],
+    "header": [
+     "X-Partner-Id"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hive.campaigns_ads_retrieve",
+   "name": "List ad campaigns",
+   "description": "Published Meta ad campaigns for the authorized brand, most recently created first. All performance figures are Meta-reported, served from Hive's cached stats. `stats` is only present when requested with `stats=true`; compare `stats_refreshed_at` to avoid re-fetching unchanged stats.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "limit": {
+      "type": "integer",
+      "description": ""
+     },
+     "offset": {
+      "type": "integer",
+      "description": ""
+     },
+     "stats": {
+      "type": "boolean",
+      "description": ""
+     },
+     "X-Partner-Id": {
+      "type": "string",
+      "description": "Your OAuth application client ID."
+     }
+    },
+    "required": [
+     "X-Partner-Id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hive.co/v2/campaigns/ads/",
+    "path": [],
+    "query": [
+     "limit",
+     "offset",
+     "stats"
+    ],
+    "header": [
+     "X-Partner-Id"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hive.campaigns_ads_stats_retrieve",
+   "name": "Get ad campaign stats",
+   "description": "Lifetime performance stats for a single Meta ad campaign. All figures are Meta-reported, served from Hive's cached stats. `stats` is null when insights have never been cached for the campaign.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "campaign_id": {
+      "type": "string",
+      "description": ""
+     },
+     "X-Partner-Id": {
+      "type": "string",
+      "description": "Your OAuth application client ID."
+     }
+    },
+    "required": [
+     "X-Partner-Id",
+     "campaign_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hive.co/v2/campaigns/ads/{campaign_id}/stats/",
+    "path": [
+     "campaign_id"
+    ],
+    "query": [],
+    "header": [
+     "X-Partner-Id"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hive.campaigns_email_aggregate_stats_retrieve",
+   "name": "Get aggregate campaign stats",
+   "description": "One set of stats totalled across campaigns. Counts and revenue are summed; rates are recalculated from the summed counts. `sent_after` is inclusive and `sent_before` exclusive.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "campaign_ids": {
+      "type": "string",
+      "description": "Comma-separated campaign IDs, max 100."
+     },
+     "sent_after": {
+      "type": "string",
+      "description": ""
+     },
+     "sent_before": {
+      "type": "string",
+      "description": ""
+     },
+     "X-Partner-Id": {
+      "type": "string",
+      "description": "Your OAuth application client ID."
+     }
+    },
+    "required": [
+     "X-Partner-Id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hive.co/v2/campaigns/email/stats/",
+    "path": [],
+    "query": [
+     "campaign_ids",
+     "sent_after",
+     "sent_before"
+    ],
+    "header": [
+     "X-Partner-Id"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hive.campaigns_email_retrieve",
+   "name": "List email campaigns",
+   "description": "Sent email campaigns for the authorized brand, most recently sent first. `stats` is only present when requested with `stats=true`; compare `stats_refreshed_at` to avoid re-fetching unchanged stats.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "limit": {
+      "type": "integer",
+      "description": ""
+     },
+     "offset": {
+      "type": "integer",
+      "description": ""
+     },
+     "stats": {
+      "type": "boolean",
+      "description": ""
+     },
+     "X-Partner-Id": {
+      "type": "string",
+      "description": "Your OAuth application client ID."
+     }
+    },
+    "required": [
+     "X-Partner-Id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hive.co/v2/campaigns/email/",
+    "path": [],
+    "query": [
+     "limit",
+     "offset",
+     "stats"
+    ],
+    "header": [
+     "X-Partner-Id"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hive.campaigns_email_stats_retrieve",
+   "name": "Get campaign stats",
+   "description": "Engagement and revenue stats for a single email campaign. `stats` is null when no stats are available, and `counts`, `rates` and `revenue` are each null until that section is computed.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "campaign_id": {
+      "type": "string",
+      "description": ""
+     },
+     "X-Partner-Id": {
+      "type": "string",
+      "description": "Your OAuth application client ID."
+     }
+    },
+    "required": [
+     "X-Partner-Id",
+     "campaign_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hive.co/v2/campaigns/email/{campaign_id}/stats/",
+    "path": [
+     "campaign_id"
+    ],
+    "query": [],
+    "header": [
+     "X-Partner-Id"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hive.campaigns_sms_aggregate_stats_retrieve",
+   "name": "Get aggregate sms campaign stats",
+   "description": "One set of stats totalled across SMS campaigns. Counts and revenue are summed; rates are recalculated from the summed counts. `sent_after` is inclusive and `sent_before` exclusive.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "campaign_ids": {
+      "type": "string",
+      "description": "Comma-separated campaign IDs, max 100."
+     },
+     "sent_after": {
+      "type": "string",
+      "description": ""
+     },
+     "sent_before": {
+      "type": "string",
+      "description": ""
+     },
+     "X-Partner-Id": {
+      "type": "string",
+      "description": "Your OAuth application client ID."
+     }
+    },
+    "required": [
+     "X-Partner-Id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hive.co/v2/campaigns/sms/stats/",
+    "path": [],
+    "query": [
+     "campaign_ids",
+     "sent_after",
+     "sent_before"
+    ],
+    "header": [
+     "X-Partner-Id"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hive.campaigns_sms_retrieve",
+   "name": "List sms campaigns",
+   "description": "Sent SMS campaigns for the authorized brand, most recently sent first. `stats` is only present when requested with `stats=true`; compare `stats_refreshed_at` to avoid re-fetching unchanged stats.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "limit": {
+      "type": "integer",
+      "description": ""
+     },
+     "offset": {
+      "type": "integer",
+      "description": ""
+     },
+     "stats": {
+      "type": "boolean",
+      "description": ""
+     },
+     "X-Partner-Id": {
+      "type": "string",
+      "description": "Your OAuth application client ID."
+     }
+    },
+    "required": [
+     "X-Partner-Id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hive.co/v2/campaigns/sms/",
+    "path": [],
+    "query": [
+     "limit",
+     "offset",
+     "stats"
+    ],
+    "header": [
+     "X-Partner-Id"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hive.campaigns_sms_stats_retrieve",
+   "name": "Get sms campaign stats",
+   "description": "Engagement and revenue stats for a single SMS campaign. `stats` is null until the campaign's cached stats have been computed. SMS has no open tracking, so clicks are the engagement signal.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "campaign_id": {
+      "type": "string",
+      "description": ""
+     },
+     "X-Partner-Id": {
+      "type": "string",
+      "description": "Your OAuth application client ID."
+     }
+    },
+    "required": [
+     "X-Partner-Id",
+     "campaign_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hive.co/v2/campaigns/sms/{campaign_id}/stats/",
+    "path": [
+     "campaign_id"
+    ],
+    "query": [],
+    "header": [
+     "X-Partner-Id"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hive.contacts_create",
+   "name": "Create or update contacts",
+   "description": "Push contact data to Hive. Contacts are matched by `email` or `phone_number`; re-sending the same identifier updates the existing contact rather than duplicating it.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "X-Partner-Id": {
+      "type": "string",
+      "description": "Your OAuth application client ID."
+     },
+     "contacts": {
+      "type": "array",
+      "description": ""
+     }
+    },
+    "required": [
+     "X-Partner-Id",
+     "contacts"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hive.co/v2/contacts/",
+    "path": [],
+    "query": [],
+    "header": [
+     "X-Partner-Id"
+    ],
+    "body": [
+     "contacts"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hive.custom_event_properties_events_custom_properties_create",
+   "name": "Create custom event property",
+   "description": "Create custom event property",
+   "input": {
+    "type": "object",
+    "properties": {
+     "X-Partner-Id": {
+      "type": "string",
+      "description": "Your OAuth application client ID."
+     },
+     "name": {
+      "type": "string",
+      "description": ""
+     },
+     "value_type": {
+      "type": "string",
+      "description": "Declared value type of a CustomEventProperty. Lowercase because these values travel through the public API (`value_type` on the custom-properties routes).",
+      "enum": [
+       "text",
+       "number"
+      ]
+     }
+    },
+    "required": [
+     "X-Partner-Id",
+     "name",
+     "value_type"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hive.co/v2/events/custom-properties/",
+    "path": [],
+    "query": [],
+    "header": [
+     "X-Partner-Id"
+    ],
+    "body": [
+     "name",
+     "value_type"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hive.custom_event_properties_events_custom_properties_destroy",
+   "name": "Delete custom event property",
+   "description": "Deleting a property also deletes all of its values from your events.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "property_id": {
+      "type": "integer",
+      "description": ""
+     },
+     "force": {
+      "type": "boolean",
+      "description": ""
+     },
+     "X-Partner-Id": {
+      "type": "string",
+      "description": "Your OAuth application client ID."
+     }
+    },
+    "required": [
+     "X-Partner-Id",
+     "property_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.hive.co/v2/events/custom-properties/{property_id}/",
+    "path": [
+     "property_id"
+    ],
+    "query": [
+     "force"
+    ],
+    "header": [
+     "X-Partner-Id"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hive.custom_event_properties_events_custom_properties_retrieve",
+   "name": "List custom event properties",
+   "description": "List custom event properties",
+   "input": {
+    "type": "object",
+    "properties": {
+     "limit": {
+      "type": "integer",
+      "description": ""
+     },
+     "offset": {
+      "type": "integer",
+      "description": ""
+     },
+     "X-Partner-Id": {
+      "type": "string",
+      "description": "Your OAuth application client ID."
+     }
+    },
+    "required": [
+     "X-Partner-Id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hive.co/v2/events/custom-properties/",
+    "path": [],
+    "query": [
+     "limit",
+     "offset"
+    ],
+    "header": [
+     "X-Partner-Id"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hive.custom_event_properties_events_custom_properties_update",
+   "name": "Update custom event property",
+   "description": "Full replacement \u2014 send both fields even when only one changes. A property's `value_type` is locked once any event has a value for it.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "property_id": {
+      "type": "integer",
+      "description": ""
+     },
+     "X-Partner-Id": {
+      "type": "string",
+      "description": "Your OAuth application client ID."
+     },
+     "name": {
+      "type": "string",
+      "description": ""
+     },
+     "value_type": {
+      "type": "string",
+      "description": "Declared value type of a CustomEventProperty. Lowercase because these values travel through the public API (`value_type` on the custom-properties routes).",
+      "enum": [
+       "text",
+       "number"
+      ]
+     }
+    },
+    "required": [
+     "X-Partner-Id",
+     "name",
+     "property_id",
+     "value_type"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.hive.co/v2/events/custom-properties/{property_id}/",
+    "path": [
+     "property_id"
+    ],
+    "query": [],
+    "header": [
+     "X-Partner-Id"
+    ],
+    "body": [
+     "name",
+     "value_type"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hive.custom_event_properties_events_custom_property_retrieve",
+   "name": "Get custom event property",
+   "description": "Get custom event property",
+   "input": {
+    "type": "object",
+    "properties": {
+     "property_id": {
+      "type": "integer",
+      "description": ""
+     },
+     "X-Partner-Id": {
+      "type": "string",
+      "description": "Your OAuth application client ID."
+     }
+    },
+    "required": [
+     "X-Partner-Id",
+     "property_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hive.co/v2/events/custom-properties/{property_id}/",
+    "path": [
+     "property_id"
+    ],
+    "query": [],
+    "header": [
+     "X-Partner-Id"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hive.custom_properties_contacts_custom_properties_delete_create",
+   "name": "Delete custom properties from contacts",
+   "description": "Remove specific custom property keys from one or more contacts.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "X-Partner-Id": {
+      "type": "string",
+      "description": "Your OAuth application client ID."
+     },
+     "contacts": {
+      "type": "array",
+      "description": ""
+     }
+    },
+    "required": [
+     "X-Partner-Id",
+     "contacts"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hive.co/v2/contacts/custom-properties/delete/",
+    "path": [],
+    "query": [],
+    "header": [
+     "X-Partner-Id"
+    ],
+    "body": [
+     "contacts"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hive.events_create",
+   "name": "Create or update events",
+   "description": "Create or update events",
+   "input": {
+    "type": "object",
+    "properties": {
+     "X-Partner-Id": {
+      "type": "string",
+      "description": "Your OAuth application client ID."
+     },
+     "events": {
+      "type": "array",
+      "description": ""
+     }
+    },
+    "required": [
+     "X-Partner-Id",
+     "events"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hive.co/v2/events/",
+    "path": [],
+    "query": [],
+    "header": [
+     "X-Partner-Id"
+    ],
+    "body": [
+     "events"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hive.events_partial_update",
+   "name": "Partially update an event",
+   "description": "Update individual fields on an event that already exists in Hive. Send only the fields that changed \u2014 at least one is required. The event is identified by `event_id` in the path, and the update time is server-stamped.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "event_id": {
+      "type": "string",
+      "description": ""
+     },
+     "X-Partner-Id": {
+      "type": "string",
+      "description": "Your OAuth application client ID."
+     },
+     "primary_performer_names": {
+      "type": "array",
+      "description": ""
+     },
+     "supporting_performer_names": {
+      "type": "array",
+      "description": ""
+     },
+     "description": {
+      "type": "string",
+      "description": ""
+     },
+     "end_at": {
+      "type": "string",
+      "description": ""
+     },
+     "presale_start_at": {
+      "type": "string",
+      "description": ""
+     },
+     "onsale_start_at": {
+      "type": "string",
+      "description": ""
+     },
+     "doors_open_at": {
+      "type": "string",
+      "description": ""
+     },
+     "thumbnail_url": {
+      "type": "string",
+      "description": ""
+     },
+     "genres": {
+      "type": "array",
+      "description": ""
+     },
+     "tags": {
+      "type": "array",
+      "description": ""
+     },
+     "has_tickets_available": {
+      "type": "boolean",
+      "description": ""
+     },
+     "total_tickets": {
+      "type": "integer",
+      "description": ""
+     },
+     "timezone": {
+      "type": "string",
+      "description": ""
+     },
+     "venue": {
+      "type": "object",
+      "description": ""
+     },
+     "tiers": {
+      "type": "array",
+      "description": ""
+     },
+     "properties": {
+      "type": "object",
+      "description": ""
+     },
+     "name": {
+      "type": "string",
+      "description": ""
+     },
+     "start_at": {
+      "type": "string",
+      "description": ""
+     },
+     "event_url": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "X-Partner-Id",
+     "event_id"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.hive.co/v2/events/{event_id}/",
+    "path": [
+     "event_id"
+    ],
+    "query": [],
+    "header": [
+     "X-Partner-Id"
+    ],
+    "body": [
+     "primary_performer_names",
+     "supporting_performer_names",
+     "description",
+     "end_at",
+     "presale_start_at",
+     "onsale_start_at",
+     "doors_open_at",
+     "thumbnail_url",
+     "genres",
+     "tags",
+     "has_tickets_available",
+     "total_tickets",
+     "timezone",
+     "venue",
+     "tiers",
+     "properties",
+     "name",
+     "start_at",
+     "event_url"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hive.orders_create",
+   "name": "Create or update orders",
+   "description": "Push order/ticket data to Hive. An order is scoped to a single event; split a multi-event purchase into one order per `event_id`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "X-Partner-Id": {
+      "type": "string",
+      "description": "Your OAuth application client ID."
+     },
+     "orders": {
+      "type": "array",
+      "description": ""
+     }
+    },
+    "required": [
+     "X-Partner-Id",
+     "orders"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hive.co/v2/orders/",
+    "path": [],
+    "query": [],
+    "header": [
+     "X-Partner-Id"
+    ],
+    "body": [
+     "orders"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hive.segments_create",
+   "name": "Create segment",
+   "description": "Create a new segment for the authorized brand. Segment names must be unique within the brand.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "X-Partner-Id": {
+      "type": "string",
+      "description": "Your OAuth application client ID."
+     },
+     "name": {
+      "type": "string",
+      "description": ""
+     },
+     "description": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": ""
+     }
+    },
+    "required": [
+     "X-Partner-Id",
+     "name"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hive.co/v2/segments/",
+    "path": [],
+    "query": [],
+    "header": [
+     "X-Partner-Id"
+    ],
+    "body": [
+     "name",
+     "description"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hive.segments_destroy",
+   "name": "Delete segment",
+   "description": "Delete an existing segment. Only segments the brand is allowed to delete can be removed.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "segment_id": {
+      "type": "string",
+      "description": ""
+     },
+     "X-Partner-Id": {
+      "type": "string",
+      "description": "Your OAuth application client ID."
+     }
+    },
+    "required": [
+     "X-Partner-Id",
+     "segment_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.hive.co/v2/segments/{segment_id}/",
+    "path": [
+     "segment_id"
+    ],
+    "query": [],
+    "header": [
+     "X-Partner-Id"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hive.segments_retrieve",
+   "name": "List segments",
+   "description": "Retrieve the segments available for the authorized brand.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "X-Partner-Id": {
+      "type": "string",
+      "description": "Your OAuth application client ID."
+     }
+    },
+    "required": [
+     "X-Partner-Id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hive.co/v2/segments/",
+    "path": [],
+    "query": [],
+    "header": [
+     "X-Partner-Id"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hive.segments_users_create",
+   "name": "Add users to segment",
+   "description": "Only static segments can be modified through the API.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "segment_id": {
+      "type": "string",
+      "description": ""
+     },
+     "X-Partner-Id": {
+      "type": "string",
+      "description": "Your OAuth application client ID."
+     },
+     "users": {
+      "type": "array",
+      "description": ""
+     }
+    },
+    "required": [
+     "X-Partner-Id",
+     "segment_id",
+     "users"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hive.co/v2/segments/{segment_id}/users/",
+    "path": [
+     "segment_id"
+    ],
+    "query": [],
+    "header": [
+     "X-Partner-Id"
+    ],
+    "body": [
+     "users"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hive.segments_users_remove_create",
+   "name": "Remove users from segment",
+   "description": "Only static segments can be modified through the API.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "segment_id": {
+      "type": "string",
+      "description": ""
+     },
+     "X-Partner-Id": {
+      "type": "string",
+      "description": "Your OAuth application client ID."
+     },
+     "users": {
+      "type": "array",
+      "description": ""
+     }
+    },
+    "required": [
+     "X-Partner-Id",
+     "segment_id",
+     "users"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hive.co/v2/segments/{segment_id}/users/remove/",
+    "path": [
+     "segment_id"
+    ],
+    "query": [],
+    "header": [
+     "X-Partner-Id"
+    ],
+    "body": [
+     "users"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hive.segments_users_retrieve",
+   "name": "List segment users",
+   "description": "List segment users",
+   "input": {
+    "type": "object",
+    "properties": {
+     "segment_id": {
+      "type": "string",
+      "description": ""
+     },
+     "limit": {
+      "type": "integer",
+      "description": ""
+     },
+     "offset": {
+      "type": "integer",
+      "description": ""
+     },
+     "X-Partner-Id": {
+      "type": "string",
+      "description": "Your OAuth application client ID."
+     }
+    },
+    "required": [
+     "X-Partner-Id",
+     "segment_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hive.co/v2/segments/{segment_id}/users/",
+    "path": [
+     "segment_id"
+    ],
+    "query": [
+     "limit",
+     "offset"
+    ],
+    "header": [
+     "X-Partner-Id"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  }
+ ]
+}

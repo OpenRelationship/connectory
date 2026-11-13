@@ -6,7 +6,7 @@
   {
    "slug": "close.activities_calls_create",
    "name": "Log an external call activity",
-   "description": "Use this endpoint to log calls made outside of the Close built-in VoIP system. *status*: defaults to `completed` *direction* (optional): `outbound` or `inbound` *recording_url*: you can post a URL pointing to the MP3 recording of your call. For security reasons, we require the URL to be secure (i.e. starting with https://)",
+   "description": "Use this endpoint to log calls made outside of the Close built-in VoIP system. *status*: defaults to `completed` *direction* (optional): `outbound` or `inbound` *recording_url*: you can post a URL pointing to the MP3 recording of your call. For security reasons, we require the URL to be secure (i.e. starting with https://) *voicemail_url*: you can post a secure URL (starting with https://) that po",
    "input": {
     "type": "object",
     "properties": {
@@ -121,7 +121,7 @@
        "string",
        "null"
       ],
-      "description": ""
+      "description": "HTTPS URL of the recording of a call that you log through the API. For a call made through Close, only `null` can change this field, and it deletes the recording."
      },
      "source": {
       "type": "string",
@@ -157,7 +157,7 @@
        "string",
        "null"
       ],
-      "description": ""
+      "description": "HTTPS URL of the voicemail that the caller left, for a call that you log through the API. The call must be inbound and completed, with a `duration` of 0. For a call made through Close, only `null` can change this field, and it deletes the voicemail."
      }
     },
     "required": []
@@ -268,7 +268,7 @@
      },
      "_skip": {
       "type": "integer",
-      "description": "Number of results to skip before returning, for pagination."
+      "description": "Number of results to skip before returning, for pagination. The maximum is 35,000 for some organizations."
      },
      "id__in": {
       "type": [
@@ -382,7 +382,7 @@
   {
    "slug": "close.activities_calls_update",
    "name": "Update a call activity",
-   "description": "Most commonly used to update `note_html` or `outcome_id`. Some fields (`status`, `duration`, `direction`) cannot be updated for internal calls made through Close's VoIP system. **`note_html` and `note`**: setting one overwrites the other. If both are provided, `note_html` takes precedence. `note_html` supports rich-text HTML; `note` is plaintext only. **Deleting recordings**: for internal calls, c",
+   "description": "Most commonly used to update `note_html` or `outcome_id`. Some fields (`status`, `duration`, `direction`) cannot be updated for internal calls made through Close's VoIP system. **`note_html` and `note`**: setting one overwrites the other. If both are provided, `note_html` takes precedence. `note_html` supports rich-text HTML; `note` is plaintext only. **Deleting recordings**: for internal calls, s",
    "input": {
     "type": "object",
     "properties": {
@@ -472,7 +472,7 @@
        "string",
        "null"
       ],
-      "description": ""
+      "description": "HTTPS URL of the recording of a call that you log through the API. For a call made through Close, only `null` can change this field, and it deletes the recording."
      },
      "status": {
       "type": "string",
@@ -500,7 +500,7 @@
        "string",
        "null"
       ],
-      "description": ""
+      "description": "HTTPS URL of the voicemail that the caller left, for a call that you log through the API. The call must be inbound and completed, with a `duration` of 0. For a call made through Close, only `null` can change this field, and it deletes the voicemail."
      }
     },
     "required": [
@@ -582,7 +582,7 @@
      },
      "_skip": {
       "type": "integer",
-      "description": "Number of results to skip before returning, for pagination."
+      "description": "Number of results to skip before returning, for pagination. The maximum is 35,000 for some organizations."
      },
      "id__in": {
       "type": [
@@ -867,7 +867,7 @@
      },
      "_skip": {
       "type": "integer",
-      "description": "Number of results to skip before returning, for pagination."
+      "description": "Number of results to skip before returning, for pagination. The maximum is 35,000 for some organizations."
      },
      "id__in": {
       "type": [
@@ -1128,7 +1128,7 @@
      },
      "_skip": {
       "type": "integer",
-      "description": "Number of results to skip before returning, for pagination."
+      "description": "Number of results to skip before returning, for pagination. The maximum is 35,000 for some organizations."
      },
      "id__in": {
       "type": [
@@ -1309,6 +1309,10 @@
       ],
       "description": ""
      },
+     "date_scheduled": {
+      "type": "string",
+      "description": "When to send the message. Required when `status` is `scheduled`, and ignored otherwise."
+     },
      "email_account_id": {
       "type": [
        "string",
@@ -1368,6 +1372,10 @@
        "null"
       ],
       "description": ""
+     },
+     "send_in": {
+      "type": "integer",
+      "description": "Seconds to delay sending, to allow undo. Only used when `status` is `outbox`."
      },
      "sender": {
       "type": [
@@ -1438,6 +1446,7 @@
      "contact_id",
      "created_by",
      "date_created",
+     "date_scheduled",
      "email_account_id",
      "followup_date",
      "followup_sequence_add_cc_bcc",
@@ -1447,6 +1456,7 @@
      "lead_id",
      "opens",
      "organization_id",
+     "send_in",
      "sender",
      "status",
      "subject",
@@ -1532,7 +1542,7 @@
      },
      "_skip": {
       "type": "integer",
-      "description": "Number of results to skip before returning, for pagination."
+      "description": "Number of results to skip before returning, for pagination. The maximum is 35,000 for some organizations."
      },
      "id__in": {
       "type": [
@@ -1703,6 +1713,10 @@
       ],
       "description": ""
      },
+     "date_scheduled": {
+      "type": "string",
+      "description": "When to send the message. Required when `status` is `scheduled`, and ignored otherwise."
+     },
      "email_account_id": {
       "type": [
        "string",
@@ -1751,6 +1765,10 @@
        "null"
       ],
       "description": ""
+     },
+     "send_in": {
+      "type": "integer",
+      "description": "Seconds to delay sending, to allow undo. Only used when `status` is `outbox`."
      },
      "sender": {
       "type": [
@@ -1820,6 +1838,7 @@
      "body_text",
      "cc",
      "contact_id",
+     "date_scheduled",
      "email_account_id",
      "followup_date",
      "followup_sequence_add_cc_bcc",
@@ -1827,6 +1846,7 @@
      "followup_sequence_id",
      "in_reply_to_id",
      "opens",
+     "send_in",
      "sender",
      "status",
      "subject",
@@ -1912,7 +1932,7 @@
      },
      "_skip": {
       "type": "integer",
-      "description": "Number of results to skip before returning, for pagination."
+      "description": "Number of results to skip before returning, for pagination. The maximum is 35,000 for some organizations."
      },
      "id__in": {
       "type": [
@@ -2131,7 +2151,7 @@
      },
      "_skip": {
       "type": "integer",
-      "description": "Number of results to skip before returning, for pagination."
+      "description": "Number of results to skip before returning, for pagination. The maximum is 35,000 for some organizations."
      },
      "id__in": {
       "type": [
@@ -2289,7 +2309,7 @@
      },
      "_skip": {
       "type": "integer",
-      "description": "Number of results to skip before returning, for pagination."
+      "description": "Number of results to skip before returning, for pagination. The maximum is 35,000 for some organizations."
      },
      "id__in": {
       "type": [
@@ -2494,7 +2514,7 @@
      },
      "_skip": {
       "type": "integer",
-      "description": "Number of results to skip before returning, for pagination."
+      "description": "Number of results to skip before returning, for pagination. The maximum is 35,000 for some organizations."
      },
      "id__in": {
       "type": [
@@ -2618,7 +2638,7 @@
      },
      "_skip": {
       "type": "integer",
-      "description": "Number of results to skip before returning, for pagination."
+      "description": "Number of results to skip before returning, for pagination. The maximum is 35,000 for some organizations."
      },
      "id__in": {
       "type": [
@@ -2853,11 +2873,11 @@
     "properties": {
      "_limit": {
       "type": "integer",
-      "description": "Number of results to return."
+      "description": "Number of results to return. When `_fields` includes `transcripts`, larger values are treated as 10."
      },
      "_skip": {
       "type": "integer",
-      "description": "Number of results to skip before returning, for pagination."
+      "description": "Number of results to skip before returning, for pagination. The maximum is 35,000 for some organizations."
      },
      "id__in": {
       "type": [
@@ -3187,7 +3207,7 @@
      },
      "_skip": {
       "type": "integer",
-      "description": "Number of results to skip before returning, for pagination."
+      "description": "Number of results to skip before returning, for pagination. The maximum is 35,000 for some organizations."
      },
      "id__in": {
       "type": [
@@ -3477,7 +3497,7 @@
      },
      "_skip": {
       "type": "integer",
-      "description": "Number of results to skip before returning, for pagination."
+      "description": "Number of results to skip before returning, for pagination. The maximum is 35,000 for some organizations."
      },
      "id__in": {
       "type": [
@@ -3650,6 +3670,10 @@
       ],
       "description": ""
      },
+     "date_scheduled": {
+      "type": "string",
+      "description": "When to send the message. Required when `status` is `scheduled`, and ignored otherwise."
+     },
      "direction": {
       "type": "string",
       "description": "",
@@ -3685,6 +3709,10 @@
        "null"
       ],
       "description": "Phone number in E.164 format"
+     },
+     "send_in": {
+      "type": "integer",
+      "description": "Seconds to delay sending, to allow undo. Only used when `status` is `outbox`."
      },
      "source": {
       "type": "string",
@@ -3747,11 +3775,13 @@
      "contact_id",
      "created_by",
      "date_created",
+     "date_scheduled",
      "direction",
      "lead_id",
      "local_phone",
      "organization_id",
      "remote_phone",
+     "send_in",
      "source",
      "status",
      "template_id",
@@ -3836,7 +3866,7 @@
      },
      "_skip": {
       "type": "integer",
-      "description": "Number of results to skip before returning, for pagination."
+      "description": "Number of results to skip before returning, for pagination. The maximum is 35,000 for some organizations."
      },
      "id__in": {
       "type": [
@@ -3950,7 +3980,7 @@
   {
    "slug": "close.activities_sms_update",
    "name": "Update an sms activity",
-   "description": "This can be used to modify a draft or send it once the draft is complete. To send an SMS immediately, you can update its `status` to `outbox`. To send it at a later time, change the `status` to `scheduled` and provide the desired date & time in the `date_scheduled` field.",
+   "description": "This can be used to modify a draft or send it once the draft is complete. To send an SMS immediately, you can update its `status` to `outbox`. To send it at a later time, change the `status` to `scheduled` and provide the desired date & time in the `date_scheduled` field. A switch of `caller_id_mode` to `auto` requires a plan that includes Local Presence. On a plan without it, a draft can use `aut",
    "input": {
     "type": "object",
     "properties": {
@@ -3987,6 +4017,10 @@
       ],
       "description": ""
      },
+     "date_scheduled": {
+      "type": "string",
+      "description": "When to send the message. Required when `status` is `scheduled`, and ignored otherwise."
+     },
      "lead_id": {
       "type": [
        "string",
@@ -4007,6 +4041,10 @@
        "null"
       ],
       "description": "Phone number in E.164 format"
+     },
+     "send_in": {
+      "type": "integer",
+      "description": "Seconds to delay sending, to allow undo. Only used when `status` is `outbox`."
      },
      "status": {
       "type": "string",
@@ -4059,9 +4097,11 @@
      "attachments",
      "caller_id_mode",
      "contact_id",
+     "date_scheduled",
      "lead_id",
      "local_phone",
      "remote_phone",
+     "send_in",
      "status",
      "template_id",
      "text",
@@ -4145,7 +4185,7 @@
      },
      "_skip": {
       "type": "integer",
-      "description": "Number of results to skip before returning, for pagination."
+      "description": "Number of results to skip before returning, for pagination. The maximum is 35,000 for some organizations."
      },
      "id__in": {
       "type": [
@@ -4440,7 +4480,7 @@
      },
      "_skip": {
       "type": "integer",
-      "description": "Number of results to skip before returning, for pagination."
+      "description": "Number of results to skip before returning, for pagination. The maximum is 35,000 for some organizations."
      },
      "id__in": {
       "type": [
@@ -4649,6 +4689,68 @@
    }
   },
   {
+   "slug": "close.advanced_filtering_search",
+   "name": "Search objects with filters",
+   "description": "Find Leads, Contacts, Opportunities, Activities, Tasks and other objects matching any combination of filters. This is the API behind the filters on the Leads, Contacts and Opportunities pages in Close, and the query language used by Smart Views (`s_query`) and bulk actions. Searching doesn't change any data. ### Building a query A query is a tree of objects, each with a `type`: 1. Start with an `a",
+   "input": {
+    "type": "object",
+    "properties": {
+     "_fields": {
+      "type": "object",
+      "description": "Fields to return for each object type. The field names are the same as in the object type's own endpoint, e.g. `{\"lead\": [\"id\", \"display_name\"]}`. Custom fields use `custom.cf_abc123`. Without it, results only contain `id` and `__object_type`."
+     },
+     "_limit": {
+      "type": "integer",
+      "description": "Number of results per page."
+     },
+     "cursor": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "The `cursor` from the previous page's response. Cursors expire after 30 seconds."
+     },
+     "include_counts": {
+      "type": "boolean",
+      "description": "Whether to include the number of matches in `count`."
+     },
+     "query": {
+      "type": "string",
+      "description": "A search query. Queries are distinguished by their `type`. Combine queries with `and` and `or`, and use `negate` on any query to exclude what it matches."
+     },
+     "results_limit": {
+      "type": [
+       "integer",
+       "null"
+      ],
+      "description": "Maximum number of results across all pages, e.g. to act only on the first 100 matches. Use `0` with `include_counts` to only count matches."
+     },
+     "sort": {
+      "type": "array",
+      "description": "Fields to sort results by. When paginating, sort by a field that rarely changes, like `date_created`, so no results are skipped."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.close.com/api/v1/data/search/",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "_fields",
+     "_limit",
+     "cursor",
+     "include_counts",
+     "query",
+     "results_limit",
+     "sort"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "close.blocked_phone_numbers_create",
    "name": "Create a blocked phone number",
    "description": "Once this record is created, the phone number you have specified will no longer work for outbound nor inbound calls. That means: * Nobody in your organization will be able to call that phone number. * That phone number will not be able to call anybody in your organization.",
@@ -4657,7 +4759,7 @@
     "properties": {
      "phone": {
       "type": "string",
-      "description": "The phone number (in E.164 format) that you wish to block."
+      "description": "The phone number that you wish to block."
      },
      "reason": {
       "type": "string",
@@ -5547,63 +5649,63 @@
        "string",
        "null"
       ],
-      "description": ""
+      "description": "ID of the user to record as the contact's creator. Defaults to the requesting user"
      },
      "date_created": {
       "type": [
        "string",
        "null"
       ],
-      "description": ""
+      "description": "When the contact was created, as an ISO 8601 timestamp. Defaults to now. Useful when importing contacts from another system"
      },
      "emails": {
       "type": [
        "array",
        "null"
       ],
-      "description": ""
+      "description": "Email addresses of the contact"
      },
      "lead_id": {
       "type": [
        "string",
        "null"
       ],
-      "description": ""
+      "description": "ID of the lead to add the contact to. If omitted, a new lead is created for the contact"
      },
      "name": {
       "type": [
        "string",
        "null"
       ],
-      "description": ""
+      "description": "Full name of the contact"
      },
      "phones": {
       "type": [
        "array",
        "null"
       ],
-      "description": ""
+      "description": "Phone numbers of the contact"
      },
      "timezone": {
       "type": [
        "string",
        "null"
       ],
-      "description": "IANA timezone identifier"
+      "description": "IANA timezone ID to set manually for the contact, e.g. `America/New_York`. If omitted or null, the timezone is inferred from the contact's phone numbers"
      },
      "title": {
       "type": [
        "string",
        "null"
       ],
-      "description": ""
+      "description": "Job title of the contact, e.g. `CEO`"
      },
      "urls": {
       "type": [
        "array",
        "null"
       ],
-      "description": ""
+      "description": "URLs associated with the contact"
      }
     },
     "required": []
@@ -5633,7 +5735,7 @@
   {
    "slug": "close.contacts_delete",
    "name": "Delete a contact",
-   "description": "Delete a contact",
+   "description": "Delete a contact by ID. The contact is removed from its lead. Returns `404` if the contact doesn't exist, or `403` if you can't access its lead. Deleting a contact also deletes its [workflow subscriptions](https://developer.close.com/api/resources/sequences/list-subscriptions). That cleanup runs in the background shortly after the request returns. A successful request returns an empty object.",
    "input": {
     "type": "object",
     "properties": {
@@ -5661,7 +5763,7 @@
   {
    "slug": "close.contacts_get",
    "name": "Fetch a single contact",
-   "description": "Fetch a single contact",
+   "description": "Fetch a single contact by ID. Returns `404` if the contact doesn't exist or you can't access its lead. Use `_fields` to return only the fields you need. `lead_id` is always returned. Custom field values appear as `custom.{custom_field_id}` keys.",
    "input": {
     "type": "object",
     "properties": {
@@ -5695,7 +5797,7 @@
   {
    "slug": "close.contacts_list",
    "name": "List contacts",
-   "description": "List contacts",
+   "description": "List the contacts in your organization, newest first (by `date_created`). To list the contacts on a single lead, pass `lead_id`. If you don't have the \"View All Leads\" permission, `lead_id` is required: without it, the request fails with `403`. It also returns `403` if you can't access the lead you named. Use `_fields` to return only the fields you need. `lead_id` is always returned. Custom field ",
    "input": {
     "type": "object",
     "properties": {
@@ -5712,8 +5814,11 @@
       "description": "Comma-separated list of fields to include in the response."
      },
      "lead_id": {
-      "type": "string",
-      "description": ""
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Only return contacts on this lead, e.g. `lead_etYl6PwL12hkj14567kjolJwZuZehb9b85EDH9CKuAI`. Required if you don't have the \"View All Leads\" permission."
      }
     },
     "required": []
@@ -5753,49 +5858,49 @@
        "array",
        "null"
       ],
-      "description": ""
+      "description": "Email addresses of the contact. Replaces the existing list. Omit or send null to leave it unchanged"
      },
      "lead_id": {
       "type": [
        "string",
        "null"
       ],
-      "description": ""
+      "description": "ID of the lead the contact belongs to. Contacts can't be moved to another lead, so if set, this must be the contact's current lead"
      },
      "name": {
       "type": [
        "string",
        "null"
       ],
-      "description": ""
+      "description": "Full name of the contact. Omit or send null to leave it unchanged"
      },
      "phones": {
       "type": [
        "array",
        "null"
       ],
-      "description": ""
+      "description": "Phone numbers of the contact. Replaces the existing list. Omit or send null to leave it unchanged"
      },
      "timezone": {
       "type": [
        "string",
        "null"
       ],
-      "description": "IANA timezone identifier"
+      "description": "IANA timezone ID to set manually for the contact, e.g. `America/New_York`. Send null to clear it, so the timezone is inferred from the contact's phone numbers instead. Omit to leave it unchanged"
      },
      "title": {
       "type": [
        "string",
        "null"
       ],
-      "description": ""
+      "description": "Job title of the contact, e.g. `CEO`. Omit or send null to leave it unchanged"
      },
      "urls": {
       "type": [
        "array",
        "null"
       ],
-      "description": ""
+      "description": "URLs associated with the contact. Replaces the existing list. Omit or send null to leave it unchanged"
      }
     },
     "required": [
@@ -7274,6 +7379,14 @@
    "input": {
     "type": "object",
     "properties": {
+     "_limit": {
+      "type": "integer",
+      "description": "Number of results to return. Larger values are treated as 100."
+     },
+     "_skip": {
+      "type": "integer",
+      "description": "Number of results to skip before returning, for pagination."
+     },
      "organization_id": {
       "type": [
        "string",
@@ -7312,14 +7425,6 @@
        "null"
       ],
       "description": ""
-     },
-     "_limit": {
-      "type": "integer",
-      "description": "Number of results to return."
-     },
-     "_skip": {
-      "type": "integer",
-      "description": "Number of results to skip before returning, for pagination."
      }
     },
     "required": []
@@ -7329,14 +7434,14 @@
     "url": "https://api.close.com/api/v1/dialer/",
     "path": [],
     "query": [
+     "_limit",
+     "_skip",
      "organization_id",
      "source_type",
      "source_value",
      "status",
      "status__in",
-     "user_id",
-     "_limit",
-     "_skip"
+     "user_id"
     ],
     "header": [],
     "body": [],
@@ -7657,10 +7762,6 @@
       "type": "integer",
       "description": "Number of results to return."
      },
-     "_skip": {
-      "type": "integer",
-      "description": "Number of results to skip before returning, for pagination."
-     },
      "object_type": {
       "type": [
        "string",
@@ -7733,7 +7834,6 @@
     "path": [],
     "query": [
      "_limit",
-     "_skip",
      "object_type",
      "object_id",
      "lead_id",
@@ -8571,17 +8671,17 @@
   {
    "slug": "close.lead_statuses_create",
    "name": "Create a new status that can be applied to leads",
-   "description": "Create a new status that can be applied to leads",
+   "description": "Create a lead status. New statuses are added to the end of the organization's list of statuses. Returns 400 if a status with the same label already exists (ignoring case). Requires the Manage Customizations permission, otherwise returns 403.",
    "input": {
     "type": "object",
     "properties": {
      "color": {
       "type": "string",
-      "description": ""
+      "description": "Color of the status badge in Close. Set to null to clear the color. On update, leave it out to keep the current color."
      },
      "label": {
       "type": "string",
-      "description": ""
+      "description": "Name of the lead status. Leading and trailing whitespace is removed. Must be unique within the organization (ignoring case)."
      }
     },
     "required": [
@@ -8604,13 +8704,13 @@
   {
    "slug": "close.lead_statuses_delete",
    "name": "Delete a lead status",
-   "description": "You should make sure no leads are assigned this status, first.",
+   "description": "Delete a lead status. Returns an empty object on success. Returns 400 if any leads still have this status, so move them to another status first. Also returns 400 if this is the organization's last lead status. Requires the Manage Customizations permission, otherwise returns 403.",
    "input": {
     "type": "object",
     "properties": {
      "id": {
       "type": "string",
-      "description": ""
+      "description": "ID of the lead status."
      }
     },
     "required": [
@@ -8632,13 +8732,13 @@
   {
    "slug": "close.lead_statuses_get",
    "name": "Fetch a single lead status",
-   "description": "Fetch a single lead status",
+   "description": "Fetch a single lead status by its ID or its label. The `id` path param is matched against status IDs first, then against labels, ignoring case in both. Returns 404 if no status matches.",
    "input": {
     "type": "object",
     "properties": {
      "id": {
       "type": "string",
-      "description": ""
+      "description": "ID of the lead status, or its label. Labels are matched ignoring case, and only when no status has a matching ID."
      }
     },
     "required": [
@@ -8660,7 +8760,7 @@
   {
    "slug": "close.lead_statuses_list",
    "name": "List lead statuses for your organization",
-   "description": "List lead statuses for your organization",
+   "description": "List all lead statuses in your organization, in the order they're configured in Close. The list isn't paginated, so every status is returned in one response and `has_more` is always false.",
    "input": {
     "type": "object",
     "properties": {},
@@ -8678,22 +8778,22 @@
   },
   {
    "slug": "close.lead_statuses_update",
-   "name": "Rename a lead status",
-   "description": "Update a lead status. The `label` and `color` can be changed. To update the status of a particular lead, see PUT `/lead/{lead_id}/`.",
+   "name": "Update a lead status",
+   "description": "Rename a lead status or change its color. Send `label` on every update, even when you only change `color`. Leads that use the status keep it, and show the new label. Returns 400 if another status already has the same label (ignoring case). Requires the Manage Customizations permission, otherwise returns 403. To change the status of a particular lead, see PUT `/lead/{lead_id}/`.",
    "input": {
     "type": "object",
     "properties": {
      "id": {
       "type": "string",
-      "description": ""
+      "description": "ID of the lead status."
      },
      "color": {
       "type": "string",
-      "description": ""
+      "description": "Color of the status badge in Close. Set to null to clear the color. On update, leave it out to keep the current color."
      },
      "label": {
       "type": "string",
-      "description": ""
+      "description": "Name of the lead status. Leading and trailing whitespace is removed. Must be unique within the organization (ignoring case)."
      }
     },
     "required": [
@@ -8719,26 +8819,90 @@
   {
    "slug": "close.leads_create",
    "name": "Create a new lead",
-   "description": "Contacts, addresses, and custom fields can all be nested in the lead. Activities, tasks, and opportunities must be posted separately. **status / status_id** (optional): Post either `status` or `status_id` (but not both). If neither is provided, the organization's default (first) status will be used. Using `status_id` is recommended so that users can rename statuses in the UI without breaking your ",
+   "description": "Create a lead. You can include its contacts, addresses and custom fields in the same request. Activities, tasks and opportunities must be created separately. Returns the created lead. **Custom fields**: set a custom field by setting `custom.{custom_field_id}` to its value, e.g.: ```json { \"custom.cf_v6S011I6MqcbVvB2FA5Nk8dr5MkL8sWuCiG8cUleO9c\": \"value\", \"custom.cf_8wtBWsdRU2Fur7GDnEeXQ7ra2Vu7R4hG1",
    "input": {
     "type": "object",
-    "properties": {},
+    "properties": {
+     "_fields": {
+      "type": "string",
+      "description": "Comma-separated list of fields to include in the response."
+     },
+     "addresses": {
+      "type": [
+       "array",
+       "null"
+      ],
+      "description": "Addresses of the lead, up to 100."
+     },
+     "contacts": {
+      "type": [
+       "array",
+       "null"
+      ],
+      "description": "Contacts to create on the lead, up to 300."
+     },
+     "description": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Free-text description of the lead."
+     },
+     "name": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Name of the lead, usually a company name, e.g. `Bluth Company`."
+     },
+     "status": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Label of the lead's status, e.g. `Potential`, matched ignoring case. Using `status_id` instead is recommended, so renaming a status doesn't break your integration. Pass either `status` or `status_id`, not both."
+     },
+     "status_id": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "ID of the lead's status, e.g. `stat_1ZdiZqcSIkoGVnNOyxiEY58eTGQmFNG3LPlEVQ4V7Nk`. If neither `status_id` nor `status` is given, the organization's first lead status is used. See [Lead Statuses](https://developer.close.com/api/resources/lead-statuses)."
+     },
+     "url": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Website of the lead, e.g. `https://www.example.com`. `https://` is added if the URL has no scheme."
+     }
+    },
     "required": []
    },
    "request": {
     "method": "POST",
     "url": "https://api.close.com/api/v1/lead/",
     "path": [],
-    "query": [],
+    "query": [
+     "_fields"
+    ],
     "header": [],
-    "body": [],
+    "body": [
+     "addresses",
+     "contacts",
+     "description",
+     "name",
+     "status",
+     "status_id",
+     "url"
+    ],
     "body_format": "json"
    }
   },
   {
    "slug": "close.leads_delete",
    "name": "Delete a lead",
-   "description": "Delete a lead",
+   "description": "Delete a lead and all of its related data, including its contacts, opportunities, activities, tasks and custom objects. This can't be undone. The lead's contacts are deleted right away. Everything else, including the lead itself, is deleted in the background, so the lead may still be returned for a short time after this request succeeds. Returns an empty object on success. Returns `404` if the lea",
    "input": {
     "type": "object",
     "properties": {
@@ -8766,29 +8930,31 @@
   {
    "slug": "close.leads_files_create",
    "name": "Attach a file to a lead",
-   "description": "Attach an already-uploaded file to a lead. First upload the file to S3 using the [Files API](https://developer.close.com/api/resources/files), then pass the resulting download `url` here along with its `filename` and `content_type`.",
+   "description": "Attach a file directly to a lead. First upload the file with the [Files API](https://developer.close.com/api/resources/files), then pass its download `url` here with a `filename`. You can also pass the `download_url` of a file already in Close. Files can be at most 25 MB. If the lead already has a file with the same name and contents, that file is updated instead of creating a copy, and its origin",
    "input": {
     "type": "object",
     "properties": {
      "id": {
       "type": "string",
-      "description": ""
+      "description": "ID of the lead, e.g. `lead_70jZ5hiVt5X31MZ3vJ0R0GJMqJEihkoF7TtSVFbN2ty`."
      },
      "content_type": {
-      "type": "string",
-      "description": ""
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Deprecated: ignored. The content type is read from the uploaded file."
      },
      "filename": {
       "type": "string",
-      "description": ""
+      "description": "Name to give the file on the lead, e.g. `contract.pdf`."
      },
      "url": {
       "type": "string",
-      "description": ""
+      "description": "URL of the file to attach: the download URL from the Files API upload, or the `download_url` of a file already in Close. Must be a file you have access to, of at most 25 MB."
      }
     },
     "required": [
-     "content_type",
      "filename",
      "id",
      "url"
@@ -8813,13 +8979,13 @@
   {
    "slug": "close.leads_files_list",
    "name": "List files attached to a lead",
-   "description": "List files attached to a lead",
+   "description": "List the files on a lead, newest first (by `date_created`). This includes files attached to the lead directly, and attachments of the lead's emails, notes, SMS, WhatsApp messages and opportunities. `last_object_type` and `last_object_id` say where each file was most recently attached. Returns 403 if you can't see the lead, and 404 if it doesn't exist.",
    "input": {
     "type": "object",
     "properties": {
      "id": {
       "type": "string",
-      "description": ""
+      "description": "ID of the lead, e.g. `lead_70jZ5hiVt5X31MZ3vJ0R0GJMqJEihkoF7TtSVFbN2ty`."
      },
      "_limit": {
       "type": "integer",
@@ -8857,7 +9023,7 @@
   {
    "slug": "close.leads_get",
    "name": "Get a single lead",
-   "description": "Get a single Lead",
+   "description": "Fetch a single lead by ID. Returns `404` if the lead doesn't exist, and `403` if it exists but you don't have access to it. Use `_fields` to return only the fields you need, or `_fields=_all` to also include optional fields such as `primary_email`, `primary_phone` and `contact_ids`. Custom field values appear as `custom.{custom_field_id}` keys.",
    "input": {
     "type": "object",
     "properties": {
@@ -8891,7 +9057,7 @@
   {
    "slug": "close.leads_list",
    "name": "List leads",
-   "description": "List Leads",
+   "description": "List the leads in your organization, most recently updated first. Only leads you have access to are returned. Results come from the search index, so a lead you just created or updated may not appear immediately. Use `_fields` to return only the fields you need, or `_fields=_all` to also include optional fields such as `primary_email`, `primary_phone` and `contact_ids`. Custom field values appear a",
    "input": {
     "type": "object",
     "properties": {
@@ -8901,7 +9067,7 @@
      },
      "_skip": {
       "type": "integer",
-      "description": "Number of results to skip before returning, for pagination."
+      "description": "Number of results to skip before returning, for pagination. The maximum is 35,000 for some organizations."
      },
      "_fields": {
       "type": "string",
@@ -8927,11 +9093,23 @@
   {
    "slug": "close.leads_merge",
    "name": "Merge two leads",
-   "description": "For details and definitions of 'source' and 'destination', see the Merge Leads feature in the UI.",
+   "description": "Merge the source lead into the destination lead. The source lead's contacts, opportunities, activities, tasks, custom objects, addresses and custom field values move to the destination lead, and the source lead is then deleted. This can't be undone. When both leads have a value, the destination lead's value is kept. The source lead's name, status, description and URL are only copied over when the ",
    "input": {
     "type": "object",
-    "properties": {},
-    "required": []
+    "properties": {
+     "destination": {
+      "type": "string",
+      "description": "ID of the lead to merge into, e.g. `lead_6ivpsIOFYDEwCUz8sdftdoWqlKpLSNOAg9glZSLvZEG`. This lead is kept, and its values win when both leads have one."
+     },
+     "source": {
+      "type": "string",
+      "description": "ID of the lead to merge from, e.g. `lead_JCTqyXSXD42eGO6PlWOe5ase8VRDCpE7ITYti8Th2Ei`. Its data moves to the destination lead, and it is then deleted."
+     }
+    },
+    "required": [
+     "destination",
+     "source"
+    ]
    },
    "request": {
     "method": "POST",
@@ -8939,20 +9117,76 @@
     "path": [],
     "query": [],
     "header": [],
-    "body": [],
+    "body": [
+     "destination",
+     "source"
+    ],
     "body_format": "json"
    }
   },
   {
    "slug": "close.leads_update",
    "name": "Update an existing lead",
-   "description": "Supports non-destructive patches. Nested `contacts` cannot be updated through this endpoint -- use the Contacts API instead. **status**: See `status` and `status_id` guidance on the create endpoint. **custom.FIELD_ID** (optional): See `custom.FIELD_ID` guidance on the create endpoint. You can also unset a single field, e.g.: ```json { \"custom.cf_v6S011I6MqcbVvB2FA5Nk8dr5MkL8sWuCiG8cUleO9c\": null }",
+   "description": "Update a lead. Only the fields you send are changed, and omitted fields keep their current values. `addresses` replaces all of the lead's addresses. **Contacts**: a contact in `contacts` with an `id` updates that existing contact, and one without an `id` is added to the lead. Existing contacts you don't list are kept. To delete a contact, use the [Contacts API](https://developer.close.com/api/reso",
    "input": {
     "type": "object",
     "properties": {
      "id": {
       "type": "string",
       "description": ""
+     },
+     "_fields": {
+      "type": "string",
+      "description": "Comma-separated list of fields to include in the response."
+     },
+     "addresses": {
+      "type": [
+       "array",
+       "null"
+      ],
+      "description": "Addresses of the lead, up to 100. Replaces all of the lead's addresses: include its current addresses to keep them, or pass `[]` to remove them all."
+     },
+     "contacts": {
+      "type": [
+       "array",
+       "null"
+      ],
+      "description": "Contacts to update or add, up to 300 in total. A contact with an `id` updates that existing contact, and one without an `id` is added. Existing contacts that aren't listed are kept."
+     },
+     "description": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Free-text description of the lead."
+     },
+     "name": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Name of the lead, usually a company name, e.g. `Bluth Company`."
+     },
+     "status": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Label of the lead's status, e.g. `Potential`, matched ignoring case. Using `status_id` instead is recommended, so renaming a status doesn't break your integration. Pass either `status` or `status_id`, not both."
+     },
+     "status_id": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "ID of the lead's status, e.g. `stat_1ZdiZqcSIkoGVnNOyxiEY58eTGQmFNG3LPlEVQ4V7Nk`. See [Lead Statuses](https://developer.close.com/api/resources/lead-statuses)."
+     },
+     "url": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Website of the lead, e.g. `https://www.example.com`. `https://` is added if the URL has no scheme."
      }
     },
     "required": [
@@ -8965,9 +9199,19 @@
     "path": [
      "id"
     ],
-    "query": [],
+    "query": [
+     "_fields"
+    ],
     "header": [],
-    "body": [],
+    "body": [
+     "addresses",
+     "contacts",
+     "description",
+     "name",
+     "status",
+     "status_id",
+     "url"
+    ],
     "body_format": "json"
    }
   },
@@ -8992,7 +9236,7 @@
        "string",
        "null"
       ],
-      "description": "ID of the phone number to use as this member's default outbound caller ID. Close keeps this value while `default_caller_id_mode` is `auto`, but outbound calls do not use it."
+      "description": "ID of the phone number to use as this member's default outbound Caller ID. Close keeps this value while `default_caller_id_mode` is `auto`. In `auto` mode, Close uses it when no number has history with the contact and no number is near the contact. On a plan without Local Presence, `auto` mode uses it like `fixed` mode."
      },
      "default_caller_id_mode": {
       "type": "string",
@@ -9007,7 +9251,7 @@
        "string",
        "null"
       ],
-      "description": "URL of the audio file used as this member's voicemail drop recording."
+      "description": "URL of the audio file used as this member's Voicemail Drop recording."
      },
      "may_workflows_impersonate": {
       "type": "boolean",
@@ -9157,7 +9401,7 @@
        "string",
        "null"
       ],
-      "description": "ID of the phone number to use as this member's default outbound caller ID. Close keeps this value while `default_caller_id_mode` is `auto`, but outbound calls do not use it."
+      "description": "ID of the phone number to use as this member's default outbound Caller ID. Close keeps this value while `default_caller_id_mode` is `auto`. In `auto` mode, Close uses it when no number has history with the contact and no number is near the contact. On a plan without Local Presence, `auto` mode uses it like `fixed` mode."
      },
      "default_caller_id_mode": {
       "type": "string",
@@ -9172,7 +9416,7 @@
        "string",
        "null"
       ],
-      "description": "URL of the audio file used as this member's voicemail drop recording."
+      "description": "URL of the audio file used as this member's Voicemail Drop recording."
      },
      "may_workflows_impersonate": {
       "type": "boolean",
@@ -9249,7 +9493,7 @@
   {
    "slug": "close.opportunities_create",
    "name": "Create an opportunity",
-   "description": "Create an opportunity, optionally linked to an existing lead. **custom.FIELD_ID** (optional): Set custom fields by setting `custom.FIELD_ID` to the field value, where FIELD_ID is the ID of the custom field, e.g.: ```json { \"custom.cf_v6S011I6MqcbVvB2FA5Nk8dr5MkL8sWuCiG8cUleO9c\": \"value\", \"custom.cf_8wtBWsdRU2Fur7GDnEeXQ7ra2Vu7R4hG1SNYdiEhh0F\": \"other value\" } ``` If a custom field has `accepts_mul",
+   "description": "Create an opportunity. It's added to the lead given in `lead_id`, or to the lead of `contact_id`, or to a new lead if neither is given. A lead can have at most 300 opportunities. Returns the created opportunity. **Custom fields**: set a custom field by setting `custom.{custom_field_id}` to its value, e.g.: ```json { \"custom.cf_v6S011I6MqcbVvB2FA5Nk8dr5MkL8sWuCiG8cUleO9c\": \"value\", \"custom.cf_8wtBW",
    "input": {
     "type": "object",
     "properties": {
@@ -9258,49 +9502,49 @@
        "array",
        "null"
       ],
-      "description": ""
+      "description": "Files to attach to the opportunity, up to 20 files and 25 MB in total. Upload each file with the [Files API](https://developer.close.com/api/resources/files) first."
      },
      "confidence": {
       "type": [
        "integer",
        "null"
       ],
-      "description": ""
+      "description": "Likelihood of winning the opportunity, as a percentage from 0 to 100. Defaults to 50. Opportunities with a `won` or `lost` status always have a confidence of 100 or 0."
      },
      "contact_id": {
       "type": [
        "string",
        "null"
       ],
-      "description": ""
+      "description": "ID of the contact to associate the opportunity with, e.g. `cont_o0kP3Nqyq0wxr5DLWIEm8mVr6ZpI0AhonKLDG0V5Qjh`. The contact must belong to the opportunity's lead."
      },
      "created_by": {
       "type": [
        "string",
        "null"
       ],
-      "description": ""
+      "description": "ID of the user to record as the opportunity's creator, e.g. `user_N6KhMpzHRCYQHdn4gRNIFNN5JExnsrprKA6ekxM63XA`. Must be a member of your organization. Defaults to you. Set it when importing opportunities from another system."
      },
      "date_created": {
       "type": [
        "string",
        "null"
       ],
-      "description": ""
+      "description": "When the opportunity was created, as an ISO 8601 timestamp. Defaults to the current time. Set it when importing opportunities from another system."
      },
      "date_won": {
       "type": [
        "string",
        "null"
       ],
-      "description": "If not set on the resource or in the request, `date_won` will be set automatically to today's date when setting `status_id` to a status with type `won`. The `x-tz-offset` header, used to pass your timezone's UTC offset, will be taken into account."
+      "description": "Date the opportunity was won, or is expected to close if it's still active, e.g. `2013-02-20`. Any time part is ignored. If neither the opportunity nor the request sets it, it's set to today's date when the status changes to one with type `won`. Pass your UTC offset in the `x-tz-offset` header to use your local date."
      },
      "lead_id": {
       "type": [
        "string",
        "null"
       ],
-      "description": "Opportunities belong to exactly one Lead. If not provided, a new lead will be created (appearing as \"Untitled\" in the UI)."
+      "description": "ID of the lead to add the opportunity to, e.g. `lead_IIDHIStmFcFQZZP0BRe99V1MCoXWz2PGCm6EDmR9v2O`. Every opportunity belongs to exactly one lead. If omitted, the opportunity is added to the lead of `contact_id`, or to a new lead (shown as `Untitled`) if `contact_id` isn't given either."
      },
      "note": {
       "type": [
@@ -9314,7 +9558,7 @@
        "string",
        "null"
       ],
-      "description": "Rich-text HTML version of the note. When set, `note` is automatically populated with the plaintext version (tags become markdown), overriding any `note` value passed in the same request."
+      "description": "[Rich text](https://developer.close.com/api/overview/rich-text) version of the note. When set, `note` is automatically populated with the plaintext version (tags become markdown), overriding any `note` value passed in the same request."
      },
      "pipeline_id": {
       "type": [
@@ -9328,25 +9572,25 @@
        "string",
        "null"
       ],
-      "description": "Post a `status_id` to create an opportunity with a specific status. If omitted, the organization's default (first) status will be used (or the first status of the `pipeline_id` if provided). See the [Opportunity Status API](https://developer.close.com/api/resources/opportunity-statuses)."
+      "description": "ID or label of the opportunity's status, e.g. `stat_4ZdiZqcSIkoGVnNOyxiEY58eTGQmFNG3LPlEVQ4V7Nk` or `Active`. Labels are matched ignoring case. If omitted, the organization's first status is used, or the first status of `pipeline_id` if given. See [Opportunity Statuses](https://developer.close.com/api/resources/opportunity-statuses)."
      },
      "user_id": {
       "type": [
        "string",
        "null"
       ],
-      "description": ""
+      "description": "ID of the user who owns the opportunity, e.g. `user_N6KhMpzHRCYQHdn4gRNIFNN5JExnsrprKA6ekxM63XA`. Must be a member of your organization. Defaults to `created_by`."
      },
      "value": {
       "type": [
        "integer",
        "null"
       ],
-      "description": ""
+      "description": "Monetary value of the opportunity in cents, e.g. `340000` for $3,400.00. The currency is the organization's currency."
      },
      "value_period": {
       "type": "string",
-      "description": ""
+      "description": "How often `value` is paid: `one_time`, `monthly` or `annual`. Defaults to `one_time`."
      }
     },
     "required": []
@@ -9379,7 +9623,7 @@
   {
    "slug": "close.opportunities_delete",
    "name": "Delete an opportunity",
-   "description": "Delete an opportunity",
+   "description": "Delete an opportunity, along with its opportunity status change activities. This can't be undone. The opportunity's attachments are deleted in the background. Returns an empty object on success. Returns `404` if the opportunity doesn't exist, and `400` if you don't have permission to delete it or don't have access to its lead.",
    "input": {
     "type": "object",
     "properties": {
@@ -9407,7 +9651,7 @@
   {
    "slug": "close.opportunities_get",
    "name": "Retrieve an opportunity",
-   "description": "Retrieve an opportunity",
+   "description": "Fetch a single opportunity by ID. Returns `404` if the opportunity doesn't exist, and `403` if it exists but you don't have access to its lead. Use `_fields` to return only the fields you need, or `_fields=_all` to also include optional fields such as `is_stalled` and `suggested_action`. Custom field values appear as `custom.{custom_field_id}` keys.",
    "input": {
     "type": "object",
     "properties": {
@@ -9441,17 +9685,17 @@
   {
    "slug": "close.opportunities_list",
    "name": "List or filter opportunities",
-   "description": "* All opportunity list responses contain the following aggregate values about all the matching objects (regardless of pagination / limits): * `total_results`: the total number of objects, * `count_by_value_period`: a dictionary containing the number of opportunities by value period, e.g. `{ 'one_time': 2, 'annual': 1, 'monthly': 1 }`, * `total_value_one_time`: the sum of the values of all one time",
+   "description": "List the opportunities in your organization, most recently created first. Only opportunities you have access to are returned. * All opportunity list responses contain the following aggregate values about all the matching objects (regardless of pagination / limits): * `total_results`: the total number of objects, * `count_by_value_period`: a dictionary containing the number of opportunities by valu",
    "input": {
     "type": "object",
     "properties": {
      "_limit": {
       "type": "integer",
-      "description": "Number of results to return."
+      "description": "Number of results to return. The maximum is 250 for requests authenticated with an API key."
      },
      "_skip": {
       "type": "integer",
-      "description": "Number of results to skip before returning, for pagination."
+      "description": "Number of results to skip before returning, for pagination. The maximum is 35,000 for some organizations."
      },
      "_fields": {
       "type": "string",
@@ -9462,245 +9706,217 @@
        "string",
        "null"
       ],
-      "description": ""
-     },
-     "organization_id": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": ""
+      "description": "Only return opportunities on this lead, e.g. `lead_IIDHIStmFcFQZZP0BRe99V1MCoXWz2PGCm6EDmR9v2O`"
      },
      "user_id": {
       "type": [
        "string",
        "null"
       ],
-      "description": ""
+      "description": "Only return opportunities owned by this user, e.g. `user_N6KhMpzHRCYQHdn4gRNIFNN5JExnsrprKA6ekxM63XA`. A group ID (`group_...`) matches opportunities owned by any member of the group."
      },
      "user_id__in": {
       "type": [
        "string",
        "null"
       ],
-      "description": ""
+      "description": "Comma-separated list of user or group IDs. Only return opportunities owned by any of them."
      },
      "status_id": {
       "type": [
        "string",
        "null"
       ],
-      "description": ""
+      "description": "Only return opportunities with this status, e.g. `stat_4ZdiZqcSIkoGVnNOyxiEY58eTGQmFNG3LPlEVQ4V7Nk`"
      },
      "status_id__in": {
       "type": [
        "string",
        "null"
       ],
-      "description": ""
+      "description": "Comma-separated list of status IDs. Only return opportunities with any of these statuses."
      },
      "status_type": {
       "type": [
        "string",
        "null"
       ],
-      "description": ""
+      "description": "Only return opportunities whose status has this type: `active`, `won` or `lost`"
      },
      "status_type__in": {
       "type": [
        "string",
        "null"
       ],
-      "description": ""
+      "description": "Comma-separated list of status types, e.g. `active,won`. Only return opportunities whose status has any of these types."
      },
      "status_label": {
       "type": [
        "string",
        "null"
       ],
-      "description": ""
+      "description": "Only return opportunities whose status has this label, e.g. `Active`. Matching ignores case. Returns an error if more than one status has the label."
      },
      "status_label__in": {
       "type": [
        "string",
        "null"
       ],
-      "description": ""
+      "description": "Comma-separated list of status labels. Only return opportunities whose status has any of these labels. Matching ignores case."
      },
      "status": {
       "type": [
        "string",
        "null"
       ],
-      "description": ""
+      "description": "Only return opportunities with this status, given as a status ID or label. See `status_id` and `status_label`."
      },
      "status__in": {
       "type": [
        "string",
        "null"
       ],
-      "description": ""
-     },
-     "date_won": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": ""
+      "description": "Comma-separated list of status IDs or labels. Only return opportunities with any of these statuses."
      },
      "date_won__gte": {
       "type": [
        "string",
        "null"
       ],
-      "description": ""
+      "description": "Only return opportunities whose `date_won` is on or after this date, e.g. `2024-01-31`. Any time part is ignored."
      },
      "date_won__gt": {
       "type": [
        "string",
        "null"
       ],
-      "description": ""
+      "description": "Only return opportunities whose `date_won` is after this date, e.g. `2024-01-31`. Any time part is ignored."
      },
      "date_won__lte": {
       "type": [
        "string",
        "null"
       ],
-      "description": ""
+      "description": "Only return opportunities whose `date_won` is on or before this date, e.g. `2024-01-31`. Any time part is ignored."
      },
      "date_won__lt": {
       "type": [
        "string",
        "null"
       ],
-      "description": ""
-     },
-     "date_created": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": ""
+      "description": "Only return opportunities whose `date_won` is before this date, e.g. `2024-01-31`. Any time part is ignored."
      },
      "date_created__gte": {
       "type": [
        "string",
        "null"
       ],
-      "description": ""
+      "description": "Only return opportunities created at or after this time, as an ISO 8601 date or timestamp, e.g. `2024-01-31T09:00:00Z`. Values without a UTC offset are treated as UTC."
      },
      "date_created__gt": {
       "type": [
        "string",
        "null"
       ],
-      "description": ""
+      "description": "Only return opportunities created after this time, as an ISO 8601 date or timestamp, e.g. `2024-01-31T09:00:00Z`. Values without a UTC offset are treated as UTC."
      },
      "date_created__lte": {
       "type": [
        "string",
        "null"
       ],
-      "description": ""
+      "description": "Only return opportunities created at or before this time, as an ISO 8601 date or timestamp, e.g. `2024-01-31T09:00:00Z`. Values without a UTC offset are treated as UTC."
      },
      "date_created__lt": {
       "type": [
        "string",
        "null"
       ],
-      "description": ""
-     },
-     "date_updated": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": ""
+      "description": "Only return opportunities created before this time, as an ISO 8601 date or timestamp, e.g. `2024-01-31T09:00:00Z`. Values without a UTC offset are treated as UTC."
      },
      "date_updated__gte": {
       "type": [
        "string",
        "null"
       ],
-      "description": ""
+      "description": "Only return opportunities last updated at or after this time, as an ISO 8601 date or timestamp, e.g. `2024-01-31T09:00:00Z`. Values without a UTC offset are treated as UTC."
      },
      "date_updated__gt": {
       "type": [
        "string",
        "null"
       ],
-      "description": ""
+      "description": "Only return opportunities last updated after this time, as an ISO 8601 date or timestamp, e.g. `2024-01-31T09:00:00Z`. Values without a UTC offset are treated as UTC."
      },
      "date_updated__lte": {
       "type": [
        "string",
        "null"
       ],
-      "description": ""
+      "description": "Only return opportunities last updated at or before this time, as an ISO 8601 date or timestamp, e.g. `2024-01-31T09:00:00Z`. Values without a UTC offset are treated as UTC."
      },
      "date_updated__lt": {
       "type": [
        "string",
        "null"
       ],
-      "description": ""
+      "description": "Only return opportunities last updated before this time, as an ISO 8601 date or timestamp, e.g. `2024-01-31T09:00:00Z`. Values without a UTC offset are treated as UTC."
      },
      "value_period": {
       "type": [
        "string",
        "null"
       ],
-      "description": ""
+      "description": "Only return opportunities with this `value_period`: `one_time`, `monthly` or `annual`"
      },
      "value_period__in": {
       "type": [
        "string",
        "null"
       ],
-      "description": ""
+      "description": "Comma-separated list of value periods, e.g. `monthly,annual`. Only return opportunities with any of these value periods."
      },
      "query": {
       "type": [
        "string",
        "null"
       ],
-      "description": ""
+      "description": "Deprecated: use [Advanced Filtering](https://developer.close.com/api/resources/advanced-filtering) instead. Search query in Close's search syntax, matched against opportunity fields, e.g. `note:important` or `status_change(old_status:active new_status:won date:yesterday)`"
      },
      "lead_query": {
       "type": [
        "string",
        "null"
       ],
-      "description": ""
+      "description": "Deprecated: use [Advanced Filtering](https://developer.close.com/api/resources/advanced-filtering) instead. Search query in Close's search syntax. Only return opportunities on leads that match it. Can't be combined with `lead_saved_search_id`."
      },
      "lead_saved_search_id": {
       "type": [
        "string",
        "null"
       ],
-      "description": ""
+      "description": "ID of a lead Smart View, e.g. `save_...`. Only return opportunities on leads in the Smart View. Can't be combined with `lead_query`."
      },
      "is_stalled": {
       "type": [
        "string",
        "null"
       ],
-      "description": ""
+      "description": "`true` to only return stalled opportunities, or `false` to only return opportunities that aren't stalled"
      },
      "_order_by": {
       "type": [
        "string",
        "null"
       ],
-      "description": ""
+      "description": "Field to sort by: `date_won`, `date_updated`, `date_created`, `confidence`, `user_name`, `value`, `annualized_value` or `annualized_expected_value`. Prefix with `-` for descending order, e.g. `-date_won`. Defaults to `-date_created`. Invalid values are ignored."
      },
      "_group_by": {
       "type": [
        "string",
        "null"
       ],
-      "description": ""
+      "description": "Group results by `user_id`, `date_won__week`, `date_won__month`, `date_won__quarter` or `date_won__year`. Prefix with `-` to reverse the order of the groups. When set, `data` holds groups of opportunities instead of opportunities."
      }
     },
     "required": []
@@ -9714,7 +9930,6 @@
      "_skip",
      "_fields",
      "lead_id",
-     "organization_id",
      "user_id",
      "user_id__in",
      "status_id",
@@ -9725,17 +9940,14 @@
      "status_label__in",
      "status",
      "status__in",
-     "date_won",
      "date_won__gte",
      "date_won__gt",
      "date_won__lte",
      "date_won__lt",
-     "date_created",
      "date_created__gte",
      "date_created__gt",
      "date_created__lte",
      "date_created__lt",
-     "date_updated",
      "date_updated__gte",
      "date_updated__gt",
      "date_updated__lte",
@@ -9757,7 +9969,7 @@
   {
    "slug": "close.opportunities_update",
    "name": "Update an opportunity",
-   "description": "**custom.FIELD_ID** (optional) - See description for `custom.FIELD_ID` in `POST /opportunity/` above. - Additionally, you can unset a single field by using `{ \"custom.FIELD_ID\": null }`, e.g.: ``` { \"custom.cf_v6S011I6MqcbVvB2FA5Nk8dr5MkL8sWuCiG8cUleO9c\": null } ``` If you're trying to update a custom field and that custom field accepts multiple values, you can also specify `.add` or `.remove` as ",
+   "description": "Update an opportunity. Only the fields you send are changed. Returns `404` if the opportunity doesn't exist. Returns `403` if you don't have access to its lead, or if another user owns it and you don't have permission to manage other users' opportunities. `lead_id`, `created_by` and `date_created` can't be changed: sending a different value returns `400`. Moving the opportunity to a status with ty",
    "input": {
     "type": "object",
     "properties": {
@@ -9767,25 +9979,22 @@
      },
      "attachments": {
       "type": "array",
-      "description": ""
+      "description": "Files attached to the opportunity, up to 20 files and 25 MB in total. Replaces all of the opportunity's attachments: include its current attachments to keep them, or pass `[]` to remove them all. Upload new files with the [Files API](https://developer.close.com/api/resources/files) first."
      },
      "confidence": {
       "type": "integer",
-      "description": ""
+      "description": "Likelihood of winning the opportunity, as a percentage from 0 to 100. Opportunities with a `won` or `lost` status always have a confidence of 100 or 0."
      },
      "contact_id": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": ""
+      "type": "string",
+      "description": "ID of the contact to associate the opportunity with, e.g. `cont_o0kP3Nqyq0wxr5DLWIEm8mVr6ZpI0AhonKLDG0V5Qjh`. The contact must belong to the opportunity's lead."
      },
      "date_won": {
       "type": [
        "string",
        "null"
       ],
-      "description": "If not set on the resource or in the request, `date_won` will be set automatically to today's date when setting `status_id` to a status with type `won`. The `x-tz-offset` header, used to pass your timezone's UTC offset, will be taken into account."
+      "description": "Date the opportunity was won, or is expected to close if it's still active, e.g. `2013-02-20`. Any time part is ignored. If neither the opportunity nor the request sets it, it's set to today's date when the status changes to one with type `won`. Pass your UTC offset in the `x-tz-offset` header to use your local date."
      },
      "note": {
       "type": "string",
@@ -9796,30 +10005,23 @@
        "string",
        "null"
       ],
-      "description": "Rich-text HTML version of the note. When set, `note` is automatically populated with the plaintext version (tags become markdown), overriding any `note` value passed in the same request. Pass `null` to clear `note_html`; `note` is cleared as well."
-     },
-     "status": {
-      "type": "string",
-      "description": ""
+      "description": "[Rich text](https://developer.close.com/api/overview/rich-text) version of the note. When set, `note` is automatically populated with the plaintext version (tags become markdown), overriding any `note` value passed in the same request. Pass `null` to clear `note_html`; `note` is cleared as well."
      },
      "status_id": {
       "type": "string",
-      "description": "Setting the `status_id` to a status with a type of `won` will automatically set the `date_won` field if it is not already set or provided in the request. Reverting it from a `won` status to an `active` or `lost` will not automatically change `date_won`."
+      "description": "ID or label of the opportunity's status, e.g. `stat_4ZdiZqcSIkoGVnNOyxiEY58eTGQmFNG3LPlEVQ4V7Nk` or `Won`. Labels are matched ignoring case. See [Opportunity Statuses](https://developer.close.com/api/resources/opportunity-statuses)."
      },
      "user_id": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": ""
+      "type": "string",
+      "description": "ID of the user who owns the opportunity, e.g. `user_N6KhMpzHRCYQHdn4gRNIFNN5JExnsrprKA6ekxM63XA`. Must be a member of your organization."
      },
      "value": {
       "type": "integer",
-      "description": ""
+      "description": "Monetary value of the opportunity in cents, e.g. `340000` for $3,400.00. The currency is the organization's currency."
      },
      "value_period": {
       "type": "string",
-      "description": "",
+      "description": "How often the Opportunity's value is paid: `one_time`, `monthly` or `annual`.",
       "enum": [
        "one_time",
        "monthly",
@@ -9846,7 +10048,6 @@
      "date_won",
      "note",
      "note_html",
-     "status",
      "status_id",
      "user_id",
      "value",
@@ -9858,7 +10059,7 @@
   {
    "slug": "close.opportunity_statuses_create",
    "name": "Create an opportunity status",
-   "description": "Create a new opportunity status. The status must belong to a pipeline (specified by `pipeline_id`) and have a `type` of `active`, `won`, or `lost`.",
+   "description": "Create an opportunity status and add it to the end of a pipeline's list of statuses. If you leave out `pipeline_id`, the status is added to your organization's oldest pipeline. `type` defaults to `active` and can't be changed later. Returns 400 if the pipeline doesn't exist, if your organization has no pipelines, if the pipeline already has a status with the same label (ignoring case), or if the p",
    "input": {
     "type": "object",
     "properties": {
@@ -9868,18 +10069,18 @@
      },
      "label": {
       "type": "string",
-      "description": ""
+      "description": "Name of the opportunity status. Leading and trailing whitespace is removed. Must be unique within the pipeline (ignoring case)."
      },
      "pipeline_id": {
       "type": [
        "string",
        "null"
       ],
-      "description": ""
+      "description": "ID of the pipeline to add the status to, prefixed with `pipe_`. Defaults to the organization's oldest pipeline."
      },
      "type": {
       "type": "string",
-      "description": "",
+      "description": "Type of an Opportunity Status: `active` for open Opportunities, `won` or `lost` for closed ones.",
       "enum": [
        "won",
        "lost",
@@ -9910,13 +10111,13 @@
   {
    "slug": "close.opportunity_statuses_delete",
    "name": "Delete an opportunity status",
-   "description": "You should make sure no opportunities are assigned this status, first.",
+   "description": "Delete an opportunity status and remove it from its pipeline. Returns an empty object on success. Returns 400 if any opportunities still have this status, so move them to another status first. Also returns 400 if this is the organization's last opportunity status. Requires the Manage Customizations permission, otherwise returns 403.",
    "input": {
     "type": "object",
     "properties": {
      "id": {
       "type": "string",
-      "description": ""
+      "description": "ID of the opportunity status."
      }
     },
     "required": [
@@ -9938,13 +10139,13 @@
   {
    "slug": "close.opportunity_statuses_get",
    "name": "Fetch a single opportunity status",
-   "description": "Fetch a single opportunity status",
+   "description": "Fetch a single opportunity status by its ID. Returns 404 if no status in your organization has that ID.",
    "input": {
     "type": "object",
     "properties": {
      "id": {
       "type": "string",
-      "description": ""
+      "description": "ID of the opportunity status."
      },
      "_fields": {
       "type": "string",
@@ -9972,7 +10173,7 @@
   {
    "slug": "close.opportunity_statuses_list",
    "name": "List opportunity statuses for your organization",
-   "description": "List opportunity statuses for your organization",
+   "description": "List the opportunity statuses of every pipeline in your organization. Statuses are grouped by pipeline, oldest pipeline first, and follow the order configured in Close within each pipeline. The list isn't paginated, so every status is returned in one response and `has_more` is always false.",
    "input": {
     "type": "object",
     "properties": {
@@ -9998,13 +10199,13 @@
   {
    "slug": "close.opportunity_statuses_update",
    "name": "Rename an opportunity status",
-   "description": "Rename an opportunity status",
+   "description": "Rename an opportunity status. Only `label` can be changed: `type` is ignored, and opportunities that use the status keep it and show the new label. Returns 400 if another status in the same pipeline already has the label (ignoring case). Requires the Manage Customizations permission, otherwise returns 403. `pipeline_id` is accepted but can't move the status. Any value other than the status's curre",
    "input": {
     "type": "object",
     "properties": {
      "id": {
       "type": "string",
-      "description": ""
+      "description": "ID of the opportunity status."
      },
      "_fields": {
       "type": "string",
@@ -10012,14 +10213,14 @@
      },
      "label": {
       "type": "string",
-      "description": ""
+      "description": "New name of the opportunity status. Leading and trailing whitespace is removed. Must be unique within the pipeline (ignoring case)."
      },
      "pipeline_id": {
       "type": [
        "string",
        "null"
       ],
-      "description": ""
+      "description": "ID of the pipeline the status belongs to. Optional, and it can't move the status: any other pipeline returns 400. To move a status to another pipeline, use the Pipelines API."
      }
     },
     "required": [
@@ -10350,7 +10551,7 @@
   {
    "slug": "close.phone_numbers_create",
    "name": "Request an internal phone number",
-   "description": "Renting a phone number incurs a cost. You need the \"Manage Team Phone Numbers\" permission to rent group numbers. If a number was rented, a 201 response is returned with the new number. If no number was rented (4xx response code), the response contains a `status` field which may contain one of the values below. New statuses may be added in the future. * `has-voice-only`: This country/prefix combina",
+   "description": "Renting a phone number incurs a cost. The new number is assigned to you unless you name other users via `assign_to`, which requires the \"Manage Team Phone Numbers\" permission. If a number was rented, a 201 response is returned with the new number. If no number was rented (4xx response code), the response contains a `status` field which may contain one of the values below. New statuses may be added",
    "input": {
     "type": "object",
     "properties": {
@@ -10429,7 +10630,7 @@
   {
    "slug": "close.phone_numbers_delete",
    "name": "Delete a phone number",
-   "description": "You need the \"Manage Team Phone Numbers\" permission to delete a group number. You can only delete your own personal numbers.",
+   "description": "If you're the only member of a number and no Group is assigned to it, you can delete it. Deleting any other number requires the \"Manage Team Phone Numbers\" permission.",
    "input": {
     "type": "object",
     "properties": {
@@ -10533,7 +10734,7 @@
        "string",
        "null"
       ],
-      "description": "Return numbers the given user participates in, including both personal and group numbers they belong to."
+      "description": "Return numbers the given user is a member of, directly or through an assigned Group."
      }
     },
     "required": []
@@ -10559,7 +10760,7 @@
   {
    "slug": "close.phone_numbers_update",
    "name": "Update a phone number",
-   "description": "You need the \"Manage Team Phone Numbers\" permission to update a group number. You can only update your own personal numbers. You can: - Change a `label` of your number. - Set up call forwarding via `forward_to` and `forward_to_enabled`. - Set up a voicemail greeting by including a URL of an mp3 recording in `voicemail_greeting_url`. We require the URL to be secure (i.e. starting with https://). - ",
+   "description": "You need the \"Manage Team Phone Numbers\" permission to change most settings. If you're the only member of a number and no Group is assigned to it, you can change its `label`, voicemail greeting, and call forwarding without that permission. You can: - Change the `label` of the number. - Set up call forwarding via `forward_to` and `forward_to_enabled`. - Set up a voicemail greeting by including a UR",
    "input": {
     "type": "object",
     "properties": {
@@ -10583,6 +10784,18 @@
       "type": "string",
       "description": ""
      },
+     "local_presence_enabled": {
+      "type": "boolean",
+      "description": "Whether Local Presence can pick this phone number by proximity for a call or SMS made as a user. It has no effect on a plan that doesn't include Local Presence."
+     },
+     "non_member_caller_id_enabled": {
+      "type": "boolean",
+      "description": "Whether users who are not members of this phone number can use it as their outbound Caller ID."
+     },
+     "participant_groups": {
+      "type": "array",
+      "description": ""
+     },
      "participants": {
       "type": "array",
       "description": ""
@@ -10594,6 +10807,10 @@
      "press_1_to_accept": {
       "type": "boolean",
       "description": ""
+     },
+     "voice_agents_local_presence_enabled": {
+      "type": "boolean",
+      "description": "Whether Local Presence can pick this phone number for calls and SMS that voice agents make in Auto Caller ID mode."
      },
      "voicemail_greeting_url": {
       "type": [
@@ -10620,9 +10837,13 @@
      "forward_to_enabled",
      "inbound_ring_duration",
      "label",
+     "local_presence_enabled",
+     "non_member_caller_id_enabled",
+     "participant_groups",
      "participants",
      "phone_numbers",
      "press_1_to_accept",
+     "voice_agents_local_presence_enabled",
      "voicemail_greeting_url"
     ],
     "body_format": "json"
@@ -11989,7 +12210,7 @@
   {
    "slug": "close.sequences_create_subscription",
    "name": "Subscribe a contact to a sequence",
-   "description": "Subscribe a Contact to a Sequence",
+   "description": "`caller_id_mode` sets how the Subscription picks the phone number of its SMS steps. `auto` requires a plan that includes Local Presence.",
    "input": {
     "type": "object",
     "properties": {},
@@ -12071,14 +12292,6 @@
      "id": {
       "type": "string",
       "description": ""
-     },
-     "_limit": {
-      "type": "integer",
-      "description": "Number of results to return."
-     },
-     "_skip": {
-      "type": "integer",
-      "description": "Number of results to skip before returning, for pagination."
      }
     },
     "required": [
@@ -12091,10 +12304,7 @@
     "path": [
      "id"
     ],
-    "query": [
-     "_limit",
-     "_skip"
-    ],
+    "query": [],
     "header": [],
     "body": [],
     "body_format": "json"
@@ -12236,7 +12446,7 @@
   {
    "slug": "close.sequences_update_subscription",
    "name": "Update a specific subscription",
-   "description": "Update a specific Subscription",
+   "description": "Setting `status` to `active` restarts the Subscription, so it requires a plan that includes Workflow runs and otherwise returns a 400. Setting it to `paused` works on every plan. A switch of `caller_id_mode` to `auto` requires a plan that includes Local Presence. A Subscription that already uses `auto` keeps it on every plan.",
    "input": {
     "type": "object",
     "properties": {
@@ -12605,210 +12815,277 @@
    }
   },
   {
-   "slug": "close.tasks_bulk_update",
-   "name": "Bulk update tasks",
-   "description": "Any of the filters of the GET endpoint may be used as query parameters or passed in the request body (see [Filter Parameters](https://developer.close.com/api/overview/filter-parameters)). For example: ```json {\"_params\": {\"id__in\": \"task_A,task_B,task_C\"}, \"is_complete\": true} ``` Only the `assigned_to`, `date` and `is_complete` fields may be updated.",
+   "slug": "close.standard_object_labels_delete",
+   "name": "Reset a standard object label to its default",
+   "description": "Drops your organization's customization. The label itself always exists, so the response is the restored built-in default rather than an empty body.",
    "input": {
     "type": "object",
     "properties": {
-     "assigned_to": {
+     "label_type": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "label_type"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.close.com/api/v1/standard_object_label/{label_type}/",
+    "path": [
+     "label_type"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "close.standard_object_labels_get",
+   "name": "Fetch a single standard object label",
+   "description": "One of `lead`, `lead_status`, `contact`, `opportunity` or `opportunity_status`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "label_type": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "label_type"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.close.com/api/v1/standard_object_label/{label_type}/",
+    "path": [
+     "label_type"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "close.standard_object_labels_list",
+   "name": "List standard object labels for your organization",
+   "description": "Every standard object label is always returned, whether or not your organization has renamed it. `is_customized` is `false` when the label is still the default.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.close.com/api/v1/standard_object_label/",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "close.standard_object_labels_update",
+   "name": "Rename a standard object label",
+   "description": "Both `singular` and `plural` are required; the pair replaces the current label. Names are compared case-insensitively and may not collide with a custom object or with another standard object label. Submitting the built-in default names resets the label, exactly as a `DELETE` would.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "label_type": {
       "type": "string",
       "description": ""
      },
-     "format": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": ""
+     "plural": {
+      "type": "string",
+      "description": "Name used when referring to multiple objects."
+     },
+     "singular": {
+      "type": "string",
+      "description": "Name used when referring to a single object."
+     }
+    },
+    "required": [
+     "label_type",
+     "plural",
+     "singular"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.close.com/api/v1/standard_object_label/{label_type}/",
+    "path": [
+     "label_type"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "plural",
+     "singular"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "close.tasks_bulk_update",
+   "name": "Bulk update tasks",
+   "description": "Apply the same changes to every task that matches the filters, and return how many tasks were updated. Takes the same filters as `GET /task/`, as query params or in the `_params` body key. The other body fields are the changes to make, e.g.: ```json {\"_params\": {\"id__in\": \"task_A,task_B,task_C\"}, \"is_complete\": true} ``` One call updates at most `_limit` tasks, and the response doesn't say whether",
+   "input": {
+    "type": "object",
+    "properties": {
+     "_limit": {
+      "type": "integer",
+      "description": "Number of results to return."
+     },
+     "_skip": {
+      "type": "integer",
+      "description": "Number of results to skip before returning, for pagination."
+     },
+     "assigned_to": {
+      "type": "string",
+      "description": "ID of the user to assign the task to. For an incomplete `lead` task, Close emails the new assignee, unless that's you. On an `outgoing_call` task, this also removes the voice agent (`agent_config_id`)."
      },
      "id": {
       "type": [
        "string",
        "null"
       ],
-      "description": ""
+      "description": "Only return the task with this ID, e.g. `task_aRUZXCm9lMb2LwipTPhfFoFbCsUnaoQh1ncQ7WLnjlI`."
      },
      "id__in": {
       "type": [
        "string",
        "null"
       ],
-      "description": ""
+      "description": "Comma-separated list of task IDs. Only return these tasks."
      },
      "is_complete": {
       "type": "boolean",
-      "description": ""
+      "description": "`true` to complete the task, `false` to reopen it."
      },
      "lead_id": {
       "type": [
        "string",
        "null"
       ],
-      "description": ""
+      "description": "Only return tasks on this lead, e.g. `lead_5LmpOyrMQdJSUlbNGBSGfK5XzcioIm7aC94PSQamQJc`."
      },
      "_order_by": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": ""
-     },
-     "organization_id": {
       "type": "string",
-      "description": ""
+      "description": "Field to sort by: `date`, `due_date`, `date_created` or `date_updated`. Prefix with `-` to sort in descending order, e.g. `-date`. Defaults to `-date_created`."
      },
      "_type": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": ""
+      "type": "string",
+      "description": "Only return tasks of this type. Defaults to `lead` (tasks created on a lead) when neither `_type` nor `_type__in` is set. Use `all` to return every type.",
+      "enum": [
+       "all",
+       "lead",
+       "outgoing_call",
+       "draft_email",
+       "draft_sms",
+       "incoming_email",
+       "lead_suggestion_incoming_email",
+       "incoming_sms",
+       "incoming_whatsapp_message",
+       "missed_call",
+       "voicemail",
+       "opportunity_due"
+      ]
      },
      "_type__in": {
       "type": [
        "string",
        "null"
       ],
-      "description": ""
+      "description": "Comma-separated list of task types, e.g. `lead,outgoing_call`. Only return tasks of any of these types. Takes the same values as `_type`, except `all`."
      },
      "view": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": ""
+      "type": "string",
+      "description": "Shortcut for a task view. `inbox` returns incomplete tasks due by the end of today, `future` returns incomplete tasks due from tomorrow on, and `archive` returns completed tasks. Today is based on your time zone. `inbox` overrides `is_complete` and `date__lt`, `future` overrides `is_complete` and `date__gte`, and `archive` overrides `is_complete`."
      },
      "date": {
       "type": "string",
-      "description": ""
+      "description": "When the task is due, in ISO 8601. A date, e.g. `2024-01-31`, makes the task due that day. A date and time, e.g. `2024-01-31T09:00:00Z`, makes it due at that time."
      },
      "date__lt": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": ""
+      "type": "string",
+      "description": "Only return tasks due before this date or time, in ISO 8601, e.g. `2024-01-31` or `2024-01-31T09:00:00Z`. Values without a UTC offset are treated as UTC."
      },
      "date__lte": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": ""
+      "type": "string",
+      "description": "Only return tasks due on or before this date or time, in ISO 8601, e.g. `2024-01-31` or `2024-01-31T09:00:00Z`. Values without a UTC offset are treated as UTC."
      },
      "date__gt": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": ""
+      "type": "string",
+      "description": "Only return tasks due after this date or time, in ISO 8601, e.g. `2024-01-31` or `2024-01-31T09:00:00Z`. Values without a UTC offset are treated as UTC."
      },
      "date__gte": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": ""
+      "type": "string",
+      "description": "Only return tasks due on or after this date or time, in ISO 8601, e.g. `2024-01-31` or `2024-01-31T09:00:00Z`. Values without a UTC offset are treated as UTC."
      },
      "due_date": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": ""
+      "type": "string",
+      "description": "Deprecated: use `date` instead, which it matches."
      },
      "due_date__lt": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": ""
+      "type": "string",
+      "description": "Deprecated: use `date__lt` instead, which it matches."
      },
      "due_date__lte": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": ""
+      "type": "string",
+      "description": "Deprecated: use `date__lte` instead, which it matches."
      },
      "due_date__gt": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": ""
+      "type": "string",
+      "description": "Deprecated: use `date__gt` instead, which it matches."
      },
      "due_date__gte": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": ""
+      "type": "string",
+      "description": "Deprecated: use `date__gte` instead, which it matches."
      },
      "date_created__lt": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": ""
+      "type": "string",
+      "description": "Only return tasks created before this date or time, in ISO 8601, e.g. `2024-01-31` or `2024-01-31T09:00:00Z`."
      },
      "date_created__lte": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": ""
+      "type": "string",
+      "description": "Only return tasks created on or before this date or time, in ISO 8601, e.g. `2024-01-31` or `2024-01-31T09:00:00Z`."
      },
      "date_created__gt": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": ""
+      "type": "string",
+      "description": "Only return tasks created after this date or time, in ISO 8601, e.g. `2024-01-31` or `2024-01-31T09:00:00Z`."
      },
      "date_created__gte": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": ""
+      "type": "string",
+      "description": "Only return tasks created on or after this date or time, in ISO 8601, e.g. `2024-01-31` or `2024-01-31T09:00:00Z`."
      },
      "date_updated__lt": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": ""
+      "type": "string",
+      "description": "Only return tasks last updated before this date or time, in ISO 8601, e.g. `2024-01-31` or `2024-01-31T09:00:00Z`."
      },
      "date_updated__lte": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": ""
+      "type": "string",
+      "description": "Only return tasks last updated on or before this date or time, in ISO 8601, e.g. `2024-01-31` or `2024-01-31T09:00:00Z`."
      },
      "date_updated__gt": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": ""
+      "type": "string",
+      "description": "Only return tasks last updated after this date or time, in ISO 8601, e.g. `2024-01-31` or `2024-01-31T09:00:00Z`."
      },
      "date_updated__gte": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": ""
-     },
-     "_fields": {
       "type": "string",
-      "description": "Comma-separated list of fields to include in the response."
+      "description": "Only return tasks last updated on or after this date or time, in ISO 8601, e.g. `2024-01-31` or `2024-01-31T09:00:00Z`."
+     },
+     "_params": {
+      "type": "object",
+      "description": "Filters that select the tasks to update, as an alternative to query params. Takes the same filters as `GET /task/`, e.g. `{\"id__in\": \"task_A,task_B\"}`. Values must be strings or integers. Other values are ignored."
      },
      "priority": {
       "type": "string",
-      "description": "",
+      "description": "Priority of a task.",
       "enum": [
        "high",
        "medium"
@@ -12816,11 +13093,11 @@
      },
      "resolution": {
       "type": "string",
-      "description": ""
+      "description": "How the task was closed without being done. Only applies to `outgoing_call`, `draft_email` and `draft_sms` tasks, and is ignored on other types. Set to null to clear it."
      },
      "text": {
       "type": "string",
-      "description": ""
+      "description": "Description of the task. Only `lead` and `outgoing_call` tasks have text, and it can't be blank on `lead` tasks."
      }
     },
     "required": []
@@ -12830,14 +13107,14 @@
     "url": "https://api.close.com/api/v1/task/",
     "path": [],
     "query": [
+     "_limit",
+     "_skip",
      "assigned_to",
-     "format",
      "id",
      "id__in",
      "is_complete",
      "lead_id",
      "_order_by",
-     "organization_id",
      "_type",
      "_type__in",
      "view",
@@ -12858,15 +13135,14 @@
      "date_updated__lt",
      "date_updated__lte",
      "date_updated__gt",
-     "date_updated__gte",
-     "_fields"
+     "date_updated__gte"
     ],
     "header": [],
     "body": [
+     "_params",
      "assigned_to",
      "date",
      "is_complete",
-     "organization_id",
      "priority",
      "resolution",
      "text"
@@ -12877,7 +13153,7 @@
   {
    "slug": "close.tasks_create",
    "name": "Create a task",
-   "description": "Provide the type of task to be created in the `_type` field. Currently only tasks of type `lead` and `outgoing_call` can be created.",
+   "description": "Create a task. Set `_type` to `lead` for a task on a lead, or to `outgoing_call` for a task to call one of the lead's contacts. Other types of tasks can't be created. `_type` defaults to `lead`. Close emails the assignee about a new incomplete task, unless they're also its creator. Set `disable_notification` or `date_created` to skip the email. Returns 400 once the lead has more than 300 incomplet",
    "input": {
     "type": "object",
     "properties": {
@@ -12903,13 +13179,13 @@
   {
    "slug": "close.tasks_delete",
    "name": "Delete a task",
-   "description": "Delete a task",
+   "description": "Delete a task. Returns an empty object on success. Deleting your own tasks and deleting other users' tasks need separate permissions. Returns 400 if you don't have the one this task needs, 403 if the task is on a lead you can't see, and 404 if no task has this ID.",
    "input": {
     "type": "object",
     "properties": {
      "id": {
       "type": "string",
-      "description": ""
+      "description": "ID of the task, e.g. `task_aRUZXCm9lMb2LwipTPhfFoFbCsUnaoQh1ncQ7WLnjlI`."
      }
     },
     "required": [
@@ -12931,13 +13207,13 @@
   {
    "slug": "close.tasks_get",
    "name": "Fetch a task's details",
-   "description": "Fetch a task's details",
+   "description": "Fetch a single task. Returns 403 if the task is on a lead you can't see, and 404 if no task has this ID.",
    "input": {
     "type": "object",
     "properties": {
      "id": {
       "type": "string",
-      "description": ""
+      "description": "ID of the task, e.g. `task_aRUZXCm9lMb2LwipTPhfFoFbCsUnaoQh1ncQ7WLnjlI`."
      },
      "_fields": {
       "type": "string",
@@ -12965,7 +13241,7 @@
   {
    "slug": "close.tasks_list",
    "name": "List or filter tasks",
-   "description": "The `view` parameter can be used to conveniently access the different task views. It accepts one of the following values: * `inbox`: Shows incomplete tasks up to the end of the user's day only (taking the time zone into account). * `future`: Shows incomplete tasks starting from the user's tomorrow only (taking the time zone into account). * `archive`: Shows complete tasks only. Note that a `view` ",
+   "description": "List tasks that match the filters, newest first by default. `total_results` holds the number of matching tasks. Without a `_type` or `_type__in` filter, only `lead` tasks are returned. Use `_type=all` to also return the other items in your Close inbox, such as incoming emails and missed calls. Use `view` for the inbox, future and archive views shown in Close. Set `format=ical` to get the tasks as ",
    "input": {
     "type": "object",
     "properties": {
@@ -12982,203 +13258,141 @@
        "string",
        "null"
       ],
-      "description": ""
+      "description": "Only return tasks assigned to this user, e.g. `user_N6KhMpzHRCYQHdn4gRNIFNN5JExnsrprKA6ekxM63XA`. Returns 403 for another user if your role restricts which leads you can see."
      },
      "format": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": ""
+      "type": "string",
+      "description": "Set to `ical` to get the tasks as an iCalendar (`text/calendar`) feed instead of JSON. Sending an `Accept: text/calendar` header does the same. The feed leaves out tasks with no due date."
      },
      "id": {
       "type": [
        "string",
        "null"
       ],
-      "description": ""
+      "description": "Only return the task with this ID, e.g. `task_aRUZXCm9lMb2LwipTPhfFoFbCsUnaoQh1ncQ7WLnjlI`."
      },
      "id__in": {
       "type": [
        "string",
        "null"
       ],
-      "description": ""
+      "description": "Comma-separated list of task IDs. Only return these tasks."
      },
      "is_complete": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": ""
+      "type": "boolean",
+      "description": "`true` to only return completed tasks, `false` to only return incomplete tasks."
      },
      "lead_id": {
       "type": [
        "string",
        "null"
       ],
-      "description": ""
+      "description": "Only return tasks on this lead, e.g. `lead_5LmpOyrMQdJSUlbNGBSGfK5XzcioIm7aC94PSQamQJc`."
      },
      "_order_by": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": ""
-     },
-     "organization_id": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": ""
+      "type": "string",
+      "description": "Field to sort by: `date`, `due_date`, `date_created` or `date_updated`. Prefix with `-` to sort in descending order, e.g. `-date`. Defaults to `-date_created`."
      },
      "_type": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": ""
+      "type": "string",
+      "description": "Only return tasks of this type. Defaults to `lead` (tasks created on a lead) when neither `_type` nor `_type__in` is set. Use `all` to return every type.",
+      "enum": [
+       "all",
+       "lead",
+       "outgoing_call",
+       "draft_email",
+       "draft_sms",
+       "incoming_email",
+       "lead_suggestion_incoming_email",
+       "incoming_sms",
+       "incoming_whatsapp_message",
+       "missed_call",
+       "voicemail",
+       "opportunity_due"
+      ]
      },
      "_type__in": {
       "type": [
        "string",
        "null"
       ],
-      "description": ""
+      "description": "Comma-separated list of task types, e.g. `lead,outgoing_call`. Only return tasks of any of these types. Takes the same values as `_type`, except `all`."
      },
      "view": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": ""
+      "type": "string",
+      "description": "Shortcut for a task view. `inbox` returns incomplete tasks due by the end of today, `future` returns incomplete tasks due from tomorrow on, and `archive` returns completed tasks. Today is based on your time zone. `inbox` overrides `is_complete` and `date__lt`, `future` overrides `is_complete` and `date__gte`, and `archive` overrides `is_complete`."
      },
      "date": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": ""
+      "type": "string",
+      "description": "Only return tasks due at exactly this date or time, in ISO 8601, e.g. `2024-01-31` or `2024-01-31T09:00:00Z`. Values without a UTC offset are treated as UTC."
      },
      "date__lt": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": ""
+      "type": "string",
+      "description": "Only return tasks due before this date or time, in ISO 8601, e.g. `2024-01-31` or `2024-01-31T09:00:00Z`. Values without a UTC offset are treated as UTC."
      },
      "date__lte": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": ""
+      "type": "string",
+      "description": "Only return tasks due on or before this date or time, in ISO 8601, e.g. `2024-01-31` or `2024-01-31T09:00:00Z`. Values without a UTC offset are treated as UTC."
      },
      "date__gt": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": ""
+      "type": "string",
+      "description": "Only return tasks due after this date or time, in ISO 8601, e.g. `2024-01-31` or `2024-01-31T09:00:00Z`. Values without a UTC offset are treated as UTC."
      },
      "date__gte": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": ""
+      "type": "string",
+      "description": "Only return tasks due on or after this date or time, in ISO 8601, e.g. `2024-01-31` or `2024-01-31T09:00:00Z`. Values without a UTC offset are treated as UTC."
      },
      "due_date": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": ""
+      "type": "string",
+      "description": "Deprecated: use `date` instead, which it matches."
      },
      "due_date__lt": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": ""
+      "type": "string",
+      "description": "Deprecated: use `date__lt` instead, which it matches."
      },
      "due_date__lte": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": ""
+      "type": "string",
+      "description": "Deprecated: use `date__lte` instead, which it matches."
      },
      "due_date__gt": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": ""
+      "type": "string",
+      "description": "Deprecated: use `date__gt` instead, which it matches."
      },
      "due_date__gte": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": ""
+      "type": "string",
+      "description": "Deprecated: use `date__gte` instead, which it matches."
      },
      "date_created__lt": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": ""
+      "type": "string",
+      "description": "Only return tasks created before this date or time, in ISO 8601, e.g. `2024-01-31` or `2024-01-31T09:00:00Z`."
      },
      "date_created__lte": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": ""
+      "type": "string",
+      "description": "Only return tasks created on or before this date or time, in ISO 8601, e.g. `2024-01-31` or `2024-01-31T09:00:00Z`."
      },
      "date_created__gt": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": ""
+      "type": "string",
+      "description": "Only return tasks created after this date or time, in ISO 8601, e.g. `2024-01-31` or `2024-01-31T09:00:00Z`."
      },
      "date_created__gte": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": ""
+      "type": "string",
+      "description": "Only return tasks created on or after this date or time, in ISO 8601, e.g. `2024-01-31` or `2024-01-31T09:00:00Z`."
      },
      "date_updated__lt": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": ""
+      "type": "string",
+      "description": "Only return tasks last updated before this date or time, in ISO 8601, e.g. `2024-01-31` or `2024-01-31T09:00:00Z`."
      },
      "date_updated__lte": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": ""
+      "type": "string",
+      "description": "Only return tasks last updated on or before this date or time, in ISO 8601, e.g. `2024-01-31` or `2024-01-31T09:00:00Z`."
      },
      "date_updated__gt": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": ""
+      "type": "string",
+      "description": "Only return tasks last updated after this date or time, in ISO 8601, e.g. `2024-01-31` or `2024-01-31T09:00:00Z`."
      },
      "date_updated__gte": {
-      "type": [
-       "string",
-       "null"
-      ],
-      "description": ""
+      "type": "string",
+      "description": "Only return tasks last updated on or after this date or time, in ISO 8601, e.g. `2024-01-31` or `2024-01-31T09:00:00Z`."
      },
      "_fields": {
       "type": "string",
@@ -13201,7 +13415,6 @@
      "is_complete",
      "lead_id",
      "_order_by",
-     "organization_id",
      "_type",
      "_type__in",
      "view",
@@ -13233,13 +13446,13 @@
   {
    "slug": "close.tasks_update",
    "name": "Update a task",
-   "description": "The `assigned_to`, `date` (either a date or a date-time), and `is_complete` fields may be updated on all tasks. If the task type is `lead`, the `text` field may also be modified.",
+   "description": "Update a task. Only the fields you send are changed. `assigned_to`, `date` and `is_complete` can be updated on every type of task. The other fields only apply to some types, as their descriptions say. Sending `text`, `priority`, `lead_id` or `contact_id` for a type that doesn't support it returns 400. The other fields are ignored. Returns 403 if the task is on a lead you can't see, or if it's assi",
    "input": {
     "type": "object",
     "properties": {
      "id": {
       "type": "string",
-      "description": ""
+      "description": "ID of the task, e.g. `task_aRUZXCm9lMb2LwipTPhfFoFbCsUnaoQh1ncQ7WLnjlI`."
      },
      "_fields": {
       "type": "string",
@@ -13250,50 +13463,42 @@
        "string",
        "null"
       ],
-      "description": ""
+      "description": "ID of the voice agent to make the call, instead of a user. Only applies to `outgoing_call` tasks, and can't be set together with `assigned_to`. To remove the voice agent, set this to null and set `assigned_to`."
      },
      "assigned_to": {
       "type": "string",
-      "description": ""
+      "description": "ID of the user to assign the task to. For an incomplete `lead` task, Close emails the new assignee, unless that's you. On an `outgoing_call` task, this also removes the voice agent (`agent_config_id`)."
      },
      "contact_id": {
       "type": [
        "string",
        "null"
       ],
-      "description": ""
-     },
-     "created_by": {
-      "type": "string",
-      "description": ""
+      "description": "ID of a contact on the task's lead. Only `lead` and `outgoing_call` tasks have a contact. Set to null to remove it."
      },
      "date": {
       "type": "string",
-      "description": ""
+      "description": "When the task is due, in ISO 8601. A date, e.g. `2024-01-31`, makes the task due that day. A date and time, e.g. `2024-01-31T09:00:00Z`, makes it due at that time."
      },
      "due_date": {
       "type": "string",
-      "description": ""
+      "description": "Deprecated: use `date` instead."
      },
      "is_complete": {
       "type": "boolean",
-      "description": ""
+      "description": "`true` to complete the task, `false` to reopen it."
      },
      "is_dateless": {
       "type": "boolean",
-      "description": ""
+      "description": "`true` if the task has no due date. Only applies to `lead` tasks, and is ignored on other types."
      },
      "lead_id": {
       "type": "string",
-      "description": ""
-     },
-     "organization_id": {
-      "type": "string",
-      "description": ""
+      "description": "ID of the lead to link the task to. Only `missed_call`, `incoming_sms`, `voicemail` and `answered_detached_call` tasks can change their lead. This also moves the related call or message to the lead."
      },
      "priority": {
       "type": "string",
-      "description": "",
+      "description": "Priority of a task.",
       "enum": [
        "high",
        "medium"
@@ -13301,11 +13506,11 @@
      },
      "resolution": {
       "type": "string",
-      "description": ""
+      "description": "How the task was closed without being done. Only applies to `outgoing_call`, `draft_email` and `draft_sms` tasks, and is ignored on other types. Set to null to clear it."
      },
      "text": {
       "type": "string",
-      "description": ""
+      "description": "Description of the task. Only `lead` and `outgoing_call` tasks have text, and it can't be blank on `lead` tasks."
      }
     },
     "required": [
@@ -13326,13 +13531,11 @@
      "agent_config_id",
      "assigned_to",
      "contact_id",
-     "created_by",
      "date",
      "due_date",
      "is_complete",
      "is_dateless",
      "lead_id",
-     "organization_id",
      "priority",
      "resolution",
      "text"
@@ -13433,14 +13636,6 @@
        "last_name,first_name",
        "first_name,last_name"
       ]
-     },
-     "_limit": {
-      "type": "integer",
-      "description": "Number of results to return."
-     },
-     "_skip": {
-      "type": "integer",
-      "description": "Number of results to skip before returning, for pagination."
      }
     },
     "required": [
@@ -13454,9 +13649,7 @@
      "id"
     ],
     "query": [
-     "_order_by",
-     "_limit",
-     "_skip"
+     "_order_by"
     ],
     "header": [],
     "body": [],
@@ -13496,14 +13689,6 @@
    "input": {
     "type": "object",
     "properties": {
-     "_order_by": {
-      "type": "string",
-      "description": "",
-      "enum": [
-       "last_name,first_name",
-       "first_name,last_name"
-      ]
-     },
      "_limit": {
       "type": "integer",
       "description": "Number of results to return."
@@ -13511,6 +13696,14 @@
      "_skip": {
       "type": "integer",
       "description": "Number of results to skip before returning, for pagination."
+     },
+     "_order_by": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "last_name,first_name",
+       "first_name,last_name"
+      ]
      }
     },
     "required": []
@@ -13520,9 +13713,9 @@
     "url": "https://api.close.com/api/v1/user/",
     "path": [],
     "query": [
-     "_order_by",
      "_limit",
-     "_skip"
+     "_skip",
+     "_order_by"
     ],
     "header": [],
     "body": [],

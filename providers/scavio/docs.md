@@ -15,7 +15,7 @@ vouches for**: read it, then read their reference.
 # Scavio
 
 > Scavio is a real-time search API for AI agents. It gives LLMs and autonomous
-> agents structured JSON access to 50 platforms -- search, social, retail, real
+> agents structured JSON access to 50+ platforms -- search, social, retail, real
 > estate, travel, local, jobs, app stores, software reviews, ad libraries and
 > company filings -- plus Extract, which reads any URL as Markdown, plain text
 > or raw HTML. One REST API, one key: no HTML parsing, no browser automation,
@@ -43,12 +43,14 @@ below.
 
 <!-- BEGIN:endpoints -->
 
-Scavio serves 304 endpoints across 50 platforms, Extract included (39 platform families in the API, since Google's verticals share one).
-Every data endpoint is a POST returning structured JSON. Most cost 1 credit;
+Scavio serves 631 endpoints across 94 platforms, Extract included (85 platform families in the API, since Google's verticals share one).
+Every data endpoint is a POST returning structured JSON (crawl and batch job status is a GET, cancel a DELETE; the Google Custom Search compatible endpoint is a GET). Most cost 1 credit;
 the exceptions are stated per platform below.
 
 ### Search
 #### Google Search (v2)
+- `GET /api/v1/google/customsearch`
+- `POST /api/v1/google/customsearch`
 - `POST /api/v2/google`
 - `POST /api/v2/google/ai-mode`
 - `POST /api/v2/google/flights`
@@ -64,6 +66,10 @@ the exceptions are stated per platform below.
 - `POST /api/v2/google/shopping/product/stores`
 - `POST /api/v2/google/trending`
 - `POST /api/v2/google/trends`
+- `GET /customsearch/v1`
+- `GET /customsearch/v1/siterestrict`
+
+### AI assistants
 
 ### Social
 
@@ -73,33 +79,34 @@ the exceptions are stated per platform below.
 - `POST /api/v1/tiktok/ads/top`
 - `POST /api/v1/tiktok/hashtag`
 - `POST /api/v1/tiktok/hashtag/videos`
+- `POST /api/v1/tiktok/music`
+- `POST /api/v1/tiktok/music/chart`
+- `POST /api/v1/tiktok/music/videos`
+- `POST /api/v1/tiktok/playlist/videos`
 - `POST /api/v1/tiktok/profile`
+- `POST /api/v1/tiktok/search/music`
+- `POST /api/v1/tiktok/search/suggestions`
 - `POST /api/v1/tiktok/search/users`
 - `POST /api/v1/tiktok/search/videos`
+- `POST /api/v1/tiktok/trending/searches`
+- `POST /api/v1/tiktok/trending/videos`
 - `POST /api/v1/tiktok/user/followers`
 - `POST /api/v1/tiktok/user/followings`
+- `POST /api/v1/tiktok/user/live`
+- `POST /api/v1/tiktok/user/playlists`
 - `POST /api/v1/tiktok/user/posts`
+- `POST /api/v1/tiktok/user/region`
+- `POST /api/v1/tiktok/user/similar`
 - `POST /api/v1/tiktok/video`
 - `POST /api/v1/tiktok/video/comments`
 - `POST /api/v1/tiktok/video/comments/replies`
 - `POST /api/v1/tiktok/video/transcript`
 
-#### Instagram (priced per endpoint: 10, 8 or 2)
-- `POST /api/v1/instagram/post`
-- `POST /api/v1/instagram/post/comments`
-- `POST /api/v1/instagram/post/comments/replies`
-- `POST /api/v1/instagram/profile`
-- `POST /api/v1/instagram/search/hashtags`
-- `POST /api/v1/instagram/search/users`
-- `POST /api/v1/instagram/user/followers`
-- `POST /api/v1/instagram/user/followings`
-- `POST /api/v1/instagram/user/posts`
-- `POST /api/v1/instagram/user/reels`
-- `POST /api/v1/instagram/user/stories`
-- `POST /api/v1/instagram/user/tagged`
-
 #### X (Twitter)
+- `POST /api/v1/x/community`
+- `POST /api/v1/x/community/tweets`
 - `POST /api/v1/x/search`
+- `POST /api/v1/x/search/communities`
 - `POST /api/v1/x/trending`
 - `POST /api/v1/x/tweet`
 - `POST /api/v1/x/tweet/comments`
@@ -117,6 +124,8 @@ the exceptions are stated per platform below.
 - `POST /api/v1/reddit/post/comments`
 - `POST /api/v1/reddit/post/comments/replies`
 - `POST /api/v1/reddit/search`
+- `POST /api/v1/reddit/search/comments`
+- `POST /api/v1/reddit/search/subreddits`
 - `POST /api/v1/reddit/search/suggestions`
 - `POST /api/v1/reddit/subreddit`
 - `POST /api/v1/reddit/subreddit/posts`
@@ -140,7 +149,6 @@ the exceptions are stated per platform below.
 - `POST /api/v1/pinterest/user/boards`
 
 #### Weibo
-- `POST /api/v1/weibo/channel-feed`
 - `POST /api/v1/weibo/hot-search`
 - `POST /api/v1/weibo/hot-search/index`
 - `POST /api/v1/weibo/post`
@@ -173,6 +181,12 @@ the exceptions are stated per platform below.
 - `POST /api/v1/weibo/user/videos`
 
 ### Retail
+#### Etsy (2 credits)
+- `POST /api/v1/etsy/product`
+- `POST /api/v1/etsy/reviews`
+- `POST /api/v1/etsy/search`
+- `POST /api/v1/etsy/shop`
+- `POST /api/v1/etsy/shop/products`
 
 ### Social
 
@@ -195,7 +209,7 @@ the exceptions are stated per platform below.
 ### Retail
 #### Amazon
 - `POST /api/v1/amazon/offers`
-- `POST /api/v1/amazon/options`
+- `GET /api/v1/amazon/options`
 - `POST /api/v1/amazon/product`
 - `POST /api/v1/amazon/search`
 
@@ -205,15 +219,159 @@ the exceptions are stated per platform below.
 - `POST /api/v1/ebay/seller`
 
 #### Target
+- `POST /api/v1/target/availability`
 - `POST /api/v1/target/category`
 - `POST /api/v1/target/product`
 - `POST /api/v1/target/reviews`
 - `POST /api/v1/target/search`
 
-#### Home Depot (2 credits)
-- `POST /api/v1/homedepot/product`
-- `POST /api/v1/homedepot/reviews`
-- `POST /api/v1/homedepot/search`
+#### Kroger (search and product 2 credits, prices 3, stores, category, deals, coupons and suggestions 1; banner kroger (kroger.com, default), qfc (QFC, qfc.com: Washington and Oregon) or fred_meyer (Fred Meyer, fredmeyer.com: the Pacific Northwest and Alaska) on every endpoint, other Kroger banners (Ralphs, King Soopers, Fry's, Smith's, Harris Teeter...) not covered; prices = price, promo_price, promo_ends_at, on_sale, stock_level, in_stock (null without a stock record), quantity (the site's available estimate, not a shelf count), aisle {description, number, side, bay, shelf}, fulfillment and priced_at for 1-25 13-digit UPCs at one store_id (stores[].location_id; QFC ids start 705, Fred Meyer 701), unknown UPCs in not_found, up to about a minute per call; search, product, category and deals price at a store the site chooses (returned in store, can change between calls; use prices for a specific store); search / category / deals return the first page only (up to 24 products; page > 1 = unbilled 400), total up to 1000, no sort; stores by zip, city / address query or store_id with hours, departments, pharmacy and fuel-center flags (fuel centers are their own locations; no fuel prices); deals = this week's weekly digital deals (no printed circular); coupons per store (store_id or zip), 24 per page, category / query filters, savings in cents, listed never clipped; suggestions for a partial query; product by UPC or URL with dietary flags, nutrition where listed and store_location; ratings are average, count and star distribution, no review text; prices in integer cents; failed upstream calls are not charged, a not-found (UPC, store_id) is a charged 404)
+- `POST /api/v1/kroger/category`
+- `POST /api/v1/kroger/coupons`
+- `POST /api/v1/kroger/deals`
+- `POST /api/v1/kroger/prices`
+- `POST /api/v1/kroger/product`
+- `POST /api/v1/kroger/search`
+- `POST /api/v1/kroger/stores`
+- `POST /api/v1/kroger/suggestions`
+
+#### Publix (1 credit, every endpoint; publix.com (US: FL, GA, AL, SC, NC, TN, VA, KY), English; every price endpoint takes store_id (a Publix store number, stores[].store_id; 9999 is the site's placeholder = 400; an unknown store = charged 404) and echoes store { id, name }; THE KEY FACT: publix.com shows prices only for items on sale (weekly ad, BOGO, multi-buys, Extra Savings) and for order-ahead (In-Store Pickup) deli and bakery items, so price is null for everything else, never estimated (no regular shelf prices; delivery and curbside run through Instacart at prices Publix says are higher than in store); search (query) and category (category_url /c/<name>/<id> or category_id GUID) share one grid: 48 items/page, pages up to 100, total and total_pages, sorts relevance (default), featured, name_asc, name_desc, popularity, savings_amount, most_viewed, filters on_sale, bogo, brand, facets with counts; each item has item_code (Publix item code, not a UPC: Publix publishes no UPCs), base_product_id, title, brand, size, description, image, url, category_path, aisle (at that store, e.g. "Aisle 11 - Lunch Meat"), on_sale, price, price_unit (lb), bundle {quantity, price} (multi-buys, price null), starting_price ("Starts at" items), regular_price, price_text and regular_price_text as shown, promo {type single / bogo / multi, message, conditions, savings, valid_from, valid_through}, has_coupon, is_order_ahead; keywords the site sends to an order-ahead page set redirected_to (items may be empty); no match = empty 200; product by item_code: the card plus nutrition labels (one per component and size for deli subs) and, for order-ahead items, short_description, lead_time, serves, calories (no ingredients, allergens, UPC or reviews; Publix does not publish them online); categories = 16 departments, 382 nodes (id, name, url, parent_id, level, children; parent_id = a subtree; store_id optional); weekly-ad = the store's current English ad, about 700 items (store 1614 Miami: 691 incl. 229 BOGO and 20 B2G1, 2026-11-12 to 11-18), ad {start_date, end_date}, departments, filters department, bogo_only (BOGO and B2G1), query; items id, item_code, title, description, brand, department, categories, savings_text as shown, deal_type (bogo, b2g1, multi, price, percent_off, other), price (plain price only), price_unit, bundle, save_up_to, additional_savings, min_quantity, fine_print, stacked_with_coupon, promotion, valid_from, valid_to, image; ads run Thursday-Wednesday in Florida and Wednesday-Tuesday in Georgia and North Carolina (stores[].weekly_ad_break_day per store); some ad prices differ by store (24-pack Michelob Ultra $25.99 Miami, $28.49 Atlanta, $23.49 Charlotte on 2026-11-13); extra-savings = several hundred temporary price reductions (678 to 1,363 per store) with savings_text, savings, final_price as the site lists it, min_quantity, size, url and period {start_date, end_date}; coupons = the store's digital coupons (about 100-130) with value, min_quantity, limit_per_transaction, categories, valid dates, terms, read-only (never clipped, no account); savings-search = one query across the weekly ad, Extra Savings and coupons, items tagged saving_type weekly_ad / extra_savings / coupon; order-ahead = the deli and bakery order-ahead menu with the store's prices, section subs (default, Pub Subs) or all (about 1,150 items), 60/page up to 50 pages, plus lead_time, serves, calories, pay_online (Chicken Tender Sub $12.09 Miami, $11.99 Atlanta and Charlotte on 2026-11-13); stores by zip, city + state or store_id, limit up to 30, radius_miles up to 100: store_id, name, type, address, phone, 7 days of hours, departments, services, pharmacy {phone, hours}, liquor_store, coordinates, distance_miles, weekly_ad_break_day, opening_date; suggestions = up to 10 search-box suggestions and, with store_id, up to 4 products; no ratings or reviews, UPCs, ingredients, allergens, coupon clipping, Club Publix account data, cart, ordering, pharmacy data beyond phone and hours, Spanish ad or price history; failed upstream calls are not charged, a not-found (unknown store, item code or category) is a charged 404)
+- `POST /api/v1/publix/categories`
+- `POST /api/v1/publix/category`
+- `POST /api/v1/publix/coupons`
+- `POST /api/v1/publix/extra-savings`
+- `POST /api/v1/publix/order-ahead`
+- `POST /api/v1/publix/product`
+- `POST /api/v1/publix/savings-search`
+- `POST /api/v1/publix/search`
+- `POST /api/v1/publix/stores`
+- `POST /api/v1/publix/suggestions`
+- `POST /api/v1/publix/weekly-ad`
+
+#### Macy's (1 credit, every endpoint; macys.com (US) only, USD, Bloomingdale's not covered; search, category (id or /shop/ URL), brand (brand page id or /shop/brands/ URL) and deals (type sale, clearance, today_only, last_act, limited_time_special or black_friday) share one grid: 60 organic items/page with total and total_pages, six sorts (featured, price_low_to_high, price_high_to_low, top_rated, best_sellers, newest; the total differs by sort, as on the site), filters brand, color, special_offer (not on deals), min_price/max_price (any bound), pickup_store_id and any facets[].name via filters; each item has price, regular_price, sale_price, percent_off, price_label, on_sale, sale_ends, deal_label, promotions, rating and review_count; ad-only sponsored tiles are dropped and counted in sponsored_dropped unless include_sponsored, organic items that also hold a paid slot stay, flagged is_sponsored; a keyword Macy's maps to a category returns redirected_to_category; product by product_id or url with every variant (UPC, color, size, availability message), rating_distribution, review_count vs text_review_count, fit slider and AI review summary, or product_ids up to 10 per call in Macy's summary view (no rating histogram; unknown ids in not_found); a collection member id answers with the collection product (requested_id echoes the id asked for); reviews are Macy's own, newest, highest_rated, lowest_rated or with_photos, rating and text filters, up to 100/page, total counts written reviews only (ratings-only reviews count on product, no text), reviewer nickname only; stores by zip, lat+lng or city+state within 1-100 miles (default 100), up to 15, store_id, hours, curbside hours and pickup cut-off; store-availability near a location (available and available_items_count per store) or at one store_id (pickup_available and in_store_available per variant), no unit quantities; suggestions up to 7; no price history, coupon codes or Q&A text; unknown ids 404 and upstream errors 502 are not charged)
+- `POST /api/v1/macys/brand`
+- `POST /api/v1/macys/category`
+- `POST /api/v1/macys/deals`
+- `POST /api/v1/macys/product`
+- `POST /api/v1/macys/reviews`
+- `POST /api/v1/macys/search`
+- `POST /api/v1/macys/store-availability`
+- `POST /api/v1/macys/stores`
+- `POST /api/v1/macys/suggestions`
+
+#### Saks Fifth Avenue (2 credits, every endpoint; saksfifthavenue.com (US) only, USD, saksoff5th.com not covered (shut down); search, category (/c/ path or URL), brand (a designer slug from designers, or a /brand/ URL) and deals (type sale, womens_sale, mens_sale, womens_new_arrivals or mens_new_arrivals; no clearance or final-sale list exists) share one grid: 24 grid positions/page (editorial tiles can take a few, so a page may carry 22-23 products) with total, total_pages, start and next_start (pass next_start as start to walk every item), seven sorts (featured, best_sellers, newest, price_high_to_low, price_low_to_high, sale_first, brand_az), filters brand (not on brand), color, size (the facet LABEL: Medium, not M), min_price/max_price (any bound), on_sale, new_arrivals and any facets[].id via filters; each item has price, price_max, regular_price, sale_price, on_sale, percent_off, review_count, badge, is_final_sale (null when the tile is blank), is_clearance, returnable, limited_inventory and promotions; a keyword the site sends to a designer or category page returns redirected_to; product by product_id (master or variant sku) or url, color + size resolve one variant (its sku is id, with UPC), every color and size with availability, every SKU with warehouse_units (online warehouse count), in_stock_count, availability with in_stock_date, final sale / returnable / marketplace flags, promotions, attributes, rating and review_count only (no review text on any endpoint); stores by zip or lat+lng within 15/30/50/100/300 miles (default 50), pickup flag per store; store-availability takes a variant sku and returns per pickup store the availability message, in_stock, limited and units_at_store when the site shows a count (null otherwise); suggestions returns designers, categories with paths, up to 5 products and popular searches; designers is the A-Z index (about 1,200, slug feeds brand; refreshed at most every 12 h), optional letter; no price history, coupons or international prices; unknown ids 404 and upstream errors 502 are not charged)
+- `POST /api/v1/saks/brand`
+- `POST /api/v1/saks/category`
+- `POST /api/v1/saks/deals`
+- `POST /api/v1/saks/designers`
+- `POST /api/v1/saks/product`
+- `POST /api/v1/saks/search`
+- `POST /api/v1/saks/store-availability`
+- `POST /api/v1/saks/stores`
+- `POST /api/v1/saks/suggestions`
+
+#### JCPenney (1 credit, every endpoint; jcpenney.com (US, Puerto Rico stores included) only, USD; search, category (a /g/ path or URL with its id=cat... part, as jcpenney.com links and a response's breadcrumbs carry it; a department page lists no products without a deal or filter), brand (name as the Brand facet lists it, or a brand page URL) and deals (type clearance default, sale, black_friday, big_buy, limited_time_special, best_value, gotta_have_it, closeout, bogo, or any Deals & Promotions label verbatim, optional department id) share one grid: 48 products/page, at most 25 pages (1,200 items per listing), total and total_pages, six sorts (relevance, new_arrivals, best_sellers, rating, price_low_to_high, price_high_to_low; the price orders are the site's own and loose), shortcuts brand / color / size / price_range / deal (one value or a list) and any facets[].id: facets[].values[].value via filters (store_availability, average_rating, gender...); search exact: true skips the site's keyword-to-category narrowing, corrected_query when the site autocorrects, redirected_to when a keyword (doorbusters) opens a deal or category listing; each item has price and price_max, regular_price and regular_price_max, price_type (sale, clearance, original), percent_off, deal_label, coupon_price with coupon_code (the price after today's coupon), rating, review_count, badge, availability_label, colors with sku_id, is_marketplace with seller; prices are product-level ranges, no price per size or color; product by product_id (ppr / ppm / pp + digits) or url, or product_ids up to 20 per call (unknown ids in not_found, batch has no online stock): description, features, breadcrumbs, rating, review_count, question and answer counts, the price block (regular, sale and clearance min / max, percent off, price type, deal label, coupon code and after-coupon price, starts_at / ends_at), channel, in-store pickup, and every variant with sku, UPC, color, size, options, status, max_quantity and online_stock (high, low or out, not a count); store-availability takes a variant sku and a ZIP (or lat + lng) and returns real unit counts at exactly the 5 nearest stores (quantity, status in_stock / low / out_of_stock / not_stocked, updated_at, stores_with_stock, total_quantity; in_stock_only drops stores with none); stores by zip, city + state or lat + lng within 1-100 miles (default 25), 10 per page (up to 20), store_id, weekly hours, timezone, services (Curbside Pickup, salon, portrait studio, JCPenney Beauty...), curbside and pickup directions, appointments; suggestions keyword completions with department refinements; coupons = today's public coupons (code or null for in-store offers, channel online / in store / both, headline, offers, starts_at, ends_at, disclaimer, eligible-products URL); reviews by product_id or url = real review text, up to 98 per call (default 38, no page param), sort most_recent (default), most_helpful, highest_rating, lowest_rating or relevance, rating 1-5 filter, with total_reviews (every language) vs displayed_reviews (the English reviews JCPenney lists; Ninja air fryer 1,395 vs 725) vs matching_reviews (under the sort and star filter), rating_distribution, recommended_percent, secondary rating averages (Quality, Value, Apparel), and per review verified_purchaser, incentivized, syndicated with syndication_source, photos, videos, secondary ratings and brand_response; questions by product_id or url = up to 50 questions (default 10, no sort) with every answer, author_type brand / retailer (JCPenney staff) / ai / customer and ai_label (AI-Generated, AI-Assisted); reviews and questions are 1 credit but slow (usually 15-90s, up to ~3 min on a retry; allow 240s), over-capacity calls get an unbilled 503 with Retry-After; reviewer age, gender and IP are never returned; no price history, sponsored flag, international, account offers / JCPenney Rewards balances or checkout; unknown ids 404 and upstream errors 502 are not charged)
+- `POST /api/v1/jcpenney/brand`
+- `POST /api/v1/jcpenney/category`
+- `POST /api/v1/jcpenney/coupons`
+- `POST /api/v1/jcpenney/deals`
+- `POST /api/v1/jcpenney/product`
+- `POST /api/v1/jcpenney/questions`
+- `POST /api/v1/jcpenney/reviews`
+- `POST /api/v1/jcpenney/search`
+- `POST /api/v1/jcpenney/store-availability`
+- `POST /api/v1/jcpenney/stores`
+- `POST /api/v1/jcpenney/suggestions`
+
+#### Foot Locker (1 credit, every endpoint (reviews and questions included); search, product, category, brand and deals on 13 storefronts via country: us (footlocker.com, USD, default), ca (CAD, language en or fr), gb (GBP), de, fr, it, es, nl, be (language nl or fr), at, ie (EUR), au (AUD), nz (NZD), titles and facet labels in the storefront's language; search, category (a /category/<path>.html path or URL, or a collection_id = a previous category.id), brand (name in any case or a brand page URL, optional query; matched_by collection or brand_filter) and deals (type sale default on every storefront, exclusives = Foot Locker Exclusives on us and ca only, discount_eligible = promo-code-eligible items) share one grid: 48 items/page, pages up to 200, total and total_pages, seven sorts (relevance = the site's Featured order, price_low_to_high, price_high_to_low, new_arrivals, top_rated, name_az, brand_az), shortcuts brand (one or a list, any case) / gender / color / price_range / on_sale and any facets[].id: facets[].values[].value via filters (mensShoesSize, womensShoesSize, style, sport, rating, eligibleForDiscount...); each item has id (the SKU), base_product, price, list_price, percent_off, lowest_price_30d (European storefronts: the 30-day lowest price reference), on_sale, is_new, is_launch, member_only_sale, rating, review_count, color_count and colors with sku and price; listings carry data_as_of and can be a few hours old; a bare brand keyword (nike, hoka) returns the brand's listing with redirected_to (e.g. collection hoka), and a keyword Foot Locker sends to a landing page without a listing (samba, clearance) is an unbilled 400; product by product_id (US SKU like Q5495005, 12 digits in Europe) or url on any storefront: description, genders, sports, category, color, style_code, images, rating, review_count, the price block, available / available_to_ship / available_for_pickup, launch (is_launch, launch_type, launch_date, web_only), flags, size_chart, every colorway (sku, color, price, availability) and every size with available, ship, pickup (yes / no) and stores_available (how many stores show the size as available: a store count, not units), UPC and store SKU; releases = the release calendar for us, ca (en / fr) and gb as monitoring data (read-only: never enters, reserves or buys): sku, title, brand, style (colorway), style_code, gender, launch_at, online_at, heat_level, in_stock, image, url, retail_price + currency (us, ca), reservation (status open / closed / store_only, starts_at, ends_at, assignment_at, awarding_at, online_reveal_at, store_procedures) and sizes (us, eu, uk, participating online / store); gb has no prices, reservation windows or size runs; filters status (all, upcoming, launched), from / to ISO dates, brand; US only: stores near a ZIP, city + state or lat + lng (radius 1-120 miles, default 25, up to 50 stores) with store_id, address, phone, distance, weekly hours, opened_at, alert and closure notices, Foot Locker banner stores only (no Kids Foot Locker or Champs Sports); store-availability = which nearby Foot Locker stores show a product or one size as available (yes / no per store, sizes_available, plus ship / pickup per size), no unit counts; reviews = up to 98 per call (default 38), sorts most_recent, most_helpful, highest_rating, lowest_rating, relevance, rating 1-5 filter, total_reviews vs displayed_reviews, rating_distribution, recommended_percent, comfort / fit / quality averages, verified / incentivized / syndicated badges, photos, brand response; questions = up to 50 (default 10) with every answer and author_type brand / retailer / customer; reviews and questions are slow (usually 25-90 s, up to ~4 min on a retry; allow 240 s) and over-capacity calls get an unbilled 503 with Retry-After; no search suggestions, unit counts, FLX member prices or account data, price history, checkout or raffle entry; other Foot Locker storefronts (pl, pt, dk, se, no, ch, Asia) are not served; upstream errors 502 are not charged, a not-found (unknown SKU, category or brand) is a charged 404)
+- `POST /api/v1/footlocker/brand`
+- `POST /api/v1/footlocker/category`
+- `POST /api/v1/footlocker/deals`
+- `POST /api/v1/footlocker/product`
+- `POST /api/v1/footlocker/questions`
+- `POST /api/v1/footlocker/releases`
+- `POST /api/v1/footlocker/reviews`
+- `POST /api/v1/footlocker/search`
+- `POST /api/v1/footlocker/store-availability`
+- `POST /api/v1/footlocker/stores`
+
+#### Fanatics (1 credit, every endpoint (reviews included); Fanatics licensed sports merchandise (jerseys, hats, fan gear, collectibles), never sportsbook, odds or betting data; search, product, browse and deals on 8 storefronts via country: us (fanatics.com, USD, default), gb (GBP), de, fr, es, it (EUR), jp (JPY), ca (CAD, language en or fr), titles in the storefront's language; on us, site fanatics (default), nflshop, mlbshop, nhlshop or mlsstore reads that US league store (same product ids, each store's own titles; no NBA Store); search (query, gender men / women / kids / baby, league_id, department_id, filters), browse (a site listing url or ids league_id, team_id, player_id, department_id incl. parent-child 8008-8084, brand_id, collection_id from facets, plus on_sale, price_band under_25 / 25_50 / 50_100 / 100_150 / over_150 in the storefront's currency, gender, filters; a league alone is an unbilled 400) and deals (type sale default = coupon-eligible items and clearance markdowns, clearance = each sale page's clearance-priced items with sale_items_on_page, under_25; optional league_id, team_id, department_id, brand_id) share one grid: page_size 24, 48 or 72 (default), pages up to 9,000 products, sorts top_sellers (default), price_low_to_high, price_high_to_low, newest (price sorts and bands use the site's lowest price = the with-code price when a code applies), total (the US site counts at most 9000: total_capped true; international storefronts report larger totals), every facet with values { label, filter, value, count } to send back as filters {filter: value} (up to 12) or as ids; search returns corrected_query (the site's spelling correction), broad_match and redirected_to; price and sale filters are refused on search; price bands and under_25 are refused on jp; each item has id, title, brand, url, image, price, regular_price, sale_price, clearance_price, with_code_price and code_percent_off (the price with the site's current public promo code, when it lowers this item), percent_off, price_label (none, coupon, clearance), top_seller, customizable, ready_to_ship, ship_by, est_delivery, urgency signals and is_sponsored; listings carry data_as_of (when Fanatics built the page); product by product_id (digits; the same id on every league store) or url: league, team, player with ids, gender, categories, breadcrumb, description, details, images, the price block, coupon (code, percent_off, tiered, ends_on, applies_to_product), in_stock, every size with item_id, available, stock_level (low or out, null when the site shows none; never a unit count), price, with_code_price, ship_by, est_delivery_from / est_delivery_to, promise_ship_days, customization_handling_days, colors, personalization (name / number fields with max_length and pattern, the team roster; the price already includes personalization), flags jersey_assurance, non_returnable, exclusive, authentic, rating with distribution and fit (1 Too Small to 5 Too Large), value and quality, review_count; reviews (us only) by product_id or url: 1-50 reviews (default 10), sorts highest_rated (default), lowest_rated, most_recent, most_helpful, rating 1-5 filter, stats, ai_summary (the site's own AI-written summary, labelled), features, and per review rating, fit, quality, value, recommended, title, text, author, dates, incentivized, votes, features with sentiment, photos and product_id / product_title: Fanatics pools reviews across a style, so the list covers sibling products; reviews are slow (usually 20-90 s, up to ~4 min on a retry; allow 300 s), one at a time, busy = unbilled 503 with Retry-After 60; no search suggestions, store locator or store stock, Q&A, FanCash, member pricing, unit counts, price history, checkout or resale tooling; upstream errors 502 are not charged, a not-found (unknown product or listing) is a charged 404)
+- `POST /api/v1/fanatics/browse`
+- `POST /api/v1/fanatics/deals`
+- `POST /api/v1/fanatics/product`
+- `POST /api/v1/fanatics/reviews`
+- `POST /api/v1/fanatics/search`
+
+#### Carrefour (1 credit, every endpoint, except search and product on be (Belgium) 2; carrefour.fr (France, EUR, French) has every endpoint; search and product also on ar (carrefour.com.ar, ARS, Spanish), ro (carrefour.ro, RON, Romanian) and be (carrefour.be, EUR, language fr default or nl) via country, titles in the market's language as the site writes them (not translated); France: search (query; the site's spelling correction as corrected_query; results_type fallback when nothing matches), category (a /r/ path, slug or carrefour.fr URL; breadcrumb[].url of a product) and promotions (type all default, catalogue = Vu en catalogue, immediate = Remises immediates, loyalty = Avantage Fidelite loyalty-card offers, festive = the site's seasonal Selection festive; optional category = a Rayon facet label) share one grid: 30 items/page, pages up to 500, total and total_pages, sorts relevance (default), price_low_to_high, price_high_to_low, unit_price_low_to_high, unit_price_high_to_low, top_rated, filters brand (a Marque facet label), promotion (a Promotions facet label; search and category), nutriscore A-E, organic, carrefour_brands, min_price / max_price in EUR, every facet with label, type, values { label, count, selected } (price facet ranges in EUR); prices: without store the national online price, with store (a store_ref or pickup_refs[].ref from stores, or stores[].store.ref from store-availability) that store's shelf price and range, labelled by store and price_scope (Nutella 400 g 3.99 national, 3.69 at two stores, 4.61 at another on 2026-11-12); each item has ean, title, brand, url, image, type (product or marketplace), sponsored, price, unit_price with unit and unit_price_label (per KG or L), packaging, format, nutriscore, ecoscore, rating, review_count, available, low_stock, promotion { type, label as written, loyalty_only (member price), seen_in_catalogue, discounted_price and initial_price for the deal's quantity when the site prices them (null on unpriced deals such as -10% Club), discount_amount, quantity, starts_at, ends_at }, seller (marketplace: id, name, rating, shipping days), flags and category; ar / ro / be search returns the fields their site carries (no facets or store; ar and ro relevance and price sorts, be relevance; 24 items/page on ar and ro, 36 on be); product by ean (fr, ar) or url (required on ro and be): on fr description, breadcrumb, categories, images, packaging, format, origin, nutriscore, ecoscore, regulated_name, ingredients, allergens (as written in the ingredients), nutrition per_100 and per_portion with daily_value_pct, storage, advice, characteristics, weights, the price block (price, unit price, tax_note, available, low_stock, max_quantity), promotion, seller and every offer, rating with distribution, optional store and seller; reviews by ean (fr): 1-50 (default 10), sorts most_recent (default), oldest, highest_rated, lowest_rated, rating 1-5 filter, offset paging, author as published (first name and last initial), rating, title, text, reviewed_at, purchased_at, source; suggestions = keyword completions and aisle suggestions; stores by French postal_code or lat + lng, nearest first, up to 20 per page, service filter (drive, lad, Retrait2h-drive, station_service, banque_assurance, spectacles, voyages, location_vehicule, traiteur, Parapharmacie, pro), with store_ref, pickup_refs, banner, format, distance_km, address, today's hours and slug; store-availability = yes / no per store for one ean near a postal code, about 20 stores, with hours and refs, no price and no unit count; store by slug or url = services, opening and drive hours, the next pickup slot as shown, delivery flags, nearest stores and, at stations, fuel prices per litre (Gazole, SP95, SP95-E10, SP98, E85, GPLc) with update times; no Q&A, printed leaflet, slot booking, checkout, loyalty account data or price history; Spain, Italy, Poland, Brazil and the Middle East (MAF franchise) sites are not covered; failed upstream calls are not charged, a not-found (unknown EAN, store ref, store page or category) is a charged 404)
+- `POST /api/v1/carrefour/category`
+- `POST /api/v1/carrefour/product`
+- `POST /api/v1/carrefour/promotions`
+- `POST /api/v1/carrefour/reviews`
+- `POST /api/v1/carrefour/search`
+- `POST /api/v1/carrefour/store`
+- `POST /api/v1/carrefour/store-availability`
+- `POST /api/v1/carrefour/stores`
+- `POST /api/v1/carrefour/suggestions`
+
+#### Allegro (2 credits, every endpoint and market; Allegro marketplace via country: pl (allegro.pl, PLN, Polish, default), cz (allegro.cz, CZK, Czech), sk (allegro.sk, EUR, Slovak), hu (allegro.hu, HUF, Hungarian), every endpoint on all four; titles, parameters, conditions, delivery text, sold labels and facet labels in the site's language as written (not translated); an offer (/oferta/, offer_id, 8-14 digits) is one seller's listing, a catalogue product (/produkt/, product_id, a uuid) groups many sellers' offers for the same item; search (query, optional category_id id or slug), category (category_id, slug or url, optional query; returns category with breadcrumb, subcategories or sibling_categories with counts) and seller (login, optional query and category = categories[].slug; returns seller id, login, is_business, url, is_active_seller and categories with counts) share one grid: 60 organic offers/page plus sponsored slots on top, pages up to 100, total (exact) and total_pages, sorts relevance (default), price_low_to_high, price_high_to_low, price_with_delivery_low_to_high, price_with_delivery_high_to_low, popularity, ending_soonest, newest (sponsored slots unsorted, each block in sort order), filters min_price / max_price in the site's currency, condition new / used, smart (Allegro Smart!), buying_format buy_now / auction (pl only) and deals (pl only: Allegro's deals zone, Black Weeks included while it runs), every facet with label, param, value, count; each item has offer_id, product_id, title, url, image, price, currency, buy_now_price, price_with_delivery, free_delivery, delivery_text, condition, is_auction, auction_ends_in, discount_percent, lowest_price_30d (the EU 30-day lowest price before a discount, only on discounted offers; not price history), seller {id, login, super_seller, positive_feedback_percent, is_business}, rating, rating_count, sold_count ("x people bought recently" as a number; null on auctions), smart, offers_count, stock, placement (regular, promoted, sponsored) with is_sponsored, source (allegro, or allegro_lokalnie for Lokalnie listings allegro.pl mixes in); offer by offer_id or url: condition, price, original_price, lowest_price_30d with the site's note, discount_percent and amount, price_with_delivery, stock, sold_count (null on cz, sk, hu offer pages), auction {current_price, min_next_bid, bid_step, ends_at, has_bids, bids_label} (read-only), parameters, gtin, brand, description, images, breadcrumb, delivery methods with price and eta, handling_time, returns, warranty, seller with positive / negative counts (12 months), is_business and company_name (business sellers), product rating and product_offers_count; product by product_id or url: brand, gtin, parameters, lowest_price and offer_count (no highest price), offer_highlights (cheapest, fastest), featured_offer (the buy box with seller), sold_count across offers, rating with 1-5 distribution, aspects, and the first 20 reviews on the page (author masked, is_best, images; no verified-purchase flag, no paging past 20); product-offers = every seller's offer for one product, 60/page, sorts relevance, the 4 price sorts and popularity, filters condition, price, smart, is_featured for the buy box; seller-feedback by login: summary (recommended, not_recommended, unique counts, positive_percent, received, excluded, removed, member_since, super_seller) and 20 ratings/page newest first (pages up to 500) with comment, justifications, date, offers rated, excluded and reason, no buyer identity; calls take about 4-28 s on pl and up to about 60 s on sk and hu (client timeout 120 s); no search suggestions, bidding, buying or checkout, Allegro Lokalnie on its own, Smart! account data, revenue or GMV, price history, pickup points, seller addresses or tax ids; failed upstream calls are not charged, a not-found (unknown offer, product, seller or category) is a charged 404)
+- `POST /api/v1/allegro/category`
+- `POST /api/v1/allegro/offer`
+- `POST /api/v1/allegro/product`
+- `POST /api/v1/allegro/product-offers`
+- `POST /api/v1/allegro/search`
+- `POST /api/v1/allegro/seller`
+- `POST /api/v1/allegro/seller-feedback`
+
+#### OLX (1 credit, every endpoint and market; OLX Europe classifieds only (not OLX Brasil olx.com.br, OLX India olx.in, OLX Bosnia olx.ba or the Dubizzle-run OLX sites) via country: pl (olx.pl, PLN, Polish, default), ro (olx.ro, RON, Romanian), pt (olx.pt, EUR, Portuguese), bg (olx.bg, EUR, Bulgarian), ua (olx.ua, UAH, Ukrainian), kz (olx.kz, KZT, Russian; language kk = Kazakh), uz (olx.uz, UZS, Russian; language uz = Uzbek); language only on search, seller-ads and offer and only on kz / uz; filters and similar are pl, ro, pt, bg and ua only (kz / uz = unbilled 400); titles, params and labels in the site's language as written (not translated); search (query and / or category_id) and seller-ads (user_id, optional query, category_id) share one grid: page_size up to 50 (default 40) plus the promoted ads OLX interleaves, flagged is_promoted with promoted_position (their slot; not sorted; include_promoted false drops them) and promoted_count, page x page_size at most 1000 (OLX serves the first 1000 results of a search only; total is the real count with total_capped true; total null on kz / uz from 1000 up), sorts relevance (default), newest (last refresh: sellers can refresh an ad to the top), price_low_to_high, price_high_to_low, filters min_price / max_price (site currency), condition new / used / refurbished / damaged, seller_type private / business, olx_delivery (not kz / uz), with_photos, region_id / city_id / district_id with distance_km 0-100 around a city, and up to 20 category filters keys filter_float_<name>:from / :to and filter_enum_<name> from the filters endpoint; a query with no exact match returns OLX's closest ads, not an empty list; each item has id, url, title, description_snippet, price {value, currency, negotiable, type price / free / exchange / budget, label, previous_value, original_value, original_currency} (where the site converts, olx.uz y.e. to UZS, EUR on olx.ro to RON, USD / EUR on olx.ua to UAH, value is the converted figure and original_* what the seller entered), salary {from, to, period, currency, gross, negotiable} on job ads, condition, params[] {key, name, value, normalized_value}, category_id, category_type, location {city, city_id, district, district_id, region, region_id}, created_at, refreshed_at, valid_to, status, is_highlighted, is_business, olx_delivery, photos and seller {id, business_name (registered company name of business sellers only, null otherwise)}; offer by offer_id or url (any of the 7 sites): full description, category breadcrumb, all photos, is_active, is_job and seller {id, is_business, business_name, member_since}; an ad that does not exist and an ad that has ended answer the same charged 404; seller by user_id: is_business, business_name, member_since, active_ads, ads_url (OLX shows no seller ratings or reviews); filters by category_id (optional query, region_id): each filter's key, label, kind range / choice, unit, send_as keys, steps and values with ad counts, plus ad counts per region (or city inside region_id) and per category; categories (optional parent_id = whole subtree) with id, name, path, url, type and active ad count; locations (query, 2+ letters) = cities and districts with city_id, district_id, region_id; suggestions = up to 10 search-box suggestions with their category; similar by offer_id or url = about 30 recommended ads in the item shape; privacy: private sellers' names, phone numbers, emails, last-seen times, profile photos, map positions and car VINs are never returned, phones and emails in ad text are replaced with [phone removed] / [email removed]; no seller ratings or reviews (OLX shows none), view counts, contact details, messaging, buying, delivery prices or checkout, posting ads, price statistics, price history or notifications (poll newest and store the ids); calls usually take 2-25 s, ad details and filters up to about 70 s (client timeout 120 s); failed upstream calls are not charged, a not-found (ad, seller or category) is a charged 404)
+- `POST /api/v1/olx/categories`
+- `POST /api/v1/olx/filters`
+- `POST /api/v1/olx/locations`
+- `POST /api/v1/olx/offer`
+- `POST /api/v1/olx/search`
+- `POST /api/v1/olx/seller`
+- `POST /api/v1/olx/seller-ads`
+- `POST /api/v1/olx/similar`
+- `POST /api/v1/olx/suggestions`
+
+#### IKEA (1 credit per call, every endpoint except compare (1 credit per market that answered; the balance must cover every asked market; a market that fails is listed in errors and not charged); country = the IKEA market (lowercase, default us): search and product on 55 markets (the 50 ikea.com markets us ca gb ie de at ch fr be nl dk se no fi ee lv lt pl cz sk hu hr si rs ro pt es it il ae sa kw qa bh om jo eg ma in my sg ph th jp kr au nz mx cl co, plus cn = ikea.cn, pr = Puerto Rico, do = Dominican Republic, es_islands = Canary and Balearic islands with island tenerife / grancanaria / lanzarote / fuerteventura / lapalma / lagomera / elhierro / mallorca / menorca / ibiza, is = Iceland); items, category, deals and suggestions on the 50 ikea.com markets + cn; reviews, categories, stores, stock and compare on the 50 ikea.com markets; as-is on us gb de fr se jp nl es it pl au ch at; not available: Ukraine, Greece, Cyprus, Bulgaria, Hong Kong, Taiwan, Indonesia, Turkey; a market outside an endpoint's list = unbilled 400; language = the market's language (default its first; e.g. us en/es, ca en/fr, be nl/fr/en, ch de/fr/it/en, es es/en/ca/eu/gl, cn zh/en); names come in that language, prices in the market's currency, never converted, VAT included; every answer echoes country, language and currency; compare (item_no + 2-10 countries from the 50 ikea.com markets) = per market country, language, currency, found, name, type_name, design, price, previous_price, price_tag, url, plus errors and found_count; some markets (us, ca, jp, au, kr, in, my, sg, ph ...) sell the same product under their own article number, so found is false there (search items carry item_no_global: us KALLAX 20631663 = 80275887); KALLAX 80275887 on 2026-11-13: de 49.99 EUR (was 59.99), nl 49.99 (69.99), es 54.99 (59.99), it 55 (69.95), fr 59.99 (74.99), se 599 SEK; search (query) / category (category_id or url) / deals (type new_products, family_price, new_lower_price, last_chance, lowest_price, top_seller, limited_edition, time_restricted, in_store_price_only, reduced_price_offer) share one grid: page_size default 24 up to 100, (page - 1) x page_size at most 2000, sorts relevance, price_asc, price_desc, newest, rating, name_asc, most_popular, filters color, price_bucket, category_id (search), new_only, last_chance, family_price, top_seller, store_id + availability (in_store, click_collect, online), filters keyed by facets[].parameter; items have item_no, item_no_global, is_combination, name, type_name, design, measure_text, url, images, price, previous_price, discount_amount, discount_percent, price_tag (none, new_lower_price, family_price = price is the member price and previous_price the regular one, lower_price_in_store, new_product, discontinued), price_tag_text, lowest_price, price_valid_from / to, rating, rating_count (pooled across markets), badge, colors, variants, last_chance, online_sellable, category_path, availability (with store_id); search adds did_you_mean, related_searches, content; the franchise sites (pr, do, es_islands, is) take query and page only, pr / do / es_islands return the first 40 results, is 40 per page; product by item_no or url (market read from the url): price, previous_price, family_price, currency, measurements, materials, care, good_to_know, safety, packaging (number_of_packages, packages with dimensions and weight), assembly_pdfs, manuals, designer, variants with prices, secondary_ratings, reviews_preview (3 newest), return_policy_days, detail_level; cn in Chinese; franchise sites basic detail; can take up to about 100 s (client timeout 120 s); items = up to 100 article numbers on one market with the grid item fields, unknown in not_found; stock = up to 100 article numbers at one store_id: store_availability status in_stock_high / in_stock_low / out_of_stock with the site's text, home_delivery with zip; a level, not a quantity (no unit counts, no restock dates); unknown store id = charged 404; reviews = rating, rating_count, secondary_ratings and the 20 most recent reviews (title, text, rating, date, author first name) plus highlighted; no paging, sort or star filter; up to about 100 s; categories = the market's tree (about 1,500 nodes; parent_id = a subtree); suggestions = completions, categories and products for a partial query; stores = store_id, type, address, coordinates, hours with dated exceptions, restaurant / bistro / cafe / click & collect / Swedish Food Market / Smaland hours, query filter, lat / lng distance sort, limit up to 200; as-is = one store's ex-display, returned and second-hand offers (original_price, min / max price, offers with price, condition, in_box, reason_discount), page_size up to 48, read-only; no stock quantities, review paging, cart, ordering, IKEA Family account data, price history or currency conversion; IKEA publishes no public developer API; failed upstream calls are not charged, a not-found (article, category, store) is a charged 404)
+- `POST /api/v1/ikea/as-is`
+- `POST /api/v1/ikea/categories`
+- `POST /api/v1/ikea/category`
+- `POST /api/v1/ikea/compare`
+- `POST /api/v1/ikea/deals`
+- `POST /api/v1/ikea/items`
+- `POST /api/v1/ikea/product`
+- `POST /api/v1/ikea/reviews`
+- `POST /api/v1/ikea/search`
+- `POST /api/v1/ikea/stock`
+- `POST /api/v1/ikea/stores`
+- `POST /api/v1/ikea/suggestions`
+
+#### TCGplayer (1 credit, every endpoint; tcgplayer.com US marketplace, USD; search (cards and sealed, 71 games incl. Pokemon, Magic, Yu-Gi-Oh!, One Piece, Lorcana, pokemon-japan; up to 50/page; game, set, rarity, product_type filters; query optional with game or set); product by id or URL with market price per SKU (condition x printing x language) and the recent sale range and count behind it (sale stats, not live listings); listings up to 50/page by condition, printing, language, verified or Direct with seller rating and sales; price-history up to a year per SKU (month daily, quarter 3-day, semi_annual and annual weekly) with market price, quantity sold and low/high sale (null when nothing sold); sales is the 5 most recent only; price-guide up to 500 rows per page for a set, cards or sealed; games, sets (newest first), suggestions (no game filter), trending (all/pokemon/magic/yugioh); seller profile with 365-day feedback summary, seller-feedback rows (buyer as masked nickname), seller-products; no product reviews, buylist prices, store locator or full sold history; unknown ids 404 and upstream errors 502 are not charged)
+- `POST /api/v1/tcgplayer/games`
+- `POST /api/v1/tcgplayer/listings`
+- `POST /api/v1/tcgplayer/price-guide`
+- `POST /api/v1/tcgplayer/price-history`
+- `POST /api/v1/tcgplayer/product`
+- `POST /api/v1/tcgplayer/sales`
+- `POST /api/v1/tcgplayer/search`
+- `POST /api/v1/tcgplayer/seller`
+- `POST /api/v1/tcgplayer/seller-feedback`
+- `POST /api/v1/tcgplayer/seller-products`
+- `POST /api/v1/tcgplayer/sets`
+- `POST /api/v1/tcgplayer/suggestions`
+- `POST /api/v1/tcgplayer/trending`
+
+#### Vinted (1 credit, every endpoint; 27 Vinted country sites via country (fr default; be lu es nl lt de at it pt sk fi hr gr ie ee lv si EUR, cz CZK, pl PLN, se SEK, ro RON, hu HUF, dk DKK, uk GBP, us USD, au AUD); category, condition and filter names in the site's language; EU sites share one cross-border listing pool priced in the site's currency, uk/us/au are separate catalogs; search 96/page fixed, pages 1-10 (total_is_capped when more), query optional with category_id or brand_ids, filters brand_ids, status_ids, size_ids, color_ids, material_ids, price_from/price_to, sorts relevance/newest_first/price_low_to_high/price_high_to_low (price sorts surface loose matches), echoes applied filters; items carry price, service_fee (the Vinted fee, formerly Buyer Protection fee), total_price, seller id and business flag; product by item_id or URL (URL's site wins) in the seller's currency with sold/reserved state, no fee or shipping; seller public profile only (feedback counts, rating 0-1, items, verifications, no personal data); seller-products up to 96/page; seller-feedback up to 50/page without reviewer identity; brands, suggestions, filters (size/status/color/material with counts), categories (cached 12h); no sold-listing search or sold comps, shipping prices, pickup points, similar items, trending or view counts; unknown ids 404 and upstream errors 502 are not charged)
+- `POST /api/v1/vinted/brands`
+- `POST /api/v1/vinted/categories`
+- `POST /api/v1/vinted/filters`
+- `POST /api/v1/vinted/product`
+- `POST /api/v1/vinted/search`
+- `POST /api/v1/vinted/seller`
+- `POST /api/v1/vinted/seller-feedback`
+- `POST /api/v1/vinted/seller-products`
+- `POST /api/v1/vinted/suggestions`
 
 #### TikTok Shop
 - `POST /api/v1/tiktok-shop/categories`
@@ -266,7 +424,7 @@ the exceptions are stated per platform below.
 - `POST /api/v1/indeed/job`
 - `POST /api/v1/indeed/search`
 
-#### Glassdoor
+#### Glassdoor (2 credits)
 - `POST /api/v1/glassdoor/companies`
 - `POST /api/v1/glassdoor/company`
 - `POST /api/v1/glassdoor/reviews`
@@ -307,6 +465,8 @@ the exceptions are stated per platform below.
 - `POST /api/v1/capterra/reviews`
 - `POST /api/v1/capterra/search`
 
+### Reviews
+
 ### Ad libraries
 #### Google Ads Transparency
 - `POST /api/v1/googleads/advertisers`
@@ -342,6 +502,7 @@ the exceptions are stated per platform below.
 - [Search API for AI Agents](https://scavio.dev/search-api-for-ai-agents) -- category overview: one API for all platforms below
 - [Government & Public Data API](https://scavio.dev/government-data-api) -- municipal legislation, meetings, officials and committees from 1,800+ US cities via Legistar
 - [Screenshot API](https://scavio.dev/screenshot-api) -- full-page screenshot of any URL as a PNG data URI
+- [Website Crawler API](https://scavio.dev/website-crawler-api) -- crawl a site to Markdown, map sitemap URLs and batch extract URL lists
 - [Google Search API](https://scavio.dev/google-api)
 - [Google Maps API](https://scavio.dev/google-maps-api)
 - [Google Shopping API](https://scavio.dev/google-shopping-api)
@@ -350,6 +511,9 @@ the exceptions are stated per platform below.
 - [Google AI Mode API](https://scavio.dev/google-ai-mode-api)
 - [Google Flights API](https://scavio.dev/google-flights-api)
 - [Google Hotels API](https://scavio.dev/google-hotels-api)
+- [ChatGPT API](https://scavio.dev/chatgpt-api) -- the answer ChatGPT gives a prompt, with cited sources, web searches and recommended products
+- [Gemini API](https://scavio.dev/gemini-api) -- the answer Gemini gives a prompt, with cited URLs and recommended products
+- [AEO API](https://scavio.dev/aeo) -- ChatGPT, Google AI Mode and AI Overview answers with their citations, one key for AI visibility tracking
 - [Amazon API](https://scavio.dev/amazon-api)
 - [YouTube API](https://scavio.dev/youtube-api)
 - [Walmart API](https://scavio.dev/walmart-api)
@@ -369,533 +533,8 @@ the exceptions are stated per platform below.
 - [Etsy API](https://scavio.dev/etsy-api) -- listing search, product detail, shop data and reviews
 - [Target API](https://scavio.dev/target-api)
 - [Home Depot API](https://scavio.dev/homedepot-api)
-- [Kuaishou API](https://scavio.dev/kuaishou-api)
-- [Douyin API](https://scavio.dev/douyin-api) -- videos, creators, comments, sounds, hashtags, live and search
-- [Weibo API](https://scavio.dev/weibo-api) -- hot-search board, user profiles, posts, comments and search
-- [Indeed API](https://scavio.dev/indeed-api)
-- [Glassdoor API](https://scavio.dev/glassdoor-api)
-- [Yelp API](https://scavio.dev/yelp-api)
-- [Tripadvisor API](https://scavio.dev/tripadvisor-api)
-- [Booking.com API](https://scavio.dev/booking-api)
-- [Airbnb API](https://scavio.dev/airbnb-api)
-- [Zillow API](https://scavio.dev/zillow-api)
-- [Redfin API](https://scavio.dev/redfin-api)
-- [App Store API](https://scavio.dev/app-store-api)
-- [Google Play API](https://scavio.dev/google-play-api)
-- [G2 API](https://scavio.dev/g2-api)
-- [Capterra API](https://scavio.dev/capterra-api)
-- [Google Ads Transparency API](https://scavio.dev/google-ads-transparency-api)
-- [Meta Ad Library API](https://scavio.dev/meta-ads-api)
-- [TikTok Ad Library API](https://scavio.dev/tiktok-ads-api) -- search TikTok's Top Ads and creative by keyword, industry and country
-- [LinkedIn Ad Library API](https://scavio.dev/linkedin-ads-api) -- search LinkedIn ads by keyword or advertiser with creative and copy
-- [SEC EDGAR API](https://scavio.dev/sec-edgar-api)
-- [Companies House API](https://scavio.dev/companies-house-api)
-- [Legistar API](https://scavio.dev/legistar-api) -- municipal legislation, meetings, officials and committees from 1,800+ US cities
-
-<!-- END:landing-pages -->
-## SDKs
-
-- Python: `pip install scavio` -- `ScavioClient` / `AsyncScavioClient`
-- JavaScript / TypeScript: `npm install scavio` -- `new Scavio({ apiKey })`
-- MCP server (191 tools across 31 platforms plus Extract, 106 by default): remote
-  at https://mcp.scavio.dev/mcp (sign in with OAuth, or send an x-api-key header),
-  or `npx -y @scavio/mcp-server`. Landing page: https://scavio.dev/mcp. In the
-  official MCP registry, Glama, PulseMCP.
-
-## Framework Integrations
-
-Native tool packages and docs for: LangChain (`langchain-scavio`), Pydantic AI
-(`pydantic-scavio`), Google ADK (`google-adk-scavio`), OpenAI Agents SDK
-(`openai-agents-scavio`), CrewAI (`crewai-scavio`), LlamaIndex
-(`llama-index-tools-scavio`), Vercel AI SDK (`@scavio/ai-sdk`), Mastra, Composio,
-Dify, n8n (`n8n-nodes-scavio`), Haystack (`scavio-haystack`), AutoGen, smolagents,
-Arcade, Agno (in core), and OpenClaw skills.
-
-## Documentation
-
-### Getting Started
-- [Introduction](https://scavio.dev/docs/api-reference)
-
-### SDKs
-- [SDK Reference](https://scavio.dev/docs/python-sdk-reference)
-- [SDK Reference](https://scavio.dev/docs/js-sdk-reference)
-
-<!-- BEGIN:docs-links -->
-
-### Google Search (v2)
-- https://scavio.dev/docs/search-api
-- https://scavio.dev/docs/google-ai-mode
-- https://scavio.dev/docs/google-maps
-- https://scavio.dev/docs/google-maps-place
-- https://scavio.dev/docs/google-maps-geo-grid
-- https://scavio.dev/docs/google-reviews
-- https://scavio.dev/docs/google-shopping
-- https://scavio.dev/docs/google-shopping-product
-- https://scavio.dev/docs/google-shopping-stores
-- https://scavio.dev/docs/google-flights
-- https://scavio.dev/docs/google-hotels
-- https://scavio.dev/docs/google-hotels-detail
-- https://scavio.dev/docs/google-news
-- https://scavio.dev/docs/google-trends
-- https://scavio.dev/docs/google-trending
-
-### Extract (any URL)
-- https://scavio.dev/docs/extract
-- https://scavio.dev/docs/screenshot
-
-### YouTube
-- https://scavio.dev/docs/youtube-api
-- https://scavio.dev/docs/youtube-shorts
-- https://scavio.dev/docs/youtube-suggestions
-- https://scavio.dev/docs/youtube-video
-- https://scavio.dev/docs/youtube-comments
-- https://scavio.dev/docs/youtube-comment-replies
-- https://scavio.dev/docs/youtube-transcript
-- https://scavio.dev/docs/youtube-related
-- https://scavio.dev/docs/youtube-channel-search
-- https://scavio.dev/docs/youtube-channel
-- https://scavio.dev/docs/youtube-channel-videos
-- https://scavio.dev/docs/youtube-channel-shorts
-- https://scavio.dev/docs/youtube-channel-community
-- https://scavio.dev/docs/youtube-channel-resolve
-- https://scavio.dev/docs/youtube-streams
-
-### TikTok
-- https://scavio.dev/docs/tiktok-api
-- https://scavio.dev/docs/tiktok-user-search
-- https://scavio.dev/docs/tiktok-profile
-- https://scavio.dev/docs/tiktok-user-posts
-- https://scavio.dev/docs/tiktok-video
-- https://scavio.dev/docs/tiktok-video-transcript
-- https://scavio.dev/docs/tiktok-ads-search
-- https://scavio.dev/docs/tiktok-ads-top
-- https://scavio.dev/docs/tiktok-ads-detail
-- https://scavio.dev/docs/tiktok-video-comments
-- https://scavio.dev/docs/tiktok-comment-replies
-- https://scavio.dev/docs/tiktok-hashtag
-- https://scavio.dev/docs/tiktok-hashtag-videos
-- https://scavio.dev/docs/tiktok-followers
-- https://scavio.dev/docs/tiktok-followings
-
-### Instagram
-- https://scavio.dev/docs/instagram-api
-- https://scavio.dev/docs/instagram-user-posts
-- https://scavio.dev/docs/instagram-user-reels
-- https://scavio.dev/docs/instagram-user-tagged
-- https://scavio.dev/docs/instagram-user-stories
-- https://scavio.dev/docs/instagram-post
-- https://scavio.dev/docs/instagram-post-comments
-- https://scavio.dev/docs/instagram-comment-replies
-- https://scavio.dev/docs/instagram-user-search
-- https://scavio.dev/docs/instagram-hashtag-search
-- https://scavio.dev/docs/instagram-followers
-- https://scavio.dev/docs/instagram-followings
-
-### X (Twitter)
-- https://scavio.dev/docs/x-search
-- https://scavio.dev/docs/x-tweet
-- https://scavio.dev/docs/x-tweet-comments
-- https://scavio.dev/docs/x-tweet-retweeters
-- https://scavio.dev/docs/x-user
-- https://scavio.dev/docs/x-user-tweets
-- https://scavio.dev/docs/x-user-replies
-- https://scavio.dev/docs/x-user-media
-- https://scavio.dev/docs/x-user-followers
-- https://scavio.dev/docs/x-user-followings
-- https://scavio.dev/docs/x-trending
-
-### Reddit
-- https://scavio.dev/docs/reddit-api
-- https://scavio.dev/docs/reddit-search-suggestions
-- https://scavio.dev/docs/reddit-post
-- https://scavio.dev/docs/reddit-post-comments
-- https://scavio.dev/docs/reddit-comment-replies
-- https://scavio.dev/docs/reddit-subreddit
-- https://scavio.dev/docs/reddit-subreddit-posts
-- https://scavio.dev/docs/reddit-user
-- https://scavio.dev/docs/reddit-user-posts
-- https://scavio.dev/docs/reddit-user-comments
-- https://scavio.dev/docs/reddit-popular
-- https://scavio.dev/docs/reddit-trending
-
-### Twitch
-- https://scavio.dev/docs/twitch-profile
-- https://scavio.dev/docs/twitch-user-videos
-- https://scavio.dev/docs/twitch-user-schedule
-- https://scavio.dev/docs/twitch-clip
-
-### Pinterest
-- https://scavio.dev/docs/pinterest-search
-- https://scavio.dev/docs/pinterest-pin
-- https://scavio.dev/docs/pinterest-profile
-- https://scavio.dev/docs/pinterest-user-boards
-- https://scavio.dev/docs/pinterest-board
-- https://scavio.dev/docs/pinterest-url-stats
-
-### Facebook
-- https://scavio.dev/docs/facebook-profile
-- https://scavio.dev/docs/facebook-profile-posts
-- https://scavio.dev/docs/facebook-profile-reels
-- https://scavio.dev/docs/facebook-profile-photos
-- https://scavio.dev/docs/facebook-post
-- https://scavio.dev/docs/facebook-post-comments
-- https://scavio.dev/docs/facebook-reel
-- https://scavio.dev/docs/facebook-group
-- https://scavio.dev/docs/facebook-group-posts
-- https://scavio.dev/docs/facebook-event
-- https://scavio.dev/docs/facebook-hashtag
-
-### Douyin
-- https://scavio.dev/docs/douyin-video
-- https://scavio.dev/docs/douyin-video-by-share-url
-- https://scavio.dev/docs/douyin-video-statistics
-- https://scavio.dev/docs/douyin-video-comments
-- https://scavio.dev/docs/douyin-video-comment-replies
-- https://scavio.dev/docs/douyin-related
-- https://scavio.dev/docs/douyin-user-profile
-- https://scavio.dev/docs/douyin-user-posts
-- https://scavio.dev/docs/douyin-user-likes
-- https://scavio.dev/docs/douyin-user-followers
-- https://scavio.dev/docs/douyin-user-following
-- https://scavio.dev/docs/douyin-user-live
-- https://scavio.dev/docs/douyin-hashtag
-- https://scavio.dev/docs/douyin-hashtag-videos
-- https://scavio.dev/docs/douyin-music
-- https://scavio.dev/docs/douyin-music-videos
-- https://scavio.dev/docs/douyin-live-room
-- https://scavio.dev/docs/douyin-trending
-- https://scavio.dev/docs/douyin-home-feed
-- https://scavio.dev/docs/douyin-resolve-video-id
-- https://scavio.dev/docs/douyin-resolve-user-id
-- https://scavio.dev/docs/douyin-search
-- https://scavio.dev/docs/douyin-search-videos
-- https://scavio.dev/docs/douyin-search-users
-- https://scavio.dev/docs/douyin-search-music
-- https://scavio.dev/docs/douyin-search-live
-- https://scavio.dev/docs/douyin-search-hashtags
-
-### Weibo
-- https://scavio.dev/docs/weibo-user-info
-- https://scavio.dev/docs/weibo-user-info-detail
-- https://scavio.dev/docs/weibo-user-posts
-- https://scavio.dev/docs/weibo-user-original-posts
-- https://scavio.dev/docs/weibo-user-fans
-- https://scavio.dev/docs/weibo-user-following
-- https://scavio.dev/docs/weibo-user-videos
-- https://scavio.dev/docs/weibo-user-video-collections
-- https://scavio.dev/docs/weibo-user-video-collection
-- https://scavio.dev/docs/weibo-user-search-posts
-- https://scavio.dev/docs/weibo-user-recommend-timeline
-- https://scavio.dev/docs/weibo-post
-- https://scavio.dev/docs/weibo-post-comments
-- https://scavio.dev/docs/weibo-post-sub-comments
-- https://scavio.dev/docs/weibo-post-likes
-- https://scavio.dev/docs/weibo-post-reposts
-- https://scavio.dev/docs/weibo-search-advanced
-- https://scavio.dev/docs/weibo-search-realtime
-- https://scavio.dev/docs/weibo-search-videos
-- https://scavio.dev/docs/weibo-search-users
-- https://scavio.dev/docs/weibo-search-topics
-- https://scavio.dev/docs/weibo-search-pics
-- https://scavio.dev/docs/weibo-search-similar
-- https://scavio.dev/docs/weibo-search-ai
-- https://scavio.dev/docs/weibo-hot-search
-- https://scavio.dev/docs/weibo-hot-search-index
-- https://scavio.dev/docs/weibo-rankings-hot-timeline
-- https://scavio.dev/docs/weibo-rankings-entertainment
-- https://scavio.dev/docs/weibo-rankings-life
-- https://scavio.dev/docs/weibo-rankings-social
-- https://scavio.dev/docs/weibo-channel-feed
-
-### Etsy
-- https://scavio.dev/docs/etsy-search
-- https://scavio.dev/docs/etsy-product
-- https://scavio.dev/docs/etsy-shop
-- https://scavio.dev/docs/etsy-shop-products
-- https://scavio.dev/docs/etsy-reviews
-
-### GitHub
-- https://scavio.dev/docs/github-profile
-- https://scavio.dev/docs/github-repo
-- https://scavio.dev/docs/github-profile-repos
-- https://scavio.dev/docs/github-repo-readme
-- https://scavio.dev/docs/github-repo-releases
-- https://scavio.dev/docs/github-repo-issues
-- https://scavio.dev/docs/github-issue
-- https://scavio.dev/docs/github-issue-comments
-- https://scavio.dev/docs/github-search
-- https://scavio.dev/docs/github-repo-top-issues
-- https://scavio.dev/docs/github-profile-velocity
-- https://scavio.dev/docs/github-repo-dossier
-- https://scavio.dev/docs/github-user-email
-
-### Threads
-- https://scavio.dev/docs/threads-profile
-- https://scavio.dev/docs/threads-user-posts
-- https://scavio.dev/docs/threads-user-replies
-- https://scavio.dev/docs/threads-post
-- https://scavio.dev/docs/threads-post-comments
-- https://scavio.dev/docs/threads-user-search
-
-### Kuaishou (China)
-- https://scavio.dev/docs/kuaishou-profile
-- https://scavio.dev/docs/kuaishou-user-posts
-- https://scavio.dev/docs/kuaishou-user-live
-- https://scavio.dev/docs/kuaishou-user-resolve
-- https://scavio.dev/docs/kuaishou-video
-- https://scavio.dev/docs/kuaishou-video-comments
-- https://scavio.dev/docs/kuaishou-comment-replies
-- https://scavio.dev/docs/kuaishou-videos-batch
-- https://scavio.dev/docs/kuaishou-search
-- https://scavio.dev/docs/kuaishou-video-search
-- https://scavio.dev/docs/kuaishou-user-search
-- https://scavio.dev/docs/kuaishou-live-search
-- https://scavio.dev/docs/kuaishou-tag-feed
-- https://scavio.dev/docs/kuaishou-trending
-
-### Amazon
-- https://scavio.dev/docs/amazon-api
-- https://scavio.dev/docs/amazon-product
-- https://scavio.dev/docs/amazon-offers
-- https://scavio.dev/docs/amazon-options
-
-### Walmart
-- https://scavio.dev/docs/walmart-api
-- https://scavio.dev/docs/walmart-product
-- https://scavio.dev/docs/walmart-reviews
-- https://scavio.dev/docs/walmart-category
-- https://scavio.dev/docs/walmart-offers
-- https://scavio.dev/docs/walmart-seller
-- https://scavio.dev/docs/walmart-seller-products
-
-### eBay
-- https://scavio.dev/docs/ebay-search
-- https://scavio.dev/docs/ebay-product
-- https://scavio.dev/docs/ebay-seller
-
-### Target
-- https://scavio.dev/docs/target-search
-- https://scavio.dev/docs/target-category
-- https://scavio.dev/docs/target-product
-- https://scavio.dev/docs/target-reviews
-
-### Home Depot
-- https://scavio.dev/docs/home-depot-search
-- https://scavio.dev/docs/home-depot-product
-- https://scavio.dev/docs/home-depot-reviews
-
-### TikTok Shop
-- https://scavio.dev/docs/tiktok-shop-search
-- https://scavio.dev/docs/tiktok-shop-suggestions
-- https://scavio.dev/docs/tiktok-shop-product
-- https://scavio.dev/docs/tiktok-shop-product-reviews
-- https://scavio.dev/docs/tiktok-shop-categories
-- https://scavio.dev/docs/tiktok-shop-category-products
-- https://scavio.dev/docs/tiktok-shop-shop-products
-- https://scavio.dev/docs/tiktok-shop-resolve
-
-### Zillow
-- https://scavio.dev/docs/zillow-search
-- https://scavio.dev/docs/zillow-property
-- https://scavio.dev/docs/zillow-agent-reviews
-
-### Redfin
-- https://scavio.dev/docs/redfin-search
-- https://scavio.dev/docs/redfin-property
-- https://scavio.dev/docs/redfin-market
-
-### Booking.com
-- https://scavio.dev/docs/booking-search
-- https://scavio.dev/docs/booking-hotel
-- https://scavio.dev/docs/booking-reviews
-
-### Airbnb
-- https://scavio.dev/docs/airbnb-search
-- https://scavio.dev/docs/airbnb-listing
-- https://scavio.dev/docs/airbnb-reviews
-
-### Tripadvisor
-- https://scavio.dev/docs/tripadvisor-locations
-- https://scavio.dev/docs/tripadvisor-search
-- https://scavio.dev/docs/tripadvisor-location
-- https://scavio.dev/docs/tripadvisor-reviews
-
-### Yelp
-- https://scavio.dev/docs/yelp-search
-- https://scavio.dev/docs/yelp-business
-- https://scavio.dev/docs/yelp-reviews
-
-### Indeed
-- https://scavio.dev/docs/indeed-search
-- https://scavio.dev/docs/indeed-job
-- https://scavio.dev/docs/indeed-company
-- https://scavio.dev/docs/indeed-company-reviews
-
-### Glassdoor
-- https://scavio.dev/docs/glassdoor-companies
-- https://scavio.dev/docs/glassdoor-company
-- https://scavio.dev/docs/glassdoor-reviews
-- https://scavio.dev/docs/glassdoor-salaries
-
-### LinkedIn
-- https://scavio.dev/docs/linkedin-person
-- https://scavio.dev/docs/linkedin-person-about
-- https://scavio.dev/docs/linkedin-person-posts
-- https://scavio.dev/docs/linkedin-person-contact
-- https://scavio.dev/docs/linkedin-company
-- https://scavio.dev/docs/linkedin-company-posts
-- https://scavio.dev/docs/linkedin-company-people
-- https://scavio.dev/docs/linkedin-company-jobs
-- https://scavio.dev/docs/linkedin-search-people
-- https://scavio.dev/docs/linkedin-search-jobs
-- https://scavio.dev/docs/linkedin-search-posts
-- https://scavio.dev/docs/linkedin-job
-- https://scavio.dev/docs/linkedin-post
-- https://scavio.dev/docs/linkedin-post-comments
-- https://scavio.dev/docs/linkedin-ads-search
-- https://scavio.dev/docs/linkedin-ads-detail
-
-### Apple App Store
-- https://scavio.dev/docs/app-store-search
-- https://scavio.dev/docs/app-store-app
-- https://scavio.dev/docs/app-store-reviews
-
-### Google Play
-- https://scavio.dev/docs/google-play-search
-- https://scavio.dev/docs/google-play-app
-- https://scavio.dev/docs/google-play-reviews
-
-### G2
-- https://scavio.dev/docs/g2-search
-- https://scavio.dev/docs/g2-product
-- https://scavio.dev/docs/g2-reviews
-
-### Capterra
-- https://scavio.dev/docs/capterra-search
-- https://scavio.dev/docs/capterra-product
-- https://scavio.dev/docs/capterra-reviews
-
-### Google Ads Transparency
-- https://scavio.dev/docs/google-ads-advertisers
-- https://scavio.dev/docs/google-ads-search
-- https://scavio.dev/docs/google-ads-creative
-
-### Meta Ad Library
-- https://scavio.dev/docs/meta-ads-search
-- https://scavio.dev/docs/meta-ads-advertiser
-- https://scavio.dev/docs/meta-ads-ad
-
-### SEC EDGAR
-- https://scavio.dev/docs/sec-edgar-lookup
-- https://scavio.dev/docs/sec-edgar-company
-- https://scavio.dev/docs/sec-edgar-filings
-- https://scavio.dev/docs/sec-edgar-concept
-- https://scavio.dev/docs/sec-edgar-facts
-- https://scavio.dev/docs/sec-edgar-search
-
-### Companies House (UK)
-- https://scavio.dev/docs/companies-house-search
-- https://scavio.dev/docs/companies-house-company
-- https://scavio.dev/docs/companies-house-officers
-- https://scavio.dev/docs/companies-house-filing-history
-
-### Legistar (Municipal)
-- https://scavio.dev/docs/legistar-matters
-- https://scavio.dev/docs/legistar-events
-- https://scavio.dev/docs/legistar-persons
-- https://scavio.dev/docs/legistar-bodies
-- https://scavio.dev/docs/legistar-matter-attachments
-- https://scavio.dev/docs/legistar-matter-sponsors
-- https://scavio.dev/docs/legistar-matter-history
-- https://scavio.dev/docs/legistar-event-items
-
-<!-- END:docs-links -->
-
-### Reference
-
-### MCP & Framework Integrations
-
-## Alternatives (Scavio vs a named tool)
-Browse all: https://scavio.dev/alternatives
-
-- [Bing Web Search API](https://scavio.dev/alternatives/bing-web-search-api)
-- ...and 21 more at https://scavio.dev/alternatives
-
-## Comparisons (Scavio vs alternatives)
-Browse all: https://scavio.dev/compare
-
-- [bing-web-search-api](https://scavio.dev/compare/bing-web-search-api)
-- ...and 21 more at https://scavio.dev/compare
-
-## Comparisons (tool vs tool)
-Browse all: https://scavio.dev/compare
-
-- [ahrefs-api-vs-raw-serp-api](https://scavio.dev/compare/ahrefs-api/vs-raw-serp-api)
-- [apify-tiktok-scraper-vs-scavio-tiktok-api](https://scavio.dev/compare/apify-tiktok-scraper/vs-scavio-tiktok-api)
-- [apify-vs-search-api](https://scavio.dev/compare/apify/vs-search-api)
-- [apollo-io-vs-search-api-scavio](https://scavio.dev/compare/apollo-io/vs-search-api-scavio)
-- [apollo-vs-api-first-enrichment](https://scavio.dev/compare/apollo/vs-api-first-enrichment)
-- ...and 135 more at https://scavio.dev/compare
-
-## Best-of Rankings
-Browse all: https://scavio.dev/best
-
-- [Best Search API for Local LLM Agents in 2026](https://scavio.dev/best/best-agent-search-local-llm-2026)
-- [Best AI Overview API in 2026](https://scavio.dev/best/best-ai-overview-api)
-- [Best Alternatives to Brave Search API in 2026](https://scavio.dev/best/best-alternatives-to-brave-search-api-2026)
-- [Best API for Agentic SEO in 2026](https://scavio.dev/best/best-api-for-agentic-seo)
-- [Best API for Claude Skills in 2026](https://scavio.dev/best/best-api-for-claude-skills)
-- [Best API for Competitor Research in 2026](https://scavio.dev/best/best-api-for-competitor-research)
-- ...and 90 more at https://scavio.dev/best
-
-## Tutorials & How-To Guides
-Browse all: https://scavio.dev/tutorials
-
-- [How to Automate Product Research for Dropshipping with APIs](https://scavio.dev/tutorials/automate-product-research-dropshipping-api)
-- [Build a Job Board With a Search API (No Career-Site Scraping)](https://scavio.dev/tutorials/build-job-board-with-search-api)
-- [How to Build a Multi-Source News Aggregator with APIs](https://scavio.dev/tutorials/build-multi-source-news-aggregator-api)
-- [How to Add API Search to Hermes Without Browser](https://scavio.dev/tutorials/how-to-add-api-search-to-hermes-no-browser)
-- [How to Add a Search API to OpenWebUI](https://scavio.dev/tutorials/how-to-add-search-api-to-openwebui)
-- ...and 83 more at https://scavio.dev/tutorials
-
-## Blog
-Browse all: https://scavio.dev/blog
-
-- [Amazon ASIN Bulk Check via API in 2026](https://scavio.dev/blog/amazon-asin-bulk-check-api-2026)
-- [Best Search API for LLM Pipelines With Extraction](https://scavio.dev/blog/best-search-api-llm-pipelines-with-extraction)
-- [Best Web Search API for AI Agents 2026: Scavio vs Tavily vs Exa vs Parallel vs You.com](https://scavio.dev/blog/best-web-search-api-for-ai-agents-2026-scavio-vs-tavily-exa-parallel-you)
-- [Brave Search API Free Credit: What the Fine Print Actually Means](https://scavio.dev/blog/brave-api-free-credit-fine-print-2026)
-- [Brave Search API Free Tier Killed: Best Alternatives (2026)](https://scavio.dev/blog/brave-search-api-killed-free-tier-what-now-2026)
-- ...and 83 more at https://scavio.dev/blog
-
-## Solutions
-Browse all: https://scavio.dev/solutions
-
-- [Reddit Data Without Direct API](https://scavio.dev/solutions/reddit-data-without-api-key)
-- [SearXNG with API Fallback](https://scavio.dev/solutions/searxng-api-fallback)
-
-## Use Cases
-Browse all: https://scavio.dev/for
-
-- [Gemini vs API Search Reliability](https://scavio.dev/for/gemini-tavily-search-reliability)
-- [OpenWebUI Search Integration with Search API](https://scavio.dev/for/openwebui-search-integration-2026)
-- [SearXNG API Migration](https://scavio.dev/for/searxng-api-migration)
-
-## Workflows
-Browse all: https://scavio.dev/workflows
-
-## Glossary
-Browse all: https://scavio.dev/glossary
-
-- [Google Maps Places API Cost](https://scavio.dev/glossary/google-maps-places-api-cost)
-- [Google Search API Deprecation 2027](https://scavio.dev/glossary/google-api-deprecation-2027)
-- [Local LLM MCP Integration](https://scavio.dev/glossary/local-llm-mcp-integration)
-- ...and 23 more at https://scavio.dev/glossary
-
-## Data Features
-Browse all: https://scavio.dev/features
-
-## Free Developer Tools
-Browse all: https://scavio.dev/tools
-
-## More
+- [Costco API](https://scavio.dev/costco-api) -- warehouse prices and stock, gas prices, the coupon book, clearance and product data
+- [HEB API](https://scavio.dev/heb-api) -- grocery prices, SNAP eligibility, nutrition facts, ingredients and store locations for the Texas-based chain, plus HEB Mexico prices, stock and promotions
+- [API de HEB México](https://scavio.dev/es/heb-api) -- the HEB Mexico API page in Spanish: heb.com.mx prices in pesos, units in stock and promotions
+- [Kroger API](https://scavio.dev/kroger-api) -- Kroger, QFC and Fred Meyer grocery data through one banner param: price, promo price, stock level and aisle for up to 25 UPCs at the store you pick, a store locator with fuel centers, keyword search, category listings and weekly digital deals (first 24 results, priced at a store the site chooses and named in the response), each store's digital coupons (listed, never clipped), product detail by UPC with dietary flags and nutrition where listed, and search suggestions; prices in integer cents; other Kroger banners not covered
+- [Publix API](https://scavio.dev/publix-api) -- Publix (publix.com, US: Florida, Georgia, Alabama, South Carolina, North Carolina, Tennessee, Virginia and Kentucky) data for the store you pick: each store's current weekly ad (about 700 items) with every deal's type parsed (Buy 1 Get 1 FREE, Buy 2 Get 1 FREE, multi-buy, sale price, percent off) and the ad's start and end date (Thursday to Wednesday in Florida, Wednesday to Tuesday in Georgia and North Carolina), Extra Savings price reductions with final prices, digital coupons listed

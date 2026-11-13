@@ -1,0 +1,1128 @@
+{
+ "_": "GENERATED \u2014 what an authoring tool needs to FIND an operation. The calling table is the .lua beside it.",
+ "provider": "addresszen",
+ "source": "https://raw.githubusercontent.com/addresszen/openapi/main/openapi.json",
+ "operations": [
+  {
+   "slug": "addresszen.address_verify",
+   "name": "Verify address",
+   "description": "Verifies an address against the USPS Coding Accuracy Support System (CASS) and returns it standardized and corrected. Submit the whole address in `query`, or the first address line in `query` with either `zip_code`, or `city` and `state`. A freeform `query` is parsed into those components before the search runs. A match returns the standardized address lines, city, state and ZIP+4, scored by `fit`",
+   "input": {
+    "type": "object",
+    "properties": {
+     "tags": {
+      "type": "string",
+      "description": "**Tags** A comma separated list of tags to query over. Useful if you want to specify the circumstances in which the request was made. If you specify multiple tags, the response comprises only requests that satisfy all of them. Searching `\"foo,bar\"` queries only requests tagged both `\"foo\"` and `\"bar\"`."
+     },
+     "context": {
+      "type": "string",
+      "description": "Identify the country of the address to verify. Defaults to United States (USA)"
+     },
+     "query": {
+      "type": "string",
+      "description": "Address input to verify. If submitting a freeform address verification query, enter the full address. E.g. `query=123 Main St, Springfield, CO, 81073` Otherwise, query can be accompanied with the following address components: - `zip_code` - `city` and `state` If you supply `zip_code`, or `city` and `state`, omit that information from `query` and use it for the first address line only. E.g. `query="
+     },
+     "zip_code": {
+      "type": "string",
+      "description": "Specify the ZIP code of an address. The following formats are accepted: `81073-1119`, `810731119`, `81073`."
+     },
+     "city": {
+      "type": "string",
+      "description": "City of an address."
+     },
+     "state": {
+      "type": "string",
+      "description": "State of an address. For the US, use the 2-letter state abbreviation."
+     }
+    },
+    "required": [
+     "query"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.addresszen.com/v1/verify/addresses",
+    "path": [],
+    "query": [
+     "tags",
+     "context"
+    ],
+    "header": [],
+    "body": [
+     "query",
+     "zip_code",
+     "city",
+     "state"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "addresszen.create_config",
+   "name": "Create",
+   "description": "Creates a named configuration on a key and returns it.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "user_token": {
+      "type": "string",
+      "description": "**Management Key** A secret key used to manage your account and API Keys. It was previously called the user token. Your management key can be retrieved and managed from your [accounts page](https://addresszen.com/account). Typically begins `uk_`. Prefer sending it in the `Authorization` header as `Bearer uk_...` instead of this query parameter. The `Authorization: user_token=\"uk_...\"` header also "
+     },
+     "name": {
+      "type": "string",
+      "description": "A unique name to identify the configuration payload"
+     },
+     "payload": {
+      "type": "string",
+      "description": "A serialized payload of up to `65536` characters"
+     }
+    },
+    "required": [
+     "name",
+     "payload"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.addresszen.com/v1/keys/{key}/configs",
+    "path": [],
+    "query": [
+     "user_token"
+    ],
+    "header": [],
+    "body": [
+     "name",
+     "payload"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "addresszen.create_licensee",
+   "name": "Create",
+   "description": "Creates a licensee on a key and returns it with its generated `sl_` key. The key must be enabled for sub-licensing.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "user_token": {
+      "type": "string",
+      "description": "**Management Key** A secret key used to manage your account and API Keys. It was previously called the user token. Your management key can be retrieved and managed from your [accounts page](https://addresszen.com/account). Typically begins `uk_`. Prefer sending it in the `Authorization` header as `Bearer uk_...` instead of this query parameter. The `Authorization: user_token=\"uk_...\"` header also "
+     },
+     "name": {
+      "type": "string",
+      "description": "Licensee individual or organisation name"
+     },
+     "address": {
+      "type": "string",
+      "description": "Licensee's first, second and third line address as well as post town concatenated by commas"
+     },
+     "postcode": {
+      "type": "string",
+      "description": "Licensee's postcode"
+     },
+     "whitelist": {
+      "type": "array",
+      "description": "A list of allowed URLs. An empty list disables the check. A request is allowed when its `Origin` or `Referer` header matches an entry. Use one of these formats: - `https://www.example.com` allows one site. Scheme and host must match - `*.example.com` allows the domain and all its subdomains"
+     },
+     "daily": {
+      "type": "object",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.addresszen.com/v1/keys/{key}/licensees",
+    "path": [],
+    "query": [
+     "user_token"
+    ],
+    "header": [],
+    "body": [
+     "name",
+     "address",
+     "postcode",
+     "whitelist",
+     "daily"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "addresszen.delete_config",
+   "name": "Delete",
+   "description": "Permanently deletes a configuration object.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "config": {
+      "type": "string",
+      "description": "**Configuration Name** User-provided configuration object name."
+     },
+     "user_token": {
+      "type": "string",
+      "description": "**Management Key** A secret key used to manage your account and API Keys. It was previously called the user token. Your management key can be retrieved and managed from your [accounts page](https://addresszen.com/account). Typically begins `uk_`. Prefer sending it in the `Authorization` header as `Bearer uk_...` instead of this query parameter. The `Authorization: user_token=\"uk_...\"` header also "
+     }
+    },
+    "required": [
+     "config"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.addresszen.com/v1/keys/{key}/configs/{config}",
+    "path": [
+     "config"
+    ],
+    "query": [
+     "user_token"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "addresszen.delete_licensee",
+   "name": "Cancel",
+   "description": "Cancels a licensee. Its key stops working and it drops out of the licensee list. Contact us to reverse it.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "licensee": {
+      "type": "string",
+      "description": "**Licensee Key** Uniquely identifies a licensee."
+     },
+     "user_token": {
+      "type": "string",
+      "description": "**Management Key** A secret key used to manage your account and API Keys. It was previously called the user token. Your management key can be retrieved and managed from your [accounts page](https://addresszen.com/account). Typically begins `uk_`. Prefer sending it in the `Authorization` header as `Bearer uk_...` instead of this query parameter. The `Authorization: user_token=\"uk_...\"` header also "
+     }
+    },
+    "required": [
+     "licensee"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.addresszen.com/v1/keys/{key}/licensees/{licensee}",
+    "path": [
+     "licensee"
+    ],
+    "query": [
+     "user_token"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "addresszen.email_validation",
+   "name": "Email validation",
+   "description": "Validates an email address and reports whether it is deliverable. Requires an API Key licensed for email validation. A query over 320 characters is rejected. A validated address decrements your lookup balance. An address the API cannot check returns `unknown` and costs no lookup. An address whose domain does not resolve, or publishes no MX records, returns `not_deliverable` and also costs no looku",
+   "input": {
+    "type": "object",
+    "properties": {
+     "query": {
+      "type": "string",
+      "description": "Specifies the email address to validate"
+     },
+     "tags": {
+      "type": "string",
+      "description": "**Tags** A comma separated list of tags to query over. Useful if you want to specify the circumstances in which the request was made. If you specify multiple tags, the response comprises only requests that satisfy all of them. Searching `\"foo,bar\"` queries only requests tagged both `\"foo\"` and `\"bar\"`."
+     }
+    },
+    "required": [
+     "query"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.addresszen.com/v1/emails",
+    "path": [],
+    "query": [
+     "query",
+     "tags"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "addresszen.find_address",
+   "name": "Find address",
+   "description": "Returns address suggestions for a partial address, ranked by relevance. Use it to autofill an address form as the user types. A suggestion is a display label and an `id`, not a full address. Retrieve the address with a second request to `/autocomplete/addresses/{id}/usa`. That second request is the one which decrements your lookup balance. Autocomplete is not a free standalone resource. We rate li",
+   "input": {
+    "type": "object",
+    "properties": {
+     "query": {
+      "type": "string",
+      "description": "**Address Query** The partial address string entered by the user to autocomplete."
+     },
+     "dataset": {
+      "type": "array",
+      "description": "**Filter by Dataset** Comma-separated list of datasets to search within. Filters results to only include addresses from the specified datasets. Useful for keys with multiple overlapping datasets enabled (e.g. `paf` and `abp`)."
+     },
+     "context": {
+      "type": "string",
+      "description": "**Context** Limits search results, typically within a country."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "**Limit** Specifies the maximum number of records to retrieve. By default the limit is 10. Requesting a larger result set adds latency."
+     },
+     "bias_lonlat": {
+      "type": "string",
+      "description": "**Bias by Geolocation** Bias search to a geospatial circle determined by an origin and radius in meters. Max radius is `50000`. Uses the format bias_lonlat=[longitude],[latitude],[radius in meters]. Only one geospatial bias may be provided."
+     },
+     "bias_ip": {
+      "type": "string",
+      "description": "**Bias by Geolocation of IP** Biases search based on approximate geolocation of IP address. Set `bias_ip=true` to enable.",
+      "enum": [
+       "true"
+      ]
+     },
+     "box": {
+      "type": "string",
+      "description": "**Filter by Bounding Box** Restrict search to a geospatial box determined by the \"top-left\" and \"bottom-right\" geolocations. Supply 4 comma separated values ordered `top_left_lon,top_left_lat,bottom_right_lon,bottom_right_lat`. The top-left longitude must be less than the bottom-right longitude, and the top-left latitude greater than the bottom-right latitude. A box which fails either check is ign"
+     },
+     "postal_code": {
+      "type": "string",
+      "description": "**Filter by postal code** Restrict results to addresses with a matching full postal code. Case, spaces and hyphens are ignored. For US addresses the full postal code is the nine digit ZIP+4 (`941021234`); filter on `postal_code_3` for a five digit ZIP. For UK addresses use `postcode`."
+     },
+     "postal_code_2": {
+      "type": "string",
+      "description": "**Filter by postal code prefix** Restrict results to addresses whose postal code starts with the given segment. For US addresses this is the three digit ZIP prefix (sectional center), e.g. `941` for San Francisco."
+     },
+     "postal_code_3": {
+      "type": "string",
+      "description": "**Filter by short postal code** Restrict results to addresses with a matching short postal code. For US addresses this is the five digit ZIP code."
+     },
+     "city": {
+      "type": "string",
+      "description": "**Filter by city** Restrict results to addresses in the named city, town or locality. Case, spaces and accents are ignored, so `San Francisco` and `sanfrancisco` match the same addresses. For UK addresses use `post_town`."
+     },
+     "state": {
+      "type": "string",
+      "description": "**Filter by state** Restrict results to addresses in the named state, province or region, e.g. `California`. Case and spaces are ignored."
+     },
+     "state_code": {
+      "type": "string",
+      "description": "**Filter by state code** Restrict results to addresses with a matching state or region code, e.g. the two letter USPS state abbreviation `CA`. Case is ignored."
+     },
+     "bias_postal_code": {
+      "type": "string",
+      "description": "**Bias by postal code** Boost addresses with a matching full postal code (nine digit ZIP+4 for US addresses). Unmatched addresses still appear, ranked lower."
+     },
+     "bias_postal_code_2": {
+      "type": "string",
+      "description": "**Bias by postal code prefix** Boost addresses whose postal code starts with the given segment (three digit ZIP prefix for US addresses)."
+     },
+     "bias_postal_code_3": {
+      "type": "string",
+      "description": "**Bias by short postal code** Boost addresses with a matching short postal code (five digit ZIP for US addresses)."
+     },
+     "bias_city": {
+      "type": "string",
+      "description": "**Bias by city** Boost addresses in the named city, town or locality. Case, spaces and accents are ignored. For UK addresses use `bias_posttown`."
+     },
+     "bias_state": {
+      "type": "string",
+      "description": "**Bias by state** Boost addresses in the named state, province or region."
+     },
+     "bias_state_code": {
+      "type": "string",
+      "description": "**Bias by state code** Boost addresses with a matching state or region code, e.g. `CA`."
+     },
+     "is_pobox": {
+      "type": "string",
+      "description": "**Filter by PO Box** `true` restricts results to PO Box addresses; `false` excludes them. For US addresses this is derived from the USPS record type (`P`).",
+      "enum": [
+       "true",
+       "false"
+      ]
+     },
+     "is_business": {
+      "type": "string",
+      "description": "**Filter by business address** `true` restricts results to business addresses; `false` excludes them. For US addresses this is derived from the USPS record type (`F`, a firm record).",
+      "enum": [
+       "true",
+       "false"
+      ]
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.addresszen.com/v1/autocomplete/addresses",
+    "path": [],
+    "query": [
+     "query",
+     "dataset",
+     "context",
+     "limit",
+     "bias_lonlat",
+     "bias_ip",
+     "box",
+     "postal_code",
+     "postal_code_2",
+     "postal_code_3",
+     "city",
+     "state",
+     "state_code",
+     "bias_postal_code",
+     "bias_postal_code_2",
+     "bias_postal_code_3",
+     "bias_city",
+     "bias_state",
+     "bias_state_code",
+     "is_pobox",
+     "is_business"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "addresszen.find_place",
+   "name": "Find place",
+   "description": "Returns place suggestions for a query, ranked by relevance. Places cover countries, administrative areas, capitals and other administrative seats. ## Implementing Place Autocomplete Retrieving a full place takes two requests: 1. Fetch suggestions from `/places` 2. Fetch the place using the `id` on a suggestion A query returns at most 10 suggestions. An empty query returns an empty result set. Show",
+   "input": {
+    "type": "object",
+    "properties": {
+     "query": {
+      "type": "string",
+      "description": "Specifies the place to query. Can be shortened to `q=`"
+     },
+     "country_iso": {
+      "type": "string",
+      "description": "**Filter by Country** Filter by country ISO code. Uses 3 letter country code (ISO 3166-1) standard. Filter by multiple countries with a comma separated list. E.g. `GBR,IRL`"
+     },
+     "bias_country_iso": {
+      "type": "string",
+      "description": "**Bias by Country** Bias by country ISO code. Uses 3 letter country code (ISO 3166-1) standard. Bias by multiple countries with a comma separated list. E.g. `GBR,IRL`"
+     },
+     "bias_lonlat": {
+      "type": "string",
+      "description": "**Bias by Geolocation** Bias search to a geospatial circle determined by an origin and radius in meters. Max radius is `50000`. Uses the format bias_lonlat=[longitude],[latitude],[radius in meters]. Only one geospatial bias may be provided."
+     },
+     "bias_ip": {
+      "type": "string",
+      "description": "**Bias by Geolocation of IP** Biases search based on approximate geolocation of IP address. Set `bias_ip=true` to enable.",
+      "enum": [
+       "true"
+      ]
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.addresszen.com/v1/places",
+    "path": [],
+    "query": [
+     "query",
+     "country_iso",
+     "bias_country_iso",
+     "bias_lonlat",
+     "bias_ip"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "addresszen.key_availability",
+   "name": "Availability",
+   "description": "Returns public information on an API Key: whether it can be used right now (`available`), the search contexts the key is licensed for (`contexts`) and the context that best matches the caller's IP address (`context`). The endpoint accepts API Keys (beginning `ak_`) and sub-licensed keys (beginning `sl_`), and needs no Management Key. A key that exists but cannot be used, because it has no lookups ",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.addresszen.com/v1/keys/{key}",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "addresszen.key_details",
+   "name": "Details",
+   "description": "Returns private data on a key: remaining lookups, licensed datasets, usage limits, notification settings and the search contexts the key can serve.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "user_token": {
+      "type": "string",
+      "description": "**Management Key** A secret key used to manage your account and API Keys. It was previously called the user token. Your management key can be retrieved and managed from your [accounts page](https://addresszen.com/account). Typically begins `uk_`. Prefer sending it in the `Authorization` header as `Bearer uk_...` instead of this query parameter. The `Authorization: user_token=\"uk_...\"` header also "
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.addresszen.com/v1/keys/{key}/details",
+    "path": [],
+    "query": [
+     "user_token"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "addresszen.key_logs",
+   "name": "Logs (csv)",
+   "description": "Returns a CSV of the charged lookups made on a key, one row per request. Requires the account Management Key. The maximum interval is 90 days. Without a start or end date the interval is the last 21 days. The response is `text/csv` and downloads as an attachment. A non-200 response reverts to JSON, with the error code and message in the body. ## CSV format The CSV has no header row. Columns, in or",
+   "input": {
+    "type": "object",
+    "properties": {
+     "user_token": {
+      "type": "string",
+      "description": "**Management Key** A secret key used to manage your account and API Keys. It was previously called the user token. Your management key can be retrieved and managed from your [accounts page](https://addresszen.com/account). Typically begins `uk_`. Prefer sending it in the `Authorization` header as `Bearer uk_...` instead of this query parameter. The `Authorization: user_token=\"uk_...\"` header also "
+     },
+     "start": {
+      "type": "integer",
+      "description": "**Start Timestamp** A start date/time in the form of a UNIX Timestamp in milliseconds. E.g. `1418556452651`"
+     },
+     "end": {
+      "type": "integer",
+      "description": "**End Timestamp** An end date/time in the form of a UNIX Timestamp in milliseconds. E.g. `1418556477882`"
+     },
+     "licensee": {
+      "type": "string",
+      "description": "**Licensee Key** Uniquely identifies a licensee."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.addresszen.com/v1/keys/{key}/lookups",
+    "path": [],
+    "query": [
+     "user_token",
+     "start",
+     "end",
+     "licensee"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "addresszen.key_usage",
+   "name": "Usage stats",
+   "description": "Reports the number of lookups a key consumed over a date range, as a total and a daily breakdown. The range defaults to the last 21 days. `start` and `end` take UNIX timestamps in milliseconds, and `end` defaults to the current time. The maximum range is 90 days. Query at most three tags at once.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "user_token": {
+      "type": "string",
+      "description": "**Management Key** A secret key used to manage your account and API Keys. It was previously called the user token. Your management key can be retrieved and managed from your [accounts page](https://addresszen.com/account). Typically begins `uk_`. Prefer sending it in the `Authorization` header as `Bearer uk_...` instead of this query parameter. The `Authorization: user_token=\"uk_...\"` header also "
+     },
+     "start": {
+      "type": "integer",
+      "description": "**Start Timestamp** A start date/time in the form of a UNIX Timestamp in milliseconds. E.g. `1418556452651`"
+     },
+     "end": {
+      "type": "integer",
+      "description": "**End Timestamp** An end date/time in the form of a UNIX Timestamp in milliseconds. E.g. `1418556477882`"
+     },
+     "tags": {
+      "type": "string",
+      "description": "**Tags** A comma separated list of tags to query over. Useful if you want to specify the circumstances in which the request was made. If you specify multiple tags, the response comprises only requests that satisfy all of them. Searching `\"foo,bar\"` queries only requests tagged both `\"foo\"` and `\"bar\"`."
+     },
+     "licensee": {
+      "type": "string",
+      "description": "**Licensee Key** Uniquely identifies a licensee."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.addresszen.com/v1/keys/{key}/usage",
+    "path": [],
+    "query": [
+     "user_token",
+     "start",
+     "end",
+     "tags",
+     "licensee"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "addresszen.list_configs",
+   "name": "List",
+   "description": "Returns every configuration stored against a key, oldest first.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "user_token": {
+      "type": "string",
+      "description": "**Management Key** A secret key used to manage your account and API Keys. It was previously called the user token. Your management key can be retrieved and managed from your [accounts page](https://addresszen.com/account). Typically begins `uk_`. Prefer sending it in the `Authorization` header as `Bearer uk_...` instead of this query parameter. The `Authorization: user_token=\"uk_...\"` header also "
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.addresszen.com/v1/keys/{key}/configs",
+    "path": [],
+    "query": [
+     "user_token"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "addresszen.list_licensees",
+   "name": "List",
+   "description": "Returns a key's licensees, oldest first, up to 100 per request. The list omits canceled licensees. The key must be enabled for sub-licensing.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "starting_after": {
+      "type": "integer",
+      "description": "ID of the licensee after which to list results"
+     },
+     "user_token": {
+      "type": "string",
+      "description": "**Management Key** A secret key used to manage your account and API Keys. It was previously called the user token. Your management key can be retrieved and managed from your [accounts page](https://addresszen.com/account). Typically begins `uk_`. Prefer sending it in the `Authorization` header as `Bearer uk_...` instead of this query parameter. The `Authorization: user_token=\"uk_...\"` header also "
+     },
+     "limit": {
+      "type": "integer",
+      "description": "**Limit** Specifies the maximum number of records to retrieve. By default the limit is 10. Requesting a larger result set adds latency."
+     },
+     "query": {
+      "type": "string",
+      "description": "Filter results by licensee name. Can be shortened to `q=`"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.addresszen.com/v1/keys/{key}/licensees",
+    "path": [],
+    "query": [
+     "starting_after",
+     "user_token",
+     "limit",
+     "query"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "addresszen.phone_number_validation",
+   "name": "Phone number validation",
+   "description": "Validates a phone number and returns its country, its national and international formats, and the network it was originally assigned to. Requires an API Key licensed for phone validation. Every query decrements your lookup balance, including a number that fails to parse and a number reported as invalid.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "query": {
+      "type": "string",
+      "description": "Specifies the phone number to validate. Phone number must include a country code in an acceptable format. For instance, UK phone numbers should be prefixed with `+44`, `44` or `0044`."
+     },
+     "current_carrier": {
+      "type": "string",
+      "description": "When set to `true`, the API retrieves and populates the current network of the phone number. This operation can be slow, depending on the network and local conditions.",
+      "enum": [
+       "true"
+      ]
+     },
+     "tags": {
+      "type": "string",
+      "description": "**Tags** A comma separated list of tags to query over. Useful if you want to specify the circumstances in which the request was made. If you specify multiple tags, the response comprises only requests that satisfy all of them. Searching `\"foo,bar\"` queries only requests tagged both `\"foo\"` and `\"bar\"`."
+     }
+    },
+    "required": [
+     "query"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.addresszen.com/v1/phone_numbers",
+    "path": [],
+    "query": [
+     "query",
+     "current_carrier",
+     "tags"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "addresszen.regenerate_licensee_key",
+   "name": "Regenerate key",
+   "description": "Regenerates a licensee's key and returns the licensee with the new key. The previous key stops working immediately, so update any integration that uses it.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "licensee": {
+      "type": "string",
+      "description": "**Licensee Key** Uniquely identifies a licensee."
+     },
+     "user_token": {
+      "type": "string",
+      "description": "**Management Key** A secret key used to manage your account and API Keys. It was previously called the user token. Your management key can be retrieved and managed from your [accounts page](https://addresszen.com/account). Typically begins `uk_`. Prefer sending it in the `Authorization` header as `Bearer uk_...` instead of this query parameter. The `Authorization: user_token=\"uk_...\"` header also "
+     }
+    },
+    "required": [
+     "licensee"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.addresszen.com/v1/keys/{key}/licensees/{licensee}/regenerate-key",
+    "path": [
+     "licensee"
+    ],
+    "query": [
+     "user_token"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "addresszen.resolve_place",
+   "name": "Resolve place",
+   "description": "Returns the full place for a place ID taken from a `/places` suggestion. On top of the fields carried by the suggestion, the response adds coordinates, language and the underlying dataset record. Each request decrements your lookup balance. An unknown ID returns `404`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "place": {
+      "type": "string",
+      "description": "ID of place suggestion"
+     },
+     "tags": {
+      "type": "string",
+      "description": "**Tags** A comma separated list of tags to query over. Useful if you want to specify the circumstances in which the request was made. If you specify multiple tags, the response comprises only requests that satisfy all of them. Searching `\"foo,bar\"` queries only requests tagged both `\"foo\"` and `\"bar\"`."
+     }
+    },
+    "required": [
+     "place"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.addresszen.com/v1/places/{place}",
+    "path": [
+     "place"
+    ],
+    "query": [
+     "tags"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "addresszen.retrieve_address",
+   "name": "Retrieve address",
+   "description": "Returns the full address for an autocomplete suggestion id. This is the charged step of address autocomplete. A successful retrieval decrements your lookup balance. An id which resolves to no address returns `404`. Every address comes back in one US-shaped format, whatever country or dataset it came from: up to two address lines and US field names such as `zip_code`, `state` and `city`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "address": {
+      "type": "string",
+      "description": "**ID of address suggestion** ID of address suggestion provided by the API to fully retrieve."
+     },
+     "licensee": {
+      "type": "string",
+      "description": "**Licensee Key** Uniquely identifies a licensee."
+     },
+     "filter": {
+      "type": "string",
+      "description": "**Restrict Result Fields** Comma separated whitelist of address elements to return. E.g. `filter=line_1,line_2,line_3` returns only the `line_1`, `line_2` and `line_3` address elements in your response."
+     },
+     "tags": {
+      "type": "string",
+      "description": "**Tags** A comma separated list of tags to query over. Useful if you want to specify the circumstances in which the request was made. If you specify multiple tags, the response comprises only requests that satisfy all of them. Searching `\"foo,bar\"` queries only requests tagged both `\"foo\"` and `\"bar\"`."
+     }
+    },
+    "required": [
+     "address"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.addresszen.com/v1/autocomplete/addresses/{address}/usa",
+    "path": [
+     "address"
+    ],
+    "query": [
+     "licensee",
+     "filter",
+     "tags"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "addresszen.retrieve_config",
+   "name": "Retrieve",
+   "description": "Returns a configuration by name. This request needs no `user_token`, so a browser integration can read its own configuration at runtime.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "config": {
+      "type": "string",
+      "description": "**Configuration Name** User-provided configuration object name."
+     }
+    },
+    "required": [
+     "config"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.addresszen.com/v1/keys/{key}/configs/{config}",
+    "path": [
+     "config"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "addresszen.retrieve_licensee",
+   "name": "Retrieve",
+   "description": "Returns a licensee by its `sl_` key. A canceled or unknown licensee returns `404`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "licensee": {
+      "type": "string",
+      "description": "**Licensee Key** Uniquely identifies a licensee."
+     },
+     "user_token": {
+      "type": "string",
+      "description": "**Management Key** A secret key used to manage your account and API Keys. It was previously called the user token. Your management key can be retrieved and managed from your [accounts page](https://addresszen.com/account). Typically begins `uk_`. Prefer sending it in the `Authorization` header as `Bearer uk_...` instead of this query parameter. The `Authorization: user_token=\"uk_...\"` header also "
+     }
+    },
+    "required": [
+     "licensee"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.addresszen.com/v1/keys/{key}/licensees/{licensee}",
+    "path": [
+     "licensee"
+    ],
+    "query": [
+     "user_token"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "addresszen.sign_up_claim",
+   "name": "Poll cli signup token",
+   "description": "Returns the account credentials for a minted `cli_token` once signup has completed, and `202 Accepted` until then. The CLI calls this endpoint repeatedly after sending the user to the `signup_url` returned by `POST /sign_up`. - `202 Accepted`. The accounts service has not propagated the user yet, or has propagated the user but not minted the first API key. Keep polling. An unknown token also retur",
+   "input": {
+    "type": "object",
+    "properties": {
+     "cli_token": {
+      "type": "string",
+      "description": "The token returned by `POST /sign_up`."
+     }
+    },
+    "required": [
+     "cli_token"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.addresszen.com/v1/sign_up/{cli_token}",
+    "path": [
+     "cli_token"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "addresszen.sign_up_mint_token",
+   "name": "Mint cli signup token",
+   "description": "Mints a one-shot `cli_token` and returns a prefilled signup URL. The user opens the URL, clears the captcha, accepts the Terms of Service and creates the account. The CLI then polls `GET /sign_up/{cli_token}` until the accounts service has propagated the new user and its first API key, at which point the API returns the credentials exactly once. The API does not store the `cli_token` when it mints",
+   "input": {
+    "type": "object",
+    "properties": {
+     "email": {
+      "type": "string",
+      "description": "Account holder's email address."
+     },
+     "name": {
+      "type": "string",
+      "description": "Account holder's full name."
+     },
+     "org_name": {
+      "type": "string",
+      "description": "Organization name."
+     },
+     "org_address_line_one": {
+      "type": "string",
+      "description": ""
+     },
+     "org_address_line_two": {
+      "type": "string",
+      "description": ""
+     },
+     "org_address_line_three": {
+      "type": "string",
+      "description": ""
+     },
+     "org_post_town": {
+      "type": "string",
+      "description": ""
+     },
+     "org_postcode": {
+      "type": "string",
+      "description": ""
+     },
+     "org_country_code": {
+      "type": "string",
+      "description": "ISO 3166-1 alpha-2 country code."
+     }
+    },
+    "required": [
+     "email",
+     "name",
+     "org_address_line_one",
+     "org_country_code",
+     "org_name",
+     "org_post_town",
+     "org_postcode"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.addresszen.com/v1/sign_up",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "email",
+     "name",
+     "org_name",
+     "org_address_line_one",
+     "org_address_line_two",
+     "org_address_line_three",
+     "org_post_town",
+     "org_postcode",
+     "org_country_code"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "addresszen.update_config",
+   "name": "Update",
+   "description": "Replaces a configuration's payload and returns the updated configuration. The name is fixed at creation.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "config": {
+      "type": "string",
+      "description": "**Configuration Name** User-provided configuration object name."
+     },
+     "user_token": {
+      "type": "string",
+      "description": "**Management Key** A secret key used to manage your account and API Keys. It was previously called the user token. Your management key can be retrieved and managed from your [accounts page](https://addresszen.com/account). Typically begins `uk_`. Prefer sending it in the `Authorization` header as `Bearer uk_...` instead of this query parameter. The `Authorization: user_token=\"uk_...\"` header also "
+     },
+     "payload": {
+      "type": "string",
+      "description": "A serialized payload of up to `65536` characters"
+     }
+    },
+    "required": [
+     "config"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.addresszen.com/v1/keys/{key}/configs/{config}",
+    "path": [
+     "config"
+    ],
+    "query": [
+     "user_token"
+    ],
+    "header": [],
+    "body": [
+     "payload"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "addresszen.update_key_details",
+   "name": "Update details",
+   "description": "Updates a key's settings and returns its private details. Only the fields you send change. A key on an unlimited plan ignores changes to `datasets`, `daily_limit` and `monthly_limit`. Datasets set by your plan cannot be changed here: sending one with a different value returns a 400.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "user_token": {
+      "type": "string",
+      "description": "**Management Key** A secret key used to manage your account and API Keys. It was previously called the user token. Your management key can be retrieved and managed from your [accounts page](https://addresszen.com/account). Typically begins `uk_`. Prefer sending it in the `Authorization` header as `Bearer uk_...` instead of this query parameter. The `Authorization: user_token=\"uk_...\"` header also "
+     },
+     "name": {
+      "type": "string",
+      "description": "A name for the key"
+     },
+     "daily_limit": {
+      "type": "object",
+      "description": ""
+     },
+     "monthly_limit": {
+      "type": "object",
+      "description": ""
+     },
+     "individual_limit": {
+      "type": "object",
+      "description": ""
+     },
+     "allowed_urls": {
+      "type": "array",
+      "description": "A list of allowed URLs. An empty list disables the check. Up to 10 allowed. A request is allowed when its `Origin` or `Referer` header matches an entry. Use one of these formats: - `https://www.example.com` allows one site. Scheme and host must match - `*.example.com` allows the domain and all its subdomains See [Allowed URLs](https://docs.addresszen.com/docs/guides/allowed-urls)."
+     },
+     "redact_days": {
+      "type": "integer",
+      "description": "Number of days to preserve personal data stored in your key usage history. Set to 0 to prevent personal data storage"
+     },
+     "notifications": {
+      "type": "object",
+      "description": ""
+     },
+     "ip_forwarding": {
+      "type": "boolean",
+      "description": "Accept IP addresses forwarded in the `AZ-Source-IP` header"
+     },
+     "datasets": {
+      "type": "object",
+      "description": "Datasets you can switch on or off for this key. Datasets set by your plan (`paf`, `mr`, `nyb`, `ecad`, `ecaf`) cannot be changed here: sending one with a different value returns a 400."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.addresszen.com/v1/keys/{key}/details",
+    "path": [],
+    "query": [
+     "user_token"
+    ],
+    "header": [],
+    "body": [
+     "name",
+     "daily_limit",
+     "monthly_limit",
+     "individual_limit",
+     "allowed_urls",
+     "redact_days",
+     "notifications",
+     "ip_forwarding",
+     "datasets"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "addresszen.update_licensee",
+   "name": "Update",
+   "description": "Updates a licensee's address, postcode, allowed URLs and daily limit. Returns the updated licensee. The name is fixed at creation.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "licensee": {
+      "type": "string",
+      "description": "**Licensee Key** Uniquely identifies a licensee."
+     },
+     "user_token": {
+      "type": "string",
+      "description": "**Management Key** A secret key used to manage your account and API Keys. It was previously called the user token. Your management key can be retrieved and managed from your [accounts page](https://addresszen.com/account). Typically begins `uk_`. Prefer sending it in the `Authorization` header as `Bearer uk_...` instead of this query parameter. The `Authorization: user_token=\"uk_...\"` header also "
+     },
+     "name": {
+      "type": "string",
+      "description": "Licensee individual or organisation name"
+     },
+     "address": {
+      "type": "string",
+      "description": "Licensee's first, second and third line address as well as post town concatenated by commas"
+     },
+     "postcode": {
+      "type": "string",
+      "description": "Licensee's postcode"
+     },
+     "whitelist": {
+      "type": "array",
+      "description": "A list of allowed URLs. An empty list disables the check. A request is allowed when its `Origin` or `Referer` header matches an entry. Use one of these formats: - `https://www.example.com` allows one site. Scheme and host must match - `*.example.com` allows the domain and all its subdomains"
+     },
+     "daily": {
+      "type": "object",
+      "description": ""
+     }
+    },
+    "required": [
+     "licensee"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.addresszen.com/v1/keys/{key}/licensees/{licensee}",
+    "path": [
+     "licensee"
+    ],
+    "query": [
+     "user_token"
+    ],
+    "header": [],
+    "body": [
+     "name",
+     "address",
+     "postcode",
+     "whitelist",
+     "daily"
+    ],
+    "body_format": "json"
+   }
+  }
+ ]
+}

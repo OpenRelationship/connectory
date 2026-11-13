@@ -1,0 +1,430 @@
+{
+ "_": "GENERATED \u2014 what an authoring tool needs to FIND an operation. The calling table is the .lua beside it.",
+ "provider": "alchemy",
+ "source": "https://alchemy.com/openapi.json",
+ "operations": [
+  {
+   "slug": "alchemy.get_blog_markdown",
+   "name": "A  blog  page as markdown",
+   "description": "The markdown twin of a page under `/blog/`: YAML frontmatter with `title` and `description`, then an H1 and the body. Equivalent to requesting `/blog/{slug}` with `Accept: text/markdown`. The slugs that exist are listed in `/blog/llms.txt`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "slug": {
+      "type": "string",
+      "description": "Page slug, without the `.md` suffix."
+     }
+    },
+    "required": [
+     "slug"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.g.alchemy.com/blog/{slug}.md",
+    "path": [
+     "slug"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "alchemy.get_case_studies_markdown",
+   "name": "A  case studies  page as markdown",
+   "description": "The markdown twin of a page under `/case-studies/`: YAML frontmatter with `title` and `description`, then an H1 and the body. Equivalent to requesting `/case-studies/{slug}` with `Accept: text/markdown`. The slugs that exist are listed in `/case-studies/llms.txt`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "slug": {
+      "type": "string",
+      "description": "Page slug, without the `.md` suffix."
+     }
+    },
+    "required": [
+     "slug"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.g.alchemy.com/case-studies/{slug}.md",
+    "path": [
+     "slug"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "alchemy.get_client_ip",
+   "name": "Echo the caller's ip",
+   "description": "Returns the IP address the CDN saw for this request. `null` when the edge did not supply one.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.g.alchemy.com/api/ip",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "alchemy.get_faucet_transaction_status",
+   "name": "Check a faucet transaction",
+   "description": "Checks a transaction returned by `sendFaucetFunds`. Unconfirmed transfers report `status: \"pending\"`. For Solana, the signature must belong to a stored faucet transaction; unknown signatures return HTTP `404`. Failed or expired transfers report `status: \"failed\"`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "faucetId": {
+      "type": "string",
+      "description": "Network the transaction was submitted to.",
+      "enum": [
+       "solana-devnet",
+       "ethereum-sepolia",
+       "arbitrum-sepolia",
+       "base-sepolia",
+       "optimism-sepolia",
+       "polygon-amoy",
+       "zksync-sepolia",
+       "worldchain-sepolia",
+       "soneium-minato",
+       "hyperliquid-testnet",
+       "monad-testnet",
+       "shape-sepolia"
+      ]
+     },
+     "transactionHash": {
+      "type": "string",
+      "description": "EVM transaction hash or Solana transaction signature."
+     }
+    },
+    "required": [
+     "faucetId",
+     "transactionHash"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.g.alchemy.com/api/faucets/{faucetId}/status",
+    "path": [
+     "faucetId"
+    ],
+    "query": [
+     "transactionHash"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "alchemy.get_homepage_markdown",
+   "name": "Homepage as markdown",
+   "description": "The homepage rendered as markdown: what Alchemy is, the products and chains it supports, and who builds on it. Equivalent to requesting `/` with `Accept: text/markdown`.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.g.alchemy.com/index.md",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "alchemy.get_llms_full_txt",
+   "name": "Whole site in one file",
+   "description": "Every page body concatenated into a single file. Large; prefer `/llms.txt` plus per-page `.md` fetches unless you genuinely want everything.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.g.alchemy.com/llms-full.txt",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "alchemy.get_llms_txt",
+   "name": "Curated site index",
+   "description": "Every page on the site, grouped by section, one line each with a title, URL and one-sentence description. Long sections are split into `//llms.txt` files linked from here. Follows the llmstxt.org convention.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.g.alchemy.com/llms.txt",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "alchemy.get_open_api_document",
+   "name": "This document",
+   "description": "The OpenAPI description of this API. Also served at `/api/openapi.json`.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.g.alchemy.com/openapi.json",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "alchemy.get_overviews_markdown",
+   "name": "A  overviews  page as markdown",
+   "description": "The markdown twin of a page under `/overviews/`: YAML frontmatter with `title` and `description`, then an H1 and the body. Equivalent to requesting `/overviews/{slug}` with `Accept: text/markdown`. The slugs that exist are listed in `/overviews/llms.txt`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "slug": {
+      "type": "string",
+      "description": "Page slug, without the `.md` suffix."
+     }
+    },
+    "required": [
+     "slug"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.g.alchemy.com/overviews/{slug}.md",
+    "path": [
+     "slug"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "alchemy.get_rpc_markdown",
+   "name": "A  rpc  page as markdown",
+   "description": "The markdown twin of a page under `/rpc/`: YAML frontmatter with `title` and `description`, then an H1 and the body. Equivalent to requesting `/rpc/{slug}` with `Accept: text/markdown`. The slugs that exist are listed in `/rpc/llms.txt`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "slug": {
+      "type": "string",
+      "description": "Page slug, without the `.md` suffix."
+     }
+    },
+    "required": [
+     "slug"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.g.alchemy.com/rpc/{slug}.md",
+    "path": [
+     "slug"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "alchemy.get_site_search_index",
+   "name": "Site search index",
+   "description": "The full command-palette index for a locale: blog posts, guides, case studies and dapp listings, each with a title, description and URL. Prebuilt at deploy time and served from the CDN, so it is cheap to fetch whole and filter client-side. For a text index of the same content, prefer `/llms.txt`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "locale": {
+      "type": "string",
+      "description": "Content locale. The index is prerendered per locale, so only the listed values are served; anything else is a 404, not a fallback to English.",
+      "enum": [
+       "en",
+       "ja",
+       "es",
+       "ko",
+       "zh-Hans",
+       "zh-Hant",
+       "pt-BR"
+      ]
+     }
+    },
+    "required": [
+     "locale"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.g.alchemy.com/api/search/{locale}",
+    "path": [
+     "locale"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "alchemy.get_sitemap",
+   "name": "Sitemap",
+   "description": "Every indexable URL, as a standard XML sitemap index.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.g.alchemy.com/sitemap.xml",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "alchemy.get_terms_conditions_markdown",
+   "name": "A  terms conditions  page as markdown",
+   "description": "The markdown twin of a page under `/terms-conditions/`: YAML frontmatter with `title` and `description`, then an H1 and the body. Equivalent to requesting `/terms-conditions/{slug}` with `Accept: text/markdown`. The slugs that exist are listed in `/llms-full.txt`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "slug": {
+      "type": "string",
+      "description": "Page slug, without the `.md` suffix."
+     }
+    },
+    "required": [
+     "slug"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.g.alchemy.com/terms-conditions/{slug}.md",
+    "path": [
+     "slug"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "alchemy.get_unmatched_api_path",
+   "name": "Any  api path that does not exist",
+   "description": "Not an endpoint. Listed so the failure shape is discoverable: every request under `/api/` that matches no operation above answers `404` with an `Error` body rather than an HTML page, for any method. Read `error.code` to branch and `error.hint` for the next step.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "unmatchedPath": {
+      "type": "string",
+      "description": "Any path under `/api/` with no operation."
+     }
+    },
+    "required": [
+     "unmatchedPath"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.g.alchemy.com/api/{unmatchedPath}",
+    "path": [
+     "unmatchedPath"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "alchemy.send_faucet_funds",
+   "name": "Request testnet funds",
+   "description": "Sends the network's drip amount to `address`. Requires a Cloudflare Turnstile token obtained from the faucet page for that network (`https://www.alchemy.com/faucets/{faucetId}`); there is no server-to-server credential for this endpoint. Requests are rate limited per address per network, and are subject to anti-sybil checks against mainnet balance and activity. A rejection is not retryable until t",
+   "input": {
+    "type": "object",
+    "properties": {
+     "faucetId": {
+      "type": "string",
+      "description": "Network to draw from. Deprecated and no longer funded: `syndicate-risa`, `starknet-sepolia`.",
+      "enum": [
+       "solana-devnet",
+       "ethereum-sepolia",
+       "arbitrum-sepolia",
+       "base-sepolia",
+       "optimism-sepolia",
+       "polygon-amoy",
+       "zksync-sepolia",
+       "worldchain-sepolia",
+       "soneium-minato",
+       "hyperliquid-testnet",
+       "monad-testnet",
+       "shape-sepolia"
+      ]
+     },
+     "address": {
+      "type": "string",
+      "description": "Recipient EVM address or Solana public key, matching the selected network."
+     },
+     "turnstileToken": {
+      "type": "string",
+      "description": "Cloudflare Turnstile token from the faucet page for this network."
+     }
+    },
+    "required": [
+     "address",
+     "faucetId",
+     "turnstileToken"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.g.alchemy.com/api/faucets/{faucetId}/send",
+    "path": [
+     "faucetId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "address",
+     "turnstileToken"
+    ],
+    "body_format": "json"
+   }
+  }
+ ]
+}

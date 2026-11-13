@@ -19,20 +19,27 @@ vouches for**: read it, then read their reference.
 - https://cursor.com/docs.md
 - https://cursor.com/docs/get-started/quickstart.md
 - https://cursor.com/docs/models-and-pricing.md
+  - https://cursor.com/docs/account/pricing/legacy-cursor-plans.md
   - https://cursor.com/docs/cursor-router.md
-  - https://cursor.com/docs/models/claude-sonnet-5.md
-  - https://cursor.com/docs/models/claude-opus-5.md
-  - https://cursor.com/docs/models/claude-fable-5-1.md
+  - https://cursor.com/docs/models/claude-sonnet-5-5.md
+  - https://cursor.com/docs/models/claude-opus-5-5.md
+  - https://cursor.com/docs/models/claude-fable-5-2.md
+  - https://cursor.com/docs/models/claude-haiku-5-5.md
+  - https://cursor.com/docs/models/gemini-4-carbon.md
+  - https://cursor.com/docs/models/gemini-4-hydrogen.md
+  - https://cursor.com/docs/models/gemini-4-argon.md
   - https://cursor.com/docs/models/gemini-3-1-pro.md
   - https://cursor.com/docs/models/gemini-3-8-flash.md
-  - https://cursor.com/docs/models/muse-spark-1-3.md
+  - https://cursor.com/docs/models/muse-wonder.md
   - https://cursor.com/docs/models/gpt-5-6-sol.md
   - https://cursor.com/docs/models/gpt-5-6-terra.md
   - https://cursor.com/docs/models/gpt-5-6-luna.md
+  - https://cursor.com/docs/models/grok-4-7.md
   - https://cursor.com/docs/models/grok-4-6.md
   - https://cursor.com/docs/models/grok-4-5.md
   - https://cursor.com/docs/models/cursor-composer-2-5.md
 - https://cursor.comhttps://cursor.com/changelog.md
+- https://cursor.com/docs/release-notes.md
 
 ## Agent
 
@@ -42,6 +49,7 @@ vouches for**: read it, then read their reference.
 - https://cursor.com/docs/agent/agent-review.md
 - https://cursor.com/docs/agent/plan-mode.md
 - https://cursor.com/docs/agent/prompting.md
+- https://cursor.com/docs/agent/voice-chat.md
 - https://cursor.com/docs/agent/debug-mode.md
 - https://cursor.com/docs/agent/design-mode.md
 - https://cursor.com/docs/agent/tools/terminal.md
@@ -51,21 +59,6 @@ vouches for**: read it, then read their reference.
   - https://cursor.com/docs/configuration/worktrees.md
 - https://cursor.com/docs/agent/security.md
   - https://cursor.com/docs/agent/security/run-modes.md
-
-## grok-bot
-
-- https://cursor.com/docs/grok-bot.md
-- https://cursor.com/docs/grok-bot/get-started.md
-- https://cursor.com/docs/grok-bot/use-cases.md
-- https://cursor.com/docs/grok-bot/work.md
-- https://cursor.com/docs/grok-bot/settings.md
-- https://cursor.com/docs/grok-bot/teams.md
-  - https://cursor.com/docs/grok-bot/identity.md
-  - https://cursor.com/docs/grok-bot/private-networks.md
-  - https://cursor.com/docs/grok-bot/proxies.md
-  - https://cursor.com/docs/grok-bot/computers.md
-  - https://cursor.com/docs/grok-bot/security.md
-    - https://cursor.com/docs/grok-bot/security-faq.md
 
 ## customizing
 
@@ -82,14 +75,17 @@ vouches for**: read it, then read their reference.
 - https://cursor.com/docs/cloud-agent.md
 - https://cursor.com/docs/cloud-agent/setup.md
 - https://cursor.com/docs/cloud-agent/builds.md
+- https://cursor.com/docs/cloud-agent/apps.md
 - https://cursor.com/docs/cloud-agent/capabilities.md
   - https://cursor.com/docs/cloud-agent/metadata.md
 - https://cursor.com/docs/cloud-agent/best-practices.md
 - https://cursor.com/docs/cloud-agent/self-hosted/choose-runtime.md
 - https://cursor.com/docs/cloud-agent/automations.md
 - https://cursor.com/docs/bugbot.md
-- https://cursor.com/docs/security-agents.md
+- https://cursor.com/docs/security-review.md
+- https://cursor.com/docs/vulnerability-remediation.md
 - https://cursor.com/docs/approval-agents.md
+- https://cursor.com/docs/rollouts.md
 - https://cursor.com/docs/cloud-agent/mobile.md
 - https://cursor.com/docs/cloud-agent/security.md
   - https://cursor.com/docs/cloud-agent/security-network.md
@@ -110,15 +106,19 @@ vouches for**: read it, then read their reference.
 - https://cursor.com/docs/origin/cli.md
   - https://cursor.com/docs/origin/cli/reference/commands.md
   - https://cursor.com/docs/origin/cli/reference/pull-requests.md
+  - https://cursor.com/docs/origin/cli/reference/stacks.md
 - https://cursor.com/docs/origin/create-repository.md
+- https://cursor.com/docs/origin/mirror-github.md
 - https://cursor.com/docs/origin/git.md
 - https://cursor.com/docs/origin/clonekit-ci.md
-- https://cursor.com/docs/origin/mirror-github.md
 - https://cursor.com/docs/origin/pull-requests.md
+- https://cursor.com/docs/origin/code-tours.md
 - https://cursor.com/docs/origin/browse.md
+- https://cursor.com/docs/origin/agents.md
+- https://cursor.com/docs/origin/apps.md
+  - https://cursor.com/docs/origin/apps/build-app.md
+  - https://cursor.com/docs/origin/apps/publish.md
 - https://cursor.com/docs/origin/settings.md
-- https://cursor.com/docs/origin/codebase-settings.md
-- https://cursor.com/docs/origin/integrations.md
 
 ## Integrations
 
@@ -133,6 +133,7 @@ vouches for**: read it, then read their reference.
 - https://cursor.com/docs/integrations/bitbucket.md
 - https://cursor.com/docs/integrations/jetbrains.md
 - https://cursor.com/docs/integrations/xcode.md
+- https://cursor.com/docs/integrations/tailscale.md
 - https://cursor.com/docs/reference/deeplinks.md
 
 ## SDK
@@ -140,7 +141,54 @@ vouches for**: read it, then read their reference.
 - https://cursor.com/docs/sdk/typescript.md
 - https://cursor.com/docs/sdk/python.md
 - https://cursor.com/docs/sdk/bridge.md
-- https://cursor.com/docs/sdk/changelog.md
+- https://cursor.com/docs/release-notes/sdk.md
+
+## agent-sdk
+
+- https://cursor.com/docs/agent-sdk.md
+  - https://cursor.com/docs/agent-sdk/changelog.md
+  - https://cursor.com/docs/agent-sdk/quickstart.md
+- https://cursor.com/docs/agent-sdk/guides/github.md
+  - https://cursor.com/docs/agent-sdk/guides/slack.md
+  - https://cursor.com/docs/agent-sdk/guides/webhooks.md
+  - https://cursor.com/docs/agent-sdk/guides/convert-automation.md
+  - https://cursor.com/docs/agent-sdk/guides/opentelemetry.md
+  - https://cursor.com/docs/agent-sdk/guides/gitlab.md
+  - https://cursor.com/docs/agent-sdk/guides/bitbucket.md
+  - https://cursor.com/docs/agent-sdk/guides/pagerduty.md
+- https://cursor.com/docs/agent-sdk/reference/extensions.md
+  - https://cursor.com/docs/agent-sdk/guides/cloud-agents.md
+  - https://cursor.com/docs/agent-sdk/guides/improve.md
+  - https://cursor.com/docs/agent-sdk/guides/jev.md
+- https://cursor.com/docs/agent-sdk/guides/mcp-oauth.md
+  - https://cursor.com/docs/agent-sdk/guides/agent-to-agent.md
+  - https://cursor.com/docs/agent-sdk/deployment.md
+  - https://cursor.com/docs/agent-sdk/guides/migrate.md
+  - https://cursor.com/docs/agent-sdk/evals.md
+  - https://cursor.com/docs/agent-sdk/hillclimbing.md
+  - https://cursor.com/docs/agent-sdk/building-with-agents.md
+  - https://cursor.com/docs/agent-sdk/troubleshooting.md
+- https://cursor.com/docs/agent-sdk/templates/reviews.md
+  - https://cursor.com/docs/agent-sdk/templates/agentic-owners.md
+- https://cursor.com/docs/agent-sdk/reference/project-layout.md
+  - https://cursor.com/docs/agent-sdk/reference/agent-config.md
+  - https://cursor.com/docs/agent-sdk/reference/instructions.md
+  - https://cursor.com/docs/agent-sdk/reference/tools.md
+  - https://cursor.com/docs/agent-sdk/reference/skills.md
+  - https://cursor.com/docs/agent-sdk/reference/connections.md
+  - https://cursor.com/docs/agent-sdk/reference/subagents.md
+  - https://cursor.com/docs/agent-sdk/reference/channels.md
+  - https://cursor.com/docs/agent-sdk/reference/schedules.md
+  - https://cursor.com/docs/agent-sdk/reference/hooks.md
+  - https://cursor.com/docs/agent-sdk/reference/memory.md
+  - https://cursor.com/docs/agent-sdk/reference/evals.md
+  - https://cursor.com/docs/agent-sdk/reference/artifacts.md
+  - https://cursor.com/docs/agent-sdk/reference/sessions.md
+  - https://cursor.com/docs/agent-sdk/reference/playground.md
+  - https://cursor.com/docs/agent-sdk/reference/cli.md
+  - https://cursor.com/docs/agent-sdk/reference/http-api.md
+  - https://cursor.com/docs/agent-sdk/reference/access.md
+  - https://cursor.com/docs/agent-sdk/reference/limits.md
 
 ## cli
 
@@ -173,6 +221,7 @@ vouches for**: read it, then read their reference.
     - https://cursor.com/docs/account/teams/scim.md
   - https://cursor.com/docs/enterprise/privacy-and-data-governance.md
   - https://cursor.com/docs/enterprise/network-configuration.md
+  - https://cursor.com/docs/enterprise/tenancy-restriction.md
   - https://cursor.com/docs/enterprise/endpoint-security.md
   - https://cursor.com/docs/enterprise/llm-safety-and-controls.md
   - https://cursor.com/docs/enterprise/model-and-integration-management.md
@@ -229,17 +278,48 @@ vouches for**: read it, then read their reference.
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#create-an-agent
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#list-agents
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#get-an-agent
-- https://cursor.com/docs/cloud-agent/api/endpoints.md#create-a-run
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#send-a-follow-up-or-steer
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#list-runs
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#get-a-run
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#stream-a-run
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#stream-an-agent
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#cancel-a-run
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#get-agent-usage
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#list-artifacts
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#download-an-artifact
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#archive-an-agent
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#unarchive-an-agent
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#delete-an-agent-permanently
-- https://cursor.com/docs/cloud-agent/api/endpoints.md#worker-tokens
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#create-a-project
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#list-projects
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#get-a-project
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#list-project-agents
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#update-a-project
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#archive-a-project
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#unarchive-a-project
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#create-an-environment
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#list-environments
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#get-an-environment
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#update-an-environment
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#delete-an-environment
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#list-environment-history
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#list-environment-builds
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#start-an-environment-build
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#get-an-environment-build
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#get-the-active-build
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#list-secrets
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#list-environment-secrets
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#set-an-environment-secret
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#delete-an-environment-secret
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#list-team-secrets
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#set-a-team-secret
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#delete-a-team-secret
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#set-a-personal-secret
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#delete-a-personal-secret
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#list-automations
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#get-an-automation
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#change-an-automations-model
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#create-a-user-scoped-worker-token
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#list-workers
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#get-worker-summary
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#get-worker-by-id
@@ -249,7 +329,9 @@ vouches for**: read it, then read their reference.
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#list-pending-pool-requests
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#watch-pending-pool-requests
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#claim-a-pending-request
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#create-a-session-token
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#release-a-claim
+- https://cursor.com/docs/cloud-agent/api/endpoints.md#fail-a-claim
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#api-key-info
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#list-models
 - https://cursor.com/docs/cloud-agent/api/endpoints.md#list-github-repositories
@@ -266,11 +348,13 @@ vouches for**: read it, then read their reference.
 - https://cursor.com/docs/account/organizations/organization-admin-api.md#get-daily-usage-data
 - https://cursor.com/docs/account/organizations/organization-admin-api.md#get-spending-data
 - https://cursor.com/docs/account/organizations/organization-admin-api.md#model-access
+- https://cursor.com/docs/account/organizations/organization-admin-api.md#grok-bot-computers
 - https://cursor.com/docs/account/teams/admin-api.md#get-team-members
 - https://cursor.com/docs/account/teams/admin-api.md#get-audit-logs
 - https://cursor.com/docs/account/teams/admin-api.md#get-daily-usage-data
 - https://cursor.com/docs/account/teams/admin-api.md#get-spending-data
 - https://cursor.com/docs/account/teams/admin-api.md#get-usage-events-data
+- https://cursor.com/docs/account/teams/admin-api.md#get-billing-items
 - https://cursor.com/docs/account/teams/admin-api.md#set-user-spend-limit
 - https://cursor.com/docs/account/teams/admin-api.md#set-user-spend-limits-in-bulk-preview
 - https://cursor.com/docs/account/teams/admin-api.md#remove-team-member
@@ -329,8 +413,12 @@ vouches for**: read it, then read their reference.
 - https://cursor.com/docs/api/origin/llms-full.txt
 - https://cursor.com/docs/api/origin/llms.txt
 - https://cursor.com/docs/api/origin/openapi.yaml
-- https://cursor.com/docs/api/origin/changelog
-- https://cursor.com/docs/api/origin/grants-api
+- https://cursor.com/docs/api/origin/changelog.md
+- https://cursor.com/docs/api/origin/grants-api.md
+- https://cursor.com/docs/api/origin/acting-as-users.md
+- https://cursor.com/docs/api/origin/migrations.md
+- https://cursor.com/docs/api/origin/mcp.md
+- https://cursor.com/docs/api/origin/mcp/tools.md
 
 # Help Center
 
@@ -349,6 +437,7 @@ vouches for**: read it, then read their reference.
 - https://cursor.com/help/ai-features/agentic-coding.md
 - https://cursor.com/help/ai-features/ai-pair-programming.md
 - https://cursor.com/help/ai-features/multi-agent.md
+- https://cursor.com/help/ai-features/projects.md
 - https://cursor.com/help/ai-features/side-chats.md
 - https://cursor.com/help/ai-features/conversation-search.md
 - https://cursor.com/help/ai-features/vibe-coding.md
@@ -356,7 +445,6 @@ vouches for**: read it, then read their reference.
 - https://cursor.com/help/ai-features/ask-mode.md
 - https://cursor.com/help/ai-features/debug-mode.md
 - https://cursor.com/help/ai-features/tab.md
-- https://cursor.com/help/ai-features/inline-edit.md
 - https://cursor.com/help/ai-features/max-mode.md
 - https://cursor.com/help/ai-features/terminal.md
 - https://cursor.com/help/ai-features/browser.md
@@ -384,6 +472,7 @@ vouches for**: read it, then read their reference.
 
 - https://cursor.com/help/models-and-usage/available-models.md
 - https://cursor.com/help/models-and-usage/cursor-router.md
+- https://cursor.com/help/models-and-usage/grok-4-7.md
 - https://cursor.com/help/models-and-usage/grok-4-6.md
 - https://cursor.com/help/models-and-usage/grok-4-5.md
 - https://cursor.com/help/models-and-usage/api-keys.md
@@ -432,28 +521,18 @@ vouches for**: read it, then read their reference.
 - https://cursor.com/help/integrations/cli.md
 - https://cursor.com/help/integrations/third-party.md
 
-## Grok Bot
+## The X Subscription
 
-- https://cursor.com/help/grok-bot/onboarding.md
-- https://cursor.com/help/grok-bot/how-to.md
-- https://cursor.com/help/grok-bot/sign-in.md
-- https://cursor.com/help/grok-bot/mobile.md
-- https://cursor.com/help/grok-bot/plans.md
-- https://cursor.com/help/grok-bot/supergrok.md
-- https://cursor.com/help/grok-bot/mobile-purchase.md
-- https://cursor.com/help/grok-bot/delete-account.md
-- https://cursor.com/help/grok-bot/connect-plugins.md
-- https://cursor.com/help/grok-bot/routines.md
-- https://cursor.com/help/grok-bot/computer-recovery.md
-- https://cursor.com/help/grok-bot/secrets.md
-- https://cursor.com/help/grok-bot/get-help.md
+- https://cursor.com/help/the-x-subscription/overview.md
 
 ## Troubleshooting
 
 - https://cursor.com/help/troubleshooting/agent-issues.md
 - https://cursor.com/help/troubleshooting/tab-issues.md
 - https://cursor.com/help/troubleshooting/install-issues.md
+- https://cursor.com/help/troubleshooting/minimum-version.md
 - https://cursor.com/help/troubleshooting/network.md
+- https://cursor.com/help/troubleshooting/sign-in-domains.md
 - https://cursor.com/help/troubleshooting/extensions.md
 - https://cursor.com/help/troubleshooting/performance.md
 - https://cursor.com/help/troubleshooting/reporting-bugs.md

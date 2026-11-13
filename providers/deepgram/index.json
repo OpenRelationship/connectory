@@ -1,0 +1,2404 @@
+{
+ "_": "GENERATED \u2014 what an authoring tool needs to FIND an operation. The calling table is the .lua beside it.",
+ "provider": "deepgram",
+ "source": "https://raw.githubusercontent.com/deepgram/deepgram-api-specs/main/openapi.yml",
+ "operations": [
+  {
+   "slug": "deepgram.audio_generate",
+   "name": "Text to speech transformation",
+   "description": "Convert text into natural-sounding speech using Deepgram's TTS REST API",
+   "input": {
+    "type": "object",
+    "properties": {
+     "callback": {
+      "type": "string",
+      "description": "URL to which we'll make the callback request"
+     },
+     "callback_method": {
+      "type": "string",
+      "description": "HTTP method by which the callback request will be made",
+      "enum": [
+       "POST",
+       "PUT"
+      ]
+     },
+     "mip_opt_out": {
+      "type": "boolean",
+      "description": "Opts out requests from the Deepgram Model Improvement Program. Refer to our Docs for pricing impacts before setting this to true. https://dpgr.am/deepgram-mip"
+     },
+     "tag": {
+      "type": "string",
+      "description": "Label your requests for the purpose of identification during usage reporting"
+     },
+     "bit_rate": {
+      "type": "string",
+      "description": "The bitrate of the audio in bits per second. Choose from predefined ranges or specific values based on the encoding type."
+     },
+     "container": {
+      "type": "string",
+      "description": "Container specifies the file format wrapper for the output audio. The available options depend on the encoding type."
+     },
+     "encoding": {
+      "type": "string",
+      "description": "Encoding allows you to specify the expected encoding of your audio output"
+     },
+     "model": {
+      "type": "string",
+      "description": "AI model used to process submitted text",
+      "enum": [
+       "aura-angus-en",
+       "aura-arcas-en",
+       "aura-asteria-en",
+       "aura-athena-en",
+       "aura-helios-en",
+       "aura-hera-en",
+       "aura-luna-en",
+       "aura-orion-en",
+       "aura-orpheus-en",
+       "aura-perseus-en",
+       "aura-stella-en",
+       "aura-zeus-en"
+      ]
+     },
+     "sample_rate": {
+      "type": "string",
+      "description": "Sample Rate specifies the sample rate for the output audio. Based on the encoding, different sample rates are supported. For some encodings, the sample rate is not configurable"
+     },
+     "speed": {
+      "type": "number",
+      "description": "Speaking rate multiplier that adjusts the pace of generated speech while preserving natural prosody and voice quality. Not yet supported in all languages."
+     },
+     "text": {
+      "type": "string",
+      "description": "The text content to be converted to speech"
+     }
+    },
+    "required": [
+     "text"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://{region}/v1/speak",
+    "path": [],
+    "query": [
+     "callback",
+     "callback_method",
+     "mip_opt_out",
+     "tag",
+     "bit_rate",
+     "container",
+     "encoding",
+     "model",
+     "sample_rate",
+     "speed"
+    ],
+    "header": [],
+    "body": [
+     "text"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "deepgram.audio_generate_2",
+   "name": "Flux text to speech (batch)",
+   "description": "Synthesize a complete block of text into a single audio response using Deepgram's Flux TTS batch (REST) API. Use this for pre-rendering fixed audio (IVR prompts, notifications, narration) where the whole text is known up front and you don't need incremental playback or interruption.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "callback": {
+      "type": "string",
+      "description": "URL to which we'll make the callback request"
+     },
+     "callback_method": {
+      "type": "string",
+      "description": "HTTP method by which the callback request will be made",
+      "enum": [
+       "POST",
+       "PUT"
+      ]
+     },
+     "mip_opt_out": {
+      "type": "boolean",
+      "description": "Opts out requests from the Deepgram Model Improvement Program. Refer to our Docs for pricing impacts before setting this to true. https://dpgr.am/deepgram-mip"
+     },
+     "tag": {
+      "type": "string",
+      "description": "Label your requests for the purpose of identification during usage reporting"
+     },
+     "bit_rate": {
+      "type": "string",
+      "description": "The bitrate of the audio in bits per second. Choose from predefined ranges or specific values based on the encoding type."
+     },
+     "container": {
+      "type": "string",
+      "description": "Container specifies the file format wrapper for the output audio. The available options depend on the encoding type."
+     },
+     "encoding": {
+      "type": "string",
+      "description": "Encoding allows you to specify the expected encoding of your audio output"
+     },
+     "expressivity": {
+      "type": "string",
+      "description": "Expressive range of the generated speech, on a calm-to-animated axis. Accepted values: `-2`, `-1`, `0`, `1`, `2`. `0` (the default) is the voice's tuned delivery and the production-validated setting, with `-2` the calm end of the range and `2` the animated end. Supported on all Flux voices; applies to the whole request. Beta: behavior may change in future model versions, and non-default values inc",
+      "enum": [
+       "-2",
+       "-1",
+       "0",
+       "1",
+       "2"
+      ]
+     },
+     "model": {
+      "type": "string",
+      "description": "Flux TTS model used to synthesize the submitted text, in the form `flux-{voice}-{language}` (for example, `flux-alexis-en`). Required; unlike the v1 (Aura) endpoint there is no default and only flux models are accepted."
+     },
+     "normalize_volume": {
+      "type": "boolean",
+      "description": "Normalizes the loudness of the generated speech to a consistent level across voices and requests. On by default; set to `false` to opt out. Peak limiting is applied either way."
+     },
+     "sample_rate": {
+      "type": "string",
+      "description": "Sample Rate specifies the sample rate for the output audio. Based on the encoding, different sample rates are supported. For some encodings, the sample rate is not configurable"
+     },
+     "speed": {
+      "type": "number",
+      "description": "Speaking rate multiplier that adjusts the pace of generated speech while preserving natural prosody and voice quality. Accepted values run `0.5` to `1.5` in `0.05` increments. Not yet supported in all languages. When the text contains an inline pause marker, speed is capped at `1.15` (`PAUSE_SPEED_CAP_EXCEEDED` above that). A value other than `1.0` cannot be combined with inline pronunciation cont"
+     },
+     "priority": {
+      "type": "string",
+      "description": "Processing priority for asynchronous (callback) requests. The only supported value is low.",
+      "enum": [
+       "low"
+      ]
+     },
+     "text": {
+      "type": "string",
+      "description": "The text content to be converted to speech. For English, German, Dutch, French, Hindi, Italian, Japanese, Portuguese, Russian and Spanish, the server normalizes the text (numbers, dates, abbreviations) before synthesis; the other languages are in Early Access without text normalization, so write numbers and dates out in words. May contain inline pause controls (`\\{pause:500ms\\}`, 500-3000 ms in 10"
+     }
+    },
+    "required": [
+     "model",
+     "text"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://{region}/v2/speak",
+    "path": [],
+    "query": [
+     "callback",
+     "callback_method",
+     "mip_opt_out",
+     "tag",
+     "bit_rate",
+     "container",
+     "encoding",
+     "expressivity",
+     "model",
+     "normalize_volume",
+     "sample_rate",
+     "speed",
+     "priority"
+    ],
+    "header": [],
+    "body": [
+     "text"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "deepgram.balances_get",
+   "name": "Get a project balance",
+   "description": "Retrieves details about the specified balance",
+   "input": {
+    "type": "object",
+    "properties": {
+     "project_id": {
+      "type": "string",
+      "description": "The unique identifier of the project"
+     },
+     "balance_id": {
+      "type": "string",
+      "description": "The unique identifier of the balance"
+     }
+    },
+    "required": [
+     "balance_id",
+     "project_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://{region}/v1/projects/{project_id}/balances/{balance_id}",
+    "path": [
+     "project_id",
+     "balance_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "deepgram.balances_list",
+   "name": "Get project balances",
+   "description": "Generates a list of outstanding balances for the specified project",
+   "input": {
+    "type": "object",
+    "properties": {
+     "project_id": {
+      "type": "string",
+      "description": "The unique identifier of the project"
+     }
+    },
+    "required": [
+     "project_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://{region}/v1/projects/{project_id}/balances",
+    "path": [
+     "project_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "deepgram.breakdown_get",
+   "name": "Get project usage breakdown",
+   "description": "Retrieves the usage breakdown for a specific project, with various filter options by API feature or by groupings. Setting a feature (e.g. diarize) to true includes requests that used that feature, while false excludes requests that used it. Multiple true filters are combined with OR logic, while false filters use AND logic.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "project_id": {
+      "type": "string",
+      "description": "The unique identifier of the project"
+     },
+     "start": {
+      "type": "string",
+      "description": "Start date of the requested date range. Format accepted is YYYY-MM-DD"
+     },
+     "end": {
+      "type": "string",
+      "description": "End date of the requested date range. Format accepted is YYYY-MM-DD"
+     },
+     "grouping": {
+      "type": "string",
+      "description": "Common usage grouping parameters",
+      "enum": [
+       "accessor",
+       "endpoint",
+       "feature_set",
+       "models",
+       "method",
+       "tags",
+       "deployment"
+      ]
+     },
+     "accessor": {
+      "type": "string",
+      "description": "Filter for requests where a specific accessor was used"
+     },
+     "alternatives": {
+      "type": "boolean",
+      "description": "Filter for requests where alternatives were used"
+     },
+     "callback_method": {
+      "type": "boolean",
+      "description": "Filter for requests where callback method was used"
+     },
+     "callback": {
+      "type": "boolean",
+      "description": "Filter for requests where callback was used"
+     },
+     "channels": {
+      "type": "boolean",
+      "description": "Filter for requests where channels were used"
+     },
+     "custom_intent_mode": {
+      "type": "boolean",
+      "description": "Filter for requests where custom intent mode was used"
+     },
+     "custom_intent": {
+      "type": "boolean",
+      "description": "Filter for requests where custom intent was used"
+     },
+     "custom_topic_mode": {
+      "type": "boolean",
+      "description": "Filter for requests where custom topic mode was used"
+     },
+     "custom_topic": {
+      "type": "boolean",
+      "description": "Filter for requests where custom topic was used"
+     },
+     "deployment": {
+      "type": "string",
+      "description": "Filter for requests where a specific deployment was used",
+      "enum": [
+       "hosted",
+       "beta",
+       "self-hosted"
+      ]
+     },
+     "detect_entities": {
+      "type": "boolean",
+      "description": "Filter for requests where detect entities was used"
+     },
+     "detect_language": {
+      "type": "boolean",
+      "description": "Filter for requests where detect language was used"
+     },
+     "diarize": {
+      "type": "boolean",
+      "description": "Filter for requests where diarize was used"
+     },
+     "dictation": {
+      "type": "boolean",
+      "description": "Filter for requests where dictation was used"
+     },
+     "encoding": {
+      "type": "boolean",
+      "description": "Filter for requests where encoding was used"
+     },
+     "endpoint": {
+      "type": "string",
+      "description": "Filter for requests where a specific endpoint was used",
+      "enum": [
+       "listen",
+       "read",
+       "speak",
+       "agent"
+      ]
+     },
+     "extra": {
+      "type": "boolean",
+      "description": "Filter for requests where extra was used"
+     },
+     "filler_words": {
+      "type": "boolean",
+      "description": "Filter for requests where filler words was used"
+     },
+     "intents": {
+      "type": "boolean",
+      "description": "Filter for requests where intents was used"
+     },
+     "keyterm": {
+      "type": "boolean",
+      "description": "Filter for requests where keyterm was used"
+     },
+     "keywords": {
+      "type": "boolean",
+      "description": "Filter for requests where keywords was used"
+     },
+     "language": {
+      "type": "boolean",
+      "description": "Filter for requests where language was used"
+     },
+     "measurements": {
+      "type": "boolean",
+      "description": "Filter for requests where measurements were used"
+     },
+     "method": {
+      "type": "string",
+      "description": "Filter for requests where a specific method was used",
+      "enum": [
+       "sync",
+       "async",
+       "streaming"
+      ]
+     },
+     "model": {
+      "type": "string",
+      "description": "Filter for requests where a specific model uuid was used"
+     },
+     "multichannel": {
+      "type": "boolean",
+      "description": "Filter for requests where multichannel was used"
+     },
+     "numerals": {
+      "type": "boolean",
+      "description": "Filter for requests where numerals were used"
+     },
+     "paragraphs": {
+      "type": "boolean",
+      "description": "Filter for requests where paragraphs were used"
+     },
+     "profanity_filter": {
+      "type": "boolean",
+      "description": "Filter for requests where profanity filter was used"
+     },
+     "punctuate": {
+      "type": "boolean",
+      "description": "Filter for requests where punctuate was used"
+     },
+     "redact": {
+      "type": "boolean",
+      "description": "Filter for requests where redact was used"
+     },
+     "replace": {
+      "type": "boolean",
+      "description": "Filter for requests where replace was used"
+     },
+     "sample_rate": {
+      "type": "boolean",
+      "description": "Filter for requests where sample rate was used"
+     },
+     "search": {
+      "type": "boolean",
+      "description": "Filter for requests where search was used"
+     },
+     "sentiment": {
+      "type": "boolean",
+      "description": "Filter for requests where sentiment was used"
+     },
+     "smart_format": {
+      "type": "boolean",
+      "description": "Filter for requests where smart format was used"
+     },
+     "summarize": {
+      "type": "boolean",
+      "description": "Filter for requests where summarize was used"
+     },
+     "tag": {
+      "type": "string",
+      "description": "Filter for requests where a specific tag was used"
+     },
+     "topics": {
+      "type": "boolean",
+      "description": "Filter for requests where topics was used"
+     },
+     "utt_split": {
+      "type": "boolean",
+      "description": "Filter for requests where utt split was used"
+     },
+     "utterances": {
+      "type": "boolean",
+      "description": "Filter for requests where utterances was used"
+     },
+     "version": {
+      "type": "boolean",
+      "description": "Filter for requests where version was used"
+     }
+    },
+    "required": [
+     "project_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://{region}/v1/projects/{project_id}/usage/breakdown",
+    "path": [
+     "project_id"
+    ],
+    "query": [
+     "start",
+     "end",
+     "grouping",
+     "accessor",
+     "alternatives",
+     "callback_method",
+     "callback",
+     "channels",
+     "custom_intent_mode",
+     "custom_intent",
+     "custom_topic_mode",
+     "custom_topic",
+     "deployment",
+     "detect_entities",
+     "detect_language",
+     "diarize",
+     "dictation",
+     "encoding",
+     "endpoint",
+     "extra",
+     "filler_words",
+     "intents",
+     "keyterm",
+     "keywords",
+     "language",
+     "measurements",
+     "method",
+     "model",
+     "multichannel",
+     "numerals",
+     "paragraphs",
+     "profanity_filter",
+     "punctuate",
+     "redact",
+     "replace",
+     "sample_rate",
+     "search",
+     "sentiment",
+     "smart_format",
+     "summarize",
+     "tag",
+     "topics",
+     "utt_split",
+     "utterances",
+     "version"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "deepgram.breakdown_list",
+   "name": "Get project billing breakdown",
+   "description": "Retrieves the billing summary for a specific project, with various filter options or by grouping options.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "project_id": {
+      "type": "string",
+      "description": "The unique identifier of the project"
+     },
+     "start": {
+      "type": "string",
+      "description": "Start date of the requested date range. Format accepted is YYYY-MM-DD"
+     },
+     "end": {
+      "type": "string",
+      "description": "End date of the requested date range. Format accepted is YYYY-MM-DD"
+     },
+     "accessor": {
+      "type": "string",
+      "description": "Filter for requests where a specific accessor was used"
+     },
+     "deployment": {
+      "type": "string",
+      "description": "Filter for requests where a specific deployment was used",
+      "enum": [
+       "hosted",
+       "beta",
+       "self-hosted"
+      ]
+     },
+     "tag": {
+      "type": "string",
+      "description": "Filter for requests where a specific tag was used"
+     },
+     "line_item": {
+      "type": "string",
+      "description": "Filter requests by line item (e.g. streaming::nova-3)"
+     },
+     "grouping": {
+      "type": "array",
+      "description": "Group billing breakdown by one or more dimensions (accessor, deployment, line_item, tags)"
+     }
+    },
+    "required": [
+     "project_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://{region}/v1/projects/{project_id}/billing/breakdown",
+    "path": [
+     "project_id"
+    ],
+    "query": [
+     "start",
+     "end",
+     "accessor",
+     "deployment",
+     "tag",
+     "line_item",
+     "grouping"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "deepgram.configurations_create",
+   "name": "Create an agent configuration",
+   "description": "Creates a new reusable agent configuration. The `config` field must be a valid JSON string representing the `agent` block of a Settings message. The returned `agent_id` can be passed in place of the full `agent` object in future Settings messages.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "project_id": {
+      "type": "string",
+      "description": "The unique identifier of the project"
+     },
+     "config": {
+      "type": "string",
+      "description": "A valid JSON string representing the agent block of a Settings message"
+     },
+     "metadata": {
+      "type": "object",
+      "description": "A map of arbitrary key-value pairs for labeling or organizing the agent configuration"
+     },
+     "api_version": {
+      "type": "integer",
+      "description": "API version. Defaults to 1"
+     }
+    },
+    "required": [
+     "config",
+     "project_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://{region}/v1/projects/{project_id}/agents",
+    "path": [
+     "project_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "config",
+     "metadata",
+     "api_version"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "deepgram.configurations_delete",
+   "name": "Delete an agent configuration",
+   "description": "Deletes the specified agent configuration. Deleting an agent configuration can cause a production outage if your service references this agent UUID. Migrate all active sessions to a new configuration before deleting.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "project_id": {
+      "type": "string",
+      "description": "The unique identifier of the project"
+     },
+     "agent_id": {
+      "type": "string",
+      "description": "The unique identifier of the agent configuration"
+     }
+    },
+    "required": [
+     "agent_id",
+     "project_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://{region}/v1/projects/{project_id}/agents/{agent_id}",
+    "path": [
+     "project_id",
+     "agent_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "deepgram.configurations_get",
+   "name": "Get an agent configuration",
+   "description": "Returns the specified agent configuration in its uninterpolated form",
+   "input": {
+    "type": "object",
+    "properties": {
+     "project_id": {
+      "type": "string",
+      "description": "The unique identifier of the project"
+     },
+     "agent_id": {
+      "type": "string",
+      "description": "The unique identifier of the agent configuration"
+     }
+    },
+    "required": [
+     "agent_id",
+     "project_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://{region}/v1/projects/{project_id}/agents/{agent_id}",
+    "path": [
+     "project_id",
+     "agent_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "deepgram.configurations_list",
+   "name": "List agent configurations",
+   "description": "Returns all agent configurations for the specified project. Configurations are returned in their uninterpolated form\u2014template variable placeholders appear as-is rather than with their substituted values.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "project_id": {
+      "type": "string",
+      "description": "The unique identifier of the project"
+     }
+    },
+    "required": [
+     "project_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://{region}/v1/projects/{project_id}/agents",
+    "path": [
+     "project_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "deepgram.configurations_update",
+   "name": "Update agent metadata",
+   "description": "Updates the metadata associated with an agent configuration. The config itself is immutable\u2014to change the configuration, delete the existing agent and create a new one.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "project_id": {
+      "type": "string",
+      "description": "The unique identifier of the project"
+     },
+     "agent_id": {
+      "type": "string",
+      "description": "The unique identifier of the agent configuration"
+     },
+     "metadata": {
+      "type": "object",
+      "description": "A map of string key-value pairs to associate with this agent configuration"
+     }
+    },
+    "required": [
+     "agent_id",
+     "metadata",
+     "project_id"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://{region}/v1/projects/{project_id}/agents/{agent_id}",
+    "path": [
+     "project_id",
+     "agent_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "metadata"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "deepgram.distribution_credentials_create",
+   "name": "Create a project self hosted distribution credential",
+   "description": "Creates a set of distribution credentials for the specified project",
+   "input": {
+    "type": "object",
+    "properties": {
+     "project_id": {
+      "type": "string",
+      "description": "The unique identifier of the project"
+     },
+     "scopes": {
+      "type": "array",
+      "description": "List of permission scopes for the credentials"
+     },
+     "provider": {
+      "type": "string",
+      "description": "The provider of the distribution service",
+      "enum": [
+       "quay"
+      ]
+     },
+     "comment": {
+      "type": "string",
+      "description": "Optional comment about the credentials"
+     }
+    },
+    "required": [
+     "project_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://{region}/v1/projects/{project_id}/self-hosted/distribution/credentials",
+    "path": [
+     "project_id"
+    ],
+    "query": [
+     "scopes",
+     "provider"
+    ],
+    "header": [],
+    "body": [
+     "comment"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "deepgram.distribution_credentials_delete",
+   "name": "Delete a project self hosted distribution credential",
+   "description": "Deletes a set of distribution credentials for the specified project",
+   "input": {
+    "type": "object",
+    "properties": {
+     "project_id": {
+      "type": "string",
+      "description": "The unique identifier of the project"
+     },
+     "distribution_credentials_id": {
+      "type": "string",
+      "description": "The UUID of the distribution credentials"
+     }
+    },
+    "required": [
+     "distribution_credentials_id",
+     "project_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://{region}/v1/projects/{project_id}/self-hosted/distribution/credentials/{distribution_credentials_id}",
+    "path": [
+     "project_id",
+     "distribution_credentials_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "deepgram.distribution_credentials_get",
+   "name": "Get a project self hosted distribution credential",
+   "description": "Returns a set of distribution credentials for the specified project",
+   "input": {
+    "type": "object",
+    "properties": {
+     "project_id": {
+      "type": "string",
+      "description": "The unique identifier of the project"
+     },
+     "distribution_credentials_id": {
+      "type": "string",
+      "description": "The UUID of the distribution credentials"
+     }
+    },
+    "required": [
+     "distribution_credentials_id",
+     "project_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://{region}/v1/projects/{project_id}/self-hosted/distribution/credentials/{distribution_credentials_id}",
+    "path": [
+     "project_id",
+     "distribution_credentials_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "deepgram.distribution_credentials_list",
+   "name": "List project self hosted distribution credentials",
+   "description": "Lists sets of distribution credentials for the specified project",
+   "input": {
+    "type": "object",
+    "properties": {
+     "project_id": {
+      "type": "string",
+      "description": "The unique identifier of the project"
+     }
+    },
+    "required": [
+     "project_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://{region}/v1/projects/{project_id}/self-hosted/distribution/credentials",
+    "path": [
+     "project_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "deepgram.fields_list",
+   "name": "List project usage fields",
+   "description": "Lists the features, models, tags, languages, and processing method used for requests in the specified project",
+   "input": {
+    "type": "object",
+    "properties": {
+     "project_id": {
+      "type": "string",
+      "description": "The unique identifier of the project"
+     },
+     "start": {
+      "type": "string",
+      "description": "Start date of the requested date range. Format accepted is YYYY-MM-DD"
+     },
+     "end": {
+      "type": "string",
+      "description": "End date of the requested date range. Format accepted is YYYY-MM-DD"
+     }
+    },
+    "required": [
+     "project_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://{region}/v1/projects/{project_id}/usage/fields",
+    "path": [
+     "project_id"
+    ],
+    "query": [
+     "start",
+     "end"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "deepgram.fields_list_2",
+   "name": "List project billing fields",
+   "description": "Lists the accessors, deployment types, tags, and line items used for billing data in the specified time period. Use this endpoint if you want to filter your results from the Billing Breakdown endpoint and want to know what filters are available.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "project_id": {
+      "type": "string",
+      "description": "The unique identifier of the project"
+     },
+     "start": {
+      "type": "string",
+      "description": "Start date of the requested date range. Format accepted is YYYY-MM-DD"
+     },
+     "end": {
+      "type": "string",
+      "description": "End date of the requested date range. Format accepted is YYYY-MM-DD"
+     }
+    },
+    "required": [
+     "project_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://{region}/v1/projects/{project_id}/billing/fields",
+    "path": [
+     "project_id"
+    ],
+    "query": [
+     "start",
+     "end"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "deepgram.invites_create",
+   "name": "Create a project invite",
+   "description": "Generates an invite for a specific project",
+   "input": {
+    "type": "object",
+    "properties": {
+     "project_id": {
+      "type": "string",
+      "description": "The unique identifier of the project"
+     },
+     "email": {
+      "type": "string",
+      "description": "The email address of the invitee"
+     },
+     "scope": {
+      "type": "string",
+      "description": "The scope of the invitee"
+     }
+    },
+    "required": [
+     "email",
+     "project_id",
+     "scope"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://{region}/v1/projects/{project_id}/invites",
+    "path": [
+     "project_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "email",
+     "scope"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "deepgram.invites_delete",
+   "name": "Delete a project invite",
+   "description": "Deletes an invite for a specific project",
+   "input": {
+    "type": "object",
+    "properties": {
+     "project_id": {
+      "type": "string",
+      "description": "The unique identifier of the project"
+     },
+     "email": {
+      "type": "string",
+      "description": "The email address of the member"
+     }
+    },
+    "required": [
+     "email",
+     "project_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://{region}/v1/projects/{project_id}/invites/{email}",
+    "path": [
+     "project_id",
+     "email"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "deepgram.invites_list",
+   "name": "List project invites",
+   "description": "Generates a list of invites for a specific project",
+   "input": {
+    "type": "object",
+    "properties": {
+     "project_id": {
+      "type": "string",
+      "description": "The unique identifier of the project"
+     }
+    },
+    "required": [
+     "project_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://{region}/v1/projects/{project_id}/invites",
+    "path": [
+     "project_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "deepgram.keys_create",
+   "name": "Create a project key",
+   "description": "Creates a new API key with specified settings for the project",
+   "input": {
+    "type": "object",
+    "properties": {
+     "project_id": {
+      "type": "string",
+      "description": "The unique identifier of the project"
+     }
+    },
+    "required": [
+     "project_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://{region}/v1/projects/{project_id}/keys",
+    "path": [
+     "project_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "deepgram.keys_delete",
+   "name": "Delete a project key",
+   "description": "Deletes an API key for a specific project",
+   "input": {
+    "type": "object",
+    "properties": {
+     "project_id": {
+      "type": "string",
+      "description": "The unique identifier of the project"
+     },
+     "key_id": {
+      "type": "string",
+      "description": "The unique identifier of the API key"
+     }
+    },
+    "required": [
+     "key_id",
+     "project_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://{region}/v1/projects/{project_id}/keys/{key_id}",
+    "path": [
+     "project_id",
+     "key_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "deepgram.keys_get",
+   "name": "Get a project key",
+   "description": "Retrieves information about a specified API key",
+   "input": {
+    "type": "object",
+    "properties": {
+     "project_id": {
+      "type": "string",
+      "description": "The unique identifier of the project"
+     },
+     "key_id": {
+      "type": "string",
+      "description": "The unique identifier of the API key"
+     }
+    },
+    "required": [
+     "key_id",
+     "project_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://{region}/v1/projects/{project_id}/keys/{key_id}",
+    "path": [
+     "project_id",
+     "key_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "deepgram.keys_list",
+   "name": "List project keys",
+   "description": "Retrieves all API keys associated with the specified project",
+   "input": {
+    "type": "object",
+    "properties": {
+     "project_id": {
+      "type": "string",
+      "description": "The unique identifier of the project"
+     },
+     "status": {
+      "type": "string",
+      "description": "Only return keys with a specific status",
+      "enum": [
+       "active",
+       "expired"
+      ]
+     }
+    },
+    "required": [
+     "project_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://{region}/v1/projects/{project_id}/keys",
+    "path": [
+     "project_id"
+    ],
+    "query": [
+     "status"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "deepgram.media_transcribe",
+   "name": "Transcribe and analyze pre recorded audio and video",
+   "description": "Transcribe audio and video using Deepgram's speech-to-text REST API",
+   "input": {
+    "type": "object",
+    "properties": {
+     "callback": {
+      "type": "string",
+      "description": "URL to which we'll make the callback request"
+     },
+     "callback_method": {
+      "type": "string",
+      "description": "HTTP method by which the callback request will be made",
+      "enum": [
+       "POST",
+       "PUT"
+      ]
+     },
+     "extra": {
+      "type": "string",
+      "description": "Arbitrary key-value pairs that are attached to the API response for usage in downstream processing"
+     },
+     "sentiment": {
+      "type": "boolean",
+      "description": "Recognizes the sentiment throughout a transcript or text"
+     },
+     "summarize": {
+      "type": "string",
+      "description": "Summarize content. For Listen API, supports string version option. For Read API, accepts boolean only."
+     },
+     "tag": {
+      "type": "string",
+      "description": "Label your requests for the purpose of identification during usage reporting"
+     },
+     "topics": {
+      "type": "boolean",
+      "description": "Detect topics throughout a transcript or text"
+     },
+     "custom_topic": {
+      "type": "string",
+      "description": "Custom topics you want the model to detect within your input audio or text if present Submit up to `100`."
+     },
+     "custom_topic_mode": {
+      "type": "string",
+      "description": "Sets how the model will interpret strings submitted to the `custom_topic` param. When `strict`, the model will only return topics submitted using the `custom_topic` param. When `extended`, the model will return its own detected topics in addition to those submitted using the `custom_topic` param",
+      "enum": [
+       "extended",
+       "strict"
+      ]
+     },
+     "intents": {
+      "type": "boolean",
+      "description": "Recognizes speaker intent throughout a transcript or text"
+     },
+     "custom_intent": {
+      "type": "string",
+      "description": "Custom intents you want the model to detect within your input audio if present"
+     },
+     "custom_intent_mode": {
+      "type": "string",
+      "description": "Sets how the model will interpret intents submitted to the `custom_intent` param. When `strict`, the model will only return intents submitted using the `custom_intent` param. When `extended`, the model will return its own detected intents in the `custom_intent` param.",
+      "enum": [
+       "extended",
+       "strict"
+      ]
+     },
+     "detect_entities": {
+      "type": "boolean",
+      "description": "Identifies and extracts key entities from content in submitted audio"
+     },
+     "detect_language": {
+      "type": "string",
+      "description": "Identifies the dominant language spoken in submitted audio"
+     },
+     "diarize": {
+      "type": "boolean",
+      "description": "Deprecated: use `diarize_model` instead. Recognize speaker changes. Each word in the transcript will be assigned a speaker number starting at 0."
+     },
+     "diarize_model": {
+      "type": "string",
+      "description": "Select and enable a specific diarization model version. Specifying this parameter enables diarization and selects the model \u2014 you do not need to also set the deprecated `diarize=true` parameter. For batch, supported values are `latest` (currently v2), `v1`, and `v2`. For streaming, supported values are `latest` (currently v1) and `v1`; `v2` returns a validation error on streaming requests.",
+      "enum": [
+       "latest",
+       "v1",
+       "v2"
+      ]
+     },
+     "dictation": {
+      "type": "boolean",
+      "description": "Dictation mode for controlling formatting with dictated speech"
+     },
+     "encoding": {
+      "type": "string",
+      "description": "Specify the expected encoding of your submitted audio",
+      "enum": [
+       "linear16",
+       "flac",
+       "mulaw",
+       "amr-nb",
+       "amr-wb",
+       "opus",
+       "speex",
+       "g729"
+      ]
+     },
+     "filler_words": {
+      "type": "boolean",
+      "description": "Filler Words can help transcribe interruptions in your audio, like \"uh\" and \"um\""
+     },
+     "keyterm": {
+      "type": "array",
+      "description": "Key term prompting improves recognition of specialized terminology and brands. Only compatible with Nova-3. `keyterm` accepts plain terms only. Unlike the legacy `keywords` feature, it does not support weights or intensifiers. Appending one (for example, `keyterm=term:0.15`) is not rejected\u2014the weight is silently ignored and the entire value is treated as a literal keyterm. To boost multiple separ"
+     },
+     "keywords": {
+      "type": "string",
+      "description": "Keywords can boost or suppress specialized terminology and brands. `keywords` is not supported with Nova-3 models; use `keyterm` instead."
+     },
+     "language": {
+      "type": "string",
+      "description": "The [BCP-47 language tag](https://tools.ietf.org/html/bcp47) that hints at the primary spoken language. Depending on the Model and API endpoint you choose only certain languages are available"
+     },
+     "language_hint": {
+      "type": "string",
+      "description": "Biases language detection toward one or more languages on Nova-3 multilingual (`model=nova-3&language=multi`); ignored with any other `language`. Repeat the parameter to pass several codes, for example `language_hint=en&language_hint=es`. A code that is not in the [Nova-3 multilingual list](/docs/models-languages-overview#nova-3) fails the request with HTTP 400. See [Nova-3 Language Prompting](/do"
+     },
+     "measurements": {
+      "type": "boolean",
+      "description": "Spoken measurements will be converted to their corresponding abbreviations"
+     },
+     "model": {
+      "type": "string",
+      "description": "AI model used to process submitted audio"
+     },
+     "multichannel": {
+      "type": "boolean",
+      "description": "Transcribe each audio channel independently"
+     },
+     "numerals": {
+      "type": "boolean",
+      "description": "Numerals converts numbers from written format to numerical format"
+     },
+     "paragraphs": {
+      "type": "boolean",
+      "description": "Splits audio into paragraphs to improve transcript readability"
+     },
+     "profanity_filter": {
+      "type": "boolean",
+      "description": "Profanity Filter looks for recognized profanity and converts it to the nearest recognized non-profane word or removes it from the transcript completely"
+     },
+     "punctuate": {
+      "type": "boolean",
+      "description": "Add punctuation and capitalization to the transcript"
+     },
+     "redact": {
+      "type": "string",
+      "description": "Redaction removes sensitive information from your transcripts"
+     },
+     "redact_usage": {
+      "type": "boolean",
+      "description": "Replaces the values of user-supplied text parameters (`keyterm`, `keywords`, `replace`, `search`, `extra`, `custom_topic`, and `custom_intent`) with `[REDACTED]` in this request's usage records. Does not affect transcription, the response, `tag`, or `callback`. Independent of `mip_opt_out`. https://developers.deepgram.com/docs/redact-usage"
+     },
+     "replace": {
+      "type": "string",
+      "description": "Search for terms or phrases in submitted audio and replaces them"
+     },
+     "search": {
+      "type": "string",
+      "description": "Search for terms or phrases in submitted audio"
+     },
+     "smart_format": {
+      "type": "boolean",
+      "description": "Apply formatting to transcript output. When set to true, additional formatting will be applied to transcripts to improve readability"
+     },
+     "utterances": {
+      "type": "boolean",
+      "description": "Segments speech into meaningful semantic units"
+     },
+     "utt_split": {
+      "type": "number",
+      "description": "Seconds to wait before detecting a pause between words in submitted audio"
+     },
+     "version": {
+      "type": "string",
+      "description": "Version of an AI model to use"
+     },
+     "mip_opt_out": {
+      "type": "boolean",
+      "description": "Opts out requests from the Deepgram Model Improvement Program. Refer to our Docs for pricing impacts before setting this to true. https://dpgr.am/deepgram-mip"
+     },
+     "url": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "url"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://{region}/v1/listen",
+    "path": [],
+    "query": [
+     "callback",
+     "callback_method",
+     "extra",
+     "sentiment",
+     "summarize",
+     "tag",
+     "topics",
+     "custom_topic",
+     "custom_topic_mode",
+     "intents",
+     "custom_intent",
+     "custom_intent_mode",
+     "detect_entities",
+     "detect_language",
+     "diarize",
+     "diarize_model",
+     "dictation",
+     "encoding",
+     "filler_words",
+     "keyterm",
+     "keywords",
+     "language",
+     "language_hint",
+     "measurements",
+     "model",
+     "multichannel",
+     "numerals",
+     "paragraphs",
+     "profanity_filter",
+     "punctuate",
+     "redact",
+     "redact_usage",
+     "replace",
+     "search",
+     "smart_format",
+     "utterances",
+     "utt_split",
+     "version",
+     "mip_opt_out"
+    ],
+    "header": [],
+    "body": [
+     "url"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "deepgram.members_delete",
+   "name": "Delete a project member",
+   "description": "Removes a member from the project using their unique member ID",
+   "input": {
+    "type": "object",
+    "properties": {
+     "project_id": {
+      "type": "string",
+      "description": "The unique identifier of the project"
+     },
+     "member_id": {
+      "type": "string",
+      "description": "The unique identifier of the Member"
+     }
+    },
+    "required": [
+     "member_id",
+     "project_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://{region}/v1/projects/{project_id}/members/{member_id}",
+    "path": [
+     "project_id",
+     "member_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "deepgram.members_list",
+   "name": "List project members",
+   "description": "Retrieves a list of members for a given project",
+   "input": {
+    "type": "object",
+    "properties": {
+     "project_id": {
+      "type": "string",
+      "description": "The unique identifier of the project"
+     }
+    },
+    "required": [
+     "project_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://{region}/v1/projects/{project_id}/members",
+    "path": [
+     "project_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "deepgram.models_get",
+   "name": "Get a project model",
+   "description": "Returns metadata for a specific model",
+   "input": {
+    "type": "object",
+    "properties": {
+     "project_id": {
+      "type": "string",
+      "description": "The unique identifier of the project"
+     },
+     "model_id": {
+      "type": "string",
+      "description": "The specific UUID of the model"
+     }
+    },
+    "required": [
+     "model_id",
+     "project_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://{region}/v1/projects/{project_id}/models/{model_id}",
+    "path": [
+     "project_id",
+     "model_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "deepgram.models_get_2",
+   "name": "Get a specific model",
+   "description": "Returns metadata for a specific public model",
+   "input": {
+    "type": "object",
+    "properties": {
+     "model_id": {
+      "type": "string",
+      "description": "The specific UUID of the model"
+     }
+    },
+    "required": [
+     "model_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://{region}/v1/models/{model_id}",
+    "path": [
+     "model_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "deepgram.models_list",
+   "name": "List agent think models",
+   "description": "Retrieves the available think models that can be used for AI agent processing",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://{region}/v1/agent/settings/think/models",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "deepgram.models_list_2",
+   "name": "List project models",
+   "description": "Returns metadata on all the latest models that a specific project has access to, including non-public models",
+   "input": {
+    "type": "object",
+    "properties": {
+     "project_id": {
+      "type": "string",
+      "description": "The unique identifier of the project"
+     },
+     "include_outdated": {
+      "type": "boolean",
+      "description": "returns non-latest versions of models"
+     }
+    },
+    "required": [
+     "project_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://{region}/v1/projects/{project_id}/models",
+    "path": [
+     "project_id"
+    ],
+    "query": [
+     "include_outdated"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "deepgram.models_list_3",
+   "name": "List models",
+   "description": "Returns metadata on all the latest public models. To retrieve custom models, use Get Project Models.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "include_outdated": {
+      "type": "boolean",
+      "description": "returns non-latest versions of models"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://{region}/v1/models",
+    "path": [],
+    "query": [
+     "include_outdated"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "deepgram.projects_delete",
+   "name": "Delete a project",
+   "description": "Deletes the specified project",
+   "input": {
+    "type": "object",
+    "properties": {
+     "project_id": {
+      "type": "string",
+      "description": "The unique identifier of the project"
+     }
+    },
+    "required": [
+     "project_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://{region}/v1/projects/{project_id}",
+    "path": [
+     "project_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "deepgram.projects_get",
+   "name": "Get a project",
+   "description": "Retrieves information about the specified project",
+   "input": {
+    "type": "object",
+    "properties": {
+     "project_id": {
+      "type": "string",
+      "description": "The unique identifier of the project"
+     },
+     "limit": {
+      "type": "number",
+      "description": "Number of results to return per page. Default 10. Range [1,1000]"
+     },
+     "page": {
+      "type": "number",
+      "description": "Navigate and return the results to retrieve specific portions of information of the response"
+     }
+    },
+    "required": [
+     "project_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://{region}/v1/projects/{project_id}",
+    "path": [
+     "project_id"
+    ],
+    "query": [
+     "limit",
+     "page"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "deepgram.projects_leave",
+   "name": "Leave a project",
+   "description": "Removes the authenticated account from the specific project",
+   "input": {
+    "type": "object",
+    "properties": {
+     "project_id": {
+      "type": "string",
+      "description": "The unique identifier of the project"
+     }
+    },
+    "required": [
+     "project_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://{region}/v1/projects/{project_id}/leave",
+    "path": [
+     "project_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "deepgram.projects_list",
+   "name": "List projects",
+   "description": "Retrieves basic information about the projects associated with the API key",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://{region}/v1/projects",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "deepgram.projects_update",
+   "name": "Update a project",
+   "description": "Updates the name or other properties of an existing project",
+   "input": {
+    "type": "object",
+    "properties": {
+     "project_id": {
+      "type": "string",
+      "description": "The unique identifier of the project"
+     },
+     "name": {
+      "type": "string",
+      "description": "The name of the project"
+     }
+    },
+    "required": [
+     "project_id"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://{region}/v1/projects/{project_id}",
+    "path": [
+     "project_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "name"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "deepgram.purchases_list",
+   "name": "List project purchases",
+   "description": "Returns the original purchased amount on an order transaction",
+   "input": {
+    "type": "object",
+    "properties": {
+     "project_id": {
+      "type": "string",
+      "description": "The unique identifier of the project"
+     },
+     "limit": {
+      "type": "number",
+      "description": "Number of results to return per page. Default 10. Range [1,1000]"
+     }
+    },
+    "required": [
+     "project_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://{region}/v1/projects/{project_id}/purchases",
+    "path": [
+     "project_id"
+    ],
+    "query": [
+     "limit"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "deepgram.requests_get",
+   "name": "Get a project request",
+   "description": "Retrieves a specific request for a specific project",
+   "input": {
+    "type": "object",
+    "properties": {
+     "project_id": {
+      "type": "string",
+      "description": "The unique identifier of the project"
+     },
+     "request_id": {
+      "type": "string",
+      "description": "The unique identifier of the request"
+     }
+    },
+    "required": [
+     "project_id",
+     "request_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://{region}/v1/projects/{project_id}/requests/{request_id}",
+    "path": [
+     "project_id",
+     "request_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "deepgram.requests_list",
+   "name": "List project requests",
+   "description": "Generates a list of requests for a specific project",
+   "input": {
+    "type": "object",
+    "properties": {
+     "project_id": {
+      "type": "string",
+      "description": "The unique identifier of the project"
+     },
+     "start": {
+      "type": "string",
+      "description": "Start date of the requested date range. Formats accepted are YYYY-MM-DD, YYYY-MM-DDTHH:MM:SS, or YYYY-MM-DDTHH:MM:SS+HH:MM"
+     },
+     "end": {
+      "type": "string",
+      "description": "End date of the requested date range. Formats accepted are YYYY-MM-DD, YYYY-MM-DDTHH:MM:SS, or YYYY-MM-DDTHH:MM:SS+HH:MM"
+     },
+     "limit": {
+      "type": "number",
+      "description": "Number of results to return per page. Default 10. Range [1,1000]"
+     },
+     "page": {
+      "type": "number",
+      "description": "Navigate and return the results to retrieve specific portions of information of the response"
+     },
+     "accessor": {
+      "type": "string",
+      "description": "Filter for requests where a specific accessor was used"
+     },
+     "request_id": {
+      "type": "string",
+      "description": "Filter for a specific request id"
+     },
+     "deployment": {
+      "type": "string",
+      "description": "Filter for requests where a specific deployment was used",
+      "enum": [
+       "hosted",
+       "beta",
+       "self-hosted"
+      ]
+     },
+     "endpoint": {
+      "type": "string",
+      "description": "Filter for requests where a specific endpoint was used",
+      "enum": [
+       "listen",
+       "read",
+       "speak",
+       "agent"
+      ]
+     },
+     "method": {
+      "type": "string",
+      "description": "Filter for requests where a specific method was used",
+      "enum": [
+       "sync",
+       "async",
+       "streaming"
+      ]
+     },
+     "status": {
+      "type": "string",
+      "description": "Filter for requests that succeeded (status code =400)",
+      "enum": [
+       "succeeded",
+       "failed"
+      ]
+     }
+    },
+    "required": [
+     "project_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://{region}/v1/projects/{project_id}/requests",
+    "path": [
+     "project_id"
+    ],
+    "query": [
+     "start",
+     "end",
+     "limit",
+     "page",
+     "accessor",
+     "request_id",
+     "deployment",
+     "endpoint",
+     "method",
+     "status"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "deepgram.scopes_list",
+   "name": "List project member scopes",
+   "description": "Retrieves a list of scopes for a specific member",
+   "input": {
+    "type": "object",
+    "properties": {
+     "project_id": {
+      "type": "string",
+      "description": "The unique identifier of the project"
+     },
+     "member_id": {
+      "type": "string",
+      "description": "The unique identifier of the Member"
+     }
+    },
+    "required": [
+     "member_id",
+     "project_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://{region}/v1/projects/{project_id}/members/{member_id}/scopes",
+    "path": [
+     "project_id",
+     "member_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "deepgram.scopes_update",
+   "name": "Update project member scopes",
+   "description": "Updates the scopes for a specific member",
+   "input": {
+    "type": "object",
+    "properties": {
+     "project_id": {
+      "type": "string",
+      "description": "The unique identifier of the project"
+     },
+     "member_id": {
+      "type": "string",
+      "description": "The unique identifier of the Member"
+     },
+     "scope": {
+      "type": "string",
+      "description": "A scope to update"
+     }
+    },
+    "required": [
+     "member_id",
+     "project_id",
+     "scope"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://{region}/v1/projects/{project_id}/members/{member_id}/scopes",
+    "path": [
+     "project_id",
+     "member_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "scope"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "deepgram.text_analyze",
+   "name": "Analyze text content",
+   "description": "Analyze text content using Deepgrams text analysis API",
+   "input": {
+    "type": "object",
+    "properties": {
+     "callback": {
+      "type": "string",
+      "description": "URL to which we'll make the callback request"
+     },
+     "callback_method": {
+      "type": "string",
+      "description": "HTTP method by which the callback request will be made",
+      "enum": [
+       "POST",
+       "PUT"
+      ]
+     },
+     "sentiment": {
+      "type": "boolean",
+      "description": "Recognizes the sentiment throughout a transcript or text"
+     },
+     "summarize": {
+      "type": "string",
+      "description": "Summarize content. For Listen API, supports string version option. For Read API, accepts boolean only."
+     },
+     "tag": {
+      "type": "string",
+      "description": "Label your requests for the purpose of identification during usage reporting"
+     },
+     "topics": {
+      "type": "boolean",
+      "description": "Detect topics throughout a transcript or text"
+     },
+     "custom_topic": {
+      "type": "string",
+      "description": "Custom topics you want the model to detect within your input audio or text if present Submit up to `100`."
+     },
+     "custom_topic_mode": {
+      "type": "string",
+      "description": "Sets how the model will interpret strings submitted to the `custom_topic` param. When `strict`, the model will only return topics submitted using the `custom_topic` param. When `extended`, the model will return its own detected topics in addition to those submitted using the `custom_topic` param",
+      "enum": [
+       "extended",
+       "strict"
+      ]
+     },
+     "intents": {
+      "type": "boolean",
+      "description": "Recognizes speaker intent throughout a transcript or text"
+     },
+     "custom_intent": {
+      "type": "string",
+      "description": "Custom intents you want the model to detect within your input audio if present"
+     },
+     "custom_intent_mode": {
+      "type": "string",
+      "description": "Sets how the model will interpret intents submitted to the `custom_intent` param. When `strict`, the model will only return intents submitted using the `custom_intent` param. When `extended`, the model will return its own detected intents in the `custom_intent` param.",
+      "enum": [
+       "extended",
+       "strict"
+      ]
+     },
+     "language": {
+      "type": "string",
+      "description": "The [BCP-47 language tag](https://tools.ietf.org/html/bcp47) that hints at the primary spoken language. Depending on the Model and API endpoint you choose only certain languages are available"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://{region}/v1/read",
+    "path": [],
+    "query": [
+     "callback",
+     "callback_method",
+     "sentiment",
+     "summarize",
+     "tag",
+     "topics",
+     "custom_topic",
+     "custom_topic_mode",
+     "intents",
+     "custom_intent",
+     "custom_intent_mode",
+     "language"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "deepgram.tokens_grant",
+   "name": "Token based authentication",
+   "description": "Generates a temporary JSON Web Token (JWT) with a 30-second (by default) TTL and usage::write permission for core voice APIs, requiring an API key with Member or higher authorization. Tokens created with this endpoint will not work with the Manage APIs.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "ttl_seconds": {
+      "type": "number",
+      "description": "Time to live in seconds for the token. Defaults to 30 seconds."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://{region}/v1/auth/grant",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "ttl_seconds"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "deepgram.variables_create",
+   "name": "Create an agent variable",
+   "description": "Creates a new template variable. Variables follow the `DG_` naming format and can substitute any JSON value in an agent configuration.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "project_id": {
+      "type": "string",
+      "description": "The unique identifier of the project"
+     },
+     "value": {
+      "type": "string",
+      "description": "The value to substitute. Can be any valid JSON type (string, number, boolean, object, or array)"
+     },
+     "api_version": {
+      "type": "integer",
+      "description": "API version. Defaults to 1"
+     }
+    },
+    "required": [
+     "project_id",
+     "value"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://{region}/v1/projects/{project_id}/agent-variables",
+    "path": [
+     "project_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "value",
+     "api_version"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "deepgram.variables_delete",
+   "name": "Delete an agent variable",
+   "description": "Deletes the specified template variable",
+   "input": {
+    "type": "object",
+    "properties": {
+     "project_id": {
+      "type": "string",
+      "description": "The unique identifier of the project"
+     },
+     "variable_id": {
+      "type": "string",
+      "description": "The unique identifier of the agent variable"
+     }
+    },
+    "required": [
+     "project_id",
+     "variable_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://{region}/v1/projects/{project_id}/agent-variables/{variable_id}",
+    "path": [
+     "project_id",
+     "variable_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "deepgram.variables_get",
+   "name": "Get an agent variable",
+   "description": "Returns the specified template variable",
+   "input": {
+    "type": "object",
+    "properties": {
+     "project_id": {
+      "type": "string",
+      "description": "The unique identifier of the project"
+     },
+     "variable_id": {
+      "type": "string",
+      "description": "The unique identifier of the agent variable"
+     }
+    },
+    "required": [
+     "project_id",
+     "variable_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://{region}/v1/projects/{project_id}/agent-variables/{variable_id}",
+    "path": [
+     "project_id",
+     "variable_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "deepgram.variables_list",
+   "name": "List agent variables",
+   "description": "Returns all template variables for the specified project",
+   "input": {
+    "type": "object",
+    "properties": {
+     "project_id": {
+      "type": "string",
+      "description": "The unique identifier of the project"
+     }
+    },
+    "required": [
+     "project_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://{region}/v1/projects/{project_id}/agent-variables",
+    "path": [
+     "project_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "deepgram.variables_update",
+   "name": "Update an agent variable",
+   "description": "Updates the value of an existing template variable",
+   "input": {
+    "type": "object",
+    "properties": {
+     "project_id": {
+      "type": "string",
+      "description": "The unique identifier of the project"
+     },
+     "variable_id": {
+      "type": "string",
+      "description": "The unique identifier of the agent variable"
+     },
+     "value": {
+      "type": "string",
+      "description": "The new value to substitute"
+     }
+    },
+    "required": [
+     "project_id",
+     "value",
+     "variable_id"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://{region}/v1/projects/{project_id}/agent-variables/{variable_id}",
+    "path": [
+     "project_id",
+     "variable_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "value"
+    ],
+    "body_format": "json"
+   }
+  }
+ ]
+}
