@@ -2,7 +2,7 @@
 --
 -- GENERATED from https://api.tradingeconomics.com/swagger/v1/swagger.json
 -- Published on the vendor's own documentation site (https://api.tradingeconomics.com).
--- 168 operations · do not edit
+-- 148 operations · do not edit
 --
 -- The credential is never in here. `auth.env` names an environment variable; the value
 -- stays in the environment, which is what makes this file safe to publish.
@@ -48,7 +48,6 @@ return {
     ["trading-economics.get_calendar_updates"] = { method = "GET", url = "https://api.tradingeconomics.com/calendar/updates", query = {"lang", "values", "f"} },
     ["trading-economics.get_changes"] = { method = "GET", url = "https://api.tradingeconomics.com/changes", query = {"f"} },
     ["trading-economics.get_changes_date"] = { method = "GET", url = "https://api.tradingeconomics.com/changes/{date}", path = {"date"}, query = {"f"} },
-    ["trading-economics.get_comtrade"] = { method = "GET", url = "https://api.tradingeconomics.com/comtrade", query = {"f"} },
     ["trading-economics.get_comtrade_categories"] = { method = "GET", url = "https://api.tradingeconomics.com/comtrade/categories", query = {"f"} },
     ["trading-economics.get_comtrade_countries"] = { method = "GET", url = "https://api.tradingeconomics.com/comtrade/countries", query = {"f"} },
     ["trading-economics.get_comtrade_country_country1_country2"] = { method = "GET", url = "https://api.tradingeconomics.com/comtrade/country/{country1}/{country2}", path = {"country1", "country2"}, query = {"type", "f"} },
@@ -100,25 +99,6 @@ return {
     ["trading-economics.get_fred_snapshot_symbol_symbol"] = { method = "GET", url = "https://api.tradingeconomics.com/fred/snapshot/symbol/{symbol}", path = {"symbol"}, query = {"f"} },
     ["trading-economics.get_fred_snapshot_url"] = { method = "GET", url = "https://api.tradingeconomics.com/fred/snapshot/url", query = {"url", "info", "f"} },
     ["trading-economics.get_fred_states"] = { method = "GET", url = "https://api.tradingeconomics.com/fred/states", query = {"f"} },
-    ["trading-economics.get_gis_collections"] = { method = "GET", url = "https://api.tradingeconomics.com/gis/collections" },
-    ["trading-economics.get_gis_collections_comtrade_exports_country_items"] = { method = "GET", url = "https://api.tradingeconomics.com/gis/collections/comtrade/exports/{country}/items", path = {"country"}, query = {"partners", "yearFrom", "yearTo"} },
-    ["trading-economics.get_gis_collections_comtrade_imports_country_items"] = { method = "GET", url = "https://api.tradingeconomics.com/gis/collections/comtrade/imports/{country}/items", path = {"country"}, query = {"partners", "yearFrom", "yearTo"} },
-    ["trading-economics.get_gis_collections_fred_counties_indicator_indicator_items"] = { method = "GET", url = "https://api.tradingeconomics.com/gis/collections/fred/counties/indicator/{indicator}/items", path = {"indicator"}, query = {"states", "geometry"} },
-    ["trading-economics.get_gis_collections_fred_counties_indicator_items"] = { method = "GET", url = "https://api.tradingeconomics.com/gis/collections/fred/counties/indicator/items", query = {"indicator", "states", "geometry"} },
-    ["trading-economics.get_gis_collections_fred_counties_state_indicator_items"] = { method = "GET", url = "https://api.tradingeconomics.com/gis/collections/fred/counties/{state}/indicator/items", path = {"state"}, query = {"geometry"} },
-    ["trading-economics.get_gis_collections_fred_states_indicator_indicator_items"] = { method = "GET", url = "https://api.tradingeconomics.com/gis/collections/fred/states/indicator/{indicator}/items", path = {"indicator"}, query = {"states", "geometry"} },
-    ["trading-economics.get_gis_collections_fred_states_indicator_items"] = { method = "GET", url = "https://api.tradingeconomics.com/gis/collections/fred/states/indicator/items", query = {"states", "indicator", "geometry"} },
-    ["trading-economics.get_gis_collections_fred_states_state_indicator_items"] = { method = "GET", url = "https://api.tradingeconomics.com/gis/collections/fred/states/{state}/indicator/items", path = {"state"}, query = {"geometry"} },
-    ["trading-economics.get_gis_collections_indicator_indicator_items"] = { method = "GET", url = "https://api.tradingeconomics.com/gis/collections/indicator/{indicator}/items", path = {"indicator"}, query = {"countries", "geometry", "date", "yearFrom", "yearTo"} },
-    ["trading-economics.get_gis_collections_indicator_items"] = { method = "GET", url = "https://api.tradingeconomics.com/gis/collections/indicator/items", query = {"indicators", "countries", "geometry", "date", "yearFrom", "yearTo"} },
-    ["trading-economics.get_gis_collections_map_usa_counties_items"] = { method = "GET", url = "https://api.tradingeconomics.com/gis/collections/map/usa/counties/items", query = {"geometry"} },
-    ["trading-economics.get_gis_collections_map_usa_states_items"] = { method = "GET", url = "https://api.tradingeconomics.com/gis/collections/map/usa/states/items", query = {"geometry"} },
-    ["trading-economics.get_gis_collections_map_world_items"] = { method = "GET", url = "https://api.tradingeconomics.com/gis/collections/map/world/items", query = {"geometry"} },
-    ["trading-economics.get_gis_collections_market_bonds_items"] = { method = "GET", url = "https://api.tradingeconomics.com/gis/collections/market/bonds/items", query = {"country", "geometry"} },
-    ["trading-economics.get_gis_collections_market_currencies_items"] = { method = "GET", url = "https://api.tradingeconomics.com/gis/collections/market/currencies/items", query = {"country", "cross", "geometry"} },
-    ["trading-economics.get_gis_collections_market_indexes_items"] = { method = "GET", url = "https://api.tradingeconomics.com/gis/collections/market/indexes/items", query = {"country", "geometry"} },
-    ["trading-economics.get_gis_conformance"] = { method = "GET", url = "https://api.tradingeconomics.com/gis/conformance" },
-    ["trading-economics.get_gis_health"] = { method = "GET", url = "https://api.tradingeconomics.com/gis/health" },
     ["trading-economics.get_historical_country_country"] = { method = "GET", url = "https://api.tradingeconomics.com/historical/country/{country}", path = {"country"}, query = {"f"} },
     ["trading-economics.get_historical_country_country_indicator_indicator"] = { method = "GET", url = "https://api.tradingeconomics.com/historical/country/{country}/indicator/{indicator}", path = {"country", "indicator"}, query = {"d1", "d2", "lu", "f"} },
     ["trading-economics.get_historical_country_country_indicator_indicator_d1_d2"] = { method = "GET", url = "https://api.tradingeconomics.com/historical/country/{country}/indicator/{indicator}/{d1}/{d2}", path = {"country", "indicator", "d1", "d2"}, query = {"lu", "f"} },

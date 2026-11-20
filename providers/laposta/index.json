@@ -1,0 +1,1754 @@
+{
+ "_": "GENERATED \u2014 what an authoring tool needs to FIND an operation. The calling table is the .lua beside it.",
+ "provider": "laposta",
+ "source": "https://docs.laposta.nl/openapi.json",
+ "operations": [
+  {
+   "slug": "laposta.campagnes_alle_campagnes_opvragen",
+   "name": "Alle campagnes opvragen",
+   "description": "Geeft alle campagnes van het account terug, elk als een `campaign`-object binnen `data`.All campaigns in an array of campaign objects. The campaign objects have been ordered in an array with the name 'data'.Gibt alle Kampagnen des Kontos zur\u00fcck, jeweils als `campaign`-Objekt innerhalb von `data`.Devuelve todas las campa\u00f1as de la cuenta, cada una como un objeto `campaign` dentro de `data`.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.laposta.nl/v2/campaign",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "laposta.campagnes_campagne_aanmaken",
+   "name": "Campagne aanmaken",
+   "description": "Maakt een campagne aan. Het afzendadres moet een binnen Laposta goedgekeurd adres zijn, en bij `list_ids` geef je de lijsten en eventuele segmenten op die de campagne ontvangen. Een campagne die je zo aanmaakt kun je daarna vullen met eigen html; campagnes uit de drag-and-drop-editor kunnen dat niet.Creates a campaign. A campaign you create through the API can be filled with `/content` afterwards;",
+   "input": {
+    "type": "object",
+    "properties": {
+     "type": {
+      "type": "string",
+      "description": "Type campagne (moet zijn: regular)Type of campaign (must be set to: regular)Art der Kampagne (muss sein: regular)Tipo de campa\u00f1a (debe ser: regular)"
+     },
+     "name": {
+      "type": "string",
+      "description": "Een naam voor deze campagne, voor intern gebruik.A name for this campaign for internal useEin Name f\u00fcr diese Kampagne, f\u00fcr den internen Gebrauch.Un nombre para esta campa\u00f1a, para uso interno."
+     },
+     "subject": {
+      "type": "string",
+      "description": "De onderwerpregel.Subject lineDie Betreffzeile.La l\u00ednea de asunto."
+     },
+     "from[name]": {
+      "type": "string",
+      "description": "De naam van de afzender.The name of the senderDer Name des Absenders.El nombre del remitente."
+     },
+     "from[email]": {
+      "type": "string",
+      "description": "Het e-mailadres van de afzender (dit moet een binnen het programma goedgekeurd afzendadres zijn)The email address of the sender (must be a sender address approved within the program)Die E-Mail-Adresse des Absenders (dies muss eine im Programm freigegebene Absenderadresse sein)La direcci\u00f3n de correo electr\u00f3nico del remitente (debe ser una direcci\u00f3n de remitente aprobada dentro del programa)"
+     },
+     "reply_to": {
+      "type": "string",
+      "description": "Het e-mailadres bij beantwoorden.Email address for receiving repliesDie E-Mail-Adresse f\u00fcr Antworten.La direcci\u00f3n de correo electr\u00f3nico para las respuestas."
+     },
+     "list_ids[]": {
+      "type": "string",
+      "description": "Ontvangers, array van list_id's en eventuele segment_id's.Recipients, array of list_ids and segment_ids if neededEmpf\u00e4nger, Array mit list_ids und eventuellen segment_ids.Destinatarios, array de list_id y, si procede, de segment_id."
+     },
+     "stats[ga]": {
+      "type": "string",
+      "description": "Koppel Google Analytics (true of false)Link Google Analytics (true or false)Google Analytics verkn\u00fcpfen (true oder false)Vincular Google Analytics (true o false)"
+     },
+     "stats[mtrack]": {
+      "type": "string",
+      "description": "Koppel Mtrack (true of false)Link Mtrack (true or false)Mtrack verkn\u00fcpfen (true oder false)Vincular Mtrack (true o false)"
+     }
+    },
+    "required": [
+     "from[email]",
+     "from[name]",
+     "list_ids[]",
+     "name",
+     "subject",
+     "type"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.laposta.nl/v2/campaign",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "type",
+     "name",
+     "subject",
+     "from[name]",
+     "from[email]",
+     "reply_to",
+     "list_ids[]",
+     "stats[ga]",
+     "stats[mtrack]"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "laposta.campagnes_campagne_content_opvragen",
+   "name": "Campagne content opvragen",
+   "description": "Geeft de inhoud van een campagne terug in html en in platte tekst. Dit werkt alleen bij campagnes die via de API of via een import zijn gevuld. Een campagne uit de drag-and-drop-editor geeft de melding \"Wrong campaign type\".Requesting the content of a campaign. Please note that this is only possible if it involves a campaign that has been exported, and not for a campaign created within the applica",
+   "input": {
+    "type": "object",
+    "properties": {
+     "campaign_id": {
+      "type": "string",
+      "description": "Het id van de campagne. Dat vind je in het antwoord van [Alle campagnes opvragen](/campagnes/alle-campagnes-opvragen).The id of the campaign. You find it in the response of [Get all campaigns](/campagnes/alle-campagnes-opvragen).Die ID der Kampagne. Du findest sie in der Antwort von [Alle Kampagnen abrufen](/campagnes/alle-campagnes-opvragen).El id de la campa\u00f1a. Lo encuentras en la respuesta de ["
+     }
+    },
+    "required": [
+     "campaign_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.laposta.nl/v2/campaign/{campaign_id}/content",
+    "path": [
+     "campaign_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "laposta.campagnes_campagne_content_vullen",
+   "name": "Campagne content vullen",
+   "description": "Vult de campagne met html, of laat Laposta de html ophalen van een URL. Geef er een van beide mee; stuur je allebei, dan wint de html.Gevonden problemen komen terug in `report`, bijvoorbeeld een ontbrekende afmeldlink of een afbeelding die niet geladen kan worden. Verzenden kan ook zonder die problemen op te lossen, maar het is verstandig ze eerst na te lopen.Filling in the content of a campaign T",
+   "input": {
+    "type": "object",
+    "properties": {
+     "campaign_id": {
+      "type": "string",
+      "description": "Het id van de campagne. Dat vind je in het antwoord van [Alle campagnes opvragen](/campagnes/alle-campagnes-opvragen).The id of the campaign. You find it in the response of [Get all campaigns](/campagnes/alle-campagnes-opvragen).Die ID der Kampagne. Du findest sie in der Antwort von [Alle Kampagnen abrufen](/campagnes/alle-campagnes-opvragen).El id de la campa\u00f1a. Lo encuentras en la respuesta de ["
+     },
+     "html": {
+      "type": "string",
+      "description": "De html voor de campagne.The html for the campaignDas HTML f\u00fcr die Kampagne.El html de la campa\u00f1a."
+     },
+     "import_url": {
+      "type": "string",
+      "description": "De url vanwaar de html ge\u00efmporteerd moet worden.The URL from which the html must be importedDie URL, von der das HTML importiert werden soll.La url desde la que se debe importar el html."
+     },
+     "inline_css": {
+      "type": "boolean",
+      "description": "Eventueel inlinen van css (true of false)Potential inlining of css (true or false)CSS eventuell inline setzen (true oder false)Aplicar el css en l\u00ednea si se desea (true o false)"
+     },
+     "javascript": {
+      "type": "string",
+      "description": "Er is javascript aangetroffen.JavaScript was encounteredEs wurde JavaScript gefunden.Se ha detectado javascript."
+     },
+     "flash": {
+      "type": "string",
+      "description": "Er is flash aangetroffen.Flash was encounteredEs wurde Flash gefunden.Se ha detectado flash."
+     },
+     "no_unsubscribe": {
+      "type": "string",
+      "description": "Er is geen afmeldlink gevonden.No unsubscribe could be locatedEs wurde kein Abmeldelink gefunden.No se ha encontrado ning\u00fan enlace de baja."
+     },
+     "empty_unsubscribe": {
+      "type": "string",
+      "description": "Er is een lege afmeldlink gevonden.Empty unsubscribe encounteredEs wurde ein leerer Abmeldelink gefunden.Se ha encontrado un enlace de baja vac\u00edo."
+     },
+     "css": {
+      "type": "string",
+      "description": "Er zijn ontbrekende externe css bestanden (worden opgesomd)Missing external css files (listed)Es fehlen externe CSS-Dateien (werden aufgelistet)Faltan archivos css externos (se enumeran)"
+     },
+     "images": {
+      "type": "string",
+      "description": "Er zijn ontbrekende externe afbeeldingen (worden opgesomd)Missing external images (listed)Es fehlen externe Bilder (werden aufgelistet)Faltan im\u00e1genes externas (se enumeran)"
+     }
+    },
+    "required": [
+     "campaign_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.laposta.nl/v2/campaign/{campaign_id}/content",
+    "path": [
+     "campaign_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "html",
+     "import_url",
+     "inline_css",
+     "javascript",
+     "flash",
+     "no_unsubscribe",
+     "empty_unsubscribe",
+     "css",
+     "images"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "laposta.campagnes_campagne_inplannen",
+   "name": "Campagne inplannen",
+   "description": "Plant de campagne in op een moment in de toekomst. Een ingeplande campagne zeg je af door hem te verwijderen.Schedules the campaign for a moment in the future. You cancel a scheduled campaign by deleting it.Plant die Kampagne f\u00fcr einen Zeitpunkt in der Zukunft ein. Eine eingeplante Kampagne sagst du ab, indem du sie l\u00f6schst.Programa la campa\u00f1a para un momento futuro. Una campa\u00f1a programada se canc",
+   "input": {
+    "type": "object",
+    "properties": {
+     "campaign_id": {
+      "type": "string",
+      "description": "Het id van de campagne. Dat vind je in het antwoord van [Alle campagnes opvragen](/campagnes/alle-campagnes-opvragen).The id of the campaign. You find it in the response of [Get all campaigns](/campagnes/alle-campagnes-opvragen).Die ID der Kampagne. Du findest sie in der Antwort von [Alle Kampagnen abrufen](/campagnes/alle-campagnes-opvragen).El id de la campa\u00f1a. Lo encuentras en la respuesta de ["
+     },
+     "delivery_requested": {
+      "type": "string",
+      "description": "Het moment van verzenden. Gebruik het gewone formaat of ISO-formaat zoals hierboven beschreven.The time and date of sending. Use the regular format or ISO format described above.Der Zeitpunkt des Versands. Verwende das normale Format oder das ISO-Format wie oben beschrieben.El momento del env\u00edo. Usa el formato normal o el formato ISO descrito arriba."
+     }
+    },
+    "required": [
+     "campaign_id",
+     "delivery_requested"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.laposta.nl/v2/campaign/{campaign_id}/action/schedule",
+    "path": [
+     "campaign_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "delivery_requested"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "laposta.campagnes_campagne_opvragen",
+   "name": "Campagne opvragen",
+   "description": "Geeft alle gegevens van een campagne terug, inclusief de verzendmomenten en de link naar de webversie.All information about a campaignGibt alle Daten einer Kampagne zur\u00fcck, inklusive der Versandzeitpunkte und des Links zur Webversion.Devuelve todos los datos de una campa\u00f1a, incluidos los momentos de env\u00edo y el enlace a la versi\u00f3n web.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "campaign_id": {
+      "type": "string",
+      "description": "Het id van de campagne. Dat vind je in het antwoord van [Alle campagnes opvragen](/campagnes/alle-campagnes-opvragen).The id of the campaign. You find it in the response of [Get all campaigns](/campagnes/alle-campagnes-opvragen).Die ID der Kampagne. Du findest sie in der Antwort von [Alle Kampagnen abrufen](/campagnes/alle-campagnes-opvragen).El id de la campa\u00f1a. Lo encuentras en la respuesta de ["
+     }
+    },
+    "required": [
+     "campaign_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.laposta.nl/v2/campaign/{campaign_id}",
+    "path": [
+     "campaign_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "laposta.campagnes_campagne_testen",
+   "name": "Campagne testen",
+   "description": "Stuurt een testmail naar een adres dat je zelf opgeeft. Dat kan alleen bij een campagne die al inhoud heeft en nog niet verzonden is.Sending a test mail Note: only in the case of a campaign for which there already is content, but which has not yet been sent, is it possible for a test email to be sent.Schickt eine Testmail an eine Adresse, die du selbst angibst. Das geht nur bei einer Kampagne, die",
+   "input": {
+    "type": "object",
+    "properties": {
+     "campaign_id": {
+      "type": "string",
+      "description": "Het id van de campagne. Dat vind je in het antwoord van [Alle campagnes opvragen](/campagnes/alle-campagnes-opvragen).The id of the campaign. You find it in the response of [Get all campaigns](/campagnes/alle-campagnes-opvragen).Die ID der Kampagne. Du findest sie in der Antwort von [Alle Kampagnen abrufen](/campagnes/alle-campagnes-opvragen).El id de la campa\u00f1a. Lo encuentras en la respuesta de ["
+     },
+     "email": {
+      "type": "string",
+      "description": "Het e-mailadres waarnaar de test verzonden moet worden.The email address to which the test should be sent.Die E-Mail-Adresse, an die der Test versendet werden soll.La direcci\u00f3n de correo electr\u00f3nico a la que se debe enviar la prueba."
+     }
+    },
+    "required": [
+     "campaign_id",
+     "email"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.laposta.nl/v2/campaign/{campaign_id}/action/testmail",
+    "path": [
+     "campaign_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "email"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "laposta.campagnes_campagne_verwijderen",
+   "name": "Campagne verwijderen",
+   "description": "Verwijdert een campagne. Een campagne die nog niet verstuurd is verdwijnt volledig; van een verzonden campagne blijven de resultaten bewaard. Zo zeg je ook een ingeplande campagne af.This deletes a campaign. Unsent campaigns will be permanently deleted. Campaigns that have been sent are permanently deleted only after 180 days. In the meantime, they can be restored in the overview of campaigns in o",
+   "input": {
+    "type": "object",
+    "properties": {
+     "campaign_id": {
+      "type": "string",
+      "description": "Het id van de campagne. Dat vind je in het antwoord van [Alle campagnes opvragen](/campagnes/alle-campagnes-opvragen).The id of the campaign. You find it in the response of [Get all campaigns](/campagnes/alle-campagnes-opvragen).Die ID der Kampagne. Du findest sie in der Antwort von [Alle Kampagnen abrufen](/campagnes/alle-campagnes-opvragen).El id de la campa\u00f1a. Lo encuentras en la respuesta de ["
+     }
+    },
+    "required": [
+     "campaign_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.laposta.nl/v2/campaign/{campaign_id}",
+    "path": [
+     "campaign_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "laposta.campagnes_campagne_verzenden",
+   "name": "Campagne verzenden",
+   "description": "Verstuurt de campagne naar alle gekoppelde lijsten en segmenten. Het versturen gebeurt op de achtergrond, dus je krijgt direct antwoord terwijl de verzending nog loopt.Deze aanroep is niet terug te draaien, en de API blokkeert een tweede aanroep niet: die zet de verzending gewoon opnieuw in gang.Sends the campaign to all connected lists and segments right away. This call cannot be undone, and it i",
+   "input": {
+    "type": "object",
+    "properties": {
+     "campaign_id": {
+      "type": "string",
+      "description": "Het id van de campagne. Dat vind je in het antwoord van [Alle campagnes opvragen](/campagnes/alle-campagnes-opvragen).The id of the campaign. You find it in the response of [Get all campaigns](/campagnes/alle-campagnes-opvragen).Die ID der Kampagne. Du findest sie in der Antwort von [Alle Kampagnen abrufen](/campagnes/alle-campagnes-opvragen).El id de la campa\u00f1a. Lo encuentras en la respuesta de ["
+     }
+    },
+    "required": [
+     "campaign_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.laposta.nl/v2/campaign/{campaign_id}/action/send",
+    "path": [
+     "campaign_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "laposta.campagnes_campagne_wijzigen",
+   "name": "Campagne wijzigen",
+   "description": "Wijzigt een campagne. Je stuurt alleen mee wat anders moet worden. Let op: de API houdt niet tegen dat je een al verzonden campagne wijzigt.You only have to submit the fields that require to be modified in the application. Fields that are not mentioned will keep their current value fields keep their current value. As soon as a field is mentioned it does get checked, and thus can cause an error mes",
+   "input": {
+    "type": "object",
+    "properties": {
+     "campaign_id": {
+      "type": "string",
+      "description": "Het id van de campagne. Dat vind je in het antwoord van [Alle campagnes opvragen](/campagnes/alle-campagnes-opvragen).The id of the campaign. You find it in the response of [Get all campaigns](/campagnes/alle-campagnes-opvragen).Die ID der Kampagne. Du findest sie in der Antwort von [Alle Kampagnen abrufen](/campagnes/alle-campagnes-opvragen).El id de la campa\u00f1a. Lo encuentras en la respuesta de ["
+     },
+     "name": {
+      "type": "string",
+      "description": "Een naam voor deze campagne, voor intern gebruik.A name for this campaign for internal useEin Name f\u00fcr diese Kampagne, f\u00fcr den internen Gebrauch.Un nombre para esta campa\u00f1a, para uso interno."
+     },
+     "subject": {
+      "type": "string",
+      "description": "De onderwerpregel.Subject lineDie Betreffzeile.La l\u00ednea de asunto."
+     },
+     "from[name]": {
+      "type": "string",
+      "description": "De naam van de afzender.The name of the senderDer Name des Absenders.El nombre del remitente."
+     },
+     "from[email]": {
+      "type": "string",
+      "description": "Het e-mailadres van de afzender (dit moet een binnen het programma goedgekeurd afzendadres zijn)The email address of the sender (must be a sender address approved within the program)Die E-Mail-Adresse des Absenders (dies muss eine im Programm freigegebene Absenderadresse sein)La direcci\u00f3n de correo electr\u00f3nico del remitente (debe ser una direcci\u00f3n de remitente aprobada dentro del programa)"
+     },
+     "reply_to": {
+      "type": "string",
+      "description": "Het e-mailadres bij beantwoorden.Email address for receiving repliesDie E-Mail-Adresse f\u00fcr Antworten.La direcci\u00f3n de correo electr\u00f3nico para las respuestas."
+     },
+     "list_ids[]": {
+      "type": "string",
+      "description": "Ontvangers, array van list_id's en eventuele segment_ids.Recipients, array of list_ids and segment_ids if neededEmpf\u00e4nger, Array mit list_ids und eventuellen segment_ids.Destinatarios, array de list_id y, si procede, de segment_id."
+     },
+     "stats[ga]": {
+      "type": "string",
+      "description": "Koppel Google Analytics (true of false)Link Google Analytics (true or false)Google Analytics verkn\u00fcpfen (true oder false)Vincular Google Analytics (true o false)"
+     },
+     "stats[mtrack]": {
+      "type": "string",
+      "description": "Koppel Mtrack (true of false)Link Mtrack (true or false)Mtrack verkn\u00fcpfen (true oder false)Vincular Mtrack (true o false)"
+     }
+    },
+    "required": [
+     "campaign_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.laposta.nl/v2/campaign/{campaign_id}",
+    "path": [
+     "campaign_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "subject",
+     "from[name]",
+     "from[email]",
+     "reply_to",
+     "list_ids[]",
+     "stats[ga]",
+     "stats[mtrack]"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "laposta.campagnes_campagnegeschiedenis_opvragen",
+   "name": "Campagnegeschiedenis opvragen",
+   "description": "Geeft de gebeurtenissen van een campagne terug: wat er verstuurd, geopend en aangeklikt is. Een campagne levert al snel veel gebeurtenissen op, dus haal de volgende pagina op met `cursor` uit `pagination`.The full event history of a campaign. A campaign can contain many events; use pagination to retrieve additional pages.Gibt die Ereignisse einer Kampagne zur\u00fcck: was versendet, ge\u00f6ffnet und angekl",
+   "input": {
+    "type": "object",
+    "properties": {
+     "campaign_id": {
+      "type": "string",
+      "description": "Het id van de campagne. Dat vind je in het antwoord van [Alle campagnes opvragen](/campagnes/alle-campagnes-opvragen).The id of the campaign. You find it in the response of [Get all campaigns](/campagnes/alle-campagnes-opvragen).Die ID der Kampagne. Du findest sie in der Antwort von [Alle Kampagnen abrufen](/campagnes/alle-campagnes-opvragen).El id de la campa\u00f1a. Lo encuentras en la respuesta de ["
+     },
+     "event_date_from": {
+      "type": "string",
+      "description": "Geef alleen events vanaf dit moment terug, inclusief. Gebruik het gewone formaat of ISO-formaat zoals hierboven beschreven.Only return events from this date and time, inclusive. Use the regular format or ISO format described above.Gib nur Events ab diesem Zeitpunkt zur\u00fcck, inklusive. Verwende das normale Format oder das ISO-Format wie oben beschrieben.Devuelve solo los eventos a partir de este mom"
+     },
+     "event_date_to": {
+      "type": "string",
+      "description": "Geef alleen events voor dit moment terug, exclusief. Gebruik het gewone formaat of ISO-formaat zoals hierboven beschreven.Only return events before this date and time, exclusive. Use the regular format or ISO format described above.Gib nur Events vor diesem Zeitpunkt zur\u00fcck, exklusive. Verwende das normale Format oder das ISO-Format wie oben beschrieben.Devuelve solo los eventos anteriores a este "
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Maximum aantal history-items dat wordt teruggegeven. Standaard 100, maximaal 1000.Maximum number of history items to return. Default is 100, maximum is 1000Maximale Anzahl an history-Items, die zur\u00fcckgegeben werden. Standard 100, maximal 1000.N\u00famero m\u00e1ximo de elementos de historial que se devuelven. Por defecto 100, m\u00e1ximo 1000."
+     },
+     "cursor": {
+      "type": "string",
+      "description": "Cursor uit pagination.next_cursor om de volgende pagina op te vragen. Interpreteer deze waarde niet zelf; stuur hem ongewijzigd terug.Cursor from pagination.next_cursor to request the next page. Do not interpret this value yourself; send it back unchanged.Cursor aus pagination.next_cursor, um die n\u00e4chste Seite abzurufen. Interpretiere diesen Wert nicht selbst; schicke ihn unver\u00e4ndert zur\u00fcck.Cursor"
+     },
+     "order_by": {
+      "type": "string",
+      "description": "Veld waarop gesorteerd wordt. Op dit moment wordt alleen event_date ondersteund.Field to order by. Currently only event_date is supportedFeld, nach dem sortiert wird. Zurzeit wird nur event_date unterst\u00fctzt.Campo por el que se ordena. Por ahora solo se admite event_date."
+     },
+     "order": {
+      "type": "string",
+      "description": "Sorteerrichting: desc of asc. Standaard desc.Sort direction: desc or asc. Default is descSortierrichtung: desc oder asc. Standard desc.Direcci\u00f3n de ordenaci\u00f3n: desc o asc. Por defecto desc.",
+      "enum": [
+       "desc",
+       "asc"
+      ]
+     }
+    },
+    "required": [
+     "campaign_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.laposta.nl/v2/campaign/{campaign_id}/history",
+    "path": [
+     "campaign_id"
+    ],
+    "query": [
+     "event_date_from",
+     "event_date_to",
+     "limit",
+     "cursor",
+     "order_by",
+     "order"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "laposta.lijsten_alle_lijsten_opvragen",
+   "name": "Alle lijsten opvragen",
+   "description": "Geeft alle lijsten van het account terug, elk als een `list`-object binnen `data`. Deze aanroep kent geen paginering: je krijgt altijd alle lijsten.All lists in an array of list objects. The list objects have been ordered in an array with the name 'data'. No parameters need to be provided.Gibt alle Listen des Kontos zur\u00fcck, jeweils als `list`-Objekt innerhalb von `data`. Dieser Aufruf kennt keine ",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.laposta.nl/v2/list",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "laposta.lijsten_lijst_leegmaken",
+   "name": "Lijst leegmaken",
+   "description": "Verwijdert alle relaties uit de lijst en laat de lijst zelf bestaan. Handig als je een lijst opnieuw wilt vullen vanuit je eigen systeem. Deze actie is niet terug te draaien.This permanently purges all active subscribers from a list, but doesn't delete the list itself. If the list does not exist, an error message is displayed. In response, you are shown another list object.L\u00f6scht alle Abonnenten a",
+   "input": {
+    "type": "object",
+    "properties": {
+     "list_id": {
+      "type": "string",
+      "description": "Het id van de lijst. Dat vind je in het antwoord van [Alle lijsten opvragen](/lijsten/alle-lijsten-opvragen), en in de applicatie in de URL van de lijst.The id of the list. You find it in the response of [Get all lists](/lijsten/alle-lijsten-opvragen), and in the application in the URL of the list.Die ID der Liste. Du findest sie in der Antwort von [Alle Listen abrufen](/lijsten/alle-lijsten-opvra"
+     }
+    },
+    "required": [
+     "list_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.laposta.nl/v2/list/{list_id}/members",
+    "path": [
+     "list_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "laposta.lijsten_lijst_opvragen",
+   "name": "Lijst opvragen",
+   "description": "Geeft alle gegevens van een lijst terug, inclusief het aantal actieve, afgemelde en opgeschoonde relaties.All information about a list.Gibt alle Daten einer Liste zur\u00fcck, inklusive der Anzahl aktiver, abgemeldeter und bereinigter Abonnenten.Devuelve todos los datos de una lista, incluido el n\u00famero de contactos activos, dados de baja y depurados.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "list_id": {
+      "type": "string",
+      "description": "Het id van de lijst. Dat vind je in het antwoord van [Alle lijsten opvragen](/lijsten/alle-lijsten-opvragen), en in de applicatie in de URL van de lijst.The id of the list. You find it in the response of [Get all lists](/lijsten/alle-lijsten-opvragen), and in the application in the URL of the list.Die ID der Liste. Du findest sie in der Antwort von [Alle Listen abrufen](/lijsten/alle-lijsten-opvra"
+     }
+    },
+    "required": [
+     "list_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.laposta.nl/v2/list/{list_id}",
+    "path": [
+     "list_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "laposta.lijsten_lijst_synchroniseren_bulk",
+   "name": "Lijst synchroniseren (bulk)",
+   "description": "Voegt in een keer meerdere relaties toe, werkt ze bij of meldt ze af. Je stuurt hier JSON, geen formuliervelden, met maximaal 500.000 relaties per aanroep. In het antwoord zie je per relatie of hij is toegevoegd, gewijzigd, overgeslagen of geweigerd.Dit endpoint staat niet standaard aan. Krijg je een 401 met \"Not permitted to issue bulk requests (1)\", neem dan contact op met Laposta om het voor je",
+   "input": {
+    "type": "object",
+    "properties": {
+     "list_id": {
+      "type": "string",
+      "description": "Het id van de lijst. Dat vind je in het antwoord van [Alle lijsten opvragen](/lijsten/alle-lijsten-opvragen), en in de applicatie in de URL van de lijst.The id of the list. You find it in the response of [Get all lists](/lijsten/alle-lijsten-opvragen), and in the application in the URL of the list.Die ID der Liste. Du findest sie in der Antwort von [Alle Listen abrufen](/lijsten/alle-lijsten-opvra"
+     },
+     "actions": {
+      "type": "string",
+      "description": "Een array met ten minste \u00e9\u00e9n van de volgende opties: add, update of unsubscribe_excluded. Hiermee bepaalt je of relaties toegevoegd, gewijzigd en/of afgemeld mogen worden (zie de details hieronder).An array with at least one of the following options: add, update, or unsubscribe_excluded. These determine whether members may be added, updated and/or unsubscribed (read details below).Ein Array mit mi"
+     },
+     "mode (verouderd)": {
+      "type": "string",
+      "description": "Voor achterwaartse compatibiliteit kun je nog steeds de modus edit, add of add_and_edit meegeven, maar deze parameter wordt uitgefaseerd. Gebruik mode niet in combinatie met actions.For backwards compatibility you can still pass edit, add or add_and_edit, but this parameter is being phased out. Do not send mode together with actions.Aus Gr\u00fcnden der Abw\u00e4rtskompatibilit\u00e4t kannst du weiterhin den Mod"
+     },
+     "members": {
+      "type": "object",
+      "description": "Een array met member objecten. Minimaal 1, maximaal 500.000.An array with member objects. A minimum of 1, maximum of 500,000.Ein Array mit member-Objekten. Mindestens 1, maximal 500.000.Un array con objetos member. M\u00ednimo 1, m\u00e1ximo 500.000."
+     },
+     "member_id": {
+      "type": "string",
+      "description": "Het id van de relatie, of gewoon haar e-mailadres. Allebei werken.The id of the subscriber, or simply their email address. Both work.Die ID des Abonnenten oder einfach seine E-Mail-Adresse. Beides funktioniert.El id del contacto, o simplemente su direcci\u00f3n de correo. Ambos funcionan."
+     },
+     "email": {
+      "type": "string",
+      "description": "Het e-mailadres van de te wijzigen of toe te voegen relatie. Als member_id ook is opgegeven dan kan hier een nieuw e-mailadres worden opgegeven voor de bestaande relatie.The email address of the relation to be changed or added. If the member_id is also specified, then a new email address can be specified here for the existing relation.Die E-Mail-Adresse des zu \u00e4ndernden oder hinzuzuf\u00fcgenden Abonne"
+     },
+     "custom_fields": {
+      "type": "object",
+      "description": "Een JSON object waarbij de key de naam is van het extra veld en de value de waarde is van het extra veld. Labels geef je hier mee als array: \"labels\": [\"Klant\"]. Alleen labels die de lijst al heeft worden geaccepteerd; een onbekend label geeft foutcode 203 en de hele relatie wordt geweigerd. Geef je een losse tekst in plaats van een array, dan meldt het antwoord de relatie als gewijzigd en worden "
+     },
+     "source_url": {
+      "type": "string",
+      "description": "URL vanwaar de relatie is aangemeld.The URL from which the relation was registered.URL, von der aus der Abonnent angemeldet wurde.URL desde la que se ha registrado el contacto."
+     }
+    },
+    "required": [
+     "actions",
+     "custom_fields",
+     "email",
+     "list_id",
+     "member_id",
+     "members"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.laposta.nl/v2/list/{list_id}/members",
+    "path": [
+     "list_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "actions",
+     "mode (verouderd)",
+     "members",
+     "member_id",
+     "email",
+     "custom_fields",
+     "source_url"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "laposta.lijsten_lijst_toevoegen",
+   "name": "Lijst toevoegen",
+   "description": "Maakt een nieuwe lijst aan. Alleen een naam is verplicht; de overige velden kun je later nog wijzigen. Je krijgt de volledige lijst terug, inclusief het `list_id` dat je bij alle andere aanroepen nodig hebt.Creates a new list. Only a name is required; you can change the remaining fields later. You get the full list back, including the `list_id` that you need for all other calls.Erstellt eine neue ",
+   "input": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": "string",
+      "description": "Een naam voor deze lijst.Name given to the list in questionEin Name f\u00fcr diese Liste.Un nombre para esta lista."
+     },
+     "locked": {
+      "type": "boolean",
+      "description": "Als een lijst is vergrendeld, kan deze niet worden gewijzigd door een gebruiker van de applicatie. (true of false)If a list is locked, it cannot be changed by a user of the application. (true or false)Wenn eine Liste gesperrt ist, kann sie von einem Benutzer der Anwendung nicht ge\u00e4ndert werden. (true oder false)Si una lista est\u00e1 bloqueada, un usuario de la aplicaci\u00f3n no la puede modificar. (true o"
+     },
+     "remarks": {
+      "type": "string",
+      "description": "Eventuele opmerkingen.Potential remarksEventuelle Anmerkungen.Observaciones, si las hay."
+     },
+     "subscribe_notification_email": {
+      "type": "string",
+      "description": "E-mailadres waarnaar notificaties bij aanmeldingen kunnen worden verzonden.Email address to which a notification will be sent upon a subscriptionE-Mail-Adresse, an die Benachrichtigungen bei Anmeldungen versendet werden k\u00f6nnen.Direcci\u00f3n de correo electr\u00f3nico a la que se pueden enviar notificaciones de nuevos registros."
+     },
+     "unsubscribe_notification_email": {
+      "type": "string",
+      "description": "E-mailadres waarnaar notificaties bij afmeldingen kunnen worden verzonden.Email address to which a notification will be sent upon the cancelling of a subscriptionE-Mail-Adresse, an die Benachrichtigungen bei Abmeldungen versendet werden k\u00f6nnen.Direcci\u00f3n de correo electr\u00f3nico a la que se pueden enviar notificaciones de bajas."
+     }
+    },
+    "required": [
+     "name"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.laposta.nl/v2/list",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "locked",
+     "remarks",
+     "subscribe_notification_email",
+     "unsubscribe_notification_email"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "laposta.lijsten_lijst_verwijderen",
+   "name": "Lijst verwijderen",
+   "description": "Verwijdert de lijst definitief, met alle relaties, velden en segmenten erin. Je krijgt de lijst nog eenmaal terug, nu met `state` op `deleted`. Daarna is hij niet meer op te vragen.This permanently deletes a list. If the list does not exist, an error message is displayed. In response you are shown another list object, but now with the state 'deleted'. After having finished this procedure, it is no",
+   "input": {
+    "type": "object",
+    "properties": {
+     "list_id": {
+      "type": "string",
+      "description": "Het id van de lijst. Dat vind je in het antwoord van [Alle lijsten opvragen](/lijsten/alle-lijsten-opvragen), en in de applicatie in de URL van de lijst.The id of the list. You find it in the response of [Get all lists](/lijsten/alle-lijsten-opvragen), and in the application in the URL of the list.Die ID der Liste. Du findest sie in der Antwort von [Alle Listen abrufen](/lijsten/alle-lijsten-opvra"
+     }
+    },
+    "required": [
+     "list_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.laposta.nl/v2/list/{list_id}",
+    "path": [
+     "list_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "laposta.lijsten_lijst_wijzigen",
+   "name": "Lijst wijzigen",
+   "description": "Wijzigt een lijst. Je stuurt alleen de velden mee die anders moeten worden; wat je weglaat blijft zoals het was. Een veld dat je wel noemt wordt gecontroleerd en kan dus een foutmelding opleveren.You will only have to include the fields that need to be modified in the application. Fields that are not mentioned will keep their current value. As soon as a field is mentioned, it is checked and may th",
+   "input": {
+    "type": "object",
+    "properties": {
+     "list_id": {
+      "type": "string",
+      "description": "Het id van de lijst. Dat vind je in het antwoord van [Alle lijsten opvragen](/lijsten/alle-lijsten-opvragen), en in de applicatie in de URL van de lijst.The id of the list. You find it in the response of [Get all lists](/lijsten/alle-lijsten-opvragen), and in the application in the URL of the list.Die ID der Liste. Du findest sie in der Antwort von [Alle Listen abrufen](/lijsten/alle-lijsten-opvra"
+     },
+     "name": {
+      "type": "string",
+      "description": "Een naam voor deze lijst.A name for the list in questionEin Name f\u00fcr diese Liste.Un nombre para esta lista."
+     },
+     "locked": {
+      "type": "boolean",
+      "description": "Als een lijst is vergrendeld, kan deze niet worden gewijzigd door een gebruiker van de applicatie. (true of false)If a list is locked, it cannot be changed by a user of the application. (true or false)Wenn eine Liste gesperrt ist, kann sie von einem Benutzer der Anwendung nicht ge\u00e4ndert werden. (true oder false)Si una lista est\u00e1 bloqueada, un usuario de la aplicaci\u00f3n no la puede modificar. (true o"
+     },
+     "remarks": {
+      "type": "string",
+      "description": "Eventuele opmerkingen.Potential remarksEventuelle Anmerkungen.Observaciones, si las hay."
+     },
+     "subscribe_notification_email": {
+      "type": "string",
+      "description": "E-mailadres waarnaar notificaties bij aanmeldingen kunnen worden verzonden.Email address to which a notification will be sent upon a subscriptionE-Mail-Adresse, an die Benachrichtigungen bei Anmeldungen versendet werden k\u00f6nnen.Direcci\u00f3n de correo electr\u00f3nico a la que se pueden enviar notificaciones de nuevos registros."
+     },
+     "unsubscribe_notification_email": {
+      "type": "string",
+      "description": "E-mailadres waarnaar notificaties bij afmeldingen kunnen worden verzonden.Email address to which a notification will be sent upon the cancelling of a subscriptionE-Mail-Adresse, an die Benachrichtigungen bei Abmeldungen versendet werden k\u00f6nnen.Direcci\u00f3n de correo electr\u00f3nico a la que se pueden enviar notificaciones de bajas."
+     }
+    },
+    "required": [
+     "list_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.laposta.nl/v2/list/{list_id}",
+    "path": [
+     "list_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "locked",
+     "remarks",
+     "subscribe_notification_email",
+     "unsubscribe_notification_email"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "laposta.relaties_alle_relaties_opvragen",
+   "name": "Alle relaties opvragen",
+   "description": "Geeft de relaties van een lijst terug, elk als een `member`-object binnen `data`. Gebruik dit voor een eenmalige uitlezing en niet om bij elke paginaweergave gegevens op te halen: daarvoor is de limiet te krap.All fields of a list in an array of member objects. The member objects are formatted in an array named 'data'.Gibt die Abonnenten einer Liste zur\u00fcck, jeweils als `member`-Objekt innerhalb vo",
+   "input": {
+    "type": "object",
+    "properties": {
+     "list_id": {
+      "type": "string",
+      "description": "Het id van de lijst. Dat vind je in het antwoord van [Alle lijsten opvragen](/lijsten/alle-lijsten-opvragen), en in de applicatie in de URL van de lijst.The id of the list. You find it in the response of [Get all lists](/lijsten/alle-lijsten-opvragen), and in the application in the URL of the list.Die ID der Liste. Du findest sie in der Antwort von [Alle Listen abrufen](/lijsten/alle-lijsten-opvra"
+     },
+     "state": {
+      "type": "string",
+      "description": "De status van de opgevraagde relaties: active, unsubscribed of cleaned.The status of the requested subscribers: active, unsubscribed or cleanedDer Status der abgerufenen Abonnenten: active, unsubscribed oder cleaned.El estado de los contactos consultados: active, unsubscribed o cleaned.",
+      "enum": [
+       "active",
+       "deleted"
+      ]
+     }
+    },
+    "required": [
+     "list_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.laposta.nl/v2/member",
+    "path": [],
+    "query": [
+     "list_id",
+     "state"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "laposta.relaties_relatie_opvragen",
+   "name": "Relatie opvragen",
+   "description": "Geeft alle gegevens van een relatie terug, inclusief de waarden van je eigen velden. Je kunt hier het `member_id` opgeven, maar ook gewoon het e-mailadres.All information about a subscriber in a member objectGibt alle Daten eines Abonnenten zur\u00fcck, inklusive der Werte deiner eigenen Felder. Du kannst hier die `member_id` angeben, aber auch einfach die E-Mail-Adresse.Devuelve todos los datos de un ",
+   "input": {
+    "type": "object",
+    "properties": {
+     "member_id": {
+      "type": "string",
+      "description": "Het id van de relatie, of gewoon haar e-mailadres. Allebei werken.The id of the subscriber, or simply their email address. Both work.Die ID des Abonnenten oder einfach seine E-Mail-Adresse. Beides funktioniert.El id del contacto, o simplemente su direcci\u00f3n de correo. Ambos funcionan."
+     },
+     "list_id": {
+      "type": "string",
+      "description": "Het id van de lijst. Dat vind je in het antwoord van [Alle lijsten opvragen](/lijsten/alle-lijsten-opvragen), en in de applicatie in de URL van de lijst.The id of the list. You find it in the response of [Get all lists](/lijsten/alle-lijsten-opvragen), and in the application in the URL of the list.Die ID der Liste. Du findest sie in der Antwort von [Alle Listen abrufen](/lijsten/alle-lijsten-opvra"
+     }
+    },
+    "required": [
+     "list_id",
+     "member_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.laposta.nl/v2/member/{member_id}",
+    "path": [
+     "member_id"
+    ],
+    "query": [
+     "list_id"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "laposta.relaties_relatie_toevoegen",
+   "name": "Relatie toevoegen",
+   "description": "Voegt een relatie toe aan een lijst. Naast het e-mailadres is het IP-adres verplicht, want daarmee leg je vast waar de aanmelding vandaan komt. Eigen velden geef je mee in `custom_fields`, met de `custom_name` van het veld als sleutel.Bestaat het adres al in de lijst, dan volgt een foutmelding, tenzij je `options[upsert]` op `true` zet.Adds a subscriber to a list. Besides the email address, the IP",
+   "input": {
+    "type": "object",
+    "properties": {
+     "list_id": {
+      "type": "string",
+      "description": "Het id van de lijst. Dat vind je in het antwoord van [Alle lijsten opvragen](/lijsten/alle-lijsten-opvragen), en in de applicatie in de URL van de lijst.The id of the list. You find it in the response of [Get all lists](/lijsten/alle-lijsten-opvragen), and in the application in the URL of the list.Die ID der Liste. Du findest sie in der Antwort von [Alle Listen abrufen](/lijsten/alle-lijsten-opvra"
+     },
+     "ip": {
+      "type": "string",
+      "description": "Het IP-adres waarvandaan de aanmelding kwam. Bij een formulier op je site is dat het adres van de bezoeker, niet dat van je server.The IP address the sign-up came from. For a form on your site that is the visitor address, not your server address.Die IP-Adresse, von der die Anmeldung kam. Bei einem Formular auf deiner Website ist das die Adresse des Besuchers, nicht die deines Servers.La direcci\u00f3n "
+     },
+     "email": {
+      "type": "string",
+      "description": "Het e-mailadres van de toe te voegen relatie.The email address of the subscriber to be addedDie E-Mail-Adresse des hinzuzuf\u00fcgenden Abonnenten.La direcci\u00f3n de correo electr\u00f3nico del contacto que se va a a\u00f1adir."
+     },
+     "source_url": {
+      "type": "string",
+      "description": "De URL vanwaar de relatie is aangemeld.The URL from which the subscriber is registeredDie URL, von der aus der Abonnent angemeldet wurde.La URL desde la que se ha registrado el contacto."
+     },
+     "custom_fields": {
+      "type": "object",
+      "description": "De waardes van de extra aangemaakte velden. De naam (de key) van het veld moet de 'custom_name' zijn (onderdeel van het Field object). Dit is gelijk aan de 'Relatievariabele' in de applicatie. Labels geef je mee als reeks, met vierkante haken: custom_fields[labels][]=Klant. Zonder die haken slaagt de aanroep wel maar verandert er niets, en een label dat de lijst niet heeft geeft foutcode 203.The v"
+     },
+     "options": {
+      "type": "array",
+      "description": "Extra aanwijzingen, mogelijkheden zijn: upsert: true om velden te overschrijven als het e-mailadres al aan een actieve relatie van deze lijst gekoppeld is. Normaal gesproken zou je een foutmelding krijgen als het e-mailadres al gekoppeld is aan een actieve relatie. Let op: Als een relatie uitgeschreven is en je doet een upsert met dat e-mailadres, dan wordt deze weer op actief gezet. Indien je wil"
+     }
+    },
+    "required": [
+     "email",
+     "ip",
+     "list_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.laposta.nl/v2/member",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "list_id",
+     "ip",
+     "email",
+     "source_url",
+     "custom_fields",
+     "options"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "laposta.relaties_relatie_verwijderen",
+   "name": "Relatie verwijderen",
+   "description": "Verwijdert een relatie definitief uit de lijst. Je krijgt de relatie nog eenmaal terug met `state` op `deleted`, daarna is hij niet meer op te vragen. Wil je iemand alleen uitschrijven, gebruik dan `state` op `unsubscribed` bij het wijzigen.This permanently deletes a subscriber. If the subscriber does not exist, an error message is displayed. In response you are shown another list object, but now ",
+   "input": {
+    "type": "object",
+    "properties": {
+     "member_id": {
+      "type": "string",
+      "description": "Het id van de relatie, of gewoon haar e-mailadres. Allebei werken.The id of the subscriber, or simply their email address. Both work.Die ID des Abonnenten oder einfach seine E-Mail-Adresse. Beides funktioniert.El id del contacto, o simplemente su direcci\u00f3n de correo. Ambos funcionan."
+     },
+     "list_id": {
+      "type": "string",
+      "description": "Het id van de lijst. Dat vind je in het antwoord van [Alle lijsten opvragen](/lijsten/alle-lijsten-opvragen), en in de applicatie in de URL van de lijst.The id of the list. You find it in the response of [Get all lists](/lijsten/alle-lijsten-opvragen), and in the application in the URL of the list.Die ID der Liste. Du findest sie in der Antwort von [Alle Listen abrufen](/lijsten/alle-lijsten-opvra"
+     }
+    },
+    "required": [
+     "list_id",
+     "member_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.laposta.nl/v2/member/{member_id}",
+    "path": [
+     "member_id"
+    ],
+    "query": [
+     "list_id"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "laposta.relaties_relatie_wijzigen",
+   "name": "Relatie wijzigen",
+   "description": "Wijzigt een relatie of meldt hem af met `state`. Je stuurt alleen mee wat anders moet worden. Let op bij een meerkeuzeveld: een lege array maakt het veld niet leeg, de bestaande keuzes blijven dan staan.You only have to include the fields that need to be modified in the request. Fields that are not named will keep their current value. As soon as a field is mentioned it does get checked, and thus c",
+   "input": {
+    "type": "object",
+    "properties": {
+     "member_id": {
+      "type": "string",
+      "description": ""
+     },
+     "list_id": {
+      "type": "string",
+      "description": "Het id van de lijst. Dat vind je in het antwoord van [Alle lijsten opvragen](/lijsten/alle-lijsten-opvragen), en in de applicatie in de URL van de lijst.The id of the list. You find it in the response of [Get all lists](/lijsten/alle-lijsten-opvragen), and in the application in the URL of the list.Die ID der Liste. Du findest sie in der Antwort von [Alle Listen abrufen](/lijsten/alle-lijsten-opvra"
+     },
+     "email": {
+      "type": "string",
+      "description": "Het e-mailadres van de te wijzigen relatie.The email address of the subscriber that must be modifiedDie E-Mail-Adresse des zu \u00e4ndernden Abonnenten.La direcci\u00f3n de correo electr\u00f3nico del contacto que se va a modificar."
+     },
+     "state": {
+      "type": "string",
+      "description": "De nieuwe status van de relatie: active of unsubscribed.The new status of the subscriber: active or unsubscribedDer neue Status des Abonnenten: active oder unsubscribed.El nuevo estado del contacto: active o unsubscribed.",
+      "enum": [
+       "active",
+       "deleted"
+      ]
+     },
+     "custom_fields": {
+      "type": "object",
+      "description": "De waardes van de extra aangemaakte velden. Labels geef je mee als reeks, met vierkante haken: custom_fields[labels][]=Klant. Alleen labels die de lijst al heeft worden geaccepteerd; nieuwe labels maak je aan in de applicatie of bij een import.The values of the extra created fields. You pass labels as an array, with square brackets: custom_fields[labels][]=Customer. Only labels the list already ha"
+     }
+    },
+    "required": [
+     "list_id",
+     "member_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.laposta.nl/v2/member/{member_id}",
+    "path": [
+     "member_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "list_id",
+     "email",
+     "state",
+     "custom_fields"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "laposta.relaties_relatiegeschiedenis_opvragen",
+   "name": "Geschiedenis van een relatie",
+   "description": "Geeft de gebeurtenissen van een relatie terug: aanmeldingen, wijzigingen, afmeldingen en wat er met verzonden campagnes gebeurde. Dezelfde geschiedenis zie je in de applicatie bij de details van een relatie. Gebruik `cursor` uit `pagination` om de volgende pagina op te halen.The full event history of a subscriber, similar to the details shown in the application.Gibt die Ereignisse eines Abonnenten",
+   "input": {
+    "type": "object",
+    "properties": {
+     "member_id": {
+      "type": "string",
+      "description": "Het id van de relatie, of gewoon haar e-mailadres. Allebei werken.The id of the subscriber, or simply their email address. Both work.Die ID des Abonnenten oder einfach seine E-Mail-Adresse. Beides funktioniert.El id del contacto, o simplemente su direcci\u00f3n de correo. Ambos funcionan."
+     },
+     "list_id": {
+      "type": "string",
+      "description": "Het id van de lijst. Dat vind je in het antwoord van [Alle lijsten opvragen](/lijsten/alle-lijsten-opvragen), en in de applicatie in de URL van de lijst.The id of the list. You find it in the response of [Get all lists](/lijsten/alle-lijsten-opvragen), and in the application in the URL of the list.Die ID der Liste. Du findest sie in der Antwort von [Alle Listen abrufen](/lijsten/alle-lijsten-opvra"
+     },
+     "campaign_id": {
+      "type": "string",
+      "description": "Het id van de campagne. Dat vind je in het antwoord van [Alle campagnes opvragen](/campagnes/alle-campagnes-opvragen).The id of the campaign. You find it in the response of [Get all campaigns](/campagnes/alle-campagnes-opvragen).Die ID der Kampagne. Du findest sie in der Antwort von [Alle Kampagnen abrufen](/campagnes/alle-campagnes-opvragen).El id de la campa\u00f1a. Lo encuentras en la respuesta de ["
+     },
+     "event_date_from": {
+      "type": "string",
+      "description": "Geef alleen events vanaf dit moment terug, inclusief. Gebruik het gewone formaat of ISO-formaat zoals hierboven beschreven.Only return events from this date and time, inclusive. Use the regular format or ISO format described above.Gib nur Events ab diesem Zeitpunkt zur\u00fcck, inklusive. Verwende das normale Format oder das ISO-Format wie oben beschrieben.Devuelve solo los eventos a partir de este mom"
+     },
+     "event_date_to": {
+      "type": "string",
+      "description": "Geef alleen events voor dit moment terug, exclusief. Gebruik het gewone formaat of ISO-formaat zoals hierboven beschreven.Only return events before this date and time, exclusive. Use the regular format or ISO format described above.Gib nur Events vor diesem Zeitpunkt zur\u00fcck, exklusive. Verwende das normale Format oder das ISO-Format wie oben beschrieben.Devuelve solo los eventos anteriores a este "
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Maximum aantal history-items dat wordt teruggegeven. Standaard 100, maximaal 1000.Maximum number of history items to return. Default is 100, maximum is 1000Maximale Anzahl an history-Items, die zur\u00fcckgegeben werden. Standard 100, maximal 1000.N\u00famero m\u00e1ximo de elementos de historial que se devuelven. Por defecto 100, m\u00e1ximo 1000."
+     },
+     "cursor": {
+      "type": "string",
+      "description": "Cursor uit pagination.next_cursor om de volgende pagina op te vragen. Interpreteer deze waarde niet zelf; stuur hem ongewijzigd terug.Cursor from pagination.next_cursor to request the next page. Do not interpret this value yourself; send it back unchanged.Cursor aus pagination.next_cursor, um die n\u00e4chste Seite abzurufen. Interpretiere diesen Wert nicht selbst; schicke ihn unver\u00e4ndert zur\u00fcck.Cursor"
+     },
+     "order_by": {
+      "type": "string",
+      "description": "Veld waarop gesorteerd wordt. Op dit moment wordt alleen event_date ondersteund.Field to order by. Currently only event_date is supportedFeld, nach dem sortiert wird. Zurzeit wird nur event_date unterst\u00fctzt.Campo por el que se ordena. Por ahora solo se admite event_date."
+     },
+     "order": {
+      "type": "string",
+      "description": "Sorteerrichting: desc of asc. Standaard desc.Sort direction: desc or asc. Default is descSortierrichtung: desc oder asc. Standard desc.Direcci\u00f3n de ordenaci\u00f3n: desc o asc. Por defecto desc.",
+      "enum": [
+       "desc",
+       "asc"
+      ]
+     }
+    },
+    "required": [
+     "list_id",
+     "member_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.laposta.nl/v2/member/{member_id}/history",
+    "path": [
+     "member_id"
+    ],
+    "query": [
+     "list_id",
+     "campaign_id",
+     "event_date_from",
+     "event_date_to",
+     "limit",
+     "cursor",
+     "order_by",
+     "order"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "laposta.resultaten_alle_resultaten_opvragen",
+   "name": "Alle resultaten opvragen",
+   "description": "Geeft de resultaten van alle campagnes van het account terug, elk als een `report`-object binnen `data`.The results of all campaigns in an array of list objects. The report objects have been ordered in an array with the name 'data'.Gibt die Ergebnisse aller Kampagnen des Kontos zur\u00fcck, jeweils als `report`-Objekt innerhalb von `data`.Devuelve los resultados de todas las campa\u00f1as de la cuenta, cada",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.laposta.nl/v2/report",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "laposta.resultaten_campagneresultaten_opvragen",
+   "name": "Resultaten van een campagne",
+   "description": "Geeft de resultaten van een verzonden campagne terug: hoeveel er aankwamen, hoeveel relaties openden of klikten, en de verhoudingen daartussen.The results of a campaign.Gibt die Ergebnisse einer versendeten Kampagne zur\u00fcck: wie viele angekommen sind, wie viele Abonnenten ge\u00f6ffnet oder geklickt haben, und die Verh\u00e4ltnisse dazwischen.Devuelve los resultados de una campa\u00f1a enviada: cu\u00e1ntos correos ll",
+   "input": {
+    "type": "object",
+    "properties": {
+     "campaign_id": {
+      "type": "string",
+      "description": "Het id van de campagne. Dat vind je in het antwoord van [Alle campagnes opvragen](/campagnes/alle-campagnes-opvragen).The id of the campaign. You find it in the response of [Get all campaigns](/campagnes/alle-campagnes-opvragen).Die ID der Kampagne. Du findest sie in der Antwort von [Alle Kampagnen abrufen](/campagnes/alle-campagnes-opvragen).El id de la campa\u00f1a. Lo encuentras en la respuesta de ["
+     }
+    },
+    "required": [
+     "campaign_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.laposta.nl/v2/report/{campaign_id}",
+    "path": [
+     "campaign_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "laposta.segmenten_alle_segmenten_opvragen",
+   "name": "Alle segmenten opvragen",
+   "description": "Geeft alle segmenten van een lijst terug, elk als een `segment`-object binnen `data`.All segments of a list in an array of segment objects. The segment objects are included in an array named 'data'.Gibt alle Segmente einer Liste zur\u00fcck, jeweils als `segment`-Objekt innerhalb von `data`.Devuelve todos los segmentos de una lista, cada uno como un objeto `segment` dentro de `data`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "list_id": {
+      "type": "string",
+      "description": "Het id van de lijst. Dat vind je in het antwoord van [Alle lijsten opvragen](/lijsten/alle-lijsten-opvragen), en in de applicatie in de URL van de lijst.The id of the list. You find it in the response of [Get all lists](/lijsten/alle-lijsten-opvragen), and in the application in the URL of the list.Die ID der Liste. Du findest sie in der Antwort von [Alle Listen abrufen](/lijsten/alle-lijsten-opvra"
+     }
+    },
+    "required": [
+     "list_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.laposta.nl/v2/segment",
+    "path": [],
+    "query": [
+     "list_id"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "laposta.segmenten_segment_opvragen",
+   "name": "Segment opvragen",
+   "description": "Geeft de gegevens van een segment terug, inclusief de definitie zoals die is opgeslagen.All information about a segment.Gibt die Daten eines Segments zur\u00fcck, inklusive der Definition, so wie sie gespeichert ist.Devuelve los datos de un segmento, incluida la definici\u00f3n tal como est\u00e1 guardada.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "segment_id": {
+      "type": "string",
+      "description": "Het id van het segment. Dat vind je in het antwoord van [Alle segmenten opvragen](/segmenten/alle-segmenten-opvragen).The id of the segment. You find it in the response of [Get all segments](/segmenten/alle-segmenten-opvragen).Die ID des Segments. Du findest sie in der Antwort von [Alle Segmente abrufen](/segmenten/alle-segmenten-opvragen).El id del segmento. Lo encuentras en la respuesta de [Obte"
+     },
+     "list_id": {
+      "type": "string",
+      "description": "Het id van de lijst. Dat vind je in het antwoord van [Alle lijsten opvragen](/lijsten/alle-lijsten-opvragen), en in de applicatie in de URL van de lijst.The id of the list. You find it in the response of [Get all lists](/lijsten/alle-lijsten-opvragen), and in the application in the URL of the list.Die ID der Liste. Du findest sie in der Antwort von [Alle Listen abrufen](/lijsten/alle-lijsten-opvra"
+     }
+    },
+    "required": [
+     "list_id",
+     "segment_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.laposta.nl/v2/segment/{segment_id}",
+    "path": [
+     "segment_id"
+    ],
+    "query": [
+     "list_id"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "laposta.segmenten_segment_toevoegen",
+   "name": "Segment toevoegen",
+   "description": "Maakt een segment binnen een lijst. De definitie is een JSON-tekst met blokken en regels: alle regels binnen een blok gelden tegelijk, en een extra blok verbreedt de selectie.If there is something wrong with the provided parameters, an error code and message will be displayed. See above under Error Messages for what the codes mean.Erstellt ein Segment innerhalb einer Liste. Die Definition ist ein ",
+   "input": {
+    "type": "object",
+    "properties": {
+     "list_id": {
+      "type": "string",
+      "description": "Het id van de lijst. Dat vind je in het antwoord van [Alle lijsten opvragen](/lijsten/alle-lijsten-opvragen), en in de applicatie in de URL van de lijst.The id of the list. You find it in the response of [Get all lists](/lijsten/alle-lijsten-opvragen), and in the application in the URL of the list.Die ID der Liste. Du findest sie in der Antwort von [Alle Listen abrufen](/lijsten/alle-lijsten-opvra"
+     },
+     "name": {
+      "type": "string",
+      "description": "De naam van het segment.The name of the segmentDer Name des Segments.El nombre del segmento."
+     },
+     "definition": {
+      "type": "string",
+      "description": "De definitie van het segment als JSON-tekst. Zie de uitleg over segmentdefinities bij deze sectie. Let op: een veldnaam die niet bestaat wordt geaccepteerd en levert een segment op dat niemand selecteert.The segment definition as JSON text. Note that a field name that does not exist is accepted and produces a segment that matches nobody.Die Definition des Segments als JSON-Text. Siehe die Erkl\u00e4run"
+     }
+    },
+    "required": [
+     "definition",
+     "list_id",
+     "name"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.laposta.nl/v2/segment",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "list_id",
+     "name",
+     "definition"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "laposta.segmenten_segment_verwijderen",
+   "name": "Segment verwijderen",
+   "description": "Verwijdert een segment definitief. De relaties in het segment blijven gewoon in de lijst staan.This permanently deletes a segment. After this, the segment cannot be retrieved again.L\u00f6scht ein Segment endg\u00fcltig. Die Abonnenten im Segment bleiben in der Liste stehen.Elimina un segmento de forma definitiva. Los contactos del segmento se mantienen en la lista.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "segment_id": {
+      "type": "string",
+      "description": "Het id van het segment. Dat vind je in het antwoord van [Alle segmenten opvragen](/segmenten/alle-segmenten-opvragen).The id of the segment. You find it in the response of [Get all segments](/segmenten/alle-segmenten-opvragen).Die ID des Segments. Du findest sie in der Antwort von [Alle Segmente abrufen](/segmenten/alle-segmenten-opvragen).El id del segmento. Lo encuentras en la respuesta de [Obte"
+     },
+     "list_id": {
+      "type": "string",
+      "description": "Het id van de lijst. Dat vind je in het antwoord van [Alle lijsten opvragen](/lijsten/alle-lijsten-opvragen), en in de applicatie in de URL van de lijst.The id of the list. You find it in the response of [Get all lists](/lijsten/alle-lijsten-opvragen), and in the application in the URL of the list.Die ID der Liste. Du findest sie in der Antwort von [Alle Listen abrufen](/lijsten/alle-lijsten-opvra"
+     }
+    },
+    "required": [
+     "list_id",
+     "segment_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.laposta.nl/v2/segment/{segment_id}",
+    "path": [
+     "segment_id"
+    ],
+    "query": [
+     "list_id"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "laposta.segmenten_segment_wijzigen",
+   "name": "Segment wijzigen",
+   "description": "Wijzigt de naam of de definitie van een segment. Je stuurt alleen mee wat anders moet worden.You only need to include the fields that need to be changed in the request. Fields that are not mentioned retain their current value. Once a field is mentioned, it is checked and can therefore cause an error message. This error message will include a code and a message. See above under Error Messages for w",
+   "input": {
+    "type": "object",
+    "properties": {
+     "segment_id": {
+      "type": "string",
+      "description": "Het id van het segment. Dat vind je in het antwoord van [Alle segmenten opvragen](/segmenten/alle-segmenten-opvragen).The id of the segment. You find it in the response of [Get all segments](/segmenten/alle-segmenten-opvragen).Die ID des Segments. Du findest sie in der Antwort von [Alle Segmente abrufen](/segmenten/alle-segmenten-opvragen).El id del segmento. Lo encuentras en la respuesta de [Obte"
+     },
+     "list_id": {
+      "type": "string",
+      "description": "Het id van de lijst. Dat vind je in het antwoord van [Alle lijsten opvragen](/lijsten/alle-lijsten-opvragen), en in de applicatie in de URL van de lijst.The id of the list. You find it in the response of [Get all lists](/lijsten/alle-lijsten-opvragen), and in the application in the URL of the list.Die ID der Liste. Du findest sie in der Antwort von [Alle Listen abrufen](/lijsten/alle-lijsten-opvra"
+     },
+     "name": {
+      "type": "string",
+      "description": "De naam van het segment.The name of the segmentDer Name des Segments.El nombre del segmento."
+     },
+     "definition": {
+      "type": "string",
+      "description": "De nieuwe definitie van het segment als JSON-tekst.The definition of the segment (string in JSON format)Die neue Definition des Segments als JSON-Text.La nueva definici\u00f3n del segmento como texto JSON."
+     }
+    },
+    "required": [
+     "list_id",
+     "segment_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.laposta.nl/v2/segment/{segment_id}",
+    "path": [
+     "segment_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "list_id",
+     "name",
+     "definition"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "laposta.velden_alle_velden_opvragen",
+   "name": "Alle velden opvragen",
+   "description": "Geeft alle velden van een lijst terug, in de volgorde waarin ze in het aanmeldformulier staan. Vraag deze lijst eenmalig op en bewaar hem: je hebt de `custom_name` van elk veld nodig om relaties te kunnen toevoegen.All fields of a list in an array of field objects. The field objects are formatted in an array named 'data'.Gibt alle Felder einer Liste zur\u00fcck, in der Reihenfolge, in der sie im Anmeld",
+   "input": {
+    "type": "object",
+    "properties": {
+     "list_id": {
+      "type": "string",
+      "description": "Het id van de lijst. Dat vind je in het antwoord van [Alle lijsten opvragen](/lijsten/alle-lijsten-opvragen), en in de applicatie in de URL van de lijst.The id of the list. You find it in the response of [Get all lists](/lijsten/alle-lijsten-opvragen), and in the application in the URL of the list.Die ID der Liste. Du findest sie in der Antwort von [Alle Listen abrufen](/lijsten/alle-lijsten-opvra"
+     }
+    },
+    "required": [
+     "list_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.laposta.nl/v2/field",
+    "path": [],
+    "query": [
+     "list_id"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "laposta.velden_veld_opvragen",
+   "name": "Veld opvragen",
+   "description": "Geeft alle gegevens van een veld terug. Bij een keuzeveld staan de mogelijke waarden in `options` en `options_full`.All information about a field.Gibt alle Daten eines Feldes zur\u00fcck. Bei einem Auswahlfeld stehen die m\u00f6glichen Werte in `options` und `options_full`.Devuelve todos los datos de un campo. En un campo de selecci\u00f3n, los valores posibles est\u00e1n en `options` y `options_full`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "field_id": {
+      "type": "string",
+      "description": "Het id van het veld. Dat vind je in het antwoord van [Alle velden opvragen](/velden/alle-velden-opvragen).The id of the field. You find it in the response of [Get all fields](/velden/alle-velden-opvragen).Die ID des Feldes. Du findest sie in der Antwort von [Alle Felder abrufen](/velden/alle-velden-opvragen).El id del campo. Lo encuentras en la respuesta de [Obtener todos los campos](/velden/alle-"
+     },
+     "list_id": {
+      "type": "string",
+      "description": "Het id van de lijst. Dat vind je in het antwoord van [Alle lijsten opvragen](/lijsten/alle-lijsten-opvragen), en in de applicatie in de URL van de lijst.The id of the list. You find it in the response of [Get all lists](/lijsten/alle-lijsten-opvragen), and in the application in the URL of the list.Die ID der Liste. Du findest sie in der Antwort von [Alle Listen abrufen](/lijsten/alle-lijsten-opvra"
+     }
+    },
+    "required": [
+     "field_id",
+     "list_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.laposta.nl/v2/field/{field_id}",
+    "path": [
+     "field_id"
+    ],
+    "query": [
+     "list_id"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "laposta.velden_veld_toevoegen",
+   "name": "Veld toevoegen",
+   "description": "Voegt een veld toe aan een lijst. Bij `select_single` en `select_multiple` geef je de keuzemogelijkheden mee in `options`. Laposta leidt uit de naam een `custom_name` af, en dat is de sleutel die je bij relaties gebruikt.Adds a field to a list. For `select_single` and `select_multiple`, you pass the available choices in `options`. Laposta derives a `custom_name` from the name, which is the key you",
+   "input": {
+    "type": "object",
+    "properties": {
+     "list_id": {
+      "type": "string",
+      "description": "Het id van de lijst. Dat vind je in het antwoord van [Alle lijsten opvragen](/lijsten/alle-lijsten-opvragen), en in de applicatie in de URL van de lijst.The id of the list. You find it in the response of [Get all lists](/lijsten/alle-lijsten-opvragen), and in the application in the URL of the list.Die ID der Liste. Du findest sie in der Antwort von [Alle Listen abrufen](/lijsten/alle-lijsten-opvra"
+     },
+     "name": {
+      "type": "string",
+      "description": "Een naam voor dit veld.A name for this fieldEin Name f\u00fcr dieses Feld.Un nombre para este campo."
+     },
+     "defaultvalue": {
+      "type": "string",
+      "description": "Een eventuele standaardwaarde.A potential default valueEin eventueller Standardwert.Un valor predeterminado, si lo hay."
+     },
+     "datatype": {
+      "type": "string",
+      "description": "Het datatype: text, numeric, date, select_single of select_multiple.The data type: text, numeric, date, select_single or select_multipleDer Datentyp: text, numeric, date, select_single oder select_multiple.El tipo de dato: text, numeric, date, select_single o select_multiple.",
+      "enum": [
+       "text",
+       "numeric",
+       "date",
+       "select_single",
+       "select_multiple"
+      ]
+     },
+     "datatype_display": {
+      "type": "string",
+      "description": "Alleen voor select_single: de gewenste weergave (select, radio)Only applicable for select_single: the desired display (select, radio)Nur f\u00fcr select_single: die gew\u00fcnschte Darstellung (select, radio)Solo para select_single: la visualizaci\u00f3n deseada (select, radio)",
+      "enum": [
+       "select",
+       "radio"
+      ]
+     },
+     "options": {
+      "type": "array",
+      "description": "Welke selectiemogelijkheden zijn er? (Verplicht bij datatypes select_single of select_multiple). De opties kunnen als array worden meegegeven. Bij het antwoord worden de options herhaald, maar is er ook een extra veld options_full. Hierin staan ook de bij de options horende id's genoemd, die eventueel gebruikt kunnen worden om de options later te wijzigen.What selection options are available? (man"
+     },
+     "required": {
+      "type": "boolean",
+      "description": "Is dit een verplicht veld?Is this a mandatory field?Ist dies ein Pflichtfeld?\u00bfEs este un campo obligatorio?"
+     },
+     "in_form": {
+      "type": "boolean",
+      "description": "Is het veld te zien in het aanmeldformulier? (boolean)Does this field occur in the subscription form? (boolean)Ist das Feld im Anmeldeformular zu sehen? (boolean)\u00bfEl campo se ve en el formulario de registro? (boolean)"
+     },
+     "in_list": {
+      "type": "boolean",
+      "description": "Is het veld te zien in het overzicht in Laposta? (boolean)Is this field visible in Laposta's overview? (boolean)Ist das Feld in der \u00dcbersicht in Laposta zu sehen? (boolean)\u00bfEl campo se ve en la vista general de Laposta? (boolean)"
+     }
+    },
+    "required": [
+     "datatype",
+     "in_form",
+     "in_list",
+     "list_id",
+     "name",
+     "required"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.laposta.nl/v2/field",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "list_id",
+     "name",
+     "defaultvalue",
+     "datatype",
+     "datatype_display",
+     "options",
+     "required",
+     "in_form",
+     "in_list"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "laposta.velden_veld_verwijderen",
+   "name": "Veld verwijderen",
+   "description": "Verwijdert een veld definitief, samen met de waarden die je relaties erin hadden staan. Je krijgt het veld nog eenmaal terug met `state` op `deleted`.This permanently deletes a field. If the field does not exist, an error message is displayed. In response you are shown another field object, but now with the state 'deleted'. After having finished this procedure, it is no longer possible for the use",
+   "input": {
+    "type": "object",
+    "properties": {
+     "field_id": {
+      "type": "string",
+      "description": "Het id van het veld. Dat vind je in het antwoord van [Alle velden opvragen](/velden/alle-velden-opvragen).The id of the field. You find it in the response of [Get all fields](/velden/alle-velden-opvragen).Die ID des Feldes. Du findest sie in der Antwort von [Alle Felder abrufen](/velden/alle-velden-opvragen).El id del campo. Lo encuentras en la respuesta de [Obtener todos los campos](/velden/alle-"
+     },
+     "list_id": {
+      "type": "string",
+      "description": "Het id van de lijst. Dat vind je in het antwoord van [Alle lijsten opvragen](/lijsten/alle-lijsten-opvragen), en in de applicatie in de URL van de lijst.The id of the list. You find it in the response of [Get all lists](/lijsten/alle-lijsten-opvragen), and in the application in the URL of the list.Die ID der Liste. Du findest sie in der Antwort von [Alle Listen abrufen](/lijsten/alle-lijsten-opvra"
+     }
+    },
+    "required": [
+     "field_id",
+     "list_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.laposta.nl/v2/field/{field_id}",
+    "path": [
+     "field_id"
+    ],
+    "query": [
+     "list_id"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "laposta.velden_veld_wijzigen",
+   "name": "Veld wijzigen",
+   "description": "Wijzigt een veld. Je stuurt alleen mee wat anders moet worden. De keuzemogelijkheden van een keuzeveld vervang je in hun geheel via `options_full`.You will only have to include the parts that need to be modified. Parts that are not mentioned will keep their current values. As soon as a part is mentioned it does get checked, and thus can cause an error message. This error message contains a code wi",
+   "input": {
+    "type": "object",
+    "properties": {
+     "field_id": {
+      "type": "string",
+      "description": ""
+     },
+     "list_id": {
+      "type": "string",
+      "description": "Het id van de lijst. Dat vind je in het antwoord van [Alle lijsten opvragen](/lijsten/alle-lijsten-opvragen), en in de applicatie in de URL van de lijst.The id of the list. You find it in the response of [Get all lists](/lijsten/alle-lijsten-opvragen), and in the application in the URL of the list.Die ID der Liste. Du findest sie in der Antwort von [Alle Listen abrufen](/lijsten/alle-lijsten-opvra"
+     },
+     "name": {
+      "type": "string",
+      "description": "Een naam voor dit veld.A name for this fieldEin Name f\u00fcr dieses Feld.Un nombre para este campo."
+     },
+     "datatype": {
+      "type": "string",
+      "description": "Het datatype van dit veld (text, numeric, date, select_single, select_multiple)The data type of this field (text, numeric, date, select_single, select_multiple)Der Datentyp dieses Feldes (text, numeric, date, select_single, select_multiple)El tipo de dato de este campo (text, numeric, date, select_single, select_multiple)",
+      "enum": [
+       "text",
+       "numeric",
+       "date",
+       "select_single",
+       "select_multiple"
+      ]
+     },
+     "datatype_display": {
+      "type": "string",
+      "description": "Alleen voor select_single: de gewenste weergave (select, radio)Only applicable for select_single: the desired display (select, radio)Nur f\u00fcr select_single: die gew\u00fcnschte Darstellung (select, radio)Solo para select_single: la visualizaci\u00f3n deseada (select, radio)",
+      "enum": [
+       "select",
+       "radio"
+      ]
+     },
+     "options_full": {
+      "type": "array",
+      "description": "De volledige lijst met opties van een select_single of select_multiple veld, als een key/value map van id \u2192 label. De key bepaalt wat er met elke optie gebeurt: Bestaand numeriek id (bijv. \"2\"), behoudt of wijzigt de optie. Als het label verandert wordt het bijgewerkt; het id blijft hetzelfde, zodat bestaande ledendata behouden blijft. Niet-numerieke key (bijv. \"new-0\"), voegt een nieuwe optie toe"
+     },
+     "defaultvalue": {
+      "type": "string",
+      "description": "Standaardwaarde (wordt gebruikt bij afwezigheid van dit veld)The default value (will be used in the absence of this field)Standardwert (wird verwendet, wenn dieses Feld fehlt)Valor predeterminado (se usa cuando este campo no se env\u00eda)"
+     },
+     "required": {
+      "type": "boolean",
+      "description": "Is dit een verplicht veld?Is this a mandatory field?Ist dies ein Pflichtfeld?\u00bfEs este un campo obligatorio?"
+     },
+     "in_form": {
+      "type": "boolean",
+      "description": "Is het veld te zien in het aanmeldformulier? (boolean)Does this field occur in the subscription form? (boolean)Ist das Feld im Anmeldeformular zu sehen? (boolean)\u00bfEl campo se ve en el formulario de registro? (boolean)"
+     },
+     "in_list": {
+      "type": "boolean",
+      "description": "Is het veld te zien in het overzicht in Laposta? (boolean)Is this field visible in Laposta's overview? (boolean)Ist das Feld in der \u00dcbersicht in Laposta zu sehen? (boolean)\u00bfEl campo se ve en la vista general de Laposta? (boolean)"
+     }
+    },
+    "required": [
+     "field_id",
+     "list_id",
+     "required"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.laposta.nl/v2/field/{field_id}",
+    "path": [
+     "field_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "list_id",
+     "name",
+     "datatype",
+     "datatype_display",
+     "options_full",
+     "defaultvalue",
+     "required",
+     "in_form",
+     "in_list"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "laposta.webhooks_alle_webhooks_opvragen",
+   "name": "Alle webhooks opvragen",
+   "description": "Geeft alle webhooks van een lijst terug, elk als een `webhook`-object binnen `data`.All webhooks of a list in an array of member objects. The webhook objects are formatted in an array named 'data'.Gibt alle Webhooks einer Liste zur\u00fcck, jeweils als `webhook`-Objekt innerhalb von `data`.Devuelve todos los webhooks de una lista, cada uno como un objeto `webhook` dentro de `data`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "list_id": {
+      "type": "string",
+      "description": "Het id van de lijst. Dat vind je in het antwoord van [Alle lijsten opvragen](/lijsten/alle-lijsten-opvragen), en in de applicatie in de URL van de lijst.The id of the list. You find it in the response of [Get all lists](/lijsten/alle-lijsten-opvragen), and in the application in the URL of the list.Die ID der Liste. Du findest sie in der Antwort von [Alle Listen abrufen](/lijsten/alle-lijsten-opvra"
+     }
+    },
+    "required": [
+     "list_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.laposta.nl/v2/webhook",
+    "path": [],
+    "query": [
+     "list_id"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "laposta.webhooks_webhook_opvragen",
+   "name": "Webhook opvragen",
+   "description": "Geeft de gegevens van een webhook terug, inclusief het signing secret.All information about a webhookGibt die Daten eines Webhooks zur\u00fcck, inklusive des Signing Secrets.Devuelve los datos de un webhook, incluido el secreto de firma.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "webhook_id": {
+      "type": "string",
+      "description": "Het id van de webhook. Dat vind je in het antwoord van [Alle webhooks opvragen](/webhooks/alle-webhooks-opvragen).The id of the webhook. You find it in the response of [Get all webhooks](/webhooks/alle-webhooks-opvragen).Die ID des Webhooks. Du findest sie in der Antwort von [Alle Webhooks abrufen](/webhooks/alle-webhooks-opvragen).El id del webhook. Lo encuentras en la respuesta de [Obtener todos"
+     },
+     "list_id": {
+      "type": "string",
+      "description": "Het id van de lijst. Dat vind je in het antwoord van [Alle lijsten opvragen](/lijsten/alle-lijsten-opvragen), en in de applicatie in de URL van de lijst.The id of the list. You find it in the response of [Get all lists](/lijsten/alle-lijsten-opvragen), and in the application in the URL of the list.Die ID der Liste. Du findest sie in der Antwort von [Alle Listen abrufen](/lijsten/alle-lijsten-opvra"
+     }
+    },
+    "required": [
+     "list_id",
+     "webhook_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.laposta.nl/v2/webhook/{webhook_id}",
+    "path": [
+     "webhook_id"
+    ],
+    "query": [
+     "list_id"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "laposta.webhooks_webhook_toevoegen",
+   "name": "Webhook toevoegen",
+   "description": "Maakt een webhook aan voor een lijst. Vanaf dat moment stuurt Laposta een bericht naar jouw URL zodra de gekozen gebeurtenis zich voordoet. In het antwoord staat een `secret` waarmee je kunt controleren dat een binnenkomend bericht echt van Laposta komt.Creates a webhook for a list. From that moment on, Laposta sends a message to your URL as soon as the chosen event occurs. The response contains a",
+   "input": {
+    "type": "object",
+    "properties": {
+     "list_id": {
+      "type": "string",
+      "description": "Het id van de lijst. Dat vind je in het antwoord van [Alle lijsten opvragen](/lijsten/alle-lijsten-opvragen), en in de applicatie in de URL van de lijst.The id of the list. You find it in the response of [Get all lists](/lijsten/alle-lijsten-opvragen), and in the application in the URL of the list.Die ID der Liste. Du findest sie in der Antwort von [Alle Listen abrufen](/lijsten/alle-lijsten-opvra"
+     },
+     "event": {
+      "type": "string",
+      "description": "Wanneer wordt de webhook aangeroepen? (subscribed, modified of deactivated)When will the webhook be requested? (subscribed, modified of deactivated)Wann wird der Webhook aufgerufen? (subscribed, modified oder deactivated)\u00bfCu\u00e1ndo se llama al webhook? (subscribed, modified o deactivated)",
+      "enum": [
+       "subscribed",
+       "modified",
+       "deactivated"
+      ]
+     },
+     "url": {
+      "type": "string",
+      "description": "De aan te roepen url.The URL to be accessedDie aufzurufende URL.La url a la que se debe llamar."
+     },
+     "blocked": {
+      "type": "boolean",
+      "description": "Is het aanroepen van de webhook (tijdelijk) geblokkeerd? (true of false)Is the accessing of the webhook (temporarily) blocked? (true or false)Ist der Aufruf des Webhooks (vor\u00fcbergehend) blockiert? (true oder false)\u00bfLa llamada al webhook est\u00e1 bloqueada (temporalmente)? (true o false)"
+     }
+    },
+    "required": [
+     "blocked",
+     "event",
+     "list_id",
+     "url"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.laposta.nl/v2/webhook",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "list_id",
+     "event",
+     "url",
+     "blocked"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "laposta.webhooks_webhook_verwijderen",
+   "name": "Webhook verwijderen",
+   "description": "Verwijdert een webhook definitief. Berichten die al klaarstonden worden nog wel afgeleverd.This permanently deletes a webhook. Potentially outstanding requests from the webhook will still be completed. If the field does not exist, an error message is displayed. In response you are shown another webhook object, but now with the state 'deleted'. After having finished this procedure, it is no longer ",
+   "input": {
+    "type": "object",
+    "properties": {
+     "webhook_id": {
+      "type": "string",
+      "description": "Het id van de webhook. Dat vind je in het antwoord van [Alle webhooks opvragen](/webhooks/alle-webhooks-opvragen).The id of the webhook. You find it in the response of [Get all webhooks](/webhooks/alle-webhooks-opvragen).Die ID des Webhooks. Du findest sie in der Antwort von [Alle Webhooks abrufen](/webhooks/alle-webhooks-opvragen).El id del webhook. Lo encuentras en la respuesta de [Obtener todos"
+     },
+     "list_id": {
+      "type": "string",
+      "description": "Het id van de lijst. Dat vind je in het antwoord van [Alle lijsten opvragen](/lijsten/alle-lijsten-opvragen), en in de applicatie in de URL van de lijst.The id of the list. You find it in the response of [Get all lists](/lijsten/alle-lijsten-opvragen), and in the application in the URL of the list.Die ID der Liste. Du findest sie in der Antwort von [Alle Listen abrufen](/lijsten/alle-lijsten-opvra"
+     }
+    },
+    "required": [
+     "list_id",
+     "webhook_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.laposta.nl/v2/webhook/{webhook_id}",
+    "path": [
+     "webhook_id"
+    ],
+    "query": [
+     "list_id"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "laposta.webhooks_webhook_wijzigen",
+   "name": "Webhook wijzigen",
+   "description": "Wijzigt een webhook. Zet `blocked` op `true` om hem tijdelijk stil te zetten zonder hem te verwijderen.Modifies a webhook. Set `blocked` to `true` to temporarily pause it without deleting it.\u00c4ndert einen Webhook. Setze `blocked` auf `true`, um ihn vor\u00fcbergehend stillzulegen, ohne ihn zu l\u00f6schen.Modifica un webhook. Pon `blocked` en `true` para detenerlo temporalmente sin eliminarlo.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "webhook_id": {
+      "type": "string",
+      "description": "Het id van de webhook. Dat vind je in het antwoord van [Alle webhooks opvragen](/webhooks/alle-webhooks-opvragen).The id of the webhook. You find it in the response of [Get all webhooks](/webhooks/alle-webhooks-opvragen).Die ID des Webhooks. Du findest sie in der Antwort von [Alle Webhooks abrufen](/webhooks/alle-webhooks-opvragen).El id del webhook. Lo encuentras en la respuesta de [Obtener todos"
+     },
+     "list_id": {
+      "type": "string",
+      "description": "Het id van de lijst. Dat vind je in het antwoord van [Alle lijsten opvragen](/lijsten/alle-lijsten-opvragen), en in de applicatie in de URL van de lijst.The id of the list. You find it in the response of [Get all lists](/lijsten/alle-lijsten-opvragen), and in the application in the URL of the list.Die ID der Liste. Du findest sie in der Antwort von [Alle Listen abrufen](/lijsten/alle-lijsten-opvra"
+     },
+     "event": {
+      "type": "string",
+      "description": "Wanneer wordt de webhook aangeroepen? (subscribed, modified of deactivated)When will the webhook be requested? (subscribed, modified or deactivated)Wann wird der Webhook aufgerufen? (subscribed, modified oder deactivated)\u00bfCu\u00e1ndo se llama al webhook? (subscribed, modified o deactivated)",
+      "enum": [
+       "subscribed",
+       "modified",
+       "deactivated"
+      ]
+     },
+     "url": {
+      "type": "string",
+      "description": "De aan te roepen url.The URL to be accessedDie aufzurufende URL.La url a la que se debe llamar."
+     },
+     "blocked": {
+      "type": "boolean",
+      "description": "Is het aanroepen van de webhook (tijdelijk) geblokkeerd? (true of false)Is the accessing of the webhook (temporarily) blocked? (true or false)Ist der Aufruf des Webhooks (vor\u00fcbergehend) blockiert? (true oder false)\u00bfLa llamada al webhook est\u00e1 bloqueada (temporalmente)? (true o false)"
+     }
+    },
+    "required": [
+     "list_id",
+     "webhook_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.laposta.nl/v2/webhook/{webhook_id}",
+    "path": [
+     "webhook_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "list_id",
+     "event",
+     "url",
+     "blocked"
+    ],
+    "body_format": "json"
+   }
+  }
+ ]
+}

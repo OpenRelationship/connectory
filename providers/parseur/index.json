@@ -1,0 +1,2634 @@
+{
+ "_": "GENERATED \u2014 what an authoring tool needs to FIND an operation. The calling table is the .lua beside it.",
+ "provider": "parseur",
+ "source": "https://api.parseur.com/openapi.json",
+ "operations": [
+  {
+   "slug": "parseur.delete_document_id",
+   "name": "Delete a document",
+   "description": "Delete a document",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.parseur.com/document/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "parseur.delete_parser_id",
+   "name": "Delete a mailbox",
+   "description": "Delete a mailbox",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "integer",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.parseur.com/parser/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "parseur.delete_parser_mailbox_id_export_config_id",
+   "name": "Delete a custom download",
+   "description": "Delete a custom download",
+   "input": {
+    "type": "object",
+    "properties": {
+     "mailbox_id": {
+      "type": "string",
+      "description": ""
+     },
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id",
+     "mailbox_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.parseur.com/parser/{mailbox_id}/export_config/{id}",
+    "path": [
+     "mailbox_id",
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "parseur.delete_parser_mailbox_id_webhook_set_id",
+   "name": "Disable a webhook",
+   "description": "Disable a webhook",
+   "input": {
+    "type": "object",
+    "properties": {
+     "mailbox_id": {
+      "type": "integer",
+      "description": ""
+     },
+     "id": {
+      "type": "integer",
+      "description": ""
+     }
+    },
+    "required": [
+     "id",
+     "mailbox_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.parseur.com/parser/{mailbox_id}/webhook_set/{id}",
+    "path": [
+     "mailbox_id",
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "parseur.delete_template_id",
+   "name": "Delete a template",
+   "description": "Delete a template",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.parseur.com/template/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "parseur.delete_webhook_id",
+   "name": "Delete a webhook",
+   "description": "Delete a webhook",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.parseur.com/webhook/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "parseur.get_bootstrap",
+   "name": "Get bootstrap config",
+   "description": "Get bootstrap config",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.parseur.com/bootstrap",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "parseur.get_document_id",
+   "name": "Get a document",
+   "description": "Get a document",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.parseur.com/document/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "parseur.get_document_id_log_set",
+   "name": "Get document logs",
+   "description": "Get document logs",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     },
+     "page": {
+      "type": "integer",
+      "description": "Page number for pagination (default is 1)"
+     },
+     "page_size": {
+      "type": "integer",
+      "description": "Number of results per page (default is 25)"
+     },
+     "search": {
+      "type": "string",
+      "description": "Case-insensitive partial match search"
+     },
+     "ordering": {
+      "type": "string",
+      "description": "Field name to order by (use -prefix for descending)"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.parseur.com/document/{id}/log_set",
+    "path": [
+     "id"
+    ],
+    "query": [
+     "page",
+     "page_size",
+     "search",
+     "ordering"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "parseur.get_parser",
+   "name": "List mailboxes",
+   "description": "Optional query parameters for pagination and filtering",
+   "input": {
+    "type": "object",
+    "properties": {
+     "page": {
+      "type": "integer",
+      "description": "Page number for pagination (default is 1)"
+     },
+     "page_size": {
+      "type": "integer",
+      "description": "Number of results per page (default is 25)"
+     },
+     "search": {
+      "type": "string",
+      "description": "Case-insensitive partial match search"
+     },
+     "ordering": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Field name to order by (use -prefix for descending)",
+      "enum": [
+       "name",
+       "-name",
+       "document_count",
+       "-document_count",
+       "template_count",
+       "-template_count",
+       "PARSEDOK_count",
+       "-PARSEDOK_count",
+       "PARSEDKO_count",
+       "-PARSEDKO_count",
+       "QUOTAEXC_count",
+       "-QUOTAEXC_count"
+      ]
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.parseur.com/parser",
+    "path": [],
+    "query": [
+     "page",
+     "page_size",
+     "search",
+     "ordering"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "parseur.get_parser_id",
+   "name": "Get a mailbox",
+   "description": "Get a mailbox",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "integer",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.parseur.com/parser/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "parseur.get_parser_id_document_set",
+   "name": "List documents in a mailbox",
+   "description": "List documents in a mailbox",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     },
+     "page": {
+      "type": "integer",
+      "description": "Page number for pagination (default is 1)"
+     },
+     "page_size": {
+      "type": "integer",
+      "description": "Number of results per page (default is 25)"
+     },
+     "search": {
+      "type": "string",
+      "description": "Case-insensitive partial match search"
+     },
+     "ordering": {
+      "type": "string",
+      "description": "Field name to order by (use -prefix for descending)",
+      "enum": [
+       "name",
+       "-name",
+       "created",
+       "-created",
+       "processed",
+       "-processed",
+       "status",
+       "-status"
+      ]
+     },
+     "received_after": {
+      "type": "string",
+      "description": "Filter documents received after this date (yyyy-mm-dd)"
+     },
+     "received_before": {
+      "type": "string",
+      "description": "Filter documents received before this date (yyyy-mm-dd)"
+     },
+     "status": {
+      "type": "string",
+      "description": "Filter documents by status",
+      "enum": [
+       "INCOMING",
+       "ANALYZING",
+       "PROGRESS",
+       "PARSEDOK",
+       "PARSEDKO",
+       "QUOTAEXC",
+       "SKIPPED",
+       "SPLIT",
+       "EXPORTKO",
+       "TRANSKO",
+       "INVALID"
+      ]
+     },
+     "tz": {
+      "type": "string",
+      "description": "Timezone for date filters (e.g. Asia%2FSingapore). Defaults to UTC."
+     },
+     "with_result": {
+      "type": "boolean",
+      "description": "Include parsed result string with each document"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.parseur.com/parser/{id}/document_set",
+    "path": [
+     "id"
+    ],
+    "query": [
+     "page",
+     "page_size",
+     "search",
+     "ordering",
+     "received_after",
+     "received_before",
+     "status",
+     "tz",
+     "with_result"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "parseur.get_parser_id_export_config",
+   "name": "List custom downloads",
+   "description": "List custom downloads",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.parseur.com/parser/{id}/export_config",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "parseur.get_parser_id_schema",
+   "name": "Get mailbox schema",
+   "description": "Get mailbox schema",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "integer",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.parseur.com/parser/{id}/schema",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "parseur.get_parser_id_template_set",
+   "name": "List templates in a mailbox",
+   "description": "List templates in a mailbox",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "integer",
+      "description": "The internal ID number for the parser."
+     },
+     "account_uuid": {
+      "type": "string",
+      "description": "The Universally Unique Identifier for your account."
+     },
+     "ai_engine": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "DISABLED",
+       "GCP_AI_2",
+       "GCP_AI_3_TXT",
+       "GCP_AI_4"
+      ]
+     },
+     "ai_instructions": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "General AI instruction for this parser."
+     },
+     "allowed_extensions": {
+      "type": "array",
+      "description": "List of files extensions to process. If not present, all extensions will be enabled."
+     },
+     "attachments_only": {
+      "type": "boolean",
+      "description": "Whether the parser in question skips email processing or not (read-only)."
+     },
+     "attachments_only_override": {
+      "type": [
+       "boolean",
+       "null"
+      ],
+      "description": "Use this to update attachments_only."
+     },
+     "can_transform": {
+      "type": "boolean",
+      "description": "Whether Python Post-Processing is enabled for this parser."
+     },
+     "disable_deskew": {
+      "type": "boolean",
+      "description": "Whether deskew is disabled for this parser (enabled by default)."
+     },
+     "enable_layouted_text": {
+      "type": "boolean",
+      "description": ""
+     },
+     "document_count": {
+      "type": "integer",
+      "description": "The number of documents in the parser."
+     },
+     "document_per_status_count": {
+      "type": "object",
+      "description": "This is a breakdown of the documents in the parser by status."
+     },
+     "email_prefix": {
+      "type": "string",
+      "description": "The email prefix for the parser."
+     },
+     "even_pages": {
+      "type": "boolean",
+      "description": "Whether the parser is configured to process only even page numbers in a document."
+     },
+     "force_ocr": {
+      "type": "boolean",
+      "description": "Whether Parseur runs its own OCR on every document uploaded to this parser."
+     },
+     "is_master": {
+      "type": "boolean",
+      "description": "Whether this is a master parser that passes its instructions on to others."
+     },
+     "last_activity": {
+      "type": "string",
+      "description": ""
+     },
+     "master_parser_name": {
+      "type": "string",
+      "description": "The name of this parser's master parser."
+     },
+     "master_parser_slug": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "",
+      "enum": [
+       "invoices",
+       "statements",
+       "job-application",
+       "leads",
+       "resume-cv",
+       "food-delivery",
+       "search-alerts",
+       "real-estate",
+       "work-order",
+       "financial-statement",
+       "utility",
+       "contact-list"
+      ]
+     },
+     "name": {
+      "type": "string",
+      "description": "The name of the parser."
+     },
+     "odd_pages": {
+      "type": "boolean",
+      "description": "Whether the parser is configured to process only odd page numbers in a document."
+     },
+     "page_range_set": {
+      "type": "array",
+      "description": "The range of pages set to be processed in the parser."
+     },
+     "parser_object_count": {
+      "type": "integer",
+      "description": "The total number of field and metadata outputs currently configured in the parser."
+     },
+     "parser_object_set_last_modified": {
+      "type": "string",
+      "description": ""
+     },
+     "process_attachments": {
+      "type": "boolean",
+      "description": "Whether email attachment processing is enabled on this parser."
+     },
+     "retention_policy": {
+      "type": "integer",
+      "description": "How many days documents and data are stored on our servers before deletion (90 days is the detaulf)."
+     },
+     "split_keywords": {
+      "type": "string",
+      "description": "The keyword(s) the parser will look for when splitting documents by page."
+     },
+     "split_page": {
+      "type": [
+       "integer",
+       "null"
+      ],
+      "description": "If not 0, this is the number of pages the parser will use to split in a file uploaded to this parser. If set to three, the parser will split a 30 page document 10 times, resulting in 10 files."
+     },
+     "split_page_range_set": {
+      "type": "array",
+      "description": "The specific page ranges set to be captured in this parser. Can have multiple values, i.e. 1,3-5,(1)"
+     },
+     "template_count": {
+      "type": "integer",
+      "description": "The number of templates the parser has."
+     },
+     "webhook_count": {
+      "type": "integer",
+      "description": "The number of webhooks the parser has."
+     },
+     "attachments_field": {
+      "type": "boolean",
+      "description": "Whether the Attachments metadata field is enabled for this parser."
+     },
+     "original_document_field": {
+      "type": "boolean",
+      "description": "Whether the OriginalDocument metadata field is enabled for this parser."
+     },
+     "searchable_pdf_field": {
+      "type": "boolean",
+      "description": "Whether the SearchablePDF metadata field is enabled for this parser."
+     },
+     "headers_field": {
+      "type": "boolean",
+      "description": "Whether the Headers metadata field is enabled for this parser."
+     },
+     "received_field": {
+      "type": "boolean",
+      "description": "Whether the Received metadata field is enabled for this parser."
+     },
+     "received_date_field": {
+      "type": "boolean",
+      "description": "Whether the ReceivedDate metadata field is enabled for this parser."
+     },
+     "received_time_field": {
+      "type": "boolean",
+      "description": "Whether the ReceivedTime metadata field is enabled for this parser."
+     },
+     "processed_field": {
+      "type": "boolean",
+      "description": "Whether the Processed metadata field is enabled for this parser."
+     },
+     "processed_date_field": {
+      "type": "boolean",
+      "description": "Whether the ProcessedDate metadata field is enabled for this parser."
+     },
+     "processed_time_field": {
+      "type": "boolean",
+      "description": "Whether the ProcessedTime metadata field is enabled for this parser."
+     },
+     "sender_field": {
+      "type": "boolean",
+      "description": "Whether the Sender metadata field is enabled for this parser."
+     },
+     "sender_name_field": {
+      "type": "boolean",
+      "description": "Whether the SenderName metadata field is enabled for this parser."
+     },
+     "split_page_range_field": {
+      "type": "boolean",
+      "description": "Whether the SplitPageRange metadata field is enabled for this parser."
+     },
+     "recipient_field": {
+      "type": "boolean",
+      "description": "Whether the Recipient metadata field is enabled for this parser."
+     },
+     "to_field": {
+      "type": "boolean",
+      "description": "Whether the To metadata field is enabled for this parser."
+     },
+     "cc_field": {
+      "type": "boolean",
+      "description": "Whether the CC metadata field is enabled for this parser."
+     },
+     "bcc_field": {
+      "type": "boolean",
+      "description": "Whether the BCC metadata field is enabled for this parser."
+     },
+     "reply_to_field": {
+      "type": "boolean",
+      "description": "Whether the ReplyTo metadata field is enabled for this parser."
+     },
+     "recipient_suffix_field": {
+      "type": "boolean",
+      "description": "Whether the RecipientSuffix metadata field is enabled for this parser."
+     },
+     "original_recipient_field": {
+      "type": "boolean",
+      "description": "Whether the OriginalRecipient metadata field is enabled for this parser."
+     },
+     "subject_field": {
+      "type": "boolean",
+      "description": "Whether the Subject metadata field is enabled for this parser."
+     },
+     "template_field": {
+      "type": "boolean",
+      "description": "Whether the Template metadata field is enabled for this parser."
+     },
+     "html_document_field": {
+      "type": "boolean",
+      "description": "Whether the HTMLDocument metadata field is enabled for this parser."
+     },
+     "text_document_field": {
+      "type": "boolean",
+      "description": "Whether the TextDocument metadata field is enabled for this parser."
+     },
+     "content_field": {
+      "type": "boolean",
+      "description": "Whether the Content metadata field is enabled for this parser."
+     },
+     "last_reply_field": {
+      "type": "boolean",
+      "description": "Whether the LastReply metadata field is enabled for this parser."
+     },
+     "document_id_field": {
+      "type": "boolean",
+      "description": "Whether the DocumentID metadata field is enabled for this parser."
+     },
+     "parent_id_field": {
+      "type": "boolean",
+      "description": "Whether the ParentID metadata field is enabled for this parser."
+     },
+     "document_url_field": {
+      "type": "boolean",
+      "description": "Whether the DocumentURL metadata field is enabled for this parser."
+     },
+     "public_document_url_field": {
+      "type": "boolean",
+      "description": "Whether the PublicDocumentURL metadata field is enabled for this parser."
+     },
+     "page_count_field": {
+      "type": "boolean",
+      "description": "Whether the PageCount metadata field is enabled for this parser."
+     },
+     "credit_count_field": {
+      "type": "boolean",
+      "description": "Whether the CreditCount metadata field is enabled for this parser."
+     },
+     "mailbox_id_field": {
+      "type": "boolean",
+      "description": "Whether the MailboxID metadata field is enabled for this parser."
+     },
+     "parsing_engine_field": {
+      "type": "boolean",
+      "description": "Whether the ParsingEngine metadata field is enabled for this parser."
+     },
+     "csv_download": {
+      "type": "string",
+      "description": ""
+     },
+     "decimal_separator": {
+      "type": "string",
+      "description": ""
+     },
+     "default_timezone": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": ""
+     },
+     "disable_document_links": {
+      "type": "boolean",
+      "description": ""
+     },
+     "expand_result": {
+      "type": "boolean",
+      "description": ""
+     },
+     "extract_xml_from_comment": {
+      "type": "boolean",
+      "description": ""
+     },
+     "input_date_format": {
+      "type": "string",
+      "description": ""
+     },
+     "identification_status": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "",
+      "enum": [
+       "REQUESTED",
+       "PROGRESS",
+       "COMPLETED",
+       "MANUAL"
+      ]
+     },
+     "is_transform_enabled": {
+      "type": "boolean",
+      "description": ""
+     },
+     "json_download": {
+      "type": "string",
+      "description": ""
+     },
+     "parser_object_set": {
+      "type": "array",
+      "description": "The list of fields in a parser."
+     },
+     "pdf_conversion_format": {
+      "type": "string",
+      "description": ""
+     },
+     "transform": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": ""
+     },
+     "use_whitelist_instead_of_blacklist": {
+      "type": "boolean",
+      "description": ""
+     },
+     "template_set_last_modified": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": ""
+     },
+     "webhook_set": {
+      "type": "array",
+      "description": ""
+     },
+     "xls_download": {
+      "type": "string",
+      "description": ""
+     },
+     "available_webhook_set": {
+      "type": "array",
+      "description": ""
+     },
+     "table_set": {
+      "type": "array",
+      "description": ""
+     },
+     "emails_or_domains": {
+      "type": "array",
+      "description": ""
+     }
+    },
+    "required": [
+     "account_uuid",
+     "attachments_only",
+     "available_webhook_set",
+     "can_transform",
+     "csv_download",
+     "document_count",
+     "document_per_status_count",
+     "id",
+     "is_master",
+     "json_download",
+     "last_activity",
+     "parser_object_count",
+     "parser_object_set_last_modified",
+     "table_set",
+     "template_set_last_modified",
+     "xls_download"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.parseur.com/parser/{id}/template_set",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "account_uuid",
+     "ai_engine",
+     "ai_instructions",
+     "allowed_extensions",
+     "attachments_only",
+     "attachments_only_override",
+     "can_transform",
+     "disable_deskew",
+     "enable_layouted_text",
+     "document_count",
+     "document_per_status_count",
+     "email_prefix",
+     "even_pages",
+     "force_ocr",
+     "id",
+     "is_master",
+     "last_activity",
+     "master_parser_name",
+     "master_parser_slug",
+     "name",
+     "odd_pages",
+     "page_range_set",
+     "parser_object_count",
+     "parser_object_set_last_modified",
+     "process_attachments",
+     "retention_policy",
+     "split_keywords",
+     "split_page",
+     "split_page_range_set",
+     "template_count",
+     "webhook_count",
+     "attachments_field",
+     "original_document_field",
+     "searchable_pdf_field",
+     "headers_field",
+     "received_field",
+     "received_date_field",
+     "received_time_field",
+     "processed_field",
+     "processed_date_field",
+     "processed_time_field",
+     "sender_field",
+     "sender_name_field",
+     "split_page_range_field",
+     "recipient_field",
+     "to_field",
+     "cc_field",
+     "bcc_field",
+     "reply_to_field",
+     "recipient_suffix_field",
+     "original_recipient_field",
+     "subject_field",
+     "template_field",
+     "html_document_field",
+     "text_document_field",
+     "content_field",
+     "last_reply_field",
+     "document_id_field",
+     "parent_id_field",
+     "document_url_field",
+     "public_document_url_field",
+     "page_count_field",
+     "credit_count_field",
+     "mailbox_id_field",
+     "parsing_engine_field",
+     "csv_download",
+     "decimal_separator",
+     "default_timezone",
+     "disable_document_links",
+     "expand_result",
+     "extract_xml_from_comment",
+     "input_date_format",
+     "identification_status",
+     "is_transform_enabled",
+     "json_download",
+     "parser_object_set",
+     "pdf_conversion_format",
+     "transform",
+     "use_whitelist_instead_of_blacklist",
+     "template_set_last_modified",
+     "webhook_set",
+     "xls_download",
+     "available_webhook_set",
+     "table_set",
+     "emails_or_domains"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "parseur.get_template_id",
+   "name": "Get a template",
+   "description": "Get a template",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "integer",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.parseur.com/template/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "parseur.patch_parser_mailbox_id_export_config_id",
+   "name": "Update a custom download",
+   "description": "Update a custom download",
+   "input": {
+    "type": "object",
+    "properties": {
+     "mailbox_id": {
+      "type": "string",
+      "description": ""
+     },
+     "id": {
+      "type": "number",
+      "description": ""
+     },
+     "name": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Download name"
+     },
+     "type": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "PARSER",
+       "PARSER_FIELD"
+      ]
+     },
+     "parser_field_id": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Parser field ID starting with PF"
+     },
+     "parser_field_name": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": ""
+     },
+     "items": {
+      "type": "array",
+      "description": ""
+     },
+     "csv_download": {
+      "type": "string",
+      "description": ""
+     },
+     "xls_download": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "csv_download",
+     "id",
+     "items",
+     "mailbox_id",
+     "name",
+     "type",
+     "xls_download"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.parseur.com/parser/{mailbox_id}/export_config/{id}",
+    "path": [
+     "mailbox_id",
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "id",
+     "name",
+     "type",
+     "parser_field_id",
+     "parser_field_name",
+     "items",
+     "csv_download",
+     "xls_download"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "parseur.post_document_id_copy_target_mailbox_id",
+   "name": "Copy a document",
+   "description": "Copy a document",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     },
+     "target_mailbox_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id",
+     "target_mailbox_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.parseur.com/document/{id}/copy/{target_mailbox_id}",
+    "path": [
+     "id",
+     "target_mailbox_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "parseur.post_document_id_process",
+   "name": "Reprocess a document",
+   "description": "Reprocess a document",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.parseur.com/document/{id}/process",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "parseur.post_document_id_skip",
+   "name": "Skip a document",
+   "description": "Skip a document",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.parseur.com/document/{id}/skip",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "parseur.post_email",
+   "name": "Upload an email text document",
+   "description": "Upload an email/text document",
+   "input": {
+    "type": "object",
+    "properties": {
+     "subject": {
+      "type": "string",
+      "description": ""
+     },
+     "from": {
+      "type": "string",
+      "description": ""
+     },
+     "recipient": {
+      "type": "string",
+      "description": ""
+     },
+     "to": {
+      "type": "string",
+      "description": ""
+     },
+     "cc": {
+      "type": "string",
+      "description": ""
+     },
+     "bcc": {
+      "type": "string",
+      "description": ""
+     },
+     "body_html": {
+      "type": "string",
+      "description": ""
+     },
+     "body_plain": {
+      "type": "string",
+      "description": ""
+     },
+     "message_headers": {
+      "type": "array",
+      "description": ""
+     }
+    },
+    "required": [
+     "from",
+     "recipient",
+     "subject"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.parseur.com/email",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "subject",
+     "from",
+     "recipient",
+     "to",
+     "cc",
+     "bcc",
+     "body_html",
+     "body_plain",
+     "message_headers"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "parseur.post_parser",
+   "name": "Create a mailbox",
+   "description": "Create a mailbox",
+   "input": {
+    "type": "object",
+    "properties": {
+     "account_uuid": {
+      "type": "string",
+      "description": "The Universally Unique Identifier for your account."
+     },
+     "ai_engine": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "DISABLED",
+       "GCP_AI_2",
+       "GCP_AI_3_TXT",
+       "GCP_AI_4"
+      ]
+     },
+     "ai_instructions": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "General AI instruction for this parser."
+     },
+     "allowed_extensions": {
+      "type": "array",
+      "description": "List of files extensions to process. If not present, all extensions will be enabled."
+     },
+     "attachments_only": {
+      "type": "boolean",
+      "description": "Whether the parser in question skips email processing or not (read-only)."
+     },
+     "attachments_only_override": {
+      "type": [
+       "boolean",
+       "null"
+      ],
+      "description": "Use this to update attachments_only."
+     },
+     "can_transform": {
+      "type": "boolean",
+      "description": "Whether Python Post-Processing is enabled for this parser."
+     },
+     "disable_deskew": {
+      "type": "boolean",
+      "description": "Whether deskew is disabled for this parser (enabled by default)."
+     },
+     "enable_layouted_text": {
+      "type": "boolean",
+      "description": ""
+     },
+     "document_count": {
+      "type": "integer",
+      "description": "The number of documents in the parser."
+     },
+     "document_per_status_count": {
+      "type": "object",
+      "description": "This is a breakdown of the documents in the parser by status."
+     },
+     "email_prefix": {
+      "type": "string",
+      "description": "The email prefix for the parser."
+     },
+     "even_pages": {
+      "type": "boolean",
+      "description": "Whether the parser is configured to process only even page numbers in a document."
+     },
+     "force_ocr": {
+      "type": "boolean",
+      "description": "Whether Parseur runs its own OCR on every document uploaded to this parser."
+     },
+     "id": {
+      "type": "integer",
+      "description": "The internal ID number for the parser."
+     },
+     "is_master": {
+      "type": "boolean",
+      "description": "Whether this is a master parser that passes its instructions on to others."
+     },
+     "last_activity": {
+      "type": "string",
+      "description": ""
+     },
+     "master_parser_name": {
+      "type": "string",
+      "description": "The name of this parser's master parser."
+     },
+     "master_parser_slug": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "",
+      "enum": [
+       "invoices",
+       "statements",
+       "job-application",
+       "leads",
+       "resume-cv",
+       "food-delivery",
+       "search-alerts",
+       "real-estate",
+       "work-order",
+       "financial-statement",
+       "utility",
+       "contact-list"
+      ]
+     },
+     "name": {
+      "type": "string",
+      "description": "The name of the parser."
+     },
+     "odd_pages": {
+      "type": "boolean",
+      "description": "Whether the parser is configured to process only odd page numbers in a document."
+     },
+     "page_range_set": {
+      "type": "array",
+      "description": "The range of pages set to be processed in the parser."
+     },
+     "parser_object_count": {
+      "type": "integer",
+      "description": "The total number of field and metadata outputs currently configured in the parser."
+     },
+     "parser_object_set_last_modified": {
+      "type": "string",
+      "description": ""
+     },
+     "process_attachments": {
+      "type": "boolean",
+      "description": "Whether email attachment processing is enabled on this parser."
+     },
+     "retention_policy": {
+      "type": "integer",
+      "description": "How many days documents and data are stored on our servers before deletion (90 days is the detaulf)."
+     },
+     "split_keywords": {
+      "type": "string",
+      "description": "The keyword(s) the parser will look for when splitting documents by page."
+     },
+     "split_page": {
+      "type": [
+       "integer",
+       "null"
+      ],
+      "description": "If not 0, this is the number of pages the parser will use to split in a file uploaded to this parser. If set to three, the parser will split a 30 page document 10 times, resulting in 10 files."
+     },
+     "split_page_range_set": {
+      "type": "array",
+      "description": "The specific page ranges set to be captured in this parser. Can have multiple values, i.e. 1,3-5,(1)"
+     },
+     "template_count": {
+      "type": "integer",
+      "description": "The number of templates the parser has."
+     },
+     "webhook_count": {
+      "type": "integer",
+      "description": "The number of webhooks the parser has."
+     },
+     "attachments_field": {
+      "type": "boolean",
+      "description": "Whether the Attachments metadata field is enabled for this parser."
+     },
+     "original_document_field": {
+      "type": "boolean",
+      "description": "Whether the OriginalDocument metadata field is enabled for this parser."
+     },
+     "searchable_pdf_field": {
+      "type": "boolean",
+      "description": "Whether the SearchablePDF metadata field is enabled for this parser."
+     },
+     "headers_field": {
+      "type": "boolean",
+      "description": "Whether the Headers metadata field is enabled for this parser."
+     },
+     "received_field": {
+      "type": "boolean",
+      "description": "Whether the Received metadata field is enabled for this parser."
+     },
+     "received_date_field": {
+      "type": "boolean",
+      "description": "Whether the ReceivedDate metadata field is enabled for this parser."
+     },
+     "received_time_field": {
+      "type": "boolean",
+      "description": "Whether the ReceivedTime metadata field is enabled for this parser."
+     },
+     "processed_field": {
+      "type": "boolean",
+      "description": "Whether the Processed metadata field is enabled for this parser."
+     },
+     "processed_date_field": {
+      "type": "boolean",
+      "description": "Whether the ProcessedDate metadata field is enabled for this parser."
+     },
+     "processed_time_field": {
+      "type": "boolean",
+      "description": "Whether the ProcessedTime metadata field is enabled for this parser."
+     },
+     "sender_field": {
+      "type": "boolean",
+      "description": "Whether the Sender metadata field is enabled for this parser."
+     },
+     "sender_name_field": {
+      "type": "boolean",
+      "description": "Whether the SenderName metadata field is enabled for this parser."
+     },
+     "split_page_range_field": {
+      "type": "boolean",
+      "description": "Whether the SplitPageRange metadata field is enabled for this parser."
+     },
+     "recipient_field": {
+      "type": "boolean",
+      "description": "Whether the Recipient metadata field is enabled for this parser."
+     },
+     "to_field": {
+      "type": "boolean",
+      "description": "Whether the To metadata field is enabled for this parser."
+     },
+     "cc_field": {
+      "type": "boolean",
+      "description": "Whether the CC metadata field is enabled for this parser."
+     },
+     "bcc_field": {
+      "type": "boolean",
+      "description": "Whether the BCC metadata field is enabled for this parser."
+     },
+     "reply_to_field": {
+      "type": "boolean",
+      "description": "Whether the ReplyTo metadata field is enabled for this parser."
+     },
+     "recipient_suffix_field": {
+      "type": "boolean",
+      "description": "Whether the RecipientSuffix metadata field is enabled for this parser."
+     },
+     "original_recipient_field": {
+      "type": "boolean",
+      "description": "Whether the OriginalRecipient metadata field is enabled for this parser."
+     },
+     "subject_field": {
+      "type": "boolean",
+      "description": "Whether the Subject metadata field is enabled for this parser."
+     },
+     "template_field": {
+      "type": "boolean",
+      "description": "Whether the Template metadata field is enabled for this parser."
+     },
+     "html_document_field": {
+      "type": "boolean",
+      "description": "Whether the HTMLDocument metadata field is enabled for this parser."
+     },
+     "text_document_field": {
+      "type": "boolean",
+      "description": "Whether the TextDocument metadata field is enabled for this parser."
+     },
+     "content_field": {
+      "type": "boolean",
+      "description": "Whether the Content metadata field is enabled for this parser."
+     },
+     "last_reply_field": {
+      "type": "boolean",
+      "description": "Whether the LastReply metadata field is enabled for this parser."
+     },
+     "document_id_field": {
+      "type": "boolean",
+      "description": "Whether the DocumentID metadata field is enabled for this parser."
+     },
+     "parent_id_field": {
+      "type": "boolean",
+      "description": "Whether the ParentID metadata field is enabled for this parser."
+     },
+     "document_url_field": {
+      "type": "boolean",
+      "description": "Whether the DocumentURL metadata field is enabled for this parser."
+     },
+     "public_document_url_field": {
+      "type": "boolean",
+      "description": "Whether the PublicDocumentURL metadata field is enabled for this parser."
+     },
+     "page_count_field": {
+      "type": "boolean",
+      "description": "Whether the PageCount metadata field is enabled for this parser."
+     },
+     "credit_count_field": {
+      "type": "boolean",
+      "description": "Whether the CreditCount metadata field is enabled for this parser."
+     },
+     "mailbox_id_field": {
+      "type": "boolean",
+      "description": "Whether the MailboxID metadata field is enabled for this parser."
+     },
+     "parsing_engine_field": {
+      "type": "boolean",
+      "description": "Whether the ParsingEngine metadata field is enabled for this parser."
+     },
+     "csv_download": {
+      "type": "string",
+      "description": ""
+     },
+     "decimal_separator": {
+      "type": "string",
+      "description": ""
+     },
+     "default_timezone": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": ""
+     },
+     "disable_document_links": {
+      "type": "boolean",
+      "description": ""
+     },
+     "expand_result": {
+      "type": "boolean",
+      "description": ""
+     },
+     "extract_xml_from_comment": {
+      "type": "boolean",
+      "description": ""
+     },
+     "input_date_format": {
+      "type": "string",
+      "description": ""
+     },
+     "identification_status": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "",
+      "enum": [
+       "REQUESTED",
+       "PROGRESS",
+       "COMPLETED",
+       "MANUAL"
+      ]
+     },
+     "is_transform_enabled": {
+      "type": "boolean",
+      "description": ""
+     },
+     "json_download": {
+      "type": "string",
+      "description": ""
+     },
+     "parser_object_set": {
+      "type": "array",
+      "description": "The list of fields in a parser."
+     },
+     "pdf_conversion_format": {
+      "type": "string",
+      "description": ""
+     },
+     "transform": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": ""
+     },
+     "use_whitelist_instead_of_blacklist": {
+      "type": "boolean",
+      "description": ""
+     },
+     "template_set_last_modified": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": ""
+     },
+     "webhook_set": {
+      "type": "array",
+      "description": ""
+     },
+     "xls_download": {
+      "type": "string",
+      "description": ""
+     },
+     "available_webhook_set": {
+      "type": "array",
+      "description": ""
+     },
+     "table_set": {
+      "type": "array",
+      "description": ""
+     },
+     "emails_or_domains": {
+      "type": "array",
+      "description": ""
+     }
+    },
+    "required": [
+     "account_uuid",
+     "attachments_only",
+     "available_webhook_set",
+     "can_transform",
+     "csv_download",
+     "document_count",
+     "document_per_status_count",
+     "id",
+     "is_master",
+     "json_download",
+     "last_activity",
+     "parser_object_count",
+     "parser_object_set_last_modified",
+     "table_set",
+     "template_set_last_modified",
+     "xls_download"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.parseur.com/parser",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "account_uuid",
+     "ai_engine",
+     "ai_instructions",
+     "allowed_extensions",
+     "attachments_only",
+     "attachments_only_override",
+     "can_transform",
+     "disable_deskew",
+     "enable_layouted_text",
+     "document_count",
+     "document_per_status_count",
+     "email_prefix",
+     "even_pages",
+     "force_ocr",
+     "id",
+     "is_master",
+     "last_activity",
+     "master_parser_name",
+     "master_parser_slug",
+     "name",
+     "odd_pages",
+     "page_range_set",
+     "parser_object_count",
+     "parser_object_set_last_modified",
+     "process_attachments",
+     "retention_policy",
+     "split_keywords",
+     "split_page",
+     "split_page_range_set",
+     "template_count",
+     "webhook_count",
+     "attachments_field",
+     "original_document_field",
+     "searchable_pdf_field",
+     "headers_field",
+     "received_field",
+     "received_date_field",
+     "received_time_field",
+     "processed_field",
+     "processed_date_field",
+     "processed_time_field",
+     "sender_field",
+     "sender_name_field",
+     "split_page_range_field",
+     "recipient_field",
+     "to_field",
+     "cc_field",
+     "bcc_field",
+     "reply_to_field",
+     "recipient_suffix_field",
+     "original_recipient_field",
+     "subject_field",
+     "template_field",
+     "html_document_field",
+     "text_document_field",
+     "content_field",
+     "last_reply_field",
+     "document_id_field",
+     "parent_id_field",
+     "document_url_field",
+     "public_document_url_field",
+     "page_count_field",
+     "credit_count_field",
+     "mailbox_id_field",
+     "parsing_engine_field",
+     "csv_download",
+     "decimal_separator",
+     "default_timezone",
+     "disable_document_links",
+     "expand_result",
+     "extract_xml_from_comment",
+     "input_date_format",
+     "identification_status",
+     "is_transform_enabled",
+     "json_download",
+     "parser_object_set",
+     "pdf_conversion_format",
+     "transform",
+     "use_whitelist_instead_of_blacklist",
+     "template_set_last_modified",
+     "webhook_set",
+     "xls_download",
+     "available_webhook_set",
+     "table_set",
+     "emails_or_domains"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "parseur.post_parser_id_copy",
+   "name": "Copy a mailbox",
+   "description": "Copy a mailbox",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "integer",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.parseur.com/parser/{id}/copy",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "parseur.post_parser_id_export_config",
+   "name": "Create a custom download",
+   "description": "Create a custom download",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "number",
+      "description": ""
+     },
+     "name": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Download name"
+     },
+     "type": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "PARSER",
+       "PARSER_FIELD"
+      ]
+     },
+     "parser_field_id": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Parser field ID starting with PF"
+     },
+     "parser_field_name": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": ""
+     },
+     "items": {
+      "type": "array",
+      "description": ""
+     },
+     "csv_download": {
+      "type": "string",
+      "description": ""
+     },
+     "xls_download": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "csv_download",
+     "id",
+     "items",
+     "name",
+     "type",
+     "xls_download"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.parseur.com/parser/{id}/export_config",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "id",
+     "name",
+     "type",
+     "parser_field_id",
+     "parser_field_name",
+     "items",
+     "csv_download",
+     "xls_download"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "parseur.post_parser_id_upload",
+   "name": "Upload a binary document",
+   "description": "Upload a binary document",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     },
+     "file": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "file",
+     "id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.parseur.com/parser/{id}/upload",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "file"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "parseur.post_parser_mailbox_id_webhook_set_id",
+   "name": "Enable a webhook",
+   "description": "Enable a webhook",
+   "input": {
+    "type": "object",
+    "properties": {
+     "mailbox_id": {
+      "type": "integer",
+      "description": ""
+     },
+     "id": {
+      "type": "integer",
+      "description": ""
+     }
+    },
+    "required": [
+     "id",
+     "mailbox_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.parseur.com/parser/{mailbox_id}/webhook_set/{id}",
+    "path": [
+     "mailbox_id",
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "parseur.post_template_id_copy_target_mailbox_id",
+   "name": "Copy a template",
+   "description": "Copy a template",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "integer",
+      "description": ""
+     },
+     "target_mailbox_id": {
+      "type": "integer",
+      "description": ""
+     }
+    },
+    "required": [
+     "id",
+     "target_mailbox_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.parseur.com/template/{id}/copy/{target_mailbox_id}",
+    "path": [
+     "id",
+     "target_mailbox_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "parseur.post_webhook",
+   "name": "Create a webhook",
+   "description": "Create a webhook",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "integer",
+      "description": ""
+     },
+     "event": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "document.processed",
+       "document.processed.flattened",
+       "document.template_needed",
+       "document.export_failed",
+       "table.processed"
+      ]
+     },
+     "target": {
+      "type": "string",
+      "description": ""
+     },
+     "name": {
+      "type": "string",
+      "description": ""
+     },
+     "headers": {
+      "type": [
+       "object",
+       "null"
+      ],
+      "description": ""
+     },
+     "category": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "CUSTOM",
+       "ZAPIER",
+       "MAKE",
+       "FLOW",
+       "N8N"
+      ]
+     },
+     "parser_field_set": {
+      "type": "array",
+      "description": "Only for table.processed events"
+     }
+    },
+    "required": [
+     "category",
+     "event",
+     "id",
+     "target"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.parseur.com/webhook",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "id",
+     "event",
+     "target",
+     "name",
+     "headers",
+     "category",
+     "parser_field_set"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "parseur.put_parser_id",
+   "name": "Update a mailbox",
+   "description": "Update a mailbox",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "integer",
+      "description": "The internal ID number for the parser."
+     },
+     "account_uuid": {
+      "type": "string",
+      "description": "The Universally Unique Identifier for your account."
+     },
+     "ai_engine": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "DISABLED",
+       "GCP_AI_2",
+       "GCP_AI_3_TXT",
+       "GCP_AI_4"
+      ]
+     },
+     "ai_instructions": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "General AI instruction for this parser."
+     },
+     "allowed_extensions": {
+      "type": "array",
+      "description": "List of files extensions to process. If not present, all extensions will be enabled."
+     },
+     "attachments_only": {
+      "type": "boolean",
+      "description": "Whether the parser in question skips email processing or not (read-only)."
+     },
+     "attachments_only_override": {
+      "type": [
+       "boolean",
+       "null"
+      ],
+      "description": "Use this to update attachments_only."
+     },
+     "can_transform": {
+      "type": "boolean",
+      "description": "Whether Python Post-Processing is enabled for this parser."
+     },
+     "disable_deskew": {
+      "type": "boolean",
+      "description": "Whether deskew is disabled for this parser (enabled by default)."
+     },
+     "enable_layouted_text": {
+      "type": "boolean",
+      "description": ""
+     },
+     "document_count": {
+      "type": "integer",
+      "description": "The number of documents in the parser."
+     },
+     "document_per_status_count": {
+      "type": "object",
+      "description": "This is a breakdown of the documents in the parser by status."
+     },
+     "email_prefix": {
+      "type": "string",
+      "description": "The email prefix for the parser."
+     },
+     "even_pages": {
+      "type": "boolean",
+      "description": "Whether the parser is configured to process only even page numbers in a document."
+     },
+     "force_ocr": {
+      "type": "boolean",
+      "description": "Whether Parseur runs its own OCR on every document uploaded to this parser."
+     },
+     "is_master": {
+      "type": "boolean",
+      "description": "Whether this is a master parser that passes its instructions on to others."
+     },
+     "last_activity": {
+      "type": "string",
+      "description": ""
+     },
+     "master_parser_name": {
+      "type": "string",
+      "description": "The name of this parser's master parser."
+     },
+     "master_parser_slug": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "",
+      "enum": [
+       "invoices",
+       "statements",
+       "job-application",
+       "leads",
+       "resume-cv",
+       "food-delivery",
+       "search-alerts",
+       "real-estate",
+       "work-order",
+       "financial-statement",
+       "utility",
+       "contact-list"
+      ]
+     },
+     "name": {
+      "type": "string",
+      "description": "The name of the parser."
+     },
+     "odd_pages": {
+      "type": "boolean",
+      "description": "Whether the parser is configured to process only odd page numbers in a document."
+     },
+     "page_range_set": {
+      "type": "array",
+      "description": "The range of pages set to be processed in the parser."
+     },
+     "parser_object_count": {
+      "type": "integer",
+      "description": "The total number of field and metadata outputs currently configured in the parser."
+     },
+     "parser_object_set_last_modified": {
+      "type": "string",
+      "description": ""
+     },
+     "process_attachments": {
+      "type": "boolean",
+      "description": "Whether email attachment processing is enabled on this parser."
+     },
+     "retention_policy": {
+      "type": "integer",
+      "description": "How many days documents and data are stored on our servers before deletion (90 days is the detaulf)."
+     },
+     "split_keywords": {
+      "type": "string",
+      "description": "The keyword(s) the parser will look for when splitting documents by page."
+     },
+     "split_page": {
+      "type": [
+       "integer",
+       "null"
+      ],
+      "description": "If not 0, this is the number of pages the parser will use to split in a file uploaded to this parser. If set to three, the parser will split a 30 page document 10 times, resulting in 10 files."
+     },
+     "split_page_range_set": {
+      "type": "array",
+      "description": "The specific page ranges set to be captured in this parser. Can have multiple values, i.e. 1,3-5,(1)"
+     },
+     "template_count": {
+      "type": "integer",
+      "description": "The number of templates the parser has."
+     },
+     "webhook_count": {
+      "type": "integer",
+      "description": "The number of webhooks the parser has."
+     },
+     "attachments_field": {
+      "type": "boolean",
+      "description": "Whether the Attachments metadata field is enabled for this parser."
+     },
+     "original_document_field": {
+      "type": "boolean",
+      "description": "Whether the OriginalDocument metadata field is enabled for this parser."
+     },
+     "searchable_pdf_field": {
+      "type": "boolean",
+      "description": "Whether the SearchablePDF metadata field is enabled for this parser."
+     },
+     "headers_field": {
+      "type": "boolean",
+      "description": "Whether the Headers metadata field is enabled for this parser."
+     },
+     "received_field": {
+      "type": "boolean",
+      "description": "Whether the Received metadata field is enabled for this parser."
+     },
+     "received_date_field": {
+      "type": "boolean",
+      "description": "Whether the ReceivedDate metadata field is enabled for this parser."
+     },
+     "received_time_field": {
+      "type": "boolean",
+      "description": "Whether the ReceivedTime metadata field is enabled for this parser."
+     },
+     "processed_field": {
+      "type": "boolean",
+      "description": "Whether the Processed metadata field is enabled for this parser."
+     },
+     "processed_date_field": {
+      "type": "boolean",
+      "description": "Whether the ProcessedDate metadata field is enabled for this parser."
+     },
+     "processed_time_field": {
+      "type": "boolean",
+      "description": "Whether the ProcessedTime metadata field is enabled for this parser."
+     },
+     "sender_field": {
+      "type": "boolean",
+      "description": "Whether the Sender metadata field is enabled for this parser."
+     },
+     "sender_name_field": {
+      "type": "boolean",
+      "description": "Whether the SenderName metadata field is enabled for this parser."
+     },
+     "split_page_range_field": {
+      "type": "boolean",
+      "description": "Whether the SplitPageRange metadata field is enabled for this parser."
+     },
+     "recipient_field": {
+      "type": "boolean",
+      "description": "Whether the Recipient metadata field is enabled for this parser."
+     },
+     "to_field": {
+      "type": "boolean",
+      "description": "Whether the To metadata field is enabled for this parser."
+     },
+     "cc_field": {
+      "type": "boolean",
+      "description": "Whether the CC metadata field is enabled for this parser."
+     },
+     "bcc_field": {
+      "type": "boolean",
+      "description": "Whether the BCC metadata field is enabled for this parser."
+     },
+     "reply_to_field": {
+      "type": "boolean",
+      "description": "Whether the ReplyTo metadata field is enabled for this parser."
+     },
+     "recipient_suffix_field": {
+      "type": "boolean",
+      "description": "Whether the RecipientSuffix metadata field is enabled for this parser."
+     },
+     "original_recipient_field": {
+      "type": "boolean",
+      "description": "Whether the OriginalRecipient metadata field is enabled for this parser."
+     },
+     "subject_field": {
+      "type": "boolean",
+      "description": "Whether the Subject metadata field is enabled for this parser."
+     },
+     "template_field": {
+      "type": "boolean",
+      "description": "Whether the Template metadata field is enabled for this parser."
+     },
+     "html_document_field": {
+      "type": "boolean",
+      "description": "Whether the HTMLDocument metadata field is enabled for this parser."
+     },
+     "text_document_field": {
+      "type": "boolean",
+      "description": "Whether the TextDocument metadata field is enabled for this parser."
+     },
+     "content_field": {
+      "type": "boolean",
+      "description": "Whether the Content metadata field is enabled for this parser."
+     },
+     "last_reply_field": {
+      "type": "boolean",
+      "description": "Whether the LastReply metadata field is enabled for this parser."
+     },
+     "document_id_field": {
+      "type": "boolean",
+      "description": "Whether the DocumentID metadata field is enabled for this parser."
+     },
+     "parent_id_field": {
+      "type": "boolean",
+      "description": "Whether the ParentID metadata field is enabled for this parser."
+     },
+     "document_url_field": {
+      "type": "boolean",
+      "description": "Whether the DocumentURL metadata field is enabled for this parser."
+     },
+     "public_document_url_field": {
+      "type": "boolean",
+      "description": "Whether the PublicDocumentURL metadata field is enabled for this parser."
+     },
+     "page_count_field": {
+      "type": "boolean",
+      "description": "Whether the PageCount metadata field is enabled for this parser."
+     },
+     "credit_count_field": {
+      "type": "boolean",
+      "description": "Whether the CreditCount metadata field is enabled for this parser."
+     },
+     "mailbox_id_field": {
+      "type": "boolean",
+      "description": "Whether the MailboxID metadata field is enabled for this parser."
+     },
+     "parsing_engine_field": {
+      "type": "boolean",
+      "description": "Whether the ParsingEngine metadata field is enabled for this parser."
+     },
+     "csv_download": {
+      "type": "string",
+      "description": ""
+     },
+     "decimal_separator": {
+      "type": "string",
+      "description": ""
+     },
+     "default_timezone": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": ""
+     },
+     "disable_document_links": {
+      "type": "boolean",
+      "description": ""
+     },
+     "expand_result": {
+      "type": "boolean",
+      "description": ""
+     },
+     "extract_xml_from_comment": {
+      "type": "boolean",
+      "description": ""
+     },
+     "input_date_format": {
+      "type": "string",
+      "description": ""
+     },
+     "identification_status": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "",
+      "enum": [
+       "REQUESTED",
+       "PROGRESS",
+       "COMPLETED",
+       "MANUAL"
+      ]
+     },
+     "is_transform_enabled": {
+      "type": "boolean",
+      "description": ""
+     },
+     "json_download": {
+      "type": "string",
+      "description": ""
+     },
+     "parser_object_set": {
+      "type": "array",
+      "description": "The list of fields in a parser."
+     },
+     "pdf_conversion_format": {
+      "type": "string",
+      "description": ""
+     },
+     "transform": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": ""
+     },
+     "use_whitelist_instead_of_blacklist": {
+      "type": "boolean",
+      "description": ""
+     },
+     "template_set_last_modified": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": ""
+     },
+     "webhook_set": {
+      "type": "array",
+      "description": ""
+     },
+     "xls_download": {
+      "type": "string",
+      "description": ""
+     },
+     "available_webhook_set": {
+      "type": "array",
+      "description": ""
+     },
+     "table_set": {
+      "type": "array",
+      "description": ""
+     },
+     "emails_or_domains": {
+      "type": "array",
+      "description": ""
+     }
+    },
+    "required": [
+     "account_uuid",
+     "attachments_only",
+     "available_webhook_set",
+     "can_transform",
+     "csv_download",
+     "document_count",
+     "document_per_status_count",
+     "id",
+     "is_master",
+     "json_download",
+     "last_activity",
+     "parser_object_count",
+     "parser_object_set_last_modified",
+     "table_set",
+     "template_set_last_modified",
+     "xls_download"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.parseur.com/parser/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "account_uuid",
+     "ai_engine",
+     "ai_instructions",
+     "allowed_extensions",
+     "attachments_only",
+     "attachments_only_override",
+     "can_transform",
+     "disable_deskew",
+     "enable_layouted_text",
+     "document_count",
+     "document_per_status_count",
+     "email_prefix",
+     "even_pages",
+     "force_ocr",
+     "id",
+     "is_master",
+     "last_activity",
+     "master_parser_name",
+     "master_parser_slug",
+     "name",
+     "odd_pages",
+     "page_range_set",
+     "parser_object_count",
+     "parser_object_set_last_modified",
+     "process_attachments",
+     "retention_policy",
+     "split_keywords",
+     "split_page",
+     "split_page_range_set",
+     "template_count",
+     "webhook_count",
+     "attachments_field",
+     "original_document_field",
+     "searchable_pdf_field",
+     "headers_field",
+     "received_field",
+     "received_date_field",
+     "received_time_field",
+     "processed_field",
+     "processed_date_field",
+     "processed_time_field",
+     "sender_field",
+     "sender_name_field",
+     "split_page_range_field",
+     "recipient_field",
+     "to_field",
+     "cc_field",
+     "bcc_field",
+     "reply_to_field",
+     "recipient_suffix_field",
+     "original_recipient_field",
+     "subject_field",
+     "template_field",
+     "html_document_field",
+     "text_document_field",
+     "content_field",
+     "last_reply_field",
+     "document_id_field",
+     "parent_id_field",
+     "document_url_field",
+     "public_document_url_field",
+     "page_count_field",
+     "credit_count_field",
+     "mailbox_id_field",
+     "parsing_engine_field",
+     "csv_download",
+     "decimal_separator",
+     "default_timezone",
+     "disable_document_links",
+     "expand_result",
+     "extract_xml_from_comment",
+     "input_date_format",
+     "identification_status",
+     "is_transform_enabled",
+     "json_download",
+     "parser_object_set",
+     "pdf_conversion_format",
+     "transform",
+     "use_whitelist_instead_of_blacklist",
+     "template_set_last_modified",
+     "webhook_set",
+     "xls_download",
+     "available_webhook_set",
+     "table_set",
+     "emails_or_domains"
+    ],
+    "body_format": "json"
+   }
+  }
+ ]
+}

@@ -2,7 +2,7 @@
 --
 -- GENERATED from https://render.com/openapi.json
 -- Published on the vendor's own documentation site (https://render.com).
--- 14 operations · do not edit
+-- 15 operations · do not edit
 --
 -- The credential is never in here. `auth.env` names an environment variable; the value
 -- stays in the environment, which is what makes this file safe to publish.
@@ -30,6 +30,7 @@ return {
     ["render-mcp.get_articles_markdown_index"] = { method = "GET", url = "https://mcp.render.com/articles.md" },
     ["render-mcp.get_blog_markdown_index"] = { method = "GET", url = "https://mcp.render.com/blog.md" },
     ["render-mcp.get_docs_page_markdown"] = { method = "GET", url = "https://mcp.render.com/docs/{slug}.md", path = {"slug"} },
+    ["render-mcp.get_docs_topic_bundle"] = { method = "GET", url = "https://mcp.render.com/docs/{topic}/all", path = {"topic"} },
     ["render-mcp.get_llms_full"] = { method = "GET", url = "https://mcp.render.com/llms-full.txt" },
     ["render-mcp.get_llms_index"] = { method = "GET", url = "https://mcp.render.com/llms.txt" },
     ["render-mcp.get_mcp_discovery"] = { method = "GET", url = "https://mcp.render.com/.well-known/mcp.json" },

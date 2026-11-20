@@ -619,6 +619,95 @@
    }
   },
   {
+   "slug": "heyreach.campaigns_create_v2",
+   "name": "Create v2",
+   "description": "## Creates a campaign in DRAFT status, with an optional sequence that may include voice notes. The v2 version of **Create**. It takes the same body, except that `sequence` is a **PublicSequenceNodeDtoV2**: a `MESSAGE` node carries `messageVersions` (text and voice versions) instead of `messages`. Use it instead of **Create** whenever the new campaign has a voice step. The node, `MESSAGE` payload a",
+   "input": {
+    "type": "object",
+    "properties": {
+     "X-API-KEY": {
+      "type": "string",
+      "description": "API key header using this scheme. Example: \"X-API-KEY: {API_KEY}\""
+     },
+     "name": {
+      "type": "string",
+      "description": "The campaign name."
+     },
+     "linkedInUserListId": {
+      "type": "integer",
+      "description": "ID of the lead list. Must exist and be of type USER_LIST."
+     },
+     "linkedInAccountIds": {
+      "type": "array",
+      "description": "Sender LinkedIn account IDs. All accounts must exist and be connected."
+     },
+     "excludeContactedFromOtherCampaigns": {
+      "type": "boolean",
+      "description": ""
+     },
+     "excludeHasOtherAccConversations": {
+      "type": "boolean",
+      "description": ""
+     },
+     "excludeContactedFromSenderInOtherCampaign": {
+      "type": "boolean",
+      "description": ""
+     },
+     "excludeListId": {
+      "type": [
+       "integer",
+       "null"
+      ],
+      "description": "A separate list of leads to always exclude. Must not equal `linkedInUserListId`."
+     },
+     "excludeFromLeadBlacklist": {
+      "type": "boolean",
+      "description": ""
+     },
+     "excludeFromCompanyBlacklist": {
+      "type": "boolean",
+      "description": ""
+     },
+     "schedule": {
+      "type": "object",
+      "description": "When the campaign runs. See **UpdateSchedule** for every field. If omitted, defaults to Mon-Fri 09:00-17:00 UTC."
+     },
+     "sequence": {
+      "type": "object",
+      "description": "One node of a campaign sequence on the v2 endpoints (**GetCampaignSequenceV2**, **UpdateSequenceV2**, **CreateV2**). Nodes form a tree through `conditionalNode` and `unconditionalNode`. The START node is implicit - the root is your first action node - and every path ends with an `END` node."
+     }
+    },
+    "required": [
+     "linkedInAccountIds",
+     "linkedInUserListId",
+     "name"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.heyreach.io/api//api/public/campaign/CreateV2",
+    "path": [],
+    "query": [],
+    "header": [
+     "X-API-KEY"
+    ],
+    "body": [
+     "name",
+     "linkedInUserListId",
+     "linkedInAccountIds",
+     "excludeContactedFromOtherCampaigns",
+     "excludeHasOtherAccConversations",
+     "excludeContactedFromSenderInOtherCampaign",
+     "excludeListId",
+     "excludeFromLeadBlacklist",
+     "excludeFromCompanyBlacklist",
+     "schedule",
+     "sequence"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "heyreach.campaigns_get_all",
    "name": "Get all",
    "description": "Get a paginated collection of all campaigns. Get up to 100 campaigns per request.",
@@ -729,6 +818,40 @@
    "request": {
     "method": "GET",
     "url": "https://api.heyreach.io/api//api/public/campaign/GetCampaignSequence?campaignId=<long>",
+    "path": [],
+    "query": [
+     "campaignId"
+    ],
+    "header": [
+     "X-API-KEY"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "heyreach.campaigns_get_campaign_sequence_v2",
+   "name": "Get campaign sequence v2",
+   "description": "## Retrieves the current sequence (workflow) of a campaign with every message version in full - text and voice alike. The v2 version of **GetCampaignSequence**, and the read to use for a campaign with voice notes. A `MESSAGE` node's payload carries `messageVersions`: every version of the step, voice versions included, each with the length and transcript of the recording behind it. The returned obj",
+   "input": {
+    "type": "object",
+    "properties": {
+     "campaignId": {
+      "type": "integer",
+      "description": "The campaign whose sequence to retrieve."
+     },
+     "X-API-KEY": {
+      "type": "string",
+      "description": "API key header using this scheme. Example: \"X-API-KEY: {API_KEY}\""
+     }
+    },
+    "required": [
+     "campaignId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.heyreach.io/api//api/public/campaign/GetCampaignSequenceV2?campaignId=<long>",
     "path": [],
     "query": [
      "campaignId"
@@ -899,7 +1022,7 @@
   {
    "slug": "heyreach.campaigns_resume",
    "name": "Resume",
-   "description": "Resumes the specified campaign.",
+   "description": "Resumes the specified campaign. ### Errors - **400** `SENDER_VOICE_MISSING`: the campaign has voice steps and some of its LinkedIn senders have no voice assigned; the message lists their account ids. Assign a voice with **SetSenderVoice** and resume again. The other 400s of this method carry no `errorCode`.",
    "input": {
     "type": "object",
     "properties": {
@@ -1156,6 +1279,46 @@
      "X-API-KEY"
     ],
     "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "heyreach.campaigns_update_sequence_v2",
+   "name": "Update sequence v2",
+   "description": "## Creates or fully replaces the sequence (workflow) of a campaign, voice steps included. The v2 version of **UpdateSequence**, and the write to use for any campaign whose sequence has voice notes. Two things differ from v1: 1. A `MESSAGE` node's payload carries `messageVersions` instead of `messages`, so you can read, write and delete voice versions, not only text. 2. The `messageVersions` list y",
+   "input": {
+    "type": "object",
+    "properties": {
+     "X-API-KEY": {
+      "type": "string",
+      "description": "API key header using this scheme. Example: \"X-API-KEY: {API_KEY}\""
+     },
+     "campaignId": {
+      "type": "integer",
+      "description": "The campaign to update."
+     },
+     "sequence": {
+      "type": "object",
+      "description": "One node of a campaign sequence on the v2 endpoints (**GetCampaignSequenceV2**, **UpdateSequenceV2**, **CreateV2**). Nodes form a tree through `conditionalNode` and `unconditionalNode`. The START node is implicit - the root is your first action node - and every path ends with an `END` node."
+     }
+    },
+    "required": [
+     "campaignId",
+     "sequence"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.heyreach.io/api//api/public/campaign/UpdateSequenceV2",
+    "path": [],
+    "query": [],
+    "header": [
+     "X-API-KEY"
+    ],
+    "body": [
+     "campaignId",
+     "sequence"
+    ],
     "body_format": "json"
    }
   },
@@ -1441,6 +1604,52 @@
      "to",
      "filters"
     ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "heyreach.inbox_get_voice_message_audio",
+   "name": "Get voice message audio",
+   "description": "Download the audio of a voice message. Take the ids from **GetChatroom**: the conversation's `linkedInAccountId` as `accountId`, its `id` as `conversationId`, and the `messageId` of a message whose `type` is `voice_note`. The response body is the audio file itself, not JSON, sent with its stored content type - typically `audio/mp4`. ### Errors - **403** `You do not have an active subscription. Ple",
+   "input": {
+    "type": "object",
+    "properties": {
+     "accountId": {
+      "type": "integer",
+      "description": "The LinkedIn account (sender) the conversation belongs to."
+     },
+     "conversationId": {
+      "type": "string",
+      "description": "The conversation id."
+     },
+     "messageId": {
+      "type": "string",
+      "description": "The `messageId` of the voice message."
+     },
+     "X-API-KEY": {
+      "type": "string",
+      "description": "API key header using this scheme. Example: \"X-API-KEY: {API_KEY}\""
+     }
+    },
+    "required": [
+     "accountId",
+     "conversationId",
+     "messageId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.heyreach.io/api//api/public/inbox/GetVoiceMessageAudio/{accountId}/{conversationId}/{messageId}",
+    "path": [
+     "accountId",
+     "conversationId",
+     "messageId"
+    ],
+    "query": [],
+    "header": [
+     "X-API-KEY"
+    ],
+    "body": [],
     "body_format": "json"
    }
   },
@@ -3087,6 +3296,563 @@
      "senderAccountId",
      "leadProfileUrl",
      "leadLinkedInId"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "heyreach.voice_bulk_commit",
+   "name": "Bulk commit",
+   "description": "Assign voices to many senders in one call. All or nothing: one invalid entry rejects the whole batch. Each entry takes exactly one of `predefinedVoiceId`, `customVoiceId` or `elevenLabsVoiceId`, under the same rules as **SetSenderVoice**. ### Errors - **400** `VOICE_ASSIGNMENTS_MISSING`, `VOICE_SELECTION_INVALID`, `VOICE_ASSIGNMENTS_DUPLICATE_ACCOUNT`, `LINKEDIN_ACCOUNT_NOT_FOUND`, `CUSTOM_VOICE_U",
+   "input": {
+    "type": "object",
+    "properties": {
+     "X-API-KEY": {
+      "type": "string",
+      "description": "API key header using this scheme. Example: \"X-API-KEY: {API_KEY}\""
+     },
+     "assignments": {
+      "type": "array",
+      "description": ""
+     }
+    },
+    "required": [
+     "assignments"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.heyreach.io/api//api/public/voice/BulkCommit",
+    "path": [],
+    "query": [],
+    "header": [
+     "X-API-KEY"
+    ],
+    "body": [
+     "assignments"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "heyreach.voice_create_custom_voice",
+   "name": "Create custom voice",
+   "description": "Clone a custom voice from a recorded or uploaded audio sample of **15\u201330 seconds**, sent as a multipart `file` part whose own `Content-Type` is the audio's MIME type (`audio/mpeg`, `audio/mp3`, `audio/wav`, `audio/x-wav`, `audio/mp4`, `audio/m4a`, `audio/x-m4a`, `audio/ogg`, `audio/webm`, `audio/aac` or `audio/flac`). The file may be at most 25 MiB; a request body over 26 MiB is refused with a bar",
+   "input": {
+    "type": "object",
+    "properties": {
+     "X-API-KEY": {
+      "type": "string",
+      "description": "API key header using this scheme. Example: \"X-API-KEY: {API_KEY}\""
+     },
+     "file": {
+      "type": "string",
+      "description": "The audio sample, 15\u201330 seconds, at most 25 MiB. The part's own `Content-Type` must be the audio's MIME type."
+     },
+     "name": {
+      "type": "string",
+      "description": ""
+     },
+     "gender": {
+      "type": "string",
+      "description": "Defaults to MALE.",
+      "enum": [
+       "MALE",
+       "FEMALE"
+      ]
+     },
+     "source": {
+      "type": "string",
+      "description": "Defaults to RECORDED.",
+      "enum": [
+       "RECORDED",
+       "UPLOADED"
+      ]
+     },
+     "ignoreSoftWarnings": {
+      "type": "boolean",
+      "description": "Set to true to clone despite the soft warnings a previous call returned for the same audio."
+     },
+     "clientRequestId": {
+      "type": "string",
+      "description": "One GUID per recording, reused for the re-submit and for any retry."
+     },
+     "consentConfirmed": {
+      "type": "boolean",
+      "description": "Optional; not required through the API."
+     }
+    },
+    "required": [
+     "file"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.heyreach.io/api//api/public/voice/CreateCustomVoice",
+    "path": [],
+    "query": [],
+    "header": [
+     "X-API-KEY"
+    ],
+    "body": [
+     "file",
+     "name",
+     "gender",
+     "source",
+     "ignoreSoftWarnings",
+     "clientRequestId",
+     "consentConfirmed"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "heyreach.voice_delete_custom_voice",
+   "name": "Delete custom voice",
+   "description": "Delete one of the workspace's cloned voices and unassign it from every sender using it. ### Errors - **403** `NO_ACTIVE_SUBSCRIPTION` or `VOICE_NOTES_NOT_ENABLED`. - **404** `CUSTOM_VOICE_NOT_FOUND`: the voice does not exist in the workspace.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "integer",
+      "description": ""
+     },
+     "X-API-KEY": {
+      "type": "string",
+      "description": "API key header using this scheme. Example: \"X-API-KEY: {API_KEY}\""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.heyreach.io/api//api/public/voice/DeleteCustomVoice/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [
+     "X-API-KEY"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "heyreach.voice_get_eleven_labs_connection",
+   "name": "Get eleven labs connection",
+   "description": "The workspace's ElevenLabs connection: its status, the last four characters of the key, when the library was last synced and how many imported voices it offers. Read-only: a key is connected in the app, and the key itself is never returned. Answers `200` with `isConnected` false when no key is connected, and also works while ElevenLabs voices are not enabled for the workspace. ### Errors - **403**",
+   "input": {
+    "type": "object",
+    "properties": {
+     "X-API-KEY": {
+      "type": "string",
+      "description": "API key header using this scheme. Example: \"X-API-KEY: {API_KEY}\""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.heyreach.io/api//api/public/voice/GetElevenLabsConnection",
+    "path": [],
+    "query": [],
+    "header": [
+     "X-API-KEY"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "heyreach.voice_get_eleven_labs_voices",
+   "name": "Get eleven labs voices",
+   "description": "The workspace's imported ElevenLabs library, ordered by name. Reads what the last import, the daily library sync or **RefreshElevenLabsLibrary** stored; ElevenLabs is not called. The daily sync runs while a sender in the workspace uses an ElevenLabs voice. Assign a voice with **SetSenderVoice** by its `voiceId` (as `customVoiceId`) or its `elevenLabsVoiceId`. A voice with an `availableUntil` date ",
+   "input": {
+    "type": "object",
+    "properties": {
+     "search": {
+      "type": "string",
+      "description": "Case-insensitive match on the voice name."
+     },
+     "offset": {
+      "type": "integer",
+      "description": "How many voices to skip. 0 or more; defaults to 0."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "How many voices to return, 1 to 500; defaults to 100."
+     },
+     "X-API-KEY": {
+      "type": "string",
+      "description": "API key header using this scheme. Example: \"X-API-KEY: {API_KEY}\""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.heyreach.io/api//api/public/voice/GetElevenLabsVoices",
+    "path": [],
+    "query": [
+     "search",
+     "offset",
+     "limit"
+    ],
+    "header": [
+     "X-API-KEY"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "heyreach.voice_get_sender_voice",
+   "name": "Get sender voice",
+   "description": "Get the voice assigned to a sender (LinkedIn account). ### Errors - **403** `NO_ACTIVE_SUBSCRIPTION` or `VOICE_NOTES_NOT_ENABLED`. - **404** `LINKEDIN_ACCOUNT_NOT_FOUND`: the account is not in the workspace (checked first, for an unknown and another workspace's account alike). `SENDER_VOICE_NOT_ASSIGNED`: the account has no voice assigned.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "accountId": {
+      "type": "integer",
+      "description": ""
+     },
+     "X-API-KEY": {
+      "type": "string",
+      "description": "API key header using this scheme. Example: \"X-API-KEY: {API_KEY}\""
+     }
+    },
+    "required": [
+     "accountId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.heyreach.io/api//api/public/voice/GetSenderVoice/{accountId}",
+    "path": [
+     "accountId"
+    ],
+    "query": [],
+    "header": [
+     "X-API-KEY"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "heyreach.voice_get_static_clip",
+   "name": "Get static clip",
+   "description": "Read back a static voice clip by the `clipId` **UploadStaticClip** returned: its duration, its transcript and why a transcript is absent. Metadata only; the audio is not available through the API. ### Errors - **403** `NO_ACTIVE_SUBSCRIPTION` or `VOICE_NOTES_NOT_ENABLED`. - **404** `STATIC_CLIP_NOT_FOUND`: no clip with this id in the workspace (an unknown id and another workspace's clip alike).",
+   "input": {
+    "type": "object",
+    "properties": {
+     "clipId": {
+      "type": "integer",
+      "description": ""
+     },
+     "X-API-KEY": {
+      "type": "string",
+      "description": "API key header using this scheme. Example: \"X-API-KEY: {API_KEY}\""
+     }
+    },
+    "required": [
+     "clipId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.heyreach.io/api//api/public/voice/GetStaticClip/{clipId}",
+    "path": [
+     "clipId"
+    ],
+    "query": [],
+    "header": [
+     "X-API-KEY"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "heyreach.voice_get_static_clips",
+   "name": "Get static clips",
+   "description": "List the workspace's uploaded static voice clips, newest first, so you can pick a `clipId` for a `STATIC` voice step without uploading one. Each item has the shape **GetStaticClip** returns; metadata only, never audio. ### Errors - **400** `PAGING_OUT_OF_RANGE`: `offset` is negative or `limit` is outside 1\u2013100. - **403** `NO_ACTIVE_SUBSCRIPTION` or `VOICE_NOTES_NOT_ENABLED`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "offset": {
+      "type": "integer",
+      "description": "How many clips to skip, newest first. 0 or more; defaults to 0."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "How many clips to return, 1 to 100; defaults to 50."
+     },
+     "X-API-KEY": {
+      "type": "string",
+      "description": "API key header using this scheme. Example: \"X-API-KEY: {API_KEY}\""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.heyreach.io/api//api/public/voice/GetStaticClips",
+    "path": [],
+    "query": [
+     "offset",
+     "limit"
+    ],
+    "header": [
+     "X-API-KEY"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "heyreach.voice_get_voice_usage",
+   "name": "Get voice usage",
+   "description": "Where a voice is in use: the LinkedIn accounts it is assigned to and whether any of them is in a running campaign. ### Errors - **403** `NO_ACTIVE_SUBSCRIPTION` or `VOICE_NOTES_NOT_ENABLED`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "integer",
+      "description": ""
+     },
+     "kind": {
+      "type": "string",
+      "description": "The voice's kind; defaults to CUSTOM.",
+      "enum": [
+       "PREDEFINED",
+       "CUSTOM"
+      ]
+     },
+     "X-API-KEY": {
+      "type": "string",
+      "description": "API key header using this scheme. Example: \"X-API-KEY: {API_KEY}\""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.heyreach.io/api//api/public/voice/GetVoiceUsage/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [
+     "kind"
+    ],
+    "header": [
+     "X-API-KEY"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "heyreach.voice_get_voices",
+   "name": "Get voices",
+   "description": "Get the workspace's voice library: every active predefined voice plus the workspace's own cloned voices, each with the LinkedIn accounts it is assigned to. An ElevenLabs voice is listed here only while a sender uses it; the whole imported ElevenLabs library is **GetElevenLabsVoices**. ### Errors - **403** `NO_ACTIVE_SUBSCRIPTION` or `VOICE_NOTES_NOT_ENABLED`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "gender": {
+      "type": "string",
+      "description": "Optional gender filter.",
+      "enum": [
+       "MALE",
+       "FEMALE"
+      ]
+     },
+     "X-API-KEY": {
+      "type": "string",
+      "description": "API key header using this scheme. Example: \"X-API-KEY: {API_KEY}\""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.heyreach.io/api//api/public/voice/GetVoices",
+    "path": [],
+    "query": [
+     "gender"
+    ],
+    "header": [
+     "X-API-KEY"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "heyreach.voice_refresh_eleven_labs_library",
+   "name": "Refresh eleven labs library",
+   "description": "Re-sync the imported library with the workspace's ElevenLabs account: voices new in ElevenLabs are added, changed ones updated (including a new `availableUntil` date), removed ones dropped (an assigned one is kept and marked unavailable) and returned ones restored. No body. Answers the connection, in the shape **GetElevenLabsConnection** returns, and what the sync did. ### Errors - **403** `NO_ACT",
+   "input": {
+    "type": "object",
+    "properties": {
+     "X-API-KEY": {
+      "type": "string",
+      "description": "API key header using this scheme. Example: \"X-API-KEY: {API_KEY}\""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.heyreach.io/api//api/public/voice/RefreshElevenLabsLibrary",
+    "path": [],
+    "query": [],
+    "header": [
+     "X-API-KEY"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "heyreach.voice_remove_sender_voice",
+   "name": "Remove sender voice",
+   "description": "Unassign the sender's voice. Succeeds when the sender has no voice. ### Errors - **403** `NO_ACTIVE_SUBSCRIPTION` or `VOICE_NOTES_NOT_ENABLED`. - **404** `LINKEDIN_ACCOUNT_NOT_FOUND`: the account is not in the workspace.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "accountId": {
+      "type": "integer",
+      "description": ""
+     },
+     "X-API-KEY": {
+      "type": "string",
+      "description": "API key header using this scheme. Example: \"X-API-KEY: {API_KEY}\""
+     }
+    },
+    "required": [
+     "accountId"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.heyreach.io/api//api/public/voice/RemoveSenderVoice/{accountId}",
+    "path": [
+     "accountId"
+    ],
+    "query": [],
+    "header": [
+     "X-API-KEY"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "heyreach.voice_set_sender_voice",
+   "name": "Set sender voice",
+   "description": "Assign a voice to a sender (LinkedIn account). Provide exactly one of `predefinedVoiceId`, `customVoiceId` or `elevenLabsVoiceId`. An ElevenLabs voice is assigned by its `voiceId` from **GetElevenLabsVoices** as `customVoiceId`, or by its ElevenLabs id as `elevenLabsVoiceId`, which is looked up in the workspace's imported library; ElevenLabs itself is not called. A voice with an `availableUntil` d",
+   "input": {
+    "type": "object",
+    "properties": {
+     "accountId": {
+      "type": "integer",
+      "description": ""
+     },
+     "X-API-KEY": {
+      "type": "string",
+      "description": "API key header using this scheme. Example: \"X-API-KEY: {API_KEY}\""
+     },
+     "predefinedVoiceId": {
+      "type": [
+       "integer",
+       "null"
+      ],
+      "description": ""
+     },
+     "customVoiceId": {
+      "type": [
+       "integer",
+       "null"
+      ],
+      "description": "A cloned voice, or an imported ElevenLabs voice (`voiceId` from GetElevenLabsVoices)."
+     },
+     "elevenLabsVoiceId": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "An ElevenLabs voice id that is in the workspace's imported library."
+     }
+    },
+    "required": [
+     "accountId"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.heyreach.io/api//api/public/voice/SetSenderVoice/{accountId}",
+    "path": [
+     "accountId"
+    ],
+    "query": [],
+    "header": [
+     "X-API-KEY"
+    ],
+    "body": [
+     "predefinedVoiceId",
+     "customVoiceId",
+     "elevenLabsVoiceId"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "heyreach.voice_upload_static_clip",
+   "name": "Upload static clip",
+   "description": "Upload a static voice clip (your own recording, sent as is) for a `STATIC` voice step, as a multipart `file` part whose own `Content-Type` is the audio's MIME type. The clip may be at most **50 seconds** long and 25 MiB large. Returns the `clipId` to use in the sequence step, the measured duration and a best-effort transcript. Never clones a voice. The optional `name` part is not stored yet; ident",
+   "input": {
+    "type": "object",
+    "properties": {
+     "ignoreSoftWarnings": {
+      "type": "boolean",
+      "description": "Set to true to store the clip despite the warnings a previous call returned for the same audio. Defaults to false."
+     },
+     "X-API-KEY": {
+      "type": "string",
+      "description": "API key header using this scheme. Example: \"X-API-KEY: {API_KEY}\""
+     },
+     "file": {
+      "type": "string",
+      "description": "The clip, at most 50 seconds and 25 MiB. The part's own `Content-Type` must be the audio's MIME type."
+     },
+     "name": {
+      "type": "string",
+      "description": "Not stored yet."
+     }
+    },
+    "required": [
+     "file"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.heyreach.io/api//api/public/voice/UploadStaticClip",
+    "path": [],
+    "query": [
+     "ignoreSoftWarnings"
+    ],
+    "header": [
+     "X-API-KEY"
+    ],
+    "body": [
+     "file",
+     "name"
     ],
     "body_format": "json"
    }

@@ -1,0 +1,2025 @@
+{
+ "_": "GENERATED \u2014 what an authoring tool needs to FIND an operation. The calling table is the .lua beside it.",
+ "provider": "filescan",
+ "source": "https://filescan.io/openapi.json",
+ "operations": [
+  {
+   "slug": "filescan.check_files_availability_api_files_availability_post",
+   "name": "Check files availability",
+   "description": "Check files availability by their hashes",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://www.filescan.io/api/api/files/availability",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "filescan.download_reward_api_reward_slug_download_get",
+   "name": "Download reward",
+   "description": "Serve the reward file for a valid download token (guests allowed)",
+   "input": {
+    "type": "object",
+    "properties": {
+     "slug": {
+      "type": "string",
+      "description": ""
+     },
+     "mode": {
+      "type": "string",
+      "description": "Serve the file inline ('view') or as an attachment ('download')",
+      "enum": [
+       "view",
+       "download"
+      ]
+     }
+    },
+    "required": [
+     "slug"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://www.filescan.io/api/api/reward/{slug}/download",
+    "path": [
+     "slug"
+    ],
+    "query": [
+     "mode"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "filescan.get_all_upload_related_reports_api_scan_flow_id_report_get",
+   "name": "Get all upload related reports",
+   "description": "Obtain all reports for given scan init. By default, if no `filter` parameter is sent, we only return some basic report data, just to see report is there",
+   "input": {
+    "type": "object",
+    "properties": {
+     "flow_id": {
+      "type": "string",
+      "description": "Flow Id from scan-file"
+     },
+     "filter": {
+      "type": "array",
+      "description": "Report fields that should be fetched."
+     },
+     "sorting": {
+      "type": "array",
+      "description": "Sort parameters to be applied to fetched report data. Format: field(sort_subfield:direction[,sort_subfield2:direction2...]). Accepted direction values: `asc`, `desc`."
+     },
+     "other": {
+      "type": "array",
+      "description": "Extra options to get special data"
+     }
+    },
+    "required": [
+     "flow_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://www.filescan.io/api/api/scan/{flow_id}/report",
+    "path": [
+     "flow_id"
+    ],
+    "query": [
+     "filter",
+     "sorting",
+     "other"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "filescan.get_atlas_data_api_system_atlas_get",
+   "name": "Get atlas data",
+   "description": "Obtain ATLAS tactics and techniques",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://www.filescan.io/api/api/system/atlas",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "filescan.get_avatar_image_api_users_account_id_avatar_get",
+   "name": "Get avatar image",
+   "description": "Get use avatar image",
+   "input": {
+    "type": "object",
+    "properties": {
+     "account_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "account_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://www.filescan.io/api/api/users/{account_id}/avatar",
+    "path": [
+     "account_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "filescan.get_config_api_system_config_get",
+   "name": "Get config",
+   "description": "Obtain project configuration to use on front-end",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://www.filescan.io/api/api/system/config",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "filescan.get_countries_api_system_countries_get",
+   "name": "Get countries",
+   "description": "Obtain list of all countries",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://www.filescan.io/api/api/system/countries",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "filescan.get_default_api_system_info_get",
+   "name": "Get default",
+   "description": "Return general information about webservice, just to indicate that API is working",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://www.filescan.io/api/api/system/info",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "filescan.get_frequent_tags_api_users_get_frequent_tags_get",
+   "name": "Get frequent tags",
+   "description": "Get most frequently seen tags recently",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://www.filescan.io/api/api/users/get-frequent-tags",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "filescan.get_ioc_prevalences_api_threatintel_get_prevalence_post",
+   "name": "Get prevalence of iocs",
+   "description": "Get prevalences of IOCs",
+   "input": {
+    "type": "object",
+    "properties": {
+     "exclude_report_ids": {
+      "type": "array",
+      "description": ""
+     },
+     "domain": {
+      "type": "string",
+      "description": ""
+     },
+     "ip": {
+      "type": "string",
+      "description": ""
+     },
+     "url": {
+      "type": "string",
+      "description": ""
+     },
+     "uuid": {
+      "type": "string",
+      "description": ""
+     },
+     "email": {
+      "type": "string",
+      "description": ""
+     },
+     "registry_path": {
+      "type": "string",
+      "description": ""
+     },
+     "revision_save_id": {
+      "type": "string",
+      "description": ""
+     },
+     "sha1": {
+      "type": "string",
+      "description": ""
+     },
+     "sha256": {
+      "type": "string",
+      "description": ""
+     },
+     "sha512": {
+      "type": "string",
+      "description": ""
+     },
+     "md5": {
+      "type": "string",
+      "description": ""
+     },
+     "imphash": {
+      "type": "string",
+      "description": ""
+     },
+     "ssdeep": {
+      "type": "string",
+      "description": ""
+     },
+     "authentihash": {
+      "type": "string",
+      "description": ""
+     },
+     "fuzzyfsiohash": {
+      "type": "string",
+      "description": ""
+     },
+     "unc_path": {
+      "type": "string",
+      "description": ""
+     },
+     "days": {
+      "type": "integer",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://www.filescan.io/api/api/threatintel/get-prevalence",
+    "path": [],
+    "query": [
+     "exclude_report_ids"
+    ],
+    "header": [],
+    "body": [
+     "domain",
+     "ip",
+     "url",
+     "uuid",
+     "email",
+     "registry_path",
+     "revision_save_id",
+     "sha1",
+     "sha256",
+     "sha512",
+     "md5",
+     "imphash",
+     "ssdeep",
+     "authentihash",
+     "fuzzyfsiohash",
+     "unc_path",
+     "days"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "filescan.get_ioc_stat_api_users_stat_iocs_get",
+   "name": "Get ioc stat",
+   "description": "Get app statistics",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://www.filescan.io/api/api/users/stat/iocs",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "filescan.get_languages_api_system_languages_get",
+   "name": "Get languages",
+   "description": "Obtain list of all detectable (and probably even more) languages",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://www.filescan.io/api/api/system/languages",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "filescan.get_latest_reward_api_reward_latest_get",
+   "name": "Get latest reward",
+   "description": "Get the slug of the most recently published reward (guests allowed)",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://www.filescan.io/api/api/reward/latest",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "filescan.get_license_product_features_api_system_product_features_get",
+   "name": "Get license product features",
+   "description": "Get product features",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://www.filescan.io/api/api/system/product-features",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "filescan.get_logo_api_system_logo_get",
+   "name": "Get logo",
+   "description": "Get logo image",
+   "input": {
+    "type": "object",
+    "properties": {
+     "type": {
+      "type": "string",
+      "description": "Type of logo, representing it's usecase",
+      "enum": [
+       "main",
+       "top_menu",
+       "footer"
+      ]
+     },
+     "theme": {
+      "type": "string",
+      "description": "All available themes",
+      "enum": [
+       "light",
+       "dark"
+      ]
+     },
+     "name": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://www.filescan.io/api/api/system/logo",
+    "path": [],
+    "query": [
+     "type",
+     "theme",
+     "name"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "filescan.get_mbc_data_api_system_mbc_get",
+   "name": "Get mbc data",
+   "description": "Obtain MBC objectives and behaviors",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://www.filescan.io/api/api/system/mbc",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "filescan.get_mitre_data_api_system_mitre_get",
+   "name": "Get mitre data",
+   "description": "Obtain MITRE tactics and techniques",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://www.filescan.io/api/api/system/mitre",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "filescan.get_most_interesting_api_users_most_interesting_get",
+   "name": "Get most interesting",
+   "description": "Get most interesting report recently",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://www.filescan.io/api/api/users/most-interesting",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "filescan.get_news_api_system_news_get",
+   "name": "Get news",
+   "description": "Get news",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://www.filescan.io/api/api/system/news",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "filescan.get_open_api_endpoint_openapi_json_get",
+   "name": "Get open api endpoint",
+   "description": "Return API json data to be used by docs UI",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://www.filescan.io/api/openapi.json",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "filescan.get_public_reports_api_reports_get",
+   "name": "Get public reports",
+   "description": "Get all public reports",
+   "input": {
+    "type": "object",
+    "properties": {
+     "page": {
+      "type": "integer",
+      "description": "Page number starting from 1"
+     },
+     "page_size": {
+      "type": "integer",
+      "description": "Page size",
+      "enum": [
+       5,
+       10,
+       20
+      ]
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://www.filescan.io/api/api/reports",
+    "path": [],
+    "query": [
+     "page",
+     "page_size"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "filescan.get_reports_feed_api_feed_reports_get",
+   "name": "Get reports feed",
+   "description": "Get reports feed. For API documentation page we show smaller amount of reports. To get full feed, query feed endpoint directly from browser address bar or from any suitable app.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://www.filescan.io/api/api/feed/reports",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "filescan.get_reports_feed_info_api_feed_reports_info_get",
+   "name": "Get reports feed info",
+   "description": "Get reports feed info",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://www.filescan.io/api/api/feed/reports/info",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "filescan.get_reputation_hash_api_reputation_hash_get",
+   "name": "Get reputation hash",
+   "description": "Get the reputation for one given hash",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sha256": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "sha256"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://www.filescan.io/api/api/reputation/hash",
+    "path": [],
+    "query": [
+     "sha256"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "filescan.get_reputation_hash_bulk_api_reputation_hash_post",
+   "name": "Get reputation hash bulk",
+   "description": "Get the reputation for more hashes",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://www.filescan.io/api/api/reputation/hash",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "filescan.get_reputation_ioc_api_reputation_ioc_type_get",
+   "name": "Get reputation ioc",
+   "description": "Get the reputation for one given IOC",
+   "input": {
+    "type": "object",
+    "properties": {
+     "ioc_type": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "domain",
+       "ip",
+       "url"
+      ]
+     },
+     "ioc_value": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "ioc_type",
+     "ioc_value"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://www.filescan.io/api/api/reputation/{ioc_type}",
+    "path": [
+     "ioc_type"
+    ],
+    "query": [
+     "ioc_value"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "filescan.get_reputation_ioc_bulk_api_reputation_ioc_type_post",
+   "name": "Get reputation ioc bulk",
+   "description": "Get the reputation for more IOCs",
+   "input": {
+    "type": "object",
+    "properties": {
+     "ioc_type": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "domain",
+       "ip",
+       "url"
+      ]
+     }
+    },
+    "required": [
+     "ioc_type"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://www.filescan.io/api/api/reputation/{ioc_type}",
+    "path": [
+     "ioc_type"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "filescan.get_reward_cover_api_reward_slug_cover_get",
+   "name": "Get reward cover",
+   "description": "Get the cover image teaser of a reward (guests allowed)",
+   "input": {
+    "type": "object",
+    "properties": {
+     "slug": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "slug"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://www.filescan.io/api/api/reward/{slug}/cover",
+    "path": [
+     "slug"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "filescan.get_reward_meta_api_reward_slug_meta_get",
+   "name": "Get reward meta",
+   "description": "Get public metadata for a reward (guests allowed)",
+   "input": {
+    "type": "object",
+    "properties": {
+     "slug": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "slug"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://www.filescan.io/api/api/reward/{slug}/meta",
+    "path": [
+     "slug"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "filescan.get_sales_inquiry_meta_api_inquiry_meta_get",
+   "name": "Get sales inquiry meta",
+   "description": "Get the public metadata of the Sales Inquiry form (guests allowed)",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://www.filescan.io/api/api/inquiry/meta",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "filescan.get_search_matches_api_reports_search_matches_post",
+   "name": "Matches for reports, obtained by search",
+   "description": "Get matches data for reports, previously obtained by search",
+   "input": {
+    "type": "object",
+    "properties": {
+     "unique_files": {
+      "type": "boolean",
+      "description": ""
+     },
+     "method": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "or",
+       "and"
+      ]
+     },
+     "derived_files": {
+      "type": "string",
+      "description": ""
+     },
+     "no_date_limit": {
+      "type": "string",
+      "description": ""
+     },
+     "query": {
+      "type": "string",
+      "description": ""
+     },
+     "verdict": {
+      "type": "string",
+      "description": ""
+     },
+     "source_type": {
+      "type": "string",
+      "description": ""
+     },
+     "filetype": {
+      "type": "string",
+      "description": ""
+     },
+     "tag": {
+      "type": "string",
+      "description": ""
+     },
+     "tags": {
+      "type": "string",
+      "description": ""
+     },
+     "threat_attribution": {
+      "type": "string",
+      "description": ""
+     },
+     "date_from": {
+      "type": "string",
+      "description": ""
+     },
+     "date_to": {
+      "type": "string",
+      "description": ""
+     },
+     "rate_from": {
+      "type": "string",
+      "description": ""
+     },
+     "rate_to": {
+      "type": "string",
+      "description": ""
+     },
+     "uuid": {
+      "type": "string",
+      "description": ""
+     },
+     "email": {
+      "type": "string",
+      "description": ""
+     },
+     "registry_path": {
+      "type": "string",
+      "description": ""
+     },
+     "revision_save_id": {
+      "type": "string",
+      "description": ""
+     },
+     "yara_rule": {
+      "type": "string",
+      "description": ""
+     },
+     "retry_count": {
+      "type": "string",
+      "description": ""
+     },
+     "scan_init_id": {
+      "type": "string",
+      "description": ""
+     },
+     "report_id": {
+      "type": "string",
+      "description": ""
+     },
+     "country": {
+      "type": "string",
+      "description": ""
+     },
+     "filename": {
+      "type": "string",
+      "description": ""
+     },
+     "sha1": {
+      "type": "string",
+      "description": ""
+     },
+     "sha256": {
+      "type": "string",
+      "description": ""
+     },
+     "sha512": {
+      "type": "string",
+      "description": ""
+     },
+     "md5": {
+      "type": "string",
+      "description": ""
+     },
+     "domain": {
+      "type": "string",
+      "description": ""
+     },
+     "ip": {
+      "type": "string",
+      "description": ""
+     },
+     "url": {
+      "type": "string",
+      "description": ""
+     },
+     "media_type": {
+      "type": "string",
+      "description": ""
+     },
+     "imphash": {
+      "type": "string",
+      "description": ""
+     },
+     "ssdeep": {
+      "type": "string",
+      "description": ""
+     },
+     "authentihash": {
+      "type": "string",
+      "description": ""
+     },
+     "fuzzyfsiohash": {
+      "type": "string",
+      "description": ""
+     },
+     "signal_groups": {
+      "type": "string",
+      "description": ""
+     },
+     "mitre_techniques": {
+      "type": "string",
+      "description": ""
+     },
+     "verdict_groups": {
+      "type": "string",
+      "description": ""
+     },
+     "main_task_state": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "success",
+       "failed",
+       "in_progress"
+      ]
+     },
+     "exclude": {
+      "type": "string",
+      "description": ""
+     },
+     "all_dates_algo": {
+      "type": "string",
+      "description": ""
+     },
+     "reports_ids": {
+      "type": "array",
+      "description": ""
+     }
+    },
+    "required": [
+     "reports_ids"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://www.filescan.io/api/api/reports/search/matches",
+    "path": [],
+    "query": [
+     "unique_files",
+     "method",
+     "derived_files",
+     "no_date_limit",
+     "query",
+     "verdict",
+     "source_type",
+     "filetype",
+     "tag",
+     "tags",
+     "threat_attribution",
+     "date_from",
+     "date_to",
+     "rate_from",
+     "rate_to",
+     "uuid",
+     "email",
+     "registry_path",
+     "revision_save_id",
+     "yara_rule",
+     "retry_count",
+     "scan_init_id",
+     "report_id",
+     "country",
+     "filename",
+     "sha1",
+     "sha256",
+     "sha512",
+     "md5",
+     "domain",
+     "ip",
+     "url",
+     "media_type",
+     "imphash",
+     "ssdeep",
+     "authentihash",
+     "fuzzyfsiohash",
+     "signal_groups",
+     "mitre_techniques",
+     "verdict_groups",
+     "main_task_state",
+     "exclude",
+     "all_dates_algo"
+    ],
+    "header": [],
+    "body": [
+     "reports_ids"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "filescan.get_similar_reports_api_threatintel_get_similars_get",
+   "name": "Get reports with the same special hashes (fuzzyfsio, imphash, ssdeep, authentihash)",
+   "description": "Get reports with the same special hashes",
+   "input": {
+    "type": "object",
+    "properties": {
+     "exclude_report_ids": {
+      "type": "array",
+      "description": ""
+     },
+     "imphash": {
+      "type": "string",
+      "description": ""
+     },
+     "ssdeep": {
+      "type": "string",
+      "description": ""
+     },
+     "fuzzyfsiohash": {
+      "type": "string",
+      "description": ""
+     },
+     "authentihash": {
+      "type": "string",
+      "description": ""
+     },
+     "days": {
+      "type": "integer",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://www.filescan.io/api/api/threatintel/get-similars",
+    "path": [],
+    "query": [
+     "exclude_report_ids",
+     "imphash",
+     "ssdeep",
+     "fuzzyfsiohash",
+     "authentihash",
+     "days"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "filescan.get_sitemap_api_docs_sitemap_get",
+   "name": "Get sitemap",
+   "description": "Get sitemap xml",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://www.filescan.io/api/api/docs/sitemap",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "filescan.get_specific_report_api_reports_report_id_file_hash_get",
+   "name": "Get specific report",
+   "description": "Obtain a report for given report_id.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "report_id": {
+      "type": "string",
+      "description": "Report Id"
+     },
+     "file_hash": {
+      "type": "string",
+      "description": "File hash"
+     },
+     "filter": {
+      "type": "array",
+      "description": "Report fields that should be fetched"
+     },
+     "sorting": {
+      "type": "array",
+      "description": "Sort parameters to be applied to fetched report data. Format: field(sort_subfield:direction[,sort_subfield2:direction2...]). Accepted direction values: `asc`, `desc`."
+     },
+     "other": {
+      "type": "array",
+      "description": "Extra options to get special data"
+     }
+    },
+    "required": [
+     "file_hash",
+     "report_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://www.filescan.io/api/api/reports/{report_id}/{file_hash}",
+    "path": [
+     "report_id",
+     "file_hash"
+    ],
+    "query": [
+     "filter",
+     "sorting",
+     "other"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "filescan.get_terms_api_system_get_terms_terms_type_get",
+   "name": "Get terms",
+   "description": "Obtain privacy policy and terms & conditions",
+   "input": {
+    "type": "object",
+    "properties": {
+     "terms_type": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "privacy-policy",
+       "terms-condition",
+       "cookie-policy"
+      ]
+     }
+    },
+    "required": [
+     "terms_type"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://www.filescan.io/api/api/system/get-terms/{terms_type}",
+    "path": [
+     "terms_type"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "filescan.get_translations_api_system_translations_lang_get",
+   "name": "Get translations",
+   "description": "Obtain translations for specific language",
+   "input": {
+    "type": "object",
+    "properties": {
+     "lang": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "en",
+       "de",
+       "zh",
+       "es",
+       "hi",
+       "ar",
+       "pt",
+       "bn",
+       "ru",
+       "ja",
+       "ko",
+       "fr"
+      ]
+     }
+    },
+    "required": [
+     "lang"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://www.filescan.io/api/api/system/translations/{lang}",
+    "path": [
+     "lang"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "filescan.get_version_api_system_version_get",
+   "name": "Get version",
+   "description": "Return the version of the webservice",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://www.filescan.io/api/api/system/version",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "filescan.get_yara_rules_api_system_yara_get",
+   "name": "Get yara rules",
+   "description": "Get extended data of yara rules If the `name` parameter is left empty, it returns the list of yara rules that already has a match in the system. Otherwise it will return a list of yara rules where the yara rule name matches the `name` parameter even if the yara rule has no match in the system.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": "array",
+      "description": "Name of the YARA rule"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://www.filescan.io/api/api/system/yara",
+    "path": [],
+    "query": [
+     "name"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "filescan.log_client_error_api_system_errors_log_post",
+   "name": "Log client error",
+   "description": "Log frontend cliend errors",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://www.filescan.io/api/api/system/errors/log",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "filescan.query_healthcheck_api_system_query_healthcheck_get",
+   "name": "Query healthcheck",
+   "description": "Query sanitized past healthcheck logs",
+   "input": {
+    "type": "object",
+    "properties": {
+     "days": {
+      "type": "integer",
+      "description": ""
+     },
+     "days_from": {
+      "type": "integer",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://www.filescan.io/api/api/system/query-healthcheck",
+    "path": [],
+    "query": [
+     "days",
+     "days_from"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "filescan.reputation_check_config_api_system_reputation_check_config_get",
+   "name": "Reputation check config",
+   "description": "Check if MD Cloud Reputation is enabled If in the /config `opswatReputationAPIKeySource` value `FALLBACK`, it returns `False`. If `opswatReputationAPIKeySource` is `LICENSE` or `USER`, it returns `True`",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://www.filescan.io/api/api/system/reputation/check-config",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "filescan.request_reward_access_api_reward_slug_access_post",
+   "name": "Request reward access",
+   "description": "Capture a lead and return a short-lived download URL (guests allowed)",
+   "input": {
+    "type": "object",
+    "properties": {
+     "slug": {
+      "type": "string",
+      "description": ""
+     },
+     "email": {
+      "type": "string",
+      "description": "Email of the requester"
+     },
+     "name": {
+      "type": "string",
+      "description": "Full name of the requester"
+     },
+     "company": {
+      "type": "string",
+      "description": "Company / organisation of the requester"
+     },
+     "country": {
+      "type": "string",
+      "description": "Country of the requester"
+     },
+     "job_title": {
+      "type": "string",
+      "description": "Job title of the requester"
+     },
+     "vertical": {
+      "type": "string",
+      "description": "Vertical / industry of the requester"
+     },
+     "consent": {
+      "type": "boolean",
+      "description": "Explicit marketing consent (must be True)"
+     },
+     "consent_text_version": {
+      "type": "string",
+      "description": "Version of the consent text presented to the requester; if provided it must match the current server version (the server always stamps its own version on the stored lead)"
+     },
+     "mode": {
+      "type": "string",
+      "description": "How the requester intends to open the reward file",
+      "enum": [
+       "view",
+       "download"
+      ]
+     }
+    },
+    "required": [
+     "consent",
+     "country",
+     "email",
+     "slug",
+     "vertical"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://www.filescan.io/api/api/reward/{slug}/access",
+    "path": [
+     "slug"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "email",
+     "name",
+     "company",
+     "country",
+     "job_title",
+     "vertical",
+     "consent",
+     "consent_text_version",
+     "mode"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "filescan.scan_file_api_scan_file_post",
+   "name": "Scan file",
+   "description": "Perform scan of uploaded file",
+   "input": {
+    "type": "object",
+    "properties": {
+     "file": {
+      "type": "string",
+      "description": ""
+     },
+     "description": {
+      "type": "string",
+      "description": "Uploaded file/url description"
+     },
+     "tags": {
+      "type": "string",
+      "description": "Tags to propagate, separated by | or , (e.g. anti-vm|macros)"
+     },
+     "propagate_tags": {
+      "type": "string",
+      "description": "If tags from description should be added to produced report(s)"
+     },
+     "password": {
+      "type": "string",
+      "description": "Custom password, in case uploaded archive is protected"
+     },
+     "is_private": {
+      "type": "string",
+      "description": "If file should not be available for download by other users"
+     },
+     "is_private_report": {
+      "type": "string",
+      "description": "If the report should not be available for other users"
+     },
+     "skip_whitelisted": {
+      "type": "string",
+      "description": "If file is detected as whitelisted, report is not created"
+     },
+     "delete_after_scan": {
+      "type": "string",
+      "description": "If uploaded file should be deleted from temp storage instead of moving it to permanent storage after scan. Ignored on community environments"
+     },
+     "scan_profile": {
+      "type": "string",
+      "description": "Id of scan profile, or name of preset scan profile (analysis or speed)"
+     },
+     "scan_engine": {
+      "type": "string",
+      "description": "Scan engine to use"
+     }
+    },
+    "required": [
+     "file"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://www.filescan.io/api/api/scan/file",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "file",
+     "description",
+     "tags",
+     "propagate_tags",
+     "password",
+     "is_private",
+     "is_private_report",
+     "skip_whitelisted",
+     "delete_after_scan",
+     "scan_profile",
+     "scan_engine"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "filescan.scan_file_api_scan_url_post",
+   "name": "Scan url",
+   "description": "Scan URL resource",
+   "input": {
+    "type": "object",
+    "properties": {
+     "url": {
+      "type": "string",
+      "description": "Url of internet resource to be scanned"
+     },
+     "description": {
+      "type": "string",
+      "description": "Uploaded file/url description"
+     },
+     "tags": {
+      "type": "string",
+      "description": "Tags to propagate, separated by | or , (e.g. anti-vm|macros)"
+     },
+     "propagate_tags": {
+      "type": "string",
+      "description": "If tags from description should be added to produced report(s)"
+     },
+     "password": {
+      "type": "string",
+      "description": "Custom password, in case uploaded archive is protected"
+     },
+     "is_private": {
+      "type": "string",
+      "description": "If file should not be available for download by other users"
+     },
+     "is_private_report": {
+      "type": "string",
+      "description": "If the report should not be available for other users"
+     },
+     "skip_whitelisted": {
+      "type": "string",
+      "description": "If file is detected as whitelisted, report is not created"
+     },
+     "delete_after_scan": {
+      "type": "string",
+      "description": "If uploaded file should be deleted from temp storage instead of moving it to permanent storage after scan. Ignored on community environments"
+     },
+     "scan_profile": {
+      "type": "string",
+      "description": "Id of scan profile, or name of preset scan profile (analysis or speed)"
+     },
+     "scan_engine": {
+      "type": "string",
+      "description": "Scan engine to use"
+     }
+    },
+    "required": [
+     "url"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://www.filescan.io/api/api/scan/url",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "url",
+     "description",
+     "tags",
+     "propagate_tags",
+     "password",
+     "is_private",
+     "is_private_report",
+     "skip_whitelisted",
+     "delete_after_scan",
+     "scan_profile",
+     "scan_engine"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "filescan.scan_source_oauth_callback_api_admin_scan_sources_oauth_callback_get",
+   "name": "Scan source oauth callback",
+   "description": "Handle OAuth callback for scan source setup",
+   "input": {
+    "type": "object",
+    "properties": {
+     "state": {
+      "type": "string",
+      "description": ""
+     },
+     "code": {
+      "type": "string",
+      "description": ""
+     },
+     "error": {
+      "type": "string",
+      "description": ""
+     },
+     "error_description": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://www.filescan.io/api/api/admin/scan-sources/oauth/callback",
+    "path": [],
+    "query": [
+     "state",
+     "code",
+     "error",
+     "error_description"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "filescan.search_report_api_reports_search_get",
+   "name": "Simple search",
+   "description": "Search for reports and uploaded files by various tokens, like hash, filename, verdict, IOCs etc. Simple search only uses the `query` param (and some other defaults), other params are ignored.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "age": {
+      "type": "integer",
+      "description": "Search reports with age of \"age\" days"
+     },
+     "page": {
+      "type": "integer",
+      "description": "Page number starting from 1"
+     },
+     "page_size": {
+      "type": "integer",
+      "description": "Page size",
+      "enum": [
+       5,
+       10,
+       20
+      ]
+     },
+     "unique_files": {
+      "type": "boolean",
+      "description": ""
+     },
+     "method": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "or",
+       "and"
+      ]
+     },
+     "derived_files": {
+      "type": "string",
+      "description": ""
+     },
+     "no_date_limit": {
+      "type": "string",
+      "description": ""
+     },
+     "query": {
+      "type": "string",
+      "description": ""
+     },
+     "verdict": {
+      "type": "string",
+      "description": ""
+     },
+     "source_type": {
+      "type": "string",
+      "description": ""
+     },
+     "filetype": {
+      "type": "string",
+      "description": ""
+     },
+     "tag": {
+      "type": "string",
+      "description": ""
+     },
+     "tags": {
+      "type": "string",
+      "description": ""
+     },
+     "threat_attribution": {
+      "type": "string",
+      "description": ""
+     },
+     "date_from": {
+      "type": "string",
+      "description": ""
+     },
+     "date_to": {
+      "type": "string",
+      "description": ""
+     },
+     "rate_from": {
+      "type": "string",
+      "description": ""
+     },
+     "rate_to": {
+      "type": "string",
+      "description": ""
+     },
+     "uuid": {
+      "type": "string",
+      "description": ""
+     },
+     "email": {
+      "type": "string",
+      "description": ""
+     },
+     "registry_path": {
+      "type": "string",
+      "description": ""
+     },
+     "revision_save_id": {
+      "type": "string",
+      "description": ""
+     },
+     "yara_rule": {
+      "type": "string",
+      "description": ""
+     },
+     "retry_count": {
+      "type": "string",
+      "description": ""
+     },
+     "scan_init_id": {
+      "type": "string",
+      "description": ""
+     },
+     "report_id": {
+      "type": "string",
+      "description": ""
+     },
+     "country": {
+      "type": "string",
+      "description": ""
+     },
+     "filename": {
+      "type": "string",
+      "description": ""
+     },
+     "sha1": {
+      "type": "string",
+      "description": ""
+     },
+     "sha256": {
+      "type": "string",
+      "description": ""
+     },
+     "sha512": {
+      "type": "string",
+      "description": ""
+     },
+     "md5": {
+      "type": "string",
+      "description": ""
+     },
+     "domain": {
+      "type": "string",
+      "description": ""
+     },
+     "ip": {
+      "type": "string",
+      "description": ""
+     },
+     "url": {
+      "type": "string",
+      "description": ""
+     },
+     "media_type": {
+      "type": "string",
+      "description": ""
+     },
+     "imphash": {
+      "type": "string",
+      "description": ""
+     },
+     "ssdeep": {
+      "type": "string",
+      "description": ""
+     },
+     "authentihash": {
+      "type": "string",
+      "description": ""
+     },
+     "fuzzyfsiohash": {
+      "type": "string",
+      "description": ""
+     },
+     "signal_groups": {
+      "type": "string",
+      "description": ""
+     },
+     "mitre_techniques": {
+      "type": "string",
+      "description": ""
+     },
+     "verdict_groups": {
+      "type": "string",
+      "description": ""
+     },
+     "main_task_state": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "success",
+       "failed",
+       "in_progress"
+      ]
+     },
+     "exclude": {
+      "type": "string",
+      "description": ""
+     },
+     "all_dates_algo": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://www.filescan.io/api/api/reports/search",
+    "path": [],
+    "query": [
+     "age",
+     "page",
+     "page_size",
+     "unique_files",
+     "method",
+     "derived_files",
+     "no_date_limit",
+     "query",
+     "verdict",
+     "source_type",
+     "filetype",
+     "tag",
+     "tags",
+     "threat_attribution",
+     "date_from",
+     "date_to",
+     "rate_from",
+     "rate_to",
+     "uuid",
+     "email",
+     "registry_path",
+     "revision_save_id",
+     "yara_rule",
+     "retry_count",
+     "scan_init_id",
+     "report_id",
+     "country",
+     "filename",
+     "sha1",
+     "sha256",
+     "sha512",
+     "md5",
+     "domain",
+     "ip",
+     "url",
+     "media_type",
+     "imphash",
+     "ssdeep",
+     "authentihash",
+     "fuzzyfsiohash",
+     "signal_groups",
+     "mitre_techniques",
+     "verdict_groups",
+     "main_task_state",
+     "exclude",
+     "all_dates_algo"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "filescan.submit_sales_inquiry_api_inquiry_post",
+   "name": "Submit sales inquiry",
+   "description": "Capture a Sales Inquiry lead (guests allowed)",
+   "input": {
+    "type": "object",
+    "properties": {
+     "email": {
+      "type": "string",
+      "description": "Work email of the requester"
+     },
+     "name": {
+      "type": "string",
+      "description": "Full name of the requester"
+     },
+     "company": {
+      "type": "string",
+      "description": "Company / organisation of the requester"
+     },
+     "country": {
+      "type": "string",
+      "description": "Country of the requester"
+     },
+     "vertical": {
+      "type": "string",
+      "description": "Vertical / industry of the requester"
+     },
+     "job_title": {
+      "type": "string",
+      "description": "Job title of the requester"
+     },
+     "usage": {
+      "type": "string",
+      "description": "How the requester currently uses Filescan.io"
+     },
+     "protect": {
+      "type": "string",
+      "description": "What the requester needs to protect (multi-select)"
+     },
+     "daily_volume": {
+      "type": "string",
+      "description": "Approximate number of files to analyze each day"
+     },
+     "deployment": {
+      "type": "string",
+      "description": "Preferred deployment model"
+     },
+     "message": {
+      "type": "string",
+      "description": "Free-form note from the requester"
+     },
+     "consent": {
+      "type": "boolean",
+      "description": "Explicit marketing consent (must be True)"
+     },
+     "consent_text_version": {
+      "type": "string",
+      "description": "Version of the consent text presented to the requester; if provided it must match the current server version (the server always stamps its own version on the stored lead)"
+     }
+    },
+    "required": [
+     "consent",
+     "country",
+     "email",
+     "vertical"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://www.filescan.io/api/api/inquiry",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "email",
+     "name",
+     "company",
+     "country",
+     "vertical",
+     "job_title",
+     "usage",
+     "protect",
+     "daily_volume",
+     "deployment",
+     "message",
+     "consent",
+     "consent_text_version"
+    ],
+    "body_format": "json"
+   }
+  }
+ ]
+}

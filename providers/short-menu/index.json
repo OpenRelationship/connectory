@@ -1,0 +1,119 @@
+{
+ "_": "GENERATED \u2014 what an authoring tool needs to FIND an operation. The calling table is the .lua beside it.",
+ "provider": "short-menu",
+ "source": "https://docs.shortmenu.com/api-reference/openapi.json",
+ "operations": [
+  {
+   "slug": "short-menu.create_link",
+   "name": "Create link",
+   "description": "Creates a new Short Link.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "tags": {
+      "type": "array",
+      "description": "Zero or more tags to assign to the new short link. If a tag with the same name already exists, it will be reused automatically. Do not pass tag `id` values, unless they already exist in your account."
+     },
+     "destinationUrl": {
+      "type": "string",
+      "description": "Destination URL of the new short link. Must be a valid URL starting with a scheme such as `https`."
+     },
+     "domain": {
+      "type": "string",
+      "description": "Name of the short link domain, e.g. `shm.to`. If your account is set up with custom domains, you can pass their names instead."
+     },
+     "slug": {
+      "type": "string",
+      "description": "Optional slug for the new short link. If empty, a random slug will be generated. Must be unique within the domain."
+     }
+    },
+    "required": [
+     "destinationUrl",
+     "domain",
+     "tags"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.shortmenu.com/links",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "tags",
+     "destinationUrl",
+     "domain",
+     "slug"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-menu.delete_link",
+   "name": "Delete link",
+   "description": "Deletes an existing Short Link.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "The identifier of the link to delete. This is the `id` field of the link object."
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.shortmenu.com/links/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "short-menu.update_link",
+   "name": "Update link",
+   "description": "Updates an existing Short Link.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "The identifier of the link to update. This is the `id` field of the link object."
+     },
+     "destinationUrl": {
+      "type": "string",
+      "description": "Updated destination URL of the short link. If not provided, the existing destination URL will be kept."
+     },
+     "tags": {
+      "type": "array",
+      "description": "Updated tags to assign to the short link. If not provided, the existing tags will be kept."
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.shortmenu.com/links/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "destinationUrl",
+     "tags"
+    ],
+    "body_format": "json"
+   }
+  }
+ ]
+}

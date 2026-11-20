@@ -1,0 +1,2586 @@
+{
+ "_": "GENERATED \u2014 what an authoring tool needs to FIND an operation. The calling table is the .lua beside it.",
+ "provider": "configcat",
+ "source": "https://api.apis.guru/v2/specs/configcat.com/v1/openapi.json",
+ "operations": [
+  {
+   "slug": "configcat.add_member_to_group",
+   "name": "Update member permissions",
+   "description": "This endpoint adds a Member identified by the `userId` to one or more Permission Groups. This endpoint can also be used to move a Member between Permission Groups within a Product. Only a single Permission Group can be set per Product.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "organizationId": {
+      "type": "string",
+      "description": "The identifier of the Organization."
+     },
+     "userId": {
+      "type": "string",
+      "description": "The identifier of the Member."
+     },
+     "permissionGroupIds": {
+      "type": "array",
+      "description": ""
+     }
+    },
+    "required": [
+     "organizationId",
+     "permissionGroupIds",
+     "userId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.configcat.com/v1/organizations/{organizationId}/members/{userId}",
+    "path": [
+     "organizationId",
+     "userId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "permissionGroupIds"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "configcat.add_or_update_integration_link",
+   "name": "Add or update integration link",
+   "description": "Add or update Integration link",
+   "input": {
+    "type": "object",
+    "properties": {
+     "environmentId": {
+      "type": "string",
+      "description": "The identifier of the Environment."
+     },
+     "settingId": {
+      "type": "integer",
+      "description": "The id of the Setting."
+     },
+     "integrationLinkType": {
+      "type": "string",
+      "description": "The integration link's type.",
+      "enum": [
+       "trello",
+       "jira",
+       "monday"
+      ]
+     },
+     "description": {
+      "type": "string",
+      "description": ""
+     },
+     "url": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "environmentId",
+     "integrationLinkType",
+     "settingId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.configcat.com/v1/environments/{environmentId}/settings/{settingId}/integrationLinks/{integrationLinkType}/{key}",
+    "path": [
+     "environmentId",
+     "settingId",
+     "integrationLinkType"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "description",
+     "url"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "configcat.create_config",
+   "name": "Create config",
+   "description": "This endpoint creates a new Config in a specified Product identified by the `productId` parameter, which can be obtained from the [List Products](#operation/get-products) endpoint.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "productId": {
+      "type": "string",
+      "description": "The identifier of the Product."
+     },
+     "description": {
+      "type": "string",
+      "description": ""
+     },
+     "name": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "name",
+     "productId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.configcat.com/v1/products/{productId}/configs",
+    "path": [
+     "productId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "description",
+     "name"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "configcat.create_environment",
+   "name": "Create environment",
+   "description": "This endpoint creates a new Environment in a specified Product identified by the `productId` parameter, which can be obtained from the [List Products](#operation/get-products) endpoint.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "productId": {
+      "type": "string",
+      "description": "The identifier of the Product."
+     },
+     "color": {
+      "type": "string",
+      "description": ""
+     },
+     "description": {
+      "type": "string",
+      "description": ""
+     },
+     "name": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "name",
+     "productId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.configcat.com/v1/products/{productId}/environments",
+    "path": [
+     "productId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "color",
+     "description",
+     "name"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "configcat.create_permission_group",
+   "name": "Create permission group",
+   "description": "This endpoint creates a new Permission Group in a specified Product identified by the `productId` parameter, which can be obtained from the [List Products](#operation/get-products) endpoint.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "productId": {
+      "type": "string",
+      "description": "The identifier of the Product."
+     },
+     "accessType": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "readOnly",
+       "full",
+       "custom"
+      ]
+     },
+     "canCreateOrUpdateConfig": {
+      "type": "boolean",
+      "description": ""
+     },
+     "canCreateOrUpdateEnvironment": {
+      "type": "boolean",
+      "description": ""
+     },
+     "canCreateOrUpdateSegments": {
+      "type": "boolean",
+      "description": ""
+     },
+     "canCreateOrUpdateSetting": {
+      "type": "boolean",
+      "description": ""
+     },
+     "canCreateOrUpdateTag": {
+      "type": "boolean",
+      "description": ""
+     },
+     "canDeleteConfig": {
+      "type": "boolean",
+      "description": ""
+     },
+     "canDeleteEnvironment": {
+      "type": "boolean",
+      "description": ""
+     },
+     "canDeleteSegments": {
+      "type": "boolean",
+      "description": ""
+     },
+     "canDeleteSetting": {
+      "type": "boolean",
+      "description": ""
+     },
+     "canDeleteTag": {
+      "type": "boolean",
+      "description": ""
+     },
+     "canManageIntegrations": {
+      "type": "boolean",
+      "description": ""
+     },
+     "canManageMembers": {
+      "type": "boolean",
+      "description": ""
+     },
+     "canManageProductPreferences": {
+      "type": "boolean",
+      "description": ""
+     },
+     "canManageWebhook": {
+      "type": "boolean",
+      "description": ""
+     },
+     "canRotateSdkKey": {
+      "type": "boolean",
+      "description": ""
+     },
+     "canTagSetting": {
+      "type": "boolean",
+      "description": ""
+     },
+     "canUseExportImport": {
+      "type": "boolean",
+      "description": ""
+     },
+     "canViewProductAuditLog": {
+      "type": "boolean",
+      "description": ""
+     },
+     "canViewProductStatistics": {
+      "type": "boolean",
+      "description": ""
+     },
+     "canViewSdkKey": {
+      "type": "boolean",
+      "description": ""
+     },
+     "environmentAccesses": {
+      "type": "array",
+      "description": ""
+     },
+     "name": {
+      "type": "string",
+      "description": ""
+     },
+     "newEnvironmentAccessType": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "full",
+       "readOnly",
+       "none"
+      ]
+     }
+    },
+    "required": [
+     "name",
+     "productId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.configcat.com/v1/products/{productId}/permissions",
+    "path": [
+     "productId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "accessType",
+     "canCreateOrUpdateConfig",
+     "canCreateOrUpdateEnvironment",
+     "canCreateOrUpdateSegments",
+     "canCreateOrUpdateSetting",
+     "canCreateOrUpdateTag",
+     "canDeleteConfig",
+     "canDeleteEnvironment",
+     "canDeleteSegments",
+     "canDeleteSetting",
+     "canDeleteTag",
+     "canManageIntegrations",
+     "canManageMembers",
+     "canManageProductPreferences",
+     "canManageWebhook",
+     "canRotateSdkKey",
+     "canTagSetting",
+     "canUseExportImport",
+     "canViewProductAuditLog",
+     "canViewProductStatistics",
+     "canViewSdkKey",
+     "environmentAccesses",
+     "name",
+     "newEnvironmentAccessType"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "configcat.create_product",
+   "name": "Create product",
+   "description": "This endpoint creates a new Product in a specified Organization identified by the `organizationId` parameter, which can be obtained from the [List Organizations](#operation/get-organizations) endpoint.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "organizationId": {
+      "type": "string",
+      "description": "The identifier of the Organization."
+     },
+     "description": {
+      "type": "string",
+      "description": ""
+     },
+     "name": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "name",
+     "organizationId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.configcat.com/v1/organizations/{organizationId}/products",
+    "path": [
+     "organizationId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "description",
+     "name"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "configcat.create_segment",
+   "name": "Create segment",
+   "description": "This endpoint creates a new Segment in a specified Product identified by the `productId` parameter, which can be obtained from the [List Products](#operation/get-products) endpoint.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "productId": {
+      "type": "string",
+      "description": "The identifier of the Product."
+     },
+     "comparator": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "isOneOf",
+       "isNotOneOf",
+       "contains",
+       "doesNotContain",
+       "semVerIsOneOf",
+       "semVerIsNotOneOf",
+       "semVerLess",
+       "semVerLessOrEquals",
+       "semVerGreater",
+       "semVerGreaterOrEquals",
+       "numberEquals",
+       "numberDoesNotEqual"
+      ]
+     },
+     "comparisonAttribute": {
+      "type": "string",
+      "description": ""
+     },
+     "comparisonValue": {
+      "type": "string",
+      "description": ""
+     },
+     "description": {
+      "type": "string",
+      "description": ""
+     },
+     "name": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "comparator",
+     "comparisonAttribute",
+     "comparisonValue",
+     "name",
+     "productId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.configcat.com/v1/products/{productId}/segments",
+    "path": [
+     "productId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "comparator",
+     "comparisonAttribute",
+     "comparisonValue",
+     "description",
+     "name"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "configcat.create_setting",
+   "name": "Create flag",
+   "description": "This endpoint creates a new Feature Flag or Setting in a specified Config identified by the `configId` parameter. **Important:** The `key` attribute must be unique within the given Config.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "configId": {
+      "type": "string",
+      "description": "The identifier of the Config."
+     },
+     "hint": {
+      "type": "string",
+      "description": "A short description for the setting, shown on the Dashboard UI."
+     },
+     "initialValues": {
+      "type": "array",
+      "description": "Optional, initial values of the feature flag or setting in the given Environments."
+     },
+     "name": {
+      "type": "string",
+      "description": "The name of the setting, shown on the Dashboard UI."
+     },
+     "settingType": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "boolean",
+       "string",
+       "int",
+       "double"
+      ]
+     },
+     "tags": {
+      "type": "array",
+      "description": "The IDs of the tags which are attached to the setting."
+     }
+    },
+    "required": [
+     "configId",
+     "name",
+     "settingType"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.configcat.com/v1/configs/{configId}/settings",
+    "path": [
+     "configId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "hint",
+     "initialValues",
+     "name",
+     "settingType",
+     "tags"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "configcat.create_tag",
+   "name": "Create tag",
+   "description": "This endpoint creates a new Tag in a specified Product identified by the `productId` parameter, which can be obtained from the [List Products](#operation/get-products) endpoint.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "productId": {
+      "type": "string",
+      "description": "The identifier of the Organization."
+     },
+     "color": {
+      "type": "string",
+      "description": ""
+     },
+     "name": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "name",
+     "productId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.configcat.com/v1/products/{productId}/tags",
+    "path": [
+     "productId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "color",
+     "name"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "configcat.delete_config",
+   "name": "Delete config",
+   "description": "This endpoint removes a Config identified by the `configId` parameter.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "configId": {
+      "type": "string",
+      "description": "The identifier of the Config."
+     }
+    },
+    "required": [
+     "configId"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.configcat.com/v1/configs/{configId}",
+    "path": [
+     "configId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "configcat.delete_environment",
+   "name": "Delete environment",
+   "description": "This endpoint removes an Environment identified by the `environmentId` parameter.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "environmentId": {
+      "type": "string",
+      "description": "The identifier of the Environment."
+     }
+    },
+    "required": [
+     "environmentId"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.configcat.com/v1/environments/{environmentId}",
+    "path": [
+     "environmentId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "configcat.delete_integration_link",
+   "name": "Delete integration link",
+   "description": "Delete Integration link",
+   "input": {
+    "type": "object",
+    "properties": {
+     "environmentId": {
+      "type": "string",
+      "description": "The identifier of the Environment."
+     },
+     "settingId": {
+      "type": "integer",
+      "description": "The id of the Setting."
+     },
+     "integrationLinkType": {
+      "type": "string",
+      "description": "The integration's type.",
+      "enum": [
+       "trello",
+       "jira",
+       "monday"
+      ]
+     }
+    },
+    "required": [
+     "environmentId",
+     "integrationLinkType",
+     "settingId"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.configcat.com/v1/environments/{environmentId}/settings/{settingId}/integrationLinks/{integrationLinkType}/{key}",
+    "path": [
+     "environmentId",
+     "settingId",
+     "integrationLinkType"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "configcat.delete_organization_member",
+   "name": "Delete member from organization",
+   "description": "This endpoint removes a Member identified by the `userId` from the given Organization identified by the `organizationId` parameter.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "organizationId": {
+      "type": "string",
+      "description": "The identifier of the Organization."
+     },
+     "userId": {
+      "type": "string",
+      "description": "The identifier of the Member."
+     }
+    },
+    "required": [
+     "organizationId",
+     "userId"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.configcat.com/v1/organizations/{organizationId}/members/{userId}",
+    "path": [
+     "organizationId",
+     "userId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "configcat.delete_permission_group",
+   "name": "Delete permission group",
+   "description": "This endpoint removes a Permission Group identified by the `permissionGroupId` parameter.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "permissionGroupId": {
+      "type": "integer",
+      "description": "The identifier of the Permission Group."
+     }
+    },
+    "required": [
+     "permissionGroupId"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.configcat.com/v1/permissions/{permissionGroupId}",
+    "path": [
+     "permissionGroupId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "configcat.delete_product",
+   "name": "Delete product",
+   "description": "This endpoint removes a Product identified by the `productId` parameter.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "productId": {
+      "type": "string",
+      "description": "The identifier of the Product."
+     }
+    },
+    "required": [
+     "productId"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.configcat.com/v1/products/{productId}",
+    "path": [
+     "productId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "configcat.delete_product_member",
+   "name": "Delete member from product",
+   "description": "This endpoint removes a Member identified by the `userId` from the given Product identified by the `productId` parameter.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "productId": {
+      "type": "string",
+      "description": "The identifier of the Product."
+     },
+     "userId": {
+      "type": "string",
+      "description": "The identifier of the Member."
+     }
+    },
+    "required": [
+     "productId",
+     "userId"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.configcat.com/v1/products/{productId}/members/{userId}",
+    "path": [
+     "productId",
+     "userId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "configcat.delete_segment",
+   "name": "Delete segment",
+   "description": "This endpoint removes a Segment identified by the `segmentId` parameter.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "segmentId": {
+      "type": "string",
+      "description": "The identifier of the Segment."
+     }
+    },
+    "required": [
+     "segmentId"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.configcat.com/v1/segments/{segmentId}",
+    "path": [
+     "segmentId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "configcat.delete_setting",
+   "name": "Delete flag",
+   "description": "This endpoint removes a Feature Flag or Setting from a specified Config, identified by the `configId` parameter.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "settingId": {
+      "type": "integer",
+      "description": "The identifier of the Setting."
+     }
+    },
+    "required": [
+     "settingId"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.configcat.com/v1/settings/{settingId}",
+    "path": [
+     "settingId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "configcat.delete_tag",
+   "name": "Delete tag",
+   "description": "This endpoint deletes a Tag identified by the `tagId` parameter. To remove a Tag from a Feature Flag or Setting use the [Update Flag](#operation/update-setting) endpoint.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "tagId": {
+      "type": "integer",
+      "description": "The identifier of the Tag."
+     }
+    },
+    "required": [
+     "tagId"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.configcat.com/v1/tags/{tagId}",
+    "path": [
+     "tagId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "configcat.get_auditlogs",
+   "name": "List audit log items for product",
+   "description": "This endpoint returns the list of Audit log items for a given Product and the result can be optionally filtered by Config and/or Environment.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "productId": {
+      "type": "string",
+      "description": "The identifier of the Product."
+     },
+     "configId": {
+      "type": "string",
+      "description": "The identifier of the Config."
+     },
+     "environmentId": {
+      "type": "string",
+      "description": "The identifier of the Environment."
+     },
+     "auditLogType": {
+      "type": "string",
+      "description": "Filter Audit logs by Audit log type.",
+      "enum": [
+       "productCreated",
+       "productChanged",
+       "productOwnershipTransferred",
+       "productDeleted",
+       "productsReordered",
+       "teamMemberInvited",
+       "teamMemberInvitationRevoked",
+       "teamMemberJoined",
+       "teamMemberPermissionGroupChanged",
+       "teamMemberRemoved",
+       "teamMemberLeft",
+       "teamMemberInvitationChanged"
+      ]
+     },
+     "fromUtcDateTime": {
+      "type": "string",
+      "description": "Filter Audit logs by starting UTC date."
+     },
+     "toUtcDateTime": {
+      "type": "string",
+      "description": "Filter Audit logs by ending UTC date."
+     }
+    },
+    "required": [
+     "productId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.configcat.com/v1/products/{productId}/auditlogs",
+    "path": [
+     "productId"
+    ],
+    "query": [
+     "configId",
+     "environmentId",
+     "auditLogType",
+     "fromUtcDateTime",
+     "toUtcDateTime"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "configcat.get_config",
+   "name": "Get config",
+   "description": "This endpoint returns the metadata of a Config identified by the `configId`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "configId": {
+      "type": "string",
+      "description": "The identifier of the Config."
+     }
+    },
+    "required": [
+     "configId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.configcat.com/v1/configs/{configId}",
+    "path": [
+     "configId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "configcat.get_configs",
+   "name": "List configs",
+   "description": "This endpoint returns the list of the Configs that belongs to the given Product identified by the `productId` parameter, which can be obtained from the [List Products](#operation/get-products) endpoint.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "productId": {
+      "type": "string",
+      "description": "The identifier of the Product."
+     }
+    },
+    "required": [
+     "productId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.configcat.com/v1/products/{productId}/configs",
+    "path": [
+     "productId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "configcat.get_deleted_settings",
+   "name": "List deleted settings",
+   "description": "This endpoint returns the list of Feature Flags and Settings that were deleted from the given Config.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "configId": {
+      "type": "string",
+      "description": "The identifier of the Config."
+     }
+    },
+    "required": [
+     "configId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.configcat.com/v1/configs/{configId}/deleted-settings",
+    "path": [
+     "configId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "configcat.get_environment",
+   "name": "Get environment",
+   "description": "This endpoint returns the metadata of an Environment identified by the `environmentId`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "environmentId": {
+      "type": "string",
+      "description": "The identifier of the Environment."
+     }
+    },
+    "required": [
+     "environmentId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.configcat.com/v1/environments/{environmentId}",
+    "path": [
+     "environmentId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "configcat.get_environments",
+   "name": "List environments",
+   "description": "This endpoint returns the list of the Environments that belongs to the given Product identified by the `productId` parameter, which can be obtained from the [List Products](#operation/get-products) endpoint.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "productId": {
+      "type": "string",
+      "description": "The identifier of the Product."
+     }
+    },
+    "required": [
+     "productId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.configcat.com/v1/products/{productId}/environments",
+    "path": [
+     "productId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "configcat.get_integration_link_details",
+   "name": "Get integration link",
+   "description": "Get Integration link",
+   "input": {
+    "type": "object",
+    "properties": {
+     "integrationLinkType": {
+      "type": "string",
+      "description": "The integration link's type.",
+      "enum": [
+       "trello",
+       "jira",
+       "monday"
+      ]
+     }
+    },
+    "required": [
+     "integrationLinkType"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.configcat.com/v1/integrationLink/{integrationLinkType}/{key}/details",
+    "path": [
+     "integrationLinkType"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "configcat.get_me",
+   "name": "Get authenticated user details",
+   "description": "Get authenticated user details",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.configcat.com/v1/me",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "configcat.get_organization_auditlogs",
+   "name": "List audit log items for organization",
+   "description": "This endpoint returns the list of Audit log items for a given Organization and the result can be optionally filtered by Product and/or Config and/or Environment.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "organizationId": {
+      "type": "string",
+      "description": "The identifier of the Organization."
+     },
+     "productId": {
+      "type": "string",
+      "description": "The identifier of the Product."
+     },
+     "configId": {
+      "type": "string",
+      "description": "The identifier of the Config."
+     },
+     "environmentId": {
+      "type": "string",
+      "description": "The identifier of the Environment."
+     },
+     "auditLogType": {
+      "type": "string",
+      "description": "Filter Audit logs by Audit log type.",
+      "enum": [
+       "productCreated",
+       "productChanged",
+       "productOwnershipTransferred",
+       "productDeleted",
+       "productsReordered",
+       "teamMemberInvited",
+       "teamMemberInvitationRevoked",
+       "teamMemberJoined",
+       "teamMemberPermissionGroupChanged",
+       "teamMemberRemoved",
+       "teamMemberLeft",
+       "teamMemberInvitationChanged"
+      ]
+     },
+     "fromUtcDateTime": {
+      "type": "string",
+      "description": "Filter Audit logs by starting UTC date."
+     },
+     "toUtcDateTime": {
+      "type": "string",
+      "description": "Filter Audit logs by ending UTC date."
+     }
+    },
+    "required": [
+     "organizationId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.configcat.com/v1/organizations/{organizationId}/auditlogs",
+    "path": [
+     "organizationId"
+    ],
+    "query": [
+     "productId",
+     "configId",
+     "environmentId",
+     "auditLogType",
+     "fromUtcDateTime",
+     "toUtcDateTime"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "configcat.get_organization_members",
+   "name": "List organization members",
+   "description": "This endpoint returns the list of Members that belongs to the given Organization, identified by the `organizationId` parameter.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "organizationId": {
+      "type": "string",
+      "description": "The identifier of the Organization."
+     }
+    },
+    "required": [
+     "organizationId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.configcat.com/v1/organizations/{organizationId}/members",
+    "path": [
+     "organizationId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "configcat.get_organizations",
+   "name": "List organizations",
+   "description": "This endpoint returns the list of the Organizations that belongs to the user.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.configcat.com/v1/organizations",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "configcat.get_permission_group",
+   "name": "Get permission group",
+   "description": "This endpoint returns the metadata of a Permission Group identified by the `permissionGroupId`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "permissionGroupId": {
+      "type": "integer",
+      "description": "The identifier of the Permission Group."
+     }
+    },
+    "required": [
+     "permissionGroupId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.configcat.com/v1/permissions/{permissionGroupId}",
+    "path": [
+     "permissionGroupId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "configcat.get_permission_groups",
+   "name": "List permission groups",
+   "description": "This endpoint returns the list of the Permission Groups that belongs to the given Product identified by the `productId` parameter, which can be obtained from the [List Products](#operation/get-products) endpoint.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "productId": {
+      "type": "string",
+      "description": "The identifier of the Product."
+     }
+    },
+    "required": [
+     "productId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.configcat.com/v1/products/{productId}/permissions",
+    "path": [
+     "productId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "configcat.get_product",
+   "name": "Get product",
+   "description": "This endpoint returns the metadata of a Product identified by the `productId`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "productId": {
+      "type": "string",
+      "description": "The identifier of the Product."
+     }
+    },
+    "required": [
+     "productId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.configcat.com/v1/products/{productId}",
+    "path": [
+     "productId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "configcat.get_product_members",
+   "name": "List product members",
+   "description": "This endpoint returns the list of Members that belongs to the given Product, identified by the `productId` parameter.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "productId": {
+      "type": "string",
+      "description": "The identifier of the Product."
+     }
+    },
+    "required": [
+     "productId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.configcat.com/v1/products/{productId}/members",
+    "path": [
+     "productId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "configcat.get_products",
+   "name": "List products",
+   "description": "This endpoint returns the list of the Products that belongs to the user.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.configcat.com/v1/products",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "configcat.get_sdk_keys",
+   "name": "Get sdk key",
+   "description": "This endpoint returns the SDK Key for your Config in a specified Environment.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "configId": {
+      "type": "string",
+      "description": "The identifier of the Config."
+     },
+     "environmentId": {
+      "type": "string",
+      "description": "The identifier of the Environment."
+     }
+    },
+    "required": [
+     "configId",
+     "environmentId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.configcat.com/v1/configs/{configId}/environments/{environmentId}",
+    "path": [
+     "configId",
+     "environmentId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "configcat.get_segment",
+   "name": "Get segment",
+   "description": "This endpoint returns the metadata of a Segment identified by the `segmentId`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "segmentId": {
+      "type": "string",
+      "description": "The identifier of the Segment."
+     }
+    },
+    "required": [
+     "segmentId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.configcat.com/v1/segments/{segmentId}",
+    "path": [
+     "segmentId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "configcat.get_segments",
+   "name": "List segments",
+   "description": "This endpoint returns the list of the Segments that belongs to the given Product identified by the `productId` parameter, which can be obtained from the [List Products](#operation/get-products) endpoint.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "productId": {
+      "type": "string",
+      "description": "The identifier of the Product."
+     }
+    },
+    "required": [
+     "productId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.configcat.com/v1/products/{productId}/segments",
+    "path": [
+     "productId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "configcat.get_setting",
+   "name": "Get flag",
+   "description": "This endpoint returns the metadata attributes of a Feature Flag or Setting identified by the `settingId` parameter.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "settingId": {
+      "type": "integer",
+      "description": "The identifier of the Setting."
+     }
+    },
+    "required": [
+     "settingId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.configcat.com/v1/settings/{settingId}",
+    "path": [
+     "settingId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "configcat.get_setting_value",
+   "name": "Get value",
+   "description": "This endpoint returns the value of a Feature Flag or Setting in a specified Environment identified by the `environmentId` parameter. The most important attributes in the response are the `value`, `rolloutRules` and `percentageRules`. The `value` represents what the clients will get when the evaluation requests of our SDKs are not matching to any of the defined Targeting or Percentage Rules, or whe",
+   "input": {
+    "type": "object",
+    "properties": {
+     "environmentId": {
+      "type": "string",
+      "description": "The identifier of the Environment."
+     },
+     "settingId": {
+      "type": "integer",
+      "description": "The id of the Setting."
+     }
+    },
+    "required": [
+     "environmentId",
+     "settingId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.configcat.com/v1/environments/{environmentId}/settings/{settingId}/value",
+    "path": [
+     "environmentId",
+     "settingId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "configcat.get_setting_value_by_sdkkey",
+   "name": "Get value",
+   "description": "This endpoint returns the value of a Feature Flag or Setting in a specified Environment identified by the SDK key passed in the `X-CONFIGCAT-SDKKEY` header. The most important attributes in the response are the `value`, `rolloutRules` and `percentageRules`. The `value` represents what the clients will get when the evaluation requests of our SDKs are not matching to any of the defined Targeting or ",
+   "input": {
+    "type": "object",
+    "properties": {
+     "settingKeyOrId": {
+      "type": "string",
+      "description": "The key or id of the Setting."
+     },
+     "X-CONFIGCAT-SDKKEY": {
+      "type": "string",
+      "description": "The ConfigCat SDK Key. (https://app.configcat.com/sdkkey)"
+     }
+    },
+    "required": [
+     "settingKeyOrId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.configcat.com/v1/settings/{settingKeyOrId}/value",
+    "path": [
+     "settingKeyOrId"
+    ],
+    "query": [],
+    "header": [
+     "X-CONFIGCAT-SDKKEY"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "configcat.get_setting_values",
+   "name": "Get values",
+   "description": "This endpoint returns the value of a specified Config's Feature Flags or Settings identified by the `configId` parameter in a specified Environment identified by the `environmentId` parameter. The most important attributes in the response are the `value`, `rolloutRules` and `percentageRules`. The `value` represents what the clients will get when the evaluation requests of our SDKs are not matching",
+   "input": {
+    "type": "object",
+    "properties": {
+     "configId": {
+      "type": "string",
+      "description": "The identifier of the Config."
+     },
+     "environmentId": {
+      "type": "string",
+      "description": "The identifier of the Environment."
+     }
+    },
+    "required": [
+     "configId",
+     "environmentId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.configcat.com/v1/configs/{configId}/environments/{environmentId}/values",
+    "path": [
+     "configId",
+     "environmentId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "configcat.get_settings",
+   "name": "List flags",
+   "description": "This endpoint returns the list of the Feature Flags and Settings defined in a specified Config, identified by the `configId` parameter.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "configId": {
+      "type": "string",
+      "description": "The identifier of the Config."
+     }
+    },
+    "required": [
+     "configId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.configcat.com/v1/configs/{configId}/settings",
+    "path": [
+     "configId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "configcat.get_settings_by_tag",
+   "name": "List settings by tag",
+   "description": "This endpoint returns the list of the Settings that has the specified Tag, identified by the `tagId` parameter.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "tagId": {
+      "type": "integer",
+      "description": "The identifier of the Tag."
+     }
+    },
+    "required": [
+     "tagId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.configcat.com/v1/tags/{tagId}/settings",
+    "path": [
+     "tagId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "configcat.get_tag",
+   "name": "Get tag",
+   "description": "This endpoint returns the metadata of a Tag identified by the `tagId`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "tagId": {
+      "type": "integer",
+      "description": "The identifier of the Tag."
+     }
+    },
+    "required": [
+     "tagId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.configcat.com/v1/tags/{tagId}",
+    "path": [
+     "tagId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "configcat.get_tags",
+   "name": "List tags",
+   "description": "This endpoint returns the list of the Tags in a specified Product, identified by the `productId` parameter.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "productId": {
+      "type": "string",
+      "description": "The identifier of the Product."
+     }
+    },
+    "required": [
+     "productId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.configcat.com/v1/products/{productId}/tags",
+    "path": [
+     "productId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "configcat.invite_member",
+   "name": "Invite member",
+   "description": "This endpoint invites a Member into the given Product identified by the `productId` parameter.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "productId": {
+      "type": "string",
+      "description": "The identifier of the Product."
+     },
+     "emails": {
+      "type": "array",
+      "description": ""
+     },
+     "permissionGroupId": {
+      "type": "integer",
+      "description": ""
+     }
+    },
+    "required": [
+     "emails",
+     "permissionGroupId",
+     "productId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.configcat.com/v1/products/{productId}/members/invite",
+    "path": [
+     "productId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "emails",
+     "permissionGroupId"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "configcat.jira_add_or_update_integration_link",
+   "name": "Jira add or update integration link",
+   "description": "Creates integration link.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "environmentId": {
+      "type": "string",
+      "description": "The identifier of the Environment."
+     },
+     "settingId": {
+      "type": "integer",
+      "description": "The id of the Setting."
+     },
+     "clientKey": {
+      "type": "string",
+      "description": ""
+     },
+     "description": {
+      "type": "string",
+      "description": ""
+     },
+     "jiraJwtToken": {
+      "type": "string",
+      "description": ""
+     },
+     "url": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "clientKey",
+     "environmentId",
+     "jiraJwtToken",
+     "settingId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.configcat.com/v1/jira/environments/{environmentId}/settings/{settingId}/integrationLinks/{key}",
+    "path": [
+     "environmentId",
+     "settingId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "clientKey",
+     "description",
+     "jiraJwtToken",
+     "url"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "configcat.post_v1_code_references",
+   "name": "Configcat post v1 code references",
+   "description": "Creates a code reference.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "activeBranches": {
+      "type": "array",
+      "description": "The currently active branches of the repository. Each previously uploaded report that belongs to a non-reported active branch is being deleted."
+     },
+     "branch": {
+      "type": "string",
+      "description": "The source control branch on where the scan was performed. (Source of the branch selector on the ConfigCat Dashboard)"
+     },
+     "commitHash": {
+      "type": "string",
+      "description": "The related commit's hash. (Appears on the ConfigCat Dashboard)"
+     },
+     "commitUrl": {
+      "type": "string",
+      "description": "The related commit's URL. (Appears on the ConfigCat Dashboard)"
+     },
+     "configId": {
+      "type": "string",
+      "description": "The Config's identifier the scanning was performed against."
+     },
+     "flagReferences": {
+      "type": "array",
+      "description": "The actual code reference collection."
+     },
+     "repository": {
+      "type": "string",
+      "description": "The source control repository that contains the scanned code. (Source of the repository selector on the ConfigCat Dashboard)"
+     },
+     "uploader": {
+      "type": "string",
+      "description": "The scanning tool's name. (Appears on the ConfigCat Dashboard)"
+     }
+    },
+    "required": [
+     "branch",
+     "configId",
+     "repository"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.configcat.com/v1/code-references",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "activeBranches",
+     "branch",
+     "commitHash",
+     "commitUrl",
+     "configId",
+     "flagReferences",
+     "repository",
+     "uploader"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "configcat.post_v1_code_references_delete_reports",
+   "name": "Configcat post v1 code references delete reports",
+   "description": "Creates a delete report.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "branch": {
+      "type": "string",
+      "description": "If it's set, only this branch's reports belonging to the given repository will be deleted."
+     },
+     "configId": {
+      "type": "string",
+      "description": "The Config's identifier from where the reports should be deleted."
+     },
+     "repository": {
+      "type": "string",
+      "description": "The source control repository which's reports should be deleted."
+     },
+     "settingId": {
+      "type": "integer",
+      "description": "If it's set, only this setting's reports belonging to the given repository will be deleted."
+     }
+    },
+    "required": [
+     "configId",
+     "repository"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.configcat.com/v1/code-references/delete-reports",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "branch",
+     "configId",
+     "repository",
+     "settingId"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "configcat.post_v1_jira_Connect",
+   "name": "Configcat post v1 jira connect",
+   "description": "Creates a connect.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "clientKey": {
+      "type": "string",
+      "description": ""
+     },
+     "jiraJwtToken": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "clientKey",
+     "jiraJwtToken"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.configcat.com/v1/jira/Connect",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "clientKey",
+     "jiraJwtToken"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "configcat.replace_setting_value",
+   "name": "Replace value",
+   "description": "This endpoint replaces the whole value of a Feature Flag or Setting in a specified Environment. Only the `value`, `rolloutRules` and `percentageRules` attributes are modifiable by this endpoint. **Important:** As this endpoint is doing a complete replace, it's important to set every other attribute that you don't want to change in its original state. Not listing one means that it will reset. For e",
+   "input": {
+    "type": "object",
+    "properties": {
+     "environmentId": {
+      "type": "string",
+      "description": "The identifier of the Environment."
+     },
+     "settingId": {
+      "type": "integer",
+      "description": "The id of the Setting."
+     },
+     "reason": {
+      "type": "string",
+      "description": "The reason note for the Audit Log if the Product's \"Config changes require a reason\" preference is turned on."
+     },
+     "rolloutPercentageItems": {
+      "type": "array",
+      "description": "The percentage rule collection."
+     },
+     "rolloutRules": {
+      "type": "array",
+      "description": "The targeting rule collection."
+     },
+     "value": {
+      "type": "string",
+      "description": "The value to serve. It must respect the setting type."
+     }
+    },
+    "required": [
+     "environmentId",
+     "settingId"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.configcat.com/v1/environments/{environmentId}/settings/{settingId}/value",
+    "path": [
+     "environmentId",
+     "settingId"
+    ],
+    "query": [
+     "reason"
+    ],
+    "header": [],
+    "body": [
+     "rolloutPercentageItems",
+     "rolloutRules",
+     "value"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "configcat.replace_setting_value_by_sdkkey",
+   "name": "Replace value",
+   "description": "This endpoint replaces the value of a Feature Flag or Setting in a specified Environment identified by the SDK key passed in the `X-CONFIGCAT-SDKKEY` header. Only the `value`, `rolloutRules` and `percentageRules` attributes are modifiable by this endpoint. **Important:** As this endpoint is doing a complete replace, it's important to set every other attribute that you don't want to change to its o",
+   "input": {
+    "type": "object",
+    "properties": {
+     "settingKeyOrId": {
+      "type": "string",
+      "description": "The key or id of the Setting."
+     },
+     "reason": {
+      "type": "string",
+      "description": "The reason note for the Audit Log if the Product's \"Config changes require a reason\" preference is turned on."
+     },
+     "X-CONFIGCAT-SDKKEY": {
+      "type": "string",
+      "description": "The ConfigCat SDK Key. (https://app.configcat.com/sdkkey)"
+     },
+     "rolloutPercentageItems": {
+      "type": "array",
+      "description": "The percentage rule collection."
+     },
+     "rolloutRules": {
+      "type": "array",
+      "description": "The targeting rule collection."
+     },
+     "value": {
+      "type": "string",
+      "description": "The value to serve. It must respect the setting type."
+     }
+    },
+    "required": [
+     "settingKeyOrId"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.configcat.com/v1/settings/{settingKeyOrId}/value",
+    "path": [
+     "settingKeyOrId"
+    ],
+    "query": [
+     "reason"
+    ],
+    "header": [
+     "X-CONFIGCAT-SDKKEY"
+    ],
+    "body": [
+     "rolloutPercentageItems",
+     "rolloutRules",
+     "value"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "configcat.update_config",
+   "name": "Update config",
+   "description": "This endpoint updates a Config identified by the `configId` parameter.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "configId": {
+      "type": "string",
+      "description": "The identifier of the Config."
+     },
+     "description": {
+      "type": "string",
+      "description": ""
+     },
+     "name": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "configId"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.configcat.com/v1/configs/{configId}",
+    "path": [
+     "configId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "description",
+     "name"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "configcat.update_environment",
+   "name": "Update environment",
+   "description": "This endpoint updates an Environment identified by the `environmentId` parameter.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "environmentId": {
+      "type": "string",
+      "description": "The identifier of the Environment."
+     },
+     "color": {
+      "type": "string",
+      "description": ""
+     },
+     "description": {
+      "type": "string",
+      "description": ""
+     },
+     "name": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "environmentId"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.configcat.com/v1/environments/{environmentId}",
+    "path": [
+     "environmentId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "color",
+     "description",
+     "name"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "configcat.update_permission_group",
+   "name": "Update permission group",
+   "description": "This endpoint updates a Permission Group identified by the `permissionGroupId` parameter.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "permissionGroupId": {
+      "type": "integer",
+      "description": "The identifier of the Permission Group."
+     },
+     "accessType": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "readOnly",
+       "full",
+       "custom"
+      ]
+     },
+     "canCreateOrUpdateConfig": {
+      "type": "boolean",
+      "description": ""
+     },
+     "canCreateOrUpdateEnvironment": {
+      "type": "boolean",
+      "description": ""
+     },
+     "canCreateOrUpdateSegments": {
+      "type": "boolean",
+      "description": ""
+     },
+     "canCreateOrUpdateSetting": {
+      "type": "boolean",
+      "description": ""
+     },
+     "canCreateOrUpdateTag": {
+      "type": "boolean",
+      "description": ""
+     },
+     "canDeleteConfig": {
+      "type": "boolean",
+      "description": ""
+     },
+     "canDeleteEnvironment": {
+      "type": "boolean",
+      "description": ""
+     },
+     "canDeleteSegments": {
+      "type": "boolean",
+      "description": ""
+     },
+     "canDeleteSetting": {
+      "type": "boolean",
+      "description": ""
+     },
+     "canDeleteTag": {
+      "type": "boolean",
+      "description": ""
+     },
+     "canManageIntegrations": {
+      "type": "boolean",
+      "description": ""
+     },
+     "canManageMembers": {
+      "type": "boolean",
+      "description": ""
+     },
+     "canManageProductPreferences": {
+      "type": "boolean",
+      "description": ""
+     },
+     "canManageWebhook": {
+      "type": "boolean",
+      "description": ""
+     },
+     "canRotateSdkKey": {
+      "type": "boolean",
+      "description": ""
+     },
+     "canTagSetting": {
+      "type": "boolean",
+      "description": ""
+     },
+     "canUseExportImport": {
+      "type": "boolean",
+      "description": ""
+     },
+     "canViewProductAuditLog": {
+      "type": "boolean",
+      "description": ""
+     },
+     "canViewProductStatistics": {
+      "type": "boolean",
+      "description": ""
+     },
+     "canViewSdkKey": {
+      "type": "boolean",
+      "description": ""
+     },
+     "environmentAccesses": {
+      "type": "array",
+      "description": ""
+     },
+     "name": {
+      "type": "string",
+      "description": ""
+     },
+     "newEnvironmentAccessType": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "full",
+       "readOnly",
+       "none"
+      ]
+     }
+    },
+    "required": [
+     "permissionGroupId"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.configcat.com/v1/permissions/{permissionGroupId}",
+    "path": [
+     "permissionGroupId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "accessType",
+     "canCreateOrUpdateConfig",
+     "canCreateOrUpdateEnvironment",
+     "canCreateOrUpdateSegments",
+     "canCreateOrUpdateSetting",
+     "canCreateOrUpdateTag",
+     "canDeleteConfig",
+     "canDeleteEnvironment",
+     "canDeleteSegments",
+     "canDeleteSetting",
+     "canDeleteTag",
+     "canManageIntegrations",
+     "canManageMembers",
+     "canManageProductPreferences",
+     "canManageWebhook",
+     "canRotateSdkKey",
+     "canTagSetting",
+     "canUseExportImport",
+     "canViewProductAuditLog",
+     "canViewProductStatistics",
+     "canViewSdkKey",
+     "environmentAccesses",
+     "name",
+     "newEnvironmentAccessType"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "configcat.update_product",
+   "name": "Update product",
+   "description": "This endpoint updates a Product identified by the `productId` parameter.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "productId": {
+      "type": "string",
+      "description": "The identifier of the Product."
+     },
+     "description": {
+      "type": "string",
+      "description": ""
+     },
+     "name": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "productId"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.configcat.com/v1/products/{productId}",
+    "path": [
+     "productId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "description",
+     "name"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "configcat.update_segment",
+   "name": "Update segment",
+   "description": "This endpoint updates a Segment identified by the `segmentId` parameter.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "segmentId": {
+      "type": "string",
+      "description": "The identifier of the Segment."
+     },
+     "comparator": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "isOneOf",
+       "isNotOneOf",
+       "contains",
+       "doesNotContain",
+       "semVerIsOneOf",
+       "semVerIsNotOneOf",
+       "semVerLess",
+       "semVerLessOrEquals",
+       "semVerGreater",
+       "semVerGreaterOrEquals",
+       "numberEquals",
+       "numberDoesNotEqual"
+      ]
+     },
+     "comparisonAttribute": {
+      "type": "string",
+      "description": ""
+     },
+     "comparisonValue": {
+      "type": "string",
+      "description": ""
+     },
+     "description": {
+      "type": "string",
+      "description": ""
+     },
+     "name": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "segmentId"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.configcat.com/v1/segments/{segmentId}",
+    "path": [
+     "segmentId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "comparator",
+     "comparisonAttribute",
+     "comparisonValue",
+     "description",
+     "name"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "configcat.update_setting",
+   "name": "Update flag",
+   "description": "This endpoint updates the metadata of a Feature Flag or Setting with a collection of [JSON Patch](http://jsonpatch.com) operations in a specified Config. Only the `name`, `hint` and `tags` attributes are modifiable by this endpoint. The `tags` attribute is a simple collection of the [tag IDs](#operation/get-tags) attached to the given setting. The advantage of using JSON Patch is that you can desc",
+   "input": {
+    "type": "object",
+    "properties": {
+     "settingId": {
+      "type": "integer",
+      "description": "The identifier of the Setting."
+     },
+     "operations": {
+      "type": "array",
+      "description": ""
+     }
+    },
+    "required": [
+     "settingId"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.configcat.com/v1/settings/{settingId}",
+    "path": [
+     "settingId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "operations"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "configcat.update_setting_value",
+   "name": "Update value",
+   "description": "This endpoint updates the value of a Feature Flag or Setting with a collection of [JSON Patch](http://jsonpatch.com) operations in a specified Environment. Only the `value`, `rolloutRules` and `percentageRules` attributes are modifiable by this endpoint. The advantage of using JSON Patch is that you can describe individual update operations on a resource without touching attributes that you don't ",
+   "input": {
+    "type": "object",
+    "properties": {
+     "environmentId": {
+      "type": "string",
+      "description": "The identifier of the Environment."
+     },
+     "settingId": {
+      "type": "integer",
+      "description": "The id of the Setting."
+     },
+     "reason": {
+      "type": "string",
+      "description": "The reason note for the Audit Log if the Product's \"Config changes require a reason\" preference is turned on."
+     },
+     "operations": {
+      "type": "array",
+      "description": ""
+     }
+    },
+    "required": [
+     "environmentId",
+     "settingId"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.configcat.com/v1/environments/{environmentId}/settings/{settingId}/value",
+    "path": [
+     "environmentId",
+     "settingId"
+    ],
+    "query": [
+     "reason"
+    ],
+    "header": [],
+    "body": [
+     "operations"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "configcat.update_setting_value_by_sdkkey",
+   "name": "Update value",
+   "description": "This endpoint updates the value of a Feature Flag or Setting with a collection of [JSON Patch](http://jsonpatch.com) operations in a specified Environment identified by the SDK key passed in the `X-CONFIGCAT-SDKKEY` header. Only the `value`, `rolloutRules` and `percentageRules` attributes are modifiable by this endpoint. The advantage of using JSON Patch is that you can describe individual update ",
+   "input": {
+    "type": "object",
+    "properties": {
+     "settingKeyOrId": {
+      "type": "string",
+      "description": "The key or id of the Setting."
+     },
+     "reason": {
+      "type": "string",
+      "description": "The reason note for the Audit Log if the Product's \"Config changes require a reason\" preference is turned on."
+     },
+     "X-CONFIGCAT-SDKKEY": {
+      "type": "string",
+      "description": "The ConfigCat SDK Key. (https://app.configcat.com/sdkkey)"
+     },
+     "operations": {
+      "type": "array",
+      "description": ""
+     }
+    },
+    "required": [
+     "settingKeyOrId"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.configcat.com/v1/settings/{settingKeyOrId}/value",
+    "path": [
+     "settingKeyOrId"
+    ],
+    "query": [
+     "reason"
+    ],
+    "header": [
+     "X-CONFIGCAT-SDKKEY"
+    ],
+    "body": [
+     "operations"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "configcat.update_tag",
+   "name": "Update tag",
+   "description": "This endpoint updates a Tag identified by the `tagId` parameter.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "tagId": {
+      "type": "integer",
+      "description": "The identifier of the Tag."
+     },
+     "color": {
+      "type": "string",
+      "description": ""
+     },
+     "name": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "tagId"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.configcat.com/v1/tags/{tagId}",
+    "path": [
+     "tagId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "color",
+     "name"
+    ],
+    "body_format": "json"
+   }
+  }
+ ]
+}

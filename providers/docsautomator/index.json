@@ -1,0 +1,778 @@
+{
+ "_": "GENERATED \u2014 what an authoring tool needs to FIND an operation. The calling table is the .lua beside it.",
+ "provider": "docsautomator",
+ "source": "https://docs.docsautomator.co/openapi.json",
+ "operations": [
+  {
+   "slug": "docsautomator.cancel_signing_session",
+   "name": "Cancel signing session",
+   "description": "Cancels an active signing session. Cannot cancel sessions that are already completed.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sessionId": {
+      "type": "string",
+      "description": "The signing session ID."
+     },
+     "reason": {
+      "type": "string",
+      "description": "Optional cancellation reason."
+     }
+    },
+    "required": [
+     "sessionId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.docsautomator.co/esign/sessions/{sessionId}/cancel",
+    "path": [
+     "sessionId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "reason"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "docsautomator.create_automation",
+   "name": "Create automation",
+   "description": "Creates a new automation with the specified data source and optional Google Doc template. PDF templates are uploaded through the DocsAutomator app. A new automation starts in test mode (`isPreview: true`): its documents are watermarked and free. To make live documents, switch it to live with `updateAutomation` and `{\"isPreview\": false}`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "title": {
+      "type": "string",
+      "description": "Name for the automation."
+     },
+     "dataSourceName": {
+      "type": "string",
+      "description": "The data source type.",
+      "enum": [
+       "Airtable",
+       "API",
+       "ClickUp",
+       "Glide",
+       "Google Sheets",
+       "Make",
+       "n8n",
+       "Noloco",
+       "SmartSuite",
+       "Zapier"
+      ]
+     },
+     "docTemplateLink": {
+      "type": "string",
+      "description": "Google Doc template URL."
+     }
+    },
+    "required": [
+     "dataSourceName",
+     "title"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.docsautomator.co/createAutomation",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "title",
+     "dataSourceName",
+     "docTemplateLink"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "docsautomator.create_document",
+   "name": "Create a document",
+   "description": "Triggers document generation from an automation template (Google Doc or PDF). Supports sync mode (waits for result) and async mode (returns a job ID for polling). The response includes PDF and optional Google Doc URLs. When the automation has e-signatures enabled and the template contains e-sign placeholders, a signing session is automatically created and included in the response.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "automationId": {
+      "type": "string",
+      "description": "The automation ID to execute."
+     },
+     "docId": {
+      "type": "string",
+      "description": "Also accepted instead of `automationId`, so existing integrations keep working. Send only one of the two: different values in `automationId` and `docId` fail with HTTP 400."
+     },
+     "data": {
+      "type": "object",
+      "description": "Key-value pairs for template placeholders. Keys must match placeholder names in your template (Google Doc syntax or PDF placeholder names). Line items are also included inside this object as `line_items_1`, `line_items_2`, etc. \u2014 each is an array of objects whose keys match line item placeholder names. Use the `children` key within line item objects for nested line items (up to 2 levels)."
+     },
+     "documentName": {
+      "type": "string",
+      "description": "Custom name for the generated document. Overrides the automation's document name setting."
+     },
+     "async": {
+      "type": "boolean",
+      "description": "When `true`, returns immediately with a `jobId` (HTTP 202). Poll `GET /job/{jobId}` for the result. When `false` (default), the request blocks until the document is ready (up to 5 minutes)."
+     },
+     "webhookParams": {
+      "type": "object",
+      "description": "Custom parameters passed through to webhook notifications and stored on signing sessions. Returned in webhook payloads as `webhookParams` (an identical `additionalParams` key also exists, kept only for legacy integrations). The trigger record identifier (`recId`, Notion `pageId`, ClickUp `taskId`, Google Sheets `rowNumber`) is folded in automatically \u2014 your own keys are never overwritten."
+     },
+     "existingPdfs": {
+      "type": "array",
+      "description": "PDF URLs to merge or prepend to the generated document."
+     },
+     "docTemplateLink": {
+      "type": "string",
+      "description": "Override the automation's Google Doc template URL for this request only."
+     },
+     "wordTemplateLink": {
+      "type": "string",
+      "description": "Word templates only. An https link to a .docx file (up to 25 MB) to use instead of the automation's Word template for this request only. The data, mapping, signing and output settings still come from the automation in docId."
+     },
+     "wordTemplateBase64": {
+      "type": "string",
+      "description": "Word templates only. The .docx file itself, base64 encoded (up to 25 MB before encoding), to use instead of the automation's Word template for this request only. Send either wordTemplateLink or wordTemplateBase64, not both."
+     },
+     "pdfTemplateLink": {
+      "type": "string",
+      "description": "PDF templates only. An https link to a PDF (up to 25 MB) to use as the background for this request only. The automation's saved fields are placed on it at their saved positions; the PDF must have every page that holds a saved field. On a page with a different size, fields keep their distance from the top-left corner and are not scaled, and the response lists the page in warnings."
+     },
+     "pdfTemplateBase64": {
+      "type": "string",
+      "description": "PDF templates only. The PDF itself, base64 encoded (up to 25 MB before encoding), to use as the background for this request only. Send either pdfTemplateLink or pdfTemplateBase64, not both."
+     },
+     "recipients": {
+      "type": "array",
+      "description": "Who signs or accepts this document. Each entry names one of the automation's signers by number and gives the person's email and, optionally, name. A listed signer's email and name replace the saved ones for this document only; signers you leave out keep their saved setup. The automation decides how many signers there are, so this never adds a signer. `signer` can be left out when the automation ha"
+     }
+    },
+    "required": [
+     "automationId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.docsautomator.co/createDocument",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "automationId",
+     "docId",
+     "data",
+     "documentName",
+     "async",
+     "webhookParams",
+     "existingPdfs",
+     "docTemplateLink",
+     "wordTemplateLink",
+     "wordTemplateBase64",
+     "pdfTemplateLink",
+     "pdfTemplateBase64",
+     "recipients"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "docsautomator.delete_automation",
+   "name": "Delete automation",
+   "description": "Permanently deletes an automation and all its settings. This action cannot be undone.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "docId": {
+      "type": "string",
+      "description": "The automation ID to delete."
+     }
+    },
+    "required": [
+     "docId"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.docsautomator.co/deleteAutomation",
+    "path": [],
+    "query": [
+     "docId"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "docsautomator.duplicate_automation",
+   "name": "Duplicate automation",
+   "description": "Creates a copy of an existing automation with ' COPY' appended to the title. The copy starts in test mode (`isPreview: true`).",
+   "input": {
+    "type": "object",
+    "properties": {
+     "automationId": {
+      "type": "string",
+      "description": "The automation ID to duplicate."
+     }
+    },
+    "required": [
+     "automationId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.docsautomator.co/duplicateAutomation",
+    "path": [],
+    "query": [
+     "automationId"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "docsautomator.duplicate_template",
+   "name": "Duplicate template",
+   "description": "Creates a copy of the Google Doc template associated with an automation. The new template is saved to your Google Drive.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "automationId": {
+      "type": "string",
+      "description": "The automation ID."
+     },
+     "newTemplateName": {
+      "type": "string",
+      "description": "Custom name for the duplicated template. Defaults to the automation title."
+     }
+    },
+    "required": [
+     "automationId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.docsautomator.co/duplicateGoogleDocTemplate",
+    "path": [],
+    "query": [
+     "automationId",
+     "newTemplateName"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "docsautomator.get_automation",
+   "name": "Get automation",
+   "description": "Retrieves a single automation by ID with full configuration details.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "automationId": {
+      "type": "string",
+      "description": "The automation ID. Either `automationId` or `docId` is required."
+     },
+     "docId": {
+      "type": "string",
+      "description": "Alternative to `automationId`."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.docsautomator.co/automation",
+    "path": [],
+    "query": [
+     "automationId",
+     "docId"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "docsautomator.get_job_status",
+   "name": "Get job status",
+   "description": "Check the status of an async document creation job. Poll this endpoint after receiving a `jobId` from `POST /createDocument` with `async: true`. Progress values: 10% (queued) \u2192 20% (fetching data) \u2192 30% (processing template) \u2192 40% (generating PDF) \u2192 100% (complete).",
+   "input": {
+    "type": "object",
+    "properties": {
+     "jobId": {
+      "type": "string",
+      "description": "The job ID returned from async document creation."
+     }
+    },
+    "required": [
+     "jobId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.docsautomator.co/job/{jobId}",
+    "path": [
+     "jobId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "docsautomator.get_queue_stats",
+   "name": "Get queue statistics",
+   "description": "Returns the number of your workspace's document generation jobs in each state. Every count covers your workspace only. The queue keeps completed jobs for a few hours and failed jobs for 7 days, so older jobs are not counted.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.docsautomator.co/queue/stats",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "docsautomator.get_signing_audit",
+   "name": "Get audit trail",
+   "description": "Returns the complete chronological audit trail for a signing session, including all events like invitations, views, signatures, and completions.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sessionId": {
+      "type": "string",
+      "description": "The signing session ID."
+     }
+    },
+    "required": [
+     "sessionId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.docsautomator.co/esign/sessions/{sessionId}/audit",
+    "path": [
+     "sessionId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "docsautomator.get_signing_links",
+   "name": "Get signing links",
+   "description": "Retrieves signing links for all signers in a session. Useful for manual delivery mode or resending links.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sessionId": {
+      "type": "string",
+      "description": "The signing session ID."
+     }
+    },
+    "required": [
+     "sessionId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.docsautomator.co/esign/sessions/{sessionId}/links",
+    "path": [
+     "sessionId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "docsautomator.get_signing_session",
+   "name": "Get session details",
+   "description": "Returns comprehensive signing session information including signer statuses, e-sign fields with positions, document hashes, and completion timestamps.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sessionId": {
+      "type": "string",
+      "description": "The signing session ID."
+     }
+    },
+    "required": [
+     "sessionId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.docsautomator.co/esign/sessions/{sessionId}",
+    "path": [
+     "sessionId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "docsautomator.list_automations",
+   "name": "List automations",
+   "description": "Retrieves all automations in the workspace with their configuration details.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.docsautomator.co/automations",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "docsautomator.list_placeholders",
+   "name": "List template placeholders",
+   "description": "Extracts and returns all placeholders from the automation's Google Doc template. Placeholders are grouped into `main` (top-level) and line item groups (`line_items_1`, `line_items_2`, etc.).",
+   "input": {
+    "type": "object",
+    "properties": {
+     "automationId": {
+      "type": "string",
+      "description": "The automation ID. The automation must have a template configured. Either `automationId` or `docId` is required."
+     },
+     "docId": {
+      "type": "string",
+      "description": "Alternative to `automationId`."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.docsautomator.co/listPlaceholdersV2",
+    "path": [],
+    "query": [
+     "automationId",
+     "docId"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "docsautomator.list_signing_sessions",
+   "name": "List signing sessions",
+   "description": "Retrieves signing sessions with optional filtering by status or signer email. Returns paginated results.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "status": {
+      "type": "string",
+      "description": "Filter by session status.",
+      "enum": [
+       "pending",
+       "in_progress",
+       "completed",
+       "declined",
+       "cancelled"
+      ]
+     },
+     "email": {
+      "type": "string",
+      "description": "Filter by signer email (partial match, case-insensitive)."
+     },
+     "page": {
+      "type": "integer",
+      "description": "Page number."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Results per page (max 250)."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.docsautomator.co/esign/sessions",
+    "path": [],
+    "query": [
+     "status",
+     "email",
+     "page",
+     "limit"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "docsautomator.resend_signing_invite",
+   "name": "Resend signing invitation",
+   "description": "Resends the signing invitation email to a specific signer. Useful when the original email was missed or expired.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sessionId": {
+      "type": "string",
+      "description": "The signing session ID."
+     },
+     "signerIndex": {
+      "type": "integer",
+      "description": "The signer index (1-based)."
+     }
+    },
+    "required": [
+     "sessionId",
+     "signerIndex"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.docsautomator.co/esign/sessions/{sessionId}/resend/{signerIndex}",
+    "path": [
+     "sessionId",
+     "signerIndex"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "docsautomator.send_test_email",
+   "name": "Send test email",
+   "description": "Sends a test email with a sample PDF attachment to verify your email configuration. Rate limited to 25 emails per hour per automation.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "automationId": {
+      "type": "string",
+      "description": "The automation ID."
+     },
+     "recipient": {
+      "type": "string",
+      "description": "Email address to send the test to."
+     }
+    },
+    "required": [
+     "automationId",
+     "recipient"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.docsautomator.co/sendTestEmail",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "automationId",
+     "recipient"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "docsautomator.update_automation",
+   "name": "Update automation",
+   "description": "Updates an existing automation's settings. Send only the settings you want to change. Settings you leave out keep their values. A text, number, true-or-false or list setting is replaced by the value you send. An object setting is merged: keys you send change, and keys you leave out stay. Some settings inside an object are always replaced whole; their descriptions say so. `GET /automation` returns ",
+   "input": {
+    "type": "object",
+    "properties": {
+     "docId": {
+      "type": "string",
+      "description": "The automation ID to update."
+     },
+     "title": {
+      "type": "string",
+      "description": "Automation name. It cannot be empty."
+     },
+     "description": {
+      "type": "string",
+      "description": "What the automation is for and what data it needs, at most 2,000 characters. API clients and AI tools read it to pick the right automation."
+     },
+     "docTemplateLink": {
+      "type": "string",
+      "description": "Google Doc template URL."
+     },
+     "newDocumentNameField": {
+      "type": "string",
+      "description": "The field in your data source whose value becomes the file name of new documents."
+     },
+     "attachmentField": {
+      "type": "string",
+      "description": "The field in your data source that receives the PDF."
+     },
+     "overwriteAttachment": {
+      "type": "boolean",
+      "description": "`true` replaces the file already in the attachment field. `false` adds the new PDF next to it."
+     },
+     "attachPdfToClickUpTask": {
+      "type": "boolean",
+      "description": "ClickUp only. Attach the PDF to the task."
+     },
+     "clickUpAttachmentFieldId": {
+      "type": "string",
+      "description": "ClickUp only. The id of a Files custom field that receives the PDF. Send an empty text (`\"\"`) to attach the PDF to the task itself."
+     },
+     "locale": {
+      "type": "string",
+      "description": "Locale for date and number formatting (for example `en-us`, `de-de`)."
+     },
+     "dateFormat": {
+      "type": "object",
+      "description": "How dates are written. Merges with the stored object."
+     },
+     "formatNumbersWithLocale": {
+      "type": "boolean",
+      "description": "Format numbers in the automation's locale."
+     },
+     "fields": {
+      "type": "string",
+      "description": "The mapping of placeholders to data source fields, as JSON text (a string, not an object), for example `\"{\\\"client_name\\\":\\\"fldXXXX\\\"}\"` with an Airtable field id. The mapping is replaced whole. Send every placeholder mapping you want to keep."
+     },
+     "isActive": {
+      "type": "boolean",
+      "description": "Whether the automation is active."
+     },
+     "isPreview": {
+      "type": "boolean",
+      "description": "Test mode. `true` makes watermarked test documents, `false` makes live documents. New automations and copies start with `true`. Going live needs a confirmed account email."
+     },
+     "pdfExpiration": {
+      "type": "string",
+      "description": "PDF expiration period. `never` (the default) keeps PDFs until you delete them, `immediate` deletes them about 5 minutes after generation, and other values set the expiration window.",
+      "enum": [
+       "never",
+       "immediate",
+       "oneday",
+       "threedays",
+       "oneweek",
+       "twoweeks",
+       "onemonth",
+       "threemonths",
+       "sixmonths",
+       "oneyear"
+      ]
+     },
+     "imageOptions": {
+      "type": "object",
+      "description": "Quality and largest width of every image in the document. Lower quality and a smaller width make smaller files. Merges with the stored object."
+     },
+     "saveGoogleDoc": {
+      "type": "boolean",
+      "description": "Save a Google Doc copy next to the PDF."
+     },
+     "googleDocDestinationFolderUrl": {
+      "type": "string",
+      "description": "Google Drive folder URL for saved documents."
+     },
+     "googleDocUrlField": {
+      "type": "string",
+      "description": "The field in your data source that receives the link to the Google Doc copy."
+     },
+     "pdfUrlField": {
+      "type": "string",
+      "description": "The field in your data source that receives the link to the PDF."
+     },
+     "saveWordDoc": {
+      "type": "boolean",
+      "description": "Also save a Word (.docx) file."
+     },
+     "saveWordInDriveFolderId": {
+      "type": "string",
+      "description": "The id of the Google Drive folder for the Word file."
+     },
+     "saveWordSubfolderName": {
+      "type": "string",
+      "description": "A subfolder for the Word file inside that folder. It can contain placeholders."
+     },
+     "wordAttachmentField": {
+      "type": "string",
+      "description": "The field in your data source that receives the Word file."
+     },
+     "overwriteWordAttachment": {
+      "type": "boolean",
+      "description": "`true` replaces the Word file already in the field. `false` adds the new one next to it."
+     },
+     "options": {
+      "type": "object",
+      "description": "Settings for single placeholders. Send only the settings you want to change. Each list or map you send replaces the stored one whole. `GET /automation` returns the current values."
+     },
+     "esignature": {
+      "type": "object",
+      "description": "The signing or acceptance step, in the shape `GET /automation` returns it. Setting up signers for the first time switches signing on, unless you also send `enabled`. Merges with the stored object. `signers` and `notificationRecipients` are replaced as whole lists. Each email template in `emailConfig` (`invitation`, `reminder`, `completion`) is replaced whole. An invalid value is refused with a 400"
+     },
+     "approval": {
+      "type": "object",
+      "description": "Approval before a document goes out. Business plan and up; on other plans the only change allowed is `{\"enabled\": false}`. Approvers from data source fields are set in the app only. Merges with the stored object."
+     }
+    },
+    "required": [
+     "docId"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.docsautomator.co/updateAutomation",
+    "path": [],
+    "query": [
+     "docId"
+    ],
+    "header": [],
+    "body": [
+     "title",
+     "description",
+     "docTemplateLink",
+     "newDocumentNameField",
+     "attachmentField",
+     "overwriteAttachment",
+     "attachPdfToClickUpTask",
+     "clickUpAttachmentFieldId",
+     "locale",
+     "dateFormat",
+     "formatNumbersWithLocale",
+     "fields",
+     "isActive",
+     "isPreview",
+     "pdfExpiration",
+     "imageOptions",
+     "saveGoogleDoc",
+     "googleDocDestinationFolderUrl",
+     "googleDocUrlField",
+     "pdfUrlField",
+     "saveWordDoc",
+     "saveWordInDriveFolderId",
+     "saveWordSubfolderName",
+     "wordAttachmentField",
+     "overwriteWordAttachment",
+     "options",
+     "esignature",
+     "approval"
+    ],
+    "body_format": "json"
+   }
+  }
+ ]
+}

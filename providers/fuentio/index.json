@@ -1,0 +1,1679 @@
+{
+ "_": "GENERATED \u2014 what an authoring tool needs to FIND an operation. The calling table is the .lua beside it.",
+ "provider": "fuentio",
+ "source": "https://api.fuentio.com/openapi.json",
+ "operations": [
+  {
+   "slug": "fuentio.add_rows_v1_supplier_batches_batch_id_items_post",
+   "name": "Add rows to a supplier batch",
+   "description": "Up to 500 rows a request (keep the body under 64 KB). A bad row gets a row error and the batch carries on; a supplier already in the batch is flagged as a duplicate and checked once. Free.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "batch_id": {
+      "type": "string",
+      "description": "The batch ID, e.g. sb_3Kq9\u2026"
+     },
+     "items": {
+      "type": "array",
+      "description": ""
+     },
+     "start_row": {
+      "type": "string",
+      "description": "The row number of this chunk's first row. Sending a chunk again with the same start_row adds nothing twice. Left out: after the rows already held."
+     }
+    },
+    "required": [
+     "batch_id",
+     "items"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.fuentio.com/v1/supplier-batches/{batch_id}/items",
+    "path": [
+     "batch_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "items",
+     "start_row"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fuentio.company_history_v1_companies_country_identifier_history_get",
+   "name": "What changed at a company, and when",
+   "description": "Use this to see what changed at a company (directors, address, status) and when, with the official source of each change. Returns the versions Fuentio stored, newest first: when each was seen, its source, and the fields that changed since the version before (old \u2192 new; lists as added/removed). Spain also returns the BORME acts as dated events with the original text and document. **France's history",
+   "input": {
+    "type": "object",
+    "properties": {
+     "country": {
+      "type": "string",
+      "description": "ISO 3166-1 alpha-2 code, e.g. FR."
+     },
+     "identifier": {
+      "type": "string",
+      "description": "Any identifier the lookup accepts."
+     },
+     "id_scheme": {
+      "type": "string",
+      "description": "Force a scheme, e.g. FR_SIRET."
+     },
+     "page": {
+      "type": "integer",
+      "description": ""
+     },
+     "page_size": {
+      "type": "integer",
+      "description": ""
+     }
+    },
+    "required": [
+     "country",
+     "identifier"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.fuentio.com/v1/companies/{country}/{identifier}/history",
+    "path": [
+     "country",
+     "identifier"
+    ],
+    "query": [
+     "id_scheme",
+     "page",
+     "page_size"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fuentio.create_key_v1_keys_post",
+   "name": "Create a free api key",
+   "description": "Creates a key on the Free plan (100 units a month, 2 requests per second, 5 monitors) instantly. The key is emailed to that address (on the production server; the answer then says \"Check your email\" and holds no key), or shown **once** here where email is off. **One free key per person:** `email` is required; an email that already has an active free key, or an address that created a free key in th",
+   "input": {
+    "type": "object",
+    "properties": {
+     "email": {
+      "type": "string",
+      "description": "Required: one free key per person."
+     },
+     "label": {
+      "type": "string",
+      "description": ""
+     },
+     "use_case": {
+      "type": "string",
+      "description": "Optional: what the key is for (KYB / onboarding, supplier checks, due diligence, an AI agent, other). Stored with the key."
+     }
+    },
+    "required": [
+     "email"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.fuentio.com/v1/keys",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "email",
+     "label",
+     "use_case"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fuentio.create_v1_supplier_batches_post",
+   "name": "Create a supplier batch",
+   "description": "Starts a supplier list. Add rows (`POST /{id}/items`, up to 500 a request, 5,000 in all), then `POST /{id}/finalize`. Input columns: reference, company_name, country, identifier_type, identifier (optional postal_code, town, street). Send an `Idempotency-Key` header to make a retry return the same batch. Free.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "idempotency-key": {
+      "type": "string",
+      "description": ""
+     },
+     "label": {
+      "type": "string",
+      "description": ""
+     },
+     "items": {
+      "type": "string",
+      "description": "Optional first rows (up to 500)."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.fuentio.com/v1/supplier-batches",
+    "path": [],
+    "query": [],
+    "header": [
+     "idempotency-key"
+    ],
+    "body": [
+     "label",
+     "items"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fuentio.create_verification_v1_verifications_post",
+   "name": "Verify a company (kyb lite check)",
+   "description": "Checks one company by official ID against its official source and stores the answer with a proof code: outcome (`verified`, `partial`, `unverified`; an open insolvency procedure is never verified) with reasons, the checks run, signals the source carries (`present`, `none_found`, `not_covered`), recent changes, provenance and a receipt. Rules: docs/verification.md. Costs 5 units (1 when a well-form",
+   "input": {
+    "type": "object",
+    "properties": {
+     "country": {
+      "type": "string",
+      "description": "ISO country code: FR or ES."
+     },
+     "identifier": {
+      "type": "string",
+      "description": "Official ID: FR SIREN or SIRET; ES Registro Mercantil sheet (from search_companies) or Fuentio ID."
+     },
+     "id_scheme": {
+      "type": "string",
+      "description": "Force the ID type, e.g. FR_SIRET."
+     },
+     "reference": {
+      "type": "string",
+      "description": "Your own case id, stored with the result."
+     }
+    },
+    "required": [
+     "country",
+     "identifier"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.fuentio.com/v1/verifications",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "country",
+     "identifier",
+     "id_scheme",
+     "reference"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fuentio.delete_share_v1_supplier_batches_batch_id_share_delete",
+   "name": "Revoke the report link",
+   "description": "The link stops at once.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "batch_id": {
+      "type": "string",
+      "description": "The batch ID, e.g. sb_3Kq9\u2026"
+     }
+    },
+    "required": [
+     "batch_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.fuentio.com/v1/supplier-batches/{batch_id}/share",
+    "path": [
+     "batch_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fuentio.delete_watch_route_v1_watches_watch_id_delete",
+   "name": "Stop a watch",
+   "description": "Free.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "watch_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "watch_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.fuentio.com/v1/watches/{watch_id}",
+    "path": [
+     "watch_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fuentio.download_export_v1_exports_token_get",
+   "name": "Download an exported file",
+   "description": "The `download_url` of an `xlsx` or `parquet` answer. The link is signed and valid 24 hours from the answer; then `not_found`. Free, no key needed: the link itself is the secret.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.fuentio.com/v1/exports/{token}",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fuentio.explain_match_v1_match_explain_post",
+   "name": "Why two records are (or aren't) the same company",
+   "description": "Two Fuentio record IDs side by side: the decision under today's rules (with reason codes and evidence, not stored), the decisions stored for the pair, the links between them, and whether they are one Fuentio entity. Use it to answer \"why are these linked?\" or \"why are these not the same company?\". Costs `STARTAPI_EXPLAIN_UNITS` units (1 by default).",
+   "input": {
+    "type": "object",
+    "properties": {
+     "left": {
+      "type": "string",
+      "description": "A Fuentio record ID."
+     },
+     "right": {
+      "type": "string",
+      "description": "Another record ID."
+     }
+    },
+    "required": [
+     "left",
+     "right"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.fuentio.com/v1/match/explain",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "left",
+     "right"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fuentio.finalize_v1_supplier_batches_batch_id_finalize_post",
+   "name": "Check the supplier batch",
+   "description": "Queues the batch: the worker checks each row (`verify_company`: 5 units; a name row adds 2 for the match; a check the same key ran on the same company in the last 24 hours is reused for 0). Refused with 402 when the quota doesn't cover the estimate; if the quota runs out later, the batch pauses (`POST /{id}/resume`). Free itself.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "batch_id": {
+      "type": "string",
+      "description": "The batch ID, e.g. sb_3Kq9\u2026"
+     }
+    },
+    "required": [
+     "batch_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.fuentio.com/v1/supplier-batches/{batch_id}/finalize",
+    "path": [
+     "batch_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fuentio.get_address_v1_companies_country_identifier_address_get",
+   "name": "Validate a company's registered address",
+   "description": "France: the registered address checked against the Base Adresse Nationale (API Adresse, IGN): `validated` true only when the best answer has the record's postal code and a score of at least 0.6; then the official form, BAN identifiers, coordinates, `precision` and `confidence`. `same_address.active_companies`: active companies Fuentio holds at the same postal code and street line. Spain: `validate",
+   "input": {
+    "type": "object",
+    "properties": {
+     "country": {
+      "type": "string",
+      "description": ""
+     },
+     "identifier": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "country",
+     "identifier"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.fuentio.com/v1/companies/{country}/{identifier}/address",
+    "path": [
+     "country",
+     "identifier"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fuentio.get_deliveries_v1_watches_watch_id_deliveries_get",
+   "name": "A watch's delivery log",
+   "description": "Every delivery: status, attempts, next try, last HTTP status or error. Free.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "watch_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "watch_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.fuentio.com/v1/watches/{watch_id}/deliveries",
+    "path": [
+     "watch_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fuentio.get_entity_changes_v1_entities_entity_id_changes_get",
+   "name": "What changed at an entity since a date",
+   "description": "Dated changes from every record the entity holds: fields that changed between two stored versions (`observed_at`: when Fuentio saw it) and the source's own dated events (Spain: BORME acts, `effective_date`), each with its source and evidence (version hash or document link). `gaps` lists what the sources can't tell for the window (days not loaded, or a live source not checked since); a quiet window",
+   "input": {
+    "type": "object",
+    "properties": {
+     "entity_id": {
+      "type": "string",
+      "description": ""
+     },
+     "since": {
+      "type": "string",
+      "description": "YYYY-MM-DD: changes on or after this day."
+     },
+     "until": {
+      "type": "string",
+      "description": "YYYY-MM-DD; default today."
+     }
+    },
+    "required": [
+     "entity_id",
+     "since"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.fuentio.com/v1/entities/{entity_id}/changes",
+    "path": [
+     "entity_id"
+    ],
+    "query": [
+     "since",
+     "until"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fuentio.get_entity_evidence_v1_entities_entity_id_evidence_get",
+   "name": "Why fuentio says what it says about an entity",
+   "description": "For each field (or one `field`): the value served and every competing value, each with its source, record, retrieval time, source link and the SHA-256 of the stored record version; then the links between the entity's records with the stored match decision behind each. `as_of` reads the records as they stood that day. Costs `STARTAPI_EVIDENCE_UNITS` units (1).",
+   "input": {
+    "type": "object",
+    "properties": {
+     "entity_id": {
+      "type": "string",
+      "description": ""
+     },
+     "field": {
+      "type": "string",
+      "description": "One field, e.g. status."
+     },
+     "as_of": {
+      "type": "string",
+      "description": "YYYY-MM-DD."
+     }
+    },
+    "required": [
+     "entity_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.fuentio.com/v1/entities/{entity_id}/evidence",
+    "path": [
+     "entity_id"
+    ],
+    "query": [
+     "field",
+     "as_of"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fuentio.get_entity_graph_v1_entities_entity_id_graph_get",
+   "name": "The company graph around an entity",
+   "description": "A company's group around one Fuentio entity: company-to-company links from GLEIF only (direct and ultimate parents, children), every edge with its source and the record that proves it, and ownership signals (beneficial owners not covered). `depth` 1 or 2; no people, no director links (ADR-065). Needs an API key. Costs `STARTAPI_GRAPH_UNITS` units (2).",
+   "input": {
+    "type": "object",
+    "properties": {
+     "entity_id": {
+      "type": "string",
+      "description": ""
+     },
+     "depth": {
+      "type": "integer",
+      "description": "1 or 2."
+     }
+    },
+    "required": [
+     "entity_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.fuentio.com/v1/entities/{entity_id}/graph",
+    "path": [
+     "entity_id"
+    ],
+    "query": [
+     "depth"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fuentio.get_entity_v1_entities_entity_id_get",
+   "name": "One fuentio entity, reconciled across its sources",
+   "description": "The entity's records reconciled field by field (name, status, address, legal form, creation date, activity): each field has the value served, the value as published, its source, record, retrieval time and record hash, and every competing value another source gives (ADR-054 source priority). `conflicting_sources` lists the fields where sources disagree; `uncertainty` says what the answer can't tell",
+   "input": {
+    "type": "object",
+    "properties": {
+     "entity_id": {
+      "type": "string",
+      "description": ""
+     },
+     "as_of": {
+      "type": "string",
+      "description": "YYYY-MM-DD: records as they stood then."
+     }
+    },
+    "required": [
+     "entity_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.fuentio.com/v1/entities/{entity_id}",
+    "path": [
+     "entity_id"
+    ],
+    "query": [
+     "as_of"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fuentio.get_evidence_v1_supplier_batches_batch_id_items_row_evidence_get",
+   "name": "A supplier's evidence pack",
+   "description": "Identity, status, insolvency, address, sources, check date and proof code for one row (the review report). 8 units the first time; free again within 24 hours.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "batch_id": {
+      "type": "string",
+      "description": "The batch ID, e.g. sb_3Kq9\u2026"
+     },
+     "row": {
+      "type": "integer",
+      "description": ""
+     }
+    },
+    "required": [
+     "batch_id",
+     "row"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.fuentio.com/v1/supplier-batches/{batch_id}/items/{row}/evidence",
+    "path": [
+     "batch_id",
+     "row"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fuentio.get_export_v1_supplier_batches_batch_id_export_get",
+   "name": "Download the checked list",
+   "description": "`csv` comes back as the file; `xlsx` as a download link valid 24 hours. Every cell is text: a value starting with = + - @ gets a leading quote (no formula runs). Free.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "batch_id": {
+      "type": "string",
+      "description": "The batch ID, e.g. sb_3Kq9\u2026"
+     },
+     "format": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "csv",
+       "xlsx"
+      ]
+     }
+    },
+    "required": [
+     "batch_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.fuentio.com/v1/supplier-batches/{batch_id}/export",
+    "path": [
+     "batch_id"
+    ],
+    "query": [
+     "format"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fuentio.get_health_details_health_details_get",
+   "name": "Detailed health (admin)",
+   "description": "Per connector: status with reasons, last success and error, 24h error rate, p95 upstream latency, data freshness, coverage; per ingest source: last run and held days; database and disk. Requires the admin key.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.fuentio.com/health/details",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fuentio.get_health_health_get",
+   "name": "Service health",
+   "description": "`ok` when the service and its database answer, `down` otherwise. Returns HTTP 503 when down, so uptime monitors can alert on the status code alone. `degraded` (HTTP 200): the database misses a migration this version needs.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.fuentio.com/health",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fuentio.get_insolvency_v1_companies_country_identifier_insolvency_get",
+   "name": "Insolvency notices and state of a company",
+   "description": "France: BODACC A insolvency notices (DILA), linked by SIREN; `state` is `in_procedure`, `under_plan`, `closed`, `notice_found` (a notice whose opening came before the loaded years), `none_found` (BODACC loaded for the company's whole life) or `not_covered`, with `procedure` (safeguard, reorganisation, liquidation), dates and each notice's official citation and file. Spain: BORME 'Situaci\u00f3n concurs",
+   "input": {
+    "type": "object",
+    "properties": {
+     "country": {
+      "type": "string",
+      "description": ""
+     },
+     "identifier": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "country",
+     "identifier"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.fuentio.com/v1/companies/{country}/{identifier}/insolvency",
+    "path": [
+     "country",
+     "identifier"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fuentio.get_items_v1_supplier_batches_batch_id_items_get",
+   "name": "A supplier batch's rows",
+   "description": "Every row with its result, 100 a page; filter by review_state. Free.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "batch_id": {
+      "type": "string",
+      "description": "The batch ID, e.g. sb_3Kq9\u2026"
+     },
+     "review_state": {
+      "type": "string",
+      "description": ""
+     },
+     "page": {
+      "type": "integer",
+      "description": ""
+     },
+     "page_size": {
+      "type": "integer",
+      "description": ""
+     }
+    },
+    "required": [
+     "batch_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.fuentio.com/v1/supplier-batches/{batch_id}/items",
+    "path": [
+     "batch_id"
+    ],
+    "query": [
+     "review_state",
+     "page",
+     "page_size"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fuentio.get_llms_full_txt_llms_full_txt_get",
+   "name": "Full reference for ai agents",
+   "description": "Full reference for AI agents",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.fuentio.com/llms-full.txt",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fuentio.get_llms_txt_llms_txt_get",
+   "name": "Guide for ai agents",
+   "description": "Guide for AI agents",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.fuentio.com/llms.txt",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fuentio.get_plans_v1_plans_get",
+   "name": "Plans and prices",
+   "description": "Every plan with its monthly price (euros, VAT excluded), units, rate limit and notes, from the same table the API enforces. Free, no key. `meta.payments` says how to subscribe.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.fuentio.com/v1/plans",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fuentio.get_public_proof_v1_public_proofs_proof_code_get",
+   "name": "Check a proof code (public, no key)",
+   "description": "Anyone a proof code was shared with can check it: the outcome, the company (name, ID, country), the checks done, the sources with links, when it was served and the stored `data_sha256`, plus `unchanged` (the stored answer still hashes to that value). Never who ran it: no key, email, reference or internal id. No key needed, free, 30 lookups a minute per address.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "proof_code": {
+      "type": "string",
+      "description": "A proof code, e.g. FUE-FR-20261011-K7Q2MX."
+     },
+     "format": {
+      "type": "string",
+      "description": "Leave out for today's answer; `normal` (or `summary`) or `detailed` for the Fuentio receipt (brief 009), public view."
+     }
+    },
+    "required": [
+     "proof_code"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.fuentio.com/v1/public/proofs/{proof_code}",
+    "path": [
+     "proof_code"
+    ],
+    "query": [
+     "format"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fuentio.get_receipt_page_receipts_proof_code_get",
+   "name": "A receipt as a page: the fuentio card, for a person or a printout",
+   "description": "The receipt of a proof code as an HTML page in the fuentio.com card design: the public view (no key, reference or internal id). `format=detailed` adds every check, the signals, changes, sources and the full hash, re-checked now. Free; same rate limit as the public proof check.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "proof_code": {
+      "type": "string",
+      "description": "A proof code (FUE-\u2026)."
+     },
+     "format": {
+      "type": "string",
+      "description": "`normal` (default) or `detailed`.",
+      "enum": [
+       "normal",
+       "summary",
+       "detailed"
+      ]
+     }
+    },
+    "required": [
+     "proof_code"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.fuentio.com/receipts/{proof_code}",
+    "path": [
+     "proof_code"
+    ],
+    "query": [
+     "format"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fuentio.get_receipt_v1_receipts_receipt_id_get",
+   "name": "A receipt: by proof code (short or detailed), or a lookup's proof by request id",
+   "description": "**A proof code** (`FUE-FR-20261015-DZ7TP9`, from a verification; any case, spaces allowed): the Fuentio receipt, `format=normal` (default; `summary` also works: outcome with reasons, status, legal form, registered office, insolvency with what was searched, source, check time, proof code, hash and the public link) or `format=detailed` (plus every check, the signals, changes, sources with fetch time",
+   "input": {
+    "type": "object",
+    "properties": {
+     "receipt_id": {
+      "type": "string",
+      "description": "A proof code (FUE-\u2026) or a lookup's `meta.receipt.request_id`."
+     },
+     "format": {
+      "type": "string",
+      "description": "For a proof code: `normal` (default; `summary` also works) or `detailed`.",
+      "enum": [
+       "normal",
+       "summary",
+       "detailed"
+      ]
+     }
+    },
+    "required": [
+     "receipt_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.fuentio.com/v1/receipts/{receipt_id}",
+    "path": [
+     "receipt_id"
+    ],
+    "query": [
+     "format"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fuentio.get_review_v1_companies_country_identifier_review_get",
+   "name": "A review ready report on a company (json + markdown)",
+   "description": "Identity (record, entity, links with reasons), reconciled facts with their sources, the last year's changes and gaps, and every check at once: insolvency, sanctions screen, address, VAT. A module that fails is reported as such. `markdown` is the same report ready to paste; `sha256` is the hash of the JSON report. Needs an API key. Costs `STARTAPI_REVIEW_UNITS` units (8).",
+   "input": {
+    "type": "object",
+    "properties": {
+     "country": {
+      "type": "string",
+      "description": ""
+     },
+     "identifier": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "country",
+     "identifier"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.fuentio.com/v1/companies/{country}/{identifier}/review",
+    "path": [
+     "country",
+     "identifier"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fuentio.get_screen_v1_companies_country_identifier_screen_get",
+   "name": "Screen a company against sanctions lists",
+   "description": "Compares the company's own names with the EU Financial Sanctions File, the UK Sanctions List, the OFAC SDN list and France's registre national des gels. `result` is `possible_match` (each with the list, entry, score, reasons, listing date, legal act and official link) or `no_match_found`: \"no match found in these lists at this time\", or `not_checked` when no list could be read. Never \"clear\", neve",
+   "input": {
+    "type": "object",
+    "properties": {
+     "country": {
+      "type": "string",
+      "description": ""
+     },
+     "identifier": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "country",
+     "identifier"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.fuentio.com/v1/companies/{country}/{identifier}/screen",
+    "path": [
+     "country",
+     "identifier"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fuentio.get_shared_v1_shared_reports_token_get",
+   "name": "A shared supplier report (public, read only)",
+   "description": "The report a batch owner shared: summary and rows, with each row's proof code (check it at /v1/public/proofs/{code}). No key, free, 60 reads a minute per address. An unknown, revoked or expired link gets 404.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "review_state": {
+      "type": "string",
+      "description": ""
+     },
+     "page": {
+      "type": "integer",
+      "description": ""
+     },
+     "page_size": {
+      "type": "integer",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.fuentio.com/v1/shared-reports/{token}",
+    "path": [],
+    "query": [
+     "review_state",
+     "page",
+     "page_size"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fuentio.get_status_v1_supplier_batches_batch_id_get",
+   "name": "A supplier batch's status",
+   "description": "Status, progress and units. Poll it while the batch runs. Free.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "batch_id": {
+      "type": "string",
+      "description": "The batch ID, e.g. sb_3Kq9\u2026"
+     }
+    },
+    "required": [
+     "batch_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.fuentio.com/v1/supplier-batches/{batch_id}",
+    "path": [
+     "batch_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fuentio.get_summary_v1_supplier_batches_batch_id_summary_get",
+   "name": "The supplier health summary",
+   "description": "Counts by review state (`ok`, `review`, `could_not_confirm`, `not_covered`, `error`), the rows that need a look first with the reason in plain words, the country split and changes in the last 12 months. Built from the checks' real outcomes: no score. A registry check is not KYB or sanctions clearance. Free.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "batch_id": {
+      "type": "string",
+      "description": "The batch ID, e.g. sb_3Kq9\u2026"
+     }
+    },
+    "required": [
+     "batch_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.fuentio.com/v1/supplier-batches/{batch_id}/summary",
+    "path": [
+     "batch_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fuentio.get_usage_v1_usage_get",
+   "name": "Plan, quota and usage for the calling key",
+   "description": "Your plan, the current period, units used and remaining, your rate limit, and monitors used and allowed. Without a key it reports the keyless trial for your address. Free.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.fuentio.com/v1/usage",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fuentio.get_vat_v1_companies_country_identifier_vat_get",
+   "name": "A company's eu vat number, registration not checked",
+   "description": "France: the VAT number the register publishes, or the one computed from the SIREN (standard key; a few companies have a letter key). `registration_checked` is always false: check the registration on the official VIES page (`check_url`). Spain: BORME doesn't publish VAT numbers. Costs `STARTAPI_VAT_UNITS` units (1).",
+   "input": {
+    "type": "object",
+    "properties": {
+     "country": {
+      "type": "string",
+      "description": ""
+     },
+     "identifier": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "country",
+     "identifier"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.fuentio.com/v1/companies/{country}/{identifier}/vat",
+    "path": [
+     "country",
+     "identifier"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fuentio.get_verification_v1_verifications_verification_get",
+   "name": "A stored verification, by id or proof code",
+   "description": "Returns a verification exactly as it was served (it is a receipt), for the key that ran it. `unchanged` says whether the stored answer still hashes to the value recorded then. Free.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "verification": {
+      "type": "string",
+      "description": "ver_\u2026 or FUE-\u2026"
+     },
+     "format": {
+      "type": "string",
+      "description": "Leave out for the stored answer as is; `normal` (or `summary`) or `detailed` for the Fuentio receipt (brief 009)."
+     }
+    },
+    "required": [
+     "verification"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.fuentio.com/v1/verifications/{verification}",
+    "path": [
+     "verification"
+    ],
+    "query": [
+     "format"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fuentio.get_watches_route_v1_watches_get",
+   "name": "Your watches",
+   "description": "The key's watches. Free.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.fuentio.com/v1/watches",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fuentio.list_batches_v1_supplier_batches_get",
+   "name": "Your supplier batches",
+   "description": "The key's latest 50 batches. Free.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.fuentio.com/v1/supplier-batches",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fuentio.list_countries_v1_countries_get",
+   "name": "Coverage: countries, identifier formats and sources",
+   "description": "Call this first when unsure. Lists every country with its coverage status (`available` or `planned`), the identifier formats it accepts with examples, the official sources with licence and update frequency, and the coverage level. Free.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.fuentio.com/v1/countries",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fuentio.list_sources_v1_sources_get",
+   "name": "Official sources: licence, update frequency, last successful fetch",
+   "description": "Every official source Fuentio reads, with its licence and attribution, how often it updates, how Fuentio serves it (`live` from the source with a cache, or `local` from daily ingests), and when it last answered. Refreshed every 5 minutes. Free.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.fuentio.com/v1/sources",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fuentio.lookup_company_v1_companies_country_identifier_get",
+   "name": "Look up a company by its official identifier",
+   "description": "Verify a company before onboarding, paying or contacting it. Returns the official legal record with status, address, activity and the source it came from. Accepts any identifier the country supports (e.g. SIREN, SIRET or VAT number for France; the Registro Mercantil sheet such as VI-23266 for Spain) or a Fuentio ID; the scheme is detected, or forced with `id_scheme`. Use `max_age` (seconds) to req",
+   "input": {
+    "type": "object",
+    "properties": {
+     "country": {
+      "type": "string",
+      "description": "ISO 3166-1 alpha-2 code, e.g. FR."
+     },
+     "identifier": {
+      "type": "string",
+      "description": "SIREN, SIRET, VAT number or Fuentio ID."
+     },
+     "id_scheme": {
+      "type": "string",
+      "description": "Force a scheme, e.g. FR_SIRET."
+     },
+     "max_age": {
+      "type": "string",
+      "description": "Maximum data age in seconds."
+     },
+     "format": {
+      "type": "string",
+      "description": "Answer format. `json` (default) is the usual envelope. `csv`, `tsv`, `markdown`, `html` (a table), `xml` and `ndjson` return the file itself, one row per company with its country, source, source_url, fetched_at and last_verified_at. `xlsx` and `parquet` return a download link valid 24 hours (downloading is free). Same units as JSON; at most 100 rows.",
+      "enum": [
+       "json",
+       "csv",
+       "tsv",
+       "xlsx",
+       "markdown",
+       "html",
+       "xml",
+       "ndjson",
+       "parquet"
+      ]
+     }
+    },
+    "required": [
+     "country",
+     "identifier"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.fuentio.com/v1/companies/{country}/{identifier}",
+    "path": [
+     "country",
+     "identifier"
+    ],
+    "query": [
+     "id_scheme",
+     "max_age",
+     "format"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fuentio.post_issue_v1_issues_post",
+   "name": "Report a wrong or missing answer",
+   "description": "Stores the report for review. Each one is checked against the official source; a confirmed one becomes a test case. Needs an API key; at most 20 reports per key per day. Free.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "subject": {
+      "type": "string",
+      "description": "What the issue is about: a Fuentio entity ID, a record ID or a tool name."
+     },
+     "category": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "wrong_data",
+       "wrong_link",
+       "missing_data",
+       "wrong_status",
+       "other"
+      ]
+     },
+     "message": {
+      "type": "string",
+      "description": "What you expected and what you got (10 to 2,000 characters)."
+     }
+    },
+    "required": [
+     "category",
+     "message",
+     "subject"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.fuentio.com/v1/issues",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "subject",
+     "category",
+     "message"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fuentio.post_share_v1_supplier_batches_batch_id_share_post",
+   "name": "A read only report link",
+   "description": "A private link to the report, valid 30 days, for the CFO or a colleague: summary and rows, never the key or its email. Asking again gives the same link while it lasts. Free.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "batch_id": {
+      "type": "string",
+      "description": "The batch ID, e.g. sb_3Kq9\u2026"
+     }
+    },
+    "required": [
+     "batch_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.fuentio.com/v1/supplier-batches/{batch_id}/share",
+    "path": [
+     "batch_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fuentio.post_watch_v1_watches_post",
+   "name": "Watch a company: changes are posted to your endpoint, signed",
+   "description": "Watches one Fuentio entity. When it changes, Fuentio POSTs the changes (as `what_changed` returns them, with gaps) to your https `callback_url`, signed: `Fuentio-Signature: t=,v1=.')>`; reject `t` older than 5 minutes. `Fuentio-Delivery-Id` identifies retries. Retries: 1 min, 5 min, 30 min, 2 h, 12 h. The `signing_secret` is shown once. An API key is required; private or local callback addresses a",
+   "input": {
+    "type": "object",
+    "properties": {
+     "entity_id": {
+      "type": "string",
+      "description": "A Fuentio entity ID."
+     },
+     "callback_url": {
+      "type": "string",
+      "description": "Your https endpoint. Each POST is signed (Fuentio-Signature header)."
+     }
+    },
+    "required": [
+     "callback_url",
+     "entity_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.fuentio.com/v1/watches",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "entity_id",
+     "callback_url"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fuentio.resolve_company_v1_resolve_post",
+   "name": "Is this the same company? candidates with match decisions",
+   "description": "Matches what you know about a company (an official ID, or a name with a postcode or town) against the records Fuentio holds, and returns the candidates with a decision each: `linked` (an official ID proves it), `possible` (band `strong` or `possible`: a name, maybe with an address; never proof) or `rejected`, with reason codes and evidence (docs/matching.md). `outcome`: linked, possible_match or n",
+   "input": {
+    "type": "object",
+    "properties": {
+     "country": {
+      "type": "string",
+      "description": "ISO country code: FR or ES."
+     },
+     "name": {
+      "type": "string",
+      "description": "The company's name as you have it."
+     },
+     "identifier": {
+      "type": "string",
+      "description": "An official ID if you have one (SIREN, SIRET, VAT, LEI, Registro Mercantil sheet): the only thing that links exactly."
+     },
+     "id_scheme": {
+      "type": "string",
+      "description": "Force the ID type, e.g. LEI."
+     },
+     "postal_code": {
+      "type": "string",
+      "description": ""
+     },
+     "locality": {
+      "type": "string",
+      "description": ""
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Candidates returned."
+     }
+    },
+    "required": [
+     "country"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.fuentio.com/v1/resolve",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "country",
+     "name",
+     "identifier",
+     "id_scheme",
+     "postal_code",
+     "locality",
+     "limit"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fuentio.resume_v1_supplier_batches_batch_id_resume_post",
+   "name": "Resume a batch paused for quota",
+   "description": "Queues the rows left once the quota covers them. Free.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "batch_id": {
+      "type": "string",
+      "description": "The batch ID, e.g. sb_3Kq9\u2026"
+     }
+    },
+    "required": [
+     "batch_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.fuentio.com/v1/supplier-batches/{batch_id}/resume",
+    "path": [
+     "batch_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fuentio.revoke_own_key_v1_keys_me_delete",
+   "name": "Revoke the calling key",
+   "description": "Revokes **the key sent with this request**, at once and for good (a leaked key, an app you stop using). Later calls with it answer `unauthorized`. Create a new key with POST /v1/keys. Free.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.fuentio.com/v1/keys/me",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fuentio.rotate_own_key_v1_keys_me_rotate_post",
+   "name": "Replace the calling key with a new one",
+   "description": "Returns a **new key** on the same plan, with the same usage, receipts and subscription. The key sent with this request keeps working for 24 hours (time to deploy the new one), then stops. The new key is shown once: store it. Free.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.fuentio.com/v1/keys/me/rotate",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fuentio.sandbox_catalogue_v1_sandbox_get",
+   "name": "The sandbox's test requests",
+   "description": "Free, no key needed. A sandbox key (`sk_sandbox_\u2026`) gets exactly these answers.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.fuentio.com/v1/sandbox",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fuentio.search_companies_v1_companies_search_get",
+   "name": "Search companies by name",
+   "description": "Basic name search in one country's official register, newest data first from the official source. Use it when you know a company's name but not its registry number, then call the lookup with an identifier from the results. Costs 2 units. `meta.next_page` is the page to ask for next (null on the last page). France supports `postal_code` and `status` (`active` or `inactive`). Spain searches the comp",
+   "input": {
+    "type": "object",
+    "properties": {
+     "country": {
+      "type": "string",
+      "description": "ISO 3166-1 alpha-2 code, e.g. FR."
+     },
+     "q": {
+      "type": "string",
+      "description": "Company name (at least 2 characters)."
+     },
+     "postal_code": {
+      "type": "string",
+      "description": "Filter on the registered office postal code."
+     },
+     "locality": {
+      "type": "string",
+      "description": "Filter on the registered office town."
+     },
+     "status": {
+      "type": "string",
+      "description": "active | inactive | in_liquidation | dissolved | struck_off | unknown"
+     },
+     "page": {
+      "type": "integer",
+      "description": ""
+     },
+     "page_size": {
+      "type": "integer",
+      "description": ""
+     },
+     "jurisdiction": {
+      "type": "string",
+      "description": "ISO 3166-2 region to search in, for countries with regional registers; GET /v1/countries lists them. The country code means no filter."
+     },
+     "format": {
+      "type": "string",
+      "description": "Answer format. `json` (default) is the usual envelope. `csv`, `tsv`, `markdown`, `html` (a table), `xml` and `ndjson` return the file itself, one row per company with its country, source, source_url, fetched_at and last_verified_at. `xlsx` and `parquet` return a download link valid 24 hours (downloading is free). Same units as JSON; at most 100 rows.",
+      "enum": [
+       "json",
+       "csv",
+       "tsv",
+       "xlsx",
+       "markdown",
+       "html",
+       "xml",
+       "ndjson",
+       "parquet"
+      ]
+     },
+     "limit": {
+      "type": "string",
+      "description": "Rows in one file (non-JSON formats only, up to 100; JSON keeps `page_size` \u2264 25). Priced like the JSON pages it replaces: 2 units per started 25 rows (100 rows = 8 units)."
+     }
+    },
+    "required": [
+     "country",
+     "q"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.fuentio.com/v1/companies/search",
+    "path": [],
+    "query": [
+     "country",
+     "q",
+     "postal_code",
+     "locality",
+     "status",
+     "page",
+     "page_size",
+     "jurisdiction",
+     "format",
+     "limit"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fuentio.watch_v1_supplier_batches_batch_id_watches_post",
+   "name": "Watch the batch's suppliers",
+   "description": "Watches the given rows, or every `ok` row (`all_ok`); each row's `entity_id` then answers `what_changed` / GET /v1/entities/{entity_id}/changes. Within the plan's watch limit (watches and watched rows together). 1 unit per supplier newly watched; a row already watched is never charged again.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "batch_id": {
+      "type": "string",
+      "description": "The batch ID, e.g. sb_3Kq9\u2026"
+     },
+     "rows": {
+      "type": "string",
+      "description": ""
+     },
+     "all_ok": {
+      "type": "boolean",
+      "description": "Watch every row whose state is `ok`."
+     }
+    },
+    "required": [
+     "batch_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.fuentio.com/v1/supplier-batches/{batch_id}/watches",
+    "path": [
+     "batch_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "rows",
+     "all_ok"
+    ],
+    "body_format": "json"
+   }
+  }
+ ]
+}

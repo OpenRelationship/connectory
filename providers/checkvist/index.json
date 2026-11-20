@@ -1,0 +1,1171 @@
+{
+ "_": "GENERATED \u2014 what an authoring tool needs to FIND an operation. The calling table is the .lua beside it.",
+ "provider": "checkvist",
+ "source": "https://checkvist.com/openapi.yaml",
+ "operations": [
+  {
+   "slug": "checkvist.delete_checklists_checklist_id_format",
+   "name": "Delete a checklist",
+   "description": "Marks the list (with all its data) for deletion. Actual deletion happens later, once a day. Returns the deleted checklist representation.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "checklist_id": {
+      "type": "integer",
+      "description": ""
+     },
+     "format": {
+      "type": "string",
+      "description": "Response representation.",
+      "enum": [
+       "json",
+       "xml"
+      ]
+     }
+    },
+    "required": [
+     "checklist_id",
+     "format"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://checkvist.com/checklists/{checklist_id}.{format}",
+    "path": [
+     "checklist_id",
+     "format"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "checkvist.delete_checklists_checklist_id_tasks_task_id_comments_note_id_format",
+   "name": "Delete a note",
+   "description": "Delete a note",
+   "input": {
+    "type": "object",
+    "properties": {
+     "checklist_id": {
+      "type": "integer",
+      "description": ""
+     },
+     "task_id": {
+      "type": "integer",
+      "description": ""
+     },
+     "note_id": {
+      "type": "integer",
+      "description": ""
+     },
+     "format": {
+      "type": "string",
+      "description": "Response representation.",
+      "enum": [
+       "json",
+       "xml"
+      ]
+     }
+    },
+    "required": [
+     "checklist_id",
+     "format",
+     "note_id",
+     "task_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://checkvist.com/checklists/{checklist_id}/tasks/{task_id}/comments/{note_id}.{format}",
+    "path": [
+     "checklist_id",
+     "task_id",
+     "note_id",
+     "format"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "checkvist.delete_checklists_checklist_id_tasks_task_id_format",
+   "name": "Delete a list item",
+   "description": "Deletes the item including its children. Returns the deleted item.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "checklist_id": {
+      "type": "integer",
+      "description": ""
+     },
+     "task_id": {
+      "type": "integer",
+      "description": ""
+     },
+     "format": {
+      "type": "string",
+      "description": "Response representation.",
+      "enum": [
+       "json",
+       "xml"
+      ]
+     }
+    },
+    "required": [
+     "checklist_id",
+     "format",
+     "task_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://checkvist.com/checklists/{checklist_id}/tasks/{task_id}.{format}",
+    "path": [
+     "checklist_id",
+     "task_id",
+     "format"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "checkvist.get_auth_curr_user_format",
+   "name": "Get the current user",
+   "description": "Get the current user",
+   "input": {
+    "type": "object",
+    "properties": {
+     "format": {
+      "type": "string",
+      "description": "Response representation.",
+      "enum": [
+       "json",
+       "xml"
+      ]
+     }
+    },
+    "required": [
+     "format"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://checkvist.com/auth/curr_user.{format}",
+    "path": [
+     "format"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "checkvist.get_checklists_checklist_id_format",
+   "name": "Get a checklist",
+   "description": "With `json` or `xml` returns the list representation. This URL also exports the whole list as a document \u2014 `opml`, `md` or `txt` \u2014 controlled by the `export_*` parameters below. OPML is the full-fidelity format: it keeps the whole tree with notes, tags, due dates, assignees, priority/color and open/closed status, and can be fed back to the import call. Pass `export_id=true` to add each item's task",
+   "input": {
+    "type": "object",
+    "properties": {
+     "checklist_id": {
+      "type": "integer",
+      "description": ""
+     },
+     "format": {
+      "type": "string",
+      "description": "`json` or `xml` for basic list representation. Also `opml`, `md` or `txt` for other export formats.",
+      "enum": [
+       "json",
+       "xml",
+       "opml",
+       "md",
+       "txt"
+      ]
+     },
+     "with_inbound_email": {
+      "type": "boolean",
+      "description": "If `true`, include each list's inbound \"email to list\" address as the `inbound_email` field. Omitted by default."
+     },
+     "export_id": {
+      "type": "boolean",
+      "description": "`opml` only: add the task ID as the `id` attribute of every ``."
+     },
+     "export_notes": {
+      "type": "boolean",
+      "description": "`opml`, `md`: include item notes."
+     },
+     "export_status": {
+      "type": "boolean",
+      "description": "`opml` only: include the open/closed/invalid status of every item."
+     },
+     "export_color": {
+      "type": "boolean",
+      "description": "`opml` only: include item priority/color."
+     },
+     "max_heading": {
+      "type": "integer",
+      "description": "`md` only: turn the first N outline levels into markdown headings, 0..6."
+     }
+    },
+    "required": [
+     "checklist_id",
+     "format"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://checkvist.com/checklists/{checklist_id}.{format}",
+    "path": [
+     "checklist_id",
+     "format"
+    ],
+    "query": [
+     "with_inbound_email",
+     "export_id",
+     "export_notes",
+     "export_status",
+     "export_color",
+     "max_heading"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "checkvist.get_checklists_checklist_id_tasks_format",
+   "name": "List items of a checklist",
+   "description": "List items are sorted by `parent_id, position`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "checklist_id": {
+      "type": "integer",
+      "description": ""
+     },
+     "format": {
+      "type": "string",
+      "description": "Response representation.",
+      "enum": [
+       "json",
+       "xml"
+      ]
+     },
+     "with_notes": {
+      "type": "boolean",
+      "description": "If set, the result includes information about notes added to the items."
+     },
+     "order": {
+      "type": "string",
+      "description": "Override the sort order.",
+      "enum": [
+       "id:asc",
+       "id:desc",
+       "updated_at:asc"
+      ]
+     }
+    },
+    "required": [
+     "checklist_id",
+     "format"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://checkvist.com/checklists/{checklist_id}/tasks.{format}",
+    "path": [
+     "checklist_id",
+     "format"
+    ],
+    "query": [
+     "with_notes",
+     "order"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "checkvist.get_checklists_checklist_id_tasks_task_id_comments_format",
+   "name": "Get notes of a list item",
+   "description": "Get notes of a list item",
+   "input": {
+    "type": "object",
+    "properties": {
+     "checklist_id": {
+      "type": "integer",
+      "description": ""
+     },
+     "task_id": {
+      "type": "integer",
+      "description": ""
+     },
+     "format": {
+      "type": "string",
+      "description": "Response representation.",
+      "enum": [
+       "json",
+       "xml"
+      ]
+     }
+    },
+    "required": [
+     "checklist_id",
+     "format",
+     "task_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://checkvist.com/checklists/{checklist_id}/tasks/{task_id}/comments.{format}",
+    "path": [
+     "checklist_id",
+     "task_id",
+     "format"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "checkvist.get_checklists_checklist_id_tasks_task_id_format",
+   "name": "Get a list item and its parents",
+   "description": "Returns the requested item first, followed by its parents up to the root.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "checklist_id": {
+      "type": "integer",
+      "description": ""
+     },
+     "task_id": {
+      "type": "integer",
+      "description": ""
+     },
+     "format": {
+      "type": "string",
+      "description": "Response representation.",
+      "enum": [
+       "json",
+       "xml"
+      ]
+     },
+     "with_notes": {
+      "type": "boolean",
+      "description": "If set, the result includes information about notes added to the items."
+     }
+    },
+    "required": [
+     "checklist_id",
+     "format",
+     "task_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://checkvist.com/checklists/{checklist_id}/tasks/{task_id}.{format}",
+    "path": [
+     "checklist_id",
+     "task_id",
+     "format"
+    ],
+    "query": [
+     "with_notes"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "checkvist.get_checklists_format",
+   "name": "List the user's checklists",
+   "description": "Sorted the same way as in the Checkvist UI (most recently updated first by default).",
+   "input": {
+    "type": "object",
+    "properties": {
+     "format": {
+      "type": "string",
+      "description": "Response representation.",
+      "enum": [
+       "json",
+       "xml"
+      ]
+     },
+     "archived": {
+      "type": "boolean",
+      "description": "If `true`, returns archived lists."
+     },
+     "order": {
+      "type": "string",
+      "description": "Override the sort order.",
+      "enum": [
+       "id:asc",
+       "id:desc",
+       "updated_at:asc"
+      ]
+     },
+     "skip_stats": {
+      "type": "boolean",
+      "description": "If `true`, runs faster but omits per-list user/task statistics."
+     },
+     "with_inbound_email": {
+      "type": "boolean",
+      "description": "If `true`, include each list's inbound \"email to list\" address as the `inbound_email` field. Omitted by default."
+     }
+    },
+    "required": [
+     "format"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://checkvist.com/checklists.{format}",
+    "path": [
+     "format"
+    ],
+    "query": [
+     "archived",
+     "order",
+     "skip_stats",
+     "with_inbound_email"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "checkvist.post_auth_login_json",
+   "name": "Obtain an authentication token",
+   "description": "Returns a JSON object with a `token` key. Also available as `GET` with the same parameters supplied in the query string. Returns `401 Unauthorized` when authentication fails, or `422 Unprocessable Entity` when 2-step verification is enabled and `token2fa` is missing or wrong.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "User login (email)."
+     },
+     "remote_key": {
+      "type": "string",
+      "description": "The user's Remote API key (from the profile page) or password."
+     },
+     "token2fa": {
+      "type": "string",
+      "description": "Required when 2-step verification is enabled: the code from the authentication app. When 2FA is on, `remote_key` must be used (not the password)."
+     },
+     "version": {
+      "type": "string",
+      "description": "API version. Use `2` to get the documented `{ \"token\": \"...\" }` response shape."
+     }
+    },
+    "required": [
+     "remote_key",
+     "username"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://checkvist.com/auth/login.json",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "username",
+     "remote_key",
+     "token2fa",
+     "version"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "checkvist.post_auth_refresh_token_json",
+   "name": "Refresh an authentication token",
+   "description": "Exchanges a previously issued token for a fresh one without re-sending credentials. The old token is invalidated. Returns `401 Unauthorized` for a bad `old_token`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "old_token": {
+      "type": "string",
+      "description": "Previously obtained token."
+     },
+     "version": {
+      "type": "string",
+      "description": "API version. Use `2` to get the documented `{ \"token\": \"...\" }` response shape."
+     }
+    },
+    "required": [
+     "old_token"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://checkvist.com/auth/refresh_token.json",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "old_token",
+     "version"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "checkvist.post_checklists_checklist_id_import_format",
+   "name": "Import list items",
+   "description": "Imports list items (in the format supported by Checkvist's import function), organised into a hierarchy according to the input. Items are added to the beginning of the target list. Returns the created items. When OPML is imported into a list that has no items \u2014 an empty list, or any list imported with `replace_existing=true` \u2014 the list is renamed to the OPML `/opml/head/title`. The list's tags are",
+   "input": {
+    "type": "object",
+    "properties": {
+     "checklist_id": {
+      "type": "string",
+      "description": "Target list ID. May also be `tag:tagname` \u2014 the first list tagged with `tagname` is used."
+     },
+     "format": {
+      "type": "string",
+      "description": "Response representation.",
+      "enum": [
+       "json",
+       "xml"
+      ]
+     },
+     "import_content": {
+      "type": "string",
+      "description": "List items to import."
+     },
+     "import_content_note": {
+      "type": "string",
+      "description": "If present"
+     },
+     "parent_id": {
+      "type": "integer",
+      "description": "Optional ID of the parent item."
+     },
+     "parse_tasks": {
+      "type": "boolean",
+      "description": "If present, recognise smart syntax like ^due, #tags, !3."
+     },
+     "position": {
+      "type": "integer",
+      "description": "Optional 1-based position for the first imported item."
+     },
+     "replace_existing": {
+      "type": "boolean",
+      "description": "Danger: replace the whole content of the list with imported content."
+     },
+     "separate_with_empty_line": {
+      "type": "string",
+      "description": "'singleItem' imports all text as one item; any other value separates items by empty lines; unset treats each line as a separate item."
+     },
+     "status": {
+      "type": "integer",
+      "description": "Optional status for the first imported task: 0, 1 or 2."
+     }
+    },
+    "required": [
+     "checklist_id",
+     "format",
+     "import_content"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://checkvist.com/checklists/{checklist_id}/import.{format}",
+    "path": [
+     "checklist_id",
+     "format"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "import_content",
+     "import_content_note",
+     "parent_id",
+     "parse_tasks",
+     "position",
+     "replace_existing",
+     "separate_with_empty_line",
+     "status"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "checkvist.post_checklists_checklist_id_tasks_format",
+   "name": "Create a list item",
+   "description": "Create a list item",
+   "input": {
+    "type": "object",
+    "properties": {
+     "checklist_id": {
+      "type": "integer",
+      "description": ""
+     },
+     "format": {
+      "type": "string",
+      "description": "Response representation.",
+      "enum": [
+       "json",
+       "xml"
+      ]
+     },
+     "task[content]": {
+      "type": "string",
+      "description": "Task text."
+     },
+     "task[parent_id]": {
+      "type": "integer",
+      "description": "ID of the parent task (optional)."
+     },
+     "task[tags]": {
+      "type": "string",
+      "description": "Comma-separated list of tags to set on the task."
+     },
+     "task[due_date]": {
+      "type": "string",
+      "description": "Due date in Checkvist's smart-syntax format."
+     },
+     "task[position]": {
+      "type": "integer",
+      "description": "1-based position (omit to append to the end)."
+     },
+     "task[priority]": {
+      "type": "integer",
+      "description": "Optional priority/color, 0..9."
+     },
+     "task[status]": {
+      "type": "integer",
+      "description": "Task status (optional): 0 open, 1 closed, 2 invalidated."
+     }
+    },
+    "required": [
+     "checklist_id",
+     "format",
+     "task[content]"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://checkvist.com/checklists/{checklist_id}/tasks.{format}",
+    "path": [
+     "checklist_id",
+     "format"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "task[content]",
+     "task[parent_id]",
+     "task[tags]",
+     "task[due_date]",
+     "task[position]",
+     "task[priority]",
+     "task[status]"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "checkvist.post_checklists_checklist_id_tasks_task_id_action_format",
+   "name": "Change task status (close   reopen   invalidate)",
+   "description": "Changes the status of the item. For non-leaf items, the status of their children is changed (the parent status is the cumulative status of its children). Returns the changed item and its children.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "checklist_id": {
+      "type": "integer",
+      "description": ""
+     },
+     "task_id": {
+      "type": "integer",
+      "description": ""
+     },
+     "action": {
+      "type": "string",
+      "description": "The status change to apply.",
+      "enum": [
+       "close",
+       "reopen",
+       "invalidate"
+      ]
+     },
+     "format": {
+      "type": "string",
+      "description": "Response representation.",
+      "enum": [
+       "json",
+       "xml"
+      ]
+     }
+    },
+    "required": [
+     "action",
+     "checklist_id",
+     "format",
+     "task_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://checkvist.com/checklists/{checklist_id}/tasks/{task_id}/{action}.{format}",
+    "path": [
+     "checklist_id",
+     "task_id",
+     "action",
+     "format"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "checkvist.post_checklists_checklist_id_tasks_task_id_comments_format",
+   "name": "Create a note",
+   "description": "Create a note",
+   "input": {
+    "type": "object",
+    "properties": {
+     "checklist_id": {
+      "type": "integer",
+      "description": ""
+     },
+     "task_id": {
+      "type": "integer",
+      "description": ""
+     },
+     "format": {
+      "type": "string",
+      "description": "Response representation.",
+      "enum": [
+       "json",
+       "xml"
+      ]
+     },
+     "comment[comment]": {
+      "type": "string",
+      "description": "Note text."
+     }
+    },
+    "required": [
+     "checklist_id",
+     "comment[comment]",
+     "format",
+     "task_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://checkvist.com/checklists/{checklist_id}/tasks/{task_id}/comments.{format}",
+    "path": [
+     "checklist_id",
+     "task_id",
+     "format"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "comment[comment]"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "checkvist.post_checklists_checklist_id_tasks_task_id_repeat_format",
+   "name": "Set repeating task information",
+   "description": "Set repeating-task information",
+   "input": {
+    "type": "object",
+    "properties": {
+     "checklist_id": {
+      "type": "integer",
+      "description": ""
+     },
+     "task_id": {
+      "type": "integer",
+      "description": ""
+     },
+     "format": {
+      "type": "string",
+      "description": "Response representation.",
+      "enum": [
+       "json",
+       "xml"
+      ]
+     },
+     "repeat[period]": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "daily",
+       "weekly",
+       "monthly",
+       "yearly"
+      ]
+     },
+     "repeat[period_count]": {
+      "type": "integer",
+      "description": "e.g. 5 in 'repeat every 5 weeks' (optional, default 1)."
+     },
+     "repeat[start_date]": {
+      "type": "string",
+      "description": "Start date for the first repeating due."
+     },
+     "repeat[end_date]": {
+      "type": "string",
+      "description": "End date for the repeating due (optional)."
+     }
+    },
+    "required": [
+     "checklist_id",
+     "format",
+     "repeat[period]",
+     "repeat[start_date]",
+     "task_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://checkvist.com/checklists/{checklist_id}/tasks/{task_id}/repeat.{format}",
+    "path": [
+     "checklist_id",
+     "task_id",
+     "format"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "repeat[period]",
+     "repeat[period_count]",
+     "repeat[start_date]",
+     "repeat[end_date]"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "checkvist.post_checklists_checklist_id_tasks_task_id_tags_format",
+   "name": "Add or remove tags on a list item",
+   "description": "When `delete_tag` is given, that tag is removed from the list item (and from every item listed in `task_ids`). Otherwise the item's tags are set from the `tags` parameter. Returns the affected list item(s) with their new tags. A request **without** a `.json`/`.xml` suffix returns the JavaScript response used by the Checkvist web UI instead of a JSON/XML body.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "checklist_id": {
+      "type": "integer",
+      "description": ""
+     },
+     "task_id": {
+      "type": "integer",
+      "description": ""
+     },
+     "format": {
+      "type": "string",
+      "description": "Response representation.",
+      "enum": [
+       "json",
+       "xml"
+      ]
+     },
+     "delete_tag": {
+      "type": "string",
+      "description": "Name of a single tag to remove from the list item."
+     },
+     "tags": {
+      "type": "string",
+      "description": "Space-separated list of tags to set on the item (used only when `delete_tag` is not given)."
+     },
+     "task_ids": {
+      "type": "string",
+      "description": "Optional comma-separated list of extra list item IDs to apply the same change to several items at once."
+     }
+    },
+    "required": [
+     "checklist_id",
+     "format",
+     "task_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://checkvist.com/checklists/{checklist_id}/tasks/{task_id}/tags.{format}",
+    "path": [
+     "checklist_id",
+     "task_id",
+     "format"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "delete_tag",
+     "tags",
+     "task_ids"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "checkvist.post_checklists_format",
+   "name": "Create a checklist",
+   "description": "Create a checklist",
+   "input": {
+    "type": "object",
+    "properties": {
+     "format": {
+      "type": "string",
+      "description": "Response representation.",
+      "enum": [
+       "json",
+       "xml"
+      ]
+     },
+     "checklist[name]": {
+      "type": "string",
+      "description": "Checklist name. `#tags` in the name are recognised as list tags and stripped from the name."
+     },
+     "checklist[public]": {
+      "type": "string",
+      "description": "0 or 1 (optional). 1 makes the list readable without authentication and indexable by search engines; PRO accounts only."
+     },
+     "checklist[tags]": {
+      "type": "string",
+      "description": "Comma-separated list of tags to set on the list (optional). Merged with any `#tags` found in the name. A tag may only contain letters, digits, `_` and `-`; any other character acts as a separator."
+     }
+    },
+    "required": [
+     "checklist[name]",
+     "format"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://checkvist.com/checklists.{format}",
+    "path": [
+     "format"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "checklist[name]",
+     "checklist[public]",
+     "checklist[tags]"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "checkvist.put_checklists_checklist_id_format",
+   "name": "Update a checklist",
+   "description": "Updates the checklist name, public status and/or tags. Only the parameters you send are changed; omitted ones keep their current value.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "checklist_id": {
+      "type": "integer",
+      "description": ""
+     },
+     "format": {
+      "type": "string",
+      "description": "Response representation.",
+      "enum": [
+       "json",
+       "xml"
+      ]
+     },
+     "checklist[name]": {
+      "type": "string",
+      "description": "Checklist name. `#tags` in the name are added to the list tags and stripped from the name."
+     },
+     "checklist[public]": {
+      "type": "string",
+      "description": "0 or 1 (optional). 1 makes the list readable without authentication and indexable by search engines; PRO accounts only."
+     },
+     "checklist[tags]": {
+      "type": "string",
+      "description": "Comma-separated list of tags, replacing the list's current tags. Pass an empty string to remove all tags. Omit the parameter to keep the existing tags unchanged. Can be sent without `checklist[name]`. A tag may only contain letters, digits, `_` and `-`; any other character acts as a separator."
+     }
+    },
+    "required": [
+     "checklist_id",
+     "format"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://checkvist.com/checklists/{checklist_id}.{format}",
+    "path": [
+     "checklist_id",
+     "format"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "checklist[name]",
+     "checklist[public]",
+     "checklist[tags]"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "checkvist.put_checklists_checklist_id_tasks_task_id_comments_note_id_format",
+   "name": "Update a note",
+   "description": "Update a note",
+   "input": {
+    "type": "object",
+    "properties": {
+     "checklist_id": {
+      "type": "integer",
+      "description": ""
+     },
+     "task_id": {
+      "type": "integer",
+      "description": ""
+     },
+     "note_id": {
+      "type": "integer",
+      "description": ""
+     },
+     "format": {
+      "type": "string",
+      "description": "Response representation.",
+      "enum": [
+       "json",
+       "xml"
+      ]
+     },
+     "comment[comment]": {
+      "type": "string",
+      "description": "Note text."
+     }
+    },
+    "required": [
+     "checklist_id",
+     "comment[comment]",
+     "format",
+     "note_id",
+     "task_id"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://checkvist.com/checklists/{checklist_id}/tasks/{task_id}/comments/{note_id}.{format}",
+    "path": [
+     "checklist_id",
+     "task_id",
+     "note_id",
+     "format"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "comment[comment]"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "checkvist.put_checklists_checklist_id_tasks_task_id_format",
+   "name": "Update a list item",
+   "description": "Updates the item. This method does not change task status.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "checklist_id": {
+      "type": "integer",
+      "description": ""
+     },
+     "task_id": {
+      "type": "integer",
+      "description": ""
+     },
+     "format": {
+      "type": "string",
+      "description": "Response representation.",
+      "enum": [
+       "json",
+       "xml"
+      ]
+     },
+     "with_notes": {
+      "type": "boolean",
+      "description": "If set, the result includes information about notes added to the items."
+     },
+     "task[content]": {
+      "type": "string",
+      "description": "New task text."
+     },
+     "task[parent_id]": {
+      "type": "integer",
+      "description": "New parent task ID."
+     },
+     "task[tags]": {
+      "type": "string",
+      "description": "Comma-separated list of tags to set (replaces the whole set)."
+     },
+     "task[due_date]": {
+      "type": "string",
+      "description": "Due date in Checkvist's smart-syntax format."
+     },
+     "task[position]": {
+      "type": "integer",
+      "description": "1-based position of the task."
+     },
+     "task[priority]": {
+      "type": "integer",
+      "description": "Optional priority/color, 0..9."
+     },
+     "task[assignee_ids]": {
+      "type": "array",
+      "description": "Assignee user IDs (optional). Sent as `task[assignee_ids][]=1&task[assignee_ids][]=2`."
+     },
+     "parse": {
+      "type": "boolean",
+      "description": "If true, recognise ^due and #tags smart syntax in the updated item."
+     }
+    },
+    "required": [
+     "checklist_id",
+     "format",
+     "task_id"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://checkvist.com/checklists/{checklist_id}/tasks/{task_id}.{format}",
+    "path": [
+     "checklist_id",
+     "task_id",
+     "format"
+    ],
+    "query": [
+     "with_notes"
+    ],
+    "header": [],
+    "body": [
+     "task[content]",
+     "task[parent_id]",
+     "task[tags]",
+     "task[due_date]",
+     "task[position]",
+     "task[priority]",
+     "task[assignee_ids]",
+     "parse"
+    ],
+    "body_format": "json"
+   }
+  }
+ ]
+}

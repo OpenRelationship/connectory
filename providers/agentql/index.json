@@ -1,0 +1,201 @@
+{
+ "_": "GENERATED \u2014 what an authoring tool needs to FIND an operation. The calling table is the .lua beside it.",
+ "provider": "agentql",
+ "source": "https://api.agentql.com/openapi.json",
+ "operations": [
+  {
+   "slug": "agentql.create_session_tetra_sessions_post",
+   "name": "Create session",
+   "description": "Create a new Tetra browser session.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.agentql.com/tetra/sessions",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "agentql.create_session_v1_tetra_sessions_post",
+   "name": "Create session",
+   "description": "Create a new Tetra browser session.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.agentql.com/v1/tetra/sessions",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "agentql.get_usage_usage_get",
+   "name": "Get usage",
+   "description": "Get API key usage and subscription information for your account.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.agentql.com/usage",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "agentql.get_usage_v1_usage_get",
+   "name": "Get usage",
+   "description": "Get API key usage and subscription information for your account.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.agentql.com/v1/usage",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "agentql.query_data_service_query_data_post",
+   "name": "Query data service",
+   "description": "Get the AgentQL response for the data query. If the AQL query is not provided, generate it using the prompt from request.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "X-TF-Request-Origin": {
+      "type": "string",
+      "description": ""
+     },
+     "content-type": {
+      "type": "string",
+      "description": ""
+     },
+     "query": {
+      "type": "string",
+      "description": "AgentQL query"
+     },
+     "prompt": {
+      "type": "string",
+      "description": "A description of expected data to be extracted"
+     },
+     "url": {
+      "type": "string",
+      "description": "The URL of the webpage to query"
+     },
+     "html": {
+      "type": "string",
+      "description": "The HTML of the webpage to query"
+     },
+     "params": {
+      "type": "object",
+      "description": ""
+     }
+    },
+    "required": [
+     "content-type"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.agentql.com/query-data",
+    "path": [],
+    "query": [],
+    "header": [
+     "X-TF-Request-Origin",
+     "content-type"
+    ],
+    "body": [
+     "query",
+     "prompt",
+     "url",
+     "html",
+     "params"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "agentql.query_data_service_v1_query_data_post",
+   "name": "Query data service",
+   "description": "Get the AgentQL response for the data query. If the AQL query is not provided, generate it using the prompt from request.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "X-TF-Request-Origin": {
+      "type": "string",
+      "description": ""
+     },
+     "content-type": {
+      "type": "string",
+      "description": ""
+     },
+     "query": {
+      "type": "string",
+      "description": "AgentQL query"
+     },
+     "prompt": {
+      "type": "string",
+      "description": "A description of expected data to be extracted"
+     },
+     "url": {
+      "type": "string",
+      "description": "The URL of the webpage to query"
+     },
+     "html": {
+      "type": "string",
+      "description": "The HTML of the webpage to query"
+     },
+     "params": {
+      "type": "object",
+      "description": ""
+     }
+    },
+    "required": [
+     "content-type"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.agentql.com/v1/query-data",
+    "path": [],
+    "query": [],
+    "header": [
+     "X-TF-Request-Origin",
+     "content-type"
+    ],
+    "body": [
+     "query",
+     "prompt",
+     "url",
+     "html",
+     "params"
+    ],
+    "body_format": "json"
+   }
+  }
+ ]
+}

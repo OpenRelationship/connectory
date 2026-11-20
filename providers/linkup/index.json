@@ -1,0 +1,694 @@
+{
+ "_": "GENERATED \u2014 what an authoring tool needs to FIND an operation. The calling table is the .lua beside it.",
+ "provider": "linkup",
+ "source": "https://api.linkup.so/v1/openapi.json",
+ "operations": [
+  {
+   "slug": "linkup.balance",
+   "name": "Credits balance",
+   "description": "The `/credits/balance` endpoint allows you to retrieve your current credits balance.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.linkup.so/v1/credits/balance",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "linkup.create_extract",
+   "name": "Extract",
+   "description": "[BETA] The `POST /extract` method creates an asynchronous extract task.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "q": {
+      "type": "string",
+      "description": "[BETA] The natural-language query describing which rows to extract and what each row should contain."
+     },
+     "schema": {
+      "type": "string",
+      "description": "[BETA] Optional JSON schema describing a single extracted row. When provided, every returned row must match this schema."
+     },
+     "url": {
+      "type": "string",
+      "description": "[BETA] The seed URL the extract task should start from."
+     },
+     "verifyUrls": {
+      "type": "boolean",
+      "description": "[BETA] Defines whether URLs found in extracted rows should be checked for reachability after extraction. Defaults to false."
+     }
+    },
+    "required": [
+     "q",
+     "url"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.linkup.so/v1/extract",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "q",
+     "schema",
+     "url",
+     "verifyUrls"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "linkup.create_research",
+   "name": "Research",
+   "description": "The `POST /research` method creates an asynchronous research task which can perform a comprehensive web research.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "excludeDomains": {
+      "type": "array",
+      "description": "The domains you want to exclude of the search. By default, don't restrict the search."
+     },
+     "fromDate": {
+      "type": "string",
+      "description": "The date from which the search results should be considered, in ISO 8601 format (YYYY-MM-DD). It must be before `toDate`, if provided, and later than 1970-01-01."
+     },
+     "includeDomains": {
+      "type": "array",
+      "description": "The domains you want to search on. By default, don't restrict the search. You can provide up to 100 domains."
+     },
+     "q": {
+      "type": "string",
+      "description": "The natural language question for which you want to retrieve context."
+     },
+     "structuredOutputSchema": {
+      "type": "string",
+      "description": "Required only when `outputType` is `structured`. Provide a JSON schema (as a string) representing the desired response format. The root must be of type `object`."
+     },
+     "toDate": {
+      "type": "string",
+      "description": "The date until which the search results should be considered, in ISO 8601 format (YYYY-MM-DD). It must be later than `fromDate`, if provided, or than 1970-01-01."
+     },
+     "mode": {
+      "type": "string",
+      "description": "Pin the research agent mode. Omit to let the agent auto-classify per request based on the question.",
+      "enum": [
+       "answer",
+       "auto",
+       "investigate",
+       "research"
+      ]
+     },
+     "outputType": {
+      "type": "string",
+      "description": "The type of output you want to get. Use `structured` for a custom-formatted response defined by `structuredOutputSchema`.",
+      "enum": [
+       "sourcedAnswer",
+       "structured"
+      ]
+     },
+     "reasoningDepth": {
+      "type": "string",
+      "description": "Pin the reasoning depth (S < M < L < XL). Defaults to L when omitted. Higher depths trade latency for thoroughness.",
+      "enum": [
+       "L",
+       "M",
+       "S",
+       "XL"
+      ]
+     }
+    },
+    "required": [
+     "outputType",
+     "q"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.linkup.so/v1/research",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "excludeDomains",
+     "fromDate",
+     "includeDomains",
+     "q",
+     "structuredOutputSchema",
+     "toDate",
+     "mode",
+     "outputType",
+     "reasoningDepth"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "linkup.create_tasks",
+   "name": "Tasks",
+   "description": "The `POST /tasks` method creates a list of tasks.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.linkup.so/v1/tasks",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "linkup.fetch",
+   "name": "Fetch",
+   "description": "The `/fetch` endpoint allows you to fetch a single webpage from a given URL.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "extractImages": {
+      "type": "string",
+      "description": "Defines whether the API should extract the images from the webpage in its response."
+     },
+     "includeRawContent": {
+      "type": "string",
+      "description": "Defines whether the API should include the raw page content and its content type in the response."
+     },
+     "includeRawHtml": {
+      "type": "string",
+      "description": "Deprecated. Use includeRawContent instead. Defines whether rawHtml is returned for non-LinkedIn HTML pages."
+     },
+     "renderJs": {
+      "type": "string",
+      "description": "Defines whether the API should render the JavaScript of the webpage."
+     },
+     "mode": {
+      "type": "string",
+      "description": "Defines the fetch strategy. Pro fetch delivers significantly higher success rates on hard-to-retrieve pages.",
+      "enum": [
+       "standard",
+       "pro"
+      ]
+     },
+     "instructions": {
+      "type": "string",
+      "description": "Optional instructions that guide how data is extracted. Requires schema."
+     },
+     "schema": {
+      "type": "string",
+      "description": "Optional JSON Schema of type object describing the structured data to extract from the page. Fields with no grounded value are omitted, even when marked as required."
+     },
+     "url": {
+      "type": "string",
+      "description": "The URL of the webpage you want to fetch."
+     }
+    },
+    "required": [
+     "url"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.linkup.so/v1/fetch",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "extractImages",
+     "includeRawContent",
+     "includeRawHtml",
+     "renderJs",
+     "mode",
+     "instructions",
+     "schema",
+     "url"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "linkup.get_extract",
+   "name": "Extract :id",
+   "description": "[BETA] The `GET /extract/:id` method, with extract task identifier, retrieves a specific extract task information.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.linkup.so/v1/extract/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "linkup.get_research",
+   "name": "Research :id",
+   "description": "The `GET /research/:id` method, with research task identifier, retrieves a specific research task information.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.linkup.so/v1/research/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "linkup.get_task",
+   "name": "Tasks :id",
+   "description": "The `GET /tasks/:id` method, with task identifier, retrieves a specific task information.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.linkup.so/v1/tasks/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "linkup.list_extract",
+   "name": "Extract",
+   "description": "[BETA] The `GET /extract` method, without extract task identifier, lists all created extract tasks for the authenticated organization, with pagination.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "page": {
+      "type": "integer",
+      "description": ""
+     },
+     "pageSize": {
+      "type": "integer",
+      "description": ""
+     },
+     "sortBy": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "createdAt",
+       "updatedAt"
+      ]
+     },
+     "sortDirection": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "asc",
+       "desc"
+      ]
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.linkup.so/v1/extract",
+    "path": [],
+    "query": [
+     "page",
+     "pageSize",
+     "sortBy",
+     "sortDirection"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "linkup.list_research",
+   "name": "Research",
+   "description": "The `GET /research` method, without research task identifier, lists all created research tasks for the authenticated organization, with pagination.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "page": {
+      "type": "integer",
+      "description": ""
+     },
+     "pageSize": {
+      "type": "integer",
+      "description": ""
+     },
+     "sortBy": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "createdAt",
+       "updatedAt"
+      ]
+     },
+     "sortDirection": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "asc",
+       "desc"
+      ]
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.linkup.so/v1/research",
+    "path": [],
+    "query": [
+     "page",
+     "pageSize",
+     "sortBy",
+     "sortDirection"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "linkup.list_tasks",
+   "name": "Tasks",
+   "description": "The `GET /tasks` method, without a task identifier, lists all created tasks for the authenticated organization, with pagination.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "type": {
+      "type": "array",
+      "description": ""
+     },
+     "status": {
+      "type": "array",
+      "description": ""
+     },
+     "page": {
+      "type": "integer",
+      "description": ""
+     },
+     "pageSize": {
+      "type": "integer",
+      "description": ""
+     },
+     "sortBy": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "createdAt",
+       "updatedAt"
+      ]
+     },
+     "sortDirection": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "asc",
+       "desc"
+      ]
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.linkup.so/v1/tasks",
+    "path": [],
+    "query": [
+     "type",
+     "status",
+     "page",
+     "pageSize",
+     "sortBy",
+     "sortDirection"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "linkup.responses",
+   "name": "Responses",
+   "description": "Proxy endpoint for OpenAI response generation \u2014 use when the OpenAI client's base URL is set to linkup.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "input": {
+      "type": "string",
+      "description": "The natural language question for which you want to retrieve context."
+     },
+     "instructions": {
+      "type": "string",
+      "description": "Optional instructions to guide the response generation. It`s similar to a system message."
+     },
+     "model": {
+      "type": "string",
+      "description": "The model used to generate the response.`linkup-standard` returns results faster; `linkup-deep` takes longer but yields more comprehensive results.",
+      "enum": [
+       "linkup-deep",
+       "linkup-standard"
+      ]
+     },
+     "text": {
+      "type": "object",
+      "description": ""
+     }
+    },
+    "required": [
+     "input",
+     "model"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.linkup.so/v1/responses",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "input",
+     "instructions",
+     "model",
+     "text"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "linkup.rewind_fetch",
+   "name": "Rewind fetch",
+   "description": "[BETA] The `/rewind/fetch` endpoint returns a page as it was by the end of a given UTC day.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "asOf": {
+      "type": "string",
+      "description": "The UTC day to fetch the page as of, in YYYY-MM-DD format."
+     },
+     "url": {
+      "type": "string",
+      "description": "The URL of the page to fetch. It must match the stored URL exactly: no normalization is applied."
+     }
+    },
+    "required": [
+     "asOf",
+     "url"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.linkup.so/v1/rewind/fetch",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "asOf",
+     "url"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "linkup.rewind_search",
+   "name": "Rewind search",
+   "description": "[BETA] The `/rewind/search` endpoint searches the web as it was by the end of a given UTC day.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "asOf": {
+      "type": "string",
+      "description": "The UTC day to search as of, in YYYY-MM-DD format."
+     },
+     "q": {
+      "type": "string",
+      "description": "The search query."
+     }
+    },
+    "required": [
+     "asOf",
+     "q"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.linkup.so/v1/rewind/search",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "asOf",
+     "q"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "linkup.search",
+   "name": "Search",
+   "description": "The `/search` endpoint allows you to retrieve web content.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "excludeDomains": {
+      "type": "array",
+      "description": "The domains you want to exclude of the search. By default, don't restrict the search."
+     },
+     "fromDate": {
+      "type": "string",
+      "description": "The date from which the search results should be considered, in ISO 8601 format (YYYY-MM-DD). It must be before `toDate`, if provided, and later than 1970-01-01."
+     },
+     "includeDomains": {
+      "type": "array",
+      "description": "The domains you want to search on. By default, don't restrict the search. You can provide up to 100 domains."
+     },
+     "q": {
+      "type": "string",
+      "description": "The natural language question for which you want to retrieve context."
+     },
+     "structuredOutputSchema": {
+      "type": "string",
+      "description": "Required only when `outputType` is `structured`. Provide a JSON schema (as a string) representing the desired response format. The root must be of type `object`."
+     },
+     "toDate": {
+      "type": "string",
+      "description": "The date until which the search results should be considered, in ISO 8601 format (YYYY-MM-DD). It must be later than `fromDate`, if provided, or than 1970-01-01."
+     },
+     "depth": {
+      "type": "string",
+      "description": "Defines the search mode. `flash` is lowest latency: ranked sources and snippets in a few hundred milliseconds, built for low-latency use cases. `fast` is higher-quality one-shot retrieval in about a second \u2014 the recommended default for most agentic applications. `standard` is a single pass of agentic search for queries that span several topics or sources. `deep` runs several search iterations, opt",
+      "enum": [
+       "deep",
+       "fast",
+       "flash",
+       "standard"
+      ]
+     },
+     "includeImages": {
+      "type": "string",
+      "description": "Defines whether the API should include images in its results."
+     },
+     "includeInlineCitations": {
+      "type": "string",
+      "description": "Relevant only when `outputType` is `sourcedAnswer`. Defines whether the answer should include inline citations."
+     },
+     "includeSources": {
+      "type": "string",
+      "description": "Relevant only when `outputType` is `structured`. Defines whether the response should include sources. **Please note that it modifies the schema of the response, see below**"
+     },
+     "maxResults": {
+      "type": "number",
+      "description": "The maximum number of results to return. The number of results will always be \u2264 to maxResults."
+     },
+     "outputType": {
+      "type": "string",
+      "description": "The type of output you want to get. Use `structured` for a custom-formatted response defined by `structuredOutputSchema`.",
+      "enum": [
+       "searchResults",
+       "sourcedAnswer",
+       "structured"
+      ]
+     }
+    },
+    "required": [
+     "depth",
+     "outputType",
+     "q"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.linkup.so/v1/search",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "excludeDomains",
+     "fromDate",
+     "includeDomains",
+     "q",
+     "structuredOutputSchema",
+     "toDate",
+     "depth",
+     "includeImages",
+     "includeInlineCitations",
+     "includeSources",
+     "maxResults",
+     "outputType"
+    ],
+    "body_format": "json"
+   }
+  }
+ ]
+}

@@ -134,7 +134,7 @@ Routes web sessions through an isolated cloud browser. Web code executes in the 
 - **Credential vaulting**: Privileged credentials and SSH keys move off endpoints, scripts and code into the encrypted Keeper Vault.
 - **Just-in-time (JIT) access**: Time-bound access provisioned only when needed; standing privileges eliminated.
 - **Session management**: Visual sessions to SSH, RDP, VNC, databases and web apps from the browser or Keeper Desktop. All sessions recordable.
-- **Encrypted tunnels**: TCP/IP tunnels from the local vault client through the Keeper Gateway to target endpoints. Native developer tools (PuTTY, pgAdmin, MySQL Workbench) work unchanged.
+- **Encrypted tunnels**: TCP/IP tunnels from the local vault client through the KeeperPAM Gateway to target endpoints. Native developer tools (PuTTY, pgAdmin, MySQL Workbench) work unchanged.
 - **Automated discovery**: Keeper Discovery identifies privileged accounts, service accounts and credential dependencies across on-prem, AWS and Azure environments. Discovered resources import into the Vault.
 - **Credential rotation**: Automatic rotation after revocation.
 - **Approval workflows (Keeper Workflow)**: Structured access requests with notifications through web vault, desktop, mobile, or via Slack, Teams, Jira and ServiceNow integrations.
@@ -144,7 +144,7 @@ Routes web sessions through an isolated cloud browser. Web code executes in the 
 
 ### Architecture
 
-KeeperPAM runs on a zero-knowledge architecture. Keeper's infrastructure never accesses or decrypts customer vault data. The Keeper Gateway deploys in each customer environment (cloud or on-prem) to enforce policy.
+KeeperPAM runs on a zero-knowledge architecture. Keeper's infrastructure never accesses or decrypts customer vault data. The KeeperPAM Gateway deploys in each customer environment (cloud or on-prem) to enforce policy.
 
 ### Why customers choose it over legacy PAM
 
@@ -161,7 +161,7 @@ KeeperPAM runs on a zero-knowledge architecture. Keeper's infrastructure never a
 
 Sources: https://www.keepersecurity.com/features/keeper-ai/, https://docs.keeper.io/keeperpam/privileged-access-manager/keeperai, August 27 2025 press release
 
-KeeperAI is an agentic AI engine embedded into the Keeper Gateway. Its primary job is real-time threat detection and response for privileged sessions. It also powers the conversational DBA co-pilot inside KeeperDB and the zero-knowledge autofill technology in Keeper's browser extension. KeeperAI is part of KeeperPAM; it is not a separately purchased product.
+KeeperAI is an agentic AI engine embedded into the KeeperPAM Gateway. Its primary job is real-time threat detection and response for privileged sessions. It also powers the conversational DBA co-pilot inside KeeperDB and the zero-knowledge autofill technology in Keeper's browser extension. KeeperAI is part of KeeperPAM; it is not a separately purchased product.
 
 ### What it does in privileged sessions
 
@@ -229,7 +229,7 @@ Download links for the standalone app: https://www.keepersecurity.com/download.h
 
 Sources: https://www.keepersecurity.com/features/keeper-ai/; https://docs.keeper.io/keeperpam/privileged-access-manager/keeperai; August 27, 2025 press release.
 
-KeeperAI is an agentic AI service embedded in the Keeper Gateway that delivers real-time threat detection and autonomous response across privileged sessions. It launched in August 2025 and is a core capability of KeeperPAM — no additional license required, though customers pay for their chosen LLM provider's usage (or self-host).
+KeeperAI is an agentic AI service embedded in the KeeperPAM Gateway that delivers real-time threat detection and autonomous response across privileged sessions. It launched in August 2025 and is a core capability of KeeperPAM — no additional license required, though customers pay for their chosen LLM provider's usage (or self-host).
 
 ### What it does
 
@@ -354,7 +354,7 @@ Sources: https://www.keepersecurity.com/pricing/business-and-enterprise.html, ht
 
 KeeperPAM is sold via custom quote. Pricing has two components: per-user seats (PAM licenses mix with EPM licenses in the same organization, so only privileged users consume PAM seats) and Active Non-Human Identity (NHI) volume.
 
-**What counts as an Active NHI**: Any non-human technology identity — service account, API key, automation, AI agent — that transacts through the Keeper Gateway. KeeperPAM includes up to 24 Active NHIs at no additional cost. Beyond that, volume-based pricing scales across four tiers:
+**What counts as an Active NHI**: Any non-human technology identity — service account, API key, automation, AI agent — that transacts through the KeeperPAM Gateway. KeeperPAM includes up to 24 Active NHIs at no additional cost. Beyond that, volume-based pricing scales across four tiers:
 
 - **Tier 1 — 25 to 99 NHIs**: Foundational protection for organizations beginning to scale NHI deployments.
 - **Tier 2 — 100 to 249 NHIs**: Enhanced coverage for growing environments with multiple workloads.

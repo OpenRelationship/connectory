@@ -13,39 +13,31 @@ vouches for**: read it, then read their reference.
 
 ---
 ### Description
-Factorial is the all-in-one business software that connects everything you need to manage your team and grow your business.
+Factorial is the AI for business, connecting your HR, finance, and IT into one system that understands your company's context.
 
 #### Main content
 
-## Meet One, your trusty AI agent
+## Connect HR, finance and IT
 
-Meet One, your trusty AI agent
+Connect HR, finance and IT
 
-Well, more than that. It’s your collaborator, insight-giver, report-creator, impact-maker.
+## Make your HR more human
 
-## How can I help you today?
+Make your HR more human
 
-## Put the human back in HR
+Our agents get everything ready for you: company policies, contracts, payroll or signed documents. Your team just reviews, approves, and spends their time on people.
 
-Put the human back in HR
+## One searches, analyzes, connects, acts.
 
-Take repetitive tasks off your team’s plate with HR software that handles your core processes. That way, they can invest more time in your people.
+Each person has One; their AI agent that helps them make decisions because it works with your company context and your tools.
 
-Download payroll, request vacations, see tasks. A single place where they can do it all.
+Secure and EU-compliant system
 
-A go-to document storage for all company policies, e-signatures, and payslips.
+## Europe's leading AI for business
 
-Access insights in seconds, not hours. Factorial AI turns your questions into real-time reports, helping HR and leaders make better decisions, faster.
+Europe's leading AI for business
 
-## Why Factorial? Well, why not?
-
-Why Factorial? Well, why not?
-
-## The proof that we do it right
-
-The proof that we do it right
-
-We believe the best way to measure our own success is through real, tangible impact on our customers.
+The numbers say it all.
 
 9/10
 
@@ -57,49 +49,33 @@ give our onboarding process 5 stars
 
 of working hours saved
 
-by automating administrative tasks
+by automating administrative tasks that get in the way of your work
 
 4.7
 
-rating on our mobile app
+in reviews
 
-from 30,000 users in GooglePlay & AppStore
+from 30,000+ users on GooglePlay & AppStore
 
-## AI Global Report '25
+## This is how we work with you
 
-AI Global Report '25
+This is how we work with you
 
-Global and market-specific insights from 1,500 European leaders, 100+ team-ready prompts, expert interviews, and AI tools you didn’t know existed.
+## Still have questions?
 
-## Whoever you are, we can help you
+## What is an AI for Business?
 
-We support the decision-makers, the doers, and everyone in between. We’re there for the big choices and the everyday tasks, from promotions and investments to signing contracts and booking days off.
+## What does Factorial do?
 
-## Managers
+## What is an AI for Business used for?
 
-Get insights into individual development to build high-performing, happy teams.
+## What's the best AI for Business?
 
-## BMS for CFOs
+## Is there a business version of ChatGPT?
 
-Gain full visibility into company spending—by teams, projects, and salaries—and take control of costs.
+## How much does an AI for Business cost?
 
-## HR Leaders
-
-Unify processes, gain insights, and drive talent growth and engagement.
-
-## Employees
-
-Give them autonomy to manage working hours, access payslips, and track their goals and performance.
-
-## Still have questions about our BMS?
-
-Check out some of the most frequently asked questions about our business management software (BMS)
-
-## What does Factorial software do?
-
-## Why do businesses need a BMS?
-
-## How much does Factorial cost?
+## What size company is Factorial for?
 
 ### Description
 We have plans for all businesses and budgets.
@@ -122,47 +98,54 @@ These are some of the most frequently asked questions from our users.
 
 ## I have more questions.
 
-## See Factorial in Action
-
-**URL:** https://www.factorialhr.com/request-demo
-
 ### Description
-Request a free demo of Factorial and see how to simplify business management. No commitment, easy setup, and tailored to your needs.
+Book a demo today and discover Factorial, the AI solution for companies: automate tasks, build routines, and get set up fast — no commitment.
 
 #### Main content
-## See Factorial in Action
 
-See Factorial in Action
+## Make your HR processes more human
 
-Leave us your details and someone from our team will reach out shortly to schedule a demo. Here’s what to expect:
+Make your HR processes more human
 
-## We help you make the switch
+We take care of HR's most repetitive admin tasks. So HR has more time to support your teams and build a culture that actually keeps people around.
 
-We help you make the switch
+Download your payslip, request time off, or check tasks. All from one place.
 
-Our team will be by your side to ensure a quick and effective transition.
+One place to centralize every important document in your company.
 
-8/10
+Get reports in seconds, not hours. Factorial's AI turns your questions into real-time reports, so data becomes insight a lot faster.
 
-customers
+## This is how we work with you
 
-highlighted how easy it was to implement Factorial in their companies
+This is how we work with you
 
-95%
+## Europe's leading AI for business
 
-of customers
+Europe's leading AI for business
 
-enjoyed the Factorial onboarding experience
+The numbers say it all.
 
-4.7/5
+9/10
 
-★ ★ ★ ★ ★
+clients
 
-This is the rating our app has received from users in the App Store.
+give our onboarding process 5 stars
+
+60%
+
+of working hours saved
+
+by automating administrative tasks that get in the way of your work
+
+4.7
+
+in reviews
+
+from 30,000+ users on GooglePlay & AppStore
 
 ## All-in-one ally for managers
 
-**URL:** https://www.factorialhr.com/features
+**URL:** https://factorial.com/features
 
 ### Description
 Forget using the excel for managing employees on your business. Human Resources Software: Holidays, documents, reports, communications...
@@ -174,6 +157,8 @@ All-in-one ally for managers
 
 Unite your time, talent, and finance processes in one centralized place. Let Factorial take care of business management so you can take care of your people.
 
+## The leading AI for business in Europe.
+
 ## Holidays and absences
 
 Holidays and absences
@@ -181,6 +166,11 @@ Holidays and absences
 Effortlessly manage employee time off and preserve your own.
 
 Learn more about time off management
+
+- Time off requestsAutomate requests and respond in one click via desktop or mobile app.
+- Customizable absence reasonsSelect between different types of time off for clarity.
+- Centralized calendarGain visibility with an automatically updated team calendar.
+- Holiday policiesCreate time-off policies and assign them to your employees.
 
 ## Time off requests
 
@@ -206,6 +196,11 @@ Increase productivity and reduce absenteeism with software that records hours wo
 
 Learn more about time and attendance
 
+- Generate custom reports Download a monthly summary of the total hours worked by your employees.
+- Track hours workedHave employees clock in and out of work, and log breaks.
+- Clock in via mobile Scan a QR code from the app to clock in and out of work.
+- GeolocalizationGain visibility over where each team member is working from.
+
 ## Generate custom reports
 
 Download a monthly summary of the total hours worked by your employees.
@@ -230,6 +225,10 @@ Gain insights into employee performance and productivity and empower managers to
 
 Learn more about reports and analytics
 
+- Customized reportsGenerate reports in a format that suits you using data about your employees.
+- Reports panelBuild your own reports dashboard for an easy overview of your
+- Organizational chartGenerate org charts that are automatically updated with people changes.
+
 ## Customized reports
 
 Generate reports in a format that suits you using data about your employees.
@@ -250,6 +249,9 @@ Digitize your documents, store them securely, and manage approvals.
 
 Learn more about document management
 
+- Digital filingAccess all personal documents in one place, including payslips and contracts.
+- Access control Create workflows approvals for documents and choose reviewers.
+
 ## Digital filing
 
 Access all personal documents in one place, including payslips and contracts.
@@ -266,6 +268,9 @@ Request digital signatures instantly and sign contracts, timesheets, and other d
 
 Learn more about digital signatures
 
+- Document workflows See the progress of workflows to spot any pending, unsigned documents.
+- Safe signaturesSign securely knowing that we meet the strictest security requirements (eIDAS).
+
 ## Document workflows
 
 See the progress of workflows to spot any pending, unsigned documents.
@@ -281,6 +286,10 @@ Employee Portal
 Give your employees access to crucial documents and allow them to manage their time, tasks, and performance.
 
 Learn more about the employee portal
+
+- Time offEmpower your employees to manage their holidays and absences.
+- Personal documentsGive them access to personal info and documents at the click of a button.
+- Events and communicationKeep everyone up-to-date on what is happening in your business.
 
 ## Time off
 
@@ -300,6 +309,10 @@ Payroll
 
 Centralize payroll processes and automatically reflect real-time compensatory changes in payslips for an error-free payday.
 
+- Integrate with payroll providersIntegrate seamlessly with existing providers thanks to our open API.
+- ReportsGet deeper analytics into your company's pay with comprehensive reports.
+- Create payslipsBuild and distribute payslips with employees in bulk in a few clicks.
+
 ## Integrate with payroll providers
 
 Integrate seamlessly with existing providers thanks to our open API.
@@ -317,6 +330,11 @@ Build and distribute payslips with employees in bulk in a few clicks.
 Applicant Tracking System (ATS)
 
 Personalize the recruitment process for each candidate, centralize applicant information, and filter CVs instantly to hire the best talent.
+
+- CV filtering Automate CV screening to quickly find top candidates.
+- Customizable job ads Create custom-generated career pages to stand out from the competition.
+- Store information  Centralize candidate details and manage the entire employee lifecycle in one place.
+- Response templatesChoose between templated responses to applications and automate messages.
 
 ## CV filtering
 
@@ -338,9 +356,14 @@ Choose between templated responses to applications and automate messages.
 
 Mobile App
 
-Manage your business from anywhere at any time with our user-friendly app.
+Manage your business from anywhere and anytime with our user-friendly application.
 
 Learn more about mobile app
+
+- Clock in and outScan a QR code on your phone to log working hours easily.
+- Holidays and time offSend absence requests instantly and approve them via mobile.
+- Shared calendar Access your team's centralized time off calendar from anywhere.
+- Events and updatesGet company communications and updates straight to your phone.
 
 ## Clock in and out
 
@@ -366,6 +389,9 @@ Build a flexible org chart with auto-updated employee data to visualize your tea
 
 Learn more about organizational charts
 
+- Auto-updatesCreate an org chart that updates automatically based on real-time employee data.
+- Assign managersInclude new jobs and assign roles in a few clicks.
+
 ## Auto-updates
 
 Create an org chart that updates automatically based on real-time employee data.
@@ -381,6 +407,10 @@ User Permissions
 Assign user roles and permissions for total security and control.
 
 Learn more about permissions system
+
+- Customize system roles Adjust role permission for every workflow or document.
+- Custom permission groupsCreate groups easily and assign employees.
+- Assign approvers Choose managers to approve timesheets and absence requests.
 
 ## Customize system roles
 
@@ -427,12 +457,14 @@ Always have shifts covered, day or night, with our system. Simplify scheduling a
 
 ## What is the scheduling process in HR?
 
-## Is there a free scheduling program?
-
 ### Description
 Track spending accurately for tighter financial control.
 
 #### Main content
+
+## The leading AI for business in Europe.
+
+Stop the waste
 
 ## Set hard limits
 
@@ -479,11 +511,18 @@ Our project management software lets you plan your projects efficiently, track c
 
 #### Main content
 
+## The leading AI for business in Europe.
+
+Disconnected data, disconnected teams
+
 ## Start every project with a winning plan
 
 Start every project with a winning plan
 
 Build detailed quotes based on your team’s actual costs and capacity, ensuring margins are secure before the client even signs.
+
+- Structure quotes into clear phases with internal costs and margins per role
+- Auto-generate a project from the approved quote
 
 True profitability
 
@@ -509,7 +548,7 @@ Less chaos. More profit.
 
 ## Built for the whole team
 
-Whether you’re managing the budget or doing the work, Factorial makes like easier.
+Whether you’re managing the budget or doing the work, Factorial makes life easier.
 
 ## Employees
 
@@ -527,7 +566,7 @@ Gain visibility on costs, margins, and billing to make faster, data-driven decis
 
 Read all the most frequently asked questions and answers about HR project management software.
 
-## What is project management software?
+## What is a project management software?
 
 ## What is a task in project management?
 
@@ -538,11 +577,22 @@ The Factorial Payroll automatically generates payslips with the proper informati
 
 ## Payroll recurrence
 
+Payroll recurrence
+
 -
+
+- You won't need to enter all the data every month, this is done by our software.
+- If the payrolls have not changed and remain the same as the previous month, you will only have to validate them in one click.
 
 ## SEPA files generation
 
+SEPA files generation
+
 -
+
+- You can select the payroll you want to include in the SEPA file.
+- Factorial Payroll will automatically generate the SEPA files so you can download it.
+- It allows you to keep track of every payment.
 
 ### Description
 Internalize the management of contracts and with Factorial Payroll in a fast and intelligent way. Communications to the administration are automated too.
@@ -551,18 +601,22 @@ Internalize the management of contracts and with Factorial Payroll in a fast and
 
 ## Streamline your contract creation
 
+Streamline your contract creation
+
 Invite your employees to join Factorial Payroll and fill in all their information. The software will calculate their retribution automatically. Something that used to take 2 or 3 days is now done in seconds thanks to the software's data base.
 
 ## Automatic management
+
+Automatic management
 
 All information is stored on the contracts section. You can update it at any moment and all changes will take action immediately. Any error will be detected by the software thanks to the payment and compensations information on its data base.
 
 ## Time off management software
 
-**URL:** https://www.factorialhr.com/holidays-leaves-software
+**URL:** https://factorial.com/holidays-leaves-software
 
 ### Description
-Track PTO, employee vacations, manage time off, and gain insights with our comprehensive PTO tracking software. Try it free today!
+Track PTO, employee vacations, manage time off, and gain insights with our comprehensive PTO tracking software. Get a free demo today!
 
 #### Main content
 ## Time off management software
@@ -588,6 +642,10 @@ Create custom PTO policies and leave approval workflows and export data for a sm
 Manage time off from anywhere, anytime
 
 The ability to approve time off requests is at your fingertips.
+
+- Access our time off managment platform through your mobile device.
+- Check your team's availability in the time off calendar view.
+- Receive notifications of time off requests and approve them easily.
 
 ## Avoid the hidden cost of unused PTO
 
@@ -618,6 +676,11 @@ owed to employees on average.
 Create a system to manage your time off
 
 The majority of workers don't use their PTO days and this can lead to PTO liability for your company. Reminders to use remaining days off won't cut it - you need to create the culture to support your team.
+
+- Make sure employees know how much time off they have left.
+- Be transparent about how to use time off.
+- Simplify the time off request process.
+- Ensure that time off is tracked and reflected in payroll.
 
 ## How Factorial helps you manage time off
 
@@ -651,7 +714,7 @@ Get in touch with a product specialist to understand how Factorial manages time 
 
 ## Performance Management Software
 
-**URL:** https://www.factorialhr.com/performance-management
+**URL:** https://factorial.com/performance-management
 
 ### Description
 Run your performance review cycles with Factorial, get a sense of your company's pulse, and make decisions based on qualitative data.
@@ -714,6 +777,10 @@ Create workflows to collect employee documents during onboarding using fillable 
 
 Stop worrying about misplaced or stolen documents. With Factorial, you have an overview of who can access documents and from where.
 
+- Permissions systemSet employee permissions and manage access so only certain people can access and download documentsLearn about permissions
+- Data encryptionOur certifications and security ensures our software is compliant with federal and international data security regulations.See certifications
+- Secure sign-inAdd an extra layer of protection with added single sign-on security. Configure security settings to feel safe.See security policy
+
 ## Permissions system
 
 Set employee permissions and manage access so only certain people can access and download documents
@@ -738,7 +805,7 @@ See what other users have asked below. Still have questions? We are here to help
 
 ## Teleworking & Remote Work Software
 
-**URL:** https://www.factorialhr.com/remote-work-software
+**URL:** https://factorial.com/remote-work-software
 
 ### Description
 Whether your employees are temporarily or permanently working remotely, using remote work software will be key to success, helping you improve worker productivity and so much more!
@@ -746,39 +813,81 @@ Whether your employees are temporarily or permanently working remotely, using re
 #### Main content
 ## Teleworking & Remote Work Software
 
+Teleworking & Remote Work Software
+
 In large cities in the USA, teleworking, otherwise known as remote work, has become the best way to protect employees and businesses during the pandemic.
 
 Is your protection plan equipped with the tools needed to overcome the Coronavirus crisis and navigate through the next pandemic? Discover all the functionalities Factorial offers to help you stay on top of it all.
 
 ## Time Tracking Software for Remote Work
 
+Time Tracking Software for Remote Work
+
 Check-in to ensure your employees are registering their hours and keeping up to date using a method that best suits you and your team.
+
+- Clock-in from your computer or through the mobile app
+- Geolocalization clock-in, to know from where they are working
+- Software for remote work - simple access, everything centralized
 
 ## Manage Documents and E-Sign Online
 
+Manage Documents and E-Sign Online
+
 Just because it’s called "paperwork", doesn’t mean you need to carry papers. Manage all your company documents without the need for physical documents.
+
+- Ship, store, organize, edit, and approve all types of documents
+- Electronic signature for employees - 100% legal
+- Maximum data security - encrypted & single access
 
 ## Time off Remote Working Software
 
+Time off Remote Working Software
+
 If your employees are working from home, you’ll want to know, who is at work and who will not be available today or in the coming days.
+
+- General view of all teams and absence types
+- Up-to-date information on absences
+- One-click vacation management
 
 ## Internal Communications
 
+Internal Communications
+
 Use Factorial’s HR management software to manage and communicate between teams and employees
+
+- Keep your team informed of the latest news and current events
+- Make sure all your employees are aware of company safety measures
+- Synchronized company calendar for full visibility into who's working and who's not
 
 ## Employee Performance Monitoring
 
+Employee Performance Monitoring
+
 One of the biggest problems with remote work is the feeling of lack of control and visibility over your employees. With a solution for performance reviews, gain more visibility with your team.
+
+- Automated and personalized assessments.
+- Notifications and questionnaires integrated into the remote working monitoring software
+- Assign tasks to your employees
 
 ## Hiring Plans for Remote Workers
 
+Hiring Plans for Remote Workers
+
 Just because your company is working remotely, doesn’t mean hiring needs to stop. Do you want to incorporate new talent to your team? Optimize the process so you can do it while teleworking from home.
+
+- Fast & simple integration of employees
+- Plan and create task flows assigned to different managers
+- Customize the steps in the process
 
 ## Employment offers while teleworking
 
+Employment offers while teleworking
+
 Despite the fact that legislation has yet to define how teleworking actually works across the USA, the best talent is already on the lookout for companies with flexible remote working policies. Are you offering the option of remote working to your staff?
 
----
+- Manage your process of selection and recruitment with an employment portal
+- Fully personalized company page with more attractive offers
+- Integrations with Indeed, the job portal with the largest search for remote working positions
 
 ### Description
 Carry out training and development management, monitor training tracking, and view learning costs and schedules from one place.
@@ -829,7 +938,7 @@ believe learning brings more purpose to their work.
 
 ## The payslip manager
 
-**URL:** https://www.factorialhr.com/same__payslip-manager-software
+**URL:** https://factorial.com/same__payslip-manager-software
 
 ### Description
 Save time while managing employee’s payslips on your company. Split and send automatically all the payslips from each employee.
@@ -837,17 +946,25 @@ Save time while managing employee’s payslips on your company. Split and send a
 #### Main content
 ## The payslip manager
 
+The payslip manager
+
 Save time while sending the employee’s payslip through the smart payslip manager from Factorial.
 
 ## Automatic payslip manager
+
+Automatic payslip manager
 
 Send payrolls to employees easily within seconds. The automatic Factorial manager allows you to save time each month while sending the payslip to employees. Easy, smart and safe.
 
 ## The employee receives the payslip
 
+The employee receives the payslip
+
 The employee will receive a private message with the payslip and the file will be stored in the documents section of each employee. Available anytime, anywhere. Employees will only be able to see their own payslip. They will not have access to other payrolls or private data of any other employee.
 
 ## High security, no mistakes
+
+High security, no mistakes
 
 Using the smart manager there will be no errors in the payslip process. This process will be carried out in compliance with the highest safety standards to ensure that all information remains confidential. Safer than the mail.
 
@@ -866,11 +983,11 @@ We make the most of every second so you can save time every day.
 
 saved on manual work every month
 
-10.000+
+16,000+
 
 companies using Factorial to clock in
 
-600.000+
+8,500,000+
 
 people managing time with Factorial
 
@@ -880,49 +997,21 @@ Time tracking, shifts and time off
 
 Three features that give you exactly what you need to make the most of your time
 
-## Automate time tracking
-
-Control, review and approve hours worked and download reports to stay compliant.
-
-## Gain clarity with shift management
-
-Establish policies, see who’s working and who’s not at a glance, and organize your team’s shifts.
-
-## Manage shifts without paperwork
-
-Establish the most suitable absence policy and simply approve them upon request.
-
 ## Time tracking you won’t have to track
 
 Time tracking you won’t have to track
 
 Everyone clocks in and out and you receive a report with their hours. It’s that easy.
 
-## Free downloadable templates
-
-The best templates for managing time, talent and expenses
-
-## Informative webinars
-
-Advice, success stories, product demos so you don't miss a thing
-
-## Inspiring articles
-
-HR News, best practices and more. We keep you updated through well-written, entertaining blog posts.
-
-## Podcasts with the best voices
-
-Conversations covering important and inspiring topics
-
-## Ebooks
-
-They say everything is in the books, so we make sure of that
+- Clock in from your computer, Factorial app or with a QR code
+- Establish various policies
+- Discover how time is spent to see who’s working less and who may be overworking
 
 ## Clients that manage time with Factorial
 
 Clients that manage time with Factorial
 
-More than 7,000 companies use Factorial daily. That’s a lot of happy people.
+More than 17,000 companies use Factorial daily. That’s a lot of happy people.
 
 ## Your HR management, simplified
 
@@ -930,74 +1019,40 @@ Your HR management, simplified
 
 In addition to time, manage talent expenses. Why choose when you can have it all?
 
-## Evaluate your team’s performance
-
-See how each person is doing by checking their performance and defining objectives.
-
-## Recruit people faster
-
-Centralize your recruitment documents and send offer letters all from the same platform.
-
-## Define competencies
-
-Determine the skills you want your team to enhance and track them using the 9-box grid.
-
-## Manage payroll in seconds
-
-We’ll guide you through the payroll process and a certified consultant will accompany you.
-
-## Control and manage expenses
-
-Make managing company expenses simpler than ever and forget about saving receipts.
-
 ## Frequently Asked Questions
 
 These are some of the questions we get related to time management
 
 ### Description
-A human resources (HR) software that helps CEOs and HR pros streamline employee time tracking, time off management, performance, and more - all in one place.
+AI powered human resources (HR) software that helps CEOs and HR pros streamline employee time tracking, time off management, performance, and more - all in one place.
 
 #### Main content
 
-## Automate time tracking
+## For the whole company
 
-Track, review and approve hours in a matter of seconds and download reports if needed.
+Useful for both managers and their teams.
 
-## Take advantage of shift management
+## Tailored to you
 
-Establish policies and organize your team's shifts in a way that increases their productivity.
+That is why we are always evolving and launching improvements.
 
-## Paperless absence management
+## Powerful platform
 
-Establish the best policy for absence requests and simply approve them.
+We make each process 10 times easier and more effective.
 
-## Evaluate your team's performance
+## Easy to use
 
-Find out how each person is doing while you check their performance and define goals.
-
-## Recruit people better and faster
-
-Centralize all the documents of the selection process and send the offer itself from the same platform.
-
-## Define competencies and empower them
-
-Define the skills you want each person to work on and follow up with the 9-box matrix.
-
-## Manage payroll in seconds
-
-We guide you through the payroll process so you avoid mistakes and a certified advisor will accompany you.
-
-## Track expenses at a glance
-
-Manage your company's expenses in a much easier way without worrying about saving receipts.
-
-## Personalize company cards
-
-Instantaneously create physical and virtual cards to manage expenses from Factorial.
+Intuitive and easy to implement in your company.
 
 ## Empower your business with data
 
+Empower your business with data
+
 Where is it best to invest money? Which teams add the most value? Who should be promoted? The answer is in the data.
+
+- Download reports based on your company's activity.
+- Analyze data and make better strategic decisions.
+- Save time and money by automating your processes.
 
 ## Choose the plan that best suits you
 
@@ -1009,7 +1064,7 @@ Try out Factorial without giving us your card details. If you like what you see,
 
 ## Cancel anytime
 
-Want to cancel? No problem. You can change your plan or cancel at any time. But there are plenty of reasons for you to want to stay.
+Want to cancel? You can change your plan or cancel at any time. But there are plenty of reasons for you to stay.
 
 ## Your safety is a very serious matter
 
@@ -1023,33 +1078,96 @@ These are some of the most frequently asked questions.
 
 ## What kind of HR software is Factorial?
 
-## Does your HR software have permanence?
-
-## Factorial vs. HiBob
-
-**URL:** https://www.factorialhr.com/hr-software-factorial-alternative-to-hibob
-
 ### Description
-Factorial's a top-rated all-in-one human resources software. Save more than 30 hours of work managing attendance, time, payroll, talent, or expenses all in one place.
+Recruit top talent in clicks and nurture employee growth to reduce turnover and retain your dream team. 
 
 #### Main content
-## Factorial vs. HiBob
 
-Factorial vs. HiBob
+## Say goodbye to manual time tracking
 
-According to Software Suggest users, Factorial is the preferred HR platform over HiBob. Don't believe us? We'll show you exactly why users choose Factorial over HiBob.
+Say goodbye to manual time tracking
 
-## Save hours on admin work with Factorial
+No more Excel spreadsheets to monitor working hours and calculate payroll. Digitize it all with Factorial.
 
-Save hours on admin work with Factorial
+- Improve accuracy Feel confident in automated time-sheets and error-free payslips.
+- Gain insights Have visibility over working patterns, lateness and absenteeism.
+- Reward overtime Accurately track extra hours worked and reward staff accordingly.
+- Stay compliantManage responsibly and ensure you’re adhering to Working Time Regulations.
 
-Managing employees in retail comes with a lot of administrative work. Factorial helps streamline time tracking and performance management tasks by automating them through a single dashboard.
+## Improve accuracy
 
----
+Feel confident in automated time-sheets and error-free payslips.
+
+## Gain insights
+
+Have visibility over working patterns, lateness and absenteeism.
+
+## Reward overtime
+
+Accurately track extra hours worked and reward staff accordingly.
+
+## Stay compliant
+
+Manage responsibly and ensure you’re adhering to Working Time Regulations.
+
+## What our hospitality clients think
+
+What our hospitality clients think
+
+More than 700 hotels, bars, restaurants and cafes are already using Factorial to streamline their HR processes every day.
+
+## A number is worth a thousand words
+
+A number is worth a thousand words
+
+Factorial is already having an impact on employees worldwide and empowering countless HR teams to make better business decisions.
+
+500,000
+
+Factorial users worldwide
+
+17,000
+
+companies use Factorial every day.
+
++ 30h
+
+saved monthly by users
+
+## We make it easier than ever
+
+Choose the best pricing plan for you without any commitment and with complete security.
+
+- Choose the plan that best suits youWe have plans for any budget, and you can see them all with a free demo. Choose the features you need for your business.
+- Take a look with no strings attachedGet a tour of Factorial without paying a penny. Let the software speak for itself.
+- Cancel anytimeYou can easily change your plan or cancel whenever you like - but we’re sure we’ll give you plenty of reasons to stay.
+- Privacy and security guaranteed We block dangerous connections and encrypt all your information.
+Learn more here.
+
+## Choose the plan that best suits you
+
+We have plans for any budget, and you can see them all with a free demo. Choose the features you need for your business.
+
+## Take a look with no strings attached
+
+Get a tour of Factorial without paying a penny. Let the software speak for itself.
+
+## Cancel anytime
+
+You can easily change your plan or cancel whenever you like - but we’re sure we’ll give you plenty of reasons to stay.
+
+## Privacy and security guaranteed
+
+We block dangerous connections and encrypt all your information.
+Learn more here.
+
+## Hospitality FAQs
+
+Any doubts or questions? Find our most frequently asked below.
 
 ## HR software for Real Estate companies
 
-**URL:** https://www.factorialhr.com/real-estate-hr-management
+**URL:** https://factorial.com/real-estate-hr-management
 
 ### Description
 Factorial HR automates HR tasks required within the Real Estate Industry like Time-tracking, Leave Management, and, sending documents in bulk and many more.
@@ -1061,11 +1179,11 @@ HR software for Real Estate companies
 
 The all-in-one, cloud-based HR platform that centralizes documentation, supports legal compliance, and provides deep insights to inform data-driven decisions. Factorial integrates painlessly with existing systems so you don’t have to overhaul your processes, just streamline them.
 
-600.000+
+850,000+
 
 satisfied users worldwide
 
-13,000+
+17,000+
 
 companies already trust Factorial
 
@@ -1085,13 +1203,23 @@ Drive your Real Estate agency with data
 
 Download reports based on your company’s financial and employee data to give a complete picture of company costs, empowering you to make more strategic business decisions.
 
+- Gain people insights using employee time, attendance and performance data.
+- Access deeper analytics on all facets of the company, from finance to logistics, with Power BI integration.
+- Streamline processes based on insights from your workforce and get stakeholder buy-in with graphs made instantly.
+
 ## We make it easier than ever
 
 Choose the best pricing plan for you without any commitment and with complete security.
 
+- Choose the plan that best suits youOur plans are for all budgets, and you can see all the features with a free demo. Choose those that suit your business.
+- Try us with no strings attachedTry out Factorial without giving us your card details. Let the software speak for itself.
+- Cancel anytimeYou can easily change your plan or cancel whenever you like - but we’re sure we’ll give you plenty of reasons to stay.
+- Privacy and security guaranteed We block dangerous connections and encrypt all your information.
+Learn more here.
+
 ## Choose the plan that best suits you
 
-Our plans are for all budgets and have a trial period of 14 days. Pick and choose the tools that suit your business.
+Our plans are for all budgets, and you can see all the features with a free demo. Choose those that suit your business.
 
 ## Try us with no strings attached
 
@@ -1120,7 +1248,7 @@ A human resources (HR) software that helps CEOs and HR pros streamline employee 
 
 ## Discover Factorial in 2 minutes
 
-**URL:** https://www.factorialhr.com/discover-factorial-software
+**URL:** https://factorial.com/discover-factorial-software
 
 ### Description
 Track time, develop talent, control finances, streamline payroll - and breathe. Free up time to focus on your people, not paperwork.
@@ -1131,6 +1259,18 @@ Track time, develop talent, control finances, streamline payroll - and breathe. 
 Discover Factorial in 2 minutes
 
 Want to improve how you manage time, talent, and documents? Discover the business software to manage your entire team.
+
+## Make your HR processes more human
+
+Make your HR processes more human
+
+We take care of HR's most repetitive admin tasks. So HR has more time to support your teams and build a culture that actually keeps people around.
+
+Download your payslip, request time off, or check tasks. All from one place.
+
+One place to centralize every important document in your company.
+
+Get reports in seconds, not hours. Factorial's AI turns your questions into real-time reports, so data becomes insight a lot faster.
 
 ## We help you with the change
 
@@ -1156,98 +1296,240 @@ liked Factorial’s onboarding experience
 
 Is our app’s rating in the App Store
 
-## MDM that knows your employees
+## Unleash the power of two yous
 
-**URL:** https://www.factorialhr.com/device-management-mdm
+Unleash the power of two yous
+
+Get a free walkthrough of how Factorial AI simplifies recruitment, shifts, expenses, and more.
+
+- Built with boundaries, so you have full control over who sees what.
+- Reliable recommendations based on your real-time data, not assumptions.
+- Private and fully compliant. Your information stays secure, always.
+
+---
+
+## One MDM for all your devices
+
+**URL:** https://factorial.com/device-management-mdm
 
 ### Description
 Every hire, role change, or exit automatically updates device assignments, security settings, inventory, and remote lock—powered by your HR system as the source of truth.
 
 #### Main content
-## MDM that knows your employees
+## One MDM for all your devices
 
-MDM that knows your employees
+One MDM for all your devices
 
-Stop chasing spreadsheets. Every hire, role change, or exit automatically updates device assignments, security settings, inventory, and remote lock—powered by your HR system as the source of truth.
+Every employee with their devices and access, in a single console for Mac, Windows, Linux, iOS and Android.
 
-## Multi-OS, built for modern IT
+## Manage and secure every device
 
-Multi-OS, built for modern IT
+Manage and secure every device
 
-Manage computers and mobile devices from one place, and standardize security across all devices and users.
+Set up on arrival, protected while in use and locked if it's lost.
 
-## Audit-ready
+AI agent
 
-Audit-ready
+## ONE keeps an eye on compliance
 
-Apply standard security controls and make it easier to stay aligned with ISO 27001, SOC 2, and NIS2.
+ONE keeps an eye on compliance
 
-## Real-time asset inventory
+It spots devices that fall out of compliance and proposes how to fix them.
 
-Real-time asset inventory
+- Checks encryption, updates and policies across your whole fleet
+- Answers in natural language, like which devices still need updating
+- Makes no change without your approval, and every change is logged
 
-Get full visibility into your assets, including security status, storage, battery, and updates.
+Connected to HR
 
-## Resolve issues remotely
+## Explore Factorial IT
 
-Resolve issues remotely
+Explore Factorial IT
 
-Fix problems without interrupting work or relying on “can you send me a screenshot?”
+See how devices, access and policies are managed in an interactive demo, at your own pace.
 
-## Jaume Puig, CTO
+## Your IT, beyond devices
 
-Jaume Puig, CTO
+Your IT, beyond devices
 
-“We needed an MDM that was complete, easy to roll out, and didn’t rely on IT resources we simply didn’t have. With Factorial IT, we got it up and running quickly. It was key to completing our ISO certification and, once connected to HR, it saves us a huge amount of time with every onboarding.”
+Purchasing, access, tickets and compliance, all managed from one place.
 
-## See Factorial IT in action
+## Up and running in under two weeks
 
-See Factorial IT in action
+Up and running in under two weeks
 
-Leave us your details and our IT team will reach out shortly to schedule a demo. Here’s what to expect:
+Our specialists set up the policies with you, enroll the first devices and fit the timeline to your case.
 
-## Mobile Device Management FAQs
+- If you're coming from another MDM, they support you through the entire migration
+- If you use Intune, we connect to it with no migration needed
 
-Find answers to the most common questions about Factorial IT MDM.
+## Manage your devices from Factorial
+
+Manage your devices from Factorial
+
+Mac, Windows, Linux, iOS and Android from one console, with devices and access that update with every hire, role change or departure.  built around your case, with tailored pricing.
+
+- Encryption, patches, scripts and remote lock or wipe, with zero-touch enrollment
+- Device purchasing, shipping and collection in any country
+- SaaS access, licenses and tickets in one place
+- ONE spots compliance gaps and proposes the fix for you to approve
+- Up and running in under two weeks, and compatible with Intune
+
+## Frequently asked questions
+
+## Does it support zero-touch enrollment?
+
+## Do I need to leave Microsoft Intune?
+
+## Can ONE make changes on its own?
+
+## Do I need Factorial HR?
+
+## What if there's no IT team?
+
+## How much does Factorial IT cost?
 
 ### Description
 Factorial IT uses HR data to grant, update, and revoke permissions automatically. People get exactly what they need, and you stay audit-ready as roles change or employees leave.
 
 #### Main content
 
-## Add any SaaS, your way
+## ONE knows who has access to what
 
-Add any SaaS, your way
+ONE knows who has access to what
 
-Choose the right setup for each tool — automate with an AI Agent, connect via SAML, or track it manually when provisioning isn’t available, plus pick from a ready-to-use SaaS catalog.
+It answers questions about any tool, access or license and proposes the change for you to approve.
 
-## SaaS Spend, Under Control
+- Answers in natural language, like who's an admin in Notion
+- Flags unused licenses before renewal
+- Makes no change without your approval, and every change is logged
 
-SaaS Spend, Under Control
+Connected to HR
 
-Stop paying for unused licenses by seeing exactly who uses what across your SaaS stack. Identify ghost seats and clean up access before the next billing cycle.
+## Explore Factorial IT
 
-## Control SaaS access, end to end
+Explore Factorial IT
 
-Control SaaS access, end to end
+See how access is granted and revoked and how licenses are freed up in an interactive demo, at your own pace.
 
-Stay up to date, audit-ready, and secure with HR-driven rules, logs, and automation.
+## Your IT, beyond SaaS
 
-## See Factorial IT in action
+Your IT, beyond SaaS
 
-See Factorial IT in action
+Devices, procurement, tickets and compliance, managed from the same place.
 
-Leave us your details and our IT team will reach out shortly to schedule a demo. Here’s what to expect:
+## One MDM for all your devices
 
-## Ready to put your IT on autopilot?
+One MDM for all your devices
 
-Quick answers on setup, security, and scale.
+Mac, Windows, Linux, iOS and Android from one console, with encryption, patching and remote lock. The same data decides which devices can access each tool.
 
-## Can I manage permissions for apps that don't have an API?
+Every device arrives at the employee's home configured, with its software and policies.
+
+When someone leaves, the device is locked at the same time their access is revoked.
+
+## Manage your SaaS with Factorial
+
+Manage your SaaS with Factorial
+
+Software, access and licenses in one console, with access that updates with every hire, role change or departure.  for your use case and a tailored price.
+
+- Shadow IT detection, AI tools included
+- Role-based access granted and revoked with every HR change
+- Unused licenses flagged before renewal
+- Devices, procurement and tickets in one place
+- Up and running in under two weeks, without switching identity providers
+
+## What IT teams that made the switch say
+
+What IT teams that made the switch say
+
+## Frequently asked questions
+
+## Does it detect AI tools too?
+
+## Can I manage software without an integration?
+
+## How does it help cut SaaS spend?
+
+## Can ONE make changes on its own?
+
+## Do I need Factorial HR?
+
+## How much does Factorial IT cost?
+
+## Complete, easy-to-use SaaS management
+
+Complete, easy-to-use SaaS management
+
+Up and running in under two weeks, with guided onboarding.
+
+---
+
+## WE CHANGED
+
+**URL:** https://factorial.com/more-than-hr-software
+
+### Description
+Factorial changed — so the way you work can too. More than HR software: the AI platform where people and agents work as one, so you focus on what matters.
+
+#### Main content
+## WE CHANGED
+
+## The leading AI for business in Europe.
+
+- Finally, an AI Platform where people and agents work as One.
+- So you can focus on the important.
+- Not the urgent.
+
+What is coming next
+
+## The AI agent. The copilot. The answer.
+
+The AI agent. The copilot. The answer.
+
+What if your AI didn't just respond, but also acted? At Factorial, you'll have agents that execute, learn from you, provide 100% reliable data, and act just like another member of your team.
+
+- Working. But together.Give every person an AI agent that helps them move faster, stay focused, and get more done.
+- Automate. Act. DoneFrom screening candidates to assigning shifts. The agents acts, calls, confirms, and notifies, all on its own.
+- Smarter as you grow The more Factorial products you use, the more context the agents holds. They just keeps getting better after every use.
+- Connected to everythingThe agents connects with Slack, HubSpot, email, and more. They meet you everywhere work happens.
+
+## Working. But together.
+
+Give every person an AI agent that helps them move faster, stay focused, and get more done.
+
+## Automate. Act. Done
+
+From screening candidates to assigning shifts. The agents acts, calls, confirms, and notifies, all on its own.
+
+## Smarter as you grow
+
+The more Factorial products you use, the more context the agents holds. They just keeps getting better after every use.
+
+## Connected to everything
+
+The agents connects with Slack, HubSpot, email, and more. They meet you everywhere work happens.
+
+## What can we do now
+
+What can we do now
+
+Our AI thinks fast, executes in seconds, and delivers reliable results — so your team's work (and yours) can shine even brighter.
+
+## Power your people search
+
+Power your people search
+
+Find the best fit for your team faster with AI that empowers you to make hiring decisions you’re proud of.
+
+- AI-generated job specs that attract candidates
+- Top match recommendations for confident hiring
+- Instant CV summaries for quicker decisions
 
 ## Control iD
 
-**URL:** https://www.factorialhr.com/apps/integration/control-id
+**URL:** https://factorial.com/apps/integration/control-id
 
 ### Description
 Manage employee attendance and security with Control iD. - A human resources (HR) software that helps CEOs and HR pros streamline employee time tracking, time off management, performance, and more - all in one place.
@@ -1267,728 +1549,270 @@ Control iD is a Brazilian technology firm that develops innovative hardware and 
 
 ## Similar integrations
 
----
-
-## Security at Factorial
-
-**URL:** https://www.factorialhr.com/security
-
-### Description
-We always take very seriously how we manage our customers’ information. We apply the best practices and comply with the GDPR.
-
-#### Main content
-## Security at Factorial
-
-Keeping our customers' data secure is our highest priority.
-
-This security page provides a high-level overview of the security practices put in place to achieve that objective.
-
-Factorial has established an Information Security Management System in accordance with the requirements of the ISO/IEC 27001 standard to guarantee the continuity of information systems, minimize the risk of damage and ensure compliance with the objectives set, which can be found here:
-
-## Data Protection
-
-Factorial takes data protection very seriously, and it is compliant with GDPR, UK-GDPR, LGPD, CCPA and LFPDPPP.
-
-## Data Protection Officer (DPO)
-
-## Data breach policy at Factorial
-
-## Certifications
-
-To show our commitment to protecting customer data, Factorial has invested in obtaining and maintaining certifications in the following standards:
-
-## ISO/IEC 27001:2023
-
-## SOC2 Type I & II
-
-## Product Security
-
-Factorial makes sure its platform complies with world wide recognized information security standards:
-
-## Cloud infrastructure
-
-## Data encryption
-
-## Data retention and removal
-
-## Application security monitoring
-
-## Secure development
-
-## User protection
-
-## Payment information
-
-## Internal Security
-
-At Factorial we make sure to implement internal policies and protocols to comply with internationally recognized security standards.
-
-## Account security
-
-## Physical security
-
-## Trainings
-
-## Background checks
-
-## Service Level Agreement
-
-This Service Level Agreement ("SLA") governs the use of Factorial under the provisions of the Terms of Services.
-
-## Uptime
-
-## Service Credits
-
-## Credit Request and Payment Procedures
-
-## SLA Exclusions
-
-## Agreements and terms
-
-Hereunder you will find the aplicable agreements and terms regulating your relationship with Factorial
-
-## Privacy Policy
-
-## Terms and Conditions
-
-## Confidentiality
-
-Factorial and the customer undertake to keep reserved and confidential the existence and content of all documentation and information that is provided, transmitted or disclosed, undertaking not to make any disclosure without the prior written authorization of the other party.
-
-## Certificates and security protocols
-
-All our customer data is stored on the servers of Amazon Web Services (AWS) servers in Germany, a set of web services in the cloud that guarantee maximum security.
-
-The Amazon Web Services data center is defended by three physical layers of security. Likewise, the facilities are protected against impacts and are only accessible through a non-transferable personal card and pin.
-
-Do you have any questions or feedback?
-
-Feel free to reach out at privacy@factorial.co
-
-## Help us stay secure
-
-Help us stay secure
-
-If you’ve discovered a security vulnerability in our platform, we encourage you to report it responsibly through our official program on HackerOne.
+- DeskySync employee data and manage office spaces efficiently.
+- SupremaSimplify attendance tracking with secure and reliable biometric solutions.
+- ZKTecoIntegrate time tracking details from ZKTeco terminals directly to Factorial payroll without manual data entry
+- OktaSimplify access management and enhance security with Okta.
+- CormaMonitor software usage, centralize license management and automate user provisioning tasks.
+- SiitAI service desk that executes complete workflows across your internal operations.
 
 ---
 
-## Factorial Legal
+## Contact us - Factorial
 
-**URL:** https://www.factorialhr.com/hr-legal
-
-### Description
-Add legal support from labor experts to all your previous plans. Includes HR, Pro and Payroll Factorial.
-
-#### Main content
-## Factorial Legal
-
-Online payroll program with legal advice
-
-## Factorial's most complete plan
-
-With Factorial Legal you'll enjoy all of our previous plans. You'll have access to our Human Resources software and be able to create custom reports and absences. But most importantly, Factorial Legal includes our payroll software and contract creation features, which will help you optimize up to 70% of your time.
+**URL:** https://factorial.com/contact
 
 ### Description
-The Factorial Payroll program turns the payroll management of the payrolls with flexible compensation in an easy and fast task.
+We are an online HR software offering time tracking, talent acquisition tools and more. Any questions? Contact us and we will help you
 
 #### Main content
+## Contact with Factorial
 
-## Payslips with variable compensation
+Contact with Factorial
 
-## Fast payslips validation
+Want to contact us? We're here if you have any questions!
 
--
+## We're in Barcelona
 
-## Get your payslips always updated
+We're in Barcelona
 
-**URL:** https://www.factorialhr.com/payslips-updated
+In Poblenou, where the city's future is being built. And 10 minutes from the beach. Because we know how important a good work-life balance is.
 
-### Description
-Payroll software works thanks to the intelligent use of the information. Actions that have an impact on compensation are synched with the payroll generator.
+- AddressCarrer de Llacuna, 56 – Building C, 08005 Barcelona (Spain)Get directions
+- Tech SupportWe're here to answer any question you have.Contact us
 
-#### Main content
-## Get your payslips always updated
+## Address
 
-Improve the productivity of the HR department.
+Carrer de Llacuna, 56 – Building C, 08005 Barcelona (Spain)
 
-The payroll software works thanks to the intelligent use of the information. Those actions that have an impact on compensation are synched with the payroll generator.
+## Tech Support
 
-## Automatic employees status registration
+We're here to answer any question you have.
 
-Thanks to the payroll program the actions that used to take between 3 and 5 days of work, such as the employees joining or leaving to the company will be automatically registered.
+## We're everywhere else too
 
-## Intelligent management of contract
+We're everywhere else too
 
-Any change in the employee's contracts will be reflected in the next payroll automatically. The software will also notify the Public Administrations if necessary.
+A global team for local needs
 
 ---
 
-## Accessible & secure
+## Desky
 
-**URL:** https://www.factorialhr.com/accessible-secure
+**URL:** https://factorial.com/apps/integration/desky
 
 ### Description
-Factorial Payroll is an online software accessible from anywhere that meets the strictest security and privacy standards.
+Sync employee data and manage office spaces efficiently. - A human resources (HR) software that helps CEOs and HR pros streamline employee time tracking, time off management, performance, and more - all in one place.
 
 #### Main content
-## Accessible & secure
+## Desky
 
-Factorial Payroll is an online software accessible from anywhere that meets the highest security and privacy standards.
+## What is Desky?
 
-## Accessible and always updated
+Desky is innovative software that transforms any office into a flexible workspace. Its visual editor allows you to recreate your office layout online, including desks and meeting rooms. Employees can book these spaces anytime from their phones or by scanning a QR code, with real-time bookings.
 
-Thanks to the cloud storage you'll be able to access from anywhere whenever you want without downloading or installing anything. Change your employees information and compensation in just a few seconds and everything will update in the platform.
+## Benefits
 
-## Secure & private
+- Automatically sync employee data to keep your company up to date in Desky.
+- Enable employee access to office spaces from day one.
+- Enhance security by restricting access immediately upon termination.
+- Transfer all employees' basic information from Factorial to Desky for easier user account creation.
 
-Security is very important to us and our software meets the highest security standards. Only people with the right authorization can access to the employees information, contracts and payslips.
+## Similar integrations
 
-## Factorial and the GDPR
-
-We comply with the new regulation of General Data Protection Regulation (GDPR) to ensure that all data of our users are protected at all times. In addition, our suppliers also comply with the GDPR.
+- SupremaSimplify attendance tracking with secure and reliable biometric solutions.
+- ZKTecoIntegrate time tracking details from ZKTeco terminals directly to Factorial payroll without manual data entry
+- OktaSimplify access management and enhance security with Okta.
+- Control iDManage employee attendance and security with Control iD.
+- CormaMonitor software usage, centralize license management and automate user provisioning tasks.
+- SiitAI service desk that executes complete workflows across your internal operations.
 
 ---
 
-## HR Solutions for Technology companies
+## a3nom
 
-**URL:** https://www.factorialhr.com/technology-companies-hr-solutions
-
-### Description
-A HR Software is essential to up-level Technology companies  HR. Above all, it needs to be simple to use, yet dynamic in function, and shouldn't cost you a fortune. 
-
-#### Main content
-## HR Solutions for Technology companies
-
-With so much going on in a fast-paced tech environment, there's one main thing that often lags behind, and that is HR management.
-
-Factorial HR offers the HR Solutions suited to the needs of your fast-growing technology company.
-
-## Time & Attendance
-
-Offer employees flexibility with how they clock in/out, whether they're working on-site/off-site, or working remotely.
-
-## Mobile App
-
-Allow your employees to clock-in and ask for time-off from their mobile device.
-
-## Time-off and Calendar
-
-Request a vacation and leave in seconds and track who is working on our company calendar.
-
-## Accrued Hours
-
-Monitor your employees extra hours and their accrued time off.
-
-## What our Tech Customers are Saying
-
-What our Tech Customers are Saying
-
-Our clients have diverse needs, but the one thing they have in common is their need for a Human Capital Management system that covers all the bases for Technology Companies.
-
-## HR as your ally towards growth
-
-Improve hiring & onboarding efficiency, manage employee schedules without errors, gain visibility over your people analytics, build internal communications, and promote better WFH practices.
-
-## Grow your team more efficiently
-
-## HR reports aren't meant to collect dust
-
-## Keep your team connected
+**URL:** https://factorial.com/apps/integration/a3nom
 
 ### Description
-Read the terms and conditions from the HR software Factorial
+Automate supplements and easily export new hires for simpler payroll. - A human resources (HR) software that helps CEOs and HR pros streamline employee time tracking, time off management, performance, and more - all in one place.
 
 #### Main content
+## a3nom
 
-### Description
-Clock in, log hours worked, fill timesheets, and clock out. Replace excel spreadsheets with time tracking software - try it now for free!
+## What is a3nom?
 
-#### Main content
+a3nom is a payroll software that helps companies calculate payrolls according to current legal regulations while ensuring effective staff management.
 
-## Track time accurately
+## Benefits
 
-Set up all your company policies for time tracking in our attendance management software. Decide how your team clocks in and what hours to track.
+- Automated new hire entry: automatically transfer new employees from Factorial to a3ASESOR/nom, saving time and reducing manual work.
+- Automated supplement entries: easily export payroll supplements to a3ASESOR/nom, avoiding hours of manual input.
+- Simple setup: configure a3 codes for employees and supplements once. After that, select the a3ASESOR/nom format for easy payroll exports.
 
-## Keep time tracking records
+## Similar integrations
 
-Different states have varying record-keeping laws. Factorial ensures accurate time tracking and safe record storage.
-
-## Understand how you spend time
-
-Track hours, create reports, and analyze time usage to boost productivity with Factorial's attendance tracking software.
-
-## Time tracking at your fingertips
-
-Time tracking at your fingertips
-
-Factorial's time and attendance app is easy to use and intuitive - extremely useful for tracking time on-the-go.
-
-## How do small businesses log hours?
-
-## Do managers have to approve timesheets?
-
-### Description
-Get a free trial to create your company's employee portal 100% safe and intuitive.
-
-#### Main content
-
-## Self service HR portal
-
-Give your employees more visibility into their documents, schedule, and time off
-
-## Streamline HR processes
-
-Cut your time in half by authorizing your employees to take charge of their tasks
-
-## Centralize communication
-
-Securely store company information in on HR portal for managers and employees to access
-
-## Onboard employees at their own speed
-
-Onboard employees at their own speed
-
-All the necessary documentation to bring on a new team member are centralized through Factorial’s employee portal.
-
-Ensure new hires are up-to-speed on everything they need to thrive at their new position.
-
-New employees can safely, sign all documents electronically using their employee portal login.
-
-All company guidelines can be easily viewed and accessed whenever needed.
-
-### Description
-With Factorial you can set objectives and key results (OKRs) and measure employee and company objectives to improve overall performance.
-
-#### Main content
-
-## Set your OKRs
-
-OKRs give a clear framework to set ambitious, measurable goals, aligning everyone with the same mission.
-
-## Track your progress
-
-By regularly tracking your progress against these objectives, you gain valuable insights into the company's performance.
-
-## Improve company's performance
-
-With all OKRs and progress in one platform, you can spot bottlenecks, tackle challenges, and seize opportunities.
-
-### Description
-With Factorial HR, you can automate tasks of the Manufacturing Industry like Time-tracking, Shift Management, and have access to HR tools like Document Management and Reports 
-
-#### Main content
-
-## Clock-in/out easily
-
-In a matter of seconds your employees can clock-in or clock-out with different time tracking systems.
-
-## Access app with QR a code
-
-Employees clock in/out by scanning a QR code from their mobile device.
-
-## Review timesheets and individual shifts
-
-Track your employees' working hours daily, and approve or reject their timesheets.
-
-## HR as your ally towards growth
-
-Improve hiring & onboarding efficiency, manage employee schedules without errors, gain visibility over your people analytics, build internal communications, and promote better WFH practices.
-
-## Grow your team more efficiently
-
-## HR reports aren't meant to collect dust
-
-## Keep your team connected
-
-## An HR Software that fits all your needs
-
-An HR Software that fits all your needs
-
-If you are looking for HR solutions for your Manufacturing Company we are 100% sure that Factorial is the best choice for you. That's how we can help you.
+- DATEV LODAS - Export new hiresManage employee data exports from Factorial to DATEV LODAS.
+- PrimaveraEfficiently sync HR information between Factorial and Primavera.
+- ZucchettiSimplify business management with tailored solutions.
+- Sage 200 & Sage DespachosSmart solutions for improving workflows and financial control.
+- Silae (file export)Automate payroll exports and synchronize data efficiently with Silae.
+- NewDATEV LODAS - Payroll connectorSynchronize data from Factorial to DATEV LODAS.
 
 ---
 
-### Description
-With the HR mobile application, you can request time off for vacations and other absences, view the company's communications, and track time.
+## DATEV LODAS - Export new hires
 
-#### Main content
-
-## Take advantage of the Factorial HR app
-
-Whether you are an administrator or an employee, download the Factorial mobile application in order to manage the same processes that you carry out from the desktop application. With new and improved functionalities, you'll find the Factorial app is more functional than ever.
-
-## The most efficient time tracking
-
-Empower your workers to track their own time. The working hours they log on their mobile device will automatically synchronize with the employee portal. They can clock in with:
-
-Learn more about time tracking software→
-
-## Manage absences and vacations
-
-Manage absences and vacations
-
-Requesting, approving, and declining absences has never been easier. Employees can request absences that managers can schedule in seconds.
-
-Learn more about time off management→
-
-## Up-to-date information
-
-The mobile app and web platform are automatically synchronized.
-
-## Planning
-
-Check the schedule and plan for upcoming absences
-
-## Visibility
-
-Stay up-to-date with current and upcoming absences with a glance
-
-## Centralized document management
-
-Anything you can do while managing documents from your desktop, you can do from your mobile phone.
-
-Learn more about Document Management software →
-
-## Factorial for Employees
-
-**URL:** https://www.factorialhr.com/for-employees
+**URL:** https://factorial.com/apps/integration/datev
 
 ### Description
-Inluded on the plan and separate from the admin view. Employees can manage: their contract, payslip, team calendar, holidays and +
+Manage employee data exports from Factorial to DATEV LODAS. - A human resources (HR) software that helps CEOs and HR pros streamline employee time tracking, time off management, performance, and more - all in one place.
 
 #### Main content
-## Factorial for Employees
+## DATEV LODAS - Export new hires
 
-No more emails or calls. From now on, everything important is within clicking distance of your employees.
+## What is DATEV LODAS?
 
-## Holidays and Absences Software
+DATEV eG is Germany's third-largest provider of business software and a leading European IT service provider. The company offers software, cloud solutions, and expertise for digital collaboration between small and medium-sized enterprises (SMEs) and tax consultants. DATEV supports businesses, freelancers, municipalities, associations, and institutions.
 
-From their profile, an employee will be able to know their remaining vacation days and request their own absences at any time.
+## Benefits
 
-## Employee Portal
+Manage your employees in Factorial and export a file specifically prepared for DATEV. The file, exported in ANSI format, ensures easy import into DATEV LODAS, eliminating the need for repetitive manual data entry.
 
-It will no longer be necessary to exchange hundreds of emails to request a document or certain information. An employee can access, from their profile, all their personal information, documents, absences and other functionalities.
+- Single data entry
+- Proper formatting
+- Data readability
 
-## Document Management
+## Similar integrations
 
-Now an employee can safely and remotely check all of their documents: contracts, payslips, sick leaves, identifications, among others.
-
-## Events and Communications
-
-Don’t let an employee miss any milestone or activity within your company. From the events and communications section, an employee can see all upcoming events and confirm their attendance.
-
-## Other Features
-
-Discover other features that Factorial has for employees:
-
-## Multiple language support
-
-Available in different languages and countries.
-
-## Team overview
-
-Allows employees to know when their coworkers won’t be in the office.
-
-## Organizational chart
-
-Let employees know the structure of the business.
-
-## FAQs
-
-Frequently asked questions about how Factorial's platform can benefit your employees
-
-## Internal Communication and Events
-
-**URL:** https://www.factorialhr.com/internal-communication-and-events
-
-### Description
-The internal communication of a company is very important for its proper functioning. Improve your company's internal communication with our tools!
-
-#### Main content
-## Internal Communication and Events
-
-Internal communication is key to any business's success, regardless of its size. With a strong internal communication strategy, businesses can encourage community, provide transparency, and inspire employees.
-
-Update your internal communication structures with Factorial's tools.
-
-## Create events and communicate plans
-
-Create posts to keep your team on top of the latest news and events.
-
-## Create weekly summaries
-
-Keep all your employees up-to-date with what is happening at the company.
-
-## Make a community out of your business
-
-Create an intranet for all kinds of communities of employees: a team, an office, a workgroup. It's completely customizable.
-
-## Two-way communication
-
-Talk and listen to your employees.
-
-## Don't sacrifice anything
-
-Digitalize human resources management.
-
-## Improve employee experience
-
-Give a feeling of belonging to your remote team.
-
-## Easy access with the self serve portal
-
-Provide employees with a personal web portal where they can easily access all company communications.
-
-More information about the Factorial employee portal
-
-## Integration with Slack
-
-Factorial's integration with Slack will improve internal communication between your teams.
-
-More information about time tracking software
+- a3nomAutomate supplements and easily export new hires for simpler payroll.
+- PrimaveraEfficiently sync HR information between Factorial and Primavera.
+- ZucchettiSimplify business management with tailored solutions.
+- Sage 200 & Sage DespachosSmart solutions for improving workflows and financial control.
+- Silae (file export)Automate payroll exports and synchronize data efficiently with Silae.
+- NewDATEV LODAS - Payroll connectorSynchronize data from Factorial to DATEV LODAS.
 
 ---
 
-### Description
-Benefit from Factorial's Onboarding & Offboarding Software to create a secure, familiar, and simple onboarding and offboarding process.
+## Microsoft Power BI
 
-#### Main content
-
-## From their first day to their last
-
-From their first day to their last
-
-Factorial will manage the admin so you can manage your new team member.
-
-## Find the perfect fit for each role
-
-Find the perfect fit for each role
-
-Effortlessly grow your team with an ATS that’s integrated with our onboarding HR software.
-
-Filter CVs instantly, get competency suggestions based on a role, and post AI- generated job descriptions to save you time searching.
-
-Choose which teams to involve for a well-rounded hiring process. Managers, executives and human resources play a key role.
-
-Post your offers on multiple job portals and receive all applications in one place to widen your search and find the best match.
-
-## Tick off tasks via Mobile App
-
-Tick off tasks via Mobile App
-
-Don’t let being away from your desk delay onboarding. Complete workflows on-the-go for full autonomy.
-
-## Don't just take our word for it
-
-Don't just take our word for it
-
-## Questions about HR onboarding software
-
-Frequently asked questions about the onboarding process with Factorial.
-
-## Digital signature
-
-**URL:** https://www.factorialhr.com/digital-signature
+**URL:** https://factorial.com/apps/integration/power-bi
 
 ### Description
-With Factorial you can send your employees contracts or other documents and sign digitally with the electronic signature, 100% legal.
+Synchronize company data with Power BI for interactive and live insights. - A human resources (HR) software that helps CEOs and HR pros streamline employee time tracking, time off management, performance, and more - all in one place.
 
 #### Main content
-## Digital signature
+## Microsoft Power BI
 
-Electronically sign contracts, agreements or any other kind of document.
+## What is Microsoft Power BI?
 
-## Digital document signing
+Power BI is a Microsoft business analytics service that enables interactive visualizations and easy report creation. It helps organizations transform data into actionable insights for data-driven decision-making.
 
-Forget the paper, with Factorial sign all your documents digitally.
+## Benefits
 
-## Signature 100% safe and legal
+Integrating Factorial with Power BI allows you to visualize and analyze company data across various departments, such as HR, finance, logistics and sales.
 
-The digital signature with Factorial meets the most stringent security requirements.
+- Enhanced data visualization for better insights.
+- Interactive dashboards for easier data interpretation.
+- Comprehensive data analysis capabilities.
 
-## Sign employees' timesheets
+## Similar integrations
 
-Guarantee the working hours from your employees by making them sign their timesheets.
-
-## Our commitment to your safety
-
-In Factorial we are very aware of how important security is for each company that trusts us. That's why your data will always be protected thanks to a powerful encryption system and single access for each user.
+- ZapierAutomate app data transfer, improving efficiency and reducing errors.
+- UpdatedMicrosoft Outlook CalendarKeep Outlook calendars in sync with approved time off in Factorial.
+- Apple CalendarSynchronize approved employee time-off and company events efficiently.
+- UpdatedSlackUnlock productivity by performing tasks directly in your messenger.
+- Microsoft AzureSimplify your login process, keep user data up-to-date, and boost security.
+- WhatsAppTalk to people through WhatsApp.
 
 ---
 
-### Description
-Build a careers page that attracts more candidates and improve your recruiting process.
+## Primavera
 
-#### Main content
-
-## AI-powered hiring tools
-
-Summarize resumes with AI to save time during candidate filtering.
-
-## Bulk actions
-
-Create new candidates automatically by batch uploading resumes.
-
-## Background checks
-
-Demonstrate compliance with employment laws by conducting background checks.
-
-## FAQs about ATS System
-
-Want to learn more about Factorial's ATS? Find your answer in our commonly asked questions section
-
-## Does Factorial's ATS use AI?
-
-## Bet on people
-
-**URL:** https://www.factorialhr.com/what-is-factorial
+**URL:** https://factorial.com/apps/integration/primavera
 
 ### Description
-Factorial is an HR software that streamlines HR administration for small and medium-sized businesses.
+Efficiently sync HR information between Factorial and Primavera. - A human resources (HR) software that helps CEOs and HR pros streamline employee time tracking, time off management, performance, and more - all in one place.
 
 #### Main content
-## Bet on people
+## Primavera
 
-We help companies automate their HR processes, empower their employees with always up-to-date information, and make smart business decisions.
+## What is Primavera?
 
-## Our History
+Primavera is a comprehensive HR management platform designed to streamline HR processes and boost workforce productivity. It offers features such as payroll management, talent acquisition, performance management, and benefits administration.
 
-Our History
+Benefits
 
--
+This integration eliminates the need for manual data transfer, reducing duplication and improving efficiency. It allows seamless synchronization of data between Factorial and Primavera, ensuring accurate and up-to-date employee information. Key benefits include:
 
-Bernat, Pau, and Jordi, entrepreneurs by profession and vocation, had trouble finding a solution that would help them improve HR processes, minimize paperwork, and scale with the business.
+- Automatic data syncing (employee, contract, time tracking & time-off data).
+- Elimination of manual updates.
+- Single source of truth for employee data.
 
-All the tools available on the market were complicated and did not suit their needs, so they decided to build one themselves. Around 60,000 people used Factorial in its first two years of life.
+## Similar integrations
 
-Bernat, Pau, and Jordi measured their success as if it were an online game: by testing engagement.
-
-Realizing that their software could change the behavior of organizations and their employees, and they decided to turn it into a business, growing and investing capital to solve more and bigger problems.
-
-## We are Factorial
-
--
-
-## Factorial for:
-
-Factorial for:
-
--
-
-## Your employees
-
-- Simplified and more efficient HR processes
-- Improved company culture
-- Empower employee to manage time tracking, time off requests, internal communications and more
-
-## The management team
-
-- Get information about employee performance to make better decisions and grow your business
-- Save money by automating and digitizing previously manual processes
-
-## Human Resources
-
-- Save time and money for your HR department
-- Eliminate human error
-- Focus on what matters most: the people, not the administrative processes or paperwork
-
-## Our Solutions
-
-Don't waste time with tedious HR administrative tasks. Dedicate yourself to what really matters.
-
-## Employee time tracking
-
-Track employees hours and improve productivity
-
-## Shift management
-
-Schedule and manage shifts for employees
-
-## Time off and absence management
-
-Easily process employee time-off requests
-
-## Performance evaluations
-
-Gain insight into employee performance
-
-## Expense management
-
-Track and process your business and employee expenses
-
-## Attract talent
-
-Find and recruit talented employees for your business
-
-## Internal communications
-
-Create a culture of transparency and trust
-
-## And more!
-
-Discover all Factorial's capabilities.
-
-## Performance evaluations
-
-Gain insight into employee performance in order to chart a path for the future
-
-## Where did our name come from?
-
-Factorial numbers represent values ​​that we at Factorial identify with. In mathematics, the factorial property is a mathematical function that reflects growth in its pure state. It is the superlative of an exponential function. As a business, Factorial supports the growth of companies, employees, and robust corporate cultures.
+- a3nomAutomate supplements and easily export new hires for simpler payroll.
+- DATEV LODAS - Export new hiresManage employee data exports from Factorial to DATEV LODAS.
+- ZucchettiSimplify business management with tailored solutions.
+- Sage 200 & Sage DespachosSmart solutions for improving workflows and financial control.
+- Silae (file export)Automate payroll exports and synchronize data efficiently with Silae.
+- NewDATEV LODAS - Payroll connectorSynchronize data from Factorial to DATEV LODAS.
 
 ---
 
-## Permission groups and user roles
+## Suprema
 
-**URL:** https://www.factorialhr.com/permissions-system
+**URL:** https://factorial.com/apps/integration/suprema
 
 ### Description
-Factorial's human resources software allows you to configure various permission groups and user roles for employees.
+Simplify attendance tracking with secure and reliable biometric solutions. - A human resources (HR) software that helps CEOs and HR pros streamline employee time tracking, time off management, performance, and more - all in one place.
 
 #### Main content
-## Permission groups and user roles
+## Suprema
 
-Customize the permissions of the employees you choose and adjust Factorial completely to the needs of your company. You can customize as many employees as you need.
+## What is Suprema?
 
-## Granular control
+Suprema is a biometric technology company specializing in the development and manufacturing of solutions such as fingerprint, facial, and iris recognition systems. Its devices are used across various industries to manage access control, time, and attendance efficiently.
 
-Set Factorial default permissions and make sure that access to employee content is as you really want.
+Factorial will guide you through the integration to ensure your Suprema devices are properly connected and configured via BioStar, Suprema’s access control software. The setup process involves several steps to validate compatibility, configure your devices, and establish a secure connection. Throughout this process, you’ll receive guidance and clear instructions, and once complete, employee clock-ins, breaks, and clock-outs will synchronize seamlessly from your Suprema devices into Factorial, eliminating manual data entry and reducing payroll errors.
 
-- Adapted to any company structure
-- It allows adjusting the responsibilities of the workers to measure
+For pricing details, please contact your account manager.
 
-## Custom permission groups
+Compatible devices: https://www.xiptic.com/products
 
-Create custom permission groups and customize default permissions. In this way, you will customize the predefined Factorial roles.
+## Benefits
 
-- Create as many custom groups as you need
-- Assign employees to each group, regardless of the default role assigned
+- Prevent buddy punching with accurate biometric identification for secure clock-ins.
+- Automatically sync clock-ins, breaks, and clock-outs to Factorial without extra hardware.
+- Reduce payroll errors with simplified enforcement of time-tracking policies and reliable data.
+- Centralize employee attendance data by linking your Suprema devices directly to your Factorial workspace.
+- Manage multiple locations efficiently through a tailored plan designed for your specific business needs.
 
-## Adapt predefined roles
+## Similar integrations
 
-Custom groups allow you to adapt predefined Factorial roles to specific needs. Thus, barriers between roles will be diluted, establishing personalized relationships.
-
-- Add additional permissions to employees
-- Restrict the permissions of an administrator by assigning it to a custom group
-
-## Simple setup
-
-It solves all kinds of granularity needs, without adding complexity to the system.
-
-- Accessible and easy to use permit system
-- To configure, just enable or disable permissions
-- You can reset the permissions to the original state
-
-## Define time-off permissions
-
-Create custom permissions and set how to manage your company's time-off.
-
-## Manage time tracking permissions
-
-Configure how to manage your employees' time tracking with permissions groups.
+- DeskySync employee data and manage office spaces efficiently.
+- ZKTecoIntegrate time tracking details from ZKTeco terminals directly to Factorial payroll without manual data entry
+- OktaSimplify access management and enhance security with Okta.
+- Control iDManage employee attendance and security with Control iD.
+- CormaMonitor software usage, centralize license management and automate user provisioning tasks.
+- SiitAI service desk that executes complete workflows across your internal operations.
 
 ---
 
+## Indeed
+
+**URL:** https://factorial.com/apps/integration/indeed
+
 ### Description
-Make smarter decisions with the HR reports and analytics generated by Factorial with all t
+Optimize recruitment by syncing job postings and candidate applications. - A human resources (HR) software that helps CEOs and HR pros streamline employee time tracking, time off management, performance, and more - all in one place.
+
+#### Main content
+## Indeed
+
+## What is Indeed?
+
+This integration allows jobs published in Factorial to automatically sync with Indeed’s job portal, optimizing the recruitment process. Updates from Factorial, including job status changes, are reflected on Indeed within 1-2 hours, while jobs changing status expire within 30-60 minutes. Enabling Indeed Apply simplifies the application process for candidates, potentially increasing applicant numbers.
+
+## Benefits
+
+- Efficient job posting: automatically sync published jobs from Factorial to Indeed.
+- Increased applications: enable Indeed Apply to simpli

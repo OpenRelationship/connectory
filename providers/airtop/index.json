@@ -1,0 +1,1785 @@
+{
+ "_": "GENERATED \u2014 what an authoring tool needs to FIND an operation. The calling table is the .lua beside it.",
+ "provider": "airtop",
+ "source": "https://docs.airtop.ai/openapi.json",
+ "operations": [
+  {
+   "slug": "airtop.automations_delete",
+   "name": "Delete automation",
+   "description": "Delete a specific automation",
+   "input": {
+    "type": "object",
+    "properties": {
+     "automationId": {
+      "type": "string",
+      "description": "ID of the automation to delete"
+     }
+    },
+    "required": [
+     "automationId"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.airtop.ai/api/v1/automations/{automationId}",
+    "path": [
+     "automationId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "airtop.automations_get",
+   "name": "Get automation",
+   "description": "Get a specific automation by ID",
+   "input": {
+    "type": "object",
+    "properties": {
+     "automationId": {
+      "type": "string",
+      "description": "ID of the automation to retrieve"
+     }
+    },
+    "required": [
+     "automationId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.airtop.ai/api/v1/automations/{automationId}",
+    "path": [
+     "automationId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "airtop.automations_list",
+   "name": "List automations",
+   "description": "List all automations for a given organization",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.airtop.ai/api/v1/automations",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "airtop.automations_update",
+   "name": "Update automation description",
+   "description": "Update the description of a specific automation",
+   "input": {
+    "type": "object",
+    "properties": {
+     "description": {
+      "type": "string",
+      "description": "New description for the automation"
+     },
+     "id": {
+      "type": "string",
+      "description": "ID of the automation to update"
+     },
+     "orgId": {
+      "type": "string",
+      "description": "Organization ID"
+     }
+    },
+    "required": [
+     "description",
+     "id",
+     "orgId"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.airtop.ai/api/v1/automations/description",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "description",
+     "id",
+     "orgId"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "airtop.files_create",
+   "name": "Create a file",
+   "description": "Create a file",
+   "input": {
+    "type": "object",
+    "properties": {
+     "fileName": {
+      "type": "string",
+      "description": "Name of the file, must be unique within the session the file is used with"
+     },
+     "fileType": {
+      "type": "string",
+      "description": "Type of the file",
+      "enum": [
+       "browser_download",
+       "screenshot",
+       "recording",
+       "customer_upload"
+      ]
+     },
+     "id": {
+      "type": "string",
+      "description": "File ID. Must be unique. Leave blank to get one generated for you"
+     },
+     "sessionIds": {
+      "type": "array",
+      "description": "IDs of the associated sessions"
+     }
+    },
+    "required": [
+     "fileName"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.airtop.ai/api/v1/files",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "fileName",
+     "fileType",
+     "id",
+     "sessionIds"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "airtop.files_delete",
+   "name": "Delete a file",
+   "description": "Delete a file",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "ID of the file"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.airtop.ai/api/v1/files/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "airtop.files_get",
+   "name": "Get a file",
+   "description": "Get a file",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "ID of the file"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.airtop.ai/api/v1/files/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "airtop.files_list",
+   "name": "Get a list of files",
+   "description": "Get a list of files filtered by session ID",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sessionIds": {
+      "type": "string",
+      "description": "A comma-separated list of IDs of the sessionId of the files to retrieve."
+     },
+     "offset": {
+      "type": "integer",
+      "description": "Offset for pagination."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Limit for pagination."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.airtop.ai/api/v1/files",
+    "path": [],
+    "query": [
+     "sessionIds",
+     "offset",
+     "limit"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "airtop.files_push",
+   "name": "Push a file to a session",
+   "description": "Push a file to one or more sessions, making it available for the sessions to use",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "ID of the file"
+     },
+     "sessionIds": {
+      "type": "array",
+      "description": "A comma-separated list of session IDs to make the file available on."
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.airtop.ai/api/v1/files/{id}/push",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "sessionIds"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "airtop.profiles_delete",
+   "name": "Delete profiles",
+   "description": "Delete profiles matching by id",
+   "input": {
+    "type": "object",
+    "properties": {
+     "profileIds": {
+      "type": "string",
+      "description": "DEPRECATED. Use profileNames."
+     },
+     "profileNames": {
+      "type": "string",
+      "description": "A comma-separated list of profile names."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.airtop.ai/api/v1/profiles",
+    "path": [],
+    "query": [
+     "profileIds",
+     "profileNames"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "airtop.requests_get_request_status",
+   "name": "Get the status of an asynchronous request",
+   "description": "Get the status of an asynchronous request",
+   "input": {
+    "type": "object",
+    "properties": {
+     "requestId": {
+      "type": "string",
+      "description": "The ID of the request to check."
+     }
+    },
+    "required": [
+     "requestId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.airtop.ai/api/v1/requests/{requestId}/status",
+    "path": [
+     "requestId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "airtop.sessions_create",
+   "name": "Create a session",
+   "description": "Create a session",
+   "input": {
+    "type": "object",
+    "properties": {
+     "configuration": {
+      "type": "object",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.airtop.ai/api/v1/sessions",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "configuration"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "airtop.sessions_get_info",
+   "name": "Get info for a session",
+   "description": "Get a session by ID",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "Id of the session to get"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.airtop.ai/api/v1/sessions/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "airtop.sessions_list",
+   "name": "Get a list of sessions",
+   "description": "Get a paginated list of sessions filtered by ID or status",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sessionIds": {
+      "type": "string",
+      "description": "A comma-separated list of IDs of the sessions to retrieve."
+     },
+     "status": {
+      "type": "string",
+      "description": "Status of the session to get.",
+      "enum": [
+       "awaitingCapacity",
+       "initializing",
+       "running",
+       "ended",
+       "completed",
+       "cancelled",
+       "all"
+      ]
+     },
+     "offset": {
+      "type": "integer",
+      "description": "Offset for pagination."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Limit for pagination."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.airtop.ai/api/v1/sessions",
+    "path": [],
+    "query": [
+     "sessionIds",
+     "status",
+     "offset",
+     "limit"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "airtop.sessions_save_profile_on_termination",
+   "name": "Save profile on termination",
+   "description": "Save profile on termination",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sessionId": {
+      "type": "string",
+      "description": "ID of the session."
+     },
+     "profileName": {
+      "type": "string",
+      "description": "Name under which to save the profile."
+     }
+    },
+    "required": [
+     "profileName",
+     "sessionId"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.airtop.ai/api/v1/sessions/{sessionId}/save-profile-on-termination/{profileName}",
+    "path": [
+     "sessionId",
+     "profileName"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "airtop.sessions_terminate",
+   "name": "Ends a session",
+   "description": "Ends a session by ID. If a given session id does not exist within the organization, it is ignored.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "ID of the session to delete."
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.airtop.ai/api/v1/sessions/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "airtop.windows_async_create_automation",
+   "name": "Create an automation (async)",
+   "description": "Create an automation of a browser window asynchronously",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sessionId": {
+      "type": "string",
+      "description": "The session id for the window."
+     },
+     "windowId": {
+      "type": "string",
+      "description": "The Airtop window id of the browser window."
+     },
+     "async": {
+      "type": "object",
+      "description": ""
+     },
+     "clientRequestId": {
+      "type": "string",
+      "description": ""
+     },
+     "configuration": {
+      "type": "object",
+      "description": ""
+     },
+     "costThresholdCredits": {
+      "type": "integer",
+      "description": "A credit threshold that, once exceeded, will cause the operation to be cancelled. Note that this is *not* a hard limit, but a threshold that is checked periodically during the course of fulfilling the request. A default threshold is used if not specified, but you can use this option to increase or decrease as needed. Set to 0 to disable this feature entirely (not recommended)."
+     },
+     "timeThresholdSeconds": {
+      "type": "integer",
+      "description": "A time threshold in seconds that, once exceeded, will cause the operation to be cancelled. Note that this is *not* a hard limit, but a threshold that is checked periodically during the course of fulfilling the request. A default threshold is used if not specified, but you can use this option to increase or decrease as needed. Set to 0 to disable this feature entirely (not recommended). This settin"
+     }
+    },
+    "required": [
+     "sessionId",
+     "windowId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.airtop.ai/api/v1/async/sessions/{sessionId}/windows/{windowId}/create-automation",
+    "path": [
+     "sessionId",
+     "windowId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "async",
+     "clientRequestId",
+     "configuration",
+     "costThresholdCredits",
+     "timeThresholdSeconds"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "airtop.windows_async_create_form_filler",
+   "name": "Create a form filler automation (async)",
+   "description": "Create a form filler automation asynchronously",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sessionId": {
+      "type": "string",
+      "description": "The session id for the window."
+     },
+     "windowId": {
+      "type": "string",
+      "description": "The Airtop window id of the browser window."
+     },
+     "async": {
+      "type": "object",
+      "description": ""
+     },
+     "clientRequestId": {
+      "type": "string",
+      "description": ""
+     },
+     "configuration": {
+      "type": "object",
+      "description": ""
+     },
+     "costThresholdCredits": {
+      "type": "integer",
+      "description": "A credit threshold that, once exceeded, will cause the operation to be cancelled. Note that this is *not* a hard limit, but a threshold that is checked periodically during the course of fulfilling the request. A default threshold is used if not specified, but you can use this option to increase or decrease as needed. Set to 0 to disable this feature entirely (not recommended)."
+     },
+     "timeThresholdSeconds": {
+      "type": "integer",
+      "description": "A time threshold in seconds that, once exceeded, will cause the operation to be cancelled. Note that this is *not* a hard limit, but a threshold that is checked periodically during the course of fulfilling the request. A default threshold is used if not specified, but you can use this option to increase or decrease as needed. Set to 0 to disable this feature entirely (not recommended). This settin"
+     }
+    },
+    "required": [
+     "sessionId",
+     "windowId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.airtop.ai/api/v1/async/sessions/{sessionId}/windows/{windowId}/create-form-filler",
+    "path": [
+     "sessionId",
+     "windowId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "async",
+     "clientRequestId",
+     "configuration",
+     "costThresholdCredits",
+     "timeThresholdSeconds"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "airtop.windows_async_execute_automation",
+   "name": "Execute an automation (async)",
+   "description": "Execute an automation of a browser window asynchronously",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sessionId": {
+      "type": "string",
+      "description": "The session id for the window."
+     },
+     "windowId": {
+      "type": "string",
+      "description": "The Airtop window id of the browser window."
+     },
+     "async": {
+      "type": "object",
+      "description": ""
+     },
+     "automationId": {
+      "type": "string",
+      "description": "The ID of the automation to execute"
+     },
+     "clientRequestId": {
+      "type": "string",
+      "description": ""
+     },
+     "costThresholdCredits": {
+      "type": "integer",
+      "description": "A credit threshold that, once exceeded, will cause the operation to be cancelled. Note that this is *not* a hard limit, but a threshold that is checked periodically during the course of fulfilling the request. A default threshold is used if not specified, but you can use this option to increase or decrease as needed. Set to 0 to disable this feature entirely (not recommended)."
+     },
+     "parameters": {
+      "type": "object",
+      "description": "Optional parameters to pass to the automation execution"
+     },
+     "timeThresholdSeconds": {
+      "type": "integer",
+      "description": "A time threshold in seconds that, once exceeded, will cause the operation to be cancelled. Note that this is *not* a hard limit, but a threshold that is checked periodically during the course of fulfilling the request. A default threshold is used if not specified, but you can use this option to increase or decrease as needed. Set to 0 to disable this feature entirely (not recommended). This settin"
+     }
+    },
+    "required": [
+     "automationId",
+     "sessionId",
+     "windowId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.airtop.ai/api/v1/async/sessions/{sessionId}/windows/{windowId}/execute-automation",
+    "path": [
+     "sessionId",
+     "windowId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "async",
+     "automationId",
+     "clientRequestId",
+     "costThresholdCredits",
+     "parameters",
+     "timeThresholdSeconds"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "airtop.windows_async_fill_form",
+   "name": "Fill a form using a form filler automation (async)",
+   "description": "Fill a form of a browser window asynchronously using a form-filler automation",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sessionId": {
+      "type": "string",
+      "description": "The session id for the window."
+     },
+     "windowId": {
+      "type": "string",
+      "description": "The Airtop window id of the browser window."
+     },
+     "async": {
+      "type": "object",
+      "description": ""
+     },
+     "automationId": {
+      "type": "string",
+      "description": "The ID of the automation to execute"
+     },
+     "clientRequestId": {
+      "type": "string",
+      "description": ""
+     },
+     "costThresholdCredits": {
+      "type": "integer",
+      "description": "A credit threshold that, once exceeded, will cause the operation to be cancelled. Note that this is *not* a hard limit, but a threshold that is checked periodically during the course of fulfilling the request. A default threshold is used if not specified, but you can use this option to increase or decrease as needed. Set to 0 to disable this feature entirely (not recommended)."
+     },
+     "parameters": {
+      "type": "object",
+      "description": "Optional parameters to pass to the automation execution"
+     },
+     "timeThresholdSeconds": {
+      "type": "integer",
+      "description": "A time threshold in seconds that, once exceeded, will cause the operation to be cancelled. Note that this is *not* a hard limit, but a threshold that is checked periodically during the course of fulfilling the request. A default threshold is used if not specified, but you can use this option to increase or decrease as needed. Set to 0 to disable this feature entirely (not recommended). This settin"
+     }
+    },
+    "required": [
+     "automationId",
+     "sessionId",
+     "windowId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.airtop.ai/api/v1/async/sessions/{sessionId}/windows/{windowId}/fill-form",
+    "path": [
+     "sessionId",
+     "windowId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "async",
+     "automationId",
+     "clientRequestId",
+     "costThresholdCredits",
+     "parameters",
+     "timeThresholdSeconds"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "airtop.windows_click",
+   "name": "Click",
+   "description": "Execute a click interaction in a specific browser window",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sessionId": {
+      "type": "string",
+      "description": "The session id for the window."
+     },
+     "windowId": {
+      "type": "string",
+      "description": "The Airtop window id of the browser window."
+     },
+     "clientRequestId": {
+      "type": "string",
+      "description": ""
+     },
+     "configuration": {
+      "type": "object",
+      "description": ""
+     },
+     "costThresholdCredits": {
+      "type": "integer",
+      "description": "A credit threshold that, once exceeded, will cause the operation to be cancelled. Note that this is *not* a hard limit, but a threshold that is checked periodically during the course of fulfilling the request. A default threshold is used if not specified, but you can use this option to increase or decrease as needed. Set to 0 to disable this feature entirely (not recommended)."
+     },
+     "elementDescription": {
+      "type": "string",
+      "description": "A natural language description of the element to click."
+     },
+     "timeThresholdSeconds": {
+      "type": "integer",
+      "description": "A time threshold in seconds that, once exceeded, will cause the operation to be cancelled. Note that this is *not* a hard limit, but a threshold that is checked periodically during the course of fulfilling the request. A default threshold is used if not specified, but you can use this option to increase or decrease as needed. Set to 0 to disable this feature entirely (not recommended). This settin"
+     },
+     "waitForNavigation": {
+      "type": "boolean",
+      "description": "If true, Airtop AI will wait for the navigation to complete after clicking the element."
+     }
+    },
+    "required": [
+     "elementDescription",
+     "sessionId",
+     "windowId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.airtop.ai/api/v1/sessions/{sessionId}/windows/{windowId}/click",
+    "path": [
+     "sessionId",
+     "windowId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "clientRequestId",
+     "configuration",
+     "costThresholdCredits",
+     "elementDescription",
+     "timeThresholdSeconds",
+     "waitForNavigation"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "airtop.windows_close",
+   "name": "Close window",
+   "description": "Closes a browser window in a session",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sessionId": {
+      "type": "string",
+      "description": "ID of the session that owns the window."
+     },
+     "windowId": {
+      "type": "string",
+      "description": "Airtop window ID of the browser window."
+     }
+    },
+    "required": [
+     "sessionId",
+     "windowId"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.airtop.ai/api/v1/sessions/{sessionId}/windows/{windowId}",
+    "path": [
+     "sessionId",
+     "windowId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "airtop.windows_create",
+   "name": "Create window",
+   "description": "Creates a new browser window in a session. Optionally, you can specify a url to load on the window upon creation.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sessionId": {
+      "type": "string",
+      "description": "ID of the session that owns the window."
+     },
+     "screenResolution": {
+      "type": "string",
+      "description": "Affects the live view configuration. By default, a live view will fill the parent frame (or local window if loaded directly) when initially loaded, causing the browser window to be resized to match. This parameter can be used to instead configure the returned liveViewUrl so that the live view is loaded with fixed dimensions (e.g. 1280x720), resizing the browser window to match, and then disallows "
+     },
+     "url": {
+      "type": "string",
+      "description": "Initial url to navigate to"
+     },
+     "waitUntil": {
+      "type": "string",
+      "description": "Wait until the specified loading event occurs. Defaults to 'load', which waits until the page dom and it's assets have loaded. 'domContentLoaded' will wait until the dom has loaded, 'complete' will wait until the page and all it's iframes have loaded it's dom and assets. 'noWait' will not wait for any loading event and will return immediately.",
+      "enum": [
+       "load",
+       "domContentLoaded",
+       "complete",
+       "noWait"
+      ]
+     },
+     "waitUntilTimeoutSeconds": {
+      "type": "integer",
+      "description": "Maximum time in seconds to wait for the specified loading event to occur. If the timeout is reached, the operation will still succeed but return a warning indicating the page may still be loading resources."
+     }
+    },
+    "required": [
+     "sessionId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.airtop.ai/api/v1/sessions/{sessionId}/windows",
+    "path": [
+     "sessionId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "screenResolution",
+     "url",
+     "waitUntil",
+     "waitUntilTimeoutSeconds"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "airtop.windows_create_form_filler",
+   "name": "Create a form filler automation synchronously",
+   "description": "Create a form-filler automation synchronously for the form loaded in the browser window",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sessionId": {
+      "type": "string",
+      "description": "The session id for the window."
+     },
+     "windowId": {
+      "type": "string",
+      "description": "The Airtop window id of the browser window."
+     },
+     "async": {
+      "type": "object",
+      "description": ""
+     },
+     "clientRequestId": {
+      "type": "string",
+      "description": ""
+     },
+     "configuration": {
+      "type": "object",
+      "description": ""
+     },
+     "costThresholdCredits": {
+      "type": "integer",
+      "description": "A credit threshold that, once exceeded, will cause the operation to be cancelled. Note that this is *not* a hard limit, but a threshold that is checked periodically during the course of fulfilling the request. A default threshold is used if not specified, but you can use this option to increase or decrease as needed. Set to 0 to disable this feature entirely (not recommended)."
+     },
+     "timeThresholdSeconds": {
+      "type": "integer",
+      "description": "A time threshold in seconds that, once exceeded, will cause the operation to be cancelled. Note that this is *not* a hard limit, but a threshold that is checked periodically during the course of fulfilling the request. A default threshold is used if not specified, but you can use this option to increase or decrease as needed. Set to 0 to disable this feature entirely (not recommended). This settin"
+     }
+    },
+    "required": [
+     "sessionId",
+     "windowId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.airtop.ai/api/v1/sessions/{sessionId}/windows/{windowId}/create-form-filler",
+    "path": [
+     "sessionId",
+     "windowId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "async",
+     "clientRequestId",
+     "configuration",
+     "costThresholdCredits",
+     "timeThresholdSeconds"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "airtop.windows_file_input",
+   "name": "File input",
+   "description": "Execute a file input interaction in a specific browser window. includeHiddenElements defaults to true and considers hidden file input elements. If there is only one file input element, it will be used directly. If there are multiple file input elements, the elementDescription will be used by AI to select among them. If no file input elements are found by inspecting the page structure, elementDescr",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sessionId": {
+      "type": "string",
+      "description": "The session id for the window."
+     },
+     "windowId": {
+      "type": "string",
+      "description": "The Airtop window id of the browser window."
+     },
+     "clientRequestId": {
+      "type": "string",
+      "description": ""
+     },
+     "configuration": {
+      "type": "object",
+      "description": ""
+     },
+     "costThresholdCredits": {
+      "type": "integer",
+      "description": "A credit threshold that, once exceeded, will cause the operation to be cancelled. Note that this is *not* a hard limit, but a threshold that is checked periodically during the course of fulfilling the request. A default threshold is used if not specified, but you can use this option to increase or decrease as needed. Set to 0 to disable this feature entirely (not recommended)."
+     },
+     "elementDescription": {
+      "type": "string",
+      "description": "A natural language description of the file input to interact with (e.g. 'the file input', 'file upload selection box'). The interaction will be aborted if the target element cannot be found."
+     },
+     "fileId": {
+      "type": "string",
+      "description": "The id of the file to upload. 'fileId' or 'fileName' is required."
+     },
+     "fileName": {
+      "type": "string",
+      "description": "The name of the file to upload, not including the path. 'fileId' or 'fileName' is required."
+     },
+     "includeHiddenElements": {
+      "type": "boolean",
+      "description": "If true, Airtop AI will find hidden file input elements and interact with them."
+     },
+     "timeThresholdSeconds": {
+      "type": "integer",
+      "description": "A time threshold in seconds that, once exceeded, will cause the operation to be cancelled. Note that this is *not* a hard limit, but a threshold that is checked periodically during the course of fulfilling the request. A default threshold is used if not specified, but you can use this option to increase or decrease as needed. Set to 0 to disable this feature entirely (not recommended). This settin"
+     },
+     "waitForNavigation": {
+      "type": "boolean",
+      "description": "If true, Airtop AI will wait for the navigation to complete after clicking the element."
+     }
+    },
+    "required": [
+     "sessionId",
+     "windowId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.airtop.ai/api/v1/sessions/{sessionId}/windows/{windowId}/file-input",
+    "path": [
+     "sessionId",
+     "windowId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "clientRequestId",
+     "configuration",
+     "costThresholdCredits",
+     "elementDescription",
+     "fileId",
+     "fileName",
+     "includeHiddenElements",
+     "timeThresholdSeconds",
+     "waitForNavigation"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "airtop.windows_fill_form",
+   "name": "Fill a form synchronously using a form filler automation",
+   "description": "Fill a form of a browser window synchronously using a form-filler automation",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sessionId": {
+      "type": "string",
+      "description": "The session id for the window."
+     },
+     "windowId": {
+      "type": "string",
+      "description": "The Airtop window id of the browser window."
+     },
+     "async": {
+      "type": "object",
+      "description": ""
+     },
+     "automationId": {
+      "type": "string",
+      "description": "The ID of the automation to execute"
+     },
+     "clientRequestId": {
+      "type": "string",
+      "description": ""
+     },
+     "costThresholdCredits": {
+      "type": "integer",
+      "description": "A credit threshold that, once exceeded, will cause the operation to be cancelled. Note that this is *not* a hard limit, but a threshold that is checked periodically during the course of fulfilling the request. A default threshold is used if not specified, but you can use this option to increase or decrease as needed. Set to 0 to disable this feature entirely (not recommended)."
+     },
+     "parameters": {
+      "type": "object",
+      "description": "Optional parameters to pass to the automation execution"
+     },
+     "timeThresholdSeconds": {
+      "type": "integer",
+      "description": "A time threshold in seconds that, once exceeded, will cause the operation to be cancelled. Note that this is *not* a hard limit, but a threshold that is checked periodically during the course of fulfilling the request. A default threshold is used if not specified, but you can use this option to increase or decrease as needed. Set to 0 to disable this feature entirely (not recommended). This settin"
+     }
+    },
+    "required": [
+     "automationId",
+     "sessionId",
+     "windowId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.airtop.ai/api/v1/sessions/{sessionId}/windows/{windowId}/fill-form",
+    "path": [
+     "sessionId",
+     "windowId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "async",
+     "automationId",
+     "clientRequestId",
+     "costThresholdCredits",
+     "parameters",
+     "timeThresholdSeconds"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "airtop.windows_get_window_info",
+   "name": "Get window info",
+   "description": "Get information about a browser window in a session, including the live view url.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sessionId": {
+      "type": "string",
+      "description": "ID of the session that owns the window."
+     },
+     "windowId": {
+      "type": "string",
+      "description": "ID of the browser window, which can either be a normal AirTop windowId or a [CDP TargetId](https://chromedevtools.github.io/devtools-protocol/tot/Target/#type-TargetID) from a browser automation library like Puppeteer (typically associated with the page or main frame). Our SDKs will handle retrieving a TargetId for you from various popular browser automation libraries, but we also have details in "
+     },
+     "includeNavigationBar": {
+      "type": "boolean",
+      "description": "Affects the live view configuration. A navigation bar is not shown in the live view of a browser by default. Set this to true to configure the returned liveViewUrl so that a navigation bar is rendered, allowing users to easily navigate the browser to other pages from the live view."
+     },
+     "disableResize": {
+      "type": "boolean",
+      "description": "Affects the live view configuration. Set to true to configure the returned liveViewUrl so that the ability to resize the browser window from the live view is disabled (resizing is allowed by default). Note that, at initial load, the live view will automatically fill the parent frame (or local window if loaded directly) and cause the browser window to be resized to match. This parameter does not af"
+     },
+     "screenResolution": {
+      "type": "string",
+      "description": "Affects the live view configuration. By default, a live view will fill the parent frame (or local window if loaded directly) when initially loaded, causing the browser window to be resized to match. This parameter can be used to instead configure the returned liveViewUrl so that the live view is loaded with fixed dimensions (e.g. 1280x720), resizing the browser window to match, and then disallows "
+     }
+    },
+    "required": [
+     "sessionId",
+     "windowId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.airtop.ai/api/v1/sessions/{sessionId}/windows/{windowId}",
+    "path": [
+     "sessionId",
+     "windowId"
+    ],
+    "query": [
+     "includeNavigationBar",
+     "disableResize",
+     "screenResolution"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "airtop.windows_hover",
+   "name": "Hover",
+   "description": "Execute a hover interaction in a specific browser window",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sessionId": {
+      "type": "string",
+      "description": "The session id for the window."
+     },
+     "windowId": {
+      "type": "string",
+      "description": "The Airtop window id of the browser window."
+     },
+     "clientRequestId": {
+      "type": "string",
+      "description": ""
+     },
+     "configuration": {
+      "type": "object",
+      "description": ""
+     },
+     "costThresholdCredits": {
+      "type": "integer",
+      "description": "A credit threshold that, once exceeded, will cause the operation to be cancelled. Note that this is *not* a hard limit, but a threshold that is checked periodically during the course of fulfilling the request. A default threshold is used if not specified, but you can use this option to increase or decrease as needed. Set to 0 to disable this feature entirely (not recommended)."
+     },
+     "elementDescription": {
+      "type": "string",
+      "description": "A natural language description of where to hover (e.g. 'the search box', 'username field'). The interaction will be aborted if the target element cannot be found."
+     },
+     "timeThresholdSeconds": {
+      "type": "integer",
+      "description": "A time threshold in seconds that, once exceeded, will cause the operation to be cancelled. Note that this is *not* a hard limit, but a threshold that is checked periodically during the course of fulfilling the request. A default threshold is used if not specified, but you can use this option to increase or decrease as needed. Set to 0 to disable this feature entirely (not recommended). This settin"
+     }
+    },
+    "required": [
+     "elementDescription",
+     "sessionId",
+     "windowId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.airtop.ai/api/v1/sessions/{sessionId}/windows/{windowId}/hover",
+    "path": [
+     "sessionId",
+     "windowId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "clientRequestId",
+     "configuration",
+     "costThresholdCredits",
+     "elementDescription",
+     "timeThresholdSeconds"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "airtop.windows_list",
+   "name": "List windows",
+   "description": "Lists all browser windows in a session.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sessionId": {
+      "type": "string",
+      "description": "ID of the session to list windows for."
+     }
+    },
+    "required": [
+     "sessionId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.airtop.ai/api/v1/sessions/{sessionId}/windows",
+    "path": [
+     "sessionId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "airtop.windows_load_url",
+   "name": "Load url",
+   "description": "Loads a specified url on a given window",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sessionId": {
+      "type": "string",
+      "description": "ID of the session that owns the window."
+     },
+     "windowId": {
+      "type": "string",
+      "description": "Airtop window ID of the browser window."
+     },
+     "url": {
+      "type": "string",
+      "description": "Url to navigate to"
+     },
+     "waitUntil": {
+      "type": "string",
+      "description": "Wait until the specified loading event occurs. Defaults to 'load', which waits until the page dom and it's assets have loaded. 'domContentLoaded' will wait until the dom has loaded, 'complete' will wait until the page and all it's iframes have loaded it's dom and assets. 'noWait' will not wait for any loading event and will return immediately.",
+      "enum": [
+       "load",
+       "domContentLoaded",
+       "complete",
+       "noWait"
+      ]
+     },
+     "waitUntilTimeoutSeconds": {
+      "type": "integer",
+      "description": "Maximum time in seconds to wait for the specified loading event to occur. If the timeout is reached, the operation will still succeed but return a warning indicating the page may still be loading resources."
+     }
+    },
+    "required": [
+     "sessionId",
+     "url",
+     "windowId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.airtop.ai/api/v1/sessions/{sessionId}/windows/{windowId}",
+    "path": [
+     "sessionId",
+     "windowId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "url",
+     "waitUntil",
+     "waitUntilTimeoutSeconds"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "airtop.windows_monitor",
+   "name": "Monitor for a condition",
+   "description": "Monitor for a condition",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sessionId": {
+      "type": "string",
+      "description": "The session id for the window."
+     },
+     "windowId": {
+      "type": "string",
+      "description": "The Airtop window id of the browser window."
+     },
+     "clientRequestId": {
+      "type": "string",
+      "description": ""
+     },
+     "condition": {
+      "type": "string",
+      "description": "A natural language description of the condition to monitor for in the browser window."
+     },
+     "configuration": {
+      "type": "object",
+      "description": ""
+     },
+     "costThresholdCredits": {
+      "type": "integer",
+      "description": "A credit threshold that, once exceeded, will cause the operation to be cancelled. Note that this is *not* a hard limit, but a threshold that is checked periodically during the course of fulfilling the request. A default threshold is used if not specified, but you can use this option to increase or decrease as needed. Set to 0 to disable this feature entirely (not recommended)."
+     },
+     "timeThresholdSeconds": {
+      "type": "integer",
+      "description": "A time threshold in seconds that, once exceeded, will cause the operation to be cancelled. Note that this is *not* a hard limit, but a threshold that is checked periodically during the course of fulfilling the request. A default threshold is used if not specified, but you can use this option to increase or decrease as needed. Set to 0 to disable this feature entirely (not recommended). This settin"
+     }
+    },
+    "required": [
+     "condition",
+     "sessionId",
+     "windowId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.airtop.ai/api/v1/sessions/{sessionId}/windows/{windowId}/monitor",
+    "path": [
+     "sessionId",
+     "windowId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "clientRequestId",
+     "condition",
+     "configuration",
+     "costThresholdCredits",
+     "timeThresholdSeconds"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "airtop.windows_page_query",
+   "name": "Query a page",
+   "description": "Submit a prompt that queries the content of a specific browser window. You may extract content from the page, or ask a question about the page and allow the AI to answer it (ex. Is the user logged in?).",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sessionId": {
+      "type": "string",
+      "description": "The session id for the window."
+     },
+     "windowId": {
+      "type": "string",
+      "description": "The Airtop window id of the browser window."
+     },
+     "clientRequestId": {
+      "type": "string",
+      "description": ""
+     },
+     "configuration": {
+      "type": "object",
+      "description": ""
+     },
+     "costThresholdCredits": {
+      "type": "integer",
+      "description": "A credit threshold that, once exceeded, will cause the operation to be cancelled. Note that this is *not* a hard limit, but a threshold that is checked periodically during the course of fulfilling the request. A default threshold is used if not specified, but you can use this option to increase or decrease as needed. Set to 0 to disable this feature entirely (not recommended)."
+     },
+     "followPaginationLinks": {
+      "type": "boolean",
+      "description": "Make a best effort attempt to load more content items than are originally displayed on the page, e.g. by following pagination links, clicking controls to load more content, utilizing infinite scrolling, etc. This can be quite a bit more costly, but may be necessary for sites that require additional interaction to show the needed results. You can provide constraints in your prompt (e.g. on the tota"
+     },
+     "prompt": {
+      "type": "string",
+      "description": "The prompt to submit about the content in the browser window."
+     },
+     "timeThresholdSeconds": {
+      "type": "integer",
+      "description": "A time threshold in seconds that, once exceeded, will cause the operation to be cancelled. Note that this is *not* a hard limit, but a threshold that is checked periodically during the course of fulfilling the request. A default threshold is used if not specified, but you can use this option to increase or decrease as needed. Set to 0 to disable this feature entirely (not recommended). This settin"
+     }
+    },
+    "required": [
+     "prompt",
+     "sessionId",
+     "windowId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.airtop.ai/api/v1/sessions/{sessionId}/windows/{windowId}/page-query",
+    "path": [
+     "sessionId",
+     "windowId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "clientRequestId",
+     "configuration",
+     "costThresholdCredits",
+     "followPaginationLinks",
+     "prompt",
+     "timeThresholdSeconds"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "airtop.windows_paginated_extraction",
+   "name": "Query a page with pagination",
+   "description": "Submit a prompt that queries the content of a specific browser window and paginates through pages to return a list of results.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sessionId": {
+      "type": "string",
+      "description": "The session id for the window."
+     },
+     "windowId": {
+      "type": "string",
+      "description": "The Airtop window id of the browser window."
+     },
+     "clientRequestId": {
+      "type": "string",
+      "description": ""
+     },
+     "configuration": {
+      "type": "object",
+      "description": ""
+     },
+     "costThresholdCredits": {
+      "type": "integer",
+      "description": "A credit threshold that, once exceeded, will cause the operation to be cancelled. Note that this is *not* a hard limit, but a threshold that is checked periodically during the course of fulfilling the request. A default threshold is used if not specified, but you can use this option to increase or decrease as needed. Set to 0 to disable this feature entirely (not recommended)."
+     },
+     "prompt": {
+      "type": "string",
+      "description": "A prompt providing the Airtop AI model with additional direction or constraints about the page and the details you want to extract from the page."
+     },
+     "timeThresholdSeconds": {
+      "type": "integer",
+      "description": "A time threshold in seconds that, once exceeded, will cause the operation to be cancelled. Note that this is *not* a hard limit, but a threshold that is checked periodically during the course of fulfilling the request. A default threshold is used if not specified, but you can use this option to increase or decrease as needed. Set to 0 to disable this feature entirely (not recommended). This settin"
+     }
+    },
+    "required": [
+     "prompt",
+     "sessionId",
+     "windowId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.airtop.ai/api/v1/sessions/{sessionId}/windows/{windowId}/paginated-extraction",
+    "path": [
+     "sessionId",
+     "windowId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "clientRequestId",
+     "configuration",
+     "costThresholdCredits",
+     "prompt",
+     "timeThresholdSeconds"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "airtop.windows_scrape_content",
+   "name": "Scrape",
+   "description": "Scrape a window and return the content as markdown",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sessionId": {
+      "type": "string",
+      "description": "The session id for the window."
+     },
+     "windowId": {
+      "type": "string",
+      "description": "The Airtop window id of the browser window to scrape."
+     },
+     "clientRequestId": {
+      "type": "string",
+      "description": ""
+     },
+     "costThresholdCredits": {
+      "type": "integer",
+      "description": "A credit threshold that, once exceeded, will cause the operation to be cancelled. Note that this is *not* a hard limit, but a threshold that is checked periodically during the course of fulfilling the request. A default threshold is used if not specified, but you can use this option to increase or decrease as needed. Set to 0 to disable this feature entirely (not recommended)."
+     },
+     "timeThresholdSeconds": {
+      "type": "integer",
+      "description": "A time threshold in seconds that, once exceeded, will cause the operation to be cancelled. Note that this is *not* a hard limit, but a threshold that is checked periodically during the course of fulfilling the request. A default threshold is used if not specified, but you can use this option to increase or decrease as needed. Set to 0 to disable this feature entirely (not recommended). This settin"
+     }
+    },
+    "required": [
+     "sessionId",
+     "windowId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.airtop.ai/api/v1/sessions/{sessionId}/windows/{windowId}/scrape-content",
+    "path": [
+     "sessionId",
+     "windowId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "clientRequestId",
+     "costThresholdCredits",
+     "timeThresholdSeconds"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "airtop.windows_screenshot",
+   "name": "Take a screenshot",
+   "description": "Take a screenshot of a browser window",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sessionId": {
+      "type": "string",
+      "description": "The session id for the window."
+     },
+     "windowId": {
+      "type": "string",
+      "description": "The Airtop window id of the browser window."
+     },
+     "clientRequestId": {
+      "type": "string",
+      "description": ""
+     },
+     "configuration": {
+      "type": "object",
+      "description": ""
+     },
+     "costThresholdCredits": {
+      "type": "integer",
+      "description": "A credit threshold that, once exceeded, will cause the operation to be cancelled. Note that this is *not* a hard limit, but a threshold that is checked periodically during the course of fulfilling the request. A default threshold is used if not specified, but you can use this option to increase or decrease as needed. Set to 0 to disable this feature entirely (not recommended)."
+     },
+     "timeThresholdSeconds": {
+      "type": "integer",
+      "description": "A time threshold in seconds that, once exceeded, will cause the operation to be cancelled. Note that this is *not* a hard limit, but a threshold that is checked periodically during the course of fulfilling the request. A default threshold is used if not specified, but you can use this option to increase or decrease as needed. Set to 0 to disable this feature entirely (not recommended). This settin"
+     }
+    },
+    "required": [
+     "sessionId",
+     "windowId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.airtop.ai/api/v1/sessions/{sessionId}/windows/{windowId}/screenshot",
+    "path": [
+     "sessionId",
+     "windowId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "clientRequestId",
+     "configuration",
+     "costThresholdCredits",
+     "timeThresholdSeconds"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "airtop.windows_scroll",
+   "name": "Scroll",
+   "description": "Execute a scroll interaction in a specific browser window",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sessionId": {
+      "type": "string",
+      "description": "The session id for the window."
+     },
+     "windowId": {
+      "type": "string",
+      "description": "The Airtop window id of the browser window."
+     },
+     "clientRequestId": {
+      "type": "string",
+      "description": ""
+     },
+     "configuration": {
+      "type": "object",
+      "description": ""
+     },
+     "costThresholdCredits": {
+      "type": "integer",
+      "description": "A credit threshold that, once exceeded, will cause the operation to be cancelled. Note that this is *not* a hard limit, but a threshold that is checked periodically during the course of fulfilling the request. A default threshold is used if not specified, but you can use this option to increase or decrease as needed. Set to 0 to disable this feature entirely (not recommended)."
+     },
+     "scrollBy": {
+      "type": "object",
+      "description": ""
+     },
+     "scrollToEdge": {
+      "type": "object",
+      "description": ""
+     },
+     "scrollToElement": {
+      "type": "string",
+      "description": "A natural language description of where to scroll (e.g. 'the search box', 'username field'). The interaction will be aborted if the target element cannot be found. If provided, scrollToEdge/scrollBy values will be ignored."
+     },
+     "scrollWithin": {
+      "type": "string",
+      "description": "A natural language description of the scrollable area on the web page. This identifies the container or region that should be scrolled. If missing, the entire page will be scrolled. You can also describe a visible reference point inside the container. Note: This is different from scrollToElement, which specifies the target element to scroll to. The target may be located inside the scrollable area "
+     },
+     "timeThresholdSeconds": {
+      "type": "integer",
+      "description": "A time threshold in seconds that, once exceeded, will cause the operation to be cancelled. Note that this is *not* a hard limit, but a threshold that is checked periodically during the course of fulfilling the request. A default threshold is used if not specified, but you can use this option to increase or decrease as needed. Set to 0 to disable this feature entirely (not recommended). This settin"
+     }
+    },
+    "required": [
+     "sessionId",
+     "windowId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.airtop.ai/api/v1/sessions/{sessionId}/windows/{windowId}/scroll",
+    "path": [
+     "sessionId",
+     "windowId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "clientRequestId",
+     "configuration",
+     "costThresholdCredits",
+     "scrollBy",
+     "scrollToEdge",
+     "scrollToElement",
+     "scrollWithin",
+     "timeThresholdSeconds"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "airtop.windows_type",
+   "name": "Type",
+   "description": "Execute a type interaction in a specific browser window",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sessionId": {
+      "type": "string",
+      "description": "The session id for the window."
+     },
+     "windowId": {
+      "type": "string",
+      "description": "The Airtop window id of the browser window."
+     },
+     "clearInputField": {
+      "type": "boolean",
+      "description": "If true, and an HTML input field is active, clears the input field before typing the text."
+     },
+     "clientRequestId": {
+      "type": "string",
+      "description": ""
+     },
+     "configuration": {
+      "type": "object",
+      "description": ""
+     },
+     "costThresholdCredits": {
+      "type": "integer",
+      "description": "A credit threshold that, once exceeded, will cause the operation to be cancelled. Note that this is *not* a hard limit, but a threshold that is checked periodically during the course of fulfilling the request. A default threshold is used if not specified, but you can use this option to increase or decrease as needed. Set to 0 to disable this feature entirely (not recommended)."
+     },
+     "elementDescription": {
+      "type": "string",
+      "description": "A natural language description of where to type (e.g. 'the search box', 'username field'). The interaction will be aborted if the target element cannot be found."
+     },
+     "pressEnterKey": {
+      "type": "boolean",
+      "description": "If true, simulates pressing the Enter key after typing the text."
+     },
+     "pressTabKey": {
+      "type": "boolean",
+      "description": "If true, simulates pressing the Tab key after typing the text. Note that the tab key will be pressed after the Enter key if both options are configured."
+     },
+     "text": {
+      "type": "string",
+      "description": "The text to type into the browser window."
+     },
+     "timeThresholdSeconds": {
+      "type": "integer",
+      "description": "A time threshold in seconds that, once exceeded, will cause the operation to be cancelled. Note that this is *not* a hard limit, but a threshold that is checked periodically during the course of fulfilling the request. A default threshold is used if not specified, but you can use this option to increase or decrease as needed. Set to 0 to disable this feature entirely (not recommended). This settin"
+     },
+     "waitForNavigation": {
+      "type": "boolean",
+      "description": "If true, Airtop AI will wait for the navigation to complete after clicking the element."
+     }
+    },
+    "required": [
+     "sessionId",
+     "text",
+     "windowId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.airtop.ai/api/v1/sessions/{sessionId}/windows/{windowId}/type",
+    "path": [
+     "sessionId",
+     "windowId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "clearInputField",
+     "clientRequestId",
+     "configuration",
+     "costThresholdCredits",
+     "elementDescription",
+     "pressEnterKey",
+     "pressTabKey",
+     "text",
+     "timeThresholdSeconds",
+     "waitForNavigation"
+    ],
+    "body_format": "json"
+   }
+  }
+ ]
+}

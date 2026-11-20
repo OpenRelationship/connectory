@@ -1,0 +1,4534 @@
+{
+ "_": "GENERATED \u2014 what an authoring tool needs to FIND an operation. The calling table is the .lua beside it.",
+ "provider": "everhour",
+ "source": "https://developers.everhour.com/openapi.json",
+ "operations": [
+  {
+   "slug": "everhour.add_attachment_to_expense",
+   "name": "Add attachment to expense",
+   "description": "Attach a previously uploaded file (by its token from `POST /attachments`) to an existing expense.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "expense_id": {
+      "type": "number",
+      "description": "Expense ID"
+     },
+     "name": {
+      "type": "string",
+      "description": ""
+     },
+     "content": {
+      "type": "string",
+      "description": "Base64 file content. Only jpg, png and pdf supported"
+     },
+     "type": {
+      "type": "string",
+      "description": "Object the attachment is linked to. Defaults to `expense`.",
+      "enum": [
+       "assignment",
+       "task",
+       "user",
+       "expense"
+      ]
+     }
+    },
+    "required": [
+     "content",
+     "expense_id",
+     "name"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.everhour.com/expenses/{expense_id}/attachments",
+    "path": [
+     "expense_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "content",
+     "type"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.add_time",
+   "name": "Add time",
+   "description": "Add a time record (in seconds) for a user on a given task and date. **Upsert:** at most one time record exists per `(user, date, task)`. Posting again with the same combination updates the existing record's duration instead of creating a duplicate. To update a specific record by ID, use `PUT /time/{time_id}`. See [Dates](/dates-and-timezones) for accepted date and duration formats.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "time": {
+      "type": "integer",
+      "description": "Time in seconds"
+     },
+     "date": {
+      "type": "string",
+      "description": "Date"
+     },
+     "task": {
+      "type": "string",
+      "description": "Task ID"
+     },
+     "user": {
+      "type": "number",
+      "description": "User ID"
+     },
+     "comment": {
+      "type": "string",
+      "description": "Comment"
+     }
+    },
+    "required": [
+     "time"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.everhour.com/time",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "time",
+     "date",
+     "task",
+     "user",
+     "comment"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.approve_or_reject_approval_request",
+   "name": "Approve or reject approval request",
+   "description": "Approve or reject an existing timesheet approval request. Use this endpoint to act on a request previously created with `POST /timesheets/{timesheet_id}/approval`. The response reflects the resulting approval state.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "timesheet_id": {
+      "type": "number",
+      "description": "Timesheet ID"
+     },
+     "days": {
+      "type": "object",
+      "description": ""
+     },
+     "status": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "approved",
+       "rejected"
+      ]
+     },
+     "comment": {
+      "type": "string",
+      "description": ""
+     },
+     "sendNotification": {
+      "type": "boolean",
+      "description": ""
+     }
+    },
+    "required": [
+     "timesheet_id"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.everhour.com/timesheets/{timesheet_id}/approval",
+    "path": [
+     "timesheet_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "days",
+     "status",
+     "comment",
+     "sendNotification"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.approve_week_request_for_approval",
+   "name": "Approve week request for approval",
+   "description": "Submit a timesheet week for approval. The week's owner uses this endpoint to request review; an approver acts on the request via `PUT /timesheets/{timesheet_id}/approval`. The `timesheet_id` is the concatenation of `user_id` and a 4-digit `week_id` in `YYWW` format (no separator). Example: user `14856` for week `2535` (week 35 of 2025) \u2192 `timesheet_id = 148562535`. See the Timesheets overview for ",
+   "input": {
+    "type": "object",
+    "properties": {
+     "timesheet_id": {
+      "type": "number",
+      "description": "Timesheet ID"
+     },
+     "comment": {
+      "type": "string",
+      "description": ""
+     },
+     "reviewer": {
+      "type": "number",
+      "description": "User ID, must be admin in team"
+     },
+     "sendNotification": {
+      "type": "boolean",
+      "description": ""
+     }
+    },
+    "required": [
+     "timesheet_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.everhour.com/timesheets/{timesheet_id}/approval",
+    "path": [
+     "timesheet_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "comment",
+     "reviewer",
+     "sendNotification"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.archive_unarchive_project",
+   "name": "Archive unarchive project",
+   "description": "Archive or unarchive a project. Archived projects are hidden from default listings but their data is preserved.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "project_id": {
+      "type": "string",
+      "description": "Project ID"
+     },
+     "archived": {
+      "type": "boolean",
+      "description": ""
+     }
+    },
+    "required": [
+     "archived",
+     "project_id"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.everhour.com/projects/{project_id}/archive",
+    "path": [
+     "project_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "archived"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.clients_report",
+   "name": "Clients report",
+   "description": "Aggregated client report. Same filters and units as `GET /dashboards/projects` \u2014 see [Concepts](/concepts).",
+   "input": {
+    "type": "object",
+    "properties": {
+     "date.gte": {
+      "type": "string",
+      "description": "Report start date"
+     },
+     "date.lte": {
+      "type": "string",
+      "description": "Report end date"
+     },
+     "projectId": {
+      "type": "string",
+      "description": "Filter by project ID"
+     },
+     "clientId": {
+      "type": "number",
+      "description": "Filter by client ID"
+     },
+     "memberId": {
+      "type": "number",
+      "description": "Filter by user ID"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.everhour.com/dashboards/clients",
+    "path": [],
+    "query": [
+     "date.gte",
+     "date.lte",
+     "projectId",
+     "clientId",
+     "memberId"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.clock_in",
+   "name": "Clock in",
+   "description": "Clock a user in. Starts a new timecard segment at the current time.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "user_id": {
+      "type": "number",
+      "description": "User ID"
+     },
+     "userDate": {
+      "type": "string",
+      "description": "Current user date, if not specified we will rely on user profile timezone."
+     }
+    },
+    "required": [
+     "user_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.everhour.com/users/{user_id}/timecards/clock-in",
+    "path": [
+     "user_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "userDate"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.clock_out",
+   "name": "Clock out",
+   "description": "Clock a user out. Closes the current timecard segment.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "user_id": {
+      "type": "number",
+      "description": "User ID"
+     },
+     "userDate": {
+      "type": "string",
+      "description": "Current user date, if not specified we will rely on user profile timezone."
+     }
+    },
+    "required": [
+     "user_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.everhour.com/users/{user_id}/timecards/clock-out",
+    "path": [
+     "user_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "userDate"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.create_allocation",
+   "name": "Create allocation",
+   "description": "Create a time-off allocation for a user and time-off type.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "startDate": {
+      "type": "string",
+      "description": ""
+     },
+     "endDate": {
+      "type": "string",
+      "description": ""
+     },
+     "contractStartDate": {
+      "type": "string",
+      "description": ""
+     },
+     "users": {
+      "type": "array",
+      "description": ""
+     },
+     "timeOffType": {
+      "type": "number",
+      "description": ""
+     },
+     "days": {
+      "type": "number",
+      "description": ""
+     },
+     "daysCarried": {
+      "type": "number",
+      "description": ""
+     },
+     "accrualFrequency": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "daily",
+       "immediately"
+      ]
+     },
+     "restrictOverAllocation": {
+      "type": "boolean",
+      "description": ""
+     },
+     "completed": {
+      "type": "boolean",
+      "description": ""
+     },
+     "notes": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.everhour.com/allocations",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "startDate",
+     "endDate",
+     "contractStartDate",
+     "users",
+     "timeOffType",
+     "days",
+     "daysCarried",
+     "accrualFrequency",
+     "restrictOverAllocation",
+     "completed",
+     "notes"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.create_assignment",
+   "name": "Create assignment",
+   "description": "Create a schedule assignment. To create time-off use `POST /resource-planner/assignments/time-off` instead.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "user": {
+      "type": "integer",
+      "description": ""
+     },
+     "project": {
+      "type": "string",
+      "description": "Project encoded ID"
+     },
+     "task": {
+      "type": "string",
+      "description": "Task encoded ID"
+     },
+     "client": {
+      "type": "integer",
+      "description": "Client ID"
+     },
+     "type": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "project",
+       "client",
+       "task",
+       "time-off"
+      ]
+     },
+     "startDate": {
+      "type": "string",
+      "description": "Format: Y-m-d"
+     },
+     "endDate": {
+      "type": "string",
+      "description": "Format: Y-m-d"
+     },
+     "time": {
+      "type": "integer",
+      "description": "Scheduled time in seconds"
+     },
+     "note": {
+      "type": "string",
+      "description": "Max 1000 chars"
+     },
+     "includeWeekends": {
+      "type": "boolean",
+      "description": ""
+     },
+     "color": {
+      "type": "string",
+      "description": "Hex color #rrggbb"
+     },
+     "sendNotification": {
+      "type": "boolean",
+      "description": ""
+     },
+     "forceOverride": {
+      "type": "boolean",
+      "description": ""
+     },
+     "timeOffType": {
+      "type": "string",
+      "description": "Time-off type (only when type is `time-off`)."
+     },
+     "timeOffPeriod": {
+      "type": "string",
+      "description": "Time-off period (only when type is `time-off`).",
+      "enum": [
+       "full-day",
+       "half-of-day",
+       "quarter-of-day",
+       "half-and-quarter-of-day"
+      ]
+     },
+     "status": {
+      "type": "string",
+      "description": "Time-off approval status (only when type is `time-off`).",
+      "enum": [
+       "pending",
+       "approved"
+      ]
+     },
+     "users": {
+      "type": "array",
+      "description": "Create the same schedule for multiple users (create only)."
+     },
+     "reviewer": {
+      "type": "integer",
+      "description": "Reviewer user ID for time-off (create only)."
+     }
+    },
+    "required": [
+     "endDate",
+     "startDate"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.everhour.com/resource-planner/assignments",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "user",
+     "project",
+     "task",
+     "client",
+     "type",
+     "startDate",
+     "endDate",
+     "time",
+     "note",
+     "includeWeekends",
+     "color",
+     "sendNotification",
+     "forceOverride",
+     "timeOffType",
+     "timeOffPeriod",
+     "status",
+     "users",
+     "reviewer"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.create_attachment",
+   "name": "Create attachment",
+   "description": "Upload a file and receive a one-time attachment token. The token can then be attached to an expense via `POST /expenses/{expense_id}/attachments` or included in `POST /expenses`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": "string",
+      "description": ""
+     },
+     "content": {
+      "type": "string",
+      "description": "Base64 file content. Only jpg, png and pdf supported"
+     },
+     "type": {
+      "type": "string",
+      "description": "Object the attachment is linked to. Defaults to `expense`.",
+      "enum": [
+       "assignment",
+       "task",
+       "user",
+       "expense"
+      ]
+     }
+    },
+    "required": [
+     "content",
+     "name"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.everhour.com/attachments",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "content",
+     "type"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.create_category",
+   "name": "Create category",
+   "description": "Create a new expense category.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "color": {
+      "type": "string",
+      "description": ""
+     },
+     "name": {
+      "type": "string",
+      "description": ""
+     },
+     "unitBased": {
+      "type": "boolean",
+      "description": ""
+     },
+     "unitName": {
+      "type": "string",
+      "description": ""
+     },
+     "unitPrice": {
+      "type": "integer",
+      "description": "Price per unit in cents."
+     }
+    },
+    "required": [
+     "color",
+     "name"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.everhour.com/expenses/categories",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "color",
+     "name",
+     "unitBased",
+     "unitName",
+     "unitPrice"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.create_client",
+   "name": "Create client",
+   "description": "Create a new client. Names are not deduplicated \u2014 posting the same name creates another client.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": "string",
+      "description": ""
+     },
+     "projects": {
+      "type": "array",
+      "description": "Project encoded IDs to assign to the client."
+     },
+     "lineItemMask": {
+      "type": "string",
+      "description": "Template for generated invoice line-item names."
+     },
+     "defaultTax": {
+      "type": "object",
+      "description": "Default tax for the client's invoices."
+     },
+     "defaultDiscount": {
+      "type": "number",
+      "description": "Default discount rate as a percentage (0-100)."
+     },
+     "paymentDueDays": {
+      "type": "integer",
+      "description": "Default invoice payment term in days (0-365)."
+     },
+     "reference": {
+      "type": "string",
+      "description": ""
+     },
+     "invoicePublicNotes": {
+      "type": "string",
+      "description": ""
+     },
+     "businessDetails": {
+      "type": "string",
+      "description": ""
+     },
+     "billingDetails": {
+      "type": "object",
+      "description": "Client billing details (all fields optional)."
+     },
+     "excludedLabels": {
+      "type": "array",
+      "description": "Labels excluded from invoicing (max 8)."
+     },
+     "email": {
+      "type": "array",
+      "description": "Invoice recipient email addresses (max 10)."
+     }
+    },
+    "required": [
+     "name"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.everhour.com/clients",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "projects",
+     "lineItemMask",
+     "defaultTax",
+     "defaultDiscount",
+     "paymentDueDays",
+     "reference",
+     "invoicePublicNotes",
+     "businessDetails",
+     "billingDetails",
+     "excludedLabels",
+     "email"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.create_expense",
+   "name": "Create expense",
+   "description": "Log a new expense. Amounts are in cents (see [Concepts](/concepts)); attach files first via `POST /attachments` and reference their IDs in the request body.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "amount": {
+      "type": "integer",
+      "description": "Amount in cents."
+     },
+     "attachments": {
+      "type": "array",
+      "description": "Attachment IDs to link."
+     },
+     "billable": {
+      "type": "boolean",
+      "description": ""
+     },
+     "category": {
+      "type": "integer",
+      "description": "Expense category ID"
+     },
+     "date": {
+      "type": "string",
+      "description": ""
+     },
+     "details": {
+      "type": "string",
+      "description": ""
+     },
+     "project": {
+      "type": "string",
+      "description": ""
+     },
+     "quantity": {
+      "type": "number",
+      "description": ""
+     },
+     "user": {
+      "type": "integer",
+      "description": ""
+     },
+     "type": {
+      "type": "string",
+      "description": "Expense type.",
+      "enum": [
+       "separate",
+       "billable",
+       "cost"
+      ]
+     }
+    },
+    "required": [
+     "category",
+     "date"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.everhour.com/expenses",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "amount",
+     "attachments",
+     "billable",
+     "category",
+     "date",
+     "details",
+     "project",
+     "quantity",
+     "user",
+     "type"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.create_field_in_project",
+   "name": "Create field in project",
+   "description": "Create a new custom field on a project.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "project_id": {
+      "type": "string",
+      "description": "Project ID"
+     },
+     "name": {
+      "type": "string",
+      "description": ""
+     },
+     "type": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "number",
+       "text",
+       "select",
+       "date"
+      ]
+     },
+     "format": {
+      "type": "object",
+      "description": ""
+     },
+     "icon": {
+      "type": "string",
+      "description": ""
+     },
+     "options": {
+      "type": "array",
+      "description": "Up to 10 options, required when `type` is `select`."
+     }
+    },
+    "required": [
+     "name",
+     "project_id",
+     "type"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.everhour.com/projects/{project_id}/fields",
+    "path": [
+     "project_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "type",
+     "format",
+     "icon",
+     "options"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.create_invoice",
+   "name": "Create invoice",
+   "description": "Create an invoice for a client. The invoice is generated from the client's tracked time over the requested date range \u2014 see [Dates](/dates-and-timezones).",
+   "input": {
+    "type": "object",
+    "properties": {
+     "client_id": {
+      "type": "number",
+      "description": "Client ID"
+     },
+     "limitDateFrom": {
+      "type": "string",
+      "description": ""
+     },
+     "limitDateTill": {
+      "type": "string",
+      "description": ""
+     },
+     "includeExpenses": {
+      "type": "boolean",
+      "description": ""
+     },
+     "includeTime": {
+      "type": "boolean",
+      "description": ""
+     },
+     "projects": {
+      "type": "array",
+      "description": ""
+     },
+     "tax": {
+      "type": "object",
+      "description": "Tax to apply. Set `rate` (percentage), or `id` to reference a tax from a connected accounting integration."
+     },
+     "discount": {
+      "type": "number",
+      "description": "Discount rate as a percentage (0-100)"
+     }
+    },
+    "required": [
+     "client_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.everhour.com/clients/{client_id}/invoices",
+    "path": [
+     "client_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "limitDateFrom",
+     "limitDateTill",
+     "includeExpenses",
+     "includeTime",
+     "projects",
+     "tax",
+     "discount"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.create_project",
+   "name": "Create project",
+   "description": "Create a new project. To copy from an existing template use the `template` or `publicTemplate` body field. To sync a project from a connected integration use `POST /projects/{project_id}/sync` instead.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": "string",
+      "description": ""
+     },
+     "type": {
+      "type": "string",
+      "description": "Project type",
+      "enum": [
+       "board",
+       "list"
+      ]
+     },
+     "users": {
+      "type": "array",
+      "description": "Assigned user IDs"
+     },
+     "client": {
+      "type": "integer",
+      "description": "Client ID to assign the project to"
+     },
+     "privacy": {
+      "type": "boolean",
+      "description": "Restrict project visibility to its assigned members"
+     },
+     "changeProtected": {
+      "type": "boolean",
+      "description": "Prevent edits by non-admins"
+     },
+     "isTemplate": {
+      "type": "boolean",
+      "description": "Mark the project as a template"
+     }
+    },
+    "required": [
+     "name",
+     "type"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.everhour.com/projects",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "type",
+     "users",
+     "client",
+     "privacy",
+     "changeProtected",
+     "isTemplate"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.create_section",
+   "name": "Create section",
+   "description": "Create a new section in a project.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "project_id": {
+      "type": "string",
+      "description": "Project ID"
+     },
+     "name": {
+      "type": "string",
+      "description": ""
+     },
+     "status": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "open",
+       "archived"
+      ]
+     },
+     "placeBefore": {
+      "type": "array",
+      "description": "IDs of sections to place this one before (create only)."
+     },
+     "collapsed": {
+      "type": "boolean",
+      "description": ""
+     }
+    },
+    "required": [
+     "name",
+     "project_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.everhour.com/projects/{project_id}/sections",
+    "path": [
+     "project_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "status",
+     "placeBefore",
+     "collapsed"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.create_task",
+   "name": "Create task",
+   "description": "Create a task in a project. For tasks coming from connected integrations, sync them via `POST /projects/{project_id}/sync` instead.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "project_id": {
+      "type": "string",
+      "description": "Project ID"
+     },
+     "name": {
+      "type": "string",
+      "description": ""
+     },
+     "section": {
+      "type": "integer",
+      "description": "Section ID"
+     },
+     "labels": {
+      "type": "array",
+      "description": ""
+     },
+     "status": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "open",
+       "closed"
+      ]
+     },
+     "color": {
+      "type": "string",
+      "description": "Label color, max 15 chars."
+     },
+     "dueOn": {
+      "type": "string",
+      "description": "Due date, format Y-m-d. Send \"\" to clear."
+     },
+     "startOn": {
+      "type": "string",
+      "description": "Start date, format Y-m-d. Send \"\" to clear."
+     },
+     "description": {
+      "type": "string",
+      "description": "Plain-text description, max 2000 chars."
+     },
+     "assignees": {
+      "type": "array",
+      "description": "Task assignees."
+     },
+     "tags": {
+      "type": "array",
+      "description": "Tag IDs, max 10."
+     },
+     "fields": {
+      "type": "array",
+      "description": "Custom field values."
+     },
+     "cover": {
+      "type": "object",
+      "description": ""
+     },
+     "placeBefore": {
+      "type": "array",
+      "description": "Encoded IDs of tasks to place this one before (create only)."
+     }
+    },
+    "required": [
+     "name",
+     "project_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.everhour.com/projects/{project_id}/tasks",
+    "path": [
+     "project_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "section",
+     "labels",
+     "status",
+     "color",
+     "dueOn",
+     "startOn",
+     "description",
+     "assignees",
+     "tags",
+     "fields",
+     "cover",
+     "placeBefore"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.create_time_off_type",
+   "name": "Create time off type",
+   "description": "Create a new time-off type.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": "string",
+      "description": ""
+     },
+     "color": {
+      "type": "string",
+      "description": ""
+     },
+     "paid": {
+      "type": "boolean",
+      "description": ""
+     },
+     "description": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.everhour.com/resource-planner/time-off-types",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "color",
+     "paid",
+     "description"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.create_webhook",
+   "name": "Create webhook",
+   "description": "Register a new webhook subscription. **Handshake:** on create, Everhour sends a POST to the supplied `targetUrl` with an `X-Hook-Secret` header (HMAC-SHA512) and an empty body. The receiver must respond with a 2xx status to complete verification. Send `X-Skip-Handshake: 1` to skip verification when the receiver cannot participate. **Scope:** a webhook can listen across the whole team or be scoped ",
+   "input": {
+    "type": "object",
+    "properties": {
+     "targetUrl": {
+      "type": "string",
+      "description": "URL that receives event POSTs."
+     },
+     "events": {
+      "type": "array",
+      "description": "Events you want to receive."
+     },
+     "project": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Restrict the subscription to a single project."
+     }
+    },
+    "required": [
+     "events",
+     "targetUrl"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.everhour.com/hooks",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "targetUrl",
+     "events",
+     "project"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.delete_allocation",
+   "name": "Delete allocation",
+   "description": "Delete a time-off allocation.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "allocation_id": {
+      "type": "number",
+      "description": ""
+     }
+    },
+    "required": [
+     "allocation_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.everhour.com/allocations/{allocation_id}",
+    "path": [
+     "allocation_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.delete_assignment",
+   "name": "Delete assignment",
+   "description": "Delete a schedule assignment. You can include an optional `reason` (max 1000 characters) in the request body.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "assignment_id": {
+      "type": "number",
+      "description": "Assignment ID"
+     }
+    },
+    "required": [
+     "assignment_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.everhour.com/resource-planner/assignments/{assignment_id}",
+    "path": [
+     "assignment_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.delete_attachment",
+   "name": "Delete attachment",
+   "description": "Delete an attachment and its underlying file.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "attachment_id": {
+      "type": "number",
+      "description": "Attachment ID"
+     }
+    },
+    "required": [
+     "attachment_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.everhour.com/attachments/{attachment_id}",
+    "path": [
+     "attachment_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.delete_category",
+   "name": "Delete category",
+   "description": "Delete an expense category. Expenses already assigned to it are kept but become uncategorized.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "category_id": {
+      "type": "number",
+      "description": "Expense Category ID"
+     },
+     "targetCategory": {
+      "type": "integer",
+      "description": "Move this category's expenses to the given category ID."
+     },
+     "removeExpenses": {
+      "type": "boolean",
+      "description": "Delete the category's expenses instead of reassigning them."
+     }
+    },
+    "required": [
+     "category_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.everhour.com/expenses/categories/{category_id}",
+    "path": [
+     "category_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "targetCategory",
+     "removeExpenses"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.delete_client",
+   "name": "Delete client",
+   "description": "Delete a client.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "client_id": {
+      "type": "number",
+      "description": "Client ID"
+     }
+    },
+    "required": [
+     "client_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.everhour.com/clients/{client_id}",
+    "path": [
+     "client_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.delete_client_budget",
+   "name": "Delete client budget",
+   "description": "Remove the budget attached to a client. The client itself is kept.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "client_id": {
+      "type": "number",
+      "description": "Client ID"
+     }
+    },
+    "required": [
+     "client_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.everhour.com/clients/{client_id}/budget",
+    "path": [
+     "client_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.delete_expense",
+   "name": "Delete expense",
+   "description": "Delete an expense entry. Attached files are also removed.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "expense_id": {
+      "type": "number",
+      "description": "Expense ID"
+     }
+    },
+    "required": [
+     "expense_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.everhour.com/expenses/{expense_id}",
+    "path": [
+     "expense_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.delete_field",
+   "name": "Delete field",
+   "description": "Delete a custom field. Existing task values for that field are discarded.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "field_id": {
+      "type": "number",
+      "description": "Field ID"
+     }
+    },
+    "required": [
+     "field_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.everhour.com/fields/{field_id}",
+    "path": [
+     "field_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.delete_invoice",
+   "name": "Delete invoice",
+   "description": "Delete an invoice. Time records attached to the invoice are released and become billable again.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "invoice_id": {
+      "type": "number",
+      "description": "Invoice ID"
+     }
+    },
+    "required": [
+     "invoice_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.everhour.com/invoices/{invoice_id}",
+    "path": [
+     "invoice_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.delete_project",
+   "name": "Delete project",
+   "description": "Delete a project, its tasks, and all associated time records. This is irreversible.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "project_id": {
+      "type": "string",
+      "description": "Project ID"
+     }
+    },
+    "required": [
+     "project_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.everhour.com/projects/{project_id}",
+    "path": [
+     "project_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.delete_section",
+   "name": "Delete section",
+   "description": "Delete a section. Tasks in the section are kept but become section-less.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "section_id": {
+      "type": "number",
+      "description": "Section ID"
+     },
+     "preserveTasks": {
+      "type": "boolean",
+      "description": "Keep the section's tasks instead of deleting them."
+     },
+     "section": {
+      "type": "integer",
+      "description": "Section ID to move the preserved tasks into."
+     }
+    },
+    "required": [
+     "section_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.everhour.com/sections/{section_id}",
+    "path": [
+     "section_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "preserveTasks",
+     "section"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.delete_task",
+   "name": "Delete task",
+   "description": "Delete a task and all of its time records.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "task_id": {
+      "type": "string",
+      "description": "Task ID"
+     }
+    },
+    "required": [
+     "task_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.everhour.com/tasks/{task_id}",
+    "path": [
+     "task_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.delete_task_estimate",
+   "name": "Delete task estimate",
+   "description": "Remove a task's estimate.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "task_id": {
+      "type": "string",
+      "description": "Task ID"
+     }
+    },
+    "required": [
+     "task_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.everhour.com/tasks/{task_id}/estimate",
+    "path": [
+     "task_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.delete_time_off_type",
+   "name": "Delete time off type",
+   "description": "Delete a time-off type. Existing time-off entries that reference it are kept.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "type_id": {
+      "type": "number",
+      "description": ""
+     }
+    },
+    "required": [
+     "type_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.everhour.com/resource-planner/time-off-types/{type_id}",
+    "path": [
+     "type_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.delete_time_record",
+   "name": "Delete time record",
+   "description": "Remove a time record by setting its duration to zero. The history trail is preserved; the row no longer appears in time listings, which filter for `time > 0`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "time_id": {
+      "type": "number",
+      "description": "ID of Task Time"
+     }
+    },
+    "required": [
+     "time_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.everhour.com/time/{time_id}",
+    "path": [
+     "time_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.delete_timecard",
+   "name": "Delete timecard",
+   "description": "Delete a user's timecard entry for a specific date.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "user_id": {
+      "type": "number",
+      "description": "User ID"
+     },
+     "date": {
+      "type": "string",
+      "description": "Date"
+     }
+    },
+    "required": [
+     "date",
+     "user_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.everhour.com/users/{user_id}/timecards/{date}",
+    "path": [
+     "user_id",
+     "date"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.delete_webhook",
+   "name": "Delete webhook",
+   "description": "Delete a webhook subscription. Stops further deliveries; no event is sent for the deletion itself.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "hook_id": {
+      "type": "number",
+      "description": "Webhook ID"
+     }
+    },
+    "required": [
+     "hook_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.everhour.com/hooks/{hook_id}",
+    "path": [
+     "hook_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.discard_your_approval_request",
+   "name": "Discard your approval request",
+   "description": "Retract the caller's previously submitted approval request for a week. The week returns to draft state.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "timesheet_id": {
+      "type": "number",
+      "description": "Timesheet ID"
+     },
+     "comment": {
+      "type": "string",
+      "description": ""
+     },
+     "reviewer": {
+      "type": "number",
+      "description": "User ID, must be admin in team"
+     },
+     "sendNotification": {
+      "type": "boolean",
+      "description": ""
+     }
+    },
+    "required": [
+     "timesheet_id"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.everhour.com/timesheets/{timesheet_id}/discard-approval",
+    "path": [
+     "timesheet_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "comment",
+     "reviewer",
+     "sendNotification"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.download_attachment",
+   "name": "Download attachment",
+   "description": "Download the binary contents of an attachment by its token. The response is the raw file, not JSON.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "attachment_token": {
+      "type": "string",
+      "description": ""
+     },
+     "inline": {
+      "type": "boolean",
+      "description": "Set to `1` to serve the file inline (`Content-Disposition: inline`) instead of as an attachment."
+     }
+    },
+    "required": [
+     "attachment_token"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.everhour.com/attachments/{attachment_token}/download",
+    "path": [
+     "attachment_token"
+    ],
+    "query": [
+     "inline"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.estimates_report_deprecated",
+   "name": "Estimates report (deprecated)",
+   "description": "Legacy export of team estimates, returned as JSON. Requires admin access. Kept for backward compatibility; new integrations should use the dashboard reports.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "dueFrom": {
+      "type": "string",
+      "description": "Task due date from you what to fetch estimates (format YYYY-MM-DD)"
+     },
+     "dueTo": {
+      "type": "string",
+      "description": "Task due date to you what to fetch estimates (format YYYY-MM-DD)"
+     },
+     "status": {
+      "type": "string",
+      "description": "Task status (e.g. open or completed)"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.everhour.com/team/estimate/export",
+    "path": [],
+    "query": [
+     "dueFrom",
+     "dueTo",
+     "status"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.export_invoice_to_xero_qb_fb",
+   "name": "Export invoice to xero qb fb",
+   "description": "Export an invoice to a connected external accounting system. Supports Xero, QuickBooks, and FreshBooks integrations \u2014 the destination must be linked to the team beforehand. An invoice can only be exported once; subsequent calls return an error.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "invoice_id": {
+      "type": "number",
+      "description": "Invoice ID"
+     }
+    },
+    "required": [
+     "invoice_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.everhour.com/invoices/{invoice_id}/export",
+    "path": [
+     "invoice_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.get_all_allocations",
+   "name": "Get all allocations",
+   "description": "List per-user time-off allocations (e.g. annual vacation balances).",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.everhour.com/allocations",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.get_all_assignments",
+   "name": "Get all assignments",
+   "description": "List schedule assignments across the team. Supports filtering by date range, project, and member.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "type": {
+      "type": "string",
+      "description": "Filter by Assignment Type",
+      "enum": [
+       "time-off",
+       "assignment"
+      ]
+     },
+     "project": {
+      "type": "string",
+      "description": "Filter by Project ID"
+     },
+     "task": {
+      "type": "string",
+      "description": "Filter by Task ID"
+     },
+     "client": {
+      "type": "number",
+      "description": "Filter by Client ID"
+     },
+     "from": {
+      "type": "string",
+      "description": "Get Assignments Starting From"
+     },
+     "to": {
+      "type": "string",
+      "description": "Get Assignments Ending At"
+     },
+     "allowRemovedUsers": {
+      "type": "boolean",
+      "description": "Include assignments of users removed from the team."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.everhour.com/resource-planner/assignments",
+    "path": [],
+    "query": [
+     "type",
+     "project",
+     "task",
+     "client",
+     "from",
+     "to",
+     "allowRemovedUsers"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.get_all_categories",
+   "name": "Get all categories",
+   "description": "List expense categories available in the team.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.everhour.com/expenses/categories",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.get_all_clients",
+   "name": "Get all clients",
+   "description": "Search Clients by Name using the query parameter.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "query": {
+      "type": "string",
+      "description": "Search Clients by Name"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.everhour.com/clients",
+    "path": [],
+    "query": [
+     "query"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.get_all_expenses",
+   "name": "Get all expenses",
+   "description": "List expenses logged by the authenticated user.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.everhour.com/expenses",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.get_all_invoices",
+   "name": "Get all invoices",
+   "description": "List invoices in the team. Supports filtering by date and client.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.everhour.com/invoices",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.get_all_projects",
+   "name": "Get all projects",
+   "description": "List projects the caller has access to. Use the `query` parameter to search by name and `limit`/`page` for pagination \u2014 see [Pagination](/pagination).",
+   "input": {
+    "type": "object",
+    "properties": {
+     "platform": {
+      "type": "string",
+      "description": "Filter by Integration",
+      "enum": [
+       "as",
+       "ev",
+       "b3",
+       "b2",
+       "pv",
+       "gh",
+       "in",
+       "tr",
+       "jr"
+      ]
+     },
+     "query": {
+      "type": "string",
+      "description": "Search Projects by Name"
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Max Results"
+     },
+     "page": {
+      "type": "integer",
+      "description": "Results page (1-based)"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.everhour.com/projects",
+    "path": [],
+    "query": [
+     "platform",
+     "query",
+     "limit",
+     "page"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.get_all_team_timers",
+   "name": "Get all team timers",
+   "description": "List the timers currently running across the team \u2014 one entry per active user.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.everhour.com/team/timers",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.get_all_time_records",
+   "name": "Get all time records",
+   "description": "List time records across the entire team for a date range. When `from`/`to` are omitted, only the current day is returned. See [Dates](/dates-and-timezones).",
+   "input": {
+    "type": "object",
+    "properties": {
+     "from": {
+      "type": "string",
+      "description": "Date from"
+     },
+     "to": {
+      "type": "string",
+      "description": "Date to"
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Max results for pagination, max value 50000"
+     },
+     "page": {
+      "type": "integer",
+      "description": "Page"
+     },
+     "opts_include_billing": {
+      "type": "integer",
+      "description": "Include billing data"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.everhour.com/team/time",
+    "path": [],
+    "query": [
+     "from",
+     "to",
+     "limit",
+     "page",
+     "opts_include_billing"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.get_all_timecards",
+   "name": "Get all timecards",
+   "description": "List timecards across the team. Defaults to the last two weeks when no date range is provided \u2014 see [Dates](/dates-and-timezones).",
+   "input": {
+    "type": "object",
+    "properties": {
+     "from": {
+      "type": "string",
+      "description": "Date from (2 weeks ago by default)"
+     },
+     "to": {
+      "type": "string",
+      "description": "Date to"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.everhour.com/timecards",
+    "path": [],
+    "query": [
+     "from",
+     "to"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.get_all_users",
+   "name": "Get all users",
+   "description": "List all members of the team, including removed ones. Each member comes back with profile, group, permission, and time tracking policy fields. What you see depends on your own access: `cost` returns `0` unless you have the `costs` permission, and `permissions` returns an empty array (`[]`) for members with no elevated access. Supports `query` for name search and `limit` for pagination \u2014 see [Pagin",
+   "input": {
+    "type": "object",
+    "properties": {
+     "query": {
+      "type": "string",
+      "description": "Filter users by name or email."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Maximum number of users to return."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.everhour.com/team/users",
+    "path": [],
+    "query": [
+     "query",
+     "limit"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.get_all_webhooks",
+   "name": "Get all webhooks",
+   "description": "List all webhook subscriptions created with your API key.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.everhour.com/hooks",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.get_client",
+   "name": "Get client",
+   "description": "Retrieve a single client by ID.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "client_id": {
+      "type": "number",
+      "description": "Client ID"
+     }
+    },
+    "required": [
+     "client_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.everhour.com/clients/{client_id}",
+    "path": [
+     "client_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.get_current_user",
+   "name": "Get current user",
+   "description": "Retrieve the user that owns the API key. Returns every field of the team member object plus personal settings: timezone, date and time formats, time off permissions, connected integration accounts, and the full team object.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.everhour.com/users/me",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.get_invoice",
+   "name": "Get invoice",
+   "description": "Retrieve a single invoice with its full line-item breakdown.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "invoice_id": {
+      "type": "number",
+      "description": "Invoice ID"
+     }
+    },
+    "required": [
+     "invoice_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.everhour.com/invoices/{invoice_id}",
+    "path": [
+     "invoice_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.get_project",
+   "name": "Get project",
+   "description": "Retrieve a single project. See [Concepts](/concepts) for the project model.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "project_id": {
+      "type": "string",
+      "description": "Project ID"
+     }
+    },
+    "required": [
+     "project_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.everhour.com/projects/{project_id}",
+    "path": [
+     "project_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.get_project_fields_configuration",
+   "name": "Get project fields configuration",
+   "description": "List the custom fields configured on a project, in display order.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "project_id": {
+      "type": "string",
+      "description": "Project ID"
+     }
+    },
+    "required": [
+     "project_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.everhour.com/projects/{project_id}/fields",
+    "path": [
+     "project_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.get_project_sections",
+   "name": "Get project sections",
+   "description": "List sections (groupings of tasks) within a project.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "project_id": {
+      "type": "string",
+      "description": "Project ID"
+     }
+    },
+    "required": [
+     "project_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.everhour.com/projects/{project_id}/sections",
+    "path": [
+     "project_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.get_project_tasks",
+   "name": "Get project tasks",
+   "description": "List tasks in a project. By default all tasks are returned; set `exclude-closed=true` to hide closed/completed tasks. See [Pagination](/pagination) for `limit`/`page` rules.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "project_id": {
+      "type": "string",
+      "description": "Project ID"
+     },
+     "page": {
+      "type": "integer",
+      "description": "Results page"
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Tasks per page, 250 max"
+     },
+     "exclude-closed": {
+      "type": "boolean",
+      "description": "Exclude closed/completed tasks"
+     },
+     "query": {
+      "type": "string",
+      "description": "Search tasks by name"
+     }
+    },
+    "required": [
+     "project_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.everhour.com/projects/{project_id}/tasks",
+    "path": [
+     "project_id"
+    ],
+    "query": [
+     "page",
+     "limit",
+     "exclude-closed",
+     "query"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.get_project_time_records",
+   "name": "Get project time records",
+   "description": "List time records logged against a single project, across all users and tasks.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "project_id": {
+      "type": "string",
+      "description": "Project ID"
+     },
+     "from": {
+      "type": "string",
+      "description": "Date from"
+     },
+     "to": {
+      "type": "string",
+      "description": "Date to"
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Max results for pagination, max value 50000"
+     },
+     "page": {
+      "type": "integer",
+      "description": "Page"
+     }
+    },
+    "required": [
+     "project_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.everhour.com/projects/{project_id}/time",
+    "path": [
+     "project_id"
+    ],
+    "query": [
+     "from",
+     "to",
+     "limit",
+     "page"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.get_running_timer",
+   "name": "Get running timer",
+   "description": "Retrieve the authenticated user's currently running timer, or an empty timer payload if none is running.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.everhour.com/timers/current",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.get_section",
+   "name": "Get section",
+   "description": "Retrieve a single section by ID.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "section_id": {
+      "type": "number",
+      "description": "Section ID"
+     }
+    },
+    "required": [
+     "section_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.everhour.com/sections/{section_id}",
+    "path": [
+     "section_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.get_task",
+   "name": "Get task",
+   "description": "Retrieve a single task with its time totals, estimate, and custom fields.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "task_id": {
+      "type": "string",
+      "description": "Task ID"
+     },
+     "opts_include_billing": {
+      "type": "integer",
+      "description": "Set to `1` to include billing data on returned tasks: `rate` (cents per hour) and `amount` (round(time * rate / 3600)). Requires billing permissions; otherwise billing is omitted."
+     }
+    },
+    "required": [
+     "task_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.everhour.com/tasks/{task_id}",
+    "path": [
+     "task_id"
+    ],
+    "query": [
+     "opts_include_billing"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.get_task_time_records",
+   "name": "Get task time records",
+   "description": "List time records logged against a single task, across all users.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "task_id": {
+      "type": "string",
+      "description": "Task ID"
+     },
+     "from": {
+      "type": "string",
+      "description": "Date from"
+     },
+     "to": {
+      "type": "string",
+      "description": "Date to"
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Max results for pagination, max value 50000"
+     },
+     "page": {
+      "type": "integer",
+      "description": "Page"
+     }
+    },
+    "required": [
+     "task_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.everhour.com/tasks/{task_id}/time",
+    "path": [
+     "task_id"
+    ],
+    "query": [
+     "from",
+     "to",
+     "limit",
+     "page"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.get_team_timesheets",
+   "name": "Get team timesheets",
+   "description": "List timesheet weeks across the team, grouped by user.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "weekId": {
+      "type": "number",
+      "description": "Week ID"
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Maximum number of timesheets to return."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.everhour.com/timesheets",
+    "path": [],
+    "query": [
+     "weekId",
+     "limit"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.get_time_off_types",
+   "name": "Get time off types",
+   "description": "List the time-off types defined for the team (e.g. Vacation, Sick Leave).",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.everhour.com/resource-planner/time-off-types",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.get_timecard",
+   "name": "Get timecard",
+   "description": "Retrieve a user's timecard for a specific date.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "user_id": {
+      "type": "number",
+      "description": "User ID"
+     },
+     "date": {
+      "type": "string",
+      "description": "Date"
+     }
+    },
+    "required": [
+     "date",
+     "user_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.everhour.com/users/{user_id}/timecards/{date}",
+    "path": [
+     "user_id",
+     "date"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.get_user_time_records",
+   "name": "Get user time records",
+   "description": "List time records for a single user. Supports the same filters as `GET /team/time`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "user_id": {
+      "type": "number",
+      "description": "User ID"
+     },
+     "from": {
+      "type": "string",
+      "description": "Date from"
+     },
+     "to": {
+      "type": "string",
+      "description": "Date to"
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Max results for pagination, max value 50000"
+     },
+     "page": {
+      "type": "integer",
+      "description": "Page"
+     },
+     "offset": {
+      "type": "integer",
+      "description": "Record offset. Takes precedence over `page` when both are sent."
+     }
+    },
+    "required": [
+     "user_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.everhour.com/users/{user_id}/time",
+    "path": [
+     "user_id"
+    ],
+    "query": [
+     "from",
+     "to",
+     "limit",
+     "page",
+     "offset"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.get_user_timecards",
+   "name": "Get user timecards",
+   "description": "List timecards for a single user. Defaults to the last two weeks when no date range is provided.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "user_id": {
+      "type": "number",
+      "description": "User ID"
+     },
+     "from": {
+      "type": "string",
+      "description": "Date from (2 weeks ago by default)"
+     },
+     "to": {
+      "type": "string",
+      "description": "Date to"
+     }
+    },
+    "required": [
+     "user_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.everhour.com/users/{user_id}/timecards",
+    "path": [
+     "user_id"
+    ],
+    "query": [
+     "from",
+     "to"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.get_user_timesheets",
+   "name": "Get user timesheets",
+   "description": "List timesheet weeks for a single user. The week id is the Monday date of the week (see [Dates](/dates-and-timezones)).",
+   "input": {
+    "type": "object",
+    "properties": {
+     "user_id": {
+      "type": "number",
+      "description": "User ID"
+     },
+     "limit": {
+      "type": "integer",
+      "description": "max number of weeks"
+     },
+     "weekId": {
+      "type": "integer",
+      "description": "Filter to a single week (YYWW)."
+     }
+    },
+    "required": [
+     "user_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.everhour.com/users/{user_id}/timesheets",
+    "path": [
+     "user_id"
+    ],
+    "query": [
+     "limit",
+     "weekId"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.get_webhook",
+   "name": "Get webhook",
+   "description": "Retrieve a single webhook subscription.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "hook_id": {
+      "type": "number",
+      "description": "Webhook ID"
+     }
+    },
+    "required": [
+     "hook_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.everhour.com/hooks/{hook_id}",
+    "path": [
+     "hook_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.projects_report",
+   "name": "Projects report",
+   "description": "Aggregated project report. Returns time, billing, and budget figures grouped by project. Filter the result with `date.gte`, `date.lte`, `projectId`, `clientId`, and `memberId` query parameters \u2014 see [Dates](/dates-and-timezones) for parameter formats. Time columns are in seconds, amounts in cents (see [Concepts](/concepts)).",
+   "input": {
+    "type": "object",
+    "properties": {
+     "date.gte": {
+      "type": "string",
+      "description": "Report start date"
+     },
+     "date.lte": {
+      "type": "string",
+      "description": "Report end date"
+     },
+     "projectId": {
+      "type": "string",
+      "description": "Filter by project ID"
+     },
+     "clientId": {
+      "type": "number",
+      "description": "Filter by client ID"
+     },
+     "memberId": {
+      "type": "number",
+      "description": "Filter by user ID"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.everhour.com/dashboards/projects",
+    "path": [],
+    "query": [
+     "date.gte",
+     "date.lte",
+     "projectId",
+     "clientId",
+     "memberId"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.refresh_invoice_line_items",
+   "name": "Refresh invoice line items",
+   "description": "Refresh an invoice's line items from current time records. The invoice's billable items are rebuilt from the underlying time tracked against the invoice's client over its date range. Useful when time records have been added, edited, or deleted after the invoice was first generated.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "invoice_id": {
+      "type": "number",
+      "description": "Invoice ID"
+     },
+     "limitDateFrom": {
+      "type": "string",
+      "description": ""
+     },
+     "limitDateTill": {
+      "type": "string",
+      "description": ""
+     },
+     "includeExpenses": {
+      "type": "boolean",
+      "description": ""
+     },
+     "includeTime": {
+      "type": "boolean",
+      "description": ""
+     },
+     "projects": {
+      "type": "array",
+      "description": ""
+     },
+     "expenseMask": {
+      "type": "string",
+      "description": ""
+     },
+     "timeMask": {
+      "type": "string",
+      "description": ""
+     },
+     "showRowNumbers": {
+      "type": "boolean",
+      "description": ""
+     }
+    },
+    "required": [
+     "invoice_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.everhour.com/invoices/{invoice_id}/reset-time",
+    "path": [
+     "invoice_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "limitDateFrom",
+     "limitDateTill",
+     "includeExpenses",
+     "includeTime",
+     "projects",
+     "expenseMask",
+     "timeMask",
+     "showRowNumbers"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.reorder_fields",
+   "name": "Reorder fields",
+   "description": "Reorder a project's custom fields. Send the full list of field IDs in the desired order.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "project_id": {
+      "type": "string",
+      "description": "Project ID"
+     },
+     "order": {
+      "type": "array",
+      "description": "Custom field ID"
+     }
+    },
+    "required": [
+     "order",
+     "project_id"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.everhour.com/projects/{project_id}/fields-order",
+    "path": [
+     "project_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "order"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.search_project_tasks",
+   "name": "Search project tasks",
+   "description": "Search tasks within a single project. Same query semantics as `GET /tasks/search`; `limit` must be between 1 and 100.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "project_id": {
+      "type": "string",
+      "description": "Project ID"
+     },
+     "query": {
+      "type": "string",
+      "description": "Search query"
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Max number of search results"
+     },
+     "searchInClosed": {
+      "type": "boolean",
+      "description": "Should we search in closed/completed tasks?"
+     },
+     "searchInUnscheduled": {
+      "type": "boolean",
+      "description": "Return unscheduled tasks (not in any section). Works without a `query`."
+     }
+    },
+    "required": [
+     "project_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.everhour.com/projects/{project_id}/tasks/search",
+    "path": [
+     "project_id"
+    ],
+    "query": [
+     "query",
+     "limit",
+     "searchInClosed",
+     "searchInUnscheduled"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.search_tasks",
+   "name": "Search tasks",
+   "description": "Search tasks across all projects by name. The `limit` parameter must be between 1 and 100.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "query": {
+      "type": "string",
+      "description": "Search query"
+     },
+     "project": {
+      "type": "string",
+      "description": "Limit the search to a single project (encoded ID)."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Max number of search results"
+     },
+     "searchInClosed": {
+      "type": "boolean",
+      "description": "Should we search in closed/completed tasks?"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.everhour.com/tasks/search",
+    "path": [],
+    "query": [
+     "query",
+     "project",
+     "limit",
+     "searchInClosed"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.start_timer",
+   "name": "Start timer",
+   "description": "Start a timer for the authenticated user on a given task. Only one timer can run per user at a time. If the user already has a timer running on another task, that timer is stopped automatically before the new one starts; the stopped run is committed to a time record on its own date (the date the timer was started, which may not be today for cross-midnight runs). See [Concepts](/concepts) for timer",
+   "input": {
+    "type": "object",
+    "properties": {
+     "task": {
+      "type": "string",
+      "description": "Task ID"
+     },
+     "userDate": {
+      "type": "string",
+      "description": ""
+     },
+     "comment": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.everhour.com/timers",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "task",
+     "userDate",
+     "comment"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.stop_timer",
+   "name": "Stop timer",
+   "description": "Stop the authenticated user's currently running timer. The accumulated duration is committed to a time record on the timer's task for the current date and returned in the response.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.everhour.com/timers/current",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.sync_integration_project",
+   "name": "Sync integration project",
+   "description": "Sync new integration projects to Everhour. Traditionally, project sync relied on background jobs which could delay access to Everhour functionality. This endpoint allows instant synchronization of a project from a connected integration (like Trello, Asana, ClickUp, etc.) into Everhour. Useful for automation flows where you want to start working with a project immediately after creating it in your ",
+   "input": {
+    "type": "object",
+    "properties": {
+     "project_id": {
+      "type": "string",
+      "description": "The external project ID in the format {platform code}:{platform ID}."
+     }
+    },
+    "required": [
+     "project_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.everhour.com/projects/{project_id}/sync",
+    "path": [
+     "project_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.time_report_deprecated",
+   "name": "Time report (deprecated)",
+   "description": "Legacy export of team time records, returned as JSON. Kept for backward compatibility; new integrations should use `GET /team/time` or the dashboard reports.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "from": {
+      "type": "string",
+      "description": "Date from you what to fetch reported time (format YYYY-MM-DD)"
+     },
+     "to": {
+      "type": "string",
+      "description": "Date to you what to fetch reported time (format YYYY-MM-DD)"
+     },
+     "fields": {
+      "type": "string",
+      "description": "Comma-separated columns. Allowed: date, user, task, project, month, projects."
+     },
+     "project": {
+      "type": "string",
+      "description": "Filter by project (encoded ID)."
+     },
+     "client": {
+      "type": "integer",
+      "description": "Filter by client ID."
+     },
+     "user": {
+      "type": "integer",
+      "description": "Filter by user ID."
+     },
+     "allowTimeWithoutTask": {
+      "type": "boolean",
+      "description": "Include time records that have no task."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.everhour.com/team/time/export",
+    "path": [],
+    "query": [
+     "from",
+     "to",
+     "fields",
+     "project",
+     "client",
+     "user",
+     "allowTimeWithoutTask"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.update_allocation",
+   "name": "Update allocation",
+   "description": "Update a time-off allocation's amount or period.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "allocation_id": {
+      "type": "number",
+      "description": ""
+     },
+     "startDate": {
+      "type": "string",
+      "description": ""
+     },
+     "endDate": {
+      "type": "string",
+      "description": ""
+     },
+     "contractStartDate": {
+      "type": "string",
+      "description": ""
+     },
+     "users": {
+      "type": "array",
+      "description": ""
+     },
+     "timeOffType": {
+      "type": "number",
+      "description": ""
+     },
+     "days": {
+      "type": "number",
+      "description": ""
+     },
+     "daysCarried": {
+      "type": "number",
+      "description": ""
+     },
+     "accrualFrequency": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "daily",
+       "immediately"
+      ]
+     },
+     "restrictOverAllocation": {
+      "type": "boolean",
+      "description": ""
+     },
+     "completed": {
+      "type": "boolean",
+      "description": ""
+     },
+     "notes": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "allocation_id"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.everhour.com/allocations/{allocation_id}",
+    "path": [
+     "allocation_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "startDate",
+     "endDate",
+     "contractStartDate",
+     "users",
+     "timeOffType",
+     "days",
+     "daysCarried",
+     "accrualFrequency",
+     "restrictOverAllocation",
+     "completed",
+     "notes"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.update_assignment",
+   "name": "Update assignment",
+   "description": "Update an existing schedule assignment.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "assignment_id": {
+      "type": "number",
+      "description": "Assignment ID"
+     },
+     "user": {
+      "type": "integer",
+      "description": ""
+     },
+     "project": {
+      "type": "string",
+      "description": "Project encoded ID"
+     },
+     "task": {
+      "type": "string",
+      "description": "Task encoded ID"
+     },
+     "client": {
+      "type": "integer",
+      "description": "Client ID"
+     },
+     "type": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "project",
+       "client",
+       "task",
+       "time-off"
+      ]
+     },
+     "startDate": {
+      "type": "string",
+      "description": "Format: Y-m-d"
+     },
+     "endDate": {
+      "type": "string",
+      "description": "Format: Y-m-d"
+     },
+     "time": {
+      "type": "integer",
+      "description": "Scheduled time in seconds"
+     },
+     "note": {
+      "type": "string",
+      "description": "Max 1000 chars"
+     },
+     "includeWeekends": {
+      "type": "boolean",
+      "description": ""
+     },
+     "color": {
+      "type": "string",
+      "description": "Hex color #rrggbb"
+     },
+     "sendNotification": {
+      "type": "boolean",
+      "description": ""
+     },
+     "forceOverride": {
+      "type": "boolean",
+      "description": ""
+     },
+     "timeOffType": {
+      "type": "string",
+      "description": "Time-off type (only when type is `time-off`)."
+     },
+     "timeOffPeriod": {
+      "type": "string",
+      "description": "Time-off period (only when type is `time-off`).",
+      "enum": [
+       "full-day",
+       "half-of-day",
+       "quarter-of-day",
+       "half-and-quarter-of-day"
+      ]
+     },
+     "status": {
+      "type": "string",
+      "description": "Time-off approval status (only when type is `time-off`).",
+      "enum": [
+       "pending",
+       "approved"
+      ]
+     }
+    },
+    "required": [
+     "assignment_id"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.everhour.com/resource-planner/assignments/{assignment_id}",
+    "path": [
+     "assignment_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "user",
+     "project",
+     "task",
+     "client",
+     "type",
+     "startDate",
+     "endDate",
+     "time",
+     "note",
+     "includeWeekends",
+     "color",
+     "sendNotification",
+     "forceOverride",
+     "timeOffType",
+     "timeOffPeriod",
+     "status"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.update_category",
+   "name": "Update category",
+   "description": "Update an expense category.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "category_id": {
+      "type": "number",
+      "description": "Expense Category ID"
+     },
+     "color": {
+      "type": "string",
+      "description": ""
+     },
+     "name": {
+      "type": "string",
+      "description": ""
+     },
+     "unitBased": {
+      "type": "boolean",
+      "description": ""
+     },
+     "unitName": {
+      "type": "string",
+      "description": ""
+     },
+     "unitPrice": {
+      "type": "integer",
+      "description": "Price per unit in cents."
+     }
+    },
+    "required": [
+     "category_id"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.everhour.com/expenses/categories/{category_id}",
+    "path": [
+     "category_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "color",
+     "name",
+     "unitBased",
+     "unitName",
+     "unitPrice"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.update_client",
+   "name": "Update client",
+   "description": "Update an existing client. Only the fields supplied in the body are modified.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "client_id": {
+      "type": "number",
+      "description": "Client ID"
+     },
+     "name": {
+      "type": "string",
+      "description": ""
+     },
+     "projects": {
+      "type": "array",
+      "description": "Project encoded IDs to assign to the client."
+     },
+     "lineItemMask": {
+      "type": "string",
+      "description": "Template for generated invoice line-item names."
+     },
+     "defaultTax": {
+      "type": "object",
+      "description": "Default tax for the client's invoices."
+     },
+     "defaultDiscount": {
+      "type": "number",
+      "description": "Default discount rate as a percentage (0-100)."
+     },
+     "paymentDueDays": {
+      "type": "integer",
+      "description": "Default invoice payment term in days (0-365)."
+     },
+     "reference": {
+      "type": "string",
+      "description": ""
+     },
+     "invoicePublicNotes": {
+      "type": "string",
+      "description": ""
+     },
+     "businessDetails": {
+      "type": "string",
+      "description": ""
+     },
+     "billingDetails": {
+      "type": "object",
+      "description": "Client billing details (all fields optional)."
+     },
+     "excludedLabels": {
+      "type": "array",
+      "description": "Labels excluded from invoicing (max 8)."
+     },
+     "email": {
+      "type": "array",
+      "description": "Invoice recipient email addresses (max 10)."
+     },
+     "status": {
+      "type": "string",
+      "description": "Client status (update only).",
+      "enum": [
+       "active",
+       "archived",
+       "deleted"
+      ]
+     }
+    },
+    "required": [
+     "client_id"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.everhour.com/clients/{client_id}",
+    "path": [
+     "client_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "projects",
+     "lineItemMask",
+     "defaultTax",
+     "defaultDiscount",
+     "paymentDueDays",
+     "reference",
+     "invoicePublicNotes",
+     "businessDetails",
+     "billingDetails",
+     "excludedLabels",
+     "email",
+     "status"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.update_client_budget",
+   "name": "Update client budget",
+   "description": "Create or replace the budget attached to a client. Send a complete budget object; partial updates are not supported.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "client_id": {
+      "type": "number",
+      "description": "Client ID"
+     },
+     "type": {
+      "type": "string",
+      "description": "Budget Type",
+      "enum": [
+       "money",
+       "time",
+       "costs"
+      ]
+     },
+     "budget": {
+      "type": "number",
+      "description": "Budget value in cents (for money) or seconds (for time)"
+     },
+     "period": {
+      "type": "string",
+      "description": "Budget periodicity (overall, monthly, weekly, daily)",
+      "enum": [
+       "general",
+       "monthly",
+       "weekly",
+       "daily",
+       "quarterly",
+       "yearly"
+      ]
+     },
+     "appliedFrom": {
+      "type": [
+       "string",
+       "null"
+      ],
+      "description": "Start budget from (available only for non-recurrent budgets)"
+     },
+     "disallowOverbudget": {
+      "type": "boolean",
+      "description": ""
+     },
+     "excludeUnbillableTime": {
+      "type": "boolean",
+      "description": ""
+     },
+     "excludeExpenses": {
+      "type": "boolean",
+      "description": ""
+     },
+     "threshold": {
+      "type": "number",
+      "description": "Email admins when threshold reached. Threshold is percentage 1 - 100."
+     },
+     "progress": {
+      "type": "number",
+      "description": "Current budget usage in cents (for money) or seconds (for time)"
+     }
+    },
+    "required": [
+     "budget",
+     "client_id",
+     "period",
+     "type"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.everhour.com/clients/{client_id}/budget",
+    "path": [
+     "client_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "type",
+     "budget",
+     "period",
+     "appliedFrom",
+     "disallowOverbudget",
+     "excludeUnbillableTime",
+     "excludeExpenses",
+     "threshold",
+     "progress"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.update_expense",
+   "name": "Update expense",
+   "description": "Update an existing expense entry.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "expense_id": {
+      "type": "number",
+      "description": "Expense ID"
+     },
+     "amount": {
+      "type": "integer",
+      "description": "Amount in cents."
+     },
+     "attachments": {
+      "type": "array",
+      "description": "Attachment IDs to link."
+     },
+     "billable": {
+      "type": "boolean",
+      "description": ""
+     },
+     "category": {
+      "type": "integer",
+      "description": "Expense category ID"
+     },
+     "date": {
+      "type": "string",
+      "description": ""
+     },
+     "details": {
+      "type": "string",
+      "description": ""
+     },
+     "project": {
+      "type": "string",
+      "description": ""
+     },
+     "quantity": {
+      "type": "number",
+      "description": ""
+     },
+     "user": {
+      "type": "integer",
+      "description": ""
+     },
+     "type": {
+      "type": "string",
+      "description": "Expense type.",
+      "enum": [
+       "separate",
+       "billable",
+       "cost"
+      ]
+     }
+    },
+    "required": [
+     "expense_id"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.everhour.com/expenses/{expense_id}",
+    "path": [
+     "expense_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "amount",
+     "attachments",
+     "billable",
+     "category",
+     "date",
+     "details",
+     "project",
+     "quantity",
+     "user",
+     "type"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.update_field",
+   "name": "Update field",
+   "description": "Update a custom field's name, type-specific options, or visibility.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "field_id": {
+      "type": "number",
+      "description": "Field ID"
+     },
+     "name": {
+      "type": "string",
+      "description": ""
+     },
+     "type": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "number",
+       "text",
+       "select",
+       "date"
+      ]
+     },
+     "format": {
+      "type": "object",
+      "description": ""
+     },
+     "icon": {
+      "type": "string",
+      "description": ""
+     },
+     "options": {
+      "type": "array",
+      "description": "Up to 10 options, required when `type` is `select`."
+     }
+    },
+    "required": [
+     "field_id"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.everhour.com/fields/{field_id}",
+    "path": [
+     "field_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "type",
+     "format",
+     "icon",
+     "options"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.update_invoice",
+   "name": "Update invoice",
+   "description": "Update invoice metadata (notes, dates, custom totals). To change the lifecycle state, set `manualStatus` to `draft`, `sent`, or `paid`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "invoice_id": {
+      "type": "number",
+      "description": "Invoice ID"
+     },
+     "publicId": {
+      "type": "string",
+      "description": ""
+     },
+     "issueDate": {
+      "type": "string",
+      "description": ""
+     },
+     "dueDate": {
+      "type": "string",
+      "description": ""
+     },
+     "reference": {
+      "type": "string",
+      "description": ""
+     },
+     "publicNotes": {
+      "type": "string",
+      "description": ""
+     },
+     "tax": {
+      "type": "object",
+      "description": "Tax to apply. Set `rate` (percentage), or `id` to reference a tax from a connected accounting integration."
+     },
+     "discount": {
+      "type": "number",
+      "description": "Discount rate as a percentage (0-100)"
+     },
+     "manualStatus": {
+      "type": "string",
+      "description": "Manually set the invoice status. Overrides the automatically derived status.",
+      "enum": [
+       "draft",
+       "sent",
+       "paid"
+      ]
+     },
+     "showRowNumbers": {
+      "type": "boolean",
+      "description": ""
+     },
+     "invoiceItems": {
+      "type": "array",
+      "description": ""
+     }
+    },
+    "required": [
+     "invoice_id"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.everhour.com/invoices/{invoice_id}",
+    "path": [
+     "invoice_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "publicId",
+     "issueDate",
+     "dueDate",
+     "reference",
+     "publicNotes",
+     "tax",
+     "discount",
+     "manualStatus",
+     "showRowNumbers",
+     "invoiceItems"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.update_project",
+   "name": "Update project",
+   "description": "Update project settings. To change budget or billable rate, use `PUT /projects/{project_id}/billing` instead.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "project_id": {
+      "type": "string",
+      "description": "Project ID"
+     },
+     "name": {
+      "type": "string",
+      "description": ""
+     },
+     "type": {
+      "type": "string",
+      "description": "Project type",
+      "enum": [
+       "board",
+       "list"
+      ]
+     },
+     "users": {
+      "type": "array",
+      "description": "Assigned user IDs"
+     },
+     "client": {
+      "type": "integer",
+      "description": "Client ID to assign the project to"
+     },
+     "privacy": {
+      "type": "boolean",
+      "description": "Restrict project visibility to its assigned members"
+     },
+     "changeProtected": {
+      "type": "boolean",
+      "description": "Prevent edits by non-admins"
+     },
+     "isTemplate": {
+      "type": "boolean",
+      "description": "Mark the project as a template"
+     },
+     "icon": {
+      "type": "string",
+      "description": "Project icon (update only)."
+     },
+     "color": {
+      "type": "string",
+      "description": "Project color, hex #rrggbb (update only)."
+     }
+    },
+    "required": [
+     "project_id"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.everhour.com/projects/{project_id}",
+    "path": [
+     "project_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "type",
+     "users",
+     "client",
+     "privacy",
+     "changeProtected",
+     "isTemplate",
+     "icon",
+     "color"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.update_project_billing_budget",
+   "name": "Update project billing budget",
+   "description": "Set or update the project's budget, billable rate, and billing type in a single call. Amounts are in cents (see [Concepts](/concepts)).",
+   "input": {
+    "type": "object",
+    "properties": {
+     "project_id": {
+      "type": "string",
+      "description": "Project ID"
+     },
+     "billing": {
+      "type": "object",
+      "description": ""
+     },
+     "rate": {
+      "type": "object",
+      "description": ""
+     },
+     "budget": {
+      "type": "object",
+      "description": ""
+     }
+    },
+    "required": [
+     "project_id"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.everhour.com/projects/{project_id}/billing",
+    "path": [
+     "project_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "billing",
+     "rate",
+     "budget"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.update_section",
+   "name": "Update section",
+   "description": "Update a section's name or position.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "section_id": {
+      "type": "number",
+      "description": "Section ID"
+     },
+     "name": {
+      "type": "string",
+      "description": ""
+     },
+     "status": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "open",
+       "archived"
+      ]
+     },
+     "collapsed": {
+      "type": "boolean",
+      "description": ""
+     }
+    },
+    "required": [
+     "section_id"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.everhour.com/sections/{section_id}",
+    "path": [
+     "section_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "status",
+     "collapsed"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.update_task",
+   "name": "Update task",
+   "description": "Update task fields (name, status, due date, section, labels).",
+   "input": {
+    "type": "object",
+    "properties": {
+     "task_id": {
+      "type": "string",
+      "description": "Task ID"
+     },
+     "name": {
+      "type": "string",
+      "description": ""
+     },
+     "section": {
+      "type": "integer",
+      "description": "Section ID"
+     },
+     "labels": {
+      "type": "array",
+      "description": ""
+     },
+     "status": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "open",
+       "closed"
+      ]
+     },
+     "color": {
+      "type": "string",
+      "description": "Label color, max 15 chars."
+     },
+     "dueOn": {
+      "type": "string",
+      "description": "Due date, format Y-m-d. Send \"\" to clear."
+     },
+     "startOn": {
+      "type": "string",
+      "description": "Start date, format Y-m-d. Send \"\" to clear."
+     },
+     "description": {
+      "type": "string",
+      "description": "Plain-text description, max 2000 chars."
+     },
+     "assignees": {
+      "type": "array",
+      "description": "Task assignees."
+     },
+     "tags": {
+      "type": "array",
+      "description": "Tag IDs, max 10."
+     },
+     "fields": {
+      "type": "array",
+      "description": "Custom field values."
+     },
+     "cover": {
+      "type": "object",
+      "description": ""
+     }
+    },
+    "required": [
+     "task_id"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.everhour.com/tasks/{task_id}",
+    "path": [
+     "task_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "section",
+     "labels",
+     "status",
+     "color",
+     "dueOn",
+     "startOn",
+     "description",
+     "assignees",
+     "tags",
+     "fields",
+     "cover"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.update_task_billing",
+   "name": "Update task billing",
+   "description": "Set a task's billing rate or mark it non-billable. Requires admin access. The same values are returned on task responses when you pass `opts_include_billing=1`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "task_id": {
+      "type": "string",
+      "description": "Task ID"
+     },
+     "unbillable": {
+      "type": "boolean",
+      "description": "Mark the task as non-billable."
+     },
+     "rate": {
+      "type": "integer",
+      "description": "Hourly billable rate in cents. Use -1 to leave the current rate unchanged."
+     }
+    },
+    "required": [
+     "task_id"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.everhour.com/tasks/{task_id}/billing",
+    "path": [
+     "task_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "unbillable",
+     "rate"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.update_task_estimate",
+   "name": "Update task estimate",
+   "description": "Set or replace a task's estimate (in seconds). Send a complete estimate object; partial updates are not supported.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "task_id": {
+      "type": "string",
+      "description": "Task ID"
+     },
+     "total": {
+      "type": "number",
+      "description": "Total task estimate in seconds"
+     },
+     "type": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "overall",
+       "users"
+      ]
+     },
+     "users": {
+      "type": "object",
+      "description": "Task estimate per user ID"
+     }
+    },
+    "required": [
+     "task_id",
+     "total",
+     "type"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.everhour.com/tasks/{task_id}/estimate",
+    "path": [
+     "task_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "total",
+     "type",
+     "users"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.update_time_off_type",
+   "name": "Update time off type",
+   "description": "Update a time-off type's name, color, or settings.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "type_id": {
+      "type": "number",
+      "description": ""
+     },
+     "name": {
+      "type": "string",
+      "description": ""
+     },
+     "color": {
+      "type": "string",
+      "description": ""
+     },
+     "paid": {
+      "type": "boolean",
+      "description": ""
+     },
+     "description": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "type_id"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.everhour.com/resource-planner/time-off-types/{type_id}",
+    "path": [
+     "type_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "color",
+     "paid",
+     "description"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.update_time_record",
+   "name": "Update time record",
+   "description": "Update a specific time record by ID. To add or upsert time, use `POST /time` instead.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "time_id": {
+      "type": "number",
+      "description": "ID of Task Time"
+     },
+     "time": {
+      "type": "integer",
+      "description": "Time in seconds"
+     },
+     "date": {
+      "type": "string",
+      "description": "Date"
+     },
+     "task": {
+      "type": "string",
+      "description": "Task ID"
+     },
+     "user": {
+      "type": "number",
+      "description": "User ID"
+     },
+     "comment": {
+      "type": "string",
+      "description": "Comment"
+     }
+    },
+    "required": [
+     "time",
+     "time_id"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.everhour.com/time/{time_id}",
+    "path": [
+     "time_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "time",
+     "date",
+     "task",
+     "user",
+     "comment"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.update_timecard",
+   "name": "Update timecard",
+   "description": "Update (or create, if missing) a user's timecard for a specific date. Suitable for manual edits \u2014 clock-in and clock-out have dedicated endpoints.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "user_id": {
+      "type": "number",
+      "description": "User ID"
+     },
+     "date": {
+      "type": "string",
+      "description": "Date"
+     },
+     "clockIn": {
+      "type": "string",
+      "description": "Clock in time in user timezone"
+     },
+     "clockOut": {
+      "type": "string",
+      "description": "Clock out time in user timezone"
+     },
+     "breakTime": {
+      "type": "number",
+      "description": "Breaks duration in seconds"
+     }
+    },
+    "required": [
+     "date",
+     "user_id"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.everhour.com/users/{user_id}/timecards/{date}",
+    "path": [
+     "user_id",
+     "date"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "clockIn",
+     "clockOut",
+     "breakTime"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.update_webhook",
+   "name": "Update webhook",
+   "description": "Update a webhook's events or scope. The `targetUrl` cannot be changed and is ignored if sent; the handshake is repeated against the existing URL to confirm it is still reachable. Send `X-Skip-Handshake: 1` to skip it.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "hook_id": {
+      "type": "number",
+      "description": "Webhook ID"
+     },
+     "events": {
+      "type": "array",
+      "description": "Replacement list of events. `targetUrl` and scope cannot be changed after creation."
+     }
+    },
+    "required": [
+     "events",
+     "hook_id"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.everhour.com/hooks/{hook_id}",
+    "path": [
+     "hook_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "events"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "everhour.users_report",
+   "name": "Users report",
+   "description": "Aggregated member report. Same filters and units as `GET /dashboards/projects` \u2014 see [Concepts](/concepts).",
+   "input": {
+    "type": "object",
+    "properties": {
+     "date.gte": {
+      "type": "string",
+      "description": "Report start date"
+     },
+     "date.lte": {
+      "type": "string",
+      "description": "Report end date"
+     },
+     "projectId": {
+      "type": "string",
+      "description": "Filter by project ID"
+     },
+     "clientId": {
+      "type": "number",
+      "description": "Filter by client ID"
+     },
+     "memberId": {
+      "type": "number",
+      "description": "Filter by user ID"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.everhour.com/dashboards/users",
+    "path": [],
+    "query": [
+     "date.gte",
+     "date.lte",
+     "projectId",
+     "clientId",
+     "memberId"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  }
+ ]
+}

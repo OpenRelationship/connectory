@@ -2,7 +2,7 @@
 --
 -- GENERATED from https://amplitude.com/openapi.json
 -- Published on the vendor's own documentation site (https://amplitude.com).
--- 34 operations · do not edit
+-- 38 operations · do not edit
 --
 -- The credential is never in here. `auth.env` names an environment variable; the value
 -- stays in the environment, which is what makes this file safe to publish.
@@ -23,16 +23,20 @@ return {
   config = {},
   headers = {},
   operations = {
+    ["amplitude.call_mcp_server"] = { method = "POST", url = "https://amplitude.com/mcp" },
+    ["amplitude.create_dsar_request"] = { method = "POST", url = "https://amplitude.com/api/2/dsar/requests", body = {"userId", "amplitudeId", "startDate", "endDate"} },
     ["amplitude.create_event_property"] = { method = "POST", url = "https://amplitude.com/api/2/taxonomy/event-property", body = {"event_type", "event_property", "description", "type", "is_required"} },
     ["amplitude.create_event_type"] = { method = "POST", url = "https://amplitude.com/api/2/taxonomy/event", body = {"event_type", "category", "description", "display_name"} },
     ["amplitude.create_user_property"] = { method = "POST", url = "https://amplitude.com/api/2/taxonomy/user-property", body = {"user_property", "description", "type"} },
     ["amplitude.delete_event_type"] = { method = "DELETE", url = "https://amplitude.com/api/2/taxonomy/event/{eventType}", path = {"eventType"} },
     ["amplitude.download_cohort"] = { method = "GET", url = "https://amplitude.com/api/5/cohorts/request/{requestId}/file", path = {"requestId"} },
+    ["amplitude.download_dsar_output"] = { method = "GET", url = "https://amplitude.com/api/2/dsar/requests/{requestId}/outputs/{outputId}", path = {"requestId", "outputId"} },
     ["amplitude.export_events"] = { method = "GET", url = "https://amplitude.com/api/2/export", query = {"start", "end"} },
     ["amplitude.get_ai_catalog"] = { method = "GET", url = "https://amplitude.com/.well-known/ai-catalog.json" },
     ["amplitude.get_average_session_length"] = { method = "GET", url = "https://amplitude.com/api/2/sessions/average", query = {"start", "end"} },
     ["amplitude.get_chart_results"] = { method = "GET", url = "https://amplitude.com/api/3/chart/{chartId}/csv", path = {"chartId"} },
     ["amplitude.get_cohort_export_status"] = { method = "GET", url = "https://amplitude.com/api/5/cohorts/request-status/{requestId}", path = {"requestId"} },
+    ["amplitude.get_dsar_request_status"] = { method = "GET", url = "https://amplitude.com/api/2/dsar/requests/{requestId}", path = {"requestId"} },
     ["amplitude.get_event_segmentation"] = { method = "GET", url = "https://amplitude.com/api/2/events/segmentation", query = {"e", "e2", "start", "end", "m", "i", "s", "g", "limit"} },
     ["amplitude.get_event_type"] = { method = "GET", url = "https://amplitude.com/api/2/taxonomy/event/{eventType}", path = {"eventType"} },
     ["amplitude.get_funnel_analysis"] = { method = "GET", url = "https://amplitude.com/api/2/funnels", query = {"e", "start", "end", "mode", "n", "cs", "s", "g", "limit"} },

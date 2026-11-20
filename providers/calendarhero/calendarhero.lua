@@ -1,0 +1,67 @@
+-- CalendarHero — every call this API accepts, as data.
+--
+-- GENERATED from https://api.calendarhero.com/swagger.json
+-- Published on the vendor's own documentation site (https://api.calendarhero.com).
+-- 40 operations · do not edit
+--
+-- The credential is never in here. `auth.env` names an environment variable; the value
+-- stays in the environment, which is what makes this file safe to publish.
+return {
+  provider = "calendarhero",
+  name = "CalendarHero",
+  base = "https://api.calendarhero.com",
+  docs = "https://nango.dev/docs/api-integrations/calendarhero",
+  auth = {
+    kind = "key",
+    header = "authorization",
+    format = "{token}",
+    env = "CALENDARHERO_API_KEY",
+    user_env = nil,
+    pass_env = nil,
+    param = nil,
+  },
+  config = {},
+  headers = {},
+  operations = {
+    ["calendarhero.delete_contact_id"] = { method = "DELETE", url = "https://api.calendarhero.com//contact/{id}", path = {"id"} },
+    ["calendarhero.delete_meeting_tasks_id"] = { method = "DELETE", url = "https://api.calendarhero.com//meeting/tasks/{id}", path = {"id"} },
+    ["calendarhero.delete_user_directories_uuid"] = { method = "DELETE", url = "https://api.calendarhero.com//user/directories/{uuid}", path = {"uuid"} },
+    ["calendarhero.delete_user_meeting_type"] = { method = "DELETE", url = "https://api.calendarhero.com//user/meeting/{type}", path = {"type"} },
+    ["calendarhero.delete_webhook_event"] = { method = "DELETE", url = "https://api.calendarhero.com//webhook/{event}", path = {"event"}, body = {"hookUrl", "body"} },
+    ["calendarhero.get_contact"] = { method = "GET", url = "https://api.calendarhero.com//contact", query = {"search", "filter", "all", "includeTeams"} },
+    ["calendarhero.get_contact_count"] = { method = "GET", url = "https://api.calendarhero.com//contact/count" },
+    ["calendarhero.get_contact_id"] = { method = "GET", url = "https://api.calendarhero.com//contact/{id}", path = {"id"}, query = {"basic"} },
+    ["calendarhero.get_meeting"] = { method = "GET", url = "https://api.calendarhero.com//meeting", query = {"start", "end"} },
+    ["calendarhero.get_meeting_categories"] = { method = "GET", url = "https://api.calendarhero.com//meeting/categories", query = {"month"} },
+    ["calendarhero.get_meeting_tasks"] = { method = "GET", url = "https://api.calendarhero.com//meeting/tasks", query = {"state", "tally", "skip", "take", "type"} },
+    ["calendarhero.get_msg_web"] = { method = "GET", url = "https://api.calendarhero.com//msg/web" },
+    ["calendarhero.get_provider"] = { method = "GET", url = "https://api.calendarhero.com//provider", query = {"type", "org"} },
+    ["calendarhero.get_search"] = { method = "GET", url = "https://api.calendarhero.com//search", query = {"dateStart", "dateEnd", "query"} },
+    ["calendarhero.get_search_id"] = { method = "GET", url = "https://api.calendarhero.com//search/{id}", path = {"id"} },
+    ["calendarhero.get_user"] = { method = "GET", url = "https://api.calendarhero.com//user" },
+    ["calendarhero.get_user_calendly"] = { method = "GET", url = "https://api.calendarhero.com//user/calendly" },
+    ["calendarhero.get_user_directories"] = { method = "GET", url = "https://api.calendarhero.com//user/directories" },
+    ["calendarhero.get_user_directories_uuid"] = { method = "GET", url = "https://api.calendarhero.com//user/directories/{uuid}", path = {"uuid"} },
+    ["calendarhero.get_user_meeting"] = { method = "GET", url = "https://api.calendarhero.com//user/meeting", query = {"onlyTypes"} },
+    ["calendarhero.get_user_org"] = { method = "GET", url = "https://api.calendarhero.com//user/org", query = {"returnBillingUserInfo"} },
+    ["calendarhero.get_user_savings"] = { method = "GET", url = "https://api.calendarhero.com//user/savings" },
+    ["calendarhero.get_webhook_event"] = { method = "GET", url = "https://api.calendarhero.com//webhook/{event}", path = {"event"} },
+    ["calendarhero.get_webhook_event_sample"] = { method = "GET", url = "https://api.calendarhero.com//webhook/{event}/sample", path = {"event"} },
+    ["calendarhero.post_contact"] = { method = "POST", url = "https://api.calendarhero.com//contact", body = {"name", "title", "organization", "email", "defaultEmail", "telephone", "body"} },
+    ["calendarhero.post_meeting_tasks"] = { method = "POST", url = "https://api.calendarhero.com//meeting/tasks", body = {"locations", "capacity", "contacts", "contactEmails", "subject", "type", "dateStart", "dateEnd", "meetingLength", "location", "room", "roomCapacity", "description", "body"} },
+    ["calendarhero.post_msg_web"] = { method = "POST", url = "https://api.calendarhero.com//msg/web", body = {"text", "body"} },
+    ["calendarhero.post_user_directories"] = { method = "POST", url = "https://api.calendarhero.com//user/directories", body = {"directory", "body"} },
+    ["calendarhero.post_user_meeting_type"] = { method = "POST", url = "https://api.calendarhero.com//user/meeting/{type}", path = {"type"} },
+    ["calendarhero.post_user_meeting_type_share"] = { method = "POST", url = "https://api.calendarhero.com//user/meeting/{type}/share", path = {"type"}, body = {"type", "body"} },
+    ["calendarhero.post_webhook_event"] = { method = "POST", url = "https://api.calendarhero.com//webhook/{event}", path = {"event"}, body = {"hookUrl", "body"} },
+    ["calendarhero.put_contact_id"] = { method = "PUT", url = "https://api.calendarhero.com//contact/{id}", query = {"id"}, body = {"name", "title", "organization", "email", "defaultEmail", "telephone", "userId", "providerId", "body"} },
+    ["calendarhero.put_meeting_tasks_id_remind"] = { method = "PUT", url = "https://api.calendarhero.com//meeting/tasks/{id}/remind", path = {"id"} },
+    ["calendarhero.put_user"] = { method = "PUT", url = "https://api.calendarhero.com//user" },
+    ["calendarhero.put_user_directories_uuid"] = { method = "PUT", url = "https://api.calendarhero.com//user/directories/{uuid}", path = {"uuid"}, body = {"directory", "body"} },
+    ["calendarhero.put_user_meeting"] = { method = "PUT", url = "https://api.calendarhero.com//user/meeting", body = {"meetingTypes", "body"} },
+    ["calendarhero.put_user_settings_address"] = { method = "PUT", url = "https://api.calendarhero.com//user/settings/address", body = {"lat", "lng", "body"} },
+    ["calendarhero.put_user_settings_info"] = { method = "PUT", url = "https://api.calendarhero.com//user/settings/info", body = {"body"} },
+    ["calendarhero.put_user_settings_restrictedapps"] = { method = "PUT", url = "https://api.calendarhero.com//user/settings/restrictedapps", body = {"restrictedApps", "body"} },
+    ["calendarhero.put_user_settings_worklocation"] = { method = "PUT", url = "https://api.calendarhero.com//user/settings/worklocation", body = {"body"} },
+  },
+}

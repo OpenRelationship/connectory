@@ -1,0 +1,2756 @@
+{
+ "_": "GENERATED \u2014 what an authoring tool needs to FIND an operation. The calling table is the .lua beside it.",
+ "provider": "adafruit-io",
+ "source": "https://api.apis.guru/v2/specs/adafruit.com/2.0.0/swagger.json",
+ "operations": [
+  {
+   "slug": "adafruit-io.add_feed_to_group",
+   "name": "Add an existing feed to a group",
+   "description": "Add an existing Feed to a Group",
+   "input": {
+    "type": "object",
+    "properties": {
+     "group_key": {
+      "type": "string",
+      "description": ""
+     },
+     "username": {
+      "type": "string",
+      "description": "a valid username string"
+     },
+     "feed_key": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "group_key",
+     "username"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://io.adafruit.com/api/v2/{username}/groups/{group_key}/add",
+    "path": [
+     "group_key",
+     "username"
+    ],
+    "query": [
+     "feed_key"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "adafruit-io.all_activities",
+   "name": "All activities for current user",
+   "description": "The Activities endpoint returns information about the user's activities.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "a valid username string"
+     },
+     "start_time": {
+      "type": "string",
+      "description": "Start time for filtering, returns records created after given time."
+     },
+     "end_time": {
+      "type": "string",
+      "description": "End time for filtering, returns records created before give time."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Limit the number of records returned."
+     }
+    },
+    "required": [
+     "username"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://io.adafruit.com/api/v2/{username}/activities",
+    "path": [
+     "username"
+    ],
+    "query": [
+     "start_time",
+     "end_time",
+     "limit"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "adafruit-io.all_blocks",
+   "name": "All blocks for current user",
+   "description": "The Blocks endpoint returns information about the user's blocks.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "a valid username string"
+     },
+     "dashboard_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "dashboard_id",
+     "username"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://io.adafruit.com/api/v2/{username}/dashboards/{dashboard_id}/blocks",
+    "path": [
+     "username",
+     "dashboard_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "adafruit-io.all_dashboards",
+   "name": "All dashboards for current user",
+   "description": "The Dashboards endpoint returns information about the user's dashboards.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "a valid username string"
+     }
+    },
+    "required": [
+     "username"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://io.adafruit.com/api/v2/{username}/dashboards",
+    "path": [
+     "username"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "adafruit-io.all_data",
+   "name": "Get all data for the given feed",
+   "description": "Get all data for the given feed",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "a valid username string"
+     },
+     "feed_key": {
+      "type": "string",
+      "description": "a valid feed key"
+     },
+     "start_time": {
+      "type": "string",
+      "description": "Start time for filtering, returns records created after given time."
+     },
+     "end_time": {
+      "type": "string",
+      "description": "End time for filtering, returns records created before give time."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Limit the number of records returned."
+     },
+     "include": {
+      "type": "string",
+      "description": "List of Data record fields to include in response as comma separated list. Acceptable values are: `value`, `lat`, `lon`, `ele`, `id`, and `created_at`."
+     }
+    },
+    "required": [
+     "feed_key",
+     "username"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://io.adafruit.com/api/v2/{username}/feeds/{feed_key}/data",
+    "path": [
+     "username",
+     "feed_key"
+    ],
+    "query": [
+     "start_time",
+     "end_time",
+     "limit",
+     "include"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "adafruit-io.all_feeds",
+   "name": "All feeds for current user",
+   "description": "The Feeds endpoint returns information about the user's feeds. The response includes the latest value of each feed, and other metadata about each feed.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "a valid username string"
+     }
+    },
+    "required": [
+     "username"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://io.adafruit.com/api/v2/{username}/feeds",
+    "path": [
+     "username"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "adafruit-io.all_group_feed_data",
+   "name": "All data for current feed in a specific group",
+   "description": "All data for current feed in a specific group",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "a valid username string"
+     },
+     "group_key": {
+      "type": "string",
+      "description": ""
+     },
+     "feed_key": {
+      "type": "string",
+      "description": "a valid feed key"
+     },
+     "start_time": {
+      "type": "string",
+      "description": "Start time for filtering data. Returns data created after given time."
+     },
+     "end_time": {
+      "type": "string",
+      "description": "End time for filtering data. Returns data created before give time."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Limit the number of records returned."
+     }
+    },
+    "required": [
+     "feed_key",
+     "group_key",
+     "username"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://io.adafruit.com/api/v2/{username}/groups/{group_key}/feeds/{feed_key}/data",
+    "path": [
+     "username",
+     "group_key",
+     "feed_key"
+    ],
+    "query": [
+     "start_time",
+     "end_time",
+     "limit"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "adafruit-io.all_group_feeds",
+   "name": "All feeds for current user in a given group",
+   "description": "The Group Feeds endpoint returns information about the user's feeds. The response includes the latest value of each feed, and other metadata about each feed, but only for feeds within the given group.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "group_key": {
+      "type": "string",
+      "description": ""
+     },
+     "username": {
+      "type": "string",
+      "description": "a valid username string"
+     }
+    },
+    "required": [
+     "group_key",
+     "username"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://io.adafruit.com/api/v2/{username}/groups/{group_key}/feeds",
+    "path": [
+     "group_key",
+     "username"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "adafruit-io.all_groups",
+   "name": "All groups for current user",
+   "description": "The Groups endpoint returns information about the user's groups. The response includes the latest value of each feed in the group, and other metadata about the group.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "a valid username string"
+     }
+    },
+    "required": [
+     "username"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://io.adafruit.com/api/v2/{username}/groups",
+    "path": [
+     "username"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "adafruit-io.all_permissions",
+   "name": "All permissions for current user and type",
+   "description": "The Permissions endpoint returns information about the user's permissions.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "a valid username string"
+     },
+     "type": {
+      "type": "string",
+      "description": ""
+     },
+     "type_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "type",
+     "type_id",
+     "username"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://io.adafruit.com/api/v2/{username}/{type}/{type_id}/acl",
+    "path": [
+     "username",
+     "type",
+     "type_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "adafruit-io.all_tokens",
+   "name": "All tokens for current user",
+   "description": "The Tokens endpoint returns information about the user's tokens.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "a valid username string"
+     }
+    },
+    "required": [
+     "username"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://io.adafruit.com/api/v2/{username}/tokens",
+    "path": [
+     "username"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "adafruit-io.all_triggers",
+   "name": "All triggers for current user",
+   "description": "The Triggers endpoint returns information about the user's triggers.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "a valid username string"
+     }
+    },
+    "required": [
+     "username"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://io.adafruit.com/api/v2/{username}/triggers",
+    "path": [
+     "username"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "adafruit-io.batch_create_data",
+   "name": "Create multiple new data records",
+   "description": "Create multiple new Data records",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "a valid username string"
+     },
+     "feed_key": {
+      "type": "string",
+      "description": "a valid feed key"
+     },
+     "data": {
+      "type": "array",
+      "description": "A collection of data records including `value` (required) and optionally including: `lat`, `lon`, `ele` (latitude, longitude, and elevation values), and `created_at` (a date/time string)."
+     }
+    },
+    "required": [
+     "data",
+     "feed_key",
+     "username"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://io.adafruit.com/api/v2/{username}/feeds/{feed_key}/data/batch",
+    "path": [
+     "username",
+     "feed_key"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "data"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "adafruit-io.batch_create_group_feed_data",
+   "name": "Create multiple new data records in a feed belonging to a particular group",
+   "description": "Create multiple new Data records in a feed belonging to a particular group",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "a valid username string"
+     },
+     "group_key": {
+      "type": "string",
+      "description": ""
+     },
+     "feed_key": {
+      "type": "string",
+      "description": "a valid feed key"
+     },
+     "data": {
+      "type": "array",
+      "description": "A collection of data records including `value` (required) and optionally including: `lat`, `lon`, `ele` (latitude, longitude, and elevation values), and `created_at` (a date/time string)."
+     }
+    },
+    "required": [
+     "data",
+     "feed_key",
+     "group_key",
+     "username"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://io.adafruit.com/api/v2/{username}/groups/{group_key}/feeds/{feed_key}/data/batch",
+    "path": [
+     "username",
+     "group_key",
+     "feed_key"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "data"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "adafruit-io.chart_data",
+   "name": "Chart data for current feed",
+   "description": "The Chart API is what we use on io.adafruit.com to populate charts over varying timespans with a consistent number of data points. The maximum number of points returned is 480. This API works by aggregating slices of time into a single value by averaging. All time-based parameters are optional, if none are given it will default to 1 hour at the finest-grained resolution possible.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "a valid username string"
+     },
+     "feed_key": {
+      "type": "string",
+      "description": "a valid feed key"
+     },
+     "start_time": {
+      "type": "string",
+      "description": "Start time for filtering, returns records created after given time."
+     },
+     "end_time": {
+      "type": "string",
+      "description": "End time for filtering, returns records created before give time."
+     },
+     "resolution": {
+      "type": "integer",
+      "description": "A resolution size in minutes. By giving a resolution value you will get back grouped data points aggregated over resolution-sized intervals. NOTE: time span is preferred over resolution, so if you request a span of time that includes more than max limit points you may get a larger resolution than you requested. Valid resolutions are 1, 5, 10, 30, 60, and 120."
+     },
+     "hours": {
+      "type": "integer",
+      "description": "The number of hours the chart should cover."
+     }
+    },
+    "required": [
+     "feed_key",
+     "username"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://io.adafruit.com/api/v2/{username}/feeds/{feed_key}/data/chart",
+    "path": [
+     "username",
+     "feed_key"
+    ],
+    "query": [
+     "start_time",
+     "end_time",
+     "resolution",
+     "hours"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "adafruit-io.create_block",
+   "name": "Create a new block",
+   "description": "Create a new Block",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "a valid username string"
+     },
+     "dashboard_id": {
+      "type": "string",
+      "description": ""
+     },
+     "block": {
+      "type": "object",
+      "description": ""
+     }
+    },
+    "required": [
+     "block",
+     "dashboard_id",
+     "username"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://io.adafruit.com/api/v2/{username}/dashboards/{dashboard_id}/blocks",
+    "path": [
+     "username",
+     "dashboard_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "block"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "adafruit-io.create_dashboard",
+   "name": "Create a new dashboard",
+   "description": "Create a new Dashboard",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "a valid username string"
+     },
+     "dashboard": {
+      "type": "object",
+      "description": ""
+     }
+    },
+    "required": [
+     "dashboard",
+     "username"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://io.adafruit.com/api/v2/{username}/dashboards",
+    "path": [
+     "username"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "dashboard"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "adafruit-io.create_data",
+   "name": "Create new data",
+   "description": "Create new data records on the given feed. **NOTE:** when feed history is on, data `value` size is limited to 1KB, when feed history is turned off data value size is limited to 100KB.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "a valid username string"
+     },
+     "feed_key": {
+      "type": "string",
+      "description": "a valid feed key"
+     },
+     "datum": {
+      "type": "object",
+      "description": "Data record including a `value` field (required) and optionally including: `lat`, `lon`, `ele` (latitude, longitude, and elevation values), and `created_at` (a date/time string)."
+     }
+    },
+    "required": [
+     "datum",
+     "feed_key",
+     "username"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://io.adafruit.com/api/v2/{username}/feeds/{feed_key}/data",
+    "path": [
+     "username",
+     "feed_key"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "datum"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "adafruit-io.create_feed",
+   "name": "Create a new feed",
+   "description": "Create a new Feed",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "a valid username string"
+     },
+     "group_key": {
+      "type": "string",
+      "description": ""
+     },
+     "feed": {
+      "type": "object",
+      "description": ""
+     }
+    },
+    "required": [
+     "feed",
+     "username"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://io.adafruit.com/api/v2/{username}/feeds",
+    "path": [
+     "username"
+    ],
+    "query": [
+     "group_key"
+    ],
+    "header": [],
+    "body": [
+     "feed"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "adafruit-io.create_group",
+   "name": "Create a new group",
+   "description": "Create a new Group",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "a valid username string"
+     },
+     "group": {
+      "type": "object",
+      "description": ""
+     }
+    },
+    "required": [
+     "group",
+     "username"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://io.adafruit.com/api/v2/{username}/groups",
+    "path": [
+     "username"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "group"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "adafruit-io.create_group_data",
+   "name": "Create new data for multiple feeds in a group",
+   "description": "Create new data for multiple feeds in a group",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "a valid username string"
+     },
+     "group_key": {
+      "type": "string",
+      "description": ""
+     },
+     "group_feed_data": {
+      "type": "object",
+      "description": ""
+     }
+    },
+    "required": [
+     "group_feed_data",
+     "group_key",
+     "username"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://io.adafruit.com/api/v2/{username}/groups/{group_key}/data",
+    "path": [
+     "username",
+     "group_key"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "group_feed_data"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "adafruit-io.create_group_feed",
+   "name": "Create a new feed in a group",
+   "description": "Create a new Feed in a Group",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "a valid username string"
+     },
+     "group_key": {
+      "type": "string",
+      "description": ""
+     },
+     "feed": {
+      "type": "object",
+      "description": ""
+     }
+    },
+    "required": [
+     "feed",
+     "group_key",
+     "username"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://io.adafruit.com/api/v2/{username}/groups/{group_key}/feeds",
+    "path": [
+     "username",
+     "group_key"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "feed"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "adafruit-io.create_group_feed_data",
+   "name": "Create new data in a feed belonging to a particular group",
+   "description": "Create new Data in a feed belonging to a particular group",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "a valid username string"
+     },
+     "group_key": {
+      "type": "string",
+      "description": ""
+     },
+     "feed_key": {
+      "type": "string",
+      "description": "a valid feed key"
+     },
+     "datum": {
+      "type": "object",
+      "description": "Data record including a `value` field (required) and optionally including: `lat`, `lon`, `ele` (latitude, longitude, and elevation values), and `created_at` (a date/time string)."
+     }
+    },
+    "required": [
+     "datum",
+     "feed_key",
+     "group_key",
+     "username"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://io.adafruit.com/api/v2/{username}/groups/{group_key}/feeds/{feed_key}/data",
+    "path": [
+     "username",
+     "group_key",
+     "feed_key"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "datum"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "adafruit-io.create_permission",
+   "name": "Create a new permission",
+   "description": "Create a new Permission",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "a valid username string"
+     },
+     "type": {
+      "type": "string",
+      "description": ""
+     },
+     "type_id": {
+      "type": "string",
+      "description": ""
+     },
+     "permission": {
+      "type": "object",
+      "description": ""
+     }
+    },
+    "required": [
+     "permission",
+     "type",
+     "type_id",
+     "username"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://io.adafruit.com/api/v2/{username}/{type}/{type_id}/acl",
+    "path": [
+     "username",
+     "type",
+     "type_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "permission"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "adafruit-io.create_raw_webhook_feed_data",
+   "name": "Send arbitrary data to a feed via webhook url",
+   "description": "The raw data webhook receiver accepts POST requests and stores the raw request body on your feed. This is useful when you don't have control of the webhook sender. If feed history is turned on, payloads will be truncated at 1024 bytes. If feed history is turned off, payloads will be truncated at 100KB.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://io.adafruit.com/api/v2/webhooks/feed/:token/raw",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "adafruit-io.create_token",
+   "name": "Create a new token",
+   "description": "Create a new Token",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "a valid username string"
+     }
+    },
+    "required": [
+     "username"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://io.adafruit.com/api/v2/{username}/tokens",
+    "path": [
+     "username"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "adafruit-io.create_trigger",
+   "name": "Create a new trigger",
+   "description": "Create a new Trigger",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "a valid username string"
+     },
+     "trigger": {
+      "type": "object",
+      "description": ""
+     }
+    },
+    "required": [
+     "trigger",
+     "username"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://io.adafruit.com/api/v2/{username}/triggers",
+    "path": [
+     "username"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "trigger"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "adafruit-io.create_webhook_feed_data",
+   "name": "Send data to a feed via webhook url",
+   "description": "Send data to a feed via webhook URL.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "value": {
+      "type": "string",
+      "description": ""
+     },
+     "payload": {
+      "type": "object",
+      "description": "Webhook payload containing data `value` parameter."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://io.adafruit.com/api/v2/webhooks/feed/:token",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "value",
+     "payload"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "adafruit-io.current_user",
+   "name": "Get information about the current user",
+   "description": "Get information about the current user",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://io.adafruit.com/api/v2/user",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "adafruit-io.destroy_activities",
+   "name": "All activities for current user",
+   "description": "Delete all your activities.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "a valid username string"
+     }
+    },
+    "required": [
+     "username"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://io.adafruit.com/api/v2/{username}/activities",
+    "path": [
+     "username"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "adafruit-io.destroy_block",
+   "name": "Delete an existing block",
+   "description": "Delete an existing Block",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "a valid username string"
+     },
+     "dashboard_id": {
+      "type": "string",
+      "description": ""
+     },
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "dashboard_id",
+     "id",
+     "username"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://io.adafruit.com/api/v2/{username}/dashboards/{dashboard_id}/blocks/{id}",
+    "path": [
+     "username",
+     "dashboard_id",
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "adafruit-io.destroy_dashboard",
+   "name": "Delete an existing dashboard",
+   "description": "Delete an existing Dashboard",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "a valid username string"
+     },
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id",
+     "username"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://io.adafruit.com/api/v2/{username}/dashboards/{id}",
+    "path": [
+     "username",
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "adafruit-io.destroy_data",
+   "name": "Delete existing data",
+   "description": "Delete existing Data",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "a valid username string"
+     },
+     "feed_key": {
+      "type": "string",
+      "description": "a valid feed key"
+     },
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "feed_key",
+     "id",
+     "username"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://io.adafruit.com/api/v2/{username}/feeds/{feed_key}/data/{id}",
+    "path": [
+     "username",
+     "feed_key",
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "adafruit-io.destroy_feed",
+   "name": "Delete an existing feed",
+   "description": "Delete an existing Feed",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "a valid username string"
+     },
+     "feed_key": {
+      "type": "string",
+      "description": "a valid feed key"
+     }
+    },
+    "required": [
+     "feed_key",
+     "username"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://io.adafruit.com/api/v2/{username}/feeds/{feed_key}",
+    "path": [
+     "username",
+     "feed_key"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "adafruit-io.destroy_group",
+   "name": "Delete an existing group",
+   "description": "Delete an existing Group",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "a valid username string"
+     },
+     "group_key": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "group_key",
+     "username"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://io.adafruit.com/api/v2/{username}/groups/{group_key}",
+    "path": [
+     "username",
+     "group_key"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "adafruit-io.destroy_permission",
+   "name": "Delete an existing permission",
+   "description": "Delete an existing Permission",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "a valid username string"
+     },
+     "type": {
+      "type": "string",
+      "description": ""
+     },
+     "type_id": {
+      "type": "string",
+      "description": ""
+     },
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id",
+     "type",
+     "type_id",
+     "username"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://io.adafruit.com/api/v2/{username}/{type}/{type_id}/acl/{id}",
+    "path": [
+     "username",
+     "type",
+     "type_id",
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "adafruit-io.destroy_token",
+   "name": "Delete an existing token",
+   "description": "Delete an existing Token",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "a valid username string"
+     },
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id",
+     "username"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://io.adafruit.com/api/v2/{username}/tokens/{id}",
+    "path": [
+     "username",
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "adafruit-io.destroy_trigger",
+   "name": "Delete an existing trigger",
+   "description": "Delete an existing Trigger",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "a valid username string"
+     },
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id",
+     "username"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://io.adafruit.com/api/v2/{username}/triggers/{id}",
+    "path": [
+     "username",
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "adafruit-io.first_data",
+   "name": "First data in queue",
+   "description": "Get the oldest data point in the feed. This request sets the queue pointer to the beginning of the feed.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "a valid username string"
+     },
+     "feed_key": {
+      "type": "string",
+      "description": "a valid feed key"
+     },
+     "include": {
+      "type": "string",
+      "description": "List of Data record fields to include in response as comma separated list. Acceptable values are: `value`, `lat`, `lon`, `ele`, `id`, and `created_at`."
+     }
+    },
+    "required": [
+     "feed_key",
+     "username"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://io.adafruit.com/api/v2/{username}/feeds/{feed_key}/data/first",
+    "path": [
+     "username",
+     "feed_key"
+    ],
+    "query": [
+     "include"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "adafruit-io.get_activity",
+   "name": "Get activities by type for current user",
+   "description": "The Activities endpoint returns information about the user's activities.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "a valid username string"
+     },
+     "type": {
+      "type": "string",
+      "description": ""
+     },
+     "start_time": {
+      "type": "string",
+      "description": "Start time for filtering, returns records created after given time."
+     },
+     "end_time": {
+      "type": "string",
+      "description": "End time for filtering, returns records created before give time."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Limit the number of records returned."
+     }
+    },
+    "required": [
+     "type",
+     "username"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://io.adafruit.com/api/v2/{username}/activities/{type}",
+    "path": [
+     "username",
+     "type"
+    ],
+    "query": [
+     "start_time",
+     "end_time",
+     "limit"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "adafruit-io.get_block",
+   "name": "Returns block based on id",
+   "description": "Returns Block based on ID",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "a valid username string"
+     },
+     "dashboard_id": {
+      "type": "string",
+      "description": ""
+     },
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "dashboard_id",
+     "id",
+     "username"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://io.adafruit.com/api/v2/{username}/dashboards/{dashboard_id}/blocks/{id}",
+    "path": [
+     "username",
+     "dashboard_id",
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "adafruit-io.get_current_user_throttle",
+   "name": "Get the user's data rate limit and current activity level",
+   "description": "Get the user's data rate limit and current activity level.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "a valid username string"
+     }
+    },
+    "required": [
+     "username"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://io.adafruit.com/api/v2/{username}/throttle",
+    "path": [
+     "username"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "adafruit-io.get_dashboard",
+   "name": "Returns dashboard based on id",
+   "description": "Returns Dashboard based on ID",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "a valid username string"
+     },
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id",
+     "username"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://io.adafruit.com/api/v2/{username}/dashboards/{id}",
+    "path": [
+     "username",
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "adafruit-io.get_data",
+   "name": "Returns data based on feed key",
+   "description": "Returns data based on feed key",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "a valid username string"
+     },
+     "feed_key": {
+      "type": "string",
+      "description": "a valid feed key"
+     },
+     "id": {
+      "type": "string",
+      "description": ""
+     },
+     "include": {
+      "type": "string",
+      "description": "List of Data record fields to include in response as comma separated list. Acceptable values are: `value`, `lat`, `lon`, `ele`, `id`, and `created_at`."
+     }
+    },
+    "required": [
+     "feed_key",
+     "id",
+     "username"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://io.adafruit.com/api/v2/{username}/feeds/{feed_key}/data/{id}",
+    "path": [
+     "username",
+     "feed_key",
+     "id"
+    ],
+    "query": [
+     "include"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "adafruit-io.get_feed",
+   "name": "Get feed by feed key",
+   "description": "Returns feed based on the feed key",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "a valid username string"
+     },
+     "feed_key": {
+      "type": "string",
+      "description": "a valid feed key"
+     }
+    },
+    "required": [
+     "feed_key",
+     "username"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://io.adafruit.com/api/v2/{username}/feeds/{feed_key}",
+    "path": [
+     "username",
+     "feed_key"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "adafruit-io.get_feed_details",
+   "name": "Get detailed feed by feed key",
+   "description": "Returns more detailed feed record based on the feed key",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "a valid username string"
+     },
+     "feed_key": {
+      "type": "string",
+      "description": "a valid feed key"
+     }
+    },
+    "required": [
+     "feed_key",
+     "username"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://io.adafruit.com/api/v2/{username}/feeds/{feed_key}/details",
+    "path": [
+     "username",
+     "feed_key"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "adafruit-io.get_group",
+   "name": "Returns group based on id",
+   "description": "Returns Group based on ID",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "a valid username string"
+     },
+     "group_key": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "group_key",
+     "username"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://io.adafruit.com/api/v2/{username}/groups/{group_key}",
+    "path": [
+     "username",
+     "group_key"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "adafruit-io.get_permission",
+   "name": "Returns permission based on id",
+   "description": "Returns Permission based on ID",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "a valid username string"
+     },
+     "type": {
+      "type": "string",
+      "description": ""
+     },
+     "type_id": {
+      "type": "string",
+      "description": ""
+     },
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id",
+     "type",
+     "type_id",
+     "username"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://io.adafruit.com/api/v2/{username}/{type}/{type_id}/acl/{id}",
+    "path": [
+     "username",
+     "type",
+     "type_id",
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "adafruit-io.get_token",
+   "name": "Returns token based on id",
+   "description": "Returns Token based on ID",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "a valid username string"
+     },
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id",
+     "username"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://io.adafruit.com/api/v2/{username}/tokens/{id}",
+    "path": [
+     "username",
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "adafruit-io.get_trigger",
+   "name": "Returns trigger based on id",
+   "description": "Returns Trigger based on ID",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "a valid username string"
+     },
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id",
+     "username"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://io.adafruit.com/api/v2/{username}/triggers/{id}",
+    "path": [
+     "username",
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "adafruit-io.last_data",
+   "name": "Last data in queue",
+   "description": "Get the most recent data point in the feed. This request sets the queue pointer to the end of the feed.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "a valid username string"
+     },
+     "feed_key": {
+      "type": "string",
+      "description": "a valid feed key"
+     },
+     "include": {
+      "type": "string",
+      "description": "List of Data record fields to include in response as comma separated list. Acceptable values are: `value`, `lat`, `lon`, `ele`, `id`, and `created_at`."
+     }
+    },
+    "required": [
+     "feed_key",
+     "username"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://io.adafruit.com/api/v2/{username}/feeds/{feed_key}/data/last",
+    "path": [
+     "username",
+     "feed_key"
+    ],
+    "query": [
+     "include"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "adafruit-io.next_data",
+   "name": "Next data in queue",
+   "description": "Get the next newest data point in the feed. If queue processing hasn't been started, the first data point in the feed will be returned.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "a valid username string"
+     },
+     "feed_key": {
+      "type": "string",
+      "description": "a valid feed key"
+     },
+     "include": {
+      "type": "string",
+      "description": "List of Data record fields to include in response as comma separated list. Acceptable values are: `value`, `lat`, `lon`, `ele`, `id`, and `created_at`."
+     }
+    },
+    "required": [
+     "feed_key",
+     "username"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://io.adafruit.com/api/v2/{username}/feeds/{feed_key}/data/next",
+    "path": [
+     "username",
+     "feed_key"
+    ],
+    "query": [
+     "include"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "adafruit-io.previous_data",
+   "name": "Previous data in queue",
+   "description": "Get the previously processed data point in the feed. NOTE: this method doesn't move the processing queue pointer.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "a valid username string"
+     },
+     "feed_key": {
+      "type": "string",
+      "description": "a valid feed key"
+     },
+     "include": {
+      "type": "string",
+      "description": "List of Data record fields to include in response as comma separated list. Acceptable values are: `value`, `lat`, `lon`, `ele`, `id`, and `created_at`."
+     }
+    },
+    "required": [
+     "feed_key",
+     "username"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://io.adafruit.com/api/v2/{username}/feeds/{feed_key}/data/previous",
+    "path": [
+     "username",
+     "feed_key"
+    ],
+    "query": [
+     "include"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "adafruit-io.remove_feed_from_group",
+   "name": "Remove a feed from a group",
+   "description": "Remove a Feed from a Group",
+   "input": {
+    "type": "object",
+    "properties": {
+     "group_key": {
+      "type": "string",
+      "description": ""
+     },
+     "username": {
+      "type": "string",
+      "description": "a valid username string"
+     },
+     "feed_key": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "group_key",
+     "username"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://io.adafruit.com/api/v2/{username}/groups/{group_key}/remove",
+    "path": [
+     "group_key",
+     "username"
+    ],
+    "query": [
+     "feed_key"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "adafruit-io.replace_block",
+   "name": "Replace an existing block",
+   "description": "Replace an existing Block",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "a valid username string"
+     },
+     "dashboard_id": {
+      "type": "string",
+      "description": ""
+     },
+     "id": {
+      "type": "string",
+      "description": ""
+     },
+     "block": {
+      "type": "object",
+      "description": ""
+     }
+    },
+    "required": [
+     "block",
+     "dashboard_id",
+     "id",
+     "username"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://io.adafruit.com/api/v2/{username}/dashboards/{dashboard_id}/blocks/{id}",
+    "path": [
+     "username",
+     "dashboard_id",
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "block"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "adafruit-io.replace_dashboard",
+   "name": "Replace an existing dashboard",
+   "description": "Replace an existing Dashboard",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "a valid username string"
+     },
+     "id": {
+      "type": "string",
+      "description": ""
+     },
+     "dashboard": {
+      "type": "object",
+      "description": ""
+     }
+    },
+    "required": [
+     "dashboard",
+     "id",
+     "username"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://io.adafruit.com/api/v2/{username}/dashboards/{id}",
+    "path": [
+     "username",
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "dashboard"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "adafruit-io.replace_data",
+   "name": "Replace existing data",
+   "description": "Replace existing Data",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "a valid username string"
+     },
+     "feed_key": {
+      "type": "string",
+      "description": "a valid feed key"
+     },
+     "id": {
+      "type": "string",
+      "description": ""
+     },
+     "datum": {
+      "type": "object",
+      "description": "Data record including a `value` field (required) and optionally including: `lat`, `lon`, `ele` (latitude, longitude, and elevation values), and `created_at` (a date/time string)."
+     }
+    },
+    "required": [
+     "datum",
+     "feed_key",
+     "id",
+     "username"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://io.adafruit.com/api/v2/{username}/feeds/{feed_key}/data/{id}",
+    "path": [
+     "username",
+     "feed_key",
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "datum"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "adafruit-io.replace_feed",
+   "name": "Replace an existing feed",
+   "description": "Replace an existing Feed",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "a valid username string"
+     },
+     "feed_key": {
+      "type": "string",
+      "description": "a valid feed key"
+     },
+     "feed": {
+      "type": "object",
+      "description": ""
+     }
+    },
+    "required": [
+     "feed",
+     "feed_key",
+     "username"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://io.adafruit.com/api/v2/{username}/feeds/{feed_key}",
+    "path": [
+     "username",
+     "feed_key"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "feed"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "adafruit-io.replace_group",
+   "name": "Replace an existing group",
+   "description": "Replace an existing Group",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "a valid username string"
+     },
+     "group_key": {
+      "type": "string",
+      "description": ""
+     },
+     "group": {
+      "type": "object",
+      "description": ""
+     }
+    },
+    "required": [
+     "group",
+     "group_key",
+     "username"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://io.adafruit.com/api/v2/{username}/groups/{group_key}",
+    "path": [
+     "username",
+     "group_key"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "group"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "adafruit-io.replace_permission",
+   "name": "Replace an existing permission",
+   "description": "Replace an existing Permission",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "a valid username string"
+     },
+     "type": {
+      "type": "string",
+      "description": ""
+     },
+     "type_id": {
+      "type": "string",
+      "description": ""
+     },
+     "id": {
+      "type": "string",
+      "description": ""
+     },
+     "permission": {
+      "type": "object",
+      "description": ""
+     }
+    },
+    "required": [
+     "id",
+     "permission",
+     "type",
+     "type_id",
+     "username"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://io.adafruit.com/api/v2/{username}/{type}/{type_id}/acl/{id}",
+    "path": [
+     "username",
+     "type",
+     "type_id",
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "permission"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "adafruit-io.replace_token",
+   "name": "Replace an existing token",
+   "description": "Replace an existing Token",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "a valid username string"
+     },
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id",
+     "username"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://io.adafruit.com/api/v2/{username}/tokens/{id}",
+    "path": [
+     "username",
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "adafruit-io.replace_trigger",
+   "name": "Replace an existing trigger",
+   "description": "Replace an existing Trigger",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "a valid username string"
+     },
+     "id": {
+      "type": "string",
+      "description": ""
+     },
+     "trigger": {
+      "type": "object",
+      "description": ""
+     }
+    },
+    "required": [
+     "id",
+     "trigger",
+     "username"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://io.adafruit.com/api/v2/{username}/triggers/{id}",
+    "path": [
+     "username",
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "trigger"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "adafruit-io.retain_data",
+   "name": "Last data in mqtt csv format",
+   "description": "Get the most recent data point in the feed in an MQTT compatible CSV format: `value,lat,lon,ele`",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "a valid username string"
+     },
+     "feed_key": {
+      "type": "string",
+      "description": "a valid feed key"
+     }
+    },
+    "required": [
+     "feed_key",
+     "username"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://io.adafruit.com/api/v2/{username}/feeds/{feed_key}/data/retain",
+    "path": [
+     "username",
+     "feed_key"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "adafruit-io.update_block",
+   "name": "Update properties of an existing block",
+   "description": "Update properties of an existing Block",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "a valid username string"
+     },
+     "dashboard_id": {
+      "type": "string",
+      "description": ""
+     },
+     "id": {
+      "type": "string",
+      "description": ""
+     },
+     "block": {
+      "type": "object",
+      "description": ""
+     }
+    },
+    "required": [
+     "block",
+     "dashboard_id",
+     "id",
+     "username"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://io.adafruit.com/api/v2/{username}/dashboards/{dashboard_id}/blocks/{id}",
+    "path": [
+     "username",
+     "dashboard_id",
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "block"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "adafruit-io.update_dashboard",
+   "name": "Update properties of an existing dashboard",
+   "description": "Update properties of an existing Dashboard",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "a valid username string"
+     },
+     "id": {
+      "type": "string",
+      "description": ""
+     },
+     "dashboard": {
+      "type": "object",
+      "description": ""
+     }
+    },
+    "required": [
+     "dashboard",
+     "id",
+     "username"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://io.adafruit.com/api/v2/{username}/dashboards/{id}",
+    "path": [
+     "username",
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "dashboard"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "adafruit-io.update_data",
+   "name": "Update properties of existing data",
+   "description": "Update properties of existing Data",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "a valid username string"
+     },
+     "feed_key": {
+      "type": "string",
+      "description": "a valid feed key"
+     },
+     "id": {
+      "type": "string",
+      "description": ""
+     },
+     "datum": {
+      "type": "object",
+      "description": "Data record including a `value` field (required) and optionally including: `lat`, `lon`, `ele` (latitude, longitude, and elevation values), and `created_at` (a date/time string)."
+     }
+    },
+    "required": [
+     "datum",
+     "feed_key",
+     "id",
+     "username"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://io.adafruit.com/api/v2/{username}/feeds/{feed_key}/data/{id}",
+    "path": [
+     "username",
+     "feed_key",
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "datum"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "adafruit-io.update_feed",
+   "name": "Update properties of an existing feed",
+   "description": "Update properties of an existing Feed",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "a valid username string"
+     },
+     "feed_key": {
+      "type": "string",
+      "description": "a valid feed key"
+     },
+     "feed": {
+      "type": "object",
+      "description": ""
+     }
+    },
+    "required": [
+     "feed",
+     "feed_key",
+     "username"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://io.adafruit.com/api/v2/{username}/feeds/{feed_key}",
+    "path": [
+     "username",
+     "feed_key"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "feed"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "adafruit-io.update_group",
+   "name": "Update properties of an existing group",
+   "description": "Update properties of an existing Group",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "a valid username string"
+     },
+     "group_key": {
+      "type": "string",
+      "description": ""
+     },
+     "group": {
+      "type": "object",
+      "description": ""
+     }
+    },
+    "required": [
+     "group",
+     "group_key",
+     "username"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://io.adafruit.com/api/v2/{username}/groups/{group_key}",
+    "path": [
+     "username",
+     "group_key"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "group"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "adafruit-io.update_permission",
+   "name": "Update properties of an existing permission",
+   "description": "Update properties of an existing Permission",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "a valid username string"
+     },
+     "type": {
+      "type": "string",
+      "description": ""
+     },
+     "type_id": {
+      "type": "string",
+      "description": ""
+     },
+     "id": {
+      "type": "string",
+      "description": ""
+     },
+     "permission": {
+      "type": "object",
+      "description": ""
+     }
+    },
+    "required": [
+     "id",
+     "permission",
+     "type",
+     "type_id",
+     "username"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://io.adafruit.com/api/v2/{username}/{type}/{type_id}/acl/{id}",
+    "path": [
+     "username",
+     "type",
+     "type_id",
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "permission"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "adafruit-io.update_token",
+   "name": "Update properties of an existing token",
+   "description": "Update properties of an existing Token",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "a valid username string"
+     },
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id",
+     "username"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://io.adafruit.com/api/v2/{username}/tokens/{id}",
+    "path": [
+     "username",
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "adafruit-io.update_trigger",
+   "name": "Update properties of an existing trigger",
+   "description": "Update properties of an existing Trigger",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "a valid username string"
+     },
+     "id": {
+      "type": "string",
+      "description": ""
+     },
+     "trigger": {
+      "type": "object",
+      "description": ""
+     }
+    },
+    "required": [
+     "id",
+     "trigger",
+     "username"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://io.adafruit.com/api/v2/{username}/triggers/{id}",
+    "path": [
+     "username",
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "trigger"
+    ],
+    "body_format": "json"
+   }
+  }
+ ]
+}

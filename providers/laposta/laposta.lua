@@ -1,0 +1,68 @@
+-- Laposta — every call this API accepts, as data.
+--
+-- GENERATED from https://docs.laposta.nl/openapi.json
+-- Published on the vendor's own documentation site (https://docs.laposta.nl).
+-- 41 operations · do not edit
+--
+-- The credential is never in here. `auth.env` names an environment variable; the value
+-- stays in the environment, which is what makes this file safe to publish.
+return {
+  provider = "laposta",
+  name = "Laposta",
+  base = "https://api.laposta.nl",
+  docs = "https://nango.dev/docs/api-integrations/laposta",
+  auth = {
+    kind = "basic",
+    header = "authorization",
+    format = "Bearer {token}",
+    env = nil,
+    user_env = "LAPOSTA_USER",
+    pass_env = "LAPOSTA_PASS",
+    param = nil,
+  },
+  config = {},
+  headers = {},
+  operations = {
+    ["laposta.campagnes_alle_campagnes_opvragen"] = { method = "GET", url = "https://api.laposta.nl/v2/campaign" },
+    ["laposta.campagnes_campagne_aanmaken"] = { method = "POST", url = "https://api.laposta.nl/v2/campaign", body = {"type", "name", "subject", "from[name]", "from[email]", "reply_to", "list_ids[]", "stats[ga]", "stats[mtrack]"} },
+    ["laposta.campagnes_campagne_content_opvragen"] = { method = "GET", url = "https://api.laposta.nl/v2/campaign/{campaign_id}/content", path = {"campaign_id"} },
+    ["laposta.campagnes_campagne_content_vullen"] = { method = "POST", url = "https://api.laposta.nl/v2/campaign/{campaign_id}/content", path = {"campaign_id"}, body = {"html", "import_url", "inline_css", "javascript", "flash", "no_unsubscribe", "empty_unsubscribe", "css", "images"} },
+    ["laposta.campagnes_campagne_inplannen"] = { method = "POST", url = "https://api.laposta.nl/v2/campaign/{campaign_id}/action/schedule", path = {"campaign_id"}, body = {"delivery_requested"} },
+    ["laposta.campagnes_campagne_opvragen"] = { method = "GET", url = "https://api.laposta.nl/v2/campaign/{campaign_id}", path = {"campaign_id"} },
+    ["laposta.campagnes_campagne_testen"] = { method = "POST", url = "https://api.laposta.nl/v2/campaign/{campaign_id}/action/testmail", path = {"campaign_id"}, body = {"email"} },
+    ["laposta.campagnes_campagne_verwijderen"] = { method = "DELETE", url = "https://api.laposta.nl/v2/campaign/{campaign_id}", path = {"campaign_id"} },
+    ["laposta.campagnes_campagne_verzenden"] = { method = "POST", url = "https://api.laposta.nl/v2/campaign/{campaign_id}/action/send", path = {"campaign_id"} },
+    ["laposta.campagnes_campagne_wijzigen"] = { method = "POST", url = "https://api.laposta.nl/v2/campaign/{campaign_id}", path = {"campaign_id"}, body = {"name", "subject", "from[name]", "from[email]", "reply_to", "list_ids[]", "stats[ga]", "stats[mtrack]"} },
+    ["laposta.campagnes_campagnegeschiedenis_opvragen"] = { method = "GET", url = "https://api.laposta.nl/v2/campaign/{campaign_id}/history", path = {"campaign_id"}, query = {"event_date_from", "event_date_to", "limit", "cursor", "order_by", "order"} },
+    ["laposta.lijsten_alle_lijsten_opvragen"] = { method = "GET", url = "https://api.laposta.nl/v2/list" },
+    ["laposta.lijsten_lijst_leegmaken"] = { method = "DELETE", url = "https://api.laposta.nl/v2/list/{list_id}/members", path = {"list_id"} },
+    ["laposta.lijsten_lijst_opvragen"] = { method = "GET", url = "https://api.laposta.nl/v2/list/{list_id}", path = {"list_id"} },
+    ["laposta.lijsten_lijst_synchroniseren_bulk"] = { method = "POST", url = "https://api.laposta.nl/v2/list/{list_id}/members", path = {"list_id"}, body = {"actions", "mode (verouderd)", "members", "member_id", "email", "custom_fields", "source_url"} },
+    ["laposta.lijsten_lijst_toevoegen"] = { method = "POST", url = "https://api.laposta.nl/v2/list", body = {"name", "locked", "remarks", "subscribe_notification_email", "unsubscribe_notification_email"} },
+    ["laposta.lijsten_lijst_verwijderen"] = { method = "DELETE", url = "https://api.laposta.nl/v2/list/{list_id}", path = {"list_id"} },
+    ["laposta.lijsten_lijst_wijzigen"] = { method = "POST", url = "https://api.laposta.nl/v2/list/{list_id}", path = {"list_id"}, body = {"name", "locked", "remarks", "subscribe_notification_email", "unsubscribe_notification_email"} },
+    ["laposta.relaties_alle_relaties_opvragen"] = { method = "GET", url = "https://api.laposta.nl/v2/member", query = {"list_id", "state"} },
+    ["laposta.relaties_relatie_opvragen"] = { method = "GET", url = "https://api.laposta.nl/v2/member/{member_id}", path = {"member_id"}, query = {"list_id"} },
+    ["laposta.relaties_relatie_toevoegen"] = { method = "POST", url = "https://api.laposta.nl/v2/member", body = {"list_id", "ip", "email", "source_url", "custom_fields", "options"} },
+    ["laposta.relaties_relatie_verwijderen"] = { method = "DELETE", url = "https://api.laposta.nl/v2/member/{member_id}", path = {"member_id"}, query = {"list_id"} },
+    ["laposta.relaties_relatie_wijzigen"] = { method = "POST", url = "https://api.laposta.nl/v2/member/{member_id}", path = {"member_id"}, body = {"list_id", "email", "state", "custom_fields"} },
+    ["laposta.relaties_relatiegeschiedenis_opvragen"] = { method = "GET", url = "https://api.laposta.nl/v2/member/{member_id}/history", path = {"member_id"}, query = {"list_id", "campaign_id", "event_date_from", "event_date_to", "limit", "cursor", "order_by", "order"} },
+    ["laposta.resultaten_alle_resultaten_opvragen"] = { method = "GET", url = "https://api.laposta.nl/v2/report" },
+    ["laposta.resultaten_campagneresultaten_opvragen"] = { method = "GET", url = "https://api.laposta.nl/v2/report/{campaign_id}", path = {"campaign_id"} },
+    ["laposta.segmenten_alle_segmenten_opvragen"] = { method = "GET", url = "https://api.laposta.nl/v2/segment", query = {"list_id"} },
+    ["laposta.segmenten_segment_opvragen"] = { method = "GET", url = "https://api.laposta.nl/v2/segment/{segment_id}", path = {"segment_id"}, query = {"list_id"} },
+    ["laposta.segmenten_segment_toevoegen"] = { method = "POST", url = "https://api.laposta.nl/v2/segment", body = {"list_id", "name", "definition"} },
+    ["laposta.segmenten_segment_verwijderen"] = { method = "DELETE", url = "https://api.laposta.nl/v2/segment/{segment_id}", path = {"segment_id"}, query = {"list_id"} },
+    ["laposta.segmenten_segment_wijzigen"] = { method = "POST", url = "https://api.laposta.nl/v2/segment/{segment_id}", path = {"segment_id"}, body = {"list_id", "name", "definition"} },
+    ["laposta.velden_alle_velden_opvragen"] = { method = "GET", url = "https://api.laposta.nl/v2/field", query = {"list_id"} },
+    ["laposta.velden_veld_opvragen"] = { method = "GET", url = "https://api.laposta.nl/v2/field/{field_id}", path = {"field_id"}, query = {"list_id"} },
+    ["laposta.velden_veld_toevoegen"] = { method = "POST", url = "https://api.laposta.nl/v2/field", body = {"list_id", "name", "defaultvalue", "datatype", "datatype_display", "options", "required", "in_form", "in_list"} },
+    ["laposta.velden_veld_verwijderen"] = { method = "DELETE", url = "https://api.laposta.nl/v2/field/{field_id}", path = {"field_id"}, query = {"list_id"} },
+    ["laposta.velden_veld_wijzigen"] = { method = "POST", url = "https://api.laposta.nl/v2/field/{field_id}", path = {"field_id"}, body = {"list_id", "name", "datatype", "datatype_display", "options_full", "defaultvalue", "required", "in_form", "in_list"} },
+    ["laposta.webhooks_alle_webhooks_opvragen"] = { method = "GET", url = "https://api.laposta.nl/v2/webhook", query = {"list_id"} },
+    ["laposta.webhooks_webhook_opvragen"] = { method = "GET", url = "https://api.laposta.nl/v2/webhook/{webhook_id}", path = {"webhook_id"}, query = {"list_id"} },
+    ["laposta.webhooks_webhook_toevoegen"] = { method = "POST", url = "https://api.laposta.nl/v2/webhook", body = {"list_id", "event", "url", "blocked"} },
+    ["laposta.webhooks_webhook_verwijderen"] = { method = "DELETE", url = "https://api.laposta.nl/v2/webhook/{webhook_id}", path = {"webhook_id"}, query = {"list_id"} },
+    ["laposta.webhooks_webhook_wijzigen"] = { method = "POST", url = "https://api.laposta.nl/v2/webhook/{webhook_id}", path = {"webhook_id"}, body = {"list_id", "event", "url", "blocked"} },
+  },
+}

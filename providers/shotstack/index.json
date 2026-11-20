@@ -1,0 +1,167 @@
+{
+ "_": "GENERATED \u2014 what an authoring tool needs to FIND an operation. The calling table is the .lua beside it.",
+ "provider": "shotstack",
+ "source": "https://api.apis.guru/v2/specs/shotstack.io/v1/openapi.json",
+ "operations": [
+  {
+   "slug": "shotstack.delete_asset",
+   "name": "Delete asset",
+   "description": "Delete an asset by its asset id. If a render creates multiple assets, such as thumbnail and poster images, each asset must be deleted individually by the asset id. **base URL:** https://api.shotstack.io/serve/{version}",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "The id of the asset in UUID format"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.shotstack.io/{version}/assets/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "shotstack.get_asset",
+   "name": "Get asset",
+   "description": "The Serve API is used to interact with, and delete hosted assets including videos, images, audio files, thumbnails and poster images. Use this endpoint to fetch an asset by asset id. Note that an asset id is unique for each asset and different from the render id. **base URL:** https://api.shotstack.io/serve/{version}",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "The id of the asset in UUID format"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.shotstack.io/{version}/assets/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "shotstack.get_asset_by_render_id",
+   "name": "Get asset by render id",
+   "description": "A render may generate more than one file, such as a video, thumbnail and poster image. When the assets are created the only known id is the render id returned by the original [render request](#render-video), status request or webhook. This endpoint lets you look up one or more assets by the render id. **base URL:** https://api.shotstack.io/serve/{version}",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "The render id associated with the asset in UUID format"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.shotstack.io/{version}/assets/render/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "shotstack.get_render",
+   "name": "Get render status",
+   "description": "Get the rendering status, temporary asset url and details of a render by ID. **base URL:** https://api.shotstack.io/{version}",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "The id of the timeline render task in UUID format"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.shotstack.io/{version}/render/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "shotstack.post_render",
+   "name": "Render asset",
+   "description": "Queue and render the contents of a timeline as a video, image or audio file.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "callback": {
+      "type": "string",
+      "description": "An optional webhook callback URL used to receive status notifications when a render completes or fails. See [webhooks](https://shotstack.gitbook.io/docs/guides/architecting-an-application/webhooks) for more details."
+     },
+     "disk": {
+      "type": "string",
+      "description": "The disk type to use for storing footage and assets for each render. See [disk types](https://shotstack.gitbook.io/docs/guides/architecting-an-application/disk-types) for more details. `local` - optimized for high speed rendering with up to 512MB storage `mount` - optimized for larger file sizes and longer videos with 5GB for source footage and 512MB for output render",
+      "enum": [
+       "local",
+       "mount"
+      ]
+     },
+     "output": {
+      "type": "object",
+      "description": "The output format, render range and type of media to generate."
+     },
+     "timeline": {
+      "type": "object",
+      "description": "A timeline represents the contents of a video edit over time, an audio edit over time, in seconds, or an image layout. A timeline consists of layers called tracks. Tracks are composed of titles, images, audio, html or video segments referred to as clips which are placed along the track at specific starting point and lasting for a specific amount of time."
+     }
+    },
+    "required": [
+     "output",
+     "timeline"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.shotstack.io/{version}/render",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "callback",
+     "disk",
+     "output",
+     "timeline"
+    ],
+    "body_format": "json"
+   }
+  }
+ ]
+}

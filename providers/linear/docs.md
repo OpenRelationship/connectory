@@ -16,6 +16,19 @@ vouches for**: read it, then read their reference.
 
 > Linear is a purpose-built tool for planning and building products. Meet the system for modern software development. Streamline issues, projects, and product roadmaps.
 
+> For agents: connect to the Linear MCP server at https://mcp.linear.app/mcp to read and change issues, projects, and documents. Setup guide: https://linear.app/docs/mcp.md. Index of all docs: https://linear.app/llms.txt.
+
+Each page on linear.app is also available as Markdown. Add `.md` to the URL (use `/index.md` for the homepage), or send the `Accept: text/markdown` header.
+
+## Website
+
+- [Built for scale – Linear 2022 Release](https://linear.app/releases/2022.md): Introducing Roadmap improvements, Analytical Reporting, Notion integration, Cycle Insights, Label Groups, and more.
+- [Migration guide](https://linear.app/switch/migration-guide.md): Step-by-step instructions and considerations for a seamless transition to Linear.
+- [Running a pilot](https://linear.app/switch/pilot-guide.md): Run a pilot program to evaluate if Linear is the right fit for your organization.
+- [Pitching Linear](https://linear.app/switch/pitch-guide.md): Walk important stakeholders in your organization through the benefits of Linear.
+
+## Learn
+
 ## Documentation
 
 Get an overview of Linear's features, integrations, and how to use them.
@@ -24,42 +37,32 @@ Get an overview of Linear's features, integrations, and how to use them.
 
 - [Start Guide](https://linear.app/docs/start-guide.md)
 
-### Account
+### Intake
 
-### AI
+### Planning
 
-### Your sidebar
+### Issues and cycles
 
-### Teams
+### Reviews
 
-### Issues
+### Agents and automation
 
-### Issue properties
+### Insights and outcomes
 
-### Projects
-
-### Initiatives
-
-### Cycles
-
-### Views
-
-### Find and filter
-
-### Linear Asks
+### Working in Linear
 
 ### Integrations
 
-- [Integration Directory](https://linear.app/docs/integration-directory.md)
 - [GitHub](https://linear.app/docs/github-integration.md)
+- [Integration Directory](https://linear.app/docs/integration-directory.md)
 
-### Analytics
-
-### Administration
+### Workspace management
 
 - [API and Webhooks](https://linear.app/docs/api-and-webhooks.md)
 
 ### Importers
+
+- [Import Guide](https://linear.app/docs/import-issues.md)
 
 ## Developers
 

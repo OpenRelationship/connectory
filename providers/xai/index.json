@@ -310,6 +310,13 @@
       "type": "string",
       "description": ""
      },
+     "deferred": {
+      "type": [
+       "boolean",
+       "null"
+      ],
+      "description": "If set, the request returns immediately with a `request_id` and the edit is generated in the background. Poll `GET /v1/images/{request_id}` for the result. Only `response_format: \"url\"` is supported in this mode."
+     },
      "image": {
       "type": "string",
       "description": ""
@@ -331,6 +338,10 @@
        "null"
       ],
       "description": "Number of image edits to be generated."
+     },
+     "output": {
+      "type": "string",
+      "description": ""
      },
      "prompt": {
       "type": "string",
@@ -371,10 +382,12 @@
     "header": [],
     "body": [
      "aspect_ratio",
+     "deferred",
      "image",
      "images",
      "model",
      "n",
+     "output",
      "prompt",
      "resolution",
      "response_format",
@@ -625,6 +638,13 @@
       "type": "string",
       "description": ""
      },
+     "deferred": {
+      "type": [
+       "boolean",
+       "null"
+      ],
+      "description": "If set, the request returns immediately with a `request_id` and the image is generated in the background. Poll `GET /v1/images/{request_id}` for the result. Only `response_format: \"url\"` is supported in this mode."
+     },
      "model": {
       "type": [
        "string",
@@ -638,6 +658,10 @@
        "null"
       ],
       "description": "Number of images to be generated"
+     },
+     "output": {
+      "type": "string",
+      "description": ""
      },
      "prompt": {
       "type": "string",
@@ -676,8 +700,10 @@
     "header": [],
     "body": [
      "aspect_ratio",
+     "deferred",
      "model",
      "n",
+     "output",
      "prompt",
      "resolution",
      "response_format",
@@ -708,6 +734,10 @@
      "image": {
       "type": "string",
       "description": ""
+     },
+     "keyframes": {
+      "type": "array",
+      "description": "Optional mid-video keyframe anchors, strictly between the endpoint pins (`image` as the first frame, `last_frame` as the last). Each entry pins an image to appear literally at its timestamp. Only supported by select video models; at most 4 entries."
      },
      "model": {
       "type": [
@@ -760,6 +790,7 @@
      "aspect_ratio",
      "duration",
      "image",
+     "keyframes",
      "model",
      "output",
      "prompt",
@@ -873,6 +904,13 @@
        "null"
       ],
       "description": "(Not supported by reasoning models) Number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the model's likelihood to repeat the same line verbatim."
+     },
+     "guidelines": {
+      "type": [
+       "array",
+       "null"
+      ],
+      "description": "Per-category instructions for model output. See [`Guideline`]. Omitted requests leave this unset. A request whose guidelines cannot be applied, for example on a multi-agent model or with `stop`, fails with 400."
      },
      "logit_bias": {
       "type": [
@@ -994,7 +1032,7 @@
        "number",
        "null"
       ],
-      "description": "What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic."
+      "description": "What sampling temperature to use, between 0 and 2. Values above 1 are sampled at 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic."
      },
      "tool_choice": {
       "type": "string",
@@ -1005,7 +1043,7 @@
        "array",
        "null"
       ],
-      "description": "A list of tools the model may call in JSON-schema. Currently, only functions are supported as a tool. Use this to provide a list of functions the model may generate JSON inputs for. A max of 350 functions are supported."
+      "description": "A list of tools the model may call in JSON-schema. Currently, only functions are supported as a tool. Use this to provide a list of functions the model may generate JSON inputs for. A max of 1000 functions are supported."
      },
      "top_logprobs": {
       "type": [
@@ -1019,7 +1057,7 @@
        "number",
        "null"
       ],
-      "description": "An alternative to sampling with `temperature`, called nucleus sampling, where the model considers the results of the tokens with `top_p` probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered. It is generally recommended to alter this or `temperature` but not both."
+      "description": "An alternative to sampling with `temperature`, called nucleus sampling, where the model considers the results of the tokens with `top_p` probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered. It is generally recommended to alter this or `temperature` but not both. Values above the model's default top_p, 0.95 for Grok models, are sampled at that defau"
      },
      "user": {
       "type": [
@@ -1044,6 +1082,7 @@
     "body": [
      "deferred",
      "frequency_penalty",
+     "guidelines",
      "logit_bias",
      "logprobs",
      "max_completion_tokens",
@@ -1120,7 +1159,7 @@
        "number",
        "null"
       ],
-      "description": "What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. It may not work well with reasoning models."
+      "description": "What sampling temperature to use, between 0 and 2. Values above 1 are sampled at 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. It may not work well with reasoning models."
      },
      "tool_choice": {
       "type": "string",
@@ -1131,7 +1170,7 @@
        "array",
        "null"
       ],
-      "description": "A list of tools the model may call in JSON-schema. Currently, only functions are supported as a tool. Use this to provide a list of functions the model may generate JSON inputs for. A max of 350 functions are supported."
+      "description": "A list of tools the model may call in JSON-schema. Currently, only functions are supported as a tool. Use this to provide a list of functions the model may generate JSON inputs for. A max of 1000 functions are supported."
      },
      "top_k": {
       "type": [
@@ -1145,7 +1184,7 @@
        "number",
        "null"
       ],
-      "description": "An alternative to sampling with `temperature`, called nucleus sampling, where the model considers the results of the tokens with `top_p` probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered. It is generally recommended to alter this or `temperature` but not both."
+      "description": "An alternative to sampling with `temperature`, called nucleus sampling, where the model considers the results of the tokens with `top_p` probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered. It is generally recommended to alter this or `temperature` but not both. Values above the model's default top_p, 0.95 for Grok models, are sampled at that defau"
      }
     },
     "required": []
@@ -1194,6 +1233,13 @@
       ],
       "description": "Optional context-management directives (e.g. compaction). Parsed but not yet executed."
      },
+     "guidelines": {
+      "type": [
+       "array",
+       "null"
+      ],
+      "description": "Per-category instructions for model output. See [`Guideline`]. Omitted requests leave this unset. A request whose guidelines cannot be applied, for example on a multi-agent model or with `stop`, fails with 400."
+     },
      "include": {
       "type": [
        "array",
@@ -1224,7 +1270,7 @@
        "integer",
        "null"
       ],
-      "description": "Max number of tokens that can be generated in a response. This includes both output and reasoning tokens. Defaults to 128,000 when unset; set a larger value to allow longer generations."
+      "description": "Max number of tokens that can be generated in a response. Only applies to visible output tokens (i.e. does not apply to tokens used for reasoning or function calls). Defaults to 128,000 when unset; set a larger value to allow longer generations."
      },
      "max_turns": {
       "type": [
@@ -1278,7 +1324,7 @@
        "string",
        "null"
       ],
-      "description": "reasoning_effort alternative to reasoning configuration. This is a non-standard field meant to ease user experience. We only look at this if the reasoning field is unset."
+      "description": "Non-standard alternative to `reasoning.effort` that accepts the same values. We only look at this if the reasoning field is unset."
      },
      "safety_identifier": {
       "type": [
@@ -1314,7 +1360,7 @@
        "number",
        "null"
       ],
-      "description": "What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic."
+      "description": "What sampling temperature to use, between 0 and 2. Values above 1 are sampled at 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic."
      },
      "text": {
       "type": "string",
@@ -1329,7 +1375,7 @@
        "array",
        "null"
       ],
-      "description": "A list of tools the model may call in JSON-schema. Currently, only functions and web search are supported as tools. A max of 350 tools are supported.`web_search_preview` tool, if specified, will be overridden by `search_parameters`."
+      "description": "A list of tools the model may call in JSON-schema. Currently, only functions and web search are supported as tools. A max of 1000 tools are supported."
      },
      "top_k": {
       "type": [
@@ -1350,7 +1396,7 @@
        "number",
        "null"
       ],
-      "description": "An alternative to sampling with `temperature`, called nucleus sampling, where the model considers the results of the tokens with `top_p` probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered. It is generally recommended to alter this or `temperature` but not both."
+      "description": "An alternative to sampling with `temperature`, called nucleus sampling, where the model considers the results of the tokens with `top_p` probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered. It is generally recommended to alter this or `temperature` but not both. Values above the model's default top_p, 0.95 for Grok models, are sampled at that defau"
      },
      "truncation": {
       "type": [
@@ -1380,6 +1426,7 @@
     "body": [
      "background",
      "context_management",
+     "guidelines",
      "include",
      "input",
      "instructions",
@@ -1450,6 +1497,34 @@
    "request": {
     "method": "GET",
     "url": "https://api.x.ai/v1/chat/deferred-completion/{request_id}",
+    "path": [
+     "request_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "xai.handle_get_deferred_image_request",
+   "name": "`get  v1 images {request id}`: 202 while pending, 200 with `data` when\ndone or with `error` when failed (a failed generation is a body, not an\nhttp error, so pollers do not retry storm)",
+   "description": "`GET /v1/images/{request_id}`: 202 while pending, 200 with `data` when done or with `error` when failed (a failed generation is a body, not an HTTP error, so pollers do not retry-storm).",
+   "input": {
+    "type": "object",
+    "properties": {
+     "request_id": {
+      "type": "string",
+      "description": "The deferred request id returned by a previous image request."
+     }
+    },
+    "required": [
+     "request_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.x.ai/v1/images/{request_id}",
     "path": [
      "request_id"
     ],

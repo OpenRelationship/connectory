@@ -32,6 +32,34 @@
    }
   },
   {
+   "slug": "perplexity.cancel_batch",
+   "name": "Cancel a batch",
+   "description": "Moves the batch to `cancelling`; it becomes `cancelled` once running items stop. Completed items stay in the output file and are billed. Cancelling a cancelled or cancelling batch returns it unchanged.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "batch_id": {
+      "type": "string",
+      "description": "Batch identifier (batch_...)"
+     }
+    },
+    "required": [
+     "batch_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.perplexity.ai/v1/batches/{batch_id}/cancel",
+    "path": [
+     "batch_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "perplexity.chat_completions_chat_completions_post",
    "name": "Create chat completion",
    "description": "Generate a chat completion response for the given conversation.",
@@ -196,8 +224,71 @@
    }
   },
   {
+   "slug": "perplexity.context",
+   "name": "Fetch url context",
+   "description": "Fetch Markdown, HTML, links, highlights, and page metadata for 1 to 50 URLs, and optionally score each page with criteria. The response has one result per input URL, in input order. Check each result's status.type for per-URL failures. See the [Context API quickstart](/docs/context/quickstart), [Formats & Freshness](/docs/context/formats-and-freshness), and [Score Pages with Criteria](/docs/contex",
+   "input": {
+    "type": "object",
+    "properties": {
+     "urls": {
+      "type": "array",
+      "description": "1 to 50 http or https URLs. Your usage tier can lower the maximum. A string that is not an absolute http or https URL does not fail the request: its result has status.type invalid_url."
+     },
+     "formats": {
+      "type": "array",
+      "description": "What to return besides metadata, which is always returned for a page with content. highlights requires the highlights object. [] returns metadata only."
+     },
+     "highlights": {
+      "type": "object",
+      "description": "Highlights settings. Required when formats includes highlights, and allowed only then."
+     },
+     "if_modified_since": {
+      "type": "string",
+      "description": "A metadata.last_modified value from an earlier response, in IMF-fixdate form such as Thu, 03 Dec 1992 08:37:20 GMT. Requires exactly one URL and max_age_seconds 0. If the page has not changed since then, its result has status.type not_modified and no content, so keep the content you already have."
+     },
+     "max_age_seconds": {
+      "type": "integer",
+      "description": "Maximum age of a stored copy to accept, up to 63072000 (two years). 0 always fetches the page live."
+     },
+     "cache_only": {
+      "type": "boolean",
+      "description": "When true, answer only from stored copies at most max_age_seconds old and never fetch live. A URL without one has status.type no_content. Requires max_age_seconds above 0."
+     },
+     "timeout_ms": {
+      "type": "integer",
+      "description": "Time budget for fetching the pages. URLs are fetched in parallel, and a URL that does not finish in time has status.type crawl_timeout while the rest keep their content. The response can take slightly longer than this budget. With criteria, the maximum is 95000, and scoring may add up to 15 seconds."
+     },
+     "criteria": {
+      "type": "object",
+      "description": "Decision questions to score each page with, keyed by question ID. 1 to 5 questions. IDs must match [A-Za-z0-9_-]{1,64}, and query is reserved. Scoring never filters, reorders, or drops results."
+     }
+    },
+    "required": [
+     "urls"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.perplexity.ai/v1/context",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "urls",
+     "formats",
+     "highlights",
+     "if_modified_since",
+     "max_age_seconds",
+     "cache_only",
+     "timeout_ms",
+     "criteria"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "perplexity.contextualized_embeddings_v1_contextualizedembeddings_post",
-   "name": "Create contextualized embeddings",
+   "name": "Create contextualized embeddings (v1)",
    "description": "Generate contextualized embeddings for document chunks. Chunks from the same document share context awareness, improving retrieval quality for document-based applications.",
    "input": {
     "type": "object",
@@ -272,31 +363,39 @@
      },
      "max_output_tokens": {
       "type": "integer",
-      "description": "Maximum tokens to generate. This is a shared optional Agent API request parameter, but it is required when using anthropic/* models. If omitted for an Anthropic model, the API returns HTTP 400 with: validation failed: max_output_tokens is required when using Anthropic models."
+      "description": "Optional total output-token budget across the run, including for Anthropic models. When neither the request nor its effort level or saved profile supplies a budget, each generation can produce up to 128,000 output tokens, capped by the model's supported limit."
      },
      "max_steps": {
       "type": "integer",
-      "description": "Maximum number of research loop steps. If provided, overrides the preset's max_steps value. For requests that specify model or models without a preset, the default is 1. Set max_steps to at least 3 when using finance_search with a direct model so the agent has enough steps to initialize and run the tool. Must be >= 1 if specified. Maximum allowed is 100."
+      "description": "Maximum number of research loop steps. If provided, overrides the effort level's max_steps value. For requests that specify model or models without an effort level, the default is 1. Set max_steps to at least 3 when using finance_search with a direct model so the agent has enough steps to initialize and run the tool. Must be >= 1 if specified. Maximum allowed is 500."
      },
      "model": {
       "type": "string",
-      "description": "Model ID in provider/model format (e.g., \"openai/gpt-5\", \"anthropic/claude-sonnet-4-6\"). If models is also provided, models takes precedence. Required if neither models nor preset is provided."
+      "description": "Model ID in provider/model format (e.g., \"openai/gpt-5.6-terra\", \"anthropic/claude-sonnet-5-5\"). If models is also provided, models takes precedence. Required if neither models nor effort is provided."
      },
      "models": {
       "type": "array",
       "description": "Model fallback chain. Each model is in provider/model format. Models are tried in order until one succeeds. Max 5 models allowed. If set, takes precedence over single model field. The response.model will reflect the model that actually succeeded."
      },
-     "preset": {
+     "effort": {
       "type": "string",
-      "description": "Preset configuration name (e.g., \"fast\", \"low\", \"medium\", \"high\", \"xhigh\"). Pre-configured model with system prompt and search parameters. Required if model is not provided."
+      "description": "Effort to run, as `name`, `name@latest`, or `name@` (e.g., \"fast\", \"low\", \"fast@2026-09-29.0\"). An effort level is a pre-configured model with system prompt and search parameters. `name` and `name@latest` run the active version. `name@` runs that exact version. An `effort` value returned on a response pins that configuration only when it carries a version. A returned value without a version runs t"
      },
      "profile": {
       "type": "object",
-      "description": "Saved, versioned configuration to run with. The version is resolved when the request is admitted. Cannot be combined with preset."
+      "description": "Saved, versioned configuration to run with. The version is resolved when the request is admitted. Cannot be combined with effort."
      },
      "previous_response_id": {
       "type": "string",
       "description": "OpenAI-compatible previous response id for multi-turn response chains. When set, the new response continues from the completed prior response's saved state. The prior response must belong to the same account and have completed."
+     },
+     "prompt_cache_key": {
+      "type": "string",
+      "description": "Stable key for prompt cache affinity. Send the same key on requests that share a prompt prefix, including retries and multi-turn conversations, so later requests can read the cached prefix. The key is scoped to your account and does not affect model routing. See [Prompt Caching](/docs/agent-api/prompt-caching)."
+     },
+     "prompt_cache_options": {
+      "type": "object",
+      "description": "Prompt cache options. `implicit` (default) keeps the default cache breakpoints and provider automatic caching. `explicit` turns both off, so only `input_text` parts marked with `prompt_cache_breakpoint` are cached; with no marks, the request makes no cache writes. See [Prompt Caching](/docs/agent-api/prompt-caching)."
      },
      "reasoning": {
       "type": "object",
@@ -317,6 +416,10 @@
      "tools": {
       "type": "array",
       "description": "Tools available to the model"
+     },
+     "tool_choice": {
+      "type": "string",
+      "description": "Tool choice strategy. Use `{\"type\":\"image_search\"}` to force image search."
      },
      "skills": {
       "type": "array",
@@ -350,14 +453,17 @@
      "max_steps",
      "model",
      "models",
-     "preset",
+     "effort",
      "profile",
      "previous_response_id",
+     "prompt_cache_key",
+     "prompt_cache_options",
      "reasoning",
      "response_format",
      "store",
      "stream",
      "tools",
+     "tool_choice",
      "skills",
      "temperature",
      "top_p"
@@ -399,6 +505,160 @@
    }
   },
   {
+   "slug": "perplexity.create_batch",
+   "name": "Create a batch",
+   "description": "Creates a batch from an uploaded input file. The batch starts in `validating`. Send an `Idempotency-Key` header to make retries safe: a repeat with the same key returns the original batch. `output_expires_after` is not supported and is rejected with a 400; output and error files are kept 30 days.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "Idempotency-Key": {
+      "type": "string",
+      "description": "Unique key for this create; a repeat returns the original batch"
+     },
+     "input_file_id": {
+      "type": "string",
+      "description": "Id of a file uploaded with `purpose=batch`"
+     },
+     "endpoint": {
+      "type": "string",
+      "description": "Endpoint every line in the input file targets",
+      "enum": [
+       "/v1/responses"
+      ]
+     },
+     "completion_window": {
+      "type": "string",
+      "description": "Target completion time; `24h` is the only value and the default",
+      "enum": [
+       "24h"
+      ]
+     },
+     "metadata": {
+      "type": "object",
+      "description": "Up to 16 key value pairs; keys up to 64 characters, values up to 512"
+     }
+    },
+    "required": [
+     "endpoint",
+     "input_file_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.perplexity.ai/v1/batches",
+    "path": [],
+    "query": [],
+    "header": [
+     "Idempotency-Key"
+    ],
+    "body": [
+     "input_file_id",
+     "endpoint",
+     "completion_window",
+     "metadata"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "perplexity.create_file",
+   "name": "Upload a file",
+   "description": "Uploads a JSONL batch input file, up to 50,000 lines and 200 MB. Every line is validated before the file is stored. Files expire after 30 days; `expires_after` is not supported and is rejected with a 400.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "file": {
+      "type": "string",
+      "description": "The JSONL file"
+     },
+     "purpose": {
+      "type": "string",
+      "description": "Only `batch` is accepted",
+      "enum": [
+       "batch"
+      ]
+     }
+    },
+    "required": [
+     "file",
+     "purpose"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.perplexity.ai/v1/files",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "file",
+     "purpose"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "perplexity.create_monitor",
+   "name": "Create a monitor",
+   "description": "Creates an `active` monitor. Its first run is due immediately and starts asynchronously; retrieve results with Get a run or List a monitor's runs. Omit `webhook` or set it to null to retrieve results without notifications. If you configure a webhook without a `secret`, this response returns the generated secret in `webhook.secret`. Store it to verify deliveries. A secret you supply is never return",
+   "input": {
+    "type": "object",
+    "properties": {
+     "Idempotency-Key": {
+      "type": "string",
+      "description": "Unique key for this create. A repeat with the same key and the same body returns the monitor that the first request created, in its current state and without the secret; the same key with a different body is a 400."
+     },
+     "name": {
+      "type": "string",
+      "description": ""
+     },
+     "goal": {
+      "type": "string",
+      "description": "What counts as worth an alert; each candidate is judged against it"
+     },
+     "targets": {
+      "type": "array",
+      "description": "Exactly one `search` target, or 1 to 10 `page` targets with distinct URLs"
+     },
+     "schedule": {
+      "type": "string",
+      "description": ""
+     },
+     "webhook": {
+      "type": "string",
+      "description": ""
+     },
+     "metadata": {
+      "type": "object",
+      "description": "Up to 16 key value pairs; keys 1 to 64 characters, values up to 512 characters (Unicode code points, valid UTF-8). Echoed on every webhook."
+     }
+    },
+    "required": [
+     "name",
+     "schedule",
+     "targets"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.perplexity.ai/v1/monitors",
+    "path": [],
+    "query": [],
+    "header": [
+     "Idempotency-Key"
+    ],
+    "body": [
+     "name",
+     "goal",
+     "targets",
+     "schedule",
+     "webhook",
+     "metadata"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "perplexity.create_skill",
    "name": "Create a skill",
    "description": "Creates a skill from a zip bundle. The bundle must contain a `SKILL.md` that provides the skill name and description; those fields are read from the bundle, not from the request.",
@@ -411,6 +671,115 @@
     "method": "POST",
     "url": "https://api.perplexity.ai/v1/skills",
     "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "perplexity.decisions_v1_decisions_post",
+   "name": "Answer questions",
+   "description": "Evaluate one or more named questions against the content in `state`. Mix `noul`, `choice`, `score`, and `locate` questions in one request; the response returns one answer per question under the same name, plus the model name and token usage. Set `model` to `pplx-decider-v1.3`, `pplx-decider-flash-v1.3`, `pplx-decider-v1.2` or `pplx-decider-flash-v1.2`, or to the alias `pplx-decider-latest` or `ppl",
+   "input": {
+    "type": "object",
+    "properties": {
+     "model": {
+      "type": "string",
+      "description": "The decision model: `pplx-decider-v1.3` (27B, $0.02 per million input tokens), `pplx-decider-flash-v1.3` (4B, $0.01 per million input tokens), `pplx-decider-v1.2` (27B, $0.02 per million input tokens) or `pplx-decider-flash-v1.2` (4B, $0.01 per million input tokens). The aliases `pplx-decider-latest` and `perplexity/pplx-decider-latest` select `pplx-decider-v1.3`, and `pplx-decider-flash-latest` a"
+     },
+     "state": {
+      "type": "string",
+      "description": "The content every question in the request refers to: a string, an object, or an array. Images can appear anywhere in `state` as OpenAI-style `image_url` parts with base64 PNG, JPEG, or WebP data URLs and are read in place. Up to 8 images per question. With `mode: \"web_grounding\"`, a single page URL is fetched and replaced with its text before web search."
+     },
+     "questions": {
+      "type": "object",
+      "description": "Questions keyed by a non-empty name you choose. The response uses the same names. At least one question. With `mode` `web_grounding`, at most 100; more returns `400` with `param` `questions`."
+     },
+     "mode": {
+      "type": "string",
+      "description": "Set to `web_grounding` to search the web before the model answers. For a URL-only state, the API first fetches the page and replaces the URL with its text. It then runs one Fast Search per question, up to 100 questions, and adds the top results to `state`. The response lists search evidence in `search_results` and fetched page text in `fetched_results`. If no search returns a result, the model ans",
+      "enum": [
+       "web_grounding"
+      ]
+     },
+     "max_staleness": {
+      "type": "integer",
+      "description": "Accepted but currently ignored: it does not check the age of a fetched page or trigger a crawl. A non-negative integer is accepted, so existing requests that send it keep working."
+     }
+    },
+    "required": [
+     "model",
+     "questions",
+     "state"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.perplexity.ai/v1/decisions",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "model",
+     "state",
+     "questions",
+     "mode",
+     "max_staleness"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "perplexity.delete_file",
+   "name": "Delete a file",
+   "description": "Deletes a file. Batches already created from it are not affected.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "file_id": {
+      "type": "string",
+      "description": "File identifier (file_...)"
+     }
+    },
+    "required": [
+     "file_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.perplexity.ai/v1/files/{file_id}",
+    "path": [
+     "file_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "perplexity.delete_monitor",
+   "name": "Delete a monitor",
+   "description": "Deletes the monitor, its run history, and its state, and stops scheduling new runs.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "monitor_id": {
+      "type": "string",
+      "description": "Monitor identifier (mon_...)"
+     }
+    },
+    "required": [
+     "monitor_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.perplexity.ai/v1/monitors/{monitor_id}",
+    "path": [
+     "monitor_id"
+    ],
     "query": [],
     "header": [],
     "body": [],
@@ -523,25 +892,47 @@
   {
    "slug": "perplexity.embeddings_v1_embeddings_post",
    "name": "Create embeddings",
-   "description": "Generate embeddings for a list of texts. Use these embeddings for semantic search, clustering, and other machine learning applications.",
+   "description": "Generate embeddings for texts, pre-chunked documents (pplx-embed-v2), or images (pplx-embed-v2). Use these embeddings for semantic search, clustering, and other machine learning applications.",
    "input": {
     "type": "object",
     "properties": {
      "input": {
       "type": "string",
-      "description": "Input text to embed, encoded as a string or array of strings. Maximum 512 texts per request. Each input must not exceed 32K tokens. All inputs in a single request must not exceed 120,000 tokens combined. Empty strings are not allowed."
+      "description": "Input to embed. pplx-embed-v2 models accept a string, an array of strings, pre-chunked documents (an array of string arrays), or image objects. pplx-embed-v1 models accept only a string or array of strings; a request contains only text or only images. Maximum 512 texts or documents per request. Each text or document must not exceed 32K tokens. All text in a single request must not exceed 120,000 t"
      },
      "model": {
       "type": "string",
-      "description": "The embedding model to use",
+      "description": "The embedding model to use. Start with pplx-embed-v2-context-0.6b. v1 models will be phased out during 2027.",
       "enum": [
+       "pplx-embed-v2-context-0.6b",
+       "pplx-embed-v2-context-9b",
        "pplx-embed-v1-0.6b",
        "pplx-embed-v1-4b"
       ]
      },
+     "input_type": {
+      "type": "string",
+      "description": "Required for pplx-embed-v2 models. Use query for search queries and document for content you index. Pre-chunked documents and images require document.",
+      "enum": [
+       "query",
+       "document"
+      ]
+     },
+     "num_chunks": {
+      "type": "integer",
+      "description": "pplx-embed-v2 image inputs only. Splits each image into this many horizontal regions and returns one embedding per region. Small images can return fewer regions.",
+      "enum": [
+       1,
+       2,
+       4,
+       8,
+       16,
+       32
+      ]
+     },
      "dimensions": {
       "type": "integer",
-      "description": "Number of dimensions for output embeddings (Matryoshka). Range: 128-1024 for pplx-embed-v1-0.6b, 128-2560 for pplx-embed-v1-4b. Defaults to full dimensions (1024 or 2560)."
+      "description": "Output dimensions. v2: 1024 for pplx-embed-v2-context-0.6b (not MRL-trained); 1024 or 2048 for pplx-embed-v2-context-9b (MRL). v1: multiples of 8 from 128 to 1024 for pplx-embed-v1-0.6b or 2560 for pplx-embed-v1-4b. Defaults to the model's full dimensions."
      },
      "encoding_format": {
       "type": "string",
@@ -566,9 +957,365 @@
     "body": [
      "input",
      "model",
+     "input_type",
+     "num_chunks",
      "dimensions",
      "encoding_format"
     ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "perplexity.gateway_create_chat_completion",
+   "name": "Create chat completion",
+   "description": "Send a conversation to any Orchestrator API model using the OpenAI Chat Completions schema. Set `stream: true` to receive server-sent events; add `stream_options: {\"include_usage\": true}` to get token usage in the final chunk.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "routing": {
+      "type": "string",
+      "description": "Inline routing for `model: \"perplexity/auto\"` only. Omit this field or set it to null to use the default policy. The serialized routing object must be at most 16384 bytes. Models must be available in the Orchestrator catalog. Routes incompatible with the request are excluded; if the default model is incompatible, the first compatible route model becomes the default. The request fails if no model i"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.perplexity.ai/orchestrator/v1/chat/completions",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "routing"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "perplexity.gateway_create_message",
+   "name": "Create message",
+   "description": "Send a conversation to any Orchestrator API model using the Anthropic Messages schema. Set `stream: true` to receive server-sent events. Authenticate with your Perplexity API key in `Authorization: Bearer` or in the Anthropic SDK's default `x-api-key` header.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "model": {
+      "type": "string",
+      "description": "A model id from the Orchestrator catalog, or `perplexity/auto` to select a model for each request. With Auto, omit `routing` to use the default policy or provide an inline routing object."
+     },
+     "max_tokens": {
+      "type": "integer",
+      "description": "Maximum number of tokens to generate. Required by the Messages API."
+     },
+     "messages": {
+      "type": "array",
+      "description": ""
+     },
+     "system": {
+      "type": "string",
+      "description": "System prompt as plain text or an array of text blocks."
+     },
+     "temperature": {
+      "type": "number",
+      "description": ""
+     },
+     "top_p": {
+      "type": "number",
+      "description": ""
+     },
+     "top_k": {
+      "type": "integer",
+      "description": "Restricts sampling to the K most likely tokens at each step. Must be at least 1."
+     },
+     "stop_sequences": {
+      "type": "array",
+      "description": ""
+     },
+     "stream": {
+      "type": "boolean",
+      "description": "When true, respond with server-sent events."
+     },
+     "tools": {
+      "type": "array",
+      "description": ""
+     },
+     "tool_choice": {
+      "type": "string",
+      "description": ""
+     },
+     "metadata": {
+      "type": "object",
+      "description": ""
+     },
+     "thinking": {
+      "type": "string",
+      "description": ""
+     },
+     "service_tier": {
+      "type": "string",
+      "description": "Accepts `auto` or `standard_only`; other values return a 400. Neither value changes processing. `anthropic/` responses report `usage.service_tier` as `standard`.",
+      "enum": [
+       "auto",
+       "standard_only"
+      ]
+     },
+     "cache_control": {
+      "type": "object",
+      "description": "Ephemeral cache breakpoint. Set `ttl` to `5m` or `1h`. Cache writes with a `1h` TTL are billed at 2x the base input rate."
+     },
+     "output_config": {
+      "type": "object",
+      "description": ""
+     },
+     "context_management": {
+      "type": "object",
+      "description": "Requires the `anthropic-beta: context-management-2025-06-27` request header; without it, the request returns a 400. On `anthropic/` models, edits are applied and reported in the response's `context_management.applied_edits`. Other models accept the field without applying it."
+     },
+     "container": {
+      "type": "string",
+      "description": "Not supported. Requests that set it return a 400."
+     },
+     "inference_geo": {
+      "type": "string",
+      "description": "Not supported. Requests that set it return a 400."
+     },
+     "mcp_servers": {
+      "type": "string",
+      "description": "Not supported. Requests that set it return a 400."
+     },
+     "speed": {
+      "type": "string",
+      "description": "\"standard\" is inert; \"fast\" is rejected (no fast-mode routing).",
+      "enum": [
+       "standard",
+       "fast"
+      ]
+     },
+     "fallbacks": {
+      "type": "string",
+      "description": "Not supported. Requests that set it return a 400."
+     },
+     "fallback_credit_token": {
+      "type": "string",
+      "description": "Rejected by validation together with fallbacks."
+     },
+     "routing": {
+      "type": "string",
+      "description": "Inline routing for `model: \"perplexity/auto\"` only. Omit this field or set it to null to use the default policy. The serialized routing object must be at most 16384 bytes. Models must be available in the Orchestrator catalog. Routes incompatible with the request are excluded; if the default model is incompatible, the first compatible route model becomes the default. The request fails if no model i"
+     }
+    },
+    "required": [
+     "max_tokens",
+     "messages",
+     "model"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.perplexity.ai/orchestrator/v1/messages",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "model",
+     "max_tokens",
+     "messages",
+     "system",
+     "temperature",
+     "top_p",
+     "top_k",
+     "stop_sequences",
+     "stream",
+     "tools",
+     "tool_choice",
+     "metadata",
+     "thinking",
+     "service_tier",
+     "cache_control",
+     "output_config",
+     "context_management",
+     "container",
+     "inference_geo",
+     "mcp_servers",
+     "speed",
+     "fallbacks",
+     "fallback_credit_token",
+     "routing"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "perplexity.gateway_create_response",
+   "name": "Create response",
+   "description": "Generate a model response using the OpenAI Responses schema. Set `stream: true` to receive typed server-sent events followed by `data: [DONE]`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "model": {
+      "type": "string",
+      "description": "A model id from the Orchestrator catalog, or `perplexity/auto` to select a model for each request. With Auto, omit `routing` to use the default policy or provide an inline routing object."
+     },
+     "input": {
+      "type": "string",
+      "description": "Context to provide to the model for the scope of this request. May either be a string or an array of input items. If a string is provided, it is interpreted as a user message."
+     },
+     "include": {
+      "type": "array",
+      "description": ""
+     },
+     "tools": {
+      "type": "string",
+      "description": "A list of tools that the model may call while generating the response."
+     },
+     "tool_choice": {
+      "type": "string",
+      "description": "Controls which tool the model should use, if any."
+     },
+     "metadata": {
+      "type": "object",
+      "description": "Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format, and querying for objects via API or the dashboard. Keys are strings with a maximum length of 64 characters. Values are strings with a maximum length of 512 characters."
+     },
+     "text": {
+      "type": "object",
+      "description": ""
+     },
+     "temperature": {
+      "type": "string",
+      "description": "Sampling temperature to use, between 0 and 2. Higher values make the output more random."
+     },
+     "top_p": {
+      "type": "string",
+      "description": "Nucleus sampling parameter, between 0 and 1. The model considers only the tokens with the top cumulative probability."
+     },
+     "parallel_tool_calls": {
+      "type": "string",
+      "description": "Whether the model may call multiple tools in parallel."
+     },
+     "stream": {
+      "type": "boolean",
+      "description": "Whether to stream response events as server-sent events."
+     },
+     "max_output_tokens": {
+      "type": "string",
+      "description": "The maximum number of tokens the model may generate for this response."
+     },
+     "reasoning": {
+      "type": "object",
+      "description": "**gpt-5 and o-series models only** Configuration options for [reasoning models](https://platform.openai.com/docs/guides/reasoning)."
+     },
+     "safety_identifier": {
+      "type": "string",
+      "description": "A stable identifier used for safety monitoring and abuse detection."
+     },
+     "prompt_cache_key": {
+      "type": "string",
+      "description": "A key to use when reading from or writing to the prompt cache."
+     },
+     "truncation": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "disabled"
+      ]
+     },
+     "instructions": {
+      "type": "string",
+      "description": "Additional instructions to guide the model for this request."
+     },
+     "service_tier": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "auto",
+       "default",
+       "flex",
+       "priority"
+      ]
+     },
+     "routing": {
+      "type": "string",
+      "description": "Inline routing for `model: \"perplexity/auto\"` only. Omit this field or set it to null to use the default policy. The serialized routing object must be at most 16384 bytes. Models must be available in the Orchestrator catalog. Routes incompatible with the request are excluded; if the default model is incompatible, the first compatible route model becomes the default. The request fails if no model i"
+     }
+    },
+    "required": [
+     "input",
+     "model"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.perplexity.ai/orchestrator/v1/responses",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "model",
+     "input",
+     "include",
+     "tools",
+     "tool_choice",
+     "metadata",
+     "text",
+     "temperature",
+     "top_p",
+     "parallel_tool_calls",
+     "stream",
+     "max_output_tokens",
+     "reasoning",
+     "safety_identifier",
+     "prompt_cache_key",
+     "truncation",
+     "instructions",
+     "service_tier",
+     "routing"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "perplexity.gateway_list_models",
+   "name": "List models",
+   "description": "List the models available through the Orchestrator API, sorted by id. Each model includes its base token prices in `pricing` (USD per 1M tokens).",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.perplexity.ai/orchestrator/v1/models",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "perplexity.gateway_retrieve_model",
+   "name": "Retrieve model",
+   "description": "Retrieve one model by id, including its base token prices. Model ids contain a `/` (for example `perplexity/kimi-k3`); pass the full id in the path.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "model": {
+      "type": "string",
+      "description": "The model id, e.g. `perplexity/kimi-k3`."
+     }
+    },
+    "required": [
+     "model"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.perplexity.ai/orchestrator/v1/models/{model}",
+    "path": [
+     "model"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
     "body_format": "json"
    }
   },
@@ -593,6 +1340,34 @@
     "url": "https://api.perplexity.ai/v1/async/sonar/{api_request}",
     "path": [
      "api_request"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "perplexity.get_batch",
+   "name": "Retrieve a batch",
+   "description": "Retrieve a batch",
+   "input": {
+    "type": "object",
+    "properties": {
+     "batch_id": {
+      "type": "string",
+      "description": "Batch identifier (batch_...)"
+     }
+    },
+    "required": [
+     "batch_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.perplexity.ai/v1/batches/{batch_id}",
+    "path": [
+     "batch_id"
     ],
     "query": [],
     "header": [],
@@ -644,7 +1419,7 @@
      },
      "page": {
       "type": "string",
-      "description": "Opaque pagination cursor from a previous response's next_page. Valid only with the same query parameters it was issued for."
+      "description": "Opaque pagination cursor from a previous response's next_page. Keep the other query parameters unchanged to continue the same report."
      },
      "user_email": {
       "type": "string",
@@ -677,7 +1452,7 @@
   {
    "slug": "perplexity.get_computer_usage_analytics_v2",
    "name": "Usage analytics per member",
-   "description": "Returns your organization's Perplexity usage broken down per member, as daily buckets. Each day lists one row per member with usage that day, keyed by email. credit_usage carries the same Model and Credit Source breakdown as v1; query_volume carries Feature, Project and Comet. Uses the same organization analytics API key as v1. Only complete UTC days are returned; the in-progress day is never incl",
+   "description": "Returns your organization's Perplexity usage broken down per member, as daily buckets. Each day lists one row per member with usage that day, keyed by email. credit_usage returns each member's total credits and a Model breakdown; query_volume carries Feature, Project and Comet. Read the available axes from categories to determine which breakdowns are available. Uses the same organization analytics",
    "input": {
     "type": "object",
     "properties": {
@@ -710,7 +1485,7 @@
      },
      "page": {
       "type": "string",
-      "description": "Opaque pagination cursor from a previous response's next_page. Valid only with the same query parameters it was issued for."
+      "description": "Opaque pagination cursor from a previous response's next_page. Keep the other query parameters unchanged to continue the same report."
      }
     },
     "required": [
@@ -731,6 +1506,124 @@
      "limit",
      "page"
     ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "perplexity.get_file",
+   "name": "Retrieve a file",
+   "description": "Retrieve a file",
+   "input": {
+    "type": "object",
+    "properties": {
+     "file_id": {
+      "type": "string",
+      "description": "File identifier (file_...)"
+     }
+    },
+    "required": [
+     "file_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.perplexity.ai/v1/files/{file_id}",
+    "path": [
+     "file_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "perplexity.get_file_content",
+   "name": "Download file content",
+   "description": "Streams the raw bytes of an input, output, or error file.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "file_id": {
+      "type": "string",
+      "description": "File identifier (file_...)"
+     }
+    },
+    "required": [
+     "file_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.perplexity.ai/v1/files/{file_id}/content",
+    "path": [
+     "file_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "perplexity.get_monitor",
+   "name": "Retrieve a monitor",
+   "description": "Returns the monitor with its status, `next_run_at`, and last run.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "monitor_id": {
+      "type": "string",
+      "description": "Monitor identifier (mon_...)"
+     }
+    },
+    "required": [
+     "monitor_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.perplexity.ai/v1/monitors/{monitor_id}",
+    "path": [
+     "monitor_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "perplexity.get_monitor_run",
+   "name": "Get a run",
+   "description": "Returns one run with its changes and target errors. A run is visible as soon as run-now returns it.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "monitor_id": {
+      "type": "string",
+      "description": "Monitor identifier (mon_...)"
+     },
+     "run_id": {
+      "type": "string",
+      "description": "Run identifier (run_...)"
+     }
+    },
+    "required": [
+     "monitor_id",
+     "run_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.perplexity.ai/v1/monitors/{monitor_id}/runs/{run_id}",
+    "path": [
+     "monitor_id",
+     "run_id"
+    ],
+    "query": [],
     "header": [],
     "body": [],
     "body_format": "json"
@@ -764,6 +1657,57 @@
     ],
     "query": [
      "revision"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "perplexity.list_admin_audit_events_v1_admin_audit_events_get",
+   "name": "List audit events",
+   "description": "Returns the organization's audit events, newest first. Requires an **audit log API key** (scope `audit_logs:read`) created by an org admin under **Enterprise APIs \u2192 Audit API**; Sonar API keys are rejected with `403`. Without time parameters the endpoint covers the most recent 30 days; a single request can span at most 30 days. See the [Audit API guide](/docs/admin/audit-api) for key setup, pagina",
+   "input": {
+    "type": "object",
+    "properties": {
+     "limit": {
+      "type": "integer",
+      "description": "Maximum number of events to return in one page."
+     },
+     "start_time": {
+      "type": "string",
+      "description": "Inclusive lower bound on `created_at`, as an RFC 3339 timestamp with a timezone offset (for example `2026-10-01T00:00:00Z`). Defaults to 30 days before `end_time`."
+     },
+     "end_time": {
+      "type": "string",
+      "description": "Inclusive upper bound on `created_at`, as an RFC 3339 timestamp with a timezone offset. Defaults to the current time. The window between `start_time` and `end_time` cannot exceed 30 days."
+     },
+     "event_type": {
+      "type": "string",
+      "description": "Return only events of this type, for example `member_role_changed`. Required to see `audit_events_accessed` events, which the default feed omits."
+     },
+     "after_id": {
+      "type": "string",
+      "description": "Opaque cursor. Return events older than this cursor; pass the previous page's `last_id` to fetch the next older page. Cannot be combined with `before_id`."
+     },
+     "before_id": {
+      "type": "string",
+      "description": "Opaque cursor. Return events newer than this cursor; pass a saved `first_id` to fetch only events that arrived since. Cannot be combined with `after_id`."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.perplexity.ai/v1/admin/audit-events",
+    "path": [],
+    "query": [
+     "limit",
+     "start_time",
+     "end_time",
+     "event_type",
+     "after_id",
+     "before_id"
     ],
     "header": [],
     "body": [],
@@ -818,6 +1762,86 @@
    }
   },
   {
+   "slug": "perplexity.list_batches",
+   "name": "List batches",
+   "description": "Lists your organization's batches, newest first.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "limit": {
+      "type": "integer",
+      "description": "Maximum number of batches to return"
+     },
+     "after_id": {
+      "type": "string",
+      "description": "Batch id to start after, the `last_id` of the previous page"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.perplexity.ai/v1/batches",
+    "path": [],
+    "query": [
+     "limit",
+     "after_id"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "perplexity.list_files",
+   "name": "List files",
+   "description": "Lists your organization's files, both uploads and the output and error files batches write. Deleted and expired files are not listed.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "limit": {
+      "type": "integer",
+      "description": "Maximum number of files to return"
+     },
+     "after_id": {
+      "type": "string",
+      "description": "File id to start after, the `last_id` of the previous page"
+     },
+     "order": {
+      "type": "string",
+      "description": "Sort order, `desc` for newest first",
+      "enum": [
+       "asc",
+       "desc"
+      ]
+     },
+     "purpose": {
+      "type": "string",
+      "description": "Only list files with this purpose, `batch` for uploads or `batch_output` for output and error files",
+      "enum": [
+       "batch",
+       "batch_output"
+      ]
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.perplexity.ai/v1/files",
+    "path": [],
+    "query": [
+     "limit",
+     "after_id",
+     "order",
+     "purpose"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "perplexity.list_models",
    "name": "List models",
    "description": "List the models available for the Agent API. Returns model identifiers that can be used with the `POST /v1/agent` endpoint. The response follows the OpenAI List Models format for compatibility with third-party tools.",
@@ -831,6 +1855,76 @@
     "url": "https://api.perplexity.ai/v1/models",
     "path": [],
     "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "perplexity.list_monitor_runs",
+   "name": "List a monitor's runs",
+   "description": "Lists the monitor's runs with their changes, newest first. Runs are kept 90 days.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "monitor_id": {
+      "type": "string",
+      "description": "Monitor identifier (mon_...)"
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Maximum number of objects to return. Values above 100 are treated as 100."
+     },
+     "after": {
+      "type": "string",
+      "description": "Id to start after, the last `data[].id` of the previous page"
+     }
+    },
+    "required": [
+     "monitor_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.perplexity.ai/v1/monitors/{monitor_id}/runs",
+    "path": [
+     "monitor_id"
+    ],
+    "query": [
+     "limit",
+     "after"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "perplexity.list_monitors",
+   "name": "List monitors",
+   "description": "Lists your API Group's monitors, newest first.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "limit": {
+      "type": "integer",
+      "description": "Maximum number of objects to return. Values above 100 are treated as 100."
+     },
+     "after": {
+      "type": "string",
+      "description": "Id to start after, the last `data[].id` of the previous page"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.perplexity.ai/v1/monitors",
+    "path": [],
+    "query": [
+     "limit",
+     "after"
+    ],
     "header": [],
     "body": [],
     "body_format": "json"
@@ -907,6 +2001,62 @@
    }
   },
   {
+   "slug": "perplexity.pause_monitor",
+   "name": "Pause a monitor",
+   "description": "Stops scheduled runs and keeps the monitor's state. A queued run is cancelled (it ends `skipped`); a run already running finishes. Pausing a paused monitor returns it unchanged.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "monitor_id": {
+      "type": "string",
+      "description": "Monitor identifier (mon_...)"
+     }
+    },
+    "required": [
+     "monitor_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.perplexity.ai/v1/monitors/{monitor_id}/pause",
+    "path": [
+     "monitor_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "perplexity.resume_monitor",
+   "name": "Resume a monitor",
+   "description": "Resumes scheduled runs and sets `next_run_at` from now. Missed runs are not replayed individually. Resuming a monitor that is not paused returns HTTP `409` with `invalid_state`. State has a 90-day retention period, so a long-paused monitor may establish a new baseline. The same active-monitor limit applies to creation and resuming. At the limit, HTTP `409` with `quota_exceeded` leaves the monitor ",
+   "input": {
+    "type": "object",
+    "properties": {
+     "monitor_id": {
+      "type": "string",
+      "description": "Monitor identifier (mon_...)"
+     }
+    },
+    "required": [
+     "monitor_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.perplexity.ai/v1/monitors/{monitor_id}/resume",
+    "path": [
+     "monitor_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "perplexity.retrieve_agent",
    "name": "Retrieve agent response",
    "description": "Retrieve a response created earlier. Returns a JSON snapshot of the response. Only responses created with `store` omitted or `true` can be retrieved; `store: false` responses return a 404.",
@@ -935,47 +2085,68 @@
    }
   },
   {
-   "slug": "perplexity.search_search_post",
-   "name": "Search the web",
-   "description": "Search the web and retrieve relevant web page contents.",
+   "slug": "perplexity.run_monitor",
+   "name": "Run a monitor now",
+   "description": "Queues a manual run and returns it at once with status `queued`. The run's `id` is the `run_id` of its `monitor.run.completed` event, and you can follow it with get run. A monitor has at most one run at a time: while one is queued or running, this returns 409 `run_in_progress` with that run's ID. A paused monitor returns 409 `invalid_state`.",
    "input": {
     "type": "object",
     "properties": {
-     "country": {
+     "monitor_id": {
       "type": "string",
-      "description": "ISO 3166-1 alpha-2 country code"
+      "description": "Monitor identifier (mon_...)"
+     }
+    },
+    "required": [
+     "monitor_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.perplexity.ai/v1/monitors/{monitor_id}/run",
+    "path": [
+     "monitor_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "perplexity.search_search_post",
+   "name": "Search the web",
+   "description": "Returns ranked web results for one query, or for up to five queries in one request. The response is a list of results, not a generated answer.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "query": {
+      "type": "string",
+      "description": "One search query, or an array of 1 to 5 queries. Each query is 1 to 8192 bytes of UTF-8; the limit counts bytes, not characters. `max_results` applies to the combined results of all queries."
      },
      "max_results": {
       "type": "integer",
-      "description": "Maximum number of results. Values above 20 require search_type=people. Supports up to 20 for web search and up to 50 for people search."
+      "description": "Maximum number of results in the response, across all queries in the request. 1 to 20 for `web` and `fast`, 1 to 50 for `people`."
      },
      "search_type": {
       "type": "string",
-      "description": "Search type - \"web\" for general web search, \"people\" for people search. max_results above 20 is only supported for people search.",
+      "description": "Search type: `web` for general web search, `fast` for lower-latency web search, or `people` for people search. `max_results` above 20 is only supported for `people`.",
       "enum": [
        "web",
+       "fast",
        "people"
       ]
      },
-     "search_context_size": {
+     "country": {
       "type": "string",
-      "description": "Controls how much content is extracted from result pages. - `low` \u2014 short passages most relevant to the query. - `medium` \u2014 a balanced amount of content per document. - `high` (default) \u2014 detailed content relevant to the query. Omit when using `max_tokens` or `max_tokens_per_page`."
-     },
-     "max_tokens": {
-      "type": "integer",
-      "description": "Maximum total webpage content tokens to return across all search results"
-     },
-     "max_tokens_per_page": {
-      "type": "integer",
-      "description": "Maximum webpage content tokens to extract from each result page"
-     },
-     "query": {
-      "type": "string",
-      "description": "Search query (required)"
+      "description": "ISO 3166-1 alpha-2 country code, such as `US`. Returns results more relevant to that country."
      },
      "search_language_filter": {
       "type": "array",
-      "description": "ISO 639-1 language codes (2-character max)"
+      "description": "ISO 639-1 language codes, such as `en` or `fr`. Returns results in those languages. Up to 20 codes."
+     },
+     "display_server_time": {
+      "type": "boolean",
+      "description": "When `true`, the response includes `server_time`."
      }
     },
     "required": [
@@ -989,14 +2160,99 @@
     "query": [],
     "header": [],
     "body": [
-     "country",
+     "query",
      "max_results",
      "search_type",
-     "search_context_size",
-     "max_tokens",
-     "max_tokens_per_page",
-     "query",
-     "search_language_filter"
+     "country",
+     "search_language_filter",
+     "display_server_time"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "perplexity.test_monitor_webhook",
+   "name": "Test a monitor's webhook",
+   "description": "Sends one signed `monitor.webhook.test` event to the configured webhook URL. Takes no request body and returns the delivery outcome after a response or a 10-second timeout. The test is not retried and does not count toward the `webhook_failing` pause threshold. A monitor without a webhook returns HTTP `409` with `invalid_state`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "monitor_id": {
+      "type": "string",
+      "description": "Monitor identifier (mon_...)"
+     }
+    },
+    "required": [
+     "monitor_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.perplexity.ai/v1/monitors/{monitor_id}/webhook/test",
+    "path": [
+     "monitor_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "perplexity.update_monitor",
+   "name": "Update a monitor",
+   "description": "Replaces each top-level field the body names: any subset of `name`, `goal`, `targets`, `schedule`, `webhook` and `metadata`. An absent key leaves the field unchanged. `null` clears an optional field: `goal` becomes `\"\"`, `metadata` becomes `{}`, `webhook` is removed; `null` for `name`, `targets` or `schedule` returns 400. An empty object returns the monitor unchanged. A new `schedule` recomputes `",
+   "input": {
+    "type": "object",
+    "properties": {
+     "monitor_id": {
+      "type": "string",
+      "description": "Monitor identifier (mon_...)"
+     },
+     "name": {
+      "type": "string",
+      "description": ""
+     },
+     "goal": {
+      "type": "string",
+      "description": ""
+     },
+     "targets": {
+      "type": "array",
+      "description": "Exactly one `search` target, or 1 to 10 `page` targets with distinct URLs"
+     },
+     "schedule": {
+      "type": "string",
+      "description": ""
+     },
+     "webhook": {
+      "type": "string",
+      "description": ""
+     },
+     "metadata": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "monitor_id"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.perplexity.ai/v1/monitors/{monitor_id}",
+    "path": [
+     "monitor_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "goal",
+     "targets",
+     "schedule",
+     "webhook",
+     "metadata"
     ],
     "body_format": "json"
    }

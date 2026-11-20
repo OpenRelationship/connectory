@@ -1,0 +1,1414 @@
+{
+ "_": "GENERATED \u2014 what an authoring tool needs to FIND an operation. The calling table is the .lua beside it.",
+ "provider": "calendarhero",
+ "source": "https://api.calendarhero.com/swagger.json",
+ "operations": [
+  {
+   "slug": "calendarhero.delete_contact_id",
+   "name": "Deletes a contact",
+   "description": "deletes a contact",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "contact's ID"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.calendarhero.com//contact/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "calendarhero.delete_meeting_tasks_id",
+   "name": "Deletes a task request",
+   "description": "deletes a task/request",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "task's ID"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.calendarhero.com//meeting/tasks/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "calendarhero.delete_user_directories_uuid",
+   "name": "Delete a directory",
+   "description": "delete a directory",
+   "input": {
+    "type": "object",
+    "properties": {
+     "uuid": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "uuid"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.calendarhero.com//user/directories/{uuid}",
+    "path": [
+     "uuid"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "calendarhero.delete_user_meeting_type",
+   "name": "Delete a meeting type",
+   "description": "delete a meeting type",
+   "input": {
+    "type": "object",
+    "properties": {
+     "type": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "type"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.calendarhero.com//user/meeting/{type}",
+    "path": [
+     "type"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "calendarhero.delete_webhook_event",
+   "name": "Delete webhook event",
+   "description": "Deletes this webhook.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "event": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "meeting_request_success",
+       "new_meeting_request",
+       "meeting_request_expired",
+       "meeting_request_cancelled",
+       "meeting_rescheduled",
+       "new_contact_added",
+       "meeting_completed",
+       "meeting_started"
+      ]
+     },
+     "hookUrl": {
+      "type": "string",
+      "description": ""
+     },
+     "body": {
+      "type": "object",
+      "description": ""
+     }
+    },
+    "required": [
+     "event"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.calendarhero.com//webhook/{event}",
+    "path": [
+     "event"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "hookUrl",
+     "body"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "calendarhero.get_contact",
+   "name": "Searches for contacts that match search filter criteria",
+   "description": "searches for contacts that match search/filter criteria",
+   "input": {
+    "type": "object",
+    "properties": {
+     "search": {
+      "type": "string",
+      "description": "searches for contacts with a specific email (name@domain.com), domain (@domain.com) or name (first last)"
+     },
+     "filter": {
+      "type": "string",
+      "description": "searches for a specific set of contacts. can not be used with search",
+      "enum": [
+       "popular",
+       "recent",
+       "a",
+       "b",
+       "c",
+       "d",
+       "e",
+       "f",
+       "g",
+       "h",
+       "i",
+       "j"
+      ]
+     },
+     "all": {
+      "type": "boolean",
+      "description": "do not remove duplicate contacts",
+      "enum": [
+       "1",
+       "0"
+      ]
+     },
+     "includeTeams": {
+      "type": "boolean",
+      "description": "include results for teams that match search parameter",
+      "enum": [
+       "1",
+       "0"
+      ]
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.calendarhero.com//contact",
+    "path": [],
+    "query": [
+     "search",
+     "filter",
+     "all",
+     "includeTeams"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "calendarhero.get_contact_count",
+   "name": "Returns the number of contacts",
+   "description": "returns the number of contacts",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.calendarhero.com//contact/count",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "calendarhero.get_contact_id",
+   "name": "Returns a contact",
+   "description": "returns a contact",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "contact's ID"
+     },
+     "basic": {
+      "type": "boolean",
+      "description": "just return the contact's information stored in CalendarHero. when false, contact insights will also be returned."
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.calendarhero.com//contact/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [
+     "basic"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "calendarhero.get_meeting",
+   "name": "Return the user's meetings within a timeframe",
+   "description": "return the user's meetings within a timeframe",
+   "input": {
+    "type": "object",
+    "properties": {
+     "start": {
+      "type": "string",
+      "description": "start date/time"
+     },
+     "end": {
+      "type": "string",
+      "description": "end date/time"
+     }
+    },
+    "required": [
+     "end",
+     "start"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.calendarhero.com//meeting",
+    "path": [],
+    "query": [
+     "start",
+     "end"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "calendarhero.get_meeting_categories",
+   "name": "Retrieves the user's meeting categories' stats",
+   "description": "retrieves the user's meeting categories' stats",
+   "input": {
+    "type": "object",
+    "properties": {
+     "month": {
+      "type": "string",
+      "description": "YYYY-MM"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.calendarhero.com//meeting/categories",
+    "path": [],
+    "query": [
+     "month"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "calendarhero.get_meeting_tasks",
+   "name": "Returns the user's requests tasks",
+   "description": "returns the user's requests/tasks",
+   "input": {
+    "type": "object",
+    "properties": {
+     "state": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "active",
+       "upcoming",
+       "closed"
+      ]
+     },
+     "tally": {
+      "type": "boolean",
+      "description": ""
+     },
+     "skip": {
+      "type": "number",
+      "description": ""
+     },
+     "take": {
+      "type": "number",
+      "description": ""
+     },
+     "type": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.calendarhero.com//meeting/tasks",
+    "path": [],
+    "query": [
+     "state",
+     "tally",
+     "skip",
+     "take",
+     "type"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "calendarhero.get_msg_web",
+   "name": "Returns a reply message for the user",
+   "description": "returns a reply message for the user",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.calendarhero.com//msg/web",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "calendarhero.get_provider",
+   "name": "Get provider",
+   "description": "Lists provider.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "type": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "calendar",
+       "contacts",
+       "messaging",
+       "social",
+       "email",
+       "search",
+       "files",
+       "groups",
+       "faq",
+       "crm",
+       "ticket",
+       "rooms"
+      ]
+     },
+     "org": {
+      "type": "boolean",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.calendarhero.com//provider",
+    "path": [],
+    "query": [
+     "type",
+     "org"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "calendarhero.get_search",
+   "name": "Searches all of the user's integrations for a query term",
+   "description": "searches all of the user's integrations for a query term",
+   "input": {
+    "type": "object",
+    "properties": {
+     "dateStart": {
+      "type": "string",
+      "description": "The requested timeframe's start date/time (YYYY-MM-DDTHH:mm:ssZ)"
+     },
+     "dateEnd": {
+      "type": "string",
+      "description": "The requested timeframe's ending date/time (YYYY-MM-DDTHH:mm:ssZ)"
+     },
+     "query": {
+      "type": "string",
+      "description": "The query term to search for"
+     }
+    },
+    "required": [
+     "query"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.calendarhero.com//search",
+    "path": [],
+    "query": [
+     "dateStart",
+     "dateEnd",
+     "query"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "calendarhero.get_search_id",
+   "name": "Gets the search result",
+   "description": "Gets the search result",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "the ID the of the search result returned from /search"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.calendarhero.com//search/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "calendarhero.get_user",
+   "name": "Returns the user object",
+   "description": "returns the user object",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.calendarhero.com//user",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "calendarhero.get_user_calendly",
+   "name": "Imports user's calendly event types",
+   "description": "imports user's Calendly event types",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.calendarhero.com//user/calendly",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "calendarhero.get_user_directories",
+   "name": "Get user's directories",
+   "description": "get user's directories",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.calendarhero.com//user/directories",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "calendarhero.get_user_directories_uuid",
+   "name": "Get user's directory by directory id",
+   "description": "get user's directory by directory id",
+   "input": {
+    "type": "object",
+    "properties": {
+     "uuid": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "uuid"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.calendarhero.com//user/directories/{uuid}",
+    "path": [
+     "uuid"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "calendarhero.get_user_meeting",
+   "name": "Get user's meeting types",
+   "description": "get user's meeting types",
+   "input": {
+    "type": "object",
+    "properties": {
+     "onlyTypes": {
+      "type": "boolean",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.calendarhero.com//user/meeting",
+    "path": [],
+    "query": [
+     "onlyTypes"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "calendarhero.get_user_org",
+   "name": "Returns the user's organization",
+   "description": "returns the user's organization",
+   "input": {
+    "type": "object",
+    "properties": {
+     "returnBillingUserInfo": {
+      "type": "boolean",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.calendarhero.com//user/org",
+    "path": [],
+    "query": [
+     "returnBillingUserInfo"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "calendarhero.get_user_savings",
+   "name": "Returns the user's savings information",
+   "description": "returns the user's savings information",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.calendarhero.com//user/savings",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "calendarhero.get_webhook_event",
+   "name": "Get webhook event",
+   "description": "Fetches one webhook.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "event": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "meeting_request_success",
+       "new_meeting_request",
+       "meeting_request_expired",
+       "meeting_request_cancelled",
+       "meeting_rescheduled",
+       "new_contact_added",
+       "meeting_completed",
+       "meeting_started"
+      ]
+     }
+    },
+    "required": [
+     "event"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.calendarhero.com//webhook/{event}",
+    "path": [
+     "event"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "calendarhero.get_webhook_event_sample",
+   "name": "Get webhook event sample",
+   "description": "Lists sample.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "event": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "meeting_request_success",
+       "new_meeting_request",
+       "meeting_request_expired",
+       "meeting_request_cancelled",
+       "meeting_rescheduled",
+       "new_contact_added",
+       "meeting_completed",
+       "meeting_started"
+      ]
+     }
+    },
+    "required": [
+     "event"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.calendarhero.com//webhook/{event}/sample",
+    "path": [
+     "event"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "calendarhero.post_contact",
+   "name": "Creates a new contact",
+   "description": "creates a new contact",
+   "input": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": "string",
+      "description": "Contact Name: \"First Last\""
+     },
+     "title": {
+      "type": "string",
+      "description": "Contact Title"
+     },
+     "organization": {
+      "type": "string",
+      "description": "Contact Company/Organization"
+     },
+     "email": {
+      "type": "array",
+      "description": "Contact Emails"
+     },
+     "defaultEmail": {
+      "type": "string",
+      "description": "Contact Default Email"
+     },
+     "telephone": {
+      "type": "array",
+      "description": "Contact Phone Numbers"
+     },
+     "body": {
+      "type": "object",
+      "description": ""
+     }
+    },
+    "required": [
+     "email"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.calendarhero.com//contact",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "title",
+     "organization",
+     "email",
+     "defaultEmail",
+     "telephone",
+     "body"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "calendarhero.post_meeting_tasks",
+   "name": "Create a meeting request",
+   "description": "create a meeting request",
+   "input": {
+    "type": "object",
+    "properties": {
+     "locations": {
+      "type": "array",
+      "description": ""
+     },
+     "capacity": {
+      "type": "number",
+      "description": "The number of seats required for a meeting room. If zero, then no meeting room will be booked."
+     },
+     "contacts": {
+      "type": "array",
+      "description": ""
+     },
+     "contactEmails": {
+      "type": "array",
+      "description": ""
+     },
+     "subject": {
+      "type": "string",
+      "description": "The meeting topic/subject"
+     },
+     "type": {
+      "type": "string",
+      "description": "The meeting type. Must be one of the user's defined meeting types returned from GET /user/meeting"
+     },
+     "dateStart": {
+      "type": "string",
+      "description": "The requested timeframe's start date/time (YYYY-MM-DDTHH:mm:ssZ). The date component (YYYY-MM-DD) represents the start of the availability range while the time component (HH:mm:ssZ) represents the start time for each day of the availability range."
+     },
+     "dateEnd": {
+      "type": "string",
+      "description": "The requested timeframe's ending date/time (YYYY-MM-DDTHH:mm:ssZ). The date component (YYYY-MM-DD) represents the end of the availability range while the time component (HH:mm:ssZ) represents the end time for each day of the availability range."
+     },
+     "meetingLength": {
+      "type": "number",
+      "description": "The number of minutes of the requested meeting. If omited, the meeting type's meeting duration will be used."
+     },
+     "location": {
+      "type": "string",
+      "description": ""
+     },
+     "room": {
+      "type": "object",
+      "description": ""
+     },
+     "roomCapacity": {
+      "type": "number",
+      "description": ""
+     },
+     "description": {
+      "type": "string",
+      "description": "The agenda/description of the meeting"
+     },
+     "body": {
+      "type": "object",
+      "description": ""
+     }
+    },
+    "required": [
+     "dateEnd",
+     "dateStart",
+     "subject"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.calendarhero.com//meeting/tasks",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "locations",
+     "capacity",
+     "contacts",
+     "contactEmails",
+     "subject",
+     "type",
+     "dateStart",
+     "dateEnd",
+     "meetingLength",
+     "location",
+     "room",
+     "roomCapacity",
+     "description",
+     "body"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "calendarhero.post_msg_web",
+   "name": "Send a user's message into the assistant",
+   "description": "send a user's message into the assistant",
+   "input": {
+    "type": "object",
+    "properties": {
+     "text": {
+      "type": "string",
+      "description": ""
+     },
+     "body": {
+      "type": "object",
+      "description": ""
+     }
+    },
+    "required": [
+     "text"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.calendarhero.com//msg/web",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "text",
+     "body"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "calendarhero.post_user_directories",
+   "name": "Add a new directory",
+   "description": "add a new directory",
+   "input": {
+    "type": "object",
+    "properties": {
+     "directory": {
+      "type": "object",
+      "description": ""
+     },
+     "body": {
+      "type": "object",
+      "description": ""
+     }
+    },
+    "required": [
+     "directory"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.calendarhero.com//user/directories",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "directory",
+     "body"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "calendarhero.post_user_meeting_type",
+   "name": "Add a new meeting type",
+   "description": "add a new meeting type",
+   "input": {
+    "type": "object",
+    "properties": {
+     "type": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "type"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.calendarhero.com//user/meeting/{type}",
+    "path": [
+     "type"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "calendarhero.post_user_meeting_type_share",
+   "name": "Share a meeting type",
+   "description": "share a meeting type",
+   "input": {
+    "type": "object",
+    "properties": {
+     "type": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "with-all-users",
+       "with-all-and-new-users"
+      ]
+     },
+     "body": {
+      "type": "object",
+      "description": ""
+     }
+    },
+    "required": [
+     "type"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.calendarhero.com//user/meeting/{type}/share",
+    "path": [
+     "type"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "type",
+     "body"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "calendarhero.post_webhook_event",
+   "name": "Post webhook event",
+   "description": "Creates webhook.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "event": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "meeting_request_success",
+       "new_meeting_request",
+       "meeting_request_expired",
+       "meeting_request_cancelled",
+       "meeting_rescheduled",
+       "new_contact_added",
+       "meeting_completed",
+       "meeting_started"
+      ]
+     },
+     "hookUrl": {
+      "type": "string",
+      "description": ""
+     },
+     "body": {
+      "type": "object",
+      "description": ""
+     }
+    },
+    "required": [
+     "event"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.calendarhero.com//webhook/{event}",
+    "path": [
+     "event"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "hookUrl",
+     "body"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "calendarhero.put_contact_id",
+   "name": "Updates a contact",
+   "description": "updates a contact",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "The contact's ID as returned from GET /contact"
+     },
+     "name": {
+      "type": "string",
+      "description": "Contact Name: \"First Last\""
+     },
+     "title": {
+      "type": "string",
+      "description": "Contact Title"
+     },
+     "organization": {
+      "type": "string",
+      "description": "Contact Company/Organization"
+     },
+     "email": {
+      "type": "array",
+      "description": "Contact Emails"
+     },
+     "defaultEmail": {
+      "type": "string",
+      "description": "Contact Default Email"
+     },
+     "telephone": {
+      "type": "array",
+      "description": "Contact Phone Numbers"
+     },
+     "userId": {
+      "type": "string",
+      "description": ""
+     },
+     "providerId": {
+      "type": "array",
+      "description": ""
+     },
+     "body": {
+      "type": "object",
+      "description": ""
+     }
+    },
+    "required": [
+     "email"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.calendarhero.com//contact/{id}",
+    "path": [],
+    "query": [
+     "id"
+    ],
+    "header": [],
+    "body": [
+     "name",
+     "title",
+     "organization",
+     "email",
+     "defaultEmail",
+     "telephone",
+     "userId",
+     "providerId",
+     "body"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "calendarhero.put_meeting_tasks_id_remind",
+   "name": "Remind the contact(s) about the meeting",
+   "description": "remind the contact(s) about the meeting",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "task's ID"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.calendarhero.com//meeting/tasks/{id}/remind",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "calendarhero.put_user",
+   "name": "Updates the user's object",
+   "description": "updates the user's object",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.calendarhero.com//user",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "calendarhero.put_user_directories_uuid",
+   "name": "Update the user's directory",
+   "description": "update the user's directory",
+   "input": {
+    "type": "object",
+    "properties": {
+     "uuid": {
+      "type": "string",
+      "description": ""
+     },
+     "directory": {
+      "type": "object",
+      "description": ""
+     },
+     "body": {
+      "type": "object",
+      "description": ""
+     }
+    },
+    "required": [
+     "directory",
+     "uuid"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.calendarhero.com//user/directories/{uuid}",
+    "path": [
+     "uuid"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "directory",
+     "body"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "calendarhero.put_user_meeting",
+   "name": "Updates the user's meeting type",
+   "description": "updates the user's meeting type",
+   "input": {
+    "type": "object",
+    "properties": {
+     "meetingTypes": {
+      "type": "array",
+      "description": ""
+     },
+     "body": {
+      "type": "object",
+      "description": ""
+     }
+    },
+    "required": [
+     "meetingTypes"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.calendarhero.com//user/meeting",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "meetingTypes",
+     "body"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "calendarhero.put_user_settings_address",
+   "name": "Put user settings address",
+   "description": "Updates an addres.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "lat": {
+      "type": "string",
+      "description": ""
+     },
+     "lng": {
+      "type": "string",
+      "description": ""
+     },
+     "body": {
+      "type": "object",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.calendarhero.com//user/settings/address",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "lat",
+     "lng",
+     "body"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "calendarhero.put_user_settings_info",
+   "name": "Put user settings info",
+   "description": "Updates an info.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "body": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.calendarhero.com//user/settings/info",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "body"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "calendarhero.put_user_settings_restrictedapps",
+   "name": "Put user settings restrictedapps",
+   "description": "Updates a restrictedapp.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "restrictedApps": {
+      "type": "array",
+      "description": ""
+     },
+     "body": {
+      "type": "object",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.calendarhero.com//user/settings/restrictedapps",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "restrictedApps",
+     "body"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "calendarhero.put_user_settings_worklocation",
+   "name": "Put user settings worklocation",
+   "description": "Updates a worklocation.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "body": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.calendarhero.com//user/settings/worklocation",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "body"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  }
+ ]
+}

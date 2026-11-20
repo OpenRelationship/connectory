@@ -1,0 +1,1924 @@
+{
+ "_": "GENERATED \u2014 what an authoring tool needs to FIND an operation. The calling table is the .lua beside it.",
+ "provider": "appveyor",
+ "source": "https://api.apis.guru/v2/specs/appveyor.com/1.0.0/swagger.json",
+ "operations": [
+  {
+   "slug": "appveyor.add_environment",
+   "name": "Add environment",
+   "description": "Add environment",
+   "input": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": "string",
+      "description": ""
+     },
+     "provider": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "Agent",
+       "AzureBlob",
+       "AzureCS",
+       "AzureWebJob",
+       "BinTray",
+       "FTP",
+       "GitHub",
+       "NuGet",
+       "S3",
+       "SqlDatabase",
+       "WebDeploy",
+       "Webhook"
+      ]
+     },
+     "settings": {
+      "type": "object",
+      "description": ""
+     },
+     "body": {
+      "type": "object",
+      "description": ""
+     }
+    },
+    "required": [
+     "name",
+     "provider",
+     "settings"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://ci.appveyor.com/api/environments",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "provider",
+     "settings",
+     "body"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "appveyor.add_project",
+   "name": "Add project",
+   "description": "Add project",
+   "input": {
+    "type": "object",
+    "properties": {
+     "repositoryAuthentication": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "credentials",
+       "ssh"
+      ]
+     },
+     "repositoryName": {
+      "type": "string",
+      "description": "URL when repositoryProvider is git, mercurial, subversion username/project when repositoryProvider is gitHub"
+     },
+     "repositoryPassword": {
+      "type": "string",
+      "description": "Required if repositoryAuthentication is credentials"
+     },
+     "repositoryProvider": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "bitBucket",
+       "git",
+       "gitHub",
+       "gitLab",
+       "kiln",
+       "mercurial",
+       "stash",
+       "subversion",
+       "vso"
+      ]
+     },
+     "repositoryUsername": {
+      "type": "string",
+      "description": "Required if repositoryAuthentication is credentials"
+     },
+     "body": {
+      "type": "object",
+      "description": "`repositoryAuthentication` is only used for git, mercurial, subversion `repositoryProvider`."
+     }
+    },
+    "required": [
+     "repositoryName",
+     "repositoryProvider"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://ci.appveyor.com/api/projects",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "repositoryAuthentication",
+     "repositoryName",
+     "repositoryPassword",
+     "repositoryProvider",
+     "repositoryUsername",
+     "body"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "appveyor.add_role",
+   "name": "Add role",
+   "description": "Add role",
+   "input": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": "string",
+      "description": ""
+     },
+     "body": {
+      "type": "object",
+      "description": ""
+     }
+    },
+    "required": [
+     "name"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://ci.appveyor.com/api/roles",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "body"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "appveyor.cancel_build",
+   "name": "Cancel build",
+   "description": "Cancel build",
+   "input": {
+    "type": "object",
+    "properties": {
+     "accountName": {
+      "type": "string",
+      "description": "AppVeyor account name on which to operate. Accounts for which a user has access are listed on the [Security page of the user profile](https://ci.appveyor.com/security) (when logged in). The user account is also the `accountName` property of `UserAccount`."
+     },
+     "projectSlug": {
+      "type": "string",
+      "description": "Project Slug"
+     },
+     "buildVersion": {
+      "type": "string",
+      "description": "Build Version (`version` property of `Build`)"
+     }
+    },
+    "required": [
+     "accountName",
+     "buildVersion",
+     "projectSlug"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://ci.appveyor.com/api/builds/{accountName}/{projectSlug}/{buildVersion}",
+    "path": [
+     "accountName",
+     "projectSlug",
+     "buildVersion"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "appveyor.cancel_deployment",
+   "name": "Cancel deployment",
+   "description": "Cancel deployment",
+   "input": {
+    "type": "object",
+    "properties": {
+     "deploymentId": {
+      "type": "integer",
+      "description": ""
+     },
+     "body": {
+      "type": "object",
+      "description": ""
+     }
+    },
+    "required": [
+     "deploymentId"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://ci.appveyor.com/api/deployments/stop",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "deploymentId",
+     "body"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "appveyor.cancel_user_invitation",
+   "name": "Cancel user invitation",
+   "description": "Cancel user invitation",
+   "input": {
+    "type": "object",
+    "properties": {
+     "userInvitationId": {
+      "type": "string",
+      "description": "User Invitation ID"
+     }
+    },
+    "required": [
+     "userInvitationId"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://ci.appveyor.com/api/users/invitations/{userInvitationId}",
+    "path": [
+     "userInvitationId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "appveyor.delete_collaborator",
+   "name": "Delete collaborator",
+   "description": "Delete collaborator",
+   "input": {
+    "type": "object",
+    "properties": {
+     "userId": {
+      "type": "integer",
+      "description": "User ID"
+     }
+    },
+    "required": [
+     "userId"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://ci.appveyor.com/api/collaborators/{userId}",
+    "path": [
+     "userId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "appveyor.delete_environment",
+   "name": "Delete environment",
+   "description": "Delete environment",
+   "input": {
+    "type": "object",
+    "properties": {
+     "deploymentEnvironmentId": {
+      "type": "integer",
+      "description": "Deployment Environment ID (`deploymentEnvironmentId` property of `DeploymentEnvironment`)"
+     }
+    },
+    "required": [
+     "deploymentEnvironmentId"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://ci.appveyor.com/api/environments/{deploymentEnvironmentId}",
+    "path": [
+     "deploymentEnvironmentId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "appveyor.delete_project",
+   "name": "Delete project",
+   "description": "Delete project",
+   "input": {
+    "type": "object",
+    "properties": {
+     "accountName": {
+      "type": "string",
+      "description": "AppVeyor account name on which to operate. Accounts for which a user has access are listed on the [Security page of the user profile](https://ci.appveyor.com/security) (when logged in). The user account is also the `accountName` property of `UserAccount`."
+     },
+     "projectSlug": {
+      "type": "string",
+      "description": "Project Slug"
+     }
+    },
+    "required": [
+     "accountName",
+     "projectSlug"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://ci.appveyor.com/api/projects/{accountName}/{projectSlug}",
+    "path": [
+     "accountName",
+     "projectSlug"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "appveyor.delete_project_build_cache",
+   "name": "Delete project build cache",
+   "description": "Delete project build cache",
+   "input": {
+    "type": "object",
+    "properties": {
+     "accountName": {
+      "type": "string",
+      "description": "AppVeyor account name on which to operate. Accounts for which a user has access are listed on the [Security page of the user profile](https://ci.appveyor.com/security) (when logged in). The user account is also the `accountName` property of `UserAccount`."
+     },
+     "projectSlug": {
+      "type": "string",
+      "description": "Project Slug"
+     }
+    },
+    "required": [
+     "accountName",
+     "projectSlug"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://ci.appveyor.com/api/projects/{accountName}/{projectSlug}/buildcache",
+    "path": [
+     "accountName",
+     "projectSlug"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "appveyor.delete_role",
+   "name": "Delete role",
+   "description": "Delete role",
+   "input": {
+    "type": "object",
+    "properties": {
+     "roleId": {
+      "type": "integer",
+      "description": "Role ID"
+     }
+    },
+    "required": [
+     "roleId"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://ci.appveyor.com/api/roles/{roleId}",
+    "path": [
+     "roleId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "appveyor.delete_user",
+   "name": "Delete user",
+   "description": "Delete user",
+   "input": {
+    "type": "object",
+    "properties": {
+     "userId": {
+      "type": "integer",
+      "description": "User ID"
+     }
+    },
+    "required": [
+     "userId"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://ci.appveyor.com/api/users/{userId}",
+    "path": [
+     "userId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "appveyor.encrypt_value",
+   "name": "Encrypt a value for use in stored value",
+   "description": "Encrypt a value for use in StoredValue.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "plainValue": {
+      "type": "string",
+      "description": ""
+     },
+     "body": {
+      "type": "object",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://ci.appveyor.com/api/account/encrypt",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "plainValue",
+     "body"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "appveyor.get_build_artifact",
+   "name": "Download build artifact",
+   "description": "Download build artifact",
+   "input": {
+    "type": "object",
+    "properties": {
+     "jobId": {
+      "type": "string",
+      "description": "Build ID (`jobId` property of `BuildJob`)"
+     },
+     "artifactFileName": {
+      "type": "string",
+      "description": "File name (or path) of a build artifact file. Corresponds to the `fileName` property of `ArtifactModel`. URL-encoding of slashes in parameter values is optional."
+     }
+    },
+    "required": [
+     "artifactFileName",
+     "jobId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://ci.appveyor.com/api/buildjobs/{jobId}/artifacts/{artifactFileName}",
+    "path": [
+     "jobId",
+     "artifactFileName"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "appveyor.get_build_artifacts",
+   "name": "Get build artifacts",
+   "description": "Get build artifacts",
+   "input": {
+    "type": "object",
+    "properties": {
+     "jobId": {
+      "type": "string",
+      "description": "Build ID (`jobId` property of `BuildJob`)"
+     }
+    },
+    "required": [
+     "jobId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://ci.appveyor.com/api/buildjobs/{jobId}/artifacts",
+    "path": [
+     "jobId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "appveyor.get_build_log",
+   "name": "Download build log",
+   "description": "Download build log",
+   "input": {
+    "type": "object",
+    "properties": {
+     "jobId": {
+      "type": "string",
+      "description": "Build ID (`jobId` property of `BuildJob`)"
+     }
+    },
+    "required": [
+     "jobId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://ci.appveyor.com/api/buildjobs/{jobId}/log",
+    "path": [
+     "jobId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "appveyor.get_collaborator",
+   "name": "Get collaborator",
+   "description": "Get collaborator",
+   "input": {
+    "type": "object",
+    "properties": {
+     "userId": {
+      "type": "integer",
+      "description": "User ID"
+     }
+    },
+    "required": [
+     "userId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://ci.appveyor.com/api/collaborators/{userId}",
+    "path": [
+     "userId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "appveyor.get_collaborators",
+   "name": "Get collaborators",
+   "description": "Get collaborators",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://ci.appveyor.com/api/collaborators",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "appveyor.get_deployment",
+   "name": "Get deployment",
+   "description": "Get deployment",
+   "input": {
+    "type": "object",
+    "properties": {
+     "deploymentId": {
+      "type": "integer",
+      "description": "Deployment ID (`deploymentId` property of `Deployment`)"
+     }
+    },
+    "required": [
+     "deploymentId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://ci.appveyor.com/api/deployments/{deploymentId}",
+    "path": [
+     "deploymentId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "appveyor.get_environment_deployments",
+   "name": "Get environment deployments",
+   "description": "Get environment deployments",
+   "input": {
+    "type": "object",
+    "properties": {
+     "deploymentEnvironmentId": {
+      "type": "integer",
+      "description": "Deployment Environment ID (`deploymentEnvironmentId` property of `DeploymentEnvironment`)"
+     }
+    },
+    "required": [
+     "deploymentEnvironmentId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://ci.appveyor.com/api/environments/{deploymentEnvironmentId}/deployments",
+    "path": [
+     "deploymentEnvironmentId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "appveyor.get_environment_settings",
+   "name": "Get environment settings",
+   "description": "Get environment settings",
+   "input": {
+    "type": "object",
+    "properties": {
+     "deploymentEnvironmentId": {
+      "type": "integer",
+      "description": "Deployment Environment ID (`deploymentEnvironmentId` property of `DeploymentEnvironment`)"
+     }
+    },
+    "required": [
+     "deploymentEnvironmentId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://ci.appveyor.com/api/environments/{deploymentEnvironmentId}/settings",
+    "path": [
+     "deploymentEnvironmentId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "appveyor.get_environments",
+   "name": "Get environments",
+   "description": "Get environments",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://ci.appveyor.com/api/environments",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "appveyor.get_project_artifact",
+   "name": "Get last successful build artifact",
+   "description": "The `job` parameter is mandatory if the build contains multiple jobs.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "accountName": {
+      "type": "string",
+      "description": "AppVeyor account name on which to operate. Accounts for which a user has access are listed on the [Security page of the user profile](https://ci.appveyor.com/security) (when logged in). The user account is also the `accountName` property of `UserAccount`."
+     },
+     "projectSlug": {
+      "type": "string",
+      "description": "Project Slug"
+     },
+     "artifactFileName": {
+      "type": "string",
+      "description": "File name (or path) of a build artifact file. Corresponds to the `fileName` property of `ArtifactModel`. URL-encoding of slashes in parameter values is optional."
+     },
+     "branch": {
+      "type": "string",
+      "description": "Repository Branch"
+     },
+     "tag": {
+      "type": "string",
+      "description": "A git (or other VCS) tag"
+     },
+     "job": {
+      "type": "string",
+      "description": "Name of the build job."
+     },
+     "all": {
+      "type": "boolean",
+      "description": "Include not only `successful`, but also jobs with `failed`, and `cancelled` status."
+     },
+     "pr": {
+      "type": "boolean",
+      "description": "Include PR builds in the search results? `true` - take artifact from PR builds only; `false` - do not look for artifact in PR builds; default/unspecified - look for artifact in both PR an non-PR builds."
+     }
+    },
+    "required": [
+     "accountName",
+     "artifactFileName",
+     "projectSlug"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://ci.appveyor.com/api/projects/{accountName}/{projectSlug}/artifacts/{artifactFileName}",
+    "path": [
+     "accountName",
+     "projectSlug",
+     "artifactFileName"
+    ],
+    "query": [
+     "branch",
+     "tag",
+     "job",
+     "all",
+     "pr"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "appveyor.get_project_branch_status_badge",
+   "name": "Get project branch status badge image",
+   "description": "Get project branch status badge image",
+   "input": {
+    "type": "object",
+    "properties": {
+     "statusBadgeId": {
+      "type": "string",
+      "description": "ID of the status badge (`statusBadgeId` from `ProjectWithConfiguration`)."
+     },
+     "buildBranch": {
+      "type": "string",
+      "description": "Build Branch"
+     },
+     "svg": {
+      "type": "boolean",
+      "description": "Return an SVG image instead of PNG? Exclusive with `retina`."
+     },
+     "retina": {
+      "type": "boolean",
+      "description": "Return a larger image suitable for retina displays? Exclusive with `svg`."
+     },
+     "passingText": {
+      "type": "string",
+      "description": "Text to show in badge when build is passing."
+     },
+     "failingText": {
+      "type": "string",
+      "description": "Text to show in badge when build is failing."
+     },
+     "pendingText": {
+      "type": "string",
+      "description": "Text to show in badge when build is pending."
+     }
+    },
+    "required": [
+     "buildBranch",
+     "statusBadgeId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://ci.appveyor.com/api/projects/status/{statusBadgeId}/branch/{buildBranch}",
+    "path": [
+     "statusBadgeId",
+     "buildBranch"
+    ],
+    "query": [
+     "svg",
+     "retina",
+     "passingText",
+     "failingText",
+     "pendingText"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "appveyor.get_project_build_by_version",
+   "name": "Get project build by version",
+   "description": "Get project build by version",
+   "input": {
+    "type": "object",
+    "properties": {
+     "accountName": {
+      "type": "string",
+      "description": "AppVeyor account name on which to operate. Accounts for which a user has access are listed on the [Security page of the user profile](https://ci.appveyor.com/security) (when logged in). The user account is also the `accountName` property of `UserAccount`."
+     },
+     "projectSlug": {
+      "type": "string",
+      "description": "Project Slug"
+     },
+     "buildVersion": {
+      "type": "string",
+      "description": "Build Version (`version` property of `Build`)"
+     }
+    },
+    "required": [
+     "accountName",
+     "buildVersion",
+     "projectSlug"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://ci.appveyor.com/api/projects/{accountName}/{projectSlug}/build/{buildVersion}",
+    "path": [
+     "accountName",
+     "projectSlug",
+     "buildVersion"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "appveyor.get_project_deployments",
+   "name": "Get project deployments",
+   "description": "Get project deployments",
+   "input": {
+    "type": "object",
+    "properties": {
+     "accountName": {
+      "type": "string",
+      "description": "AppVeyor account name on which to operate. Accounts for which a user has access are listed on the [Security page of the user profile](https://ci.appveyor.com/security) (when logged in). The user account is also the `accountName` property of `UserAccount`."
+     },
+     "projectSlug": {
+      "type": "string",
+      "description": "Project Slug"
+     },
+     "recordsNumber": {
+      "type": "integer",
+      "description": "Number of results to include in the response. getProjectDeployments is documented to have a maximum of 20. It currently returns 500 Internal Server Error for recordsNumber <= 5. In the past it has returned 500 Internal Server Error for many different values which did not match the value used by the ci.appveyor.com web interface at the time. As of 2018-09-08, the value used by the web interface is "
+     }
+    },
+    "required": [
+     "accountName",
+     "projectSlug",
+     "recordsNumber"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://ci.appveyor.com/api/projects/{accountName}/{projectSlug}/deployments",
+    "path": [
+     "accountName",
+     "projectSlug"
+    ],
+    "query": [
+     "recordsNumber"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "appveyor.get_project_environment_variables",
+   "name": "Get project environment variables",
+   "description": "Get project environment variables",
+   "input": {
+    "type": "object",
+    "properties": {
+     "accountName": {
+      "type": "string",
+      "description": "AppVeyor account name on which to operate. Accounts for which a user has access are listed on the [Security page of the user profile](https://ci.appveyor.com/security) (when logged in). The user account is also the `accountName` property of `UserAccount`."
+     },
+     "projectSlug": {
+      "type": "string",
+      "description": "Project Slug"
+     }
+    },
+    "required": [
+     "accountName",
+     "projectSlug"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://ci.appveyor.com/api/projects/{accountName}/{projectSlug}/settings/environment-variables",
+    "path": [
+     "accountName",
+     "projectSlug"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "appveyor.get_project_history",
+   "name": "Get project history",
+   "description": "Get project history",
+   "input": {
+    "type": "object",
+    "properties": {
+     "accountName": {
+      "type": "string",
+      "description": "AppVeyor account name on which to operate. Accounts for which a user has access are listed on the [Security page of the user profile](https://ci.appveyor.com/security) (when logged in). The user account is also the `accountName` property of `UserAccount`."
+     },
+     "projectSlug": {
+      "type": "string",
+      "description": "Project Slug"
+     },
+     "recordsNumber": {
+      "type": "integer",
+      "description": "Number of results to include in the response. getProjectDeployments is documented to have a maximum of 20. It currently returns 500 Internal Server Error for recordsNumber <= 5. In the past it has returned 500 Internal Server Error for many different values which did not match the value used by the ci.appveyor.com web interface at the time. As of 2018-09-08, the value used by the web interface is "
+     },
+     "startBuildId": {
+      "type": "integer",
+      "description": "Maximum `buildId` to include in the results (exclusive)."
+     },
+     "branch": {
+      "type": "string",
+      "description": "Repository Branch"
+     }
+    },
+    "required": [
+     "accountName",
+     "projectSlug",
+     "recordsNumber"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://ci.appveyor.com/api/projects/{accountName}/{projectSlug}/history",
+    "path": [
+     "accountName",
+     "projectSlug"
+    ],
+    "query": [
+     "recordsNumber",
+     "startBuildId",
+     "branch"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "appveyor.get_project_last_build",
+   "name": "Get project last build",
+   "description": "Get project last build",
+   "input": {
+    "type": "object",
+    "properties": {
+     "accountName": {
+      "type": "string",
+      "description": "AppVeyor account name on which to operate. Accounts for which a user has access are listed on the [Security page of the user profile](https://ci.appveyor.com/security) (when logged in). The user account is also the `accountName` property of `UserAccount`."
+     },
+     "projectSlug": {
+      "type": "string",
+      "description": "Project Slug"
+     }
+    },
+    "required": [
+     "accountName",
+     "projectSlug"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://ci.appveyor.com/api/projects/{accountName}/{projectSlug}",
+    "path": [
+     "accountName",
+     "projectSlug"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "appveyor.get_project_last_build_branch",
+   "name": "Get project last branch build",
+   "description": "Get project last branch build",
+   "input": {
+    "type": "object",
+    "properties": {
+     "accountName": {
+      "type": "string",
+      "description": "AppVeyor account name on which to operate. Accounts for which a user has access are listed on the [Security page of the user profile](https://ci.appveyor.com/security) (when logged in). The user account is also the `accountName` property of `UserAccount`."
+     },
+     "projectSlug": {
+      "type": "string",
+      "description": "Project Slug"
+     },
+     "buildBranch": {
+      "type": "string",
+      "description": "Build Branch"
+     }
+    },
+    "required": [
+     "accountName",
+     "buildBranch",
+     "projectSlug"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://ci.appveyor.com/api/projects/{accountName}/{projectSlug}/branch/{buildBranch}",
+    "path": [
+     "accountName",
+     "projectSlug",
+     "buildBranch"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "appveyor.get_project_settings",
+   "name": "Get project settings",
+   "description": "Get project settings",
+   "input": {
+    "type": "object",
+    "properties": {
+     "accountName": {
+      "type": "string",
+      "description": "AppVeyor account name on which to operate. Accounts for which a user has access are listed on the [Security page of the user profile](https://ci.appveyor.com/security) (when logged in). The user account is also the `accountName` property of `UserAccount`."
+     },
+     "projectSlug": {
+      "type": "string",
+      "description": "Project Slug"
+     }
+    },
+    "required": [
+     "accountName",
+     "projectSlug"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://ci.appveyor.com/api/projects/{accountName}/{projectSlug}/settings",
+    "path": [
+     "accountName",
+     "projectSlug"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "appveyor.get_project_settings_yaml",
+   "name": "Get project settings in yaml",
+   "description": "Get project settings in YAML",
+   "input": {
+    "type": "object",
+    "properties": {
+     "accountName": {
+      "type": "string",
+      "description": "AppVeyor account name on which to operate. Accounts for which a user has access are listed on the [Security page of the user profile](https://ci.appveyor.com/security) (when logged in). The user account is also the `accountName` property of `UserAccount`."
+     },
+     "projectSlug": {
+      "type": "string",
+      "description": "Project Slug"
+     }
+    },
+    "required": [
+     "accountName",
+     "projectSlug"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://ci.appveyor.com/api/projects/{accountName}/{projectSlug}/settings/yaml",
+    "path": [
+     "accountName",
+     "projectSlug"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "appveyor.get_project_status_badge",
+   "name": "Get project status badge image",
+   "description": "Get project status badge image",
+   "input": {
+    "type": "object",
+    "properties": {
+     "statusBadgeId": {
+      "type": "string",
+      "description": "ID of the status badge (`statusBadgeId` from `ProjectWithConfiguration`)."
+     },
+     "svg": {
+      "type": "boolean",
+      "description": "Return an SVG image instead of PNG? Exclusive with `retina`."
+     },
+     "retina": {
+      "type": "boolean",
+      "description": "Return a larger image suitable for retina displays? Exclusive with `svg`."
+     },
+     "passingText": {
+      "type": "string",
+      "description": "Text to show in badge when build is passing."
+     },
+     "failingText": {
+      "type": "string",
+      "description": "Text to show in badge when build is failing."
+     },
+     "pendingText": {
+      "type": "string",
+      "description": "Text to show in badge when build is pending."
+     }
+    },
+    "required": [
+     "statusBadgeId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://ci.appveyor.com/api/projects/status/{statusBadgeId}",
+    "path": [
+     "statusBadgeId"
+    ],
+    "query": [
+     "svg",
+     "retina",
+     "passingText",
+     "failingText",
+     "pendingText"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "appveyor.get_projects",
+   "name": "Get projects",
+   "description": "Get projects",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://ci.appveyor.com/api/projects",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "appveyor.get_public_project_status_badge",
+   "name": "Get status badge image for a project with a public repository",
+   "description": "Get status badge image for a project with a public repository",
+   "input": {
+    "type": "object",
+    "properties": {
+     "badgeRepoProvider": {
+      "type": "string",
+      "description": "Repository provider supported for badges",
+      "enum": [
+       "bitBucket",
+       "gitHub"
+      ]
+     },
+     "repoAccountName": {
+      "type": "string",
+      "description": "Account name with repository provider"
+     },
+     "repoSlug": {
+      "type": "string",
+      "description": "Slug (URL component) of repository."
+     },
+     "branch": {
+      "type": "string",
+      "description": "Repository Branch"
+     },
+     "svg": {
+      "type": "boolean",
+      "description": "Return an SVG image instead of PNG? Exclusive with `retina`."
+     },
+     "retina": {
+      "type": "boolean",
+      "description": "Return a larger image suitable for retina displays? Exclusive with `svg`."
+     },
+     "passingText": {
+      "type": "string",
+      "description": "Text to show in badge when build is passing."
+     },
+     "failingText": {
+      "type": "string",
+      "description": "Text to show in badge when build is failing."
+     },
+     "pendingText": {
+      "type": "string",
+      "description": "Text to show in badge when build is pending."
+     }
+    },
+    "required": [
+     "badgeRepoProvider",
+     "repoAccountName",
+     "repoSlug"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://ci.appveyor.com/api/projects/status/{badgeRepoProvider}/{repoAccountName}/{repoSlug}",
+    "path": [
+     "badgeRepoProvider",
+     "repoAccountName",
+     "repoSlug"
+    ],
+    "query": [
+     "branch",
+     "svg",
+     "retina",
+     "passingText",
+     "failingText",
+     "pendingText"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "appveyor.get_role",
+   "name": "Get role",
+   "description": "Get role",
+   "input": {
+    "type": "object",
+    "properties": {
+     "roleId": {
+      "type": "integer",
+      "description": "Role ID"
+     }
+    },
+    "required": [
+     "roleId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://ci.appveyor.com/api/roles/{roleId}",
+    "path": [
+     "roleId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "appveyor.get_roles",
+   "name": "Get roles",
+   "description": "Get roles",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://ci.appveyor.com/api/roles",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "appveyor.get_user",
+   "name": "Get user",
+   "description": "Get user",
+   "input": {
+    "type": "object",
+    "properties": {
+     "userId": {
+      "type": "integer",
+      "description": "User ID"
+     }
+    },
+    "required": [
+     "userId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://ci.appveyor.com/api/users/{userId}",
+    "path": [
+     "userId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "appveyor.get_user_invitations",
+   "name": "Get user invitations",
+   "description": "Get user invitations",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://ci.appveyor.com/api/users/invitations",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "appveyor.get_users",
+   "name": "Get users",
+   "description": "Get users",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://ci.appveyor.com/api/users",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "appveyor.invite_user",
+   "name": "Invite user",
+   "description": "Invite user",
+   "input": {
+    "type": "object",
+    "properties": {
+     "email": {
+      "type": "string",
+      "description": ""
+     },
+     "roleId": {
+      "type": "integer",
+      "description": ""
+     },
+     "body": {
+      "type": "object",
+      "description": ""
+     }
+    },
+    "required": [
+     "email",
+     "roleId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://ci.appveyor.com/api/users/invitations",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "email",
+     "roleId",
+     "body"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "appveyor.join_account",
+   "name": "Join account",
+   "description": "Join Account",
+   "input": {
+    "type": "object",
+    "properties": {
+     "invitationId": {
+      "type": "string",
+      "description": ""
+     },
+     "body": {
+      "type": "object",
+      "description": ""
+     }
+    },
+    "required": [
+     "invitationId"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://ci.appveyor.com/api/user/join-account",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "invitationId",
+     "body"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "appveyor.re_run_build",
+   "name": "Re run build",
+   "description": "If `reRunIncomplete` is `true` and all jobs in the referenced build completed successfully, a 500 Internal Server Error is returned with the message \"No failed or cancelled jobs in build with ID {buildId}\".",
+   "input": {
+    "type": "object",
+    "properties": {
+     "buildId": {
+      "type": "integer",
+      "description": ""
+     },
+     "reRunIncomplete": {
+      "type": "boolean",
+      "description": "Set `reRunIncomplete` set to `false` (default value) for full build re-run. Set it set to `true` to rerun only failed or cancelled jobs in multijob build."
+     },
+     "body": {
+      "type": "object",
+      "description": ""
+     }
+    },
+    "required": [
+     "buildId"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://ci.appveyor.com/api/builds",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "buildId",
+     "reRunIncomplete",
+     "body"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "appveyor.start_build",
+   "name": "Start build of branch most recent commit",
+   "description": "Start build of branch most recent commit",
+   "input": {
+    "type": "object",
+    "properties": {
+     "accountName": {
+      "type": "string",
+      "description": ""
+     },
+     "branch": {
+      "type": "string",
+      "description": ""
+     },
+     "commitId": {
+      "type": "string",
+      "description": ""
+     },
+     "environmentVariables": {
+      "type": "object",
+      "description": ""
+     },
+     "projectSlug": {
+      "type": "string",
+      "description": ""
+     },
+     "pullRequestId": {
+      "type": "integer",
+      "description": "Can not be used with `branch` or `commitId`"
+     },
+     "body": {
+      "type": "object",
+      "description": ""
+     }
+    },
+    "required": [
+     "accountName",
+     "projectSlug"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://ci.appveyor.com/api/builds",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "accountName",
+     "branch",
+     "commitId",
+     "environmentVariables",
+     "projectSlug",
+     "pullRequestId",
+     "body"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "appveyor.start_deployment",
+   "name": "Start deployment",
+   "description": "Start deployment",
+   "input": {
+    "type": "object",
+    "properties": {
+     "accountName": {
+      "type": "string",
+      "description": ""
+     },
+     "buildJobId": {
+      "type": "string",
+      "description": "Optional job id with artifacts if build contains multiple jobs."
+     },
+     "buildVersion": {
+      "type": "string",
+      "description": "Build to deploy"
+     },
+     "environmentName": {
+      "type": "string",
+      "description": ""
+     },
+     "environmentVariables": {
+      "type": "object",
+      "description": ""
+     },
+     "projectSlug": {
+      "type": "string",
+      "description": ""
+     },
+     "body": {
+      "type": "object",
+      "description": ""
+     }
+    },
+    "required": [
+     "accountName",
+     "buildVersion",
+     "environmentName",
+     "projectSlug"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://ci.appveyor.com/api/deployments",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "accountName",
+     "buildJobId",
+     "buildVersion",
+     "environmentName",
+     "environmentVariables",
+     "projectSlug",
+     "body"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "appveyor.update_collaborator",
+   "name": "Update collaborator",
+   "description": "Update collaborator",
+   "input": {
+    "type": "object",
+    "properties": {
+     "roleId": {
+      "type": "integer",
+      "description": ""
+     },
+     "userId": {
+      "type": "integer",
+      "description": ""
+     },
+     "body": {
+      "type": "object",
+      "description": "Technically `userId` and `roleId` have default value 0 and are not required, but since user 0 and role 0 never exist it would always cause a 404 response."
+     }
+    },
+    "required": [
+     "roleId",
+     "userId"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://ci.appveyor.com/api/collaborators",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "roleId",
+     "userId",
+     "body"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "appveyor.update_environment",
+   "name": "Update environment",
+   "description": "Update environment",
+   "input": {
+    "type": "object",
+    "properties": {
+     "body": {
+      "type": "object",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://ci.appveyor.com/api/environments",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "body"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "appveyor.update_project",
+   "name": "Update project",
+   "description": "Update project",
+   "input": {
+    "type": "object",
+    "properties": {
+     "body": {
+      "type": "object",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://ci.appveyor.com/api/projects",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "body"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "appveyor.update_project_build_number",
+   "name": "Update project build number",
+   "description": "Update project build number",
+   "input": {
+    "type": "object",
+    "properties": {
+     "accountName": {
+      "type": "string",
+      "description": "AppVeyor account name on which to operate. Accounts for which a user has access are listed on the [Security page of the user profile](https://ci.appveyor.com/security) (when logged in). The user account is also the `accountName` property of `UserAccount`."
+     },
+     "projectSlug": {
+      "type": "string",
+      "description": "Project Slug"
+     },
+     "nextBuildNumber": {
+      "type": "integer",
+      "description": ""
+     },
+     "body": {
+      "type": "object",
+      "description": ""
+     }
+    },
+    "required": [
+     "accountName",
+     "nextBuildNumber",
+     "projectSlug"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://ci.appveyor.com/api/projects/{accountName}/{projectSlug}/settings/build-number",
+    "path": [
+     "accountName",
+     "projectSlug"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "nextBuildNumber",
+     "body"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "appveyor.update_project_environment_variables",
+   "name": "Update project environment variables",
+   "description": "Update project environment variables",
+   "input": {
+    "type": "object",
+    "properties": {
+     "accountName": {
+      "type": "string",
+      "description": "AppVeyor account name on which to operate. Accounts for which a user has access are listed on the [Security page of the user profile](https://ci.appveyor.com/security) (when logged in). The user account is also the `accountName` property of `UserAccount`."
+     },
+     "projectSlug": {
+      "type": "string",
+      "description": "Project Slug"
+     },
+     "body": {
+      "type": "array",
+      "description": ""
+     }
+    },
+    "required": [
+     "accountName",
+     "projectSlug"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://ci.appveyor.com/api/projects/{accountName}/{projectSlug}/settings/environment-variables",
+    "path": [
+     "accountName",
+     "projectSlug"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "body"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "appveyor.update_project_settings_yaml",
+   "name": "Update project settings in yaml",
+   "description": "Update project settings in YAML",
+   "input": {
+    "type": "object",
+    "properties": {
+     "accountName": {
+      "type": "string",
+      "description": "AppVeyor account name on which to operate. Accounts for which a user has access are listed on the [Security page of the user profile](https://ci.appveyor.com/security) (when logged in). The user account is also the `accountName` property of `UserAccount`."
+     },
+     "projectSlug": {
+      "type": "string",
+      "description": "Project Slug"
+     },
+     "body": {
+      "type": "string",
+      "description": "The body of requests should contain YAML data. It is unclear how to specify this since the OpenAPI spec requires `schema` without `type` for `in: body` parameters and does not allow `type: file` in `schema`. See https://github.com/OAI/OpenAPI-Specification/issues/326 swagger-codegen (for Java, probably others) allows a binary string body parameter with non-application/json `consumes` to be passed "
+     }
+    },
+    "required": [
+     "accountName",
+     "projectSlug"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://ci.appveyor.com/api/projects/{accountName}/{projectSlug}/settings/yaml",
+    "path": [
+     "accountName",
+     "projectSlug"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "body"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "appveyor.update_role",
+   "name": "Update role",
+   "description": "Update role",
+   "input": {
+    "type": "object",
+    "properties": {
+     "body": {
+      "type": "object",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://ci.appveyor.com/api/roles",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "body"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "appveyor.update_user",
+   "name": "Update user",
+   "description": "Update user",
+   "input": {
+    "type": "object",
+    "properties": {
+     "created": {
+      "type": "string",
+      "description": ""
+     },
+     "updated": {
+      "type": "string",
+      "description": ""
+     },
+     "body": {
+      "type": "object",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://ci.appveyor.com/api/users",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "created",
+     "updated",
+     "body"
+    ],
+    "body_format": "json"
+   }
+  }
+ ]
+}

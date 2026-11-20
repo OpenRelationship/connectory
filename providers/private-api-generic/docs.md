@@ -14,7 +14,9 @@ vouches for**: read it, then read their reference.
 ---
 # Nango Docs
 
-> Nango is the integration layer for AI-built, code-owned product integrations. These files are curated for agents: core docs are listed directly, while provider-specific API pages live in a compact catalog.
+> Nango is the tool calling layer for AI agents to act across 1,400+ APIs. These files are curated for agents: core docs are listed directly, while provider-specific API pages live in a compact catalog.
+
+- [OpenAPI spec](https://nango.dev/docs/spec.yaml): Exact HTTP API schemas for code generation or typed clients.
 
 Full core-docs context: https://nango.dev/docs/llms-full.txt
 API and integration catalog: https://nango.dev/docs/api-catalog.txt
@@ -25,35 +27,27 @@ Use provider URLs by replacing `{slug}` with a slug from the API catalog:
 
 ## Getting started
 
-- [Quickstart](https://nango.dev/docs/getting-started/quickstart.md): Authorize an API and run your first Nango function
-- [Use cases: Sync external API data](https://nango.dev/docs/getting-started/use-cases/syncs.md): Keep external API data fresh for your product, RAG pipeline, or change-detection workflow.
-- [Use cases: Run external API operations](https://nango.dev/docs/getting-started/use-cases/actions.md): Use Nango functions to read, write, and automate external APIs on demand.
-- [Use cases: Build a unified API](https://nango.dev/docs/getting-started/use-cases/unified-apis.md): Normalize several external APIs behind your own stable product interface.
-- [Use cases: Customize per customer](https://nango.dev/docs/getting-started/use-cases/customer-configuration.md): Adapt integration behavior for each customer without forking code.
-- [Use cases: React to connection lifecycle events](https://nango.dev/docs/getting-started/use-cases/implement-event-handler.md): Run integration logic when a connection is validated, created, or deleted.
-
 ## Guides
 
-- [Auth: Auth guide](https://nango.dev/docs/guides/auth/auth-guide.md): Let your users connect external APIs to your agents & apps.
-- [Auth: Share a connect link](https://nango.dev/docs/guides/auth/share-connect-link.md): Generate a short-lived connect link and share it with your end user.
-- [Auth: Connection tags, configuration, and metadata](https://nango.dev/docs/guides/auth/connection-tags-configuration-metadata.md): Use tags, connection configuration, and metadata for the right connection-level data.
-- [Auth: Customize Connect UI](https://nango.dev/docs/guides/auth/customize-connect-ui.md): Guide to branding Nango Connect UI, overriding setup links, or building a headless auth flow with your own UI.
-- [Auth: Token refreshing & validity](https://nango.dev/docs/guides/auth/token-refreshing.md): How Nango handles OAuth token refresh and what to do when tokens are revoked.
-- [Auth: MCP Auth](https://nango.dev/docs/guides/auth/mcp-auth.md): Let your users connect to MCP servers through Nango
-- [Functions: Functions guide](https://nango.dev/docs/guides/functions/functions-guide.md): Understand Nango Functions and choose the right way to start using them.
-- [Functions: Sync functions: Sync function guide](https://nango.dev/docs/guides/functions/syncs/sync-functions.md): Build sync functions that keep external API data fresh and consumable by your app.
-- [Functions: Sync functions: Sync efficiency](https://nango.dev/docs/guides/functions/syncs/sync-efficiency.md): Build sync functions that replicate external datasets without wasting API calls, memory, or compute.
-- [Functions: Sync functions: Deletion detection](https://nango.dev/docs/guides/functions/syncs/deletion-detection.md): Surface deletes from the external API — even when the API itself doesn't expose them cleanly.
-- [Functions: Webhook functions](https://nango.dev/docs/guides/functions/webhook-functions.md): Process external API webhooks inside Nango functions.
-- [Functions: Rate limits](https://nango.dev/docs/guides/functions/rate-limits.md): Guide on how to handle API rate limits from external APIs.
-- [Platform: Security](https://nango.dev/docs/guides/platform/security.md): How Nango secures your API credentials and customer data.
+- [Auth: Auth](https://nango.dev/docs/guides/auth/overview.md): Let users connect their external accounts to your app or agent
+- [Auth: Set up Nango Auth](https://nango.dev/docs/guides/auth/setup.md): Let users connect external accounts from your AI agent, your app, or a link you share
+- [Auth: Customize Connect UI](https://nango.dev/docs/guides/auth/customize-connect-ui.md): Brand Connect UI or build your own auth UI
+- [Auth: Connection tags, config, and metadata](https://nango.dev/docs/guides/auth/connection-tags-configuration-metadata.md): Find the right connection and store the settings your app and integrations need
+- [Auth: Token refreshing & validity](https://nango.dev/docs/guides/auth/token-refreshing.md): How Nango handles OAuth token refresh and what to do when tokens are revoked
+- [Auth: Proxy requests](https://nango.dev/docs/guides/auth/proxy-requests.md): How to use the requests proxy from Nango
+- [Triggers: External webhook forwarding](https://nango.dev/docs/guides/triggers/webhook-forwarding.md): Forward external API webhooks through Nango to your app, with connection attribution.
+- [Triggers: Webhook functions](https://nango.dev/docs/guides/triggers/webhook-functions.md): Process external API webhooks inside Nango functions.
+- [Syncs: Sync external API data](https://nango.dev/docs/guides/syncs/overview.md): Keep external API data fresh for your product, RAG pipeline, or change-detection workflow.
+- [Syncs: Sync function guide](https://nango.dev/docs/guides/syncs/sync-functions.md): Build sync functions that keep external API data fresh and consumable by your app.
+- [Syncs: Advanced: Sync efficiency](https://nango.dev/docs/guides/syncs/sync-efficiency.md): Build sync functions that replicate external datasets without wasting API calls, memory, or compute.
+- [Syncs: Advanced: Deletion detection](https://nango.dev/docs/guides/syncs/deletion-detection.md): Surface deletes from the external API — even when the API itself doesn't expose them cleanly.
+- [Platform: Functions: Functions guide](https://nango.dev/docs/guides/platform/functions/functions-guide.md): Understand Nango Functions and choose the right way to start using them.
+- [Platform: Functions: Rate limits](https://nango.dev/docs/guides/platform/functions/rate-limits.md): Guide on how to handle API rate limits from external APIs.
 - [Platform: Receive webhooks from Nango](https://nango.dev/docs/guides/platform/webhooks-from-nango.md): Reference for the webhooks Nango sends to your app — setup, types, payloads, signature verification, and retries.
-- [Platform: External webhook forwarding](https://nango.dev/docs/guides/platform/webhook-forwarding.md): Forward external API webhooks through Nango to your app, with connection attribution.
-- [Platform: Common issues](https://nango.dev/docs/guides/platform/common-issues.md): Troubleshooting guide for frequent errors and how to fix them.
+- [Platform: Security](https://nango.dev/docs/guides/platform/security.md): How Nango secures your API credentials and customer data.
 - [Platform: Migrations: Migrate to checkpoints](https://nango.dev/docs/guides/platform/migrations/migrate-to-checkpoints.md): Guide to migrate your sync functions from nango.lastSyncDate to the new checkpointing system.
 - [Platform: Migrations: Migrate from end user](https://nango.dev/docs/guides/platform/migrations/migrate-from-end-user.md): Guide to migrate away from using end users in connections and connect sessions
-- [Platform: Migrations: Migrate from public key](https://nango.dev/docs/guides/platform/migrations/migrate-from-public-key.md): Guide to migrate from using the public key (and HMAC) to a Connect session.
-- [Platform: Migrations: Migrating to Zero YAML](https://nango.dev/docs/guides/platform/migrations/migrate-to-zero-yaml.md): Guide on how to migrate to Zero YAML in Nango.
+- [Platform: Migrations: Migrate from public key](https://nango.dev/docs/guides/platform/migrations/migrate-from-public-key.md): Guide to migrate from using the public key (and HMAC) to a Connect session
 
 ## Reference
 
@@ -62,12 +56,16 @@ Use provider URLs by replacing `{slug}` with a slug from the API catalog:
 - [Backend: HTTP API: Authentication](https://nango.dev/docs/reference/backend/http-api/authentication.md)
 - [Backend: HTTP API: Rate limits](https://nango.dev/docs/reference/backend/http-api/rate-limits.md)
 - [Backend: HTTP API: Environments: List environments](https://nango.dev/docs/reference/backend/http-api/environments/list.md)
+- [Backend: HTTP API: Environments: Get an environment](https://nango.dev/docs/reference/backend/http-api/environments/get.md)
 - [Backend: HTTP API: Environments: Create an environment](https://nango.dev/docs/reference/backend/http-api/environments/create.md)
+- [Backend: HTTP API: Environments: Update an environment](https://nango.dev/docs/reference/backend/http-api/environments/update.md)
 - [Backend: HTTP API: Environments: Delete an environment](https://nango.dev/docs/reference/backend/http-api/environments/delete.md)
 - [Backend: HTTP API: Environments: List environment API keys](https://nango.dev/docs/reference/backend/http-api/environments/list-api-keys.md)
 - [Backend: HTTP API: Environments: Get an environment API key](https://nango.dev/docs/reference/backend/http-api/environments/get-api-key.md)
 - [Backend: HTTP API: Environments: Create an environment API key](https://nango.dev/docs/reference/backend/http-api/environments/create-api-key.md)
+- [Backend: HTTP API: Environments: Update an environment API key](https://nango.dev/docs/reference/backend/http-api/environments/update-api-key.md)
 - [Backend: HTTP API: Environments: Delete an environment API key](https://nango.dev/docs/reference/backend/http-api/environments/delete-api-key.md)
+- [Backend: HTTP API: Environments: Rotate the webhook signing key](https://nango.dev/docs/reference/backend/http-api/environments/rotate-webhook-signing-key.md)
 - [Backend: HTTP API: Integrations: List all integrations](https://nango.dev/docs/reference/backend/http-api/integration/list.md)
 - [Backend: HTTP API: Integrations: Get an integration](https://nango.dev/docs/reference/backend/http-api/integration/get.md)
 - [Backend: HTTP API: Integrations: Create an integration](https://nango.dev/docs/reference/backend/http-api/integration/create.md)
@@ -93,7 +91,7 @@ Use provider URLs by replacing `{slug}` with a slug from the API catalog:
 - [Backend: HTTP API: Functions: Get dry run results](https://nango.dev/docs/reference/backend/http-api/functions/dryruns-get.md)
 - [Backend: HTTP API: Functions: Create a function deployment](https://nango.dev/docs/reference/backend/http-api/functions/deployments-create.md)
 - [Backend: HTTP API: Functions: Get a function deployment](https://nango.dev/docs/reference/backend/http-api/functions/deployments-get.md)
-- [Backend: HTTP API: Functions: Get integration functions config](https://nango.dev/docs/reference/backend/http-api/scripts/config.md)
+- [Backend: HTTP API: Functions: Get legacy integration functions config](https://nango.dev/docs/reference/backend/http-api/scripts/config.md)
 - [Backend: HTTP API: Syncs: Get records](https://nango.dev/docs/reference/backend/http-api/sync/records-list.md)
 - [Backend: HTTP API: Syncs: Prune records](https://nango.dev/docs/reference/backend/http-api/sync/prune-records.md)
 - [Backend: HTTP API: Syncs: Trigger sync(s)](https://nango.dev/docs/reference/backend/http-api/sync/trigger.md)
@@ -104,7 +102,8 @@ Use provider URLs by replacing `{slug}` with a slug from the API catalog:
 - [Backend: HTTP API: Syncs: Get environment variables](https://nango.dev/docs/reference/backend/http-api/sync/environment-variables.md)
 - [Backend: HTTP API: Syncs: Create sync variant](https://nango.dev/docs/reference/backend/http-api/sync/create-variant.md)
 - [Backend: HTTP API: Syncs: Delete sync variant](https://nango.dev/docs/reference/backend/http-api/sync/delete-variant.md)
-- [Backend: HTTP API: Actions: Trigger an action](https://nango.dev/docs/reference/backend/http-api/action/trigger.md)
+- [Backend: HTTP API: Tools: Call a tool](https://nango.dev/docs/reference/backend/http-api/tools/call.md)
+- [Backend: HTTP API: Actions (deprecated): Trigger an action (deprecated)](https://nango.dev/docs/reference/backend/http-api/action/trigger.md)
 - [Backend: HTTP API: Proxy: Proxy - GET requests](https://nango.dev/docs/reference/backend/http-api/proxy/get.md)
 - [Backend: HTTP API: Proxy: Proxy - POST requests](https://nango.dev/docs/reference/backend/http-api/proxy/post.md)
 - [Backend: HTTP API: Proxy: Proxy - PUT requests](https://nango.dev/docs/reference/backend/http-api/proxy/put.md)
@@ -113,14 +112,6 @@ Use provider URLs by replacing `{slug}` with a slug from the API catalog:
 - [Backend: HTTP API: Providers: List all providers](https://nango.dev/docs/reference/backend/http-api/providers/list.md)
 - [Backend: HTTP API: Providers: Get a provider](https://nango.dev/docs/reference/backend/http-api/providers/get.md)
 - [Backend: HTTP API: Providers: List provider templates](https://nango.dev/docs/reference/backend/http-api/providers/templates.md)
-- [Backend: HTTP API: Deprecated: List connections (deprecated)](https://nango.dev/docs/reference/backend/http-api/connection/list.md)
-- [Backend: HTTP API: Deprecated: Get connection & credentials (deprecated)](https://nango.dev/docs/reference/backend/http-api/connection/get.md)
-- [Backend: HTTP API: Deprecated: Import a connection (deprecated)](https://nango.dev/docs/reference/backend/http-api/connection/post.md)
-- [Backend: HTTP API: Deprecated: Set connection metadata (deprecated)](https://nango.dev/docs/reference/backend/http-api/connection/set-metadata.md)
-- [Backend: HTTP API: Deprecated: Set connection metadata (deprecated)](https://nango.dev/docs/reference/backend/http-api/connection/set-metadata-legacy.md)
-- [Backend: HTTP API: Deprecated: Edit connection metadata (deprecated)](https://nango.dev/docs/reference/backend/http-api/connection/update-metadata.md)
-- [Backend: HTTP API: Deprecated: Edit connection metadata (deprecated)](https://nango.dev/docs/reference/backend/http-api/connection/update-metadata-legacy.md)
-- [Backend: HTTP API: Deprecated: Delete a connection (deprecated)](https://nango.dev/docs/reference/backend/http-api/connection/delete.md)
 - [Backend: Backend SDK: Node](https://nango.dev/docs/reference/backend/backend-sdk/node.md)
 - [Backend: Backend SDK: Python](https://nango.dev/docs/reference/backend/backend-sdk/python.md)
 - [Backend: Backend SDK: Java](https://nango.dev/docs/reference/backend/backend-sdk/java.md)
@@ -128,7 +119,7 @@ Use provider URLs by replacing `{slug}` with a slug from the API catalog:
 - [Backend: Backend SDK: Go](https://nango.dev/docs/reference/backend/backend-sdk/go.md)
 - [Backend: Backend SDK: Rust](https://nango.dev/docs/reference/backend/backend-sdk/rust.md)
 - [Backend: Backend SDK: PHP](https://nango.dev/docs/reference/backend/backend-sdk/php.md)
-- [Backend: Management MCP (Beta)](https://nango.dev/docs/reference/backend/management-mcp.md): Manage a Nango environment from an MCP client.
+- [Backend: Management MCP](https://nango.dev/docs/reference/backend/management-mcp.md): Manage Nango from an MCP client.
 - [Functions: Functions CLI](https://nango.dev/docs/reference/functions/functions-cli.md): Full reference of the CLI available to implement, test & deploy Nango Functions.
 - [Functions: Functions SDK](https://nango.dev/docs/reference/functions/functions-sdk.md): Full reference of the SDK available in Nango Functions.
 
@@ -139,7 +130,7 @@ Use provider URLs by replacing `{slug}` with a slug from the API catalog:
 
 ## APIs and integrations
 
-- [API catalog](https://nango.dev/docs/api-catalog.txt): 1012 provider slugs with canonical docs routes, auth modes, setup guides, and connect guides.
+- [API catalog](https://nango.dev/docs/api-catalog.txt): 1442 provider slugs with canonical docs routes, auth modes, setup guides, and connect guides.
 - Provider-specific pages are intentionally not expanded here so core Nango guides remain easy for agents to find.
 
 ## Resources

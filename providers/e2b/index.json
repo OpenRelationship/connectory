@@ -1,0 +1,3395 @@
+{
+ "_": "GENERATED \u2014 what an authoring tool needs to FIND an operation. The calling table is the .lua beside it.",
+ "provider": "e2b",
+ "source": "https://e2b.app/openapi.json",
+ "operations": [
+  {
+   "slug": "e2b.delete_events_webhook",
+   "name": "Delete webhook",
+   "description": "Delete a registered webhook.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "webhookID": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "webhookID"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.e2b.app/events/webhooks/{webhookID}",
+    "path": [
+     "webhookID"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "e2b.delete_sandbox",
+   "name": "Delete sandbox",
+   "description": "Kill a sandbox",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sandboxID": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "sandboxID"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.e2b.app/sandboxes/{sandboxID}",
+    "path": [
+     "sandboxID"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "e2b.delete_secret",
+   "name": "Delete secret",
+   "description": "Revoke the secret and schedule its versions for cleanup.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "secretID": {
+      "type": "string",
+      "description": "Identifier of the secret (sec_ prefixed), or its canonical lower-case name"
+     }
+    },
+    "required": [
+     "secretID"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.e2b.app/secrets/{secretID}",
+    "path": [
+     "secretID"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "e2b.delete_template",
+   "name": "Delete template",
+   "description": "Delete a template",
+   "input": {
+    "type": "object",
+    "properties": {
+     "templateID": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "templateID"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.e2b.app/templates/{templateID}",
+    "path": [
+     "templateID"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "e2b.delete_templates_tags",
+   "name": "Delete tags",
+   "description": "Delete multiple tags from templates",
+   "input": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": "string",
+      "description": "Name of the template"
+     },
+     "tags": {
+      "type": "array",
+      "description": "Tags to delete"
+     }
+    },
+    "required": [
+     "name",
+     "tags"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.e2b.app/templates/tags",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "tags"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "e2b.delete_volume",
+   "name": "Delete team volume",
+   "description": "Delete a team volume",
+   "input": {
+    "type": "object",
+    "properties": {
+     "volumeID": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "volumeID"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.e2b.app/volumes/{volumeID}",
+    "path": [
+     "volumeID"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "e2b.download_file",
+   "name": "Download a file",
+   "description": "Download a file",
+   "input": {
+    "type": "object",
+    "properties": {
+     "E2b-Sandbox-Id": {
+      "type": "string",
+      "description": "Identifier of the target sandbox. Routes the request to that sandbox's envd over the shared sandbox host."
+     },
+     "E2b-Sandbox-Port": {
+      "type": "integer",
+      "description": "Port envd listens on inside the sandbox (default 49983)."
+     },
+     "path": {
+      "type": "string",
+      "description": "Path to the file, URL encoded. Can be relative to the user's home directory (e.g. \"file.txt\" resolves to ~/file.txt)."
+     },
+     "username": {
+      "type": "string",
+      "description": "User for setting file ownership and resolving relative paths. Defaults to the sandbox's default user."
+     },
+     "signature": {
+      "type": "string",
+      "description": "Signature used for file access permission verification."
+     },
+     "signature_expiration": {
+      "type": "integer",
+      "description": "Unix timestamp (seconds) after which the signature expires. Only used with the signature parameter."
+     },
+     "Range": {
+      "type": "string",
+      "description": "Byte range to download."
+     },
+     "If-Modified-Since": {
+      "type": "string",
+      "description": "Return 304 if the file has not changed since this HTTP date."
+     },
+     "Accept-Encoding": {
+      "type": "string",
+      "description": "Supported transfer encodings include gzip and identity. Range and conditional requests require acceptable identity encoding."
+     }
+    },
+    "required": [
+     "E2b-Sandbox-Id",
+     "E2b-Sandbox-Port"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.e2b.app/files",
+    "path": [],
+    "query": [
+     "path",
+     "username",
+     "signature",
+     "signature_expiration"
+    ],
+    "header": [
+     "E2b-Sandbox-Id",
+     "E2b-Sandbox-Port",
+     "Range",
+     "If-Modified-Since",
+     "Accept-Encoding"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "e2b.filesystem_filesystem_create_watcher",
+   "name": "Create watcher",
+   "description": "Non-streaming versions of WatchDir",
+   "input": {
+    "type": "object",
+    "properties": {
+     "E2b-Sandbox-Id": {
+      "type": "string",
+      "description": "Identifier of the target sandbox. Routes the request to that sandbox's envd over the shared sandbox host."
+     },
+     "E2b-Sandbox-Port": {
+      "type": "integer",
+      "description": "Port envd listens on inside the sandbox (default 49983)."
+     },
+     "Connect-Protocol-Version": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "1"
+      ]
+     },
+     "Connect-Timeout-Ms": {
+      "type": "number",
+      "description": "Define the timeout, in ms"
+     },
+     "path": {
+      "type": "string",
+      "description": ""
+     },
+     "recursive": {
+      "type": "boolean",
+      "description": ""
+     },
+     "includeEntry": {
+      "type": "boolean",
+      "description": "If true, each FilesystemEvent includes the EntryInfo of the affected entry, when available."
+     },
+     "allowNetworkMounts": {
+      "type": "boolean",
+      "description": "If true, allows watching paths on network filesystem mounts (NFS, CIFS, SMB, FUSE). Events on network mounts may be unreliable or not delivered at all."
+     }
+    },
+    "required": [
+     "Connect-Protocol-Version",
+     "E2b-Sandbox-Id",
+     "E2b-Sandbox-Port"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.e2b.app/filesystem.Filesystem/CreateWatcher",
+    "path": [],
+    "query": [],
+    "header": [
+     "E2b-Sandbox-Id",
+     "E2b-Sandbox-Port",
+     "Connect-Protocol-Version",
+     "Connect-Timeout-Ms"
+    ],
+    "body": [
+     "path",
+     "recursive",
+     "includeEntry",
+     "allowNetworkMounts"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "e2b.filesystem_filesystem_get_watcher_events",
+   "name": "Get watcher events",
+   "description": "GetWatcherEvents",
+   "input": {
+    "type": "object",
+    "properties": {
+     "E2b-Sandbox-Id": {
+      "type": "string",
+      "description": "Identifier of the target sandbox. Routes the request to that sandbox's envd over the shared sandbox host."
+     },
+     "E2b-Sandbox-Port": {
+      "type": "integer",
+      "description": "Port envd listens on inside the sandbox (default 49983)."
+     },
+     "Connect-Protocol-Version": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "1"
+      ]
+     },
+     "Connect-Timeout-Ms": {
+      "type": "number",
+      "description": "Define the timeout, in ms"
+     },
+     "watcherId": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "Connect-Protocol-Version",
+     "E2b-Sandbox-Id",
+     "E2b-Sandbox-Port"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.e2b.app/filesystem.Filesystem/GetWatcherEvents",
+    "path": [],
+    "query": [],
+    "header": [
+     "E2b-Sandbox-Id",
+     "E2b-Sandbox-Port",
+     "Connect-Protocol-Version",
+     "Connect-Timeout-Ms"
+    ],
+    "body": [
+     "watcherId"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "e2b.filesystem_filesystem_list_dir",
+   "name": "List dir",
+   "description": "ListDir",
+   "input": {
+    "type": "object",
+    "properties": {
+     "E2b-Sandbox-Id": {
+      "type": "string",
+      "description": "Identifier of the target sandbox. Routes the request to that sandbox's envd over the shared sandbox host."
+     },
+     "E2b-Sandbox-Port": {
+      "type": "integer",
+      "description": "Port envd listens on inside the sandbox (default 49983)."
+     },
+     "Connect-Protocol-Version": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "1"
+      ]
+     },
+     "Connect-Timeout-Ms": {
+      "type": "number",
+      "description": "Define the timeout, in ms"
+     },
+     "path": {
+      "type": "string",
+      "description": ""
+     },
+     "depth": {
+      "type": "integer",
+      "description": ""
+     }
+    },
+    "required": [
+     "Connect-Protocol-Version",
+     "E2b-Sandbox-Id",
+     "E2b-Sandbox-Port"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.e2b.app/filesystem.Filesystem/ListDir",
+    "path": [],
+    "query": [],
+    "header": [
+     "E2b-Sandbox-Id",
+     "E2b-Sandbox-Port",
+     "Connect-Protocol-Version",
+     "Connect-Timeout-Ms"
+    ],
+    "body": [
+     "path",
+     "depth"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "e2b.filesystem_filesystem_make_dir",
+   "name": "Make dir",
+   "description": "MakeDir",
+   "input": {
+    "type": "object",
+    "properties": {
+     "E2b-Sandbox-Id": {
+      "type": "string",
+      "description": "Identifier of the target sandbox. Routes the request to that sandbox's envd over the shared sandbox host."
+     },
+     "E2b-Sandbox-Port": {
+      "type": "integer",
+      "description": "Port envd listens on inside the sandbox (default 49983)."
+     },
+     "Connect-Protocol-Version": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "1"
+      ]
+     },
+     "Connect-Timeout-Ms": {
+      "type": "number",
+      "description": "Define the timeout, in ms"
+     },
+     "path": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "Connect-Protocol-Version",
+     "E2b-Sandbox-Id",
+     "E2b-Sandbox-Port"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.e2b.app/filesystem.Filesystem/MakeDir",
+    "path": [],
+    "query": [],
+    "header": [
+     "E2b-Sandbox-Id",
+     "E2b-Sandbox-Port",
+     "Connect-Protocol-Version",
+     "Connect-Timeout-Ms"
+    ],
+    "body": [
+     "path"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "e2b.filesystem_filesystem_move",
+   "name": "Move",
+   "description": "Move",
+   "input": {
+    "type": "object",
+    "properties": {
+     "E2b-Sandbox-Id": {
+      "type": "string",
+      "description": "Identifier of the target sandbox. Routes the request to that sandbox's envd over the shared sandbox host."
+     },
+     "E2b-Sandbox-Port": {
+      "type": "integer",
+      "description": "Port envd listens on inside the sandbox (default 49983)."
+     },
+     "Connect-Protocol-Version": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "1"
+      ]
+     },
+     "Connect-Timeout-Ms": {
+      "type": "number",
+      "description": "Define the timeout, in ms"
+     },
+     "source": {
+      "type": "string",
+      "description": ""
+     },
+     "destination": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "Connect-Protocol-Version",
+     "E2b-Sandbox-Id",
+     "E2b-Sandbox-Port"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.e2b.app/filesystem.Filesystem/Move",
+    "path": [],
+    "query": [],
+    "header": [
+     "E2b-Sandbox-Id",
+     "E2b-Sandbox-Port",
+     "Connect-Protocol-Version",
+     "Connect-Timeout-Ms"
+    ],
+    "body": [
+     "source",
+     "destination"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "e2b.filesystem_filesystem_remove",
+   "name": "Remove",
+   "description": "Remove",
+   "input": {
+    "type": "object",
+    "properties": {
+     "E2b-Sandbox-Id": {
+      "type": "string",
+      "description": "Identifier of the target sandbox. Routes the request to that sandbox's envd over the shared sandbox host."
+     },
+     "E2b-Sandbox-Port": {
+      "type": "integer",
+      "description": "Port envd listens on inside the sandbox (default 49983)."
+     },
+     "Connect-Protocol-Version": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "1"
+      ]
+     },
+     "Connect-Timeout-Ms": {
+      "type": "number",
+      "description": "Define the timeout, in ms"
+     },
+     "path": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "Connect-Protocol-Version",
+     "E2b-Sandbox-Id",
+     "E2b-Sandbox-Port"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.e2b.app/filesystem.Filesystem/Remove",
+    "path": [],
+    "query": [],
+    "header": [
+     "E2b-Sandbox-Id",
+     "E2b-Sandbox-Port",
+     "Connect-Protocol-Version",
+     "Connect-Timeout-Ms"
+    ],
+    "body": [
+     "path"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "e2b.filesystem_filesystem_remove_watcher",
+   "name": "Remove watcher",
+   "description": "RemoveWatcher",
+   "input": {
+    "type": "object",
+    "properties": {
+     "E2b-Sandbox-Id": {
+      "type": "string",
+      "description": "Identifier of the target sandbox. Routes the request to that sandbox's envd over the shared sandbox host."
+     },
+     "E2b-Sandbox-Port": {
+      "type": "integer",
+      "description": "Port envd listens on inside the sandbox (default 49983)."
+     },
+     "Connect-Protocol-Version": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "1"
+      ]
+     },
+     "Connect-Timeout-Ms": {
+      "type": "number",
+      "description": "Define the timeout, in ms"
+     },
+     "watcherId": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "Connect-Protocol-Version",
+     "E2b-Sandbox-Id",
+     "E2b-Sandbox-Port"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.e2b.app/filesystem.Filesystem/RemoveWatcher",
+    "path": [],
+    "query": [],
+    "header": [
+     "E2b-Sandbox-Id",
+     "E2b-Sandbox-Port",
+     "Connect-Protocol-Version",
+     "Connect-Timeout-Ms"
+    ],
+    "body": [
+     "watcherId"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "e2b.filesystem_filesystem_stat",
+   "name": "Stat",
+   "description": "Stat",
+   "input": {
+    "type": "object",
+    "properties": {
+     "E2b-Sandbox-Id": {
+      "type": "string",
+      "description": "Identifier of the target sandbox. Routes the request to that sandbox's envd over the shared sandbox host."
+     },
+     "E2b-Sandbox-Port": {
+      "type": "integer",
+      "description": "Port envd listens on inside the sandbox (default 49983)."
+     },
+     "Connect-Protocol-Version": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "1"
+      ]
+     },
+     "Connect-Timeout-Ms": {
+      "type": "number",
+      "description": "Define the timeout, in ms"
+     },
+     "path": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "Connect-Protocol-Version",
+     "E2b-Sandbox-Id",
+     "E2b-Sandbox-Port"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.e2b.app/filesystem.Filesystem/Stat",
+    "path": [],
+    "query": [],
+    "header": [
+     "E2b-Sandbox-Id",
+     "E2b-Sandbox-Port",
+     "Connect-Protocol-Version",
+     "Connect-Timeout-Ms"
+    ],
+    "body": [
+     "path"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "e2b.filesystem_filesystem_watch_dir",
+   "name": "Watch dir",
+   "description": "Server-streaming RPC. Use the Connect protocol with streaming support.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "Connect-Protocol-Version": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "1"
+      ]
+     },
+     "Connect-Timeout-Ms": {
+      "type": "number",
+      "description": "Define the timeout, in ms"
+     },
+     "E2b-Sandbox-Id": {
+      "type": "string",
+      "description": "Identifier of the target sandbox. Routes the request to that sandbox's envd over the shared sandbox host."
+     },
+     "E2b-Sandbox-Port": {
+      "type": "integer",
+      "description": "Port envd listens on inside the sandbox (default 49983)."
+     }
+    },
+    "required": [
+     "Connect-Protocol-Version",
+     "E2b-Sandbox-Id",
+     "E2b-Sandbox-Port"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.e2b.app/filesystem.Filesystem/WatchDir",
+    "path": [],
+    "query": [],
+    "header": [
+     "Connect-Protocol-Version",
+     "Connect-Timeout-Ms",
+     "E2b-Sandbox-Id",
+     "E2b-Sandbox-Port"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "e2b.get_env_vars",
+   "name": "Environment variables",
+   "description": "Environment variables",
+   "input": {
+    "type": "object",
+    "properties": {
+     "E2b-Sandbox-Id": {
+      "type": "string",
+      "description": "Identifier of the target sandbox. Routes the request to that sandbox's envd over the shared sandbox host."
+     },
+     "E2b-Sandbox-Port": {
+      "type": "integer",
+      "description": "Port envd listens on inside the sandbox (default 49983)."
+     }
+    },
+    "required": [
+     "E2b-Sandbox-Id",
+     "E2b-Sandbox-Port"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.e2b.app/envs",
+    "path": [],
+    "query": [],
+    "header": [
+     "E2b-Sandbox-Id",
+     "E2b-Sandbox-Port"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "e2b.get_events_sandbox",
+   "name": "List sandbox events",
+   "description": "Get sandbox events",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sandboxID": {
+      "type": "string",
+      "description": ""
+     },
+     "offset": {
+      "type": "integer",
+      "description": ""
+     },
+     "limit": {
+      "type": "integer",
+      "description": ""
+     },
+     "orderAsc": {
+      "type": "boolean",
+      "description": ""
+     },
+     "types": {
+      "type": "array",
+      "description": "Filter events to the provided event types"
+     }
+    },
+    "required": [
+     "sandboxID"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.e2b.app/events/sandboxes/{sandboxID}",
+    "path": [
+     "sandboxID"
+    ],
+    "query": [
+     "offset",
+     "limit",
+     "orderAsc",
+     "types"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "e2b.get_events_webhook",
+   "name": "Get webhook",
+   "description": "Get a registered webhook.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "webhookID": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "webhookID"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.e2b.app/events/webhooks/{webhookID}",
+    "path": [
+     "webhookID"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "e2b.get_events_webhook_deliveries",
+   "name": "List webhook deliveries",
+   "description": "List webhook delivery attempts.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "webhookID": {
+      "type": "string",
+      "description": ""
+     },
+     "cursor": {
+      "type": "string",
+      "description": "Opaque cursor from the previous response's nextCursor field."
+     },
+     "limit": {
+      "type": "integer",
+      "description": ""
+     },
+     "orderAsc": {
+      "type": "boolean",
+      "description": ""
+     },
+     "start": {
+      "type": "string",
+      "description": "Include deliveries at or after this timestamp."
+     },
+     "end": {
+      "type": "string",
+      "description": "Include deliveries before this timestamp."
+     },
+     "deliveryStatus": {
+      "type": "array",
+      "description": "Filter deliveries by delivery status"
+     },
+     "eventType": {
+      "type": "array",
+      "description": "Filter deliveries by event type"
+     }
+    },
+    "required": [
+     "webhookID"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.e2b.app/events/webhooks/{webhookID}/deliveries",
+    "path": [
+     "webhookID"
+    ],
+    "query": [
+     "cursor",
+     "limit",
+     "orderAsc",
+     "start",
+     "end",
+     "deliveryStatus",
+     "eventType"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "e2b.get_events_webhook_stats",
+   "name": "Get webhook statistics",
+   "description": "Get webhook delivery aggregate stats.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "webhookID": {
+      "type": "string",
+      "description": ""
+     },
+     "start": {
+      "type": "string",
+      "description": "Inclusive stats range start. Defaults to 24 hours ago."
+     },
+     "end": {
+      "type": "string",
+      "description": "Exclusive stats range end. Defaults to now."
+     }
+    },
+    "required": [
+     "webhookID"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.e2b.app/events/webhooks/{webhookID}/stats",
+    "path": [
+     "webhookID"
+    ],
+    "query": [
+     "start",
+     "end"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "e2b.get_health",
+   "name": "Check the health of the service",
+   "description": "Check the health of the service",
+   "input": {
+    "type": "object",
+    "properties": {
+     "E2b-Sandbox-Id": {
+      "type": "string",
+      "description": "Identifier of the target sandbox. Routes the request to that sandbox's envd over the shared sandbox host."
+     },
+     "E2b-Sandbox-Port": {
+      "type": "integer",
+      "description": "Port envd listens on inside the sandbox (default 49983)."
+     }
+    },
+    "required": [
+     "E2b-Sandbox-Id",
+     "E2b-Sandbox-Port"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.e2b.app/health",
+    "path": [],
+    "query": [],
+    "header": [
+     "E2b-Sandbox-Id",
+     "E2b-Sandbox-Port"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "e2b.get_metrics",
+   "name": "Service stats",
+   "description": "Service stats",
+   "input": {
+    "type": "object",
+    "properties": {
+     "E2b-Sandbox-Id": {
+      "type": "string",
+      "description": "Identifier of the target sandbox. Routes the request to that sandbox's envd over the shared sandbox host."
+     },
+     "E2b-Sandbox-Port": {
+      "type": "integer",
+      "description": "Port envd listens on inside the sandbox (default 49983)."
+     }
+    },
+    "required": [
+     "E2b-Sandbox-Id",
+     "E2b-Sandbox-Port"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.e2b.app/metrics",
+    "path": [],
+    "query": [],
+    "header": [
+     "E2b-Sandbox-Id",
+     "E2b-Sandbox-Port"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "e2b.get_sandbox",
+   "name": "Get sandbox",
+   "description": "Get a sandbox by id",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sandboxID": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "sandboxID"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.e2b.app/sandboxes/{sandboxID}",
+    "path": [
+     "sandboxID"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "e2b.get_sandbox_logs_v2",
+   "name": "Get sandbox logs (v2)",
+   "description": "Get sandbox logs",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sandboxID": {
+      "type": "string",
+      "description": ""
+     },
+     "cursor": {
+      "type": "integer",
+      "description": "Starting timestamp of the logs that should be returned in milliseconds"
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Maximum number of logs that should be returned"
+     },
+     "direction": {
+      "type": "string",
+      "description": "Direction of the logs that should be returned",
+      "enum": [
+       "forward",
+       "backward"
+      ]
+     },
+     "level": {
+      "type": "string",
+      "description": "Minimum log level to return. Logs below this level are excluded"
+     },
+     "search": {
+      "type": "string",
+      "description": "Case-sensitive substring match on log message content"
+     }
+    },
+    "required": [
+     "sandboxID"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.e2b.app/v2/sandboxes/{sandboxID}/logs",
+    "path": [
+     "sandboxID"
+    ],
+    "query": [
+     "cursor",
+     "limit",
+     "direction",
+     "level",
+     "search"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "e2b.get_sandbox_metrics",
+   "name": "Get sandbox metrics",
+   "description": "Get sandbox metrics",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sandboxID": {
+      "type": "string",
+      "description": ""
+     },
+     "start": {
+      "type": "integer",
+      "description": "Unix timestamp for the start of the interval, in seconds, for which the metrics are returned."
+     },
+     "end": {
+      "type": "integer",
+      "description": "Unix timestamp for the end of the interval, in seconds, for which the metrics are returned."
+     }
+    },
+    "required": [
+     "sandboxID"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.e2b.app/sandboxes/{sandboxID}/metrics",
+    "path": [
+     "sandboxID"
+    ],
+    "query": [
+     "start",
+     "end"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "e2b.get_secret",
+   "name": "Get secret",
+   "description": "Get one secret's metadata, selected by identifier or name.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "secretID": {
+      "type": "string",
+      "description": "Identifier of the secret (sec_ prefixed), or its canonical lower-case name"
+     }
+    },
+    "required": [
+     "secretID"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.e2b.app/secrets/{secretID}",
+    "path": [
+     "secretID"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "e2b.get_team_metrics",
+   "name": "Get team metrics",
+   "description": "Get metrics for the team. Team metrics are kept for 90 days. If `start` is omitted, it defaults to 7 days ago; if `end` is omitted, it defaults to now. The server picks the step between data points from the width of the window: 5 seconds under 1 hour, 30 seconds under 6 hours, 1 minute under 12 hours, 2 minutes under 24 hours, 5 minutes under 7 days, and 15 minutes for 7 days or more.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "teamID": {
+      "type": "string",
+      "description": "Identifier of the team, as its UUID or its public project ID (prj_)"
+     },
+     "start": {
+      "type": "integer",
+      "description": "Unix timestamp for the start of the interval, in seconds, for which the metrics are returned."
+     },
+     "end": {
+      "type": "integer",
+      "description": "Unix timestamp for the end of the interval, in seconds, for which the metrics are returned."
+     }
+    },
+    "required": [
+     "teamID"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.e2b.app/teams/{teamID}/metrics",
+    "path": [
+     "teamID"
+    ],
+    "query": [
+     "start",
+     "end"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "e2b.get_team_metrics_max",
+   "name": "Get team metrics max",
+   "description": "Get the maximum metrics for the team in the given interval",
+   "input": {
+    "type": "object",
+    "properties": {
+     "teamID": {
+      "type": "string",
+      "description": "Identifier of the team, as its UUID or its public project ID (prj_)"
+     },
+     "start": {
+      "type": "integer",
+      "description": "Unix timestamp for the start of the interval, in seconds, for which the metrics are returned."
+     },
+     "end": {
+      "type": "integer",
+      "description": "Unix timestamp for the end of the interval, in seconds, for which the metrics are returned."
+     },
+     "metric": {
+      "type": "string",
+      "description": "Metric to retrieve the maximum value for",
+      "enum": [
+       "concurrent_sandboxes",
+       "sandbox_start_rate"
+      ]
+     }
+    },
+    "required": [
+     "metric",
+     "teamID"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.e2b.app/teams/{teamID}/metrics/max",
+    "path": [
+     "teamID"
+    ],
+    "query": [
+     "start",
+     "end",
+     "metric"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "e2b.get_template",
+   "name": "Get template",
+   "description": "List all builds for a template",
+   "input": {
+    "type": "object",
+    "properties": {
+     "templateID": {
+      "type": "string",
+      "description": ""
+     },
+     "nextToken": {
+      "type": "string",
+      "description": "Cursor to start the list from"
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Maximum number of items to return per page"
+     }
+    },
+    "required": [
+     "templateID"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.e2b.app/templates/{templateID}",
+    "path": [
+     "templateID"
+    ],
+    "query": [
+     "nextToken",
+     "limit"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "e2b.get_template_build_logs",
+   "name": "Get build logs",
+   "description": "Get template build logs",
+   "input": {
+    "type": "object",
+    "properties": {
+     "templateID": {
+      "type": "string",
+      "description": ""
+     },
+     "buildID": {
+      "type": "string",
+      "description": ""
+     },
+     "cursor": {
+      "type": "integer",
+      "description": "Starting timestamp of the logs that should be returned in milliseconds"
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Maximum number of logs that should be returned"
+     },
+     "direction": {
+      "type": "string",
+      "description": "Direction of the logs that should be returned",
+      "enum": [
+       "forward",
+       "backward"
+      ]
+     },
+     "level": {
+      "type": "string",
+      "description": "Severity level for log entries (e.g. info, warn, error)"
+     },
+     "source": {
+      "type": "string",
+      "description": "Source of the logs that should be returned from",
+      "enum": [
+       "temporary",
+       "persistent"
+      ]
+     }
+    },
+    "required": [
+     "buildID",
+     "templateID"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.e2b.app/templates/{templateID}/builds/{buildID}/logs",
+    "path": [
+     "templateID",
+     "buildID"
+    ],
+    "query": [
+     "cursor",
+     "limit",
+     "direction",
+     "level",
+     "source"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "e2b.get_template_build_status",
+   "name": "Get build status",
+   "description": "Get template build info",
+   "input": {
+    "type": "object",
+    "properties": {
+     "templateID": {
+      "type": "string",
+      "description": ""
+     },
+     "buildID": {
+      "type": "string",
+      "description": ""
+     },
+     "logsOffset": {
+      "type": "integer",
+      "description": "Index of the starting build log that should be returned with the template"
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Maximum number of logs that should be returned"
+     },
+     "level": {
+      "type": "string",
+      "description": "Severity level for log entries (e.g. info, warn, error)"
+     }
+    },
+    "required": [
+     "buildID",
+     "templateID"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.e2b.app/templates/{templateID}/builds/{buildID}/status",
+    "path": [
+     "templateID",
+     "buildID"
+    ],
+    "query": [
+     "logsOffset",
+     "limit",
+     "level"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "e2b.get_template_builds",
+   "name": "List template builds",
+   "description": "List the builds of a template, newest first. The template is given by its ID or name. A template named `aliases` is given by its ID or by its name with the team prefix. Give a namespaced name as `team/name` with the slash encoded as `%2F`, for example `my-team%2Fmy-template`. Returns 100 builds per page by default. Pass the `X-Next-Token` response header as `nextToken` to get the next page. A tag ",
+   "input": {
+    "type": "object",
+    "properties": {
+     "templateID": {
+      "type": "string",
+      "description": ""
+     },
+     "nextToken": {
+      "type": "string",
+      "description": "Cursor to start the list from"
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Maximum number of items to return per page"
+     },
+     "statuses": {
+      "type": "array",
+      "description": "Comma-separated list of build statuses to include. Every status when omitted. Repeating a status returns 400."
+     },
+     "tags": {
+      "type": "array",
+      "description": "Comma-separated list of tags. Only the builds these tags point at are returned. Every build when omitted. Tags are trimmed and lowercased."
+     }
+    },
+    "required": [
+     "templateID"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.e2b.app/templates/{templateID}/builds",
+    "path": [
+     "templateID"
+    ],
+    "query": [
+     "nextToken",
+     "limit",
+     "statuses",
+     "tags"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "e2b.get_template_file",
+   "name": "Get build upload link",
+   "description": "Get an upload link for a tar file containing build layer files",
+   "input": {
+    "type": "object",
+    "properties": {
+     "templateID": {
+      "type": "string",
+      "description": ""
+     },
+     "hash": {
+      "type": "string",
+      "description": "Hash of the files (lowercase hex SHA-256)"
+     }
+    },
+    "required": [
+     "hash",
+     "templateID"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.e2b.app/templates/{templateID}/files/{hash}",
+    "path": [
+     "templateID",
+     "hash"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "e2b.get_template_tag_assignments",
+   "name": "List template tag assignments",
+   "description": "Lists the ready assignments of one tag of the template, newest first, with keyset cursor pagination. Returns 404 when the template does not exist or belongs to another team.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "templateID": {
+      "type": "string",
+      "description": ""
+     },
+     "tag": {
+      "type": "string",
+      "description": "Tag name"
+     },
+     "cursor": {
+      "type": "string",
+      "description": "Cursor returned by the previous list response in `assigned_at|assignment_id` format."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Maximum number of assignment rows to return per page."
+     }
+    },
+    "required": [
+     "tag",
+     "templateID"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.e2b.app/templates/{templateID}/tags/{tag}/assignments",
+    "path": [
+     "templateID",
+     "tag"
+    ],
+    "query": [
+     "cursor",
+     "limit"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "e2b.get_template_tags",
+   "name": "List template tags",
+   "description": "List all tags for a template",
+   "input": {
+    "type": "object",
+    "properties": {
+     "templateID": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "templateID"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.e2b.app/templates/{templateID}/tags",
+    "path": [
+     "templateID"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "e2b.get_template_tags_count",
+   "name": "Count template tags",
+   "description": "Returns the number of distinct tags of the template that have at least one ready build. Returns 404 when the template does not exist or belongs to another team.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "templateID": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "templateID"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.e2b.app/templates/{templateID}/tags/count",
+    "path": [
+     "templateID"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "e2b.get_template_tags_exists",
+   "name": "Check template tag",
+   "description": "Checks whether a tag of the template has at least one ready build. Returns 404 when the template does not exist or belongs to another team.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "templateID": {
+      "type": "string",
+      "description": ""
+     },
+     "tag": {
+      "type": "string",
+      "description": "Template tag name to check."
+     }
+    },
+    "required": [
+     "tag",
+     "templateID"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.e2b.app/templates/{templateID}/tags/exists",
+    "path": [
+     "templateID"
+    ],
+    "query": [
+     "tag"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "e2b.get_template_tags_groups",
+   "name": "List template tag groups",
+   "description": "Lists the template's tags that have at least one ready build, each with its most recent ready assignments, paginated over tags with a keyset cursor. Returns 404 when the template does not exist or belongs to another team.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "templateID": {
+      "type": "string",
+      "description": ""
+     },
+     "assignmentLimit": {
+      "type": "integer",
+      "description": "Maximum number of ready assignment rows to return per tag."
+     },
+     "tagsLimit": {
+      "type": "integer",
+      "description": "Maximum number of distinct tags to return per page."
+     },
+     "tagsCursor": {
+      "type": "string",
+      "description": "Cursor returned by the previous list response in `{sort}|{latest_assigned_at}|{tag}` format (sort-tagged, RFC3339Nano)."
+     },
+     "search": {
+      "type": "string",
+      "description": "Substring filter on tag name. Allowed characters are `a-z`, `0-9`, `.`, `_`, `-`."
+     },
+     "sort": {
+      "type": "string",
+      "description": "Sort order for the returned tag groups.",
+      "enum": [
+       "latest_desc",
+       "latest_asc",
+       "name_asc",
+       "name_desc"
+      ]
+     }
+    },
+    "required": [
+     "templateID"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.e2b.app/templates/{templateID}/tags/groups",
+    "path": [
+     "templateID"
+    ],
+    "query": [
+     "assignmentLimit",
+     "tagsLimit",
+     "tagsCursor",
+     "search",
+     "sort"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "e2b.get_template_v2",
+   "name": "Get template (v2)",
+   "description": "Get a template by its ID or name, with its default build and without its other builds. Give a namespaced name as `team/name` with the slash encoded as `%2F`, for example `my-team%2Fmy-template`. A reference with a tag (for example `my-template:v2`) returns 400. A template that is missing, deleted or owned by another team returns 404.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "templateID": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "templateID"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.e2b.app/v2/templates/{templateID}",
+    "path": [
+     "templateID"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "e2b.get_templates_alias",
+   "name": "Get template by alias",
+   "description": "Check if template with given alias exists",
+   "input": {
+    "type": "object",
+    "properties": {
+     "alias": {
+      "type": "string",
+      "description": "Template alias"
+     }
+    },
+    "required": [
+     "alias"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.e2b.app/templates/aliases/{alias}",
+    "path": [
+     "alias"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "e2b.get_volume",
+   "name": "Team volume",
+   "description": "Get team volume info",
+   "input": {
+    "type": "object",
+    "properties": {
+     "volumeID": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "volumeID"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.e2b.app/volumes/{volumeID}",
+    "path": [
+     "volumeID"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "e2b.list_default_templates",
+   "name": "List default templates",
+   "description": "Lists the platform's default templates, ordered by template ID. Deleted templates are left out. Templates that are not public are listed only to their own team and to admin callers. The build, resources and envd version are those of the newest ready build tagged `default`, the one a sandbox started from the template runs, and are zero or empty when there is none; `buildStatus` describes the newest",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.e2b.app/default-templates",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "e2b.list_events_sandboxes",
+   "name": "List events",
+   "description": "Get all sandbox events for the team associated with the API key",
+   "input": {
+    "type": "object",
+    "properties": {
+     "offset": {
+      "type": "integer",
+      "description": ""
+     },
+     "limit": {
+      "type": "integer",
+      "description": ""
+     },
+     "orderAsc": {
+      "type": "boolean",
+      "description": ""
+     },
+     "types": {
+      "type": "array",
+      "description": "Filter events to the provided event types"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.e2b.app/events/sandboxes",
+    "path": [],
+    "query": [
+     "offset",
+     "limit",
+     "orderAsc",
+     "types"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "e2b.list_events_webhooks",
+   "name": "List webhooks",
+   "description": "List registered webhooks.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.e2b.app/events/webhooks",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "e2b.list_sandboxes_metrics",
+   "name": "List sandbox metrics",
+   "description": "List metrics for given sandboxes",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sandbox_ids": {
+      "type": "array",
+      "description": "Comma-separated list of sandbox IDs to get metrics for"
+     }
+    },
+    "required": [
+     "sandbox_ids"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.e2b.app/sandboxes/metrics",
+    "path": [],
+    "query": [
+     "sandbox_ids"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "e2b.list_sandboxes_v2",
+   "name": "List sandboxes (v2)",
+   "description": "List all sandboxes",
+   "input": {
+    "type": "object",
+    "properties": {
+     "metadata": {
+      "type": "string",
+      "description": "Metadata query used to filter the sandboxes (e.g. \"user=abc&app=prod\"). Each key and values must be URL encoded."
+     },
+     "state": {
+      "type": "array",
+      "description": "Filter sandboxes by one or more states"
+     },
+     "order": {
+      "type": "string",
+      "description": "Sort direction by sandbox start time. Defaults to desc (newest first).",
+      "enum": [
+       "asc",
+       "desc"
+      ]
+     },
+     "startedAfter": {
+      "type": "string",
+      "description": "Return sandboxes started at or after this timestamp."
+     },
+     "template": {
+      "type": "string",
+      "description": "Filter sandboxes by a template ID or alias."
+     },
+     "nextToken": {
+      "type": "string",
+      "description": "Cursor to start the list from"
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Maximum number of items to return per page"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.e2b.app/v2/sandboxes",
+    "path": [],
+    "query": [
+     "metadata",
+     "state",
+     "order",
+     "startedAfter",
+     "template",
+     "nextToken",
+     "limit"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "e2b.list_secrets",
+   "name": "List secrets",
+   "description": "List the project's secrets. No response carries a secret value.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "nextToken": {
+      "type": "string",
+      "description": "Cursor to start the list from"
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Maximum number of items to return per page"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.e2b.app/secrets",
+    "path": [],
+    "query": [
+     "nextToken",
+     "limit"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "e2b.list_snapshots",
+   "name": "List snapshots",
+   "description": "List all snapshots for the team",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sandboxID": {
+      "type": "string",
+      "description": "Filter snapshots by source sandbox ID"
+     },
+     "name": {
+      "type": "string",
+      "description": "Filter snapshots by name or ID, optionally tag-qualified (e.g. \"my-snapshot\", \"my-team/my-snapshot\" or \"my-snapshot:v1\")."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Maximum number of items to return per page"
+     },
+     "nextToken": {
+      "type": "string",
+      "description": "Cursor to start the list from"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.e2b.app/snapshots",
+    "path": [],
+    "query": [
+     "sandboxID",
+     "name",
+     "limit",
+     "nextToken"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "e2b.list_templates_v2",
+   "name": "List templates (v2)",
+   "description": "List all templates",
+   "input": {
+    "type": "object",
+    "properties": {
+     "teamID": {
+      "type": "string",
+      "description": "Identifier of the team, as its UUID or its public project ID (prj_)"
+     },
+     "nextToken": {
+      "type": "string",
+      "description": "Cursor to start the list from"
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Maximum number of items to return per page"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.e2b.app/v2/templates",
+    "path": [],
+    "query": [
+     "teamID",
+     "nextToken",
+     "limit"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "e2b.list_volumes",
+   "name": "List team volumes",
+   "description": "List all team volumes",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.e2b.app/volumes",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "e2b.patch_events_webhook",
+   "name": "Update webhook",
+   "description": "Update a registered webhook configuration.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "webhookID": {
+      "type": "string",
+      "description": ""
+     },
+     "enabled": {
+      "type": "boolean",
+      "description": ""
+     },
+     "name": {
+      "type": "string",
+      "description": "Webhook user friendly name"
+     },
+     "url": {
+      "type": "string",
+      "description": ""
+     },
+     "events": {
+      "type": "array",
+      "description": ""
+     },
+     "signatureSecret": {
+      "type": "string",
+      "description": "Secret used to sign the webhook payloads"
+     }
+    },
+    "required": [
+     "webhookID"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.e2b.app/events/webhooks/{webhookID}",
+    "path": [
+     "webhookID"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "enabled",
+     "name",
+     "url",
+     "events",
+     "signatureSecret"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "e2b.patch_template_v2",
+   "name": "Update template (v2)",
+   "description": "Update template",
+   "input": {
+    "type": "object",
+    "properties": {
+     "templateID": {
+      "type": "string",
+      "description": ""
+     },
+     "public": {
+      "type": "boolean",
+      "description": "Whether the template is public or only accessible by the team"
+     }
+    },
+    "required": [
+     "templateID"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.e2b.app/v2/templates/{templateID}",
+    "path": [
+     "templateID"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "public"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "e2b.post_events_webhooks",
+   "name": "Create webhook",
+   "description": "Register events webhook.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": "string",
+      "description": ""
+     },
+     "url": {
+      "type": "string",
+      "description": ""
+     },
+     "events": {
+      "type": "array",
+      "description": ""
+     },
+     "enabled": {
+      "type": "boolean",
+      "description": ""
+     },
+     "signatureSecret": {
+      "type": "string",
+      "description": "Secret used to sign the webhook payloads"
+     }
+    },
+    "required": [
+     "events",
+     "name",
+     "signatureSecret",
+     "url"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.e2b.app/events/webhooks",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "url",
+     "events",
+     "enabled",
+     "signatureSecret"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "e2b.post_sandbox_connect_v2",
+   "name": "Connect sandbox (v2)",
+   "description": "Returns sandbox details. If the sandbox is paused, it will be resumed. TTL is only extended. The request body is optional; an omitted timeout defaults to 300 seconds. Answers 409 with error_code sandbox_snapshot_guest_agent_unresponsive when the paused sandbox's snapshot was taken while its guest agent was not responding and the request did not ask for `memory: false`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sandboxID": {
+      "type": "string",
+      "description": ""
+     },
+     "timeout": {
+      "type": "integer",
+      "description": "Timeout in seconds from the current time after which the sandbox should expire"
+     },
+     "memory": {
+      "type": "boolean",
+      "description": "Defaults to true. When false and the sandbox is paused, resume from disk state only: the sandbox cold-boots fresh and any memory in the snapshot is ignored, never modified or deleted. Disk state has crash-recovery semantics \u2014 writes not flushed before the pause may be lost. A no-op for snapshots that contain no memory. Rejected with an error in environments where this capability is not enabled, ne"
+     }
+    },
+    "required": [
+     "sandboxID"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.e2b.app/v2/sandboxes/{sandboxID}/connect",
+    "path": [
+     "sandboxID"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "timeout",
+     "memory"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "e2b.post_sandbox_fork",
+   "name": "Fork sandbox",
+   "description": "Fork the sandbox: checkpoint the running sandbox in place (it is briefly paused, snapshotted with its full memory state, and resumed on its node, keeping its ID and expiration untouched) and create count new sandboxes from that snapshot. Returns one result per requested fork, each carrying either the created sandbox or the error that prevented it from starting. A non-201 status means the request f",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sandboxID": {
+      "type": "string",
+      "description": ""
+     },
+     "timeout": {
+      "type": "integer",
+      "description": "Time to live for the new forked sandboxes in seconds."
+     },
+     "count": {
+      "type": "integer",
+      "description": "Number of forked sandboxes to create. All forks boot from the same snapshot, so the snapshot is captured once regardless of count. Each fork succeeds or fails independently; the outcome of each is reported in its entry of the response list."
+     }
+    },
+    "required": [
+     "sandboxID"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.e2b.app/sandboxes/{sandboxID}/fork",
+    "path": [
+     "sandboxID"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "timeout",
+     "count"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "e2b.post_sandbox_pause",
+   "name": "Pause sandbox",
+   "description": "Pause the sandbox. Answers 503 and leaves the sandbox running when it cannot be paused right now: its node is busy, it is being snapshotted, or `requireHealthyGuest` was set and the sandbox guest agent is not responding; retry later.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sandboxID": {
+      "type": "string",
+      "description": ""
+     },
+     "memory": {
+      "type": "boolean",
+      "description": "Whether to capture a full memory snapshot. When false, only the filesystem is persisted and resuming the sandbox cold-boots (reboots) it from disk, losing in-memory state, running processes, and open connections. Resume it with an explicit request (connect or resume); auto-resume, which can be triggered by arbitrary traffic, refuses such a sandbox. Defaults to true."
+     },
+     "requireHealthyGuest": {
+      "type": "boolean",
+      "description": "The pause checks that the sandbox guest agent answers before it takes the snapshot. By default an unresponsive agent is recorded on the snapshot and the pause proceeds; the sandbox then shows `envdUnresponsiveAtPause` and a later resume must ask for `memory: false`, since restoring that memory would bring the unresponsive agent back. With this true, the pause is instead refused with 503 while the "
+     }
+    },
+    "required": [
+     "sandboxID"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.e2b.app/sandboxes/{sandboxID}/pause",
+    "path": [
+     "sandboxID"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "memory",
+     "requireHealthyGuest"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "e2b.post_sandbox_refreshes",
+   "name": "Refresh sandbox",
+   "description": "Refresh the sandbox extending its time to live",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sandboxID": {
+      "type": "string",
+      "description": ""
+     },
+     "duration": {
+      "type": "integer",
+      "description": "Duration for which the sandbox should be kept alive in seconds"
+     }
+    },
+    "required": [
+     "sandboxID"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.e2b.app/sandboxes/{sandboxID}/refreshes",
+    "path": [
+     "sandboxID"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "duration"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "e2b.post_sandbox_snapshots",
+   "name": "Create snapshot",
+   "description": "Create a persistent snapshot from the sandbox's current state. Snapshots can be used to create new sandboxes and persist beyond the original sandbox's lifetime.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sandboxID": {
+      "type": "string",
+      "description": ""
+     },
+     "Idempotency-Key": {
+      "type": "string",
+      "description": "Optional team-scoped key for retrying the request. Use 1 to 255 lowercase ASCII letters, digits, or hyphens (a-z, 0-9, -), such as a lowercase UUID. The HTTP method, path, query, and request content identify the request. When idempotency is enabled, a matching retry of a completed request replays its status and body, including the IDs of any resources it created, without repeating the operation. A"
+     },
+     "name": {
+      "type": "string",
+      "description": "Optional name for the snapshot template. If a snapshot template with this name already exists, a new build will be assigned to the existing template instead of creating a new one."
+     },
+     "memory": {
+      "type": "boolean",
+      "description": "Whether to capture a full memory snapshot. When false, only the filesystem is persisted: the snapshot is smaller and faster to take, and sandboxes created from it cold-boot (start fresh from disk) instead of restoring memory, so they begin without the source sandbox's running processes, in-memory state, and open connections. The source sandbox keeps running in both cases. Defaults to true."
+     }
+    },
+    "required": [
+     "sandboxID"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.e2b.app/sandboxes/{sandboxID}/snapshots",
+    "path": [
+     "sandboxID"
+    ],
+    "query": [],
+    "header": [
+     "Idempotency-Key"
+    ],
+    "body": [
+     "name",
+     "memory"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "e2b.post_sandbox_timeout",
+   "name": "Set sandbox timeout",
+   "description": "Set the timeout for the sandbox. The sandbox will expire x seconds from the time of the request. Calling this method multiple times overwrites the TTL, each time using the current timestamp as the starting point to measure the timeout duration.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sandboxID": {
+      "type": "string",
+      "description": ""
+     },
+     "timeout": {
+      "type": "integer",
+      "description": "Timeout in seconds from the current time after which the sandbox should expire"
+     }
+    },
+    "required": [
+     "sandboxID",
+     "timeout"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.e2b.app/sandboxes/{sandboxID}/timeout",
+    "path": [
+     "sandboxID"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "timeout"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "e2b.post_sandboxes_v2",
+   "name": "Create sandbox (v2)",
+   "description": "Create a sandbox from the template. All system communication with the sandbox is secured.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "Idempotency-Key": {
+      "type": "string",
+      "description": "Optional team-scoped key for retrying sandbox creation. Use 1 to 255 lowercase ASCII letters, digits, or hyphens (a-z, 0-9, -), such as a lowercase UUID. When idempotency is enabled, matching retries replay a completed status and body for the retention period. A creation failure explicitly classified as safe to retry (Should-Retry: true) permits a fresh attempt with the same key and parameters. On"
+     },
+     "templateID": {
+      "type": "string",
+      "description": "Identifier of the required template"
+     },
+     "timeout": {
+      "type": "integer",
+      "description": "Time to live for the sandbox in seconds."
+     },
+     "cpuCount": {
+      "type": "integer",
+      "description": "Online vCPU target for the sandbox. Defaults to the template's cpuCount; at most its maxCpuCount (fixed-size templates accept only their cpuCount)."
+     },
+     "autoPause": {
+      "type": "boolean",
+      "description": "Automatically pauses the sandbox after the timeout"
+     },
+     "autoPauseMemory": {
+      "type": "boolean",
+      "description": "Controls the snapshot kind taken when the sandbox auto-pauses on timeout (only relevant when autoPause is true). When false, the auto-pause drops the in-memory state and persists only the filesystem (a filesystem-only snapshot); resuming it cold-boots (reboots) the sandbox from disk. Such a snapshot cannot be auto-resumed by traffic and must be resumed explicitly, so it cannot be combined with aut"
+     },
+     "autoResume": {
+      "type": "object",
+      "description": "Auto-resume configuration for paused sandboxes."
+     },
+     "allow_internet_access": {
+      "type": "boolean",
+      "description": "Allow sandbox to access the internet. When set to false, it behaves the same as specifying denyOut to 0.0.0.0/0 in the network config."
+     },
+     "network": {
+      "type": "object",
+      "description": ""
+     },
+     "metadata": {
+      "type": "object",
+      "description": ""
+     },
+     "envVars": {
+      "type": "object",
+      "description": ""
+     },
+     "mcp": {
+      "type": [
+       "object",
+       "null"
+      ],
+      "description": "MCP configuration for the sandbox"
+     },
+     "iam": {
+      "type": "object",
+      "description": "Sandbox workload identity configuration. A non-empty, valid tokens map enables workload identity for the sandbox."
+     },
+     "volumeMounts": {
+      "type": "array",
+      "description": ""
+     }
+    },
+    "required": [
+     "templateID"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.e2b.app/v2/sandboxes",
+    "path": [],
+    "query": [],
+    "header": [
+     "Idempotency-Key"
+    ],
+    "body": [
+     "templateID",
+     "timeout",
+     "cpuCount",
+     "autoPause",
+     "autoPauseMemory",
+     "autoResume",
+     "allow_internet_access",
+     "network",
+     "metadata",
+     "envVars",
+     "mcp",
+     "iam",
+     "volumeMounts"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "e2b.post_secret",
+   "name": "Update secret",
+   "description": "Replace the secret's stored marker by appending a new version. The response carries metadata only.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "secretID": {
+      "type": "string",
+      "description": "Identifier of the secret (sec_ prefixed), or its canonical lower-case name"
+     },
+     "value": {
+      "type": "string",
+      "description": "Runtime marker stored as the secret's new version. The runtime resolves it to a value at sandbox egress."
+     },
+     "metadata": {
+      "type": "object",
+      "description": "Customer metadata of the secret. Always present, empty when unset. At most 32 entries; keys are limited to 128 bytes, values to 1024 bytes, and a secret's metadata to 8192 bytes in total."
+     }
+    },
+    "required": [
+     "secretID",
+     "value"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.e2b.app/secrets/{secretID}",
+    "path": [
+     "secretID"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "value",
+     "metadata"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "e2b.post_secrets",
+   "name": "Create secret",
+   "description": "Create a secret by storing a runtime marker as its first version. The response carries metadata only.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": "string",
+      "description": "Name of the secret, unique within the project. Names are lower-cased before storage and returned in that canonical form; the sec_ prefix is reserved for secret identifiers."
+     },
+     "value": {
+      "type": "string",
+      "description": "Runtime marker stored as the secret's first version. The runtime resolves it to a value at sandbox egress."
+     },
+     "metadata": {
+      "type": "object",
+      "description": "Customer metadata of the secret. Always present, empty when unset. At most 32 entries; keys are limited to 128 bytes, values to 1024 bytes, and a secret's metadata to 8192 bytes in total."
+     }
+    },
+    "required": [
+     "name",
+     "value"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.e2b.app/secrets",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "value",
+     "metadata"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "e2b.post_template_build_v2",
+   "name": "Start build (v2)",
+   "description": "Start the build. With an Idempotency-Key, replays continue to work after the build has left the waiting state.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "templateID": {
+      "type": "string",
+      "description": ""
+     },
+     "buildID": {
+      "type": "string",
+      "description": ""
+     },
+     "Idempotency-Key": {
+      "type": "string",
+      "description": "Optional team-scoped key for retrying the request. Use 1 to 255 lowercase ASCII letters, digits, or hyphens (a-z, 0-9, -), such as a lowercase UUID. The HTTP method, path, query, and request content identify the request. When idempotency is enabled, a matching retry of a completed request replays its status and body, including the IDs of any resources it created, without repeating the operation. A"
+     },
+     "fromImage": {
+      "type": "string",
+      "description": "Image to use as a base for the template build"
+     },
+     "fromTemplate": {
+      "type": "string",
+      "description": "Template to use as a base for the template build"
+     },
+     "fromImageRegistry": {
+      "type": "string",
+      "description": ""
+     },
+     "force": {
+      "type": "boolean",
+      "description": "Whether the whole build should be forced to run regardless of the cache"
+     },
+     "steps": {
+      "type": "array",
+      "description": "List of steps to execute in the template build"
+     },
+     "startCmd": {
+      "type": "string",
+      "description": "Start command to execute in the template after the build"
+     },
+     "readyCmd": {
+      "type": "string",
+      "description": "Ready check command to execute in the template after the build"
+     }
+    },
+    "required": [
+     "buildID",
+     "templateID"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.e2b.app/v2/templates/{templateID}/builds/{buildID}",
+    "path": [
+     "templateID",
+     "buildID"
+    ],
+    "query": [],
+    "header": [
+     "Idempotency-Key"
+    ],
+    "body": [
+     "fromImage",
+     "fromTemplate",
+     "fromImageRegistry",
+     "force",
+     "steps",
+     "startCmd",
+     "readyCmd"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "e2b.post_templates_tags",
+   "name": "Assign tags",
+   "description": "Assign tag(s) to a template build.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "Idempotency-Key": {
+      "type": "string",
+      "description": "Optional team-scoped key for retrying the request. Use 1 to 255 lowercase ASCII letters, digits, or hyphens (a-z, 0-9, -), such as a lowercase UUID. The HTTP method, path, query, and request content identify the request. When idempotency is enabled, a matching retry of a completed request replays its status and body, including the IDs of any resources it created, without repeating the operation. A"
+     },
+     "target": {
+      "type": "string",
+      "description": "Target template in \"name:tag\" format"
+     },
+     "tags": {
+      "type": "array",
+      "description": "Tags to assign to the template"
+     }
+    },
+    "required": [
+     "tags",
+     "target"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.e2b.app/templates/tags",
+    "path": [],
+    "query": [],
+    "header": [
+     "Idempotency-Key"
+    ],
+    "body": [
+     "target",
+     "tags"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "e2b.post_templates_v3",
+   "name": "Create template (v3)",
+   "description": "Create a new template.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "Idempotency-Key": {
+      "type": "string",
+      "description": "Optional team-scoped key for retrying the request. Use 1 to 255 lowercase ASCII letters, digits, or hyphens (a-z, 0-9, -), such as a lowercase UUID. The HTTP method, path, query, and request content identify the request. When idempotency is enabled, a matching retry of a completed request replays its status and body, including the IDs of any resources it created, without repeating the operation. A"
+     },
+     "name": {
+      "type": "string",
+      "description": "Name of the template. Can include a tag with colon separator (e.g. \"my-template\" or \"my-template:v1\"). If tag is included, it will be treated as if the tag was provided in the tags array."
+     },
+     "tags": {
+      "type": "array",
+      "description": "Tags to assign to the template build"
+     },
+     "alias": {
+      "type": "string",
+      "description": "Alias of the template. Deprecated, use name instead."
+     },
+     "teamID": {
+      "type": "string",
+      "description": "Identifier of the team, as its UUID or its public project ID (prj_)"
+     },
+     "cpuCount": {
+      "type": "integer",
+      "description": "CPU cores for the sandbox"
+     },
+     "maxCpuCount": {
+      "type": "integer",
+      "description": "Maximum CPU count the template's sandboxes can be resized to; makes the template resizable. Must be at least cpuCount."
+     },
+     "memoryMB": {
+      "type": "integer",
+      "description": "Memory for the sandbox in MiB"
+     },
+     "minFreeDiskMb": {
+      "type": "integer",
+      "description": "Requested minimum free space after the template's build steps, in MiB. Omit to use the team's default. Set to 0 to request no minimum free-disk growth. The filesystem is never shrunk, including inherited or already-larger filesystems. Growth is best effort, so filesystem metadata can leave the available space slightly below the requested minimum."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.e2b.app/v3/templates",
+    "path": [],
+    "query": [],
+    "header": [
+     "Idempotency-Key"
+    ],
+    "body": [
+     "name",
+     "tags",
+     "alias",
+     "teamID",
+     "cpuCount",
+     "maxCpuCount",
+     "memoryMB",
+     "minFreeDiskMb"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "e2b.post_volumes",
+   "name": "Create team volume",
+   "description": "Create a new team volume",
+   "input": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": "string",
+      "description": "Name of the volume"
+     }
+    },
+    "required": [
+     "name"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.e2b.app/volumes",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "name"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "e2b.process_process_close_stdin",
+   "name": "Close stdin",
+   "description": "Close stdin to signal EOF to the process. Only works for non-PTY processes. For PTY, send Ctrl+D (0x04) instead.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "E2b-Sandbox-Id": {
+      "type": "string",
+      "description": "Identifier of the target sandbox. Routes the request to that sandbox's envd over the shared sandbox host."
+     },
+     "E2b-Sandbox-Port": {
+      "type": "integer",
+      "description": "Port envd listens on inside the sandbox (default 49983)."
+     },
+     "Connect-Protocol-Version": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "1"
+      ]
+     },
+     "Connect-Timeout-Ms": {
+      "type": "number",
+      "description": "Define the timeout, in ms"
+     },
+     "process": {
+      "type": "object",
+      "description": ""
+     }
+    },
+    "required": [
+     "Connect-Protocol-Version",
+     "E2b-Sandbox-Id",
+     "E2b-Sandbox-Port"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.e2b.app/process.Process/CloseStdin",
+    "path": [],
+    "query": [],
+    "header": [
+     "E2b-Sandbox-Id",
+     "E2b-Sandbox-Port",
+     "Connect-Protocol-Version",
+     "Connect-Timeout-Ms"
+    ],
+    "body": [
+     "process"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "e2b.process_process_connect",
+   "name": "Connect",
+   "description": "Server-streaming RPC. Use the Connect protocol with streaming support.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "Connect-Protocol-Version": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "1"
+      ]
+     },
+     "Connect-Timeout-Ms": {
+      "type": "number",
+      "description": "Define the timeout, in ms"
+     },
+     "E2b-Sandbox-Id": {
+      "type": "string",
+      "description": "Identifier of the target sandbox. Routes the request to that sandbox's envd over the shared sandbox host."
+     },
+     "E2b-Sandbox-Port": {
+      "type": "integer",
+      "description": "Port envd listens on inside the sandbox (default 49983)."
+     }
+    },
+    "required": [
+     "Connect-Protocol-Version",
+     "E2b-Sandbox-Id",
+     "E2b-Sandbox-Port"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.e2b.app/process.Process/Connect",
+    "path": [],
+    "query": [],
+    "header": [
+     "Connect-Protocol-Version",
+     "Connect-Timeout-Ms",
+     "E2b-Sandbox-Id",
+     "E2b-Sandbox-Port"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "e2b.process_process_list",
+   "name": "List",
+   "description": "List",
+   "input": {
+    "type": "object",
+    "properties": {
+     "E2b-Sandbox-Id": {
+      "type": "string",
+      "description": "Identifier of the target sandbox. Routes the request to that sandbox's envd over the shared sandbox host."
+     },
+     "E2b-Sandbox-Port": {
+      "type": "integer",
+      "description": "Port envd listens on inside the sandbox (default 49983)."
+     },
+     "Connect-Protocol-Version": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "1"
+      ]
+     },
+     "Connect-Timeout-Ms": {
+      "type": "number",
+      "description": "Define the timeout, in ms"
+     }
+    },
+    "required": [
+     "Connect-Protocol-Version",
+     "E2b-Sandbox-Id",
+     "E2b-Sandbox-Port"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.e2b.app/process.Process/List",
+    "path": [],
+    "query": [],
+    "header": [
+     "E2b-Sandbox-Id",
+     "E2b-Sandbox-Port",
+     "Connect-Protocol-Version",
+     "Connect-Timeout-Ms"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "e2b.process_process_send_input",
+   "name": "Send input",
+   "description": "SendInput",
+   "input": {
+    "type": "object",
+    "properties": {
+     "E2b-Sandbox-Id": {
+      "type": "string",
+      "description": "Identifier of the target sandbox. Routes the request to that sandbox's envd over the shared sandbox host."
+     },
+     "E2b-Sandbox-Port": {
+      "type": "integer",
+      "description": "Port envd listens on inside the sandbox (default 49983)."
+     },
+     "Connect-Protocol-Version": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "1"
+      ]
+     },
+     "Connect-Timeout-Ms": {
+      "type": "number",
+      "description": "Define the timeout, in ms"
+     },
+     "process": {
+      "type": "object",
+      "description": ""
+     },
+     "input": {
+      "type": "object",
+      "description": ""
+     }
+    },
+    "required": [
+     "Connect-Protocol-Version",
+     "E2b-Sandbox-Id",
+     "E2b-Sandbox-Port"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.e2b.app/process.Process/SendInput",
+    "path": [],
+    "query": [],
+    "header": [
+     "E2b-Sandbox-Id",
+     "E2b-Sandbox-Port",
+     "Connect-Protocol-Version",
+     "Connect-Timeout-Ms"
+    ],
+    "body": [
+     "process",
+     "input"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "e2b.process_process_send_signal",
+   "name": "Send signal",
+   "description": "SendSignal",
+   "input": {
+    "type": "object",
+    "properties": {
+     "E2b-Sandbox-Id": {
+      "type": "string",
+      "description": "Identifier of the target sandbox. Routes the request to that sandbox's envd over the shared sandbox host."
+     },
+     "E2b-Sandbox-Port": {
+      "type": "integer",
+      "description": "Port envd listens on inside the sandbox (default 49983)."
+     },
+     "Connect-Protocol-Version": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "1"
+      ]
+     },
+     "Connect-Timeout-Ms": {
+      "type": "number",
+      "description": "Define the timeout, in ms"
+     },
+     "process": {
+      "type": "object",
+      "description": ""
+     },
+     "signal": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "SIGNAL_UNSPECIFIED",
+       "SIGNAL_SIGTERM",
+       "SIGNAL_SIGKILL"
+      ]
+     }
+    },
+    "required": [
+     "Connect-Protocol-Version",
+     "E2b-Sandbox-Id",
+     "E2b-Sandbox-Port"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.e2b.app/process.Process/SendSignal",
+    "path": [],
+    "query": [],
+    "header": [
+     "E2b-Sandbox-Id",
+     "E2b-Sandbox-Port",
+     "Connect-Protocol-Version",
+     "Connect-Timeout-Ms"
+    ],
+    "body": [
+     "process",
+     "signal"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "e2b.process_process_start",
+   "name": "Start",
+   "description": "Server-streaming RPC. Use the Connect protocol with streaming support.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "Connect-Protocol-Version": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "1"
+      ]
+     },
+     "Connect-Timeout-Ms": {
+      "type": "number",
+      "description": "Define the timeout, in ms"
+     },
+     "E2b-Sandbox-Id": {
+      "type": "string",
+      "description": "Identifier of the target sandbox. Routes the request to that sandbox's envd over the shared sandbox host."
+     },
+     "E2b-Sandbox-Port": {
+      "type": "integer",
+      "description": "Port envd listens on inside the sandbox (default 49983)."
+     }
+    },
+    "required": [
+     "Connect-Protocol-Version",
+     "E2b-Sandbox-Id",
+     "E2b-Sandbox-Port"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.e2b.app/process.Process/Start",
+    "path": [],
+    "query": [],
+    "header": [
+     "Connect-Protocol-Version",
+     "Connect-Timeout-Ms",
+     "E2b-Sandbox-Id",
+     "E2b-Sandbox-Port"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "e2b.process_process_stream_input",
+   "name": "Stream input",
+   "description": "Client-streaming RPC. Client input stream ensures ordering of messages. Use the Connect protocol with streaming support.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "Connect-Protocol-Version": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "1"
+      ]
+     },
+     "Connect-Timeout-Ms": {
+      "type": "number",
+      "description": "Define the timeout, in ms"
+     },
+     "E2b-Sandbox-Id": {
+      "type": "string",
+      "description": "Identifier of the target sandbox. Routes the request to that sandbox's envd over the shared sandbox host."
+     },
+     "E2b-Sandbox-Port": {
+      "type": "integer",
+      "description": "Port envd listens on inside the sandbox (default 49983)."
+     }
+    },
+    "required": [
+     "Connect-Protocol-Version",
+     "E2b-Sandbox-Id",
+     "E2b-Sandbox-Port"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.e2b.app/process.Process/StreamInput",
+    "path": [],
+    "query": [],
+    "header": [
+     "Connect-Protocol-Version",
+     "Connect-Timeout-Ms",
+     "E2b-Sandbox-Id",
+     "E2b-Sandbox-Port"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "e2b.process_process_update",
+   "name": "Update",
+   "description": "Update",
+   "input": {
+    "type": "object",
+    "properties": {
+     "E2b-Sandbox-Id": {
+      "type": "string",
+      "description": "Identifier of the target sandbox. Routes the request to that sandbox's envd over the shared sandbox host."
+     },
+     "E2b-Sandbox-Port": {
+      "type": "integer",
+      "description": "Port envd listens on inside the sandbox (default 49983)."
+     },
+     "Connect-Protocol-Version": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "1"
+      ]
+     },
+     "Connect-Timeout-Ms": {
+      "type": "number",
+      "description": "Define the timeout, in ms"
+     },
+     "process": {
+      "type": "object",
+      "description": ""
+     },
+     "pty": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "Connect-Protocol-Version",
+     "E2b-Sandbox-Id",
+     "E2b-Sandbox-Port"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.e2b.app/process.Process/Update",
+    "path": [],
+    "query": [],
+    "header": [
+     "E2b-Sandbox-Id",
+     "E2b-Sandbox-Port",
+     "Connect-Protocol-Version",
+     "Connect-Timeout-Ms"
+    ],
+    "body": [
+     "process",
+     "pty"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "e2b.put_sandbox_network",
+   "name": "Update sandbox network",
+   "description": "Update the network configuration for a running sandbox. Replaces the current egress rules with the provided configuration. Omitting field clears it.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sandboxID": {
+      "type": "string",
+      "description": ""
+     },
+     "allowOut": {
+      "type": "array",
+      "description": "List of allowed destinations for egress traffic. Each entry can be a CIDR block (e.g. \"8.8.8.8/32\"), a bare IP address (e.g. \"8.8.8.8\"), or a domain name (e.g. \"example.com\", \"*.example.com\"). Allowed entries always take precedence over denied entries. When allowOut contains a domain, the servers in dnsServers (8.8.8.8 by default) are also allowed."
+     },
+     "denyOut": {
+      "type": "array",
+      "description": "List of denied CIDR blocks or IP addresses for egress traffic. Domain names are not supported for deny rules."
+     },
+     "dnsServers": {
+      "type": "array",
+      "description": "DNS servers the sandbox can reach when allowOut contains a domain. Each entry must be an IPv4 address, and all traffic to it is allowed. Omit it to reset to the default nameserver 8.8.8.8, or pass an empty list to allow none. This does not change the sandbox's /etc/resolv.conf."
+     },
+     "egressProxy": {
+      "type": [
+       "object",
+       "null"
+      ],
+      "description": "SOCKS5 proxy for sandbox egress. Outbound TCP is tunneled through the proxy after allow/deny filtering; the sandbox is unaware. Domain-matched flows use remote DNS (ATYP=domain)."
+     },
+     "rules": {
+      "type": "object",
+      "description": "Per-domain transform rules applied to matching outbound HTTPS requests. Replaces all existing rules when provided. Keys may be exact DNS names or a single leading wildcard (for example, \"*.example.com\"), and are normalized to lowercase on write. Wildcards match subdomains at any depth but not the apex domain; a bare \"*\" is invalid. Exact rules take precedence, followed by the longest matching wild"
+     },
+     "allow_internet_access": {
+      "type": "boolean",
+      "description": "Allow sandbox to access the internet. When set to false, it behaves the same as specifying denyOut to 0.0.0.0/0 in the network config."
+     }
+    },
+    "required": [
+     "sandboxID"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.e2b.app/sandboxes/{sandboxID}/network",
+    "path": [
+     "sandboxID"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "allowOut",
+     "denyOut",
+     "dnsServers",
+     "egressProxy",
+     "rules",
+     "allow_internet_access"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "e2b.upload_file",
+   "name": "Upload a file and ensure the parent directories exist  if the file exists, it will be overwritten",
+   "description": "Any request header of the form `X-Metadata-: ` is persisted as a user-defined extended attribute on the uploaded file. The `X-Metadata-` prefix is stripped and the remaining header name is lowercased to form the metadata key; the resulting map is returned on `EntryInfo` lookups (e.g. `Stat`, `ListDir`). Each upload replaces the file's metadata with the keys provided in that request: keys previousl",
+   "input": {
+    "type": "object",
+    "properties": {
+     "E2b-Sandbox-Id": {
+      "type": "string",
+      "description": "Identifier of the target sandbox. Routes the request to that sandbox's envd over the shared sandbox host."
+     },
+     "E2b-Sandbox-Port": {
+      "type": "integer",
+      "description": "Port envd listens on inside the sandbox (default 49983)."
+     },
+     "path": {
+      "type": "string",
+      "description": "Path to the file, URL encoded. Can be relative to the user's home directory (e.g. \"file.txt\" resolves to ~/file.txt)."
+     },
+     "username": {
+      "type": "string",
+      "description": "User for setting file ownership and resolving relative paths. Defaults to the sandbox's default user."
+     },
+     "signature": {
+      "type": "string",
+      "description": "Signature used for file access permission verification."
+     },
+     "signature_expiration": {
+      "type": "integer",
+      "description": "Unix timestamp (seconds) after which the signature expires. Only used with the signature parameter."
+     }
+    },
+    "required": [
+     "E2b-Sandbox-Id",
+     "E2b-Sandbox-Port"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.e2b.app/files",
+    "path": [],
+    "query": [
+     "path",
+     "username",
+     "signature",
+     "signature_expiration"
+    ],
+    "header": [
+     "E2b-Sandbox-Id",
+     "E2b-Sandbox-Port"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  }
+ ]
+}

@@ -1,0 +1,1113 @@
+{
+ "_": "GENERATED \u2014 what an authoring tool needs to FIND an operation. The calling table is the .lua beside it.",
+ "provider": "filepost",
+ "source": "https://filepost.dev/openapi.json",
+ "operations": [
+  {
+   "slug": "filepost.activate_lite_trial_v1_account_lite_trial_post",
+   "name": "Start an earned seven day lite trial",
+   "description": "Start an earned seven-day Lite trial",
+   "input": {
+    "type": "object",
+    "properties": {
+     "offer_kind": {
+      "type": "string",
+      "description": ""
+     },
+     "X-API-Key": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://filepost.dev/v1/account/lite-trial",
+    "path": [],
+    "query": [
+     "offer_kind"
+    ],
+    "header": [
+     "X-API-Key"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "filepost.bulk_delete_files_v1_files_bulk_delete_post",
+   "name": "Bulk delete files",
+   "description": "Delete multiple files owned by the authenticated account. Available on Starter and Pro plans. Unknown or non-owned IDs are not deleted and are returned in not_deleted_file_ids.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "X-API-Key": {
+      "type": "string",
+      "description": ""
+     },
+     "file_ids": {
+      "type": "array",
+      "description": "FilePost file IDs to delete. Unknown or non-owned IDs are ignored and returned as not_deleted_file_ids."
+     }
+    },
+    "required": [
+     "file_ids"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://filepost.dev/v1/files/bulk-delete",
+    "path": [],
+    "query": [],
+    "header": [
+     "X-API-Key"
+    ],
+    "body": [
+     "file_ids"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "filepost.change_account_email_v1_account_email_post",
+   "name": "Change account email",
+   "description": "Change account email",
+   "input": {
+    "type": "object",
+    "properties": {
+     "X-API-Key": {
+      "type": "string",
+      "description": ""
+     },
+     "email": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "email"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://filepost.dev/v1/account/email",
+    "path": [],
+    "query": [],
+    "header": [
+     "X-API-Key"
+    ],
+    "body": [
+     "email"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "filepost.create_intake_link_v1_intake_links_post",
+   "name": "Create an intake link",
+   "description": "Create an intake link",
+   "input": {
+    "type": "object",
+    "properties": {
+     "X-API-Key": {
+      "type": "string",
+      "description": ""
+     },
+     "label": {
+      "type": "string",
+      "description": ""
+     },
+     "allowed_types": {
+      "type": "string",
+      "description": ""
+     },
+     "max_file_size_mb": {
+      "type": "string",
+      "description": ""
+     },
+     "max_files": {
+      "type": "string",
+      "description": ""
+     },
+     "expires_in": {
+      "type": "string",
+      "description": ""
+     },
+     "webhook_url": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://filepost.dev/v1/intake-links",
+    "path": [],
+    "query": [],
+    "header": [
+     "X-API-Key"
+    ],
+    "body": [
+     "label",
+     "allowed_types",
+     "max_file_size_mb",
+     "max_files",
+     "expires_in",
+     "webhook_url"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "filepost.delete_file_v1_files_file_id_delete",
+   "name": "Delete a file",
+   "description": "Delete a file",
+   "input": {
+    "type": "object",
+    "properties": {
+     "file_id": {
+      "type": "string",
+      "description": ""
+     },
+     "X-API-Key": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "file_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://filepost.dev/v1/files/{file_id}",
+    "path": [
+     "file_id"
+    ],
+    "query": [],
+    "header": [
+     "X-API-Key"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "filepost.delete_intake_link_v1_intake_links_intake_id_delete",
+   "name": "Deactivate an intake link",
+   "description": "Deactivate an intake link",
+   "input": {
+    "type": "object",
+    "properties": {
+     "intake_id": {
+      "type": "string",
+      "description": ""
+     },
+     "X-API-Key": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "intake_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://filepost.dev/v1/intake-links/{intake_id}",
+    "path": [
+     "intake_id"
+    ],
+    "query": [],
+    "header": [
+     "X-API-Key"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "filepost.delete_webhook_v1_webhook_delete",
+   "name": "Remove the account webhook url",
+   "description": "Remove the account webhook URL",
+   "input": {
+    "type": "object",
+    "properties": {
+     "X-API-Key": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://filepost.dev/v1/webhook",
+    "path": [],
+    "query": [],
+    "header": [
+     "X-API-Key"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "filepost.get_account_v1_account_get",
+   "name": "Get account info and usage",
+   "description": "Get account info and usage",
+   "input": {
+    "type": "object",
+    "properties": {
+     "X-API-Key": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://filepost.dev/v1/account",
+    "path": [],
+    "query": [],
+    "header": [
+     "X-API-Key"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "filepost.get_file_v1_files_file_id_get",
+   "name": "Get file details",
+   "description": "Get file details",
+   "input": {
+    "type": "object",
+    "properties": {
+     "file_id": {
+      "type": "string",
+      "description": ""
+     },
+     "X-API-Key": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "file_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://filepost.dev/v1/files/{file_id}",
+    "path": [
+     "file_id"
+    ],
+    "query": [],
+    "header": [
+     "X-API-Key"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "filepost.get_intake_link_v1_intake_links_intake_id_get",
+   "name": "Get intake link details and files",
+   "description": "Get intake link details and files",
+   "input": {
+    "type": "object",
+    "properties": {
+     "intake_id": {
+      "type": "string",
+      "description": ""
+     },
+     "X-API-Key": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "intake_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://filepost.dev/v1/intake-links/{intake_id}",
+    "path": [
+     "intake_id"
+    ],
+    "query": [],
+    "header": [
+     "X-API-Key"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "filepost.get_webhook_v1_webhook_get",
+   "name": "Get the account webhook url",
+   "description": "Get the account webhook URL",
+   "input": {
+    "type": "object",
+    "properties": {
+     "X-API-Key": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://filepost.dev/v1/webhook",
+    "path": [],
+    "query": [],
+    "header": [
+     "X-API-Key"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "filepost.google_auth_auth_google_post",
+   "name": "Sign in with google",
+   "description": "Verify a Google ID token and create/find the user, returning an API key.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "credential": {
+      "type": "string",
+      "description": ""
+     },
+     "marketing_consent": {
+      "type": "boolean",
+      "description": ""
+     },
+     "utm_source": {
+      "type": "string",
+      "description": ""
+     },
+     "utm_medium": {
+      "type": "string",
+      "description": ""
+     },
+     "utm_campaign": {
+      "type": "string",
+      "description": ""
+     },
+     "utm_content": {
+      "type": "string",
+      "description": ""
+     },
+     "landing_path": {
+      "type": "string",
+      "description": ""
+     },
+     "referrer": {
+      "type": "string",
+      "description": ""
+     },
+     "intended_workflow": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "credential"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://filepost.dev/auth/google",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "credential",
+     "marketing_consent",
+     "utm_source",
+     "utm_medium",
+     "utm_campaign",
+     "utm_content",
+     "landing_path",
+     "referrer",
+     "intended_workflow"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "filepost.intake_upload_v1_intake_token_upload_post",
+   "name": "Upload a file via intake link (public)",
+   "description": "Upload a file via intake link (public)",
+   "input": {
+    "type": "object",
+    "properties": {
+     "file": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "file"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://filepost.dev/v1/intake/{token}/upload",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "file"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "filepost.join_waitlist_v1_waitlist_post",
+   "name": "Join waitlist for upcoming features",
+   "description": "Join waitlist for upcoming features",
+   "input": {
+    "type": "object",
+    "properties": {
+     "email": {
+      "type": "string",
+      "description": ""
+     },
+     "feature": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "email"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://filepost.dev/v1/waitlist",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "email",
+     "feature"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "filepost.list_files_v1_files_get",
+   "name": "List your uploaded files",
+   "description": "List your uploaded files",
+   "input": {
+    "type": "object",
+    "properties": {
+     "page": {
+      "type": "integer",
+      "description": ""
+     },
+     "per_page": {
+      "type": "integer",
+      "description": ""
+     },
+     "X-API-Key": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://filepost.dev/v1/files",
+    "path": [],
+    "query": [
+     "page",
+     "per_page"
+    ],
+    "header": [
+     "X-API-Key"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "filepost.list_intake_links_v1_intake_links_get",
+   "name": "List your intake links",
+   "description": "List your intake links",
+   "input": {
+    "type": "object",
+    "properties": {
+     "X-API-Key": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://filepost.dev/v1/intake-links",
+    "path": [],
+    "query": [],
+    "header": [
+     "X-API-Key"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "filepost.resend_account_verification_v1_account_verification_post",
+   "name": "Resend account verification email",
+   "description": "Resend account verification email",
+   "input": {
+    "type": "object",
+    "properties": {
+     "X-API-Key": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://filepost.dev/v1/account/verification",
+    "path": [],
+    "query": [],
+    "header": [
+     "X-API-Key"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "filepost.rotate_key_v1_rotate_key_post",
+   "name": "Rotate api key",
+   "description": "Rotate API key",
+   "input": {
+    "type": "object",
+    "properties": {
+     "X-API-Key": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://filepost.dev/v1/rotate-key",
+    "path": [],
+    "query": [],
+    "header": [
+     "X-API-Key"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "filepost.set_webhook_v1_webhook_put",
+   "name": "Set the account webhook url",
+   "description": "Set the account webhook URL",
+   "input": {
+    "type": "object",
+    "properties": {
+     "X-API-Key": {
+      "type": "string",
+      "description": ""
+     },
+     "webhook_url": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "webhook_url"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://filepost.dev/v1/webhook",
+    "path": [],
+    "query": [],
+    "header": [
+     "X-API-Key"
+    ],
+    "body": [
+     "webhook_url"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "filepost.signup_v1_signup_post",
+   "name": "Create account and get api key",
+   "description": "Create account and get API key",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://filepost.dev/v1/signup",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "filepost.submit_upgrade_feedback_v1_upgrade_feedback_post",
+   "name": "Tell the founder what is blocking an upgrade",
+   "description": "Tell the founder what is blocking an upgrade",
+   "input": {
+    "type": "object",
+    "properties": {
+     "X-API-Key": {
+      "type": "string",
+      "description": ""
+     },
+     "category": {
+      "type": "string",
+      "description": ""
+     },
+     "message": {
+      "type": "string",
+      "description": ""
+     },
+     "offer_kind": {
+      "type": "string",
+      "description": ""
+     },
+     "lite_plan_interest": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "category"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://filepost.dev/v1/upgrade-feedback",
+    "path": [],
+    "query": [],
+    "header": [
+     "X-API-Key"
+    ],
+    "body": [
+     "category",
+     "message",
+     "offer_kind",
+     "lite_plan_interest"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "filepost.test_webhook_v1_webhook_test_post",
+   "name": "Send a test ping to the webhook url",
+   "description": "Send a test ping to the webhook URL",
+   "input": {
+    "type": "object",
+    "properties": {
+     "X-API-Key": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://filepost.dev/v1/webhook/test",
+    "path": [],
+    "query": [],
+    "header": [
+     "X-API-Key"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "filepost.try_upload_v1_try_upload_post",
+   "name": "Try uploading a file (no auth, 10 mb limit)",
+   "description": "Create one provisional public URL and a free account in the same step.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "file": {
+      "type": "string",
+      "description": ""
+     },
+     "email": {
+      "type": "string",
+      "description": ""
+     },
+     "consent": {
+      "type": "string",
+      "description": ""
+     },
+     "marketing_consent": {
+      "type": "string",
+      "description": ""
+     },
+     "surface": {
+      "type": "string",
+      "description": ""
+     },
+     "utm_source": {
+      "type": "string",
+      "description": ""
+     },
+     "utm_medium": {
+      "type": "string",
+      "description": ""
+     },
+     "utm_campaign": {
+      "type": "string",
+      "description": ""
+     },
+     "utm_content": {
+      "type": "string",
+      "description": ""
+     },
+     "landing_path": {
+      "type": "string",
+      "description": ""
+     },
+     "referrer": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "email",
+     "file"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://filepost.dev/v1/try-upload",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "file",
+     "email",
+     "consent",
+     "marketing_consent",
+     "surface",
+     "utm_source",
+     "utm_medium",
+     "utm_campaign",
+     "utm_content",
+     "landing_path",
+     "referrer"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "filepost.update_email_preferences_v1_email_preferences_post",
+   "name": "Update email preferences",
+   "description": "Update email preferences",
+   "input": {
+    "type": "object",
+    "properties": {
+     "X-API-Key": {
+      "type": "string",
+      "description": ""
+     },
+     "opt_out": {
+      "type": "boolean",
+      "description": ""
+     },
+     "marketing_consent": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "opt_out"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://filepost.dev/v1/email-preferences",
+    "path": [],
+    "query": [],
+    "header": [
+     "X-API-Key"
+    ],
+    "body": [
+     "opt_out",
+     "marketing_consent"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "filepost.update_file_v1_files_file_id_patch",
+   "name": "Change filename visibility for an existing file",
+   "description": "Choose whether the file's existing filename appears in its canonical URL. The stored filename, download filename, file bytes, file_id, expiry, and upload usage do not change. Showing the filename preserves the previous opaque URL. Hiding the filename revokes the previous filename-visible URL.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "file_id": {
+      "type": "string",
+      "description": ""
+     },
+     "X-API-Key": {
+      "type": "string",
+      "description": ""
+     },
+     "filename_mode": {
+      "type": "string",
+      "description": "Set to download to keep the filename out of the canonical URL, or public to show the filename in the canonical URL.",
+      "enum": [
+       "download",
+       "public"
+      ]
+     }
+    },
+    "required": [
+     "file_id",
+     "filename_mode"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://filepost.dev/v1/files/{file_id}",
+    "path": [
+     "file_id"
+    ],
+    "query": [],
+    "header": [
+     "X-API-Key"
+    ],
+    "body": [
+     "filename_mode"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "filepost.update_filename_mode_v1_account_filename_mode_post",
+   "name": "Set the default filename visibility",
+   "description": "Set the default filename visibility",
+   "input": {
+    "type": "object",
+    "properties": {
+     "X-API-Key": {
+      "type": "string",
+      "description": ""
+     },
+     "filename_mode": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "download",
+       "public"
+      ]
+     }
+    },
+    "required": [
+     "filename_mode"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://filepost.dev/v1/account/filename-mode",
+    "path": [],
+    "query": [],
+    "header": [
+     "X-API-Key"
+    ],
+    "body": [
+     "filename_mode"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "filepost.upload_file_base64_v1_upload_base64_post",
+   "name": "Upload a base64 encoded file and get a public url",
+   "description": "Upload file bytes as base64 in an application/json body. This is intended for low-code platforms that can produce a base64 string but cannot send multipart/form-data. Authenticate with X-API-Key. The returned URL is public and can be opened without a FilePost account. PDFs served with content_type application/pdf open inline in the browser. Add optional expires_in, such as 30s, 24h, or 7d, to auto",
+   "input": {
+    "type": "object",
+    "properties": {
+     "X-API-Key": {
+      "type": "string",
+      "description": ""
+     },
+     "filename": {
+      "type": "string",
+      "description": "Original filename to store, including extension, e.g. report.pdf."
+     },
+     "content_type": {
+      "type": "string",
+      "description": "MIME type for browser/CDN serving. Use application/pdf for PDFs or text/csv for CSV files."
+     },
+     "data_base64": {
+      "type": "string",
+      "description": "Base64-encoded file bytes. Data URLs are also accepted."
+     },
+     "file_base64": {
+      "type": "string",
+      "description": "Alias for data_base64, useful when a low-code tool requires a different field name."
+     },
+     "data": {
+      "type": "string",
+      "description": "Alias for data_base64, useful when a low-code tool can only send a generic text field."
+     },
+     "expires_in": {
+      "type": "string",
+      "description": "Optional auto-delete period. Supports seconds, minutes, hours, or days, e.g. 30s, 15m, 24h, 7d."
+     },
+     "filename_mode": {
+      "type": "string",
+      "description": "Override the account default for this upload. 'download' keeps the filename out of the URL while preserving it for downloads; 'public' places the filename in the public URL."
+     }
+    },
+    "required": [
+     "filename"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://filepost.dev/v1/upload/base64",
+    "path": [],
+    "query": [],
+    "header": [
+     "X-API-Key"
+    ],
+    "body": [
+     "filename",
+     "content_type",
+     "data_base64",
+     "file_base64",
+     "data",
+     "expires_in",
+     "filename_mode"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "filepost.upload_file_from_url_v1_upload_url_post",
+   "name": "Copy a public url into file post",
+   "description": "Download a public http or https URL and store it as a permanent FilePost file. This endpoint requires an API key from a verified account. It rejects private or reserved network destinations, revalidates every redirect, allows only ports 80 and 443, and applies the account's normal upload, file-size, storage, and rate limits.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "X-API-Key": {
+      "type": "string",
+      "description": ""
+     },
+     "url": {
+      "type": "string",
+      "description": "Public http or https URL to download and store in FilePost."
+     },
+     "filename": {
+      "type": "string",
+      "description": "Optional stored filename. Defaults to the final source URL path."
+     },
+     "content_type": {
+      "type": "string",
+      "description": "Optional MIME type override. Defaults to the source response Content-Type."
+     },
+     "expires_in": {
+      "type": "string",
+      "description": "Optional auto-delete period, such as 30s, 24h, or 7d."
+     },
+     "filename_mode": {
+      "type": "string",
+      "description": "Override the account default. 'download' keeps the filename out of the public URL; 'public' includes it."
+     }
+    },
+    "required": [
+     "url"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://filepost.dev/v1/upload/url",
+    "path": [],
+    "query": [],
+    "header": [
+     "X-API-Key"
+    ],
+    "body": [
+     "url",
+     "filename",
+     "content_type",
+     "expires_in",
+     "filename_mode"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "filepost.upload_file_v1_upload_post",
+   "name": "Upload a file and get a public url",
+   "description": "Upload a file with multipart/form-data. Authenticate with X-API-Key. The response includes a public CDN URL that does not require a FilePost account to open. Add optional form field expires_in, such as 30s, 24h, or 7d, to auto-delete the file later. Set filename_mode to download or public to override the account default for this upload.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "X-API-Key": {
+      "type": "string",
+      "description": ""
+     },
+     "file": {
+      "type": "string",
+      "description": ""
+     },
+     "expires_in": {
+      "type": "string",
+      "description": ""
+     },
+     "filename_mode": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "file"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://filepost.dev/v1/upload",
+    "path": [],
+    "query": [],
+    "header": [
+     "X-API-Key"
+    ],
+    "body": [
+     "file",
+     "expires_in",
+     "filename_mode"
+    ],
+    "body_format": "json"
+   }
+  }
+ ]
+}

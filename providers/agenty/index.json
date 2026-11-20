@@ -1,0 +1,2095 @@
+{
+ "_": "GENERATED \u2014 what an authoring tool needs to FIND an operation. The calling table is the .lua beside it.",
+ "provider": "agenty",
+ "source": "https://api.agenty.com/openapi.json",
+ "operations": [
+  {
+   "slug": "agenty.agents_controller_agent_scripts",
+   "name": "Agents controller agent scripts",
+   "description": "Update the JavaScript pre and post-processing scripts of an agent.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "agent_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "agent_id"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.agenty.com/v2/agents/{agent_id}/scripts",
+    "path": [
+     "agent_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "agenty.agents_controller_clone_agent",
+   "name": "Agents controller clone agent",
+   "description": "Clone an existing agent with a new name.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "agent_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "agent_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.agenty.com/v2/agents/{agent_id}/copy",
+    "path": [
+     "agent_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "agenty.agents_controller_create_agent",
+   "name": "Agents controller create agent",
+   "description": "Create a new web scraping agent with CSS selectors. Pass `start=1` to run it right away.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "start": {
+      "type": "string",
+      "description": "To auto-start the agent after creation"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.agenty.com/v2/agents",
+    "path": [],
+    "query": [
+     "start"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "agenty.agents_controller_delete_agent",
+   "name": "Agents controller delete agent",
+   "description": "Delete a web scraping agent by Id.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "agent_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "agent_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.agenty.com/v2/agents/{agent_id}",
+    "path": [
+     "agent_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "agenty.agents_controller_delete_many_agents",
+   "name": "Agents controller delete many agents",
+   "description": "Delete one or more agents by Ids.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "agent_id": {
+      "type": "array",
+      "description": ""
+     }
+    },
+    "required": [
+     "agent_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.agenty.com/v2/agents",
+    "path": [],
+    "query": [
+     "agent_id"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "agenty.agents_controller_get_agent_by_id",
+   "name": "Agents controller get agent by id",
+   "description": "Get a web scraping agent configuration by Id.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "agent_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "agent_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.agenty.com/v2/agents/{agent_id}",
+    "path": [
+     "agent_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "agenty.agents_controller_get_agents",
+   "name": "Agents controller get agents",
+   "description": "List all web scraping, crawling and change detection agents in your account.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "offset": {
+      "type": "integer",
+      "description": "Number of records to skip"
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Maximum number of records to return"
+     },
+     "sort": {
+      "type": "string",
+      "description": "Field name to sort by"
+     },
+     "order": {
+      "type": "string",
+      "description": "Sort order, asc or desc"
+     },
+     "search": {
+      "type": "string",
+      "description": "Search keyword"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.agenty.com/v2/agents",
+    "path": [],
+    "query": [
+     "offset",
+     "limit",
+     "sort",
+     "order",
+     "search"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "agenty.agents_controller_patch",
+   "name": "Agents controller patch",
+   "description": "Update an agent name, description and tags.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "agent_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "agent_id"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.agenty.com/v2/agents/{agent_id}",
+    "path": [
+     "agent_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "agenty.agents_controller_transfer_agent",
+   "name": "Agents controller transfer agent",
+   "description": "Transfer an agent to another Agenty account by email.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "agent_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "agent_id"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.agenty.com/v2/agents/{agent_id}/transfer",
+    "path": [
+     "agent_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "agenty.agents_controller_update_agent",
+   "name": "Agents controller update agent",
+   "description": "Update a web scraping agent configuration, fields and browser settings.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "agent_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "agent_id"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.agenty.com/v2/agents/{agent_id}",
+    "path": [
+     "agent_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "agenty.connections_controller_connect",
+   "name": "Connections controller connect",
+   "description": "Lists connect.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     },
+     "shop": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id",
+     "shop"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.agenty.com/v2/connections/{id}/connect",
+    "path": [
+     "id"
+    ],
+    "query": [
+     "shop"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "agenty.connections_controller_delete_connection",
+   "name": "Connections controller delete connection",
+   "description": "Delete a third-party connection by Id.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "number",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.agenty.com/v2/connections/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "agenty.connections_controller_get_connections",
+   "name": "Connections controller get connections",
+   "description": "List all third-party connections such as Google Sheets, Dropbox and S3.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.agenty.com/v2/connections",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "agenty.connections_controller_patch",
+   "name": "Connections controller patch",
+   "description": "Rename a third-party connection by Id.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "number",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.agenty.com/v2/connections/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "agenty.dashboard_controller_dashboard",
+   "name": "Dashboard controller dashboard",
+   "description": "Get account usage reports: pages scraped by agent, date and product.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "start": {
+      "type": "string",
+      "description": "Start date (YYYY-MM-DD), T-30 by default"
+     },
+     "end": {
+      "type": "string",
+      "description": "End date (YYYY-MM-DD). If no date provided, default is today date"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.agenty.com/v2/dashboard",
+    "path": [],
+    "query": [
+     "start",
+     "end"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "agenty.input_controller_get",
+   "name": "Input controller get",
+   "description": "Get the input URLs or data source of an agent.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "agent_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "agent_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.agenty.com/v2/inputs/{agent_id}",
+    "path": [
+     "agent_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "agenty.input_controller_put",
+   "name": "Input controller put",
+   "description": "Set agent input from URLs, manual data, a List or the output of another agent.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "agent_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "agent_id"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.agenty.com/v2/inputs/{agent_id}",
+    "path": [
+     "agent_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "agenty.jobs_controller_download_job_result",
+   "name": "Jobs controller download job result",
+   "description": "Download the scraped data of a job as a file.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "job_id": {
+      "type": "number",
+      "description": ""
+     },
+     "offset": {
+      "type": "integer",
+      "description": "Number of records to skip"
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Maximum number of records to return"
+     },
+     "sort": {
+      "type": "string",
+      "description": "Field name to sort by"
+     },
+     "order": {
+      "type": "string",
+      "description": "Sort order, asc or desc"
+     },
+     "search": {
+      "type": "string",
+      "description": "Search keyword"
+     },
+     "collection": {
+      "type": "integer",
+      "description": "Result collection number"
+     },
+     "format": {
+      "type": "string",
+      "description": "Applicable on download request only. Must be CSV, TSV or JSON"
+     }
+    },
+    "required": [
+     "job_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.agenty.com/v2/jobs/{job_id}/result/download",
+    "path": [
+     "job_id"
+    ],
+    "query": [
+     "offset",
+     "limit",
+     "sort",
+     "order",
+     "search",
+     "collection",
+     "format"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "agenty.jobs_controller_download_jobs",
+   "name": "Jobs controller download jobs",
+   "description": "Download the jobs history as CSV.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "offset": {
+      "type": "integer",
+      "description": "Number of records to skip"
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Maximum number of records to return"
+     },
+     "sort": {
+      "type": "string",
+      "description": "Field name to sort by"
+     },
+     "order": {
+      "type": "string",
+      "description": "Sort order, asc or desc"
+     },
+     "search": {
+      "type": "string",
+      "description": "Search keyword"
+     },
+     "agent_id": {
+      "type": "string",
+      "description": "Filter jobs by agent id"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.agenty.com/v2/jobs/download",
+    "path": [],
+    "query": [
+     "offset",
+     "limit",
+     "sort",
+     "order",
+     "search",
+     "agent_id"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "agenty.jobs_controller_get_job_by_job_id",
+   "name": "Jobs controller get job by job id",
+   "description": "Get a job status and details by Id.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "job_id": {
+      "type": "number",
+      "description": ""
+     }
+    },
+    "required": [
+     "job_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.agenty.com/v2/jobs/{job_id}",
+    "path": [
+     "job_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "agenty.jobs_controller_get_job_files",
+   "name": "Jobs controller get job files",
+   "description": "Download output files such as screenshots and PDFs generated by a job.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "job_id": {
+      "type": "number",
+      "description": ""
+     },
+     "name": {
+      "type": "string",
+      "description": "Name of file to download"
+     }
+    },
+    "required": [
+     "job_id",
+     "name"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.agenty.com/v2/jobs/{job_id}/files",
+    "path": [
+     "job_id"
+    ],
+    "query": [
+     "name"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "agenty.jobs_controller_get_job_logs",
+   "name": "Jobs controller get job logs",
+   "description": "Get the execution logs of a job for debugging.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "job_id": {
+      "type": "number",
+      "description": ""
+     },
+     "offset": {
+      "type": "integer",
+      "description": "Number of records to skip"
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Maximum number of records to return"
+     },
+     "sort": {
+      "type": "string",
+      "description": "Field name to sort by"
+     },
+     "order": {
+      "type": "string",
+      "description": "Sort order, asc or desc"
+     },
+     "search": {
+      "type": "string",
+      "description": "Search keyword"
+     }
+    },
+    "required": [
+     "job_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.agenty.com/v2/jobs/{job_id}/logs",
+    "path": [
+     "job_id"
+    ],
+    "query": [
+     "offset",
+     "limit",
+     "sort",
+     "order",
+     "search"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "agenty.jobs_controller_get_job_result",
+   "name": "Jobs controller get job result",
+   "description": "Get the scraped data of a job in JSON.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "job_id": {
+      "type": "number",
+      "description": ""
+     },
+     "offset": {
+      "type": "integer",
+      "description": "Number of records to skip"
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Maximum number of records to return"
+     },
+     "sort": {
+      "type": "string",
+      "description": "Field name to sort by"
+     },
+     "order": {
+      "type": "string",
+      "description": "Sort order, asc or desc"
+     },
+     "search": {
+      "type": "string",
+      "description": "Search keyword"
+     },
+     "collection": {
+      "type": "integer",
+      "description": "Result collection number"
+     },
+     "format": {
+      "type": "string",
+      "description": "Applicable on download request only. Must be CSV, TSV or JSON"
+     }
+    },
+    "required": [
+     "job_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.agenty.com/v2/jobs/{job_id}/result",
+    "path": [
+     "job_id"
+    ],
+    "query": [
+     "offset",
+     "limit",
+     "sort",
+     "order",
+     "search",
+     "collection",
+     "format"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "agenty.jobs_controller_get_jobs",
+   "name": "Jobs controller get jobs",
+   "description": "List all agent jobs with status, pages and run time.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "offset": {
+      "type": "integer",
+      "description": "Number of records to skip"
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Maximum number of records to return"
+     },
+     "sort": {
+      "type": "string",
+      "description": "Field name to sort by"
+     },
+     "order": {
+      "type": "string",
+      "description": "Sort order, asc or desc"
+     },
+     "search": {
+      "type": "string",
+      "description": "Search keyword"
+     },
+     "agent_id": {
+      "type": "string",
+      "description": "Filter jobs by agent id"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.agenty.com/v2/jobs",
+    "path": [],
+    "query": [
+     "offset",
+     "limit",
+     "sort",
+     "order",
+     "search",
+     "agent_id"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "agenty.jobs_controller_start_job",
+   "name": "Jobs controller start job",
+   "description": "Run a web scraping agent in the cloud and get a job Id to track it.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.agenty.com/v2/jobs/start",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "agenty.jobs_controller_stop_job",
+   "name": "Jobs controller stop job",
+   "description": "Stop a running job by Id.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "job_id": {
+      "type": "number",
+      "description": ""
+     }
+    },
+    "required": [
+     "job_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.agenty.com/v2/jobs/{job_id}/stop",
+    "path": [
+     "job_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "agenty.list_controller_delete",
+   "name": "List controller delete",
+   "description": "Delete a List and all its rows.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "number",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.agenty.com/v2/lists/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "agenty.list_controller_get",
+   "name": "List controller get",
+   "description": "Get a List by Id.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "list_id": {
+      "type": "number",
+      "description": ""
+     },
+     "offset": {
+      "type": "integer",
+      "description": "Number of records to skip"
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Maximum number of records to return"
+     },
+     "sort": {
+      "type": "string",
+      "description": "Field name to sort by"
+     },
+     "order": {
+      "type": "string",
+      "description": "Sort order, asc or desc"
+     },
+     "search": {
+      "type": "string",
+      "description": "Search keyword"
+     }
+    },
+    "required": [
+     "list_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.agenty.com/v2/lists/{list_id}",
+    "path": [
+     "list_id"
+    ],
+    "query": [
+     "offset",
+     "limit",
+     "sort",
+     "order",
+     "search"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "agenty.list_controller_list",
+   "name": "List controller list",
+   "description": "Get all Lists in your account.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "offset": {
+      "type": "integer",
+      "description": "Number of records to skip"
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Maximum number of records to return"
+     },
+     "sort": {
+      "type": "string",
+      "description": "Field name to sort by"
+     },
+     "order": {
+      "type": "string",
+      "description": "Sort order, asc or desc"
+     },
+     "search": {
+      "type": "string",
+      "description": "Search keyword"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.agenty.com/v2/lists",
+    "path": [],
+    "query": [
+     "offset",
+     "limit",
+     "sort",
+     "order",
+     "search"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "agenty.list_controller_post",
+   "name": "List controller post",
+   "description": "Create a List to store URLs or input data for agents.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.agenty.com/v2/lists",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "agenty.list_controller_update",
+   "name": "List controller update",
+   "description": "Update a List name and description.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "list_id": {
+      "type": "number",
+      "description": ""
+     }
+    },
+    "required": [
+     "list_id"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.agenty.com/v2/lists/{list_id}",
+    "path": [
+     "list_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "agenty.list_rows_controller_add_row",
+   "name": "List rows controller add row",
+   "description": "Append one or more rows to a List.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "list_id": {
+      "type": "number",
+      "description": ""
+     }
+    },
+    "required": [
+     "list_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.agenty.com/v2/lists/{list_id}/rows",
+    "path": [
+     "list_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "agenty.list_rows_controller_clear_list_rows",
+   "name": "List rows controller clear list rows",
+   "description": "Remove all rows from a List.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "list_id": {
+      "type": "number",
+      "description": ""
+     }
+    },
+    "required": [
+     "list_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.agenty.com/v2/lists/{list_id}/rows/clear",
+    "path": [
+     "list_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "agenty.list_rows_controller_delete_many_rows",
+   "name": "List rows controller delete many rows",
+   "description": "Delete multiple List rows by Ids.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "list_id": {
+      "type": "number",
+      "description": ""
+     },
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id",
+     "list_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.agenty.com/v2/lists/{list_id}/rows",
+    "path": [
+     "list_id"
+    ],
+    "query": [
+     "id"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "agenty.list_rows_controller_delete_one_row",
+   "name": "List rows controller delete one row",
+   "description": "Delete a single List row by Id.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "list_id": {
+      "type": "number",
+      "description": ""
+     },
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id",
+     "list_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.agenty.com/v2/lists/{list_id}/rows/{id}",
+    "path": [
+     "list_id",
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "agenty.list_rows_controller_download_list_row_by_id",
+   "name": "List rows controller download list row by id",
+   "description": "Download a List as CSV.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "list_id": {
+      "type": "number",
+      "description": ""
+     }
+    },
+    "required": [
+     "list_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.agenty.com/v2/lists/{list_id}/rows/download",
+    "path": [
+     "list_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "agenty.list_rows_controller_get_list_row_by_id",
+   "name": "List rows controller get list row by id",
+   "description": "Get a single List row by Id.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "list_id": {
+      "type": "number",
+      "description": ""
+     },
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id",
+     "list_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.agenty.com/v2/lists/{list_id}/rows/{id}",
+    "path": [
+     "list_id",
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "agenty.list_rows_controller_get_list_rows",
+   "name": "List rows controller get list rows",
+   "description": "Get the rows of a List with pagination.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "offset": {
+      "type": "integer",
+      "description": "Number of records to skip"
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Maximum number of records to return"
+     },
+     "sort": {
+      "type": "string",
+      "description": "Field name to sort by"
+     },
+     "order": {
+      "type": "string",
+      "description": "Sort order, asc or desc"
+     },
+     "search": {
+      "type": "string",
+      "description": "Search keyword"
+     },
+     "list_id": {
+      "type": "number",
+      "description": ""
+     }
+    },
+    "required": [
+     "list_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.agenty.com/v2/lists/{list_id}/rows",
+    "path": [
+     "list_id"
+    ],
+    "query": [
+     "offset",
+     "limit",
+     "sort",
+     "order",
+     "search"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "agenty.list_rows_controller_update_list_row_by_id",
+   "name": "List rows controller update list row by id",
+   "description": "Update a single List row by Id.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "list_id": {
+      "type": "number",
+      "description": ""
+     },
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id",
+     "list_id"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.agenty.com/v2/lists/{list_id}/rows/{id}",
+    "path": [
+     "list_id",
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "agenty.list_rows_controller_upload_list",
+   "name": "List rows controller upload list",
+   "description": "Import rows into a List from a CSV file.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "header": {
+      "type": "string",
+      "description": "First row contains the header. Default true",
+      "enum": [
+       "0",
+       "1",
+       "true",
+       "false",
+       ""
+      ]
+     },
+     "delimiter": {
+      "type": "string",
+      "description": "Column delimiter. Default \",\""
+     },
+     "qualifier": {
+      "type": "string",
+      "description": "Text qualifier. Default '\"'"
+     },
+     "list_id": {
+      "type": "number",
+      "description": ""
+     },
+     "file": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "list_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.agenty.com/v2/lists/{list_id}/upload",
+    "path": [
+     "list_id"
+    ],
+    "query": [
+     "header",
+     "delimiter",
+     "qualifier"
+    ],
+    "header": [],
+    "body": [
+     "file"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "agenty.projects_controller_add_agents_in_project",
+   "name": "Projects controller add agents in project",
+   "description": "Add one or more agents to a project.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "number",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.agenty.com/v2/projects/{id}/add",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "agenty.projects_controller_create_project",
+   "name": "Projects controller create project",
+   "description": "Create a project to group related agents.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.agenty.com/v2/projects",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "agenty.projects_controller_delete_project",
+   "name": "Projects controller delete project",
+   "description": "Delete one or more projects by Ids.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "project_id": {
+      "type": "array",
+      "description": ""
+     }
+    },
+    "required": [
+     "project_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.agenty.com/v2/projects",
+    "path": [],
+    "query": [
+     "project_id"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "agenty.projects_controller_get_project_by_id",
+   "name": "Projects controller get project by id",
+   "description": "Get a project and its agents by Id.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "number",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.agenty.com/v2/projects/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "agenty.projects_controller_get_projects",
+   "name": "Projects controller get projects",
+   "description": "List all projects used to organize agents.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "offset": {
+      "type": "integer",
+      "description": "Number of records to skip"
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Maximum number of records to return"
+     },
+     "sort": {
+      "type": "string",
+      "description": "Field name to sort by"
+     },
+     "order": {
+      "type": "string",
+      "description": "Sort order, asc or desc"
+     },
+     "search": {
+      "type": "string",
+      "description": "Search keyword"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.agenty.com/v2/projects",
+    "path": [],
+    "query": [
+     "offset",
+     "limit",
+     "sort",
+     "order",
+     "search"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "agenty.projects_controller_remove_agents_from_project",
+   "name": "Projects controller remove agents from project",
+   "description": "Remove an agent from a project.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "number",
+      "description": ""
+     },
+     "agent_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "agent_id",
+     "id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.agenty.com/v2/projects/{id}/delete",
+    "path": [
+     "id"
+    ],
+    "query": [
+     "agent_id"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "agenty.projects_controller_update_project",
+   "name": "Projects controller update project",
+   "description": "Update a project name and description.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "number",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.agenty.com/v2/projects/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "agenty.results_controller_get_result",
+   "name": "Results controller get result",
+   "description": "Get the latest scraped data of an agent in JSON.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "agent_id": {
+      "type": "string",
+      "description": ""
+     },
+     "offset": {
+      "type": "integer",
+      "description": "Number of records to skip"
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Maximum number of records to return"
+     },
+     "sort": {
+      "type": "string",
+      "description": "Field name to sort by"
+     },
+     "order": {
+      "type": "string",
+      "description": "Sort order, asc or desc"
+     },
+     "search": {
+      "type": "string",
+      "description": "Search keyword"
+     },
+     "collection": {
+      "type": "integer",
+      "description": "Result collection number"
+     },
+     "format": {
+      "type": "string",
+      "description": "Applicable on download request only. Must be CSV, TSV or JSON"
+     },
+     "download": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "agent_id",
+     "download"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.agenty.com/v2/results/{agent_id}",
+    "path": [
+     "agent_id"
+    ],
+    "query": [
+     "offset",
+     "limit",
+     "sort",
+     "order",
+     "search",
+     "collection",
+     "format",
+     "download"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "agenty.scheduler_controller_delete",
+   "name": "Scheduler controller delete",
+   "description": "Remove the schedule of an agent.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "agent_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "agent_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.agenty.com/v2/scheduler/{agent_id}",
+    "path": [
+     "agent_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "agenty.scheduler_controller_get",
+   "name": "Scheduler controller get",
+   "description": "Get the cron schedule of an agent.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "agent_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "agent_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.agenty.com/v2/scheduler/{agent_id}",
+    "path": [
+     "agent_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "agenty.scheduler_controller_patch",
+   "name": "Scheduler controller patch",
+   "description": "Enable or disable an agent schedule.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "agent_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "agent_id"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.agenty.com/v2/scheduler/{agent_id}",
+    "path": [
+     "agent_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "agenty.scheduler_controller_put",
+   "name": "Scheduler controller put",
+   "description": "Schedule an agent to run automatically with a cron expression.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "agent_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "agent_id"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.agenty.com/v2/scheduler/{agent_id}",
+    "path": [
+     "agent_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "agenty.user_controller_delete",
+   "name": "User controller delete",
+   "description": "Remove one or more team members by Ids.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "user_id": {
+      "type": "array",
+      "description": ""
+     }
+    },
+    "required": [
+     "user_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.agenty.com/v2/users",
+    "path": [],
+    "query": [
+     "user_id"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "agenty.user_controller_get",
+   "name": "User controller get",
+   "description": "Get a team member by Id.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "user_id": {
+      "type": "number",
+      "description": ""
+     }
+    },
+    "required": [
+     "user_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.agenty.com/v2/users/{user_id}",
+    "path": [
+     "user_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "agenty.user_controller_list",
+   "name": "User controller list",
+   "description": "List all team members in your account.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "offset": {
+      "type": "integer",
+      "description": "Number of records to skip"
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Maximum number of records to return"
+     },
+     "sort": {
+      "type": "string",
+      "description": "Field name to sort by"
+     },
+     "order": {
+      "type": "string",
+      "description": "Sort order, asc or desc"
+     },
+     "search": {
+      "type": "string",
+      "description": "Search keyword"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.agenty.com/v2/users",
+    "path": [],
+    "query": [
+     "offset",
+     "limit",
+     "sort",
+     "order",
+     "search"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "agenty.user_controller_post",
+   "name": "User controller post",
+   "description": "Invite a team member to your account with a role.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.agenty.com/v2/users",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "agenty.user_controller_update",
+   "name": "User controller update",
+   "description": "Update a team member role or status.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "user_id": {
+      "type": "number",
+      "description": ""
+     }
+    },
+    "required": [
+     "user_id"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.agenty.com/v2/users/{user_id}",
+    "path": [
+     "user_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "agenty.workflow_controller_create_workflow",
+   "name": "Workflow controller create workflow",
+   "description": "Create a workflow to send scraped data to a webhook, email, Google Sheets, S3 and more.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.agenty.com/v2/workflows",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "agenty.workflow_controller_delete_workflow_by_id",
+   "name": "Workflow controller delete workflow by id",
+   "description": "Delete a workflow by Id.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "number",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.agenty.com/v2/workflows/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "agenty.workflow_controller_get_workflow_by_id",
+   "name": "Workflow controller get workflow by id",
+   "description": "Get a workflow by Id.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "number",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.agenty.com/v2/workflows/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "agenty.workflow_controller_get_workflows",
+   "name": "Workflow controller get workflows",
+   "description": "List all workflows that automate actions after agent jobs.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.agenty.com/v2/workflows",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "agenty.workflow_controller_update_workflow_by_id",
+   "name": "Workflow controller update workflow by id",
+   "description": "Update a workflow trigger and actions.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "number",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.agenty.com/v2/workflows/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "agenty.workflow_controller_update_workflow_status",
+   "name": "Workflow controller update workflow status",
+   "description": "Enable or disable a workflow.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "number",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.agenty.com/v2/workflows/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  }
+ ]
+}

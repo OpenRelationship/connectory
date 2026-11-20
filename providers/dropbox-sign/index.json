@@ -4,6 +4,179 @@
  "source": "https://raw.githubusercontent.com/hellosign/hellosign-openapi/main/openapi-fern.yaml",
  "operations": [
   {
+   "slug": "dropbox-sign.account_api_key_create",
+   "name": "Create api key",
+   "description": "Creates a named API key on the specified account. The secret is returned only in this response.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "account_id": {
+      "type": "string",
+      "description": "The ID of the account that will own the new API key. Defaults to the authenticated account when omitted."
+     },
+     "name": {
+      "type": "string",
+      "description": "Name for the API key. Must be unique on the account and at most 25 characters."
+     }
+    },
+    "required": [
+     "name"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hellosign.com/v3/api_key",
+    "path": [],
+    "query": [
+     "account_id"
+    ],
+    "header": [],
+    "body": [
+     "name"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "dropbox-sign.account_api_key_delete",
+   "name": "Delete api key",
+   "description": "Deletes an API key. The primary key cannot be deleted. Promote another key first.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "api_key_id": {
+      "type": "string",
+      "description": "The ID of the API key to delete."
+     },
+     "account_id": {
+      "type": "string",
+      "description": "The ID of the account that owns the API key. Defaults to the authenticated account when omitted."
+     }
+    },
+    "required": [
+     "api_key_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.hellosign.com/v3/api_key/{api_key_id}",
+    "path": [
+     "api_key_id"
+    ],
+    "query": [
+     "account_id"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "dropbox-sign.account_api_key_get",
+   "name": "Get api key",
+   "description": "Returns one API key on the specified account. The key secret is not included.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "api_key_id": {
+      "type": "string",
+      "description": "The ID of the API key."
+     },
+     "account_id": {
+      "type": "string",
+      "description": "The ID of the account that owns the API key. Defaults to the authenticated account when omitted."
+     }
+    },
+    "required": [
+     "api_key_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hellosign.com/v3/api_key/{api_key_id}",
+    "path": [
+     "api_key_id"
+    ],
+    "query": [
+     "account_id"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "dropbox-sign.account_api_key_list",
+   "name": "List api keys",
+   "description": "Returns the API keys on the specified account. The key secret is not included.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "account_id": {
+      "type": "string",
+      "description": "The ID of the account whose API keys to list. Defaults to the authenticated account when omitted."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hellosign.com/v3/api_key",
+    "path": [],
+    "query": [
+     "account_id"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "dropbox-sign.account_api_key_update",
+   "name": "Update api key",
+   "description": "Updates an API key's name, or promotes it to the primary key. Provide at least one of `name` or `is_primary`. `is_primary` can only be set to `true`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "api_key_id": {
+      "type": "string",
+      "description": "The ID of the API key to update."
+     },
+     "account_id": {
+      "type": "string",
+      "description": "The ID of the account that owns the API key. Defaults to the authenticated account when omitted."
+     },
+     "name": {
+      "type": "string",
+      "description": "New name for the API key. Must be unique on the account and at most 25 characters."
+     },
+     "is_primary": {
+      "type": "boolean",
+      "description": "Set to `true` to make this key the account's primary API key. The previous primary key remains on the account and is no longer primary."
+     }
+    },
+    "required": [
+     "api_key_id"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.hellosign.com/v3/api_key/{api_key_id}",
+    "path": [
+     "api_key_id"
+    ],
+    "query": [
+     "account_id"
+    ],
+    "header": [],
+    "body": [
+     "name",
+     "is_primary"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "dropbox-sign.account_create",
    "name": "Create account",
    "description": "Creates a new Dropbox Sign Account that is associated with the specified `email_address`.",
@@ -74,6 +247,69 @@
     ],
     "header": [],
     "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "dropbox-sign.account_settings_get",
+   "name": "Get account settings",
+   "description": "account_id is an optional query parameter and defaults to the authenticated account. A team admin can specify another account on a team they administer.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "account_id": {
+      "type": "string",
+      "description": "Optional account ID. Defaults to the authenticated account. A team admin can specify another account on a team they administer."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hellosign.com/v3/account/settings",
+    "path": [],
+    "query": [
+     "account_id"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "dropbox-sign.account_settings_update",
+   "name": "Modify account settings",
+   "description": "account_id is an optional query parameter and defaults to the authenticated account. A team admin can specify another account on a team they administer.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "account_id": {
+      "type": "string",
+      "description": "Optional account ID. Defaults to the authenticated account. A team admin can specify another account on a team they administer."
+     },
+     "set": {
+      "type": "object",
+      "description": "Values to store, keyed by setting name. A name in `set` cannot also appear in `unset`."
+     },
+     "unset": {
+      "type": "array",
+      "description": "Any setting that can be set can also be unset. Unset clears the stored value so it is inherited. A listed name cannot also be set or locked in the same request."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hellosign.com/v3/account/settings",
+    "path": [],
+    "query": [
+     "account_id"
+    ],
+    "header": [],
+    "body": [
+     "set",
+     "unset"
+    ],
     "body_format": "json"
    }
   },
@@ -418,6 +654,49 @@
     ],
     "header": [],
     "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "dropbox-sign.document_detect_fields",
+   "name": "Detect document fields",
+   "description": "Detects form fields in a PDF document using either PDF form annotations or Dropbox Sign text tags.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "file": {
+      "type": "string",
+      "description": "The PDF file to analyze. This endpoint requires either `file` or `file_url`, but not both."
+     },
+     "file_url": {
+      "type": "string",
+      "description": "The URL of the PDF file to analyze. This endpoint requires either `file` or `file_url`, but not both."
+     },
+     "detection_mode": {
+      "type": "string",
+      "description": "The field detection method to use. Set to `annotations` to detect PDF form annotations or `text_tags` to detect Dropbox Sign text tags."
+     },
+     "page_range": {
+      "type": "string",
+      "description": "The zero-based page indexes to analyze. Accepts `all`, individual pages, inclusive ranges, or comma-separated combinations, such as `0-2,5,7-9`. Defaults to `all`."
+     }
+    },
+    "required": [
+     "detection_mode"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hellosign.com/v3/document/detect_fields",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "file",
+     "file_url",
+     "detection_mode",
+     "page_range"
+    ],
     "body_format": "json"
    }
   },
@@ -1203,6 +1482,10 @@
      "title": {
       "type": "string",
       "description": "The title you want to assign to the SignatureRequest."
+     },
+     "expires_at": {
+      "type": "integer",
+      "description": "When the signature request will expire. Unsigned signatures will be moved to the expired status, and no longer signable. See [Signature Request Expiration Date](https://developers.hellosign.com/docs/signature-request/expiration/) for details."
      }
     },
     "required": [
@@ -1229,7 +1512,8 @@
      "signing_redirect_url",
      "subject",
      "test_mode",
-     "title"
+     "title",
+     "expires_at"
     ],
     "body_format": "json"
    }
@@ -1292,6 +1576,10 @@
      "title": {
       "type": "string",
       "description": "The title you want to assign to the SignatureRequest."
+     },
+     "expires_at": {
+      "type": "integer",
+      "description": "When the signature request will expire. Unsigned signatures will be moved to the expired status, and no longer signable. See [Signature Request Expiration Date](https://developers.hellosign.com/docs/signature-request/expiration/) for details."
      }
     },
     "required": [
@@ -1317,7 +1605,8 @@
      "signing_redirect_url",
      "subject",
      "test_mode",
-     "title"
+     "title",
+     "expires_at"
     ],
     "body_format": "json"
    }
@@ -1564,6 +1853,10 @@
      "populate_auto_fill_fields": {
       "type": "boolean",
       "description": "Controls whether [auto fill fields](https://faq.hellosign.com/hc/en-us/articles/360051467511-Auto-Fill-Fields) can automatically populate a signer's information during signing. **NOTE:** Keep your signer's information safe by ensuring that the _signer on your signature request is the intended party_ before using this feature."
+     },
+     "expires_at": {
+      "type": "integer",
+      "description": "When the signature request will expire. Unsigned signatures will be moved to the expired status, and no longer signable. See [Signature Request Expiration Date](https://developers.hellosign.com/docs/signature-request/expiration/) for details."
      }
     },
     "required": [
@@ -1593,7 +1886,8 @@
      "subject",
      "test_mode",
      "title",
-     "populate_auto_fill_fields"
+     "populate_auto_fill_fields",
+     "expires_at"
     ],
     "body_format": "json"
    }
@@ -2616,6 +2910,10 @@
      "title": {
       "type": "string",
       "description": "The title you want to assign to the SignatureRequest."
+     },
+     "expires_at": {
+      "type": "integer",
+      "description": "When the signature request will expire. Unsigned signatures will be moved to the expired status, and no longer signable. See [Signature Request Expiration Date](https://developers.hellosign.com/docs/signature-request/expiration/) for details."
      }
     },
     "required": [
@@ -2645,7 +2943,8 @@
      "signing_redirect_url",
      "subject",
      "test_mode",
-     "title"
+     "title",
+     "expires_at"
     ],
     "body_format": "json"
    }
@@ -2758,6 +3057,10 @@
      "name": {
       "type": "string",
       "description": "The name of your Team."
+     },
+     "parent_team_id": {
+      "type": "string",
+      "description": "Id of an existing team to create this team under. Omit it to create a root team. Creating a subteam requires an organization admin."
      }
     },
     "required": []
@@ -2769,7 +3072,8 @@
     "query": [],
     "header": [],
     "body": [
-     "name"
+     "name",
+     "parent_team_id"
     ],
     "body_format": "json"
    }
@@ -2951,6 +3255,74 @@
      "new_owner_email_address",
      "new_team_id",
      "new_role"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "dropbox-sign.team_settings_get",
+   "name": "Get team settings",
+   "description": "team_id is an optional query parameter and defaults to the authenticated account's team. An organization admin can specify a subteam.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "team_id": {
+      "type": "string",
+      "description": "Optional team ID. Defaults to the authenticated account's team. An organization admin can specify a subteam."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hellosign.com/v3/team/settings",
+    "path": [],
+    "query": [
+     "team_id"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "dropbox-sign.team_settings_update",
+   "name": "Modify team settings",
+   "description": "team_id is an optional query parameter and defaults to the authenticated account's team. An organization admin can specify a subteam.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "team_id": {
+      "type": "string",
+      "description": "Optional team ID. Defaults to the authenticated account's team. An organization admin can specify a subteam."
+     },
+     "set": {
+      "type": "object",
+      "description": "Values to store, keyed by setting name. A name in `set` cannot also appear in `unset`."
+     },
+     "lock": {
+      "type": "object",
+      "description": "Lock a setting to prevent subteams or accounts from overriding it. A team admin can set a lock on their own team. An organization admin can set a lock on the organization or on a subteam. `organization_admins` prevents subteams and accounts from overriding the value. `team_admins` lets admins of that team and its subteams set their own value. `members` lets each account set its own value. A name i"
+     },
+     "unset": {
+      "type": "array",
+      "description": "Any setting that can be set can also be unset. Unset clears the stored value and its lock so both are inherited. A listed name cannot also be set or locked in the same request."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hellosign.com/v3/team/settings",
+    "path": [],
+    "query": [
+     "team_id"
+    ],
+    "header": [],
+    "body": [
+     "set",
+     "lock",
+     "unset"
     ],
     "body_format": "json"
    }

@@ -1,0 +1,847 @@
+{
+ "_": "GENERATED \u2014 what an authoring tool needs to FIND an operation. The calling table is the .lua beside it.",
+ "provider": "circleci",
+ "source": "https://api.apis.guru/v2/specs/circleci.com/v1/openapi.json",
+ "operations": [
+  {
+   "slug": "circleci.delete_project_username_project_build_cache",
+   "name": "Circleci delete project username project build cache",
+   "description": "Clears the cache for a project.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "XXXXXXXXX"
+     },
+     "project": {
+      "type": "string",
+      "description": "XXXXXXXXX"
+     }
+    },
+    "required": [
+     "project",
+     "username"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://circleci.com/api/v1/project/{username}/{project}/build-cache",
+    "path": [
+     "username",
+     "project"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "circleci.delete_project_username_project_checkout_key_fingerprint",
+   "name": "Circleci delete project username project checkout key fingerprint",
+   "description": "Delete a checkout key.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "XXXXXXXXX"
+     },
+     "project": {
+      "type": "string",
+      "description": "XXXXXXXXX"
+     },
+     "fingerprint": {
+      "type": "string",
+      "description": "XXXXXXXXXX"
+     }
+    },
+    "required": [
+     "fingerprint",
+     "project",
+     "username"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://circleci.com/api/v1/project/{username}/{project}/checkout-key/{fingerprint}",
+    "path": [
+     "username",
+     "project",
+     "fingerprint"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "circleci.delete_project_username_project_envvar_name",
+   "name": "Circleci delete project username project envvar name",
+   "description": "Deletes the environment variable named ':name'",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "XXXXXXXXX"
+     },
+     "project": {
+      "type": "string",
+      "description": "XXXXXXXXX"
+     },
+     "name": {
+      "type": "string",
+      "description": "XXXXXXXXXX"
+     }
+    },
+    "required": [
+     "name",
+     "project",
+     "username"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://circleci.com/api/v1/project/{username}/{project}/envvar/{name}",
+    "path": [
+     "username",
+     "project",
+     "name"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "circleci.get_me",
+   "name": "Circleci get me",
+   "description": "Provides information about the signed in user.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://circleci.com/api/v1/me",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "circleci.get_project_username_project",
+   "name": "Circleci get project username project",
+   "description": "Build summary for each of the last 30 builds for a single git repo.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "XXXXXXXXX"
+     },
+     "project": {
+      "type": "string",
+      "description": "XXXXXXXXX"
+     },
+     "limit": {
+      "type": "integer",
+      "description": "The number of builds to return. Maximum 100, defaults to 30."
+     },
+     "offset": {
+      "type": "integer",
+      "description": "The API returns builds starting from this offset, defaults to 0."
+     },
+     "filter": {
+      "type": "string",
+      "description": "Restricts which builds are returned. Set to \"completed\", \"successful\", \"failed\", \"running\", or defaults to no filter.",
+      "enum": [
+       "completed",
+       "successful",
+       "failed",
+       "running"
+      ]
+     }
+    },
+    "required": [
+     "project",
+     "username"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://circleci.com/api/v1/project/{username}/{project}",
+    "path": [
+     "username",
+     "project"
+    ],
+    "query": [
+     "limit",
+     "offset",
+     "filter"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "circleci.get_project_username_project_build_num",
+   "name": "Circleci get project username project build num",
+   "description": "Full details for a single build. The response includes all of the fields from the build summary. This is also the payload for the [notification webhooks](/docs/configuration/#notify), in which case this object is the value to a key named 'payload'.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "XXXXXXXXX"
+     },
+     "project": {
+      "type": "string",
+      "description": "XXXXXXXXX"
+     },
+     "build_num": {
+      "type": "integer",
+      "description": "XXXXXXXXXX"
+     }
+    },
+    "required": [
+     "build_num",
+     "project",
+     "username"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://circleci.com/api/v1/project/{username}/{project}/{build_num}",
+    "path": [
+     "username",
+     "project",
+     "build_num"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "circleci.get_project_username_project_build_num_artifacts",
+   "name": "Circleci get project username project build num artifacts",
+   "description": "List the artifacts produced by a given build.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "XXXXXXXXX"
+     },
+     "project": {
+      "type": "string",
+      "description": "XXXXXXXXX"
+     },
+     "build_num": {
+      "type": "integer",
+      "description": "XXXXXXXXXX"
+     }
+    },
+    "required": [
+     "build_num",
+     "project",
+     "username"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://circleci.com/api/v1/project/{username}/{project}/{build_num}/artifacts",
+    "path": [
+     "username",
+     "project",
+     "build_num"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "circleci.get_project_username_project_build_num_tests",
+   "name": "Circleci get project username project build num tests",
+   "description": "Provides test metadata for a build Note: [Learn how to set up your builds to collect test metadata](https://circleci.com/docs/test-metadata/)",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "XXXXXXXXX"
+     },
+     "project": {
+      "type": "string",
+      "description": "XXXXXXXXX"
+     },
+     "build_num": {
+      "type": "integer",
+      "description": "XXXXXXXXXX"
+     }
+    },
+    "required": [
+     "build_num",
+     "project",
+     "username"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://circleci.com/api/v1/project/{username}/{project}/{build_num}/tests",
+    "path": [
+     "username",
+     "project",
+     "build_num"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "circleci.get_project_username_project_checkout_key",
+   "name": "Circleci get project username project checkout key",
+   "description": "Lists checkout keys.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "XXXXXXXXX"
+     },
+     "project": {
+      "type": "string",
+      "description": "XXXXXXXXX"
+     }
+    },
+    "required": [
+     "project",
+     "username"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://circleci.com/api/v1/project/{username}/{project}/checkout-key",
+    "path": [
+     "username",
+     "project"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "circleci.get_project_username_project_checkout_key_fingerprint",
+   "name": "Circleci get project username project checkout key fingerprint",
+   "description": "Get a checkout key.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "XXXXXXXXX"
+     },
+     "project": {
+      "type": "string",
+      "description": "XXXXXXXXX"
+     },
+     "fingerprint": {
+      "type": "string",
+      "description": "XXXXXXXXXX"
+     }
+    },
+    "required": [
+     "fingerprint",
+     "project",
+     "username"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://circleci.com/api/v1/project/{username}/{project}/checkout-key/{fingerprint}",
+    "path": [
+     "username",
+     "project",
+     "fingerprint"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "circleci.get_project_username_project_envvar",
+   "name": "Circleci get project username project envvar",
+   "description": "Lists the environment variables for :project",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "XXXXXXXXX"
+     },
+     "project": {
+      "type": "string",
+      "description": "XXXXXXXXX"
+     }
+    },
+    "required": [
+     "project",
+     "username"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://circleci.com/api/v1/project/{username}/{project}/envvar",
+    "path": [
+     "username",
+     "project"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "circleci.get_project_username_project_envvar_name",
+   "name": "Circleci get project username project envvar name",
+   "description": "Gets the hidden value of environment variable :name",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "XXXXXXXXX"
+     },
+     "project": {
+      "type": "string",
+      "description": "XXXXXXXXX"
+     },
+     "name": {
+      "type": "string",
+      "description": "XXXXXXXXXX"
+     }
+    },
+    "required": [
+     "name",
+     "project",
+     "username"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://circleci.com/api/v1/project/{username}/{project}/envvar/{name}",
+    "path": [
+     "username",
+     "project",
+     "name"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "circleci.get_projects",
+   "name": "Circleci get projects",
+   "description": "List of all the projects you're following on CircleCI, with build information organized by branch.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://circleci.com/api/v1/projects",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "circleci.get_recent_builds",
+   "name": "Circleci get recent builds",
+   "description": "Build summary for each of the last 30 recent builds, ordered by build_num.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "limit": {
+      "type": "integer",
+      "description": "The number of builds to return. Maximum 100, defaults to 30."
+     },
+     "offset": {
+      "type": "integer",
+      "description": "The API returns builds starting from this offset, defaults to 0."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://circleci.com/api/v1/recent-builds",
+    "path": [],
+    "query": [
+     "limit",
+     "offset"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "circleci.post_project_username_project",
+   "name": "Circleci post project username project",
+   "description": "Triggers a new build, returns a summary of the build.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "XXXXXXXXX"
+     },
+     "project": {
+      "type": "string",
+      "description": "XXXXXXXXX"
+     },
+     "build_parameters": {
+      "type": "object",
+      "description": "Additional environment variables to inject into the build environment. A map of names to values."
+     },
+     "parallel": {
+      "type": "string",
+      "description": "The number of containers to use to run the build. Default is null and the project default is used."
+     },
+     "revision": {
+      "type": "string",
+      "description": "The specific revision to build. Default is null and the head of the branch is used. Cannot be used with tag parameter."
+     },
+     "tag": {
+      "type": "string",
+      "description": "The tag to build. Default is null. Cannot be used with revision parameter."
+     }
+    },
+    "required": [
+     "project",
+     "username"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://circleci.com/api/v1/project/{username}/{project}",
+    "path": [
+     "username",
+     "project"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "build_parameters",
+     "parallel",
+     "revision",
+     "tag"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "circleci.post_project_username_project_build_num_cancel",
+   "name": "Circleci post project username project build num cancel",
+   "description": "Cancels the build, returns a summary of the build.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "XXXXXXXXX"
+     },
+     "project": {
+      "type": "string",
+      "description": "XXXXXXXXX"
+     },
+     "build_num": {
+      "type": "integer",
+      "description": "XXXXXXXXXX"
+     }
+    },
+    "required": [
+     "build_num",
+     "project",
+     "username"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://circleci.com/api/v1/project/{username}/{project}/{build_num}/cancel",
+    "path": [
+     "username",
+     "project",
+     "build_num"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "circleci.post_project_username_project_build_num_retry",
+   "name": "Circleci post project username project build num retry",
+   "description": "Retries the build, returns a summary of the new build.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "XXXXXXXXX"
+     },
+     "project": {
+      "type": "string",
+      "description": "XXXXXXXXX"
+     },
+     "build_num": {
+      "type": "integer",
+      "description": "XXXXXXXXXX"
+     }
+    },
+    "required": [
+     "build_num",
+     "project",
+     "username"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://circleci.com/api/v1/project/{username}/{project}/{build_num}/retry",
+    "path": [
+     "username",
+     "project",
+     "build_num"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "circleci.post_project_username_project_checkout_key",
+   "name": "Circleci post project username project checkout key",
+   "description": "Creates a new checkout key. Only usable with a user API token.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "XXXXXXXXX"
+     },
+     "project": {
+      "type": "string",
+      "description": "XXXXXXXXX"
+     }
+    },
+    "required": [
+     "project",
+     "username"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://circleci.com/api/v1/project/{username}/{project}/checkout-key",
+    "path": [
+     "username",
+     "project"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "circleci.post_project_username_project_envvar",
+   "name": "Circleci post project username project envvar",
+   "description": "Creates a new environment variable",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "XXXXXXXXX"
+     },
+     "project": {
+      "type": "string",
+      "description": "XXXXXXXXX"
+     }
+    },
+    "required": [
+     "project",
+     "username"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://circleci.com/api/v1/project/{username}/{project}/envvar",
+    "path": [
+     "username",
+     "project"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "circleci.post_project_username_project_ssh_key",
+   "name": "Circleci post project username project ssh key",
+   "description": "Create an ssh key used to access external systems that require SSH key-based authentication",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "XXXXXXXXX"
+     },
+     "project": {
+      "type": "string",
+      "description": "XXXXXXXXX"
+     },
+     "Content-Type": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "application/json"
+      ]
+     },
+     "hostname": {
+      "type": "string",
+      "description": ""
+     },
+     "private_key": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "Content-Type",
+     "project",
+     "username"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://circleci.com/api/v1/project/{username}/{project}/ssh-key",
+    "path": [
+     "username",
+     "project"
+    ],
+    "query": [],
+    "header": [
+     "Content-Type"
+    ],
+    "body": [
+     "hostname",
+     "private_key"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "circleci.post_project_username_project_tree_branch",
+   "name": "Circleci post project username project tree branch",
+   "description": "Triggers a new build, returns a summary of the build. Optional build parameters can be set using an experimental API. Note: For more about build parameters, read about [using parameterized builds](https://circleci.com/docs/parameterized-builds/)",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "XXXXXXXXX"
+     },
+     "project": {
+      "type": "string",
+      "description": "XXXXXXXXX"
+     },
+     "branch": {
+      "type": "string",
+      "description": "The branch name should be url-encoded."
+     },
+     "build_parameters": {
+      "type": "object",
+      "description": "Additional environment variables to inject into the build environment. A map of names to values."
+     },
+     "parallel": {
+      "type": "string",
+      "description": "The number of containers to use to run the build. Default is null and the project default is used."
+     },
+     "revision": {
+      "type": "string",
+      "description": "The specific revision to build. Default is null and the head of the branch is used. Cannot be used with tag parameter."
+     }
+    },
+    "required": [
+     "branch",
+     "project",
+     "username"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://circleci.com/api/v1/project/{username}/{project}/tree/{branch}",
+    "path": [
+     "username",
+     "project",
+     "branch"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "build_parameters",
+     "parallel",
+     "revision"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "circleci.post_user_heroku_key",
+   "name": "Circleci post user heroku key",
+   "description": "Adds your Heroku API key to CircleCI, takes apikey as form param name.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://circleci.com/api/v1/user/heroku-key",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  }
+ ]
+}

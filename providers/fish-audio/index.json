@@ -1,0 +1,3989 @@
+{
+ "_": "GENERATED \u2014 what an authoring tool needs to FIND an operation. The calling table is the .lua beside it.",
+ "provider": "fish-audio",
+ "source": "https://docs.fish.audio/api-reference/openapi.json",
+ "operations": [
+  {
+   "slug": "fish-audio.delete_model_id",
+   "name": "Delete model",
+   "description": "Delete Model",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.fish.audio/model/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.delete_v1_agent_agents_agent_id",
+   "name": "Delete agent",
+   "description": "Delete an agent together with its configuration and version history. Existing session records are retained.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "agent_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "agent_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.fish.audio/v1/agent/agents/{agent_id}",
+    "path": [
+     "agent_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.delete_v1_agent_agents_agent_id_tests_test_id",
+   "name": "Detach test",
+   "description": "Detach a test from an agent. The test itself stays in your library. Detaching a test that is not attached does nothing.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "agent_id": {
+      "type": "string",
+      "description": ""
+     },
+     "test_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "agent_id",
+     "test_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.fish.audio/v1/agent/agents/{agent_id}/tests/{test_id}",
+    "path": [
+     "agent_id",
+     "test_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.delete_v1_agent_background_sounds_asset_id",
+   "name": "Delete background sound",
+   "description": "Soft-deletes the clip. An agent still naming it in `voice.background_sound.custom_asset_id` falls back to silence for that ambience at its next session rather than failing the call.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "asset_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "asset_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.fish.audio/v1/agent/background-sounds/{asset_id}",
+    "path": [
+     "asset_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.delete_v1_agent_knowledge_folders_folder_id",
+   "name": "Delete knowledge folder",
+   "description": "Delete a folder, empty or not. The knowledge sources inside it are not deleted: they are taken out of the folder (`folder_id` becomes null).",
+   "input": {
+    "type": "object",
+    "properties": {
+     "folder_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "folder_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.fish.audio/v1/agent/knowledge-folders/{folder_id}",
+    "path": [
+     "folder_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.delete_v1_agent_knowledge_sources_source_id",
+   "name": "Delete knowledge source",
+   "description": "Delete a knowledge source. Returns 409 while any agent still references it \u2014 in its draft or in its currently published version (sessions resolve sources at call time, so deleting a published reference would change a running agent). Check `GET /v1/agent/knowledge-sources/{source_id}/agents`, detach via the agent config, and republish if needed before deleting.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "source_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "source_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.fish.audio/v1/agent/knowledge-sources/{source_id}",
+    "path": [
+     "source_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.delete_v1_agent_phone_numbers_phone_number_id",
+   "name": "Release phone number",
+   "description": "Release a number back to the provider's inventory and stop its daily billing. This is irreversible: anyone \u2014 including other platforms \u2014 can buy the number afterwards, so callers who saved it may reach a stranger. The number disappears from this API immediately. 409 while a SIP config update of an imported number is still running, retry shortly.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "phone_number_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "phone_number_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.fish.audio/v1/agent/phone-numbers/{phone_number_id}",
+    "path": [
+     "phone_number_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.delete_v1_agent_tests_test_id",
+   "name": "Delete test",
+   "description": "Delete a test and detach it from every agent. Its past runs stay readable.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "test_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "test_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.fish.audio/v1/agent/tests/{test_id}",
+    "path": [
+     "test_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.delete_v1_agent_tools_tool_id",
+   "name": "Delete tool",
+   "description": "Delete a tool. Returns 409 while any agent's draft configuration still references it \u2014 check `GET /v1/agent/tools/{tool_id}/agents` and detach it via the agent config first, so a delete can never silently change agent behavior.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "tool_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "tool_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.fish.audio/v1/agent/tools/{tool_id}",
+    "path": [
+     "tool_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.delete_v1_agent_tools_tool_id_signing_secret",
+   "name": "Disable tool signing",
+   "description": "Stop signing this tool's requests and delete its secrets.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "tool_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "tool_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.fish.audio/v1/agent/tools/{tool_id}/signing-secret",
+    "path": [
+     "tool_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.delete_v1_agent_tools_tool_id_signing_secret_previous",
+   "name": "Revoke previous tool signing secret",
+   "description": "End a rotation window now. Only the current secret signs from the next session on.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "tool_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "tool_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.fish.audio/v1/agent/tools/{tool_id}/signing-secret/previous",
+    "path": [
+     "tool_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.delete_v1_pronunciation_dictionaries_dictionary_id",
+   "name": "Delete (archive) a pronunciation dictionary",
+   "description": "Soft-archive the dictionary: it disappears from list/get and can no longer be modified, while its versions remain stored. Idempotent.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "dictionary_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "dictionary_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.fish.audio/v1/pronunciation-dictionaries/{dictionary_id}",
+    "path": [
+     "dictionary_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.delete_v1_pronunciation_dictionaries_dictionary_id_versions_version_id",
+   "name": "Delete (archive) a version",
+   "description": "Soft-archive a historical version. The latest version cannot be deleted (409), and deleting an already archived version also returns 409.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "dictionary_id": {
+      "type": "string",
+      "description": ""
+     },
+     "version_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "dictionary_id",
+     "version_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.fish.audio/v1/pronunciation-dictionaries/{dictionary_id}/versions/{version_id}",
+    "path": [
+     "dictionary_id",
+     "version_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.get_model",
+   "name": "List models",
+   "description": "List Models",
+   "input": {
+    "type": "object",
+    "properties": {
+     "page_size": {
+      "type": "integer",
+      "description": "Page size"
+     },
+     "page_number": {
+      "type": "integer",
+      "description": "Page number"
+     },
+     "title": {
+      "type": "string",
+      "description": "Title to filter models"
+     },
+     "tag": {
+      "type": "string",
+      "description": "Tag to filter models"
+     },
+     "self": {
+      "type": "boolean",
+      "description": "If True, return models owned by the active workspace"
+     },
+     "author_id": {
+      "type": "string",
+      "description": "Author ID to filter public models; ignored if self is True"
+     },
+     "language": {
+      "type": "string",
+      "description": "Language to filter models"
+     },
+     "title_language": {
+      "type": "string",
+      "description": "Title language to filter models"
+     },
+     "visibility": {
+      "type": "string",
+      "description": "Visibility to filter workspace models; ignored unless self is True"
+     },
+     "licensed": {
+      "type": "boolean",
+      "description": "If True, only voices licensed by Fish Audio (rights secured from the voice owner) are returned; ignored if self is True"
+     },
+     "sort_by": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "score",
+       "task_count",
+       "created_at"
+      ]
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.fish.audio/model",
+    "path": [],
+    "query": [
+     "page_size",
+     "page_number",
+     "title",
+     "tag",
+     "self",
+     "author_id",
+     "language",
+     "title_language",
+     "visibility",
+     "licensed",
+     "sort_by"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.get_model_id",
+   "name": "Get model",
+   "description": "Get Model",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.fish.audio/model/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.get_v1_agent_agents",
+   "name": "List agents",
+   "description": "List your team's agents, newest first. Paginate with `cursor` (follow `next_cursor` while `has_more` is true) or with `page` for offset pagination with a `total` count \u2014 the two are mutually exclusive.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "search": {
+      "type": "string",
+      "description": "Case-insensitive match on name and description."
+     },
+     "include_archived": {
+      "type": "boolean",
+      "description": ""
+     },
+     "publication_state": {
+      "type": "string",
+      "description": "`live` = has a published version; `draft` = never published.",
+      "enum": [
+       "all",
+       "live",
+       "draft"
+      ]
+     },
+     "cursor": {
+      "type": "string",
+      "description": ""
+     },
+     "page": {
+      "type": "string",
+      "description": "1-based page number (offset pagination). Returns total; mutually exclusive with cursor."
+     },
+     "include_total": {
+      "type": "boolean",
+      "description": "Also count the filtered set on the cursor path."
+     },
+     "page_size": {
+      "type": "integer",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.fish.audio/v1/agent/agents",
+    "path": [],
+    "query": [
+     "search",
+     "include_archived",
+     "publication_state",
+     "cursor",
+     "page",
+     "include_total",
+     "page_size"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.get_v1_agent_agents_agent_id",
+   "name": "Get agent",
+   "description": "Fetch one agent's profile fields. The draft configuration lives at `GET /v1/agent/agents/{agent_id}/config`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "agent_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "agent_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.fish.audio/v1/agent/agents/{agent_id}",
+    "path": [
+     "agent_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.get_v1_agent_agents_agent_id_config",
+   "name": "Get draft config",
+   "description": "Read the agent's current draft configuration \u2014 the state the next publish will freeze. Sessions run the latest published version, not the draft; use the versions endpoints to see what is live. Webhook signing secrets are write-only and reported as `has_secret`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "agent_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "agent_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.fish.audio/v1/agent/agents/{agent_id}/config",
+    "path": [
+     "agent_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.get_v1_agent_agents_agent_id_test_batches",
+   "name": "List test batches",
+   "description": "The agent's test batches, newest first, with their pass, fail and error counts. Paginate with `cursor`, following `next_cursor` while `has_more` is true.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "agent_id": {
+      "type": "string",
+      "description": ""
+     },
+     "cursor": {
+      "type": "string",
+      "description": ""
+     },
+     "page_size": {
+      "type": "integer",
+      "description": ""
+     }
+    },
+    "required": [
+     "agent_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.fish.audio/v1/agent/agents/{agent_id}/test-batches",
+    "path": [
+     "agent_id"
+    ],
+    "query": [
+     "cursor",
+     "page_size"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.get_v1_agent_agents_agent_id_test_batches_batch_id",
+   "name": "Get test batch",
+   "description": "The runs of one batch with their pass, fail and error counts. `status` is `running` until every run has finished, then `completed`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "agent_id": {
+      "type": "string",
+      "description": ""
+     },
+     "batch_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "agent_id",
+     "batch_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.fish.audio/v1/agent/agents/{agent_id}/test-batches/{batch_id}",
+    "path": [
+     "agent_id",
+     "batch_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.get_v1_agent_agents_agent_id_test_tools",
+   "name": "List test tools",
+   "description": "The tools a test can reference for this agent, exactly what a conversation on its draft offers. Use these ids in a test's tool mocks, assertions and `referenced_tool`, including integration tools such as `google_calendar:create_event`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "agent_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "agent_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.fish.audio/v1/agent/agents/{agent_id}/test-tools",
+    "path": [
+     "agent_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.get_v1_agent_agents_agent_id_versions",
+   "name": "List agent versions",
+   "description": "The publish history, newest first. The highest version_number is what live sessions run. Compare a version's config_hash with the draft's to detect unpublished changes. A version published before a change in how the hash is computed keeps the hash it froze with; a publish that finds the draft unchanged realigns the live version's hash instead of creating an identical version. Superseded versions k",
+   "input": {
+    "type": "object",
+    "properties": {
+     "agent_id": {
+      "type": "string",
+      "description": ""
+     },
+     "cursor": {
+      "type": "string",
+      "description": ""
+     },
+     "page": {
+      "type": "string",
+      "description": "1-based page number; mutually exclusive with cursor."
+     },
+     "include_total": {
+      "type": "boolean",
+      "description": ""
+     },
+     "page_size": {
+      "type": "integer",
+      "description": ""
+     }
+    },
+    "required": [
+     "agent_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.fish.audio/v1/agent/agents/{agent_id}/versions",
+    "path": [
+     "agent_id"
+    ],
+    "query": [
+     "cursor",
+     "page",
+     "include_total",
+     "page_size"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.get_v1_agent_agents_agent_id_versions_version_number",
+   "name": "Get agent version",
+   "description": "One published version with its full frozen configuration snapshot \u2014 including the current live version. Secrets inside the snapshot are redacted the same way as the draft config. The snapshot equals the draft it froze, except `config.updated_at`, which is the publish time.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "agent_id": {
+      "type": "string",
+      "description": ""
+     },
+     "version_number": {
+      "type": "integer",
+      "description": ""
+     }
+    },
+    "required": [
+     "agent_id",
+     "version_number"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.fish.audio/v1/agent/agents/{agent_id}/versions/{version_number}",
+    "path": [
+     "agent_id",
+     "version_number"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.get_v1_agent_agents_agent_id_widget",
+   "name": "Get widget config",
+   "description": "Unauthenticated display configuration for the embeddable `` widget. Only agents published as public are reachable. When the agent restricts origins, the request `Origin` must match its allowed origins, the same gate as anonymous session creation. Attributes set on the embed tag override every field returned here.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "agent_id": {
+      "type": "string",
+      "description": ""
+     },
+     "origin": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "agent_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.fish.audio/v1/agent/agents/{agent_id}/widget",
+    "path": [
+     "agent_id"
+    ],
+    "query": [],
+    "header": [
+     "origin"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.get_v1_agent_available_phone_numbers",
+   "name": "Search available phone numbers",
+   "description": "Search the purchasable number inventory. Buy an entry with `POST /v1/agent/phone-numbers`; availability is not a reservation, so a listed number can still be claimed by someone else first.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "country_code": {
+      "type": "string",
+      "description": "ISO 3166-1 alpha-2 country code; `US` or `CA`."
+     },
+     "area_code": {
+      "type": "string",
+      "description": "Restrict to one area code, e.g. 415."
+     },
+     "number_type": {
+      "type": "string",
+      "description": "The managed inventory is US/CA local numbers only; `toll_free` currently returns 400.",
+      "enum": [
+       "local",
+       "toll_free"
+      ]
+     },
+     "provider": {
+      "type": "string",
+      "description": "Inventory to search. Only the managed `twilio` inventory (call-transfer support) is available; the parameter is kept so importing your own numbers can extend it later."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.fish.audio/v1/agent/available-phone-numbers",
+    "path": [],
+    "query": [
+     "country_code",
+     "area_code",
+     "number_type",
+     "provider"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.get_v1_agent_background_sounds",
+   "name": "List background sounds",
+   "description": "List your team's uploaded background-ambience clips, newest first. Select one with `voice.background_sound.custom_asset_id` (preset `custom`) on an agent's config.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.fish.audio/v1/agent/background-sounds",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.get_v1_agent_knowledge_folders",
+   "name": "List knowledge folders",
+   "description": "List your team's knowledge folders across all workspaces, newest first. Folder names are unique per workspace, so two workspaces can each have a \"Support\" folder: tell them apart by `workspace_id`. Paginate with `cursor` (follow `next_cursor` while `has_more` is true) or with `page` for offset pagination with a `total` count \u2014 the two are mutually exclusive. To list the sources in a folder, call `",
+   "input": {
+    "type": "object",
+    "properties": {
+     "cursor": {
+      "type": "string",
+      "description": ""
+     },
+     "page": {
+      "type": "string",
+      "description": "1-based page number; mutually exclusive with cursor."
+     },
+     "include_total": {
+      "type": "boolean",
+      "description": ""
+     },
+     "page_size": {
+      "type": "integer",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.fish.audio/v1/agent/knowledge-folders",
+    "path": [],
+    "query": [
+     "cursor",
+     "page",
+     "include_total",
+     "page_size"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.get_v1_agent_knowledge_sources",
+   "name": "List knowledge sources",
+   "description": "List your team's knowledge sources, newest first. Paginate with `cursor` (follow `next_cursor` while `has_more` is true) or with `page` for offset pagination with a `total` count \u2014 the two are mutually exclusive. Filter by folder with `folder_id=`; with `folder_id=root` or no `folder_id` you get every source, and the ones outside any folder have a null `folder_id`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "search": {
+      "type": "string",
+      "description": "Case-insensitive match on name and file name."
+     },
+     "folder_id": {
+      "type": "string",
+      "description": "Only sources in this knowledge folder. Omit it, or pass `root` (an empty value counts as omitted), to list every source across all workspaces, in a folder or not; sources outside any folder have a null `folder_id`. An unknown or deleted folder id gives an empty list. Combines with `search`."
+     },
+     "cursor": {
+      "type": "string",
+      "description": ""
+     },
+     "page": {
+      "type": "string",
+      "description": "1-based page number; mutually exclusive with cursor."
+     },
+     "include_total": {
+      "type": "boolean",
+      "description": ""
+     },
+     "page_size": {
+      "type": "integer",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.fish.audio/v1/agent/knowledge-sources",
+    "path": [],
+    "query": [
+     "search",
+     "folder_id",
+     "cursor",
+     "page",
+     "include_total",
+     "page_size"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.get_v1_agent_knowledge_sources_source_id",
+   "name": "Get knowledge source",
+   "description": "Fetch one knowledge source including its full text content and current revision number.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "source_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "source_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.fish.audio/v1/agent/knowledge-sources/{source_id}",
+    "path": [
+     "source_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.get_v1_agent_knowledge_sources_source_id_agents",
+   "name": "List agents using knowledge source",
+   "description": "Every agent that references this source in its draft or currently published configuration \u2014 the pre-flight check before a delete.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "source_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "source_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.fish.audio/v1/agent/knowledge-sources/{source_id}/agents",
+    "path": [
+     "source_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.get_v1_agent_llm_models",
+   "name": "List llm models",
+   "description": "List the LLMs your team can set as `llm.model` on an agent's config, each with its token rates. The rates are set by the LLM providers and change when a provider changes its pricing. The response carries the rates in force now.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.fish.audio/v1/agent/llm-models",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.get_v1_agent_phone_numbers",
+   "name": "List phone numbers",
+   "description": "List your team's phone numbers, newest first. Released numbers are gone for good and never appear. Look an id up by E.164 with `phone_number`, or filter with `agent_id` to see one agent's numbers. Paginate with `cursor` (follow `next_cursor` while `has_more` is true) or with `page` for offset pagination with a `total` count \u2014 the two are mutually exclusive.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "phone_number": {
+      "type": "string",
+      "description": "Exact E.164 match, e.g. +14155550123."
+     },
+     "agent_id": {
+      "type": "string",
+      "description": "Only numbers bound to this agent."
+     },
+     "cursor": {
+      "type": "string",
+      "description": ""
+     },
+     "page": {
+      "type": "string",
+      "description": "1-based page number; mutually exclusive with cursor."
+     },
+     "include_total": {
+      "type": "boolean",
+      "description": ""
+     },
+     "page_size": {
+      "type": "integer",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.fish.audio/v1/agent/phone-numbers",
+    "path": [],
+    "query": [
+     "phone_number",
+     "agent_id",
+     "cursor",
+     "page",
+     "include_total",
+     "page_size"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.get_v1_agent_phone_numbers_phone_number_id",
+   "name": "Get phone number",
+   "description": "Fetch one phone number, including its current agent binding and provisioning status.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "phone_number_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "phone_number_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.fish.audio/v1/agent/phone-numbers/{phone_number_id}",
+    "path": [
+     "phone_number_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.get_v1_agent_sessions",
+   "name": "List agent sessions",
+   "description": "List your team's sessions, newest first. Filter by agent, status, end reason, caller number, SIP Call-ID, end user ID, call_sid, or creation time. Paginate with `cursor` (recommended; follow `next_cursor` while `has_more` is true) or with `page` for offset pagination with a `total` count. The two are mutually exclusive.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "agent_id": {
+      "type": "string",
+      "description": ""
+     },
+     "status": {
+      "type": "string",
+      "description": "Comma-separated status filter (pending/active/completed/failed/unknown). Default: every status."
+     },
+     "end_reason": {
+      "type": "string",
+      "description": "Comma-separated end reason filter (user_hangup/agent_hangup/escalated/conversation_timeout/heartbeat_timeout/agent_join_timeout/internal_error/llm_endpoint_failure/room_join_timeout/cancelled/dial_failed)."
+     },
+     "direction": {
+      "type": "string",
+      "description": "Filter by call direction (inbound/outbound). Sessions predating the field count as inbound."
+     },
+     "caller_number": {
+      "type": "string",
+      "description": "Exact-match caller E.164 (phone sessions only)."
+     },
+     "sip_call_id": {
+      "type": "string",
+      "description": "Exact-match SIP Call-ID of the call's INVITE, for looking up the session behind a carrier CDR entry (phone sessions only)."
+     },
+     "end_user_id": {
+      "type": "string",
+      "description": "Exact-match end_user_id set at session creation."
+     },
+     "call_sid": {
+      "type": "string",
+      "description": "Exact-match carrier call id (Twilio's CallSid on inbound calls through a Twilio number), the call_sid the conversation_init request carries, for finding the session behind that request."
+     },
+     "created_after": {
+      "type": "string",
+      "description": ""
+     },
+     "created_before": {
+      "type": "string",
+      "description": ""
+     },
+     "cursor": {
+      "type": "string",
+      "description": ""
+     },
+     "page": {
+      "type": "string",
+      "description": "1-based page number (offset pagination). Returns total; mutually exclusive with cursor, which deep scans must use."
+     },
+     "include_total": {
+      "type": "boolean",
+      "description": "Also count the filtered set on the cursor path."
+     },
+     "page_size": {
+      "type": "integer",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.fish.audio/v1/agent/sessions",
+    "path": [],
+    "query": [
+     "agent_id",
+     "status",
+     "end_reason",
+     "direction",
+     "caller_number",
+     "sip_call_id",
+     "end_user_id",
+     "call_sid",
+     "created_after",
+     "created_before",
+     "cursor",
+     "page",
+     "include_total",
+     "page_size"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.get_v1_agent_sessions_session_id",
+   "name": "Get agent session",
+   "description": "Fetch one session's full detail: status, timing, and the conversation timeline (transcript turns interleaved with tool calls, in order).",
+   "input": {
+    "type": "object",
+    "properties": {
+     "session_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "session_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.fish.audio/v1/agent/sessions/{session_id}",
+    "path": [
+     "session_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.get_v1_agent_sessions_session_id_recording",
+   "name": "Get agent session recording",
+   "description": "Return time-limited download URLs for the session's audio recording, one per speaker track (agent and user are recorded separately).",
+   "input": {
+    "type": "object",
+    "properties": {
+     "session_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "session_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.fish.audio/v1/agent/sessions/{session_id}/recording",
+    "path": [
+     "session_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.get_v1_agent_test_runs",
+   "name": "List test runs",
+   "description": "Your team's test runs, newest first, filtered by agent, test, batch, status or test type. Items leave out the conversation and the judge's output. Fetch one run with `GET /v1/agent/test-runs/{run_id}` for those. Paginate with `cursor` (follow `next_cursor` while `has_more` is true) or with `page` for offset pagination with a `total` count. The two are mutually exclusive.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "agent_id": {
+      "type": "string",
+      "description": ""
+     },
+     "test_id": {
+      "type": "string",
+      "description": ""
+     },
+     "batch_id": {
+      "type": "string",
+      "description": ""
+     },
+     "status": {
+      "type": "string",
+      "description": ""
+     },
+     "test_type": {
+      "type": "string",
+      "description": ""
+     },
+     "cursor": {
+      "type": "string",
+      "description": ""
+     },
+     "page": {
+      "type": "string",
+      "description": "1-based page number, mutually exclusive with cursor."
+     },
+     "include_total": {
+      "type": "boolean",
+      "description": ""
+     },
+     "page_size": {
+      "type": "integer",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.fish.audio/v1/agent/test-runs",
+    "path": [],
+    "query": [
+     "agent_id",
+     "test_id",
+     "batch_id",
+     "status",
+     "test_type",
+     "cursor",
+     "page",
+     "include_total",
+     "page_size"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.get_v1_agent_test_runs_run_id",
+   "name": "Get test run",
+   "description": "Fetch one test run. Runs start `queued` and end `passed`, `failed` or `error`. A simulation run takes minutes, so poll until it finishes.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "run_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "run_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.fish.audio/v1/agent/test-runs/{run_id}",
+    "path": [
+     "run_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.get_v1_agent_tests",
+   "name": "List tests",
+   "description": "List your team's tests, newest first. Filter with `agent_id` to see the tests attached to one agent. Paginate with `cursor` (follow `next_cursor` while `has_more` is true) or with `page` for offset pagination with a `total` count. The two are mutually exclusive.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "search": {
+      "type": "string",
+      "description": "Case-insensitive match on name."
+     },
+     "agent_id": {
+      "type": "string",
+      "description": "Only tests attached to this agent."
+     },
+     "test_type": {
+      "type": "string",
+      "description": ""
+     },
+     "cursor": {
+      "type": "string",
+      "description": ""
+     },
+     "page": {
+      "type": "string",
+      "description": "1-based page number, mutually exclusive with cursor."
+     },
+     "include_total": {
+      "type": "boolean",
+      "description": ""
+     },
+     "page_size": {
+      "type": "integer",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.fish.audio/v1/agent/tests",
+    "path": [],
+    "query": [
+     "search",
+     "agent_id",
+     "test_type",
+     "cursor",
+     "page",
+     "include_total",
+     "page_size"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.get_v1_agent_tests_test_id",
+   "name": "Get test",
+   "description": "Fetch one test's full definition. The body is also the export format: post it to `POST /v1/agent/tests` to create a copy.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "test_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "test_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.fish.audio/v1/agent/tests/{test_id}",
+    "path": [
+     "test_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.get_v1_agent_tools",
+   "name": "List tools",
+   "description": "List your team's tools, newest first. Filter with `agent_id` to see one agent's attached tools. Paginate with `cursor` (follow `next_cursor` while `has_more` is true) or with `page` for offset pagination with a `total` count \u2014 the two are mutually exclusive.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "search": {
+      "type": "string",
+      "description": "Case-insensitive match on name."
+     },
+     "agent_id": {
+      "type": "string",
+      "description": "Only tools attached to this agent's draft config."
+     },
+     "cursor": {
+      "type": "string",
+      "description": ""
+     },
+     "page": {
+      "type": "string",
+      "description": "1-based page number; mutually exclusive with cursor."
+     },
+     "include_total": {
+      "type": "boolean",
+      "description": ""
+     },
+     "page_size": {
+      "type": "integer",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.fish.audio/v1/agent/tools",
+    "path": [],
+    "query": [
+     "search",
+     "agent_id",
+     "cursor",
+     "page",
+     "include_total",
+     "page_size"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.get_v1_agent_tools_tool_id",
+   "name": "Get tool",
+   "description": "Fetch one tool's full definition. Credential header values are never returned \u2014 each credential header (including a custom header whose name looks like a credential) reports `has_secret` instead.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "tool_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "tool_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.fish.audio/v1/agent/tools/{tool_id}",
+    "path": [
+     "tool_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.get_v1_agent_tools_tool_id_agents",
+   "name": "List agents using tool",
+   "description": "Every agent whose draft configuration references this tool \u2014 the pre-flight check before a delete. Published versions keep executing their frozen tool snapshot, so only draft references block deletion.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "tool_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "tool_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.fish.audio/v1/agent/tools/{tool_id}/agents",
+    "path": [
+     "tool_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.get_v1_pronunciation_dictionaries",
+   "name": "List pronunciation dictionaries",
+   "description": "List the caller team's dictionaries, newest updated first. Archived dictionaries are excluded. Paginate with `cursor` (follow `next_cursor` while `has_more` is true) or with `page` for offset pagination with a `total` count \u2014 the two are mutually exclusive.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "cursor": {
+      "type": "string",
+      "description": "Opaque cursor from a previous `next_cursor`."
+     },
+     "page": {
+      "type": "string",
+      "description": "1-based page number; mutually exclusive with cursor."
+     },
+     "include_total": {
+      "type": "boolean",
+      "description": "Also count the filtered set on the cursor path."
+     },
+     "page_size": {
+      "type": "integer",
+      "description": "Rows per page (1-100, default 30)."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.fish.audio/v1/pronunciation-dictionaries",
+    "path": [],
+    "query": [
+     "cursor",
+     "page",
+     "include_total",
+     "page_size"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.get_v1_pronunciation_dictionaries_dictionary_id",
+   "name": "Get a pronunciation dictionary",
+   "description": "Get one dictionary owned by the caller's team.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "dictionary_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "dictionary_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.fish.audio/v1/pronunciation-dictionaries/{dictionary_id}",
+    "path": [
+     "dictionary_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.get_v1_pronunciation_dictionaries_dictionary_id_versions",
+   "name": "List versions",
+   "description": "List the dictionary's published versions, newest first. Archived versions are excluded. Paginate with `cursor` (follow `next_cursor` while `has_more` is true) or with `page` for offset pagination with a `total` count \u2014 the two are mutually exclusive.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "dictionary_id": {
+      "type": "string",
+      "description": ""
+     },
+     "cursor": {
+      "type": "string",
+      "description": "Opaque cursor from a previous `next_cursor`."
+     },
+     "page": {
+      "type": "string",
+      "description": "1-based page number; mutually exclusive with cursor."
+     },
+     "include_total": {
+      "type": "boolean",
+      "description": "Also count the filtered set on the cursor path."
+     },
+     "page_size": {
+      "type": "integer",
+      "description": "Rows per page (1-100, default 30)."
+     }
+    },
+    "required": [
+     "dictionary_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.fish.audio/v1/pronunciation-dictionaries/{dictionary_id}/versions",
+    "path": [
+     "dictionary_id"
+    ],
+    "query": [
+     "cursor",
+     "page",
+     "include_total",
+     "page_size"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.get_v1_pronunciation_dictionaries_dictionary_id_versions_version_id",
+   "name": "Get a version",
+   "description": "Get a published version with its ordered rules. Requires auth and is scoped to the caller's team.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "dictionary_id": {
+      "type": "string",
+      "description": ""
+     },
+     "version_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "dictionary_id",
+     "version_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.fish.audio/v1/pronunciation-dictionaries/{dictionary_id}/versions/{version_id}",
+    "path": [
+     "dictionary_id",
+     "version_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.get_v1_pronunciation_dictionaries_dictionary_id_versions_version_id_compare",
+   "name": "Compare two versions",
+   "description": "Return a row-level diff between the target version and `base_version_id`: added, removed, changed, moved and unchanged rules.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "dictionary_id": {
+      "type": "string",
+      "description": ""
+     },
+     "version_id": {
+      "type": "string",
+      "description": ""
+     },
+     "base_version_id": {
+      "type": "string",
+      "description": "Version to compare the target version against."
+     }
+    },
+    "required": [
+     "base_version_id",
+     "dictionary_id",
+     "version_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.fish.audio/v1/pronunciation-dictionaries/{dictionary_id}/versions/{version_id}/compare",
+    "path": [
+     "dictionary_id",
+     "version_id"
+    ],
+    "query": [
+     "base_version_id"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.get_v1_tts_live_with_timestamp",
+   "name": "Text to speech live with timestamps (web socket)",
+   "description": "Streaming text-to-speech over a WebSocket that returns word-level timestamps alongside the audio. Connect to `wss://api.fish.audio/v1/tts/live/with-timestamp`; this is a WebSocket upgrade, not a plain HTTP request. Use it when you need to feed text in as it is produced \u2014 an LLM token stream, a live caption feed \u2014 and want word timings for lip-sync, subtitles or highlighting. For a one-shot request",
+   "input": {
+    "type": "object",
+    "properties": {
+     "model": {
+      "type": "string",
+      "description": "Specify which TTS model to use. Use `s2.1-pro-free` for the free developer tier. If omitted or set to an unrecognized value, the request falls back to `s2.1-pro`.",
+      "enum": [
+       "s1",
+       "s2-pro",
+       "s2.1-pro",
+       "s2.1-pro-free",
+       "drama-3",
+       "s3-pro"
+      ]
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.fish.audio/v1/tts/live/with-timestamp",
+    "path": [],
+    "query": [],
+    "header": [
+     "model"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.get_wallet_user_id_api_credit",
+   "name": "Get api credit",
+   "description": "Get API Credit",
+   "input": {
+    "type": "object",
+    "properties": {
+     "check_free_credit": {
+      "type": "boolean",
+      "description": ""
+     },
+     "team_id": {
+      "type": "string",
+      "description": ""
+     },
+     "user_id": {
+      "type": "string",
+      "description": "User ID or 'self'"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.fish.audio/wallet/{user_id}/api-credit",
+    "path": [
+     "user_id"
+    ],
+    "query": [
+     "check_free_credit",
+     "team_id"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.get_wallet_user_id_package",
+   "name": "Get user package",
+   "description": "Get User Package",
+   "input": {
+    "type": "object",
+    "properties": {
+     "user_id": {
+      "type": "string",
+      "description": "User ID or 'self'"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.fish.audio/wallet/{user_id}/package",
+    "path": [
+     "user_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.patch_model_id",
+   "name": "Update model",
+   "description": "Update Model",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     },
+     "title": {
+      "type": "string",
+      "description": ""
+     },
+     "description": {
+      "type": "string",
+      "description": ""
+     },
+     "cover_image": {
+      "type": "string",
+      "description": ""
+     },
+     "visibility": {
+      "type": "string",
+      "description": ""
+     },
+     "tags": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.fish.audio/model/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "title",
+     "description",
+     "cover_image",
+     "visibility",
+     "tags"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.patch_v1_agent_agents_agent_id",
+   "name": "Update agent",
+   "description": "Update agent-level fields (name, description, status, public access and session-override policy). Omitted fields keep their value. Conversation behavior \u2014 voice, prompt, recording and the rest \u2014 is draft configuration: use `PATCH /v1/agent/agents/{agent_id}/config`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "agent_id": {
+      "type": "string",
+      "description": ""
+     },
+     "name": {
+      "type": "string",
+      "description": ""
+     },
+     "description": {
+      "type": "string",
+      "description": ""
+     },
+     "status": {
+      "type": "string",
+      "description": ""
+     },
+     "public_enabled": {
+      "type": "string",
+      "description": "Allow keyless session creation from the browser SDK. Any origin can start a session unless restrict_origins is true."
+     },
+     "allowed_origins": {
+      "type": "string",
+      "description": "Origins that may start public sessions while restrict_origins is true. Setting this without restrict_origins on an agent that never chose it turns the restriction on."
+     },
+     "restrict_origins": {
+      "type": "string",
+      "description": "Limit public access to allowed_origins. With an empty list, every public request is rejected."
+     },
+     "overrides_allowed": {
+      "type": "string",
+      "description": "Which session-creation overrides callers may use. An empty list rejects all overrides."
+     }
+    },
+    "required": [
+     "agent_id"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.fish.audio/v1/agent/agents/{agent_id}",
+    "path": [
+     "agent_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "description",
+     "status",
+     "public_enabled",
+     "allowed_origins",
+     "restrict_origins",
+     "overrides_allowed"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.patch_v1_agent_agents_agent_id_config",
+   "name": "Update draft config",
+   "description": "Patch the draft configuration section by section; omitted sections keep their value. Changes only affect live sessions after the next publish. `prompt.system_prompt` is limited to 32000 tokens (422 beyond); keeping it under 2000 tokens is recommended for latency and cost. `voice.voice_id` accepts any public voice model id. `voice.speaking_language` accepts any of the 52 supported ISO 639-1 codes (",
+   "input": {
+    "type": "object",
+    "properties": {
+     "agent_id": {
+      "type": "string",
+      "description": ""
+     },
+     "prompt": {
+      "type": "string",
+      "description": ""
+     },
+     "voice": {
+      "type": "string",
+      "description": ""
+     },
+     "asr": {
+      "type": "string",
+      "description": ""
+     },
+     "conversation": {
+      "type": "string",
+      "description": ""
+     },
+     "tools": {
+      "type": "string",
+      "description": ""
+     },
+     "webhooks": {
+      "type": "string",
+      "description": ""
+     },
+     "knowledge_base": {
+      "type": "string",
+      "description": ""
+     },
+     "analysis": {
+      "type": "string",
+      "description": ""
+     },
+     "guardrails": {
+      "type": "string",
+      "description": ""
+     },
+     "context": {
+      "type": "string",
+      "description": ""
+     },
+     "llm": {
+      "type": "string",
+      "description": ""
+     },
+     "variables": {
+      "type": "string",
+      "description": "Default values for the {{placeholders}} in the configured text, used when the session supplies none (the map replaces as a whole), and on_missing for a placeholder with neither: keep leaves it as written (default), empty renders it as empty text, reject refuses the session."
+     }
+    },
+    "required": [
+     "agent_id"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.fish.audio/v1/agent/agents/{agent_id}/config",
+    "path": [
+     "agent_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "prompt",
+     "voice",
+     "asr",
+     "conversation",
+     "tools",
+     "webhooks",
+     "knowledge_base",
+     "analysis",
+     "guardrails",
+     "context",
+     "llm",
+     "variables"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.patch_v1_agent_knowledge_folders_folder_id",
+   "name": "Rename knowledge folder",
+   "description": "Rename a folder. The name must be free within the folder's own workspace (409 otherwise); renaming a folder to its current name succeeds.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "folder_id": {
+      "type": "string",
+      "description": ""
+     },
+     "name": {
+      "type": "string",
+      "description": "1-120 characters after leading and trailing whitespace is removed (a blank name is rejected). Unique within the workspace, case-sensitive."
+     }
+    },
+    "required": [
+     "folder_id",
+     "name"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.fish.audio/v1/agent/knowledge-folders/{folder_id}",
+    "path": [
+     "folder_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "name"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.patch_v1_agent_knowledge_sources_source_id",
+   "name": "Update knowledge source",
+   "description": "Rename the source and/or replace its content by uploading a new file in `source` (multipart). Replacing content increments `revision_number` while the id stays stable, and every attached agent's draft picks it up immediately; published versions pin the revision they were published with, so republish each affected agent to put the new content live \u2014 that two-step (sync content, republish) is the ni",
+   "input": {
+    "type": "object",
+    "properties": {
+     "source_id": {
+      "type": "string",
+      "description": ""
+     },
+     "source": {
+      "type": "string",
+      "description": ""
+     },
+     "name": {
+      "type": "string",
+      "description": ""
+     },
+     "description": {
+      "type": "string",
+      "description": ""
+     },
+     "folder_id": {
+      "type": "string",
+      "description": "Move the source into this knowledge folder, which must be in the source's own workspace. `root` (or an empty value) takes it out of its folder; omit to leave it where it is. Moving never creates a new revision. 404 if the folder does not exist there."
+     }
+    },
+    "required": [
+     "source_id"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.fish.audio/v1/agent/knowledge-sources/{source_id}",
+    "path": [
+     "source_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "source",
+     "name",
+     "description",
+     "folder_id"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.patch_v1_agent_phone_numbers_phone_number_id",
+   "name": "Update phone number",
+   "description": "Change the label and/or repoint the number at another agent \u2014 the deployment-pipeline move (rebind from the staging agent to the production one). Send `agent_id: null` to unbind; unbound numbers ring busy. The agent must live in the number's workspace. Rebinding is a routing-table update resolved on the next inbound call; nothing about the number itself is reprovisioned. Managed `twilio` numbers a",
+   "input": {
+    "type": "object",
+    "properties": {
+     "phone_number_id": {
+      "type": "string",
+      "description": ""
+     },
+     "label": {
+      "type": "string",
+      "description": ""
+     },
+     "agent_id": {
+      "type": "string",
+      "description": "Agent that answers this number's inbound calls. Explicit null unbinds; omit the field to keep the current binding."
+     },
+     "transfer_caller_id": {
+      "type": "string",
+      "description": "Managed `twilio` numbers only: the caller ID a transfer target sees, `agent_number` (this number) or `original_caller` (the caller's own number). Applies to cold and warm transfers. It is a number setting, not agent config: no publish is needed and agent rollbacks leave it alone. Warm transfers follow it from the next call, cold transfers once `caller_id_sync_status` is `synced`. The deprecated bo"
+     },
+     "retry_caller_id_sync": {
+      "type": "boolean",
+      "description": "Re-apply the current caller ID policy after a failed synchronization."
+     }
+    },
+    "required": [
+     "phone_number_id"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.fish.audio/v1/agent/phone-numbers/{phone_number_id}",
+    "path": [
+     "phone_number_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "label",
+     "agent_id",
+     "transfer_caller_id",
+     "retry_caller_id_sync"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.patch_v1_agent_tests_test_id",
+   "name": "Update test",
+   "description": "Patch test fields. Omitted fields keep their value and null is rejected, except `referenced_tool: null`, which turns a `tool` test into a check that the agent calls no tool at all. Attach and detach agents with `PUT` and `DELETE /v1/agent/agents/{agent_id}/tests/{test_id}`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "test_id": {
+      "type": "string",
+      "description": ""
+     },
+     "name": {
+      "type": "string",
+      "description": ""
+     },
+     "test_type": {
+      "type": "string",
+      "description": ""
+     },
+     "conversation": {
+      "type": "string",
+      "description": ""
+     },
+     "expectation": {
+      "type": "string",
+      "description": ""
+     },
+     "success_examples": {
+      "type": "string",
+      "description": ""
+     },
+     "failure_examples": {
+      "type": "string",
+      "description": ""
+     },
+     "referenced_tool": {
+      "type": "string",
+      "description": ""
+     },
+     "tool_parameters": {
+      "type": "string",
+      "description": ""
+     },
+     "verify_absence": {
+      "type": "string",
+      "description": ""
+     },
+     "simulation": {
+      "type": "string",
+      "description": ""
+     },
+     "dynamic_variables": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "test_id"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.fish.audio/v1/agent/tests/{test_id}",
+    "path": [
+     "test_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "test_type",
+     "conversation",
+     "expectation",
+     "success_examples",
+     "failure_examples",
+     "referenced_tool",
+     "tool_parameters",
+     "verify_absence",
+     "simulation",
+     "dynamic_variables"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.patch_v1_agent_tools_tool_id",
+   "name": "Update tool",
+   "description": "Patch tool fields; omitted fields keep their value (null is rejected \u2014 send an empty string to clear a text field). `headers` replaces the header list wholesale \u2014 include credential values again whenever you send it, since reads never return them. Attached agents' drafts pick up the change immediately; published versions stay frozen until re-published, except for credential values: a new authoriza",
+   "input": {
+    "type": "object",
+    "properties": {
+     "tool_id": {
+      "type": "string",
+      "description": ""
+     },
+     "name": {
+      "type": "string",
+      "description": ""
+     },
+     "description": {
+      "type": "string",
+      "description": ""
+     },
+     "arguments": {
+      "type": "string",
+      "description": "Older shape of `parameters`: each entry becomes a required string parameter. Mutually exclusive with `parameters` in one request. Reads return both, `arguments` being the string parameters of the schema."
+     },
+     "parameters": {
+      "type": "string",
+      "description": "Call parameters as a JSON Schema object (draft 2020-12): `type: object` (filled in when omitted), `properties`, `required`. Standard meaning throughout: `required` means the key must be present, `type: [\"string\", \"null\"]` allows null, `minLength: 1` makes a string non-empty, `enum` and `pattern` constrain the value, `default` fills a key the model left out. Mutually exclusive with `arguments` in o"
+     },
+     "parameter_mode": {
+      "type": "string",
+      "description": "Whether the agent runtime checks each call's arguments against `parameters` before running the tool. `legacy` (the default for tools created with `arguments`, and every tool from before this field existed): no check, the model's arguments run as sent. `strict` (the default for tools created with `parameters`): a call that does not satisfy the schema is refused and the model is told to ask the call"
+     },
+     "method": {
+      "type": "string",
+      "description": ""
+     },
+     "url": {
+      "type": "string",
+      "description": ""
+     },
+     "content_type": {
+      "type": "string",
+      "description": ""
+     },
+     "body_template": {
+      "type": "string",
+      "description": "Request body sent for non-GET calls. `{{argument}}`, `{{system.*}}` and custom session variable placeholders are filled in at call time; a missing value becomes empty. When the body's content type is JSON (the default `application/json`, any `+json` type, or a `Content-Type` header saying so), a placeholder inside a JSON string, such as `{\"note\": \"{{note}}\"}`, is JSON-escaped, so quotes, backslash"
+     },
+     "headers": {
+      "type": "string",
+      "description": ""
+     },
+     "timeout_seconds": {
+      "type": "string",
+      "description": ""
+     },
+     "error_handling": {
+      "type": "string",
+      "description": ""
+     },
+     "mock_responses": {
+      "type": "string",
+      "description": ""
+     },
+     "expects_response": {
+      "type": "string",
+      "description": ""
+     },
+     "execution_mode": {
+      "type": "string",
+      "description": ""
+     },
+     "pre_tool_speech": {
+      "type": "string",
+      "description": "What the caller hears as this tool starts, when the agent's own reply has not said anything yet. `auto` (the default for a new tool): the platform decides for each call whether a line is worth saying, and the model writes the line when one is said. `static`: the agent says `message` as written (required, one language). `off`: nothing (what a tool created before this field reads as). Applies to blo"
+     }
+    },
+    "required": [
+     "tool_id"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.fish.audio/v1/agent/tools/{tool_id}",
+    "path": [
+     "tool_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "description",
+     "arguments",
+     "parameters",
+     "parameter_mode",
+     "method",
+     "url",
+     "content_type",
+     "body_template",
+     "headers",
+     "timeout_seconds",
+     "error_handling",
+     "mock_responses",
+     "expects_response",
+     "execution_mode",
+     "pre_tool_speech"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.patch_v1_pronunciation_dictionaries_dictionary_id",
+   "name": "Update a pronunciation dictionary",
+   "description": "Change the dictionary's name or description. Rules live in published versions and are not editable in place.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "dictionary_id": {
+      "type": "string",
+      "description": ""
+     },
+     "name": {
+      "type": "string",
+      "description": "New display name; omitted or null leaves it unchanged."
+     },
+     "description": {
+      "type": "string",
+      "description": "New description; omitted or null leaves it unchanged."
+     }
+    },
+    "required": [
+     "dictionary_id"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.fish.audio/v1/pronunciation-dictionaries/{dictionary_id}",
+    "path": [
+     "dictionary_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "description"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.post_apikey_revoke",
+   "name": "Revoke publicly exposed api keys",
+   "description": "Anyone holding an API key's plaintext can permanently revoke it here. No authentication is required; Authorization headers are ignored. Valid requests always return the same empty 202, whether or not any key matched. The creator and shared team's owner receive a security notice. Invalid bodies return 422; each IP is limited to 60 requests per hour (429). Source and URL are logged for attribution o",
+   "input": {
+    "type": "object",
+    "properties": {
+     "credentials": {
+      "type": "array",
+      "description": ""
+     },
+     "source": {
+      "type": "string",
+      "description": ""
+     },
+     "url": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "credentials"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.fish.audio/apikey/revoke",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "credentials",
+     "source",
+     "url"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.post_model",
+   "name": "Create model for users via api",
+   "description": "Create Model for Users via API",
+   "input": {
+    "type": "object",
+    "properties": {
+     "visibility": {
+      "type": "string",
+      "description": "Model visibility. Public requests are downgraded to private; use the web publish flow to publish publicly. Unlist allows anyone with the link to access, while private is visible only to the creator.",
+      "enum": [
+       "public",
+       "unlist",
+       "private"
+      ]
+     },
+     "type": {
+      "type": "string",
+      "description": "Model type, tts is for text to speech"
+     },
+     "title": {
+      "type": "string",
+      "description": "Model title or name"
+     },
+     "description": {
+      "type": "string",
+      "description": "Model description"
+     },
+     "cover_image": {
+      "type": "string",
+      "description": "Model cover image, this is required if the model is public"
+     },
+     "train_mode": {
+      "type": "string",
+      "description": "Model train mode, for TTS model, fast means model instantly available after creation"
+     },
+     "voices": {
+      "type": "string",
+      "description": "Upload voices files that will be used to tune the model"
+     },
+     "texts": {
+      "type": "string",
+      "description": "Texts corresponding to the voices, if unspecified, ASR will be performed on the voices"
+     },
+     "voice_design_signatures": {
+      "type": "string",
+      "description": "Signatures from /v1/voice-design candidates, one per voice in the same order. When every uploaded voice verifies, the model is stamped source=voice_design; an invalid signature rejects the request."
+     },
+     "tags": {
+      "type": "string",
+      "description": "Model tags"
+     },
+     "enhance_audio_quality": {
+      "type": "boolean",
+      "description": "Enhance audio quality"
+     },
+     "generate_sample": {
+      "type": "boolean",
+      "description": "Generate default text"
+     }
+    },
+    "required": [
+     "title",
+     "train_mode",
+     "type",
+     "voices"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.fish.audio/model",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "visibility",
+     "type",
+     "title",
+     "description",
+     "cover_image",
+     "train_mode",
+     "voices",
+     "texts",
+     "voice_design_signatures",
+     "tags",
+     "enhance_audio_quality",
+     "generate_sample"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.post_v1_agent_agents",
+   "name": "Create agent",
+   "description": "Create an agent, optionally with its full initial configuration inline \u2014 one call provisions a ready-to-publish agent. The agent starts as a draft: publish it before creating sessions with it.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": "string",
+      "description": ""
+     },
+     "description": {
+      "type": "string",
+      "description": ""
+     },
+     "config": {
+      "type": "string",
+      "description": "Optional initial draft configuration, applied atop the platform defaults; one call provisions a fully configured agent."
+     }
+    },
+    "required": [
+     "name"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.fish.audio/v1/agent/agents",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "description",
+     "config"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.post_v1_agent_agents_agent_id_publish",
+   "name": "Publish agent",
+   "description": "Freeze the current draft into an immutable version and make it the live configuration for new sessions. Each new version gets the next version_number. If the draft already matches the live version, no version is created and the live version comes back with `created: false`. The response describes what was published: - `version_number` and `config_hash` identify the version. - `config` is the confi",
+   "input": {
+    "type": "object",
+    "properties": {
+     "agent_id": {
+      "type": "string",
+      "description": ""
+     },
+     "version_title": {
+      "type": "string",
+      "description": "Optional label shown in the version history."
+     },
+     "version_description": {
+      "type": "string",
+      "description": "Optional longer note for audit and rollback context."
+     },
+     "expected_config_hash": {
+      "type": "string",
+      "description": "Publish only while the draft has this config_hash. Otherwise 409 with reason `draft_changed` and nothing is written."
+     },
+     "config": {
+      "type": "object",
+      "description": "Draft changes to apply before publishing, same shape as Update Draft Config. The write and the publish succeed or fail together."
+     }
+    },
+    "required": [
+     "agent_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.fish.audio/v1/agent/agents/{agent_id}/publish",
+    "path": [
+     "agent_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "version_title",
+     "version_description",
+     "expected_config_hash",
+     "config"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.post_v1_agent_agents_agent_id_tests_run",
+   "name": "Run tests",
+   "description": "Start a batch that runs the agent's attached tests against its current draft, one run per test and repeat. A simulation test repeats `simulation.repeat_count` times, and a `repeat_count` in the body repeats every selected test that many times instead. A batch starts at most 1000 runs. Runs are queued and finish in the background, simulations take minutes. Poll `GET /v1/agent/agents/{agent_id}/test",
+   "input": {
+    "type": "object",
+    "properties": {
+     "agent_id": {
+      "type": "string",
+      "description": ""
+     },
+     "test_ids": {
+      "type": "array",
+      "description": "Attached tests to run. Omit to run every test attached to the agent."
+     },
+     "repeat_count": {
+      "type": "integer",
+      "description": "Run every selected test this many times in this batch, in place of each test's own repeat count."
+     }
+    },
+    "required": [
+     "agent_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.fish.audio/v1/agent/agents/{agent_id}/tests/run",
+    "path": [
+     "agent_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "test_ids",
+     "repeat_count"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.post_v1_agent_background_sounds",
+   "name": "Create background sound",
+   "description": "Upload an mp3/wav/ogg/m4a clip, up to 10 MB and 300 seconds. Send `multipart/form-data` with the file in `file`. The returned id is what `voice.background_sound.custom_asset_id` names.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "file": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "file"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.fish.audio/v1/agent/background-sounds",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "file"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.post_v1_agent_knowledge_folders",
+   "name": "Create knowledge folder",
+   "description": "Create a folder in the API key owner's default workspace. Returns 409 if that workspace already has a folder with the same name (compared exactly, case-sensitive). Put knowledge sources in it by passing `folder_id` when you create or update them.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": "string",
+      "description": "1-120 characters after leading and trailing whitespace is removed (a blank name is rejected). Unique within the workspace, case-sensitive."
+     }
+    },
+    "required": [
+     "name"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.fish.audio/v1/agent/knowledge-folders",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "name"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.post_v1_agent_knowledge_sources",
+   "name": "Create knowledge source",
+   "description": "Upload a plain-text or Markdown file (UTF-8, up to 1 MB) as a knowledge source. Send `multipart/form-data` with the file in `source`; `name` defaults to the file name. Send `folder_id` to put it in a knowledge folder (otherwise it is created outside any folder; `folder_id=root` says so explicitly). Attach it to agents via the agent config's `knowledge_base.knowledge_source_ids`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "source": {
+      "type": "string",
+      "description": ""
+     },
+     "name": {
+      "type": "string",
+      "description": ""
+     },
+     "description": {
+      "type": "string",
+      "description": ""
+     },
+     "folder_id": {
+      "type": "string",
+      "description": "Put the source in this knowledge folder, which must be in the workspace the source is created in (your default workspace). Omit it, or send `root` (or an empty value), to create it outside any folder. 404 if the folder does not exist there."
+     }
+    },
+    "required": [
+     "source"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.fish.audio/v1/agent/knowledge-sources",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "source",
+     "name",
+     "description",
+     "folder_id"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.post_v1_agent_phone_calls",
+   "name": "Create phone call",
+   "description": "Place an outbound call from one of your phone numbers. Platform numbers dial US, Canada or Japan destinations, and a domestic trunk 0 after +81 (e.g. +81080...) is accepted and normalized to E.164 (+8180...). Imported SIP numbers dial through their own termination and may attach custom INVITE headers with `sip_headers`. Returns immediately with the session queued for dialing. Subscribe to the `pho",
+   "input": {
+    "type": "object",
+    "properties": {
+     "idempotency-key": {
+      "type": "string",
+      "description": "Retry-safe replay key: the same key with the same body returns the call already placed instead of dialing again (24h window)."
+     },
+     "agent_id": {
+      "type": "string",
+      "description": ""
+     },
+     "phone_number_id": {
+      "type": "string",
+      "description": "The team-owned number to dial from (twilio provider only)."
+     },
+     "to_number": {
+      "type": "string",
+      "description": "Destination in E.164, e.g. +14155550123."
+     },
+     "dynamic_variables": {
+      "type": "string",
+      "description": ""
+     },
+     "overrides": {
+      "type": "string",
+      "description": ""
+     },
+     "metadata": {
+      "type": "string",
+      "description": ""
+     },
+     "llm_extra_body": {
+      "type": "string",
+      "description": ""
+     },
+     "sip_headers": {
+      "type": "string",
+      "description": "Custom SIP headers for this call's INVITE, imported SIP numbers only. Same rules as the number's termination_headers, and merged over them."
+     }
+    },
+    "required": [
+     "agent_id",
+     "phone_number_id",
+     "to_number"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.fish.audio/v1/agent/phone-calls",
+    "path": [],
+    "query": [],
+    "header": [
+     "idempotency-key"
+    ],
+    "body": [
+     "agent_id",
+     "phone_number_id",
+     "to_number",
+     "dynamic_variables",
+     "overrides",
+     "metadata",
+     "llm_extra_body",
+     "sip_headers"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.post_v1_agent_phone_numbers",
+   "name": "Purchase or import phone number",
+   "description": "`provider` discriminates two variants. `twilio` buys a number from the managed inventory: it lands in your default workspace, any `agent_id` you bind must live there too, and billing is the monthly price charged in daily slices; the first day is charged before anything is bought (402 costs you nothing) and the daily run advances it from there. `sip` imports a number you already own at your carrier",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.fish.audio/v1/agent/phone-numbers",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.post_v1_agent_sessions",
+   "name": "Create agent session",
+   "description": "Start a conversation session with an agent and receive a join token for the session transport (currently LiveKit WebRTC). Authenticate with an API key to start sessions with any agent in your team; without credentials only agents published as public are reachable, and when the agent restricts origins the request `Origin` must match its allowed origins. This call only issues the join token. The con",
+   "input": {
+    "type": "object",
+    "properties": {
+     "origin": {
+      "type": "string",
+      "description": ""
+     },
+     "agent_id": {
+      "type": "string",
+      "description": ""
+     },
+     "name": {
+      "type": "string",
+      "description": ""
+     },
+     "timezone": {
+      "type": "string",
+      "description": "IANA timezone (like `Asia/Tokyo`) for the agent's sense of local date and time in this session. Overrides the agent's configured timezone, which defaults to UTC. Invalid names are rejected with 422."
+     },
+     "client_timezone": {
+      "type": "string",
+      "description": "The end user's device timezone as an IANA name (like `Asia/Tokyo`), used as a fallback hint: it applies only when neither `timezone` nor the agent's configured timezone is set, and invalid values are ignored rather than rejected. The Web SDK fills it automatically from the browser for public agents. When your backend creates the session, forward the value from your client."
+     },
+     "context": {
+      "type": "string",
+      "description": "Per-session overrides of the agent's context switches (`context.current_time` in the agent config). A switch you leave out follows the agent."
+     },
+     "overrides": {
+      "type": "string",
+      "description": ""
+     },
+     "dynamic_variables": {
+      "type": "string",
+      "description": ""
+     },
+     "end_user_id": {
+      "type": "string",
+      "description": "Your identifier for the end user, stored verbatim. Returned on session reads and webhooks, and filterable with `GET /v1/agent/sessions?end_user_id=`."
+     },
+     "metadata": {
+      "type": "string",
+      "description": ""
+     },
+     "llm_extra_body": {
+      "type": "string",
+      "description": ""
+     },
+     "tool_events": {
+      "type": "boolean",
+      "description": ""
+     },
+     "record_audio": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "agent_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.fish.audio/v1/agent/sessions",
+    "path": [],
+    "query": [],
+    "header": [
+     "origin"
+    ],
+    "body": [
+     "agent_id",
+     "name",
+     "timezone",
+     "client_timezone",
+     "context",
+     "overrides",
+     "dynamic_variables",
+     "end_user_id",
+     "metadata",
+     "llm_extra_body",
+     "tool_events",
+     "record_audio"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.post_v1_agent_sessions_session_id_end",
+   "name": "End agent session",
+   "description": "Hang up a live session: the agent disconnects and the call terminates. The session record, transcript, and recording are retained and stay readable.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "session_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "session_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.fish.audio/v1/agent/sessions/{session_id}/end",
+    "path": [
+     "session_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.post_v1_agent_tests",
+   "name": "Create test",
+   "description": "Create a test: `next_reply` judges the agent's next reply against an expectation, `tool` checks the tool the agent calls next, and `simulation` lets a simulated user hold a whole conversation that is scored against success conditions. Pass `agent_ids` to attach the test right away. The body of `GET /v1/agent/tests/{test_id}` posts back as is, so tests can be exported and imported. Tool references ",
+   "input": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": "string",
+      "description": ""
+     },
+     "test_type": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "next_reply",
+       "tool",
+       "simulation"
+      ]
+     },
+     "conversation": {
+      "type": "array",
+      "description": ""
+     },
+     "expectation": {
+      "type": "string",
+      "description": ""
+     },
+     "success_examples": {
+      "type": "array",
+      "description": ""
+     },
+     "failure_examples": {
+      "type": "array",
+      "description": ""
+     },
+     "referenced_tool": {
+      "type": "string",
+      "description": ""
+     },
+     "tool_parameters": {
+      "type": "array",
+      "description": ""
+     },
+     "verify_absence": {
+      "type": "boolean",
+      "description": ""
+     },
+     "simulation": {
+      "type": "string",
+      "description": ""
+     },
+     "dynamic_variables": {
+      "type": "object",
+      "description": ""
+     },
+     "agent_ids": {
+      "type": "array",
+      "description": "Agents to attach the test to. They must all be in one workspace, and the test is created there. Without agents the test goes into the API key owner's default workspace."
+     }
+    },
+    "required": [
+     "name"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.fish.audio/v1/agent/tests",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "test_type",
+     "conversation",
+     "expectation",
+     "success_examples",
+     "failure_examples",
+     "referenced_tool",
+     "tool_parameters",
+     "verify_absence",
+     "simulation",
+     "dynamic_variables",
+     "agent_ids"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.post_v1_agent_tools",
+   "name": "Create tool",
+   "description": "Create a workspace tool. `tool_type: webhook` calls your HTTP endpoint during conversations; `tool_type: client` is executed by your own frontend through the SDK (no URL). Describe the call with `parameters` (a JSON Schema object, checked at call time under `parameter_mode: strict`) or the older `arguments` list (every argument a required string, unchecked). Attach it to agents via the agent confi",
+   "input": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": "string",
+      "description": ""
+     },
+     "description": {
+      "type": "string",
+      "description": ""
+     },
+     "tool_type": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "webhook",
+       "client"
+      ]
+     },
+     "arguments": {
+      "type": "array",
+      "description": "Older shape of `parameters`: each entry becomes a required string parameter. Mutually exclusive with `parameters` in one request. Reads return both, `arguments` being the string parameters of the schema."
+     },
+     "parameters": {
+      "type": "string",
+      "description": "Call parameters as a JSON Schema object (draft 2020-12): `type: object` (filled in when omitted), `properties`, `required`. Standard meaning throughout: `required` means the key must be present, `type: [\"string\", \"null\"]` allows null, `minLength: 1` makes a string non-empty, `enum` and `pattern` constrain the value, `default` fills a key the model left out. Mutually exclusive with `arguments` in o"
+     },
+     "parameter_mode": {
+      "type": "string",
+      "description": "Whether the agent runtime checks each call's arguments against `parameters` before running the tool. `legacy` (the default for tools created with `arguments`, and every tool from before this field existed): no check, the model's arguments run as sent. `strict` (the default for tools created with `parameters`): a call that does not satisfy the schema is refused and the model is told to ask the call"
+     },
+     "method": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "GET",
+       "POST",
+       "PUT",
+       "PATCH",
+       "DELETE"
+      ]
+     },
+     "url": {
+      "type": "string",
+      "description": ""
+     },
+     "content_type": {
+      "type": "string",
+      "description": ""
+     },
+     "body_template": {
+      "type": "string",
+      "description": "Request body sent for non-GET calls. `{{argument}}`, `{{system.*}}` and custom session variable placeholders are filled in at call time; a missing value becomes empty. When the body's content type is JSON (the default `application/json`, any `+json` type, or a `Content-Type` header saying so), a placeholder inside a JSON string, such as `{\"note\": \"{{note}}\"}`, is JSON-escaped, so quotes, backslash"
+     },
+     "headers": {
+      "type": "array",
+      "description": ""
+     },
+     "timeout_seconds": {
+      "type": "integer",
+      "description": ""
+     },
+     "error_handling": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "passthrough",
+       "hide"
+      ]
+     },
+     "mock_responses": {
+      "type": "array",
+      "description": ""
+     },
+     "expects_response": {
+      "type": "boolean",
+      "description": ""
+     },
+     "execution_mode": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "blocking",
+       "fire_and_forget",
+       "background"
+      ]
+     },
+     "pre_tool_speech": {
+      "type": "string",
+      "description": "What the caller hears as this tool starts, when the agent's own reply has not said anything yet. `auto` (the default for a new tool): the platform decides for each call whether a line is worth saying, and the model writes the line when one is said. `static`: the agent says `message` as written (required, one language). `off`: nothing (what a tool created before this field reads as). Applies to blo"
+     }
+    },
+    "required": [
+     "name"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.fish.audio/v1/agent/tools",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "description",
+     "tool_type",
+     "arguments",
+     "parameters",
+     "parameter_mode",
+     "method",
+     "url",
+     "content_type",
+     "body_template",
+     "headers",
+     "timeout_seconds",
+     "error_handling",
+     "mock_responses",
+     "expects_response",
+     "execution_mode",
+     "pre_tool_speech"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.post_v1_agent_tools_tool_id_signing_secret_rotate",
+   "name": "Rotate tool signing secret",
+   "description": "Turn on request signing for a webhook tool, or replace its secret. The response returns the new secret once. The replaced secret keeps signing next to the new one for `previous_secret_expires_in_seconds` (default 24 hours), so you can deploy the new secret without dropping a request. Returns 409 while a previous secret is still active: revoke it first. The change reaches every agent using the tool",
+   "input": {
+    "type": "object",
+    "properties": {
+     "tool_id": {
+      "type": "string",
+      "description": ""
+     },
+     "previous_secret_expires_in_seconds": {
+      "type": "integer",
+      "description": "How long the replaced secret keeps signing next to the new one, as a second `v1`. Default 24 hours, at most 7 days. 0 switches at once. Ignored when signing was off."
+     }
+    },
+    "required": [
+     "tool_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.fish.audio/v1/agent/tools/{tool_id}/signing-secret/rotate",
+    "path": [
+     "tool_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "previous_secret_expires_in_seconds"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.post_v1_asr",
+   "name": "Speech to text",
+   "description": "Speech to Text",
+   "input": {
+    "type": "object",
+    "properties": {
+     "model": {
+      "type": "string",
+      "description": "Specify which speech-to-text model to use.",
+      "enum": [
+       "transcribe-1",
+       "transcribe-1-pro"
+      ]
+     },
+     "audio": {
+      "type": "string",
+      "description": "Audio file to be converted to text"
+     },
+     "language": {
+      "type": "string",
+      "description": "Optional hint. The language is auto-detected regardless; the detected language is returned as `language_code`."
+     },
+     "ignore_timestamps": {
+      "type": "boolean",
+      "description": "Whether to return precise timestamps in the text, this will increase the latency in audio shorter than 30 seconds"
+     }
+    },
+    "required": [
+     "audio"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.fish.audio/v1/asr",
+    "path": [],
+    "query": [],
+    "header": [
+     "model"
+    ],
+    "body": [
+     "audio",
+     "language",
+     "ignore_timestamps"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.post_v1_audio_infill",
+   "name": "Audio infill",
+   "description": "Regenerate part of a recording with drama-3 and get the whole take back. Use it to apply a script change to existing audio without re-recording it: send the take, the full revised `transcript` and the range to replace. drama-3 regenerates that range in the speaker's voice, taken from the audio around it, and returns the take with the new span in place. A request takes one of two shapes. Mixing the",
+   "input": {
+    "type": "object",
+    "properties": {
+     "model": {
+      "type": "string",
+      "description": "The model that regenerates the span. Only `drama-3` serves this endpoint."
+     },
+     "transcript": {
+      "type": "string",
+      "description": "The full text of the result: the kept audio before the change, the new span and the kept audio after it, with the edit already applied. Sent to the model as written, without text normalization."
+     },
+     "audio": {
+      "type": "string",
+      "description": "Edit a take: the whole recording to edit. Requires the start of the span (`prefix_frames` or `prefix_seconds`) and its end (`suffix_frames` or `suffix_seconds`). Do not combine with `prefix_audio` / `suffix_audio`."
+     },
+     "prefix_frames": {
+      "type": "string",
+      "description": "Edit a take: the frame where the regenerated span starts. Everything before it is kept. A whole number of frames at 44100 / 2048 (about 21.53) frames per second; 0 keeps nothing before the span. Give this or `prefix_seconds`, not both."
+     },
+     "prefix_seconds": {
+      "type": "string",
+      "description": "Edit a take: `prefix_frames` given in seconds from the start of the take, rounded to the nearest frame. Give this or `prefix_frames`, not both."
+     },
+     "suffix_frames": {
+      "type": "string",
+      "description": "Edit a take: the frame where the regenerated span ends and the kept audio resumes. Equal to `prefix_frames` inserts new speech at that point; the take's length keeps nothing after the span. Give this or `suffix_seconds`, not both."
+     },
+     "suffix_seconds": {
+      "type": "string",
+      "description": "Edit a take: `suffix_frames` given in seconds from the start of the take, rounded to the nearest frame. Give this or `suffix_frames`, not both."
+     },
+     "prefix_audio": {
+      "type": "string",
+      "description": "Join two clips: the clip before the generated speech. Alone, the model continues it."
+     },
+     "suffix_audio": {
+      "type": "string",
+      "description": "Join two clips: the clip after the generated speech. Requires `prefix_audio`."
+     },
+     "format": {
+      "type": "string",
+      "description": "Output audio format.",
+      "enum": [
+       "wav",
+       "pcm",
+       "mp3",
+       "opus"
+      ]
+     },
+     "sample_rate": {
+      "type": "string",
+      "description": "Audio sample rate in Hz. When null, uses the format's default (44100 Hz for most formats, 48000 Hz for opus)."
+     },
+     "mp3_bitrate": {
+      "type": "integer",
+      "description": "MP3 bitrate in kbps. Only applies when format is mp3.",
+      "enum": [
+       64,
+       128,
+       192
+      ]
+     },
+     "opus_bitrate": {
+      "type": "integer",
+      "description": "Opus bitrate in bps. -1000 for automatic. Only applies when format is opus.",
+      "enum": [
+       -1000,
+       24000,
+       32000,
+       48000,
+       64000
+      ]
+     }
+    },
+    "required": [
+     "model",
+     "transcript"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.fish.audio/v1/audio/infill",
+    "path": [],
+    "query": [],
+    "header": [
+     "model"
+    ],
+    "body": [
+     "transcript",
+     "audio",
+     "prefix_frames",
+     "prefix_seconds",
+     "suffix_frames",
+     "suffix_seconds",
+     "prefix_audio",
+     "suffix_audio",
+     "format",
+     "sample_rate",
+     "mp3_bitrate",
+     "opus_bitrate"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.post_v1_pronunciation_dictionaries",
+   "name": "Create a pronunciation dictionary",
+   "description": "Create an empty dictionary for the team the credential belongs to (the API key's team, or the personal team for a session without x-team-id). Publish rules with POST /versions.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": "string",
+      "description": "Display name for the dictionary (1-128 characters)."
+     },
+     "description": {
+      "type": "string",
+      "description": "Optional free-form description (up to 1024 characters)."
+     }
+    },
+    "required": [
+     "name"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.fish.audio/v1/pronunciation-dictionaries",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "description"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.post_v1_pronunciation_dictionaries_dictionary_id_versions",
+   "name": "Publish a version",
+   "description": "Publish an immutable snapshot of rules. Send the version you believe is current as `expected_latest_version_id`; a stale value returns 409. Keys are unique within a version (duplicates return 422). Alias rules never shorten billing.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "dictionary_id": {
+      "type": "string",
+      "description": ""
+     },
+     "expected_latest_version_id": {
+      "type": "string",
+      "description": "Optimistic-concurrency guard: the latest version ID the caller believes is current, or null for the first publish. A mismatch returns 409."
+     },
+     "description": {
+      "type": "string",
+      "description": "Optional version note (up to 1024 characters)."
+     },
+     "items": {
+      "type": "array",
+      "description": "Complete ordered rule list for the new version (up to 5000 rules). Keys must be unique within the version; order is the engine's application order."
+     }
+    },
+    "required": [
+     "dictionary_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.fish.audio/v1/pronunciation-dictionaries/{dictionary_id}/versions",
+    "path": [
+     "dictionary_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "expected_latest_version_id",
+     "description",
+     "items"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.post_v1_tts",
+   "name": "Text to speech",
+   "description": "Text to Speech",
+   "input": {
+    "type": "object",
+    "properties": {
+     "model": {
+      "type": "string",
+      "description": "Specify which TTS model to use. Use `s2.1-pro-free` for the free developer tier. If omitted or set to an unrecognized value, the request falls back to `s2.1-pro`.",
+      "enum": [
+       "s1",
+       "s2-pro",
+       "s2.1-pro",
+       "s2.1-pro-free",
+       "drama-3",
+       "s3-pro"
+      ]
+     },
+     "text": {
+      "type": "string",
+      "description": "Text to convert to speech."
+     },
+     "temperature": {
+      "type": "number",
+      "description": "Controls expressiveness. Higher is more varied, lower is more consistent."
+     },
+     "top_p": {
+      "type": "number",
+      "description": "Controls diversity via nucleus sampling."
+     },
+     "references": {
+      "type": "string",
+      "description": "Inline voice references for zero-shot cloning. Requires MessagePack (not JSON). For single speaker, provide an array of ReferenceAudio objects. For multiple speakers, provide an array of arrays where each inner array contains references for one speaker. **Multi-speaker is available with the S2 family (`s2-pro`, `s2.1-pro`, `s2.1-pro-free`) and `drama-3`, not `s1`.** The speaker index corresponds t"
+     },
+     "reference_id": {
+      "type": "string",
+      "description": "Voice model ID(s) from Fish Audio library or your custom models. For single-speaker synthesis, provide a string. For multi-speaker synthesis (dialogue), provide an array of model IDs. **Multi-speaker is available with the S2 family (`s2-pro`, `s2.1-pro`, `s2.1-pro-free`) and `drama-3`, not `s1`.** When using multiple speakers, use speaker tags in your text like `` and `` to indicate speaker change"
+     },
+     "prosody": {
+      "type": "string",
+      "description": "Speed and volume adjustments for the output."
+     },
+     "chunk_length": {
+      "type": "integer",
+      "description": "Text segment size for processing."
+     },
+     "normalize": {
+      "type": "boolean",
+      "description": "Rewrites numbers, dates, units and symbols as spoken words before synthesis, improving stability. Uses `language` when it is set and otherwise detects the language of each text chunk."
+     },
+     "language": {
+      "type": "string",
+      "description": "BCP-47 language tag of the text, for example `en`, `es-MX` or `zh-CN`. Case-insensitive, and `_` is read as `-`. Used only by text normalization (how numbers, dates, units and symbols are spelled out before synthesis) and by word-timestamp alignment. It is not passed to the speech model and does not change the voice, accent or audio quality; a wrong tag only changes how those tokens are spelled ou"
+     },
+     "format": {
+      "type": "string",
+      "description": "Output audio format.",
+      "enum": [
+       "wav",
+       "pcm",
+       "mp3",
+       "opus"
+      ]
+     },
+     "sample_rate": {
+      "type": "string",
+      "description": "Audio sample rate in Hz. When null, uses the format's default (44100 Hz for most formats, 48000 Hz for opus)."
+     },
+     "mp3_bitrate": {
+      "type": "integer",
+      "description": "MP3 bitrate in kbps. Only applies when format is mp3.",
+      "enum": [
+       64,
+       128,
+       192
+      ]
+     },
+     "opus_bitrate": {
+      "type": "integer",
+      "description": "Opus bitrate in bps. -1000 for automatic. Only applies when format is opus.",
+      "enum": [
+       -1000,
+       24000,
+       32000,
+       48000,
+       64000
+      ]
+     },
+     "latency": {
+      "type": "string",
+      "description": "Latency-quality trade-off. normal: best quality, balanced: reduced latency, low: lowest latency.",
+      "enum": [
+       "low",
+       "normal",
+       "balanced"
+      ]
+     },
+     "max_new_tokens": {
+      "type": "integer",
+      "description": "Maximum audio tokens to generate per text chunk."
+     },
+     "repetition_penalty": {
+      "type": "number",
+      "description": "Penalty for repeating audio patterns. Values above 1.0 reduce repetition."
+     },
+     "min_chunk_length": {
+      "type": "integer",
+      "description": "Minimum characters before splitting into a new chunk."
+     },
+     "condition_on_previous_chunks": {
+      "type": "boolean",
+      "description": "Use previous audio as context for voice consistency."
+     },
+     "early_stop_threshold": {
+      "type": "number",
+      "description": "Early stopping threshold for batch processing."
+     },
+     "features": {
+      "type": "array",
+      "description": "Optional request-scoped TTS feature flags forwarded verbatim to the inference backend. Use [\"quality-guard\"] to enable the quality guard for this synthesis request. Feature availability is determined by the inference backend."
+     },
+     "pronunciation_dictionary": {
+      "type": "string",
+      "description": "Optional list of up to 3 pronunciation dictionaries to apply during synthesis. Provide either references to platform-managed dictionaries OR inline literal dictionaries (the two forms are mutually exclusive in a single request). The server resolves and merges the dictionaries, then forwards the full merged dictionary to the inference engine, which performs the substitution. Each entry sets `type` "
+     }
+    },
+    "required": [
+     "text"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.fish.audio/v1/tts",
+    "path": [],
+    "query": [],
+    "header": [
+     "model"
+    ],
+    "body": [
+     "text",
+     "temperature",
+     "top_p",
+     "references",
+     "reference_id",
+     "prosody",
+     "chunk_length",
+     "normalize",
+     "language",
+     "format",
+     "sample_rate",
+     "mp3_bitrate",
+     "opus_bitrate",
+     "latency",
+     "max_new_tokens",
+     "repetition_penalty",
+     "min_chunk_length",
+     "condition_on_previous_chunks",
+     "early_stop_threshold",
+     "features",
+     "pronunciation_dictionary"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.post_v1_tts_stream_with_timestamp",
+   "name": "Text to speech stream with timestamps",
+   "description": "Text to Speech Stream with Timestamps",
+   "input": {
+    "type": "object",
+    "properties": {
+     "model": {
+      "type": "string",
+      "description": "Specify which TTS model to use. Use `s2.1-pro-free` for the free developer tier. If omitted or set to an unrecognized value, the request falls back to `s2.1-pro`.",
+      "enum": [
+       "s1",
+       "s2-pro",
+       "s2.1-pro",
+       "s2.1-pro-free",
+       "drama-3",
+       "s3-pro"
+      ]
+     },
+     "text": {
+      "type": "string",
+      "description": "Text to convert to speech."
+     },
+     "temperature": {
+      "type": "number",
+      "description": "Controls expressiveness. Higher is more varied, lower is more consistent."
+     },
+     "top_p": {
+      "type": "number",
+      "description": "Controls diversity via nucleus sampling."
+     },
+     "references": {
+      "type": "string",
+      "description": "Inline voice references for zero-shot cloning. Requires MessagePack (not JSON). For single speaker, provide an array of ReferenceAudio objects. For multiple speakers, provide an array of arrays where each inner array contains references for one speaker. **Multi-speaker is available with the S2 family (`s2-pro`, `s2.1-pro`, `s2.1-pro-free`) and `drama-3`, not `s1`.** The speaker index corresponds t"
+     },
+     "reference_id": {
+      "type": "string",
+      "description": "Voice model ID(s) from Fish Audio library or your custom models. For single-speaker synthesis, provide a string. For multi-speaker synthesis (dialogue), provide an array of model IDs. **Multi-speaker is available with the S2 family (`s2-pro`, `s2.1-pro`, `s2.1-pro-free`) and `drama-3`, not `s1`.** When using multiple speakers, use speaker tags in your text like `` and `` to indicate speaker change"
+     },
+     "prosody": {
+      "type": "string",
+      "description": "Speed and volume adjustments for the output."
+     },
+     "chunk_length": {
+      "type": "integer",
+      "description": "Text segment size for processing."
+     },
+     "normalize": {
+      "type": "boolean",
+      "description": "Rewrites numbers, dates, units and symbols as spoken words before synthesis, improving stability. Uses `language` when it is set and otherwise detects the language of each text chunk."
+     },
+     "language": {
+      "type": "string",
+      "description": "BCP-47 language tag of the text, for example `en`, `es-MX` or `zh-CN`. Case-insensitive, and `_` is read as `-`. Used only by text normalization (how numbers, dates, units and symbols are spelled out before synthesis) and by word-timestamp alignment. It is not passed to the speech model and does not change the voice, accent or audio quality; a wrong tag only changes how those tokens are spelled ou"
+     },
+     "format": {
+      "type": "string",
+      "description": "Output audio format.",
+      "enum": [
+       "wav",
+       "pcm",
+       "mp3",
+       "opus"
+      ]
+     },
+     "sample_rate": {
+      "type": "string",
+      "description": "Audio sample rate in Hz. When null, uses the format's default (44100 Hz for most formats, 48000 Hz for opus)."
+     },
+     "mp3_bitrate": {
+      "type": "integer",
+      "description": "MP3 bitrate in kbps. Only applies when format is mp3.",
+      "enum": [
+       64,
+       128,
+       192
+      ]
+     },
+     "opus_bitrate": {
+      "type": "integer",
+      "description": "Opus bitrate in bps. -1000 for automatic. Only applies when format is opus.",
+      "enum": [
+       -1000,
+       24000,
+       32000,
+       48000,
+       64000
+      ]
+     },
+     "latency": {
+      "type": "string",
+      "description": "Latency-quality trade-off. normal: best quality, balanced: reduced latency, low: lowest latency.",
+      "enum": [
+       "low",
+       "normal",
+       "balanced"
+      ]
+     },
+     "max_new_tokens": {
+      "type": "integer",
+      "description": "Maximum audio tokens to generate per text chunk."
+     },
+     "repetition_penalty": {
+      "type": "number",
+      "description": "Penalty for repeating audio patterns. Values above 1.0 reduce repetition."
+     },
+     "min_chunk_length": {
+      "type": "integer",
+      "description": "Minimum characters before splitting into a new chunk."
+     },
+     "condition_on_previous_chunks": {
+      "type": "boolean",
+      "description": "Use previous audio as context for voice consistency."
+     },
+     "early_stop_threshold": {
+      "type": "number",
+      "description": "Early stopping threshold for batch processing."
+     },
+     "features": {
+      "type": "array",
+      "description": "Optional request-scoped TTS feature flags forwarded verbatim to the inference backend. Use [\"quality-guard\"] to enable the quality guard for this synthesis request. Feature availability is determined by the inference backend."
+     },
+     "pronunciation_dictionary": {
+      "type": "string",
+      "description": "Optional list of up to 3 pronunciation dictionaries to apply during synthesis. Provide either references to platform-managed dictionaries OR inline literal dictionaries (the two forms are mutually exclusive in a single request). The server resolves and merges the dictionaries, then forwards the full merged dictionary to the inference engine, which performs the substitution. Each entry sets `type` "
+     }
+    },
+    "required": [
+     "text"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.fish.audio/v1/tts/stream/with-timestamp",
+    "path": [],
+    "query": [],
+    "header": [
+     "model"
+    ],
+    "body": [
+     "text",
+     "temperature",
+     "top_p",
+     "references",
+     "reference_id",
+     "prosody",
+     "chunk_length",
+     "normalize",
+     "language",
+     "format",
+     "sample_rate",
+     "mp3_bitrate",
+     "opus_bitrate",
+     "latency",
+     "max_new_tokens",
+     "repetition_penalty",
+     "min_chunk_length",
+     "condition_on_previous_chunks",
+     "early_stop_threshold",
+     "features",
+     "pronunciation_dictionary"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.post_v1_voice_design",
+   "name": "Voice design",
+   "description": "Voice Design",
+   "input": {
+    "type": "object",
+    "properties": {
+     "model": {
+      "type": "string",
+      "description": "Specify which voice-design model to use."
+     },
+     "instruction": {
+      "type": "string",
+      "description": "Voice design prompt. Must contain 1 to 2000 characters."
+     },
+     "reference_text": {
+      "type": "string",
+      "description": "Optional text used as reference content for the generated voice."
+     },
+     "language": {
+      "type": "string",
+      "description": "Optional BCP-47 language hint, such as `en`, `zh`, or `ja`."
+     },
+     "n": {
+      "type": "integer",
+      "description": "Number of voice candidates to generate."
+     },
+     "speed": {
+      "type": "number",
+      "description": "Speaking speed multiplier for candidate generation."
+     },
+     "num_step": {
+      "type": "integer",
+      "description": "Number of diffusion steps used by the voice-design model."
+     },
+     "guidance_scale": {
+      "type": "number",
+      "description": "Classifier-free guidance scale. Higher values follow the prompt more strongly."
+     },
+     "instruct_guidance_scale": {
+      "type": "number",
+      "description": "Instruction guidance scale for prompt conditioning."
+     },
+     "seed": {
+      "type": "string",
+      "description": "Optional deterministic seed for candidate generation."
+     }
+    },
+    "required": [
+     "instruction",
+     "model"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.fish.audio/v1/voice-design",
+    "path": [],
+    "query": [],
+    "header": [
+     "model"
+    ],
+    "body": [
+     "instruction",
+     "reference_text",
+     "language",
+     "n",
+     "speed",
+     "num_step",
+     "guidance_scale",
+     "instruct_guidance_scale",
+     "seed"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.put_v1_agent_agents_agent_id_tests_test_id",
+   "name": "Attach test",
+   "description": "Attach a test to an agent so the agent's test runs include it. Attaching an attached test does nothing. The agent and the test must be in the same workspace.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "agent_id": {
+      "type": "string",
+      "description": ""
+     },
+     "test_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "agent_id",
+     "test_id"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.fish.audio/v1/agent/agents/{agent_id}/tests/{test_id}",
+    "path": [
+     "agent_id",
+     "test_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "fish-audio.put_v1_agent_phone_numbers_phone_number_id_sip_config",
+   "name": "Update sip number config",
+   "description": "Replace the trunk configuration of an imported `sip` number in place: rotate digest credentials, change the allowed source addresses, or add, update and remove the termination host and its custom SIP headers. Send the complete desired configuration; an empty password beside a set username keeps the stored one. Trunk ids are stable across updates, so calls in flight are not affected. 409 for number",
+   "input": {
+    "type": "object",
+    "properties": {
+     "phone_number_id": {
+      "type": "string",
+      "description": ""
+     },
+     "inbound_auth_username": {
+      "type": "string",
+      "description": ""
+     },
+     "inbound_auth_password": {
+      "type": "string",
+      "description": ""
+     },
+     "inbound_allowed_addresses": {
+      "type": "array",
+      "description": ""
+     },
+     "termination_uri": {
+      "type": "string",
+      "description": ""
+     },
+     "termination_transport": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "auto",
+       "udp",
+       "tcp",
+       "tls"
+      ]
+     },
+     "termination_auth_username": {
+      "type": "string",
+      "description": ""
+     },
+     "termination_auth_password": {
+      "type": "string",
+      "description": ""
+     },
+     "termination_headers": {
+      "type": "object",
+      "description": ""
+     }
+    },
+    "required": [
+     "phone_number_id"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.fish.audio/v1/agent/phone-numbers/{phone_number_id}/sip-config",
+    "path": [
+     "phone_number_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "inbound_auth_username",
+     "inbound_auth_password",
+     "inbound_allowed_addresses",
+     "termination_uri",
+     "termination_transport",
+     "termination_auth_username",
+     "termination_auth_password",
+     "termination_headers"
+    ],
+    "body_format": "json"
+   }
+  }
+ ]
+}

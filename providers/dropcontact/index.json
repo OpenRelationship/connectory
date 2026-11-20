@@ -1,0 +1,175 @@
+{
+ "_": "GENERATED \u2014 what an authoring tool needs to FIND an operation. The calling table is the .lua beside it.",
+ "provider": "dropcontact",
+ "source": "https://developer.dropcontact.com/openapi.json",
+ "operations": [
+  {
+   "slug": "dropcontact.delete_webhook_v1_enrich_webhook_delete",
+   "name": "Delete the default webhook callback url",
+   "description": "Use `DELETE /v1/enrich/webhook` to remove the default callback URL for your account. Requests that include their own `custom_callback_url` still trigger webhooks. If there is no default URL to remove, the endpoint returns `404`.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.dropcontact.com/v1/enrich/webhook",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "dropcontact.get_all",
+   "name": "Fetch enrichment results",
+   "description": "Use `GET /v1/enrich/all/{request_id}` to retrieve the results of a previously submitted batch. Check `success` even when the HTTP response is `200`. If results are not ready, wait 30 seconds before polling again, or use `forceResults=true` for records already processed.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "request_id": {
+      "type": "string",
+      "description": ""
+     },
+     "forceResults": {
+      "type": "string",
+      "description": "Return the records already enriched instead of waiting for the whole batch. When true, the endpoint responds even while processing is still in progress (instead of asking you to retry) and adds a `status` field (`ready` or `in_progress`) telling you whether the batch is complete."
+     }
+    },
+    "required": [
+     "request_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.dropcontact.com/v1/enrich/all/{request_id}",
+    "path": [
+     "request_id"
+    ],
+    "query": [
+     "forceResults"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "dropcontact.get_credits_v1_account_credits_get",
+   "name": "Get credits",
+   "description": "Use `GET /v1/account/credits` to check your remaining Dropcontact credits. The response returns the balance in `credits`. This call does not consume a credit; enrichment responses use a separate field named `credits_left`.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.dropcontact.com/v1/account/credits",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "dropcontact.get_webhook_v1_enrich_webhook_get",
+   "name": "Get the default webhook callback url",
+   "description": "Use `GET /v1/enrich/webhook` to read the default callback URL configured for your account.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.dropcontact.com/v1/enrich/webhook",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "dropcontact.post_all",
+   "name": "Enrich a batch of records",
+   "description": "Submit up to 250 contacts with `POST /v1/enrich/all`. The response returns a `request_id`, not the completed enrichment results. Use it to fetch the results with `GET /v1/enrich/all/{request_id}`, or provide a `custom_callback_url` to receive them by webhook.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "hashedInputs": {
+      "type": "string",
+      "description": "Adds the `hashedInputs` field to the response."
+     },
+     "data": {
+      "type": "array",
+      "description": "List of contacts to enrich, 250 max per request."
+     },
+     "siren": {
+      "type": "boolean",
+      "description": "Adds the company's SIREN and SIRET numbers to the result."
+     },
+     "language": {
+      "type": "string",
+      "description": "Language of the email qualification label: `fr` or `en`. Any other value gives `en`."
+     },
+     "custom_callback_url": {
+      "type": "string",
+      "description": "Webhook URL for this request only, called when the result is ready. Replaces the default webhook URL for this request."
+     }
+    },
+    "required": [
+     "data"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.dropcontact.com/v1/enrich/all",
+    "path": [],
+    "query": [
+     "hashedInputs"
+    ],
+    "header": [],
+    "body": [
+     "data",
+     "siren",
+     "language",
+     "custom_callback_url"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "dropcontact.upsert_webhook_v1_enrich_webhook_put",
+   "name": "Set the default webhook callback url",
+   "description": "Set a default callback URL for your account with `PUT /v1/enrich/webhook` and the `callback_url` field. Dropcontact uses this URL when an enrichment request does not provide its own `custom_callback_url`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "callback_url": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "callback_url"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.dropcontact.com/v1/enrich/webhook",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "callback_url"
+    ],
+    "body_format": "json"
+   }
+  }
+ ]
+}

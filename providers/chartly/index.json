@@ -1,0 +1,835 @@
+{
+ "_": "GENERATED \u2014 what an authoring tool needs to FIND an operation. The calling table is the .lua beside it.",
+ "provider": "chartly",
+ "source": "https://api.chartly.dev/openapi.json",
+ "operations": [
+  {
+   "slug": "chartly.get_auth_oauth_google_callback",
+   "name": "Handle google oauth callback",
+   "description": "Processes the OAuth response from Google and creates or logs in the user",
+   "input": {
+    "type": "object",
+    "properties": {
+     "code": {
+      "type": "string",
+      "description": "Authorization code from Google"
+     },
+     "state": {
+      "type": "string",
+      "description": "State parameter for CSRF protection"
+     },
+     "error": {
+      "type": "string",
+      "description": "Error code if OAuth failed"
+     }
+    },
+    "required": [
+     "code",
+     "state"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.chartly.dev/auth/oauth/google/callback",
+    "path": [],
+    "query": [
+     "code",
+     "state",
+     "error"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "chartly.get_auth_oauth_google_start",
+   "name": "Initiate google oauth login",
+   "description": "Redirects user to Google OAuth consent screen",
+   "input": {
+    "type": "object",
+    "properties": {
+     "redirect_to": {
+      "type": "string",
+      "description": "URL to redirect to after successful login"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.chartly.dev/auth/oauth/google",
+    "path": [],
+    "query": [
+     "redirect_to"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "chartly.get_chart_render",
+   "name": "Render chart from url encoded config",
+   "description": "Fastest option for emails, Slack integrations. Renders chart image from URL parameters. Authenticate with X-Api-Key header or api_key query parameter.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "chart": {
+      "type": "string",
+      "description": "Chart.js config as object or JSON string"
+     },
+     "c": {
+      "type": "string",
+      "description": "Alias for chart"
+     },
+     "format": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "png",
+       "svg"
+      ]
+     },
+     "width": {
+      "type": "integer",
+      "description": "Image width in pixels"
+     },
+     "height": {
+      "type": "integer",
+      "description": "Image height in pixels"
+     },
+     "backgroundColor": {
+      "type": "string",
+      "description": "CSS color string, 'transparent' allowed"
+     },
+     "X-Api-Key": {
+      "type": "string",
+      "description": "API key for authentication"
+     }
+    },
+    "required": [
+     "height",
+     "width"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.chartly.dev/v1/chart",
+    "path": [],
+    "query": [
+     "chart",
+     "c",
+     "format",
+     "width",
+     "height",
+     "backgroundColor"
+    ],
+    "header": [
+     "X-Api-Key"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "chartly.get_chart_resolve",
+   "name": "Resolve short url and serve cached image",
+   "description": "Resolve the short URL created by /v1/chart/create and serve the cached chart image. For browsers, mail clients, social bots.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "Chart ID from the short URL"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.chartly.dev/v1/chart/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "chartly.get_open_chart_render",
+   "name": "Open (no auth) chart render \u2014 config in url",
+   "description": "Public, unauthenticated chart endpoint. Pass a Chart.js config in the `c` query parameter (URL-encoded JSON) or use the `type` / `data` / `labels` shortcut. Every render carries a small 'chartly.dev' watermark and the `X-Edit-Url` response header points back to the playground. Rate-limited per IP; for production use, get an API key and call /v1/chart instead.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "c": {
+      "type": "string",
+      "description": "URL-encoded Chart.js JSON config"
+     },
+     "type": {
+      "type": "string",
+      "description": "Shortcut chart type when not using full config",
+      "enum": [
+       "bar",
+       "line",
+       "pie",
+       "doughnut"
+      ]
+     },
+     "labels": {
+      "type": "string",
+      "description": "Shortcut: comma-separated labels (used with type+data)"
+     },
+     "data": {
+      "type": "string",
+      "description": "Shortcut: comma-separated numeric values"
+     },
+     "w": {
+      "type": "integer",
+      "description": "Width in px, default 500"
+     },
+     "h": {
+      "type": "integer",
+      "description": "Height in px, default 300"
+     },
+     "format": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "png",
+       "svg"
+      ]
+     },
+     "bkg": {
+      "type": "string",
+      "description": "CSS background color, default 'white'"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.chartly.dev/v1/open/chart",
+    "path": [],
+    "query": [
+     "c",
+     "type",
+     "labels",
+     "data",
+     "w",
+     "h",
+     "format",
+     "bkg"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "chartly.get_status_endpoint",
+   "name": "Health check endpoint",
+   "description": "Check API health and configuration status",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.chartly.dev/v1/status",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "chartly.post_auth_signup_anon",
+   "name": "Anonymous trial signup",
+   "description": "Returns trial key; no auth required. Limited to one trial per IP address per 30 days.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.chartly.dev/signup/anon",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "chartly.post_chart_create",
+   "name": "Create permanent signed short url",
+   "description": "Return a permanent, signed short URL that never exposes your secret. For no-code users who just want a link to paste. Authenticate with X-Api-Key header or api_key query parameter.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "X-Api-Key": {
+      "type": "string",
+      "description": "API key for authentication"
+     },
+     "chart": {
+      "type": "string",
+      "description": "Chart.js config as object or JSON string"
+     },
+     "c": {
+      "type": "string",
+      "description": "Alias for chart"
+     },
+     "format": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "png",
+       "svg"
+      ]
+     },
+     "width": {
+      "type": "integer",
+      "description": "Image width in pixels"
+     },
+     "height": {
+      "type": "integer",
+      "description": "Image height in pixels"
+     },
+     "backgroundColor": {
+      "type": "string",
+      "description": "CSS color string, 'transparent' allowed"
+     }
+    },
+    "required": [
+     "height",
+     "width"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.chartly.dev/v1/chart/create",
+    "path": [],
+    "query": [],
+    "header": [
+     "X-Api-Key"
+    ],
+    "body": [
+     "chart",
+     "c",
+     "format",
+     "width",
+     "height",
+     "backgroundColor"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "chartly.post_chart_render_post",
+   "name": "Render chart from json body",
+   "description": "Handles big or JS-function configs. For server code, Zapier, low-code tools. Authenticate with X-Api-Key header or api_key query parameter.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "X-Api-Key": {
+      "type": "string",
+      "description": "API key for authentication"
+     },
+     "chart": {
+      "type": "string",
+      "description": "Chart.js config as object or JSON string"
+     },
+     "c": {
+      "type": "string",
+      "description": "Alias for chart"
+     },
+     "format": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "png",
+       "svg"
+      ]
+     },
+     "width": {
+      "type": "integer",
+      "description": "Image width in pixels"
+     },
+     "height": {
+      "type": "integer",
+      "description": "Image height in pixels"
+     },
+     "backgroundColor": {
+      "type": "string",
+      "description": "CSS color string, 'transparent' allowed"
+     }
+    },
+    "required": [
+     "height",
+     "width"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.chartly.dev/v1/chart",
+    "path": [],
+    "query": [],
+    "header": [
+     "X-Api-Key"
+    ],
+    "body": [
+     "chart",
+     "c",
+     "format",
+     "width",
+     "height",
+     "backgroundColor"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "chartly.post_stripe_webhook",
+   "name": "Handle stripe webhooks",
+   "description": "Process Stripe webhook events for subscription updates",
+   "input": {
+    "type": "object",
+    "properties": {
+     "stripe-signature": {
+      "type": "string",
+      "description": "Stripe webhook signature"
+     }
+    },
+    "required": [
+     "stripe-signature"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.chartly.dev/billing/webhook",
+    "path": [],
+    "query": [],
+    "header": [
+     "stripe-signature"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "chartly.post_v1_zapier_bar_chart",
+   "name": "Create bar chart (zapier friendly)",
+   "description": "Simple bar chart creation for Zapier with user-friendly inputs. No complex JSON required - just provide title, labels, and values.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "X-Api-Key": {
+      "type": "string",
+      "description": "API key for authentication"
+     },
+     "title": {
+      "type": "string",
+      "description": "Chart title"
+     },
+     "labels": {
+      "type": "string",
+      "description": "Comma-separated labels (e.g., 'Jan,Feb,Mar')"
+     },
+     "values": {
+      "type": "string",
+      "description": "Comma-separated values (e.g., '100,200,150')"
+     },
+     "color": {
+      "type": "string",
+      "description": "Bar color (hex code)"
+     },
+     "width": {
+      "type": "number",
+      "description": "Chart width in pixels"
+     },
+     "height": {
+      "type": "number",
+      "description": "Chart height in pixels"
+     },
+     "format": {
+      "type": "string",
+      "description": "Output format",
+      "enum": [
+       "png",
+       "svg"
+      ]
+     },
+     "backgroundColor": {
+      "type": "string",
+      "description": "Background color"
+     },
+     "showLegend": {
+      "type": "boolean",
+      "description": "Show legend"
+     },
+     "showGrid": {
+      "type": "boolean",
+      "description": "Show grid lines"
+     }
+    },
+    "required": [
+     "labels",
+     "title",
+     "values"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.chartly.dev/v1/zapier/bar-chart",
+    "path": [],
+    "query": [],
+    "header": [
+     "X-Api-Key"
+    ],
+    "body": [
+     "title",
+     "labels",
+     "values",
+     "color",
+     "width",
+     "height",
+     "format",
+     "backgroundColor",
+     "showLegend",
+     "showGrid"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "chartly.post_v1_zapier_line_chart",
+   "name": "Create line chart (zapier friendly)",
+   "description": "Simple line chart creation for Zapier with user-friendly inputs. Perfect for time series data and trend visualization.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "X-Api-Key": {
+      "type": "string",
+      "description": "API key for authentication"
+     },
+     "title": {
+      "type": "string",
+      "description": "Chart title"
+     },
+     "labels": {
+      "type": "string",
+      "description": "Comma-separated labels (e.g., 'Jan,Feb,Mar')"
+     },
+     "values": {
+      "type": "string",
+      "description": "Comma-separated values (e.g., '100,200,150')"
+     },
+     "color": {
+      "type": "string",
+      "description": "Line color (hex code)"
+     },
+     "width": {
+      "type": "number",
+      "description": "Chart width in pixels"
+     },
+     "height": {
+      "type": "number",
+      "description": "Chart height in pixels"
+     },
+     "format": {
+      "type": "string",
+      "description": "Output format",
+      "enum": [
+       "png",
+       "svg"
+      ]
+     },
+     "backgroundColor": {
+      "type": "string",
+      "description": "Background color"
+     },
+     "fillArea": {
+      "type": "boolean",
+      "description": "Fill area under line"
+     },
+     "showPoints": {
+      "type": "boolean",
+      "description": "Show data points"
+     },
+     "tension": {
+      "type": "number",
+      "description": "Line curve tension (0-1)"
+     },
+     "showLegend": {
+      "type": "boolean",
+      "description": "Show legend"
+     },
+     "showGrid": {
+      "type": "boolean",
+      "description": "Show grid lines"
+     }
+    },
+    "required": [
+     "labels",
+     "title",
+     "values"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.chartly.dev/v1/zapier/line-chart",
+    "path": [],
+    "query": [],
+    "header": [
+     "X-Api-Key"
+    ],
+    "body": [
+     "title",
+     "labels",
+     "values",
+     "color",
+     "width",
+     "height",
+     "format",
+     "backgroundColor",
+     "fillArea",
+     "showPoints",
+     "tension",
+     "showLegend",
+     "showGrid"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "chartly.post_v1_zapier_multi_series_chart",
+   "name": "Create multi series chart (zapier friendly)",
+   "description": "Compare multiple datasets with up to 3 series. Perfect for comparing sales, metrics, or any data across different categories.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "X-Api-Key": {
+      "type": "string",
+      "description": "API key for authentication"
+     },
+     "title": {
+      "type": "string",
+      "description": "Chart title"
+     },
+     "labels": {
+      "type": "string",
+      "description": "Comma-separated labels (e.g., 'Jan,Feb,Mar')"
+     },
+     "chartType": {
+      "type": "string",
+      "description": "Chart type",
+      "enum": [
+       "bar",
+       "line"
+      ]
+     },
+     "series1_name": {
+      "type": "string",
+      "description": "First series name"
+     },
+     "series1_values": {
+      "type": "string",
+      "description": "First series values (comma-separated)"
+     },
+     "series1_color": {
+      "type": "string",
+      "description": "First series color"
+     },
+     "series2_name": {
+      "type": "string",
+      "description": "Second series name"
+     },
+     "series2_values": {
+      "type": "string",
+      "description": "Second series values (comma-separated)"
+     },
+     "series2_color": {
+      "type": "string",
+      "description": "Second series color"
+     },
+     "series3_name": {
+      "type": "string",
+      "description": "Third series name"
+     },
+     "series3_values": {
+      "type": "string",
+      "description": "Third series values (comma-separated)"
+     },
+     "series3_color": {
+      "type": "string",
+      "description": "Third series color"
+     },
+     "width": {
+      "type": "number",
+      "description": "Chart width in pixels"
+     },
+     "height": {
+      "type": "number",
+      "description": "Chart height in pixels"
+     },
+     "format": {
+      "type": "string",
+      "description": "Output format",
+      "enum": [
+       "png",
+       "svg"
+      ]
+     },
+     "backgroundColor": {
+      "type": "string",
+      "description": "Background color"
+     },
+     "showLegend": {
+      "type": "boolean",
+      "description": "Show legend"
+     },
+     "showGrid": {
+      "type": "boolean",
+      "description": "Show grid lines"
+     }
+    },
+    "required": [
+     "labels",
+     "series1_name",
+     "series1_values",
+     "title"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.chartly.dev/v1/zapier/multi-series-chart",
+    "path": [],
+    "query": [],
+    "header": [
+     "X-Api-Key"
+    ],
+    "body": [
+     "title",
+     "labels",
+     "chartType",
+     "series1_name",
+     "series1_values",
+     "series1_color",
+     "series2_name",
+     "series2_values",
+     "series2_color",
+     "series3_name",
+     "series3_values",
+     "series3_color",
+     "width",
+     "height",
+     "format",
+     "backgroundColor",
+     "showLegend",
+     "showGrid"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "chartly.post_v1_zapier_pie_chart",
+   "name": "Create pie chart (zapier friendly)",
+   "description": "Simple pie chart creation for Zapier with user-friendly inputs. Perfect for showing proportions and distributions.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "X-Api-Key": {
+      "type": "string",
+      "description": "API key for authentication"
+     },
+     "title": {
+      "type": "string",
+      "description": "Chart title"
+     },
+     "labels": {
+      "type": "string",
+      "description": "Comma-separated labels (e.g., 'Product A,Product B,Product C')"
+     },
+     "values": {
+      "type": "string",
+      "description": "Comma-separated values (e.g., '100,200,150')"
+     },
+     "colors": {
+      "type": "string",
+      "description": "Comma-separated colors (optional, e.g., '#FF6384,#36A2EB,#FFCE56')"
+     },
+     "width": {
+      "type": "number",
+      "description": "Chart width in pixels"
+     },
+     "height": {
+      "type": "number",
+      "description": "Chart height in pixels"
+     },
+     "format": {
+      "type": "string",
+      "description": "Output format",
+      "enum": [
+       "png",
+       "svg"
+      ]
+     },
+     "backgroundColor": {
+      "type": "string",
+      "description": "Background color"
+     },
+     "showLegend": {
+      "type": "boolean",
+      "description": "Show legend"
+     },
+     "legendPosition": {
+      "type": "string",
+      "description": "Legend position",
+      "enum": [
+       "top",
+       "bottom",
+       "left",
+       "right"
+      ]
+     }
+    },
+    "required": [
+     "labels",
+     "title",
+     "values"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.chartly.dev/v1/zapier/pie-chart",
+    "path": [],
+    "query": [],
+    "header": [
+     "X-Api-Key"
+    ],
+    "body": [
+     "title",
+     "labels",
+     "values",
+     "colors",
+     "width",
+     "height",
+     "format",
+     "backgroundColor",
+     "showLegend",
+     "legendPosition"
+    ],
+    "body_format": "json"
+   }
+  }
+ ]
+}

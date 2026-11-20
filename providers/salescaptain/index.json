@@ -398,6 +398,40 @@
    }
   },
   {
+   "slug": "salescaptain.fetch_conversation_stage",
+   "name": "Get a conversation's current stage",
+   "description": "Get a conversation's current stage",
+   "input": {
+    "type": "object",
+    "properties": {
+     "company_id": {
+      "type": "string",
+      "description": "Unique identifier for the company"
+     },
+     "conversation_id": {
+      "type": "string",
+      "description": "Unique identifier for the conversation"
+     }
+    },
+    "required": [
+     "company_id",
+     "conversation_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.salescaptain.com/v1/fetch-conversation-stage/{company_id}/{conversation_id}",
+    "path": [
+     "company_id",
+     "conversation_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "salescaptain.fetch_message",
    "name": "Fetch a single message by id",
    "description": "Retrieves detailed information about a specific message by its unique identifier.",
@@ -821,6 +855,34 @@
    }
   },
   {
+   "slug": "salescaptain.list_stages",
+   "name": "List conversation stages",
+   "description": "Lists the conversation stages (inbox folders) available to the company, ordered as shown in the inbox. The stage with `is_default: true` is the default \"General\" stage that conversations are in when they have not been moved anywhere else.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "company_id": {
+      "type": "string",
+      "description": "Unique identifier for the company"
+     }
+    },
+    "required": [
+     "company_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.salescaptain.com/v1/list-stages/{company_id}",
+    "path": [
+     "company_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "salescaptain.list_tags",
    "name": "List tags for a company",
    "description": "Retrieves tags associated with a specific company. Optionally filter by `search_key` or `tag_name`.",
@@ -901,6 +963,64 @@
    }
   },
   {
+   "slug": "salescaptain.send_email",
+   "name": "Send an email to an address",
+   "description": "Sends an email to an email address from the email connected to the conversation profile you choose. - If no contact exists for `to_email`, a contact is created. - If the contact has no conversation on the chosen conversation profile yet, one is created. - The email is sent through the profile's connected mailbox (Gmail / Outlook) or SalesCaptain's mail delivery, and is threaded into the conversati",
+   "input": {
+    "type": "object",
+    "properties": {
+     "company_id": {
+      "type": "string",
+      "description": "Unique identifier for the company"
+     },
+     "to_email": {
+      "type": "string",
+      "description": "Recipient email address"
+     },
+     "conversation_profile_id": {
+      "type": "string",
+      "description": "The conversation profile whose email address the email is sent from"
+     },
+     "subject": {
+      "type": "string",
+      "description": ""
+     },
+     "message_body": {
+      "type": "string",
+      "description": "Email body (HTML or plain text)"
+     },
+     "contact_name": {
+      "type": "string",
+      "description": "Optional name used when a new contact is created. If the contact already exists, its first name is updated to this value."
+     }
+    },
+    "required": [
+     "company_id",
+     "conversation_profile_id",
+     "message_body",
+     "subject",
+     "to_email"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.salescaptain.com/v1/send-email/{company_id}",
+    "path": [
+     "company_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "to_email",
+     "conversation_profile_id",
+     "subject",
+     "message_body",
+     "contact_name"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "salescaptain.send_message",
    "name": "Send a message in a conversation",
    "description": "Sends an outbound message in the given conversation for the specified company. `company_id` and `conversation_id` are taken from the URL path. `message_body` is required in the JSON body. Optional `template_id` can be provided to send a template message. `account_id` is resolved from the authenticated user's account that matches `company_id` (same as other company-scoped routes). The request is fo",
@@ -942,6 +1062,62 @@
     "body": [
      "message_body",
      "template_id"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "salescaptain.send_sms",
+   "name": "Send an sms to a phone number (starts a conversation if needed)",
+   "description": "Sends an SMS directly to a phone number from the conversation profile (one of your numbers) you choose. - If no contact exists for `to_phone`, a contact is created. - If the contact has no conversation on the chosen conversation profile yet, one is created. - The message is then sent from that profile's number. Messages can be free-form text written at send time; no pre-approved template is requir",
+   "input": {
+    "type": "object",
+    "properties": {
+     "company_id": {
+      "type": "string",
+      "description": "Unique identifier for the company"
+     },
+     "to_phone": {
+      "type": "string",
+      "description": "Recipient phone number. E.164 format is recommended (e.g. +14155551234). Spaces, dashes, dots and parentheses are ignored."
+     },
+     "conversation_profile_id": {
+      "type": "string",
+      "description": "The conversation profile (your number) to send from. Use `/v1/list-conversation-profiles/{company_id}` to list them."
+     },
+     "message_body": {
+      "type": "string",
+      "description": "Free-form message text. Required unless `template_id` is provided."
+     },
+     "template_id": {
+      "type": "string",
+      "description": "Optional saved SMS template to send instead of / in addition to `message_body`."
+     },
+     "contact_name": {
+      "type": "string",
+      "description": "Optional name used when a new contact is created. If the contact already exists, its first name is updated to this value."
+     }
+    },
+    "required": [
+     "company_id",
+     "conversation_profile_id",
+     "to_phone"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.salescaptain.com/v1/send-sms/{company_id}",
+    "path": [
+     "company_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "to_phone",
+     "conversation_profile_id",
+     "message_body",
+     "template_id",
+     "contact_name"
     ],
     "body_format": "json"
    }
@@ -997,6 +1173,47 @@
      "phone",
      "email",
      "custom_fields"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "salescaptain.update_conversation_stage",
+   "name": "Move a conversation to a stage",
+   "description": "Moves the conversation to the given stage (use `stage_id` values from `/v1/list-stages/{company_id}`). This behaves exactly like moving the conversation between folders in the inbox: the move is recorded on the conversation, \"Stage Change\" automations run, and a `conversation.stage_change` webhook event is sent. If the conversation is already in that stage nothing changes and `changed` is `false`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "company_id": {
+      "type": "string",
+      "description": "Unique identifier for the company"
+     },
+     "conversation_id": {
+      "type": "string",
+      "description": "Unique identifier for the conversation"
+     },
+     "stage_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "company_id",
+     "conversation_id",
+     "stage_id"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.salescaptain.com/v1/update-conversation-stage/{company_id}/{conversation_id}",
+    "path": [
+     "company_id",
+     "conversation_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "stage_id"
     ],
     "body_format": "json"
    }

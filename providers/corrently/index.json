@@ -1,0 +1,752 @@
+{
+ "_": "GENERATED \u2014 what an authoring tool needs to FIND an operation. The calling table is the .lua beside it.",
+ "provider": "corrently",
+ "source": "https://api.apis.guru/v2/specs/corrently.io/2.0.0/openapi.json",
+ "operations": [
+  {
+   "slug": "corrently.easee_sessions",
+   "name": "Returns last session info for all easee wallboxes (chargers) given user has access to",
+   "description": "Refer to easee.cloud API for details.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "Username as used on easy.cloud"
+     },
+     "password": {
+      "type": "string",
+      "description": "Password as used on easy.cloud"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.corrently.io/v2.0/alternative/easee/lastSessions",
+    "path": [],
+    "query": [
+     "username",
+     "password"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "corrently.gsi_besthour",
+   "name": "Get best hour (with most regional green energy) in a given timeframe",
+   "description": "Simple Wrapper around the GreenPowerIndex for easy integration into almost any SmartHome system that allows access to a JSON/REST Service This endpoint is designed to indicate if a device should be turned on or off. (Switch state).",
+   "input": {
+    "type": "object",
+    "properties": {
+     "zip": {
+      "type": "string",
+      "description": "Zipcode (Postleitzahl) of a city in Germany."
+     },
+     "timeframe": {
+      "type": "integer",
+      "description": "Number of hours to check (default 24 hours from now)."
+     },
+     "hours": {
+      "type": "integer",
+      "description": "How many hours in row do you need the device turned on?"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.corrently.io/v2.0/gsi/bestHour",
+    "path": [],
+    "query": [
+     "zip",
+     "timeframe",
+     "hours"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "corrently.gsi_dispatch",
+   "name": "Dispatch (green energy distribution schedule)",
+   "description": "Dispatch of green energy has two aspects to consider: - Availability of gerneration facility (depends on weather and installed capacity) - Demand of energy Using the green power index (Gr\u00fcnstromIndex) we have received a tool to automate distribution of energy in order to prevent redispatch situations. Doing this alows to opimize resource usage (tactical) and leverage data for investment planning (",
+   "input": {
+    "type": "object",
+    "properties": {
+     "zip": {
+      "type": "string",
+      "description": "Zipcode (Postleitzahl) of a city in Germany."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.corrently.io/v2.0/gsi/dispatch",
+    "path": [],
+    "query": [
+     "zip"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "corrently.gsi_marketdata",
+   "name": "Marketdata",
+   "description": "Compatible to awattar (https://api.awattar.de/v1/marketdata) API interface but data comes from GreenPowerIndex instead of EPEXSpot.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "zip": {
+      "type": "string",
+      "description": "Zipcode (Postleitzahl) of a city in Germany."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.corrently.io/v2.0/gsi/marketdata",
+    "path": [],
+    "query": [
+     "zip"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "corrently.gsi_prediction",
+   "name": "Prediction",
+   "description": "Retrieval the GreenPowerIndex (Gr\u00fcnstromIndex) for a given city (by zipcode) in Germany.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "zip": {
+      "type": "string",
+      "description": "Zipcode (Postleitzahl) of a city in Germany."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.corrently.io/v2.0/gsi/prediction",
+    "path": [],
+    "query": [
+     "zip"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "corrently.metering_get",
+   "name": "Meter reading",
+   "description": "Retrieves a metered reading using account (Stromkonto).",
+   "input": {
+    "type": "object",
+    "properties": {
+     "account": {
+      "type": "string",
+      "description": "Account/Address (Stromkonto) to retrieve reading for."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.corrently.io/v2.0/metering/reading",
+    "path": [],
+    "query": [
+     "account"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "corrently.metering_post",
+   "name": "Meter reading",
+   "description": "Post meter reading and get it decorated. Best practice is to first create a new Stromkonto with the register method and choose a nice secret to protect updates. Now regularly send updates to get readings (consumption) split into green power (1.8.1) and grey power (1.8.2).",
+   "input": {
+    "type": "object",
+    "properties": {
+     "1.8.0": {
+      "type": "integer",
+      "description": "Meter Reading (prefered in Wh)"
+     },
+     "account": {
+      "type": "string",
+      "description": "Stromkonto account (address) associated with this metering."
+     },
+     "energy": {
+      "type": "integer",
+      "description": "Alias for 1.8.0"
+     },
+     "value": {
+      "type": "integer",
+      "description": "Alias for 1.8.0"
+     },
+     "zip": {
+      "type": "string",
+      "description": "Zipcode (Postleitzahl) of metered location"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.corrently.io/v2.0/metering/reading",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "1.8.0",
+     "account",
+     "energy",
+     "value",
+     "zip"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "corrently.ocpp_sessions",
+   "name": "Last session info",
+   "description": "Returns lastSession info of OCCP Cloud service for clearing in corrently ecosystem. Might be tested via [OCPP cloud simulator](https://ocpp.corrently.cloud). Last session Info of managed EV charging stations connected to the correnty ecosystem.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.corrently.io/v2.0/alternative/ocpp/lastSessions",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "corrently.om_activities",
+   "name": "Public shared smart meters installed in germany and available for subservices and exploration",
+   "description": "Provides a list of available meterrs in the OpenMETER project ( https://www.openmeter.de/ ) which grants access for analytics as data discovery.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.corrently.io/v2.0/alternative/openmeter/activities",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "corrently.om_meters",
+   "name": "Public shared smart meters installed in germany and available for subservices and exploration",
+   "description": "Provides a list of available meterrs in the OpenMETER project ( https://www.openmeter.de/ ) which grants access for analytics as data discovery.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.corrently.io/v2.0/alternative/openmeter/meters",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "corrently.om_readings",
+   "name": "Public shared smart meters installed in germany and available for subservices and exploration",
+   "description": "Provides a list of available meterrs in the OpenMETER project ( https://www.openmeter.de/ ) which grants access for analytics as data discovery.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.corrently.io/v2.0/alternative/openmeter/readings",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "corrently.prepare_transaction",
+   "name": "Prepare transaction",
+   "description": "Prepares and inques a transaction (transfer) between two accounts (Stromkonten). This might be used to send any balanced entity. Using this endpoint will only prepare the transaction and enques it for signing and countersigning. This is done from within the user UI using validation process. Note: This API method does not validate any transations. In other words authentication, authorization, valid",
+   "input": {
+    "type": "object",
+    "properties": {
+     "account": {
+      "type": "string",
+      "description": "Stromkonto account address of sender"
+     },
+     "signature": {
+      "type": "string",
+      "description": "Signature per Stromkonto setting (might be simple email confirmation link)"
+     },
+     "to": {
+      "type": "string",
+      "description": "Stromkonto account address of reciever"
+     },
+     "value": {
+      "type": "integer",
+      "description": "Amount to transfer (in Watthours for electricity, or pcs for trees)"
+     },
+     "variation": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "gsb",
+       "erzeugung",
+       "eigenstrom",
+       "co2",
+       "baeume"
+      ]
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.corrently.io/v2.0/stromkonto/prepareTransaction",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "account",
+     "signature",
+     "to",
+     "value",
+     "variation"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "corrently.quittung_comit",
+   "name": "Finishs a collection of data and finalizes receipt  use this method after collecting all data via quittung prepare",
+   "description": "Uses collected fields or provided fields to create a final receipt (Strom-Quittung).",
+   "input": {
+    "type": "object",
+    "properties": {
+     "account": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.corrently.io/v2.0/quittung/commit",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "account"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "corrently.quittung_create",
+   "name": "Create a receipt for an energy delivery (only valid in germany)",
+   "description": "Creates a full featured receipt (Quittung) for an energy delivery as it appears on a charging session or similar events. Allows to embed receipt generation directly into external services.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "email": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.corrently.io/v2.0/quittung/create",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "email"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "corrently.quittung_prepare",
+   "name": "Allows to collect data with several requests (or a single) for a receipt",
+   "description": "During the first call an account parameter will be returned within the result object. Any other parameter will be set inside the preperation. If account is put into body/request in following requests, the existing collection will be extended/updated with the provided body parameters/values.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "account": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.corrently.io/v2.0/quittung/prepare",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "account"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "corrently.quittung_tse",
+   "name": "Retrieve tse (technische sicherheitseinrichtung) data for a given receipt (strom quittung)",
+   "description": "Allows to retrieve all relevant data assiciated to a TSE service call. E.q. Input parameters, public key and signature.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "account": {
+      "type": "string",
+      "description": "Quittung Identifier (serialnumber generated during receipt generation process)"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.corrently.io/v2.0/quittung/tse",
+    "path": [],
+    "query": [
+     "account"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "corrently.quittung_tsedata",
+   "name": "Retrieve tse (technische sicherheitseinrichtung) raw data  only for a given receipt (strom quittung)",
+   "description": "Allows to retrieve input string for a signing process.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "account": {
+      "type": "string",
+      "description": "Quittung Identifier (serialnumber generated during receipt generation process)"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.corrently.io/v2.0/quittung/tsedata",
+    "path": [],
+    "query": [
+     "account"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "corrently.quittung_tsesignature",
+   "name": "Retrieve tse (technische sicherheitseinrichtung) signature only for a given receipt (strom quittung)",
+   "description": "Allows to retrieve digital signature for a given receipt.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "account": {
+      "type": "string",
+      "description": "Quittung Identifier (serialnumber generated during receipt generation process)"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.corrently.io/v2.0/quittung/tsesignature",
+    "path": [],
+    "query": [
+     "account"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "corrently.quittung_zugferd",
+   "name": "Retrieve zugferd xml for a given receipt (strom quittung)",
+   "description": "Allows to retrieve XML of the zugferd invoice.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "account": {
+      "type": "string",
+      "description": "Quittung Identifier (serialnumber generated during receipt generation process)"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.corrently.io/v2.0/quittung/zugferd",
+    "path": [],
+    "query": [
+     "account"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "corrently.stromkonto_balances",
+   "name": "Balances",
+   "description": "Stromkonto represents a core component of the Corrently Ecosystem. It is a ledger for green energy related transactions and gets heavily used by the public Web-UI on www.stromkonto.net . Beside of some decoration and reformating operations all data is backed by the [Energychain blockchain](https://github.com/energychain/) to provide consensus of balances and transactions. Use this API Endppoint if",
+   "input": {
+    "type": "object",
+    "properties": {
+     "account": {
+      "type": "string",
+      "description": "Ethereum style address referencing a valid account (AKA Stromkonto)."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.corrently.io/v2.0/stromkonto/balances",
+    "path": [],
+    "query": [
+     "account"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "corrently.stromkonto_choices",
+   "name": "Selectable choices for customer",
+   "description": "Signable choices (contract changes) for customer.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "account": {
+      "type": "string",
+      "description": "Ethereum style address referencing a valid account alias (never use Stromkonto directly!)."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.corrently.io/v2.0/stromkonto/choices",
+    "path": [],
+    "query": [
+     "account"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "corrently.stromkonto_login",
+   "name": "Login (via mail)",
+   "description": "Sends a mail to a given email address to login this user. This function makes life a bit easier in order to not having to deal with private key protection on the user side as a shared key is used to sign transactions onbehalf of a particular account. However viewing consensus information (balances) are public and *might move* from account to account without prior notification. Best practice for th",
+   "input": {
+    "type": "object",
+    "properties": {
+     "email": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.corrently.io/v2.0/stromkonto/login",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "email"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "corrently.stromkonto_register",
+   "name": "Register (new stromkonto)",
+   "description": "Calling this method with an unregistered (new) email will create a new account (Stromkonto) with all balances having a value of `0` and no transaction history. In addition some basic properties like region and zipcode are set to allow further operation of account.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "email": {
+      "type": "string",
+      "description": ""
+     },
+     "first_name": {
+      "type": "string",
+      "description": ""
+     },
+     "last_name": {
+      "type": "string",
+      "description": ""
+     },
+     "zipcode": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.corrently.io/v2.0/stromkonto/register",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "email",
+     "first_name",
+     "last_name",
+     "zipcode"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "corrently.tariff_slph0",
+   "name": "Energy tariff information",
+   "description": "Provides pricing data for private households with standard load profiles (Standardlastprofil H0).",
+   "input": {
+    "type": "object",
+    "properties": {
+     "zipcode": {
+      "type": "string",
+      "description": "Zipcode (Postzleitzahl) of a city in Germany."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.corrently.io/v2.0/tariff/slph0",
+    "path": [],
+    "query": [
+     "zipcode"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "corrently.tariffcomponents",
+   "name": "Energy tariff price components",
+   "description": "Provides insides into the different cost components of energy for a private household. Sample Request: https://api.corrently.io/v2.0/tariff/components?email=demo%40corrently.io&zip=69168&kwha=3300",
+   "input": {
+    "type": "object",
+    "properties": {
+     "zipcode": {
+      "type": "string",
+      "description": "Zipcode (Postzleitzahl) of a city in Germany."
+     },
+     "email": {
+      "type": "string",
+      "description": "Valid email address to assign request to (pre offer generation). Ensure GDPR (DSGVO) at any time"
+     },
+     "kwha": {
+      "type": "integer",
+      "description": "Total amount of energy in kilo-watt-hours per year. (sample 2100)"
+     },
+     "milliseconds": {
+      "type": "integer",
+      "description": "If provided all results will be scaled to this timeframe"
+     },
+     "wh": {
+      "type": "integer",
+      "description": "If provided together with milliseconds, a cost component stament for a particular event (like charging a car) will be created."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.corrently.io/v2.0/tariff/components",
+    "path": [],
+    "query": [
+     "zipcode",
+     "email",
+     "kwha",
+     "milliseconds",
+     "wh"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "corrently.wimstatus",
+   "name": "Wi m proess informtion",
+   "description": "Access to status information of an existing metering change and allocation process.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "vid": {
+      "type": "string",
+      "description": "VID key of the process."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.corrently.io/v2.0/wim/status",
+    "path": [],
+    "query": [
+     "vid"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  }
+ ]
+}

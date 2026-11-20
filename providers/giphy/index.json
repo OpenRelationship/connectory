@@ -1,0 +1,347 @@
+{
+ "_": "GENERATED \u2014 what an authoring tool needs to FIND an operation. The calling table is the .lua beside it.",
+ "provider": "giphy",
+ "source": "https://api.apis.guru/v2/specs/giphy.com/1.0/openapi.json",
+ "operations": [
+  {
+   "slug": "giphy.get_gif_by_id",
+   "name": "Get gif by id",
+   "description": "Returns a GIF given that GIF's unique ID",
+   "input": {
+    "type": "object",
+    "properties": {
+     "gifId": {
+      "type": "integer",
+      "description": "Filters results by specified GIF ID."
+     }
+    },
+    "required": [
+     "gifId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.giphy.com/v1/gifs/{gifId}",
+    "path": [
+     "gifId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "giphy.get_gifs_by_id",
+   "name": "Get gifs by id",
+   "description": "A multiget version of the get GIF by ID endpoint.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "ids": {
+      "type": "string",
+      "description": "Filters results by specified GIF IDs, separated by commas."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.giphy.com/v1/gifs",
+    "path": [],
+    "query": [
+     "ids"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "giphy.random_gif",
+   "name": "Random gif",
+   "description": "Returns a random GIF, limited by tag. Excluding the tag parameter will return a random GIF from the GIPHY catalog.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "tag": {
+      "type": "string",
+      "description": "Filters results by specified tag."
+     },
+     "rating": {
+      "type": "string",
+      "description": "Filters results by specified rating."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.giphy.com/v1/gifs/random",
+    "path": [],
+    "query": [
+     "tag",
+     "rating"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "giphy.random_sticker",
+   "name": "Random sticker",
+   "description": "Returns a random GIF, limited by tag. Excluding the tag parameter will return a random GIF from the GIPHY catalog.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "tag": {
+      "type": "string",
+      "description": "Filters results by specified tag."
+     },
+     "rating": {
+      "type": "string",
+      "description": "Filters results by specified rating."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.giphy.com/v1/stickers/random",
+    "path": [],
+    "query": [
+     "tag",
+     "rating"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "giphy.search_gifs",
+   "name": "Search gifs",
+   "description": "Search all GIPHY GIFs for a word or phrase. Punctuation will be stripped and ignored. Use a plus or url encode for phrases. Example paul+rudd, ryan+gosling or american+psycho.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "q": {
+      "type": "string",
+      "description": "Search query term or prhase."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "The maximum number of records to return."
+     },
+     "offset": {
+      "type": "integer",
+      "description": "An optional results offset."
+     },
+     "rating": {
+      "type": "string",
+      "description": "Filters results by specified rating."
+     },
+     "lang": {
+      "type": "string",
+      "description": "Specify default language for regional content; use a 2-letter ISO 639-1 language code."
+     }
+    },
+    "required": [
+     "q"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.giphy.com/v1/gifs/search",
+    "path": [],
+    "query": [
+     "q",
+     "limit",
+     "offset",
+     "rating",
+     "lang"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "giphy.search_stickers",
+   "name": "Search stickers",
+   "description": "Replicates the functionality and requirements of the classic GIPHY search, but returns animated stickers rather than GIFs.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "q": {
+      "type": "string",
+      "description": "Search query term or prhase."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "The maximum number of records to return."
+     },
+     "offset": {
+      "type": "integer",
+      "description": "An optional results offset."
+     },
+     "rating": {
+      "type": "string",
+      "description": "Filters results by specified rating."
+     },
+     "lang": {
+      "type": "string",
+      "description": "Specify default language for regional content; use a 2-letter ISO 639-1 language code."
+     }
+    },
+    "required": [
+     "q"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.giphy.com/v1/stickers/search",
+    "path": [],
+    "query": [
+     "q",
+     "limit",
+     "offset",
+     "rating",
+     "lang"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "giphy.translate_gif",
+   "name": "Translate phrase to gif",
+   "description": "The translate API draws on search, but uses the GIPHY `special sauce` to handle translating from one vocabulary to another. In this case, words and phrases to GIF",
+   "input": {
+    "type": "object",
+    "properties": {
+     "s": {
+      "type": "string",
+      "description": "Search term."
+     }
+    },
+    "required": [
+     "s"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.giphy.com/v1/gifs/translate",
+    "path": [],
+    "query": [
+     "s"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "giphy.translate_sticker",
+   "name": "Translate phrase to sticker",
+   "description": "The translate API draws on search, but uses the GIPHY `special sauce` to handle translating from one vocabulary to another. In this case, words and phrases to GIFs.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "s": {
+      "type": "string",
+      "description": "Search term."
+     }
+    },
+    "required": [
+     "s"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.giphy.com/v1/stickers/translate",
+    "path": [],
+    "query": [
+     "s"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "giphy.trending_gifs",
+   "name": "Trending gifs",
+   "description": "Fetch GIFs currently trending online. Hand curated by the GIPHY editorial team. The data returned mirrors the GIFs showcased on the GIPHY homepage. Returns 25 results by default.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "limit": {
+      "type": "integer",
+      "description": "The maximum number of records to return."
+     },
+     "offset": {
+      "type": "integer",
+      "description": "An optional results offset."
+     },
+     "rating": {
+      "type": "string",
+      "description": "Filters results by specified rating."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.giphy.com/v1/gifs/trending",
+    "path": [],
+    "query": [
+     "limit",
+     "offset",
+     "rating"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "giphy.trending_stickers",
+   "name": "Trending stickers",
+   "description": "Fetch Stickers currently trending online. Hand curated by the GIPHY editorial team. Returns 25 results by default.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "limit": {
+      "type": "integer",
+      "description": "The maximum number of records to return."
+     },
+     "offset": {
+      "type": "integer",
+      "description": "An optional results offset."
+     },
+     "rating": {
+      "type": "string",
+      "description": "Filters results by specified rating."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.giphy.com/v1/stickers/trending",
+    "path": [],
+    "query": [
+     "limit",
+     "offset",
+     "rating"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  }
+ ]
+}

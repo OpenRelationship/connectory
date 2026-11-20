@@ -1,0 +1,843 @@
+{
+ "_": "GENERATED \u2014 what an authoring tool needs to FIND an operation. The calling table is the .lua beside it.",
+ "provider": "certifier",
+ "source": "https://developers.certifier.io/api/openapi.json",
+ "operations": [
+  {
+   "slug": "certifier.delete_v1_credentials_id",
+   "name": "Delete a credential",
+   "description": "Use this endpoint to permanently delete a credential. This cannot be undone.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "The unique ID of the credential"
+     },
+     "Certifier-Version": {
+      "type": "string",
+      "description": "API version header. Required for all requests."
+     }
+    },
+    "required": [
+     "Certifier-Version",
+     "id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.certifier.io/v1/credentials/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [
+     "Certifier-Version"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "certifier.delete_v1_groups_id",
+   "name": "Delete a credential template",
+   "description": "Permanently deletes a credential template (group). This cannot be undone. Groups are being renamed to Credential Templates to better reflect their purpose. This is a **naming update only** \u2014 all functionality remains the same. During the transition, you may still see both terms used interchangeably across the API, app, and existing integrations.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "The unique ID of the credential template (group)."
+     },
+     "Certifier-Version": {
+      "type": "string",
+      "description": "API version header. Required for all requests."
+     }
+    },
+    "required": [
+     "Certifier-Version",
+     "id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.certifier.io/v1/groups/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [
+     "Certifier-Version"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "certifier.get_v1_credential_interactions",
+   "name": "List credential interactions",
+   "description": "Returns a list of credential interactions, optionally filtered by credential ID.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "credentialId": {
+      "type": "string",
+      "description": "The unique credential's identifier"
+     },
+     "cursor": {
+      "type": "string",
+      "description": "Cursor for pagination"
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Number of items to return (default: 20)"
+     },
+     "Certifier-Version": {
+      "type": "string",
+      "description": "API version header. Required for all requests."
+     }
+    },
+    "required": [
+     "Certifier-Version"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.certifier.io/v1/credential-interactions",
+    "path": [],
+    "query": [
+     "credentialId",
+     "cursor",
+     "limit"
+    ],
+    "header": [
+     "Certifier-Version"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "certifier.get_v1_credentials",
+   "name": "List credentials",
+   "description": "Use this endpoint to list credentials.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "cursor": {
+      "type": "string",
+      "description": "Cursor for pagination"
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Number of items to return (default: 20)"
+     },
+     "Certifier-Version": {
+      "type": "string",
+      "description": "API version header. Required for all requests."
+     }
+    },
+    "required": [
+     "Certifier-Version"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.certifier.io/v1/credentials",
+    "path": [],
+    "query": [
+     "cursor",
+     "limit"
+    ],
+    "header": [
+     "Certifier-Version"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "certifier.get_v1_credentials_id",
+   "name": "Get a credential",
+   "description": "Use this endpoint to get a specific credential.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "The unique ID of the credential"
+     },
+     "Certifier-Version": {
+      "type": "string",
+      "description": "API version header. Required for all requests."
+     }
+    },
+    "required": [
+     "Certifier-Version",
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.certifier.io/v1/credentials/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [
+     "Certifier-Version"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "certifier.get_v1_credentials_id_designs",
+   "name": "Get credential design templates",
+   "description": "Use this endpoint to list the ordered design templates used by a credential and their available previews. Preview URLs are immutable and versioned by a digest (hash) derived from the design template's last update timestamp and the resolved values of all rendered credential attributes. Preview URLs are immutable and versioned by a digest (hash) derived from: - the design template\u2019s last update time",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "The unique ID of the credential"
+     },
+     "Certifier-Version": {
+      "type": "string",
+      "description": "API version header. Required for all requests."
+     }
+    },
+    "required": [
+     "Certifier-Version",
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.certifier.io/v1/credentials/{id}/designs",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [
+     "Certifier-Version"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "certifier.get_v1_designs",
+   "name": "List design templates",
+   "description": "Returns a list of all design templates (certificates and badges) available in your workspace.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "cursor": {
+      "type": "string",
+      "description": "Cursor for pagination"
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Number of items to return (default: 20)"
+     },
+     "Certifier-Version": {
+      "type": "string",
+      "description": "API version header. Required for all requests."
+     }
+    },
+    "required": [
+     "Certifier-Version"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.certifier.io/v1/designs",
+    "path": [],
+    "query": [
+     "cursor",
+     "limit"
+    ],
+    "header": [
+     "Certifier-Version"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "certifier.get_v1_designs_id",
+   "name": "Get a design template",
+   "description": "Retrieves the details of an existing design template by its ID.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "The unique ID of the design template"
+     },
+     "Certifier-Version": {
+      "type": "string",
+      "description": "API version header. Required for all requests."
+     }
+    },
+    "required": [
+     "Certifier-Version",
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.certifier.io/v1/designs/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [
+     "Certifier-Version"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "certifier.get_v1_groups",
+   "name": "List credential templates",
+   "description": "Use this endpoint to list credential templates (groups). Groups are being renamed to Credential Templates to better reflect their purpose. This is a **naming update only** \u2014 all functionality remains the same. During the transition, you may still see both terms used interchangeably across the API, app, and existing integrations.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "cursor": {
+      "type": "string",
+      "description": "Cursor for pagination"
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Number of items to return (default: 20)"
+     },
+     "Certifier-Version": {
+      "type": "string",
+      "description": "API version header. Required for all requests."
+     }
+    },
+    "required": [
+     "Certifier-Version"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.certifier.io/v1/groups",
+    "path": [],
+    "query": [
+     "cursor",
+     "limit"
+    ],
+    "header": [
+     "Certifier-Version"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "certifier.get_v1_groups_id",
+   "name": "Get a credential template",
+   "description": "Use this endpoint to get a specific credential template (group). Groups are being renamed to Credential Templates to better reflect their purpose. This is a **naming update only** \u2014 all functionality remains the same. During the transition, you may still see both terms used interchangeably across the API, app, and existing integrations.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "The unique ID of the credential template (group)."
+     },
+     "Certifier-Version": {
+      "type": "string",
+      "description": "API version header. Required for all requests."
+     }
+    },
+    "required": [
+     "Certifier-Version",
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.certifier.io/v1/groups/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [
+     "Certifier-Version"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "certifier.patch_v1_credentials_id",
+   "name": "Update a credential",
+   "description": "Use this endpoint to update a credential.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "The unique ID of the credential"
+     },
+     "Certifier-Version": {
+      "type": "string",
+      "description": "API version header. Required for all requests."
+     },
+     "recipient": {
+      "type": "object",
+      "description": "The recipient of the credential"
+     },
+     "issueDate": {
+      "type": "string",
+      "description": "The issuer-claimed issue date (YYYY-MM-DD). Set null only on a draft to clear it; issued credentials cannot clear their issue date."
+     },
+     "expiryDate": {
+      "type": "string",
+      "description": "The issuer-claimed expiration date (YYYY-MM-DD). Set null to clear it; on a draft whose credential template has an expiration period, the date is re-derived at issuance, otherwise the credential never expires. When both dates are set, expiryDate must be after issueDate."
+     },
+     "customAttributes": {
+      "type": "object",
+      "description": "The key-value object of your custom attributes, where key is your attribute's tag and value is the text value you want to store"
+     }
+    },
+    "required": [
+     "Certifier-Version",
+     "id"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.certifier.io/v1/credentials/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [
+     "Certifier-Version"
+    ],
+    "body": [
+     "recipient",
+     "issueDate",
+     "expiryDate",
+     "customAttributes"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "certifier.patch_v1_groups_id",
+   "name": "Update a credential template",
+   "description": "Updates the specified credential template (group) by setting the values of the parameters passed. Any parameters not provided will be left unchanged. Groups are being renamed to Credential Templates to better reflect their purpose. This is a **naming update only** \u2014 all functionality remains the same. During the transition, you may still see both terms used interchangeably across the API, app, and",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "The unique ID of the credential template (group)."
+     },
+     "Certifier-Version": {
+      "type": "string",
+      "description": "API version header. Required for all requests."
+     },
+     "name": {
+      "type": "string",
+      "description": "The name of the credential template (group) that is used as [group.name] attribute later on"
+     },
+     "designIds": {
+      "type": "array",
+      "description": "Replaces the ordered list of design template IDs associated with the credential template."
+     },
+     "learningEventUrl": {
+      "type": "string",
+      "description": "The learning event's URL that is shown in the digital wallet"
+     }
+    },
+    "required": [
+     "Certifier-Version",
+     "id"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.certifier.io/v1/groups/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [
+     "Certifier-Version"
+    ],
+    "body": [
+     "name",
+     "designIds",
+     "learningEventUrl"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "certifier.post_v1_credential_interactions",
+   "name": "Create a credential interaction",
+   "description": "Creates a new credential interaction event. This feature uses the browser's `LocalStorage` to identify the actions made by the recipient of the credential. When the user accesses the page with `?recipient=true` query parameter, the application saves that information in `LocalStorage` and removes the parameter from the URL. Actions taken afterwards in the same browser are recorded as the recipient'",
+   "input": {
+    "type": "object",
+    "properties": {
+     "Certifier-Version": {
+      "type": "string",
+      "description": "API version header. Required for all requests."
+     },
+     "credentialId": {
+      "type": "string",
+      "description": "The unique credential's identifier, to which this credential interaction belongs"
+     },
+     "eventType": {
+      "type": "string",
+      "description": "Specifies the type of user interaction event related to the credential",
+      "enum": [
+       "credential_viewed",
+       "credential_shared_to_linkedin",
+       "credential_added_to_linkedin_profile",
+       "credential_shared_to_facebook",
+       "credential_shared_to_twitter",
+       "credential_shared_to_messenger",
+       "credential_shared_to_whatsapp",
+       "credential_shared_to_pinterest",
+       "credential_shared_to_telegram",
+       "credential_shared_to_weibo",
+       "credential_downloaded",
+       "credential_link_copied"
+      ]
+     },
+     "triggeredBy": {
+      "type": "string",
+      "description": "The actor that triggered this credential interaction. Currently one of two values: recipient or guest",
+      "enum": [
+       "recipient",
+       "guest"
+      ]
+     },
+     "triggeredAt": {
+      "type": "string",
+      "description": "The date and time when this credential interaction happened. Formatted as an ISO 8601 date and time string"
+     }
+    },
+    "required": [
+     "Certifier-Version",
+     "credentialId",
+     "eventType",
+     "triggeredAt",
+     "triggeredBy"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.certifier.io/v1/credential-interactions",
+    "path": [],
+    "query": [],
+    "header": [
+     "Certifier-Version"
+    ],
+    "body": [
+     "credentialId",
+     "eventType",
+     "triggeredBy",
+     "triggeredAt"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "certifier.post_v1_credentials",
+   "name": "Create a credential",
+   "description": "Use this endpoint to create a new credential. The credential will be created with status `draft`. As the next step, use the [Issue Credential](/docs/api-reference/credentials/issue-a-credential) endpoint to issue a draft credential, making it active and accessible in the digital wallet. If you are looking for an all-in-one solution that simultaneously creates, issues, and sends a credential, check",
+   "input": {
+    "type": "object",
+    "properties": {
+     "Certifier-Version": {
+      "type": "string",
+      "description": "API version header. Required for all requests."
+     },
+     "groupId": {
+      "type": "string",
+      "description": "The group's (credential template's) ID you want to issue the credential to. Check the Group (Credential Template) object."
+     },
+     "recipient": {
+      "type": "object",
+      "description": "The recipient of the credential"
+     },
+     "issueDate": {
+      "type": "string",
+      "description": "The issuer-claimed issue date. Omit it or set it to null to resolve it to the UTC date at issuance (YYYY-MM-DD)."
+     },
+     "expiryDate": {
+      "type": "string",
+      "description": "The issuer-claimed expiration date. Omit it or set it to null to derive the credential template's expiration period at issuance; it stays null when no period is configured (YYYY-MM-DD)."
+     },
+     "customAttributes": {
+      "type": "object",
+      "description": "The key-value object of your custom attributes, where key is your attribute's tag and value is the text value you want to store"
+     }
+    },
+    "required": [
+     "Certifier-Version",
+     "groupId",
+     "recipient"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.certifier.io/v1/credentials",
+    "path": [],
+    "query": [],
+    "header": [
+     "Certifier-Version"
+    ],
+    "body": [
+     "groupId",
+     "recipient",
+     "issueDate",
+     "expiryDate",
+     "customAttributes"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "certifier.post_v1_credentials_create_issue_send",
+   "name": "Create, issue, and send a credential",
+   "description": "Use this endpoint for an all-in-one solution that simultaneously creates, issues, and sends a credential. This endpoint covers most of the basic scenarios.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "Certifier-Version": {
+      "type": "string",
+      "description": "API version header. Required for all requests."
+     },
+     "groupId": {
+      "type": "string",
+      "description": "The group's (credential template's) ID you want to issue the credential to. Read more about groups (credential templates)."
+     },
+     "recipient": {
+      "type": "object",
+      "description": "The recipient of the credential"
+     },
+     "issueDate": {
+      "type": "string",
+      "description": "The issuer-claimed issue date. Omit it or set it to null to resolve it to the UTC date at issuance (YYYY-MM-DD)."
+     },
+     "expiryDate": {
+      "type": "string",
+      "description": "The issuer-claimed expiration date. Omit it or set it to null to derive the credential template's expiration period at issuance; it stays null when no period is configured (YYYY-MM-DD)."
+     },
+     "customAttributes": {
+      "type": "object",
+      "description": "The key-value object of your custom attributes where key is your attribute's tag and value is just your value"
+     }
+    },
+    "required": [
+     "Certifier-Version",
+     "groupId",
+     "recipient"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.certifier.io/v1/credentials/create-issue-send",
+    "path": [],
+    "query": [],
+    "header": [
+     "Certifier-Version"
+    ],
+    "body": [
+     "groupId",
+     "recipient",
+     "issueDate",
+     "expiryDate",
+     "customAttributes"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "certifier.post_v1_credentials_id_issue",
+   "name": "Issue a credential",
+   "description": "Use this endpoint to issue a draft credential and change the status from `draft` to `issued`. You can only issue credentials with `status = \"draft\"`. As the next step, use the [Send a credential](/docs/api-reference/credentials/send-a-credential) endpoint to send your recipient a published credential. If you are looking for an all-in-one solution that simultaneously creates, issues, and sends a cr",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "The unique ID of the credential"
+     },
+     "Certifier-Version": {
+      "type": "string",
+      "description": "API version header. Required for all requests."
+     }
+    },
+    "required": [
+     "Certifier-Version",
+     "id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.certifier.io/v1/credentials/{id}/issue",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [
+     "Certifier-Version"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "certifier.post_v1_credentials_id_send",
+   "name": "Send a credential",
+   "description": "Use this endpoint to send a published credential to a recipient. You can only send credentials with `status = \"issued\"`. Currently, the only supported `deliveryMethod` is `email`. Certifier will send an email to the recipient using the email template configured for the group (credential template) the credential belongs to. If you are looking for an all-in-one solution that simultaneously creates, ",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "The unique ID of the credential"
+     },
+     "Certifier-Version": {
+      "type": "string",
+      "description": "API version header. Required for all requests."
+     },
+     "deliveryMethod": {
+      "type": "string",
+      "description": "The way you want to deliver the credential. The only available deliveryMethod for now is email",
+      "enum": [
+       "email"
+      ]
+     }
+    },
+    "required": [
+     "Certifier-Version",
+     "deliveryMethod",
+     "id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.certifier.io/v1/credentials/{id}/send",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [
+     "Certifier-Version"
+    ],
+    "body": [
+     "deliveryMethod"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "certifier.post_v1_credentials_search",
+   "name": "Search credentials",
+   "description": "1. [Introduction](#introduction) * [Example Request](#example-request) 2. [Filtering](#filtering) * [Logical Operators](#logical-operators) * [AND](#and) * [OR](#or) * [NOT](#not) * [Field Types & Comparison Operators](#field-types--comparison-operators) * [String Fields](#string-fields) * [UUID Fields](#uuid-fields) * [Enum Fields](#enum-fields) * [Date Fields (YYYY-MM-DD)](#date-fields-yyyy-mm-d",
+   "input": {
+    "type": "object",
+    "properties": {
+     "Certifier-Version": {
+      "type": "string",
+      "description": "API version header. Required for all requests."
+     },
+     "filter": {
+      "type": "object",
+      "description": "Filter object with AND, OR, NOT operators and field conditions. Supports filtering by id, publicId, groupId, status, recipientId, recipient.name, recipient.email, issueDate, expiryDate, createdAt, updatedAt"
+     },
+     "sort": {
+      "type": "object",
+      "description": "Sorting options"
+     },
+     "cursor": {
+      "type": "string",
+      "description": "Cursor for pagination"
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Number of items to return (default: 20)"
+     }
+    },
+    "required": [
+     "Certifier-Version"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.certifier.io/v1/credentials/search",
+    "path": [],
+    "query": [],
+    "header": [
+     "Certifier-Version"
+    ],
+    "body": [
+     "filter",
+     "sort",
+     "cursor",
+     "limit"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "certifier.post_v1_groups",
+   "name": "Create a credential template",
+   "description": "Use this endpoint to create a credential template (group). Groups are being renamed to Credential Templates to better reflect their purpose. This is a **naming update only** \u2014 all functionality remains the same. During the transition, you may still see both terms used interchangeably across the API, app, and existing integrations. For backward compatibility, this endpoint still accepts the legacy ",
+   "input": {
+    "type": "object",
+    "properties": {
+     "Certifier-Version": {
+      "type": "string",
+      "description": "API version header. Required for all requests."
+     },
+     "name": {
+      "type": "string",
+      "description": "The name of the credential template (group) that is used as [group.name] attribute later on"
+     },
+     "designIds": {
+      "type": "array",
+      "description": "The ordered list of design template IDs associated with the credential template.."
+     },
+     "learningEventUrl": {
+      "type": "string",
+      "description": "The learning event's URL that is shown in the digital wallet"
+     }
+    },
+    "required": [
+     "Certifier-Version",
+     "designIds",
+     "name"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.certifier.io/v1/groups",
+    "path": [],
+    "query": [],
+    "header": [
+     "Certifier-Version"
+    ],
+    "body": [
+     "name",
+     "designIds",
+     "learningEventUrl"
+    ],
+    "body_format": "json"
+   }
+  }
+ ]
+}

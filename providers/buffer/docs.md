@@ -35,8 +35,18 @@ Authentication: Bearer token via Authorization header
 ## Examples
 
 - [Aggregate Post Metrics](https://developers.buffer.com/examples/aggregate-post-metrics.md): Aggregate normalized post metrics across a window of sent posts, without paginating through individual posts. Available for personal workflows and automations only, using a personal API key.
+Requires `notes:write`; finding the recipient first requires `notes:read`.
+Requires the `notes:write` scope.
+Names must be unique within the organization, and `color` is a six-digit hex triplet. Requires the `posts:write` scope.
+Requires the `notes:write` scope.
+The deletion cannot be undone. Requires the `posts:write` scope.
 - [Get Post Metrics](https://developers.buffer.com/examples/get-post-metrics.md): Fetch performance metrics for a single post. Available for personal workflows and automations only, using a personal API key.
 - [Get Posts With Metrics](https://developers.buffer.com/examples/get-posts-with-metrics.md): Fetch a paginated list of sent posts together with their performance metrics. Available for personal workflows and automations only, using a personal API key.
+Pass the previous page's `pageInfo.endCursor` as `after` to fetch the next page.
+Requires the `notes:read` scope.
+Requires the `notes:read` scope.
+Requires `notes:write`. This example clears existing annotations with `annotations: []`.
+Both fields are replaced, so send the current value for the one you are not changing. Requires the `posts:write` scope.
 
 ## API Reference
 
@@ -48,5 +58,5 @@ Authentication: Bearer token via Authorization header
 
 ## Optional
 
+- [Other AI tools](https://developers.buffer.com/guides/integrations/other-ai-tools.md): Using an AI tool we don't list? Connect it with an API key.
 - [n8n](https://developers.buffer.com/guides/integrations/n8n.md): Connect Buffer to n8n with an API key to build automation workflows
-- [Antigravity](https://developers.buffer.com/guides/integrations/antigravity.md): Connect Buffer to Google Antigravity over MCP with an API key

@@ -1,0 +1,1293 @@
+{
+ "_": "GENERATED \u2014 what an authoring tool needs to FIND an operation. The calling table is the .lua beside it.",
+ "provider": "gladia",
+ "source": "https://api.gladia.io/openapi.json",
+ "operations": [
+  {
+   "slug": "gladia.audio_to_text_controller_audio_transcription",
+   "name": "Audio to text controller audio transcription",
+   "description": "Creates an audio transcription.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "audio": {
+      "type": "string",
+      "description": ""
+     },
+     "audio_url": {
+      "type": "string",
+      "description": ""
+     },
+     "language_behaviour": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "automatic single language",
+       "automatic multiple languages",
+       "manual"
+      ]
+     },
+     "language": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "afrikaans",
+       "albanian",
+       "amharic",
+       "arabic",
+       "armenian",
+       "assamese",
+       "azerbaijani",
+       "bashkir",
+       "basque",
+       "belarusian",
+       "bengali",
+       "bosnian"
+      ]
+     },
+     "transcription_hint": {
+      "type": "string",
+      "description": ""
+     },
+     "toggle_diarization": {
+      "type": "boolean",
+      "description": ""
+     },
+     "diarization_num_speakers": {
+      "type": "integer",
+      "description": ""
+     },
+     "diarization_min_speakers": {
+      "type": "integer",
+      "description": ""
+     },
+     "diarization_max_speakers": {
+      "type": "integer",
+      "description": ""
+     },
+     "toggle_direct_translate": {
+      "type": "boolean",
+      "description": ""
+     },
+     "target_translation_language": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "afrikaans",
+       "albanian",
+       "amharic",
+       "arabic",
+       "armenian",
+       "assamese",
+       "azerbaijani",
+       "bashkir",
+       "basque",
+       "belarusian",
+       "bengali",
+       "bosnian"
+      ]
+     },
+     "output_format": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "json",
+       "srt",
+       "vtt",
+       "plain",
+       "txt"
+      ]
+     },
+     "toggle_noise_reduction": {
+      "type": "boolean",
+      "description": ""
+     },
+     "toggle_accurate_words_timestamps": {
+      "type": "boolean",
+      "description": ""
+     },
+     "webhook_url": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.gladia.io/audio/text/audio-transcription",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "audio",
+     "audio_url",
+     "language_behaviour",
+     "language",
+     "transcription_hint",
+     "toggle_diarization",
+     "diarization_num_speakers",
+     "diarization_min_speakers",
+     "diarization_max_speakers",
+     "toggle_direct_translate",
+     "target_translation_language",
+     "output_format",
+     "toggle_noise_reduction",
+     "toggle_accurate_words_timestamps",
+     "webhook_url"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "gladia.file_controller_upload_v2",
+   "name": "Upload an audio file or provide an audio url for processing",
+   "description": "Upload an audio file or provide an audio URL for processing",
+   "input": {
+    "type": "object",
+    "properties": {
+     "audio_url": {
+      "type": "string",
+      "description": "The URL of the audio or video file to be uploaded."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.gladia.io/v2/upload",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "audio_url"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "gladia.history_controller_get_list_v1",
+   "name": "Get the history of all your jobs",
+   "description": "Get the history of all your jobs",
+   "input": {
+    "type": "object",
+    "properties": {
+     "offset": {
+      "type": "integer",
+      "description": "The starting point for pagination. A value of 0 starts from the first item."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "The maximum number of items to return. Useful for pagination and controlling data payload size."
+     },
+     "date": {
+      "type": "string",
+      "description": "Filter items relevant to a specific date in ISO format (YYYY-MM-DD)."
+     },
+     "before_date": {
+      "type": "string",
+      "description": "Include items that occurred before the specified date in ISO format."
+     },
+     "after_date": {
+      "type": "string",
+      "description": "Filter for items after the specified date. Use with `before_date` for a range. Date in ISO format."
+     },
+     "status": {
+      "type": "array",
+      "description": "Filter the list based on item status. Accepts multiple values from the predefined list."
+     },
+     "custom_metadata": {
+      "type": "object",
+      "description": ""
+     },
+     "kind": {
+      "type": "array",
+      "description": "Filter the list based on the item type. Supports multiple values from the predefined list."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.gladia.io/v1/history",
+    "path": [],
+    "query": [
+     "offset",
+     "limit",
+     "date",
+     "before_date",
+     "after_date",
+     "status",
+     "custom_metadata",
+     "kind"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "gladia.models_controller_list_v1",
+   "name": "List gladia's available transcription models as per open router integration spec",
+   "description": "List Gladia's available transcription models as per OpenRouter integration spec",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.gladia.io/v1/models",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "gladia.pre_recorded_controller_delete_pre_recorded_job_v2",
+   "name": "Delete the pre recorded job",
+   "description": "Delete the pre recorded job",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "Id of the pre recorded job"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.gladia.io/v2/pre-recorded/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "gladia.pre_recorded_controller_get_audio_v2",
+   "name": "Download the audio file used for this pre recorded job",
+   "description": "Download the audio file used for this pre recorded job",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "Id of the pre recorded job"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.gladia.io/v2/pre-recorded/{id}/file",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "gladia.pre_recorded_controller_get_pre_recorded_job_v2",
+   "name": "Get the pre recorded job's metadata",
+   "description": "Get the pre recorded job's metadata",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "Id of the pre recorded job"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.gladia.io/v2/pre-recorded/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "gladia.pre_recorded_controller_get_pre_recorded_jobs_v2",
+   "name": "Get pre recorded jobs based on query parameters",
+   "description": "Get pre recorded jobs based on query parameters",
+   "input": {
+    "type": "object",
+    "properties": {
+     "offset": {
+      "type": "integer",
+      "description": "The starting point for pagination. A value of 0 starts from the first item."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "The maximum number of items to return. Useful for pagination and controlling data payload size."
+     },
+     "date": {
+      "type": "string",
+      "description": "Filter items relevant to a specific date in ISO format (YYYY-MM-DD)."
+     },
+     "before_date": {
+      "type": "string",
+      "description": "Include items that occurred before the specified date in ISO format."
+     },
+     "after_date": {
+      "type": "string",
+      "description": "Filter for items after the specified date. Use with `before_date` for a range. Date in ISO format."
+     },
+     "status": {
+      "type": "array",
+      "description": "Filter the list based on item status. Accepts multiple values from the predefined list."
+     },
+     "custom_metadata": {
+      "type": "object",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.gladia.io/v2/pre-recorded",
+    "path": [],
+    "query": [
+     "offset",
+     "limit",
+     "date",
+     "before_date",
+     "after_date",
+     "status",
+     "custom_metadata"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "gladia.pre_recorded_controller_init_pre_recorded_job_v2",
+   "name": "Initiate a new pre recorded job",
+   "description": "Initiate a new pre recorded job",
+   "input": {
+    "type": "object",
+    "properties": {
+     "custom_vocabulary": {
+      "type": "boolean",
+      "description": "**[Beta]** Can be either boolean to enable custom_vocabulary for this audio or an array with specific vocabulary list to feed the transcription model with"
+     },
+     "custom_vocabulary_config": {
+      "type": "object",
+      "description": "**[Beta]** Custom vocabulary configuration, if `custom_vocabulary` is enabled"
+     },
+     "callback_url": {
+      "type": "string",
+      "description": "**[Deprecated]** Use `callback`/`callback_config` instead. Callback URL we will do a `POST` request to with the result of the transcription"
+     },
+     "callback": {
+      "type": "boolean",
+      "description": "Enable callback for this transcription. If true, the `callback_config` property will be used to customize the callback behaviour"
+     },
+     "callback_config": {
+      "type": "object",
+      "description": "Customize the callback behaviour (url and http method)"
+     },
+     "subtitles": {
+      "type": "boolean",
+      "description": "Enable subtitles generation for this transcription"
+     },
+     "subtitles_config": {
+      "type": "object",
+      "description": "Configuration for subtitles generation if `subtitles` is enabled"
+     },
+     "diarization": {
+      "type": "boolean",
+      "description": "Enable speaker recognition (diarization) for this audio"
+     },
+     "diarization_config": {
+      "type": "object",
+      "description": "Speaker recognition configuration, if `diarization` is enabled"
+     },
+     "translation": {
+      "type": "boolean",
+      "description": "**[Beta]** Enable translation for this audio"
+     },
+     "translation_config": {
+      "type": "object",
+      "description": "**[Beta]** Translation configuration, if `translation` is enabled"
+     },
+     "summarization": {
+      "type": "boolean",
+      "description": "Enable summarization for this audio"
+     },
+     "summarization_config": {
+      "type": "object",
+      "description": "Summarization configuration, if `summarization` is enabled"
+     },
+     "named_entity_recognition": {
+      "type": "boolean",
+      "description": "**[Alpha]** Enable named entity recognition for this audio"
+     },
+     "custom_spelling": {
+      "type": "boolean",
+      "description": "**[Alpha]** Enable custom spelling for this audio"
+     },
+     "custom_spelling_config": {
+      "type": "object",
+      "description": "**[Alpha]** Custom spelling configuration, if `custom_spelling` is enabled"
+     },
+     "sentiment_analysis": {
+      "type": "boolean",
+      "description": "Enable sentiment analysis for this audio"
+     },
+     "audio_to_llm": {
+      "type": "boolean",
+      "description": "Enable audio to LLM processing for this audio"
+     },
+     "audio_to_llm_config": {
+      "type": "object",
+      "description": "Audio to LLM configuration, if `audio_to_llm` is enabled"
+     },
+     "pii_redaction": {
+      "type": "boolean",
+      "description": "Enable PII redaction for this audio"
+     },
+     "pii_redaction_config": {
+      "type": "object",
+      "description": "PII redaction configuration, if `pii_redaction` is enabled"
+     },
+     "custom_metadata": {
+      "type": "object",
+      "description": "Custom metadata you can attach to this transcription"
+     },
+     "sentences": {
+      "type": "boolean",
+      "description": "Enable sentences for this audio"
+     },
+     "punctuation_enhanced": {
+      "type": "boolean",
+      "description": "**[Alpha]** Use enhanced punctuation for this audio"
+     },
+     "language_config": {
+      "type": "object",
+      "description": "Specify the language configuration"
+     },
+     "model": {
+      "type": "string",
+      "description": "The model used to process the audio. \"solaria-1\" is used by default.",
+      "enum": [
+       "solaria-1",
+       "solaria-3",
+       "solaria-fusion"
+      ]
+     },
+     "audio_url": {
+      "type": "string",
+      "description": "URL to a Gladia file or to an external audio or video file"
+     }
+    },
+    "required": [
+     "audio_url"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.gladia.io/v2/pre-recorded",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "custom_vocabulary",
+     "custom_vocabulary_config",
+     "callback_url",
+     "callback",
+     "callback_config",
+     "subtitles",
+     "subtitles_config",
+     "diarization",
+     "diarization_config",
+     "translation",
+     "translation_config",
+     "summarization",
+     "summarization_config",
+     "named_entity_recognition",
+     "custom_spelling",
+     "custom_spelling_config",
+     "sentiment_analysis",
+     "audio_to_llm",
+     "audio_to_llm_config",
+     "pii_redaction",
+     "pii_redaction_config",
+     "custom_metadata",
+     "sentences",
+     "punctuation_enhanced",
+     "language_config",
+     "model",
+     "audio_url"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "gladia.streaming_controller_delete_streaming_job_v2",
+   "name": "Delete the live job",
+   "description": "Delete the live job",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "Id of the live job"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.gladia.io/v2/live/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "gladia.streaming_controller_get_audio_v2",
+   "name": "Download the audio file used for this live job",
+   "description": "Download the audio file used for this live job",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "Id of the live job"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.gladia.io/v2/live/{id}/file",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "gladia.streaming_controller_get_streaming_job_v2",
+   "name": "Get the live job's metadata",
+   "description": "Get the live job's metadata",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "Id of the live job"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.gladia.io/v2/live/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "gladia.streaming_controller_get_streaming_jobs_v2",
+   "name": "Get live jobs based on query parameters",
+   "description": "Get live jobs based on query parameters",
+   "input": {
+    "type": "object",
+    "properties": {
+     "offset": {
+      "type": "integer",
+      "description": "The starting point for pagination. A value of 0 starts from the first item."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "The maximum number of items to return. Useful for pagination and controlling data payload size."
+     },
+     "date": {
+      "type": "string",
+      "description": "Filter items relevant to a specific date in ISO format (YYYY-MM-DD)."
+     },
+     "before_date": {
+      "type": "string",
+      "description": "Include items that occurred before the specified date in ISO format."
+     },
+     "after_date": {
+      "type": "string",
+      "description": "Filter for items after the specified date. Use with `before_date` for a range. Date in ISO format."
+     },
+     "status": {
+      "type": "array",
+      "description": "Filter the list based on item status. Accepts multiple values from the predefined list."
+     },
+     "custom_metadata": {
+      "type": "object",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.gladia.io/v2/live",
+    "path": [],
+    "query": [
+     "offset",
+     "limit",
+     "date",
+     "before_date",
+     "after_date",
+     "status",
+     "custom_metadata"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "gladia.streaming_controller_init_streaming_session_v2",
+   "name": "Initiate a new live job",
+   "description": "Initiate a new live job",
+   "input": {
+    "type": "object",
+    "properties": {
+     "region": {
+      "type": "string",
+      "description": "The region used to process the audio.",
+      "enum": [
+       "us-west",
+       "eu-west"
+      ]
+     },
+     "encoding": {
+      "type": "string",
+      "description": "The encoding format of the audio stream. Supported formats: - PCM: 8, 16, 24, and 32 bits - A-law: 8 bits - \u03bc-law: 8 bits Note: No need to add WAV headers to raw audio as the API supports both formats.",
+      "enum": [
+       "wav/pcm",
+       "wav/alaw",
+       "wav/ulaw"
+      ]
+     },
+     "bit_depth": {
+      "type": "number",
+      "description": "The bit depth of the audio stream",
+      "enum": [
+       8,
+       16,
+       24,
+       32
+      ]
+     },
+     "sample_rate": {
+      "type": "number",
+      "description": "The sample rate of the audio stream",
+      "enum": [
+       8000,
+       16000,
+       32000,
+       44100,
+       48000
+      ]
+     },
+     "channels": {
+      "type": "integer",
+      "description": "The number of channels of the audio stream"
+     },
+     "custom_metadata": {
+      "type": "object",
+      "description": "Custom metadata you can attach to this live transcription"
+     },
+     "model": {
+      "type": "string",
+      "description": "The model used to process the audio. \"solaria-1\" is used by default.",
+      "enum": [
+       "solaria-1"
+      ]
+     },
+     "endpointing": {
+      "type": "number",
+      "description": "The endpointing duration in seconds. Endpointing is the duration of silence which will cause an utterance to be considered as finished. Only whole milliseconds are supported: the value is rounded to the nearest millisecond (e.g. 0.3825 becomes 0.383)"
+     },
+     "maximum_duration_without_endpointing": {
+      "type": "number",
+      "description": "The maximum duration in seconds without endpointing. If endpointing is not detected after this duration, current utterance will be considered as finished"
+     },
+     "language_config": {
+      "type": "object",
+      "description": "Specify the language configuration"
+     },
+     "pre_processing": {
+      "type": "object",
+      "description": "Specify the pre-processing configuration"
+     },
+     "realtime_processing": {
+      "type": "object",
+      "description": "Specify the realtime processing configuration"
+     },
+     "post_processing": {
+      "type": "object",
+      "description": "Specify the post-processing configuration"
+     },
+     "messages_config": {
+      "type": "object",
+      "description": "Specify the websocket messages configuration"
+     },
+     "callback": {
+      "type": "boolean",
+      "description": "If true, messages will be sent to configured url."
+     },
+     "callback_config": {
+      "type": "object",
+      "description": "Specify the callback configuration"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.gladia.io/v2/live",
+    "path": [],
+    "query": [
+     "region"
+    ],
+    "header": [],
+    "body": [
+     "encoding",
+     "bit_depth",
+     "sample_rate",
+     "channels",
+     "custom_metadata",
+     "model",
+     "endpointing",
+     "maximum_duration_without_endpointing",
+     "language_config",
+     "pre_processing",
+     "realtime_processing",
+     "post_processing",
+     "messages_config",
+     "callback",
+     "callback_config"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "gladia.streaming_controller_patch_request_params_v2",
+   "name": "For debugging purposes, send post session metadata in the request params of the job",
+   "description": "For debugging purposes, send post session metadata in the request params of the job",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "Id of the live job"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.gladia.io/v2/live/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "gladia.transcription_controller_delete_transcript_v2",
+   "name": "Delete the transcription job",
+   "description": "Delete the transcription job",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "Id of the transcription job"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.gladia.io/v2/transcription/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "gladia.transcription_controller_get_audio_v2",
+   "name": "Download the audio file used for this transcription job",
+   "description": "Download the audio file used for this transcription job",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "Id of the transcription job"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.gladia.io/v2/transcription/{id}/file",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "gladia.transcription_controller_get_transcript_v2",
+   "name": "Get the transcription job's metadata",
+   "description": "Get the transcription job's metadata",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "Id of the transcription job"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.gladia.io/v2/transcription/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "gladia.transcription_controller_init_pre_recorded_job_v2",
+   "name": "Initiate a new transcription job",
+   "description": "Initiate a new transcription job",
+   "input": {
+    "type": "object",
+    "properties": {
+     "custom_vocabulary": {
+      "type": "boolean",
+      "description": "**[Beta]** Can be either boolean to enable custom_vocabulary for this audio or an array with specific vocabulary list to feed the transcription model with"
+     },
+     "custom_vocabulary_config": {
+      "type": "object",
+      "description": "**[Beta]** Custom vocabulary configuration, if `custom_vocabulary` is enabled"
+     },
+     "callback_url": {
+      "type": "string",
+      "description": "**[Deprecated]** Use `callback`/`callback_config` instead. Callback URL we will do a `POST` request to with the result of the transcription"
+     },
+     "callback": {
+      "type": "boolean",
+      "description": "Enable callback for this transcription. If true, the `callback_config` property will be used to customize the callback behaviour"
+     },
+     "callback_config": {
+      "type": "object",
+      "description": "Customize the callback behaviour (url and http method)"
+     },
+     "subtitles": {
+      "type": "boolean",
+      "description": "Enable subtitles generation for this transcription"
+     },
+     "subtitles_config": {
+      "type": "object",
+      "description": "Configuration for subtitles generation if `subtitles` is enabled"
+     },
+     "diarization": {
+      "type": "boolean",
+      "description": "Enable speaker recognition (diarization) for this audio"
+     },
+     "diarization_config": {
+      "type": "object",
+      "description": "Speaker recognition configuration, if `diarization` is enabled"
+     },
+     "translation": {
+      "type": "boolean",
+      "description": "**[Beta]** Enable translation for this audio"
+     },
+     "translation_config": {
+      "type": "object",
+      "description": "**[Beta]** Translation configuration, if `translation` is enabled"
+     },
+     "summarization": {
+      "type": "boolean",
+      "description": "Enable summarization for this audio"
+     },
+     "summarization_config": {
+      "type": "object",
+      "description": "Summarization configuration, if `summarization` is enabled"
+     },
+     "named_entity_recognition": {
+      "type": "boolean",
+      "description": "**[Alpha]** Enable named entity recognition for this audio"
+     },
+     "custom_spelling": {
+      "type": "boolean",
+      "description": "**[Alpha]** Enable custom spelling for this audio"
+     },
+     "custom_spelling_config": {
+      "type": "object",
+      "description": "**[Alpha]** Custom spelling configuration, if `custom_spelling` is enabled"
+     },
+     "sentiment_analysis": {
+      "type": "boolean",
+      "description": "Enable sentiment analysis for this audio"
+     },
+     "audio_to_llm": {
+      "type": "boolean",
+      "description": "Enable audio to LLM processing for this audio"
+     },
+     "audio_to_llm_config": {
+      "type": "object",
+      "description": "Audio to LLM configuration, if `audio_to_llm` is enabled"
+     },
+     "pii_redaction": {
+      "type": "boolean",
+      "description": "Enable PII redaction for this audio"
+     },
+     "pii_redaction_config": {
+      "type": "object",
+      "description": "PII redaction configuration, if `pii_redaction` is enabled"
+     },
+     "custom_metadata": {
+      "type": "object",
+      "description": "Custom metadata you can attach to this transcription"
+     },
+     "sentences": {
+      "type": "boolean",
+      "description": "Enable sentences for this audio"
+     },
+     "punctuation_enhanced": {
+      "type": "boolean",
+      "description": "**[Alpha]** Use enhanced punctuation for this audio"
+     },
+     "language_config": {
+      "type": "object",
+      "description": "Specify the language configuration"
+     },
+     "model": {
+      "type": "string",
+      "description": "The model used to process the audio. \"solaria-1\" is used by default.",
+      "enum": [
+       "solaria-1",
+       "solaria-3",
+       "solaria-fusion"
+      ]
+     },
+     "audio_url": {
+      "type": "string",
+      "description": "URL to a Gladia file or to an external audio or video file"
+     }
+    },
+    "required": [
+     "audio_url"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.gladia.io/v2/transcription",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "custom_vocabulary",
+     "custom_vocabulary_config",
+     "callback_url",
+     "callback",
+     "callback_config",
+     "subtitles",
+     "subtitles_config",
+     "diarization",
+     "diarization_config",
+     "translation",
+     "translation_config",
+     "summarization",
+     "summarization_config",
+     "named_entity_recognition",
+     "custom_spelling",
+     "custom_spelling_config",
+     "sentiment_analysis",
+     "audio_to_llm",
+     "audio_to_llm_config",
+     "pii_redaction",
+     "pii_redaction_config",
+     "custom_metadata",
+     "sentences",
+     "punctuation_enhanced",
+     "language_config",
+     "model",
+     "audio_url"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "gladia.transcription_controller_list_v2",
+   "name": "Get transcription jobs based on query parameters",
+   "description": "Get transcription jobs based on query parameters",
+   "input": {
+    "type": "object",
+    "properties": {
+     "offset": {
+      "type": "integer",
+      "description": "The starting point for pagination. A value of 0 starts from the first item."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "The maximum number of items to return. Useful for pagination and controlling data payload size."
+     },
+     "date": {
+      "type": "string",
+      "description": "Filter items relevant to a specific date in ISO format (YYYY-MM-DD)."
+     },
+     "before_date": {
+      "type": "string",
+      "description": "Include items that occurred before the specified date in ISO format."
+     },
+     "after_date": {
+      "type": "string",
+      "description": "Filter for items after the specified date. Use with `before_date` for a range. Date in ISO format."
+     },
+     "status": {
+      "type": "array",
+      "description": "Filter the list based on item status. Accepts multiple values from the predefined list."
+     },
+     "custom_metadata": {
+      "type": "object",
+      "description": ""
+     },
+     "kind": {
+      "type": "array",
+      "description": "Filter the list based on the item type. Supports multiple values from the predefined list."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.gladia.io/v2/transcription",
+    "path": [],
+    "query": [
+     "offset",
+     "limit",
+     "date",
+     "before_date",
+     "after_date",
+     "status",
+     "custom_metadata",
+     "kind"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "gladia.video_to_text_controller_video_transcription",
+   "name": "Video to text controller video transcription",
+   "description": "Creates a video transcription.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "video": {
+      "type": "string",
+      "description": ""
+     },
+     "video_url": {
+      "type": "string",
+      "description": ""
+     },
+     "language_behaviour": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "automatic single language",
+       "automatic multiple languages",
+       "manual"
+      ]
+     },
+     "language": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "afrikaans",
+       "albanian",
+       "amharic",
+       "arabic",
+       "armenian",
+       "assamese",
+       "azerbaijani",
+       "bashkir",
+       "basque",
+       "belarusian",
+       "bengali",
+       "bosnian"
+      ]
+     },
+     "transcription_hint": {
+      "type": "string",
+      "description": ""
+     },
+     "toggle_diarization": {
+      "type": "boolean",
+      "description": ""
+     },
+     "diarization_num_speakers": {
+      "type": "integer",
+      "description": ""
+     },
+     "diarization_min_speakers": {
+      "type": "integer",
+      "description": ""
+     },
+     "diarization_max_speakers": {
+      "type": "integer",
+      "description": ""
+     },
+     "toggle_direct_translate": {
+      "type": "boolean",
+      "description": ""
+     },
+     "target_translation_language": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "afrikaans",
+       "albanian",
+       "amharic",
+       "arabic",
+       "armenian",
+       "assamese",
+       "azerbaijani",
+       "bashkir",
+       "basque",
+       "belarusian",
+       "bengali",
+       "bosnian"
+      ]
+     },
+     "output_format": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "json",
+       "srt",
+       "vtt",
+       "plain",
+       "txt"
+      ]
+     },
+     "toggle_noise_reduction": {
+      "type": "boolean",
+      "description": ""
+     },
+     "toggle_accurate_words_timestamps": {
+      "type": "boolean",
+      "description": ""
+     },
+     "webhook_url": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.gladia.io/video/text/video-transcription",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "video",
+     "video_url",
+     "language_behaviour",
+     "language",
+     "transcription_hint",
+     "toggle_diarization",
+     "diarization_num_speakers",
+     "diarization_min_speakers",
+     "diarization_max_speakers",
+     "toggle_direct_translate",
+     "target_translation_language",
+     "output_format",
+     "toggle_noise_reduction",
+     "toggle_accurate_words_timestamps",
+     "webhook_url"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  }
+ ]
+}

@@ -1,0 +1,3094 @@
+{
+ "_": "GENERATED \u2014 what an authoring tool needs to FIND an operation. The calling table is the .lua beside it.",
+ "provider": "daily",
+ "source": "https://docs.daily.co/openapi.json",
+ "operations": [
+  {
+   "slug": "daily.batch_room_create",
+   "name": "Batch rooms",
+   "description": "Create rooms in bulk",
+   "input": {
+    "type": "object",
+    "properties": {
+     "rooms": {
+      "type": "array",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.daily.co/v1/batch/rooms",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "rooms"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "daily.batch_room_delete",
+   "name": "Batch rooms",
+   "description": "Delete rooms in bulk",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.daily.co/v1/batch/rooms",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "daily.buy_phone_number",
+   "name": "Buy phone number",
+   "description": "This will buy a phone number. In the POST request you can either provide the phone number you want to buy, or leave it empty. If the specified `number` is still available, it will be bought or the API will return a failure. Alternatively, if you skipped the `number` field, a random phone number from California (CA) will be bought.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "number": {
+      "type": "string",
+      "description": "The phone number to purchase, in E.164 format (e.g. \"+18058700061\"). If not provided, a random US number will be purchased."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.daily.co/v1/buy-phone-number",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "number"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "daily.create_domain_dial_config_info",
+   "name": "Create new config",
+   "description": "create a new pinless_dialin or pin_dialin config",
+   "input": {
+    "type": "object",
+    "properties": {
+     "type": {
+      "type": "string",
+      "description": "The type of dial-in configuration to create.",
+      "enum": [
+       "pin_dialin",
+       "pinless_dialin"
+      ]
+     },
+     "phone_number": {
+      "type": "string",
+      "description": "The phone number to configure for pinless_dialin or pin_dialin, in E.164 format (e.g. \"+18058700061\"). If the same number is used by any other config then the API will fail. Required for pinless_dialin, optional for pin_dialin."
+     },
+     "name_prefix": {
+      "type": "string",
+      "description": "friendly name for the configuration."
+     },
+     "hmac": {
+      "type": "string",
+      "description": "The [HMAC signature](/guides/products/dial-in-dial-out/dialin-pinless#hmac) used to verify the webhook called to \"room_creation_api\". (only for pinless_dialin type)"
+     },
+     "room_creation_api": {
+      "type": "string",
+      "description": "The API to request when a call is received on configured phoneNumber or sip_uri. (only for pinless_dialin type). flow is described [here](/guides/products/dial-in-dial-out/dialin-pinless#quick-overview)"
+     },
+     "hold_music_url": {
+      "type": "string",
+      "description": "The URL to the hold music to play when the call is received, (only for pinless_dialin type). The hold music must be a publicly accessible URL in MP3 format. The hold music must be less than 10MB in size and less than 60 seconds in duration. In pinless_dialin, the hold music will be played twice."
+     },
+     "timeout_config": {
+      "type": "object",
+      "description": "The timeout configuration for the dial-in config."
+     },
+     "ivr_greeting": {
+      "type": "object",
+      "description": "configuration when the call is received on phone number (only for pin_dialin)."
+     }
+    },
+    "required": [
+     "phone_number",
+     "type"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.daily.co/v1/domain-dialin-config",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "type",
+     "phone_number",
+     "name_prefix",
+     "hmac",
+     "room_creation_api",
+     "hold_music_url",
+     "timeout_config",
+     "ivr_greeting"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "daily.create_meeting_token",
+   "name": "Meeting tokens",
+   "description": "Create a meeting token",
+   "input": {
+    "type": "object",
+    "properties": {
+     "properties": {
+      "type": "object",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.daily.co/v1/meeting-tokens",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "properties"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "daily.create_room",
+   "name": "Rooms",
+   "description": "Create a room",
+   "input": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": "string",
+      "description": ""
+     },
+     "privacy": {
+      "type": "string",
+      "description": ""
+     },
+     "properties": {
+      "type": "object",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.daily.co/v1/rooms",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "privacy",
+     "properties"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "daily.create_sip_client",
+   "name": "Sip clients",
+   "description": "Register a plain SIP client for your domain. Returns the client's SIP URI and a generated `password`, shown ONCE and never returned again. Provide a `username` (a room-style name, optionally suffixed with `.`); supply your own `password` or let one be generated. An optional `expires_in_seconds` sets a TTL after which the client is removed automatically - omit it for a long-lived client. Subject to",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": "SIP username: letters, digits, '-' and '_' (a room name), optionally followed by . (e.g. myroom.0). Up to 64 chars. Must be unique within your domain."
+     },
+     "password": {
+      "type": "string",
+      "description": "Optional. 12-64 chars with at least one letter and one digit. If omitted, a password is generated and returned once in the response."
+     },
+     "expires_in_seconds": {
+      "type": "integer",
+      "description": "Optional TTL in seconds (60-2592000). The client is removed automatically after it elapses. Omit for a long-lived client."
+     }
+    },
+    "required": [
+     "username"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.daily.co/v1/sip-clients",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "username",
+     "password",
+     "expires_in_seconds"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "daily.create_sip_trunk",
+   "name": "Sip trunk",
+   "description": "Create a SIP trunk for your domain. Returns the `sip_uri` to point your carrier at, plus the generated `hmac`. `notification.webhook_url` is required and must be LIVE: create sends a signed one-shot `sip_trunk.test` POST that must return 2xx, or the create fails with 400. A trunk must be gated by `allowed_ips`/`credential` or explicitly `is_open: true`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "trunk_name": {
+      "type": "string",
+      "description": "Lowercase alphanumeric, 3-63 chars, no hyphens; the combined `-` label must be <= 63 chars. Immutable after create."
+     },
+     "description": {
+      "type": "string",
+      "description": "Free text (max 2048). Echoed to your webhook as trunk.description."
+     },
+     "room_template": {
+      "type": "object",
+      "description": "Room-creation properties, passed to room create. An optional `sip` block (applied at dial-in start) may set display name, codecs, video_settings, dialin_config, etc. Trunk rooms always use the Daily SIP provider, so `sip.provider`, if set, must be `\"daily\"`. Absolute `exp`/`nbf` are rejected - use trunk_config.exp_offset."
+     },
+     "notification": {
+      "type": "object",
+      "description": ""
+     },
+     "trunk_config": {
+      "type": "object",
+      "description": ""
+     },
+     "enabled": {
+      "type": "boolean",
+      "description": ""
+     }
+    },
+    "required": [
+     "notification",
+     "room_template",
+     "trunk_name"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.daily.co/v1/sip-trunk",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "trunk_name",
+     "description",
+     "room_template",
+     "notification",
+     "trunk_config",
+     "enabled"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "daily.create_webhook",
+   "name": "Webhooks",
+   "description": "Create a webhook",
+   "input": {
+    "type": "object",
+    "properties": {
+     "url": {
+      "type": "string",
+      "description": "The webhook server endpoint that was provided."
+     },
+     "basicAuth": {
+      "type": "string",
+      "description": "The basic auth credentials that will be used to POST to the webhook URL."
+     },
+     "retryType": {
+      "type": "string",
+      "description": "The retry configuration for this webhook endpoint to use. The default is circuit-breaker.",
+      "enum": [
+       "circuit-breaker",
+       "exponential"
+      ]
+     },
+     "eventTypes": {
+      "type": "array",
+      "description": "The set of event types this webhook is subscribed to. Deliveries can be duplicated, and in rare cases a duplicate `participant.joined` or `participant.left` delivery carries a different `id` than the original. Deduplicate those two events on the event `type` plus the payload's `session_id` rather than on `id`. See the [webhooks overview](/reference/rest-api/webhooks) for details."
+     },
+     "hmac": {
+      "type": "string",
+      "description": "A secret that can be used to verify the signature of the webhook. If not provided, an hmac will be provisioned for you and returned."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.daily.co/v1/webhooks",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "url",
+     "basicAuth",
+     "retryType",
+     "eventTypes",
+     "hmac"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "daily.delete_domain_dialin_config",
+   "name": "Domain dialin config :id",
+   "description": "Delete a given pinless_dialin or pin_dialin config",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.daily.co/v1/domain-dialin-config/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "daily.delete_recording",
+   "name": "Recordings :id",
+   "description": "Delete a recording",
+   "input": {
+    "type": "object",
+    "properties": {
+     "recording_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "recording_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.daily.co/v1/recordings/{recording_id}",
+    "path": [
+     "recording_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "daily.delete_room",
+   "name": "Rooms :name",
+   "description": "Delete a room",
+   "input": {
+    "type": "object",
+    "properties": {
+     "room_name": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "room_name"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.daily.co/v1/rooms/{room_name}",
+    "path": [
+     "room_name"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "daily.delete_sip_client",
+   "name": "Sip clients {username}",
+   "description": "Delete a SIP client. After deletion it can no longer register or place calls.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "username"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.daily.co/v1/sip-clients/{username}",
+    "path": [
+     "username"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "daily.delete_sip_trunk",
+   "name": "Sip trunk {id}",
+   "description": "Delete a SIP trunk (and its Kamailio credential, if any).",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.daily.co/v1/sip-trunk/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "daily.delete_transcript",
+   "name": "Transcript :id",
+   "description": "Delete a transcript",
+   "input": {
+    "type": "object",
+    "properties": {
+     "transcriptId": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "transcriptId"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.daily.co/v1/transcript/{transcriptId}",
+    "path": [
+     "transcriptId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "daily.delete_webhook",
+   "name": "Webhooks :id",
+   "description": "Delete a webhook",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.daily.co/v1/webhooks/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "daily.eject",
+   "name": "Rooms :name eject",
+   "description": "Ejects participants from a room",
+   "input": {
+    "type": "object",
+    "properties": {
+     "room_name": {
+      "type": "string",
+      "description": ""
+     },
+     "ids": {
+      "type": "array",
+      "description": "List of participant ids (max 100) to eject from the existing meeting session."
+     },
+     "user_ids": {
+      "type": "array",
+      "description": "List of user_ids (max 100) to eject from the existing meeting session."
+     },
+     "ban": {
+      "type": "boolean",
+      "description": "If true, participants are prevented from (re)joining with the given user_ids."
+     }
+    },
+    "required": [
+     "room_name"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.daily.co/v1/rooms/{room_name}/eject",
+    "path": [
+     "room_name"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "ids",
+     "user_ids",
+     "ban"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "daily.get_domain_config",
+   "name": "Get domain configuration",
+   "description": "Get top-level configuration of your domain",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.daily.co/v1/",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "daily.get_domain_dialin_config_info",
+   "name": "Domain dialin config :id",
+   "description": "Get info about an existing pinless_dialin or pin_dialin config",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.daily.co/v1/domain-dialin-config/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "daily.get_individual_meeting_info",
+   "name": "Meetings :meeting",
+   "description": "retrieve info about a particular meeting",
+   "input": {
+    "type": "object",
+    "properties": {
+     "meeting": {
+      "type": "string",
+      "description": "the ID of the meeting session"
+     }
+    },
+    "required": [
+     "meeting"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.daily.co/v1/meetings/{meeting}",
+    "path": [
+     "meeting"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "daily.get_meeting_info",
+   "name": "Meetings",
+   "description": "retrieve meeting analytics",
+   "input": {
+    "type": "object",
+    "properties": {
+     "room": {
+      "type": "array",
+      "description": "A room name to filter meetings by. May be repeated (e.g. ?room=a&room=b) to filter by multiple rooms, up to a maximum of 100."
+     },
+     "timeframe_start": {
+      "type": "integer",
+      "description": ""
+     },
+     "timeframe_end": {
+      "type": "integer",
+      "description": ""
+     },
+     "limit": {
+      "type": "integer",
+      "description": ""
+     },
+     "starting_after": {
+      "type": "string",
+      "description": ""
+     },
+     "ending_before": {
+      "type": "string",
+      "description": ""
+     },
+     "ongoing": {
+      "type": "boolean",
+      "description": ""
+     },
+     "no_participants": {
+      "type": "boolean",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.daily.co/v1/meetings",
+    "path": [],
+    "query": [
+     "room",
+     "timeframe_start",
+     "timeframe_end",
+     "limit",
+     "starting_after",
+     "ending_before",
+     "ongoing",
+     "no_participants"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "daily.get_meeting_participants",
+   "name": "Meetings :meeting participants",
+   "description": "retrieve info about the participants in a particular meeting",
+   "input": {
+    "type": "object",
+    "properties": {
+     "meeting": {
+      "type": "string",
+      "description": "the ID of the meeting session"
+     },
+     "limit": {
+      "type": "integer",
+      "description": "the largest number of participant records to return"
+     },
+     "joined_after": {
+      "type": "string",
+      "description": "limit to participants who joined after the given participant, identified by `participant_id`"
+     },
+     "joined_before": {
+      "type": "string",
+      "description": "limit to participants who joined before the given participant, identified by `participant_id`"
+     }
+    },
+    "required": [
+     "meeting"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.daily.co/v1/meetings/{meeting}/participants",
+    "path": [
+     "meeting"
+    ],
+    "query": [
+     "limit",
+     "joined_after",
+     "joined_before"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "daily.get_presence",
+   "name": "Presence",
+   "description": "/presence",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.daily.co/v1/presence",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "daily.get_recording_info",
+   "name": "Recordings :id",
+   "description": "Get info about a recording",
+   "input": {
+    "type": "object",
+    "properties": {
+     "recording_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "recording_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.daily.co/v1/recordings/{recording_id}",
+    "path": [
+     "recording_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "daily.get_recording_link",
+   "name": "Recordings :id access link",
+   "description": "Generate an access link for a recording. The `download_link` is a short-lived signed URL: see the [access links guide](/docs/rest-api/access-links) for more information.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "recording_id": {
+      "type": "string",
+      "description": ""
+     },
+     "valid_for_secs": {
+      "type": "integer",
+      "description": "How long the returned `download_link` remains valid, in seconds. Accepts 900 (15 minutes) through 43200 (12 hours). A value outside that range returns a `400`. Read the response's `expires` field rather than adding `valid_for_secs` to the current time. `expires` is the Unix timestamp at which the link stops working, and it is authoritative when Daily grants a shorter lifetime than the one requeste"
+     }
+    },
+    "required": [
+     "recording_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.daily.co/v1/recordings/{recording_id}/access-link",
+    "path": [
+     "recording_id"
+    ],
+    "query": [
+     "valid_for_secs"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "daily.get_room_config",
+   "name": "Rooms :name",
+   "description": "Get info about a room",
+   "input": {
+    "type": "object",
+    "properties": {
+     "room_name": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "room_name"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.daily.co/v1/rooms/{room_name}",
+    "path": [
+     "room_name"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "daily.get_room_presence",
+   "name": "Rooms :name presence",
+   "description": "Get a presence snapshot for a room",
+   "input": {
+    "type": "object",
+    "properties": {
+     "room_name": {
+      "type": "string",
+      "description": "The name of the room"
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Sets the number of participants returned."
+     },
+     "userId": {
+      "type": "string",
+      "description": "Returns presence for the user with the given userId, if available. The userId is specified via a [meeting token](/products/rest-api/meeting-tokens/config#user_id)."
+     },
+     "userName": {
+      "type": "string",
+      "description": "Returns presence for the user with the given name, if available."
+     }
+    },
+    "required": [
+     "room_name"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.daily.co/v1/rooms/{room_name}/presence",
+    "path": [
+     "room_name"
+    ],
+    "query": [
+     "limit",
+     "userId",
+     "userName"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "daily.get_session_data",
+   "name": "Rooms :name get session data",
+   "description": "Gets meeting session data",
+   "input": {
+    "type": "object",
+    "properties": {
+     "room_name": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "room_name"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.daily.co/v1/rooms/{room_name}/get-session-data",
+    "path": [
+     "room_name"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "daily.get_sip_client",
+   "name": "Sip clients {username}",
+   "description": "Fetch one SIP client by username. The password is never returned.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "username"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.daily.co/v1/sip-clients/{username}",
+    "path": [
+     "username"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "daily.get_sip_trunk",
+   "name": "Sip trunk {id}",
+   "description": "Fetch one SIP trunk by id.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.daily.co/v1/sip-trunk/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "daily.get_transcript_info",
+   "name": "Transcript :transcript id",
+   "description": "Get info about a Transcript",
+   "input": {
+    "type": "object",
+    "properties": {
+     "transcriptId": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "transcriptId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.daily.co/v1/transcript/{transcriptId}",
+    "path": [
+     "transcriptId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "daily.get_transcript_link",
+   "name": "Transcript :id access link",
+   "description": "Generate an access link for a transcript. The `link` is a short-lived signed URL: see the [access links guide](/docs/rest-api/access-links) for more information.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "transcriptId": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "transcriptId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.daily.co/v1/transcript/{transcriptId}/access-link",
+    "path": [
+     "transcriptId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "daily.get_webhook_config",
+   "name": "Webhooks :id",
+   "description": "Get info about a webhook",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.daily.co/v1/webhooks/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "daily.get_webhooks",
+   "name": "Webhooks",
+   "description": "Get Webhooks",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.daily.co/v1/webhooks",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "daily.list_apilogs",
+   "name": "Logs api",
+   "description": "/logs/api",
+   "input": {
+    "type": "object",
+    "properties": {
+     "starting_after": {
+      "type": "string",
+      "description": "Given the log ID, will return all records after that ID. See [pagination docs](/docs/rest-api#pagination)"
+     },
+     "ending_before": {
+      "type": "string",
+      "description": "Given the log ID, will return all records before that ID. See [pagination docs](/docs/rest-api#pagination)"
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Limit the number of logs and/or metrics returned"
+     },
+     "source": {
+      "type": "string",
+      "description": "The source of the given logs, either `\"api\"` or `\"webhook\"`"
+     },
+     "url": {
+      "type": "string",
+      "description": "Either the webhook server URL, or the API endpoint that was logged"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.daily.co/v1/logs/api",
+    "path": [],
+    "query": [
+     "starting_after",
+     "ending_before",
+     "limit",
+     "source",
+     "url"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "daily.list_available_numbers",
+   "name": "List available numbers",
+   "description": "Search for available phone numbers to purchase",
+   "input": {
+    "type": "object",
+    "properties": {
+     "areacode": {
+      "type": "string",
+      "description": "An areacode to search within."
+     },
+     "region": {
+      "type": "string",
+      "description": "A region or state to search within. Must be an ISO 3166-2 alpha-2 code, i.e. CA for California. Cannot be used in combination with areacode."
+     },
+     "city": {
+      "type": "string",
+      "description": "A specific City to search within. Example, New York. The string must be url encoded because it is a url parameter. Must be used in combination with region. Cannot be used in combination with areacode, starts_with, contains, or ends_with."
+     },
+     "contains": {
+      "type": "string",
+      "description": "A string of 3 to 7 digits that should appear somewhere in the number."
+     },
+     "starts_with": {
+      "type": "string",
+      "description": "A string of 3 to 7 digits that should be used as the start of a number. Cannot be used in combination with contains or ends_with."
+     },
+     "ends_with": {
+      "type": "string",
+      "description": "A string of 3 to 7 digits that should be used as the end of a number. Cannot be used in combination with starts_with or contains."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.daily.co/v1/list-available-numbers",
+    "path": [],
+    "query": [
+     "areacode",
+     "region",
+     "city",
+     "contains",
+     "starts_with",
+     "ends_with"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "daily.list_domain_dialin_configs",
+   "name": "Domain dialin config",
+   "description": "List all the pinless_dialin and pin_dialin configs for the domain, with pagination",
+   "input": {
+    "type": "object",
+    "properties": {
+     "limit": {
+      "type": "integer",
+      "description": ""
+     },
+     "ending_before": {
+      "type": "string",
+      "description": ""
+     },
+     "starting_after": {
+      "type": "string",
+      "description": ""
+     },
+     "phone_number": {
+      "type": "string",
+      "description": ""
+     },
+     "phone_numbers": {
+      "type": "string",
+      "description": "a comma separated list of phone numbers to filter by. The filter will match any phone number that contains the provided numbers as a substring (partial match)."
+     },
+     "sip_username": {
+      "type": "string",
+      "description": "The sip username associated with this dial-in config (only the username part of the sip uri)"
+     },
+     "name_prefix": {
+      "type": "string",
+      "description": ""
+     },
+     "type": {
+      "type": "string",
+      "description": "The type of dial-in config. It can be pinless_dialin or pin_dialin."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.daily.co/v1/domain-dialin-config",
+    "path": [],
+    "query": [
+     "limit",
+     "ending_before",
+     "starting_after",
+     "phone_number",
+     "phone_numbers",
+     "sip_username",
+     "name_prefix",
+     "type"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "daily.list_logs",
+   "name": "Logs",
+   "description": "/logs",
+   "input": {
+    "type": "object",
+    "properties": {
+     "includeLogs": {
+      "type": "boolean",
+      "description": "If true, you get a \"logs\" array in the results"
+     },
+     "includeMetrics": {
+      "type": "boolean",
+      "description": "If true, results have \"metrics\" array"
+     },
+     "userSessionId": {
+      "type": "string",
+      "description": "Filters by this user ID (aka \"participant ID\"). Required if `mtgSessionId` is not present in the request"
+     },
+     "mtgSessionId": {
+      "type": "string",
+      "description": "Filters by this Session ID. Required if `userSessionId` is not present in the request"
+     },
+     "logLevel": {
+      "type": "string",
+      "description": "Filters by the given log level name",
+      "enum": [
+       "ERROR",
+       "INFO",
+       "DEBUG"
+      ]
+     },
+     "order": {
+      "type": "string",
+      "description": "ASC or DESC, case insensitive"
+     },
+     "startTime": {
+      "type": "integer",
+      "description": "A JS timestamp (ms since epoch in UTC)"
+     },
+     "endTime": {
+      "type": "integer",
+      "description": "A JS timestamp (ms since epoch), defaults to the current time"
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Limit the number of logs and/or metrics returned"
+     },
+     "offset": {
+      "type": "integer",
+      "description": "Number of records to skip before returning results"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.daily.co/v1/logs",
+    "path": [],
+    "query": [
+     "includeLogs",
+     "includeMetrics",
+     "userSessionId",
+     "mtgSessionId",
+     "logLevel",
+     "order",
+     "startTime",
+     "endTime",
+     "limit",
+     "offset"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "daily.list_recordings",
+   "name": "Recordings",
+   "description": "List recordings",
+   "input": {
+    "type": "object",
+    "properties": {
+     "limit": {
+      "type": "integer",
+      "description": ""
+     },
+     "ending_before": {
+      "type": "string",
+      "description": ""
+     },
+     "starting_after": {
+      "type": "string",
+      "description": ""
+     },
+     "room_name": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.daily.co/v1/recordings",
+    "path": [],
+    "query": [
+     "limit",
+     "ending_before",
+     "starting_after",
+     "room_name"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "daily.list_rooms",
+   "name": "Rooms",
+   "description": "List rooms",
+   "input": {
+    "type": "object",
+    "properties": {
+     "limit": {
+      "type": "integer",
+      "description": "Sets the number of rooms listed"
+     },
+     "ending_before": {
+      "type": "string",
+      "description": "Returns room objects created before a provided room id"
+     },
+     "starting_after": {
+      "type": "string",
+      "description": "Returns room objects created after a provided room id"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.daily.co/v1/rooms",
+    "path": [],
+    "query": [
+     "limit",
+     "ending_before",
+     "starting_after"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "daily.list_sip_clients",
+   "name": "Sip clients",
+   "description": "List the SIP clients registered for your domain (paginated). Passwords are never returned.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "limit": {
+      "type": "integer",
+      "description": "Max results (1-100, default 50)."
+     },
+     "offset": {
+      "type": "integer",
+      "description": "Number of results to skip (default 0)."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.daily.co/v1/sip-clients",
+    "path": [],
+    "query": [
+     "limit",
+     "offset"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "daily.list_sip_trunks",
+   "name": "Sip trunk",
+   "description": "List the SIP trunks for your domain (paginated).",
+   "input": {
+    "type": "object",
+    "properties": {
+     "limit": {
+      "type": "integer",
+      "description": "Max results (1-100, default 20)."
+     },
+     "starting_after": {
+      "type": "string",
+      "description": ""
+     },
+     "ending_before": {
+      "type": "string",
+      "description": ""
+     },
+     "trunk_name": {
+      "type": "string",
+      "description": "Substring match."
+     },
+     "description": {
+      "type": "string",
+      "description": "Substring match."
+     },
+     "enabled": {
+      "type": "boolean",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.daily.co/v1/sip-trunk",
+    "path": [],
+    "query": [
+     "limit",
+     "starting_after",
+     "ending_before",
+     "trunk_name",
+     "description",
+     "enabled"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "daily.list_transcript",
+   "name": "Transcript",
+   "description": "List transcripts",
+   "input": {
+    "type": "object",
+    "properties": {
+     "limit": {
+      "type": "integer",
+      "description": ""
+     },
+     "ending_before": {
+      "type": "string",
+      "description": ""
+     },
+     "starting_after": {
+      "type": "string",
+      "description": ""
+     },
+     "roomId": {
+      "type": "string",
+      "description": ""
+     },
+     "room_name": {
+      "type": "string",
+      "description": ""
+     },
+     "mtgSessionId": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.daily.co/v1/transcript",
+    "path": [],
+    "query": [
+     "limit",
+     "ending_before",
+     "starting_after",
+     "roomId",
+     "room_name",
+     "mtgSessionId"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "daily.pinless_call_update",
+   "name": "Dialin pinless call update",
+   "description": "Direct a SIP or PSTN call on hold to a specified SIP URI associated to a Daily Room.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "callId": {
+      "type": "string",
+      "description": "CallId is represented by UUID and represents the sessionId in the SIP Network. This is obtained from the [webhook payload](/guides/features/dial-in-dial-out/sip-interconnect-pinless)."
+     },
+     "callDomain": {
+      "type": "string",
+      "description": "Call Domain is represented by UUID and represents your Daily Domain on the SIP Network. This is obtained from the [webhook payload](/guides/features/dial-in-dial-out/sip-interconnect-pinless)."
+     },
+     "sipUri": {
+      "type": "string",
+      "description": "This SIP URI is associated to the Daily Room that you want to forward the SIP Interconnect call to."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.daily.co/v1/dialin/pinlessCallUpdate",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "callId",
+     "callDomain",
+     "sipUri"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "daily.purchased_phone_numbers",
+   "name": "Purchased phone numbers",
+   "description": "List the purchased phone numbers for this domain",
+   "input": {
+    "type": "object",
+    "properties": {
+     "limit": {
+      "type": "integer",
+      "description": ""
+     },
+     "ending_before": {
+      "type": "string",
+      "description": ""
+     },
+     "starting_after": {
+      "type": "string",
+      "description": ""
+     },
+     "filter_name": {
+      "type": "string",
+      "description": ""
+     },
+     "filter_number": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.daily.co/v1/purchased-phone-numbers",
+    "path": [],
+    "query": [
+     "limit",
+     "ending_before",
+     "starting_after",
+     "filter_name",
+     "filter_number"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "daily.release_phone_number",
+   "name": "Release phone number :id",
+   "description": "Release a purchased number. The number is referenced by its id. A number cannot be deleted within the 14 days of purchase. Calling this API before this period expires results in an error.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.daily.co/v1/release-phone-number/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "daily.room_dial_out_send_dtmf",
+   "name": "Rooms :name dial out send dtmf",
+   "description": "send DTMF digits on the dial-out",
+   "input": {
+    "type": "object",
+    "properties": {
+     "room_name": {
+      "type": "string",
+      "description": ""
+     },
+     "sessionId": {
+      "type": "string",
+      "description": "The participant ID of the dialOut session"
+     },
+     "tones": {
+      "type": "string",
+      "description": "Combined string of DTMF tones to send (e.g., \"1234#\"). Maximum 20 characters."
+     },
+     "digitDurationMs": {
+      "type": "integer",
+      "description": "Duration in milliseconds that Daily signals for each DTMF digit. This is not the gap between digits: when several tones are sent in one request over SIP INFO, Daily waits a fixed 100ms between them and that gap is not configurable. Must be between 50 and 2000. The default duration is 500ms."
+     }
+    },
+    "required": [
+     "room_name",
+     "sessionId",
+     "tones"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.daily.co/v1/rooms/{room_name}/dialOut/sendDTMF",
+    "path": [
+     "room_name"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "sessionId",
+     "tones",
+     "digitDurationMs"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "daily.room_dial_out_start",
+   "name": "Rooms :name dial out start",
+   "description": "Start a dial-out in a room",
+   "input": {
+    "type": "object",
+    "properties": {
+     "room_name": {
+      "type": "string",
+      "description": ""
+     },
+     "sipUri": {
+      "type": "string",
+      "description": "sipUri to call. uri should start with `sip:`. Query parameters appended to the sipUri will appear as SIP Headers in the INTIVE message at the remote SIP endpoint. Headers must start with \"X-\", e.g. to append a header \"myexampleHeader\" it is appended to sipUri as \"sip:?X-header-1=val-1&X-header-2=val-2\"."
+     },
+     "phoneNumber": {
+      "type": "string",
+      "description": "phone number to call. number must start with country code e.g `+1`"
+     },
+     "extension": {
+      "type": "string",
+      "description": "the extension to dial after dialed number is connected. e.g. `1234`"
+     },
+     "waitBeforeExtensionDialSec": {
+      "type": "integer",
+      "description": "number of seconds to wait before dialing the extension, once dialed number is connected."
+     },
+     "displayName": {
+      "type": "string",
+      "description": "The sipUri or The phone participant is shown with this name in the web UI."
+     },
+     "userId": {
+      "type": "string",
+      "description": "userId to assign to the participant. default `userId` is null."
+     },
+     "callerId": {
+      "type": "string",
+      "description": "The `id` of a [purchased phone number](/reference/rest-api/phone-numbers/list-purchased) on the domain, not the phone number itself. The phone number associated with this `id` is displayed as the caller ID on the called phone."
+     },
+     "callerName": {
+      "type": "string",
+      "description": "SIP only. The name the called device shows for the incoming call: the display-name of the SIP `From` header. Independent of `displayName`, which names the participant inside the room. Max 70 characters; `\"`, `\\` and control characters are rejected. Not allowed with `phoneNumber`. A back-to-back user agent (B2BUA) between Daily and the device decides what its own leg shows; see [caller name on the "
+     },
+     "video": {
+      "type": "boolean",
+      "description": "Enable SIP video in the room, only available for sipUri."
+     },
+     "videoSettings": {
+      "type": "object",
+      "description": "Video settings for the SIP participant. Only applicable when `video` is `true`."
+     },
+     "provider": {
+      "type": "string",
+      "description": "The SIP provider for this dial-out. Applies to `sipUri` dial-out only. `\"daily\"` dials the `sipUri` through the Daily SIP provider, the recommended choice for SIP dial-out. A `phoneNumber` dial-out with `\"daily\"` returns `400`. See [SIP providers](/docs/guides/features/dial-in-dial-out#sip-providers).",
+      "enum": [
+       "signalwire",
+       "daily"
+      ]
+     },
+     "codecs": {
+      "type": "object",
+      "description": "Specify the codecs to use for dial-out."
+     },
+     "permissions": {
+      "type": "object",
+      "description": "Sets which media the dialed participant can receive."
+     }
+    },
+    "required": [
+     "room_name"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.daily.co/v1/rooms/{room_name}/dialOut/start",
+    "path": [
+     "room_name"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "sipUri",
+     "phoneNumber",
+     "extension",
+     "waitBeforeExtensionDialSec",
+     "displayName",
+     "userId",
+     "callerId",
+     "callerName",
+     "video",
+     "videoSettings",
+     "provider",
+     "codecs",
+     "permissions"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "daily.room_dial_out_stop",
+   "name": "Rooms :name dial out stop",
+   "description": "Stop a dial out in a room",
+   "input": {
+    "type": "object",
+    "properties": {
+     "room_name": {
+      "type": "string",
+      "description": ""
+     },
+     "sessionId": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "room_name"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.daily.co/v1/rooms/{room_name}/dialOut/stop",
+    "path": [
+     "room_name"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "sessionId"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "daily.room_livestreaming_add_endpoints",
+   "name": "Rooms :name live streaming add endpoints",
+   "description": "Add RTMP destinations to a live stream that is already running in a room. Each `endpoint` must be the `name` of an `rtmp` entry in the room's [`streaming_endpoints`](/reference/rest-api/rooms/config#streaming_endpoints) property; unknown names are rejected with a `400`. This is the REST counterpart of daily-js [`addLiveStreamingEndpoints()`](/reference/daily-js/instance-methods/add-live-streaming-",
+   "input": {
+    "type": "object",
+    "properties": {
+     "room_name": {
+      "type": "string",
+      "description": ""
+     },
+     "endpoints": {
+      "type": "array",
+      "description": "The destinations to add or remove. Each `endpoint` is the `name` of an `rtmp` entry in the room's `streaming_endpoints` property."
+     },
+     "instanceId": {
+      "type": "string",
+      "description": "UUID of the live streaming instance to change. Required when several live streams are running in the room; otherwise the default instance is used."
+     }
+    },
+    "required": [
+     "endpoints",
+     "room_name"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.daily.co/v1/rooms/{room_name}/live-streaming/add-endpoints",
+    "path": [
+     "room_name"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "endpoints",
+     "instanceId"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "daily.room_livestreaming_remove_endpoints",
+   "name": "Rooms :name live streaming remove endpoints",
+   "description": "Remove RTMP destinations from a live stream that is running in a room. Each `endpoint` must be the `name` of an `rtmp` entry in the room's [`streaming_endpoints`](/reference/rest-api/rooms/config#streaming_endpoints) property; unknown names are rejected with a `400`. This is the REST counterpart of daily-js [`removeLiveStreamingEndpoints()`](/reference/daily-js/instance-methods/remove-live-streami",
+   "input": {
+    "type": "object",
+    "properties": {
+     "room_name": {
+      "type": "string",
+      "description": ""
+     },
+     "endpoints": {
+      "type": "array",
+      "description": "The destinations to add or remove. Each `endpoint` is the `name` of an `rtmp` entry in the room's `streaming_endpoints` property."
+     },
+     "instanceId": {
+      "type": "string",
+      "description": "UUID of the live streaming instance to change. Required when several live streams are running in the room; otherwise the default instance is used."
+     }
+    },
+    "required": [
+     "endpoints",
+     "room_name"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.daily.co/v1/rooms/{room_name}/live-streaming/remove-endpoints",
+    "path": [
+     "room_name"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "endpoints",
+     "instanceId"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "daily.room_livestreaming_start",
+   "name": "Rooms :name live streaming start",
+   "description": "Start a live stream in a room",
+   "input": {
+    "type": "object",
+    "properties": {
+     "room_name": {
+      "type": "string",
+      "description": ""
+     },
+     "width": {
+      "type": "number",
+      "description": "Property that specifies the output width of the given stream."
+     },
+     "height": {
+      "type": "number",
+      "description": "Property that specifies the output height of the given stream."
+     },
+     "fps": {
+      "type": "number",
+      "description": "Property that specifies the video frame rate per second."
+     },
+     "videoBitrate": {
+      "type": "number",
+      "description": "Property that specifies the video bitrate for the output video in kilobits per second (kbps)."
+     },
+     "audioBitrate": {
+      "type": "number",
+      "description": "Property that specifies the audio bitrate for the output audio in kilobits per second (kbps)."
+     },
+     "minIdleTimeOut": {
+      "type": "number",
+      "description": "Amount of time in seconds to wait before ending a recording or live stream when the room is idle (e.g. when all users have muted video and audio). Default: 300 (seconds). Note: Once the timeout has been reached, it typically takes an additional 1-3 minutes for the recording or live stream to be shut down."
+     },
+     "maxDuration": {
+      "type": "number",
+      "description": "Maximum duration in seconds after which recording/streaming is forcefully stopped. Default: \\`15000\\` seconds (3 hours). This is a preventive circuit breaker to prevent billing surprises in case a user starts recording/streaming and leaves the room."
+     },
+     "backgroundColor": {
+      "type": "string",
+      "description": "Specifies the background color of the stream, formatted as \\#rrggbb or \\#aarrggbb string."
+     },
+     "instanceId": {
+      "type": "string",
+      "description": "UUID for a streaming or recording session. Used when multiple streaming or recording sessions are running for single room."
+     },
+     "type": {
+      "type": "string",
+      "description": "The type of recording that will be started.",
+      "enum": [
+       "cloud",
+       "cloud-audio-only",
+       "raw-tracks"
+      ]
+     },
+     "layout": {
+      "type": "string",
+      "description": ""
+     },
+     "dataOutputs": {
+      "type": "array",
+      "description": "Specifies the types of recording-associated data outputs (\"event-json\", \"transcript-webvtt\", \"chat-webvtt\") to start. Value must be an array listing the requested data outputs."
+     },
+     "rtmpUrl": {
+      "type": "string",
+      "description": ""
+     },
+     "endpoints": {
+      "type": "array",
+      "description": ""
+     }
+    },
+    "required": [
+     "room_name"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.daily.co/v1/rooms/{room_name}/live-streaming/start",
+    "path": [
+     "room_name"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "width",
+     "height",
+     "fps",
+     "videoBitrate",
+     "audioBitrate",
+     "minIdleTimeOut",
+     "maxDuration",
+     "backgroundColor",
+     "instanceId",
+     "type",
+     "layout",
+     "dataOutputs",
+     "rtmpUrl",
+     "endpoints"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "daily.room_livestreaming_stop",
+   "name": "Rooms :name live streaming stop",
+   "description": "Stop a live stream in a room",
+   "input": {
+    "type": "object",
+    "properties": {
+     "room_name": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "room_name"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.daily.co/v1/rooms/{room_name}/live-streaming/stop",
+    "path": [
+     "room_name"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "daily.room_livestreaming_update",
+   "name": "Rooms :name live streaming update",
+   "description": "Update the layout of a live stream that is running in a room. The update is asynchronous. A `200` means the request was accepted and forwarded to the live stream, not that it has taken effect. The [`streaming.updated`](/reference/rest-api/webhooks/events/streaming-updated) webhook confirms the request was processed; anything the media server rejects or fails to apply later arrives as a [`streaming",
+   "input": {
+    "type": "object",
+    "properties": {
+     "room_name": {
+      "type": "string",
+      "description": ""
+     },
+     "width": {
+      "type": "number",
+      "description": "Property that specifies the output width of the given stream."
+     },
+     "height": {
+      "type": "number",
+      "description": "Property that specifies the output height of the given stream."
+     },
+     "fps": {
+      "type": "number",
+      "description": "Property that specifies the video frame rate per second."
+     },
+     "videoBitrate": {
+      "type": "number",
+      "description": "Property that specifies the video bitrate for the output video in kilobits per second (kbps)."
+     },
+     "audioBitrate": {
+      "type": "number",
+      "description": "Property that specifies the audio bitrate for the output audio in kilobits per second (kbps)."
+     },
+     "minIdleTimeOut": {
+      "type": "number",
+      "description": "Amount of time in seconds to wait before ending a recording or live stream when the room is idle (e.g. when all users have muted video and audio). Default: 300 (seconds). Note: Once the timeout has been reached, it typically takes an additional 1-3 minutes for the recording or live stream to be shut down."
+     },
+     "maxDuration": {
+      "type": "number",
+      "description": "Maximum duration in seconds after which recording/streaming is forcefully stopped. Default: \\`15000\\` seconds (3 hours). This is a preventive circuit breaker to prevent billing surprises in case a user starts recording/streaming and leaves the room."
+     },
+     "backgroundColor": {
+      "type": "string",
+      "description": "Specifies the background color of the stream, formatted as \\#rrggbb or \\#aarrggbb string."
+     },
+     "instanceId": {
+      "type": "string",
+      "description": "UUID for a streaming or recording session. Used when multiple streaming or recording sessions are running for single room."
+     },
+     "type": {
+      "type": "string",
+      "description": "The type of recording that will be started.",
+      "enum": [
+       "cloud",
+       "cloud-audio-only",
+       "raw-tracks"
+      ]
+     },
+     "layout": {
+      "type": "string",
+      "description": ""
+     },
+     "dataOutputs": {
+      "type": "array",
+      "description": "Specifies the types of recording-associated data outputs (\"event-json\", \"transcript-webvtt\", \"chat-webvtt\") to start. Value must be an array listing the requested data outputs."
+     },
+     "rtmpUrl": {
+      "type": "string",
+      "description": ""
+     },
+     "endpoints": {
+      "type": "array",
+      "description": ""
+     }
+    },
+    "required": [
+     "room_name"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.daily.co/v1/rooms/{room_name}/live-streaming/update",
+    "path": [
+     "room_name"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "width",
+     "height",
+     "fps",
+     "videoBitrate",
+     "audioBitrate",
+     "minIdleTimeOut",
+     "maxDuration",
+     "backgroundColor",
+     "instanceId",
+     "type",
+     "layout",
+     "dataOutputs",
+     "rtmpUrl",
+     "endpoints"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "daily.room_recordings_start",
+   "name": "Rooms :name recordings start",
+   "description": "Start a recording in a room",
+   "input": {
+    "type": "object",
+    "properties": {
+     "room_name": {
+      "type": "string",
+      "description": ""
+     },
+     "width": {
+      "type": "number",
+      "description": "Property that specifies the output width of the given stream."
+     },
+     "height": {
+      "type": "number",
+      "description": "Property that specifies the output height of the given stream."
+     },
+     "fps": {
+      "type": "number",
+      "description": "Property that specifies the video frame rate per second."
+     },
+     "videoBitrate": {
+      "type": "number",
+      "description": "Property that specifies the video bitrate for the output video in kilobits per second (kbps)."
+     },
+     "audioBitrate": {
+      "type": "number",
+      "description": "Property that specifies the audio bitrate for the output audio in kilobits per second (kbps)."
+     },
+     "minIdleTimeOut": {
+      "type": "number",
+      "description": "Amount of time in seconds to wait before ending a recording or live stream when the room is idle (e.g. when all users have muted video and audio). Default: 300 (seconds). Note: Once the timeout has been reached, it typically takes an additional 1-3 minutes for the recording or live stream to be shut down."
+     },
+     "maxDuration": {
+      "type": "number",
+      "description": "Maximum duration in seconds after which recording/streaming is forcefully stopped. Default: \\`15000\\` seconds (3 hours). This is a preventive circuit breaker to prevent billing surprises in case a user starts recording/streaming and leaves the room."
+     },
+     "backgroundColor": {
+      "type": "string",
+      "description": "Specifies the background color of the stream, formatted as \\#rrggbb or \\#aarrggbb string."
+     },
+     "instanceId": {
+      "type": "string",
+      "description": "UUID for a streaming or recording session. Used when multiple streaming or recording sessions are running for single room."
+     },
+     "type": {
+      "type": "string",
+      "description": "The type of recording that will be started.",
+      "enum": [
+       "cloud",
+       "cloud-audio-only",
+       "raw-tracks"
+      ]
+     },
+     "layout": {
+      "type": "string",
+      "description": ""
+     },
+     "dataOutputs": {
+      "type": "array",
+      "description": "Specifies the types of recording-associated data outputs (\"event-json\", \"transcript-webvtt\", \"chat-webvtt\") to start. Value must be an array listing the requested data outputs."
+     }
+    },
+    "required": [
+     "room_name"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.daily.co/v1/rooms/{room_name}/recordings/start",
+    "path": [
+     "room_name"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "width",
+     "height",
+     "fps",
+     "videoBitrate",
+     "audioBitrate",
+     "minIdleTimeOut",
+     "maxDuration",
+     "backgroundColor",
+     "instanceId",
+     "type",
+     "layout",
+     "dataOutputs"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "daily.room_recordings_stop",
+   "name": "Rooms :name recordings stop",
+   "description": "Stop a recording in a room",
+   "input": {
+    "type": "object",
+    "properties": {
+     "room_name": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "room_name"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.daily.co/v1/rooms/{room_name}/recordings/stop",
+    "path": [
+     "room_name"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "daily.room_recordings_update",
+   "name": "Rooms :name recordings update",
+   "description": "Update a recording in a room",
+   "input": {
+    "type": "object",
+    "properties": {
+     "room_name": {
+      "type": "string",
+      "description": ""
+     },
+     "width": {
+      "type": "number",
+      "description": "Property that specifies the output width of the given stream."
+     },
+     "height": {
+      "type": "number",
+      "description": "Property that specifies the output height of the given stream."
+     },
+     "fps": {
+      "type": "number",
+      "description": "Property that specifies the video frame rate per second."
+     },
+     "videoBitrate": {
+      "type": "number",
+      "description": "Property that specifies the video bitrate for the output video in kilobits per second (kbps)."
+     },
+     "audioBitrate": {
+      "type": "number",
+      "description": "Property that specifies the audio bitrate for the output audio in kilobits per second (kbps)."
+     },
+     "minIdleTimeOut": {
+      "type": "number",
+      "description": "Amount of time in seconds to wait before ending a recording or live stream when the room is idle (e.g. when all users have muted video and audio). Default: 300 (seconds). Note: Once the timeout has been reached, it typically takes an additional 1-3 minutes for the recording or live stream to be shut down."
+     },
+     "maxDuration": {
+      "type": "number",
+      "description": "Maximum duration in seconds after which recording/streaming is forcefully stopped. Default: \\`15000\\` seconds (3 hours). This is a preventive circuit breaker to prevent billing surprises in case a user starts recording/streaming and leaves the room."
+     },
+     "backgroundColor": {
+      "type": "string",
+      "description": "Specifies the background color of the stream, formatted as \\#rrggbb or \\#aarrggbb string."
+     },
+     "instanceId": {
+      "type": "string",
+      "description": "UUID for a streaming or recording session. Used when multiple streaming or recording sessions are running for single room."
+     },
+     "type": {
+      "type": "string",
+      "description": "specify type of recording (`cloud`, `raw-tracks`, `local`) to start. Particular recording type must be enabled for the room or domain with enable_recording property."
+     },
+     "layout": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "room_name"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.daily.co/v1/rooms/{room_name}/recordings/update",
+    "path": [
+     "room_name"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "width",
+     "height",
+     "fps",
+     "videoBitrate",
+     "audioBitrate",
+     "minIdleTimeOut",
+     "maxDuration",
+     "backgroundColor",
+     "instanceId",
+     "type",
+     "layout"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "daily.room_sip_call_transfer",
+   "name": "Rooms :name sip call transfer",
+   "description": "transfer sip/pstn call. Not supported for a session on the Daily SIP provider (`provider: \"daily\"`); use `sipRefer` for those sessions.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "room_name": {
+      "type": "string",
+      "description": ""
+     },
+     "sessionId": {
+      "type": "string",
+      "description": ""
+     },
+     "toEndPoint": {
+      "type": "string",
+      "description": "the SIP/phoneNumber endpoint to transfer the call to."
+     },
+     "callerId": {
+      "type": "string",
+      "description": "The `id` of a [purchased phone number](/reference/rest-api/phone-numbers/list-purchased) on the domain, not the phone number itself. The phone number associated with this `id` is displayed as the caller ID on the called phone."
+     },
+     "callerName": {
+      "type": "string",
+      "description": "The name the destination device shows for the incoming call: the display-name of the SIP `From` header. Only valid when `toEndPoint` is a SIP address, and not accepted by `/sipRefer`. Max 70 characters; `\"`, `\\` and control characters are rejected. A back-to-back user agent (B2BUA) between Daily and the device decides what its own leg shows; see [caller name on the called device](/docs/guides/feat"
+     },
+     "waitBeforeExtensionDialSec": {
+      "type": "integer",
+      "description": "number of seconds to wait before dialing the extension, once dialed number is connected."
+     },
+     "extension": {
+      "type": "string",
+      "description": "the extension to dial after dialed number is connected. e.g. `1234`"
+     }
+    },
+    "required": [
+     "room_name"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.daily.co/v1/rooms/{room_name}/sipCallTransfer",
+    "path": [
+     "room_name"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "sessionId",
+     "toEndPoint",
+     "callerId",
+     "callerName",
+     "waitBeforeExtensionDialSec",
+     "extension"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "daily.room_sip_refer",
+   "name": "Rooms :name sip refer",
+   "description": "refer a sip call to other sip endpoint. Works with both SIP providers.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "room_name": {
+      "type": "string",
+      "description": ""
+     },
+     "sessionId": {
+      "type": "string",
+      "description": ""
+     },
+     "toEndPoint": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "room_name"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.daily.co/v1/rooms/{room_name}/sipRefer",
+    "path": [
+     "room_name"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "sessionId",
+     "toEndPoint"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "daily.room_transcription_start",
+   "name": "Rooms :name transcription start",
+   "description": "Start a transcription in a room",
+   "input": {
+    "type": "object",
+    "properties": {
+     "room_name": {
+      "type": "string",
+      "description": ""
+     },
+     "language": {
+      "type": "string",
+      "description": "See Deepgram's documentation for [`language`](https://developers.deepgram.com/docs/language)"
+     },
+     "model": {
+      "type": "string",
+      "description": "See Deepgram's documentation for [`model`](https://developers.deepgram.com/docs/model)"
+     },
+     "tier": {
+      "type": "string",
+      "description": "This field is deprecated, use `model` instead"
+     },
+     "profanity_filter": {
+      "type": "boolean",
+      "description": "See Deepgram's documentation for [`profanity filter`](https://developers.deepgram.com/docs/profanity-filter)"
+     },
+     "punctuate": {
+      "type": "boolean",
+      "description": "See Deepgram's documentation for [`punctuate`](https://developers.deepgram.com/docs/punctuation)"
+     },
+     "endpointing": {
+      "type": "string",
+      "description": "See Deepgram's documentation for [`endpointing`](https://developers.deepgram.com/docs/endpointing)"
+     },
+     "redact": {
+      "type": "string",
+      "description": "See Deepgram's documentation for [`redact`](https://developers.deepgram.com/docs/redaction)"
+     },
+     "extra": {
+      "type": "object",
+      "description": "Specify any Deepgram parameters. See Deepgram's documentation for [available streaming options](https://developers.deepgram.com/docs/features-overview)"
+     },
+     "includeRawResponse": {
+      "type": "boolean",
+      "description": "Whether Deepgram's raw response should be included in all transcription messages"
+     },
+     "instanceId": {
+      "type": "string",
+      "description": "A developer provided ID of an instance, which is used for multi-instance transcription."
+     },
+     "participants": {
+      "type": "array",
+      "description": "A list of participant IDs to be transcribed. Only the participant IDs included in this array will be processed."
+     },
+     "transcription_geo": {
+      "type": "string",
+      "description": "The geographic region where transcription is processed. Set to `eu` to ensure transcription data stays within the European Union.",
+      "enum": [
+       "global",
+       "eu"
+      ]
+     }
+    },
+    "required": [
+     "room_name"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.daily.co/v1/rooms/{room_name}/transcription/start",
+    "path": [
+     "room_name"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "language",
+     "model",
+     "tier",
+     "profanity_filter",
+     "punctuate",
+     "endpointing",
+     "redact",
+     "extra",
+     "includeRawResponse",
+     "instanceId",
+     "participants",
+     "transcription_geo"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "daily.room_transcription_stop",
+   "name": "Rooms :name transcription stop",
+   "description": "Stop a transcription in a room",
+   "input": {
+    "type": "object",
+    "properties": {
+     "room_name": {
+      "type": "string",
+      "description": ""
+     },
+     "instanceId": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "room_name"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.daily.co/v1/rooms/{room_name}/transcription/stop",
+    "path": [
+     "room_name"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "instanceId"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "daily.room_transcription_update",
+   "name": "Rooms :name transcription update",
+   "description": "Update the set of participants being transcribed",
+   "input": {
+    "type": "object",
+    "properties": {
+     "room_name": {
+      "type": "string",
+      "description": ""
+     },
+     "instanceId": {
+      "type": "string",
+      "description": "instanceId to be updated."
+     },
+     "participants": {
+      "type": "array",
+      "description": "A list of participant IDs to be transcribed. Only the participant IDs included in this array will be processed"
+     }
+    },
+    "required": [
+     "room_name"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.daily.co/v1/rooms/{room_name}/transcription/update",
+    "path": [
+     "room_name"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "instanceId",
+     "participants"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "daily.rotate_sip_client",
+   "name": "Sip clients {username} rotate",
+   "description": "Rotate a SIP client's password. Supply a new `password` or let one be generated; the new password is returned ONCE. The client's SIP URI and expiry are unchanged.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "username": {
+      "type": "string",
+      "description": ""
+     },
+     "password": {
+      "type": "string",
+      "description": "Optional. 12-64 chars with at least one letter and one digit. If omitted, a new password is generated."
+     }
+    },
+    "required": [
+     "username"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.daily.co/v1/sip-clients/{username}/rotate",
+    "path": [
+     "username"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "password"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "daily.send_app_message",
+   "name": "Rooms :name send app message",
+   "description": "Send a message to participants in a room",
+   "input": {
+    "type": "object",
+    "properties": {
+     "room_name": {
+      "type": "string",
+      "description": ""
+     },
+     "data": {
+      "type": "object",
+      "description": "A javascript object that can be serialized into JSON. Data sent must be within the 4kb size limit."
+     },
+     "recipient": {
+      "type": "string",
+      "description": "Determines who will recieve the message. It can be either a participant session_id, or `*`. The `*` value is the default, and means that the message is a \"broadcast\" message intended for all participants."
+     }
+    },
+    "required": [
+     "room_name"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.daily.co/v1/rooms/{room_name}/send-app-message",
+    "path": [
+     "room_name"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "data",
+     "recipient"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "daily.set_domain_config",
+   "name": "Set domain configuration",
+   "description": "Set top-level configuration options for your domain",
+   "input": {
+    "type": "object",
+    "properties": {
+     "properties": {
+      "type": "object",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.daily.co/v1/",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "properties"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "daily.set_room_config",
+   "name": "Rooms :name",
+   "description": "Set a room's privacy and config properties",
+   "input": {
+    "type": "object",
+    "properties": {
+     "room_name": {
+      "type": "string",
+      "description": ""
+     },
+     "privacy": {
+      "type": "string",
+      "description": ""
+     },
+     "properties": {
+      "type": "object",
+      "description": ""
+     }
+    },
+    "required": [
+     "room_name"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.daily.co/v1/rooms/{room_name}",
+    "path": [
+     "room_name"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "privacy",
+     "properties"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "daily.set_session_data",
+   "name": "Rooms :name set session data",
+   "description": "Sets meeting session data",
+   "input": {
+    "type": "object",
+    "properties": {
+     "room_name": {
+      "type": "string",
+      "description": ""
+     },
+     "data": {
+      "type": "object",
+      "description": "A javascript object that can be serialized into JSON. Defaults to `{}`."
+     },
+     "mergeStrategy": {
+      "type": "string",
+      "description": "`replace` to replace the existing meeting session data object or `shallow-merge` to merge with it.",
+      "enum": [
+       "replace",
+       "shallow-merge"
+      ]
+     },
+     "keysToDelete": {
+      "type": "array",
+      "description": "Optional list of keys to delete from the existing meeting session data object when using `shallow-merge`."
+     }
+    },
+    "required": [
+     "room_name"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.daily.co/v1/rooms/{room_name}/set-session-data",
+    "path": [
+     "room_name"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "data",
+     "mergeStrategy",
+     "keysToDelete"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "daily.test_oci_bucket",
+   "name": "Recordings test oci bucket",
+   "description": "Verify that an OCI bucket configuration works, by uploading a small test file (`daily-co-test-upload.txt`) to it through the OCI S3 compatibility API. Unlike S3 buckets, an OCI bucket configuration is **not** checked when you set it \u2014 the `Admit` policy may not have propagated yet (see the [custom OCI storage guide](/docs/guides/features/recording/custom-oci-storage)). Setting the property therefo",
+   "input": {
+    "type": "object",
+    "properties": {
+     "property": {
+      "type": "string",
+      "description": "Which bucket property to test. Defaults to `recordings_bucket`.",
+      "enum": [
+       "recordings_bucket",
+       "transcription_bucket"
+      ]
+     },
+     "roomName": {
+      "type": "string",
+      "description": "Test the property set on this room instead of the domain-level property. There is no fallback to the domain configuration: if the room does not set the property, the request returns a `400`."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.daily.co/v1/recordings/test-oci-bucket",
+    "path": [],
+    "query": [
+     "property",
+     "roomName"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "daily.update_domain_dial_config_info",
+   "name": "Domain dialin config :id",
+   "description": "update an existing pinless_dialin or pin_dialin config",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     },
+     "phone_number": {
+      "type": "string",
+      "description": "The phone number to update to the existing dial-in config, in E.164 format (e.g. \"+18058700061\"). If the same number is used by any other config then the API will fail."
+     },
+     "name_prefix": {
+      "type": "string",
+      "description": "Update the name_prefix of an existing config."
+     },
+     "hmac": {
+      "type": "string",
+      "description": "The [HMAC signature](/guides/products/dial-in-dial-out/dialin-pinless#hmac) used to verify the webhook called to \"room_creation_api\". (only for pinless_dialin type)."
+     },
+     "room_creation_api": {
+      "type": "string",
+      "description": "The URL to call when a call is received on configured phoneNumber or sip_uri. (only for pinless_dialin type). flow is described [here](/guides/products/dial-in-dial-out/dialin-pinless#quick-overview)"
+     },
+     "hold_music_url": {
+      "type": "string",
+      "description": "The URL to the hold music to play when the call is received, (only for pinless_dialin type). The hold music must be a publicly accessible URL in MP3 format. The hold music must be less than 10MB in size and less than 60 seconds in duration. In pinless_dialin, the hold music will be played twice."
+     },
+     "timeout_config": {
+      "type": "object",
+      "description": "The timeout configuration for the dial-in config."
+     },
+     "ivr_greeting": {
+      "type": "object",
+      "description": "configuration when the call is received on phone number (only for pin_dialin)."
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.daily.co/v1/domain-dialin-config/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "phone_number",
+     "name_prefix",
+     "hmac",
+     "room_creation_api",
+     "hold_music_url",
+     "timeout_config",
+     "ivr_greeting"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "daily.update_permissions",
+   "name": "Rooms :name update permissions",
+   "description": "Modifies permissions for one or more participants in a room",
+   "input": {
+    "type": "object",
+    "properties": {
+     "room_name": {
+      "type": "string",
+      "description": ""
+     },
+     "data": {
+      "type": "object",
+      "description": ""
+     }
+    },
+    "required": [
+     "room_name"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.daily.co/v1/rooms/{room_name}/update-permissions",
+    "path": [
+     "room_name"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "data"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "daily.update_sip_trunk",
+   "name": "Sip trunk {id}",
+   "description": "Update a SIP trunk (partial overlay). `trunk_name` is immutable. In `notification`, `hmac: null` ROTATES the secret (Daily regenerates a fresh one); a value sets it; omit to keep the current one. Any update touching `notification` re-sends the signed `sip_trunk.test` probe (with the final hmac) - the endpoint must return 2xx. `trunk_config.credential: null` clears the credential. Admission must re",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     },
+     "description": {
+      "type": "string",
+      "description": ""
+     },
+     "room_template": {
+      "type": "object",
+      "description": ""
+     },
+     "notification": {
+      "type": "object",
+      "description": ""
+     },
+     "trunk_config": {
+      "type": "object",
+      "description": ""
+     },
+     "enabled": {
+      "type": "boolean",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.daily.co/v1/sip-trunk/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "description",
+     "room_template",
+     "notification",
+     "trunk_config",
+     "enabled"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "daily.update_webhook_config",
+   "name": "Webhooks :id",
+   "description": "Update webhook config",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": ""
+     },
+     "url": {
+      "type": "string",
+      "description": "The webhook server endpoint that was provided."
+     },
+     "basicAuth": {
+      "type": "string",
+      "description": "The basic auth credentials that will be used to POST to the webhook URL."
+     },
+     "retryType": {
+      "type": "string",
+      "description": "The retry configuration for this webhook endpoint to use. The default is circuit-breaker.",
+      "enum": [
+       "circuit-breaker",
+       "exponential"
+      ]
+     },
+     "eventTypes": {
+      "type": "array",
+      "description": "The set of event types this webhook is subscribed to. Deliveries can be duplicated, and in rare cases a duplicate `participant.joined` or `participant.left` delivery carries a different `id` than the original. Deduplicate those two events on the event `type` plus the payload's `session_id` rather than on `id`. See the [webhooks overview](/reference/rest-api/webhooks) for details."
+     },
+     "hmac": {
+      "type": "string",
+      "description": "A secret that can be used to verify the signature of the webhook."
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.daily.co/v1/webhooks/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "url",
+     "basicAuth",
+     "retryType",
+     "eventTypes",
+     "hmac"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "daily.validate_meeting_token",
+   "name": "Meeting tokens :meeting token",
+   "description": "Validate meeting tokens",
+   "input": {
+    "type": "object",
+    "properties": {
+     "meeting_token": {
+      "type": "string",
+      "description": ""
+     },
+     "ignoreNbf": {
+      "type": "boolean",
+      "description": "Ignore the `nbf` in a JWT, if given"
+     }
+    },
+    "required": [
+     "meeting_token"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.daily.co/v1/meeting-tokens/{meeting_token}",
+    "path": [
+     "meeting_token"
+    ],
+    "query": [
+     "ignoreNbf"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  }
+ ]
+}

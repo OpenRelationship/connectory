@@ -1,0 +1,1562 @@
+{
+ "_": "GENERATED \u2014 what an authoring tool needs to FIND an operation. The calling table is the .lua beside it.",
+ "provider": "bright-data",
+ "source": "https://docs.brightdata.com/api-reference/openapi.json",
+ "operations": [
+  {
+   "slug": "bright-data.add_zone_allowlist_ip",
+   "name": "Add zone allowlist ip",
+   "description": "Add IP to zone's allowlist",
+   "input": {
+    "type": "object",
+    "properties": {
+     "zone": {
+      "type": "string",
+      "description": "Zone name. Can be skipped to affect all your zones"
+     },
+     "ip": {
+      "type": "string",
+      "description": "`string` or `array of strings` Single IP, IP Array, IP range, IP subnet or IP mask ### Example - Single IP: 10.20.30.40 - IP Array: [\"10.20.30.40\", \"50.60.70.80\",...] - Range: 10.20.30.40-10.20.30.50 - Subnet: 10.20.30.0/24 - Netmask: 10.20.30.0/255.255.252.0 **Note** IP array syntax requires quotes `\"` for each IP string in array"
+     }
+    },
+    "required": [
+     "ip"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.brightdata.com/zone/whitelist",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "zone",
+     "ip"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "bright-data.add_zone_denylist_ip",
+   "name": "Add zone denylist ip",
+   "description": "Add IP to zone's denylist",
+   "input": {
+    "type": "object",
+    "properties": {
+     "zone": {
+      "type": "string",
+      "description": "Zone name. Can be skipped to affect all your zones"
+     },
+     "ip": {
+      "type": "string",
+      "description": "`string` or `array of strings` Single IP, IP Array, IP range, IP subnet or IP mask ### Example - Single IP: 10.20.30.40 - IP Array: [\"10.20.30.40\", \"50.60.70.80\",...] - Range: 10.20.30.40-10.20.30.50 - Subnet: 10.20.30.0/24 - Netmask: 10.20.30.0/255.255.252.0 **Note** IP array syntax requires quotes `\"` for each IP string in array"
+     }
+    },
+    "required": [
+     "ip"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.brightdata.com/zone/blacklist",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "zone",
+     "ip"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "bright-data.add_zone_domain_permission",
+   "name": "Add zone domain permission",
+   "description": "Add domain to Zone allowlist or denylist",
+   "input": {
+    "type": "object",
+    "properties": {
+     "zone": {
+      "type": "string",
+      "description": "Zone name"
+     },
+     "type": {
+      "type": "string",
+      "description": "`whitelist` to allowlist domain(s), `blacklist` to denylist domain(s)",
+      "enum": [
+       "whitelist",
+       "blacklist"
+      ]
+     },
+     "domain": {
+      "type": "string",
+      "description": "space separated list of domains"
+     }
+    },
+    "required": [
+     "type",
+     "zone"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.brightdata.com/zone/domain_perm",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "zone",
+     "type",
+     "domain"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "bright-data.add_zone_password",
+   "name": "Add zone password",
+   "description": "Add one or more passwords to a zone.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "zone": {
+      "type": "string",
+      "description": "The name of the zone to add the password to."
+     },
+     "password": {
+      "type": "array",
+      "description": "The password(s) to add. Pass a single string or an array of strings to add multiple passwords."
+     }
+    },
+    "required": [
+     "password",
+     "zone"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.brightdata.com/zone/add_password",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "zone",
+     "password"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "bright-data.add_zone_static_ips",
+   "name": "Add zone static ips",
+   "description": "Add Static IPs for Datacenter and ISP",
+   "input": {
+    "type": "object",
+    "properties": {
+     "customer": {
+      "type": "string",
+      "description": "Customer"
+     },
+     "zone": {
+      "type": "string",
+      "description": "Zone name"
+     },
+     "count": {
+      "type": "number",
+      "description": "Number of IPs"
+     },
+     "country": {
+      "type": "string",
+      "description": "new IPs' country (e.g. `us`)"
+     },
+     "country_city": {
+      "type": "string",
+      "description": "new IPs' city (e.g. `us-chicago`)"
+     }
+    },
+    "required": [
+     "count",
+     "customer",
+     "zone"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.brightdata.com/zone/ips",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "customer",
+     "zone",
+     "count",
+     "country",
+     "country_city"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "bright-data.count_zone_available_ips",
+   "name": "Count zone available ips",
+   "description": "Lists count available ips.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "zone": {
+      "type": "string",
+      "description": "name of the Zone"
+     },
+     "plan": {
+      "type": "object",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.brightdata.com/zone/count_available_ips",
+    "path": [],
+    "query": [
+     "zone",
+     "plan"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "bright-data.create_zone",
+   "name": "Create zone",
+   "description": "Add a new zone",
+   "input": {
+    "type": "object",
+    "properties": {
+     "zone": {
+      "type": "object",
+      "description": ""
+     },
+     "plan": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "plan",
+     "zone"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.brightdata.com/zone",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "zone",
+     "plan"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "bright-data.delete_zone",
+   "name": "Delete zone",
+   "description": "Deletes a zone.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "zone": {
+      "type": "string",
+      "description": "can be skipped to affect all your zones"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.brightdata.com/zone",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "zone"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "bright-data.export_costs_csv",
+   "name": "Export costs csv",
+   "description": "Same data as `POST /costs/export/json`, returned as CSV instead of JSON. The CSV pivots the response into one row per day, with one column per resource ID that appears in the date range. Column count therefore varies depending on the data. See [the JSON variant](/api-reference/account-management-api/Export_cost_breakdown) for the full request schema and the exclusive-`to` caveat.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "dimension": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "products",
+       "types",
+       "zones",
+       "datasets",
+       "web_apis",
+       "collectors",
+       "domains",
+       "ws_api_snaps",
+       "snapshots"
+      ]
+     },
+     "filters": {
+      "type": "object",
+      "description": ""
+     },
+     "from": {
+      "type": "string",
+      "description": ""
+     },
+     "to": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "dimension",
+     "from",
+     "to"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.brightdata.com/costs/export/csv",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "dimension",
+     "filters",
+     "from",
+     "to"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "bright-data.export_costs_json",
+   "name": "Export costs json",
+   "description": "Export account cost data broken down by dimension (products, zones, datasets, Web Scraper APIs, and more) as JSON. This is the same data source the Control Panel's Cost Explorer uses. **Note:** the `to` parameter is **exclusive**. The day specified is not included in the result. To match a calendar month shown in the Control Panel or on your invoice, set `to` to the first day of the **following** ",
+   "input": {
+    "type": "object",
+    "properties": {
+     "dimension": {
+      "type": "string",
+      "description": "The dimension to group costs by. Same dimension semantics as the Control Panel Cost Explorer.",
+      "enum": [
+       "products",
+       "types",
+       "zones",
+       "datasets",
+       "web_apis",
+       "collectors",
+       "domains",
+       "ws_api_snaps",
+       "snapshots"
+      ]
+     },
+     "filters": {
+      "type": "object",
+      "description": "Optional filter object. Uses Bright Data's internal charges-structure notation and requires knowledge of that structure to construct. Contact Bright Data support if you need help building a filter. Example: `{ \"props\": { \"product\": { \"whitelist\": [\"dc\", \"unblocker\"] } } }`"
+     },
+     "from": {
+      "type": "string",
+      "description": "Inclusive start date in `YYYY-MM-DD` format. UTC."
+     },
+     "to": {
+      "type": "string",
+      "description": "**Exclusive** end date in `YYYY-MM-DD` format. UTC. The day specified is NOT included in the result. To match a calendar month, set `to` to the first day of the **following** month (e.g., `from=2026-04-01&to=2026-05-01` returns all of April 2026)."
+     }
+    },
+    "required": [
+     "dimension",
+     "from",
+     "to"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.brightdata.com/costs/export/json",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "dimension",
+     "filters",
+     "from",
+     "to"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "bright-data.get_account_balance",
+   "name": "Get account balance",
+   "description": "Get your account balance information: available balance, free credits, prepayment and pending usage costs.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.brightdata.com/customer/balance",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "bright-data.get_account_bandwidth",
+   "name": "Get account bandwidth",
+   "description": "Get the bandwidth stats for all your Zones",
+   "input": {
+    "type": "object",
+    "properties": {
+     "from": {
+      "type": "string",
+      "description": "Start"
+     },
+     "to": {
+      "type": "string",
+      "description": "End"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.brightdata.com/customer/bw",
+    "path": [],
+    "query": [
+     "from",
+     "to"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "bright-data.get_account_status",
+   "name": "Get account status",
+   "description": "Get account status",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.brightdata.com/status",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "bright-data.get_auto_recharge",
+   "name": "Get auto recharge",
+   "description": "Get the regular and dataset auto-recharge settings of your account. Requires the `billing.read` permission.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.brightdata.com/billing/autorecharge",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "bright-data.get_free_tier_credits",
+   "name": "Get free tier credits",
+   "description": "Get the free tier credits on your account: whether the free tier is enabled and the included, used and left credits. Matches the Free credits card on the Billing overview page in the Control Panel. Takes no parameters. Requires the `billing.read` permission (API keys with the Admin or Finance permission level). Rate limit: 600 requests per minute and 36,000 requests per hour per IP address; reques",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.brightdata.com/trials/free_tier",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "bright-data.get_network_status",
+   "name": "Get network status",
+   "description": "Fetches one network statu.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "NETWORK_TYPE": {
+      "type": "string",
+      "description": "Can be one of following: `all`: All network type `res`: Residential `dc`: Datacenter `mobile`: Mobile",
+      "enum": [
+       "all",
+       "res",
+       "dc",
+       "mobile"
+      ]
+     }
+    },
+    "required": [
+     "NETWORK_TYPE"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.brightdata.com/network_status/{NETWORK_TYPE}",
+    "path": [
+     "NETWORK_TYPE"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "bright-data.get_zone",
+   "name": "Get zone",
+   "description": "Get Zone status",
+   "input": {
+    "type": "object",
+    "properties": {
+     "zone": {
+      "type": "string",
+      "description": "Zone Info"
+     }
+    },
+    "required": [
+     "zone"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.brightdata.com/zone",
+    "path": [],
+    "query": [
+     "zone"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "bright-data.get_zone_bandwidth",
+   "name": "Get zone bandwidth",
+   "description": "Get the bandwidth stats for a Zone",
+   "input": {
+    "type": "object",
+    "properties": {
+     "zone": {
+      "type": "string",
+      "description": "Zone name"
+     },
+     "from": {
+      "type": "string",
+      "description": "Start"
+     },
+     "to": {
+      "type": "string",
+      "description": "End"
+     }
+    },
+    "required": [
+     "zone"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.brightdata.com/zone/bw",
+    "path": [],
+    "query": [
+     "zone",
+     "from",
+     "to"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "bright-data.get_zone_cost",
+   "name": "Get zone cost",
+   "description": "Returns billed cost, bandwidth, and usage stats for a Zone over a date range. Values match the Control Panel's Usage Overview and your invoice. **Note:** the `to` parameter is **exclusive**. The day specified is not included. See the page below for invoice reconciliation guidance.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "zone": {
+      "type": "string",
+      "description": "Zone name (e.g., `se_midware`)."
+     },
+     "from": {
+      "type": "string",
+      "description": "Inclusive start date in `YYYY-MM-DD` format."
+     },
+     "to": {
+      "type": "string",
+      "description": "**Exclusive** end date in `YYYY-MM-DD` format. The day specified is NOT included in the result. To match a calendar month shown in the Control Panel or on your invoice, set `to` to the first day of the **following** month (e.g., `from=2026-04-01&to=2026-05-01` returns all of April 2026)."
+     }
+    },
+    "required": [
+     "zone"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.brightdata.com/zone/cost",
+    "path": [],
+    "query": [
+     "zone",
+     "from",
+     "to"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "bright-data.get_zone_permissions",
+   "name": "Get zone permissions",
+   "description": "Get Zone permissions",
+   "input": {
+    "type": "object",
+    "properties": {
+     "zone": {
+      "type": "string",
+      "description": "Zone Info"
+     }
+    },
+    "required": [
+     "zone"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.brightdata.com/zone/permissions",
+    "path": [],
+    "query": [
+     "zone"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "bright-data.get_zone_status",
+   "name": "Get zone status",
+   "description": "Get Zone status",
+   "input": {
+    "type": "object",
+    "properties": {
+     "zone": {
+      "type": "string",
+      "description": "Zone Info"
+     }
+    },
+    "required": [
+     "zone"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.brightdata.com/zone/status",
+    "path": [],
+    "query": [
+     "zone"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "bright-data.list_active_zones",
+   "name": "List active zones",
+   "description": "Return all active zones",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.brightdata.com/zone/get_active_zones",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "bright-data.list_all_available_countries_per_zone_type",
+   "name": "List all available countries per zone type",
+   "description": "List all available countries per zone type",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.brightdata.com/countrieslist",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "bright-data.list_all_zones",
+   "name": "List all zones",
+   "description": "Return all zones",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.brightdata.com/zone/get_all_zones",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "bright-data.list_cities",
+   "name": "List cities",
+   "description": "Get a list of cities from a Country",
+   "input": {
+    "type": "object",
+    "properties": {
+     "country": {
+      "type": "string",
+      "description": "2-letter `COUNTRY_CODE`"
+     }
+    },
+    "required": [
+     "country"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.brightdata.com/cities",
+    "path": [],
+    "query": [
+     "country"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "bright-data.list_payment_methods",
+   "name": "List payment methods",
+   "description": "Get the active, confirmed payment methods of your account. Requires the `billing.read` permission.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.brightdata.com/billing/pmethods",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "bright-data.list_pricing_plans",
+   "name": "List pricing plans",
+   "description": "Get your account's current pricing plan and the plans available to it, with per-product prices for each plan. All prices are in USD. Requires the `billing.read` permission (API keys with the Admin or Finance permission level).",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.brightdata.com/pricing_plans",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "bright-data.list_static_network_cities",
+   "name": "List static network cities",
+   "description": "Get list of available cities of static network per country",
+   "input": {
+    "type": "object",
+    "properties": {
+     "country": {
+      "type": "string",
+      "description": "Country"
+     },
+     "pool_ip_type": {
+      "type": "string",
+      "description": "Network type: `dc`: Datacenter, `static_res`: ISP",
+      "enum": [
+       "dc",
+       "static_res"
+      ]
+     }
+    },
+    "required": [
+     "country"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.brightdata.com/zone/static/cities",
+    "path": [],
+    "query": [
+     "country",
+     "pool_ip_type"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "bright-data.list_zone_allowlist_ips",
+   "name": "List zone allowlist ips",
+   "description": "Get a list of allowlisted IPs for a specific Zone",
+   "input": {
+    "type": "object",
+    "properties": {
+     "zones": {
+      "type": "string",
+      "description": "A comma-separated list of zone identifiers to filter the request by. If not provided, defaults to '*', indicating all zones."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.brightdata.com/zone/whitelist",
+    "path": [],
+    "query": [
+     "zones"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "bright-data.list_zone_denylist_ips",
+   "name": "List zone denylist ips",
+   "description": "Get a list of denylisted IPs for a specific Zone",
+   "input": {
+    "type": "object",
+    "properties": {
+     "zones": {
+      "type": "string",
+      "description": "A comma-separated list of zone identifiers to filter the request by. If not provided, defaults to '*', indicating all zones."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.brightdata.com/zone/blacklist",
+    "path": [],
+    "query": [
+     "zones"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "bright-data.list_zone_passwords",
+   "name": "List zone passwords",
+   "description": "Get Zone passwords",
+   "input": {
+    "type": "object",
+    "properties": {
+     "zone": {
+      "type": "string",
+      "description": "Zone Info"
+     }
+    },
+    "required": [
+     "zone"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.brightdata.com/zone/passwords",
+    "path": [],
+    "query": [
+     "zone"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "bright-data.list_zone_proxies_pending_replacement",
+   "name": "List zone proxies pending replacement",
+   "description": "Get list of all proxies in the provided zone, which are pending replacement",
+   "input": {
+    "type": "object",
+    "properties": {
+     "zone": {
+      "type": "string",
+      "description": "Zone"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.brightdata.com/zone/proxies_pending_replacement",
+    "path": [],
+    "query": [
+     "zone"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "bright-data.list_zone_recent_ips",
+   "name": "List zone recent ips",
+   "description": "Lists recent ips.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "zones": {
+      "type": "string",
+      "description": "To get attempting IPs to any of your zone: `zones=*`"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.brightdata.com/zone/recent_ips",
+    "path": [],
+    "query": [
+     "zones"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "bright-data.list_zone_route_ips",
+   "name": "List zone route ips",
+   "description": "Get the available Data center/ISP IPs per Zone",
+   "input": {
+    "type": "object",
+    "properties": {
+     "zone": {
+      "type": "string",
+      "description": "Zone"
+     },
+     "country": {
+      "type": "string",
+      "description": "2-letter Country code"
+     },
+     "list_countries": {
+      "type": "boolean",
+      "description": "Return `JSON` array of `[{ip, country},..]` instead of plain list of IPs"
+     }
+    },
+    "required": [
+     "zone"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.brightdata.com/zone/route_ips",
+    "path": [],
+    "query": [
+     "zone",
+     "country",
+     "list_countries"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "bright-data.list_zone_route_vips",
+   "name": "List zone route vips",
+   "description": "Get all available residential dedicated IPs per Zone",
+   "input": {
+    "type": "object",
+    "properties": {
+     "zone": {
+      "type": "string",
+      "description": "Zone Info"
+     }
+    },
+    "required": [
+     "zone"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.brightdata.com/zone/route_vips",
+    "path": [],
+    "query": [
+     "zone"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "bright-data.list_zone_static_ips",
+   "name": "List zone static ips",
+   "description": "Get Zone Static (Datacenter/ISP) IPs",
+   "input": {
+    "type": "object",
+    "properties": {
+     "zone": {
+      "type": "string",
+      "description": "Zone name"
+     },
+     "ip_per_country": {
+      "type": "string",
+      "description": "get the total amount of IPs per country"
+     }
+    },
+    "required": [
+     "zone"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.brightdata.com/zone/ips",
+    "path": [],
+    "query": [
+     "zone",
+     "ip_per_country"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "bright-data.list_zone_unavailable_ips",
+   "name": "List zone unavailable ips",
+   "description": "Get live status of Static (Datacenter/ISP) Zone and IPs with connectivity problem",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.brightdata.com/zone/ips/unavailable",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "bright-data.migrate_zone_static_ips",
+   "name": "Migrate zone static ips",
+   "description": "Migrate Static IPs between zones (Datacenter/ISP)",
+   "input": {
+    "type": "object",
+    "properties": {
+     "from": {
+      "type": "string",
+      "description": "Zone which IPs will be migrated from"
+     },
+     "to": {
+      "type": "string",
+      "description": "Zone to which IPs will be migrated"
+     },
+     "ips": {
+      "type": "string",
+      "description": "IPs to migrate"
+     }
+    },
+    "required": [
+     "from",
+     "ips",
+     "to"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.brightdata.com/zone/ips/migrate",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "from",
+     "to",
+     "ips"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "bright-data.refresh_zone_static_ips",
+   "name": "Refresh zone static ips",
+   "description": "Creates a refresh.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "zone": {
+      "type": "string",
+      "description": "Zone name"
+     },
+     "vips": {
+      "type": "array",
+      "description": "IPs to refresh **Note**: If refresh is needed for all allocated IPs, then `vips` parameter should be omitted. **Note**: Only works for Dedicated Residential IPs"
+     },
+     "ips": {
+      "type": "array",
+      "description": "IPs to refresh **Note**: If refresh is needed for all allocated IPs, then `ips` parameter should be omitted"
+     },
+     "country": {
+      "type": "string",
+      "description": "new IPs' country (e.g. `us`)"
+     },
+     "country_city": {
+      "type": "string",
+      "description": "new IPs' city (e.g. `us-chicago`)"
+     }
+    },
+    "required": [
+     "zone"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.brightdata.com/zone/ips/refresh",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "zone",
+     "vips",
+     "ips",
+     "country",
+     "country_city"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "bright-data.remove_zone_allowlist_ip",
+   "name": "Remove zone allowlist ip",
+   "description": "Deletes a whitelist.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "zone": {
+      "type": "string",
+      "description": "Zone name. **Note**: can be skipped to affect all your zones."
+     },
+     "ip": {
+      "type": "string",
+      "description": "can be in one fo the following formats: + Delete a single IP - `ip=\"1.2.1.2\"` + Delete a IP range - `ip=\"1.2.1.2-1.2.1.10\"` + Delete a IP subnet - `ip=\"10.20.30.40/24\"` + Delete a IP mask - `ip=\"10.20.30.40/255.255.255.0\"`"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.brightdata.com/zone/whitelist",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "zone",
+     "ip"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "bright-data.remove_zone_denylist_ip",
+   "name": "Remove zone denylist ip",
+   "description": "Deletes a blacklist.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "zone": {
+      "type": "string",
+      "description": "Zone name. **Note**: can be skipped to affect all your zones"
+     },
+     "ip": {
+      "type": "string",
+      "description": "can be in one fo the following formats: + Delete a single IP - `ip=\"1.2.1.2\"` + Delete a IP range - `ip=\"1.2.1.2-1.2.1.10\"` + Delete a IP subnet - `ip=\"10.20.30.40/24\"` + Delete a IP mask - `ip=\"10.20.30.40/255.255.255.0\"`"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.brightdata.com/zone/blacklist",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "zone",
+     "ip"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "bright-data.remove_zone_domain_permission",
+   "name": "Remove zone domain permission",
+   "description": "Deletes a domain perm.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "zone": {
+      "type": "string",
+      "description": "Zone name"
+     },
+     "type": {
+      "type": "string",
+      "description": "`whitelist` - To allowlist an IP `blacklist` - To denylist an IP",
+      "enum": [
+       "whitelist",
+       "blacklist"
+      ]
+     },
+     "domain": {
+      "type": "string",
+      "description": "space separated list of domains"
+     }
+    },
+    "required": [
+     "domain",
+     "type",
+     "zone"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.brightdata.com/zone/domain_perm",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "zone",
+     "type",
+     "domain"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "bright-data.remove_zone_password",
+   "name": "Remove zone password",
+   "description": "Remove one or more passwords from a zone. At least one password must remain on the zone \u2014 this request will fail if it would leave the zone with no passwords.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "zone": {
+      "type": "string",
+      "description": "The name of the zone to remove the password from."
+     },
+     "password": {
+      "type": "array",
+      "description": "The password(s) to remove. Pass a single string or an array of strings to remove multiple passwords."
+     }
+    },
+    "required": [
+     "password",
+     "zone"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.brightdata.com/zone/remove_password",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "zone",
+     "password"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "bright-data.remove_zone_static_ips",
+   "name": "Remove zone static ips",
+   "description": "Deletes an ip.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "zone": {
+      "type": "string",
+      "description": "Zone name"
+     },
+     "ips": {
+      "type": "array",
+      "description": "Array of IPs to delete"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.brightdata.com/zone/ips",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "zone",
+     "ips"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "bright-data.remove_zone_vips",
+   "name": "Remove zone vips",
+   "description": "Deletes a vip.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "zone": {
+      "type": "string",
+      "description": "Zone name"
+     },
+     "gips": {
+      "type": "array",
+      "description": "IPs to remove."
+     }
+    },
+    "required": [
+     "gips",
+     "zone"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.brightdata.com/zone/vips",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "zone",
+     "gips"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "bright-data.set_dataset_auto_recharge",
+   "name": "Set dataset auto recharge",
+   "description": "Enable or disable dataset auto-recharge. Requires the `billing.write.pay.settings` permission. The body holds all the settings for the dataset section, and PUT is idempotent. The regular section does not change. `{\"enabled\": false}` is always allowed, also when `available` is `false`. Dataset auto-recharge charges only when a dataset snapshot build starts and the balance cannot cover the snapshot ",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.brightdata.com/billing/autorecharge/dataset",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "bright-data.set_regular_auto_recharge",
+   "name": "Set regular auto recharge",
+   "description": "Enable, change or disable regular auto-recharge. Requires the `billing.write.pay.settings` permission. The body holds all the settings for the regular section, and PUT is idempotent. The dataset section does not change. `{\"enabled\": false}` disables regular auto-recharge and is always allowed, also when `available` is `false`. To enable auto-recharge again, send `pmethod_id` and `amount`. A charge",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.brightdata.com/billing/autorecharge/regular",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "bright-data.set_zone_auto_failover",
+   "name": "Set zone auto failover",
+   "description": "Switch automatic failover ON/OFF in a Static zone",
+   "input": {
+    "type": "object",
+    "properties": {
+     "zone": {
+      "type": "string",
+      "description": "Zone name"
+     },
+     "active": {
+      "type": "integer",
+      "description": "`0`: Disable automatic failover, `1`: Enable automatic failover",
+      "enum": [
+       0,
+       1
+      ]
+     }
+    },
+    "required": [
+     "ip"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.brightdata.com/zone/switch_100uptime",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "zone",
+     "active"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "bright-data.set_zone_disabled",
+   "name": "Set zone disabled",
+   "description": "Creates a change disable.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "zone": {
+      "type": "string",
+      "description": "Zone name"
+     },
+     "disable": {
+      "type": "number",
+      "description": "`0` - activate zone `1` - disable zone",
+      "enum": [
+       0,
+       1
+      ]
+     }
+    },
+    "required": [
+     "disable",
+     "zone"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.brightdata.com/zone/change_disable",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "zone",
+     "disable"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "bright-data.update_account_status",
+   "name": "Update account status",
+   "description": "Updates a statu.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "status": {
+      "type": "string",
+      "description": "`suspend_manual`: Manually suspend `active`: Activate",
+      "enum": [
+       "suspend_manual",
+       "active"
+      ]
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.brightdata.com/status",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "status"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  }
+ ]
+}

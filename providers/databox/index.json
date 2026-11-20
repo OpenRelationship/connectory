@@ -1,0 +1,712 @@
+{
+ "_": "GENERATED \u2014 what an authoring tool needs to FIND an operation. The calling table is the .lua beside it.",
+ "provider": "databox",
+ "source": "https://api.databox.com/swagger/v1/swagger.json",
+ "operations": [
+  {
+   "slug": "databox.account_get_data_sources_by_account_id",
+   "name": "Account get data sources by account id",
+   "description": "Lists data sources.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "accountId": {
+      "type": "integer",
+      "description": ""
+     }
+    },
+    "required": [
+     "accountId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.databox.com/v1/accounts/{accountId}/data-sources",
+    "path": [
+     "accountId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "databox.account_get_datasets",
+   "name": "Account get datasets",
+   "description": "Lists datasets.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "accountId": {
+      "type": "integer",
+      "description": ""
+     },
+     "merged": {
+      "type": "boolean",
+      "description": ""
+     },
+     "Page": {
+      "type": "integer",
+      "description": ""
+     },
+     "PageSize": {
+      "type": "integer",
+      "description": ""
+     }
+    },
+    "required": [
+     "accountId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.databox.com/v1/accounts/{accountId}/datasets",
+    "path": [
+     "accountId"
+    ],
+    "query": [
+     "merged",
+     "Page",
+     "PageSize"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "databox.account_get_timezones",
+   "name": "Account get timezones",
+   "description": "Lists timezones.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.databox.com/v1/accounts/timezones",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "databox.account_get_users_spaces",
+   "name": "Account get users spaces",
+   "description": "Lists accounts.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.databox.com/v1/accounts",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "databox.auth_validate_api_key",
+   "name": "Auth validate api key",
+   "description": "Lists validate key.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.databox.com/v1/auth/validate-key",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "databox.data_source_create_data_source",
+   "name": "Data source create data source",
+   "description": "Creates a data source.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "title": {
+      "type": "string",
+      "description": ""
+     },
+     "accountId": {
+      "type": "integer",
+      "description": ""
+     },
+     "timezone": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "title"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.databox.com/v1/data-sources",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "title",
+     "accountId",
+     "timezone"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "databox.data_source_delete_data_source",
+   "name": "Data source delete data source",
+   "description": "Deletes this data source.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "dataSourceId": {
+      "type": "integer",
+      "description": ""
+     }
+    },
+    "required": [
+     "dataSourceId"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.databox.com/v1/data-sources/{dataSourceId}",
+    "path": [
+     "dataSourceId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "databox.data_source_get_dataset_links_by_data_source_id",
+   "name": "Data source get dataset links by data source id",
+   "description": "Lists datasets.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "dataSourceId": {
+      "type": "integer",
+      "description": ""
+     }
+    },
+    "required": [
+     "dataSourceId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.databox.com/v1/data-sources/{dataSourceId}/datasets",
+    "path": [
+     "dataSourceId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "databox.data_source_get_metric_definition",
+   "name": "Data source get metric definition",
+   "description": "Fetches one metric.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "dataSourceId": {
+      "type": "integer",
+      "description": ""
+     },
+     "metricId": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "dataSourceId",
+     "metricId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.databox.com/v1/data-sources/{dataSourceId}/metrics/{metricId}",
+    "path": [
+     "dataSourceId",
+     "metricId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "databox.data_source_list_metrics",
+   "name": "Data source list metrics",
+   "description": "Lists metrics.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "dataSourceId": {
+      "type": "integer",
+      "description": ""
+     },
+     "page": {
+      "type": "integer",
+      "description": ""
+     },
+     "limit": {
+      "type": "integer",
+      "description": ""
+     }
+    },
+    "required": [
+     "dataSourceId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.databox.com/v1/data-sources/{dataSourceId}/metrics",
+    "path": [
+     "dataSourceId"
+    ],
+    "query": [
+     "page",
+     "limit"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "databox.data_source_load_metric_data",
+   "name": "Data source load metric data",
+   "description": "Creates a data.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "dataSourceId": {
+      "type": "integer",
+      "description": ""
+     },
+     "metricId": {
+      "type": "string",
+      "description": ""
+     },
+     "dateRange": {
+      "type": "object",
+      "description": ""
+     },
+     "dimensions": {
+      "type": "array",
+      "description": ""
+     },
+     "filters": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "dataSourceId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.databox.com/v1/data-sources/{dataSourceId}/metrics/data",
+    "path": [
+     "dataSourceId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "metricId",
+     "dateRange",
+     "dimensions",
+     "filters"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "databox.databoards_get_databoard_metrics",
+   "name": "Databoards get databoard metrics",
+   "description": "Lists metrics.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "databoardId": {
+      "type": "integer",
+      "description": ""
+     }
+    },
+    "required": [
+     "databoardId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.databox.com/v1/databoards/{databoardId}/metrics",
+    "path": [
+     "databoardId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "databox.databoards_list_databoards",
+   "name": "Databoards list databoards",
+   "description": "Lists databoards.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "page": {
+      "type": "integer",
+      "description": ""
+     },
+     "limit": {
+      "type": "integer",
+      "description": ""
+     },
+     "accountId": {
+      "type": "integer",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.databox.com/v1/databoards",
+    "path": [],
+    "query": [
+     "page",
+     "limit",
+     "accountId"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "databox.dataset_create_data_source_ingest",
+   "name": "Dataset create data source ingest",
+   "description": "Creates a dataset.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "title": {
+      "type": "string",
+      "description": ""
+     },
+     "dataSourceId": {
+      "type": "integer",
+      "description": ""
+     },
+     "primaryKeys": {
+      "type": "array",
+      "description": ""
+     },
+     "schema": {
+      "type": "array",
+      "description": ""
+     }
+    },
+    "required": [
+     "dataSourceId",
+     "title"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.databox.com/v1/datasets",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "title",
+     "dataSourceId",
+     "primaryKeys",
+     "schema"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "databox.dataset_delete_dataset",
+   "name": "Dataset delete dataset",
+   "description": "Deletes this dataset.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "datasetId": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "datasetId"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.databox.com/v1/datasets/{datasetId}",
+    "path": [
+     "datasetId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "databox.dataset_get_dataset",
+   "name": "Dataset get dataset",
+   "description": "Fetches one dataset.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "datasetId": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "datasetId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.databox.com/v1/datasets/{datasetId}",
+    "path": [
+     "datasetId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "databox.dataset_get_dataset_data",
+   "name": "Dataset get dataset data",
+   "description": "Lists data.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "datasetId": {
+      "type": "string",
+      "description": ""
+     },
+     "Page": {
+      "type": "integer",
+      "description": ""
+     },
+     "PageSize": {
+      "type": "integer",
+      "description": ""
+     }
+    },
+    "required": [
+     "datasetId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.databox.com/v1/datasets/{datasetId}/data",
+    "path": [
+     "datasetId"
+    ],
+    "query": [
+     "Page",
+     "PageSize"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "databox.dataset_get_ingestion_by_dataset_and_ingestion_id",
+   "name": "Dataset get ingestion by dataset and ingestion id",
+   "description": "Fetches one ingestion.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "datasetId": {
+      "type": "string",
+      "description": ""
+     },
+     "ingestionId": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "datasetId",
+     "ingestionId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.databox.com/v1/datasets/{datasetId}/ingestions/{ingestionId}",
+    "path": [
+     "datasetId",
+     "ingestionId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "databox.dataset_get_ingestion_by_dataset_id",
+   "name": "Dataset get ingestion by dataset id",
+   "description": "Lists ingestions.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "datasetId": {
+      "type": "string",
+      "description": ""
+     },
+     "Page": {
+      "type": "integer",
+      "description": ""
+     },
+     "PageSize": {
+      "type": "integer",
+      "description": ""
+     }
+    },
+    "required": [
+     "datasetId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.databox.com/v1/datasets/{datasetId}/ingestions",
+    "path": [
+     "datasetId"
+    ],
+    "query": [
+     "Page",
+     "PageSize"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "databox.dataset_ingest_data",
+   "name": "Dataset ingest data",
+   "description": "Creates a data.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "datasetId": {
+      "type": "string",
+      "description": ""
+     },
+     "records": {
+      "type": "array",
+      "description": ""
+     }
+    },
+    "required": [
+     "datasetId",
+     "records"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.databox.com/v1/datasets/{datasetId}/data",
+    "path": [
+     "datasetId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "records"
+    ],
+    "body_format": "json"
+   },
+   "described": "derived"
+  },
+  {
+   "slug": "databox.dataset_purge_dataset",
+   "name": "Dataset purge dataset",
+   "description": "Creates a purge.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "datasetId": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "datasetId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.databox.com/v1/datasets/{datasetId}/purge",
+    "path": [
+     "datasetId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   },
+   "described": "derived"
+  }
+ ]
+}

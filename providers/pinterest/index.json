@@ -4,6 +4,135 @@
  "source": "https://raw.githubusercontent.com/pinterest/api-description/main/v5/openapi.json",
  "operations": [
   {
+   "slug": "pinterest.ab_tests_create",
+   "name": "Create ab test and associate experiment campaigns",
+   "description": "Create a new ab test and an experiment according to the test version configuration. Associate the given campaigns on version groups. Accepts an array and returns per-item `{ data, exceptions }` results, matching V4: a request can partially succeed, and callers rely on the per-item `error_code` to distinguish blocking validation failures from non-blocking warnings. Reused for external partner integ",
+   "input": {
+    "type": "object",
+    "properties": {
+     "ad_account_id": {
+      "type": "string",
+      "description": "Unique identifier of an ad account."
+     }
+    },
+    "required": [
+     "ad_account_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.pinterest.com/v5/ad_accounts/{ad_account_id}/ab_tests",
+    "path": [
+     "ad_account_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "pinterest.ab_tests_get",
+   "name": "Get ab test data and experiment campaign association data",
+   "description": "Get a specific ab test given the ab test ID. Reused for external partner integrations too, rather than a dedicated endpoint -- gatedFeature dropped at the operation level so a partner's OAuth token can reach it. The handler still verifies ownership and filters drafts itself for an external caller. **Rate limit**: [READ](/docs/redoc/#tag/Rate-Limits).",
+   "input": {
+    "type": "object",
+    "properties": {
+     "ab_test_id": {
+      "type": "string",
+      "description": "Test id of the AB test."
+     },
+     "ad_account_id": {
+      "type": "string",
+      "description": "Unique identifier of an ad account."
+     }
+    },
+    "required": [
+     "ab_test_id",
+     "ad_account_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.pinterest.com/v5/ad_accounts/{ad_account_id}/ab_tests/{ab_test_id}",
+    "path": [
+     "ab_test_id",
+     "ad_account_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "pinterest.ab_tests_list",
+   "name": "List ab tests for an ad account",
+   "description": "Get all AB tests for the given ad account ID. Reused for external partner integrations too -- gatedFeature dropped at the operation level. The handler force-excludes draft rows for an external caller regardless of the requested status filter. **Rate limit**: [READ](/docs/redoc/#tag/Rate-Limits).",
+   "input": {
+    "type": "object",
+    "properties": {
+     "ad_account_id": {
+      "type": "string",
+      "description": "Unique identifier of an ad account."
+     },
+     "bookmark": {
+      "type": "string",
+      "description": "Cursor used to fetch the next page of items"
+     },
+     "page_size": {
+      "type": "integer",
+      "description": "Maximum number of items to include in a single page. See documentation on [Pagination](/docs/reference/pagination/) for more information."
+     }
+    },
+    "required": [
+     "ad_account_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.pinterest.com/v5/ad_accounts/{ad_account_id}/ab_tests",
+    "path": [
+     "ad_account_id"
+    ],
+    "query": [
+     "bookmark",
+     "page_size"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "pinterest.ab_tests_update",
+   "name": "Update ab test",
+   "description": "Update an existing ab test and, when versions change, its experiment cell / campaign associations. Setting the status to COMPLETED or CANCELLED schedules the associated experiment for deletion. Setting the status of a DRAFT test to ACTIVE publishes it: the experiment is provisioned and the full create validation runs. Accepts an array and returns per-item `{ data, exceptions }` results, matching V",
+   "input": {
+    "type": "object",
+    "properties": {
+     "ad_account_id": {
+      "type": "string",
+      "description": "Unique identifier of an ad account."
+     }
+    },
+    "required": [
+     "ad_account_id"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.pinterest.com/v5/ad_accounts/{ad_account_id}/ab_tests",
+    "path": [
+     "ad_account_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "pinterest.ad_account_analytics",
    "name": "Get ad account analytics",
    "description": "Get analytics for the specified `ad_account_id`, filtered by the specified options. - The token's user_account must either be the Owner of the specified ad account, or have one of the necessary roles granted to them via [Business Access](https://help.pinterest.com/en/business/article/share-and-manage-access-to-your-ad-accounts): Admin, Analyst, Campaign Manager. - If granularity is not HOUR, you c",
@@ -79,7 +208,7 @@
      },
      "reporting_timezone": {
       "type": "string",
-      "description": "Specify the timezone to be applied for the reporting. This feature is currently in BETA and is not available to all users.",
+      "description": "Specify the timezone to be applied for the reporting. Defaults to PINTEREST_TIME_ZONE (UTC). AD_ACCOUNT_TIME_ZONE requires the ad account to have a time_zone configured; otherwise the request fails with a 400.",
       "enum": [
        "PINTEREST_TIME_ZONE",
        "AD_ACCOUNT_TIME_ZONE"
@@ -227,7 +356,7 @@
      },
      "reporting_timezone": {
       "type": "string",
-      "description": "Specify the timezone to be applied for the reporting. This feature is currently in BETA and is not available to all users.",
+      "description": "Specify the timezone to be applied for the reporting. Defaults to PINTEREST_TIME_ZONE (UTC). AD_ACCOUNT_TIME_ZONE requires the ad account to have a time_zone configured; otherwise the request fails with a 400.",
       "enum": [
        "PINTEREST_TIME_ZONE",
        "AD_ACCOUNT_TIME_ZONE"
@@ -329,6 +458,14 @@
    "input": {
     "type": "object",
     "properties": {
+     "name": {
+      "type": "string",
+      "description": "Ad account name."
+     },
+     "owner_user_id": {
+      "type": "string",
+      "description": "Advertiser's owning user ID."
+     },
      "country": {
       "type": "string",
       "description": "Country ID from ISO 3166-1 alpha-2.",
@@ -365,14 +502,6 @@
        "JPY"
       ]
      },
-     "name": {
-      "type": "string",
-      "description": "Ad account name."
-     },
-     "owner_user_id": {
-      "type": "string",
-      "description": "Advertiser's owning user ID."
-     },
      "time_zone": {
       "type": "string",
       "description": "The time zone of the ad account, in IANA format (e.g., \"America/Los_Angeles\"). Adding your local time zone lets you view your campaigns and ad reporting in your preferred time zone. Future reports will be available in both your local time zone and default UTC time zone. Historical data takes 1-2 months to backfill. Your billing and order lines will remain in UTC."
@@ -387,10 +516,10 @@
     "query": [],
     "header": [],
     "body": [
-     "country",
-     "currency",
      "name",
      "owner_user_id",
+     "country",
+     "currency",
      "time_zone"
     ],
     "body_format": "json"
@@ -582,13 +711,13 @@
       "type": "string",
       "description": "Partner access token. Only for clients that requires authentication. We recommend to avoid this param."
      },
-     "partner_metadata": {
-      "type": "object",
-      "description": "Partner metadata. Only for clients that requires special handling. We recommend to avoid this param."
-     },
      "partner_refresh_token": {
       "type": "string",
       "description": "Partner refresh token. Only for clients that requires authentication. We recommend to avoid this param."
+     },
+     "partner_metadata": {
+      "type": "object",
+      "description": "Partner metadata. Only for clients that requires special handling. We recommend to avoid this param."
      }
     },
     "required": [
@@ -606,8 +735,82 @@
     "header": [],
     "body": [
      "partner_access_token",
-     "partner_metadata",
-     "partner_refresh_token"
+     "partner_refresh_token",
+     "partner_metadata"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "pinterest.ad_group_publisher_blocklists_read",
+   "name": "Get ad group publisher blocklist",
+   "description": "Get the publisher blocklist for an ad group whose owning ad account is included in the offsite placement advertiser allowlist.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "ad_account_id": {
+      "type": "string",
+      "description": ""
+     },
+     "ad_group_id": {
+      "type": "string",
+      "description": "Ad group ID."
+     }
+    },
+    "required": [
+     "ad_account_id",
+     "ad_group_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.pinterest.com/v5/ad_accounts/{ad_account_id}/ad_groups/{ad_group_id}/publisher_blocklists",
+    "path": [
+     "ad_account_id",
+     "ad_group_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "pinterest.ad_group_publisher_blocklists_update",
+   "name": "Update ad group publisher blocklist",
+   "description": "Replace the publisher blocklist for an ad group whose owning ad account is included in the offsite placement advertiser allowlist.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "ad_account_id": {
+      "type": "string",
+      "description": ""
+     },
+     "ad_group_id": {
+      "type": "string",
+      "description": "Ad group ID."
+     },
+     "excluded_app_bundles": {
+      "type": "array",
+      "description": "Mobile app bundle IDs excluded from offsite ad delivery. Omit this field to leave the blocklist unchanged, or send an empty array to clear it."
+     }
+    },
+    "required": [
+     "ad_account_id",
+     "ad_group_id"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.pinterest.com/v5/ad_accounts/{ad_account_id}/ad_groups/{ad_group_id}/publisher_blocklists",
+    "path": [
+     "ad_account_id",
+     "ad_group_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "excluded_app_bundles"
     ],
     "body_format": "json"
    }
@@ -696,7 +899,7 @@
      },
      "reporting_timezone": {
       "type": "string",
-      "description": "Specify the timezone to be applied for the reporting. This feature is currently in BETA and is not available to all users.",
+      "description": "Specify the timezone to be applied for the reporting. Defaults to PINTEREST_TIME_ZONE (UTC). AD_ACCOUNT_TIME_ZONE requires the ad account to have a time_zone configured; otherwise the request fails with a 400.",
       "enum": [
        "PINTEREST_TIME_ZONE",
        "AD_ACCOUNT_TIME_ZONE"
@@ -779,7 +982,28 @@
      },
      "targeting_spec": {
       "type": "object",
-      "description": ""
+      "description": "Targeting spec for delivery estimates and audience sizing."
+     },
+     "objective_type": {
+      "type": "string",
+      "description": "Campaign objective type. Affects how audience size is calculated.",
+      "enum": [
+       "AWARENESS",
+       "CONSIDERATION",
+       "CATALOG_SALES",
+       "WEB_CONVERSION",
+       "SALES",
+       "LEADS"
+      ]
+     },
+     "intended_promotion_type": {
+      "type": "string",
+      "description": "The creative source for ads. Required when objective_type is SALES or CONSIDERATION.",
+      "enum": [
+       "LEGACY",
+       "STANDARD_AD",
+       "CATALOG"
+      ]
      }
     },
     "required": [
@@ -800,7 +1024,9 @@
      "keywords",
      "placement_group",
      "product_group_ids",
-     "targeting_spec"
+     "targeting_spec",
+     "objective_type",
+     "intended_promotion_type"
     ],
     "body_format": "json"
    }
@@ -1210,7 +1436,7 @@
      },
      "reporting_timezone": {
       "type": "string",
-      "description": "Specify the timezone to be applied for the reporting. This feature is currently in BETA and is not available to all users.",
+      "description": "Specify the timezone to be applied for the reporting. Defaults to PINTEREST_TIME_ZONE (UTC). AD_ACCOUNT_TIME_ZONE requires the ad account to have a time_zone configured; otherwise the request fails with a 400.",
       "enum": [
        "PINTEREST_TIME_ZONE",
        "AD_ACCOUNT_TIME_ZONE"
@@ -1530,7 +1756,7 @@
      },
      "reporting_timezone": {
       "type": "string",
-      "description": "Specify the timezone to be applied for the reporting. This feature is currently in BETA and is not available to all users.",
+      "description": "Specify the timezone to be applied for the reporting. Defaults to PINTEREST_TIME_ZONE (UTC). AD_ACCOUNT_TIME_ZONE requires the ad account to have a time_zone configured; otherwise the request fails with a 400.",
       "enum": [
        "PINTEREST_TIME_ZONE",
        "AD_ACCOUNT_TIME_ZONE"
@@ -1670,7 +1896,7 @@
      },
      "reporting_timezone": {
       "type": "string",
-      "description": "Specify the timezone to be applied for the reporting. This feature is currently in BETA and is not available to all users.",
+      "description": "Specify the timezone to be applied for the reporting. Defaults to PINTEREST_TIME_ZONE (UTC). AD_ACCOUNT_TIME_ZONE requires the ad account to have a time_zone configured; otherwise the request fails with a 400.",
       "enum": [
        "PINTEREST_TIME_ZONE",
        "AD_ACCOUNT_TIME_ZONE"
@@ -2166,6 +2392,328 @@
    }
   },
   {
+   "slug": "pinterest.agency_owned_ad_account_requests_accept",
+   "name": "Accept aoaa requests",
+   "description": "Bulk accept agency owned ad account (AOAA) requests on behalf of the requesting business. Each accepted request transitions to ACCEPTED and the owning business's biz admins/owner are notified by email.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "business_id": {
+      "type": "string",
+      "description": "Unique identifier of the requesting business."
+     },
+     "request_ids": {
+      "type": "array",
+      "description": "A list of agency owned ad account request ids to accept."
+     }
+    },
+    "required": [
+     "business_id",
+     "request_ids"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.pinterest.com/v5/businesses/{business_id}/ad_account_requests/accept",
+    "path": [
+     "business_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "request_ids"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "pinterest.agency_owned_ad_account_requests_create",
+   "name": "Create aoaa request",
+   "description": "Create a request for an Agency Owned Ad Account (AOAA).",
+   "input": {
+    "type": "object",
+    "properties": {
+     "business_id": {
+      "type": "string",
+      "description": "Unique identifier of the requesting business."
+     },
+     "partner_id": {
+      "type": "string",
+      "description": "The partner id to be bound to the Business"
+     },
+     "name": {
+      "type": "string",
+      "description": "Ad account name."
+     },
+     "country": {
+      "type": "string",
+      "description": "Ad account country."
+     },
+     "currency": {
+      "type": "string",
+      "description": "Ad account currency. Defaults to the default currency of the ad account country when omitted.",
+      "enum": [
+       "UNK",
+       "USD",
+       "GBP",
+       "CAD",
+       "EUR",
+       "AUD",
+       "NZD",
+       "SEK",
+       "ILS",
+       "CHF",
+       "HKD",
+       "JPY"
+      ]
+     },
+     "business_id_to_permissions": {
+      "type": "object",
+      "description": "Business id to permissions mapping."
+     }
+    },
+    "required": [
+     "business_id",
+     "business_id_to_permissions",
+     "country",
+     "name",
+     "partner_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.pinterest.com/v5/businesses/{business_id}/partners/{partner_id}/ad_account_request",
+    "path": [
+     "business_id",
+     "partner_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "country",
+     "currency",
+     "business_id_to_permissions"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "pinterest.agency_owned_ad_account_requests_delete",
+   "name": "Delete aoaa request",
+   "description": "Deletes the Agency Owned Ad Account (AOAA) request created by the business. The underlying request transitions to CANCELED rather than being hard-deleted, preserving history.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "business_id": {
+      "type": "string",
+      "description": "Unique identifier of the requesting business."
+     },
+     "partner_id": {
+      "type": "string",
+      "description": "The partner id to be bound to the Business"
+     },
+     "agency_owned_ad_account_request_id": {
+      "type": "string",
+      "description": "Agency owned ad account request id."
+     }
+    },
+    "required": [
+     "agency_owned_ad_account_request_id",
+     "business_id",
+     "partner_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.pinterest.com/v5/businesses/{business_id}/partners/{partner_id}/ad_account_requests/{agency_owned_ad_account_request_id}",
+    "path": [
+     "business_id",
+     "partner_id",
+     "agency_owned_ad_account_request_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "pinterest.agency_owned_ad_account_requests_list",
+   "name": "Get aoaa requests",
+   "description": "Get Agency Owned Ad Account (AOAA) requests.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "business_id": {
+      "type": "string",
+      "description": "Unique identifier of the requesting business."
+     },
+     "partner_id": {
+      "type": "string",
+      "description": "Partner business id."
+     },
+     "request_ids": {
+      "type": "array",
+      "description": "A list of agency owned ad account request ids."
+     },
+     "statuses": {
+      "type": "array",
+      "description": "A list of agency owned ad account request statuses."
+     },
+     "request_direction": {
+      "type": "string",
+      "description": "The direction of the request.",
+      "enum": [
+       "SENT",
+       "RECEIVED",
+       "ALL"
+      ]
+     }
+    },
+    "required": [
+     "business_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.pinterest.com/v5/businesses/{business_id}/ad_account_requests",
+    "path": [
+     "business_id"
+    ],
+    "query": [
+     "partner_id",
+     "request_ids",
+     "statuses",
+     "request_direction"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "pinterest.agency_owned_ad_account_requests_reject",
+   "name": "Reject aoaa requests",
+   "description": "Bulk reject agency owned ad account (AOAA) requests on behalf of the requesting business. Each rejected request transitions to DECLINED and the owning business's biz admins/owner are notified by email.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "business_id": {
+      "type": "string",
+      "description": "Unique identifier of the requesting business."
+     },
+     "request_ids": {
+      "type": "array",
+      "description": "A list of agency owned ad account request ids to reject."
+     }
+    },
+    "required": [
+     "business_id",
+     "request_ids"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.pinterest.com/v5/businesses/{business_id}/ad_account_requests/reject",
+    "path": [
+     "business_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "request_ids"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "pinterest.agency_owned_ad_account_requests_update",
+   "name": "Update aoaa request",
+   "description": "Update a request for an Agency Owned Ad Account (AOAA). If status is updated to PENDING, the invite will be resent. Provide either business_request_status or business_id_to_permissions, but not both.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "business_id": {
+      "type": "string",
+      "description": "Unique identifier of the requesting business."
+     },
+     "partner_id": {
+      "type": "string",
+      "description": "The partner id to be bound to the Business"
+     },
+     "agency_owned_ad_account_request_id": {
+      "type": "string",
+      "description": "Agency owned ad account request id."
+     },
+     "business_request_status": {
+      "type": "string",
+      "description": "New status for the request. If set to PENDING, the invite will be resent.",
+      "enum": [
+       "PENDING",
+       "ACCEPTED",
+       "DECLINED",
+       "CANCELED",
+       "EXPIRED"
+      ]
+     },
+     "business_id_to_permissions": {
+      "type": "object",
+      "description": "Business id to permissions mapping."
+     }
+    },
+    "required": [
+     "agency_owned_ad_account_request_id",
+     "business_id",
+     "partner_id"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.pinterest.com/v5/businesses/{business_id}/partners/{partner_id}/ad_account_requests/{agency_owned_ad_account_request_id}",
+    "path": [
+     "business_id",
+     "partner_id",
+     "agency_owned_ad_account_request_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "business_request_status",
+     "business_id_to_permissions"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "pinterest.allowed_domains_read",
+   "name": "Get rmn allowed url domains for advertiser",
+   "description": "Get a list of the RMN allowed url domains for ads created by the specified advertiser.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "ad_account_id": {
+      "type": "string",
+      "description": "Unique identifier of an ad account."
+     }
+    },
+    "required": [
+     "ad_account_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.pinterest.com/v5/ad_accounts/{ad_account_id}/allowed_domains",
+    "path": [
+     "ad_account_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "pinterest.analytics_create_conversion_product_report",
    "name": "Create a request for a brand, category, sku report",
    "description": "[Restricted](/docs/getting-started/using-beta-and-restricted-features/) This creates an asynchronous brand, category, SKU report based on the given request. This request returns a token that you can use to download the report when it is ready.",
@@ -2327,21 +2875,13 @@
       "type": "string",
       "description": ""
      },
-     "advertiser_ids": {
-      "type": "array",
-      "description": "Advertiser IDs for multi-advertiser report"
-     },
-     "columns": {
-      "type": "array",
-      "description": "Metric and entity columns"
-     },
      "countries": {
       "type": "array",
       "description": "A List of countries for filtering"
      },
-     "custom_column_ids": {
+     "columns": {
       "type": "array",
-      "description": "List of custom column IDs"
+      "description": "Metric and entity columns"
      },
      "end_date": {
       "type": "string",
@@ -2374,6 +2914,14 @@
      "targeting_types": {
       "type": "array",
       "description": "List of targeting types"
+     },
+     "advertiser_ids": {
+      "type": "array",
+      "description": "Advertiser IDs for multi-advertiser report"
+     },
+     "custom_column_ids": {
+      "type": "array",
+      "description": "List of custom column IDs"
      }
     },
     "required": [
@@ -2396,16 +2944,16 @@
     "query": [],
     "header": [],
     "body": [
-     "advertiser_ids",
-     "columns",
      "countries",
-     "custom_column_ids",
+     "columns",
      "end_date",
      "granularity",
      "level",
      "report_name",
      "start_date",
-     "targeting_types"
+     "targeting_types",
+     "advertiser_ids",
+     "custom_column_ids"
     ],
     "body_format": "json"
    }
@@ -2420,6 +2968,68 @@
      "ad_account_id": {
       "type": "string",
       "description": "Unique identifier of an ad account."
+     },
+     "columns": {
+      "type": "array",
+      "description": "Metric and entity columns. Pin promotion and ad related columns are not supported for Product Item level reports."
+     },
+     "combine_targeting_types": {
+      "type": "boolean",
+      "description": "Determines if the targeting types included in the request should be consolidated into a single breakdown."
+     },
+     "custom_conversion_event_metrics": {
+      "type": "array",
+      "description": "List of advertiser-defined custom conversion event metrics to include in the report"
+     },
+     "end_hour": {
+      "type": "integer",
+      "description": "Which hour of the end date to stop the report (inclusive). Only allowed for hourly reports."
+     },
+     "level": {
+      "type": "string",
+      "description": "Level of the report",
+      "enum": [
+       "ADVERTISER",
+       "ADVERTISER_TARGETING",
+       "CAMPAIGN",
+       "CAMPAIGN_TARGETING",
+       "AD_GROUP",
+       "AD_GROUP_TARGETING",
+       "PIN_PROMOTION",
+       "PIN_PROMOTION_TARGETING",
+       "KEYWORD",
+       "PRODUCT_GROUP",
+       "PRODUCT_GROUP_TARGETING",
+       "PRODUCT_ITEM"
+      ]
+     },
+     "primary_sort": {
+      "type": "string",
+      "description": "Whether to first sort the report by date or by ID",
+      "enum": [
+       "BY_ID",
+       "BY_DATE"
+      ]
+     },
+     "report_format": {
+      "type": "string",
+      "description": "Format of generated report",
+      "enum": [
+       "JSON",
+       "CSV"
+      ]
+     },
+     "reporting_timezone": {
+      "type": "string",
+      "description": "Specify the timezone to be applied for the reporting. Defaults to PINTEREST_TIME_ZONE (UTC). AD_ACCOUNT_TIME_ZONE requires the ad account to have a time_zone configured; otherwise the request fails with a 400.",
+      "enum": [
+       "PINTEREST_TIME_ZONE",
+       "AD_ACCOUNT_TIME_ZONE"
+      ]
+     },
+     "start_hour": {
+      "type": "integer",
+      "description": "Which hour of the start date to begin the report. Only allowed for hourly reports."
      },
      "ad_group_ids": {
       "type": "array",
@@ -2455,7 +3065,7 @@
      },
      "campaign_objective_types": {
       "type": "array",
-      "description": "List of values for filtering. [\"WEB_SESSIONS\"] is in BETA."
+      "description": "List of values for filtering. [\"WEB_SESSIONS\"] and [\"VIDEO_VIEW\"] are DEPRECATED."
      },
      "campaign_statuses": {
       "type": "array",
@@ -2473,14 +3083,6 @@
        60
       ]
      },
-     "columns": {
-      "type": "array",
-      "description": "Metric and entity columns. Pin promotion and ad related columns are not supported for Product Item level reports."
-     },
-     "combine_targeting_types": {
-      "type": "boolean",
-      "description": "Determines if the targeting types included in the request should be consolidated into a single breakdown."
-     },
      "conversion_report_time": {
       "type": "string",
       "description": "Date dimension for conversion metrics.",
@@ -2489,17 +3091,9 @@
        "TIME_OF_CONVERSION"
       ]
      },
-     "custom_conversion_event_metrics": {
-      "type": "array",
-      "description": "List of advertiser-defined custom conversion event metrics to include in the report"
-     },
      "end_date": {
       "type": "string",
       "description": "Metric report end date (UTC). Format: YYYY-MM-DD"
-     },
-     "end_hour": {
-      "type": "integer",
-      "description": "Which hour of the end date to stop the report (inclusive). Only allowed for hourly reports."
      },
      "engagement_window_days": {
       "type": "number",
@@ -2524,35 +3118,9 @@
        "MONTH"
       ]
      },
-     "level": {
-      "type": "string",
-      "description": "Level of the report",
-      "enum": [
-       "ADVERTISER",
-       "ADVERTISER_TARGETING",
-       "CAMPAIGN",
-       "CAMPAIGN_TARGETING",
-       "AD_GROUP",
-       "AD_GROUP_TARGETING",
-       "PIN_PROMOTION",
-       "PIN_PROMOTION_TARGETING",
-       "KEYWORD",
-       "PRODUCT_GROUP",
-       "PRODUCT_GROUP_TARGETING",
-       "PRODUCT_ITEM"
-      ]
-     },
      "metrics_filters": {
       "type": "array",
       "description": "List of metrics filters"
-     },
-     "primary_sort": {
-      "type": "string",
-      "description": "Whether to first sort the report by date or by ID",
-      "enum": [
-       "BY_ID",
-       "BY_DATE"
-      ]
      },
      "product_group_ids": {
       "type": "array",
@@ -2566,29 +3134,9 @@
       "type": "array",
       "description": "List of product item ids"
      },
-     "report_format": {
-      "type": "string",
-      "description": "Format of generated report",
-      "enum": [
-       "JSON",
-       "CSV"
-      ]
-     },
-     "reporting_timezone": {
-      "type": "string",
-      "description": "Specify the timezone to be applied for the reporting.",
-      "enum": [
-       "PINTEREST_TIME_ZONE",
-       "AD_ACCOUNT_TIME_ZONE"
-      ]
-     },
      "start_date": {
       "type": "string",
       "description": "Metric report start date (UTC). Format: YYYY-MM-DD"
-     },
-     "start_hour": {
-      "type": "integer",
-      "description": "Which hour of the start date to begin the report. Only allowed for hourly reports."
      },
      "targeting_types": {
       "type": "array",
@@ -2609,8 +3157,10 @@
     },
     "required": [
      "ad_account_id",
+     "columns",
      "end_date",
      "granularity",
+     "level",
      "start_date"
     ]
    },
@@ -2623,6 +3173,15 @@
     "query": [],
     "header": [],
     "body": [
+     "columns",
+     "combine_targeting_types",
+     "custom_conversion_event_metrics",
+     "end_hour",
+     "level",
+     "primary_sort",
+     "report_format",
+     "reporting_timezone",
+     "start_hour",
      "ad_group_ids",
      "ad_group_statuses",
      "ad_ids",
@@ -2634,24 +3193,15 @@
      "campaign_objective_types",
      "campaign_statuses",
      "click_window_days",
-     "columns",
-     "combine_targeting_types",
      "conversion_report_time",
-     "custom_conversion_event_metrics",
      "end_date",
-     "end_hour",
      "engagement_window_days",
      "granularity",
-     "level",
      "metrics_filters",
-     "primary_sort",
      "product_group_ids",
      "product_group_statuses",
      "product_item_ids",
-     "report_format",
-     "reporting_timezone",
      "start_date",
-     "start_hour",
      "targeting_types",
      "view_window_days"
     ],
@@ -2845,10 +3395,6 @@
       "type": "string",
       "description": "Unique identifier of the requesting business."
      },
-     "asset_group": {
-      "type": "object",
-      "description": ""
-     },
      "asset_group_description": {
       "type": "string",
       "description": "Asset group description."
@@ -2860,6 +3406,10 @@
      "asset_group_types": {
       "type": "array",
       "description": "Asset Group Types. Note: The asset group types are used for user reference and categorization purposes only and do not impact the functionality of the asset group."
+     },
+     "asset_group": {
+      "type": "object",
+      "description": ""
      }
     },
     "required": [
@@ -2878,10 +3428,10 @@
     "query": [],
     "header": [],
     "body": [
-     "asset_group",
      "asset_group_description",
      "asset_group_name",
-     "asset_group_types"
+     "asset_group_types",
+     "asset_group"
     ],
     "body_format": "json"
    }
@@ -3220,6 +3770,10 @@
       "type": "string",
       "description": "Audience name."
      },
+     "rule": {
+      "type": "object",
+      "description": "JSON object defining targeted audience users. Example rule formats per audience type: CUSTOMER_LIST: { \"customer_list_id\": \"\"} ACTALIKE: { \"seed_id\": [\"\"], \"country\": \"US\", \"percentage\": \"10\" } (Valid countries include: \"US\", \"CA\", and \"GB\". Percentage should be 1-10. The targeted audience should be this % size across Pinterest.) VISITOR: { \"visitor_source_id\": [\"\"], \"retention_days\": \"180\", \"even"
+     },
      "operation_type": {
       "type": "string",
       "description": "Audience operation type (update or remove). Only valid in update request body.",
@@ -3228,9 +3782,34 @@
        "REMOVE"
       ]
      },
-     "rule": {
-      "type": "object",
-      "description": "JSON object defining targeted audience users. Example rule formats per audience type: CUSTOMER_LIST: { \"customer_list_id\": \"\"} ACTALIKE: { \"seed_id\": [\"\"], \"country\": \"US\", \"percentage\": \"10\" } (Valid countries include: \"US\", \"CA\", and \"GB\". Percentage should be 1-10. The targeted audience should be this % size across Pinterest.) VISITOR: { \"visitor_source_id\": [\"\"], \"retention_days\": \"180\", \"even"
+     "category": {
+      "type": "string",
+      "description": "Audience category."
+     },
+     "data_source": {
+      "type": "string",
+      "description": "Audience data source.",
+      "enum": [
+       "UNSPECIFIED"
+      ]
+     },
+     "geography": {
+      "type": "array",
+      "description": "Audience geography as ISO 3166-1 alpha-2 country codes."
+     },
+     "refresh_cadence": {
+      "type": "string",
+      "description": "Audience refresh cadence.",
+      "enum": [
+       "UNSPECIFIED"
+      ]
+     },
+     "vertical": {
+      "type": "string",
+      "description": "Audience vertical.",
+      "enum": [
+       "UNSPECIFIED"
+      ]
      }
     },
     "required": [
@@ -3252,8 +3831,13 @@
      "audience_type",
      "description",
      "name",
+     "rule",
      "operation_type",
-     "rule"
+     "category",
+     "data_source",
+     "geography",
+     "refresh_cadence",
+     "vertical"
     ],
     "body_format": "json"
    }
@@ -3668,6 +4252,15 @@
       "type": "string",
       "description": "Unique identifier of an ad account."
      },
+     "privacy": {
+      "type": "string",
+      "description": "Privacy setting for a board. Learn more about [secret](https://help.pinterest.com/en/article/secret-boards) boards and [protected](https://help.pinterest.com/en/business/article/protected-boards) boards. **Note:** If you create an ad-only board by setting `is_ads_only` to `true`, the `privacy` settng automatically becomes `PROTECTED`.",
+      "enum": [
+       "PUBLIC",
+       "PROTECTED",
+       "SECRET"
+      ]
+     },
      "description": {
       "type": "string",
       "description": ""
@@ -3679,15 +4272,6 @@
      "name": {
       "type": "string",
       "description": "Name of the board. **Note:** If you create an ad-only board by setting `is_ads_only` to `true`, the board name automatically becomes \"Ad-only Pins\"."
-     },
-     "privacy": {
-      "type": "string",
-      "description": "Privacy setting for a board. Learn more about [secret](https://help.pinterest.com/en/article/secret-boards) boards and [protected](https://help.pinterest.com/en/business/article/protected-boards) boards. **Note:** If you create an ad-only board by setting `is_ads_only` to `true`, the `privacy` settng automatically becomes `PROTECTED`.",
-      "enum": [
-       "PUBLIC",
-       "PROTECTED",
-       "SECRET"
-      ]
      }
     },
     "required": [
@@ -3703,10 +4287,10 @@
     ],
     "header": [],
     "body": [
+     "privacy",
      "description",
      "is_ads_only",
-     "name",
-     "privacy"
+     "name"
     ],
     "body_format": "json"
    }
@@ -3896,14 +4480,6 @@
       "type": "string",
       "description": "Unique identifier of an ad account."
      },
-     "description": {
-      "type": "string",
-      "description": ""
-     },
-     "name": {
-      "type": "string",
-      "description": "Name of the board. **Note:** If you create an ad-only board by setting `is_ads_only` to `true`, the board name automatically becomes \"Ad-only Pins\"."
-     },
      "privacy": {
       "type": "string",
       "description": "",
@@ -3911,6 +4487,14 @@
        "PUBLIC",
        "SECRET"
       ]
+     },
+     "description": {
+      "type": "string",
+      "description": ""
+     },
+     "name": {
+      "type": "string",
+      "description": "Name of the board. **Note:** If you create an ad-only board by setting `is_ads_only` to `true`, the board name automatically becomes \"Ad-only Pins\"."
      }
     },
     "required": [
@@ -3928,9 +4512,9 @@
     ],
     "header": [],
     "body": [
+     "privacy",
      "description",
-     "name",
-     "privacy"
+     "name"
     ],
     "body_format": "json"
    }
@@ -4104,6 +4688,30 @@
      "website": {
       "type": "string",
       "description": "Brand Account website"
+     },
+     "contact_email": {
+      "type": "string",
+      "description": "Public contact email shown on the business profile."
+     },
+     "contact_phone": {
+      "type": "string",
+      "description": "Public contact phone number shown on the business profile."
+     },
+     "contact_phone_country": {
+      "type": "string",
+      "description": "ISO country code (e.g. \"US\") of the public contact phone number."
+     },
+     "enable_profile_address": {
+      "type": "boolean",
+      "description": "Whether the retail-location address is shown on the public business profile."
+     },
+     "profile_place": {
+      "type": "object",
+      "description": "Retail-location address, shown on the public business profile when enable_profile_address is true."
+     },
+     "impressum_url": {
+      "type": "string",
+      "description": "Impressum URL (legal ownership statement, required in DE/AT/CH)."
      }
     },
     "required": [
@@ -4126,7 +4734,13 @@
      "name",
      "profile_image",
      "username",
-     "website"
+     "website",
+     "contact_email",
+     "contact_phone",
+     "contact_phone_country",
+     "enable_profile_address",
+     "profile_place",
+     "impressum_url"
     ],
     "body_format": "json"
    }
@@ -4134,7 +4748,7 @@
   {
    "slug": "pinterest.bulk_download_create",
    "name": "Get advertiser entities in bulk",
-   "description": "Create an asynchronous report that may include information on campaigns, ad groups, product groups, ads, keywords, schedules,and/or labels; can filter by campaigns. Though the entities may be active, archived, or paused, only active entities will return data.",
+   "description": "Create an asynchronous report that may include information on campaigns, ad groups, product groups, ads, keywords, schedules, labels, and/or entity change history; can filter by campaigns. Though the entities may be active, archived, or paused, only active entities will return data. When `ENTITY_HISTORY` is requested, the report returns audit-log change events for the ad account regardless of enti",
    "input": {
     "type": "object",
     "properties": {
@@ -4192,7 +4806,7 @@
   {
    "slug": "pinterest.bulk_request_get",
    "name": "Download advertiser entities in bulk",
-   "description": "Get the status of a bulk request by `request_id`, along with a download URL that will allow you to download the new or updated entity data (campaigns, ad groups, product groups, ads, schedules, or keywords).",
+   "description": "Get the status of a bulk request by `request_id`, along with a download URL that will allow you to download the new or updated entity data (campaigns, ad groups, product groups, ads, schedules, keywords) or entity change history.",
    "input": {
     "type": "object",
     "properties": {
@@ -4232,7 +4846,7 @@
   {
    "slug": "pinterest.bulk_upsert_create",
    "name": "Create update ad entities in bulk",
-   "description": "Either create or update any combination of campaigns, ad groups, product groups, ads, keywords, schedules, or labels. Note that this request will be processed asynchronously; the response will include a request_id that can be used to obtain the status of the request.",
+   "description": "Either create or update any combination of campaigns, ad groups, product groups, ads, keywords, schedules, or labels. Note that this request will be processed asynchronously; the response will include a `request_id` that can be used to obtain the status of the request.",
    "input": {
     "type": "object",
     "properties": {
@@ -4246,7 +4860,7 @@
      },
      "update": {
       "type": "object",
-      "description": "Request for creation of entities in bulk."
+      "description": "Request for updating entities in bulk."
      }
     },
     "required": [
@@ -4317,6 +4931,308 @@
      "account_type",
      "bookmark",
      "page_size"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "pinterest.business_analytics_aggregated_timeline_read",
+   "name": "Get aggregated timeline business analytics",
+   "description": "**This endpoint is currently in beta and not available to all apps. [Learn more](/docs/getting-started/using-beta-and-restricted-features/).** Get aggregated analytics across business entities over a timeline.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "business_id": {
+      "type": "string",
+      "description": "Business ID."
+     },
+     "rmn_account_scope": {
+      "type": "string",
+      "description": "Specifies which RMN ad accounts to include based on whether they are partner-shared or business-owned.",
+      "enum": [
+       "PARTNER_SHARED",
+       "BUSINESS_OWNED"
+      ]
+     },
+     "metric_scope": {
+      "type": "string",
+      "description": "Specifies whether to report on RMN-dedicated partnerships or all business ad accounts. Defaults to `RMN_DEDICATED` for backward compatibility.",
+      "enum": [
+       "RMN_DEDICATED",
+       "ALL_BUSINESS"
+      ]
+     },
+     "start_date": {
+      "type": "string",
+      "description": "Metric report start date (UTC). Format: YYYY-MM-DD."
+     },
+     "end_date": {
+      "type": "string",
+      "description": "Metric report end date (UTC). Format: YYYY-MM-DD."
+     },
+     "objective_types": {
+      "type": "array",
+      "description": "Objective types for the campaign."
+     },
+     "click_window_days": {
+      "type": "string",
+      "description": "Number of days to use as the conversion attribution window for a pin click action. Applies to Pinterest Tag conversion metrics. Prior conversion tags use their defined attribution windows. If not specified, defaults to `30` days.",
+      "enum": [
+       "DAYS_0",
+       "DAYS_1",
+       "DAYS_7",
+       "DAYS_30",
+       "DAYS_60"
+      ]
+     },
+     "engagement_window_days": {
+      "type": "string",
+      "description": "Number of days to use as the conversion attribution window for an engagement action. Engagements include saves, closeups, link clicks, and carousel card swipes. Applies to Pinterest Tag conversion metrics. Prior conversion tags use their defined attribution windows. If not specified, defaults to `30` days.",
+      "enum": [
+       "DAYS_0",
+       "DAYS_1",
+       "DAYS_7",
+       "DAYS_30",
+       "DAYS_60"
+      ]
+     },
+     "view_window_days": {
+      "type": "string",
+      "description": "Number of days to use as the conversion attribution window for a view action. Applies to Pinterest Tag conversion metrics. Prior conversion tags use their defined attribution windows. If not specified, defaults to `1` day.",
+      "enum": [
+       "DAYS_0",
+       "DAYS_1",
+       "DAYS_7",
+       "DAYS_30",
+       "DAYS_60"
+      ]
+     },
+     "conversion_report_time": {
+      "type": "string",
+      "description": "The date by which the conversion metrics returned from this endpoint will be reported. There are two dates associated with a conversion event: the date that the user interacted with the ad, and the date that the user completed a conversion event.",
+      "enum": [
+       "TIME_OF_AD_ACTION",
+       "TIME_OF_CONVERSION"
+      ]
+     },
+     "campaign_summary_statuses": {
+      "type": "array",
+      "description": "Summary statuses for campaign."
+     },
+     "break_down_type": {
+      "type": "string",
+      "description": "The breakdown requested when querying aggregated timeline metrics. Defaults to `PARTNER` for backward compatibility.",
+      "enum": [
+       "PARTNER",
+       "AD_ACCOUNT"
+      ]
+     },
+     "metrics": {
+      "type": "array",
+      "description": "Metrics to include."
+     },
+     "granularity": {
+      "type": "string",
+      "description": "TOTAL - metrics are aggregated over the specified date range. DAY - metrics are broken down daily. HOUR - metrics are broken down hourly. WEEK - metrics are broken down weekly. MONTH - metrics are broken down monthly.",
+      "enum": [
+       "TOTAL",
+       "DAY",
+       "HOUR",
+       "WEEK",
+       "MONTH"
+      ]
+     }
+    },
+    "required": [
+     "business_id",
+     "end_date",
+     "granularity",
+     "metrics",
+     "rmn_account_scope",
+     "start_date"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.pinterest.com/v5/businesses/{business_id}/analytics/aggregated_timeline",
+    "path": [
+     "business_id"
+    ],
+    "query": [
+     "rmn_account_scope",
+     "metric_scope",
+     "start_date",
+     "end_date",
+     "objective_types",
+     "click_window_days",
+     "engagement_window_days",
+     "view_window_days",
+     "conversion_report_time",
+     "campaign_summary_statuses",
+     "break_down_type",
+     "metrics",
+     "granularity"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "pinterest.business_analytics_read",
+   "name": "Get business analytics",
+   "description": "**This endpoint is currently in beta and not available to all apps. [Learn more](/docs/getting-started/using-beta-and-restricted-features/).** Get analytics broken down by the requested entity type per entity over the requested time window.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "business_id": {
+      "type": "string",
+      "description": "Business ID."
+     },
+     "rmn_account_scope": {
+      "type": "string",
+      "description": "Specifies which RMN ad accounts to include based on whether they are partner-shared or business-owned.",
+      "enum": [
+       "PARTNER_SHARED",
+       "BUSINESS_OWNED"
+      ]
+     },
+     "metric_scope": {
+      "type": "string",
+      "description": "Specifies whether to report on RMN-dedicated partnerships or all business ad accounts. Defaults to `RMN_DEDICATED` for backward compatibility.",
+      "enum": [
+       "RMN_DEDICATED",
+       "ALL_BUSINESS"
+      ]
+     },
+     "start_date": {
+      "type": "string",
+      "description": "Metric report start date (UTC). Format: YYYY-MM-DD."
+     },
+     "end_date": {
+      "type": "string",
+      "description": "Metric report end date (UTC). Format: YYYY-MM-DD."
+     },
+     "objective_types": {
+      "type": "array",
+      "description": "Objective types for the campaign."
+     },
+     "click_window_days": {
+      "type": "string",
+      "description": "Number of days to use as the conversion attribution window for a pin click action. Applies to Pinterest Tag conversion metrics. Prior conversion tags use their defined attribution windows. If not specified, defaults to `30` days.",
+      "enum": [
+       "DAYS_0",
+       "DAYS_1",
+       "DAYS_7",
+       "DAYS_30",
+       "DAYS_60"
+      ]
+     },
+     "engagement_window_days": {
+      "type": "string",
+      "description": "Number of days to use as the conversion attribution window for an engagement action. Engagements include saves, closeups, link clicks, and carousel card swipes. Applies to Pinterest Tag conversion metrics. Prior conversion tags use their defined attribution windows. If not specified, defaults to `30` days.",
+      "enum": [
+       "DAYS_0",
+       "DAYS_1",
+       "DAYS_7",
+       "DAYS_30",
+       "DAYS_60"
+      ]
+     },
+     "view_window_days": {
+      "type": "string",
+      "description": "Number of days to use as the conversion attribution window for a view action. Applies to Pinterest Tag conversion metrics. Prior conversion tags use their defined attribution windows. If not specified, defaults to `1` day.",
+      "enum": [
+       "DAYS_0",
+       "DAYS_1",
+       "DAYS_7",
+       "DAYS_30",
+       "DAYS_60"
+      ]
+     },
+     "conversion_report_time": {
+      "type": "string",
+      "description": "The date by which the conversion metrics returned from this endpoint will be reported. There are two dates associated with a conversion event: the date that the user interacted with the ad, and the date that the user completed a conversion event.",
+      "enum": [
+       "TIME_OF_AD_ACTION",
+       "TIME_OF_CONVERSION"
+      ]
+     },
+     "campaign_summary_statuses": {
+      "type": "array",
+      "description": "Summary statuses for campaign."
+     },
+     "metrics": {
+      "type": "array",
+      "description": "Metrics to include."
+     },
+     "break_down_type": {
+      "type": "string",
+      "description": "The breakdown requested when querying ad-account related metrics.",
+      "enum": [
+       "PARTNER",
+       "PINNER_LIST",
+       "AD_ACCOUNT",
+       "CAMPAIGN",
+       "PIN",
+       "AD_FORMAT"
+      ]
+     },
+     "search_value": {
+      "type": "string",
+      "description": "The value of the field to search."
+     },
+     "countries_filter": {
+      "type": "array",
+      "description": "Countries to filter when querying related metrics."
+     },
+     "advertisers_exclude_filter": {
+      "type": "array",
+      "description": "Ad accounts to exclude when querying related metrics."
+     },
+     "advertiser_active_filter": {
+      "type": "boolean",
+      "description": "Filter to include only active ad accounts when querying related metrics."
+     },
+     "partner_ids": {
+      "type": "string",
+      "description": "A list of business partner ids separated by commas."
+     }
+    },
+    "required": [
+     "business_id",
+     "end_date",
+     "metrics",
+     "rmn_account_scope",
+     "start_date"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.pinterest.com/v5/businesses/{business_id}/analytics",
+    "path": [
+     "business_id"
+    ],
+    "query": [
+     "rmn_account_scope",
+     "metric_scope",
+     "start_date",
+     "end_date",
+     "objective_types",
+     "click_window_days",
+     "engagement_window_days",
+     "view_window_days",
+     "conversion_report_time",
+     "campaign_summary_statuses",
+     "metrics",
+     "break_down_type",
+     "search_value",
+     "countries_filter",
+     "advertisers_exclude_filter",
+     "advertiser_active_filter",
+     "partner_ids"
     ],
     "header": [],
     "body": [],
@@ -4458,13 +5374,44 @@
        "AD_ACCOUNT",
        "PROFILE",
        "ASSET_GROUP",
+       "PINNER_LIST",
+       "CONVERSION_TAG",
        "CATALOG",
-       "CONSUMER"
+       "CONSUMER",
+       "CONVERSION_SEGMENT"
       ]
      },
      "start_index": {
       "type": "integer",
       "description": "An index to start fetching the results from. Only the results starting from this index will be returned."
+     },
+     "sort_by": {
+      "type": "string",
+      "description": "The field to sort member assets by",
+      "enum": [
+       "NAME",
+       "ID",
+       "PERMISSIONS"
+      ]
+     },
+     "sort_ascending": {
+      "type": "boolean",
+      "description": "Sort assets in ascending order"
+     },
+     "search_by": {
+      "type": "string",
+      "description": "The field to search member assets by",
+      "enum": [
+       "NAME",
+       "ID",
+       "NAME_OR_ID",
+       "OWNER_NAME",
+       "NAME_OR_OWNER"
+      ]
+     },
+     "search_value": {
+      "type": "string",
+      "description": "The value to search for"
      },
      "bookmark": {
       "type": "string",
@@ -4491,6 +5438,10 @@
      "asset_group_id",
      "asset_type",
      "start_index",
+     "sort_by",
+     "sort_ascending",
+     "search_by",
+     "search_value",
      "bookmark",
      "page_size"
     ],
@@ -4660,7 +5611,6 @@
      }
     },
     "required": [
-     "accesses",
      "business_id"
     ]
    },
@@ -4974,7 +5924,7 @@
      },
      "reporting_timezone": {
       "type": "string",
-      "description": "Specify the timezone to be applied for the reporting. This feature is currently in BETA and is not available to all users.",
+      "description": "Specify the timezone to be applied for the reporting. Defaults to PINTEREST_TIME_ZONE (UTC). AD_ACCOUNT_TIME_ZONE requires the ad account to have a time_zone configured; otherwise the request fails with a 400.",
       "enum": [
        "PINTEREST_TIME_ZONE",
        "AD_ACCOUNT_TIME_ZONE"
@@ -5100,7 +6050,7 @@
      },
      "reporting_timezone": {
       "type": "string",
-      "description": "Specify the timezone to be applied for the reporting. This feature is currently in BETA and is not available to all users.",
+      "description": "Specify the timezone to be applied for the reporting. Defaults to PINTEREST_TIME_ZONE (UTC). AD_ACCOUNT_TIME_ZONE requires the ad account to have a time_zone configured; otherwise the request fails with a 400.",
       "enum": [
        "PINTEREST_TIME_ZONE",
        "AD_ACCOUNT_TIME_ZONE"
@@ -5147,7 +6097,7 @@
   {
    "slug": "pinterest.campaigns_create",
    "name": "Create campaigns",
-   "description": "Create multiple new campaigns. Every campaign has its own campaign_id and houses one or more ad groups, which contain one or more ads. For more, see [Set up your campaign](https://help.pinterest.com/en/business/article/set-up-your-campaign/). **Note:** - The values for `lifetime_spend_cap` and `daily_spend_cap` are microcurrency amounts based on the currency field set in the advertiser's profile (",
+   "description": "Create multiple new campaigns. Every campaign has its own campaign_id and houses one or more ad groups, which contain one or more ads. For more, see [Set up your campaign](https://help.pinterest.com/en/business/article/set-up-your-campaign/). **Campaign objective types are changing!** As part of objective simplification, `WEB_CONVERSION` and `CATALOG_SALES` objectives are being deprecated and repl",
    "input": {
     "type": "object",
     "properties": {
@@ -5267,7 +6217,7 @@
   {
    "slug": "pinterest.campaigns_update",
    "name": "Update campaigns",
-   "description": "Update multiple ad campaigns based on campaign_ids. **Note:** - The values for `lifetime_spend_cap` and `daily_spend_cap` are microcurrency amounts based on the currency field set in the advertiser's profile (e.g. USD). Microcurrency is used to track very small transactions, based on the currency set in the advertiser's profile. A microcurrency unit is 10^(-6) of the standard unit of currency sele",
+   "description": "Update multiple ad campaigns based on campaign_ids. **Campaign objective types are changing!** As part of objective simplification, `WEB_CONVERSION` and `CATALOG_SALES` objectives are being deprecated and replaced by `SALES` and `LEADS`. A new optional `intended_promotion_type` parameter is also being introduced, allowing you to create ads from either Pins or product catalog under the `SALES` and ",
    "input": {
     "type": "object",
     "properties": {
@@ -5323,6 +6273,185 @@
     "header": [],
     "body": [
      "invite_ids"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "pinterest.catalogs_auto_localization_configs_create",
+   "name": "Create auto localization config",
+   "description": "Create an auto-localization config for a Pinterest international product catalog owned by the \"operation user_account\". - By default, the \"operation user_account\" is the token user_account. Optional: Business Access: Specify an `ad_account_id` (obtained via [List ad accounts](/docs/api/v5/#operation/ad_accounts/list)) to use the owner of that ad_account as the \"operation user_account\". In order to",
+   "input": {
+    "type": "object",
+    "properties": {
+     "catalog_id": {
+      "type": "string",
+      "description": "Unique identifier of a catalog."
+     },
+     "ad_account_id": {
+      "type": "string",
+      "description": "Unique identifier of an ad account."
+     },
+     "target_country": {
+      "type": "string",
+      "description": "ISO 3166-1 alpha-2 target country to localize for. Together with the catalog this forms the config identity.",
+      "enum": [
+       "AD",
+       "AE",
+       "AF",
+       "AG",
+       "AI",
+       "AL",
+       "AM",
+       "AO",
+       "AQ",
+       "AR",
+       "AS",
+       "AT"
+      ]
+     },
+     "rounding_rule": {
+      "type": "string",
+      "description": "Price rounding rule to apply to converted prices.",
+      "enum": [
+       "NONE",
+       "ENDS_IN_99",
+       "ENDS_IN_95"
+      ]
+     },
+     "source_feeds": {
+      "type": "array",
+      "description": "Source (PRIMARY) feeds to localize from. The server materializes the full source_feed x target_locale cross-product into locale rows."
+     },
+     "target_locales": {
+      "type": "array",
+      "description": "Target locales to generate. Each must be allowed for `target_country`."
+     }
+    },
+    "required": [
+     "catalog_id",
+     "rounding_rule",
+     "source_feeds",
+     "target_country",
+     "target_locales"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.pinterest.com/v5/catalogs/{catalog_id}/auto_localization_configs",
+    "path": [
+     "catalog_id"
+    ],
+    "query": [
+     "ad_account_id"
+    ],
+    "header": [],
+    "body": [
+     "target_country",
+     "rounding_rule",
+     "source_feeds",
+     "target_locales"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "pinterest.catalogs_auto_localization_configs_get",
+   "name": "Get auto localization config",
+   "description": "Get a single auto-localization config owned by the \"operation user_account\". - By default, the \"operation user_account\" is the token user_account. Optional: Business Access: Specify an `ad_account_id` (obtained via [List ad accounts](/docs/api/v5/#operation/ad_accounts/list)) to use the owner of that ad_account as the \"operation user_account\". In order to do this, the token user_account must have ",
+   "input": {
+    "type": "object",
+    "properties": {
+     "catalog_id": {
+      "type": "string",
+      "description": "Unique identifier of a catalog."
+     },
+     "auto_localization_config_id": {
+      "type": "string",
+      "description": "Unique identifier of an auto-localization config."
+     },
+     "ad_account_id": {
+      "type": "string",
+      "description": "Unique identifier of an ad account."
+     }
+    },
+    "required": [
+     "auto_localization_config_id",
+     "catalog_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.pinterest.com/v5/catalogs/{catalog_id}/auto_localization_configs/{auto_localization_config_id}",
+    "path": [
+     "catalog_id",
+     "auto_localization_config_id"
+    ],
+    "query": [
+     "ad_account_id"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "pinterest.catalogs_auto_localization_configs_update",
+   "name": "Update auto localization config",
+   "description": "Update an auto-localization config owned by the \"operation user_account\". This is a full-state write (PUT semantics). - By default, the \"operation user_account\" is the token user_account. Optional: Business Access: Specify an `ad_account_id` (obtained via [List ad accounts](/docs/api/v5/#operation/ad_accounts/list)) to use the owner of that ad_account as the \"operation user_account\". In order to d",
+   "input": {
+    "type": "object",
+    "properties": {
+     "catalog_id": {
+      "type": "string",
+      "description": "Unique identifier of a catalog."
+     },
+     "auto_localization_config_id": {
+      "type": "string",
+      "description": "Unique identifier of an auto-localization config."
+     },
+     "ad_account_id": {
+      "type": "string",
+      "description": "Unique identifier of an ad account."
+     },
+     "rounding_rule": {
+      "type": "string",
+      "description": "Price rounding rule to apply to converted prices.",
+      "enum": [
+       "NONE",
+       "ENDS_IN_99",
+       "ENDS_IN_95"
+      ]
+     },
+     "source_feeds": {
+      "type": "array",
+      "description": "Desired full set of source (PRIMARY) feeds (see model description for upsert semantics)."
+     },
+     "target_locales": {
+      "type": "array",
+      "description": "Desired full set of target locales (see model description for upsert semantics)."
+     }
+    },
+    "required": [
+     "auto_localization_config_id",
+     "catalog_id"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.pinterest.com/v5/catalogs/{catalog_id}/auto_localization_configs/{auto_localization_config_id}",
+    "path": [
+     "catalog_id",
+     "auto_localization_config_id"
+    ],
+    "query": [
+     "ad_account_id"
+    ],
+    "header": [],
+    "body": [
+     "rounding_rule",
+     "source_feeds",
+     "target_locales"
     ],
     "body_format": "json"
    }
@@ -5404,6 +6533,114 @@
    }
   },
   {
+   "slug": "pinterest.catalogs_country_locale_mapping_delete",
+   "name": "Delete country locale mapping",
+   "description": "Delete (soft-clear) the country/locale mapping for a Pinterest international product catalog owned by the \"operation user_account\". The mapping is cleared in place; the underlying catalog and items are preserved. - By default, the \"operation user_account\" is the token user_account. Optional: Business Access: Specify an `ad_account_id` (obtained via [List ad accounts](/docs/api/v5/#operation/ad_acc",
+   "input": {
+    "type": "object",
+    "properties": {
+     "catalog_id": {
+      "type": "string",
+      "description": "Unique identifier of a catalog."
+     },
+     "ad_account_id": {
+      "type": "string",
+      "description": "Unique identifier of an ad account."
+     }
+    },
+    "required": [
+     "catalog_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.pinterest.com/v5/catalogs/{catalog_id}/country_locale_mapping",
+    "path": [
+     "catalog_id"
+    ],
+    "query": [
+     "ad_account_id"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "pinterest.catalogs_country_locale_mapping_get",
+   "name": "Get country locale mapping",
+   "description": "Get the country/locale mapping for a Pinterest international product catalog owned by the \"operation user_account\". - By default, the \"operation user_account\" is the token user_account. Optional: Business Access: Specify an `ad_account_id` (obtained via [List ad accounts](/docs/api/v5/#operation/ad_accounts/list)) to use the owner of that ad_account as the \"operation user_account\". In order to do ",
+   "input": {
+    "type": "object",
+    "properties": {
+     "catalog_id": {
+      "type": "string",
+      "description": "Unique identifier of a catalog."
+     },
+     "ad_account_id": {
+      "type": "string",
+      "description": "Unique identifier of an ad account."
+     }
+    },
+    "required": [
+     "catalog_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.pinterest.com/v5/catalogs/{catalog_id}/country_locale_mapping",
+    "path": [
+     "catalog_id"
+    ],
+    "query": [
+     "ad_account_id"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "pinterest.catalogs_country_locale_mapping_replace",
+   "name": "Replace country locale mapping",
+   "description": "Replace the country/locale mapping for a Pinterest international product catalog owned by the \"operation user_account\". The supplied `country_to_locales` payload replaces any existing mapping in full (PUT semantics). - By default, the \"operation user_account\" is the token user_account. Optional: Business Access: Specify an `ad_account_id` (obtained via [List ad accounts](/docs/api/v5/#operation/ad",
+   "input": {
+    "type": "object",
+    "properties": {
+     "catalog_id": {
+      "type": "string",
+      "description": "Unique identifier of a catalog."
+     },
+     "ad_account_id": {
+      "type": "string",
+      "description": "Unique identifier of an ad account."
+     },
+     "country_to_locales": {
+      "type": "array",
+      "description": "Country -> locales entries supported by the catalog."
+     }
+    },
+    "required": [
+     "catalog_id"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.pinterest.com/v5/catalogs/{catalog_id}/country_locale_mapping",
+    "path": [
+     "catalog_id"
+    ],
+    "query": [
+     "ad_account_id"
+    ],
+    "header": [],
+    "body": [
+     "country_to_locales"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "pinterest.catalogs_create",
    "name": "Create catalog",
    "description": "Create a new catalog owned by the \"operation user_account\". - By default, the \"operation user_account\" is the token user_account. Optional: Business Access: Specify an ad_account_id (obtained via [List ad accounts](/docs/api/v5/#operation/ad_accounts/list)) to use the owner of that ad_account as the \"operation user_account\". In order to do this, the token user_account must have one of the followin",
@@ -5414,6 +6651,10 @@
       "type": "string",
       "description": "Unique identifier of an ad account."
      },
+     "name": {
+      "type": "string",
+      "description": "A human-friendly name associated to a catalog entity."
+     },
      "catalog_type": {
       "type": "string",
       "description": "Type of the catalog entity.",
@@ -5422,10 +6663,6 @@
        "HOTEL",
        "CREATIVE_ASSETS"
       ]
-     },
-     "name": {
-      "type": "string",
-      "description": "A human-friendly name associated to a catalog entity."
      }
     },
     "required": [
@@ -5442,8 +6679,8 @@
     ],
     "header": [],
     "body": [
-     "catalog_type",
-     "name"
+     "name",
+     "catalog_type"
     ],
     "body_format": "json"
    }
@@ -6085,6 +7322,305 @@
    }
   },
   {
+   "slug": "pinterest.catalogs_translations_list",
+   "name": "List translations",
+   "description": "List translations produced for an auto-localization config owned by the \"operation user_account\". - By default, the \"operation user_account\" is the token user_account. Optional: Business Access: Specify an `ad_account_id` (obtained via [List ad accounts](/docs/api/v5/#operation/ad_accounts/list)) to use the owner of that ad_account as the \"operation user_account\". In order to do this, the token us",
+   "input": {
+    "type": "object",
+    "properties": {
+     "catalog_id": {
+      "type": "string",
+      "description": "Unique identifier of a catalog."
+     },
+     "auto_localization_config_id": {
+      "type": "string",
+      "description": "Unique identifier of an auto-localization config."
+     },
+     "ad_account_id": {
+      "type": "string",
+      "description": "Unique identifier of an ad account."
+     },
+     "target_locales": {
+      "type": "array",
+      "description": "Filter translations to these target locales. Defaults to all locales in the config when omitted."
+     },
+     "status": {
+      "type": "string",
+      "description": "Filter translations by per-item review state.",
+      "enum": [
+       "PENDING_REVIEW",
+       "APPROVED",
+       "REJECTED"
+      ]
+     },
+     "merchant_item_id": {
+      "type": "string",
+      "description": "Filter translations by merchant item id. Matches either the exact id or an id prefix."
+     },
+     "bookmark": {
+      "type": "string",
+      "description": "Cursor used to fetch the next page of items"
+     },
+     "page_size": {
+      "type": "integer",
+      "description": "Maximum number of items to include in a single page. See documentation on [Pagination](/docs/reference/pagination/) for more information."
+     }
+    },
+    "required": [
+     "auto_localization_config_id",
+     "catalog_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.pinterest.com/v5/catalogs/{catalog_id}/auto_localization_configs/{auto_localization_config_id}/translations",
+    "path": [
+     "catalog_id",
+     "auto_localization_config_id"
+    ],
+    "query": [
+     "ad_account_id",
+     "target_locales",
+     "status",
+     "merchant_item_id",
+     "bookmark",
+     "page_size"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "pinterest.catalogs_translations_review",
+   "name": "Review translations",
+   "description": "Approve or reject translations for an auto-localization config owned by the \"operation user_account\". This is a bulk operation scoped by target locales, merchant item ids, and/or current status. - By default, the \"operation user_account\" is the token user_account. Optional: Business Access: Specify an `ad_account_id` (obtained via [List ad accounts](/docs/api/v5/#operation/ad_accounts/list)) to us",
+   "input": {
+    "type": "object",
+    "properties": {
+     "catalog_id": {
+      "type": "string",
+      "description": "Unique identifier of a catalog."
+     },
+     "auto_localization_config_id": {
+      "type": "string",
+      "description": "Unique identifier of an auto-localization config."
+     },
+     "ad_account_id": {
+      "type": "string",
+      "description": "Unique identifier of an ad account."
+     },
+     "scope": {
+      "type": "object",
+      "description": "Selects which translations the review applies to."
+     },
+     "target_status": {
+      "type": "string",
+      "description": "Desired review decision to apply to the selected translations (approve or reject only).",
+      "enum": [
+       "APPROVED",
+       "REJECTED"
+      ]
+     }
+    },
+    "required": [
+     "auto_localization_config_id",
+     "catalog_id",
+     "scope",
+     "target_status"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.pinterest.com/v5/catalogs/{catalog_id}/auto_localization_configs/{auto_localization_config_id}/translations/review",
+    "path": [
+     "catalog_id",
+     "auto_localization_config_id"
+    ],
+    "query": [
+     "ad_account_id"
+    ],
+    "header": [],
+    "body": [
+     "scope",
+     "target_status"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "pinterest.catalogs_update",
+   "name": "Update catalog default country and locale",
+   "description": "Update default country and locale on an existing RETAIL catalog owned by the \"operation user_account\" for international (INTL) supplemental feeds (M2.1). Both `country` and `locale` must be sent together; partial updates with only one field are not supported. `catalog_type` must match the existing catalog (currently only `RETAIL` is supported for INTL localization). - By default, the \"operation us",
+   "input": {
+    "type": "object",
+    "properties": {
+     "catalog_id": {
+      "type": "string",
+      "description": "ID of the catalog entity."
+     },
+     "ad_account_id": {
+      "type": "string",
+      "description": "Unique identifier of an ad account."
+     },
+     "name": {
+      "type": "string",
+      "description": "A human-friendly name associated to a catalog entity."
+     },
+     "catalog_type": {
+      "type": "string",
+      "description": "Type of the catalog entity.",
+      "enum": [
+       "RETAIL",
+       "HOTEL",
+       "CREATIVE_ASSETS"
+      ]
+     },
+     "country": {
+      "type": "string",
+      "description": "Catalog-level default country (ISO 3166-1 alpha-2) for RETAIL international (INTL) catalogs. Only set for `RETAIL` catalogs that opt into INTL behavior; required together with `locale` to enable INTL supplemental feeds.",
+      "enum": [
+       "AD",
+       "AE",
+       "AF",
+       "AG",
+       "AI",
+       "AL",
+       "AM",
+       "AO",
+       "AQ",
+       "AR",
+       "AS",
+       "AT"
+      ]
+     },
+     "locale": {
+      "type": "string",
+      "description": "Catalog-level default locale (normalized BCP-47 tag) for RETAIL international (INTL) catalogs. Only set for `RETAIL` catalogs that opt into INTL behavior; required together with `country` to enable INTL supplemental feeds.",
+      "enum": [
+       "af-ZA",
+       "ar-SA",
+       "bg-BG",
+       "bn-IN",
+       "cs-CZ",
+       "da-DK",
+       "de",
+       "el-GR",
+       "en-AU",
+       "en-CA",
+       "en-GB",
+       "en-IN"
+      ]
+     }
+    },
+    "required": [
+     "catalog_id"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.pinterest.com/v5/catalogs/{catalog_id}",
+    "path": [
+     "catalog_id"
+    ],
+    "query": [
+     "ad_account_id"
+    ],
+    "header": [],
+    "body": [
+     "name",
+     "catalog_type",
+     "country",
+     "locale"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "pinterest.collaborative_catalogs_create",
+   "name": "Create collaborative catalog",
+   "description": "**This endpoint is currently in beta and not available to all apps. [Learn more](/docs/getting-started/using-beta-and-restricted-features/).** Create a new collaborative (RMN) catalog owned by the \"operation user_account\". - By default, the \"operation user_account\" is the token user_account. Optional: Business Access: Specify an ad_account_id (obtained via [List ad accounts](/docs/api/v5/#operatio",
+   "input": {
+    "type": "object",
+    "properties": {
+     "ad_account_id": {
+      "type": "string",
+      "description": "Unique identifier of an ad account."
+     },
+     "name": {
+      "type": "string",
+      "description": "A human-friendly name associated to the collaborative catalog."
+     },
+     "parent_catalog_id": {
+      "type": "string",
+      "description": "Parent retail catalog ID. Must reference an existing retail catalog."
+     },
+     "filters": {
+      "type": "object",
+      "description": "Product filters for the collaborative catalog."
+     },
+     "country": {
+      "type": "string",
+      "description": "The collaborative catalog's country.",
+      "enum": [
+       "AD",
+       "AE",
+       "AF",
+       "AG",
+       "AI",
+       "AL",
+       "AM",
+       "AO",
+       "AQ",
+       "AR",
+       "AS",
+       "AT"
+      ]
+     },
+     "locale": {
+      "type": "string",
+      "description": "The collaborative catalog's locale.",
+      "enum": [
+       "af-ZA",
+       "ar-SA",
+       "bg-BG",
+       "bn-IN",
+       "cs-CZ",
+       "da-DK",
+       "de",
+       "el-GR",
+       "en-AU",
+       "en-CA",
+       "en-GB",
+       "en-IN"
+      ]
+     }
+    },
+    "required": [
+     "filters",
+     "name",
+     "parent_catalog_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.pinterest.com/v5/collaborative_catalogs",
+    "path": [],
+    "query": [
+     "ad_account_id"
+    ],
+    "header": [],
+    "body": [
+     "name",
+     "parent_catalog_id",
+     "filters",
+     "country",
+     "locale"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "pinterest.conversion_deletion_request_create",
    "name": "Create a conversion deletion request",
    "description": "**This endpoint is currently in beta and not available to all apps.** [Learn more](/docs/key-concepts/using-beta-and-restricted-features/). Create a request to delete conversion data for a list of user emails and/or EPIKs, limited to the specified `ad_account_id`. After 72 hours the request is processed and submitted to our deletion process. Then the deletion process ensures deletion within a 30 d",
@@ -6303,6 +7839,156 @@
    }
   },
   {
+   "slug": "pinterest.conversion_segments_create",
+   "name": "Create conversion segment",
+   "description": "**This endpoint is currently in beta and not available to all apps. [Learn more](/docs/getting-started/using-beta-and-restricted-features/).** Create a conversion segment.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "ad_account_id": {
+      "type": "string",
+      "description": "Unique identifier of an ad account."
+     },
+     "name": {
+      "type": "string",
+      "description": "Conversion segment name."
+     },
+     "conversion_types": {
+      "type": "array",
+      "description": "Conversion segment types."
+     },
+     "catalog_id": {
+      "type": "string",
+      "description": "ID of the catalog. If provided, `filters` is required. At least one of `catalog_id` or `product_ids` must be provided."
+     },
+     "filters": {
+      "type": "object",
+      "description": "Product filters that select catalog items for this conversion segment."
+     },
+     "product_ids": {
+      "type": "array",
+      "description": "List of product IDs. At least one of `product_ids` or `catalog_id` must be provided."
+     }
+    },
+    "required": [
+     "ad_account_id",
+     "conversion_types",
+     "name"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.pinterest.com/v5/ad_accounts/{ad_account_id}/conversion_segments",
+    "path": [
+     "ad_account_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "conversion_types",
+     "catalog_id",
+     "filters",
+     "product_ids"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "pinterest.conversion_segments_delete",
+   "name": "Delete conversion segment",
+   "description": "Delete a conversion segment.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "ad_account_id": {
+      "type": "string",
+      "description": "Unique identifier of an ad account."
+     },
+     "conversion_segment_id": {
+      "type": "string",
+      "description": "Id of the conversion segment."
+     }
+    },
+    "required": [
+     "ad_account_id",
+     "conversion_segment_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.pinterest.com/v5/ad_accounts/{ad_account_id}/conversion_segments/{conversion_segment_id}",
+    "path": [
+     "ad_account_id",
+     "conversion_segment_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "pinterest.conversion_segments_update",
+   "name": "Update conversion segment",
+   "description": "Update a conversion segment.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "ad_account_id": {
+      "type": "string",
+      "description": "Unique identifier of an ad account."
+     },
+     "conversion_segment_id": {
+      "type": "string",
+      "description": "Id of the conversion segment."
+     },
+     "name": {
+      "type": "string",
+      "description": "Conversion segment name."
+     },
+     "conversion_types": {
+      "type": "array",
+      "description": "Conversion segment types."
+     },
+     "catalog_id": {
+      "type": "string",
+      "description": "ID of the catalog. If provided, `filters` is required. At least one of `catalog_id` or `product_ids` must be provided."
+     },
+     "filters": {
+      "type": "object",
+      "description": "Product filters that select catalog items for this conversion segment."
+     },
+     "product_ids": {
+      "type": "array",
+      "description": "List of product IDs. At least one of `product_ids` or `catalog_id` must be provided."
+     }
+    },
+    "required": [
+     "ad_account_id",
+     "conversion_segment_id"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.pinterest.com/v5/ad_accounts/{ad_account_id}/conversion_segments/{conversion_segment_id}",
+    "path": [
+     "ad_account_id",
+     "conversion_segment_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "conversion_types",
+     "catalog_id",
+     "filters",
+     "product_ids"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "pinterest.conversion_tags_create",
    "name": "Create conversion tag",
    "description": "Create a conversion tag, also known as [Pinterest tag](https://help.pinterest.com/en/business/article/set-up-the-pinterest-tag), with the option to enable enhanced match. The Pinterest Tag tracks actions people take on the ad account's website after they view the ad account's ad on Pinterest. The advertiser needs to customize this tag to track conversions. For more information, see: [Set up the Pi",
@@ -6312,6 +7998,10 @@
      "ad_account_id": {
       "type": "string",
       "description": "Unique identifier of an ad account."
+     },
+     "name": {
+      "type": "string",
+      "description": "Conversion tag name."
      },
      "aem_db_enabled": {
       "type": "boolean",
@@ -6323,7 +8013,7 @@
      },
      "aem_external_id_enabled": {
       "type": "boolean",
-      "description": "Whether Automatic Enhanced Match location is enabled. See [Enhanced match](https://help.pinterest.com/en/business/article/enhanced-match) for more information."
+      "description": "Whether Automatic Enhanced Match external ID is enabled. See [Enhanced match](https://help.pinterest.com/en/business/article/enhanced-match) for more information."
      },
      "aem_fnln_enabled": {
       "type": "boolean",
@@ -6341,13 +8031,13 @@
       "type": "boolean",
       "description": "Whether Automatic Enhanced Match phone is enabled. See [Enhanced match](https://help.pinterest.com/en/business/article/enhanced-match) for more information."
      },
+     "aem_product_metadata_enabled": {
+      "type": "boolean",
+      "description": "Whether Automatic Enhanced Match product metadata is enabled. Product metadata may include details such as product ID, product category, order value, and order ID. See [Enhanced match](https://help.pinterest.com/en/business/article/enhanced-match) for the current list and more information."
+     },
      "md_frequency": {
       "type": "number",
       "description": "Metadata ingestion frequency."
-     },
-     "name": {
-      "type": "string",
-      "description": "Conversion tag name."
      }
     },
     "required": [
@@ -6364,6 +8054,7 @@
     "query": [],
     "header": [],
     "body": [
+     "name",
      "aem_db_enabled",
      "aem_enabled",
      "aem_external_id_enabled",
@@ -6371,8 +8062,8 @@
      "aem_ge_enabled",
      "aem_loc_enabled",
      "aem_ph_enabled",
-     "md_frequency",
-     "name"
+     "aem_product_metadata_enabled",
+     "md_frequency"
     ],
     "body_format": "json"
    }
@@ -6458,7 +8149,7 @@
      },
      "country_code": {
       "type": "string",
-      "description": "Two letter country code (ISO 3166-1 alpha-2)"
+      "description": "Two letter ISO 3166-1 alpha-2 country code. Supported values: `AU`, `CA`, `GB`, `IE`, `NZ`, and `US`. Other codes are not currently supported."
      },
      "keywords": {
       "type": "array",
@@ -6724,9 +8415,9 @@
       "type": "string",
       "description": ""
      },
-     "is_nca": {
-      "type": "boolean",
-      "description": "Whether the list was uploaded for new customer acquisition (expanded matching). Immutable after creation."
+     "name": {
+      "type": "string",
+      "description": "Customer list name."
      },
      "list_type": {
       "type": "string",
@@ -6740,17 +8431,17 @@
        "HASHED_PINNER_ID"
       ]
      },
-     "name": {
-      "type": "string",
-      "description": "Customer list name."
-     },
      "records": {
       "type": "string",
-      "description": "Records list. Can be any combination of emails, MAIDs, or IDFAs. Emails must be lowercase and can be plain text or hashed using SHA1, SHA256, or MD5. MAIDs and IDFAs must be hashed with SHA1, SHA256, or MD5."
+      "description": "Records list. Can be any combination of emails, MAIDs, or IDFAs. Emails must be lowercase and can be plain text or hashed using SHA1, SHA256, or MD5. MAIDs and IDFAs must be hashed with SHA1, SHA256, or MD5. Provide exactly one of `records` or `records_v2`."
      },
      "records_v2": {
       "type": "array",
-      "description": "Multi-field record format. Array of objects with optional email, maid, ip_address, user_agent, external_id, hashed_pinner_id, hashed_phone_number, and liveramp_envelope per row. Provide exactly one of records or records_v2."
+      "description": "[**Restricted**](/docs/getting-started/using-beta-and-restricted-features/) Multi-field record format. Array of objects with optional `email`, `maid`, `ip_address`, `user_agent`, `external_id`, `hashed_pinner_id`, `hashed_phone_number`, and `liveramp_envelope` per row. Provide exactly one of `records` or `records_v2`. This parameter is supported only if `is_nca` is set to `true`."
+     },
+     "is_nca": {
+      "type": "boolean",
+      "description": "Whether the list was uploaded for new customer acquisition (expanded matching). Immutable after creation."
      }
     },
     "required": [
@@ -6767,11 +8458,11 @@
     "query": [],
     "header": [],
     "body": [
-     "is_nca",
-     "list_type",
      "name",
+     "list_type",
      "records",
-     "records_v2"
+     "records_v2",
+     "is_nca"
     ],
     "body_format": "json"
    }
@@ -6878,6 +8569,14 @@
       "type": "string",
       "description": "Customer list ID."
      },
+     "records": {
+      "type": "string",
+      "description": "Records list. Can be any combination of emails, MAIDs, or IDFAs. Emails must be lowercase and can be plain text or hashed using SHA1, SHA256, or MD5. MAIDs and IDFAs must be hashed with SHA1, SHA256, or MD5. Provide exactly one of `records` or `records_v2`."
+     },
+     "records_v2": {
+      "type": "array",
+      "description": "[**Restricted**](/docs/getting-started/using-beta-and-restricted-features/) Multi-field record format. Array of objects with optional `email`, `maid`, `ip_address`, `user_agent`, `external_id`, `hashed_pinner_id`, `hashed_phone_number`, and `liveramp_envelope` per row. Provide exactly one of `records` or `records_v2`. This parameter is supported only if `is_nca` is set to `true`."
+     },
      "operation_type": {
       "type": "string",
       "description": "Customer list update operation type (add or remove). Only valid in update request body.",
@@ -6885,14 +8584,6 @@
        "ADD",
        "REMOVE"
       ]
-     },
-     "records": {
-      "type": "string",
-      "description": "Records list. Can be any combination of emails, MAIDs, or IDFAs. Emails must be lowercase and can be plain text or hashed using SHA1, SHA256, or MD5. MAIDs and IDFAs must be hashed with SHA1, SHA256, or MD5."
-     },
-     "records_v2": {
-      "type": "array",
-      "description": "Multi-field record format. Array of objects with optional email, maid, ip_address, user_agent, external_id, hashed_pinner_id, hashed_phone_number, and liveramp_envelope per row. Provide exactly one of records or records_v2."
      }
     },
     "required": [
@@ -6911,9 +8602,9 @@
     "query": [],
     "header": [],
     "body": [
-     "operation_type",
      "records",
-     "records_v2"
+     "records_v2",
+     "operation_type"
     ],
     "body_format": "json"
    }
@@ -6929,13 +8620,13 @@
       "type": "string",
       "description": "Unique identifier of an ad account."
      },
-     "audience_ids": {
-      "type": "array",
-      "description": "Audience IDs included in the customer segment."
-     },
      "name": {
       "type": "string",
       "description": "Customer segment name."
+     },
+     "audience_ids": {
+      "type": "array",
+      "description": "Audience IDs included in the customer segment."
      }
     },
     "required": [
@@ -6953,8 +8644,8 @@
     "query": [],
     "header": [],
     "body": [
-     "audience_ids",
-     "name"
+     "name",
+     "audience_ids"
     ],
     "body_format": "json"
    }
@@ -7028,10 +8719,6 @@
       "type": "string",
       "description": "Unique identifier of an ad account."
      },
-     "audience_ids": {
-      "type": "array",
-      "description": "Audience IDs to update the customer segment to. Only applicable for UPDATE operations."
-     },
      "id": {
       "type": "string",
       "description": "Customer segment ID."
@@ -7043,6 +8730,10 @@
        "UPDATE",
        "REMOVE"
       ]
+     },
+     "audience_ids": {
+      "type": "array",
+      "description": "Audience IDs to update the customer segment to. Only applicable for UPDATE operations."
      }
     },
     "required": [
@@ -7060,9 +8751,9 @@
     "query": [],
     "header": [],
     "body": [
-     "audience_ids",
      "id",
-     "operation_type"
+     "operation_type",
+     "audience_ids"
     ],
     "body_format": "json"
    }
@@ -7206,6 +8897,91 @@
     "path": [],
     "query": [
      "report_type"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "pinterest.entity_history_get",
+   "name": "Get ad entities change history",
+   "description": "**[Closed beta](/docs/key-concepts/using-beta-and-restricted-features/)** Get ad entities change history",
+   "input": {
+    "type": "object",
+    "properties": {
+     "ad_account_id": {
+      "type": "string",
+      "description": "Unique identifier of an ad account."
+     },
+     "entity_id": {
+      "type": "string",
+      "description": "Id of the entity for which Change History will be fetched"
+     },
+     "entity_ids": {
+      "type": "array",
+      "description": "An optional list of ids of the entities (with multiple entity types allowed) for which change history will be fetched"
+     },
+     "start_time": {
+      "type": "integer",
+      "description": "A Unix timestamp representing the start of the inclusive range over which Change History"
+     },
+     "end_time": {
+      "type": "integer",
+      "description": "A Unix timestamp representing the end of the inclusive range over which Change History"
+     },
+     "user_id_filter": {
+      "type": "integer",
+      "description": "An optional id ensuring only data changes initiated by this specified user will be returned"
+     },
+     "field_filters": {
+      "type": "array",
+      "description": "An optional list of fields to filter on"
+     },
+     "advertiser_id": {
+      "type": "string",
+      "description": "Optional Advertiser ID. When provided, returns history for all entities belonging to this advertiser."
+     },
+     "order": {
+      "type": "string",
+      "description": "Sorts change history results in ascending or descending order. Defaults to ascending (oldest-first) when unset.",
+      "enum": [
+       "ASCENDING",
+       "DESCENDING"
+      ]
+     },
+     "bookmark": {
+      "type": "string",
+      "description": "Cursor used to fetch the next page of items"
+     },
+     "page_size": {
+      "type": "integer",
+      "description": "Maximum number of items to include in a single page. See documentation on [Pagination](/docs/reference/pagination/) for more information."
+     }
+    },
+    "required": [
+     "ad_account_id",
+     "end_time",
+     "entity_id",
+     "start_time"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.pinterest.com/v5/ad_accounts/entity_history",
+    "path": [],
+    "query": [
+     "ad_account_id",
+     "entity_id",
+     "entity_ids",
+     "start_time",
+     "end_time",
+     "user_id_filter",
+     "field_filters",
+     "advertiser_id",
+     "order",
+     "bookmark",
+     "page_size"
     ],
     "header": [],
     "body": [],
@@ -7503,7 +9279,7 @@
   {
    "slug": "pinterest.follow_user_update",
    "name": "Follow user",
-   "description": "**This endpoint is currently in beta and not available to all apps. [Learn more](/docs/getting-started/using-beta-and-restricted-features/).** Use this request, as a signed-in user, to follow another user.",
+   "description": "Use this request, as a signed-in user, to follow another user.",
    "input": {
     "type": "object",
     "properties": {
@@ -7754,6 +9530,15 @@
       "type": "boolean",
       "description": "Sort ascending."
      },
+     "business_partner_type": {
+      "type": "string",
+      "description": "Specifies whether to fetch regular or RMN partners.",
+      "enum": [
+       "REGULAR",
+       "RMN",
+       "UNDEFINED"
+      ]
+     },
      "bookmark": {
       "type": "string",
       "description": "Cursor used to fetch the next page of items"
@@ -7779,6 +9564,7 @@
      "partner_ids",
      "start_index",
      "sort_ascending",
+     "business_partner_type",
      "bookmark",
      "page_size"
     ],
@@ -7826,6 +9612,10 @@
       "type": "string",
       "description": "Unique identifier of the requesting business."
      },
+     "assets_summary": {
+      "type": "boolean",
+      "description": "Include assets summary in the response if this is true. The assets summary returns a dictionary representing a summary of the assets the member or partner will be granted access to."
+     },
      "is_member": {
       "type": "boolean",
       "description": "A boolean field to indicate whether the invite is to create a partnership or a membership."
@@ -7863,6 +9653,7 @@
      "business_id"
     ],
     "query": [
+     "assets_summary",
      "is_member",
      "invite_status",
      "invite_type",
@@ -8026,6 +9817,10 @@
    "input": {
     "type": "object",
     "properties": {
+     "external_business_id": {
+      "type": "string",
+      "description": "External business ID for the integration."
+     },
      "additional_id_1": {
       "type": "string",
       "description": ""
@@ -8045,10 +9840,6 @@
      "connected_tag_id": {
       "type": "string",
       "description": ""
-     },
-     "external_business_id": {
-      "type": "string",
-      "description": "External business ID for the integration."
      },
      "partner_access_token": {
       "type": "string",
@@ -8088,12 +9879,12 @@
     "query": [],
     "header": [],
     "body": [
+     "external_business_id",
      "additional_id_1",
      "connected_advertiser_id",
      "connected_lba_id",
      "connected_merchant_id",
      "connected_tag_id",
-     "external_business_id",
      "partner_access_token",
      "partner_access_token_expiry",
      "partner_metadata",
@@ -8419,13 +10210,13 @@
       "type": "string",
       "description": "Unique identifier of an ad account."
      },
-     "keywords": {
-      "type": "array",
-      "description": "Keywords"
-     },
      "parent_id": {
       "type": "string",
       "description": "Keyword data"
+     },
+     "keywords": {
+      "type": "array",
+      "description": "Keywords"
      }
     },
     "required": [
@@ -8443,8 +10234,8 @@
     "query": [],
     "header": [],
     "body": [
-     "keywords",
-     "parent_id"
+     "parent_id",
+     "keywords"
     ],
     "body_format": "json"
    }
@@ -8966,13 +10757,13 @@
       "type": "string",
       "description": "ID for the ad collecting leads."
      },
-     "end_date": {
-      "type": "string",
-      "description": "Export leads collected on and before end date (UTC). Format: YYYY-MM-DD."
-     },
      "start_date": {
       "type": "string",
       "description": "Export leads collected on and after start date (UTC). Format: YYYY-MM-DD."
+     },
+     "end_date": {
+      "type": "string",
+      "description": "Export leads collected on and before end date (UTC). Format: YYYY-MM-DD."
      }
     },
     "required": [
@@ -8992,8 +10783,8 @@
     "header": [],
     "body": [
      "ad_id",
-     "end_date",
-     "start_date"
+     "start_date",
+     "end_date"
     ],
     "body_format": "json"
    }
@@ -9060,9 +10851,15 @@
     "properties": {
      "media_type": {
       "type": "string",
-      "description": "",
+      "description": "High-level media type for the upload request.",
       "enum": [
-       "video"
+       "tvsci_ads_video",
+       "video",
+       "image_latent_disclosure",
+       "video_latent_disclosure",
+       "video_long_form",
+       "media_library_image",
+       "media_library_video"
       ]
      }
     },
@@ -9111,6 +10908,228 @@
    }
   },
   {
+   "slug": "pinterest.media_library_assets_create",
+   "name": "Create asset(s)",
+   "description": "Create one or more media library assets for a business. Assets are reusable image or video creatives at the business level, not Pins. Use them later in ads without creating a Pin first. Before creating a media library asset: - [Register the media upload](/docs/api/v5/media-create/). - Upload the asset file to the Pinterest Media AWS bucket using the URL and metadata returned to you in the precedin",
+   "input": {
+    "type": "object",
+    "properties": {
+     "business_id": {
+      "type": "string",
+      "description": "Identifier of the business that owns the media library."
+     },
+     "assets": {
+      "type": "array",
+      "description": "Assets to create"
+     }
+    },
+    "required": [
+     "assets",
+     "business_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.pinterest.com/v5/media_library/businesses/{business_id}/assets",
+    "path": [
+     "business_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "assets"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "pinterest.media_library_assets_delete",
+   "name": "Remove asset(s)",
+   "description": "Delete one or more media library assets for a business. Assets are reusable image or video creatives at the business level, not Pins. At most 100 assets per request. Duplicate IDs in the same request are counted once, and an ID that is already deleted counts as a success. After a successful delete, GET for that `asset_id` returns 404. Per-asset outcomes are reported in the response body, not in th",
+   "input": {
+    "type": "object",
+    "properties": {
+     "business_id": {
+      "type": "string",
+      "description": "Identifier of the business that owns the media library."
+     },
+     "asset_ids": {
+      "type": "array",
+      "description": "IDs of the assets to delete. Between 1 and 100 ids may be deleted per request."
+     }
+    },
+    "required": [
+     "asset_ids",
+     "business_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.pinterest.com/v5/media_library/businesses/{business_id}/assets",
+    "path": [
+     "business_id"
+    ],
+    "query": [
+     "asset_ids"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "pinterest.media_library_assets_list",
+   "name": "Get all assets",
+   "description": "Get media library assets for a business. Assets are reusable image or video creatives at the business level, not Pins. Use this to browse, search, and filter assets from **Media library**. Results are paginated. The default `page_size` is 25 and the maximum is 250. When more assets remain, the response includes a `pagination_token`; pass it back unchanged to fetch the next page. A request whose fi",
+   "input": {
+    "type": "object",
+    "properties": {
+     "business_id": {
+      "type": "string",
+      "description": "Identifier of the business that owns the media library."
+     },
+     "names": {
+      "type": "array",
+      "description": "List of asset names to filter the assets by."
+     },
+     "asset_ids": {
+      "type": "array",
+      "description": "List of asset IDs to filter the assets by."
+     },
+     "asset_types": {
+      "type": "array",
+      "description": "Filter by type of media library asset: `IMAGE` and/or `VIDEO`."
+     },
+     "has_been_promoted": {
+      "type": "boolean",
+      "description": "Filter by whether an asset has been promoted. `true` returns only assets used in a Pin promotion; `false` returns only those that have not."
+     },
+     "from_date": {
+      "type": "string",
+      "description": "Filter assets created on or after this date (inclusive). Format: `YYYY-MM-DD`."
+     },
+     "to_date": {
+      "type": "string",
+      "description": "Filter assets created on or before this date (inclusive, through the end of that day). Format: `YYYY-MM-DD`."
+     },
+     "tags": {
+      "type": "array",
+      "description": "List of tags to filter the assets by."
+     },
+     "sort_order": {
+      "type": "string",
+      "description": "Sort results by creation date. Pass `ASC` for ascending or `DESC` for descending.",
+      "enum": [
+       "ASC",
+       "DESC"
+      ]
+     },
+     "page_size": {
+      "type": "integer",
+      "description": "Maximum number of items to return in the response. Additional items are paginated. Use the `pagination_token` returned in the response to fetch the next page of results."
+     },
+     "pagination_token": {
+      "type": "string",
+      "description": "Pagination token for fetching the next page of results."
+     }
+    },
+    "required": [
+     "business_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.pinterest.com/v5/media_library/businesses/{business_id}/assets",
+    "path": [
+     "business_id"
+    ],
+    "query": [
+     "names",
+     "asset_ids",
+     "asset_types",
+     "has_been_promoted",
+     "from_date",
+     "to_date",
+     "tags",
+     "sort_order",
+     "page_size",
+     "pagination_token"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "pinterest.media_library_assets_read",
+   "name": "Get an asset",
+   "description": "Get a single media library asset for a business. Assets are reusable image or video creatives at the business level, not Pins. Use this to retrieve one asset from **Media library**. The asset must belong to the owner business in the path. The response is an `IMAGE` or `VIDEO` asset. Access requires the token user to be the business owner or to have a [Business Access](https://help.pinterest.com/en",
+   "input": {
+    "type": "object",
+    "properties": {
+     "business_id": {
+      "type": "string",
+      "description": "Identifier of the business that owns the media library."
+     },
+     "asset_id": {
+      "type": "string",
+      "description": "Identifier of the asset to retrieve."
+     }
+    },
+    "required": [
+     "asset_id",
+     "business_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.pinterest.com/v5/media_library/businesses/{business_id}/assets/{asset_id}",
+    "path": [
+     "business_id",
+     "asset_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "pinterest.media_library_assets_update",
+   "name": "Edit asset(s)",
+   "description": "Edit one or more media library assets for a business. Assets are reusable image or video creatives at the business level, not Pins. Use this to rename assets and update their tags in **Media library**. This does not replace the image or video file. The editable fields are `name` and `tags`. Omitting a field, or sending it as `null`, leaves it unchanged. To change tags, send the full replacement li",
+   "input": {
+    "type": "object",
+    "properties": {
+     "business_id": {
+      "type": "string",
+      "description": "Identifier of the business that owns the media library."
+     },
+     "assets": {
+      "type": "array",
+      "description": "Assets to update. Each entry is identified by its `asset_id`."
+     }
+    },
+    "required": [
+     "assets",
+     "business_id"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.pinterest.com/v5/media_library/businesses/{business_id}/assets",
+    "path": [
+     "business_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "assets"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "pinterest.media_list",
    "name": "List media uploads",
    "description": "List media uploads filtered by given parameters. **[Learn more](/docs/api-features/creating-boards-and-pins/#creating-video-pins)** about video Pin creation.",
@@ -9136,6 +11155,34 @@
      "bookmark",
      "page_size"
     ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "pinterest.merchant_status_get",
+   "name": "Get merchant status",
+   "description": "Get the approval status of a merchant, including any pending reasons.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "merchant_id": {
+      "type": "string",
+      "description": "Unique identifier of a merchant."
+     }
+    },
+    "required": [
+     "merchant_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.pinterest.com/v5/merchant/{merchant_id}/status",
+    "path": [
+     "merchant_id"
+    ],
+    "query": [],
     "header": [],
     "body": [],
     "body_format": "json"
@@ -9198,6 +11245,14 @@
        "mmm"
       ]
      },
+     "click_window": {
+      "type": "string",
+      "description": "Click window used for attribution (for example, `1d`, `7d`, `30d`, `lifetime`)."
+     },
+     "view_window": {
+      "type": "string",
+      "description": "View window used for attribution (for example, `1d`, `7d`, `30d`)."
+     },
      "attribution_scope": {
       "type": "string",
       "description": "Ad event type.",
@@ -9214,10 +11269,6 @@
      "campaign_id": {
       "type": "string",
       "description": "The ID of the campaign that was attributed to the conversion event."
-     },
-     "click_window": {
-      "type": "string",
-      "description": "Click window used for attribution (for example, `1d`, `7d`, `30d`, `lifetime`)."
      },
      "currency": {
       "type": "string",
@@ -9270,10 +11321,6 @@
      "value": {
       "type": "number",
       "description": "Order value of the conversion event. Required if `event_name` is `add_to_cart` or `checkout`."
-     },
-     "view_window": {
-      "type": "string",
-      "description": "View window used for attribution (for example, `1d`, `7d`, `30d`)."
      }
     },
     "required": [
@@ -9296,10 +11343,11 @@
      "action_timestamps",
      "ad_group_id",
      "attribution_model",
+     "click_window",
+     "view_window",
      "attribution_scope",
      "attribution_score",
      "campaign_id",
-     "click_window",
      "currency",
      "event_id",
      "event_name",
@@ -9307,8 +11355,7 @@
      "total_event_touchpoints",
      "total_events",
      "total_events_fractional",
-     "value",
-     "view_window"
+     "value"
     ],
     "body_format": "json"
    }
@@ -9420,14 +11467,6 @@
    "input": {
     "type": "object",
     "properties": {
-     "code": {
-      "type": "string",
-      "description": ""
-     },
-     "continuous_refresh": {
-      "type": "string",
-      "description": "If your app was created before **September 25, 2025**, set to `true` to generate a [continuous refresh token](/docs/getting-started/set-up-authentication-and-authorization/#exchange-the-default-refresh-token-for-a-continuous-refresh-token), which has a 60-day expiration window. We no longer support the legacy refresh token, which has a 365-day expiration window. If your app was created on or after"
-     },
      "grant_type": {
       "type": "string",
       "description": "The type of OAuth grant being requested.",
@@ -9437,9 +11476,17 @@
        "client_credentials"
       ]
      },
+     "code": {
+      "type": "string",
+      "description": ""
+     },
      "redirect_uri": {
       "type": "string",
       "description": ""
+     },
+     "continuous_refresh": {
+      "type": "string",
+      "description": "If your app was created before **September 25, 2025**, set to `true` to generate a [continuous refresh token](/docs/getting-started/set-up-authentication-and-authorization/#exchange-the-default-refresh-token-for-a-continuous-refresh-token), which has a 60-day expiration window. We no longer support the legacy refresh token, which has a 365-day expiration window. If your app was created on or after"
      },
      "refresh_token": {
       "type": "string",
@@ -9461,10 +11508,10 @@
     "query": [],
     "header": [],
     "body": [
-     "code",
-     "continuous_refresh",
      "grant_type",
+     "code",
      "redirect_uri",
+     "continuous_refresh",
      "refresh_token",
      "scope"
     ],
@@ -9578,6 +11625,365 @@
     ],
     "header": [],
     "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "pinterest.overlay_assignment_rules_create",
+   "name": "Create overlay assignment rule",
+   "description": "Create an overlay assignment rule. Overlay assignment rules define which overlays should be applied to catalog products based on filter criteria. To apply a rule to an ad account's products, create it with the ad account owner's access token. This endpoint allows you to: - Define filter criteria to match specific products in your catalog - Assign an overlay to be applied to those matching products",
+   "input": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": "string",
+      "description": "Name of the overlay assignment rule. Max length 100 characters."
+     },
+     "user_overlay_ids": {
+      "type": "array",
+      "description": "List of merchant-provided overlay IDs to apply to matching products. You must provide either user_overlay_ids OR overlay_ids (or both). Use this to reference overlays by your own custom IDs. Reference one overlay per rule."
+     },
+     "overlay_ids": {
+      "type": "array",
+      "description": "List of overlay IDs to apply to matching products. You must provide either user_overlay_ids OR overlay_ids (or both). Use this to reference overlays by Pinterest's internal IDs. Each ID should be a string-formatted integer. Reference one overlay per rule."
+     },
+     "filters": {
+      "type": "string",
+      "description": "Filter criteria used to determine which products should receive the overlays."
+     }
+    },
+    "required": [
+     "filters",
+     "name"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.pinterest.com/v5/overlay_assignment_rules",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "user_overlay_ids",
+     "overlay_ids",
+     "filters"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "pinterest.overlay_assignment_rules_delete",
+   "name": "Delete overlay assignment rule",
+   "description": "Delete an overlay assignment rule by ID. This will stop applying the specified overlays to matching products.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "The unique identifier of the overlay assignment rule."
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.pinterest.com/v5/overlay_assignment_rules/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "pinterest.overlay_assignment_rules_list",
+   "name": "Get overlay assignment rules",
+   "description": "Get a list of overlay assignment rules. Overlay assignment rules define which overlays should be applied to catalog products based on filter criteria.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.pinterest.com/v5/overlay_assignment_rules",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "pinterest.overlay_assignment_rules_read",
+   "name": "Get overlay assignment rule",
+   "description": "Get an overlay assignment rule by ID. Overlay assignment rules define which overlays should be applied to catalog products based on filter criteria.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "The unique identifier of the overlay assignment rule."
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.pinterest.com/v5/overlay_assignment_rules/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "pinterest.overlay_assignment_rules_update",
+   "name": "Update overlay assignment rule",
+   "description": "Update an overlay assignment rule by ID. You can update the name, overlay references, and filter criteria.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "The unique identifier of the overlay assignment rule."
+     },
+     "name": {
+      "type": "string",
+      "description": "Name of the overlay assignment rule. Max length 100 characters."
+     },
+     "user_overlay_ids": {
+      "type": "array",
+      "description": "List of merchant-provided overlay IDs to apply to matching products. You must provide either user_overlay_ids OR overlay_ids (or both). Use this to reference overlays by your own custom IDs. Reference one overlay per rule."
+     },
+     "overlay_ids": {
+      "type": "array",
+      "description": "List of overlay IDs to apply to matching products. You must provide either user_overlay_ids OR overlay_ids (or both). Use this to reference overlays by Pinterest's internal IDs. Each ID should be a string-formatted integer. Reference one overlay per rule."
+     },
+     "filters": {
+      "type": "string",
+      "description": "Filter criteria used to determine which products should receive the overlays."
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.pinterest.com/v5/overlay_assignment_rules/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "user_overlay_ids",
+     "overlay_ids",
+     "filters"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "pinterest.overlays_create",
+   "name": "Create overlay",
+   "description": "Create a new overlay. Overlays are transparent PNG images that Pinterest draws on product images in shopping ads during specific time periods. To use an overlay in an ad account's ad groups, create it with the ad account owner's access token.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": "string",
+      "description": "Name of the overlay. Max length 100 characters."
+     },
+     "user_overlay_id": {
+      "type": "string",
+      "description": "Merchant-provided overlay ID for external reference. Max length 50 characters when provided."
+     },
+     "images_input": {
+      "type": "object",
+      "description": "Overlay images input for create/update requests. Accepts either base64-encoded image data or image URLs with aspect ratios."
+     },
+     "start_time": {
+      "type": "integer",
+      "description": "Start time of the overlay as a Unix timestamp. In requests, use seconds since epoch. Responses return milliseconds since epoch."
+     },
+     "end_time": {
+      "type": "integer",
+      "description": "End time of the overlay as a Unix timestamp. In requests, use seconds since epoch. Responses return milliseconds since epoch. Must be greater than start_time when set."
+     }
+    },
+    "required": [
+     "images_input",
+     "name",
+     "start_time"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.pinterest.com/v5/overlays",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "user_overlay_id",
+     "images_input",
+     "start_time",
+     "end_time"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "pinterest.overlays_delete",
+   "name": "Delete overlay",
+   "description": "Delete an overlay by ID. Overlays are transparent PNG images that Pinterest draws on product images in shopping ads during specific time periods.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "The unique identifier of the overlay."
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.pinterest.com/v5/overlays/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "pinterest.overlays_list",
+   "name": "Get overlays",
+   "description": "Get a list of overlays. Overlays are transparent PNG images that Pinterest draws on product images in shopping ads during specific time periods.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "bookmark": {
+      "type": "string",
+      "description": "Cursor used to fetch the next page of items"
+     },
+     "page_size": {
+      "type": "integer",
+      "description": "Maximum number of items to include in a single page. See documentation on [Pagination](/docs/reference/pagination/) for more information."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.pinterest.com/v5/overlays",
+    "path": [],
+    "query": [
+     "bookmark",
+     "page_size"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "pinterest.overlays_read",
+   "name": "Get overlay",
+   "description": "Get an overlay by ID. Overlays are transparent PNG images that Pinterest draws on product images in shopping ads during specific time periods.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "The unique identifier of the overlay."
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.pinterest.com/v5/overlays/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "pinterest.overlays_update",
+   "name": "Update overlay",
+   "description": "Update an overlay by ID. Overlays are transparent PNG images that Pinterest draws on product images in shopping ads during specific time periods.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "The unique identifier of the overlay."
+     },
+     "name": {
+      "type": "string",
+      "description": "Name of the overlay. Max length 100 characters."
+     },
+     "user_overlay_id": {
+      "type": "string",
+      "description": "Merchant-provided overlay ID for external reference. Max length 50 characters when provided."
+     },
+     "images_input": {
+      "type": "object",
+      "description": "Overlay images input for create/update requests. Accepts either base64-encoded image data or image URLs with aspect ratios."
+     },
+     "start_time": {
+      "type": "integer",
+      "description": "Start time of the overlay as a Unix timestamp. In requests, use seconds since epoch. Responses return milliseconds since epoch."
+     },
+     "end_time": {
+      "type": "integer",
+      "description": "End time of the overlay as a Unix timestamp. In requests, use seconds since epoch. Responses return milliseconds since epoch. Must be greater than start_time when set."
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.pinterest.com/v5/overlays/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "user_overlay_id",
+     "images_input",
+     "start_time",
+     "end_time"
+    ],
     "body_format": "json"
    }
   },
@@ -9712,13 +12118,25 @@
       "type": "string",
       "description": "Unique identifier of an ad account."
      },
-     "ai_disclosures": {
-      "type": "object",
-      "description": "AI disclosure declarations the creator has made about this Pin."
-     },
      "alt_text": {
       "type": "string",
       "description": ""
+     },
+     "description": {
+      "type": "string",
+      "description": ""
+     },
+     "title": {
+      "type": "string",
+      "description": ""
+     },
+     "link": {
+      "type": "string",
+      "description": ""
+     },
+     "ai_disclosures": {
+      "type": "object",
+      "description": "AI disclosure declarations the creator has made about this Pin."
      },
      "board_id": {
       "type": "string",
@@ -9728,17 +12146,13 @@
       "type": "string",
       "description": "The board section to which this Pin belongs."
      },
-     "description": {
-      "type": "string",
-      "description": ""
-     },
      "dominant_color": {
       "type": "string",
       "description": "Dominant pin color. Hex number, e.g. `#6E7874`."
      },
-     "link": {
-      "type": "string",
-      "description": ""
+     "is_removable": {
+      "type": "boolean",
+      "description": "If you set it to `true`, the Pin becomes ad-only and is automatically added to an \"Ad-only Pins\" board; so, you do not have to specify a `board_id`. **Note:** Ad-only pins cannot be repinned."
      },
      "media_source": {
       "type": "object",
@@ -9751,10 +12165,6 @@
      "sponsor_id": {
       "type": "string",
       "description": "The sponsor account id to request paid partnership from. Currently the field is only available to a list of users in a closed beta."
-     },
-     "title": {
-      "type": "string",
-      "description": ""
      }
     },
     "required": []
@@ -9768,17 +12178,18 @@
     ],
     "header": [],
     "body": [
-     "ai_disclosures",
      "alt_text",
+     "description",
+     "title",
+     "link",
+     "ai_disclosures",
      "board_id",
      "board_section_id",
-     "description",
      "dominant_color",
-     "link",
+     "is_removable",
      "media_source",
      "parent_pin_id",
-     "sponsor_id",
-     "title"
+     "sponsor_id"
     ],
     "body_format": "json"
    }
@@ -10000,13 +12411,25 @@
       "type": "string",
       "description": "Unique identifier of an ad account."
      },
-     "ai_disclosures": {
-      "type": "object",
-      "description": "AI disclosure declarations the creator has made about this Pin."
-     },
      "alt_text": {
       "type": "string",
       "description": ""
+     },
+     "description": {
+      "type": "string",
+      "description": ""
+     },
+     "title": {
+      "type": "string",
+      "description": ""
+     },
+     "link": {
+      "type": "string",
+      "description": ""
+     },
+     "ai_disclosures": {
+      "type": "object",
+      "description": "AI disclosure declarations the creator has made about this Pin."
      },
      "board_id": {
       "type": "string",
@@ -10019,18 +12442,6 @@
      "carousel_slots": {
       "type": "array",
       "description": "Carousel Pin slots data."
-     },
-     "description": {
-      "type": "string",
-      "description": ""
-     },
-     "link": {
-      "type": "string",
-      "description": ""
-     },
-     "title": {
-      "type": "string",
-      "description": ""
      }
     },
     "required": [
@@ -10048,14 +12459,14 @@
     ],
     "header": [],
     "body": [
-     "ai_disclosures",
      "alt_text",
+     "description",
+     "title",
+     "link",
+     "ai_disclosures",
      "board_id",
      "board_section_id",
-     "carousel_slots",
-     "description",
-     "link",
-     "title"
+     "carousel_slots"
     ],
     "body_format": "json"
    }
@@ -10319,7 +12730,7 @@
      },
      "reporting_timezone": {
       "type": "string",
-      "description": "Specify the timezone to be applied for the reporting. This feature is currently in BETA and is not available to all users.",
+      "description": "Specify the timezone to be applied for the reporting. Defaults to PINTEREST_TIME_ZONE (UTC). AD_ACCOUNT_TIME_ZONE requires the ad account to have a time_zone configured; otherwise the request fails with a 400.",
       "enum": [
        "PINTEREST_TIME_ZONE",
        "AD_ACCOUNT_TIME_ZONE"
@@ -10373,6 +12784,10 @@
       "type": "string",
       "description": "Unique identifier of the hero pin that will receive product tags."
      },
+     "ad_account_id": {
+      "type": "string",
+      "description": "Unique identifier of an ad account."
+     },
      "product_tags": {
       "type": "array",
       "description": "List of product tags to add. Maximum 24 items allowed."
@@ -10389,7 +12804,9 @@
     "path": [
      "pin_id"
     ],
-    "query": [],
+    "query": [
+     "ad_account_id"
+    ],
     "header": [],
     "body": [
      "product_tags"
@@ -10408,6 +12825,10 @@
       "type": "string",
       "description": "Unique identifier of the hero pin that will receive product tags."
      },
+     "ad_account_id": {
+      "type": "string",
+      "description": "Unique identifier of an ad account."
+     },
      "product_tags": {
       "type": "array",
       "description": "List of product tags to delete."
@@ -10424,7 +12845,9 @@
     "path": [
      "pin_id"
     ],
-    "query": [],
+    "query": [
+     "ad_account_id"
+    ],
     "header": [],
     "body": [
      "product_tags"
@@ -10442,6 +12865,10 @@
      "pin_id": {
       "type": "string",
       "description": "Unique identifier of the hero pin that will receive product tags."
+     },
+     "ad_account_id": {
+      "type": "string",
+      "description": "Unique identifier of an ad account."
      }
     },
     "required": [
@@ -10454,7 +12881,9 @@
     "path": [
      "pin_id"
     ],
-    "query": [],
+    "query": [
+     "ad_account_id"
+    ],
     "header": [],
     "body": [],
     "body_format": "json"
@@ -10674,6 +13103,68 @@
    }
   },
   {
+   "slug": "pinterest.publisher_blocklists_read",
+   "name": "Get ad account publisher blocklist",
+   "description": "Get the publisher blocklist for an ad account included in the offsite placement advertiser allowlist.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "ad_account_id": {
+      "type": "string",
+      "description": "Unique identifier of an ad account."
+     }
+    },
+    "required": [
+     "ad_account_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.pinterest.com/v5/ad_accounts/{ad_account_id}/publisher_blocklists",
+    "path": [
+     "ad_account_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "pinterest.publisher_blocklists_update",
+   "name": "Update ad account publisher blocklist",
+   "description": "Replace the publisher blocklist for an ad account included in the offsite placement advertiser allowlist.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "ad_account_id": {
+      "type": "string",
+      "description": "Unique identifier of an ad account."
+     },
+     "excluded_app_bundles": {
+      "type": "array",
+      "description": "Mobile app bundle IDs excluded from offsite ad delivery. Omit this field to leave the blocklist unchanged, or send an empty array to clear it."
+     }
+    },
+    "required": [
+     "ad_account_id"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.pinterest.com/v5/ad_accounts/{ad_account_id}/publisher_blocklists",
+    "path": [
+     "ad_account_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "excluded_app_bundles"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "pinterest.reports_create",
    "name": "Build catalogs report",
    "description": "Async request to create a report of the catalog owned by the \"operation user_account\". This endpoint generates a report upon receiving the first approved request of the day. Any following requests with identical parameters will yield the same report even if data has changed. - By default, the \"operation user_account\" is the token user_account. Optional: Business Access: Specify an `ad_account_id` ",
@@ -10792,6 +13283,292 @@
     "header": [],
     "body": [
      "invites"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "pinterest.rmn_allowed_domains_get",
+   "name": "Get allowed domains between rmn and brand relationship",
+   "description": "**This endpoint is currently in beta and not available to all apps. [Learn more](/docs/getting-started/using-beta-and-restricted-features/).** Get all the allowed domains between RMN and Brand relationship",
+   "input": {
+    "type": "object",
+    "properties": {
+     "business_id": {
+      "type": "string",
+      "description": "Unique identifier of the requesting business."
+     },
+     "partner_id": {
+      "type": "string",
+      "description": "The partner id to be bound to the Business"
+     },
+     "partner_type": {
+      "type": "string",
+      "description": "Specifies whether to fetch internal or external (shared) partners.",
+      "enum": [
+       "INTERNAL",
+       "EXTERNAL"
+      ]
+     },
+     "acting_business_id": {
+      "type": "string",
+      "description": "Acting business id"
+     }
+    },
+    "required": [
+     "business_id",
+     "partner_id",
+     "partner_type"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.pinterest.com/v5/businesses/{business_id}/rmn/partners/{partner_id}/allowed_domains",
+    "path": [
+     "business_id",
+     "partner_id"
+    ],
+    "query": [
+     "partner_type",
+     "acting_business_id"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "pinterest.rmn_billing_contract_history_list",
+   "name": "Get rmn billing contract history",
+   "description": "Get the history of RMN billing contracts between a business and the partner.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "business_id": {
+      "type": "string",
+      "description": "Unique identifier of the requesting business."
+     },
+     "partner_id": {
+      "type": "string",
+      "description": "The partner id to be bound to the Business"
+     },
+     "partner_type": {
+      "type": "string",
+      "description": "Specifies whether to fetch internal or external (shared) partners. If partner_type=INTERNAL, the asset being queried is for accesses the partner has to your business assets. If partner_type=EXTERNAL, the asset being queried is for the accesses you have to the partner's business asset.",
+      "enum": [
+       "INTERNAL",
+       "EXTERNAL"
+      ]
+     },
+     "client_business_id": {
+      "type": "string",
+      "description": "Client business id (the business the acting business represents)"
+     }
+    },
+    "required": [
+     "business_id",
+     "partner_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.pinterest.com/v5/businesses/{business_id}/rmn/partners/{partner_id}/contracts/history",
+    "path": [
+     "business_id",
+     "partner_id"
+    ],
+    "query": [
+     "partner_type",
+     "client_business_id"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "pinterest.rmn_billing_contract_process",
+   "name": "Accept rmn billing contract",
+   "description": "Accept an RMN billing contract",
+   "input": {
+    "type": "object",
+    "properties": {
+     "business_id": {
+      "type": "string",
+      "description": "Unique identifier of the requesting business."
+     },
+     "contract_id": {
+      "type": "string",
+      "description": "RMN billing contract id"
+     },
+     "language": {
+      "type": "string",
+      "description": "The language of the RMN contract being accepted"
+     },
+     "client_business_id": {
+      "type": "string",
+      "description": "Client business ID the user is acting on behalf of"
+     }
+    },
+    "required": [
+     "business_id",
+     "contract_id"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.pinterest.com/v5/businesses/{business_id}/rmn/contracts/{contract_id}/process",
+    "path": [
+     "business_id",
+     "contract_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "language",
+     "client_business_id"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "pinterest.rmn_billing_contracts_get",
+   "name": "Get rmn billing contract by id",
+   "description": "**This endpoint is currently in beta and not available to all apps. [Learn more](/docs/getting-started/using-beta-and-restricted-features/).** Get a specific RMN billing contract by ID with a signed download URL.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "contract_id": {
+      "type": "string",
+      "description": "The contract ID. Note: For RMNs with a contract available, this is retrieved via the Get Invite endpoint."
+     },
+     "business_id": {
+      "type": "string",
+      "description": "Unique identifier of the requesting business."
+     },
+     "client_business_id": {
+      "type": "string",
+      "description": "Client business id (the business the acting business represents)"
+     }
+    },
+    "required": [
+     "business_id",
+     "contract_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.pinterest.com/v5/businesses/{business_id}/rmn/contracts/{contract_id}",
+    "path": [
+     "contract_id",
+     "business_id"
+    ],
+    "query": [
+     "client_business_id"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "pinterest.rmn_business_relationship_invites_process_action",
+   "name": "Process rmn business relationship invite action",
+   "description": "**This endpoint is currently in beta and not available to all apps. [Learn more](/docs/getting-started/using-beta-and-restricted-features/).** Process an RMN business relationship invite based on requested actions, such as accept, reject, resend, or cancel.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "business_relationship_invite_id": {
+      "type": "string",
+      "description": "Unique identifier of the business relationship invite."
+     },
+     "action": {
+      "type": "string",
+      "description": "Processing action to take on the invite.",
+      "enum": [
+       "CANCEL",
+       "RESEND",
+       "ACCEPT",
+       "REJECT"
+      ]
+     },
+     "business_entity_id": {
+      "type": "string",
+      "description": "Unique identifier of the business entity acting on the invite."
+     },
+     "brand_acceptance_details": {
+      "type": "object",
+      "description": "Details supplied only when the Brand accepts an RMN-sent invite. Required for that accept flow and prohibited for RMN acceptance and for REJECT, CANCEL, or RESEND actions. `ad_account_name` is required within this object; all other fields are optional."
+     },
+     "rmn_acceptance_details": {
+      "type": "object",
+      "description": "Details supplied only when the RMN accepts a Brand-sent invite. Optional because resource sharing is optional, and prohibited for Brand acceptance and for REJECT, CANCEL, or RESEND actions. All fields within this object are optional."
+     }
+    },
+    "required": [
+     "action",
+     "business_entity_id",
+     "business_relationship_invite_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.pinterest.com/v5/business_access/business_rmn_invites/{business_relationship_invite_id}/auth_process_action",
+    "path": [
+     "business_relationship_invite_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "action",
+     "business_entity_id",
+     "brand_acceptance_details",
+     "rmn_acceptance_details"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "pinterest.rmn_partnership_invite_create",
+   "name": "Create a rmn partnership invite",
+   "description": "**This endpoint is currently in beta and not available to all apps. [Learn more](/docs/getting-started/using-beta-and-restricted-features/).** Creates a RMN partnership invite from an RMN to a potential Brand. Currently, invites from Brands to RMNs are not supported.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "business_id": {
+      "type": "string",
+      "description": "Unique identifier of the requesting business."
+     },
+     "partner_id": {
+      "type": "string",
+      "description": "A user id that belongs to a potential partner that is not a system user."
+     },
+     "brand_invite_details": {
+      "type": "object",
+      "description": "Details supplied only when the Brand creates an invite to an RMN. Do not provide this object when the RMN creates an invite to a Brand."
+     },
+     "rmn_invite_details": {
+      "type": "object",
+      "description": "Details supplied only when the RMN creates an invite to a Brand. Do not provide this object when the Brand creates an invite to an RMN."
+     }
+    },
+    "required": [
+     "business_id",
+     "partner_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.pinterest.com/v5/businesses/{business_id}/rmn/partners/{partner_id}/invite",
+    "path": [
+     "business_id",
+     "partner_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "brand_invite_details",
+     "rmn_invite_details"
     ],
     "body_format": "json"
    }
@@ -10961,7 +13738,7 @@
      },
      "country_code": {
       "type": "string",
-      "description": "Two letter country code (ISO 3166-1 alpha-2)"
+      "description": "Two letter ISO 3166-1 alpha-2 country code. Supported values: `AU`, `CA`, `GB`, `IE`, `NZ`, and `US`. Other codes are not currently supported."
      },
      "bookmark": {
       "type": "string",
@@ -11552,6 +14329,193 @@
    }
   },
   {
+   "slug": "pinterest.supplemental_feeds_create",
+   "name": "Create supplemental feed",
+   "description": "Create a supplemental feed for a RETAIL catalog owned by the \"operation user_account\". - By default, the \"operation user_account\" is the token user_account. Optional: Business Access: Specify an `ad_account_id` (obtained via [List ad accounts](/docs/api/v5/#operation/ad_accounts/list)) to use the owner of that ad_account as the \"operation user_account\". In order to do this, the token user_account ",
+   "input": {
+    "type": "object",
+    "properties": {
+     "ad_account_id": {
+      "type": "string",
+      "description": "Unique identifier of an ad account."
+     },
+     "feed": {
+      "type": "object",
+      "description": "Supplemental feed payload."
+     }
+    },
+    "required": [
+     "feed"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.pinterest.com/v5/catalogs/supplemental_feeds",
+    "path": [],
+    "query": [
+     "ad_account_id"
+    ],
+    "header": [],
+    "body": [
+     "feed"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "pinterest.supplemental_feeds_delete",
+   "name": "Delete supplemental feed",
+   "description": "Delete a supplemental feed owned by the \"operation user_account\". - By default, the \"operation user_account\" is the token user_account. Optional: Business Access: Specify an `ad_account_id` (obtained via [List ad accounts](/docs/api/v5/#operation/ad_accounts/list)) to use the owner of that ad_account as the \"operation user_account\". In order to do this, the token user_account must have one of the ",
+   "input": {
+    "type": "object",
+    "properties": {
+     "feed_id": {
+      "type": "string",
+      "description": "Supplemental feed id generated by Pinterest."
+     },
+     "ad_account_id": {
+      "type": "string",
+      "description": "Unique identifier of an ad account."
+     }
+    },
+    "required": [
+     "feed_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.pinterest.com/v5/catalogs/supplemental_feeds/{feed_id}",
+    "path": [
+     "feed_id"
+    ],
+    "query": [
+     "ad_account_id"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "pinterest.supplemental_feeds_get",
+   "name": "Get supplemental feed",
+   "description": "Get a single supplemental feed owned by the \"operation user_account\". - By default, the \"operation user_account\" is the token user_account. Optional: Business Access: Specify an `ad_account_id` (obtained via [List ad accounts](/docs/api/v5/#operation/ad_accounts/list)) to use the owner of that ad_account as the \"operation user_account\". In order to do this, the token user_account must have one of ",
+   "input": {
+    "type": "object",
+    "properties": {
+     "feed_id": {
+      "type": "string",
+      "description": "Supplemental feed id generated by Pinterest."
+     },
+     "ad_account_id": {
+      "type": "string",
+      "description": "Unique identifier of an ad account."
+     }
+    },
+    "required": [
+     "feed_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.pinterest.com/v5/catalogs/supplemental_feeds/{feed_id}",
+    "path": [
+     "feed_id"
+    ],
+    "query": [
+     "ad_account_id"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "pinterest.supplemental_feeds_list",
+   "name": "List supplemental feeds",
+   "description": "List supplemental feeds for a RETAIL catalog owned by the \"operation user_account\". - By default, the \"operation user_account\" is the token user_account. Optional: Business Access: Specify an `ad_account_id` (obtained via [List ad accounts](/docs/api/v5/#operation/ad_accounts/list)) to use the owner of that ad_account as the \"operation user_account\". In order to do this, the token user_account mus",
+   "input": {
+    "type": "object",
+    "properties": {
+     "catalog_id": {
+      "type": "string",
+      "description": "Filter entities for a given catalog_id."
+     },
+     "type": {
+      "type": "string",
+      "description": "Filter supplemental feeds by supplemental feed type.",
+      "enum": [
+       "COUNTRY",
+       "LOCALE",
+       "REGIONAL_PRICING",
+       "PARTIAL_UPDATE",
+       "LOCAL_INVENTORY"
+      ]
+     },
+     "ad_account_id": {
+      "type": "string",
+      "description": "Unique identifier of an ad account."
+     }
+    },
+    "required": [
+     "catalog_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.pinterest.com/v5/catalogs/supplemental_feeds",
+    "path": [],
+    "query": [
+     "catalog_id",
+     "type",
+     "ad_account_id"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "pinterest.supplemental_feeds_update",
+   "name": "Update supplemental feed",
+   "description": "Update a supplemental feed owned by the \"operation user_account\". - By default, the \"operation user_account\" is the token user_account. Optional: Business Access: Specify an `ad_account_id` (obtained via [List ad accounts](/docs/api/v5/#operation/ad_accounts/list)) to use the owner of that ad_account as the \"operation user_account\". In order to do this, the token user_account must have one of the ",
+   "input": {
+    "type": "object",
+    "properties": {
+     "feed_id": {
+      "type": "string",
+      "description": "Supplemental feed id generated by Pinterest."
+     },
+     "ad_account_id": {
+      "type": "string",
+      "description": "Unique identifier of an ad account."
+     },
+     "feed": {
+      "type": "object",
+      "description": "Supplemental feed payload."
+     }
+    },
+    "required": [
+     "feed_id"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.pinterest.com/v5/catalogs/supplemental_feeds/{feed_id}",
+    "path": [
+     "feed_id"
+    ],
+    "query": [
+     "ad_account_id"
+    ],
+    "header": [],
+    "body": [
+     "feed"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
    "slug": "pinterest.system_user_update",
    "name": "Update a system user information",
    "description": "Update a system user information such as name.",
@@ -11985,11 +14949,7 @@
     "properties": {
      "token_type_hint": {
       "type": "string",
-      "description": "The type of the token to revoke. Please refer to [our developer guide for more information](https://developers.pinterest.com/docs/getting-started/set-up-authentication-and-authorization/) for more information.",
-      "enum": [
-       "access_token",
-       "refresh_token"
-      ]
+      "description": "Optional hint about the token type. Accepted per RFC 7009 but ignored server-side; revocation proceeds based on the decoded token type."
      }
     },
     "required": []

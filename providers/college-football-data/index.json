@@ -1,0 +1,2083 @@
+{
+ "_": "GENERATED \u2014 what an authoring tool needs to FIND an operation. The calling table is the .lua beside it.",
+ "provider": "college-football-data",
+ "source": "https://api.apis.guru/v2/specs/collegefootballdata.com/4.4.12/openapi.json",
+ "operations": [
+  {
+   "slug": "college-football-data.get_advanced_box_score",
+   "name": "Advanced box scores",
+   "description": "Get advanced box score data",
+   "input": {
+    "type": "object",
+    "properties": {
+     "gameId": {
+      "type": "integer",
+      "description": "Game id parameters"
+     }
+    },
+    "required": [
+     "gameId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.collegefootballdata.com/game/box/advanced",
+    "path": [],
+    "query": [
+     "gameId"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "college-football-data.get_advanced_team_game_stats",
+   "name": "Advanced team metrics by game",
+   "description": "Advanced team game stats",
+   "input": {
+    "type": "object",
+    "properties": {
+     "year": {
+      "type": "integer",
+      "description": "Year filter (required if no team specified)"
+     },
+     "week": {
+      "type": "integer",
+      "description": "Week filter"
+     },
+     "team": {
+      "type": "string",
+      "description": "Team filter (required if no year specified)"
+     },
+     "opponent": {
+      "type": "string",
+      "description": "Opponent filter"
+     },
+     "excludeGarbageTime": {
+      "type": "boolean",
+      "description": "Filter to remove garbage time plays from calculations"
+     },
+     "seasonType": {
+      "type": "string",
+      "description": "Season type filter (regular, postseason, or both)"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.collegefootballdata.com/stats/game/advanced",
+    "path": [],
+    "query": [
+     "year",
+     "week",
+     "team",
+     "opponent",
+     "excludeGarbageTime",
+     "seasonType"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "college-football-data.get_advanced_team_season_stats",
+   "name": "Advanced team metrics by season",
+   "description": "Advanced team season stats",
+   "input": {
+    "type": "object",
+    "properties": {
+     "year": {
+      "type": "integer",
+      "description": "Year filter (required if no team specified)"
+     },
+     "team": {
+      "type": "string",
+      "description": "Team filter (required if no year specified)"
+     },
+     "excludeGarbageTime": {
+      "type": "boolean",
+      "description": "Filter to remove garbage time plays from calculations"
+     },
+     "startWeek": {
+      "type": "integer",
+      "description": "Starting week filter"
+     },
+     "endWeek": {
+      "type": "integer",
+      "description": "Starting week filter"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.collegefootballdata.com/stats/season/advanced",
+    "path": [],
+    "query": [
+     "year",
+     "team",
+     "excludeGarbageTime",
+     "startWeek",
+     "endWeek"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "college-football-data.get_calendar",
+   "name": "Season calendar",
+   "description": "Get calendar of weeks by season",
+   "input": {
+    "type": "object",
+    "properties": {
+     "year": {
+      "type": "integer",
+      "description": "Year filter"
+     }
+    },
+    "required": [
+     "year"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.collegefootballdata.com/calendar",
+    "path": [],
+    "query": [
+     "year"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "college-football-data.get_coaches",
+   "name": "Coaching records and history",
+   "description": "Coaching history",
+   "input": {
+    "type": "object",
+    "properties": {
+     "firstName": {
+      "type": "string",
+      "description": "First name filter"
+     },
+     "lastName": {
+      "type": "string",
+      "description": "Last name filter"
+     },
+     "team": {
+      "type": "string",
+      "description": "Team name filter"
+     },
+     "year": {
+      "type": "integer",
+      "description": "Year filter"
+     },
+     "minYear": {
+      "type": "integer",
+      "description": "Minimum year filter (inclusive)"
+     },
+     "maxYear": {
+      "type": "integer",
+      "description": "Maximum year filter (inclusive)"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.collegefootballdata.com/coaches",
+    "path": [],
+    "query": [
+     "firstName",
+     "lastName",
+     "team",
+     "year",
+     "minYear",
+     "maxYear"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "college-football-data.get_conference_spratings",
+   "name": "Historical sp+ ratings by conference",
+   "description": "Get average SP+ historical rating data by conference",
+   "input": {
+    "type": "object",
+    "properties": {
+     "year": {
+      "type": "integer",
+      "description": "Season filter"
+     },
+     "conference": {
+      "type": "string",
+      "description": "Conference abbreviation filter"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.collegefootballdata.com/ratings/sp/conferences",
+    "path": [],
+    "query": [
+     "year",
+     "conference"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "college-football-data.get_conferences",
+   "name": "Conferences",
+   "description": "Get conference list",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.collegefootballdata.com/conferences",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "college-football-data.get_draft_picks",
+   "name": "List of nfl draft picks",
+   "description": "List of NFL Draft picks",
+   "input": {
+    "type": "object",
+    "properties": {
+     "year": {
+      "type": "integer",
+      "description": "Year filter"
+     },
+     "nflTeam": {
+      "type": "string",
+      "description": "NFL team filter"
+     },
+     "college": {
+      "type": "string",
+      "description": "Player college filter"
+     },
+     "conference": {
+      "type": "string",
+      "description": "College confrence abbreviation filter"
+     },
+     "position": {
+      "type": "string",
+      "description": "NFL position filter"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.collegefootballdata.com/draft/picks",
+    "path": [],
+    "query": [
+     "year",
+     "nflTeam",
+     "college",
+     "conference",
+     "position"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "college-football-data.get_drives",
+   "name": "Drive data and results",
+   "description": "Get game drives",
+   "input": {
+    "type": "object",
+    "properties": {
+     "seasonType": {
+      "type": "string",
+      "description": "Season type filter"
+     },
+     "year": {
+      "type": "integer",
+      "description": "Year filter"
+     },
+     "week": {
+      "type": "integer",
+      "description": "Week filter"
+     },
+     "team": {
+      "type": "string",
+      "description": "Team filter"
+     },
+     "offense": {
+      "type": "string",
+      "description": "Offensive team filter"
+     },
+     "defense": {
+      "type": "string",
+      "description": "Defensive team filter"
+     },
+     "conference": {
+      "type": "string",
+      "description": "Conference filter"
+     },
+     "offenseConference": {
+      "type": "string",
+      "description": "Offensive conference filter"
+     },
+     "defenseConference": {
+      "type": "string",
+      "description": "Defensive conference filter"
+     },
+     "classification": {
+      "type": "string",
+      "description": "Division classification filter (fbs/fcs/ii/iii)"
+     }
+    },
+    "required": [
+     "year"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.collegefootballdata.com/drives",
+    "path": [],
+    "query": [
+     "seasonType",
+     "year",
+     "week",
+     "team",
+     "offense",
+     "defense",
+     "conference",
+     "offenseConference",
+     "defenseConference",
+     "classification"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "college-football-data.get_elo_ratings",
+   "name": "Historical elo ratings",
+   "description": "Elo rating data",
+   "input": {
+    "type": "object",
+    "properties": {
+     "year": {
+      "type": "integer",
+      "description": "Season filter"
+     },
+     "week": {
+      "type": "integer",
+      "description": "Maximum week filter"
+     },
+     "team": {
+      "type": "string",
+      "description": "Team filter"
+     },
+     "conference": {
+      "type": "string",
+      "description": "Conference filter"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.collegefootballdata.com/ratings/elo",
+    "path": [],
+    "query": [
+     "year",
+     "week",
+     "team",
+     "conference"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "college-football-data.get_fbs_teams",
+   "name": "Fbs team list",
+   "description": "Information on major division teams",
+   "input": {
+    "type": "object",
+    "properties": {
+     "year": {
+      "type": "integer",
+      "description": "Year filter"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.collegefootballdata.com/teams/fbs",
+    "path": [],
+    "query": [
+     "year"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "college-football-data.get_game_media",
+   "name": "Game media information and schedules",
+   "description": "Game media information (TV, radio, etc)",
+   "input": {
+    "type": "object",
+    "properties": {
+     "year": {
+      "type": "integer",
+      "description": "Year filter"
+     },
+     "week": {
+      "type": "integer",
+      "description": "Week filter"
+     },
+     "seasonType": {
+      "type": "string",
+      "description": "Season type filter (regular, postseason, or both)"
+     },
+     "team": {
+      "type": "string",
+      "description": "Team filter"
+     },
+     "conference": {
+      "type": "string",
+      "description": "Conference filter"
+     },
+     "mediaType": {
+      "type": "string",
+      "description": "Media type filter (tv, radio, web, ppv, or mobile)"
+     },
+     "classification": {
+      "type": "string",
+      "description": "Division classification filter (fbs/fcs/ii/iii)"
+     }
+    },
+    "required": [
+     "year"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.collegefootballdata.com/games/media",
+    "path": [],
+    "query": [
+     "year",
+     "week",
+     "seasonType",
+     "team",
+     "conference",
+     "mediaType",
+     "classification"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "college-football-data.get_game_ppa",
+   "name": "Team predicated points added (ppa epa) by game",
+   "description": "Predicted Points Added (PPA) by game",
+   "input": {
+    "type": "object",
+    "properties": {
+     "year": {
+      "type": "integer",
+      "description": "Year filter"
+     },
+     "week": {
+      "type": "integer",
+      "description": "Week filter"
+     },
+     "team": {
+      "type": "string",
+      "description": "Team filter"
+     },
+     "conference": {
+      "type": "string",
+      "description": "Conference filter"
+     },
+     "excludeGarbageTime": {
+      "type": "boolean",
+      "description": "Filter to remove garbage time plays from calculations"
+     },
+     "seasonType": {
+      "type": "string",
+      "description": "Season type filter (regular or postseason)"
+     }
+    },
+    "required": [
+     "year"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.collegefootballdata.com/ppa/games",
+    "path": [],
+    "query": [
+     "year",
+     "week",
+     "team",
+     "conference",
+     "excludeGarbageTime",
+     "seasonType"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "college-football-data.get_game_weather",
+   "name": "Game weather information (patreon only)",
+   "description": "Weather information for the hour of kickoff",
+   "input": {
+    "type": "object",
+    "properties": {
+     "gameId": {
+      "type": "integer",
+      "description": "Game id filter (required if no year)"
+     },
+     "year": {
+      "type": "integer",
+      "description": "Year filter (required if no game id)"
+     },
+     "week": {
+      "type": "integer",
+      "description": "Week filter"
+     },
+     "seasonType": {
+      "type": "string",
+      "description": "Season type filter (regular, postseason, or both)"
+     },
+     "team": {
+      "type": "string",
+      "description": "Team filter"
+     },
+     "conference": {
+      "type": "string",
+      "description": "Conference filter"
+     },
+     "classification": {
+      "type": "string",
+      "description": "Division classification filter (fbs/fcs/ii/iii)"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.collegefootballdata.com/games/weather",
+    "path": [],
+    "query": [
+     "gameId",
+     "year",
+     "week",
+     "seasonType",
+     "team",
+     "conference",
+     "classification"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "college-football-data.get_games",
+   "name": "Games and results",
+   "description": "Get game results",
+   "input": {
+    "type": "object",
+    "properties": {
+     "year": {
+      "type": "integer",
+      "description": "Year/season filter for games"
+     },
+     "week": {
+      "type": "integer",
+      "description": "Week filter"
+     },
+     "seasonType": {
+      "type": "string",
+      "description": "Season type filter (regular or postseason)"
+     },
+     "team": {
+      "type": "string",
+      "description": "Team"
+     },
+     "home": {
+      "type": "string",
+      "description": "Home team filter"
+     },
+     "away": {
+      "type": "string",
+      "description": "Away team filter"
+     },
+     "conference": {
+      "type": "string",
+      "description": "Conference abbreviation filter"
+     },
+     "division": {
+      "type": "string",
+      "description": "Division classification filter (fbs/fcs/ii/iii)"
+     },
+     "id": {
+      "type": "integer",
+      "description": "id filter for querying a single game"
+     }
+    },
+    "required": [
+     "year"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.collegefootballdata.com/games",
+    "path": [],
+    "query": [
+     "year",
+     "week",
+     "seasonType",
+     "team",
+     "home",
+     "away",
+     "conference",
+     "division",
+     "id"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "college-football-data.get_lines",
+   "name": "Betting lines",
+   "description": "Closing betting lines",
+   "input": {
+    "type": "object",
+    "properties": {
+     "gameId": {
+      "type": "integer",
+      "description": "Game id filter"
+     },
+     "year": {
+      "type": "integer",
+      "description": "Year/season filter for games"
+     },
+     "week": {
+      "type": "integer",
+      "description": "Week filter"
+     },
+     "seasonType": {
+      "type": "string",
+      "description": "Season type filter (regular or postseason)"
+     },
+     "team": {
+      "type": "string",
+      "description": "Team"
+     },
+     "home": {
+      "type": "string",
+      "description": "Home team filter"
+     },
+     "away": {
+      "type": "string",
+      "description": "Away team filter"
+     },
+     "conference": {
+      "type": "string",
+      "description": "Conference abbreviation filter"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.collegefootballdata.com/lines",
+    "path": [],
+    "query": [
+     "gameId",
+     "year",
+     "week",
+     "seasonType",
+     "team",
+     "home",
+     "away",
+     "conference"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "college-football-data.get_live_plays",
+   "name": "Live metrics and pbp (patreon only)",
+   "description": "Get live metrics and PBP",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "integer",
+      "description": "Game id"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.collegefootballdata.com/live/plays",
+    "path": [],
+    "query": [
+     "id"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "college-football-data.get_nflpositions",
+   "name": "List of nfl positions",
+   "description": "List of NFL positions",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.collegefootballdata.com/draft/positions",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "college-football-data.get_nflteams",
+   "name": "List of nfl teams",
+   "description": "List of NFL teams",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.collegefootballdata.com/draft/teams",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "college-football-data.get_play_stat_types",
+   "name": "Types of player play stats",
+   "description": "Type of play stats",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.collegefootballdata.com/play/stat/types",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "college-football-data.get_play_stats",
+   "name": "Play stats by play",
+   "description": "Gets player stats associated by play (limit 1000)",
+   "input": {
+    "type": "object",
+    "properties": {
+     "year": {
+      "type": "integer",
+      "description": "Year filter"
+     },
+     "week": {
+      "type": "integer",
+      "description": "Week filter"
+     },
+     "team": {
+      "type": "string",
+      "description": "Team filter"
+     },
+     "gameId": {
+      "type": "integer",
+      "description": "gameId filter (from /games endpoint)"
+     },
+     "athleteId": {
+      "type": "integer",
+      "description": "athleteId filter (from /roster endpoint)"
+     },
+     "statTypeId": {
+      "type": "integer",
+      "description": "statTypeId filter (from /play/stat/types endpoint)"
+     },
+     "seasonType": {
+      "type": "string",
+      "description": "regular, postseason, or both"
+     },
+     "conference": {
+      "type": "string",
+      "description": "conference abbreviation filter"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.collegefootballdata.com/play/stats",
+    "path": [],
+    "query": [
+     "year",
+     "week",
+     "team",
+     "gameId",
+     "athleteId",
+     "statTypeId",
+     "seasonType",
+     "conference"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "college-football-data.get_play_types",
+   "name": "Play types",
+   "description": "Types of plays",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.collegefootballdata.com/play/types",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "college-football-data.get_player_game_ppa",
+   "name": "Player predicated points added (ppa epa) broken down by game",
+   "description": "Predicted Points Added (PPA) by player game",
+   "input": {
+    "type": "object",
+    "properties": {
+     "year": {
+      "type": "integer",
+      "description": "Year filter"
+     },
+     "week": {
+      "type": "integer",
+      "description": "Week filter"
+     },
+     "team": {
+      "type": "string",
+      "description": "Team filter"
+     },
+     "position": {
+      "type": "string",
+      "description": "Position abbreviation filter"
+     },
+     "playerId": {
+      "type": "integer",
+      "description": "Player id filter"
+     },
+     "threshold": {
+      "type": "string",
+      "description": "Minimum play threshold filter"
+     },
+     "excludeGarbageTime": {
+      "type": "boolean",
+      "description": "Filter to remove garbage time plays from calculations"
+     },
+     "seasonType": {
+      "type": "string",
+      "description": "Season type filter (regular or postseason)"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.collegefootballdata.com/ppa/players/games",
+    "path": [],
+    "query": [
+     "year",
+     "week",
+     "team",
+     "position",
+     "playerId",
+     "threshold",
+     "excludeGarbageTime",
+     "seasonType"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "college-football-data.get_player_game_stats",
+   "name": "Player game stats",
+   "description": "Player stats broken down by game",
+   "input": {
+    "type": "object",
+    "properties": {
+     "year": {
+      "type": "integer",
+      "description": "Year/season filter for games"
+     },
+     "week": {
+      "type": "integer",
+      "description": "Week filter"
+     },
+     "seasonType": {
+      "type": "string",
+      "description": "Season type filter (regular or postseason)"
+     },
+     "team": {
+      "type": "string",
+      "description": "Team filter"
+     },
+     "conference": {
+      "type": "string",
+      "description": "Conference abbreviation filter"
+     },
+     "category": {
+      "type": "string",
+      "description": "Category filter (e.g defensive)"
+     },
+     "gameId": {
+      "type": "integer",
+      "description": "Game id filter"
+     }
+    },
+    "required": [
+     "year"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.collegefootballdata.com/games/players",
+    "path": [],
+    "query": [
+     "year",
+     "week",
+     "seasonType",
+     "team",
+     "conference",
+     "category",
+     "gameId"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "college-football-data.get_player_season_ppa",
+   "name": "Player predicated points added (ppa epa) broken down by season",
+   "description": "Predicted Points Added (PPA) by player season",
+   "input": {
+    "type": "object",
+    "properties": {
+     "year": {
+      "type": "integer",
+      "description": "Year filter"
+     },
+     "team": {
+      "type": "string",
+      "description": "Team filter"
+     },
+     "conference": {
+      "type": "string",
+      "description": "Conference abbreviation filter"
+     },
+     "position": {
+      "type": "string",
+      "description": "Position abbreviation filter"
+     },
+     "playerId": {
+      "type": "integer",
+      "description": "Player id filter"
+     },
+     "threshold": {
+      "type": "string",
+      "description": "Minimum play threshold filter"
+     },
+     "excludeGarbageTime": {
+      "type": "boolean",
+      "description": "Filter to remove garbage time plays from calculations"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.collegefootballdata.com/ppa/players/season",
+    "path": [],
+    "query": [
+     "year",
+     "team",
+     "conference",
+     "position",
+     "playerId",
+     "threshold",
+     "excludeGarbageTime"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "college-football-data.get_player_season_stats",
+   "name": "Player stats by season",
+   "description": "Season player stats",
+   "input": {
+    "type": "object",
+    "properties": {
+     "year": {
+      "type": "integer",
+      "description": "Year filter"
+     },
+     "team": {
+      "type": "string",
+      "description": "Team filter"
+     },
+     "conference": {
+      "type": "string",
+      "description": "Conference abbreviation filter"
+     },
+     "startWeek": {
+      "type": "integer",
+      "description": "Start week filter"
+     },
+     "endWeek": {
+      "type": "integer",
+      "description": "Start week filter"
+     },
+     "seasonType": {
+      "type": "string",
+      "description": "Season type filter (regular, postseason, or both)"
+     },
+     "category": {
+      "type": "string",
+      "description": "Stat category filter (e.g. passing)"
+     }
+    },
+    "required": [
+     "year"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.collegefootballdata.com/stats/player/season",
+    "path": [],
+    "query": [
+     "year",
+     "team",
+     "conference",
+     "startWeek",
+     "endWeek",
+     "seasonType",
+     "category"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "college-football-data.get_player_usage",
+   "name": "Player usage metrics broken down by season",
+   "description": "Player usage metrics by season",
+   "input": {
+    "type": "object",
+    "properties": {
+     "year": {
+      "type": "integer",
+      "description": "Year filter"
+     },
+     "team": {
+      "type": "string",
+      "description": "Team filter"
+     },
+     "conference": {
+      "type": "string",
+      "description": "Conference abbreviation filter"
+     },
+     "position": {
+      "type": "string",
+      "description": "Position abbreviation filter"
+     },
+     "playerId": {
+      "type": "integer",
+      "description": "Player id filter"
+     },
+     "excludeGarbageTime": {
+      "type": "boolean",
+      "description": "Filter to remove garbage time plays from calculations"
+     }
+    },
+    "required": [
+     "year"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.collegefootballdata.com/player/usage",
+    "path": [],
+    "query": [
+     "year",
+     "team",
+     "conference",
+     "position",
+     "playerId",
+     "excludeGarbageTime"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "college-football-data.get_plays",
+   "name": "Play by play data",
+   "description": "Get play data and results",
+   "input": {
+    "type": "object",
+    "properties": {
+     "seasonType": {
+      "type": "string",
+      "description": "Season type filter"
+     },
+     "year": {
+      "type": "integer",
+      "description": "Year filter"
+     },
+     "week": {
+      "type": "integer",
+      "description": "Week filter (required if team, offense, or defense, not specified)"
+     },
+     "team": {
+      "type": "string",
+      "description": "Team filter"
+     },
+     "offense": {
+      "type": "string",
+      "description": "Offensive team filter"
+     },
+     "defense": {
+      "type": "string",
+      "description": "Defensive team filter"
+     },
+     "conference": {
+      "type": "string",
+      "description": "Conference filter"
+     },
+     "offenseConference": {
+      "type": "string",
+      "description": "Offensive conference filter"
+     },
+     "defenseConference": {
+      "type": "string",
+      "description": "Defensive conference filter"
+     },
+     "playType": {
+      "type": "integer",
+      "description": "Play type filter"
+     },
+     "classification": {
+      "type": "string",
+      "description": "Division classification filter (fbs/fcs/ii/iii)"
+     }
+    },
+    "required": [
+     "week",
+     "year"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.collegefootballdata.com/plays",
+    "path": [],
+    "query": [
+     "seasonType",
+     "year",
+     "week",
+     "team",
+     "offense",
+     "defense",
+     "conference",
+     "offenseConference",
+     "defenseConference",
+     "playType",
+     "classification"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "college-football-data.get_predicted_points",
+   "name": "Predicted points (i e  expected points or ep)",
+   "description": "Predicted Points",
+   "input": {
+    "type": "object",
+    "properties": {
+     "down": {
+      "type": "integer",
+      "description": "Down filter"
+     },
+     "distance": {
+      "type": "integer",
+      "description": "Distance filter"
+     }
+    },
+    "required": [
+     "distance",
+     "down"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.collegefootballdata.com/ppa/predicted",
+    "path": [],
+    "query": [
+     "down",
+     "distance"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "college-football-data.get_pregame_win_probabilities",
+   "name": "Pregame win probability data",
+   "description": "Pregame win probabilities",
+   "input": {
+    "type": "object",
+    "properties": {
+     "year": {
+      "type": "integer",
+      "description": "Year filter"
+     },
+     "week": {
+      "type": "integer",
+      "description": "Week filter"
+     },
+     "team": {
+      "type": "string",
+      "description": "Team filter"
+     },
+     "seasonType": {
+      "type": "string",
+      "description": "regular or postseason"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.collegefootballdata.com/metrics/wp/pregame",
+    "path": [],
+    "query": [
+     "year",
+     "week",
+     "team",
+     "seasonType"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "college-football-data.get_rankings",
+   "name": "Historical polls and rankings",
+   "description": "Poll rankings",
+   "input": {
+    "type": "object",
+    "properties": {
+     "year": {
+      "type": "integer",
+      "description": "Year/season filter for games"
+     },
+     "week": {
+      "type": "integer",
+      "description": "Week filter"
+     },
+     "seasonType": {
+      "type": "string",
+      "description": "Season type filter (regular or postseason)"
+     }
+    },
+    "required": [
+     "year"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.collegefootballdata.com/rankings",
+    "path": [],
+    "query": [
+     "year",
+     "week",
+     "seasonType"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "college-football-data.get_recruiting_groups",
+   "name": "Recruit position group ratings",
+   "description": "Gets a list of aggregated statistics by team and position grouping",
+   "input": {
+    "type": "object",
+    "properties": {
+     "startYear": {
+      "type": "integer",
+      "description": "Starting year"
+     },
+     "endYear": {
+      "type": "integer",
+      "description": "Ending year"
+     },
+     "team": {
+      "type": "string",
+      "description": "Team filter"
+     },
+     "conference": {
+      "type": "string",
+      "description": "conference filter"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.collegefootballdata.com/recruiting/groups",
+    "path": [],
+    "query": [
+     "startYear",
+     "endYear",
+     "team",
+     "conference"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "college-football-data.get_recruiting_players",
+   "name": "Player recruiting ratings and rankings",
+   "description": "Get player recruiting rankings and data. Requires either a year or team to be specified.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "year": {
+      "type": "integer",
+      "description": "Recruiting class year (required if team no specified)"
+     },
+     "classification": {
+      "type": "string",
+      "description": "Type of recruit (HighSchool, JUCO, PrepSchool)"
+     },
+     "position": {
+      "type": "string",
+      "description": "Position abbreviation filter"
+     },
+     "state": {
+      "type": "string",
+      "description": "State or province abbreviation filter"
+     },
+     "team": {
+      "type": "string",
+      "description": "Committed team filter (required if year not specified)"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.collegefootballdata.com/recruiting/players",
+    "path": [],
+    "query": [
+     "year",
+     "classification",
+     "position",
+     "state",
+     "team"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "college-football-data.get_recruiting_teams",
+   "name": "Team recruiting rankings and ratings",
+   "description": "Team recruiting rankings",
+   "input": {
+    "type": "object",
+    "properties": {
+     "year": {
+      "type": "integer",
+      "description": "Recruiting class year"
+     },
+     "team": {
+      "type": "string",
+      "description": "Team filter"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.collegefootballdata.com/recruiting/teams",
+    "path": [],
+    "query": [
+     "year",
+     "team"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "college-football-data.get_returning_production",
+   "name": "Team returning production metrics",
+   "description": "Returning production metrics",
+   "input": {
+    "type": "object",
+    "properties": {
+     "year": {
+      "type": "integer",
+      "description": "Year filter"
+     },
+     "team": {
+      "type": "string",
+      "description": "Team filter"
+     },
+     "conference": {
+      "type": "string",
+      "description": "Conference abbreviation filter"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.collegefootballdata.com/player/returning",
+    "path": [],
+    "query": [
+     "year",
+     "team",
+     "conference"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "college-football-data.get_roster",
+   "name": "Team rosters",
+   "description": "Roster data",
+   "input": {
+    "type": "object",
+    "properties": {
+     "team": {
+      "type": "string",
+      "description": "Team name"
+     },
+     "year": {
+      "type": "integer",
+      "description": "Season year"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.collegefootballdata.com/roster",
+    "path": [],
+    "query": [
+     "team",
+     "year"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "college-football-data.get_scoreboard",
+   "name": "Live game results (patreon only)",
+   "description": "Get live game results",
+   "input": {
+    "type": "object",
+    "properties": {
+     "classification": {
+      "type": "string",
+      "description": "Classification filter (fbs, fcs, ii, or iii). Defaults to fbs."
+     },
+     "conference": {
+      "type": "string",
+      "description": "Conference abbreviation filter."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.collegefootballdata.com/scoreboard",
+    "path": [],
+    "query": [
+     "classification",
+     "conference"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "college-football-data.get_spratings",
+   "name": "Historical sp+ ratings",
+   "description": "SP+ rating data",
+   "input": {
+    "type": "object",
+    "properties": {
+     "year": {
+      "type": "integer",
+      "description": "Season filter (required if team not specified)"
+     },
+     "team": {
+      "type": "string",
+      "description": "Team filter (required if year not specified)"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.collegefootballdata.com/ratings/sp",
+    "path": [],
+    "query": [
+     "year",
+     "team"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "college-football-data.get_srsratings",
+   "name": "Historical srs ratings",
+   "description": "SRS rating data (requires either a year or team specified)",
+   "input": {
+    "type": "object",
+    "properties": {
+     "year": {
+      "type": "integer",
+      "description": "Season filter (required if team not specified)"
+     },
+     "team": {
+      "type": "string",
+      "description": "Team filter (required if year not specified)"
+     },
+     "conference": {
+      "type": "string",
+      "description": "Conference filter"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.collegefootballdata.com/ratings/srs",
+    "path": [],
+    "query": [
+     "year",
+     "team",
+     "conference"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "college-football-data.get_stat_categories",
+   "name": "Team stat categories",
+   "description": "Stat category list",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.collegefootballdata.com/stats/categories",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "college-football-data.get_talent",
+   "name": "Team talent composite rankings",
+   "description": "Team talent composite",
+   "input": {
+    "type": "object",
+    "properties": {
+     "year": {
+      "type": "integer",
+      "description": "Year filter"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.collegefootballdata.com/talent",
+    "path": [],
+    "query": [
+     "year"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "college-football-data.get_team_game_stats",
+   "name": "Team game stats",
+   "description": "Team stats broken down by game",
+   "input": {
+    "type": "object",
+    "properties": {
+     "year": {
+      "type": "integer",
+      "description": "Year/season filter for games"
+     },
+     "week": {
+      "type": "integer",
+      "description": "Week filter"
+     },
+     "seasonType": {
+      "type": "string",
+      "description": "Season type filter (regular or postseason)"
+     },
+     "team": {
+      "type": "string",
+      "description": "Team filter"
+     },
+     "conference": {
+      "type": "string",
+      "description": "Conference abbreviation filter"
+     },
+     "gameId": {
+      "type": "integer",
+      "description": "Game id filter"
+     },
+     "classification": {
+      "type": "string",
+      "description": "Division classification filter (fbs/fcs/ii/iii)"
+     }
+    },
+    "required": [
+     "year"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.collegefootballdata.com/games/teams",
+    "path": [],
+    "query": [
+     "year",
+     "week",
+     "seasonType",
+     "team",
+     "conference",
+     "gameId",
+     "classification"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "college-football-data.get_team_matchup",
+   "name": "Team matchup history",
+   "description": "Matchup history",
+   "input": {
+    "type": "object",
+    "properties": {
+     "team1": {
+      "type": "string",
+      "description": "First team"
+     },
+     "team2": {
+      "type": "string",
+      "description": "Second team"
+     },
+     "minYear": {
+      "type": "integer",
+      "description": "Minimum year"
+     },
+     "maxYear": {
+      "type": "integer",
+      "description": "Maximum year"
+     }
+    },
+    "required": [
+     "team1",
+     "team2"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.collegefootballdata.com/teams/matchup",
+    "path": [],
+    "query": [
+     "team1",
+     "team2",
+     "minYear",
+     "maxYear"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "college-football-data.get_team_ppa",
+   "name": "Predicted points added (ppa epa) data by team",
+   "description": "Predicted Points Added (PPA)",
+   "input": {
+    "type": "object",
+    "properties": {
+     "year": {
+      "type": "integer",
+      "description": "Year filter (required if team not specified)"
+     },
+     "team": {
+      "type": "string",
+      "description": "Team filter (required if year not specified)"
+     },
+     "conference": {
+      "type": "string",
+      "description": "Conference filter"
+     },
+     "excludeGarbageTime": {
+      "type": "boolean",
+      "description": "Filter to remove garbage time plays from calculations"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.collegefootballdata.com/ppa/teams",
+    "path": [],
+    "query": [
+     "year",
+     "team",
+     "conference",
+     "excludeGarbageTime"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "college-football-data.get_team_records",
+   "name": "Team records",
+   "description": "Get team records by year",
+   "input": {
+    "type": "object",
+    "properties": {
+     "year": {
+      "type": "integer",
+      "description": "Year filter"
+     },
+     "team": {
+      "type": "string",
+      "description": "Team filter"
+     },
+     "conference": {
+      "type": "string",
+      "description": "Conference filter"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.collegefootballdata.com/records",
+    "path": [],
+    "query": [
+     "year",
+     "team",
+     "conference"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "college-football-data.get_team_season_stats",
+   "name": "Team statistics by season",
+   "description": "Team season stats",
+   "input": {
+    "type": "object",
+    "properties": {
+     "year": {
+      "type": "integer",
+      "description": "Year filter (required if no team specified)"
+     },
+     "team": {
+      "type": "string",
+      "description": "Team filter (required if no year specified)"
+     },
+     "conference": {
+      "type": "string",
+      "description": "Conference abbreviation filter"
+     },
+     "startWeek": {
+      "type": "integer",
+      "description": "Starting week filter"
+     },
+     "endWeek": {
+      "type": "integer",
+      "description": "Starting week filter"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.collegefootballdata.com/stats/season",
+    "path": [],
+    "query": [
+     "year",
+     "team",
+     "conference",
+     "startWeek",
+     "endWeek"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "college-football-data.get_teams",
+   "name": "Team information",
+   "description": "Get team information",
+   "input": {
+    "type": "object",
+    "properties": {
+     "conference": {
+      "type": "string",
+      "description": "Conference abbreviation filter"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.collegefootballdata.com/teams",
+    "path": [],
+    "query": [
+     "conference"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "college-football-data.get_transfer_portal",
+   "name": "Transfer portal by season",
+   "description": "Transfer portal by season",
+   "input": {
+    "type": "object",
+    "properties": {
+     "year": {
+      "type": "integer",
+      "description": "Year filter"
+     }
+    },
+    "required": [
+     "year"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.collegefootballdata.com/player/portal",
+    "path": [],
+    "query": [
+     "year"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "college-football-data.get_venues",
+   "name": "Arena and venue information",
+   "description": "Venues",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.collegefootballdata.com/venues",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "college-football-data.get_win_probability_data",
+   "name": "Win probability chart data",
+   "description": "Win probability data",
+   "input": {
+    "type": "object",
+    "properties": {
+     "gameId": {
+      "type": "integer",
+      "description": "Game id filter"
+     }
+    },
+    "required": [
+     "gameId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.collegefootballdata.com/metrics/wp",
+    "path": [],
+    "query": [
+     "gameId"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "college-football-data.player_search",
+   "name": "Search for player information",
+   "description": "Search for players",
+   "input": {
+    "type": "object",
+    "properties": {
+     "searchTerm": {
+      "type": "string",
+      "description": "Term to search on"
+     },
+     "position": {
+      "type": "string",
+      "description": "Position abbreviation filter"
+     },
+     "team": {
+      "type": "string",
+      "description": "Team filter"
+     },
+     "year": {
+      "type": "integer",
+      "description": "Year filter"
+     }
+    },
+    "required": [
+     "searchTerm"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.collegefootballdata.com/player/search",
+    "path": [],
+    "query": [
+     "searchTerm",
+     "position",
+     "team",
+     "year"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  }
+ ]
+}

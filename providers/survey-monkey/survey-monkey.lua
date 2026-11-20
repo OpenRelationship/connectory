@@ -2,7 +2,7 @@
 --
 -- GENERATED from https://surveymonkey.com/openapi.json
 -- Published on the vendor's own documentation site (https://surveymonkey.com).
--- 4 operations · do not edit
+-- 5 operations · do not edit
 --
 -- The credential is never in here. `auth.env` names an environment variable; the value
 -- stays in the environment, which is what makes this file safe to publish.
@@ -23,6 +23,7 @@ return {
   config = {},
   headers = {},
   operations = {
+    ["survey-monkey.get_llms_txt"] = { method = "GET", url = "https://api.surveymonkey.com/llms.txt" },
     ["survey-monkey.get_pricing"] = { method = "GET", url = "https://api.surveymonkey.com/pricing/" },
     ["survey-monkey.get_pricing_md"] = { method = "GET", url = "https://api.surveymonkey.com/pricing.md" },
     ["survey-monkey.get_sign_up"] = { method = "GET", url = "https://api.surveymonkey.com/sign-up/" },

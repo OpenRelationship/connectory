@@ -1,0 +1,5378 @@
+{
+ "_": "GENERATED \u2014 what an authoring tool needs to FIND an operation. The calling table is the .lua beside it.",
+ "provider": "esputnik",
+ "source": "https://developer.esputnik.com/api/openapi.json",
+ "operations": [
+  {
+   "slug": "esputnik.add_app_inbox_message",
+   "name": "Add base app inbox message",
+   "description": "The method is used for creating basic app inbox messages.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "integer",
+      "description": "Message ID."
+     },
+     "name": {
+      "type": "string",
+      "description": "Message name."
+     },
+     "languageCode": {
+      "type": "string",
+      "description": "Language code."
+     },
+     "tags": {
+      "type": "array",
+      "description": "List of tags."
+     },
+     "subscriptionsKeys": {
+      "type": "array",
+      "description": "Subscription categories keys, assigned to a message."
+     },
+     "languages": {
+      "type": "array",
+      "description": "An array with the language codes for multilingual messages. Available for the GET method only."
+     },
+     "title": {
+      "type": "string",
+      "description": "Message title."
+     },
+     "text": {
+      "type": "string",
+      "description": "Message text."
+     },
+     "link": {
+      "type": "string",
+      "description": "The link that will open after the click on the message body."
+     },
+     "imageSource": {
+      "type": "string",
+      "description": "The logo image in JPEG, PNG or GIF format."
+     },
+     "customData": {
+      "type": "string",
+      "description": "Additional parameters in JSON format to be used in the message."
+     },
+     "ttlSec": {
+      "type": "integer",
+      "description": "Time-to-live for the message, in seconds."
+     },
+     "translations": {
+      "type": "array",
+      "description": "The array of the language versions for the current message. Available for the GET method only."
+     }
+    },
+    "required": [
+     "name",
+     "text",
+     "title"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://esputnik.com/api/api/v1/messages/appinbox",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "id",
+     "name",
+     "languageCode",
+     "tags",
+     "subscriptionsKeys",
+     "languages",
+     "title",
+     "text",
+     "link",
+     "imageSource",
+     "customData",
+     "ttlSec",
+     "translations"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.add_app_tokens",
+   "name": "Add application tokens",
+   "description": "The method is used for adding application tokens.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "app_uuid": {
+      "type": "string",
+      "description": "Application ID"
+     },
+     "tokens": {
+      "type": "array",
+      "description": ""
+     }
+    },
+    "required": [
+     "app_uuid"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://esputnik.com/api/api/v1/apps/{app_uuid}/tokens",
+    "path": [
+     "app_uuid"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "tokens"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.add_contact",
+   "name": "Add update a contact",
+   "description": "The method is used to add a new or update an existing contact. The ID field is ignored.To learn more about importing or updating contacts and their additional fields, read Importing historical data.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "firstName": {
+      "type": "string",
+      "description": "Contact\u2019s first name. The following rules apply to character usage: - Max length: 40 symbols. - Letters from any alphabet are allowed (Unicode characters). - Three words longer than 3 characters and three words with a maximum of 3 characters are allowed. - Up to 3 digits are allowed. - Special characters are not allowed, except for: -- Apostrophes ''\u02bc`\u00b4\u02b9\u02bb\u02bd\u02be\u02bf\u02c8\u02ca\u02ee\u02b9\u0384\u055a\u1fbd\u1fbf'\u201b\u2032\u2035\ua78b\ua78c\uff07 (only inside words) -- H"
+     },
+     "lastName": {
+      "type": "string",
+      "description": "Contact\u2019s last name. The following rules apply to character usage: - Max length: 40 symbols. - Letters from any alphabet are allowed (Unicode characters). - Three words longer than 3 characters and three words with a maximum of 3 characters are allowed. - Up to 3 digits are allowed. - Special characters are not allowed, except for: -- Apostrophes ''\u02bc`\u00b4\u02b9\u02bb\u02bd\u02be\u02bf\u02c8\u02ca\u02ee\u02b9\u0384\u055a\u1fbd\u1fbf'\u201b\u2032\u2035\ua78b\ua78c\uff07 (only inside words) -- Hy"
+     },
+     "channels": {
+      "type": "array",
+      "description": "The list of media channels"
+     },
+     "address": {
+      "type": "object",
+      "description": "Contact's full address"
+     },
+     "fields": {
+      "type": "array",
+      "description": "Values of the additional fields for a contact"
+     },
+     "addressBookId": {
+      "type": "integer",
+      "description": "You can get the info about catalogs using the /v1/addressbooks GET method"
+     },
+     "id": {
+      "type": "integer",
+      "description": "Contact ID"
+     },
+     "externalCustomerId": {
+      "type": "string",
+      "description": "External contact id"
+     },
+     "contactKey": {
+      "type": "string",
+      "description": "Contact's key"
+     },
+     "groups": {
+      "type": "array",
+      "description": "The list of the static segments where the contact is present. Used only when receiving contacts."
+     },
+     "languageCode": {
+      "type": "string",
+      "description": "Language code for the contact"
+     },
+     "timeZone": {
+      "type": "string",
+      "description": "The contact's time zone. See TZ database name."
+     },
+     "marketId": {
+      "type": "string",
+      "description": "Market ID. Optional parameter. Up to 64 characters. Allowed: [a\u2013zA-Z0\u20139-_]"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://esputnik.com/api/api/v1/contact",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "firstName",
+     "lastName",
+     "channels",
+     "address",
+     "fields",
+     "addressBookId",
+     "id",
+     "externalCustomerId",
+     "contactKey",
+     "groups",
+     "languageCode",
+     "timeZone",
+     "marketId"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.add_email",
+   "name": "Add base email message",
+   "description": "The method is used for adding/updating the language version of a message identified by the internal ID (for multilingual messages).",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "integer",
+      "description": "Message ID."
+     },
+     "name": {
+      "type": "string",
+      "description": "Message name."
+     },
+     "languageCode": {
+      "type": "string",
+      "description": "Language code."
+     },
+     "tags": {
+      "type": "array",
+      "description": "List of tags."
+     },
+     "subscriptionsKeys": {
+      "type": "array",
+      "description": "Subscription categories keys, assigned to a message."
+     },
+     "languages": {
+      "type": "array",
+      "description": "An array with the language codes for multilingual messages. Available for the GET method only."
+     },
+     "from": {
+      "type": "string",
+      "description": "Required parameter. Sender name and email address, e.g. \"from\": \"\\\"name\\\" &lt;info@test.com&gt;\""
+     },
+     "subject": {
+      "type": "string",
+      "description": "Message subject"
+     },
+     "htmlText": {
+      "type": "string",
+      "description": "Message HTML code"
+     },
+     "rawHtml": {
+      "type": "string",
+      "description": "Message HTML code without styles."
+     },
+     "ampHtml": {
+      "type": "string",
+      "description": "Message AMP code"
+     },
+     "css": {
+      "type": "string",
+      "description": "Message styles"
+     },
+     "updatedDate": {
+      "type": "string",
+      "description": "Message updated date"
+     },
+     "translations": {
+      "type": "array",
+      "description": "The array of the language versions for the current message. Available for the GET method only."
+     },
+     "template": {
+      "type": "boolean",
+      "description": ""
+     }
+    },
+    "required": [
+     "from",
+     "htmlText",
+     "name",
+     "subject"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://esputnik.com/api/api/v1/messages/email",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "id",
+     "name",
+     "languageCode",
+     "tags",
+     "subscriptionsKeys",
+     "languages",
+     "from",
+     "subject",
+     "htmlText",
+     "rawHtml",
+     "ampHtml",
+     "css",
+     "updatedDate",
+     "translations",
+     "template"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.add_markets",
+   "name": "Add update markets",
+   "description": "Add/update markets",
+   "input": {
+    "type": "object",
+    "properties": {
+     "siteId": {
+      "type": "string",
+      "description": "Client site/account identifier"
+     },
+     "markets": {
+      "type": "array",
+      "description": "Markets with product-specific patches"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://esputnik.com/api/api/v1/markets",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "siteId",
+     "markets"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.add_mobile_push_message",
+   "name": "Add base mobile push message",
+   "description": "The method is used for creating new mobile push message",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "integer",
+      "description": "Message ID."
+     },
+     "name": {
+      "type": "string",
+      "description": "Message name."
+     },
+     "languageCode": {
+      "type": "string",
+      "description": "Language code."
+     },
+     "tags": {
+      "type": "array",
+      "description": "List of tags."
+     },
+     "subscriptionsKeys": {
+      "type": "array",
+      "description": "Subscription categories keys, assigned to a message."
+     },
+     "languages": {
+      "type": "array",
+      "description": "An array with the language codes for multilingual messages. Available for the GET method only."
+     },
+     "title": {
+      "type": "string",
+      "description": "Message title."
+     },
+     "subtitle": {
+      "type": "string",
+      "description": "Message subtitle. Visible only to iOS users."
+     },
+     "text": {
+      "type": "string",
+      "description": "Message text."
+     },
+     "link": {
+      "type": "string",
+      "description": "Can be either an external link (opens in device browser) or a deep link (opens some section of the app)."
+     },
+     "imageSource": {
+      "type": "string",
+      "description": "Image URL for a single image in a message. Use 'images' array to create an images carousel."
+     },
+     "customData": {
+      "type": "string",
+      "description": "Additional parameters in JSON format to be used in the push message."
+     },
+     "ttlSec": {
+      "type": "integer",
+      "description": "Time-to-live for a message; in seconds."
+     },
+     "buttons": {
+      "type": "array",
+      "description": "Use buttons to implement various actions. 4 buttons for iOS, 3 buttons for Android are supported."
+     },
+     "soundEnabled": {
+      "type": "boolean",
+      "description": "Enable to play sound when user receives push-message."
+     },
+     "badgeCount": {
+      "type": "integer",
+      "description": "The number of unread messages shown to the user."
+     },
+     "images": {
+      "type": "array",
+      "description": "The array of image URLs for images carousel. Up to 10 images."
+     },
+     "translations": {
+      "type": "array",
+      "description": "The array of language versions for the current message. Available for GET method only."
+     }
+    },
+    "required": [
+     "name",
+     "text",
+     "title"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://esputnik.com/api/api/v1/messages/mobilepush",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "id",
+     "name",
+     "languageCode",
+     "tags",
+     "subscriptionsKeys",
+     "languages",
+     "title",
+     "subtitle",
+     "text",
+     "link",
+     "imageSource",
+     "customData",
+     "ttlSec",
+     "buttons",
+     "soundEnabled",
+     "badgeCount",
+     "images",
+     "translations"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.add_products",
+   "name": "Add update products",
+   "description": "Add/update products",
+   "input": {
+    "type": "object",
+    "properties": {
+     "languageCode": {
+      "type": "string",
+      "description": "Default language for top-level product fields"
+     },
+     "products": {
+      "type": "array",
+      "description": "Products to create or update"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://esputnik.com/api/api/v1/products",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "languageCode",
+     "products"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.add_sms_message",
+   "name": "Add base sms message",
+   "description": "The method is used for creating basic sms messages.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "integer",
+      "description": "Message ID."
+     },
+     "name": {
+      "type": "string",
+      "description": "Message name."
+     },
+     "languageCode": {
+      "type": "string",
+      "description": "Language code."
+     },
+     "tags": {
+      "type": "array",
+      "description": "List of tags."
+     },
+     "subscriptionsKeys": {
+      "type": "array",
+      "description": "Subscription categories keys, assigned to a message."
+     },
+     "languages": {
+      "type": "array",
+      "description": "An array with the language codes for multilingual messages. Available for the GET method only."
+     },
+     "from": {
+      "type": "string",
+      "description": "Sender name."
+     },
+     "text": {
+      "type": "string",
+      "description": "Message text."
+     },
+     "trackUrls": {
+      "type": "boolean",
+      "description": "The parameter determines whether to track links in a message or not. The default value is \u2018false\u2019."
+     },
+     "translations": {
+      "type": "array",
+      "description": "An array with translations to other languages. Available for the GET method only."
+     }
+    },
+    "required": [
+     "from",
+     "name",
+     "text"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://esputnik.com/api/api/v1/messages/sms",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "id",
+     "name",
+     "languageCode",
+     "tags",
+     "subscriptionsKeys",
+     "languages",
+     "from",
+     "text",
+     "trackUrls",
+     "translations"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.add_telegram_bot_message",
+   "name": "Add base telegram bot message",
+   "description": "The method is used for creating basic telegram bot messages.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "integer",
+      "description": "Message ID."
+     },
+     "name": {
+      "type": "string",
+      "description": "Message name."
+     },
+     "languageCode": {
+      "type": "string",
+      "description": "Language code."
+     },
+     "tags": {
+      "type": "array",
+      "description": "List of tags."
+     },
+     "subscriptionsKeys": {
+      "type": "array",
+      "description": "Subscription categories keys, assigned to a message."
+     },
+     "languages": {
+      "type": "array",
+      "description": "An array with the language codes for multilingual messages. Available for the GET method only."
+     },
+     "text": {
+      "type": "string",
+      "description": ""
+     },
+     "imageSource": {
+      "type": "string",
+      "description": "Image URL for a single image in a message."
+     },
+     "buttons": {
+      "type": "array",
+      "description": "Use buttons to implement various actions."
+     },
+     "translations": {
+      "type": "array",
+      "description": "An array with translations to other languages. Available for the GET method only."
+     }
+    },
+    "required": [
+     "name"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://esputnik.com/api/api/v1/messages/telegram",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "id",
+     "name",
+     "languageCode",
+     "tags",
+     "subscriptionsKeys",
+     "languages",
+     "text",
+     "imageSource",
+     "buttons",
+     "translations"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.add_to_unsubscribed",
+   "name": "Add emails to unsubscribed list",
+   "description": "The method is used for adding email addresses to the list of unsubscribed contacts.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "emails": {
+      "type": "array",
+      "description": ""
+     }
+    },
+    "required": [
+     "emails"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://esputnik.com/api/api/v1/emails/unsubscribed/add",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "emails"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.add_viber_message",
+   "name": "Add base viber message",
+   "description": "Method is used for creating base viber message. Supports carousel messages with 2-5 items containing images and buttons.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "integer",
+      "description": "Message ID."
+     },
+     "name": {
+      "type": "string",
+      "description": "Message name."
+     },
+     "languageCode": {
+      "type": "string",
+      "description": "Language code."
+     },
+     "tags": {
+      "type": "array",
+      "description": "List of tags."
+     },
+     "subscriptionsKeys": {
+      "type": "array",
+      "description": "Subscription categories keys, assigned to a message."
+     },
+     "languages": {
+      "type": "array",
+      "description": "An array with the language codes for multilingual messages. Available for the GET method only."
+     },
+     "from": {
+      "type": "string",
+      "description": "Sender name. Must exist in your account."
+     },
+     "transactional": {
+      "type": "boolean",
+      "description": "Transactional messages have lower cost, but can contain only text. Content must be agreed with provider for successful sending. Default - false."
+     },
+     "templateId": {
+      "type": "string",
+      "description": "Provider template ID for a transactional Viber message."
+     },
+     "text": {
+      "type": "string",
+      "description": "Message text."
+     },
+     "img": {
+      "type": "string",
+      "description": "Image URL for message. If set, caption and action must be set too."
+     },
+     "caption": {
+      "type": "string",
+      "description": "Button text. If set, img and action must be set too."
+     },
+     "action": {
+      "type": "string",
+      "description": "Link assigned to button. If set, img and caption must be set too."
+     },
+     "ttlSec": {
+      "type": "integer",
+      "description": "Time to live for message in seconds. Default - 86400 (1 day)."
+     },
+     "smsFallback": {
+      "type": "boolean",
+      "description": "Enables smsFallback feature: send SMS message instead of Viber, if contact does not have Viber app installed. Default - false."
+     },
+     "smsSender": {
+      "type": "string",
+      "description": "SMS sender name for smsFallback feature."
+     },
+     "smsContent": {
+      "type": "string",
+      "description": "SMS text for smsFallback feature."
+     },
+     "carouselItems": {
+      "type": "array",
+      "description": "Carousel items (2-5 items). When provided, img/action/caption are ignored."
+     },
+     "translations": {
+      "type": "array",
+      "description": "An array with translations to other languages. Available for the GET method only."
+     }
+    },
+    "required": [
+     "from",
+     "name",
+     "text"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://esputnik.com/api/api/v1/messages/viber",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "id",
+     "name",
+     "languageCode",
+     "tags",
+     "subscriptionsKeys",
+     "languages",
+     "from",
+     "transactional",
+     "templateId",
+     "text",
+     "img",
+     "caption",
+     "action",
+     "ttlSec",
+     "smsFallback",
+     "smsSender",
+     "smsContent",
+     "carouselItems",
+     "translations"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.add_web_push_domain",
+   "name": "Add one web push domain",
+   "description": "The method is used for adding one domain for web push notifications.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domain": {
+      "type": "string",
+      "description": "Site for web push integration"
+     },
+     "serviceWorkerName": {
+      "type": "string",
+      "description": "Web push service worker file name, in *.js format"
+     },
+     "serviceWorkerPath": {
+      "type": "string",
+      "description": "Relative path on site, where service worker will be stored. Must start and end with slash"
+     },
+     "serviceWorkerScope": {
+      "type": "string",
+      "description": "Relative path on site, where service worker will work. Usually is the same as serviceWorkerPath"
+     }
+    },
+    "required": [
+     "domain",
+     "serviceWorkerName",
+     "serviceWorkerPath",
+     "serviceWorkerScope"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://esputnik.com/api/api/v1/site/webpush/domain",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "domain",
+     "serviceWorkerName",
+     "serviceWorkerPath",
+     "serviceWorkerScope"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.attach_contacts_to_group",
+   "name": "Attach contact to static segment",
+   "description": "Attach contact to static segment by contact ids or external customer ids",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "integer",
+      "description": ""
+     },
+     "contactIds": {
+      "type": "array",
+      "description": "The list of attach/detach contact ids to static group (max. 500)."
+     },
+     "externalCustomerIds": {
+      "type": "array",
+      "description": "The list of attach/detach external contacts ids to static group (max. 500)."
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://esputnik.com/api/api/v1/group/{id}/contacts/attach",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "contactIds",
+     "externalCustomerIds"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.change_contact_subscription_categories",
+   "name": "Update contact subscriptions",
+   "description": "The method is used for updating the categories that a contact subscribed for.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "integer",
+      "description": "Contact ID"
+     },
+     "subscriptions": {
+      "type": "array",
+      "description": "Subscription category keys"
+     }
+    },
+    "required": [
+     "id",
+     "subscriptions"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://esputnik.com/api/api/v1/contact/{id}/subscriptions",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "subscriptions"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.change_token_activated",
+   "name": "Change token activity",
+   "description": "The method is used for changing activity status of the mobile token.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "token_id": {
+      "type": "string",
+      "description": "Token ID"
+     },
+     "app_uuid": {
+      "type": "string",
+      "description": "Application ID"
+     },
+     "active": {
+      "type": "boolean",
+      "description": ""
+     }
+    },
+    "required": [
+     "app_uuid",
+     "token_id"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://esputnik.com/api/api/v1/contact/token/activated/{app_uuid}/{token_id}",
+    "path": [
+     "token_id",
+     "app_uuid"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "active"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.configure_product_feeds",
+   "name": "Configure product feeds",
+   "description": "Configure product feeds",
+   "input": {
+    "type": "object",
+    "properties": {
+     "feeds": {
+      "type": "array",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://esputnik.com/api/api/v1/products/config",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "feeds"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.contact_activity",
+   "name": "Get contacts activity",
+   "description": "The method returns the contact activity on subscriptions.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "dateFrom": {
+      "type": "string",
+      "description": "Initial date and time of the period you want to get the contact activity for"
+     },
+     "dateTo": {
+      "type": "string",
+      "description": "Final date and time of the period you want to get the contact activity for"
+     },
+     "email": {
+      "type": "string",
+      "description": "Email address"
+     },
+     "sms": {
+      "type": "string",
+      "description": "Contact's phone number"
+     },
+     "webPushToken": {
+      "type": "string",
+      "description": "Web Push token"
+     },
+     "mobPushToken": {
+      "type": "string",
+      "description": "Mob Push token"
+     },
+     "telegramToken": {
+      "type": "string",
+      "description": "Telegram token"
+     },
+     "messageTag": {
+      "type": "string",
+      "description": "Message tag"
+     },
+     "activityStatus": {
+      "type": "string",
+      "description": "Activity status (DELIVERED, UNDELIVERED, READ, UNSUBSCRIBED, CLICKED, SPAM)",
+      "enum": [
+       "DELIVERED",
+       "UNDELIVERED",
+       "READ",
+       "UNSUBSCRIBED",
+       "CLICKED",
+       "SPAM"
+      ]
+     },
+     "offset": {
+      "type": "string",
+      "description": "Last found contact activity offset in previous search results. It is used to continue search"
+     },
+     "maxrows": {
+      "type": "integer",
+      "description": "Max number of activity entries in response"
+     }
+    },
+    "required": [
+     "dateFrom",
+     "dateTo"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://esputnik.com/api/api/v2/contacts/activity",
+    "path": [],
+    "query": [
+     "dateFrom",
+     "dateTo",
+     "email",
+     "sms",
+     "webPushToken",
+     "mobPushToken",
+     "telegramToken",
+     "messageTag",
+     "activityStatus",
+     "offset",
+     "maxrows"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.contact_messages",
+   "name": "Get contact's message history",
+   "description": "The method returns the contact's message history.Supported media types: Email, SMS, Viber, Mobile Push, Web Push, App Inbox, Telegram.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "dateFrom": {
+      "type": "string",
+      "description": "The initial date or date and time of the history period. The date/time values are passed in the ISO_8061 format. Date format: YYYY-MM-DD Date with time format: YYYY-MM-DDTHH:mm"
+     },
+     "dateTo": {
+      "type": "string",
+      "description": "The final date or date amd time of the history period. The date/time values are passed in the ISO_8061 format. Date format: YYYY-MM-DD Date with time format: YYYY-MM-DDTHH:mm"
+     },
+     "email": {
+      "type": "string",
+      "description": "Contact's email address (either contactId, or externalCustomerId, or email, or phone number must be specified)"
+     },
+     "phone": {
+      "type": "string",
+      "description": "Contact's phone number (either contactId, or externalCustomerId, or email, or phone number must be specified)"
+     },
+     "contactId": {
+      "type": "integer",
+      "description": "Contact ID number (either contactId, or externalCustomerId, or email, or phone number must be specified)"
+     },
+     "externalCustomerId": {
+      "type": "string",
+      "description": "External Customer ID (either contactId, or externalCustomerId, or email, or phone number must be specified)"
+     },
+     "channelTypes": {
+      "type": "string",
+      "description": "Comma separated list of user messages channel types that will be included to the response."
+     },
+     "offset": {
+      "type": "integer",
+      "description": "Offset from the first item. For pagination purposes"
+     },
+     "maxrows": {
+      "type": "integer",
+      "description": "Max number of items in the response. Default value is 10. Maximum value is 100"
+     }
+    },
+    "required": [
+     "dateFrom",
+     "dateTo"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://esputnik.com/api/api/v2/contacts/messages",
+    "path": [],
+    "query": [
+     "dateFrom",
+     "dateTo",
+     "email",
+     "phone",
+     "contactId",
+     "externalCustomerId",
+     "channelTypes",
+     "offset",
+     "maxrows"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.contact_recoms",
+   "name": "Contact recommendations based on web tracking",
+   "description": "The method returns recommendations for a contact based on the web tracking.NOTE: Version 2 API methods do not require escaping in nested JSON.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "dataSourceId": {
+      "type": "integer",
+      "description": "Data Source ID. To find it, go to your account> Settings> Data Sources"
+     },
+     "contactId": {
+      "type": "integer",
+      "description": "Contact ID. At least one of contactId, email, phone, externalCustomerId, webId must be specified"
+     },
+     "email": {
+      "type": "string",
+      "description": "Contact email. At least one of contactId, email, phone, externalCustomerId, webId must be specified"
+     },
+     "phone": {
+      "type": "string",
+      "description": "Contact phone number. At least one of contactId, email, phone, externalCustomerId, webId must be specified"
+     },
+     "externalCustomerId": {
+      "type": "string",
+      "description": "External Customer ID. At least one of contactId, email, phone, externalCustomerId, webId must be specified"
+     },
+     "webId": {
+      "type": "string",
+      "description": "Web ID. At least one of contactId, email, phone, externalCustomerId, webId must be specified"
+     },
+     "products": {
+      "type": "string",
+      "description": "Array of product IDs. Required for the product-based algorithms"
+     },
+     "category": {
+      "type": "string",
+      "description": "Category ID. Required for the category-based algorithms"
+     }
+    },
+    "required": [
+     "dataSourceId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://esputnik.com/api/api/v2/contacts/recoms/{dataSourceId}",
+    "path": [
+     "dataSourceId"
+    ],
+    "query": [
+     "contactId",
+     "email",
+     "phone",
+     "externalCustomerId",
+     "webId",
+     "products",
+     "category"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.contacts_bulk_update",
+   "name": "Add update contacts",
+   "description": "The method adds new contacts and updates existing contacts.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "contacts": {
+      "type": "array",
+      "description": "The list of contacts that will be added or updated (max. 3000).If this array of objects contains externalCustomerId, the search uses externalCustomerId and ignores dedupeOn."
+     },
+     "dedupeOn": {
+      "type": "string",
+      "description": "The field for determining the contact uniqueness. Important the field set as dedupeOn will not be updated",
+      "enum": [
+       "email",
+       "sms",
+       "push",
+       "email_or_sms",
+       "id",
+       "externalCustomerId",
+       "fieldId"
+      ]
+     },
+     "fieldId": {
+      "type": "integer",
+      "description": "The field for determining the contact uniqueness. This field is taken into account when dedupeOnProperty has the fieldId value."
+     },
+     "contactFields": {
+      "type": "array",
+      "description": "The list of contacts\u2019 fields to be updated. All the contact fields will be updated if this parameter is not specified. The fields will be updated with the \u2018null\u2019 value if no data for updating is transmitted.",
+      "enum": [
+       "firstName",
+       "contactKey",
+       "lastName",
+       "languageCode",
+       "timeZone",
+       "marketId",
+       "email",
+       "sms",
+       "mobilepush",
+       "webpush",
+       "address",
+       "town"
+      ]
+     },
+     "customFieldsIDs": {
+      "type": "array",
+      "description": "The list of the custom field IDs to be updated. The custom fields are updated if their IDs are in this list. This field is required when a contact is updated"
+     },
+     "groupNames": {
+      "type": "array",
+      "description": "The list of the segment names where the new/updated contacts will be added to."
+     },
+     "groupNamesExclude": {
+      "type": "array",
+      "description": "The list of the segment names where the new/updated contacts will be excluded from."
+     },
+     "restoreDeleted": {
+      "type": "boolean",
+      "description": "Choose either to restore the previously deleted contacts or not."
+     },
+     "eventKeyForNewContacts": {
+      "type": "string",
+      "description": "The event type identification key. An event of corresponding type is generated for each contact. If the system does not have an event type with such a key, a new event type is created. All characters are allowed, except Max length: 100 symbols"
+     }
+    },
+    "required": [
+     "contacts",
+     "dedupeOn"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://esputnik.com/api/api/v1/contacts",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "contacts",
+     "dedupeOn",
+     "fieldId",
+     "contactFields",
+     "customFieldsIDs",
+     "groupNames",
+     "groupNamesExclude",
+     "restoreDeleted",
+     "eventKeyForNewContacts"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.create_broadcast",
+   "name": "Create broadcast",
+   "description": "The method is used for creating broadcasts for Email, SMS, Mobile Push, Web Push, Viber, Telegram channels.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "title": {
+      "type": "string",
+      "description": "Broadcast title"
+     },
+     "messageId": {
+      "type": "string",
+      "description": "Message ID"
+     },
+     "groups": {
+      "type": "array",
+      "description": ""
+     },
+     "excludedGroups": {
+      "type": "array",
+      "description": ""
+     },
+     "startDate": {
+      "type": "string",
+      "description": "The broadcast start date. Use the following format: &quot;YYYY-MM-DDTHH:mm&quot;. If not specified, the broadcast starts immediately"
+     },
+     "batchSize": {
+      "type": "integer",
+      "description": "The broadcasting speed management parameter, the number of messages per specified time interval."
+     },
+     "batchIntervalUnit": {
+      "type": "string",
+      "description": "The broadcasting speed management parameter\u2014the time interval.",
+      "enum": [
+       "MINUTE",
+       "HOUR",
+       "DAY",
+       "MONTH"
+      ]
+     },
+     "domain": {
+      "type": "string",
+      "description": "Broadcast domain. For web push messages."
+     },
+     "appId": {
+      "type": "string",
+      "description": "Application ID. For mob push and telegram messages."
+     }
+    },
+    "required": [
+     "groups",
+     "messageId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://esputnik.com/api/api/v1/broadcast",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "title",
+     "messageId",
+     "groups",
+     "excludedGroups",
+     "startDate",
+     "batchSize",
+     "batchIntervalUnit",
+     "domain",
+     "appId"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.create_domain",
+   "name": "Add domain",
+   "description": "The method registers the domain sent in the body params for use in web tracking or widgets.Only one domain can be registered per organization.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domain": {
+      "type": "string",
+      "description": "Domain name"
+     }
+    },
+    "required": [
+     "domain"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://esputnik.com/api/api/v1/site/domains",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "domain"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.delete_app_inbox_message",
+   "name": "Delete app inbox message",
+   "description": "The method is used for deleting the base app inbox message.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "integer",
+      "description": "App inbox message ID"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://esputnik.com/api/api/v1/messages/appinbox/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.delete_broadcast",
+   "name": "Cancel scheduled broadcast",
+   "description": "The method is used for cancelling a scheduled broadcast.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "broadcast_id": {
+      "type": "string",
+      "description": "Broadcast ID"
+     }
+    },
+    "required": [
+     "broadcast_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://esputnik.com/api/api/v1/broadcast/{broadcast_id}",
+    "path": [
+     "broadcast_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.delete_contact",
+   "name": "Delete contact by external customer id",
+   "description": "The method is used for deleting a contact identified by externalCustomerId.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "externalCustomerId": {
+      "type": "string",
+      "description": ""
+     },
+     "erase": {
+      "type": "boolean",
+      "description": "Permanent deletion of all contact data: contact profile attributes, contact activity, web- and mobile tracking. It is not possible to recover deleted data."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://esputnik.com/api/api/v1/contact",
+    "path": [],
+    "query": [
+     "externalCustomerId",
+     "erase"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.delete_contact_1",
+   "name": "Delete contact",
+   "description": "The method is used for deleting a contact identified by contactID.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "integer",
+      "description": "Contact ID"
+     },
+     "erase": {
+      "type": "boolean",
+      "description": "Permanent deletion of all contact's data: contact profile attributes, contact activity, web- and mobile tracking. It is not possible to recover the deleted data."
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://esputnik.com/api/api/v1/contact/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [
+     "erase"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.delete_email",
+   "name": "Delete basic email message",
+   "description": "The method is used for deleting the basic email message.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "integer",
+      "description": "Email message id"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://esputnik.com/api/api/v1/messages/email/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.delete_email_1",
+   "name": "Delete translated email message",
+   "description": "The method is used for deleting the translation of the basic email message.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "integer",
+      "description": "Email message id"
+     },
+     "language": {
+      "type": "string",
+      "description": "Email message language code in compliance with ISO_639-1"
+     }
+    },
+    "required": [
+     "id",
+     "language"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://esputnik.com/api/api/v1/messages/email/{id}/{language}",
+    "path": [
+     "id",
+     "language"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.delete_from_unsubscribed",
+   "name": "Remove emails from unsubscribed list",
+   "description": "The method is used for removing email addresses from the list of unsubscribed contacts.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "emails": {
+      "type": "array",
+      "description": ""
+     }
+    },
+    "required": [
+     "emails"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://esputnik.com/api/api/v1/emails/unsubscribed/delete",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "emails"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.delete_mobile_push_message",
+   "name": "Delete base mobile push message",
+   "description": "The method is used for deleting the base mobile push message",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "integer",
+      "description": "Mobile push message id"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://esputnik.com/api/api/v1/messages/mobilepush/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.delete_products",
+   "name": "Delete products",
+   "description": "Delete products",
+   "input": {
+    "type": "object",
+    "properties": {
+     "siteId": {
+      "type": "string",
+      "description": "Client site/account identifier"
+     },
+     "products": {
+      "type": "array",
+      "description": "Products to delete"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://esputnik.com/api/api/v1/products",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "siteId",
+     "products"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.delete_sms_message",
+   "name": "Delete sms message",
+   "description": "The method is used for deleting the base sms message.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "integer",
+      "description": "Sms message ID"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://esputnik.com/api/api/v1/messages/sms/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.delete_telegram_bot_message",
+   "name": "Delete telegram bot message",
+   "description": "The method is used for deleting the base telegram bot message.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "integer",
+      "description": "Telegram bot message ID"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://esputnik.com/api/api/v1/messages/telegram/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.delete_translated_app_inbox_message",
+   "name": "Delete translated app inbox message",
+   "description": "The method is used for deleting the language version of the basic app inbox message.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "integer",
+      "description": "App inbox message id"
+     },
+     "language": {
+      "type": "string",
+      "description": "App inbox message language code"
+     }
+    },
+    "required": [
+     "id",
+     "language"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://esputnik.com/api/api/v1/messages/appinbox/{id}/{language}",
+    "path": [
+     "id",
+     "language"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.delete_translated_mobile_push_message",
+   "name": "Delete language version of mobile push message",
+   "description": "The method is used for deleting the language version of the base mobile push message",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "integer",
+      "description": "Mobile push message id"
+     },
+     "language": {
+      "type": "string",
+      "description": "Mobile push message language code"
+     }
+    },
+    "required": [
+     "id",
+     "language"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://esputnik.com/api/api/v1/messages/mobilepush/{id}/{language}",
+    "path": [
+     "id",
+     "language"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.delete_translated_sms_message",
+   "name": "Delete translated sms message",
+   "description": "The method is used for deleting the language version of the basic sms message.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "integer",
+      "description": "Sms message id"
+     },
+     "language": {
+      "type": "string",
+      "description": "Sms message language code"
+     }
+    },
+    "required": [
+     "id",
+     "language"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://esputnik.com/api/api/v1/messages/sms/{id}/{language}",
+    "path": [
+     "id",
+     "language"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.delete_translated_telegram_bot_message",
+   "name": "Delete translated telegram bot message",
+   "description": "The method is used for deleting the language version of the basic telegram bot message.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "integer",
+      "description": "Telegram bot message id"
+     },
+     "language": {
+      "type": "string",
+      "description": "Telegram bot message language code"
+     }
+    },
+    "required": [
+     "id",
+     "language"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://esputnik.com/api/api/v1/messages/telegram/{id}/{language}",
+    "path": [
+     "id",
+     "language"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.delete_translated_viber_message",
+   "name": "Delete translated viber message",
+   "description": "Method is used for deleting language version of base viber message.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "integer",
+      "description": "Viber message id"
+     },
+     "language": {
+      "type": "string",
+      "description": "Viber message language code"
+     }
+    },
+    "required": [
+     "id",
+     "language"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://esputnik.com/api/api/v1/messages/viber/{id}/{language}",
+    "path": [
+     "id",
+     "language"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.delete_viber_message",
+   "name": "Delete viber message",
+   "description": "Method is used for deleting base viber message.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "integer",
+      "description": "Viber message ID"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://esputnik.com/api/api/v1/messages/viber/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.delete_web_push_domain",
+   "name": "Delete web push domain",
+   "description": "The method is used for deleting a domain for web push notifications.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domain": {
+      "type": "string",
+      "description": "Domain to remove"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://esputnik.com/api/api/v1/site/webpush/domains",
+    "path": [],
+    "query": [
+     "domain"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.detach_contacts_from_group",
+   "name": "Delete from static segment",
+   "description": "The method deletes contacts from a static segment by contact ids or external customer ids. If don't specify any ids, all contacts will be deleted from the segment.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "integer",
+      "description": "Segment ID"
+     },
+     "contactIds": {
+      "type": "array",
+      "description": "The list of attach/detach contact ids to static group (max. 500)."
+     },
+     "externalCustomerIds": {
+      "type": "array",
+      "description": "The list of attach/detach external contacts ids to static group (max. 500)."
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://esputnik.com/api/api/v1/group/{id}/contacts/detach",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "contactIds",
+     "externalCustomerIds"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.file_contacts_bulk_update",
+   "name": "Add update contacts from external file",
+   "description": "The method is used to import or update the contacts from an external file. The method creates new contacts and updates existing ones.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "dedupeOn": {
+      "type": "string",
+      "description": "The property for determining the contact uniqueness.",
+      "enum": [
+       "email",
+       "sms",
+       "email_or_sms",
+       "id"
+      ]
+     },
+     "link": {
+      "type": "string",
+      "description": "The link to a file in an external repository. File Requirements: Not empty Delimiters - \",\" Maximum size 100 MB Requirement for column naming: First name. The following rules apply to character usage: - Max length: 40 symbols. - Letters from any alphabet are allowed (Unicode characters). - Three words longer than 3 characters and three words with a maximum of 3 characters are allowed. - Up to 3 di"
+     },
+     "groupNames": {
+      "type": "array",
+      "description": "The list of segment names where new/updated contacts will be added to."
+     },
+     "groupNamesExclude": {
+      "type": "array",
+      "description": "The list of segment names where new/updated contacts will be excluded from."
+     },
+     "restoreDeleted": {
+      "type": "boolean",
+      "description": "Add previously deleted contacts."
+     },
+     "eventKeyForNewContacts": {
+      "type": "string",
+      "description": "Event type identification key. An event of corresponding type is generated for each contact. If the system does not have an event type with such a key, a new event type is created. All characters are allowed, except Max length: 100 symbols"
+     }
+    },
+    "required": [
+     "dedupeOn",
+     "link"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://esputnik.com/api/api/v1/contacts/upload",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "dedupeOn",
+     "link",
+     "groupNames",
+     "groupNamesExclude",
+     "restoreDeleted",
+     "eventKeyForNewContacts"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.find_broadcasts",
+   "name": "Get broadcasts",
+   "description": "The method is used for getting a list of broadcasts.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "startindex": {
+      "type": "integer",
+      "description": "Index of the first message to return from search results Numbering starts at 1"
+     },
+     "maxrows": {
+      "type": "integer",
+      "description": "Maximum number of messages to return (maximum 500)"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://esputnik.com/api/api/v1/broadcasts",
+    "path": [],
+    "query": [
+     "startindex",
+     "maxrows"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.generate_api_key",
+   "name": "Generate api token",
+   "description": "The method is used for generating a token for bearer authentication. Use the token only if the basic authentication is not appropriate for you.Available methods for token authorization:POST /v1/eventPOST /v1/past_eventsDELETE /v1/past_events",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://esputnik.com/api/api/v1/auth/token",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.get_account_info",
+   "name": "Get account info",
+   "description": "The method returns the account name.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://esputnik.com/api/api/v1/account/info",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.get_additional_fields",
+   "name": "Get additional fields",
+   "description": "The method returns contact additional fields grouped into lists, including field keys, field types, allowed values, and validation metadata.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://esputnik.com/api/api/v1/additionalfields",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.get_address_books",
+   "name": "Get the list of catalogs",
+   "description": "The method returns a list of catalogs. A catalog contains the list of additional fields available for contacts in your organisation.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://esputnik.com/api/api/v1/addressbooks",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.get_app_inbox_message",
+   "name": "Get the app inbox message",
+   "description": "The method returns the app inbox message found using its ID.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "integer",
+      "description": "App inbox message ID"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://esputnik.com/api/api/v1/messages/appinbox/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.get_broadcast",
+   "name": "Get broadcast info",
+   "description": "The method is used for getting broadcast information.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "broadcast_id": {
+      "type": "string",
+      "description": "Broadcast ID"
+     }
+    },
+    "required": [
+     "broadcast_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://esputnik.com/api/api/v1/broadcast/{broadcast_id}",
+    "path": [
+     "broadcast_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.get_contact",
+   "name": "Get contact",
+   "description": "The method returns the available information about the contact identified by the contact ID.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "integer",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://esputnik.com/api/api/v1/contact/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.get_contact_emails",
+   "name": "Get email by contact id",
+   "description": "The method is used for getting the email addresses of contacts by their contactID.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "ids": {
+      "type": "string",
+      "description": "Comma separated contact IDs to get email addresses for"
+     }
+    },
+    "required": [
+     "ids"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://esputnik.com/api/api/v1/contacts/email",
+    "path": [],
+    "query": [
+     "ids"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.get_contact_id_by_token",
+   "name": "Get contact id by token",
+   "description": "The method is used for getting the ID of a contact using the token ID.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "app_uuid": {
+      "type": "string",
+      "description": "Application ID"
+     },
+     "token_id": {
+      "type": "string",
+      "description": "Token ID"
+     }
+    },
+    "required": [
+     "app_uuid",
+     "token_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://esputnik.com/api/api/v1/contact/token/{app_uuid}/{token_id}/contactId",
+    "path": [
+     "app_uuid",
+     "token_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.get_contact_subscription_categories",
+   "name": "Get contact subscriptions",
+   "description": "The method is used for getting the names of categories a contact subscribed for.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "integer",
+      "description": "Contact ID"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://esputnik.com/api/api/v1/contact/{id}/subscriptions",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.get_domains",
+   "name": "Get domain",
+   "description": "The method returns your organization's domain. The response is empty if no domain is found.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://esputnik.com/api/api/v1/site/domains",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.get_email",
+   "name": "Get email message",
+   "description": "The method returns the content, title, and sender details of a message identified by the internal ID \u2013 html and css separately.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "integer",
+      "description": "Email message id"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://esputnik.com/api/api/v1/messages/email/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.get_email_interfaces",
+   "name": "Get email interfaces",
+   "description": "The method is used for getting email interfaces (sender names).",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://esputnik.com/api/api/v1/interfaces/email",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.get_email_message_view_link",
+   "name": "Get email message view link",
+   "description": "The method is used for getting a link to view the email message.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "Message ID"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://esputnik.com/api/api/v1/messages/email/{id}/viewLink",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.get_group_contacts",
+   "name": "Get contacts from a segment",
+   "description": "The method is used to search for all contacts in a segment.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "integer",
+      "description": "Segment ID"
+     },
+     "startindex": {
+      "type": "integer",
+      "description": "The index of the first contact returned from the search result.Numbering starts at 1"
+     },
+     "maxrows": {
+      "type": "integer",
+      "description": "Maximum number of contacts to return (max. 500)"
+     },
+     "orderByTs": {
+      "type": "boolean",
+      "description": "Order by the time of addition to the segment."
+     },
+     "asc": {
+      "type": "boolean",
+      "description": "Sort in ascending (ASC) or descending (DESC) order."
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://esputnik.com/api/api/v1/group/{id}/contacts",
+    "path": [
+     "id"
+    ],
+    "query": [
+     "startindex",
+     "maxrows",
+     "orderByTs",
+     "asc"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.get_import_session_status",
+   "name": "Get contact import status",
+   "description": "The method is used for getting the status of the contact import session by the asynchronous ID of the session.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sessionId": {
+      "type": "string",
+      "description": "Async session identifier"
+     }
+    },
+    "required": [
+     "sessionId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://esputnik.com/api/api/v1/importstatus/{sessionId}",
+    "path": [
+     "sessionId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.get_instant_messages_status",
+   "name": "Get single message status",
+   "description": "The method is used for getting the status of a single message.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "ids": {
+      "type": "string",
+      "description": "ID of sent message. This field is present if message was successfully queued for sending."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://esputnik.com/api/api/v1/message/status",
+    "path": [],
+    "query": [
+     "ids"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.get_mobile_push_message",
+   "name": "Get a mobile push message",
+   "description": "The method returns mobile push message including language versions",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "integer",
+      "description": "Mobile push message id"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://esputnik.com/api/api/v1/messages/mobilepush/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.get_organisation_balance_history",
+   "name": "Get organization billing history",
+   "description": "The method returns the billing history of the account.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "dateFrom": {
+      "type": "string",
+      "description": "The initial date for the billing history. The date values are passed in the ISO_8061 format. Date format: YYYY-MM-DD"
+     },
+     "dateTo": {
+      "type": "string",
+      "description": "The end date for the billing history. The date values are passed in the ISO_8061 format. Date format: YYYY-MM-DD"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://esputnik.com/api/api/v1/balance/history",
+    "path": [],
+    "query": [
+     "dateFrom",
+     "dateTo"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.get_product_feeds_configuration",
+   "name": "Get product feeds configuration",
+   "description": "Get product feeds configuration",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://esputnik.com/api/api/v1/products/config",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.get_promocodes",
+   "name": "Get promotional codes",
+   "description": "The method returns a list of all available promotional codes as JSON string.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "type": {
+      "type": "string",
+      "description": "Promo code type"
+     },
+     "inUse": {
+      "type": "boolean",
+      "description": "When 'true', the promo code has been used, when 'false', the promo code has not been used"
+     },
+     "activeDueDays": {
+      "type": "integer",
+      "description": "The days left for promo codes to remain active(activeDueDays=7 means: the promo code remains active for the following 7 days, starting from tomorrow)"
+     },
+     "discount": {
+      "type": "integer",
+      "description": "Discount received with the promo code"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://esputnik.com/api/api/v1/promocodes",
+    "path": [],
+    "query": [
+     "type",
+     "inUse",
+     "activeDueDays",
+     "discount"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.get_promocodes_count",
+   "name": "Get the number of available promotional codes",
+   "description": "The method returns the number of available promo codes.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "type": {
+      "type": "string",
+      "description": "Promo code type"
+     },
+     "activeDueDays": {
+      "type": "integer",
+      "description": "The number of days left for the promo codes to remain active(activeDueDays=7 means the promo code remains active during the next 7 days, starting from tomorrow)"
+     },
+     "discount": {
+      "type": "integer",
+      "description": "Promo code discount amount"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://esputnik.com/api/api/v1/promocodes/count",
+    "path": [],
+    "query": [
+     "type",
+     "activeDueDays",
+     "discount"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.get_script",
+   "name": "Get script",
+   "description": "The method returns the script for your account.The domain must exist for an organization before getting a script.It can be used for plugins that automatically install the script on the site and require the API endpoint for getting the script.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://esputnik.com/api/api/v1/site/script",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.get_sms",
+   "name": "Get sms message",
+   "description": "The method returns content, title, sender and text of an SMS identified by its internal SMS message ID.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "integer",
+      "description": "SMS message ID"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://esputnik.com/api/api/v1/messages/sms/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.get_sms_interfaces",
+   "name": "Get sms interfaces",
+   "description": "The method is used for getting SMS interfaces (alpha names).",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://esputnik.com/api/api/v1/interfaces/sms",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.get_subscription_categories",
+   "name": "Get organization subscriptions",
+   "description": "The method returns subscription categories for the organization.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://esputnik.com/api/api/v1/subscriptions",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.get_telegram_bot_message",
+   "name": "Get the telegram bot message",
+   "description": "The method returns the telegram bot message found using its ID.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "integer",
+      "description": "Telegram bot message ID"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://esputnik.com/api/api/v1/messages/telegram/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.get_token_activated",
+   "name": "Get token activity",
+   "description": "The method returns activity status of the mobile token: {\"active\":true} or {\"active\":false}.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "token_id": {
+      "type": "string",
+      "description": "Token ID"
+     },
+     "app_uuid": {
+      "type": "string",
+      "description": "Application ID"
+     }
+    },
+    "required": [
+     "app_uuid",
+     "token_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://esputnik.com/api/api/v1/contact/token/activated/{app_uuid}/{token_id}",
+    "path": [
+     "token_id",
+     "app_uuid"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.get_user_organisation_balance",
+   "name": "Get organization balance",
+   "description": "The method returns the balance for the account.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://esputnik.com/api/api/v1/balance",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.get_viber_message",
+   "name": "Get the viber message",
+   "description": "Method returns viber message found by ID. If the message contains a carousel, the carouselItems array will be included in the response.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "integer",
+      "description": "Viber message ID"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://esputnik.com/api/api/v1/messages/viber/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.get_web_push_domains",
+   "name": "Get web push domains",
+   "description": "The method returns the list of domains registered for web push notifications.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://esputnik.com/api/api/v1/site/webpush/domains",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.get_web_push_script",
+   "name": "Get web push script",
+   "description": "The method returns the web push script for the specified domain.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "domain": {
+      "type": "string",
+      "description": "Domain to generate script for"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://esputnik.com/api/api/v1/site/webpush/script",
+    "path": [],
+    "query": [
+     "domain"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.insert_promo_codes",
+   "name": "Upload promotional codes",
+   "description": "Upload promo codes from CSV or JSON.Existing promotional codes are updated.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "expirationDate": {
+      "type": "string",
+      "description": ""
+     },
+     "discount": {
+      "type": "integer",
+      "description": ""
+     },
+     "type": {
+      "type": "string",
+      "description": ""
+     },
+     "inUse": {
+      "type": "boolean",
+      "description": ""
+     },
+     "promocodes": {
+      "type": "array",
+      "description": ""
+     }
+    },
+    "required": [
+     "discount",
+     "expirationDate",
+     "promocodes"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://esputnik.com/api/api/v1/promocodes",
+    "path": [],
+    "query": [
+     "expirationDate",
+     "discount",
+     "type",
+     "inUse"
+    ],
+    "header": [],
+    "body": [
+     "promocodes",
+     "expirationDate",
+     "discount",
+     "type",
+     "inUse"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.mute_app_token",
+   "name": "Mute application tokens",
+   "description": "The method mutes notifications to Telegram users having tokens. Read more.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "app_uuid": {
+      "type": "string",
+      "description": "Application ID"
+     },
+     "duration": {
+      "type": "integer",
+      "description": "Mute duration in seconds. If not set, notifications are muted permanently.Minimum value: 5Maximum value: 31,536,000 (approximately 1 year)"
+     }
+    },
+    "required": [
+     "app_uuid"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://esputnik.com/api/api/v1/apps/{app_uuid}/token/mute",
+    "path": [
+     "app_uuid"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "duration"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.orders_bulk_insert",
+   "name": "Add orders",
+   "description": "The method is used for transferring orders.To learn more, read Order Transfer Using the Generate event API Method.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "orders": {
+      "type": "array",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://esputnik.com/api/api/v1/orders",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "orders"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.preprocessor_file_status",
+   "name": "Get preprocessor file status",
+   "description": "The method is used for retrieving the preprocessor file uploading session status using the asynchronous session identifier.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "Async session identifier"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://esputnik.com/api/api/v1/preprocessor/file/{id}/status",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.register_event_1",
+   "name": "Generate event v2",
+   "description": "Sends any backend events from websites and mobile apps to our system. Secure for sensitive data.For sending frontend events, mobile apps should use SDK.The request example is available at the link.NOTE: The maximum size of event data in the request body is 20 KB.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "eventTypeKey": {
+      "type": "string",
+      "description": "Unique identifier for the event type, e.g., PageViewed. Read more..."
+     },
+     "params": {
+      "type": "array",
+      "description": "An array of objects \u2014 lists with key-value pairs containing contact identifiers (required) and event-specific parameters (optional).Read more..."
+     }
+    },
+    "required": [
+     "eventTypeKey"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://esputnik.com/api/api/v2/event",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "eventTypeKey",
+     "params"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.register_event_2",
+   "name": "Generate event v3",
+   "description": "Sends any backend events from websites and mobile apps to our system. Secure for sensitive data.For sending frontend events, mobile apps should use SDK.The request example is available at the link.NOTE: The maximum size of event data in the request body is 20 KB.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "eventTypeKey": {
+      "type": "string",
+      "description": "Unique identifier for the event type, e.g., PageViewed. Read more..."
+     },
+     "params": {
+      "type": "object",
+      "description": "An objects \u2014 key-value pairs containing contact identifiers (required) and event-specific parameters (optional).Read more..."
+     }
+    },
+    "required": [
+     "eventTypeKey"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://esputnik.com/api/api/v3/event",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "eventTypeKey",
+     "params"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.register_interaction_status",
+   "name": "Update interaction status",
+   "description": "The method is used for receiving the status of a mobile push message using interaction_id.This ID is sent along with data in a mobile push message.Example: \"es_interaction_id\": \"2E2E831C-486C-41F9-8E8D-BCD6B7A51A7A\".",
+   "input": {
+    "type": "object",
+    "properties": {
+     "interaction_id": {
+      "type": "string",
+      "description": "Interaction ID"
+     },
+     "status": {
+      "type": "string",
+      "description": "Message status",
+      "enum": [
+       "DELIVERED",
+       "OPENED",
+       "CLICKED",
+       "UNDELIVERED"
+      ]
+     },
+     "time": {
+      "type": "string",
+      "description": "The status change date and time in the YYYY-MM-DDThh:mm:ssZ format"
+     }
+    },
+    "required": [
+     "interaction_id"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://esputnik.com/api/api/v1/interactions/{interaction_id}/status",
+    "path": [
+     "interaction_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "status",
+     "time"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.remove_history_events",
+   "name": "Delete events",
+   "description": "The method is used for deleting events occurred during selected period.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "from": {
+      "type": "string",
+      "description": "Start date (inclusively)."
+     },
+     "to": {
+      "type": "string",
+      "description": "End date (inclusively)."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://esputnik.com/api/api/v1/past_events",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "from",
+     "to"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.remove_history_orders",
+   "name": "Delete orders",
+   "description": "This endpoint schedules an asynchronous order deletion job.Supported deletion criteria:\u2022 externalOrderId (deletes the order with the specified externalOrderId), or\u2022 from and to (deletes orders whose occurrence timestamp falls within the specified period).",
+   "input": {
+    "type": "object",
+    "properties": {
+     "externalOrderId": {
+      "type": "string",
+      "description": "ID of an order in the external system"
+     },
+     "from": {
+      "type": "string",
+      "description": "Start date (inclusively)"
+     },
+     "to": {
+      "type": "string",
+      "description": "End date (inclusively)"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://esputnik.com/api/api/v1/orders",
+    "path": [],
+    "query": [
+     "externalOrderId",
+     "from",
+     "to"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.search_app_inbox_messages",
+   "name": "Search for app inbox messages",
+   "description": "The method is used to search for mobile app inbox messages using a part of the name or a tag. The method returns 500 messages maximum.The TotalCount header contains the number of messages returned by the query.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "search": {
+      "type": "string",
+      "description": "Search condition (a part of the message name or a tag)"
+     },
+     "startindex": {
+      "type": "integer",
+      "description": ""
+     },
+     "maxrows": {
+      "type": "integer",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://esputnik.com/api/api/v1/messages/appinbox",
+    "path": [],
+    "query": [
+     "search",
+     "startindex",
+     "maxrows"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.search_contacts",
+   "name": "Search for contacts",
+   "description": "Search for contacts. The method returns max 500 results. The total amount of contacts is in the TotalCount header.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "externalCustomerId": {
+      "type": "string",
+      "description": "External contact ID"
+     },
+     "email": {
+      "type": "string",
+      "description": "Contact's email address"
+     },
+     "sms": {
+      "type": "string",
+      "description": "Contact's phone number"
+     },
+     "firstname": {
+      "type": "string",
+      "description": "Contact first name"
+     },
+     "lastname": {
+      "type": "string",
+      "description": "Contact last name"
+     },
+     "startindex": {
+      "type": "integer",
+      "description": "The number of the first contact returned in the search results.Numbering starts at 1"
+     },
+     "maxrows": {
+      "type": "integer",
+      "description": "Maximum number of returned contacts (max 500)"
+     },
+     "sortBy": {
+      "type": "string",
+      "description": "Possible value is 'contactId'. Only actual for searches without conditions. By default, the date of contact update is used for the search.If this parameter is used, sorting is done by contactId. Using this parameter allows you to upload contacts faster."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://esputnik.com/api/api/v1/contacts",
+    "path": [],
+    "query": [
+     "externalCustomerId",
+     "email",
+     "sms",
+     "firstname",
+     "lastname",
+     "startindex",
+     "maxrows",
+     "sortBy"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.search_emails",
+   "name": "Search for email messages",
+   "description": "The method is used to search for email messages using a part of their name or a tag. The method returns 500 messages maximum. The TotalCount header contains the number of messages returned to the query.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "search": {
+      "type": "string",
+      "description": "Search condition (a part of the message name or a tag)"
+     },
+     "startindex": {
+      "type": "integer",
+      "description": "The index of the first message to return from the search result.Numbering starts at 1"
+     },
+     "maxrows": {
+      "type": "integer",
+      "description": "Maximum number of messages to return (max. 500)."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://esputnik.com/api/api/v1/messages/email",
+    "path": [],
+    "query": [
+     "search",
+     "startindex",
+     "maxrows"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.search_groups",
+   "name": "Get segments",
+   "description": "The method searches for and returns the available segments.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": "string",
+      "description": ""
+     },
+     "startindex": {
+      "type": "integer",
+      "description": "The index of the first segment returned from the search result.Numbering starts at 1"
+     },
+     "maxrows": {
+      "type": "integer",
+      "description": "Maximum number of segments to be returned (max. 500)"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://esputnik.com/api/api/v1/groups",
+    "path": [],
+    "query": [
+     "name",
+     "startindex",
+     "maxrows"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.search_mob_push_messages",
+   "name": "Search for mobile push messages",
+   "description": "The method is used to search for mobile push messages using a part of name or a tag. The method returns 500 messages maximum.The TotalCount header contains the number of messages returned by the query",
+   "input": {
+    "type": "object",
+    "properties": {
+     "search": {
+      "type": "string",
+      "description": "Search condition (part of the message name or a tag)"
+     },
+     "startindex": {
+      "type": "integer",
+      "description": "Index of the first returned message from the search results. Numbering starts at 1"
+     },
+     "maxrows": {
+      "type": "integer",
+      "description": "Maximum number of messages to return (not more than 500)"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://esputnik.com/api/api/v1/messages/mobilepush",
+    "path": [],
+    "query": [
+     "search",
+     "startindex",
+     "maxrows"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.search_sms",
+   "name": "Search for sms messages",
+   "description": "The method is used to search for SMS messages using a part of their names or a tag. The method returns 500 messages maximum.The TotalCount header contains the number of messages returned to the query",
+   "input": {
+    "type": "object",
+    "properties": {
+     "search": {
+      "type": "string",
+      "description": "Search condition (a part of the message name or a tag)"
+     },
+     "startindex": {
+      "type": "integer",
+      "description": ""
+     },
+     "maxrows": {
+      "type": "integer",
+      "description": ""
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://esputnik.com/api/api/v1/messages/sms",
+    "path": [],
+    "query": [
+     "search",
+     "startindex",
+     "maxrows"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.search_telegram_bot_messages",
+   "name": "Search for telegram bot messages",
+   "description": "The method is used to search for telegram bot messages using a part of name or a tag. The method returns 500 messages maximum.The TotalCount header contains the number of messages returned by the query",
+   "input": {
+    "type": "object",
+    "properties": {
+     "search": {
+      "type": "string",
+      "description": "Search condition (part of the message name or a tag)"
+     },
+     "startindex": {
+      "type": "integer",
+      "description": "Index of the first returned message from the search results. Numbering starts at 1"
+     },
+     "maxrows": {
+      "type": "integer",
+      "description": "Maximum number of messages to return (not more than 500)"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://esputnik.com/api/api/v1/messages/telegram",
+    "path": [],
+    "query": [
+     "search",
+     "startindex",
+     "maxrows"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.search_viber_messages",
+   "name": "Search for viber messages",
+   "description": "The method is used to search for viber messages using a part of name or a tag. The method returns 500 messages maximum.The TotalCount header contains the number of messages returned by the query. Carousel items are included in the response if the message contains a carousel.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "search": {
+      "type": "string",
+      "description": "Search condition (part of the message name or a tag)"
+     },
+     "startindex": {
+      "type": "integer",
+      "description": "Index of the first returned message from the search results. Numbering starts at 1"
+     },
+     "maxrows": {
+      "type": "integer",
+      "description": "Maximum number of messages to return (not more than 500)"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://esputnik.com/api/api/v1/messages/viber",
+    "path": [],
+    "query": [
+     "search",
+     "startindex",
+     "maxrows"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.search_workflows",
+   "name": "Get workflows",
+   "description": "The method searches for and returns the available workflows.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": "string",
+      "description": ""
+     },
+     "startindex": {
+      "type": "integer",
+      "description": "The index of the first workflow returned from the search result.Numbering starts at 1"
+     },
+     "maxrows": {
+      "type": "integer",
+      "description": "Maximum number of workflows to be returned (max. 500)"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://esputnik.com/api/api/v1/workflows",
+    "path": [],
+    "query": [
+     "name",
+     "startindex",
+     "maxrows"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.send_email",
+   "name": "Send email message",
+   "description": "The method is used for sending an email message to a contact. A new contact is created if no contact with such email address exists.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "from": {
+      "type": "string",
+      "description": "Sender address (enter one of the valid sender addresses). Address format: \"\\\"name\\\" &lt;test@mail.com&gt;\""
+     },
+     "subject": {
+      "type": "string",
+      "description": "Message subject"
+     },
+     "htmlText": {
+      "type": "string",
+      "description": "Message HTML code"
+     },
+     "plainText": {
+      "type": "string",
+      "description": "Version of the message in plain text"
+     },
+     "ampHtmlText": {
+      "type": "string",
+      "description": "Message AMP HTML code"
+     },
+     "emails": {
+      "type": "array",
+      "description": "The list of recipients"
+     },
+     "tags": {
+      "type": "array",
+      "description": "The list of tags assigned to the message"
+     },
+     "externalRequestId": {
+      "type": "string",
+      "description": "External request ID. It is the same for all the recipients"
+     },
+     "skipPersonalisation": {
+      "type": "boolean",
+      "description": "Skip the application of personalization to the message"
+     },
+     "subscriptionsKeys": {
+      "type": "array",
+      "description": "Array of subscription category keys added to the message"
+     },
+     "trackUrls": {
+      "type": "boolean",
+      "description": "The parameter determines whether to track links in the message or not. The default value is \u2018true\u2019"
+     }
+    },
+    "required": [
+     "emails",
+     "from",
+     "htmlText",
+     "subject"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://esputnik.com/api/api/v1/message/email",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "from",
+     "subject",
+     "htmlText",
+     "plainText",
+     "ampHtmlText",
+     "emails",
+     "tags",
+     "externalRequestId",
+     "skipPersonalisation",
+     "subscriptionsKeys",
+     "trackUrls"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.send_extended_prepared_message",
+   "name": "Send prepared message",
+   "description": "The method is used for sending a prepared message to one or many contacts. You can create broadcasts for Email, SMS, Mobile Push, Web Push, Viber, Telegram Bot channels.You can parametrize the message for each contact individually.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "integer",
+      "description": "Message ID"
+     },
+     "recipients": {
+      "type": "array",
+      "description": ""
+     },
+     "email": {
+      "type": "boolean",
+      "description": "Message type.true for email, false for other media-channels."
+     },
+     "fromName": {
+      "type": "string",
+      "description": "Sender name. For email, indicate the sender name only, without an email address. The sender's email address selected in the message is used. For SMS, use the alphanumeric sender ID. If the parameter is not indicated, the sender name selected in the message is used."
+     }
+    },
+    "required": [
+     "id",
+     "recipients"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://esputnik.com/api/api/v1/message/{id}/smartsend",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "recipients",
+     "email",
+     "fromName"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.send_history_events_1",
+   "name": "Generate past events v2",
+   "description": "The method is used for transferring the available event data from your CRM or other data store to our system.Workflows are not launched for these events. You can send up to 500 events per a request. NOTE: Version 2 API methods do not require escaping in nested JSON. Learn more.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "events": {
+      "type": "array",
+      "description": "The list of the past events"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://esputnik.com/api/api/v2/past_events",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "events"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.send_history_events_2",
+   "name": "Generate past events v3",
+   "description": "The method is used for transferring the available event data from your CRM or other data store to our system.Workflows are not launched for these events. You can send up to 500 events per a request. NOTE: Version 3 API methods do not require escaping in nested JSON. Learn more.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "events": {
+      "type": "array",
+      "description": "The list of the past events"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://esputnik.com/api/api/v3/past_events",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "events"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.send_sms",
+   "name": "Send sms message",
+   "description": "The method is used for sending an SMS message to a contact. A new contact is created if no contact with such phone number exists.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "from": {
+      "type": "string",
+      "description": "Sender name. Enter one of the valid sender names"
+     },
+     "text": {
+      "type": "string",
+      "description": "Message text"
+     },
+     "phoneNumbers": {
+      "type": "array",
+      "description": "Required parameter, if &quot;groupId&quot; is not specified."
+     },
+     "tags": {
+      "type": "array",
+      "description": "The list of tags to be assigned to a message."
+     },
+     "groupId": {
+      "type": "integer",
+      "description": "Required parameter, if &quot;phoneNumbers&quot; is not specified. Segment ID to which the message will be sent"
+     },
+     "externalRequestId": {
+      "type": "string",
+      "description": "External request ID. It is the same for all the recipients."
+     },
+     "subscriptionsKeys": {
+      "type": "array",
+      "description": ""
+     },
+     "trackUrls": {
+      "type": "boolean",
+      "description": "The parameter determines whether to track links in a message or not. The default value is \u2018false\u2019."
+     }
+    },
+    "required": [
+     "from",
+     "text"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://esputnik.com/api/api/v1/message/sms",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "from",
+     "text",
+     "phoneNumbers",
+     "tags",
+     "groupId",
+     "externalRequestId",
+     "subscriptionsKeys",
+     "trackUrls"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.send_viber",
+   "name": "Send viber message",
+   "description": "The method is used for sending a Viber message to a contact. A new contact is created if no contact with such phone number exists. Supports carousel messages with 2-5 items containing images and buttons.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "text": {
+      "type": "string",
+      "description": "Message text"
+     },
+     "ttlSeconds": {
+      "type": "integer",
+      "description": "Message lifetime in seconds, the default value is day."
+     },
+     "img": {
+      "type": "string",
+      "description": ""
+     },
+     "caption": {
+      "type": "string",
+      "description": ""
+     },
+     "action": {
+      "type": "string",
+      "description": "A clickable link embedded in a picture or in a button."
+     },
+     "phoneNumbers": {
+      "type": "array",
+      "description": "The list of the recipient phone numbers. Required parameter, if &quot;groupId&quot; is not specified."
+     },
+     "tags": {
+      "type": "array",
+      "description": "The list of tags to be assigned to a message."
+     },
+     "groupId": {
+      "type": "integer",
+      "description": "Required parameter. If &quot;phoneNumbers&quot; are not specified."
+     },
+     "externalRequestId": {
+      "type": "string",
+      "description": "External request ID. It is the same for all the recipients."
+     },
+     "from": {
+      "type": "string",
+      "description": "Sender's name. Required parameter if more than one sender is available."
+     },
+     "trackUrls": {
+      "type": "boolean",
+      "description": "The parameter determines whether to track links in a message or not. The default value is \u2018true\u2019."
+     },
+     "carouselItems": {
+      "type": "array",
+      "description": "Carousel items (2-5 items). When provided, img/action/caption are used only for SMS fallback."
+     },
+     "transactional": {
+      "type": "boolean",
+      "description": "Whether the message is transactional. Defaults to false."
+     },
+     "templateId": {
+      "type": "string",
+      "description": "Provider template ID for a transactional Viber message."
+     },
+     "subscriptionsKeys": {
+      "type": "array",
+      "description": ""
+     }
+    },
+    "required": [
+     "text"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://esputnik.com/api/api/v1/message/viber",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "text",
+     "ttlSeconds",
+     "img",
+     "caption",
+     "action",
+     "phoneNumbers",
+     "tags",
+     "groupId",
+     "externalRequestId",
+     "from",
+     "trackUrls",
+     "carouselItems",
+     "transactional",
+     "templateId",
+     "subscriptionsKeys"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.subscribe_contact",
+   "name": "Subscribe a contact",
+   "description": "The method is used for the integration of subscription forms.If a contact does not exist, it is created with the non-confirmed email.If a contact exists, the contact fields are updated (except existing media channels).New contacts are created with a not confirmed status.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "contact": {
+      "type": "object",
+      "description": "Contact for subscription."
+     },
+     "groups": {
+      "type": "array",
+      "description": "The list of segment names where a new/updated contact will be added."
+     },
+     "subscriptions": {
+      "type": "array",
+      "description": "Subscription categories added for a contact."
+     },
+     "formType": {
+      "type": "string",
+      "description": "The subscription form name. It allows you to use several independent subscription forms. All characters are acceptable, except:"
+     }
+    },
+    "required": [
+     "contact"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://esputnik.com/api/api/v1/contact/subscribe",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "contact",
+     "groups",
+     "subscriptions",
+     "formType"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.unmute_app_token",
+   "name": "Unmute application tokens",
+   "description": "The method unmutes notifications to Telegram users having tokens. Read more.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "app_uuid": {
+      "type": "string",
+      "description": "Application ID"
+     }
+    },
+    "required": [
+     "app_uuid"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://esputnik.com/api/api/v1/apps/{app_uuid}/token/unmute",
+    "path": [
+     "app_uuid"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.update_base_app_inbox_message",
+   "name": "Update the base app inbox message",
+   "description": "The method is used for updating the base app inbox message.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "integer",
+      "description": "Message ID."
+     },
+     "name": {
+      "type": "string",
+      "description": "Message name."
+     },
+     "languageCode": {
+      "type": "string",
+      "description": "Language code."
+     },
+     "tags": {
+      "type": "array",
+      "description": "List of tags."
+     },
+     "subscriptionsKeys": {
+      "type": "array",
+      "description": "Subscription categories keys, assigned to a message."
+     },
+     "languages": {
+      "type": "array",
+      "description": "An array with the language codes for multilingual messages. Available for the GET method only."
+     },
+     "title": {
+      "type": "string",
+      "description": "Message title."
+     },
+     "text": {
+      "type": "string",
+      "description": "Message text."
+     },
+     "link": {
+      "type": "string",
+      "description": "The link that will open after the click on the message body."
+     },
+     "imageSource": {
+      "type": "string",
+      "description": "The logo image in JPEG, PNG or GIF format."
+     },
+     "customData": {
+      "type": "string",
+      "description": "Additional parameters in JSON format to be used in the message."
+     },
+     "ttlSec": {
+      "type": "integer",
+      "description": "Time-to-live for the message, in seconds."
+     },
+     "translations": {
+      "type": "array",
+      "description": "The array of the language versions for the current message. Available for the GET method only."
+     }
+    },
+    "required": [
+     "id",
+     "name",
+     "text",
+     "title"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://esputnik.com/api/api/v1/messages/appinbox/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "id",
+     "name",
+     "languageCode",
+     "tags",
+     "subscriptionsKeys",
+     "languages",
+     "title",
+     "text",
+     "link",
+     "imageSource",
+     "customData",
+     "ttlSec",
+     "translations"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.update_base_mob_push_message",
+   "name": "Update base mobile push message",
+   "description": "The method is used for updating the base mobile push message",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "integer",
+      "description": "Message ID."
+     },
+     "name": {
+      "type": "string",
+      "description": "Message name."
+     },
+     "languageCode": {
+      "type": "string",
+      "description": "Language code."
+     },
+     "tags": {
+      "type": "array",
+      "description": "List of tags."
+     },
+     "subscriptionsKeys": {
+      "type": "array",
+      "description": "Subscription categories keys, assigned to a message."
+     },
+     "languages": {
+      "type": "array",
+      "description": "An array with the language codes for multilingual messages. Available for the GET method only."
+     },
+     "title": {
+      "type": "string",
+      "description": "Message title."
+     },
+     "subtitle": {
+      "type": "string",
+      "description": "Message subtitle. Visible only to iOS users."
+     },
+     "text": {
+      "type": "string",
+      "description": "Message text."
+     },
+     "link": {
+      "type": "string",
+      "description": "Can be either an external link (opens in device browser) or a deep link (opens some section of the app)."
+     },
+     "imageSource": {
+      "type": "string",
+      "description": "Image URL for a single image in a message. Use 'images' array to create an images carousel."
+     },
+     "customData": {
+      "type": "string",
+      "description": "Additional parameters in JSON format to be used in the push message."
+     },
+     "ttlSec": {
+      "type": "integer",
+      "description": "Time-to-live for a message; in seconds."
+     },
+     "buttons": {
+      "type": "array",
+      "description": "Use buttons to implement various actions. 4 buttons for iOS, 3 buttons for Android are supported."
+     },
+     "soundEnabled": {
+      "type": "boolean",
+      "description": "Enable to play sound when user receives push-message."
+     },
+     "badgeCount": {
+      "type": "integer",
+      "description": "The number of unread messages shown to the user."
+     },
+     "images": {
+      "type": "array",
+      "description": "The array of image URLs for images carousel. Up to 10 images."
+     },
+     "translations": {
+      "type": "array",
+      "description": "The array of language versions for the current message. Available for GET method only."
+     }
+    },
+    "required": [
+     "id",
+     "name",
+     "text",
+     "title"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://esputnik.com/api/api/v1/messages/mobilepush/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "id",
+     "name",
+     "languageCode",
+     "tags",
+     "subscriptionsKeys",
+     "languages",
+     "title",
+     "subtitle",
+     "text",
+     "link",
+     "imageSource",
+     "customData",
+     "ttlSec",
+     "buttons",
+     "soundEnabled",
+     "badgeCount",
+     "images",
+     "translations"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.update_base_sms_message",
+   "name": "Update base sms message",
+   "description": "The method is used for updating the base sms message",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "integer",
+      "description": "Message ID."
+     },
+     "name": {
+      "type": "string",
+      "description": "Message name."
+     },
+     "languageCode": {
+      "type": "string",
+      "description": "Language code."
+     },
+     "tags": {
+      "type": "array",
+      "description": "List of tags."
+     },
+     "subscriptionsKeys": {
+      "type": "array",
+      "description": "Subscription categories keys, assigned to a message."
+     },
+     "languages": {
+      "type": "array",
+      "description": "An array with the language codes for multilingual messages. Available for the GET method only."
+     },
+     "from": {
+      "type": "string",
+      "description": "Sender name."
+     },
+     "text": {
+      "type": "string",
+      "description": "Message text."
+     },
+     "trackUrls": {
+      "type": "boolean",
+      "description": "The parameter determines whether to track links in a message or not. The default value is \u2018false\u2019."
+     },
+     "translations": {
+      "type": "array",
+      "description": "An array with translations to other languages. Available for the GET method only."
+     }
+    },
+    "required": [
+     "from",
+     "id",
+     "name",
+     "text"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://esputnik.com/api/api/v1/messages/sms/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "id",
+     "name",
+     "languageCode",
+     "tags",
+     "subscriptionsKeys",
+     "languages",
+     "from",
+     "text",
+     "trackUrls",
+     "translations"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.update_base_telegram_bot_message",
+   "name": "Update base telegram bot message",
+   "description": "The method is used for updating the base telegram bot message",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "integer",
+      "description": "Message ID."
+     },
+     "name": {
+      "type": "string",
+      "description": "Message name."
+     },
+     "languageCode": {
+      "type": "string",
+      "description": "Language code."
+     },
+     "tags": {
+      "type": "array",
+      "description": "List of tags."
+     },
+     "subscriptionsKeys": {
+      "type": "array",
+      "description": "Subscription categories keys, assigned to a message."
+     },
+     "languages": {
+      "type": "array",
+      "description": "An array with the language codes for multilingual messages. Available for the GET method only."
+     },
+     "text": {
+      "type": "string",
+      "description": ""
+     },
+     "imageSource": {
+      "type": "string",
+      "description": "Image URL for a single image in a message."
+     },
+     "buttons": {
+      "type": "array",
+      "description": "Use buttons to implement various actions."
+     },
+     "translations": {
+      "type": "array",
+      "description": "An array with translations to other languages. Available for the GET method only."
+     }
+    },
+    "required": [
+     "id",
+     "name"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://esputnik.com/api/api/v1/messages/telegram/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "id",
+     "name",
+     "languageCode",
+     "tags",
+     "subscriptionsKeys",
+     "languages",
+     "text",
+     "imageSource",
+     "buttons",
+     "translations"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.update_base_viber_message",
+   "name": "Update base viber message",
+   "description": "Method is used for updating base viber message. Supports carousel messages with 2-5 items containing images and buttons.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "integer",
+      "description": "Message ID."
+     },
+     "name": {
+      "type": "string",
+      "description": "Message name."
+     },
+     "languageCode": {
+      "type": "string",
+      "description": "Language code."
+     },
+     "tags": {
+      "type": "array",
+      "description": "List of tags."
+     },
+     "subscriptionsKeys": {
+      "type": "array",
+      "description": "Subscription categories keys, assigned to a message."
+     },
+     "languages": {
+      "type": "array",
+      "description": "An array with the language codes for multilingual messages. Available for the GET method only."
+     },
+     "from": {
+      "type": "string",
+      "description": "Sender name. Must exist in your account."
+     },
+     "transactional": {
+      "type": "boolean",
+      "description": "Transactional messages have lower cost, but can contain only text. Content must be agreed with provider for successful sending. Default - false."
+     },
+     "templateId": {
+      "type": "string",
+      "description": "Provider template ID for a transactional Viber message."
+     },
+     "text": {
+      "type": "string",
+      "description": "Message text."
+     },
+     "img": {
+      "type": "string",
+      "description": "Image URL for message. If set, caption and action must be set too."
+     },
+     "caption": {
+      "type": "string",
+      "description": "Button text. If set, img and action must be set too."
+     },
+     "action": {
+      "type": "string",
+      "description": "Link assigned to button. If set, img and caption must be set too."
+     },
+     "ttlSec": {
+      "type": "integer",
+      "description": "Time to live for message in seconds. Default - 86400 (1 day)."
+     },
+     "smsFallback": {
+      "type": "boolean",
+      "description": "Enables smsFallback feature: send SMS message instead of Viber, if contact does not have Viber app installed. Default - false."
+     },
+     "smsSender": {
+      "type": "string",
+      "description": "SMS sender name for smsFallback feature."
+     },
+     "smsContent": {
+      "type": "string",
+      "description": "SMS text for smsFallback feature."
+     },
+     "carouselItems": {
+      "type": "array",
+      "description": "Carousel items (2-5 items). When provided, img/action/caption are ignored."
+     },
+     "translations": {
+      "type": "array",
+      "description": "An array with translations to other languages. Available for the GET method only."
+     }
+    },
+    "required": [
+     "from",
+     "id",
+     "name",
+     "text"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://esputnik.com/api/api/v1/messages/viber/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "id",
+     "name",
+     "languageCode",
+     "tags",
+     "subscriptionsKeys",
+     "languages",
+     "from",
+     "transactional",
+     "templateId",
+     "text",
+     "img",
+     "caption",
+     "action",
+     "ttlSec",
+     "smsFallback",
+     "smsSender",
+     "smsContent",
+     "carouselItems",
+     "translations"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.update_contact",
+   "name": "Update contact",
+   "description": "The method is used to update the contact's data, except for the contact ID field.In case of updating a deleted contact, this contact is restored.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "integer",
+      "description": "Contact ID"
+     },
+     "firstName": {
+      "type": "string",
+      "description": "Contact's first name"
+     },
+     "lastName": {
+      "type": "string",
+      "description": "Contact's last name"
+     },
+     "channels": {
+      "type": "array",
+      "description": "You can add maximum two channels of the same type. It is necessary to specify at least one channel."
+     },
+     "address": {
+      "type": "object",
+      "description": "Contact's full address"
+     },
+     "fields": {
+      "type": "array",
+      "description": "Values of the additional fields of a contact."
+     },
+     "addressBookId": {
+      "type": "integer",
+      "description": "Catalog ID. You can get the value using the /v1/addressbooks GET method. Optional parameter."
+     },
+     "contactKey": {
+      "type": "string",
+      "description": ""
+     },
+     "externalCustomerId": {
+      "type": "string",
+      "description": ""
+     },
+     "languageCode": {
+      "type": "string",
+      "description": "Language code. Optional parameter."
+     },
+     "timeZone": {
+      "type": "string",
+      "description": "Time zone. Optional parameter. See TZ database name"
+     },
+     "marketId": {
+      "type": "string",
+      "description": "Market ID. Optional parameter. Up to 64 characters. Allowed: [a\u2013zA-Z0\u20139-_]"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://esputnik.com/api/api/v1/contact/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "firstName",
+     "lastName",
+     "channels",
+     "address",
+     "fields",
+     "addressBookId",
+     "id",
+     "contactKey",
+     "externalCustomerId",
+     "languageCode",
+     "timeZone",
+     "marketId"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.update_message",
+   "name": "Update basic email message",
+   "description": "The method is used for updating the basic email message.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "integer",
+      "description": "Message ID."
+     },
+     "name": {
+      "type": "string",
+      "description": "Message name."
+     },
+     "languageCode": {
+      "type": "string",
+      "description": "Language code."
+     },
+     "tags": {
+      "type": "array",
+      "description": "List of tags."
+     },
+     "subscriptionsKeys": {
+      "type": "array",
+      "description": "Subscription categories keys, assigned to a message."
+     },
+     "languages": {
+      "type": "array",
+      "description": "An array with the language codes for multilingual messages. Available for the GET method only."
+     },
+     "from": {
+      "type": "string",
+      "description": "Required parameter. Sender name and email address, e.g. \"from\": \"\\\"name\\\" &lt;info@test.com&gt;\""
+     },
+     "subject": {
+      "type": "string",
+      "description": "Message subject"
+     },
+     "htmlText": {
+      "type": "string",
+      "description": "Message HTML code"
+     },
+     "rawHtml": {
+      "type": "string",
+      "description": "Message HTML code without styles."
+     },
+     "ampHtml": {
+      "type": "string",
+      "description": "Message AMP code"
+     },
+     "css": {
+      "type": "string",
+      "description": "Message styles"
+     },
+     "updatedDate": {
+      "type": "string",
+      "description": "Message updated date"
+     },
+     "translations": {
+      "type": "array",
+      "description": "The array of the language versions for the current message. Available for the GET method only."
+     },
+     "template": {
+      "type": "boolean",
+      "description": ""
+     }
+    },
+    "required": [
+     "from",
+     "htmlText",
+     "id",
+     "name",
+     "subject"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://esputnik.com/api/api/v1/messages/email/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "id",
+     "name",
+     "languageCode",
+     "tags",
+     "subscriptionsKeys",
+     "languages",
+     "from",
+     "subject",
+     "htmlText",
+     "rawHtml",
+     "ampHtml",
+     "css",
+     "updatedDate",
+     "translations",
+     "template"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.update_message_1",
+   "name": "Update translated email message",
+   "description": "The method is used for updating translation of the basic email message.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "integer",
+      "description": "Message ID."
+     },
+     "language": {
+      "type": "string",
+      "description": "Email message language code In compliance with ISO_639-1"
+     },
+     "name": {
+      "type": "string",
+      "description": "Message name."
+     },
+     "languageCode": {
+      "type": "string",
+      "description": "Language code."
+     },
+     "tags": {
+      "type": "array",
+      "description": "List of tags."
+     },
+     "subscriptionsKeys": {
+      "type": "array",
+      "description": "Subscription categories keys, assigned to a message."
+     },
+     "languages": {
+      "type": "array",
+      "description": "An array with the language codes for multilingual messages. Available for the GET method only."
+     },
+     "from": {
+      "type": "string",
+      "description": "Required parameter. Sender name and email address, e.g. \"from\": \"\\\"name\\\" &lt;info@test.com&gt;\""
+     },
+     "subject": {
+      "type": "string",
+      "description": "Message subject"
+     },
+     "htmlText": {
+      "type": "string",
+      "description": "Message HTML code"
+     },
+     "rawHtml": {
+      "type": "string",
+      "description": "Message HTML code without styles."
+     },
+     "ampHtml": {
+      "type": "string",
+      "description": "Message AMP code"
+     },
+     "css": {
+      "type": "string",
+      "description": "Message styles"
+     },
+     "updatedDate": {
+      "type": "string",
+      "description": "Message updated date"
+     },
+     "translations": {
+      "type": "array",
+      "description": "The array of the language versions for the current message. Available for the GET method only."
+     },
+     "template": {
+      "type": "boolean",
+      "description": ""
+     }
+    },
+    "required": [
+     "from",
+     "htmlText",
+     "id",
+     "language",
+     "name",
+     "subject"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://esputnik.com/api/api/v1/messages/email/{id}/{language}",
+    "path": [
+     "id",
+     "language"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "id",
+     "name",
+     "languageCode",
+     "tags",
+     "subscriptionsKeys",
+     "languages",
+     "from",
+     "subject",
+     "htmlText",
+     "rawHtml",
+     "ampHtml",
+     "css",
+     "updatedDate",
+     "translations",
+     "template"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.update_preprocessor_file",
+   "name": "Update file for preprocessor",
+   "description": "The methods updates the data of a preprocessor file uploaded using the Upload file for preprocessor method.To update the file, use the fileId value returned by the Upload file for preprocessor method in its response.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "File ID"
+     },
+     "link": {
+      "type": "string",
+      "description": "The link to the PreProcessor data file in an external repository."
+     },
+     "ttlHours": {
+      "type": "integer",
+      "description": "File time to live in the system in hours. The default value is month."
+     }
+    },
+    "required": [
+     "id",
+     "link"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://esputnik.com/api/api/v1/preprocessor/file/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "link",
+     "ttlHours"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.update_translate_sms_message",
+   "name": "Update translated sms message",
+   "description": "The method is used for updating the language version of sms message",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "integer",
+      "description": "Message ID."
+     },
+     "language": {
+      "type": "string",
+      "description": "Language code"
+     },
+     "name": {
+      "type": "string",
+      "description": "Message name."
+     },
+     "languageCode": {
+      "type": "string",
+      "description": "Language code."
+     },
+     "tags": {
+      "type": "array",
+      "description": "List of tags."
+     },
+     "subscriptionsKeys": {
+      "type": "array",
+      "description": "Subscription categories keys, assigned to a message."
+     },
+     "languages": {
+      "type": "array",
+      "description": "An array with the language codes for multilingual messages. Available for the GET method only."
+     },
+     "from": {
+      "type": "string",
+      "description": "Sender name."
+     },
+     "text": {
+      "type": "string",
+      "description": "Message text."
+     },
+     "trackUrls": {
+      "type": "boolean",
+      "description": "The parameter determines whether to track links in a message or not. The default value is \u2018false\u2019."
+     },
+     "translations": {
+      "type": "array",
+      "description": "An array with translations to other languages. Available for the GET method only."
+     }
+    },
+    "required": [
+     "from",
+     "id",
+     "language",
+     "name",
+     "text"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://esputnik.com/api/api/v1/messages/sms/{id}/{language}",
+    "path": [
+     "id",
+     "language"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "id",
+     "name",
+     "languageCode",
+     "tags",
+     "subscriptionsKeys",
+     "languages",
+     "from",
+     "text",
+     "trackUrls",
+     "translations"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.update_translate_viber_message",
+   "name": "Update translated viber message",
+   "description": "Method is used for updating language version of base viber message. Supports carousel messages with 2-5 items containing images and buttons.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "integer",
+      "description": "Message ID."
+     },
+     "language": {
+      "type": "string",
+      "description": "Language code"
+     },
+     "name": {
+      "type": "string",
+      "description": "Message name."
+     },
+     "languageCode": {
+      "type": "string",
+      "description": "Language code."
+     },
+     "tags": {
+      "type": "array",
+      "description": "List of tags."
+     },
+     "subscriptionsKeys": {
+      "type": "array",
+      "description": "Subscription categories keys, assigned to a message."
+     },
+     "languages": {
+      "type": "array",
+      "description": "An array with the language codes for multilingual messages. Available for the GET method only."
+     },
+     "from": {
+      "type": "string",
+      "description": "Sender name. Must exist in your account."
+     },
+     "transactional": {
+      "type": "boolean",
+      "description": "Transactional messages have lower cost, but can contain only text. Content must be agreed with provider for successful sending. Default - false."
+     },
+     "templateId": {
+      "type": "string",
+      "description": "Provider template ID for a transactional Viber message."
+     },
+     "text": {
+      "type": "string",
+      "description": "Message text."
+     },
+     "img": {
+      "type": "string",
+      "description": "Image URL for message. If set, caption and action must be set too."
+     },
+     "caption": {
+      "type": "string",
+      "description": "Button text. If set, img and action must be set too."
+     },
+     "action": {
+      "type": "string",
+      "description": "Link assigned to button. If set, img and caption must be set too."
+     },
+     "ttlSec": {
+      "type": "integer",
+      "description": "Time to live for message in seconds. Default - 86400 (1 day)."
+     },
+     "smsFallback": {
+      "type": "boolean",
+      "description": "Enables smsFallback feature: send SMS message instead of Viber, if contact does not have Viber app installed. Default - false."
+     },
+     "smsSender": {
+      "type": "string",
+      "description": "SMS sender name for smsFallback feature."
+     },
+     "smsContent": {
+      "type": "string",
+      "description": "SMS text for smsFallback feature."
+     },
+     "carouselItems": {
+      "type": "array",
+      "description": "Carousel items (2-5 items). When provided, img/action/caption are ignored."
+     },
+     "translations": {
+      "type": "array",
+      "description": "An array with translations to other languages. Available for the GET method only."
+     }
+    },
+    "required": [
+     "from",
+     "id",
+     "language",
+     "name",
+     "text"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://esputnik.com/api/api/v1/messages/viber/{id}/{language}",
+    "path": [
+     "id",
+     "language"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "id",
+     "name",
+     "languageCode",
+     "tags",
+     "subscriptionsKeys",
+     "languages",
+     "from",
+     "transactional",
+     "templateId",
+     "text",
+     "img",
+     "caption",
+     "action",
+     "ttlSec",
+     "smsFallback",
+     "smsSender",
+     "smsContent",
+     "carouselItems",
+     "translations"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.update_translated_app_inbox_message",
+   "name": "Update language version of app inbox message",
+   "description": "The method is used for updating the language version of the app inbox message.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "integer",
+      "description": "Message ID."
+     },
+     "language": {
+      "type": "string",
+      "description": "App inbox message language code"
+     },
+     "name": {
+      "type": "string",
+      "description": "Message name."
+     },
+     "languageCode": {
+      "type": "string",
+      "description": "Language code."
+     },
+     "tags": {
+      "type": "array",
+      "description": "List of tags."
+     },
+     "subscriptionsKeys": {
+      "type": "array",
+      "description": "Subscription categories keys, assigned to a message."
+     },
+     "languages": {
+      "type": "array",
+      "description": "An array with the language codes for multilingual messages. Available for the GET method only."
+     },
+     "title": {
+      "type": "string",
+      "description": "Message title."
+     },
+     "text": {
+      "type": "string",
+      "description": "Message text."
+     },
+     "link": {
+      "type": "string",
+      "description": "The link that will open after the click on the message body."
+     },
+     "imageSource": {
+      "type": "string",
+      "description": "The logo image in JPEG, PNG or GIF format."
+     },
+     "customData": {
+      "type": "string",
+      "description": "Additional parameters in JSON format to be used in the message."
+     },
+     "ttlSec": {
+      "type": "integer",
+      "description": "Time-to-live for the message, in seconds."
+     },
+     "translations": {
+      "type": "array",
+      "description": "The array of the language versions for the current message. Available for the GET method only."
+     }
+    },
+    "required": [
+     "id",
+     "language",
+     "name",
+     "text",
+     "title"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://esputnik.com/api/api/v1/messages/appinbox/{id}/{language}",
+    "path": [
+     "id",
+     "language"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "id",
+     "name",
+     "languageCode",
+     "tags",
+     "subscriptionsKeys",
+     "languages",
+     "title",
+     "text",
+     "link",
+     "imageSource",
+     "customData",
+     "ttlSec",
+     "translations"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.update_translated_mobile_push_message",
+   "name": "Update translated mobile push message",
+   "description": "The method is used for updating the language version of mobile push message",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "integer",
+      "description": "Message ID."
+     },
+     "language": {
+      "type": "string",
+      "description": "Language code"
+     },
+     "name": {
+      "type": "string",
+      "description": "Message name."
+     },
+     "languageCode": {
+      "type": "string",
+      "description": "Language code."
+     },
+     "tags": {
+      "type": "array",
+      "description": "List of tags."
+     },
+     "subscriptionsKeys": {
+      "type": "array",
+      "description": "Subscription categories keys, assigned to a message."
+     },
+     "languages": {
+      "type": "array",
+      "description": "An array with the language codes for multilingual messages. Available for the GET method only."
+     },
+     "title": {
+      "type": "string",
+      "description": "Message title."
+     },
+     "subtitle": {
+      "type": "string",
+      "description": "Message subtitle. Visible only to iOS users."
+     },
+     "text": {
+      "type": "string",
+      "description": "Message text."
+     },
+     "link": {
+      "type": "string",
+      "description": "Can be either an external link (opens in device browser) or a deep link (opens some section of the app)."
+     },
+     "imageSource": {
+      "type": "string",
+      "description": "Image URL for a single image in a message. Use 'images' array to create an images carousel."
+     },
+     "customData": {
+      "type": "string",
+      "description": "Additional parameters in JSON format to be used in the push message."
+     },
+     "ttlSec": {
+      "type": "integer",
+      "description": "Time-to-live for a message; in seconds."
+     },
+     "buttons": {
+      "type": "array",
+      "description": "Use buttons to implement various actions. 4 buttons for iOS, 3 buttons for Android are supported."
+     },
+     "soundEnabled": {
+      "type": "boolean",
+      "description": "Enable to play sound when user receives push-message."
+     },
+     "badgeCount": {
+      "type": "integer",
+      "description": "The number of unread messages shown to the user."
+     },
+     "images": {
+      "type": "array",
+      "description": "The array of image URLs for images carousel. Up to 10 images."
+     },
+     "translations": {
+      "type": "array",
+      "description": "The array of language versions for the current message. Available for GET method only."
+     }
+    },
+    "required": [
+     "id",
+     "language",
+     "name",
+     "text",
+     "title"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://esputnik.com/api/api/v1/messages/mobilepush/{id}/{language}",
+    "path": [
+     "id",
+     "language"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "id",
+     "name",
+     "languageCode",
+     "tags",
+     "subscriptionsKeys",
+     "languages",
+     "title",
+     "subtitle",
+     "text",
+     "link",
+     "imageSource",
+     "customData",
+     "ttlSec",
+     "buttons",
+     "soundEnabled",
+     "badgeCount",
+     "images",
+     "translations"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.update_translated_telegram_bot_message",
+   "name": "Update translated telegram bot message",
+   "description": "The method is used for updating the language version of telegram bot message",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "integer",
+      "description": "Message ID."
+     },
+     "language": {
+      "type": "string",
+      "description": "Language code"
+     },
+     "name": {
+      "type": "string",
+      "description": "Message name."
+     },
+     "languageCode": {
+      "type": "string",
+      "description": "Language code."
+     },
+     "tags": {
+      "type": "array",
+      "description": "List of tags."
+     },
+     "subscriptionsKeys": {
+      "type": "array",
+      "description": "Subscription categories keys, assigned to a message."
+     },
+     "languages": {
+      "type": "array",
+      "description": "An array with the language codes for multilingual messages. Available for the GET method only."
+     },
+     "text": {
+      "type": "string",
+      "description": ""
+     },
+     "imageSource": {
+      "type": "string",
+      "description": "Image URL for a single image in a message."
+     },
+     "buttons": {
+      "type": "array",
+      "description": "Use buttons to implement various actions."
+     },
+     "translations": {
+      "type": "array",
+      "description": "An array with translations to other languages. Available for the GET method only."
+     }
+    },
+    "required": [
+     "id",
+     "language",
+     "name"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://esputnik.com/api/api/v1/messages/telegram/{id}/{language}",
+    "path": [
+     "id",
+     "language"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "id",
+     "name",
+     "languageCode",
+     "tags",
+     "subscriptionsKeys",
+     "languages",
+     "text",
+     "imageSource",
+     "buttons",
+     "translations"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "esputnik.upload_preprocessor_file",
+   "name": "Upload file for preprocessor",
+   "description": "The method is used for uploading a file for the preprocessor from an external repository.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "link": {
+      "type": "string",
+      "description": "The link to the PreProcessor data file in an external repository."
+     },
+     "preprocessorType": {
+      "type": "string",
+      "description": "PreProcessor data type [Random, Key]."
+     },
+     "ttlHours": {
+      "type": "integer",
+      "description": "File time to live in the system in hours. The default value is 1 month."
+     }
+    },
+    "required": [
+     "link",
+     "preprocessorType"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://esputnik.com/api/api/v1/preprocessor/file/upload",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "link",
+     "preprocessorType",
+     "ttlHours"
+    ],
+    "body_format": "json"
+   }
+  }
+ ]
+}

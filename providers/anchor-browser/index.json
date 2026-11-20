@@ -1,0 +1,5320 @@
+{
+ "_": "GENERATED \u2014 what an authoring tool needs to FIND an operation. The calling table is the .lua beside it.",
+ "provider": "anchor-browser",
+ "source": "https://docs.anchorbrowser.io/openapi.yaml",
+ "operations": [
+  {
+   "slug": "anchor-browser.create_webhook",
+   "name": "Create webhook",
+   "description": "Register a new HTTPS endpoint to receive events. The response includes a one-time `secret` (HMAC-SHA256 signing key) \u2014 store it; Anchor never returns it again. Up to 5 webhooks per project.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "url": {
+      "type": "string",
+      "description": "HTTPS endpoint Anchor will POST events to. Rejected (400) if it points at loopback / private / link-local IPs, cloud metadata services, internal-only TLDs, AWS STS / IAM / EKS endpoints, or contains basic-auth credentials."
+     },
+     "description": {
+      "type": "string",
+      "description": "Optional human-readable description."
+     },
+     "subscribed_events": {
+      "type": "array",
+      "description": "Events this webhook should receive. At least one is required."
+     }
+    },
+    "required": [
+     "subscribed_events",
+     "url"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anchorbrowser.io/v1/webhooks",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "url",
+     "description",
+     "subscribed_events"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.delete_v1_applications_applicationId",
+   "name": "Delete application",
+   "description": "Deletes an existing application.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "applicationId": {
+      "type": "string",
+      "description": "The ID of the application to delete"
+     }
+    },
+    "required": [
+     "applicationId"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.anchorbrowser.io/v1/applications/{applicationId}",
+    "path": [
+     "applicationId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.delete_v1_applications_applicationId_auth_flows_authFlowId",
+   "name": "Delete authentication flow",
+   "description": "Deletes an existing authentication flow.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "applicationId": {
+      "type": "string",
+      "description": "The ID of the application"
+     },
+     "authFlowId": {
+      "type": "string",
+      "description": "The ID of the authentication flow to delete"
+     }
+    },
+    "required": [
+     "applicationId",
+     "authFlowId"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.anchorbrowser.io/v1/applications/{applicationId}/auth-flows/{authFlowId}",
+    "path": [
+     "applicationId",
+     "authFlowId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.delete_v1_batch_sessions_batch_id",
+   "name": "Delete batch sessions",
+   "description": "Deletes all sessions in a batch. Running sessions will be terminated and all session data will be removed.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "batch_id": {
+      "type": "string",
+      "description": "The unique identifier of the batch"
+     }
+    },
+    "required": [
+     "batch_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.anchorbrowser.io/v1/batch-sessions/{batch_id}",
+    "path": [
+     "batch_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.delete_v1_certificates_name",
+   "name": "Delete certificate",
+   "description": "Delete a CA certificate by name. The certificate will be removed from storage and can no longer be used in new sessions.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": "string",
+      "description": "The name of the certificate to delete"
+     }
+    },
+    "required": [
+     "name"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.anchorbrowser.io/v1/certificates/{name}",
+    "path": [
+     "name"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.delete_v1_extensions_id",
+   "name": "Delete extension",
+   "description": "Delete an extension and remove it from storage",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "The ID of the extension to delete"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.anchorbrowser.io/v1/extensions/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.delete_v1_identities_identityId",
+   "name": "Delete identity",
+   "description": "Deletes an existing identity.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "identityId": {
+      "type": "string",
+      "description": "The ID of the identity to delete"
+     }
+    },
+    "required": [
+     "identityId"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.anchorbrowser.io/v1/identities/{identityId}",
+    "path": [
+     "identityId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.delete_v1_integrations_integrationId",
+   "name": "Delete integration",
+   "description": "Deletes an existing integration and removes its stored credentials.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "integrationId": {
+      "type": "string",
+      "description": "The ID of the integration to delete"
+     }
+    },
+    "required": [
+     "integrationId"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.anchorbrowser.io/v1/integrations/{integrationId}",
+    "path": [
+     "integrationId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.delete_v1_profiles_name",
+   "name": "Delete profile",
+   "description": "Deletes an existing profile by its name.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": "string",
+      "description": "The name of the profile to delete."
+     }
+    },
+    "required": [
+     "name"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.anchorbrowser.io/v1/profiles/{name}",
+    "path": [
+     "name"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.delete_v1_sessions_all",
+   "name": "End all sessions",
+   "description": "Terminates all active browser sessions associated with the provided API key.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.anchorbrowser.io/v1/sessions/all",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.delete_v1_sessions_session_id",
+   "name": "End browser session",
+   "description": "Deletes the browser session associated with the provided browser session ID. Requires a valid API key for authentication.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "session_id": {
+      "type": "string",
+      "description": "The ID of the browser session to end."
+     }
+    },
+    "required": [
+     "session_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.anchorbrowser.io/v1/sessions/{session_id}",
+    "path": [
+     "session_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.delete_v1_sessions_session_id_recordings_recording_id",
+   "name": "Delete session recording",
+   "description": "Deletes a specific recording from a browser session. Use \"primary\" as the recording_id to delete the primary recording.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "session_id": {
+      "type": "string",
+      "description": "The ID of the browser session the recording belongs to."
+     },
+     "recording_id": {
+      "type": "string",
+      "description": "The ID of the recording to delete. Use \"primary\" to delete the primary recording."
+     }
+    },
+    "required": [
+     "recording_id",
+     "session_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.anchorbrowser.io/v1/sessions/{session_id}/recordings/{recording_id}",
+    "path": [
+     "session_id",
+     "recording_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.delete_v1_sessions_session_id_tags",
+   "name": "Delete session tags",
+   "description": "Clears all tags from a browser session.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "session_id": {
+      "type": "string",
+      "description": "The ID of the session to clear tags for."
+     }
+    },
+    "required": [
+     "session_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.anchorbrowser.io/v1/sessions/{session_id}/tags",
+    "path": [
+     "session_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.delete_v1_sessions_session_id_tokens_token",
+   "name": "Revoke session token",
+   "description": "Revoke a token minted for a session. Its URL stops opening new connections; connections already open stay until they close.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "session_id": {
+      "type": "string",
+      "description": "The ID of the session."
+     }
+    },
+    "required": [
+     "session_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.anchorbrowser.io/v1/sessions/{session_id}/tokens/{token}",
+    "path": [
+     "session_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.delete_v1_task_taskId",
+   "name": "Delete task (legacy)",
+   "description": "Soft deletes a task and all its versions. The task will no longer be accessible but the data is preserved for potential recovery. If you are using the new Task Builder, see the non-deprecated Tasks endpoints in this API reference.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "taskId": {
+      "type": "string",
+      "description": "The ID of the task to delete"
+     }
+    },
+    "required": [
+     "taskId"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.anchorbrowser.io/v1/task/{taskId}",
+    "path": [
+     "taskId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.delete_v1_task_taskId_taskVersion",
+   "name": "Delete task version (legacy)",
+   "description": "Soft deletes a specific version of a task. The version will no longer be accessible but the data is preserved for potential recovery. If you are using the new Task Builder, see the Tasks V2 endpoints in this API reference.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "taskId": {
+      "type": "string",
+      "description": "The ID of the task"
+     },
+     "taskVersion": {
+      "type": "string",
+      "description": "The version to delete"
+     }
+    },
+    "required": [
+     "taskId",
+     "taskVersion"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.anchorbrowser.io/v1/task/{taskId}/{taskVersion}",
+    "path": [
+     "taskId",
+     "taskVersion"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.delete_v1_volumes_volume_id",
+   "name": "Delete volume",
+   "description": "Delete a volume and every file in it. Refused while a running session has the volume mounted; end those sessions first.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "volume_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "volume_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.anchorbrowser.io/v1/volumes/{volume_id}",
+    "path": [
+     "volume_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.delete_v1_volumes_volume_id_files",
+   "name": "Delete files",
+   "description": "Delete one file (`path`) or everything under a folder (`prefix` with `recursive=true`).",
+   "input": {
+    "type": "object",
+    "properties": {
+     "volume_id": {
+      "type": "string",
+      "description": ""
+     },
+     "path": {
+      "type": "string",
+      "description": "File to delete, relative to the volume root"
+     },
+     "prefix": {
+      "type": "string",
+      "description": "Folder to delete recursively; requires `recursive=true`"
+     },
+     "recursive": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "true",
+       "false"
+      ]
+     }
+    },
+    "required": [
+     "volume_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.anchorbrowser.io/v1/volumes/{volume_id}/files",
+    "path": [
+     "volume_id"
+    ],
+    "query": [
+     "path",
+     "prefix",
+     "recursive"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.delete_webhook",
+   "name": "Delete webhook",
+   "description": "Soft-delete a webhook. New events stop fanning out immediately. The events history (`/v1/webhooks/{id}/events`) is still queryable for the retention window even after delete.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "Webhook id."
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.anchorbrowser.io/v1/webhooks/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.get_v1_agent_access",
+   "name": "Agent access guide",
+   "description": "Unauthenticated onboarding guide. This GET does **not** issue an API key. Follow the `next` field: GET `/v1/agent-access/challenge`, solve, then POST `/v1/agent-access` with `{ token, answer }`. Optional `identity_token` (OIDC JWT) grants more credits. Docs: https://docs.anchorbrowser.io/quickstart/agent-access",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anchorbrowser.io/v1/agent-access",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.get_v1_agent_access_appendix_appendixRef",
+   "name": "Agent access challenge data",
+   "description": "Supporting data for an active Agent Access challenge. Path comes from the challenge response.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "appendixRef": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "appendixRef"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anchorbrowser.io/v1/agent-access/appendix/{appendixRef}",
+    "path": [
+     "appendixRef"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.get_v1_agent_access_challenge",
+   "name": "Get agent access challenge",
+   "description": "Get a puzzle and token. Follow next and challenge.prompt, then POST /v1/agent-access with token and answer.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anchorbrowser.io/v1/agent-access/challenge",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.get_v1_applications",
+   "name": "List applications",
+   "description": "Retrieves all applications for the authenticated team.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "search": {
+      "type": "string",
+      "description": "Search query to filter applications by name"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anchorbrowser.io/v1/applications",
+    "path": [],
+    "query": [
+     "search"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.get_v1_applications_applicationId",
+   "name": "Get application",
+   "description": "Retrieves details of a specific application by its ID.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "applicationId": {
+      "type": "string",
+      "description": "The ID of the application to retrieve"
+     }
+    },
+    "required": [
+     "applicationId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anchorbrowser.io/v1/applications/{applicationId}",
+    "path": [
+     "applicationId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.get_v1_applications_applicationId_auth_flows",
+   "name": "List application authentication flows",
+   "description": "Retrieves all authentication flows for a specific application.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "applicationId": {
+      "type": "string",
+      "description": "The ID of the application"
+     }
+    },
+    "required": [
+     "applicationId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anchorbrowser.io/v1/applications/{applicationId}/auth-flows",
+    "path": [
+     "applicationId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.get_v1_applications_applicationId_identities",
+   "name": "List application identities",
+   "description": "Retrieves all identities associated with a specific application.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "applicationId": {
+      "type": "string",
+      "description": "The ID of the application"
+     },
+     "search": {
+      "type": "string",
+      "description": "Search query to filter identities by name"
+     },
+     "metadata": {
+      "type": "string",
+      "description": "Filter identities by metadata. Pass a **JSON object** to filter identities whose metadata contains the specified key-value pairs."
+     }
+    },
+    "required": [
+     "applicationId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anchorbrowser.io/v1/applications/{applicationId}/identities",
+    "path": [
+     "applicationId"
+    ],
+    "query": [
+     "search",
+     "metadata"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.get_v1_batch_sessions",
+   "name": "List batch sessions",
+   "description": "Lists all batch session requests for the authenticated team, with optional filtering by status and pagination support.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "status": {
+      "type": "string",
+      "description": "Filter batches by status",
+      "enum": [
+       "pending",
+       "processing",
+       "completed",
+       "failed",
+       "cancelled"
+      ]
+     },
+     "page": {
+      "type": "integer",
+      "description": "Page number (1-based)"
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Number of results per page"
+     },
+     "created_after": {
+      "type": "string",
+      "description": "Filter batches created after this timestamp (ISO 8601)"
+     },
+     "created_before": {
+      "type": "string",
+      "description": "Filter batches created before this timestamp (ISO 8601)"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anchorbrowser.io/v1/batch-sessions",
+    "path": [],
+    "query": [
+     "status",
+     "page",
+     "limit",
+     "created_after",
+     "created_before"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.get_v1_batch_sessions_batch_id",
+   "name": "Get batch session status",
+   "description": "Retrieves detailed status information for a specific batch, including progress, individual session details, and any errors that occurred.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "batch_id": {
+      "type": "string",
+      "description": "The unique identifier of the batch"
+     }
+    },
+    "required": [
+     "batch_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anchorbrowser.io/v1/batch-sessions/{batch_id}",
+    "path": [
+     "batch_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.get_v1_billing",
+   "name": "Get billing info",
+   "description": "Retrieves credit balance, current-period credit usage, tier, and billing limits for the authenticated project. Pass `from_date`, `to_date`, or `granularity` to additionally receive a `usage` time series of credits used per period, matching `GET /v1/sessions/history?metrics=credits_used`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "from_date": {
+      "type": "string",
+      "description": "Start of the usage window (ISO 8601 format, UTC). Passing any of `from_date`, `to_date`, or `granularity` adds a `usage` block to the response. Defaults to 30 days ago."
+     },
+     "to_date": {
+      "type": "string",
+      "description": "End of the usage window (ISO 8601 format, UTC). Defaults to now."
+     },
+     "granularity": {
+      "type": "string",
+      "description": "Time granularity for the usage time series.",
+      "enum": [
+       "hour",
+       "day",
+       "week",
+       "month"
+      ]
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anchorbrowser.io/v1/billing",
+    "path": [],
+    "query": [
+     "from_date",
+     "to_date",
+     "granularity"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.get_v1_certificates",
+   "name": "List certificates",
+   "description": "Get all CA certificates uploaded for the team",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anchorbrowser.io/v1/certificates",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.get_v1_extensions",
+   "name": "List extensions",
+   "description": "Get all extensions for the authenticated user",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anchorbrowser.io/v1/extensions",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.get_v1_extensions_id",
+   "name": "Get extension details",
+   "description": "Get details of a specific extension by its ID",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "The ID of the extension to retrieve"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anchorbrowser.io/v1/extensions/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.get_v1_identities_dynamic_state_session_id",
+   "name": "Get dynamic auth flow state",
+   "description": "Read-only snapshot of an in-progress dynamic auth flow. Does not acquire the flow lock or mutate state. Poll this endpoint when: - start/resolve returned `type: detection_failed` with `retryable: true` (the next login step is still being determined and may take longer than the request timeout) - start/resolve timed out or returned 409 while a transition is in flight - you need the current presenta",
+   "input": {
+    "type": "object",
+    "properties": {
+     "session_id": {
+      "type": "string",
+      "description": "Session whose auth flow state to read."
+     }
+    },
+    "required": [
+     "session_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anchorbrowser.io/v1/identities/dynamic/state/{session_id}",
+    "path": [
+     "session_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.get_v1_identities_identityId",
+   "name": "Get identity",
+   "description": "Retrieves details of a specific identity by its ID.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "identityId": {
+      "type": "string",
+      "description": "The ID of the identity to retrieve"
+     }
+    },
+    "required": [
+     "identityId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anchorbrowser.io/v1/identities/{identityId}",
+    "path": [
+     "identityId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.get_v1_integrations",
+   "name": "List integrations",
+   "description": "Retrieves all integrations for the authenticated team.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anchorbrowser.io/v1/integrations",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.get_v1_profiles",
+   "name": "List profiles",
+   "description": "Fetches all stored profiles.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anchorbrowser.io/v1/profiles",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.get_v1_profiles_name",
+   "name": "Get profile",
+   "description": "Retrieves details of a specific profile by its name.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": "string",
+      "description": "The name of the profile to retrieve."
+     }
+    },
+    "required": [
+     "name"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anchorbrowser.io/v1/profiles/{name}",
+    "path": [
+     "name"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.get_v1_sessions",
+   "name": "List sessions history page",
+   "description": "Retrieves a paginated list of sessions for the authenticated team with support for sorting and advanced filtering. This endpoint mirrors the backend session history-page filtering behavior.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "page": {
+      "type": "integer",
+      "description": "Page number to fetch."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Number of sessions per page. Supported values are 10, 20, and 50.",
+      "enum": [
+       10,
+       20,
+       50
+      ]
+     },
+     "sort_by": {
+      "type": "string",
+      "description": "Sort field. Common values are `created_at`, `session_id`, `used_credits`, `created_at`, and `api_key_name`."
+     },
+     "sort_order": {
+      "type": "string",
+      "description": "Sort direction.",
+      "enum": [
+       "asc",
+       "desc"
+      ]
+     },
+     "search": {
+      "type": "string",
+      "description": "Comma-separated tag search terms (partial, case-insensitive)."
+     },
+     "status": {
+      "type": "string",
+      "description": "Exact session status filter."
+     },
+     "tags": {
+      "type": "string",
+      "description": "Comma-separated tag list. Session must include all provided tags."
+     },
+     "domains": {
+      "type": "string",
+      "description": "Comma-separated domain list. Session must include all provided domains."
+     },
+     "created_from": {
+      "type": "string",
+      "description": "Include sessions created at or after this timestamp (ISO 8601)."
+     },
+     "created_to": {
+      "type": "string",
+      "description": "Include sessions created at or before this timestamp (ISO 8601)."
+     },
+     "batch_id": {
+      "type": "string",
+      "description": "Filter by batch identifier."
+     },
+     "task_initiated": {
+      "type": "boolean",
+      "description": "Filter by whether the session was task-initiated."
+     },
+     "proxy": {
+      "type": "boolean",
+      "description": "Filter by whether proxy was active for the session."
+     },
+     "extra_stealth": {
+      "type": "boolean",
+      "description": "Filter by whether extra stealth mode was active."
+     },
+     "profile_name": {
+      "type": "string",
+      "description": "Case-insensitive partial match on browser profile name."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anchorbrowser.io/v1/sessions",
+    "path": [],
+    "query": [
+     "page",
+     "limit",
+     "sort_by",
+     "sort_order",
+     "search",
+     "status",
+     "tags",
+     "domains",
+     "created_from",
+     "created_to",
+     "batch_id",
+     "task_initiated",
+     "proxy",
+     "extra_stealth",
+     "profile_name"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.get_v1_sessions_all_status",
+   "name": "List all sessions status",
+   "description": "Retrieves status information for all browser sessions associated with the API key.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "tags": {
+      "type": "string",
+      "description": "Comma-separated list of session tags to filter by. Sessions must contain all provided tags."
+     },
+     "domains": {
+      "type": "string",
+      "description": "Comma-separated list of domains to filter by. Sessions must contain all provided domains."
+     },
+     "created_from": {
+      "type": "string",
+      "description": "Include sessions created at or after this timestamp (ISO 8601)."
+     },
+     "created_to": {
+      "type": "string",
+      "description": "Include sessions created at or before this timestamp (ISO 8601)."
+     },
+     "batch_id": {
+      "type": "string",
+      "description": "Filter sessions by batch identifier."
+     },
+     "task_initiated": {
+      "type": "boolean",
+      "description": "Filter by whether the session was initiated by a task."
+     },
+     "proxy": {
+      "type": "boolean",
+      "description": "Filter by whether proxy was active for the session."
+     },
+     "extra_stealth": {
+      "type": "boolean",
+      "description": "Filter by whether extra stealth mode was active for the session."
+     },
+     "profile_name": {
+      "type": "string",
+      "description": "Filter sessions by browser profile name (case-insensitive partial match)."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anchorbrowser.io/v1/sessions/all/status",
+    "path": [],
+    "query": [
+     "tags",
+     "domains",
+     "created_from",
+     "created_to",
+     "batch_id",
+     "task_initiated",
+     "proxy",
+     "extra_stealth",
+     "profile_name"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.get_v1_sessions_async_request_id_status",
+   "name": "Async session status",
+   "description": "Polling endpoint paired with `POST /v1/sessions/async`. Returns the current lifecycle `status` of the async request and, once the pod is up, the embedded `session` object containing `session_id`, `cdp_url` and `live_view_url`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "request_id": {
+      "type": "string",
+      "description": "The `request_id` returned from `POST /v1/sessions/async`."
+     }
+    },
+    "required": [
+     "request_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anchorbrowser.io/v1/sessions/async/{request_id}/status",
+    "path": [
+     "request_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.get_v1_sessions_history",
+   "name": "Get sessions history",
+   "description": "Retrieves session usage analytics for the authenticated team.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "from_date": {
+      "type": "string",
+      "description": "Start date for filtering (ISO 8601 format)."
+     },
+     "to_date": {
+      "type": "string",
+      "description": "End date for filtering (ISO 8601 format)."
+     },
+     "granularity": {
+      "type": "string",
+      "description": "Time granularity for aggregation.",
+      "enum": [
+       "hour",
+       "day",
+       "week",
+       "month"
+      ]
+     },
+     "metrics": {
+      "type": "string",
+      "description": "Metrics to include in the response."
+     },
+     "page": {
+      "type": "integer",
+      "description": "Page number for pagination."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Number of records per page."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anchorbrowser.io/v1/sessions/history",
+    "path": [],
+    "query": [
+     "from_date",
+     "to_date",
+     "granularity",
+     "metrics",
+     "page",
+     "limit"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.get_v1_sessions_pending_interventions",
+   "name": "List pending human interventions",
+   "description": "Returns all pending human-in-the-loop (HITL) requests across the team's active browser sessions. Each item includes the intervention request plus the session ID and tags for routing responses.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anchorbrowser.io/v1/sessions/pending-interventions",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.get_v1_sessions_sessionId_agent_files",
+   "name": "List agent resources",
+   "description": "List all resources that have been uploaded to the browser session for agent use. Returns resource metadata including name, size, type, and last modified timestamp.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sessionId": {
+      "type": "string",
+      "description": "The browser session ID"
+     }
+    },
+    "required": [
+     "sessionId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anchorbrowser.io/v1/sessions/{sessionId}/agent/files",
+    "path": [
+     "sessionId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.get_v1_sessions_sessionId_clipboard",
+   "name": "Get clipboard content",
+   "description": "Retrieves the current content of the clipboard",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sessionId": {
+      "type": "string",
+      "description": "The ID of the browser session"
+     }
+    },
+    "required": [
+     "sessionId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anchorbrowser.io/v1/sessions/{sessionId}/clipboard",
+    "path": [
+     "sessionId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.get_v1_sessions_sessionId_screenshot",
+   "name": "Take screenshot",
+   "description": "Takes a screenshot of the current browser session and returns it as an image.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sessionId": {
+      "type": "string",
+      "description": "The ID of the browser session"
+     }
+    },
+    "required": [
+     "sessionId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anchorbrowser.io/v1/sessions/{sessionId}/screenshot",
+    "path": [
+     "sessionId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.get_v1_sessions_session_id",
+   "name": "Get browser session",
+   "description": "Retrieves detailed information about a specific browser session.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "session_id": {
+      "type": "string",
+      "description": "The ID of the session to retrieve."
+     }
+    },
+    "required": [
+     "session_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anchorbrowser.io/v1/sessions/{session_id}",
+    "path": [
+     "session_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.get_v1_sessions_session_id_agent_requested_human_intervention",
+   "name": "Get requested human interventions",
+   "description": "Retrieves pending human-in-the-loop (HITL) requests for a specific active browser session. Requires `human_intervention: true` on the task that is running in the session. The agent pauses until a response is submitted via `POST /v1/sessions/{session_id}/agent/respond-to-human-intervention`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "session_id": {
+      "type": "string",
+      "description": "The ID of the browser session"
+     }
+    },
+    "required": [
+     "session_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anchorbrowser.io/v1/sessions/{session_id}/agent/requested-human-intervention",
+    "path": [
+     "session_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.get_v1_sessions_session_id_downloads",
+   "name": "List session downloads",
+   "description": "Retrieves metadata of files downloaded during a browser session. Requires a valid API key for authentication.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "session_id": {
+      "type": "string",
+      "description": "The unique identifier of the browser session to retrieve downloads for."
+     }
+    },
+    "required": [
+     "session_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anchorbrowser.io/v1/sessions/{session_id}/downloads",
+    "path": [
+     "session_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.get_v1_sessions_session_id_pages",
+   "name": "Get browser session pages",
+   "description": "Retrieves a list of pages associated with a specific browser session.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "session_id": {
+      "type": "string",
+      "description": "The ID of the session to retrieve pages for."
+     }
+    },
+    "required": [
+     "session_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anchorbrowser.io/v1/sessions/{session_id}/pages",
+    "path": [
+     "session_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.get_v1_sessions_session_id_recordings",
+   "name": "List session recordings",
+   "description": "Retrieves the URLs of the browser session's video recordings. Requires a valid API key for authentication.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "session_id": {
+      "type": "string",
+      "description": "The ID of the browser session to retrieve recordings for."
+     }
+    },
+    "required": [
+     "session_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anchorbrowser.io/v1/sessions/{session_id}/recordings",
+    "path": [
+     "session_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.get_v1_sessions_session_id_recordings_primary_fetch",
+   "name": "Get session recording",
+   "description": "Downloads the primary recording file for the specified browser session. Returns the recording as an MP4 file.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "session_id": {
+      "type": "string",
+      "description": "The ID of the browser session to download the recording for."
+     }
+    },
+    "required": [
+     "session_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anchorbrowser.io/v1/sessions/{session_id}/recordings/primary/fetch",
+    "path": [
+     "session_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.get_v1_sessions_session_id_tags",
+   "name": "Get session tags",
+   "description": "Retrieves the tags associated with a specific browser session.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "session_id": {
+      "type": "string",
+      "description": "The ID of the session to retrieve tags for."
+     }
+    },
+    "required": [
+     "session_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anchorbrowser.io/v1/sessions/{session_id}/tags",
+    "path": [
+     "session_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.get_v1_task",
+   "name": "List tasks (legacy)",
+   "description": "Retrieves a paginated list of all tasks for the authenticated team. Tasks are returned with their latest version information and metadata. If you are using the new Task Builder, see the non-deprecated Tasks endpoints in this API reference.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "page": {
+      "type": "string",
+      "description": "Page number"
+     },
+     "limit": {
+      "type": "string",
+      "description": "Number of tasks per page"
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anchorbrowser.io/v1/task",
+    "path": [],
+    "query": [
+     "page",
+     "limit"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.get_v1_task_taskId",
+   "name": "Get task metadata (legacy)",
+   "description": "Retrieves task metadata without the code content. Useful for getting task information without downloading the full task code. If you are using the new Task Builder, see the non-deprecated Tasks endpoints in this API reference.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "taskId": {
+      "type": "string",
+      "description": "The ID of the task to retrieve"
+     }
+    },
+    "required": [
+     "taskId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anchorbrowser.io/v1/task/{taskId}",
+    "path": [
+     "taskId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.get_v1_task_taskId_draft",
+   "name": "Get task draft (legacy)",
+   "description": "Retrieves the draft version of a task, including the full code content. If you are using the new Task Builder, see the non-deprecated Tasks endpoints in this API reference.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "taskId": {
+      "type": "string",
+      "description": "The ID of the task"
+     }
+    },
+    "required": [
+     "taskId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anchorbrowser.io/v1/task/{taskId}/draft",
+    "path": [
+     "taskId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.get_v1_task_taskId_executions",
+   "name": "List task executions (legacy)",
+   "description": "Retrieves execution history for a task, including success/failure status, execution times, and outputs. Results can be filtered by version and status. If you are using the new Task Builder, see the Tasks V2 endpoints in this API reference.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "taskId": {
+      "type": "string",
+      "description": "The ID of the task"
+     },
+     "page": {
+      "type": "string",
+      "description": "Page number"
+     },
+     "limit": {
+      "type": "string",
+      "description": "Number of results per page"
+     },
+     "status": {
+      "type": "string",
+      "description": "Filter by execution status",
+      "enum": [
+       "success",
+       "failure",
+       "timeout",
+       "cancelled",
+       "queued",
+       "running"
+      ]
+     },
+     "version": {
+      "type": "string",
+      "description": "Filter by task version"
+     }
+    },
+    "required": [
+     "taskId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anchorbrowser.io/v1/task/{taskId}/executions",
+    "path": [
+     "taskId"
+    ],
+    "query": [
+     "page",
+     "limit",
+     "status",
+     "version"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.get_v1_task_taskId_executions_executionId",
+   "name": "Get task execution result (legacy)",
+   "description": "Retrieves a single execution result by its ID. This endpoint is useful for polling execution status in async mode or retrieving detailed execution information. If you are using the new Task Builder, see the Tasks V2 endpoints in this API reference.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "taskId": {
+      "type": "string",
+      "description": "The ID of the task"
+     },
+     "executionId": {
+      "type": "string",
+      "description": "The ID of the execution result"
+     }
+    },
+    "required": [
+     "executionId",
+     "taskId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anchorbrowser.io/v1/task/{taskId}/executions/{executionId}",
+    "path": [
+     "taskId",
+     "executionId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.get_v1_task_taskId_latest",
+   "name": "Get latest task version (legacy)",
+   "description": "Retrieves the latest version of a task, including the full code content. If you are using the new Task Builder, see the non-deprecated Tasks endpoints in this API reference.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "taskId": {
+      "type": "string",
+      "description": "The ID of the task"
+     }
+    },
+    "required": [
+     "taskId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anchorbrowser.io/v1/task/{taskId}/latest",
+    "path": [
+     "taskId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.get_v1_task_taskId_taskVersion",
+   "name": "Get task version (legacy)",
+   "description": "Retrieves a specific version of a task, including the full code content. If you are using the new Task Builder, see the Tasks V2 endpoints in this API reference.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "taskId": {
+      "type": "string",
+      "description": "The ID of the task"
+     },
+     "taskVersion": {
+      "type": "string",
+      "description": "The version to retrieve (draft, latest, or version number)"
+     }
+    },
+    "required": [
+     "taskId",
+     "taskVersion"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anchorbrowser.io/v1/task/{taskId}/{taskVersion}",
+    "path": [
+     "taskId",
+     "taskVersion"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.get_v1_task_taskId_versions",
+   "name": "List task versions (legacy)",
+   "description": "Retrieves all versions of a specific task, including draft and published versions. If you are using the new Task Builder, see the non-deprecated Tasks endpoints in this API reference.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "taskId": {
+      "type": "string",
+      "description": "The ID of the task"
+     }
+    },
+    "required": [
+     "taskId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anchorbrowser.io/v1/task/{taskId}/versions",
+    "path": [
+     "taskId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.get_v1_tools_perform_web_task_workflowId_status",
+   "name": "Get perform web task status",
+   "description": "Get the status of an asynchronous perform-web-task execution by workflow ID.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "workflowId": {
+      "type": "string",
+      "description": "The workflow ID returned when starting an asynchronous perform-web-task execution."
+     }
+    },
+    "required": [
+     "workflowId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anchorbrowser.io/v1/tools/perform-web-task/{workflowId}/status",
+    "path": [
+     "workflowId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.get_v1_volumes",
+   "name": "List volumes",
+   "description": "List the volumes of your team.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "include_deleted": {
+      "type": "string",
+      "description": "Include deleted volumes. Defaults to `false`.",
+      "enum": [
+       "true",
+       "false"
+      ]
+     },
+     "state": {
+      "type": "string",
+      "description": "Only return volumes in this state",
+      "enum": [
+       "creating",
+       "ready",
+       "deleting",
+       "deleted",
+       "error"
+      ]
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anchorbrowser.io/v1/volumes",
+    "path": [],
+    "query": [
+     "include_deleted",
+     "state"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.get_v1_volumes_by_name_name",
+   "name": "Get volume by name",
+   "description": "Get a volume by its name.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "name"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anchorbrowser.io/v1/volumes/by-name/{name}",
+    "path": [
+     "name"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.get_v1_volumes_volume_id",
+   "name": "Get volume",
+   "description": "Get a volume by its ID. Deleted volumes return `404`; use `GET /v1/volumes?include_deleted=true` to see them.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "volume_id": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "volume_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anchorbrowser.io/v1/volumes/{volume_id}",
+    "path": [
+     "volume_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.get_v1_volumes_volume_id_files",
+   "name": "List files",
+   "description": "List the contents of a folder in the volume (one level, like `ls`), or the whole tree with `recursive=true`. Files written by a running session appear here about a minute after the session stops writing to them.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "volume_id": {
+      "type": "string",
+      "description": ""
+     },
+     "path": {
+      "type": "string",
+      "description": "Folder to list, relative to the volume root. Omit for the root."
+     },
+     "recursive": {
+      "type": "string",
+      "description": "List every file under `path` instead of one level",
+      "enum": [
+       "true",
+       "false"
+      ]
+     },
+     "cursor": {
+      "type": "string",
+      "description": "`next_cursor` from the previous page"
+     },
+     "limit": {
+      "type": "string",
+      "description": "Page size, 1 to 1000"
+     }
+    },
+    "required": [
+     "volume_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anchorbrowser.io/v1/volumes/{volume_id}/files",
+    "path": [
+     "volume_id"
+    ],
+    "query": [
+     "path",
+     "recursive",
+     "cursor",
+     "limit"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.get_v1_volumes_volume_id_files_download",
+   "name": "Download file",
+   "description": "Get a pre-signed URL for a file. Pass `redirect=true` to be redirected to the file instead of receiving the URL.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "volume_id": {
+      "type": "string",
+      "description": ""
+     },
+     "path": {
+      "type": "string",
+      "description": "File path relative to the volume root"
+     },
+     "redirect": {
+      "type": "string",
+      "description": "Respond with a `302` to the file instead of JSON",
+      "enum": [
+       "true",
+       "false"
+      ]
+     }
+    },
+    "required": [
+     "path",
+     "volume_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anchorbrowser.io/v1/volumes/{volume_id}/files/download",
+    "path": [
+     "volume_id"
+    ],
+    "query": [
+     "path",
+     "redirect"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.get_v1_volumes_volume_id_files_stat",
+   "name": "Get file info",
+   "description": "Size, type and modification time of one file.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "volume_id": {
+      "type": "string",
+      "description": ""
+     },
+     "path": {
+      "type": "string",
+      "description": "File path relative to the volume root"
+     }
+    },
+    "required": [
+     "path",
+     "volume_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anchorbrowser.io/v1/volumes/{volume_id}/files/stat",
+    "path": [
+     "volume_id"
+    ],
+    "query": [
+     "path"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.get_v1_volumes_volume_id_paths",
+   "name": "List all paths",
+   "description": "Flat list of every path in the volume, optionally under a prefix. Folders appear with a trailing slash (for example `downloads/`).",
+   "input": {
+    "type": "object",
+    "properties": {
+     "volume_id": {
+      "type": "string",
+      "description": ""
+     },
+     "prefix": {
+      "type": "string",
+      "description": "Only paths under this folder"
+     },
+     "cursor": {
+      "type": "string",
+      "description": ""
+     },
+     "limit": {
+      "type": "string",
+      "description": "Page size, 1 to 1000"
+     }
+    },
+    "required": [
+     "volume_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anchorbrowser.io/v1/volumes/{volume_id}/paths",
+    "path": [
+     "volume_id"
+    ],
+    "query": [
+     "prefix",
+     "cursor",
+     "limit"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.get_v2_tasks_runs_runId_status",
+   "name": "Get task run status",
+   "description": "Retrieves the current status and result of a task run in the non-deprecated Tasks endpoints.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "runId": {
+      "type": "string",
+      "description": "The ID of the task run"
+     }
+    },
+    "required": [
+     "runId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anchorbrowser.io/v2/tasks/runs/{runId}/status",
+    "path": [
+     "runId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.get_v2_tasks_taskId_generation_status",
+   "name": "Get task generation status",
+   "description": "Returns the generation status of a task created via `POST /v2/tasks/generate`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "taskId": {
+      "type": "string",
+      "description": "The ID of the task"
+     }
+    },
+    "required": [
+     "taskId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anchorbrowser.io/v2/tasks/{taskId}/generation-status",
+    "path": [
+     "taskId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.get_webhook",
+   "name": "Get webhook",
+   "description": "Fetch a single webhook config. The signing secret is never returned.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "Webhook id."
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anchorbrowser.io/v1/webhooks/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.list_webhook_events",
+   "name": "List webhook deliveries",
+   "description": "Paginated history of every delivery attempt for this webhook (succeeded, failed, or dead-lettered). Filter by status, event type, or time range. Retention: 7 days.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "Webhook id."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Page size, 1\u2013100. Defaults to 25."
+     },
+     "offset": {
+      "type": "integer",
+      "description": "Number of rows to skip from the beginning of the result set."
+     },
+     "status": {
+      "type": "string",
+      "description": "Filter by delivery status.",
+      "enum": [
+       "pending",
+       "succeeded",
+       "failed",
+       "dead"
+      ]
+     },
+     "event_type": {
+      "type": "string",
+      "description": "Filter by event type.",
+      "enum": [
+       "task.completed",
+       "task.failed",
+       "task.cancelled",
+       "task.healed",
+       "session.ready",
+       "session.completed",
+       "session.failed",
+       "session.recording.ready",
+       "batch.completed",
+       "batch.failed",
+       "intervention.requested",
+       "intervention.resolved"
+      ]
+     },
+     "since": {
+      "type": "string",
+      "description": "Only include deliveries scheduled at or after this ISO 8601 timestamp."
+     },
+     "until": {
+      "type": "string",
+      "description": "Only include deliveries scheduled at or before this ISO 8601 timestamp."
+     },
+     "include_payload": {
+      "type": "string",
+      "description": "Set to `true` to include each delivery's sanitized event `data` (as delivered to your endpoint) in the `payload` field of every row.",
+      "enum": [
+       "true",
+       "false"
+      ]
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anchorbrowser.io/v1/webhooks/{id}/events",
+    "path": [
+     "id"
+    ],
+    "query": [
+     "limit",
+     "offset",
+     "status",
+     "event_type",
+     "since",
+     "until",
+     "include_payload"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.list_webhooks",
+   "name": "List webhooks",
+   "description": "List every active webhook for the authenticated project. The signing secret is never included.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anchorbrowser.io/v1/webhooks",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.patch_v1_applications_applicationId_auth_flows_authFlowId",
+   "name": "Update authentication flow",
+   "description": "Updates an existing authentication flow.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "applicationId": {
+      "type": "string",
+      "description": "The ID of the application"
+     },
+     "authFlowId": {
+      "type": "string",
+      "description": "The ID of the authentication flow to update"
+     },
+     "name": {
+      "type": "string",
+      "description": "Name of the authentication flow"
+     },
+     "description": {
+      "type": "string",
+      "description": "Description of the authentication flow"
+     },
+     "is_recommended": {
+      "type": "boolean",
+      "description": "Whether this is the recommended authentication flow"
+     },
+     "methods": {
+      "type": "array",
+      "description": "Authentication methods in this flow"
+     },
+     "custom_fields": {
+      "type": "array",
+      "description": "Custom fields for this authentication flow"
+     }
+    },
+    "required": [
+     "applicationId",
+     "authFlowId"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.anchorbrowser.io/v1/applications/{applicationId}/auth-flows/{authFlowId}",
+    "path": [
+     "applicationId",
+     "authFlowId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "description",
+     "is_recommended",
+     "methods",
+     "custom_fields"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.patch_v1_batch_sessions_batch_id",
+   "name": "Update batch session",
+   "description": "Updates a batch session. Supports cancelling a running or pending batch, which terminates all running sessions in the batch.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "batch_id": {
+      "type": "string",
+      "description": "The unique identifier of the batch"
+     },
+     "status": {
+      "type": "string",
+      "description": "Target status for the batch",
+      "enum": [
+       "cancelled"
+      ]
+     }
+    },
+    "required": [
+     "batch_id",
+     "status"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.anchorbrowser.io/v1/batch-sessions/{batch_id}",
+    "path": [
+     "batch_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "status"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.post_v1_agent_access",
+   "name": "Create agent access project",
+   "description": "Issue an Agent Access API key. Submit the challenge `token` and computed integer `answer` from GET /v1/agent-access/challenge. GET on this path returns a guide, not a key. Optional `identity_token` as an OIDC JWT grants more credits. `identity_provider` is optional when the JWT `iss` is Google (`https://accounts.google.com`), GitHub Actions (`https://token.actions.githubusercontent.com`), or Verce",
+   "input": {
+    "type": "object",
+    "properties": {
+     "answer": {
+      "type": "string",
+      "description": "Final integer from the challenge prompt, as a string."
+     },
+     "identity_provider": {
+      "type": "string",
+      "description": "Optional when identity_token is an OIDC JWT whose iss matches a known provider (google, github, or vercel). Required for opaque OAuth access tokens (google or github)."
+     },
+     "identity_token": {
+      "type": "string",
+      "description": "OIDC JWT preferred (iss auto-detected). GitHub Actions \u2014 GET $ACTIONS_ID_TOKEN_REQUEST_URL with Authorization bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN. Google \u2014 ID token JWT. Vercel \u2014 Sign in with Vercel user ID token (iss https://vercel.com). Opaque OAuth access tokens also work with identity_provider set."
+     },
+     "identity_audience": {
+      "type": "string",
+      "description": "Optional. Pin the JWT aud claim. Omit unless you requested a specific aud."
+     }
+    },
+    "required": [
+     "answer"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anchorbrowser.io/v1/agent-access",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "answer",
+     "identity_provider",
+     "identity_token",
+     "identity_audience"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.post_v1_applications",
+   "name": "Create application",
+   "description": "Creates a new application for identity management.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "source": {
+      "type": "string",
+      "description": "The source URL of the application"
+     },
+     "name": {
+      "type": "string",
+      "description": "Name of the application"
+     },
+     "description": {
+      "type": "string",
+      "description": "Description of the application"
+     }
+    },
+    "required": [
+     "source"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anchorbrowser.io/v1/applications",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "source",
+     "name",
+     "description"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.post_v1_applications_applicationId_auth_flows",
+   "name": "Create authentication flow",
+   "description": "Creates a new authentication flow for an application.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "applicationId": {
+      "type": "string",
+      "description": "The ID of the application"
+     },
+     "name": {
+      "type": "string",
+      "description": "Name of the authentication flow"
+     },
+     "description": {
+      "type": "string",
+      "description": "Description of the authentication flow"
+     },
+     "is_recommended": {
+      "type": "boolean",
+      "description": "Whether this is the recommended authentication flow"
+     },
+     "methods": {
+      "type": "array",
+      "description": "Authentication methods in this flow"
+     },
+     "custom_fields": {
+      "type": "array",
+      "description": "Custom fields for this authentication flow"
+     }
+    },
+    "required": [
+     "applicationId",
+     "methods",
+     "name"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anchorbrowser.io/v1/applications/{applicationId}/auth-flows",
+    "path": [
+     "applicationId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "description",
+     "is_recommended",
+     "methods",
+     "custom_fields"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.post_v1_applications_applicationId_tokens",
+   "name": "Create identity token",
+   "description": "Creates an identity token for a specific application. This token is used to initiate an authentication flow for linking user identities to the application. The callback URL must use HTTPS and is where the user will be redirected after authentication.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "applicationId": {
+      "type": "string",
+      "description": "The unique identifier of the application"
+     },
+     "callbackUrl": {
+      "type": "string",
+      "description": "The HTTPS URL where the user will be redirected after authentication. Must use HTTPS protocol."
+     }
+    },
+    "required": [
+     "applicationId",
+     "callbackUrl"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anchorbrowser.io/v1/applications/{applicationId}/tokens",
+    "path": [
+     "applicationId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "callbackUrl"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.post_v1_batch_sessions",
+   "name": "Create batch sessions",
+   "description": "Creates multiple browser sessions in a single batch operation. This endpoint allows you to create up to 5,000 browser sessions simultaneously with the same configuration. The batch will be processed asynchronously, and you can monitor progress using the batch status endpoint.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "count": {
+      "type": "integer",
+      "description": "Number of sessions to create in the batch (1-1000)"
+     },
+     "configuration": {
+      "type": "object",
+      "description": ""
+     },
+     "metadata": {
+      "type": "object",
+      "description": "Optional batch-level metadata for identification and organization"
+     }
+    },
+    "required": [
+     "count"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anchorbrowser.io/v1/batch-sessions",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "count",
+     "configuration",
+     "metadata"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.post_v1_batch_sessions_batch_id_retry",
+   "name": "Retry failed batch sessions",
+   "description": "Retries failed sessions in a batch by creating new browser pods for each failed session. The batch status will be set back to 'processing'.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "batch_id": {
+      "type": "string",
+      "description": "The unique identifier of the batch"
+     },
+     "retry_failed_only": {
+      "type": "boolean",
+      "description": "Whether to only retry failed sessions"
+     },
+     "max_retries": {
+      "type": "integer",
+      "description": "Maximum number of attempts per failed session. Each session is retried up to this many times, stopping on first success."
+     }
+    },
+    "required": [
+     "batch_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anchorbrowser.io/v1/batch-sessions/{batch_id}/retry",
+    "path": [
+     "batch_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "retry_failed_only",
+     "max_retries"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.post_v1_certificates",
+   "name": "Upload certificate",
+   "description": "Upload a CA certificate to trust in browser sessions. Certificates are managed at the team level. Once uploaded, reference the certificate by name when creating sessions to trust services using that CA. See [CA Certificates documentation](/advanced/ca-certificates) for more details.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": "string",
+      "description": "Unique identifier for the certificate (alphanumeric, hyphens, underscores only, 1-255 characters)"
+     },
+     "file": {
+      "type": "string",
+      "description": "Certificate file (.crt, .pem, .cer, or .der format)"
+     },
+     "description": {
+      "type": "string",
+      "description": "Optional description of the certificate (max 1000 characters)"
+     }
+    },
+    "required": [
+     "file",
+     "name"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anchorbrowser.io/v1/certificates",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "file",
+     "description"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.post_v1_events_event_name",
+   "name": "Signal event",
+   "description": "Signals an event with associated data, unblocking any clients waiting for this event. This enables coordination between different browser sessions, workflows, or external processes.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "event_name": {
+      "type": "string",
+      "description": "The name of the event to signal"
+     },
+     "data": {
+      "type": "object",
+      "description": "Event data to be passed to waiting clients"
+     }
+    },
+    "required": [
+     "data",
+     "event_name"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anchorbrowser.io/v1/events/{event_name}",
+    "path": [
+     "event_name"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "data"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.post_v1_events_event_name_wait",
+   "name": "Wait for event",
+   "description": "Waits for a specific event to be signaled by another process, workflow, or session. This endpoint blocks until the event is signaled or the timeout is reached. Useful for coordinating between multiple browser sessions or workflows.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "event_name": {
+      "type": "string",
+      "description": "The name of the event to wait for"
+     },
+     "timeoutMs": {
+      "type": "integer",
+      "description": "Timeout in milliseconds to wait for the event. Defaults to 60000ms (1 minute)."
+     }
+    },
+    "required": [
+     "event_name"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anchorbrowser.io/v1/events/{event_name}/wait",
+    "path": [
+     "event_name"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "timeoutMs"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.post_v1_extensions",
+   "name": "Upload extension",
+   "description": "Upload a new browser extension as a ZIP file. The extension will be validated and stored for use in browser sessions.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": "string",
+      "description": "User-friendly name for the extension (1-255 characters)"
+     },
+     "file": {
+      "type": "string",
+      "description": "ZIP file containing the browser extension"
+     }
+    },
+    "required": [
+     "file",
+     "name"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anchorbrowser.io/v1/extensions",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "file"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.post_v1_identities",
+   "name": "Create identity",
+   "description": "Creates a new identity for the given source. Credentials are optional.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "validateAsync": {
+      "type": "boolean",
+      "description": "Whether to validate the identity asynchronously. Defaults to true."
+     },
+     "name": {
+      "type": "string",
+      "description": "Name of the identity. Defaults to \"Unnamed Identity\" if not provided."
+     },
+     "source": {
+      "type": "string",
+      "description": "The source URL for the identity (e.g., login page URL)"
+     },
+     "credentials": {
+      "type": "array",
+      "description": "Optional credentials to associate with this identity (for example username/password or authenticator secrets). Omit this field or supply an empty array when you only need an identity for the given source URL and optional metadata."
+     },
+     "metadata": {
+      "type": "object",
+      "description": "Optional metadata for the identity"
+     },
+     "applicationName": {
+      "type": "string",
+      "description": "Optional application name to associate with the identity"
+     },
+     "applicationDescription": {
+      "type": "string",
+      "description": "Optional application description"
+     }
+    },
+    "required": [
+     "source"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anchorbrowser.io/v1/identities",
+    "path": [],
+    "query": [
+     "validateAsync"
+    ],
+    "header": [],
+    "body": [
+     "name",
+     "source",
+     "credentials",
+     "metadata",
+     "applicationName",
+     "applicationDescription"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.post_v1_identities_dynamic_finalize_session_id",
+   "name": "Finalize dynamic auth flow",
+   "description": "Persists the identity, browser profile, and captured credentials after the flow reaches `authenticated`. The response reports whether the saved login can be replayed unattended (`automatable`).",
+   "input": {
+    "type": "object",
+    "properties": {
+     "session_id": {
+      "type": "string",
+      "description": "Session whose authenticated flow to persist."
+     },
+     "identity_name": {
+      "type": "string",
+      "description": "Optional name for the created identity."
+     },
+     "profile_name": {
+      "type": "string",
+      "description": "Optional browser profile name. Defaults to `profile-`."
+     }
+    },
+    "required": [
+     "session_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anchorbrowser.io/v1/identities/dynamic/finalize/{session_id}",
+    "path": [
+     "session_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "identity_name",
+     "profile_name"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.post_v1_identities_dynamic_resolve_session_id",
+   "name": "Resolve dynamic auth flow step",
+   "description": "Advances the flow by answering the current step. The body depends on the last presentation's `type` \u2014 do not mix the two shapes: - **`decision`**: send only `choice` (a `step_id` from `options`). Do not send `option_index` or `values`. - **`form`**: send `option_index` (index into `options`) and `values` (field name \u2192 string). Do not send `choice`. Do not call `/resolve` for `detection_failed`, `a",
+   "input": {
+    "type": "object",
+    "properties": {
+     "session_id": {
+      "type": "string",
+      "description": "Session whose auth flow to advance."
+     }
+    },
+    "required": [
+     "session_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anchorbrowser.io/v1/identities/dynamic/resolve/{session_id}",
+    "path": [
+     "session_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.post_v1_identities_dynamic_start_session_id",
+   "name": "Start dynamic auth flow",
+   "description": "Starts (or restarts) a dynamic auth flow in an existing browser session. `session_id` is required in the path. Advances until the next presentation (`decision`, `form`, `detection_failed`, `authenticated`, or `failed`). If the response is `detection_failed` with `retryable: true`, or the request times out, keep polling `GET /v1/identities/dynamic/state/{session_id}` \u2014 some login steps take longer ",
+   "input": {
+    "type": "object",
+    "properties": {
+     "session_id": {
+      "type": "string",
+      "description": "Active browser session that will drive the login."
+     },
+     "url": {
+      "type": "string",
+      "description": "Landing URL to open in the session (login page)."
+     },
+     "host": {
+      "type": "string",
+      "description": "Hostname of `url`. Must match the URL hostname after normalization."
+     }
+    },
+    "required": [
+     "host",
+     "session_id",
+     "url"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anchorbrowser.io/v1/identities/dynamic/start/{session_id}",
+    "path": [
+     "session_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "url",
+     "host"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.post_v1_identities_identityId_reauthenticate",
+   "name": "Reauthenticate identity",
+   "description": "Re-authenticates an identity on demand: validates the saved browser profile and runs login if it is no longer signed in, then persists the refreshed profile and tears the temporary session down. Equivalent to a session with `identity_skip_validation: false` that ends after auth.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "identityId": {
+      "type": "string",
+      "description": "The ID of the identity to reauthenticate"
+     },
+     "sync": {
+      "type": "boolean",
+      "description": "When `true` (default), wait for authentication to finish and persist the refreshed profile before returning. When `false`, start authentication asynchronously."
+     }
+    },
+    "required": [
+     "identityId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anchorbrowser.io/v1/identities/{identityId}/reauthenticate",
+    "path": [
+     "identityId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "sync"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.post_v1_integrations",
+   "name": "Create integration",
+   "description": "Creates a new integration with a third-party service like 1Password. The integration can then be used in browser sessions to automatically load secrets and credentials.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": "string",
+      "description": "Name for the integration"
+     },
+     "type": {
+      "type": "string",
+      "description": "The type of integration",
+      "enum": [
+       "1PASSWORD"
+      ]
+     },
+     "credentials": {
+      "type": "object",
+      "description": ""
+     }
+    },
+    "required": [
+     "credentials",
+     "name",
+     "type"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anchorbrowser.io/v1/integrations",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "type",
+     "credentials"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.post_v1_profiles",
+   "name": "Create profile",
+   "description": "Creates a new profile from a browser session. A Profile stores cookies, local storage, and cache.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": "string",
+      "description": "Profile name, unique within your team."
+     },
+     "description": {
+      "type": "string",
+      "description": "A description of the profile."
+     },
+     "source": {
+      "type": "string",
+      "description": "The source of the profile data. currently only `session` is supported.",
+      "enum": [
+       "session"
+      ]
+     },
+     "session_id": {
+      "type": "string",
+      "description": "The browser session ID is required if the source is set to `session`. The browser session must be running, and the profile will be stored once the browser session terminates."
+     },
+     "dedicated_sticky_ip": {
+      "type": "boolean",
+      "description": "Whether to use a dedicated sticky IP for this profile. Defaults to false."
+     }
+    },
+    "required": [
+     "name"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anchorbrowser.io/v1/profiles",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "description",
+     "source",
+     "session_id",
+     "dedicated_sticky_ip"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.post_v1_sessions",
+   "name": "Start browser session",
+   "description": "Allocates a new browser session for the user, with optional configurations for ad-blocking, captcha solving, proxy usage, and idle timeout.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "session": {
+      "type": "object",
+      "description": "Session-related configurations."
+     },
+     "browser": {
+      "type": "object",
+      "description": "Browser-specific configurations."
+     },
+     "integrations": {
+      "type": "array",
+      "description": "Array of integrations to load in the browser session. Integrations must be previously created using the Integrations API."
+     },
+     "identities": {
+      "type": "array",
+      "description": "Activates an authenticated session."
+     },
+     "identity_skip_validation": {
+      "type": "boolean",
+      "description": "When `true` (default), skip profile validation for active identities and reuse the saved browser profile. Set to `false` to validate the profile and re-authenticate if it is no longer signed in. Pending identities still authenticate on first use."
+     },
+     "identity_async_auth": {
+      "type": "boolean",
+      "description": "Run identity authentication in the background and return the session immediately."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anchorbrowser.io/v1/sessions",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "session",
+     "browser",
+     "integrations",
+     "identities",
+     "identity_skip_validation",
+     "identity_async_auth"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.post_v1_sessions_async",
+   "name": "Start browser session (async)",
+   "description": "Non-blocking variant of `POST /v1/sessions`. Returns a `request_id` immediately and provisions the underlying browser pod in the background. Poll `GET /v1/sessions/async/{request_id}/status` until `status` becomes `ready` to obtain the resolved `session_id`, `cdp_url` and `live_view_url`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "session": {
+      "type": "object",
+      "description": "Session-related configurations."
+     },
+     "browser": {
+      "type": "object",
+      "description": "Browser-specific configurations."
+     },
+     "integrations": {
+      "type": "array",
+      "description": "Array of integrations to load in the browser session. Integrations must be previously created using the Integrations API."
+     },
+     "identities": {
+      "type": "array",
+      "description": "Activates an authenticated session."
+     },
+     "identity_skip_validation": {
+      "type": "boolean",
+      "description": "When `true` (default), skip profile validation for active identities and reuse the saved browser profile. Set to `false` to validate the profile and re-authenticate if it is no longer signed in. Pending identities still authenticate on first use."
+     },
+     "identity_async_auth": {
+      "type": "boolean",
+      "description": "Run identity authentication in the background and return the session immediately."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anchorbrowser.io/v1/sessions/async",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "session",
+     "browser",
+     "integrations",
+     "identities",
+     "identity_skip_validation",
+     "identity_async_auth"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.post_v1_sessions_sessionId_agent_files",
+   "name": "Upload agent resources",
+   "description": "Upload files as agent resources to a browser session using multipart/form-data. If you upload a ZIP file, it will be automatically extracted and the files will be made available as agent resources (pass `extract=false` to keep the archive itself instead). If you upload a single file, it will be saved directly as an agent resource. Resources are then accessible to AI agents for task completion and ",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sessionId": {
+      "type": "string",
+      "description": "The browser session ID"
+     },
+     "extract": {
+      "type": "string",
+      "description": "Whether a `.zip` upload is unpacked into the uploads directory. Defaults to `true`. Set to `false` to keep the archive itself. Any other value is treated as `true`. Has no effect on non-zip files.",
+      "enum": [
+       "true",
+       "false"
+      ]
+     },
+     "file": {
+      "type": "string",
+      "description": "File to upload as agent resource (ZIP files are extracted unless extract=false)"
+     }
+    },
+    "required": [
+     "file",
+     "sessionId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anchorbrowser.io/v1/sessions/{sessionId}/agent/files",
+    "path": [
+     "sessionId"
+    ],
+    "query": [
+     "extract"
+    ],
+    "header": [],
+    "body": [
+     "file"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.post_v1_sessions_sessionId_clipboard",
+   "name": "Set clipboard content",
+   "description": "Sets the content of the clipboard",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sessionId": {
+      "type": "string",
+      "description": "The ID of the browser session"
+     },
+     "text": {
+      "type": "string",
+      "description": "Text to set in the clipboard"
+     }
+    },
+    "required": [
+     "sessionId",
+     "text"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anchorbrowser.io/v1/sessions/{sessionId}/clipboard",
+    "path": [
+     "sessionId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "text"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.post_v1_sessions_sessionId_copy",
+   "name": "Copy selected text",
+   "description": "Copies the currently selected text to the clipboard",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sessionId": {
+      "type": "string",
+      "description": "The ID of the browser session"
+     }
+    },
+    "required": [
+     "sessionId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anchorbrowser.io/v1/sessions/{sessionId}/copy",
+    "path": [
+     "sessionId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.post_v1_sessions_sessionId_drag_and_drop",
+   "name": "Drag and drop",
+   "description": "Performs a drag and drop operation from start coordinates to end coordinates",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sessionId": {
+      "type": "string",
+      "description": "The ID of the browser session"
+     },
+     "startX": {
+      "type": "integer",
+      "description": "Starting X coordinate"
+     },
+     "startY": {
+      "type": "integer",
+      "description": "Starting Y coordinate"
+     },
+     "endX": {
+      "type": "integer",
+      "description": "Ending X coordinate"
+     },
+     "endY": {
+      "type": "integer",
+      "description": "Ending Y coordinate"
+     },
+     "button": {
+      "type": "string",
+      "description": "Mouse button to use",
+      "enum": [
+       "left",
+       "middle",
+       "right"
+      ]
+     }
+    },
+    "required": [
+     "endX",
+     "endY",
+     "sessionId",
+     "startX",
+     "startY"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anchorbrowser.io/v1/sessions/{sessionId}/drag-and-drop",
+    "path": [
+     "sessionId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "startX",
+     "startY",
+     "endX",
+     "endY",
+     "button"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.post_v1_sessions_sessionId_goto",
+   "name": "Navigate to url",
+   "description": "Navigates the browser session to the specified URL",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sessionId": {
+      "type": "string",
+      "description": "The ID of the browser session"
+     },
+     "url": {
+      "type": "string",
+      "description": "The URL to navigate to"
+     }
+    },
+    "required": [
+     "sessionId",
+     "url"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anchorbrowser.io/v1/sessions/{sessionId}/goto",
+    "path": [
+     "sessionId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "url"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.post_v1_sessions_sessionId_keyboard_shortcut",
+   "name": "Keyboard shortcut",
+   "description": "Performs a keyboard shortcut using the specified keys",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sessionId": {
+      "type": "string",
+      "description": "The ID of the browser session"
+     },
+     "keys": {
+      "type": "array",
+      "description": "Array of keys to press simultaneously"
+     },
+     "holdTime": {
+      "type": "integer",
+      "description": "Time to hold the keys down in milliseconds"
+     }
+    },
+    "required": [
+     "keys",
+     "sessionId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anchorbrowser.io/v1/sessions/{sessionId}/keyboard/shortcut",
+    "path": [
+     "sessionId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "keys",
+     "holdTime"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.post_v1_sessions_sessionId_keyboard_type",
+   "name": "Type text",
+   "description": "Types the specified text with optional delay between keystrokes",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sessionId": {
+      "type": "string",
+      "description": "The ID of the browser session"
+     },
+     "text": {
+      "type": "string",
+      "description": "Text to type"
+     },
+     "delay": {
+      "type": "integer",
+      "description": "Delay between keystrokes in milliseconds"
+     }
+    },
+    "required": [
+     "sessionId",
+     "text"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anchorbrowser.io/v1/sessions/{sessionId}/keyboard/type",
+    "path": [
+     "sessionId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "text",
+     "delay"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.post_v1_sessions_sessionId_mouse_click",
+   "name": "Mouse click",
+   "description": "Performs a mouse click at the specified coordinates",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sessionId": {
+      "type": "string",
+      "description": "The ID of the browser session"
+     },
+     "x": {
+      "type": "number",
+      "description": "X coordinate"
+     },
+     "y": {
+      "type": "number",
+      "description": "Y coordinate"
+     },
+     "button": {
+      "type": "string",
+      "description": "Mouse button to use",
+      "enum": [
+       "left",
+       "middle",
+       "right"
+      ]
+     },
+     "selector": {
+      "type": "string",
+      "description": "A valid CSS selector for the requested element"
+     },
+     "timeout": {
+      "type": "number",
+      "description": "If a selector was passed, timeout in ms for waiting for the DOM element to be selected. Defaults to 5000 (5 seconds)."
+     },
+     "index": {
+      "type": "number",
+      "description": "If a selector was passed and multiple elements match the selector, the index of the element in the list (0-based). Defaults to 0."
+     }
+    },
+    "required": [
+     "sessionId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anchorbrowser.io/v1/sessions/{sessionId}/mouse/click",
+    "path": [
+     "sessionId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "x",
+     "y",
+     "button",
+     "selector",
+     "timeout",
+     "index"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.post_v1_sessions_sessionId_mouse_doubleClick",
+   "name": "Mouse double click",
+   "description": "Performs a double click at the specified coordinates",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sessionId": {
+      "type": "string",
+      "description": "The ID of the browser session"
+     },
+     "x": {
+      "type": "integer",
+      "description": "X coordinate"
+     },
+     "y": {
+      "type": "integer",
+      "description": "Y coordinate"
+     }
+    },
+    "required": [
+     "sessionId",
+     "x",
+     "y"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anchorbrowser.io/v1/sessions/{sessionId}/mouse/doubleClick",
+    "path": [
+     "sessionId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "x",
+     "y"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.post_v1_sessions_sessionId_mouse_down",
+   "name": "Mouse down",
+   "description": "Performs a mouse button down action at the specified coordinates",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sessionId": {
+      "type": "string",
+      "description": "The ID of the browser session"
+     },
+     "x": {
+      "type": "integer",
+      "description": "X coordinate"
+     },
+     "y": {
+      "type": "integer",
+      "description": "Y coordinate"
+     }
+    },
+    "required": [
+     "sessionId",
+     "x",
+     "y"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anchorbrowser.io/v1/sessions/{sessionId}/mouse/down",
+    "path": [
+     "sessionId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "x",
+     "y"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.post_v1_sessions_sessionId_mouse_move",
+   "name": "Mouse move",
+   "description": "Moves the mouse cursor to the specified coordinates",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sessionId": {
+      "type": "string",
+      "description": "The ID of the browser session"
+     },
+     "x": {
+      "type": "integer",
+      "description": "X coordinate"
+     },
+     "y": {
+      "type": "integer",
+      "description": "Y coordinate"
+     }
+    },
+    "required": [
+     "sessionId",
+     "x",
+     "y"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anchorbrowser.io/v1/sessions/{sessionId}/mouse/move",
+    "path": [
+     "sessionId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "x",
+     "y"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.post_v1_sessions_sessionId_mouse_up",
+   "name": "Mouse up",
+   "description": "Performs a mouse button up action at the specified coordinates",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sessionId": {
+      "type": "string",
+      "description": "The ID of the browser session"
+     },
+     "x": {
+      "type": "integer",
+      "description": "X coordinate"
+     },
+     "y": {
+      "type": "integer",
+      "description": "Y coordinate"
+     }
+    },
+    "required": [
+     "sessionId",
+     "x",
+     "y"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anchorbrowser.io/v1/sessions/{sessionId}/mouse/up",
+    "path": [
+     "sessionId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "x",
+     "y"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.post_v1_sessions_sessionId_paste",
+   "name": "Paste text",
+   "description": "Pastes text at the current cursor position",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sessionId": {
+      "type": "string",
+      "description": "The ID of the browser session"
+     },
+     "text": {
+      "type": "string",
+      "description": "Text to paste"
+     }
+    },
+    "required": [
+     "sessionId",
+     "text"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anchorbrowser.io/v1/sessions/{sessionId}/paste",
+    "path": [
+     "sessionId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "text"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.post_v1_sessions_sessionId_scroll",
+   "name": "Scroll",
+   "description": "Performs a scroll action at the specified coordinates",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sessionId": {
+      "type": "string",
+      "description": "The ID of the browser session"
+     },
+     "x": {
+      "type": "integer",
+      "description": "X coordinate"
+     },
+     "y": {
+      "type": "integer",
+      "description": "Y coordinate"
+     }
+    },
+    "required": [
+     "sessionId",
+     "x",
+     "y"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anchorbrowser.io/v1/sessions/{sessionId}/scroll",
+    "path": [
+     "sessionId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "x",
+     "y"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.post_v1_sessions_sessionId_uploads",
+   "name": "Upload files",
+   "description": "Upload files directly to a browser session for use with web forms and file inputs. Files are saved to the session's uploads directory and can be referenced in CDP commands (for example `DOM.setFileInputFiles`). The saved paths are returned in `file_paths`. A `.zip` upload is unpacked into the uploads directory by default and the archive itself is not kept. Pass `extract=false` to store the archive",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sessionId": {
+      "type": "string",
+      "description": "The browser session ID"
+     },
+     "extract": {
+      "type": "string",
+      "description": "Whether a `.zip` upload is unpacked into the uploads directory. Defaults to `true`. Set to `false` to keep the archive itself so it can be attached to a file input as-is. Any other value is treated as `true`. Has no effect on non-zip files.",
+      "enum": [
+       "true",
+       "false"
+      ]
+     },
+     "file": {
+      "type": "string",
+      "description": "File to upload to the browser session"
+     }
+    },
+    "required": [
+     "file",
+     "sessionId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anchorbrowser.io/v1/sessions/{sessionId}/uploads",
+    "path": [
+     "sessionId"
+    ],
+    "query": [
+     "extract"
+    ],
+    "header": [],
+    "body": [
+     "file"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.post_v1_sessions_session_id_agent_pause",
+   "name": "Pause agent",
+   "description": "Pauses the AI agent for the specified browser session.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "session_id": {
+      "type": "string",
+      "description": "The ID of the browser session"
+     }
+    },
+    "required": [
+     "session_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anchorbrowser.io/v1/sessions/{session_id}/agent/pause",
+    "path": [
+     "session_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.post_v1_sessions_session_id_agent_respond_to_human_intervention",
+   "name": "Respond to human intervention",
+   "description": "Sends a response to a pending human-in-the-loop (HITL) request for the specified session. Resolving a request unblocks the agent and emits an `intervention.resolved` webhook event when `requestId` is provided.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "session_id": {
+      "type": "string",
+      "description": "The ID of the browser session"
+     },
+     "requestId": {
+      "type": "string",
+      "description": "ID of the intervention request to respond to. If omitted, the most recent pending request for the session is used."
+     },
+     "response": {
+      "type": "string",
+      "description": "Response payload. For `text` input type, pass a string. For `confirm`, pass a boolean or confirmation string. For `fields`, pass an object keyed by field name."
+     }
+    },
+    "required": [
+     "response",
+     "session_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anchorbrowser.io/v1/sessions/{session_id}/agent/respond-to-human-intervention",
+    "path": [
+     "session_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "requestId",
+     "response"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.post_v1_sessions_session_id_agent_resume",
+   "name": "Resume agent",
+   "description": "Resumes the AI agent for the specified browser session.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "session_id": {
+      "type": "string",
+      "description": "The ID of the browser session"
+     }
+    },
+    "required": [
+     "session_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anchorbrowser.io/v1/sessions/{session_id}/agent/resume",
+    "path": [
+     "session_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.post_v1_sessions_session_id_recordings_pause",
+   "name": "Pause session recording",
+   "description": "Pauses the video recording for the specified browser session.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "session_id": {
+      "type": "string",
+      "description": "The ID of the browser session for which to pause recording."
+     }
+    },
+    "required": [
+     "session_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anchorbrowser.io/v1/sessions/{session_id}/recordings/pause",
+    "path": [
+     "session_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.post_v1_sessions_session_id_recordings_resume",
+   "name": "Resume session recording",
+   "description": "Resumes the video recording for the specified browser session.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "session_id": {
+      "type": "string",
+      "description": "The ID of the browser session for which to resume recording."
+     }
+    },
+    "required": [
+     "session_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anchorbrowser.io/v1/sessions/{session_id}/recordings/resume",
+    "path": [
+     "session_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.post_v1_sessions_session_id_tokens",
+   "name": "Create session tokens",
+   "description": "Mint URLs for a running session that can be handed to end users without exposing the session id. Each scope gets its own token, carried as `?token=` in the URL: - `live_view_read_only`: watch the browser only. - `live_view`: watch and interact with the browser. - `cdp`: full CDP control. Every call mints new tokens. A token stops working when the session ends or when it is revoked. On a session cr",
+   "input": {
+    "type": "object",
+    "properties": {
+     "session_id": {
+      "type": "string",
+      "description": "The ID of the running session."
+     },
+     "scopes": {
+      "type": "array",
+      "description": "Token scopes to mint. Omit or pass an empty list to mint every scope the session can serve: all three, only `cdp` on a headless session, and no `live_view` on a `live_view.one_time_url` session."
+     }
+    },
+    "required": [
+     "session_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anchorbrowser.io/v1/sessions/{session_id}/tokens",
+    "path": [
+     "session_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "scopes"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.post_v1_task",
+   "name": "Create task (legacy)",
+   "description": "Creates a new task or updates an existing task with the same name. Tasks are reusable code snippets that can be executed in browser sessions. Tasks support versioning with draft and published versions. If you are using the new Task Builder, see the non-deprecated Tasks endpoints in this API reference.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": "string",
+      "description": "Task name (letters, numbers, hyphens, and underscores only)"
+     },
+     "code": {
+      "type": "string",
+      "description": "Base64 encoded task code (optional)"
+     },
+     "language": {
+      "type": "string",
+      "description": "Programming language for the task",
+      "enum": [
+       "typescript"
+      ]
+     },
+     "description": {
+      "type": "string",
+      "description": "Optional description of the task"
+     },
+     "browserConfiguration": {
+      "type": "object",
+      "description": "Session-related configurations."
+     }
+    },
+    "required": [
+     "language",
+     "name"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anchorbrowser.io/v1/task",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "code",
+     "language",
+     "description",
+     "browserConfiguration"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.post_v1_task_run",
+   "name": "Run task (legacy)",
+   "description": "Executes a task in a browser session. The task can be run with a specific version or the latest version. Optionally, you can provide an existing session ID or let the system create a new one. If you are using the new Task Builder, see the non-deprecated Tasks endpoints in this API reference.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "taskId": {
+      "type": "string",
+      "description": "Task identifier"
+     },
+     "version": {
+      "type": "string",
+      "description": "Version to run (draft, latest, or version number)"
+     },
+     "sessionId": {
+      "type": "string",
+      "description": "Optional existing browser session ID to use for task execution"
+     },
+     "async": {
+      "type": "boolean",
+      "description": "Whether to run the task asynchronously."
+     },
+     "overrideBrowserConfiguration": {
+      "type": "object",
+      "description": "Session-related configurations."
+     },
+     "inputs": {
+      "type": "object",
+      "description": "Environment variables for task execution (keys must start with ANCHOR_)"
+     },
+     "cleanupSessions": {
+      "type": "boolean",
+      "description": "Whether to cleanup browser sessions after task execution. Defaults to true."
+     }
+    },
+    "required": [
+     "taskId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anchorbrowser.io/v1/task/run",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "taskId",
+     "version",
+     "sessionId",
+     "async",
+     "overrideBrowserConfiguration",
+     "inputs",
+     "cleanupSessions"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.post_v1_task_run_taskName",
+   "name": "Run task by name (legacy)",
+   "description": "Executes a task by its name, always using the latest version. This is a convenience endpoint for running tasks without needing to know the task ID. If you are using the new Task Builder, see the non-deprecated Tasks endpoints in this API reference.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "taskName": {
+      "type": "string",
+      "description": "The name of the task to run"
+     },
+     "sessionId": {
+      "type": "string",
+      "description": "Optional existing browser session ID to use for task execution"
+     },
+     "async": {
+      "type": "boolean",
+      "description": "Whether to run the task asynchronously"
+     },
+     "overrideBrowserConfiguration": {
+      "type": "object",
+      "description": "Session-related configurations."
+     },
+     "inputs": {
+      "type": "object",
+      "description": "Environment variables for task execution (keys must start with ANCHOR_)"
+     },
+     "cleanupSessions": {
+      "type": "boolean",
+      "description": "Whether to cleanup browser sessions after task execution. Defaults to true."
+     }
+    },
+    "required": [
+     "taskName"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anchorbrowser.io/v1/task/run/{taskName}",
+    "path": [
+     "taskName"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "sessionId",
+     "async",
+     "overrideBrowserConfiguration",
+     "inputs",
+     "cleanupSessions"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.post_v1_task_taskId_deploy",
+   "name": "Deploy task (legacy)",
+   "description": "Deploys a task by creating a new version with auto-incremented version number. This is the recommended way to publish task changes. If you are using the new Task Builder, see the non-deprecated Tasks endpoints in this API reference.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "taskId": {
+      "type": "string",
+      "description": "The ID of the task"
+     },
+     "code": {
+      "type": "string",
+      "description": "Base64 encoded task code (required for new versions)"
+     },
+     "language": {
+      "type": "string",
+      "description": "Programming language for the task",
+      "enum": [
+       "typescript"
+      ]
+     },
+     "description": {
+      "type": "string",
+      "description": "Optional description of the version"
+     },
+     "browserConfiguration": {
+      "type": "object",
+      "description": "Session-related configurations."
+     }
+    },
+    "required": [
+     "taskId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anchorbrowser.io/v1/task/{taskId}/deploy",
+    "path": [
+     "taskId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "code",
+     "language",
+     "description",
+     "browserConfiguration"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.post_v1_task_taskId_draft",
+   "name": "Create or update task draft (legacy)",
+   "description": "Creates or updates the draft version of a task. Draft versions are used for development and testing before publishing. If you are using the new Task Builder, see the non-deprecated Tasks endpoints in this API reference.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "taskId": {
+      "type": "string",
+      "description": "The ID of the task"
+     },
+     "code": {
+      "type": "string",
+      "description": "Base64 encoded task code"
+     },
+     "language": {
+      "type": "string",
+      "description": "Programming language for the task",
+      "enum": [
+       "typescript"
+      ]
+     },
+     "description": {
+      "type": "string",
+      "description": "Optional description of the version"
+     },
+     "browserConfiguration": {
+      "type": "object",
+      "description": "Session-related configurations."
+     }
+    },
+    "required": [
+     "code",
+     "taskId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anchorbrowser.io/v1/task/{taskId}/draft",
+    "path": [
+     "taskId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "code",
+     "language",
+     "description",
+     "browserConfiguration"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.post_v1_task_taskId_taskVersion",
+   "name": "Publish task version (legacy)",
+   "description": "Publishes a specific version of a task. This creates a new version if it doesn't exist, or updates an existing version's metadata. If you are using the new Task Builder, see the non-deprecated Tasks endpoints in this API reference.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "taskId": {
+      "type": "string",
+      "description": "The ID of the task"
+     },
+     "taskVersion": {
+      "type": "string",
+      "description": "The version to publish (cannot be draft)"
+     },
+     "code": {
+      "type": "string",
+      "description": "Base64 encoded task code (required for new versions)"
+     },
+     "language": {
+      "type": "string",
+      "description": "Programming language for the task",
+      "enum": [
+       "typescript"
+      ]
+     },
+     "description": {
+      "type": "string",
+      "description": "Optional description of the version"
+     },
+     "browserConfiguration": {
+      "type": "object",
+      "description": "Session-related configurations."
+     }
+    },
+    "required": [
+     "taskId",
+     "taskVersion"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anchorbrowser.io/v1/task/{taskId}/{taskVersion}",
+    "path": [
+     "taskId",
+     "taskVersion"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "code",
+     "language",
+     "description",
+     "browserConfiguration"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.post_v1_tools_execute_code",
+   "name": "Execute code snippet",
+   "description": "Run a TypeScript snippet in the sandbox against the browser session (query `sessionId` required).",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sessionId": {
+      "type": "string",
+      "description": "Browser session to run the snippet against."
+     },
+     "code": {
+      "type": "string",
+      "description": "TypeScript snippet (async function body) with injected page, browser, context, sessionId, anchorClient."
+     }
+    },
+    "required": [
+     "code",
+     "sessionId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anchorbrowser.io/v1/tools/execute-code",
+    "path": [],
+    "query": [
+     "sessionId"
+    ],
+    "header": [],
+    "body": [
+     "code"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.post_v1_tools_fetch_webpage",
+   "name": "Web unlocker",
+   "description": "Fetch the fully rendered HTML of any URL \u2014 including CAPTCHA- and bot-protected sites \u2014 with a single sessionless request. Each request runs in a stealth browser behind a residential proxy. JavaScript is fully rendered, cookie-consent dialogs are dismissed, and CAPTCHA or bot-detection challenges (Cloudflare, reCAPTCHA, FunCaptcha, DataDome, Kasada, Akamai, PerimeterX) are solved automatically \u2014 y",
+   "input": {
+    "type": "object",
+    "properties": {
+     "url": {
+      "type": "string",
+      "description": "The fully-qualified URL to fetch, including the scheme (e.g. `https://www.linkedin.com/company/openai`)."
+     },
+     "options": {
+      "type": "object",
+      "description": "Optional retrieval settings."
+     }
+    },
+    "required": [
+     "url"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anchorbrowser.io/v1/tools/fetch/webpage",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "url",
+     "options"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.post_v1_tools_page_pdf",
+   "name": "Get page pdf",
+   "description": "Generates a PDF of the current page for a browser session and returns it as a binary PDF file.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sessionId": {
+      "type": "string",
+      "description": "Optional browser session ID. If omitted, `url` in the request body is required."
+     },
+     "url": {
+      "type": "string",
+      "description": "The URL of the page to print to PDF."
+     },
+     "landscape": {
+      "type": "boolean",
+      "description": "Paper orientation. Defaults to false."
+     },
+     "displayHeaderFooter": {
+      "type": "boolean",
+      "description": "Display header and footer. Defaults to false."
+     },
+     "printBackground": {
+      "type": "boolean",
+      "description": "Print background graphics. Defaults to false."
+     },
+     "scale": {
+      "type": "number",
+      "description": "Scale of the webpage rendering. Defaults to 1."
+     },
+     "paperWidth": {
+      "type": "number",
+      "description": "Paper width in inches. Defaults to 8.5."
+     },
+     "paperHeight": {
+      "type": "number",
+      "description": "Paper height in inches. Defaults to 11."
+     },
+     "marginTop": {
+      "type": "number",
+      "description": "Top margin in inches. Defaults to ~0.4."
+     },
+     "marginBottom": {
+      "type": "number",
+      "description": "Bottom margin in inches. Defaults to ~0.4."
+     },
+     "marginLeft": {
+      "type": "number",
+      "description": "Left margin in inches. Defaults to ~0.4."
+     },
+     "marginRight": {
+      "type": "number",
+      "description": "Right margin in inches. Defaults to ~0.4."
+     },
+     "pageRanges": {
+      "type": "string",
+      "description": "Page ranges to print, e.g. '1-5, 8, 11-13'. Defaults to all pages."
+     },
+     "headerTemplate": {
+      "type": "string",
+      "description": "HTML template for the print header."
+     },
+     "footerTemplate": {
+      "type": "string",
+      "description": "HTML template for the print footer."
+     },
+     "preferCSSPageSize": {
+      "type": "boolean",
+      "description": "Prefer page size as defined by CSS. Defaults to false."
+     }
+    },
+    "required": [
+     "url"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anchorbrowser.io/v1/tools/page-pdf",
+    "path": [],
+    "query": [
+     "sessionId"
+    ],
+    "header": [],
+    "body": [
+     "url",
+     "landscape",
+     "displayHeaderFooter",
+     "printBackground",
+     "scale",
+     "paperWidth",
+     "paperHeight",
+     "marginTop",
+     "marginBottom",
+     "marginLeft",
+     "marginRight",
+     "pageRanges",
+     "headerTemplate",
+     "footerTemplate",
+     "preferCSSPageSize"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.post_v1_tools_perform_web_task",
+   "name": "Perform web task",
+   "description": "Start from a URL and perform the given task.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sessionId": {
+      "type": "string",
+      "description": "An optional browser session identifier to reference an existing running browser sessions. When passed, the tool will be executed on the provided browser session."
+     },
+     "url": {
+      "type": "string",
+      "description": "The URL of the webpage. If not provided, the tool will use the current page in the session."
+     },
+     "prompt": {
+      "type": "string",
+      "description": "The task to be autonomously completed."
+     },
+     "agent": {
+      "type": "string",
+      "description": "The AI agent to use for task completion. Defaults to browser-use.",
+      "enum": [
+       "browser-use",
+       "openai-cua",
+       "gemini-computer-use",
+       "anthropic-cua",
+       "yutori",
+       "jev"
+      ]
+     },
+     "provider": {
+      "type": "string",
+      "description": "The AI provider to use for task completion.",
+      "enum": [
+       "openai",
+       "gemini",
+       "groq",
+       "azure",
+       "xai"
+      ]
+     },
+     "model": {
+      "type": "string",
+      "description": "The specific model to use for task completion. see our [models](/agentic-browser-control/ai-task-completion#available-models) page for more information."
+     },
+     "detect_elements": {
+      "type": "boolean",
+      "description": "Enable element detection for better interaction accuracy. Improves the agent's ability to identify and interact with UI elements."
+     },
+     "human_intervention": {
+      "type": "boolean",
+      "description": "Allow human intervention during task execution. When enabled, the agent can request human input for ambiguous situations."
+     },
+     "max_steps": {
+      "type": "integer",
+      "description": "Maximum number of steps the agent can take to complete the task. Defaults to 200."
+     },
+     "llm_timeout": {
+      "type": "integer",
+      "description": "Timeout in seconds for each LLM call made by the agent (browser-use agent only). Raise it when tasks with deep context (long histories, large pages) hit LLM call timeouts. When omitted, the agent uses its model-based defaults."
+     },
+     "secret_values": {
+      "type": "object",
+      "description": "Secret values to pass to the agent for secure credential handling. Keys and values are passed as environment variables to the agent."
+     },
+     "highlight_elements": {
+      "type": "boolean",
+      "description": "Whether to highlight elements during task execution for better visibility."
+     },
+     "output_schema": {
+      "type": "object",
+      "description": "JSON Schema defining the expected structure of the output data."
+     },
+     "async": {
+      "type": "boolean",
+      "description": "Whether to run the task asynchronously. If true, the task will be run asynchronously and the response will include a workflow ID."
+     }
+    },
+    "required": [
+     "prompt"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anchorbrowser.io/v1/tools/perform-web-task",
+    "path": [],
+    "query": [
+     "sessionId"
+    ],
+    "header": [],
+    "body": [
+     "url",
+     "prompt",
+     "agent",
+     "provider",
+     "model",
+     "detect_elements",
+     "human_intervention",
+     "max_steps",
+     "llm_timeout",
+     "secret_values",
+     "highlight_elements",
+     "output_schema",
+     "async"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.post_v1_tools_screenshot",
+   "name": "Screenshot webpage",
+   "description": "This endpoint captures a screenshot of the specified webpage using Chromium. Users can customize the viewport dimensions and capture options.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "sessionId": {
+      "type": "string",
+      "description": "An optional browser session identifier to reference an existing running browser sessions. When passed, the tool will be executed on the provided browser session."
+     },
+     "url": {
+      "type": "string",
+      "description": "The URL of the webpage to capture."
+     },
+     "width": {
+      "type": "integer",
+      "description": "The width of the browser viewport in pixels."
+     },
+     "height": {
+      "type": "integer",
+      "description": "The height of the browser viewport in pixels."
+     },
+     "image_quality": {
+      "type": "integer",
+      "description": "Quality of the output image, on the range 1-100. 100 will not perform any compression."
+     },
+     "wait": {
+      "type": "integer",
+      "description": "Duration in milliseconds to wait after page has loaded, mainly used for sites with JS animations."
+     },
+     "scroll_all_content": {
+      "type": "boolean",
+      "description": "If true, scrolls the page and captures all visible content."
+     },
+     "capture_full_height": {
+      "type": "boolean",
+      "description": "If true, captures the entire height of the page, ignoring the viewport height."
+     },
+     "s3_target_address": {
+      "type": "string",
+      "description": "Presigned S3 url target to upload the image to."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anchorbrowser.io/v1/tools/screenshot",
+    "path": [],
+    "query": [
+     "sessionId"
+    ],
+    "header": [],
+    "body": [
+     "url",
+     "width",
+     "height",
+     "image_quality",
+     "wait",
+     "scroll_all_content",
+     "capture_full_height",
+     "s3_target_address"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.post_v1_volumes",
+   "name": "Create volume",
+   "description": "Create a persistent volume for your team. The volume is usually `ready` immediately; if the response says `creating`, poll `GET /v1/volumes/{volume_id}` until it is. Each team can have up to 10 volumes.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": "string",
+      "description": "Volume name, unique within your team. Letters, numbers, `_` and `-`, up to 64 characters."
+     }
+    },
+    "required": [
+     "name"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anchorbrowser.io/v1/volumes",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "name"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.post_v1_volumes_volume_id_directories",
+   "name": "Create directory",
+   "description": "Create an empty folder in the volume. Folders are also created implicitly when a file is uploaded to a path inside them.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "volume_id": {
+      "type": "string",
+      "description": ""
+     },
+     "path": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "path",
+     "volume_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anchorbrowser.io/v1/volumes/{volume_id}/directories",
+    "path": [
+     "volume_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "path"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.post_v1_volumes_volume_id_files",
+   "name": "Upload file",
+   "description": "Upload a file into the volume in one multipart request. For files larger than 10 MB use `POST /v1/volumes/{volume_id}/files/upload-url` instead.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "volume_id": {
+      "type": "string",
+      "description": ""
+     },
+     "file": {
+      "type": "string",
+      "description": "The file to upload"
+     },
+     "path": {
+      "type": "string",
+      "description": "Destination path relative to the volume root, e.g. `downloads/report.pdf`. Defaults to the uploaded file's name at the root."
+     },
+     "overwrite": {
+      "type": "string",
+      "description": "Replace an existing file at `path`. Defaults to `false`.",
+      "enum": [
+       "true",
+       "false"
+      ]
+     }
+    },
+    "required": [
+     "file",
+     "volume_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anchorbrowser.io/v1/volumes/{volume_id}/files",
+    "path": [
+     "volume_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "file",
+     "path",
+     "overwrite"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.post_v1_volumes_volume_id_files_upload_url",
+   "name": "Create upload url",
+   "description": "Get a pre-signed URL to upload a file of any size (up to 5 GB) directly to storage. `PUT` the file body to `signed_url` and send the returned `headers` unchanged.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "volume_id": {
+      "type": "string",
+      "description": ""
+     },
+     "path": {
+      "type": "string",
+      "description": "Destination path relative to the volume root"
+     },
+     "content_type": {
+      "type": "string",
+      "description": "MIME type of the file. Defaults to `application/octet-stream`."
+     },
+     "size": {
+      "type": "integer",
+      "description": "Size in bytes, if known"
+     }
+    },
+    "required": [
+     "path",
+     "volume_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anchorbrowser.io/v1/volumes/{volume_id}/files/upload-url",
+    "path": [
+     "volume_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "path",
+     "content_type",
+     "size"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.post_v2_tasks_generate",
+   "name": "Generate a task",
+   "description": "Starts asynchronous generation of a new task from a natural-language prompt. Poll `GET /v2/tasks/{taskId}/generation-status` until the status is `ready`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "taskName": {
+      "type": "string",
+      "description": "Name of the task"
+     },
+     "taskPrompt": {
+      "type": "string",
+      "description": "Natural-language description of what the task should do, used for AI generation. Make it as detailed as possible with all the logic and steps needed to complete the task."
+     },
+     "async": {
+      "type": "boolean",
+      "description": "Whether to generate the task asynchronously"
+     },
+     "description": {
+      "type": "string",
+      "description": "Description of the task"
+     },
+     "application_id": {
+      "type": "string",
+      "description": "Optional application (connection) ID to associate with the task"
+     },
+     "identity_id": {
+      "type": "string",
+      "description": "Optional identity ID to use during task generation"
+     },
+     "input_schema": {
+      "type": "array",
+      "description": "Input parameters the task accepts"
+     },
+     "output_schema": {
+      "type": "array",
+      "description": "Output fields the task produces"
+     },
+     "output_file_only": {
+      "type": "boolean",
+      "description": "Whether task runs should return only the bundled session downloads file"
+     },
+     "human_intervention": {
+      "type": "boolean",
+      "description": "Allow human intervention during task execution"
+     },
+     "browser_session_id": {
+      "type": "string",
+      "description": "Existing finished browser session id to generate the workflow from"
+     },
+     "task_browser_default_configuration": {
+      "type": "object",
+      "description": "Optional default browser/session configuration when running this task"
+     }
+    },
+    "required": [
+     "taskName",
+     "taskPrompt"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anchorbrowser.io/v2/tasks/generate",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "taskName",
+     "taskPrompt",
+     "async",
+     "description",
+     "application_id",
+     "identity_id",
+     "input_schema",
+     "output_schema",
+     "output_file_only",
+     "human_intervention",
+     "browser_session_id",
+     "task_browser_default_configuration"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.post_v2_tasks_taskId_run",
+   "name": "Run a task",
+   "description": "Triggers execution of a task by ID using the non-deprecated Tasks endpoints.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "taskId": {
+      "type": "string",
+      "description": "The ID of the task to run"
+     },
+     "input_params": {
+      "type": "object",
+      "description": "Key-value pairs of input parameters for the task"
+     },
+     "identity_id": {
+      "type": "string",
+      "description": "Optional identity ID to use for the task"
+     },
+     "session_id": {
+      "type": "string",
+      "description": "Optional session ID to run the task in"
+     },
+     "cleanup_sessions": {
+      "type": "boolean",
+      "description": "Whether to clean up sessions after execution (default: true)"
+     },
+     "identity_skip_validation": {
+      "type": "boolean",
+      "description": "When `true` (default), skip profile validation for active identities and reuse the saved browser profile. Set to `false` to validate the profile and re-authenticate if it is no longer signed in. Pending identities still authenticate on first use."
+     },
+     "sync": {
+      "type": "boolean",
+      "description": "Wait for the task to complete before returning. Defaults to `false`."
+     }
+    },
+    "required": [
+     "input_params",
+     "taskId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anchorbrowser.io/v2/tasks/{taskId}/run",
+    "path": [
+     "taskId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "input_params",
+     "identity_id",
+     "session_id",
+     "cleanup_sessions",
+     "identity_skip_validation",
+     "sync"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.put_v1_identities_identityId",
+   "name": "Update identity",
+   "description": "Updates an existing identity's name, metadata, or credentials.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "identityId": {
+      "type": "string",
+      "description": "The ID of the identity to update"
+     },
+     "name": {
+      "type": "string",
+      "description": "Name of the identity"
+     },
+     "metadata": {
+      "type": "object",
+      "description": "Metadata for the identity"
+     },
+     "credentials": {
+      "type": "array",
+      "description": "Array of credentials for authentication"
+     }
+    },
+    "required": [
+     "identityId"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.anchorbrowser.io/v1/identities/{identityId}",
+    "path": [
+     "identityId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "metadata",
+     "credentials"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.put_v1_sessions_session_id_tags",
+   "name": "Put session tags",
+   "description": "Create or replace tags on a browser session. This overwrites any existing tags with the provided list. See [Session Tags](/advanced/session-tags).",
+   "input": {
+    "type": "object",
+    "properties": {
+     "session_id": {
+      "type": "string",
+      "description": "The ID of the session to update tags for."
+     },
+     "tags": {
+      "type": "array",
+      "description": "Tags to set on the session. Replaces any existing tags."
+     }
+    },
+    "required": [
+     "session_id",
+     "tags"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.anchorbrowser.io/v1/sessions/{session_id}/tags",
+    "path": [
+     "session_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "tags"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.put_v1_task_taskId",
+   "name": "Update task metadata (legacy)",
+   "description": "Updates task metadata (name and description). This does not affect the task code or versions. If you are using the new Task Builder, see the non-deprecated Tasks endpoints in this API reference.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "taskId": {
+      "type": "string",
+      "description": "The ID of the task to update"
+     },
+     "name": {
+      "type": "string",
+      "description": "Task name (letters, numbers, hyphens, and underscores only)"
+     },
+     "description": {
+      "type": "string",
+      "description": "Optional description of the task"
+     }
+    },
+    "required": [
+     "taskId"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://api.anchorbrowser.io/v1/task/{taskId}",
+    "path": [
+     "taskId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "description"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.rotate_webhook_secret",
+   "name": "Rotate webhook signing secret",
+   "description": "Mint a new HMAC-SHA256 signing secret. The previous secret remains valid for 24 hours so you can update your verification code at your own pace, then drop the old secret. The new secret is returned exactly once, in the `secret` field.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "Webhook id."
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anchorbrowser.io/v1/webhooks/{id}/rotate-secret",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.send_webhook_test_event",
+   "name": "Send test event",
+   "description": "Fire a synthetic event of the given type through the real signing + retry path. Useful during development for confirming your endpoint can verify the signature and is reachable from Anchor's egress IPs. The synthetic delivery counts toward your delivery log so you can see it in `GET /v1/webhooks/{id}/events`.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "Webhook id."
+     },
+     "event_type": {
+      "type": "string",
+      "description": "Catalog of webhook event types Anchor can deliver. Adding a new event type is a coordinated change between session-manager (publisher), webhook-dispatcher (consumer), and the dashboard.",
+      "enum": [
+       "task.completed",
+       "task.failed",
+       "task.cancelled",
+       "task.healed",
+       "session.ready",
+       "session.completed",
+       "session.failed",
+       "session.recording.ready",
+       "batch.completed",
+       "batch.failed",
+       "intervention.requested",
+       "intervention.resolved"
+      ]
+     }
+    },
+    "required": [
+     "event_type",
+     "id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anchorbrowser.io/v1/webhooks/{id}/test",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "event_type"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anchor-browser.update_webhook",
+   "name": "Update webhook",
+   "description": "Partial update \u2014 pass only the fields you want to change. Setting `enabled: false` immediately stops events from fanning out to this webhook (existing in-flight deliveries finish their attempts).",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "Webhook id."
+     },
+     "url": {
+      "type": "string",
+      "description": ""
+     },
+     "description": {
+      "type": "string",
+      "description": ""
+     },
+     "subscribed_events": {
+      "type": "array",
+      "description": ""
+     },
+     "enabled": {
+      "type": "boolean",
+      "description": ""
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://api.anchorbrowser.io/v1/webhooks/{id}",
+    "path": [
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "url",
+     "description",
+     "subscribed_events",
+     "enabled"
+    ],
+    "body_format": "json"
+   }
+  }
+ ]
+}

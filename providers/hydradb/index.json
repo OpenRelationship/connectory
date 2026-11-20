@@ -1,0 +1,1032 @@
+{
+ "_": "GENERATED \u2014 what an authoring tool needs to FIND an operation. The calling table is the .lua beside it.",
+ "provider": "hydradb",
+ "source": "https://docs.hydradb.com/api-reference/openapi.json",
+ "operations": [
+  {
+   "slug": "hydradb.add_memory_memories_add_memory_post",
+   "name": "Add memory",
+   "description": "Add memory",
+   "input": {
+    "type": "object",
+    "properties": {
+     "memories": {
+      "type": "array",
+      "description": "List of memory items to ingest"
+     },
+     "tenant_id": {
+      "type": "string",
+      "description": "Unique identifier for the tenant/organization"
+     },
+     "sub_tenant_id": {
+      "type": "string",
+      "description": "Optional sub-tenant identifier used to organize data within a tenant. If omitted, the default sub-tenant created during tenant setup will be used."
+     },
+     "upsert": {
+      "type": "boolean",
+      "description": "If true, update existing sources with the same source_id."
+     }
+    },
+    "required": [
+     "memories",
+     "tenant_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hydradb.com/memories/add_memory",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "memories",
+     "tenant_id",
+     "sub_tenant_id",
+     "upsert"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hydradb.create_api_key_api_keys_create_api_key_post",
+   "name": "Create api key",
+   "description": "Create Api Key",
+   "input": {
+    "type": "object",
+    "properties": {
+     "owner": {
+      "type": "string",
+      "description": "Owner identifier (e.g. email). Defaults to authenticated user's email."
+     },
+     "scopes": {
+      "type": "array",
+      "description": "Optional list of scopes (e.g. ['ingest', 'query']). Omit or leave empty for now."
+     },
+     "env": {
+      "type": "string",
+      "description": "Environment tag embedded into the key (live or test)."
+     },
+     "prefix": {
+      "type": "string",
+      "description": "Key prefix, e.g. 'sk'."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hydradb.com/api-keys/create_api_key",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "owner",
+     "scopes",
+     "env",
+     "prefix"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hydradb.create_tenant_tenants_create_post",
+   "name": "Create tenant",
+   "description": "Create Tenant",
+   "input": {
+    "type": "object",
+    "properties": {
+     "tenant_id": {
+      "type": "string",
+      "description": "Unique tenant identifier"
+     },
+     "is_embeddings_tenant": {
+      "type": "boolean",
+      "description": "True to create embeddings tenant"
+     },
+     "embeddings_dimension": {
+      "type": "string",
+      "description": "Embedding dimensions for embeddings tenant. Not required for non-embeddings (is_embeddings_tenant=False) tenants"
+     },
+     "tenant_metadata_schema": {
+      "type": "string",
+      "description": "Schema definition for tenant metadata fields. Each field can be configured for: filtering (enable_match), semantic search (enable_dense_embedding), and/or keyword search (enable_sparse_embedding). Fields with embeddings enabled must be VARCHAR type."
+     }
+    },
+    "required": [
+     "tenant_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hydradb.com/tenants/create",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "tenant_id",
+     "is_embeddings_tenant",
+     "embeddings_dimension",
+     "tenant_metadata_schema"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hydradb.delete_memory_memories_delete_memory_delete",
+   "name": "Delete memory",
+   "description": "Delete memory",
+   "input": {
+    "type": "object",
+    "properties": {
+     "tenant_id": {
+      "type": "string",
+      "description": "Tenant ID"
+     },
+     "memory_id": {
+      "type": "string",
+      "description": "Unique identifier of the memory to delete"
+     },
+     "sub_tenant_id": {
+      "type": "string",
+      "description": "Sub-tenant ID"
+     }
+    },
+    "required": [
+     "memory_id",
+     "tenant_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.hydradb.com/memories/delete_memory",
+    "path": [],
+    "query": [
+     "tenant_id",
+     "memory_id",
+     "sub_tenant_id"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hydradb.delete_raw_embeddings_endpoint_embeddings_delete_raw_embeddings_delete",
+   "name": "Delete raw embeddings endpoint",
+   "description": "Delete Raw Embeddings Endpoint",
+   "input": {
+    "type": "object",
+    "properties": {
+     "tenant_id": {
+      "type": "string",
+      "description": "Unique identifier for the tenant/organization"
+     },
+     "sub_tenant_id": {
+      "type": "string",
+      "description": "Optional sub-tenant ID for scoping deletion"
+     },
+     "source_id": {
+      "type": "string",
+      "description": "Optional source ID to delete by (mutually exclusive with chunk_ids)"
+     },
+     "chunk_ids": {
+      "type": "string",
+      "description": "Optional list of chunk IDs to delete (mutually exclusive with source_id)"
+     }
+    },
+    "required": [
+     "tenant_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.hydradb.com/embeddings/delete_raw_embeddings",
+    "path": [],
+    "query": [
+     "tenant_id",
+     "sub_tenant_id",
+     "source_id",
+     "chunk_ids"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hydradb.delete_source_knowledge_delete_knowledge_post",
+   "name": "Delete source",
+   "description": "Delete Source",
+   "input": {
+    "type": "object",
+    "properties": {
+     "tenant_id": {
+      "type": "string",
+      "description": ""
+     },
+     "sub_tenant_id": {
+      "type": "string",
+      "description": ""
+     },
+     "ids": {
+      "type": "array",
+      "description": "List of source IDs to delete."
+     }
+    },
+    "required": [
+     "ids",
+     "tenant_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hydradb.com/knowledge/delete_knowledge",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "tenant_id",
+     "sub_tenant_id",
+     "ids"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hydradb.delete_tenant_tenants_delete_delete",
+   "name": "Delete tenant",
+   "description": "Delete Tenant",
+   "input": {
+    "type": "object",
+    "properties": {
+     "tenant_id": {
+      "type": "string",
+      "description": "Unique identifier for the tenant/organization"
+     }
+    },
+    "required": [
+     "tenant_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://api.hydradb.com/tenants/delete",
+    "path": [],
+    "query": [
+     "tenant_id"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hydradb.fetch_source_fetch_content_post",
+   "name": "Fetch source",
+   "description": "Fetch Source",
+   "input": {
+    "type": "object",
+    "properties": {
+     "tenant_id": {
+      "type": "string",
+      "description": "Unique identifier for the tenant/organization"
+     },
+     "sub_tenant_id": {
+      "type": "string",
+      "description": "Optional sub-tenant identifier used to organize data within a tenant. If omitted, the default sub-tenant created during tenant setup will be used."
+     },
+     "source_id": {
+      "type": "string",
+      "description": "Source ID of the file to fetch"
+     },
+     "mode": {
+      "type": "string",
+      "description": "Mode for fetching file content.",
+      "enum": [
+       "content",
+       "url",
+       "both"
+      ]
+     },
+     "expiry_seconds": {
+      "type": "integer",
+      "description": "Expiry time in seconds for presigned URL (60-604800, default: 3600)"
+     }
+    },
+    "required": [
+     "source_id",
+     "tenant_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hydradb.com/fetch/content",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "tenant_id",
+     "sub_tenant_id",
+     "source_id",
+     "mode",
+     "expiry_seconds"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hydradb.filter_raw_embeddings_endpoint_embeddings_filter_raw_embeddings_post",
+   "name": "Filter raw embeddings endpoint",
+   "description": "Filter Raw Embeddings Endpoint",
+   "input": {
+    "type": "object",
+    "properties": {
+     "tenant_id": {
+      "type": "string",
+      "description": "Unique identifier for the tenant/organization"
+     },
+     "sub_tenant_id": {
+      "type": "string",
+      "description": "Optional sub-tenant identifier used to organize data within a tenant. If omitted, the default sub-tenant created during tenant setup will be used."
+     },
+     "source_id": {
+      "type": "string",
+      "description": "Optional source ID to filter by (mutually exclusive with chunk_ids)"
+     },
+     "chunk_ids": {
+      "type": "string",
+      "description": "Optional list of chunk IDs to filter by (mutually exclusive with source_id)"
+     },
+     "output_fields": {
+      "type": "string",
+      "description": "Optional list of fields to return in results (default: chunk_id, source_id, metadata)"
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Maximum number of results to return"
+     }
+    },
+    "required": [
+     "sub_tenant_id",
+     "tenant_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hydradb.com/embeddings/filter_raw_embeddings",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "tenant_id",
+     "sub_tenant_id",
+     "source_id",
+     "chunk_ids",
+     "output_fields",
+     "limit"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hydradb.full_recall_recall_full_recall_post",
+   "name": "Full recall for knowledge base",
+   "description": "Full recall for knowledge base",
+   "input": {
+    "type": "object",
+    "properties": {
+     "tenant_id": {
+      "type": "string",
+      "description": "Unique identifier for the tenant/organization"
+     },
+     "sub_tenant_id": {
+      "type": "string",
+      "description": "Optional sub-tenant identifier used to organize data within a tenant. If omitted, the default sub-tenant created during tenant setup will be used."
+     },
+     "query": {
+      "type": "string",
+      "description": "Search terms to find relevant content"
+     },
+     "max_results": {
+      "type": "string",
+      "description": "Maximum number of results to return"
+     },
+     "mode": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "fast",
+       "thinking"
+      ]
+     },
+     "alpha": {
+      "type": "string",
+      "description": "Search ranking algorithm parameter (0.0-1.0 or 'auto')"
+     },
+     "recency_bias": {
+      "type": "number",
+      "description": "Preference for newer content (0.0 = no bias, 1.0 = strong recency preference)"
+     },
+     "graph_context": {
+      "type": "boolean",
+      "description": "Enable graph context for search results"
+     },
+     "search_forceful_relations": {
+      "type": "boolean",
+      "description": "Whether to search for forceful relations in thinking mode to augment context"
+     },
+     "additional_context": {
+      "type": "string",
+      "description": "Additional context provided by the user to guide retrieval"
+     },
+     "metadata_filters": {
+      "type": "string",
+      "description": "Optional object for exact-match metadata scoping. All provided conditions are combined with AND. Top-level keys (except the reserved nested object described below) must match tenant-level metadata field names declared with enable_match in tenant_metadata_schema; each value is compared with plain equality to the stored tenant metadata value for that field. For document-level metadata, supply a nest"
+     }
+    },
+    "required": [
+     "query",
+     "tenant_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hydradb.com/recall/full_recall",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "tenant_id",
+     "sub_tenant_id",
+     "query",
+     "max_results",
+     "mode",
+     "alpha",
+     "recency_bias",
+     "graph_context",
+     "search_forceful_relations",
+     "additional_context",
+     "metadata_filters"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hydradb.full_text_search_recall_boolean_recall_post",
+   "name": "Full text search",
+   "description": "Full-text search",
+   "input": {
+    "type": "object",
+    "properties": {
+     "tenant_id": {
+      "type": "string",
+      "description": "Unique identifier for the tenant/organization"
+     },
+     "sub_tenant_id": {
+      "type": "string",
+      "description": "Optional sub-tenant identifier used to organize data within a tenant. If omitted, the default sub-tenant created during tenant setup will be used."
+     },
+     "query": {
+      "type": "string",
+      "description": "Search terms to find in your content"
+     },
+     "operator": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "or",
+       "and",
+       "phrase"
+      ]
+     },
+     "max_results": {
+      "type": "integer",
+      "description": "Maximum number of results to return"
+     },
+     "search_mode": {
+      "type": "string",
+      "description": "Search mode to specify what type of content to search.",
+      "enum": [
+       "sources",
+       "memories"
+      ]
+     }
+    },
+    "required": [
+     "query",
+     "tenant_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hydradb.com/recall/boolean_recall",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "tenant_id",
+     "sub_tenant_id",
+     "query",
+     "operator",
+     "max_results",
+     "search_mode"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hydradb.get_infra_status_tenants_infra_status_get",
+   "name": "Get infra status",
+   "description": "Get Infra Status",
+   "input": {
+    "type": "object",
+    "properties": {
+     "tenant_id": {
+      "type": "string",
+      "description": "Unique identifier for the tenant/organization"
+     }
+    },
+    "required": [
+     "tenant_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hydradb.com/tenants/infra/status",
+    "path": [],
+    "query": [
+     "tenant_id"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hydradb.get_sub_tenant_ids_tenants_sub_tenant_ids_get",
+   "name": "Get sub tenant ids",
+   "description": "Get Sub Tenant Ids",
+   "input": {
+    "type": "object",
+    "properties": {
+     "tenant_id": {
+      "type": "string",
+      "description": "Unique identifier for the tenant/organization"
+     }
+    },
+    "required": [
+     "tenant_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hydradb.com/tenants/sub_tenant_ids",
+    "path": [],
+    "query": [
+     "tenant_id"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hydradb.get_tenant_stats_tenants_monitor_get",
+   "name": "Get tenant stats",
+   "description": "Get Tenant Stats",
+   "input": {
+    "type": "object",
+    "properties": {
+     "tenant_id": {
+      "type": "string",
+      "description": "Unique identifier for the tenant/organization"
+     }
+    },
+    "required": [
+     "tenant_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hydradb.com/tenants/monitor",
+    "path": [],
+    "query": [
+     "tenant_id"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hydradb.graph_relations_by_id_list_graph_relations_by_id_get",
+   "name": "Graph relations by id",
+   "description": "Graph Relations By Id",
+   "input": {
+    "type": "object",
+    "properties": {
+     "source_id": {
+      "type": "string",
+      "description": "The source ID to fetch relations for"
+     },
+     "tenant_id": {
+      "type": "string",
+      "description": "Unique identifier for the tenant/organization"
+     },
+     "is_memory": {
+      "type": "boolean",
+      "description": "Whether to fetch relations for memories"
+     },
+     "sub_tenant_id": {
+      "type": "string",
+      "description": "Optional sub-tenant identifier used to organize data within a tenant. If omitted, the default sub-tenant created during tenant setup will be used."
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Maximum number of relations to return"
+     }
+    },
+    "required": [
+     "source_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hydradb.com/list/graph_relations_by_id",
+    "path": [],
+    "query": [
+     "source_id",
+     "tenant_id",
+     "is_memory",
+     "sub_tenant_id",
+     "limit"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hydradb.insert_raw_embeddings_endpoint_embeddings_insert_raw_embeddings_post",
+   "name": "Insert raw embeddings endpoint",
+   "description": "Insert Raw Embeddings Endpoint",
+   "input": {
+    "type": "object",
+    "properties": {
+     "tenant_id": {
+      "type": "string",
+      "description": "Unique identifier for the tenant/organization"
+     },
+     "sub_tenant_id": {
+      "type": "string",
+      "description": "Optional sub-tenant identifier used to organize data within a tenant. If omitted, the default sub-tenant created during tenant setup will be used."
+     },
+     "embeddings": {
+      "type": "array",
+      "description": "List of raw embedding documents to insert"
+     },
+     "upsert": {
+      "type": "boolean",
+      "description": "If True, update existing embeddings; if False, insert only"
+     }
+    },
+    "required": [
+     "embeddings",
+     "tenant_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hydradb.com/embeddings/insert_raw_embeddings",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "tenant_id",
+     "sub_tenant_id",
+     "embeddings",
+     "upsert"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hydradb.list_content_list_data_post",
+   "name": "List content",
+   "description": "List Content",
+   "input": {
+    "type": "object",
+    "properties": {
+     "tenant_id": {
+      "type": "string",
+      "description": "Tenant ID"
+     },
+     "sub_tenant_id": {
+      "type": "string",
+      "description": "Sub-tenant ID"
+     },
+     "kind": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "knowledge",
+       "memories"
+      ]
+     },
+     "source_ids": {
+      "type": "string",
+      "description": "Optional list of IDs to fetch (max 100). If omitted, returns all."
+     },
+     "page": {
+      "type": "integer",
+      "description": "Page number to retrieve (1-indexed). Defaults to 1."
+     },
+     "page_size": {
+      "type": "integer",
+      "description": "Number of items per page (1-100). Defaults to 50."
+     },
+     "filters": {
+      "type": "string",
+      "description": "Optional filters. Provide key-value pairs to match against tenant_metadata, document_metadata, and/or source-level fields (title, type, description, url, timestamp)."
+     },
+     "include_fields": {
+      "type": "string",
+      "description": "Optional list of source fields to include in the response. When provided, only the specified fields (plus id, tenant_id, sub_tenant_id which are always returned) will be populated; all other fields will have their default/empty values. This reduces payload size and improves performance. Allowed values: attachments, content, description, document_metadata, note, relations, tenant_metadata, timestam"
+     }
+    },
+    "required": [
+     "tenant_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hydradb.com/list/data",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "tenant_id",
+     "sub_tenant_id",
+     "kind",
+     "source_ids",
+     "page",
+     "page_size",
+     "filters",
+     "include_fields"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hydradb.metrics_metrics_get",
+   "name": "Metrics",
+   "description": "Metrics",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.hydradb.com/metrics",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hydradb.recall_preferences_recall_recall_preferences_post",
+   "name": "Recall preferences (memories)",
+   "description": "Recall preferences (memories)",
+   "input": {
+    "type": "object",
+    "properties": {
+     "tenant_id": {
+      "type": "string",
+      "description": "Unique identifier for the tenant/organization"
+     },
+     "sub_tenant_id": {
+      "type": "string",
+      "description": "Optional sub-tenant identifier used to organize data within a tenant. If omitted, the default sub-tenant created during tenant setup will be used."
+     },
+     "query": {
+      "type": "string",
+      "description": "Search terms to find relevant content"
+     },
+     "max_results": {
+      "type": "string",
+      "description": "Maximum number of results to return"
+     },
+     "mode": {
+      "type": "string",
+      "description": "",
+      "enum": [
+       "fast",
+       "thinking"
+      ]
+     },
+     "alpha": {
+      "type": "string",
+      "description": "Search ranking algorithm parameter (0.0-1.0 or 'auto')"
+     },
+     "recency_bias": {
+      "type": "number",
+      "description": "Preference for newer content (0.0 = no bias, 1.0 = strong recency preference)"
+     },
+     "graph_context": {
+      "type": "boolean",
+      "description": "Enable graph context for search results"
+     },
+     "search_forceful_relations": {
+      "type": "boolean",
+      "description": "Whether to search for forceful relations in thinking mode to augment context"
+     },
+     "additional_context": {
+      "type": "string",
+      "description": "Additional context provided by the user to guide retrieval"
+     },
+     "metadata_filters": {
+      "type": "string",
+      "description": "Optional object for exact-match metadata scoping. All provided conditions are combined with AND. Top-level keys (except the reserved nested object described below) must match tenant-level metadata field names declared with enable_match in tenant_metadata_schema; each value is compared with plain equality to the stored tenant metadata value for that field. For document-level metadata, supply a nest"
+     }
+    },
+    "required": [
+     "query",
+     "tenant_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hydradb.com/recall/recall_preferences",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "tenant_id",
+     "sub_tenant_id",
+     "query",
+     "max_results",
+     "mode",
+     "alpha",
+     "recency_bias",
+     "graph_context",
+     "search_forceful_relations",
+     "additional_context",
+     "metadata_filters"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hydradb.search_raw_embeddings_endpoint_embeddings_search_raw_embeddings_post",
+   "name": "Search raw embeddings endpoint",
+   "description": "Search Raw Embeddings Endpoint",
+   "input": {
+    "type": "object",
+    "properties": {
+     "tenant_id": {
+      "type": "string",
+      "description": "Unique identifier for the tenant/organization"
+     },
+     "sub_tenant_id": {
+      "type": "string",
+      "description": "Optional sub-tenant identifier used to organize data within a tenant. If omitted, the default sub-tenant created during tenant setup will be used."
+     },
+     "query_embedding": {
+      "type": "array",
+      "description": "Query embedding vector to search for"
+     },
+     "limit": {
+      "type": "integer",
+      "description": "Maximum number of results to return"
+     },
+     "filter_expr": {
+      "type": "string",
+      "description": "Optional Milvus filter expression for additional filtering"
+     },
+     "output_fields": {
+      "type": "string",
+      "description": "Optional list of fields to return in results (default: chunk_id, source_id, metadata)"
+     }
+    },
+    "required": [
+     "query_embedding",
+     "sub_tenant_id",
+     "tenant_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hydradb.com/embeddings/search_raw_embeddings",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "tenant_id",
+     "sub_tenant_id",
+     "query_embedding",
+     "limit",
+     "filter_expr",
+     "output_fields"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hydradb.upload_knowledge_ingestion_upload_knowledge_post",
+   "name": "Upload knowledge",
+   "description": "Upload Knowledge",
+   "input": {
+    "type": "object",
+    "properties": {
+     "tenant_id": {
+      "type": "string",
+      "description": "Unique identifier for the tenant/organization"
+     },
+     "sub_tenant_id": {
+      "type": "string",
+      "description": "Optional sub-tenant identifier used to organize data within a tenant. If omitted, the default sub-tenant created during tenant setup will be used."
+     },
+     "upsert": {
+      "type": "boolean",
+      "description": "If true, update existing sources with the same id."
+     },
+     "files": {
+      "type": "array",
+      "description": "Files to upload (documents). Omit or leave empty when only sending app_knowledge."
+     },
+     "file_metadata": {
+      "type": "string",
+      "description": "JSON array of file metadata objects; length must match files when provided. Each object may include: file_id (optional), metadata, additional_metadata, and relations (forceful relations to other HydraDB source IDs)."
+     },
+     "app_knowledge": {
+      "type": "string",
+      "description": "JSON: single source object or array of app-generated sources to index. Omit when only uploading files."
+     }
+    },
+    "required": [
+     "tenant_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hydradb.com/ingestion/upload_knowledge",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "tenant_id",
+     "sub_tenant_id",
+     "upsert",
+     "files",
+     "file_metadata",
+     "app_knowledge"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "hydradb.verify_processing_ingestion_verify_processing_post",
+   "name": "Verify processing",
+   "description": "Verify Processing",
+   "input": {
+    "type": "object",
+    "properties": {
+     "file_id": {
+      "type": "string",
+      "description": "Single file ID (deprecated - use file_ids instead)."
+     },
+     "file_ids": {
+      "type": "array",
+      "description": "One or more file IDs to check processing status for."
+     },
+     "tenant_id": {
+      "type": "string",
+      "description": "Unique identifier for the tenant/organization"
+     },
+     "sub_tenant_id": {
+      "type": "string",
+      "description": "Optional sub-tenant identifier used to organize data within a tenant. If omitted, the default sub-tenant created during tenant setup will be used."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.hydradb.com/ingestion/verify_processing",
+    "path": [],
+    "query": [
+     "file_id",
+     "file_ids",
+     "tenant_id",
+     "sub_tenant_id"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  }
+ ]
+}

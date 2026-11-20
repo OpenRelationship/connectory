@@ -1,0 +1,563 @@
+{
+ "_": "GENERATED \u2014 what an authoring tool needs to FIND an operation. The calling table is the .lua beside it.",
+ "provider": "nanonets",
+ "source": "https://raw.githubusercontent.com/NanoNets/api-docs/main/nanonets_openapi_3.1.0.yaml",
+ "operations": [
+  {
+   "slug": "nanonets.ic_model_all",
+   "name": "Get all model details",
+   "description": "Get information of all models in an account, irrespective of the type of model (OCR model or Image Classification model).",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://app.nanonets.com/api/v2/ImageCategorization/Models",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "nanonets.ic_model_id",
+   "name": "Get model details by id",
+   "description": "Retrieve a specific model's details given its ID.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "id": {
+      "type": "string",
+      "description": "The ID of the model on which the operation is to be performed. It can be found in the model settings. **Eg**: `0a0aa000-0000-0a0-aa00-000a0000000a`"
+     }
+    },
+    "required": [
+     "id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://app.nanonets.com/api/v2/ImageCategorization/Model",
+    "path": [],
+    "query": [
+     "id"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "nanonets.ic_predict_file",
+   "name": "Prediction for image file",
+   "description": "Given an image file, extract data as per the label(s) specified in the model.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "modelId": {
+      "type": "string",
+      "description": "The ID of the model on which the operation is to be performed. It can be found in the model settings. **Eg**: `0a0aa000-0000-0a0-aa00-000a0000000a`"
+     },
+     "file": {
+      "type": "string",
+      "description": "The file to be uploaded. **Format**: PNG, JPEG or PDF"
+     }
+    },
+    "required": [
+     "file",
+     "modelId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://app.nanonets.com/api/v2/ImageCategorization/LabelFile",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "modelId",
+     "file"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "nanonets.ic_predict_url",
+   "name": "Prediction for image urls",
+   "description": "Given image URL(s), extract data as per the label(s) specified in the model. Multiple image URLs per request are allowed.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "modelId": {
+      "type": "string",
+      "description": "The ID of the model on which the operation is to be performed. It can be found in the model settings. **Eg**: `0a0aa000-0000-0a0-aa00-000a0000000a`"
+     },
+     "urls": {
+      "type": "string",
+      "description": "Array of URLs of the training files. **Format**: PNG, JPEG and/or PDF"
+     }
+    },
+    "required": [
+     "modelId",
+     "urls"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://app.nanonets.com/api/v2/ImageCategorization/LabelUrls",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "modelId",
+     "urls"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "nanonets.ic_train",
+   "name": "Train model",
+   "description": "Train a model after uploading files to the model. The same end point is to be used to re-train a model after uploading more files to improve the model.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "modelId": {
+      "type": "string",
+      "description": "The ID of the model on which the operation is to be performed. It can be found in the model settings. **Eg**: `0a0aa000-0000-0a0-aa00-000a0000000a`"
+     }
+    },
+    "required": [
+     "modelId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://app.nanonets.com/api/v2/ImageCategorization/Train",
+    "path": [],
+    "query": [
+     "modelId"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "nanonets.ic_upload_file",
+   "name": "Upload training images by file",
+   "description": "Upload a training image to the specified model using a locally stored file. On successful upload, model information along with the total number of images per category will be received. **NOTE**: Batch file uploads are not supported by this end point.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "modelId": {
+      "type": "string",
+      "description": "The ID of the model on which the operation is to be performed. It can be found in the model settings. **Eg**: `0a0aa000-0000-0a0-aa00-000a0000000a`"
+     },
+     "category": {
+      "type": "string",
+      "description": "TBD"
+     },
+     "file": {
+      "type": "string",
+      "description": "The file to be uploaded. **Format**: PNG, JPEG or PDF"
+     }
+    },
+    "required": [
+     "category",
+     "file",
+     "modelId"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://app.nanonets.com/api/v2/ImageCategorization/UploadFile",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "modelId",
+     "category",
+     "file"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "nanonets.ic_upload_url",
+   "name": "Upload training images by urls",
+   "description": "Upload training images to a model using image URLs. Multiple images can be uploaded in the same request by adding more URLs in the `urls` array. On successful upload, model information along with the total number of images per category will be received.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "modelId": {
+      "type": "string",
+      "description": "The ID of the model on which the operation is to be performed. It can be found in the model settings. **Eg**: `0a0aa000-0000-0a0-aa00-000a0000000a`"
+     },
+     "category": {
+      "type": "string",
+      "description": "TBD"
+     },
+     "urls": {
+      "type": "string",
+      "description": "Array of URLs of the training files. **Format**: PNG, JPEG and/or PDF"
+     }
+    },
+    "required": [
+     "category",
+     "modelId",
+     "urls"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://app.nanonets.com/api/v2/ImageCategorization/UploadUrls",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "modelId",
+     "category",
+     "urls"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "nanonets.ocr_model_id",
+   "name": "Get model details by id",
+   "description": "Retrieve a specific model's details given its ID.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "model_id": {
+      "type": "string",
+      "description": "The ID of the model on which the operation is to be performed. It can be found in the model settings. **Eg**: `0a0aa000-0000-0a0-aa00-000a0000000a`"
+     }
+    },
+    "required": [
+     "model_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://app.nanonets.com/api/v2/OCR/Model/{model_id}",
+    "path": [
+     "model_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "nanonets.ocr_predict_file",
+   "name": "Prediction for image file",
+   "description": "Given an image file, extract data as per the label(s) specified in the model.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "model_id": {
+      "type": "string",
+      "description": "The ID of the model on which the operation is to be performed. It can be found in the model settings. **Eg**: `0a0aa000-0000-0a0-aa00-000a0000000a`"
+     }
+    },
+    "required": [
+     "model_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://app.nanonets.com/api/v2/OCR/Model/{model_id}/LabelFile",
+    "path": [
+     "model_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "nanonets.ocr_predict_file_async",
+   "name": "Async prediction for image file",
+   "description": "Given an image file, extract data as per the label(s) specified in the model, asynchronously. This end point will send back a response as soon as the file has been uploaded, with a file ID. To retrieve the extracted data from the uploaded file, please use this file ID and hit the [Get Prediction File by ID](#operation/ocr/predict/id) end point.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "model_id": {
+      "type": "string",
+      "description": "The ID of the model on which the operation is to be performed. It can be found in the model settings. **Eg**: `0a0aa000-0000-0a0-aa00-000a0000000a`"
+     },
+     "async": {
+      "type": "boolean",
+      "description": "Indicates that the request has to be processed asynchronously. **NOTE**: `true` is the only accepted value."
+     }
+    },
+    "required": [
+     "async",
+     "model_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://app.nanonets.com/api/v2/OCR/Model/{model_id}/LabelFile/",
+    "path": [
+     "model_id"
+    ],
+    "query": [
+     "async"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "nanonets.ocr_predict_get_file",
+   "name": "Get all prediction files",
+   "description": "Retrieve the files that have been processed by the prediction end points.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "model_id": {
+      "type": "string",
+      "description": "The ID of the model on which the operation is to be performed. It can be found in the model settings. **Eg**: `0a0aa000-0000-0a0-aa00-000a0000000a`"
+     },
+     "start_day_interval": {
+      "type": "integer",
+      "description": "The start of the interval for which prediction files are needed. **Format**: Number of days since [Unix epoch time](https://www.epochconverter.com) **Eg**: 1620130500 seconds / 86400 seconds per day ~ `18,751` days"
+     },
+     "current_batch_day": {
+      "type": "integer",
+      "description": "The end of the interval for which prediction files are needed. **Format**: Number of days since [Unix epoch time](https://www.epochconverter.com) **Eg**: 1630930872 seconds / 86400 seconds per day ~ `18,876` days **NOTE**: The value of this parameter has to be greater than the value of the [`start_day_interval` parameter](#operation/ocr/predict/getfile!in=query&path=start_day_interval&t=request)."
+     }
+    },
+    "required": [
+     "current_batch_day",
+     "model_id",
+     "start_day_interval"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://app.nanonets.com/api/v2/Inferences/Model/{model_id}/ImageLevelInferences",
+    "path": [
+     "model_id"
+    ],
+    "query": [
+     "start_day_interval",
+     "current_batch_day"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "nanonets.ocr_predict_id",
+   "name": "Get prediction file by id",
+   "description": "Retrieve the prediction results of a particular file by its ID.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "model_id": {
+      "type": "string",
+      "description": "The ID of the model on which the operation is to be performed. It can be found in the model settings. **Eg**: `0a0aa000-0000-0a0-aa00-000a0000000a`"
+     },
+     "id": {
+      "type": "string",
+      "description": "The ID of the file for which the prediction has to be retrieved. It can be found in the response on uploading prediction files [synchronously](#operation/ocr/predict/file) or [asynchronously](#operation/ocr/predict/file/async) or while [retrieving all prediction file data](#operation/ocr/predict/getFile). **Eg**: `0a0aa000-0000-0a0-aa00-000a0000000a`"
+     }
+    },
+    "required": [
+     "id",
+     "model_id"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://app.nanonets.com/api/v2/Inferences/Model/{model_id}/ImageLevelInferences/{id}",
+    "path": [
+     "model_id",
+     "id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "nanonets.ocr_predict_url",
+   "name": "Prediction for image urls",
+   "description": "Given image URL(s), extract data as per the label(s) specified in the model. Multiple image URLs per request are allowed.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "model_id": {
+      "type": "string",
+      "description": "The ID of the model on which the operation is to be performed. It can be found in the model settings. **Eg**: `0a0aa000-0000-0a0-aa00-000a0000000a`"
+     }
+    },
+    "required": [
+     "model_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://app.nanonets.com/api/v2/OCR/Model/{model_id}/LabelUrls",
+    "path": [
+     "model_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "nanonets.ocr_predict_url_async",
+   "name": "Async prediction for image urls",
+   "description": "Given image URL(s), extract data as per the label(s) specified in the model, asynchronously. This end point will send back a response as soon as the file has been uploaded, with a file ID. To retrieve the extracted data from the uploaded file, please use this file ID and hit the [Get Prediction File by ID](#operation/ocr/predict/id) end point.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "model_id": {
+      "type": "string",
+      "description": "The ID of the model on which the operation is to be performed. It can be found in the model settings. **Eg**: `0a0aa000-0000-0a0-aa00-000a0000000a`"
+     },
+     "async": {
+      "type": "boolean",
+      "description": "Indicates that the request has to be processed asynchronously. **NOTE**: `true` is the only accepted value."
+     }
+    },
+    "required": [
+     "async",
+     "model_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://app.nanonets.com/api/v2/OCR/Model/{model_id}/LabelUrls/",
+    "path": [
+     "model_id"
+    ],
+    "query": [
+     "async"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "nanonets.ocr_train",
+   "name": "Train model",
+   "description": "Train a model after uploading files to the model. The same end point is to be used to re-train a model after uploading more files to improve the model.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "model_id": {
+      "type": "string",
+      "description": "The ID of the model on which the operation is to be performed. It can be found in the model settings. **Eg**: `0a0aa000-0000-0a0-aa00-000a0000000a`"
+     }
+    },
+    "required": [
+     "model_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://app.nanonets.com/api/v2/OCR/Model/{model_id}/Train",
+    "path": [
+     "model_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "nanonets.ocr_upload_file",
+   "name": "Upload training images by file",
+   "description": "Upload a training image to the specified model using a locally stored file. On successful upload, model information along with the total number of images per category will be received. **NOTE**: Batch file uploads are not supported by this end point.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "model_id": {
+      "type": "string",
+      "description": "The ID of the model on which the operation is to be performed. It can be found in the model settings. **Eg**: `0a0aa000-0000-0a0-aa00-000a0000000a`"
+     },
+     "data": {
+      "type": "string",
+      "description": "The name of the file to be uploaded. **Format**: `\"data\": \"[{\"filename\": \"filename.ext\"}]\"`. **NOTE**: The `filename` must be the same as the uploaded file name."
+     },
+     "file": {
+      "type": "string",
+      "description": "The file to be uploaded. **Format**: PNG, JPEG or PDF"
+     }
+    },
+    "required": [
+     "data",
+     "file",
+     "model_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://app.nanonets.com/api/v2/OCR/Model/{model_id}/UploadFile",
+    "path": [
+     "model_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "data",
+     "file"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "nanonets.ocr_upload_url",
+   "name": "Upload training images by urls",
+   "description": "Upload training images to a model using image URLs. Multiple images can be uploaded in the same request by adding more URLs in the `urls` array. On successful upload, model information along with the total number of images per category will be received.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "Content-Type": {
+      "type": "string",
+      "description": "Set the ['Content-Type' header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type) value. **Eg**: `\"Content-Type\": \"\"application/json\"\"`"
+     },
+     "model_id": {
+      "type": "string",
+      "description": "The ID of the model on which the operation is to be performed. It can be found in the model settings. **Eg**: `0a0aa000-0000-0a0-aa00-000a0000000a`"
+     }
+    },
+    "required": [
+     "Content-Type",
+     "model_id"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://app.nanonets.com/api/v2/OCR/Model/{model_id}/UploadUrls",
+    "path": [
+     "model_id"
+    ],
+    "query": [],
+    "header": [
+     "Content-Type"
+    ],
+    "body": [],
+    "body_format": "json"
+   }
+  }
+ ]
+}

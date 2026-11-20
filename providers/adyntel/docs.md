@@ -45,6 +45,63 @@ To authorise your calls you need to include the 'api\_key' as a query string alo
 
 ```
 
+# Checking your credit balance
+
+Read your remaining credits programmatically
+
+{% hint style="success" %}
+You first need to create an account, you can sign up [here](https://app.adyntel.com/signup) to receive 50 credits to test it out.
+{% endhint %}
+
+The credits check endpoint returns how many credits are left on your account.
+
+It takes the same credentials as every other endpoint — your account email and your API key — and it does **not** consume a credit.
+
+##
+
+## API endpoint
+
+<mark style="color:green;">`POST`</mark> `api.adyntel.com/credits_check`
+
+*Read the current credit balance of the account the API key belongs to.*
+
+### Body <a href="#body" id="body"></a>
+
+<table><thead><tr><th width="166">Name</th><th width="97">Type</th><th width="353">Description</th><th data-type="checkbox">Required</th></tr></thead><tbody><tr><td><code>api_key</code></td><td>string</td><td>Adyntel API key</td><td>true</td></tr><tr><td><code>email</code></td><td>string</td><td>Adyntel account email</td><td>true</td></tr></tbody></table>
+
+### Example request
+
+```
+{
+    "api_key": "hd-nndgi7gy6b3kdsgd-a",
+    "email": "elon@tesla.com"
+}
+```
+
+### Example response
+
+```
+{
+    "current_credits": 4820
+}
+```
+
+`current_credits` is the number of credits still available on the account.
+
+### Wrong credentials
+
+If the email and API key don't match an account, the endpoint answers with a **401**:
+
+```
+{
+    "message": "Invalid username and api key"
+}
+```
+
+{% hint style="info" %}
+This call is free — checking your balance never costs a credit.
+{% endhint %}
+
 # Adyntel MCP server
 
 Instructions on how to use the adyntel MCP server
@@ -529,7 +586,7 @@ You first need to create an account, you can sign up [here](https://app.adyntel.
 
 The Facebook & Instagram endpoint allows you find all Facebook and Instagram ads for a given company.
 
-It takes a Facebook page or a company domain as input.
+It takes a Facebook page, a Facebook page ID or a company domain as input.
 
 {% hint style="warning" %}
 Company domain has to be passed in the 'company.com' format, meaning all prefixes like 'https\://' or '[www](http://www).' need to be removed.
@@ -549,7 +606,7 @@ Company domain has to be passed in the 'company.com' format, meaning all prefixe
 
 ## Body
 
-<table><thead><tr><th width="204">Name</th><th width="97">Type</th><th width="324">Description</th><th data-type="checkbox">Required</th></tr></thead><tbody><tr><td><code>api_key</code></td><td>string</td><td>Adyntel API key</td><td>true</td></tr><tr><td><code>email</code></td><td>number</td><td>Adyntel account email</td><td>true</td></tr><tr><td><code>facebook_url</code></td><td>string</td><td>Facebook page url (needs to start with https://)<br><br><em>Either this or company_domain is required.</em></td><td>true</td></tr><tr><td><code>company_domain</code></td><td>string</td><td>Company website<br><br><em>Either this or facebook_url is required.</em></td><td>true</td></tr><tr><td><code>webhook_url</code></td><td>string</td><td>Webhook URL where the data will be returned</td><td>false</td></tr><tr><td><code>continuation_token</code></td><td>string</td><td>Token used to grab the next set of ads</td><td>false</td></tr><tr><td><code>media_type</code></td><td>string</td><td>Parameter used to filter results for a specific type of media.<br><br>Possible values: <code>image</code>, <code>meme</code>, <code>image_and_meme</code>, <code>video</code></td><td>false</td></tr><tr><td><code>country_code</code></td><td>string or array</td><td>Parameter used to filter results for a specific country.<br><br>Pass a single code (<code>"FR"</code>) for one country, or an array of up to 20 codes (<code>["FR", "ES", "DE"]</code>) to run one independent job per country. The array form requires <code>webhook_url</code> and costs one credit per country — see <em>Filtering by several countries</em> below.<br><br>See possible list of values below.</td><td>false</td></tr><tr><td><code>language</code></td><td>string or array</td><td>Filter results to ads written in one or more languages.<br><br>Accepts an English language name (<code>"Polish"</code>), an ISO 639-1 code (<code>"pl"</code>), or an array mixing both (<code>["pl", "French"]</code>), in which case an ad matching any one of them is returned.<br><br>An unrecognised language is rejected with a <strong>422</strong> before anything is scraped or charged. See possible list of values below.</td><td>false</td></tr><tr><td><code>active_status</code></td><td>string</td><td>This filters the search in the ad library by active, inactive or all ads. If this is not added the endpoint returns, by default, just active ads.<br><br>Possible values: <code>inactive</code> (to get just the inactive ads) and <code>all</code> (to get both the active and inactive ads)</td><td>false</td></tr><tr><td><code>all_ads</code></td><td>boolean</td><td>This will automatically use the <code>continuation_token</code> and scrape all the pages, returning all available ads.<br><br>Works only with a <code>webhook_url</code> as it needs a place to send each page, one by one.<br><br><em><mark style="color:$danger;"><strong>Warning</strong></mark>: use this cautiously because there is no way of stopping it. If you use this on a domain that runs 10000 ads, it will try to scrape all the ads and it will use the credits (one page = one credit)</em></td><td>false</td></tr><tr><td><code>check_ugc</code></td><td>boolean</td><td><p>When true, each video ad is ran through a classifier and a parameter called is_ugc_video (boolean) is added to the final response.</p><p><em>Works only together with</em> <code>media_type</code> <em>set to video</em></p></td><td>false</td></tr><tr><td><code>ad_type</code></td><td>string</td><td>Filters results to a single special ad category, the way Meta labels them in the Ad Library.<br><br>Possible values: <code>political</code>, <code>properties</code>, <code>employment</code>, <code>financial</code>.<br><br><code>political</code> works only with US.</td><td>false</td></tr></tbody></table>
+<table><thead><tr><th width="204">Name</th><th width="97">Type</th><th width="324">Description</th><th data-type="checkbox">Required</th></tr></thead><tbody><tr><td><code>api_key</code></td><td>string</td><td>Adyntel API key</td><td>true</td></tr><tr><td><code>email</code></td><td>number</td><td>Adyntel account email</td><td>true</td></tr><tr><td><code>facebook_url</code></td><td>string</td><td>Facebook page url (needs to start with https://)<br><br><em>One of facebook_url, company_domain or facebook_page_id is required.</em></td><td>true</td></tr><tr><td><code>company_domain</code></td><td>string</td><td>Company website<br><br><em>One of facebook_url, company_domain or facebook_page_id is required.</em></td><td>true</td></tr><tr><td><code>facebook_page_id</code></td><td>string or number</td><td>Numeric Facebook page ID, the <code>view_all_page_id</code> value in a Meta Ad Library URL (e.g. <code>6665038402</code>). The page is looked up directly, with no website or page URL needed.<br><br>When sent together with <code>company_domain</code> or <code>facebook_url</code>, the page ID is used.<br><br><em>One of facebook_url, company_domain or facebook_page_id is required.</em></td><td>true</td></tr><tr><td><code>webhook_url</code></td><td>string</td><td>Webhook URL where the data will be returned</td><td>false</td></tr><tr><td><code>continuation_token</code></td><td>string</td><td>Token used to grab the next set of ads</td><td>false</td></tr><tr><td><code>media_type</code></td><td>string</td><td>Parameter used to filter results for a specific type of media.<br><br>Possible values: <code>image</code>, <code>meme</code>, <code>image_and_meme</code>, <code>video</code></td><td>false</td></tr><tr><td><code>country_code</code></td><td>string or array</td><td>Parameter used to filter results for a specific country.<br><br>Pass a single code (<code>"FR"</code>) for one country, or an array of up to 20 codes (<code>["FR", "ES", "DE"]</code>) to run one independent job per country. The array form requires <code>webhook_url</code> and costs one credit per country — see <em>Filtering by several countries</em> below.<br><br>See possible list of values below.</td><td>false</td></tr><tr><td><code>language</code></td><td>string or array</td><td>Filter results to ads written in one or more languages.<br><br>Accepts an English language name (<code>"Polish"</code>), an ISO 639-1 code (<code>"pl"</code>), or an array mixing both (<code>["pl", "French"]</code>), in which case an ad matching any one of them is returned.<br><br>An unrecognised language is rejected with a <strong>422</strong> before anything is scraped or charged. See possible list of values below.</td><td>false</td></tr><tr><td><code>active_status</code></td><td>string</td><td>This filters the search in the ad library by active, inactive or all ads. If this is not added the endpoint returns, by default, just active ads.<br><br>Possible values: <code>inactive</code> (to get just the inactive ads) and <code>all</code> (to get both the active and inactive ads)</td><td>false</td></tr><tr><td><code>all_ads</code></td><td>boolean</td><td>This will automatically use the <code>continuation_token</code> and scrape all the pages, returning all available ads.<br><br>Works only with a <code>webhook_url</code> as it needs a place to send each page, one by one.<br><br><em><mark style="color:$danger;"><strong>Warning</strong></mark>: use this cautiously because there is no way of stopping it. If you use this on a domain that runs 10000 ads, it will try to scrape all the ads and it will use the credits (one page = one credit)</em></td><td>false</td></tr><tr><td><code>check_ugc</code></td><td>boolean</td><td><p>When true, each video ad is ran through a classifier and a parameter called is_ugc_video (boolean) is added to the final response.</p><p><em>Works only together with</em> <code>media_type</code> <em>set to video</em></p></td><td>false</td></tr><tr><td><code>ad_type</code></td><td>string</td><td>Filters results to a single special ad category, the way Meta labels them in the Ad Library.<br><br>Possible values: <code>political</code>, <code>properties</code>, <code>employment</code>, <code>financial</code>.<br><br><code>political</code> works only with US.</td><td>false</td></tr></tbody></table>
 
 <details>
 
@@ -667,7 +724,17 @@ If no country at all could be queued you get a 500 and the entire request is ref
 }
 ```
 
-* Request made using webhooks (works with both company\_domain and facebook\_url):
+* Request made using facebook\_page\_id (the `view_all_page_id` from an Ad Library URL such as `facebook.com/ads/library/?view_all_page_id=6665038402`):
+
+```
+{
+    "api_key": "your_api_key",
+    "email": "your_email",
+    "facebook_page_id": "6665038402"
+}
+```
+
+* Request made using webhooks (works with company\_domain, facebook\_url and facebook\_page\_id):
 
 ```
 {
@@ -994,24 +1061,4 @@ Example response
                             "cta_text": "Shop Now",
                             "cta_type": "SHOP_NOW",
                             "image_crops": [],
-                            "link_description": "Fast, FREE shipping on just-landed sneakers, boots, heels & more from your favorite brands. Now that's a win.",
-                            "link_url": "https://www.zappos.com/product/101026/color/3",
-                            "original_image_url": "https://scontent-iad3-2.xx.fbcdn.net/v/t39.35426-6/605154663_1519584152491841_88983479715780873_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=mJnNdaLrCwMQ7kNvwHwy0qb&_nc_oc=AdmZmUw587x6StmMKxSGwki2aY7xKmJRP5xuM_TN3cdGfGrQPhVe6-D8RyVgjgdfjs8&_nc_zt=14&_nc_ht=scontent-iad3-2.xx&_nc_gid=V776smK2QZNFRXZ9H9kS6w&_nc_ss=8&oh=00_AfyiJhO22hoXDguQNrU6RmrLvJX66cxQNlpG8ILiRzfEqw&oe=69B7A1C9",
-                            "resized_image_url": "https://scontent-iad3-2.xx.fbcdn.net/v/t39.35426-6/605154663_1519584152491841_88983479715780873_n.jpg?stp=dst-jpg_s600x600_tt6&_nc_cat=100&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=mJnNdaLrCwMQ7kNvwHwy0qb&_nc_oc=AdmZmUw587x6StmMKxSGwki2aY7xKmJRP5xuM_TN3cdGfGrQPhVe6-D8RyVgjgdfjs8&_nc_zt=14&_nc_ht=scontent-iad3-2.xx&_nc_gid=V776smK2QZNFRXZ9H9kS6w&_nc_ss=8&oh=00_AfyVZBXVtSb9ywaQ8EEDoAoydAeS3ha_iTcu6gq1sKKEdA&oe=69B7A1C9",
-                            "watermarked_resized_image_url": "",
-                            "title": "Durango DB510 Cowboy Boots Black : 14 EE - Wide, Leather",
-                            "video_hd_url": null,
-                            "video_preview_image_url": null,
-                            "video_sd_url": null,
-                            "watermarked_video_hd_url": null,
-                            "watermarked_video_sd_url": null
-                        },
-                        {
-                            "body": "They're still in stock \ud83d\ude4c (but not for long...)",
-                            "caption": "zappos.com",
-                            "cta_text": "Shop Now",
-                            "cta_type": "SHOP_NOW",
-                            "image_crops": [],
-                            "link_description": "Fast, FREE shipping on just-landed sneakers, boots, heels & more from your favorite brands. Now that's a win.",
-                            "link_url": "https://www.zappos.com/product/102179/color/3",
-                            "original_image_url": "https://scontent-iad3-1.xx.fbcdn.net/v/t39.35426-6/602341825_1439657727835445_2578473176556032842_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=c53f8f&_nc_ohc=JMnjJvTqxHkQ7kNvwGYsx8c&_nc_oc=AdnYEcR7hAvKWIwdsW89Vm9CD38RFYOszDgaopfjXk7bKVcjTYQSDQ9ggzkW7yiz9KM&_nc_zt=14&_nc_ht=
+                            "link_description": "Fast, FREE shipping on just-landed sneakers, boots, heels & more from your favorite brand

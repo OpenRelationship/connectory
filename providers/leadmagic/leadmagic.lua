@@ -2,7 +2,7 @@
 --
 -- GENERATED from https://raw.githubusercontent.com/LeadMagic/leadmagic-openapi/main/leadmagic-openapi-3.1.json
 -- Published by LeadMagic, the vendor's own GitHub organisation.
--- 90 operations · do not edit
+-- 92 operations · do not edit
 --
 -- The credential is never in here. `auth.env` names an environment variable; the value
 -- stays in the environment, which is what makes this file safe to publish.
@@ -54,14 +54,14 @@ return {
     ["leadmagic.bulk_job_list"] = { method = "GET", url = "https://api.leadmagic.io/bulk/jobs", query = {"status", "product", "limit", "offset"} },
     ["leadmagic.bulk_job_pause"] = { method = "POST", url = "https://api.leadmagic.io/bulk/jobs/{jobId}/pause", path = {"jobId"} },
     ["leadmagic.bulk_job_priority"] = { method = "PATCH", url = "https://api.leadmagic.io/bulk/jobs/{jobId}/priority", path = {"jobId"}, body = {"priority"} },
-    ["leadmagic.bulk_job_progress"] = { method = "GET", url = "https://api.leadmagic.io/bulk/progress", query = {"jobId"} },
+    ["leadmagic.bulk_job_progress"] = { method = "GET", url = "https://api.leadmagic.io/bulk/progress", query = {"jobId", "exp", "subject"} },
     ["leadmagic.bulk_job_restart"] = { method = "POST", url = "https://api.leadmagic.io/bulk/jobs/{jobId}/restart", path = {"jobId"}, body = {"mode", "startRowIndex", "startShardIndex"} },
     ["leadmagic.bulk_job_results"] = { method = "GET", url = "https://api.leadmagic.io/bulk/jobs/{jobId}/results", path = {"jobId"}, query = {"limit", "offset", "status"} },
     ["leadmagic.bulk_job_resume"] = { method = "POST", url = "https://api.leadmagic.io/bulk/jobs/{jobId}/resume", path = {"jobId"} },
     ["leadmagic.bulk_job_review"] = { method = "POST", url = "https://api.leadmagic.io/bulk/jobs/{jobId}/review", path = {"jobId"}, body = {"action"} },
     ["leadmagic.bulk_job_status"] = { method = "GET", url = "https://api.leadmagic.io/bulk/jobs/{jobId}", path = {"jobId"} },
     ["leadmagic.bulk_job_stream"] = { method = "GET", url = "https://api.leadmagic.io/bulk/jobs/{jobId}/stream", path = {"jobId"} },
-    ["leadmagic.bulk_local_leads"] = { method = "POST", url = "https://api.leadmagic.io/bulk/local-leads", body = {"keywords", "cities", "countryCodes", "fileName", "magicKey"} },
+    ["leadmagic.bulk_local_leads"] = { method = "POST", url = "https://api.leadmagic.io/bulk/local-leads", body = {"keywords", "cities", "countryCodes", "fileName", "dryRun", "magicKey"} },
     ["leadmagic.bulk_submit"] = { method = "POST", url = "https://api.leadmagic.io/bulk/submit", body = {"product", "rows", "csv", "fileUrl", "format", "scrape", "inputMapping", "callback", "idempotencyKey", "metadata", "presetId", "outputTransform", "priority", "fileName"} },
     ["leadmagic.bulk_validate"] = { method = "POST", url = "https://api.leadmagic.io/bulk/validate", body = {"product", "rows", "csv", "fileUrl", "format", "scrape", "inputMapping", "callback", "idempotencyKey", "metadata", "presetId", "outputTransform", "priority", "fileName"} },
     ["leadmagic.check_credits"] = { method = "GET", url = "https://api.leadmagic.io/v1/credits" },
@@ -74,7 +74,7 @@ return {
     ["leadmagic.create_suppression_list"] = { method = "POST", url = "https://api.leadmagic.io/v1/batch/suppression-lists", body = {"list_id", "emails"} },
     ["leadmagic.delete_budget"] = { method = "DELETE", url = "https://api.leadmagic.io/v1/batch/budgets/{id}", path = {"id"} },
     ["leadmagic.delete_suppression_list"] = { method = "DELETE", url = "https://api.leadmagic.io/v1/batch/suppression-lists/{listId}", path = {"listId"} },
-    ["leadmagic.email_finder"] = { method = "POST", url = "https://api.leadmagic.io/v1/people/email-finder", body = {"first_name", "last_name", "full_name", "domain", "company_name"} },
+    ["leadmagic.email_finder"] = { method = "POST", url = "https://api.leadmagic.io/v1/people/email-finder", body = {"first_name", "last_name", "full_name", "profile_url", "domain", "company_name", "allow_domain_mismatch"} },
     ["leadmagic.email_to_b2b_profile"] = { method = "POST", url = "https://api.leadmagic.io/v1/people/b2b-profile", body = {"work_email", "personal_email"} },
     ["leadmagic.email_validation"] = { method = "POST", url = "https://api.leadmagic.io/v1/people/email-validation", body = {"email"} },
     ["leadmagic.employee_finder"] = { method = "POST", url = "https://api.leadmagic.io/v1/people/employee-finder", body = {"company_domain", "company_name", "limit"} },
@@ -102,14 +102,16 @@ return {
     ["leadmagic.jobs_finder"] = { method = "POST", url = "https://api.leadmagic.io/v1/jobs/jobs-finder", body = {"company_name", "company_website", "job_title", "location", "experience_level", "job_description", "city_name", "country_id", "region_id", "job_type_id", "company_type_id", "company_industry_id", "min_employees", "max_employees", "has_remote", "posted_within", "posted_after", "posted_before", "page", "per_page"} },
     ["leadmagic.list_budgets"] = { method = "GET", url = "https://api.leadmagic.io/v1/batch/budgets" },
     ["leadmagic.list_suppression_lists"] = { method = "GET", url = "https://api.leadmagic.io/v1/batch/suppression-lists" },
+    ["leadmagic.local_leads_categories_v3"] = { method = "GET", url = "https://api.leadmagic.io/v3/local-leads/categories", query = {"country", "category_group", "q", "limit", "offset"} },
+    ["leadmagic.local_leads_search_v3"] = { method = "POST", url = "https://api.leadmagic.io/v3/local-leads/search", body = {"country", "region_code", "city", "postal_code", "street", "category", "category_contains", "category_group", "kind", "name", "website_domain", "email_domain", "email", "phone", "has_email", "has_business_email", "has_phone", "has_website", "has_social", "is_chain", "min_confidence", "confidence_tier", "operating_status", "exclude_closed", "lat", "lon", "radius_m", "sort", "cursor"} },
     ["leadmagic.meta_ads_search"] = { method = "POST", url = "https://api.leadmagic.io/v1/ads/meta-ads-search", body = {"company_domain", "company_name", "limit"} },
     ["leadmagic.mobile_finder"] = { method = "POST", url = "https://api.leadmagic.io/v1/people/mobile-finder", body = {"profile_url", "work_email", "personal_email"} },
-    ["leadmagic.people_search"] = { method = "POST", url = "https://api.leadmagic.io/v3/people/search", body = {"company_domain", "company_name", "linkedin_url", "company_filters", "people_filters", "title", "job_title", "titles", "roles", "query", "required_email", "required_mobile", "channels", "channel_match", "include_company", "include_domain_intel", "include_contact_details", "include_email", "include_mobile", "confirm_credit_charge", "limit", "cursor", "offset"} },
+    ["leadmagic.people_search"] = { method = "POST", url = "https://api.leadmagic.io/v3/people/search", body = {"company_domain", "company_name", "linkedin_url", "company_filters", "people_filters", "title", "job_title", "titles", "roles", "query", "include_company", "confirm_credit_charge", "limit", "cursor", "offset"} },
     ["leadmagic.personal_email_finder"] = { method = "POST", url = "https://api.leadmagic.io/v1/people/personal-email-finder", body = {"profile_url"} },
     ["leadmagic.preview_cost_mixed"] = { method = "POST", url = "https://api.leadmagic.io/v1/batch/preview-cost", body = {"items", "budget_user_id", "client_id", "client_name", "metadata"} },
     ["leadmagic.profile_search"] = { method = "POST", url = "https://api.leadmagic.io/v1/people/profile-search", body = {"profile_url"} },
     ["leadmagic.remove_suppression_emails"] = { method = "DELETE", url = "https://api.leadmagic.io/v1/batch/suppression-lists/{listId}/emails", path = {"listId"}, body = {"emails"} },
-    ["leadmagic.role_finder"] = { method = "POST", url = "https://api.leadmagic.io/v1/people/role-finder", body = {"company_name", "company_domain", "job_title"} },
+    ["leadmagic.role_finder"] = { method = "POST", url = "https://api.leadmagic.io/v1/people/role-finder", body = {"company_name", "company_domain", "linkedin_url", "job_title"} },
     ["leadmagic.search_stats_v3"] = { method = "POST", url = "https://api.leadmagic.io/v3/search/stats", body = {"products", "sections", "limit"} },
     ["leadmagic.technographics"] = { method = "POST", url = "https://api.leadmagic.io/v1/companies/technographics", body = {"company_domain"} },
     ["leadmagic.update_budget"] = { method = "PATCH", url = "https://api.leadmagic.io/v1/batch/budgets/{id}", path = {"id"}, body = {"max_credits", "period", "alert_threshold_pct", "alert_email"} },

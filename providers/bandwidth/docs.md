@@ -72,6 +72,8 @@ vouches for**: read it, then read their reference.
 
 ## Glossary
 
+- [Caching (Token Caching)](https://www.bandwidth.com/glossary/caching-token-caching/): Token caching stores an API access token so your app can reuse it. Bandwidth OAuth 2.0 tokens last one hour, so cache each one until it expires.
+- [Minting](https://www.bandwidth.com/glossary/minting/): Minting is creating and issuing a new API token for authenticated requests. Learn how Bandwidth mints OAuth 2.0 tokens and how to cache them for one hour.
 - [Model Context Protocol (MCP)](https://www.bandwidth.com/glossary/model-context-protocol-mcp/): Learn what MCP means, and why the Model Context Protocol standard is important for CPaaS companies and API-leveraging platforms.
 - [What is a Webhook?](https://www.bandwidth.com/glossary/webhook/): Discover what a webhook is and how it enables seamless communication between applications. Learn how webhooks work and their benefits alongside traditional APIs.
 - [API key](https://www.bandwidth.com/glossary/api-key/): What is an API key? Learn how these unique identifiers authenticate API access, track usage, and the essential security best practices you need to follow.
@@ -137,7 +139,8 @@ vouches for**: read it, then read their reference.
 
 ## Resources
 
-- [How to Move to Bandwidth’s Voice API Without Missing a Beat](https://www.bandwidth.com/resources/move-to-bandwidth/): Watch this demo of a Bandwidth Voice API migration from Twilio. You’ll see Bandwidth’s Developer Migration Toolkit in action. Real codebase. Real output. Real scope.
+- [Mythbusting: What Lumen’s voice stop-sell really means for your business](https://www.bandwidth.com/resources/mythbusting-lumens-voice-stop-sell/): Watch this webinar to learn how You’ll see Bandwidth’s Developer Migration Toolkit in action. Real codebase. Real output. Real scope.
+- [How to move to Bandwidth’s Voice API without missing a beat](https://www.bandwidth.com/resources/move-to-bandwidth/): Watch this demo of a Bandwidth Voice API migration from Twilio. You’ll see Bandwidth’s Developer Migration Toolkit in action. Real codebase. Real output. Real scope.
 - [Automated Twilio to Bandwidth Compatibility Check](https://www.bandwidth.com/resources/migrate-from-twilio-voice-bxml-compatibility-check/): Switching from Twilio Voice API? Paste your existing code and instantly see how it maps to Bandwidth BXML, line by line, no guesswork, before you commit.
 - [The Insurance contact center carrier audit](https://www.bandwidth.com/resources/insurance-contact-center-carrier-audit/): Is your voice carrier built for CAT-level surge? Audit your carrier layer across 18 readiness criteria before claims volume spikes. Get the guide.
 - [Voice API Enterprise Scaling Scorecard](https://www.bandwidth.com/resources/voice-api-enterprise-scaling-scorecard/): Use these 13 questions to find out if your Voice API provider can scale with you, or if you're paying for a starter stack you've already outgrown.

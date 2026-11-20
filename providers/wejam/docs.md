@@ -14,18 +14,14 @@ vouches for**: read it, then read their reference.
 ---
 # JAM Help Center
 
-- [Frequently Asked Questions](https://docs.wejam.ai/external/coach/help-and-reference/faq.md): Answers to common questions about using JAM, organized by topic - access, core features, technical issues, content creation, and team management.
-- [Call Connection Issues](https://docs.wejam.ai/external/coach/help-and-reference/call-connection-issues.md): Fix roleplay calls that fail to start on corporate networks - connectivity checker, network requirements, and domain whitelisting for voice interactions.
-- [How Jam Uses AI - Security & Compliance FAQ](https://docs.wejam.ai/external/coach/help-and-reference/ai-security-faq.md): Answers to common questions from IT departments and works councils about how Jam uses AI and protects data.
-- [Using the Jam API for Data Export](https://docs.wejam.ai/external/coach/help-and-reference/data-export-api.md): Create an API key and pull your training data from JAM's data-export endpoint for custom reporting in your BI tool, LMS, or other systems.
-- [Export Training Data to Excel](https://docs.wejam.ai/external/coach/help-and-reference/export-to-excel.md): Pull your JAM training data into Excel with Power Query for custom reporting - once set up, refreshing is a single click.
+- [Using the Jam API for Data Export](https://docs.wejam.ai/external/admin/data-export-api.md): Create an API key and pull your training data from JAM's data-export endpoint for custom reporting in your BI tool, LMS, or other systems.
+- [Integrating Call Scoring](https://docs.wejam.ai/external/call-scoring/integration-guide.md): Connect your transcription provider to Jam so real sales calls are automatically analyzed and scored.
 - [Playbook](https://docs.wejam.ai/external/assistant/playbook.md): Always-loaded rules - personal and org-wide - that guide how Jam Assistant behaves.
 - [Knowledge](https://docs.wejam.ai/external/assistant/knowledge.md): The facts, CRM schema, and reference data Jam Assistant recalls on demand during conversations.
 - [Salesforce Admin Guide](https://docs.wejam.ai/external/assistant/salesforce-admin-guide.md): Set up the Salesforce Connected App for Jam Assistant as a Salesforce admin.
 - [Hiring Manager Guide](https://docs.wejam.ai/external/hiring-assistant/hiring-manager-guide.md): Set up and evaluate AI roleplay assessments for sales hiring, and interpret candidate results.
 - [Candidate Assessment Guide](https://docs.wejam.ai/external/hiring-assistant/candidate-guide.md): Everything you need to know about completing your AI roleplay assessment for a sales role.
-- [Integrating Call Scoring](https://docs.wejam.ai/external/call-scoring/integration-guide.md): Connect your transcription provider to Jam so real sales calls are automatically analyzed and scored.
-- [Create a new real call session](https://docs.wejam.ai/api-reference/real-call-session/create-a-new-real-call-session.md): Attributes the session to exactly one of userId or email. A known email resolves to the existing user. When the email does not match an existing user in the caller's organization, a Member user is automatically provisioned (the account requires setting a password on first login) ONLY when the organi…
+- [Create a new real call session](https://docs.wejam.ai/api-reference/real-call-session/create-a-new-real-call-session.md): Attributes the session to exactly one of userId or email, which must resolve to a user in the caller's organization: the caller themselves, or a user the caller manages. A known email resolves to the existing user. When the email does not match an existing user in the caller's organization, a Member…
 - [Get a real call session by ID](https://docs.wejam.ai/api-reference/real-call-session/get-a-real-call-session-by-id.md)
 - [Assign a scorecard to a real call session](https://docs.wejam.ai/api-reference/real-call-session/assign-a-scorecard-to-a-real-call-session.md)
 - [Export paginated users data](https://docs.wejam.ai/api-reference/data-export/export-paginated-users-data.md)
@@ -42,3 +38,5 @@ vouches for**: read it, then read their reference.
 ## OpenAPI Specs
 
 - [docs-json](https://api.wejam.ai/docs-json)
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

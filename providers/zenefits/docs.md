@@ -16,13 +16,15 @@ vouches for**: read it, then read their reference.
 
 > Documentation for TriNet HR Platform Developer Documentation
 
-Append .md to any documentation page URL to get its markdown version.
-
-## API Reference
+## API Reference: General
 - [Getting Started](https://developers.zenefits.com/reference/getting-started.md)
+
+## API Reference: Tutorials
 - [Example Integration](https://developers.zenefits.com/reference/example-integration.md)
 - [Handling New Company Installations](https://developers.zenefits.com/reference/handling-company-installations.md)
 - [Handling New People's Subscriptions](https://developers.zenefits.com/reference/handling-new-peoples-subscriptions.md)
+
+## API Reference: Platform API Reference
 - [Overview](https://developers.zenefits.com/reference/overview-1.md)
 - [Inline Expansion](https://developers.zenefits.com/reference/inline-expansion.md)
 - [Pagination](https://developers.zenefits.com/reference/pagination.md)
@@ -34,6 +36,8 @@ Append .md to any documentation page URL to get its markdown version.
 - [Set Subscription Status](https://developers.zenefits.com/reference/updating-subscription-status.md): Updates HR platform when accounts in your service are linked to Trinet accounts
 - [Flows](https://developers.zenefits.com/reference/flow.md): Returns information about the flows (e.g. hiring) completed by people who have added your application
 - [Set Flow Custom Fields](https://developers.zenefits.com/reference/set-flow-custom-fields.md): Updates HR platform when your application is ready to begin working for a company
+
+## API Reference: Core API Reference
 - [Overview](https://developers.zenefits.com/reference/overview.md)
 - [Companies](https://developers.zenefits.com/reference/company.md): Returns information about a company
 - [People](https://developers.zenefits.com/reference/people.md): Returns information about a company's employees
@@ -47,16 +51,26 @@ Append .md to any documentation page URL to get its markdown version.
 - [Labor Groups](https://developers.zenefits.com/reference/labor-groups.md): Returns information about a company's labor groups
 - [Custom Fields](https://developers.zenefits.com/reference/custom-fields.md): Returns information about a company's custom fields
 - [Custom Field Values](https://developers.zenefits.com/reference/custom-field-values.md): Returns information about a person's custom field answers
+
+## API Reference: Time Off API Reference
 - [Vacation Requests](https://developers.zenefits.com/reference/vacation-requests.md): Returns information about employees' PTO vacation requests
+
+## API Reference: Interacting with Trient's HR platform UI
 - [Module UI](https://developers.zenefits.com/reference/modules.md): Collect custom data within the Trinet's UI
 - [Data Store](https://developers.zenefits.com/reference/data-store.md): Reading and writing custom data
 - [Standard flow types](https://developers.zenefits.com/reference/standard-flow-types.md)
 - [Validations](https://developers.zenefits.com/reference/validations.md): Validations on custom data that you collect
+
+## API Reference: Events & Webhooks
 - [Events](https://developers.zenefits.com/reference/events.md): Subscribe to updates in Trinet
 - [Webhooks](https://developers.zenefits.com/reference/webhooks.md): Handle updates in Trinet's HR platform.
+
+## API Reference: Authorization
 - [Authentication & Authorization](https://developers.zenefits.com/reference/auth.md)
 - [Sync with TriNet Button](https://developers.zenefits.com/reference/sync-with-trinet-button.md)
 - [Scopes](https://developers.zenefits.com/reference/permissions.md)
+
+## API Reference: Resources
 - [App Acceptance Criteria](https://developers.zenefits.com/reference/app-acceptance-criteria.md)
 - [Trinet's Developer Policy](https://developers.zenefits.com/reference/developer-policy.md)
 - [Trinet's Brand Guidelines](https://developers.zenefits.com/reference/brand-guidelines.md)

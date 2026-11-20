@@ -1,0 +1,780 @@
+{
+ "_": "GENERATED \u2014 what an authoring tool needs to FIND an operation. The calling table is the .lua beside it.",
+ "provider": "anymailfinder",
+ "source": "https://api.anymailfinder.com/openapi.json",
+ "operations": [
+  {
+   "slug": "anymailfinder.account",
+   "name": "Get your remaining credit balance and account email",
+   "description": "Get your remaining credit balance and account email.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anymailfinder.com/v5.1/account",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anymailfinder.bad_email",
+   "name": "Report bad email",
+   "description": "Report an email address as bad or invalid.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "additional_info": {
+      "type": "string",
+      "description": "Additional information about why the email is bad."
+     },
+     "bounce_message": {
+      "type": "string",
+      "description": "Optional bounce message from the email server."
+     },
+     "email": {
+      "type": "string",
+      "description": "The email address to report as bad."
+     }
+    },
+    "required": [
+     "additional_info",
+     "email"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anymailfinder.com/v5.1/report/bad-email",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "additional_info",
+     "bounce_message",
+     "email"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anymailfinder.company",
+   "name": "Search for company emails based on company details",
+   "description": "Retrieves emails associated with a given domain or company name. At least one parameter among \"company_name\" or \"domain\" is required. For better results, we recommend using the company website (domain) instead of the company name.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "x-webhook-url": {
+      "type": "string",
+      "description": "If provided, the result will be POSTed to this URL instead of waiting for the response."
+     },
+     "company_name": {
+      "type": "string",
+      "description": "The company name (providing the domain is recommended for better accuracy)."
+     },
+     "domain": {
+      "type": "string",
+      "description": "The domain of the company to search for emails."
+     },
+     "email_type": {
+      "type": "string",
+      "description": "Specifies which type of email addresses to return in the results.",
+      "enum": [
+       "any",
+       "generic",
+       "personal"
+      ]
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anymailfinder.com/v5.1/find-email/company",
+    "path": [],
+    "query": [],
+    "header": [
+     "x-webhook-url"
+    ],
+    "body": [
+     "company_name",
+     "domain",
+     "email_type"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anymailfinder.create_with_json",
+   "name": "Create a new bulk search by sending a csv file in the request body",
+   "description": "Create a new bulk search by sending a CSV file in the request body.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "x-webhook-url": {
+      "type": "string",
+      "description": "If provided, the result will be POSTed to this URL instead of waiting for the response."
+     },
+     "company_name_field_index": {
+      "type": "number",
+      "description": "The zero-based index of the column containing the company name in the uploaded file."
+     },
+     "data": {
+      "type": "array",
+      "description": ""
+     },
+     "decision_maker_category": {
+      "type": "array",
+      "description": "One or more categories of the decision maker(s) to search for. If multiple are provided, they are treated in order of importance and the result will use the first category that resolves to a valid email. One or more of the following: \"ceo\", \"engineering\", \"finance\", \"hr\", \"it\", \"logistics\", \"marketing\", \"operations\", \"buyer\", \"sales\"."
+     },
+     "domain_field_index": {
+      "type": "number",
+      "description": "The zero-based index of the column containing the company website (domain) in the uploaded file."
+     },
+     "email_field_index": {
+      "type": "number",
+      "description": "The zero-based index of the column containing the emails to validate in the uploaded file."
+     },
+     "file_name": {
+      "type": "string",
+      "description": "A label to identify the bulk search."
+     },
+     "first_name_field_index": {
+      "type": "number",
+      "description": "The zero-based index of the column containing the first name in the uploaded file."
+     },
+     "full_name_field_index": {
+      "type": "number",
+      "description": "The zero-based index of the column containing the full name in the uploaded file."
+     },
+     "has_header": {
+      "type": "boolean",
+      "description": "Whether the first row of the data array contains headers. Defaults to true. Set to false if the first row is data."
+     },
+     "last_name_field_index": {
+      "type": "number",
+      "description": "The zero-based index of the column containing the last name in the uploaded file."
+     },
+     "linkedin_url_field_index": {
+      "type": "number",
+      "description": "The zero-based index of the column containing the Linkedin URL in the uploaded file."
+     },
+     "webhook_url": {
+      "type": "string",
+      "description": "URL where we should send a webhook when the file processing has completed."
+     }
+    },
+    "required": [
+     "data"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anymailfinder.com/v5.1/bulk/json",
+    "path": [],
+    "query": [],
+    "header": [
+     "x-webhook-url"
+    ],
+    "body": [
+     "company_name_field_index",
+     "data",
+     "decision_maker_category",
+     "domain_field_index",
+     "email_field_index",
+     "file_name",
+     "first_name_field_index",
+     "full_name_field_index",
+     "has_header",
+     "last_name_field_index",
+     "linkedin_url_field_index",
+     "webhook_url"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anymailfinder.create_with_multipart",
+   "name": "Create a new bulk search by uploading an excel or csv file",
+   "description": "Create a new bulk search by uploading an Excel or CSV file.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "x-webhook-url": {
+      "type": "string",
+      "description": "If provided, the result will be POSTed to this URL instead of waiting for the response."
+     },
+     "file": {
+      "type": "string",
+      "description": "File to be uploaded"
+     },
+     "company_name_field_index": {
+      "type": "number",
+      "description": "The zero-based index of the column containing the company name in the uploaded file."
+     },
+     "domain_field_index": {
+      "type": "number",
+      "description": "The zero-based index of the column containing the company website (domain) in the uploaded file."
+     },
+     "email_field_index": {
+      "type": "number",
+      "description": "The zero-based index of the column containing the emails to validate in the uploaded file."
+     },
+     "file_name": {
+      "type": "string",
+      "description": "A label to identify the bulk search."
+     },
+     "has_header": {
+      "type": "boolean",
+      "description": "Whether the first row of the file contains headers. Defaults to true. Set to false if the first row is data."
+     },
+     "first_name_field_index": {
+      "type": "number",
+      "description": "The zero-based index of the column containing the first name in the uploaded file."
+     },
+     "full_name_field_index": {
+      "type": "number",
+      "description": "The zero-based index of the column containing the full name in the uploaded file."
+     },
+     "decision_maker_category": {
+      "type": "array",
+      "description": "One or more categories of the decision maker(s) to search for. If multiple are provided, they are treated in order of importance and the result will use the first category that resolves to a valid email. One or more of the following: \"ceo\", \"engineering\", \"finance\", \"hr\", \"it\", \"logistics\", \"marketing\", \"operations\", \"buyer\", \"sales\"."
+     },
+     "last_name_field_index": {
+      "type": "number",
+      "description": "The zero-based index of the column containing the last name in the uploaded file."
+     },
+     "linkedin_url_field_index": {
+      "type": "number",
+      "description": "The zero-based index of the column containing the Linkedin URL in the uploaded file."
+     },
+     "webhook_url": {
+      "type": "string",
+      "description": "URL where we should send a webhook when the file processing has completed."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anymailfinder.com/v5.1/bulk/multipart",
+    "path": [],
+    "query": [],
+    "header": [
+     "x-webhook-url"
+    ],
+    "body": [
+     "file",
+     "company_name_field_index",
+     "domain_field_index",
+     "email_field_index",
+     "file_name",
+     "has_header",
+     "first_name_field_index",
+     "full_name_field_index",
+     "decision_maker_category",
+     "last_name_field_index",
+     "linkedin_url_field_index",
+     "webhook_url"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anymailfinder.decision_maker",
+   "name": "Search for a decision maker email based on company and category",
+   "description": "Find the details and emails of a decision maker of a specific category at a company. This search requires either \"company_name\" or \"domain\" to identify the company, and the \"decision_maker_category\".",
+   "input": {
+    "type": "object",
+    "properties": {
+     "x-webhook-url": {
+      "type": "string",
+      "description": "If provided, the result will be POSTed to this URL instead of waiting for the response."
+     },
+     "company_name": {
+      "type": "string",
+      "description": "Used if domain is not provided."
+     },
+     "decision_maker_category": {
+      "type": "array",
+      "description": "The category of the decision maker to search for. One or more of the following: \"ceo\", \"engineering\", \"finance\", \"hr\", \"it\", \"logistics\", \"marketing\", \"operations\", \"buyer\", \"sales\"."
+     },
+     "domain": {
+      "type": "string",
+      "description": "Preferred. The company domain."
+     }
+    },
+    "required": [
+     "decision_maker_category"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anymailfinder.com/v5.1/find-email/decision-maker",
+    "path": [],
+    "query": [],
+    "header": [
+     "x-webhook-url"
+    ],
+    "body": [
+     "company_name",
+     "decision_maker_category",
+     "domain"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anymailfinder.download",
+   "name": "Download a csv file containing the results of a bulk search",
+   "description": "Download a CSV file containing the results of a bulk search.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "searchId": {
+      "type": "string",
+      "description": "The ID of the search"
+     },
+     "preview_only": {
+      "type": "string",
+      "description": "When true, downloads a preview version of the results without charging credits. Preview files exclude all paid information (such as emails or other data depending on the bulk search type). Defaults to false.",
+      "enum": [
+       "true",
+       "false"
+      ]
+     },
+     "partially_verified": {
+      "type": "string",
+      "description": "Include rows with risky emails in the download. Verify bulks only - searches no longer return risky emails. Default: 1 (enabled).",
+      "enum": [
+       "0",
+       "1"
+      ]
+     },
+     "not_found": {
+      "type": "string",
+      "description": "Include rows where the email was not found in the download. Default: 1 (enabled).",
+      "enum": [
+       "0",
+       "1"
+      ]
+     },
+     "fully_verified": {
+      "type": "string",
+      "description": "Include rows with valid emails in the download. Default: 1 (enabled).",
+      "enum": [
+       "0",
+       "1"
+      ]
+     },
+     "format": {
+      "type": "string",
+      "description": "Setting to specify how the output file should be formatted.",
+      "enum": [
+       "default",
+       "company-one-email-per-line"
+      ]
+     },
+     "file_name_column_name": {
+      "type": "string",
+      "description": "If specified, appends a column containing the file name to the downloaded file."
+     },
+     "download_as": {
+      "type": "string",
+      "description": "Output file format (\"csv\", \"json_arr\", \"json_obj\" or \"xlsx\", defaults to \"csv\")."
+     }
+    },
+    "required": [
+     "searchId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anymailfinder.com/v5.1/bulk/{searchId}/download",
+    "path": [
+     "searchId"
+    ],
+    "query": [
+     "preview_only",
+     "partially_verified",
+     "not_found",
+     "fully_verified",
+     "format",
+     "file_name_column_name",
+     "download_as"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anymailfinder.download",
+   "name": "Download a csv file containing the results of a geo lead search",
+   "description": "Download a CSV file containing the results of a GeoLead search.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "searchId": {
+      "type": "string",
+      "description": "The ID of the GeoLead search"
+     },
+     "preview_only": {
+      "type": "string",
+      "description": "When true, downloads a preview version of the results without charging credits. Preview files exclude all paid information (such as emails or other data depending on the bulk search type). Defaults to false.",
+      "enum": [
+       "true",
+       "false"
+      ]
+     },
+     "partially_verified": {
+      "type": "string",
+      "description": "Deprecated - searches no longer return risky emails, so this has no effect. Still accepted so existing callers keep working.",
+      "enum": [
+       "0",
+       "1"
+      ]
+     },
+     "not_found": {
+      "type": "string",
+      "description": "Include rows where the email was not found in the download. Default: 1 (enabled).",
+      "enum": [
+       "0",
+       "1"
+      ]
+     },
+     "fully_verified": {
+      "type": "string",
+      "description": "Include rows with valid emails in the download. Default: 1 (enabled).",
+      "enum": [
+       "0",
+       "1"
+      ]
+     },
+     "file_name_column_name": {
+      "type": "string",
+      "description": "If specified, appends a column containing the file name to the downloaded file."
+     },
+     "download_as": {
+      "type": "string",
+      "description": "Output file format (\"csv\", \"json_arr\", \"json_obj\" or \"xlsx\", defaults to \"csv\")."
+     }
+    },
+    "required": [
+     "searchId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anymailfinder.com/v5.1/geo-lead/{searchId}/download",
+    "path": [
+     "searchId"
+    ],
+    "query": [
+     "preview_only",
+     "partially_verified",
+     "not_found",
+     "fully_verified",
+     "file_name_column_name",
+     "download_as"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anymailfinder.get",
+   "name": "Retrieve the details of a bulk search",
+   "description": "Retrieve the details of a bulk search.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "searchId": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "searchId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anymailfinder.com/v5.1/bulk/{searchId}",
+    "path": [
+     "searchId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anymailfinder.get",
+   "name": "Retrieve the details of a geo lead search",
+   "description": "Retrieve the details of a GeoLead search.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "searchId": {
+      "type": "string",
+      "description": ""
+     }
+    },
+    "required": [
+     "searchId"
+    ]
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://api.anymailfinder.com/v5.1/geo-lead/{searchId}",
+    "path": [
+     "searchId"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anymailfinder.linkedin_url",
+   "name": "Search for a person's email based on a linked in profile url",
+   "description": "Retrieves a specific person's email within a company by providing a LinkedIn profile URL. This search requires just the \"linkedin_url\".",
+   "input": {
+    "type": "object",
+    "properties": {
+     "x-webhook-url": {
+      "type": "string",
+      "description": "If provided, the result will be POSTed to this URL instead of waiting for the response."
+     },
+     "linkedin_url": {
+      "type": "string",
+      "description": "The LinkedIn profile URL of the person."
+     }
+    },
+    "required": [
+     "linkedin_url"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anymailfinder.com/v5.1/find-email/linkedin-url",
+    "path": [],
+    "query": [],
+    "header": [
+     "x-webhook-url"
+    ],
+    "body": [
+     "linkedin_url"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anymailfinder.lookup",
+   "name": "Reverse email lookup",
+   "description": "Finds the LinkedIn profile of the person behind an email, with their name, job title and company. This search requires just the \"email\". Costs 2 credits when the person is found, and repeats of the same email are free for 30 days.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "x-webhook-url": {
+      "type": "string",
+      "description": "If provided, the result will be POSTed to this URL instead of waiting for the response."
+     },
+     "email": {
+      "type": "string",
+      "description": "The email of the person to look up."
+     }
+    },
+    "required": [
+     "email"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anymailfinder.com/v5.1/reverse-email-lookup",
+    "path": [],
+    "query": [],
+    "header": [
+     "x-webhook-url"
+    ],
+    "body": [
+     "email"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anymailfinder.person",
+   "name": "Search for a person's email based on company and personal details",
+   "description": "Retrieves a specific person's email within a company. This search requires either \"company_name\" or \"domain\" to identify the company, and the person's name provided as \"full_name\" or both \"first_name\" and \"last_name\". For better results, we recommend using the company website (domain) instead of the company name. A \"linkedin_url\" can be sent on its own, in which case company and name are not neede",
+   "input": {
+    "type": "object",
+    "properties": {
+     "x-webhook-url": {
+      "type": "string",
+      "description": "If provided, the result will be POSTed to this URL instead of waiting for the response."
+     },
+     "company_name": {
+      "type": "string",
+      "description": "Used if domain is not provided."
+     },
+     "domain": {
+      "type": "string",
+      "description": "Preferred. The company domain."
+     },
+     "first_name": {
+      "type": "string",
+      "description": "First name of the person."
+     },
+     "full_name": {
+      "type": "string",
+      "description": "Alternative to first+last name."
+     },
+     "last_name": {
+      "type": "string",
+      "description": "Last name of the person."
+     },
+     "linkedin_url": {
+      "type": "string",
+      "description": "Optional LinkedIn profile URL. It can be sent on its own, without company and name. When a name and company are also provided, the profile is used to refine the supplied name (e.g. extending 'John D.' to 'John Doe'), and is used as a fallback if the name+company lookup doesn't return a verified email. The result may be at a different company/domain if the person has moved."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anymailfinder.com/v5.1/find-email/person",
+    "path": [],
+    "query": [],
+    "header": [
+     "x-webhook-url"
+    ],
+    "body": [
+     "company_name",
+     "domain",
+     "first_name",
+     "full_name",
+     "last_name",
+     "linkedin_url"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anymailfinder.search_bulk_geo_lead_create",
+   "name": "Create a new geo lead search based on geographic coordinates and search query",
+   "description": "Creates a bulk search that will generate leads from a specific geographic area. The search will find businesses or locations matching the provided query within the specified radius from the given coordinates. This is useful for location-based lead generation and market research.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "x-webhook-url": {
+      "type": "string",
+      "description": "If provided, the result will be POSTed to this URL instead of waiting for the response."
+     },
+     "file_name": {
+      "type": "string",
+      "description": "A label to identify the geo lead search."
+     },
+     "find_company_emails": {
+      "type": "boolean",
+      "description": "Whether to search for company emails. If false, only decision maker emails will be searched. Defaults to true."
+     },
+     "find_decision_maker_categories": {
+      "type": "array",
+      "description": "Decision maker categories to search for. If not provided, defaults to [\"ceo\"]. If empty array [], no decision maker search will be performed. Valid categories: \"ceo\", \"engineering\", \"finance\", \"hr\", \"it\", \"logistics\", \"marketing\", \"operations\", \"buyer\", \"sales\"."
+     },
+     "latitude": {
+      "type": "number",
+      "description": "The latitude coordinate for the search center point."
+     },
+     "longitude": {
+      "type": "number",
+      "description": "The longitude coordinate for the search center point."
+     },
+     "query": {
+      "type": "string",
+      "description": "The search query to find businesses or locations within the specified radius."
+     },
+     "radius_km": {
+      "type": "number",
+      "description": "The search radius in km from the center point."
+     },
+     "result_limit": {
+      "type": "number",
+      "description": "Optional limit on the number of leads to extract. If specified, the extraction will stop once this limit is reached."
+     }
+    },
+    "required": [
+     "find_company_emails",
+     "find_decision_maker_categories",
+     "latitude",
+     "longitude",
+     "query",
+     "radius_km"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anymailfinder.com/v5.1/geo-lead",
+    "path": [],
+    "query": [],
+    "header": [
+     "x-webhook-url"
+    ],
+    "body": [
+     "file_name",
+     "find_company_emails",
+     "find_decision_maker_categories",
+     "latitude",
+     "longitude",
+     "query",
+     "radius_km",
+     "result_limit"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "anymailfinder.validate",
+   "name": "Validate an email",
+   "description": "Validates the provided email address to determine its authenticity and deliverability. The input requires a single email address. The response includes a \"validation\" field, which can be \"valid\" if the email is confirmed to be genuine and deliverable, \"invalid\" if the email is definitively non-existent or undeliverable, or \"risky\" if the validation process is inconclusive.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "x-webhook-url": {
+      "type": "string",
+      "description": "If provided, the result will be POSTed to this URL instead of waiting for the response."
+     },
+     "email": {
+      "type": "string",
+      "description": "The email to validate."
+     }
+    },
+    "required": [
+     "email"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://api.anymailfinder.com/v5.1/verify-email",
+    "path": [],
+    "query": [],
+    "header": [
+     "x-webhook-url"
+    ],
+    "body": [
+     "email"
+    ],
+    "body_format": "json"
+   }
+  }
+ ]
+}

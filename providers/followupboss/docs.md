@@ -16,14 +16,16 @@ vouches for**: read it, then read their reference.
 
 > Every real estate lead provider in one simple API!
 
-Append .md to any documentation page URL to get its markdown version.
-
-## Guides
+## Guides: Integration Guides
 - [Start Here (Brand New Integration)](https://docs.followupboss.com/docs/start-here-brand-new-integration.md): From registering your system, creating a trial account, authenticating requests to sending in your first contact.
 - [Email Marketing Integration Guide](https://docs.followupboss.com/docs/email-marketing-integration-guide.md): How to integrate your email marketing system with Follow Up Boss
 - [Lead Provider Integration Guide](https://docs.followupboss.com/docs/lead-provider-integration-guide.md): How to integrate a lead generation system with Follow Up Boss
 
-## API Reference
+## Guides: Inbox Apps
+
+## Guides: oauth
+
+## API Reference: Documentation
 - [Getting Started with Follow Up Boss](https://docs.followupboss.com/reference/getting-started.md): This page will help you get started with Follow Up Boss. You'll be up and running in a jiffy!
 - [API Terms of Use](https://docs.followupboss.com/reference/fub-api-tou.md)
 - [Registration and Identification](https://docs.followupboss.com/reference/identification.md)
@@ -43,9 +45,13 @@ Append .md to any documentation page URL to get its markdown version.
 - [Common Issues](https://docs.followupboss.com/reference/common-issues.md)
 - [API Change Requests](https://docs.followupboss.com/reference/api-change-requests.md)
 - [Support and Help](https://docs.followupboss.com/reference/support-and-help.md)
+
+## API Reference: Events
 - [/events](https://docs.followupboss.com/reference/events-get.md): Search for events.
 - [/events](https://docs.followupboss.com/reference/events-post.md): Send in a lead or an event related to a lead.
 - [/events/:id](https://docs.followupboss.com/reference/events-id-get.md): Retrieve a single event by id.
+
+## API Reference: People
 - [/people](https://docs.followupboss.com/reference/people-get.md): Search for people.
 - [/people](https://docs.followupboss.com/reference/people-post.md): Manually add a new person.
 - [/people/:id](https://docs.followupboss.com/reference/people-id-get.md): Retrieve a person by id.
@@ -59,97 +65,141 @@ Append .md to any documentation page URL to get its markdown version.
 - [/personAttachments/:id](https://docs.followupboss.com/reference/personattachments-id-get.md): Retrieve an attachment by ID.
 - [/personAttachments/:id](https://docs.followupboss.com/reference/personattachments-id-put.md): Update an attachment by ID.
 - [/personAttachments/:id](https://docs.followupboss.com/reference/personattachments-id-delete.md): Delete an attachment by ID.
+
+## API Reference: People Relationships
 - [/peopleRelationships](https://docs.followupboss.com/reference/peoplerelationships.md): Get relationships between people in Follow Up Boss.
 - [/peopleRelationships](https://docs.followupboss.com/reference/peoplerelationships-post.md): Create a new relationship for a person.
 - [/peopleRelationships/:id](https://docs.followupboss.com/reference/peoplerelationships-id-get.md): Get a specific relationship.
 - [/peopleRelationships/:id](https://docs.followupboss.com/reference/peoplerelationships-id-put.md): Update details of a specific relationship.
 - [/peopleRelationships/:id](https://docs.followupboss.com/reference/peoplerelationships-id-delete.md): Delete a relationship.
+
+## API Reference: Identity
 - [/identity](https://docs.followupboss.com/reference/identity.md): Get identity and authentication information.
+
+## API Reference: Notes
 - [/notes](https://docs.followupboss.com/reference/notes-post.md): Add a note.
 - [/notes/:id](https://docs.followupboss.com/reference/notes-id-get.md): Retrieve a note by id.
 - [/notes/:id](https://docs.followupboss.com/reference/notes-id-put.md): Edit a note.
 - [/notes/:id](https://docs.followupboss.com/reference/notes-id-delete.md): Delete a note.
+
+## API Reference: Calls
 - [/calls](https://docs.followupboss.com/reference/calls-get.md): Search for calls.
 - [/calls](https://docs.followupboss.com/reference/calls-post.md): Add a call.
 - [/calls/:id](https://docs.followupboss.com/reference/calls-id-get.md): Retrieve a call by id.
 - [/calls/:id](https://docs.followupboss.com/reference/calls-id-put.md): Update a call.
+
+## API Reference: Text Messages
 - [/textMessages](https://docs.followupboss.com/reference/textmessages-get.md): List text messages for a person or phone number.
 - [/textMessages](https://docs.followupboss.com/reference/textmessages-post.md): Create a record of an externally sent text message.
 - [/textMessages/:id](https://docs.followupboss.com/reference/textmessages-id-get.md): Retrieve a text message by id.
+
+## API Reference: Users
 - [/users](https://docs.followupboss.com/reference/users-get.md): Search for users.
 - [/users/:id](https://docs.followupboss.com/reference/users-id-get.md): Retrieve a user by id.
 - [/users/:id](https://docs.followupboss.com/reference/users-id-delete.md): Delete a user.
 - [/me](https://docs.followupboss.com/reference/me.md): Retrieve information about the currently authenticated user.
+
+## API Reference: Smart Lists
 - [/smartLists](https://docs.followupboss.com/reference/smartlists-get.md): Get a list of Smart Lists.
 - [/smartLists/:id](https://docs.followupboss.com/reference/smartlist-id-get.md): Retrieve a Smart List by id.
+
+## API Reference: Action Plans
 - [/actionPlans](https://docs.followupboss.com/reference/actionplans-get.md): Get a list of Action Plans.
 - [/actionPlansPeople](https://docs.followupboss.com/reference/actionplanspeople-get.md): List Action Plans applied to a particular person or list people on a particular Action Plan.
 - [/actionPlansPeople](https://docs.followupboss.com/reference/actionplanspeople-post.md): Apply an Action Plan to a person.
 - [/actionPlansPeople/:id](https://docs.followupboss.com/reference/actionplanspeople-id-put.md): Update the status of an Action Plan to Person relationship.
+
+## API Reference: Automations
 - [/automations](https://docs.followupboss.com/reference/automations.md): Get a list of Automations
 - [/automations/:id](https://docs.followupboss.com/reference/automationsid.md): Retrieve an Automation by ID.
 - [/automationsPeople](https://docs.followupboss.com/reference/automationspeople.md): Get a list of pairings of Automations and the People on which they have or will be run.
 - [/automationsPeople/:id](https://docs.followupboss.com/reference/automationspeopleid-1.md): Retrieve an Automation-Person pairing.
 - [/automationsPeople](https://docs.followupboss.com/reference/automationspeople-1.md): Manually trigger an Automation for a specified Person.
 - [/automationsPeople/:id](https://docs.followupboss.com/reference/automationspeopleid.md): Pause or unpause an Automation for a Person.
+
+## API Reference: Email Templates
 - [/templates](https://docs.followupboss.com/reference/templates-get.md): Lists all email templates.
 - [/templates](https://docs.followupboss.com/reference/templates-post.md): Create a new email template.
 - [/templates/:id](https://docs.followupboss.com/reference/templates-id-get.md): Retrieve an email template by id, optionally merging fields.
 - [/templates/:id](https://docs.followupboss.com/reference/templates-id-put.md): Update an email template.
 - [/templates/merge](https://docs.followupboss.com/reference/templates-merge.md): Merge an email template with multiple recipients.
 - [/templates/:id](https://docs.followupboss.com/reference/templates-id-delete.md): Delete an email template.
+
+## API Reference: Text Message Templates
 - [/textMessageTemplates](https://docs.followupboss.com/reference/textmessagetemplates-get.md): Lists all text message templates.
 - [/textMessageTemplates](https://docs.followupboss.com/reference/textmessagetemplates-post.md): Create a text message template.
 - [/textMessageTemplates/:id](https://docs.followupboss.com/reference/textmessagetemplates-id-get.md): Retrieve a text message template by id.
 - [/textMessageTemplates/:id](https://docs.followupboss.com/reference/textmessagetemplates-id-put.md): Update a text message template.
 - [/textMessageTemplates/merge](https://docs.followupboss.com/reference/textmessagetemplates-merge.md): Merge a text message template with multiple recipients.
 - [/textMessageTemplates/:id](https://docs.followupboss.com/reference/textmessagetemplates-id-delete.md)
+
+## API Reference: Email Marketing
 - [/emEvents](https://docs.followupboss.com/reference/emevents-get.md): List email marketing events.
 - [/emEvents](https://docs.followupboss.com/reference/emevents-post.md): Notify Follow Up Boss about marketing emails sent, opens, clicks, bounces, unsubscribes and spam reports.
 - [/emCampaigns](https://docs.followupboss.com/reference/emcampaigns-get.md): List email marketing campaigns.
 - [/emCampaigns](https://docs.followupboss.com/reference/emcampaigns-post.md): Create an email marketing campaign.
 - [/emCampaigns/:id](https://docs.followupboss.com/reference/emcampaigns-id-put.md): Update an email marketing campaign.
+
+## API Reference: Custom Fields
 - [/customFields](https://docs.followupboss.com/reference/customfields-get.md): List all custom fields.
 - [/customFields](https://docs.followupboss.com/reference/customfields-post.md): Create a custom field.
 - [/customFields/:id](https://docs.followupboss.com/reference/customfields-id-get.md): Get a custom field by id.
 - [/customFields/:id](https://docs.followupboss.com/reference/customfields-id-put.md): Update a custom field.
 - [/customFields/:id](https://docs.followupboss.com/reference/customfields-id-delete.md): Delete a custom field.
+
+## API Reference: Stages
 - [/stages](https://docs.followupboss.com/reference/stages-get.md): Retrieve a list of stages.
 - [/stages](https://docs.followupboss.com/reference/stages-post.md): Create a new stage.
 - [/stages/:id](https://docs.followupboss.com/reference/stages-id-get.md): Get a stage by id.
 - [/stages/:id](https://docs.followupboss.com/reference/stages-id-put.md): Update a stage.
 - [/stages/:id](https://docs.followupboss.com/reference/stage-id-delete.md): Delete a stage.
+
+## API Reference: Tasks
 - [/tasks](https://docs.followupboss.com/reference/tasks-get.md): Get a list of tasks.
 - [/tasks](https://docs.followupboss.com/reference/tasks-post.md): Create a new task.
 - [/tasks/:id](https://docs.followupboss.com/reference/tasks-id-get.md): Get a task by id.
 - [/tasks/:id](https://docs.followupboss.com/reference/tasks-id-put.md): Update a task.
 - [/tasks/:id](https://docs.followupboss.com/reference/tasks-id-delete.md): Delete a task.
+
+## API Reference: Appointments
 - [/appointments](https://docs.followupboss.com/reference/appointments-get.md): Search for appointments.
 - [/appointments](https://docs.followupboss.com/reference/appointments-post.md): Create an appointment.
 - [/appointments/:id](https://docs.followupboss.com/reference/appointments-id-get.md): Retrieve an appointment by id.
 - [/appointments/:id](https://docs.followupboss.com/reference/appointments-id-put.md): Update an appointment.
 - [/appointments/:id](https://docs.followupboss.com/reference/appointments-id-delete.md): Delete an appointment.
+
+## API Reference: Appointment Types
 - [/appointmentTypes](https://docs.followupboss.com/reference/appointmenttypes-get.md): List appointment types.
 - [/appointmentTypes](https://docs.followupboss.com/reference/appointmenttypes-post.md): Create an appointment type.
 - [/appointmentTypes/:id](https://docs.followupboss.com/reference/appointmenttypes-id-get.md): Retrieve an appointment type by ID
 - [/appointmentTypes/:id](https://docs.followupboss.com/reference/appointmenttypes-id-put.md): Update an appointment type.
 - [/appointmentTypes/:id](https://docs.followupboss.com/reference/appointmenttypes-id-delete.md): Delete an appointment type.
+
+## API Reference: Appointment Outcomes
 - [/appointmentOutcomes](https://docs.followupboss.com/reference/appointmentoutcomes-get.md): List appointment outcomes.
 - [/appointmentOutcomes](https://docs.followupboss.com/reference/appointmentoutcomes-post.md): Create an appointment outcome.
 - [/appointmentOutcomes/:id](https://docs.followupboss.com/reference/appointmentoutcomes-id-get.md): Retrieve an appointment outcome by ID.
 - [/appointmentOutcomes/:id](https://docs.followupboss.com/reference/appointmentoutcomes-id-put.md): Update an appointment outcome.
 - [/appointmentOutcomes/:id](https://docs.followupboss.com/reference/appointmentoutcomes-id-delete.md): Delete an appointment outcome.
+
+## API Reference: Webhooks
 - [/webhooks](https://docs.followupboss.com/reference/webhooks-get.md): Get a list of webhooks.
 - [/webhooks](https://docs.followupboss.com/reference/webhooks-post.md): Subscribe to a new webhook.
 - [/webhooks/:id](https://docs.followupboss.com/reference/webhooks-id-get.md): Get details of a specific webhook.
 - [/webhooks/:id](https://docs.followupboss.com/reference/webhooks-id-put.md): Update a webhook.
 - [/webhooks/:id](https://docs.followupboss.com/reference/webhooks-id-delete.md): Delete a webhook.
+
+## API Reference: Webhook Events
 - [/webhookEvents/:id](https://docs.followupboss.com/reference/webhookevents-get.md): Get a list of events for a given webhook.
+
+## API Reference: Pipelines
 - [/pipelines](https://docs.followupboss.com/reference/pipelines-get.md): Search for pipelines.
 - [/pipelines](https://docs.followupboss.com/reference/pipelines-post.md): Add a pipeline.
 - [/pipelines/:id](https://docs.followupboss.com/reference/pipelines-id-get.md): Retrieve a pipeline by id.
 - [/pipelines/:id](https://docs.followupboss.com/reference/pipelines-id-put.md): Update a pipeline.
 - [/pipelines/:id](https://docs.followupboss.com/reference/pipelines-id-delete.md): Delete a pipeline.
+
+## API Reference: Deals
 - [/deals](https://docs.followupboss.com/reference/deals-get.md): Search for deals.
 - [/deals](https://docs.followupboss.com/reference/deals-post.md): Add a deal.
 - [/deals/:id](https://docs.followupboss.com/reference/deals-id-get.md): Retrieve a deal by id.
@@ -159,28 +209,40 @@ Append .md to any documentation page URL to get its markdown version.
 - [/dealAttachments/:id](https://docs.followupboss.com/reference/dealattachments-id-get.md): Get a deal attachment by id.
 - [/dealAttachments/:id](https://docs.followupboss.com/reference/dealattachments-id-put.md): Update a deal attachment.
 - [/dealAttachments/:id](https://docs.followupboss.com/reference/dealattachments-id-delete.md): Delete a deal attachment.
+
+## API Reference: Deals Custom Fields
 - [/dealCustomFields](https://docs.followupboss.com/reference/dealcustomfields-get.md): List all deals custom fields available in your account.
 - [/dealCustomFields](https://docs.followupboss.com/reference/dealcustomfields-post.md): Create a deals custom field.
 - [/dealCustomFields/:id](https://docs.followupboss.com/reference/dealcustomfields-id-get.md): Get a deals custom field by ID.
 - [/dealCustomFields/:id](https://docs.followupboss.com/reference/dealcustomfields-id-put.md): Update a deals custom field.
 - [/dealCustomFields/:id](https://docs.followupboss.com/reference/dealcustomfields-id-delete.md): Delete a deals custom field.
+
+## API Reference: Groups
 - [/groups](https://docs.followupboss.com/reference/groups-get.md): List groups.
 - [/groups/roundRobin](https://docs.followupboss.com/reference/groups-roundrobin-get.md): Lists groups and includes round-robin data.
 - [/groups](https://docs.followupboss.com/reference/groups-post.md): Create a new group.
 - [/groups/:id](https://docs.followupboss.com/reference/groups-id-get.md): Retrieve a group by id.
 - [/groups/:id](https://docs.followupboss.com/reference/groups-id-put.md): Update a group.
 - [/groups/:id](https://docs.followupboss.com/reference/groups-id-delete.md): Delete a group.
+
+## API Reference: Teams
 - [/teams](https://docs.followupboss.com/reference/teams-get.md): Get a list of teams.
 - [/teams](https://docs.followupboss.com/reference/teams-post.md): Create a new team.
 - [/teams/:id](https://docs.followupboss.com/reference/teams-id-get.md): Get a team by id.
 - [/teams/:id](https://docs.followupboss.com/reference/teams-id-put.md): Update a team by id.
 - [/teams/:id](https://docs.followupboss.com/reference/teams-id-delete.md): Delete a team by id.
+
+## API Reference: Team Inboxes
 - [/teamInboxes](https://docs.followupboss.com/reference/teaminboxes.md): Get a list of Team Inboxes
+
+## API Reference: Ponds
 - [/ponds](https://docs.followupboss.com/reference/ponds-get.md): Get a list of ponds.
 - [/ponds](https://docs.followupboss.com/reference/ponds-post.md): Create a pond.
 - [/ponds/:id](https://docs.followupboss.com/reference/ponds-id-get.md): Get a pond by id.
 - [/ponds/:id](https://docs.followupboss.com/reference/ponds-id-put.md): Update a pond by id.
 - [/ponds/:id](https://docs.followupboss.com/reference/ponds-id-delete.md): Delete a pond by id.
+
+## API Reference: Inbox Apps
 - [Inbox Apps](https://docs.followupboss.com/reference/inbox-apps-about.md): Inbox Apps allow you to add third-party messaging services to Follow Up Boss.
 - [Add Message](https://docs.followupboss.com/reference/inbox-apps-add-message.md): Adds a message to an existing or new Inbox App conversation.
 - [Add System Confirmation Message](https://docs.followupboss.com/reference/inbox-apps-add-system-confirmation-message.md): Adds a system confirmation message to an existing or new Inbox App conversation.
@@ -193,12 +255,20 @@ Append .md to any documentation page URL to get its markdown version.
 - [Install Inbox App](https://docs.followupboss.com/reference/inbox-apps-install.md): Installs your Inbox App for an account.
 - [Deactivate Inbox App](https://docs.followupboss.com/reference/inbox-apps-deactivate.md): Deactivates an installation of your Inbox App. Useful when a customer unsubscribes from your service, or requests that you turn off Inbox App functionality for them.
 - [View Installed Inbox Apps](https://docs.followupboss.com/reference/view-inbox-app-installations.md): Lists Inbox App installation(s) and ID(s) for your Published Inbox App on the current FUB account.
+
+## API Reference: Reactions
 - [Reactions](https://docs.followupboss.com/reference/reactions.md): Add a reaction to a corresponding reference data object, e.g. "Note" or "ThreadedReply".
 - [/reactions/:id](https://docs.followupboss.com/reference/reactionsnoteid.md): Fetch a reaction
 - [/reactions/:refType/:refId](https://docs.followupboss.com/reference/reactions-reftype-refid-post.md): Add a reaction to a corresponding reference data object, e.g. "Note" or "ThreadedReply"
 - [/reactions/:refType/:refId](https://docs.followupboss.com/reference/reactions-reftype-refid-delete.md): Delete a reaction
+
+## API Reference: Threaded Replies
 - [Threaded Replies](https://docs.followupboss.com/reference/threaded-replies.md): Threaded replies allow users to reply to various data entities within Follow Up Boss, such as a note. This allows for more seamless team communication within Follow Up Boss.
 - [/threadedReplies/:id](https://docs.followupboss.com/reference/threadedreplies-copy.md): Fetches a threaded reply
+
+## API Reference: timeframes
 - [/timeframes](https://docs.followupboss.com/reference/timeframes-get.md): Get a list of timeframes.
+
+## API Reference: Rate Limiting
 - [/rateLimit/usage](https://docs.followupboss.com/reference/ratelimit-usage-get.md): 24-hour request volume, rate-limit hits, and currently-configured limits for the calling partner system.
 - [/rateLimit/limits](https://docs.followupboss.com/reference/ratelimit-limits-get.md): Currently-configured rate limits for the calling partner system. Cheaper than /v1/rateLimit/usage (no Redis fan-out).

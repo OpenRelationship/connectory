@@ -1,0 +1,1313 @@
+{
+ "_": "GENERATED \u2014 what an authoring tool needs to FIND an operation. The calling table is the .lua beside it.",
+ "provider": "eventee",
+ "source": "https://docs.eventee.com/openapi.yaml",
+ "operations": [
+  {
+   "slug": "eventee.check_in_attendee",
+   "name": "Check in attendee",
+   "description": "Marks an attendee as checked in at the event (sets `checked_at` to now) or reverts the check-in. Use the `id` from List participants.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "attendee_id": {
+      "type": "integer",
+      "description": "ID of the attendee (the `id` from List participants)."
+     },
+     "checkin": {
+      "type": "boolean",
+      "description": "`true` to check the attendee in, `false` to undo the check-in."
+     }
+    },
+    "required": [
+     "attendee_id",
+     "checkin"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://eventee.com/public/api/v1/attendee/{attendee_id}/checkin",
+    "path": [
+     "attendee_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "checkin"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "eventee.create_break",
+   "name": "Create break",
+   "description": "Creates a break on the event day matching `start`; the day is created when it does not exist yet.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": "string",
+      "description": "Name of the break. Max 128 characters."
+     },
+     "description": {
+      "type": "string",
+      "description": "Optional description."
+     },
+     "start": {
+      "type": "string",
+      "description": "Start of the break (`Y-m-d H:i:s`, event time zone). Must be before `end`."
+     },
+     "end": {
+      "type": "string",
+      "description": "End of the break (`Y-m-d H:i:s`, event time zone). Must be after `start`."
+     }
+    },
+    "required": [
+     "end",
+     "name",
+     "start"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://eventee.com/public/api/v1/pause",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "description",
+     "start",
+     "end"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "eventee.create_hall",
+   "name": "Create hall",
+   "description": "Creates a hall in the event. Use the returned `id` as `hall_id` when creating sessions.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": "string",
+      "description": "Name of the hall."
+     },
+     "order": {
+      "type": "integer",
+      "description": "Position of the hall in the agenda (0 = first). Defaults to the end of the list."
+     },
+     "stream": {
+      "type": "string",
+      "description": "Code of an existing live stream to show in this hall (the `stream.code` returned when a session is created with a `stream` URL)."
+     }
+    },
+    "required": [
+     "name"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://eventee.com/public/api/v1/hall",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "order",
+     "stream"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "eventee.create_label",
+   "name": "Create label",
+   "description": "Creates a label. Use the returned `id` in the `tracks` field of sessions.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": "string",
+      "description": "Name of the label. Max 191 characters."
+     },
+     "color": {
+      "type": "string",
+      "description": "Color of the label as a hex code."
+     },
+     "order": {
+      "type": "integer",
+      "description": "Position of the label in lists (0 = first). Defaults to the end of the list."
+     }
+    },
+    "required": [
+     "color",
+     "name"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://eventee.com/public/api/v1/label",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "color",
+     "order"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "eventee.create_partner",
+   "name": "Create partner",
+   "description": "Creates a partner. Provide `logo_url` to list it as a sponsor, `photo_url` (with `booth_number`) to list it as an exhibitor, or both. At least one of the two images is required. Sections of the detail page are managed separately with Update partner sections.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "company": {
+      "type": "string",
+      "description": "Name of the partner (company). Max 256 characters."
+     },
+     "description": {
+      "type": "string",
+      "description": "Short description shown in the partner list and detail. URLs are turned into links automatically."
+     },
+     "logo_url": {
+      "type": "string",
+      "description": "URL of the logo image. The image is downloaded and stored. When set, the partner is listed as a **sponsor**. Required unless `photo_url` is given."
+     },
+     "photo_url": {
+      "type": "string",
+      "description": "URL of the photo/banner image. The image is downloaded and stored. When set, the partner is listed as an **exhibitor**. Required unless `logo_url` is given."
+     },
+     "booth_number": {
+      "type": "string",
+      "description": "Booth number of the exhibitor (shown with the `photo_url`). Max 191 characters."
+     },
+     "web": {
+      "type": "string",
+      "description": "Website URL. Max 512 characters."
+     },
+     "email": {
+      "type": "string",
+      "description": "Contact email address. Max 256 characters."
+     },
+     "phone": {
+      "type": "string",
+      "description": "Contact phone number. Max 32 characters."
+     },
+     "address": {
+      "type": "string",
+      "description": "Postal address. Max 256 characters."
+     }
+    },
+    "required": [
+     "company"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://eventee.com/public/api/v1/partner",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "company",
+     "description",
+     "logo_url",
+     "photo_url",
+     "booth_number",
+     "web",
+     "email",
+     "phone",
+     "address"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "eventee.create_registrations",
+   "name": "Create registrations",
+   "description": "Pre-registers people for the event. An existing registration with the same email is updated instead of duplicated. Set `send_email` to notify the person by email. The first 25 entries are processed immediately, the rest in the background. Entries that fail validation are skipped silently.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "registrations": {
+      "type": "array",
+      "description": "The people to register (at least one)."
+     }
+    },
+    "required": [
+     "registrations"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://eventee.com/public/api/v1/registration/invite",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "registrations"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "eventee.create_session",
+   "name": "Create session",
+   "description": "Creates a lecture or a workshop. The session is placed on the event day matching `start`; the day is created when it does not exist yet. Speakers, labels and the hall must already exist - create them first and pass their IDs. Every session has to be placed in a hall.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": "string",
+      "description": "Title of the session."
+     },
+     "description": {
+      "type": "string",
+      "description": "Description shown in the session detail. Plain text or simple HTML; URLs are turned into links automatically."
+     },
+     "start": {
+      "type": "string",
+      "description": "Start of the session (`Y-m-d H:i:s`, event time zone). Must be before `end`. The event day is created automatically if it does not exist yet."
+     },
+     "end": {
+      "type": "string",
+      "description": "End of the session (`Y-m-d H:i:s`, event time zone). Must be after `start`."
+     },
+     "type": {
+      "type": "integer",
+      "description": "Kind of session: `0` = lecture, `1` = workshop (bookable, with limited capacity). Send as a number. Defaults to `0`.",
+      "enum": [
+       0,
+       1
+      ]
+     },
+     "hall_id": {
+      "type": "integer",
+      "description": "ID of the hall the session takes place in (see Halls). Must be a hall of the same event."
+     },
+     "speakers": {
+      "type": "array",
+      "description": "IDs of the speakers of this session (see Speakers), in display order."
+     },
+     "tracks": {
+      "type": "array",
+      "description": "IDs of the labels to attach (see Labels)."
+     },
+     "discussion": {
+      "type": "boolean",
+      "description": "Allow attendees to ask questions in the session (Q&A). Defaults to `false`."
+     },
+     "moderating": {
+      "type": "boolean",
+      "description": "Questions have to be approved by a moderator before they are shown. Defaults to `false`."
+     },
+     "polling": {
+      "type": "boolean",
+      "description": "Allow live polls in the session. Defaults to `false`."
+     },
+     "checkin": {
+      "type": "boolean",
+      "description": "Enable check-in of attendees at the session. Only applies to workshops (`type` 1). Defaults to `false`."
+     },
+     "capacity": {
+      "type": "integer",
+      "description": "Maximum number of attendees that can book the workshop. Only applies to workshops (`type` 1). Defaults to `0`."
+     },
+     "stream": {
+      "type": "string",
+      "description": "URL of the live stream (YouTube, Vimeo, Twitch, Zoom, ...). A live stream object is created and returned as `stream`; its `code` can be reused for a hall."
+     },
+     "virtual_meeting": {
+      "type": "string",
+      "description": "URL of the virtual meeting attendees can join (for example a Zoom or Google Meet link)."
+     }
+    },
+    "required": [
+     "end",
+     "hall_id",
+     "name",
+     "start"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://eventee.com/public/api/v1/lecture",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "description",
+     "start",
+     "end",
+     "type",
+     "hall_id",
+     "speakers",
+     "tracks",
+     "discussion",
+     "moderating",
+     "polling",
+     "checkin",
+     "capacity",
+     "stream",
+     "virtual_meeting"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "eventee.create_speaker",
+   "name": "Create speaker",
+   "description": "Creates a speaker profile in the event. Use the returned `id` in the `speakers` field of sessions.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "name": {
+      "type": "string",
+      "description": "Full name of the speaker. Max 256 characters."
+     },
+     "email": {
+      "type": "string",
+      "description": "Email address. Max 255 characters."
+     },
+     "photo": {
+      "type": "string",
+      "description": "URL of the profile photo. The image is downloaded and stored; the response contains `photo` and `thumbnail` URLs."
+     },
+     "bio": {
+      "type": "string",
+      "description": "Biography. Plain text or simple HTML; URLs are turned into links automatically. Returned as `bio_html` (HTML) and `bio` (plain text)."
+     },
+     "position": {
+      "type": "string",
+      "description": "Job title. Max 128 characters."
+     },
+     "company": {
+      "type": "string",
+      "description": "Company or organization. Max 128 characters."
+     },
+     "phone": {
+      "type": "string",
+      "description": "Phone number. Max 32 characters."
+     },
+     "web": {
+      "type": "string",
+      "description": "Website URL. Max 512 characters."
+     },
+     "linkedIn": {
+      "type": "string",
+      "description": "LinkedIn profile URL. Max 512 characters."
+     },
+     "twitter": {
+      "type": "string",
+      "description": "X (Twitter) profile URL. Max 512 characters."
+     },
+     "facebook": {
+      "type": "string",
+      "description": "Facebook profile URL. Max 512 characters."
+     },
+     "instagram": {
+      "type": "string",
+      "description": "Instagram profile URL. Max 512 characters."
+     },
+     "country": {
+      "type": "string",
+      "description": "Country as a two-letter ISO 3166-1 code."
+     },
+     "language": {
+      "type": "string",
+      "description": "Language the speaker presents in, as a language code. Max 24 characters."
+     }
+    },
+    "required": [
+     "name"
+    ]
+   },
+   "request": {
+    "method": "POST",
+    "url": "https://eventee.com/public/api/v1/speaker",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "email",
+     "photo",
+     "bio",
+     "position",
+     "company",
+     "phone",
+     "web",
+     "linkedIn",
+     "twitter",
+     "facebook",
+     "instagram",
+     "country",
+     "language"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "eventee.delete_all_program_content",
+   "name": "Delete all program content",
+   "description": "**Irreversible.** Deletes **all** sessions, breaks, halls, speakers and labels of the event at once. Intended for cleaning up after testing an integration before the real import. Partners, attendees, registrations and groups are not affected.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://eventee.com/public/api/v1/test/content",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "eventee.delete_break",
+   "name": "Delete break",
+   "description": "Deletes a break from the agenda.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "pause_id": {
+      "type": "integer",
+      "description": "ID of the break."
+     }
+    },
+    "required": [
+     "pause_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://eventee.com/public/api/v1/pause/{pause_id}",
+    "path": [
+     "pause_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "eventee.delete_hall",
+   "name": "Delete hall",
+   "description": "Deletes a hall together with all sessions placed in it.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "hall_id": {
+      "type": "integer",
+      "description": "ID of the hall."
+     }
+    },
+    "required": [
+     "hall_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://eventee.com/public/api/v1/hall/{hall_id}",
+    "path": [
+     "hall_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "eventee.delete_label",
+   "name": "Delete label",
+   "description": "Deletes a label and removes it from all sessions.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "track_id": {
+      "type": "integer",
+      "description": "ID of the label."
+     }
+    },
+    "required": [
+     "track_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://eventee.com/public/api/v1/label/{track_id}",
+    "path": [
+     "track_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "eventee.delete_partner",
+   "name": "Delete partner",
+   "description": "Deletes a partner including its sections.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "partner_id": {
+      "type": "integer",
+      "description": "ID of the partner."
+     }
+    },
+    "required": [
+     "partner_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://eventee.com/public/api/v1/partner/{partner_id}",
+    "path": [
+     "partner_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "eventee.delete_session",
+   "name": "Delete session",
+   "description": "Deletes a session (lecture or workshop) including its questions, polls, bookings and ratings.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "lecture_id": {
+      "type": "integer",
+      "description": "ID of the session."
+     }
+    },
+    "required": [
+     "lecture_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://eventee.com/public/api/v1/lecture/{lecture_id}",
+    "path": [
+     "lecture_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "eventee.delete_speaker",
+   "name": "Delete speaker",
+   "description": "Deletes a speaker and removes them from all sessions.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "speakerTmp_id": {
+      "type": "integer",
+      "description": "ID of the speaker."
+     }
+    },
+    "required": [
+     "speakerTmp_id"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://eventee.com/public/api/v1/speaker/{speakerTmp_id}",
+    "path": [
+     "speakerTmp_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "eventee.get_event_content",
+   "name": "Get event content",
+   "description": "Returns the complete program of the event: `halls`, `days`, `lectures` (sessions of type 0), `workshops` (sessions of type 1), `pauses` (breaks), `speakers` and `tracks` (labels). Use it to read back IDs or to mirror the agenda in another system.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "date": {
+      "type": "string",
+      "description": "Only return the program of this day (`Y-m-d`). Days without content return empty lists."
+     },
+     "with_overlapping": {
+      "type": "boolean",
+      "description": "Also include event days that have no content yet in `days`."
+     }
+    },
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://eventee.com/public/api/v1/content",
+    "path": [],
+    "query": [
+     "date",
+     "with_overlapping"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "eventee.invite_attendees",
+   "name": "Invite attendees",
+   "description": "Adds people to the event as attendees. People who already have an Eventee account are added directly, others get a profile that is linked once they sign up with the same email. Set `send_email` to send them an invitation email. The first 25 entries are processed immediately, the rest in the background. Entries that fail validation and people who are admins or moderators of the event are skipped si",
+   "input": {
+    "type": "object",
+    "properties": {
+     "users": {
+      "type": "array",
+      "description": "The people to invite (at least one)."
+     }
+    },
+    "required": [
+     "users"
+    ]
+   },
+   "request": {
+    "method": "PUT",
+    "url": "https://eventee.com/public/api/v1/attendee/invite",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [
+     "users"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "eventee.list_groups",
+   "name": "List groups",
+   "description": "Returns the attendee groups of the event. The boolean fields tell which app features are enabled for the group, `ticket_names` lists the ticket names that put attendees into the group automatically, `is_default` marks the group new attendees join by default.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://eventee.com/public/api/v1/groups",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "eventee.list_participants",
+   "name": "List participants",
+   "description": "Returns all participants of the event with their role, group, tickets and check-in time. `role` is `a` = admin, `m` = moderator, `l` = speaker, `e` = attendee. `url` is the participant's personal link (used for their QR code), `checked_at` is `null` until the participant is checked in. `email` is not always a valid address: anonymous participants and deleted accounts carry a placeholder that conta",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://eventee.com/public/api/v1/participants",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "eventee.list_partners",
+   "name": "List partners",
+   "description": "Returns all partners of the event with their sponsor/exhibitor details and sections.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://eventee.com/public/api/v1/partners",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "eventee.list_registrations",
+   "name": "List registrations",
+   "description": "Returns all registrations of the event. `status` is `0` = pending, `1` = confirmed (attending), `2` = declined.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://eventee.com/public/api/v1/registrations",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "eventee.list_reviews",
+   "name": "List reviews",
+   "description": "Returns all session ratings of the event. Each review includes the rated session as `lecture` and the reviewer's name and photo.",
+   "input": {
+    "type": "object",
+    "properties": {},
+    "required": []
+   },
+   "request": {
+    "method": "GET",
+    "url": "https://eventee.com/public/api/v1/reviews",
+    "path": [],
+    "query": [],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "eventee.remove_attendee",
+   "name": "Remove attendee",
+   "description": "Removes the person with the given email from the event: their participation, invitation and tickets for this event are deleted. Their Eventee account is not affected. Succeeds even when no attendee with that email exists.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "email": {
+      "type": "string",
+      "description": "URL-encoded email address of the attendee."
+     }
+    },
+    "required": [
+     "email"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://eventee.com/public/api/v1/attendee",
+    "path": [],
+    "query": [
+     "email"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "eventee.remove_registration",
+   "name": "Remove registration",
+   "description": "Deletes the registration with the given email address. Succeeds even when no such registration exists.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "email": {
+      "type": "string",
+      "description": "URL-encoded email address of the registration."
+     }
+    },
+    "required": [
+     "email"
+    ]
+   },
+   "request": {
+    "method": "DELETE",
+    "url": "https://eventee.com/public/api/v1/registration",
+    "path": [],
+    "query": [
+     "email"
+    ],
+    "header": [],
+    "body": [],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "eventee.update_break",
+   "name": "Update break",
+   "description": "Updates a break. `name`, `start` and `end` are required; `description` is kept when omitted.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "pause_id": {
+      "type": "integer",
+      "description": "ID of the break."
+     },
+     "name": {
+      "type": "string",
+      "description": "Name of the break. Max 128 characters."
+     },
+     "description": {
+      "type": "string",
+      "description": "Optional description. Unchanged when omitted."
+     },
+     "start": {
+      "type": "string",
+      "description": "Start of the break (`Y-m-d H:i:s`, event time zone). Must be before `end`."
+     },
+     "end": {
+      "type": "string",
+      "description": "End of the break (`Y-m-d H:i:s`, event time zone). Must be after `start`."
+     }
+    },
+    "required": [
+     "end",
+     "name",
+     "pause_id",
+     "start"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://eventee.com/public/api/v1/pause/{pause_id}",
+    "path": [
+     "pause_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "description",
+     "start",
+     "end"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "eventee.update_hall",
+   "name": "Update hall",
+   "description": "Updates a hall. `name` is required; `order` is kept when omitted. The live stream is **removed** when `stream` is omitted.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "hall_id": {
+      "type": "integer",
+      "description": "ID of the hall."
+     },
+     "name": {
+      "type": "string",
+      "description": "Name of the hall."
+     },
+     "order": {
+      "type": "integer",
+      "description": "Position of the hall in the agenda (0 = first). Unchanged when omitted."
+     },
+     "stream": {
+      "type": "string",
+      "description": "Code of an existing live stream to show in this hall. Omit to remove the current stream."
+     }
+    },
+    "required": [
+     "hall_id",
+     "name"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://eventee.com/public/api/v1/hall/{hall_id}",
+    "path": [
+     "hall_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "order",
+     "stream"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "eventee.update_label",
+   "name": "Update label",
+   "description": "Updates a label. `name` and `color` are required; `order` is kept when omitted.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "track_id": {
+      "type": "integer",
+      "description": "ID of the label."
+     },
+     "name": {
+      "type": "string",
+      "description": "Name of the label. Max 191 characters."
+     },
+     "color": {
+      "type": "string",
+      "description": "Color of the label as a hex code."
+     },
+     "order": {
+      "type": "integer",
+      "description": "Position of the label in lists (0 = first). Unchanged when omitted."
+     }
+    },
+    "required": [
+     "color",
+     "name",
+     "track_id"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://eventee.com/public/api/v1/label/{track_id}",
+    "path": [
+     "track_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "color",
+     "order"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "eventee.update_partner",
+   "name": "Update partner",
+   "description": "Replaces a partner's details. This is a full update: text fields that are omitted are cleared, and omitting `logo_url` removes the sponsor listing, omitting `photo_url` removes the exhibitor listing. Sections are not touched.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "partner_id": {
+      "type": "integer",
+      "description": "ID of the partner."
+     },
+     "company": {
+      "type": "string",
+      "description": "Name of the partner (company). Max 256 characters."
+     },
+     "description": {
+      "type": "string",
+      "description": "Short description shown in the partner list and detail. URLs are turned into links automatically."
+     },
+     "logo_url": {
+      "type": "string",
+      "description": "URL of the logo image. The image is downloaded and stored. When set, the partner is listed as a **sponsor**. Required unless `photo_url` is given."
+     },
+     "photo_url": {
+      "type": "string",
+      "description": "URL of the photo/banner image. The image is downloaded and stored. When set, the partner is listed as an **exhibitor**. Required unless `logo_url` is given."
+     },
+     "booth_number": {
+      "type": "string",
+      "description": "Booth number of the exhibitor (shown with the `photo_url`). Max 191 characters."
+     },
+     "web": {
+      "type": "string",
+      "description": "Website URL. Max 512 characters."
+     },
+     "email": {
+      "type": "string",
+      "description": "Contact email address. Max 256 characters."
+     },
+     "phone": {
+      "type": "string",
+      "description": "Contact phone number. Max 32 characters."
+     },
+     "address": {
+      "type": "string",
+      "description": "Postal address. Max 256 characters."
+     }
+    },
+    "required": [
+     "company",
+     "partner_id"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://eventee.com/public/api/v1/partner/{partner_id}",
+    "path": [
+     "partner_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "company",
+     "description",
+     "logo_url",
+     "photo_url",
+     "booth_number",
+     "web",
+     "email",
+     "phone",
+     "address"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "eventee.update_partner_sections",
+   "name": "Update partner sections",
+   "description": "Replaces the sections of the partner's detail page. The order of the array is the display order. Existing sections are kept only when their `id` is included - sections not listed are deleted, entries without `id` are created. Send an empty `sections` array to remove all sections. Each section has a `type` and only the fields relevant to that type are used.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "partner_id": {
+      "type": "integer",
+      "description": "ID of the partner."
+     },
+     "sections": {
+      "type": "array",
+      "description": "The complete list of sections, in display order."
+     }
+    },
+    "required": [
+     "partner_id",
+     "sections"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://eventee.com/public/api/v1/partner/{partner_id}/sections",
+    "path": [
+     "partner_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "sections"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "eventee.update_session",
+   "name": "Update session",
+   "description": "Replaces a session. This is a full update: `name`, `start` and `end` are required and **omitted `speakers`, `tracks`, `capacity` and `type` are reset** (see the individual fields). The hall and live stream are kept when omitted.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "lecture_id": {
+      "type": "integer",
+      "description": "ID of the session."
+     },
+     "name": {
+      "type": "string",
+      "description": "Title of the session."
+     },
+     "description": {
+      "type": "string",
+      "description": "Description shown in the session detail. Plain text or simple HTML; URLs are turned into links automatically."
+     },
+     "start": {
+      "type": "string",
+      "description": "Start of the session (`Y-m-d H:i:s`, event time zone). Must be before `end`. Must fall on an existing day of the event."
+     },
+     "end": {
+      "type": "string",
+      "description": "End of the session (`Y-m-d H:i:s`, event time zone). Must be after `start`."
+     },
+     "type": {
+      "type": "integer",
+      "description": "Kind of session: `0` = lecture, `1` = workshop (bookable, with limited capacity). Send as a number. **If omitted, the session becomes a lecture.**",
+      "enum": [
+       0,
+       1
+      ]
+     },
+     "hall_id": {
+      "type": "integer",
+      "description": "ID of the hall the session takes place in (see Halls). Must be a hall of the same event. If omitted, the current hall is kept."
+     },
+     "speakers": {
+      "type": "array",
+      "description": "IDs of the speakers of this session (see Speakers), in display order. **Omitted = all speakers removed.**"
+     },
+     "tracks": {
+      "type": "array",
+      "description": "IDs of the labels to attach (see Labels). **Omitted = all labels removed.**"
+     },
+     "discussion": {
+      "type": "boolean",
+      "description": "Allow attendees to ask questions in the session (Q&A). Defaults to `false`."
+     },
+     "moderating": {
+      "type": "boolean",
+      "description": "Questions have to be approved by a moderator before they are shown. Defaults to `false`."
+     },
+     "polling": {
+      "type": "boolean",
+      "description": "Allow live polls in the session. Defaults to `false`."
+     },
+     "capacity": {
+      "type": "integer",
+      "description": "Maximum number of attendees that can book the workshop. Only applies to workshops (`type` 1). Defaults to `0`."
+     },
+     "stream": {
+      "type": "string",
+      "description": "URL of the live stream (YouTube, Vimeo, Twitch, Zoom, ...). A live stream object is created and returned as `stream`; its `code` can be reused for a hall. If omitted, the current stream is kept."
+     },
+     "virtual_meeting": {
+      "type": "string",
+      "description": "URL of the virtual meeting attendees can join (for example a Zoom or Google Meet link)."
+     }
+    },
+    "required": [
+     "end",
+     "lecture_id",
+     "name",
+     "start"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://eventee.com/public/api/v1/lecture/{lecture_id}",
+    "path": [
+     "lecture_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "description",
+     "start",
+     "end",
+     "type",
+     "hall_id",
+     "speakers",
+     "tracks",
+     "discussion",
+     "moderating",
+     "polling",
+     "capacity",
+     "stream",
+     "virtual_meeting"
+    ],
+    "body_format": "json"
+   }
+  },
+  {
+   "slug": "eventee.update_speaker",
+   "name": "Update speaker",
+   "description": "Partially updates a speaker: only the fields you send are changed, all others are kept.",
+   "input": {
+    "type": "object",
+    "properties": {
+     "speakerTmp_id": {
+      "type": "integer",
+      "description": "ID of the speaker."
+     },
+     "name": {
+      "type": "string",
+      "description": "Full name of the speaker. Max 256 characters."
+     },
+     "email": {
+      "type": "string",
+      "description": "Email address. Max 255 characters."
+     },
+     "photo": {
+      "type": "string",
+      "description": "URL of the profile photo. The image is downloaded and stored; the response contains `photo` and `thumbnail` URLs."
+     },
+     "bio": {
+      "type": "string",
+      "description": "Biography. Plain text or simple HTML; URLs are turned into links automatically. Returned as `bio_html` (HTML) and `bio` (plain text)."
+     },
+     "position": {
+      "type": "string",
+      "description": "Job title. Max 128 characters."
+     },
+     "company": {
+      "type": "string",
+      "description": "Company or organization. Max 128 characters."
+     },
+     "phone": {
+      "type": "string",
+      "description": "Phone number. Max 32 characters."
+     },
+     "web": {
+      "type": "string",
+      "description": "Website URL. Max 512 characters."
+     },
+     "linkedIn": {
+      "type": "string",
+      "description": "LinkedIn profile URL. Max 512 characters."
+     },
+     "twitter": {
+      "type": "string",
+      "description": "X (Twitter) profile URL. Max 512 characters."
+     },
+     "facebook": {
+      "type": "string",
+      "description": "Facebook profile URL. Max 512 characters."
+     },
+     "instagram": {
+      "type": "string",
+      "description": "Instagram profile URL. Max 512 characters."
+     },
+     "country": {
+      "type": "string",
+      "description": "Country as a two-letter ISO 3166-1 code."
+     },
+     "language": {
+      "type": "string",
+      "description": "Language the speaker presents in, as a language code. Max 24 characters."
+     }
+    },
+    "required": [
+     "speakerTmp_id"
+    ]
+   },
+   "request": {
+    "method": "PATCH",
+    "url": "https://eventee.com/public/api/v1/speaker/{speakerTmp_id}",
+    "path": [
+     "speakerTmp_id"
+    ],
+    "query": [],
+    "header": [],
+    "body": [
+     "name",
+     "email",
+     "photo",
+     "bio",
+     "position",
+     "company",
+     "phone",
+     "web",
+     "linkedIn",
+     "twitter",
+     "facebook",
+     "instagram",
+     "country",
+     "language"
+    ],
+    "body_format": "json"
+   }
+  }
+ ]
+}
